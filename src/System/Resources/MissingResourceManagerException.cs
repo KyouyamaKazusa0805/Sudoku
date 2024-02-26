@@ -1,4 +1,4 @@
-namespace Sudoku.Resources;
+namespace System.Resources;
 
 /// <summary>
 /// Represents an exception that will be thrown if resource manager is missing.

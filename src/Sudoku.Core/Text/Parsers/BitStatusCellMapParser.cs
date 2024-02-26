@@ -12,7 +12,7 @@ public sealed class BitStatusCellMapParser : IConceptParser<CellMap>
 		{
 			if (str.Length != 81)
 			{
-				throw new InvalidOperationException("The length of the string must be 81.");
+				throw new InvalidOperationException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 81));
 			}
 
 			var result = CellMap.Empty;
@@ -30,7 +30,7 @@ public sealed class BitStatusCellMapParser : IConceptParser<CellMap>
 					continue;
 				}
 
-				throw new FormatException("The specified format contains invalid characters.");
+				throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 			}
 
 			return result;

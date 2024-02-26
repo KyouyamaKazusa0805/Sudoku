@@ -28,7 +28,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 		{
 			case null or []:
 			{
-				throw new ArgumentException("The specified file format is unknown (null), which is not allowed in this method.", nameof(path));
+				throw new ArgumentException(ResourceDictionary.Get("ArgCannotBeNull"), nameof(path));
 			}
 			case ".wmf":
 			{
@@ -60,7 +60,7 @@ public interface ISudokuPainter : ISudokuPainterFactory
 			}
 			default:
 			{
-				throw new NotSupportedException("The specified file format is not supported.");
+				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("FileFormatNotSupported"));
 			}
 		}
 	}

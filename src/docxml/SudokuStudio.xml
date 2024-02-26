@@ -76,9 +76,9 @@
         </member>
         <member name="P:SudokuStudio.App.CurrentCulture">
             <summary>
-            Indicates the current culture, used by <see cref="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>.
+            Indicates the current culture, used by <see cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>.
             </summary>
-            <seealso cref="M:Sudoku.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+            <seealso cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
         </member>
         <member name="P:SudokuStudio.App.CurrentTheme">
             <summary>
@@ -6940,6 +6940,71 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.DrawingPage_SelectMode">
             <summary>
               Looks up a localized string similar to Select Mode: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_EnsureFileIsUnsnapped">
+            <summary>
+              Looks up a localized string similar to Ensure the file should be unsnapped..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_FileFormatContainsMultipleSubformats">
+            <summary>
+              Looks up a localized string similar to The specified format is invalid: it contain multiple sub-formats or no format..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_FormatCannotBeNull">
+            <summary>
+              Looks up a localized string similar to The format cannot be null..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_GridMustBeSolvedOrUnique">
+            <summary>
+              Looks up a localized string similar to The puzzle must be solved, and have a unique solution..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_InvalidBaseType">
+            <summary>
+              Looks up a localized string similar to The base value type is invalid..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_InvalidLibraryBindableSource">
+            <summary>
+              Looks up a localized string similar to Invalid library bindable source..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_MainWindowNotFound">
+            <summary>
+              Looks up a localized string similar to Main window cannot be found..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_ModeInvalidOrUndefined">
+            <summary>
+              Looks up a localized string similar to The mode is invalid, it may not be defined in the enumeration type..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_NoAvailableNameCanBeUsed">
+            <summary>
+              Looks up a localized string similar to No available name can be used..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_PropertyValueCannotBeFoundInPropertyGroupType">
+            <summary>
+              Looks up a localized string similar to One of two possible property values cannot be found in target property group type..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_SuchColorCannotBeFound">
+            <summary>
+              Looks up a localized string similar to Such color cannot be found..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_SuchInstanceIsInvalid">
+            <summary>
+              Looks up a localized string similar to Such instance contains invalid data..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_UnableGetDpi">
+            <summary>
+              Looks up a localized string similar to Could not get DPI for monitor..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_CommaSeparated">

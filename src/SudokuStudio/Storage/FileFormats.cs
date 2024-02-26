@@ -64,6 +64,6 @@ public static class FileFormats
 		=> @this.FileTypeFilter.Add(
 			format.Formats is [var f]
 				? f
-				: throw new InvalidOperationException("The specified format is invalid: it contain multiple sub-formats or no format.")
+				: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FileFormatContainsMultipleSubformats"))
 		);
 }

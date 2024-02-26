@@ -1470,7 +1470,7 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorRef{T}(T*, int, Func{T, string?}, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(T @this) where T : notnull
-		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
+		=> @this.ToString() ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull"));
 
 	/// <summary>
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
@@ -1490,5 +1490,5 @@ public unsafe ref partial struct StringHandler
 	/// <seealso cref="AppendRangeWithSeparatorRef{T}(ref readonly T, int, StringHandlerRefAppender{T}, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ElementToStringConverter<T>(scoped ref readonly T @this) where T : notnull
-		=> @this.ToString() ?? throw new InvalidOperationException("The argument cannot return null.");
+		=> @this.ToString() ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull"));
 }

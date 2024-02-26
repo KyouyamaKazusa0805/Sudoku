@@ -181,7 +181,7 @@ public sealed partial record RxCyParser : CoordinateParser
 	private static Mask OnDigitParsing(string str)
 		=> str.MatchAll("""\d""") is { Length: <= 9 } matches
 			? MaskOperations.Create(from digitString in matches select digitString[0] - '1')
-			: throw new InvalidOperationException("There exists duplicate values.");
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ErrorInfo_DuplicatedValuesMayExistOrInvalid"));
 
 	private static Chute[] OnChuteParsing(string str)
 	{

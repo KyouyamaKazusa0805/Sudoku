@@ -16,4 +16,19 @@
 		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="Resources\RecognitionImagingResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>RecognitionImagingResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\RecognitionImagingResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>RecognitionImagingResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

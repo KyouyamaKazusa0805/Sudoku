@@ -18,6 +18,36 @@ public static class ListExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void RemoveAt<T>(this List<T> @this, Index index) => @this.RemoveAt(index.GetOffset(@this.Count));
 
+	/// <summary>
+	/// Determines whether two sequences are equal by comparing the elements by using <see cref="IEquatable{T}.Equals(T)"/> for their type.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">A <see cref="List{T}"/> to compare to <paramref name="other"/>.</param>
+	/// <param name="other">A <see cref="List{T}"/> to compare to <paramref name="this"/>.</param>
+	/// <returns>
+	/// <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
+	/// to <see cref="IEquatable{T}.Equals(T)"/> for their type; otherwise, <see langword="false"/>.
+	/// </returns>
+	public static bool SequenceEqual<T>(this List<T> @this, List<T> other) where T : IEquatable<T>
+	{
+		if (@this.Count != other.Count)
+		{
+			return false;
+		}
+
+		scoped var leftSpan = @this.AsReadOnlySpan();
+		scoped var rightSpan = other.AsReadOnlySpan();
+		for (var i = 0; i < @this.Count; i++)
+		{
+			if (!leftSpan[i].Equals(rightSpan[i]))
+			{
+				return false;
+			}
+		}
+
+		return true;
+	}
+
 	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
 	/// <param name="this">The instance to be transformed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

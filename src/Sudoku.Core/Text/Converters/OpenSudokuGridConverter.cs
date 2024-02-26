@@ -67,7 +67,7 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 					}
 					default:
 					{
-						throw new FormatException("The specified grid is invalid.");
+						throw new FormatException(ResourceDictionary.ExceptionMessage("GridInvalid"));
 					}
 				}
 			}

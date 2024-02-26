@@ -174,7 +174,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException("Cannot get at least 1 candidate in the map.");
+				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Candidate"));
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException("Cannot get at least 1 cell in the map.");
+				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Cell"));
 			}
 		}
 	}
@@ -228,7 +228,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException("Cannot get at least 1 candidate in the map.");
+				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Candidate"));
 			}
 		}
 	}

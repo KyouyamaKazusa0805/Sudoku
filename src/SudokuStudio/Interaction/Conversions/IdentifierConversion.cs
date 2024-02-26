@@ -15,25 +15,25 @@ internal static class IdentifierConversion
 			PaletteIdColorIdentifier { Value: var idValue } when getValueById(idValue, out var color) => color,
 			WellKnownColorIdentifier { Kind: var namedKind } => namedKind switch
 			{
-				WellKnownColorIdentifierKind.Normal => uiPref.NormalColor,
-				WellKnownColorIdentifierKind.Assignment => uiPref.AssignmentColor,
-				WellKnownColorIdentifierKind.OverlappedAssignment => uiPref.OverlappedAssignmentColor,
-				WellKnownColorIdentifierKind.Elimination => uiPref.EliminationColor,
-				WellKnownColorIdentifierKind.Cannibalism => uiPref.CannibalismColor,
-				WellKnownColorIdentifierKind.Exofin => uiPref.ExofinColor,
-				WellKnownColorIdentifierKind.Endofin => uiPref.EndofinColor,
-				WellKnownColorIdentifierKind.Link => uiPref.ChainColor,
-				WellKnownColorIdentifierKind.Auxiliary1 => uiPref.AuxiliaryColors[0],
-				WellKnownColorIdentifierKind.Auxiliary2 => uiPref.AuxiliaryColors[1],
-				WellKnownColorIdentifierKind.Auxiliary3 => uiPref.AuxiliaryColors[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet1 => uiPref.AlmostLockedSetsColors[0],
-				WellKnownColorIdentifierKind.AlmostLockedSet2 => uiPref.AlmostLockedSetsColors[1],
-				WellKnownColorIdentifierKind.AlmostLockedSet3 => uiPref.AlmostLockedSetsColors[2],
-				WellKnownColorIdentifierKind.AlmostLockedSet4 => uiPref.AlmostLockedSetsColors[3],
-				WellKnownColorIdentifierKind.AlmostLockedSet5 => uiPref.AlmostLockedSetsColors[4],
-				_ => throw new InvalidOperationException("Such displaying color kind is invalid.")
+				ColorIdentifierKind.Normal => uiPref.NormalColor,
+				ColorIdentifierKind.Assignment => uiPref.AssignmentColor,
+				ColorIdentifierKind.OverlappedAssignment => uiPref.OverlappedAssignmentColor,
+				ColorIdentifierKind.Elimination => uiPref.EliminationColor,
+				ColorIdentifierKind.Cannibalism => uiPref.CannibalismColor,
+				ColorIdentifierKind.Exofin => uiPref.ExofinColor,
+				ColorIdentifierKind.Endofin => uiPref.EndofinColor,
+				ColorIdentifierKind.Link => uiPref.ChainColor,
+				ColorIdentifierKind.Auxiliary1 => uiPref.AuxiliaryColors[0],
+				ColorIdentifierKind.Auxiliary2 => uiPref.AuxiliaryColors[1],
+				ColorIdentifierKind.Auxiliary3 => uiPref.AuxiliaryColors[2],
+				ColorIdentifierKind.AlmostLockedSet1 => uiPref.AlmostLockedSetsColors[0],
+				ColorIdentifierKind.AlmostLockedSet2 => uiPref.AlmostLockedSetsColors[1],
+				ColorIdentifierKind.AlmostLockedSet3 => uiPref.AlmostLockedSetsColors[2],
+				ColorIdentifierKind.AlmostLockedSet4 => uiPref.AlmostLockedSetsColors[3],
+				ColorIdentifierKind.AlmostLockedSet5 => uiPref.AlmostLockedSetsColors[4],
+				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("SuchColorCannotBeFound"))
 			},
-			_ => throw new InvalidOperationException("Such identifier instance contains invalid value.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("SuchInstanceIsInvalid"))
 		};
 
 

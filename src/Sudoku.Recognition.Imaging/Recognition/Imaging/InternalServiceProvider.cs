@@ -95,7 +95,7 @@ internal sealed class InternalServiceProvider : IDisposable
 		_ocr.SetImage(imgThresholds);
 		if (_ocr.Recognize() != 0)
 		{
-			throw new TesseractException("can't recognize any cell image");
+			throw new TesseractException(ResourceDictionary.ExceptionMessage("CannotRecognizeCellImage"));
 		}
 
 		var characters = _ocr.GetCharacters();
@@ -126,7 +126,7 @@ internal sealed class InternalServiceProvider : IDisposable
 			var filePath = $@"{dir}\{lang}.traineddata";
 			if (!File.Exists(filePath))
 			{
-				throw new FileNotFoundException("The training file can't be found in the folder 'traineddata'.", filePath);
+				throw new FileNotFoundException(ResourceDictionary.ExceptionMessage("MissingTrainedDataFile"), filePath);
 			}
 
 			_ocr = new(dir, lang, OcrEngineMode.TesseractOnly, "123456789");

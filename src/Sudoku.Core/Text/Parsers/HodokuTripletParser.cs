@@ -14,7 +14,7 @@ public sealed record HodokuTripletParser : IConceptParser<CandidateMap>
 			var segments = str.SplitBy([' ']);
 			if (Array.IndexOf(segments, string.Empty) != -1)
 			{
-				throw new FormatException("The string contains empty segment.");
+				throw new FormatException(ResourceDictionary.ExceptionMessage("ContainsEmptySegmentOnParsing"));
 			}
 
 			var result = CandidateMap.Empty;
@@ -26,7 +26,7 @@ public sealed record HodokuTripletParser : IConceptParser<CandidateMap>
 					continue;
 				}
 
-				throw new FormatException("Each candidate segment contains invalid character.");
+				throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 			}
 
 			return result;

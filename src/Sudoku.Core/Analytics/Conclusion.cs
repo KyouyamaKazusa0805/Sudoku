@@ -181,13 +181,15 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 			}
 		}
 
-		throw new FormatException("The string value is invalid.");
+		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Conclusion ParseExact(string str, CoordinateParser parser)
-		=> parser.ConclusionParser(str) is [var result] ? result : throw new FormatException("The string value is invalid.");
+		=> parser.ConclusionParser(str) is [var result]
+			? result
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 
 
 	/// <summary>

@@ -7,14 +7,6 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
-	/// Represents an error message that complex single field is not supported.
-	/// </summary>
-	private static readonly string Error_ComplexSingleNotSupportedToday = """
-		The group of indirect technique field is neither locked candidates nor subset, which is not supported today. 
-		In future, the field might be expanded to wider, and this value might be available.
-		""".RemoveLineEndings();
-
-	/// <summary>
 	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
 	/// </summary>
 	private static readonly Type TypeOfTechnique = typeof(Technique);
@@ -29,8 +21,9 @@ public static class TechniqueExtensions
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this Technique @this, CultureInfo? culture = null)
-		=> ResourceDictionary.GetOrNull(@this.ToString(), culture ?? CultureInfo.CurrentUICulture)
-		?? ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
+		=> ResourceDictionary.TryGet(@this.ToString(), out var resource, culture ?? CultureInfo.CurrentUICulture)
+			? resource
+			: ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the English name of the current <see cref="Technique"/>.
@@ -63,8 +56,11 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
-		?? ResourceDictionary.GetOrNull($"TechniqueAbbr_{@this}", ResourceDictionary.DefaultCulture)
-		?? @this.GetGroup().GetAbbreviation();
+		?? (
+			ResourceDictionary.TryGet($"TechniqueAbbr_{@this}", out var resource, ResourceDictionary.DefaultCulture)
+				? resource
+				: @this.GetGroup().GetAbbreviation()
+		);
 
 	/// <summary>
 	/// Try to get all aliases of the current <see cref="Technique"/>.
@@ -77,7 +73,9 @@ public static class TechniqueExtensions
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetAliases(this Technique @this, CultureInfo? cultureInfo = null)
-		=> ResourceDictionary.GetOrNull($"TechniqueAlias_{@this}", cultureInfo ?? CultureInfo.CurrentUICulture)?.SplitBy([';']);
+		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, cultureInfo ?? CultureInfo.CurrentUICulture)
+			? resource.SplitBy([';'])
+			: null;
 
 	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.
@@ -119,9 +117,12 @@ public static class TechniqueExtensions
 			Technique.FullHouse or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn or Technique.NakedSingle
 				=> indirect.GetGroup() switch
 				{
-					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset => Enum.Parse<Technique>($"{indirect}{@this}"),
-					_ when Enum.IsDefined(indirect) => throw new NotSupportedException(Error_ComplexSingleNotSupportedToday),
-					_ => throw new ArgumentOutOfRangeException(nameof(indirect))
+					TechniqueGroup.LockedCandidates or TechniqueGroup.Subset
+						=> Enum.Parse<Technique>($"{indirect}{@this}"),
+					_ when Enum.IsDefined(indirect)
+						=> throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ComplexSingleNotSupportedToday")),
+					_
+						=> throw new ArgumentOutOfRangeException(nameof(indirect))
 				},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};

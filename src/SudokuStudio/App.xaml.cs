@@ -302,7 +302,7 @@ public partial class App : Application
 		var unsnapped = ApplicationView.Value != ApplicationViewState.Snapped || ApplicationView.TryUnsnap();
 		if (!unsnapped)
 		{
-			throw new InvalidOperationException("Ensure the file should be unsnapped.");
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("EnsureFileIsUnsnapped"));
 		}
 
 		return unsnapped;
@@ -319,7 +319,7 @@ public partial class App : Application
 		=> ((App)Current).WindowManager.GetWindowForElement(@this) switch
 		{
 			MainWindow mainWindow => mainWindow,
-			_ => throw new InvalidOperationException("Main window cannot be found.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MainWindowNotFound"))
 		};
 
 	/// <summary>

@@ -540,7 +540,7 @@ file ref struct ResourceFetcher(int literalLength, int formattedCount)
 				not null => string.Format(ResourceDictionary.Get(_format, App.CurrentCulture), _content),
 				_ => ResourceDictionary.Get(_format, App.CurrentCulture)
 			},
-			_ => throw new InvalidOperationException("The format cannot be null.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("FormatCannotBeNull"))
 		};
 
 	/// <inheritdoc cref="DefaultInterpolatedStringHandler.AppendFormatted{T}(T, string?)"/>

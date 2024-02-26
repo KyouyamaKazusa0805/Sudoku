@@ -6,12 +6,6 @@ namespace Sudoku.Analytics;
 public sealed partial class Collector : AnalyzerOrCollector
 {
 	/// <summary>
-	/// Indicates the error information that describes that the mode is undefined.
-	/// </summary>
-	private const string ErrorInfo_ModeIsUndefined = $"The property value '{nameof(DifficultyLevelMode)}' is undefined.";
-
-
-	/// <summary>
 	/// Indicates the maximum steps can be gathered.
 	/// </summary>
 	/// <remarks>
@@ -68,7 +62,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
-			throw new InvalidOperationException(ErrorInfo_ModeIsUndefined);
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ModeIsUndefined"));
 		}
 
 		if (puzzle.IsSolved || !puzzle.ExactlyValidate(out _, out var isSukaku) || isSukaku is not { } sukaku)

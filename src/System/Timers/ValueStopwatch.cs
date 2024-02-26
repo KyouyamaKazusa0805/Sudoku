@@ -14,13 +14,6 @@ namespace System.Timers;
 public readonly ref partial struct ValueStopwatch([PrimaryConstructorParameter(MemberKinds.Field)] long startTimestamp)
 {
 	/// <summary>
-	/// The error information describing the type is uninitialized.
-	/// </summary>
-	private const string ErrorInfo_TypeIsUninitialized =
-		$"An uninitialized, or 'default({nameof(ValueStopwatch)})', {nameof(ValueStopwatch)} cannot be used for getting elapsed time.";
-
-
-	/// <summary>
 	/// The read-only value that indicates the formula converting from timestamp to ticks.
 	/// </summary>
 	private static readonly double TimestampToTicks = TimeSpan.TicksPerSecond / (double)Stopwatch.Frequency;
@@ -38,7 +31,7 @@ public readonly ref partial struct ValueStopwatch([PrimaryConstructorParameter(M
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _startTimestamp != 0
 			? new((long)(TimestampToTicks * (Stopwatch.GetTimestamp() - _startTimestamp)))
-			: throw new InvalidOperationException(ErrorInfo_TypeIsUninitialized);
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ValueStopwatchTypeIsUninitialized"));
 	}
 
 

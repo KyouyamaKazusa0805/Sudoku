@@ -58,7 +58,7 @@ public sealed partial class AddLibraryDialogContent : Page
 			}
 		}
 
-		throw new Exception("No available name can be used.");
+		throw new(ResourceDictionary.ExceptionMessage("NoAvailableNameCanBeUsed"));
 	}
 
 

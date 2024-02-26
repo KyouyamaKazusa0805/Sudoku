@@ -1,4 +1,4 @@
-namespace Sudoku.Resources;
+namespace System.Resources;
 
 /// <summary>
 /// Indicates an exception that will be thrown if target resource is not found.

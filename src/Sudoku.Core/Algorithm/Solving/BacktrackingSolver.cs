@@ -71,7 +71,7 @@ public sealed class BacktrackingSolver : ISolver
 			result = Grid.Create(resultArray, GridCreatingOption.MinusOne);
 			return true;
 		}
-		catch (InvalidOperationException ex) when (ex.Message == "The grid contains multiple solutions.")
+		catch (InvalidOperationException ex) when (ex.Message == ResourceDictionary.ExceptionMessage("GridMultipleSolutions"))
 		{
 			result = Grid.Create(resultArray!, GridCreatingOption.MinusOne);
 			return false;
@@ -85,7 +85,7 @@ public sealed class BacktrackingSolver : ISolver
 				// Solution found.
 				if (++solutionsCount > 1)
 				{
-					throw new InvalidOperationException("The grid contains multiple solutions.");
+					throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
 				}
 
 				// We should catch the result.

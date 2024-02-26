@@ -61,7 +61,7 @@ public static partial class TechniqueFiltering
 						RatingKeyword => $"{step.Difficulty}",
 						NameKeyword => $"'{step.Name}'",
 						ConclusionKeyword => $"'{step.Options.Converter.ConclusionConverter(step.Conclusions)}'",
-						_ => throw new NotSupportedException("The specified match is not supported to be replaced.")
+						_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("FilteringExpressionNotSupported"))
 					}
 				),
 			ExpressiveOptions.IgnoreCaseForParsing

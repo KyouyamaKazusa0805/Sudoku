@@ -2754,4 +2754,58 @@
   <data name="TechniqueFormat_DirectSubsetStep" xml:space="preserve">
     <value>Cells {0} is formed a {6} in {1} of digits {5}, then {2} cannot be filled with digit {3}, so the {4} is formed</value>
   </data>
+  <data name="ErrorInfo_ModeIsUndefined" xml:space="preserve">
+    <value>The property value 'Collector.DifficultyLevelMode' is undefined.</value>
+  </data>
+  <data name="ErrorInfo_ComplexSingleNotSupportedToday" xml:space="preserve">
+    <value>The group of indirect technique field is neither locked candidates nor subset, which is not supported today. In future, the field might be expanded to wider, and this value might be available.</value>
+  </data>
+  <data name="ErrorInfo_TechniqueLevelCannotBeDetermined" xml:space="preserve">
+    <value>The target level is unknown. If you see this exception thrown, please append 'Sudoku.Analytics.Categorization.DifficultyLevelAttribute' to the target technique code field defined in type 'Sudoku.Analytics.Categorization.Technique'.</value>
+  </data>
+  <data name="ErrorInfo_GridIsInvalidOrSolved" xml:space="preserve">
+    <value>The value is invalid or solved.</value>
+  </data>
+  <data name="ErrorInfo_GridAlreadySolved" xml:space="preserve">
+    <value>This puzzle has already been solved.</value>
+  </data>
+  <data name="ErrorInfo_StepContainsNoConclusions" xml:space="preserve">
+    <value>The step doesn't contain any conclusions, which is disallowed in API. Please report the message to the author.</value>
+  </data>
+  <data name="ErrorInfo_ChainMemberNotOverridden" xml:space="preserve">
+    <value>The target type of the chain is not supported. You should override this property for that type.</value>
+  </data>
+  <data name="ErrorInfo_SubsetSizeExceeds" xml:space="preserve">
+    <value>The subset is too complex to be calculated.</value>
+  </data>
+  <data name="ErrorInfo_ParentNotFoundInChain" xml:space="preserve">
+    <value>Parent not found.</value>
+  </data>
+  <data name="ErrorInfo_SashimiPropertyInvalid" xml:space="preserve">
+    <value>Sashimi property is invalid.</value>
+  </data>
+  <data name="ErrorInfo_ComplexFishCannotBeNormal" xml:space="preserve">
+    <value>A complex fish cannot hold a normal shape kind.</value>
+  </data>
+  <data name="ErrorInfo_NormalFishViewInvalid" xml:space="preserve">
+    <value>The view in the second fish is invalid.</value>
+  </data>
+  <data name="ErrorInfo_TooMuchAttributes" xml:space="preserve">
+    <value>The field has marked too much attributes.</value>
+  </data>
+  <data name="ErrorInfo_AlsMissingCellsInTargetHouse" xml:space="preserve">
+    <value>Missing cells or target house.</value>
+  </data>
+  <data name="ErrorInfo_AlsMissingSlash" xml:space="preserve">
+    <value>The ALS notation must contain only 1 slash character.</value>
+  </data>
+  <data name="ErrorInfo_ChainNodeDataInvalid" xml:space="preserve">
+    <value>The specified node with suitable data is not found.</value>
+  </data>
+  <data name="ErrorInfo_GridMustBeSolved" xml:space="preserve">
+    <value>The puzzle must have been solved before you consume this member.</value>
+  </data>
+  <data name="ErrorInfo_FilteringExpressionNotSupported" xml:space="preserve">
+    <value>The specified match is not supported to be replaced.</value>
+  </data>
 </root>

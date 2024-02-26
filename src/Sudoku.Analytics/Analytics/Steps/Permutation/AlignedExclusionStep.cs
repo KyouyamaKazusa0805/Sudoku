@@ -24,7 +24,7 @@ public sealed partial class AlignedExclusionStep(
 			3 => 7.5M,
 			4 => 8.1M,
 			5 => 8.4M,
-			_ => throw new NotSupportedException("The subset is too complex to be calculated.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
 	/// <summary>
@@ -37,7 +37,7 @@ public sealed partial class AlignedExclusionStep(
 		=> Size switch
 		{
 			>= 2 and <= 5 => Technique.AlignedPairExclusion + (short)(Size - 2),
-			_ => throw new NotSupportedException("The subset is too complex to be calculated.")
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
 	/// <inheritdoc/>

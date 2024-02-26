@@ -19,16 +19,6 @@ public abstract partial class Step(
 ) : ICultureFormattable, IEqualityOperators<Step, Step, bool>, IEquatable<Step>, IRenderable
 {
 	/// <summary>
-	/// The error information for difficulty level cannot be determined.
-	/// </summary>
-	private static readonly string ErrorInfo_TechniqueLevelCannotBeDetermined = $"""
-		The target level is unknown. If you see this exception thrown, 
-		please append '{typeof(DifficultyLevelAttribute).FullName}' to the target technique code field 
-		defined in type '{typeof(Technique).FullName}'.
-		""".RemoveLineEndings();
-
-
-	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:
 	/// <list type="table">
 	/// <listheader>
@@ -65,7 +55,7 @@ public abstract partial class Step(
 				0b11 => null,
 				0b01 => true,
 				0b10 => false,
-				_ => throw new NotSupportedException("Invalid value - the step doesn't contain any conclusions.")
+				_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("StepContainsNoConclusions"))
 			};
 		}
 	}
@@ -131,7 +121,7 @@ public abstract partial class Step(
 	public DifficultyLevel DifficultyLevel
 		=> Code.GetDifficultyLevel() is var level and not 0
 			? level
-			: throw new InvalidOperationException(ErrorInfo_TechniqueLevelCannotBeDetermined);
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TechniqueLevelCannotBeDetermined"));
 
 	/// <summary>
 	/// Gets the format of the current instance.

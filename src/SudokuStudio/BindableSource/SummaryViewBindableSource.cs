@@ -51,6 +51,6 @@ internal sealed partial class SummaryViewBindableSource(
 					stepGroupArray.Length
 				)
 			],
-			_ => throw new InvalidOperationException("This method requires the puzzle having been solved, and has a unique solution.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrUnique"))
 		};
 }

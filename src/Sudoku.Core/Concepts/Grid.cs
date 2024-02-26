@@ -958,7 +958,7 @@ public partial struct Grid :
 		{
 			case { IsValid: false }:
 			{
-				throw new InvalidOperationException("The puzzle is not unique.");
+				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
 			}
 			case { IsSolved: true, GivenCells.Count: CellsCount }:
 			{
@@ -1122,7 +1122,8 @@ public partial struct Grid :
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this) ?? throw new FormatException("The specified format is invalid.")
+			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)
+				?? throw new FormatException(ResourceDictionary.ExceptionMessage("FormatInvalid"))
 		};
 
 #if IMPL_INTERFACE_FORMATTABLE
@@ -1178,7 +1179,7 @@ public partial struct Grid :
 		{
 			CellState.Empty => -1,
 			CellState.Modifiable or CellState.Given => TrailingZeroCount(this[cell]),
-			_ => throw new InvalidOperationException("The grid cannot keep invalid cell state value.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridInvalidCellState"))
 		};
 
 	/// <summary>
@@ -1486,7 +1487,7 @@ public partial struct Grid :
 					select segment.PadLeft(9, '0')
 				)
 			),
-			_ => throw new FormatException("The length of the string must be 54.")
+			_ => throw new FormatException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 54))
 		};
 
 	/// <summary>
@@ -1630,7 +1631,9 @@ public partial struct Grid :
 	/// <exception cref="FormatException">Throws when the target grid parser instance cannot parse it.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid ParseExact<T>(string str, T parser) where T : IConceptParser<Grid>
-		=> parser.Parser(str) is { IsUndefined: false } result ? result : throw new FormatException("The target instance cannot be parsed.");
+		=> parser.Parser(str) is { IsUndefined: false } result
+			? result
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)

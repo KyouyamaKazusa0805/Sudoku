@@ -124,7 +124,8 @@ public static partial class AnalyzerProperties
 			}
 
 			@this.WithRuntimeIdentifierSetter(
-				methodInfo.Invoke(null, [attachedPane]) ?? throw new InvalidOperationException("The argument cannot be null."),
+				methodInfo.Invoke(null, [attachedPane])
+					?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull")),
 				methodInfo.Name,
 				out _
 			);

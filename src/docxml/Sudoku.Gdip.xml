@@ -1025,6 +1025,77 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>stringFormat</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Resources.GdipResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ErrorInfo_CannotGetMapMoreThan1Candidate">
+            <summary>
+              Looks up a localized string similar to Cannot get at least 1 candidate in the map..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ErrorInfo_CannotGetMapMoreThan1Cell">
+            <summary>
+              Looks up a localized string similar to Cannot get at least 1 cell in the map..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ErrorInfo_FileFormatNotSupported">
+            <summary>
+              Looks up a localized string similar to The specified file format is not supported..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ErrorInfo_NoSuchDisplayingColor">
+            <summary>
+              Looks up a localized string similar to Such displaying color kind is invalid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.GdipResources.ErrorInfo_NoSuchIdentifier">
+            <summary>
+              Looks up a localized string similar to Such identifier instance contains invalid value..
+            </summary>
+        </member>
         <member name="T:System.Drawing.BitmapExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
