@@ -8,7 +8,7 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class CountBetweenConstraint : Constraint
 {
 	/// <summary>
-	/// Indicates the minimum value.
+	/// Indicates the range of the numbers set.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
