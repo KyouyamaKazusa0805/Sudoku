@@ -1626,7 +1626,7 @@
     <value>(x=y)-(y=z)-z=z</value>
   </data>
   <data name="SettingsPage_Intro" xml:space="preserve">
-    <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但极少数设置因为变动比较大，可能需要重启程序后才能生效。</value>
+    <value>该页面列举的是程序使用到的偏好设置项。你可以修改和调整它们来使得程序用起来更加得心应手。所有配置项均为即时保存，但需要重启程序后才能生效。懒得写绑定了 :)</value>
   </data>
   <data name="SettingsPage_IrregularWingGroup" xml:space="preserve">
     <value>不规则 Wing</value>
@@ -2304,9 +2304,6 @@
     <value>出题自动化配置</value>
   </data>
   <data name="MainWindow_GeneratedPuzzleConstraintPage" xml:space="preserve">
-    <value>出题自动化配置</value>
-  </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
+    <value>出题自动化</value>
   </data>
 </root>

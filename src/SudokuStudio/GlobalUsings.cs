@@ -64,6 +64,8 @@ global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Runtime.CompilerServices;
 global using Sudoku.Runtime.LibraryServices;
+global using Sudoku.Strategying;
+global using Sudoku.Strategying.Constraints;
 global using Sudoku.Text;
 global using Sudoku.Text.Converters;
 global using SudokuStudio;

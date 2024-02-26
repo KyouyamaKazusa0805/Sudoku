@@ -1,5 +1,3 @@
-using Sudoku.Strategying;
-
 namespace SudokuStudio.Markup;
 
 /// <summary>
