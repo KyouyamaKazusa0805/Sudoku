@@ -2383,6 +2383,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Should be diamond.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Diamond {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Diamond", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_DifficultyLevel {
@@ -2451,6 +2460,15 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_OnlyRightOpen {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_OnlyRightOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Should be pearl.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Pearl {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Pearl", resourceCulture);
             }
         }
         

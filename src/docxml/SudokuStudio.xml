@@ -7042,6 +7042,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Number of cells.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Diamond">
+            <summary>
+              Looks up a localized string similar to Should be diamond.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level.
@@ -7080,6 +7085,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_OnlyRightOpen">
             <summary>
               Looks up a localized string similar to , only right side excluded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Pearl">
+            <summary>
+              Looks up a localized string similar to Should be pearl.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">

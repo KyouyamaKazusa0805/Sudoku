@@ -35,6 +35,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
 					CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 					MinimalConstraint instance => () => callback(Create_Minimal, instance),
+					PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+					DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 					_ => default(Action)
 				}
 			)?.Invoke();
@@ -224,6 +226,27 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Minimal"),
 			Content = minimalControl,
+			Tag = constraint
+		};
+	}
+
+	private SettingsCard? Create_PearlOrDiamond<T>(T constraint) where T : PearlOrDiamondConstraint
+	{
+		if (constraint is not { CheckPearl: var checkPearl, ShouldBePearlOrDiamond: var value })
+		{
+			return null;
+		}
+
+		//
+		// pearl or diamond selector
+		//
+		var control = new ToggleSwitch { IsOn = value };
+		control.RegisterPropertyChangedCallback(ToggleSwitch.IsOnProperty, (d, _) => constraint.ShouldBePearlOrDiamond = ((ToggleSwitch)d).IsOn);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}"),
+			Content = control,
 			Tag = constraint
 		};
 	}

@@ -10,7 +10,9 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 	private static readonly ConstraintCollection ConstraintsDefaultValue = [
 		new DifficultyLevelConstraint { DifficultyLevel = DifficultyLevel.Easy, Operator = ComparisonOperator.Equality },
 		new SymmetryConstraint { SymmetricTypes = SymmetricType.Central },
+		new CountBetweenConstraint { Range = 24..28, CellState = CellState.Given, BetweenRule = BetweenRule.BothClosed },
 		new MinimalConstraint { ShouldBeMinimal = false },
-		new CountBetweenConstraint { Range = 24..28, CellState = CellState.Given, BetweenRule = BetweenRule.BothClosed }
+		new PearlConstraint { ShouldBePearlOrDiamond = false },
+		new DiamondConstraint { ShouldBePearlOrDiamond = false }
 	];
 }

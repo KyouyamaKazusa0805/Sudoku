@@ -6,15 +6,21 @@ namespace Sudoku.Strategying.Constraints;
 /// <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
 [GetHashCode]
 [ToString]
-public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember] bool checkPearl) : Constraint
+public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember, StringMember] bool checkPearl) :
+	Constraint
 {
+	/// <summary>
+	/// Indicates whether the puzzle should be pearl or diamond.
+	/// </summary>
+	[HashCodeMember]
 	[StringMember]
-	private string CheckPearlPropertyValue => CheckPearl.ToString();
+	public required bool ShouldBePearlOrDiamond { get; set; }
 
 
 	/// <inheritdocs/>
 	public sealed override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is PearlOrDiamondConstraint comparer && CheckPearl == comparer.CheckPearl;
+		=> other is PearlOrDiamondConstraint comparer
+		&& (CheckPearl, ShouldBePearlOrDiamond) == (comparer.CheckPearl, comparer.ShouldBePearlOrDiamond);
 
 	/// <inheritdoc/>
 	protected internal sealed override bool CheckCore(ConstraintCheckingContext context)
@@ -26,7 +32,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 
 		var isPearl = context.AnalyzerResult.IsPearl;
 		var isDiamond = context.AnalyzerResult.IsDiamond;
-		return (CheckPearl ? isPearl : isDiamond) ?? false;
+		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
 	}
 
 	/// <inheritdoc/>

@@ -2345,4 +2345,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_CountBetween" xml:space="preserve">
     <value>Number of cells</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Pearl" xml:space="preserve">
+    <value>Should be pearl</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Diamond" xml:space="preserve">
+    <value>Should be diamond</value>
+  </data>
 </root>

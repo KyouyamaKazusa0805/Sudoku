@@ -409,7 +409,7 @@
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.Range">
             <summary>
-            Indicates the minimum value.
+            Indicates the range of the numbers set.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.CellState">
@@ -626,6 +626,11 @@
             Represents a constraint that checks for pearl or diamond property.
             </summary>
             <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ShouldBePearlOrDiamond">
+            <summary>
+            Indicates whether the puzzle should be pearl or diamond.
+            </summary>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdocs/>
