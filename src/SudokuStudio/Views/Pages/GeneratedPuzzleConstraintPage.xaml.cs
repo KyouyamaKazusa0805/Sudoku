@@ -33,6 +33,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				{
 					DifficultyLevelConstraint instance => () => callbackSimpleEncapsulator(Create_DifficultyLevel, instance),
 					SymmetryConstraint instance => () => callbackSimpleEncapsulator(Create_Symmetry, instance),
+					MinimalConstraint instance => () => callbackSimpleEncapsulator(Create_Minimal, instance),
 					_ => default(Action)
 				}
 			)?.Invoke();
@@ -235,6 +236,27 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Symmetry"),
 			Content = symmetryControl,
+			Tag = constraint
+		};
+	}
+
+	private SettingsCard? Create_Minimal(MinimalConstraint constraint)
+	{
+		if (constraint is not { ShouldBeMinimal: var value })
+		{
+			return null;
+		}
+
+		//
+		// minimal selector
+		//
+		var minimalControl = new ToggleSwitch { IsOn = value };
+		minimalControl.RegisterPropertyChangedCallback(ToggleSwitch.IsOnProperty, (d, _) => constraint.ShouldBeMinimal = ((ToggleSwitch)d).IsOn);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Minimal"),
+			Content = minimalControl,
 			Tag = constraint
 		};
 	}

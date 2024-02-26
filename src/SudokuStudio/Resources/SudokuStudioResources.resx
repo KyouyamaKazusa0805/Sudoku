@@ -2309,4 +2309,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_Symmetry" xml:space="preserve">
     <value>Symmetric types</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Minimal" xml:space="preserve">
+    <value>Should be minimal</value>
+  </data>
 </root>

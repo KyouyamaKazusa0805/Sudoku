@@ -2347,6 +2347,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Should be minimal.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Minimal {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Minimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Symmetric types.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Symmetry {

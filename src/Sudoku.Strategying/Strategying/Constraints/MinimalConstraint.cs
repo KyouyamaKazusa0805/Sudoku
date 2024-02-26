@@ -7,11 +7,23 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class MinimalConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Constraint? other) => other is MinimalConstraint;
+	/// <summary>
+	/// Indicates whether the puzzle shsould be minimal.
+	/// </summary>
+	[HashCodeMember]
+	public required bool ShouldBeMinimal { get; set; }
+
+	[StringMember]
+	private string ShouldBeMinimalString => ShouldBeMinimal.ToString();
+
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context) => context.Grid.IsMinimal;
+	public override bool Equals([NotNullWhen(true)] Constraint? other)
+		=> other is MinimalConstraint comparer && ShouldBeMinimal == comparer.ShouldBeMinimal;
+
+	/// <inheritdoc/>
+	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+		=> context.Grid.IsMinimal == ShouldBeMinimal;
 
 	/// <inheritdoc/>
 	protected internal override ValidationResult ValidateCore() => ValidationResult.Successful;

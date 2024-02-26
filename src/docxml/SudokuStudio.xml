@@ -7022,6 +7022,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page stores the constraints that will be used in analyze page, filtering generated puzzles automatically. You can control the following rules to filter puzzles..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Minimal">
+            <summary>
+              Looks up a localized string similar to Should be minimal.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">
             <summary>
               Looks up a localized string similar to Symmetric types.

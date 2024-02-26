@@ -2309,4 +2309,7 @@
   <data name="GeneratedPuzzleConstraintPage_Symmetry" xml:space="preserve">
     <value>对称类型</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Minimal" xml:space="preserve">
+    <value>是否为最小题</value>
+  </data>
 </root>

@@ -525,6 +525,11 @@
             Represents minimal constraint.
             </summary>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.ShouldBeMinimal">
+            <summary>
+            Indicates whether the puzzle shsould be minimal.
+            </summary>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
