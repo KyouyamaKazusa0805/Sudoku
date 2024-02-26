@@ -7002,6 +7002,31 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_AndTextBlock">
+            <summary>
+              Looks up a localized string similar to and.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BothClosed">
+            <summary>
+              Looks up a localized string similar to , both side included.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BothOpen">
+            <summary>
+              Looks up a localized string similar to , both side excluded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseBetweenRule">
+            <summary>
+              Looks up a localized string similar to Between rule.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseCellState">
+            <summary>
+              Looks up a localized string similar to Cell state.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseComparisonOperator">
             <summary>
               Looks up a localized string similar to Comparison operator.
@@ -7012,9 +7037,24 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Difficulty level.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_CountBetween">
+            <summary>
+              Looks up a localized string similar to Number of cells.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_EmptiesCount">
+            <summary>
+              Looks up a localized string similar to Empties count is between.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_GivensCount">
+            <summary>
+              Looks up a localized string similar to Givens count is between.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Intro">
@@ -7025,6 +7065,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Minimal">
             <summary>
               Looks up a localized string similar to Should be minimal.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ModifiablesCount">
+            <summary>
+              Looks up a localized string similar to Modifiables count is between.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_OnlyLeftOpen">
+            <summary>
+              Looks up a localized string similar to , only left side excluded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_OnlyRightOpen">
+            <summary>
+              Looks up a localized string similar to , only right side excluded.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">
@@ -13662,6 +13717,15 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Create controls via properties.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComboBoxBindingHandler``1(Microsoft.UI.Xaml.Controls.ComboBox,``0,System.Action{``0})">
+            <summary>
+            The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.
+            </summary>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="control">The control to be operated.</param>
+            <param name="comparisonValue">The value to compare.</param>
+            <param name="constraintCallback">The constraint callback binder.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.InitializeComponent">
             <summary>

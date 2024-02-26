@@ -2312,4 +2312,37 @@
   <data name="GeneratedPuzzleConstraintPage_Minimal" xml:space="preserve">
     <value>是否为最小题</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_GivensCount" xml:space="preserve">
+    <value>提示数数量介于</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ModifiablesCount" xml:space="preserve">
+    <value>填入数数量介于</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_EmptiesCount" xml:space="preserve">
+    <value>空格数量介于</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseCellState" xml:space="preserve">
+    <value>单元格状态</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_AndTextBlock" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BothOpen" xml:space="preserve">
+    <value>之间，开区间（端点值不可取）</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_OnlyRightOpen" xml:space="preserve">
+    <value>之间，区间左闭右开</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BothClosed" xml:space="preserve">
+    <value>之间，闭区间（端点值可取）</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_OnlyLeftOpen" xml:space="preserve">
+    <value>之间，区间左开右闭</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseBetweenRule" xml:space="preserve">
+    <value>区间模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_CountBetween" xml:space="preserve">
+    <value>单元格数量</value>
+  </data>
 </root>

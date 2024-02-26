@@ -4,6 +4,31 @@
         <name>Sudoku.Strategying</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Strategying.BetweenRule">
+            <summary>
+            Represents a between rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.BothOpen">
+            <summary>
+            Indicates both left and right are open (not included).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.LeftOpen">
+            <summary>
+            Indicates only the left is open, and the right is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.RightOpen">
+            <summary>
+            Indicates only the right is open, and the left is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.BothClosed">
+            <summary>
+            Indicates both left and right are closed (included).
+            </summary>
+        </member>
         <member name="T:Sudoku.Strategying.ComparisonOperator">
             <summary>
             Represent an operator to be used in comparison.
@@ -376,6 +401,41 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.op_Inequality(Sudoku.Strategying.Constraints.ConstraintCollection,Sudoku.Strategying.Constraints.ConstraintCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
+            <summary>
+            Represents a count between constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.Range">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.CellState">
+            <summary>
+            Indicates the cell state to be checked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CountConstraint">
             <summary>

@@ -10,6 +10,7 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 	private static readonly ConstraintCollection ConstraintsDefaultValue = [
 		new DifficultyLevelConstraint { DifficultyLevel = DifficultyLevel.Easy, Operator = ComparisonOperator.Equality },
 		new SymmetryConstraint { SymmetricTypes = SymmetricType.Central },
-		new MinimalConstraint { ShouldBeMinimal = false }
+		new MinimalConstraint { ShouldBeMinimal = false },
+		new CountBetweenConstraint { Range = 24..28, CellState = CellState.Given, BetweenRule = BetweenRule.BothClosed }
 	];
 }

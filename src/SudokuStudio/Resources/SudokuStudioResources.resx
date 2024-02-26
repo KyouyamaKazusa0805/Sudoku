@@ -2312,4 +2312,37 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_Minimal" xml:space="preserve">
     <value>Should be minimal</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_GivensCount" xml:space="preserve">
+    <value>Givens count is between</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ModifiablesCount" xml:space="preserve">
+    <value>Modifiables count is between</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_EmptiesCount" xml:space="preserve">
+    <value>Empties count is between</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseCellState" xml:space="preserve">
+    <value>Cell state</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_AndTextBlock" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BothOpen" xml:space="preserve">
+    <value>, both side excluded</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_OnlyRightOpen" xml:space="preserve">
+    <value>, only right side excluded</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BothClosed" xml:space="preserve">
+    <value>, both side included</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_OnlyLeftOpen" xml:space="preserve">
+    <value>, only left side excluded</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseBetweenRule" xml:space="preserve">
+    <value>Between rule</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_CountBetween" xml:space="preserve">
+    <value>Number of cells</value>
+  </data>
 </root>

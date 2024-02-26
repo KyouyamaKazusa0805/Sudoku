@@ -33,6 +33,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				{
 					DifficultyLevelConstraint instance => () => callbackSimpleEncapsulator(Create_DifficultyLevel, instance),
 					SymmetryConstraint instance => () => callbackSimpleEncapsulator(Create_Symmetry, instance),
+					CountBetweenConstraint instance => () => callbackSimpleEncapsulator(Create_CountBetween, instance),
 					MinimalConstraint instance => () => callbackSimpleEncapsulator(Create_Minimal, instance),
 					_ => default(Action)
 				}
@@ -97,7 +98,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		comboxItemBindCore(operatorControl, @operator, value => constraint.Operator = value);
+		ComboBoxBindingHandler(operatorControl, @operator, value => constraint.Operator = value);
 
 		//
 		// difficulty level selection
@@ -134,7 +135,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		comboxItemBindCore(difficultyLevelControl, difficultyLevel, value => constraint.DifficultyLevel = value);
+		ComboBoxBindingHandler(difficultyLevelControl, difficultyLevel, value => constraint.DifficultyLevel = value);
 
 		return new()
 		{
@@ -147,40 +148,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
-
-
-		void comboxItemBindCore<TEnum>(ComboBox control, TEnum comparisonValue, Action<TEnum> constraintCallback)
-			where TEnum : unmanaged, Enum
-		{
-			var selectedIndex = 0;
-			foreach (var element in control.Items)
-			{
-				if (element is not ComboBoxItem { Tag: TEnum op })
-				{
-					selectedIndex++;
-					continue;
-				}
-
-				var opRawValue = Unsafe.As<TEnum, int>(ref op);
-				var comparisonValueRawValue = Unsafe.As<TEnum, int>(ref comparisonValue);
-				if (opRawValue != comparisonValueRawValue)
-				{
-					selectedIndex++;
-					continue;
-				}
-
-				break;
-			}
-			control.SelectedIndex = selectedIndex;
-			control.SelectionChanged += (_, _) =>
-			{
-				if (control.SelectedIndex is var index and not -1
-					&& control.Items[index] is ComboBoxItem { Tag: TEnum value })
-				{
-					constraintCallback(value);
-				}
-			};
-		}
 	}
 
 	private SettingsCard? Create_Symmetry(SymmetryConstraint constraint)
@@ -258,6 +225,166 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Minimal"),
 			Content = minimalControl,
 			Tag = constraint
+		};
+	}
+
+	private SettingsCard? Create_CountBetween(CountBetweenConstraint constraint)
+	{
+		if (constraint is not { Range: { Start.Value: var min, End.Value: var max }, CellState: var cellState, BetweenRule: var rule })
+		{
+			return null;
+		}
+
+		//
+		// cell-state selector
+		//
+		var cellStateControl = new ComboBox
+		{
+			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseCellState"),
+			Items =
+			{
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_GivensCount"),
+					Tag = CellState.Given
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ModifiablesCount"),
+					Tag = CellState.Modifiable
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EmptiesCount"),
+					Tag = CellState.Empty
+				}
+			}
+		};
+		ComboBoxBindingHandler(cellStateControl, cellState, value => constraint.CellState = value);
+
+		//
+		// minimum value box
+		//
+		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, Value = min };
+		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, Value = max };
+		minimumControl.ValueChanged += (_, _) =>
+		{
+			maximumControl.Minimum = minimumControl.Value + 1;
+			if (minimumControl.Value >= maximumControl.Value)
+			{
+				maximumControl.Value++;
+			}
+			constraint.Range = minimumControl.Value..max;
+		};
+		maximumControl.ValueChanged += (_, _) =>
+		{
+			minimumControl.Maximum = maximumControl.Value - 1;
+			if (maximumControl.Value <= minimumControl.Value)
+			{
+				minimumControl.Value--;
+			}
+			constraint.Range = min..maximumControl.Value;
+		};
+
+		//
+		// "and" text block
+		//
+		var andTextBlockControl = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AndTextBlock"),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// between rule selector
+		//
+		var betweenRuleControl = new ComboBox
+		{
+			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseBetweenRule"),
+			Items =
+			{
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothOpen"),
+					Tag = BetweenRule.BothOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyLeftOpen"),
+					Tag = BetweenRule.LeftOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyRightOpen"),
+					Tag = BetweenRule.RightOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothClosed"),
+					Tag = BetweenRule.BothClosed
+				}
+			}
+		};
+		ComboBoxBindingHandler(betweenRuleControl, rule, value => constraint.BetweenRule = value);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_CountBetween"),
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children =
+				{
+					cellStateControl,
+					minimumControl,
+					andTextBlockControl,
+					maximumControl,
+					betweenRuleControl
+				}
+			},
+			Tag = constraint
+		};
+	}
+
+
+	/// <summary>
+	/// The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="ComboBox"/> instance.
+	/// </summary>
+	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
+	/// <param name="control">The control to be operated.</param>
+	/// <param name="comparisonValue">The value to compare.</param>
+	/// <param name="constraintCallback">The constraint callback binder.</param>
+	private static void ComboBoxBindingHandler<TEnum>(ComboBox control, TEnum comparisonValue, Action<TEnum> constraintCallback)
+		where TEnum : unmanaged, Enum
+	{
+		var selectedIndex = 0;
+		foreach (var element in control.Items)
+		{
+			if (element is not ComboBoxItem { Tag: TEnum op })
+			{
+				selectedIndex++;
+				continue;
+			}
+
+			var opRawValue = Unsafe.As<TEnum, int>(ref op);
+			var comparisonValueRawValue = Unsafe.As<TEnum, int>(ref comparisonValue);
+			if (opRawValue != comparisonValueRawValue)
+			{
+				selectedIndex++;
+				continue;
+			}
+
+			break;
+		}
+		control.SelectedIndex = selectedIndex;
+		control.SelectionChanged += (_, _) =>
+		{
+			if (control.SelectedIndex is var index and not -1
+				&& control.Items[index] is ComboBoxItem { Tag: TEnum value })
+			{
+				constraintCallback(value);
+			}
 		};
 	}
 }

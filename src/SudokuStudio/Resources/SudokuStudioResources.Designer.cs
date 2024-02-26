@@ -2311,6 +2311,51 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_AndTextBlock {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_AndTextBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , both side included.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BothClosed {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BothClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , both side excluded.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BothOpen {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BothOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Between rule.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ChooseBetweenRule {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ChooseBetweenRule", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell state.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ChooseCellState {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ChooseCellState", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comparison operator.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_ChooseComparisonOperator {
@@ -2329,11 +2374,38 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of cells.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_CountBetween {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_CountBetween", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_DifficultyLevel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Empties count is between.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_EmptiesCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_EmptiesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Givens count is between.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_GivensCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_GivensCount", resourceCulture);
             }
         }
         
@@ -2352,6 +2424,33 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_Minimal {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Minimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Modifiables count is between.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ModifiablesCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ModifiablesCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , only left side excluded.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_OnlyLeftOpen {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_OnlyLeftOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , only right side excluded.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_OnlyRightOpen {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_OnlyRightOpen", resourceCulture);
             }
         }
         
