@@ -31,17 +31,17 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			(
 				constraint switch
 				{
-					DifficultyLevelConstraint instance => () => callbackSimpleEncapsulator(Create_DifficultyLevel, instance),
-					SymmetryConstraint instance => () => callbackSimpleEncapsulator(Create_Symmetry, instance),
-					CountBetweenConstraint instance => () => callbackSimpleEncapsulator(Create_CountBetween, instance),
-					MinimalConstraint instance => () => callbackSimpleEncapsulator(Create_Minimal, instance),
+					DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
+					SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
+					CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
+					MinimalConstraint instance => () => callback(Create_Minimal, instance),
 					_ => default(Action)
 				}
 			)?.Invoke();
 		}
 
 
-		void callbackSimpleEncapsulator<TConstraint>(Func<TConstraint, SettingsCard?> method, TConstraint instance)
+		void callback<TConstraint>(Func<TConstraint, SettingsCard?> method, TConstraint instance)
 			where TConstraint : Constraint
 		{
 			if (method(instance) is { } control)
