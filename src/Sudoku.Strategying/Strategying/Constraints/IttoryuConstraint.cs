@@ -11,6 +11,7 @@ public sealed partial class IttoryuConstraint : Constraint
 	/// Indicates the rounds used.
 	/// </summary>
 	[HashCodeMember]
+	[StringMember]
 	public required int Rounds { get; set; }
 
 	/// <summary>
@@ -19,9 +20,6 @@ public sealed partial class IttoryuConstraint : Constraint
 	[HashCodeMember]
 	[StringMember]
 	public required ComparisonOperator Operator { get; set; }
-
-	[StringMember]
-	private string RoundsString => Rounds.ToString();
 
 
 	/// <inheritdoc/>
