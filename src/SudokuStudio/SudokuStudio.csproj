@@ -17,7 +17,7 @@
 		<EnableTrimAnalyzer>false</EnableTrimAnalyzer>
 
 		<!--
-		.NET 8 RC1 has a breaking change that failed to compile the application.
+		Begin with .NET 8 RC1, a breaking change will be introduced, causing the failure to compile the application.
 		For more information please visit the following links:
 		https://github.com/dotnet/maui/issues/17330
 		https://learn.microsoft.com/en-us/dotnet/core/compatibility/sdk/8.0/rid-graph
@@ -28,9 +28,6 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Views\Pages\ContentDialogs\AddLibraryDialogContent.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -59,6 +56,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+		<ProjectReference Include="..\Sudoku.Strategying\Sudoku.Strategying.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -113,9 +111,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\ContentDialogs\AddLibraryDialogContent.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
+		<Page Update="Views\Pages\ContentDialogs\AddLibraryDialogContent.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<ItemGroup>
@@ -252,6 +250,9 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\GeneratedPuzzleConstraintPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

@@ -351,9 +351,6 @@
   <data name="AnalyzePage_Drawing" xml:space="preserve">
     <value>绘图</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="AnalyzePage_EmptyGrid" xml:space="preserve">
     <value>&lt;空盘&gt;</value>
   </data>
@@ -2269,5 +2266,44 @@
   </data>
   <data name="_Token_OpenBrace" xml:space="preserve">
     <value>（</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Intro" xml:space="preserve">
+    <value>该页面提供了一些自动过滤生成题目的约束。你可以调整下面的设置内容来控制它们，在分析页面的出题环节里，将会在出题期间自动过滤掉不满足这些约束的题目。</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DifficultyLevel" xml:space="preserve">
+    <value>难度级别</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseComparisonOperator" xml:space="preserve">
+    <value>比较运算符</value>
+  </data>
+  <data name="_ComparisonOperator_Equality" xml:space="preserve">
+    <value>等于（==）</value>
+  </data>
+  <data name="_ComparisonOperator_Inequality" xml:space="preserve">
+    <value>不等于（!=、&lt;&gt;）</value>
+  </data>
+  <data name="_ComparisonOperator_GreaterThan" xml:space="preserve">
+    <value>大于（&gt;）</value>
+  </data>
+  <data name="_ComparisonOperator_GreaterThanOrEqual" xml:space="preserve">
+    <value>大于等于（&gt;=）</value>
+  </data>
+  <data name="_ComparisonOperator_LessThan" xml:space="preserve">
+    <value>小于（&lt;）</value>
+  </data>
+  <data name="_ComparisonOperator_LessThanOrEqual" xml:space="preserve">
+    <value>小于等于（&lt;=）</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseDifficultyLevel" xml:space="preserve">
+    <value>难度级别</value>
+  </data>
+  <data name="MainWindow_GeneratedPuzzleConstraintPageTitle" xml:space="preserve">
+    <value>出题自动化配置</value>
+  </data>
+  <data name="MainWindow_GeneratedPuzzleConstraintPage" xml:space="preserve">
+    <value>出题自动化配置</value>
   </data>
 </root>

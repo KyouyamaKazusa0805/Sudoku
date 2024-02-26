@@ -350,6 +350,33 @@
             The generated property declaration for parameter <c>cancellationToken</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConstraintCollection">
+            <summary>
+            Represents a constraint collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConstraintCollection.Item(System.Int32)">
+            <summary>
+            Gets the constraint at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.Equals(Sudoku.Strategying.Constraints.ConstraintCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.op_Equality(Sudoku.Strategying.Constraints.ConstraintCollection,Sudoku.Strategying.Constraints.ConstraintCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.op_Inequality(Sudoku.Strategying.Constraints.ConstraintCollection,Sudoku.Strategying.Constraints.ConstraintCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.CountConstraint">
             <summary>
             Represents a rule that checks for the number of cells appeared in cell, using the specified cell state.

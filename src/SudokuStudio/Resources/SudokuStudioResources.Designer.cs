@@ -61,6 +61,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Equals (==).
+        /// </summary>
+        internal static string _ComparisonOperator_Equality {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_Equality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greater than (&gt;).
+        /// </summary>
+        internal static string _ComparisonOperator_GreaterThan {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_GreaterThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Greater than or equal (&gt;=).
+        /// </summary>
+        internal static string _ComparisonOperator_GreaterThanOrEqual {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_GreaterThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Inequals (!=, &lt;&gt;).
+        /// </summary>
+        internal static string _ComparisonOperator_Inequality {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_Inequality", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Less than (&lt;).
+        /// </summary>
+        internal static string _ComparisonOperator_LessThan {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_LessThan", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Less than or equal (&lt;=).
+        /// </summary>
+        internal static string _ComparisonOperator_LessThanOrEqual {
+            get {
+                return ResourceManager.GetString("_ComparisonOperator_LessThanOrEqual", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Easy.
         /// </summary>
         internal static string _DifficultyLevel_Easy {
@@ -1366,7 +1420,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0}, etc. ({1] techniques selected).
+        ///   Looks up a localized string similar to {0} and {1} techniques in total.
         /// </summary>
         internal static string AnalyzePage_MultipleTechniquesSelected {
             get {
@@ -2253,6 +2307,42 @@ namespace SudokuStudio.Resources {
         internal static string FontPicker_SelectFontPlaceholder {
             get {
                 return ResourceManager.GetString("FontPicker_SelectFontPlaceholder", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Comparison operator.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ChooseComparisonOperator {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ChooseComparisonOperator", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty level.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ChooseDifficultyLevel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ChooseDifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_DifficultyLevel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page stores the constraints that will be used in analyze page, filtering generated puzzles automatically. You can control the following rules to filter puzzles..
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Intro {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Intro", resourceCulture);
             }
         }
         
@@ -3351,6 +3441,24 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generating automation config.
+        /// </summary>
+        internal static string MainWindow_GeneratedPuzzleConstraintPage {
+            get {
+                return ResourceManager.GetString("MainWindow_GeneratedPuzzleConstraintPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Generated puzzle constraints.
+        /// </summary>
+        internal static string MainWindow_GeneratedPuzzleConstraintPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_GeneratedPuzzleConstraintPageTitle", resourceCulture);
             }
         }
         

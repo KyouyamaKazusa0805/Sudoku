@@ -481,7 +481,7 @@
     <value>Multiple-line simple grid format</value>
   </data>
   <data name="AnalyzePage_MultipleTechniquesSelected" xml:space="preserve">
-    <value>{0}, etc. ({1] techniques selected)</value>
+    <value>{0} and {1} techniques in total</value>
   </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
@@ -2269,5 +2269,41 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="_Token_OpenBrace" xml:space="preserve">
     <value> (</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Intro" xml:space="preserve">
+    <value>This page stores the constraints that will be used in analyze page, filtering generated puzzles automatically. You can control the following rules to filter puzzles.</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DifficultyLevel" xml:space="preserve">
+    <value>Difficulty Level</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseComparisonOperator" xml:space="preserve">
+    <value>Comparison operator</value>
+  </data>
+  <data name="_ComparisonOperator_Equality" xml:space="preserve">
+    <value>Equals (==)</value>
+  </data>
+  <data name="_ComparisonOperator_Inequality" xml:space="preserve">
+    <value>Inequals (!=, &lt;&gt;)</value>
+  </data>
+  <data name="_ComparisonOperator_GreaterThan" xml:space="preserve">
+    <value>Greater than (&gt;)</value>
+  </data>
+  <data name="_ComparisonOperator_GreaterThanOrEqual" xml:space="preserve">
+    <value>Greater than or equal (&gt;=)</value>
+  </data>
+  <data name="_ComparisonOperator_LessThan" xml:space="preserve">
+    <value>Less than (&lt;)</value>
+  </data>
+  <data name="_ComparisonOperator_LessThanOrEqual" xml:space="preserve">
+    <value>Less than or equal (&lt;=)</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ChooseDifficultyLevel" xml:space="preserve">
+    <value>Difficulty level</value>
+  </data>
+  <data name="MainWindow_GeneratedPuzzleConstraintPageTitle" xml:space="preserve">
+    <value>Generated puzzle constraints</value>
+  </data>
+  <data name="MainWindow_GeneratedPuzzleConstraintPage" xml:space="preserve">
+    <value>Generating automation config</value>
   </data>
 </root>

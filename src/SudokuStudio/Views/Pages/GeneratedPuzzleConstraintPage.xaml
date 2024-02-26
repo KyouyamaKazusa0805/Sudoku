@@ -1,0 +1,20 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratedPuzzleConstraintPage}">
+	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+		<TextBlock Text="{m:R Key=GeneratedPuzzleConstraintPage_Intro}" Margin="0,10,0,0" />
+		<ItemsControl ItemsSource="{x:Bind _controls,Mode=OneWay}">
+			<ItemsControl.ItemContainerStyle>
+				<Style TargetType="ItemContainer">
+					<Setter Property="Margin" Value="0,6"/>
+				</Style>
+			</ItemsControl.ItemContainerStyle>
+		</ItemsControl>
+	</StackPanel>
+</Page>

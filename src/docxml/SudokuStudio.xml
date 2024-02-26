@@ -1508,6 +1508,23 @@
             Indicates the colors.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Configuration.ConstraintPreferenceGroup">
+            <summary>
+            Represents a constraint preference group.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Configuration.ConstraintPreferenceGroup.ConstraintsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.ConstraintPreferenceGroup.ConstraintsProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Configuration.ConstraintPreferenceGroup.ConstraintsProperty" />
+        </member>
         <member name="T:SudokuStudio.Configuration.GridInfo">
             <summary>
             Represents a type that defines the details of a grid.
@@ -1594,6 +1611,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.AnalysisPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.AnalysisPreferenceGroup"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.ConstraintPreferences">
+            <inheritdoc cref="T:SudokuStudio.Configuration.ConstraintPreferenceGroup"/>
         </member>
         <member name="P:SudokuStudio.Configuration.ProgramPreference.LibraryPreferences">
             <inheritdoc cref="T:SudokuStudio.Configuration.LibraryPreferenceGroup"/>
@@ -4801,6 +4821,32 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.BooleanExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.ComparisonOperatorExtension">
+            <summary>
+            Represents comparison operator markup extension.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.ComparisonOperatorExtension.Value">
+            <summary>
+            Indicates the value.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.ComparisonOperatorExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
+        <member name="T:SudokuStudio.Markup.DifficultyLevelExtension">
+            <summary>
+            Represents difficulty level markup extension.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.DifficultyLevelExtension.Value">
+            <summary>
+            Indicates the value.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.DifficultyLevelExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.EmptyStringExtension">
             <summary>
             A markup extension for empty strings.
@@ -5706,6 +5752,36 @@ if (student is (name: var name, age: >= 18))
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_Equality">
+            <summary>
+              Looks up a localized string similar to Equals (==).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_GreaterThan">
+            <summary>
+              Looks up a localized string similar to Greater than (&gt;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_GreaterThanOrEqual">
+            <summary>
+              Looks up a localized string similar to Greater than or equal (&gt;=).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_Inequality">
+            <summary>
+              Looks up a localized string similar to Inequals (!=, &lt;&gt;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_LessThan">
+            <summary>
+              Looks up a localized string similar to Less than (&lt;).
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._ComparisonOperator_LessThanOrEqual">
+            <summary>
+              Looks up a localized string similar to Less than or equal (&lt;=).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Easy">
             <summary>
               Looks up a localized string similar to Easy.
@@ -6433,7 +6509,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_MultipleTechniquesSelected">
             <summary>
-              Looks up a localized string similar to {0}, etc. ({1] techniques selected).
+              Looks up a localized string similar to {0} and {1} techniques in total.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_NewPuzzle">
@@ -6924,6 +7000,26 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FontPicker_SelectFontPlaceholder">
             <summary>
               Looks up a localized string similar to Select a font.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseComparisonOperator">
+            <summary>
+              Looks up a localized string similar to Comparison operator.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseDifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_DifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty Level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page stores the constraints that will be used in analyze page, filtering generated puzzles automatically. You can control the following rules to filter puzzles..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_Cancel">
@@ -7534,6 +7630,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPage">
+            <summary>
+              Looks up a localized string similar to Generating automation config.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPageTitle">
+            <summary>
+              Looks up a localized string similar to Generated puzzle constraints.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratingStrategy">
@@ -13526,6 +13632,41 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage">
+            <summary>
+            Represents generated puzzle constraint page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage._controls">
+            <summary>
+            Indicates the internal controls.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.CreateControlsViaProperties">
+            <summary>
+            Create controls via properties.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
             <summary>
