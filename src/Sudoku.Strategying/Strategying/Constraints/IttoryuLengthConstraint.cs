@@ -18,12 +18,12 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required int Length { get; set; }
+	public int Length { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
-	public required ComparisonOperator Operator { get; set; }
+	public ComparisonOperator Operator { get; set; }
 
 
 	/// <inheritdoc/>

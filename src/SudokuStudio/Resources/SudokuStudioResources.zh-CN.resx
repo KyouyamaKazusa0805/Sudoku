@@ -2366,4 +2366,34 @@
   <data name="GeneratedPuzzleConstraintPage_IttoryuLength" xml:space="preserve">
     <value>一刀流长度</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_AddNewConstraint" xml:space="preserve">
+    <value>添加约束条件</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_CountBetweenConstraint" xml:space="preserve">
+    <value>单元格数量约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DiamondConstraint" xml:space="preserve">
+    <value>钻石题约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_IttoryuConstraint" xml:space="preserve">
+    <value>一刀流约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_IttoryuLengthConstraint" xml:space="preserve">
+    <value>一刀流长度约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MinimalConstraint" xml:space="preserve">
+    <value>最小题约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PearlConstraint" xml:space="preserve">
+    <value>珍珠题约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_SymmetryConstraint" xml:space="preserve">
+    <value>对称性约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
+    <value>技巧约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
+    <value>难度级别约束</value>
+  </data>
 </root>

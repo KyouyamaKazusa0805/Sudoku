@@ -2366,4 +2366,34 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_IttoryuLength" xml:space="preserve">
     <value>Ittoryu length</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_AddNewConstraint" xml:space="preserve">
+    <value>Add constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_CountBetweenConstraint" xml:space="preserve">
+    <value>Count between constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DiamondConstraint" xml:space="preserve">
+    <value>Diamond constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
+    <value>Difficulty level constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_IttoryuConstraint" xml:space="preserve">
+    <value>Ittoryu constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_IttoryuLengthConstraint" xml:space="preserve">
+    <value>Ittoryu length constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_MinimalConstraint" xml:space="preserve">
+    <value>Minimal constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PearlConstraint" xml:space="preserve">
+    <value>Pearl constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_SymmetryConstraint" xml:space="preserve">
+    <value>Symmetry constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
+    <value>Technique constraint</value>
+  </data>
 </root>

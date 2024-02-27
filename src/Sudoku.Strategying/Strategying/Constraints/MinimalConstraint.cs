@@ -11,7 +11,7 @@ public sealed partial class MinimalConstraint : Constraint
 	/// Indicates whether the puzzle shsould be minimal.
 	/// </summary>
 	[HashCodeMember]
-	public required bool ShouldBeMinimal { get; set; }
+	public bool ShouldBeMinimal { get; set; }
 
 	[StringMember]
 	private string ShouldBeMinimalString => ShouldBeMinimal.ToString();

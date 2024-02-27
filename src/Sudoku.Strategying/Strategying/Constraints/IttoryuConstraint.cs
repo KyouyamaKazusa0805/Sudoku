@@ -12,12 +12,12 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required int Rounds { get; set; }
+	public int Rounds { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
-	public required ComparisonOperator Operator { get; set; }
+	public ComparisonOperator Operator { get; set; }
 
 
 	/// <inheritdoc/>

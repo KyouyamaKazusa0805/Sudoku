@@ -12,12 +12,12 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required DifficultyLevel DifficultyLevel { get; set; }
+	public DifficultyLevel DifficultyLevel { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
-	public required ComparisonOperator Operator { get; set; }
+	public ComparisonOperator Operator { get; set; }
 
 
 	/// <inheritdoc/>

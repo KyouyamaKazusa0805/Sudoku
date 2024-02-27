@@ -31,26 +31,29 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// Create controls via properties.
 	/// </summary>
 	private void CreateControlsViaProperties()
-	{
-		foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
-		{
-			(
-				constraint switch
-				{
-					DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
-					SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
-					CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
-					TechniqueConstraint instance => () => callback(Create_Technique, instance),
-					MinimalConstraint instance => () => callback(Create_Minimal, instance),
-					PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
-					DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
-					IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
-					IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
-					_ => default(Action)
-				}
-			)?.Invoke();
-		}
+		=> ((App)Application.Current).Preference.ConstraintPreferences.Constraints.ForEach(AddControl);
 
+	/// <summary>
+	/// Add a new control using the specified constraint.
+	/// </summary>
+	/// <param name="constraint">The constraint.</param>
+	private void AddControl(Constraint constraint)
+	{
+		(
+			constraint switch
+			{
+				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
+				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
+				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
+				TechniqueConstraint instance => () => callback(Create_Technique, instance),
+				MinimalConstraint instance => () => callback(Create_Minimal, instance),
+				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+				IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
+				IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
+				_ => default(Action)
+			}
+		)?.Invoke();
 
 		void callback<TConstraint, TControl>(Func<TConstraint, TControl?> method, TConstraint instance)
 			where TConstraint : Constraint
@@ -558,5 +561,16 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				constraintCallback(value);
 			}
 		};
+	}
+
+
+	private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not MenuFlyoutItem { Tag: Constraint constraint })
+		{
+			return;
+		}
+
+		AddControl(constraint);
 	}
 }

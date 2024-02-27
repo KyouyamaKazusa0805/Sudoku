@@ -2311,6 +2311,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Add constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_AddNewConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_AddNewConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to and.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_AndTextBlock {
@@ -2392,6 +2401,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Count between constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_CountBetweenConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_CountBetweenConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be diamond.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Diamond {
@@ -2401,11 +2419,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Diamond constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_DiamondConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_DiamondConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_DifficultyLevel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty level constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_DifficultyLevelConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_DifficultyLevelConstraint", resourceCulture);
             }
         }
         
@@ -2446,6 +2482,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_IttoryuConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Ittoryu length.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_IttoryuLength {
@@ -2455,11 +2500,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu length constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_IttoryuLengthConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuLengthConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be minimal.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Minimal {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Minimal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimal constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_MinimalConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_MinimalConstraint", resourceCulture);
             }
         }
         
@@ -2509,6 +2572,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pearl constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PearlConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PearlConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Symmetric types.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Symmetry {
@@ -2518,11 +2590,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Symmetry constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_SymmetryConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_SymmetryConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Techniques must appear.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Technique {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Technique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueConstraint", resourceCulture);
             }
         }
         

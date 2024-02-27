@@ -12,21 +12,21 @@ public sealed partial class CountBetweenConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required Range Range { get; set; }
+	public Range Range { get; set; }
 
 	/// <summary>
 	/// Indicates the cell state to be checked.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required CellState CellState { get; set; }
+	public CellState CellState { get; set; }
 
 	/// <summary>
 	/// Indicates the between rule.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required BetweenRule BetweenRule { get; set; }
+	public BetweenRule BetweenRule { get; set; }
 
 
 	/// <inheritdoc/>

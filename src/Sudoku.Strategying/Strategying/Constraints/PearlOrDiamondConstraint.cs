@@ -14,7 +14,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required bool ShouldBePearlOrDiamond { get; set; }
+	public bool ShouldBePearlOrDiamond { get; set; }
 
 
 	/// <inheritdocs/>

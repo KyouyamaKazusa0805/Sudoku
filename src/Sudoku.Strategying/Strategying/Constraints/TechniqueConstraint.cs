@@ -13,19 +13,19 @@ public sealed partial class TechniqueConstraint : Constraint, IComparisonOperato
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required int LimitCount { get; set; }
+	public int LimitCount { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
-	public required ComparisonOperator Operator { get; set; }
+	public ComparisonOperator Operator { get; set; }
 
 	/// <summary>
 	/// Indicates the technique used.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public required Technique Technique { get; set; }
+	public Technique Technique { get; set; }
 
 
 	/// <inheritdoc/>

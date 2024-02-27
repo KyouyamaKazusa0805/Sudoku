@@ -12,7 +12,7 @@ public sealed partial class SymmetryConstraint : Constraint
 	/// Indicates the supported symmetry types to be used.
 	/// </summary>
 	[HashCodeMember]
-	public required SymmetricType SymmetricTypes { get; set; }
+	public SymmetricType SymmetricTypes { get; set; }
 
 	[StringMember]
 	private string SymmetricTypesString => SymmetricTypes.ToString();
