@@ -7,6 +7,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
 {
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => false;
+
 	/// <summary>
 	/// Indicates the difficulty level.
 	/// </summary>
@@ -25,7 +28,7 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 		=> other is DifficultyLevelConstraint comparer && (DifficultyLevel, Operator) == (comparer.DifficultyLevel, comparer.Operator);
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+	public override bool Check(scoped ConstraintCheckingContext context)
 	{
 		if (!context.RequiresAnalyzer)
 		{
@@ -34,38 +37,5 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 
 		var factDifficultyLevel = context.AnalyzerResult.DifficultyLevel;
 		return Operator.GetOperator<int>()((int)factDifficultyLevel, (int)DifficultyLevel);
-	}
-
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore()
-	{
-		if (!Enum.IsDefined(DifficultyLevel))
-		{
-			return ValidationResult.Failed(
-				nameof(DifficultyLevel),
-				ValidationReason.EnumerationFieldNotDefined,
-				Severity.Error
-			);
-		}
-
-		if (DifficultyLevel == DifficultyLevel.Unknown)
-		{
-			return ValidationResult.Failed(
-				nameof(DifficultyLevel),
-				ValidationReason.OutOfRange,
-				Severity.Error
-			);
-		}
-
-		if (!Enum.IsDefined(Operator))
-		{
-			return ValidationResult.Failed(
-				nameof(Operator),
-				ValidationReason.EnumerationFieldNotDefined,
-				Severity.Error
-			);
-		}
-
-		return ValidationResult.Successful;
 	}
 }

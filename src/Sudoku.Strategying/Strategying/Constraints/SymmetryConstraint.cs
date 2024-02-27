@@ -8,6 +8,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class SymmetryConstraint : Constraint
 {
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => false;
+
 	/// <summary>
 	/// Indicates the supported symmetry types to be used.
 	/// </summary>
@@ -23,24 +26,5 @@ public sealed partial class SymmetryConstraint : Constraint
 		=> other is SymmetryConstraint comparer && SymmetricTypes == comparer.SymmetricTypes;
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
-		=> ((int)SymmetricTypes >> (int)context.Grid.Symmetry & 1) != 0;
-
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore()
-	{
-		foreach (var flag in SymmetricTypes)
-		{
-			if (!Enum.IsDefined(flag))
-			{
-				return ValidationResult.Failed(
-					nameof(SymmetricTypes),
-					ValidationReason.EnumerationFieldNotDefined,
-					Severity.Error
-				);
-			}
-		}
-
-		return ValidationResult.Successful;
-	}
+	public override bool Check(scoped ConstraintCheckingContext context) => ((int)SymmetricTypes >> (int)context.Grid.Symmetry & 1) != 0;
 }

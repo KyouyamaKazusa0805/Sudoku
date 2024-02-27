@@ -7,6 +7,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class CountBetweenConstraint : Constraint
 {
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => false;
+
 	/// <summary>
 	/// Indicates the range of the numbers set.
 	/// </summary>
@@ -35,7 +38,7 @@ public sealed partial class CountBetweenConstraint : Constraint
 		&& Range.Equals(comparer.Range) && (CellState, BetweenRule) == (comparer.CellState, comparer.BetweenRule);
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+	public override bool Check(scoped ConstraintCheckingContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var factCount = CellState switch
@@ -54,7 +57,4 @@ public sealed partial class CountBetweenConstraint : Constraint
 			BetweenRule.BothClosed => factCount >= min && factCount <= max
 		};
 	}
-
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore() => throw new NotImplementedException();
 }

@@ -8,6 +8,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class TechniqueConstraint : Constraint, IComparisonOperatorConstraint
 {
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => true;
+
 	/// <summary>
 	/// Indicates the appearing times.
 	/// </summary>
@@ -34,7 +37,7 @@ public sealed partial class TechniqueConstraint : Constraint, IComparisonOperato
 		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+	public override bool Check(scoped ConstraintCheckingContext context)
 	{
 		if (!context.RequiresAnalyzer)
 		{
@@ -52,7 +55,4 @@ public sealed partial class TechniqueConstraint : Constraint, IComparisonOperato
 
 		return Operator.GetOperator<int>()(times, LimitCount);
 	}
-
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore() => ValidationResult.Successful;
 }

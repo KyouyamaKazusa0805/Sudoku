@@ -16,6 +16,9 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	[StringMember]
 	public bool ShouldBePearlOrDiamond { get; set; }
 
+	/// <inheritdoc/>
+	public sealed override bool AllowDuplicate => false;
+
 
 	/// <inheritdocs/>
 	public sealed override bool Equals([NotNullWhen(true)] Constraint? other)
@@ -23,7 +26,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		&& (CheckPearl, ShouldBePearlOrDiamond) == (comparer.CheckPearl, comparer.ShouldBePearlOrDiamond);
 
 	/// <inheritdoc/>
-	protected internal sealed override bool CheckCore(ConstraintCheckingContext context)
+	public sealed override bool Check(scoped ConstraintCheckingContext context)
 	{
 		if (!context.RequiresAnalyzer)
 		{
@@ -34,7 +37,4 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		var isDiamond = context.AnalyzerResult.IsDiamond;
 		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
 	}
-
-	/// <inheritdoc/>
-	protected internal sealed override ValidationResult ValidateCore() => ValidationResult.Successful;
 }

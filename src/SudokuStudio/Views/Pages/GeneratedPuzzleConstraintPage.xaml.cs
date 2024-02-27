@@ -16,6 +16,11 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// </summary>
 	private readonly ObservableCollection<Control> _controls = [];
 
+	/// <summary>
+	/// Indicates the constraints.
+	/// </summary>
+	private readonly List<Constraint> _constraints = [];
+
 
 	/// <summary>
 	/// Initializes a <see cref="GeneratedPuzzleConstraintPage"/> instance.
@@ -62,6 +67,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			if (method(instance) is { } control)
 			{
 				_controls.Add(control);
+				_constraints.Add(constraint);
 			}
 		}
 	}
@@ -572,5 +578,18 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 
 		AddControl(constraint);
+	}
+
+	private void MenuFlyout_Opening(object sender, object e)
+	{
+		foreach (var element in MenuFlyout.Items)
+		{
+			if (element is MenuFlyoutItem { Tag: Constraint { AllowDuplicate: var allowDuplicate } constraint })
+			{
+				element.Visibility = !allowDuplicate && _constraints.Exists(c => c.GetType() == constraint.GetType())
+					? Visibility.Collapsed
+					: Visibility.Visible;
+			}
+		}
 	}
 }

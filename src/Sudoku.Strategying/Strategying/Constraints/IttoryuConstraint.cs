@@ -7,6 +7,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint
 {
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => false;
+
 	/// <summary>
 	/// Indicates the rounds used.
 	/// </summary>
@@ -25,7 +28,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		=> other is IttoryuConstraint comparer && Rounds == comparer.Rounds;
 
 	/// <inheritdoc/>
-	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
+	public override bool Check(scoped ConstraintCheckingContext context)
 	{
 		if (context is not { RequiresAnalyzer: true, AnalyzerResult: { IsSolved: true, Steps: var steps } })
 		{
@@ -54,12 +57,4 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 
 		return Operator.GetOperator<int>()(roundsCount, Rounds);
 	}
-
-	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore()
-		=> Enum.IsDefined(Operator)
-			? Rounds is >= 0 and <= 10
-				? ValidationResult.Successful
-				: ValidationResult.Failed(nameof(Rounds), ValidationReason.OutOfRange, Severity.Warning)
-			: ValidationResult.Failed(nameof(Operator), ValidationReason.EnumerationFieldNotDefined, Severity.Error);
 }

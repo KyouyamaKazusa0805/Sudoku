@@ -20,7 +20,7 @@
 			BorderBrush="DimGray">
 			<Button Content="{m:R Key=GeneratedPuzzleConstraintPage_AddNewConstraint}" Margin="12">
 				<Button.Flyout>
-					<MenuFlyout>
+					<MenuFlyout x:Name="MenuFlyout" Opening="MenuFlyout_Opening">
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_CountBetweenConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
 								<con:CountBetweenConstraint Range="{m:Range Range='24..28'}" CellState="Given" BetweenRule="BothClosed" />
