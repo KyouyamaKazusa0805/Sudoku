@@ -7082,6 +7082,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Modifiables count is between.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_NoTechniquesSelected">
+            <summary>
+              Looks up a localized string similar to No techniques selected.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_OnlyLeftOpen">
             <summary>
               Looks up a localized string similar to , only left side excluded.
@@ -7100,6 +7105,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">
             <summary>
               Looks up a localized string similar to Symmetric types.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Technique">
+            <summary>
+              Looks up a localized string similar to Techniques must appear.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_Cancel">

@@ -14,6 +14,7 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 		new MinimalConstraint { ShouldBeMinimal = false },
 		new PearlConstraint { ShouldBePearlOrDiamond = false },
 		new DiamondConstraint { ShouldBePearlOrDiamond = false },
-		new IttoryuConstraint { Operator = ComparisonOperator.Equality, Rounds = 1 }
+		new IttoryuConstraint { Operator = ComparisonOperator.Equality, Rounds = 1 },
+		new TechniqueConstraint { Techniques = [] }
 	];
 }

@@ -7,8 +7,10 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratedPuzzleConstraintPage}">
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
-		<TextBlock Text="{m:R Key=GeneratedPuzzleConstraintPage_Intro}" Margin="0,10,0,0" />
-		<ListView ItemsSource="{x:Bind _controls,Mode=OneWay}" SelectionMode="None" />
-	</StackPanel>
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+			<TextBlock Text="{m:R Key=GeneratedPuzzleConstraintPage_Intro}" Margin="0,10,0,0" />
+			<ListView ItemsSource="{x:Bind _controls,Mode=OneWay}" SelectionMode="None" />
+		</StackPanel>
+	</ScrollViewer>
 </Page>

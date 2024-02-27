@@ -2267,9 +2267,6 @@
   <data name="_Token_OpenBrace" xml:space="preserve">
     <value>（</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_Intro" xml:space="preserve">
     <value>该页面提供了一些自动过滤生成题目的约束。你可以调整下面的设置内容来控制它们，在分析页面的出题环节里，将会在出题期间自动过滤掉不满足这些约束的题目。</value>
   </data>
@@ -2353,5 +2350,14 @@
   </data>
   <data name="GeneratedPuzzleConstraintPage_Ittoryu" xml:space="preserve">
     <value>一刀流轮数</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Technique" xml:space="preserve">
+    <value>必须出现的技巧</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_NoTechniquesSelected" xml:space="preserve">
+    <value>未选择任何技巧</value>
   </data>
 </root>

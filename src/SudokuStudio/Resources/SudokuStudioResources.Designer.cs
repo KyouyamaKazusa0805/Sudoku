@@ -2455,6 +2455,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to No techniques selected.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_NoTechniquesSelected {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_NoTechniquesSelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , only left side excluded.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_OnlyLeftOpen {
@@ -2487,6 +2496,15 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_Symmetry {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Symmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Techniques must appear.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Technique {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Technique", resourceCulture);
             }
         }
         

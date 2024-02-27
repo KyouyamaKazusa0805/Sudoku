@@ -79,35 +79,6 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint">
-            <summary>
-            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
-            contains the specified techniques.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Techniques">
-            <summary>
-            Indicates the techniques used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint">
             <summary>
             Represents a constraint that checks for techniques, and their appeared counts.
@@ -682,6 +653,35 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ValidateCore">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.UniversalQuantifier">

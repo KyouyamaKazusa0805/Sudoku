@@ -14,7 +14,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <summary>
 	/// Indicates the internal controls.
 	/// </summary>
-	private readonly ObservableCollection<UIElement> _controls = [];
+	private readonly ObservableCollection<Control> _controls = [];
 
 
 	/// <summary>
@@ -40,6 +40,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
 					SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
 					CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
+					TechniqueConstraint instance => () => callback(Create_Technique, instance),
 					MinimalConstraint instance => () => callback(Create_Minimal, instance),
 					PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 					DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -50,8 +51,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 
 
-		void callback<TConstraint>(Func<TConstraint, SettingsCard?> method, TConstraint instance)
+		void callback<TConstraint, TControl>(Func<TConstraint, TControl?> method, TConstraint instance)
 			where TConstraint : Constraint
+			where TControl : Control
 		{
 			if (method(instance) is { } control)
 			{
@@ -372,6 +374,59 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				Orientation = Orientation.Horizontal,
 				Spacing = 3,
 				Children = { operatorControl, roundsControl }
+			},
+			Tag = constraint
+		};
+	}
+
+	private SettingsExpander? Create_Technique(TechniqueConstraint constraint)
+	{
+		if (constraint is not { Techniques: var techniques })
+		{
+			return null;
+		}
+
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected")
+		};
+
+		//
+		// technique view
+		//
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Multiple,
+			SelectedTechniques = [.. techniques]
+		};
+		techniqueControl.SelectedTechniquesChanged += (_, _) =>
+		{
+			constraint.Techniques = [.. techniqueControl.SelectedTechniques];
+			displayerControl.Text = techniqueControl.SelectedTechniques switch
+			{
+				[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected"),
+				var techniques => string.Join(
+					ResourceDictionary.Get("_Token_Comma"),
+					from technique in techniques select technique.GetName(App.CurrentCulture)
+				)
+			};
+		};
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique"),
+			Margin = DefaultMargin,
+			Items = { techniqueControl },
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { displayerControl }
 			},
 			Tag = constraint
 		};
