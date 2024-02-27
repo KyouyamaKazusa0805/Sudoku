@@ -409,7 +409,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			constraint.Techniques = [.. techniqueControl.SelectedTechniques];
 			displayerControl.Text = techniqueControl.SelectedTechniques switch
 			{
-				[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected"),
+			[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected"),
 				var techniques => string.Join(
 					ResourceDictionary.Get("_Token_Comma"),
 					from technique in techniques select technique.GetName(App.CurrentCulture)

@@ -15,6 +15,6 @@ public sealed partial class ConstraintPreferenceGroup : PreferenceGroup
 		new PearlConstraint { ShouldBePearlOrDiamond = false },
 		new DiamondConstraint { ShouldBePearlOrDiamond = false },
 		new IttoryuConstraint { Operator = ComparisonOperator.Equality, Rounds = 1 },
-		new TechniqueConstraint { Techniques = [] }
+		new TechniqueConstraint { Techniques = [] },
 	];
 }

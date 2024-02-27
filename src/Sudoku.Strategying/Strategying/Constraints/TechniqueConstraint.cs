@@ -37,25 +37,6 @@ public sealed partial class TechniqueConstraint : Constraint
 		=> other is TechniqueConstraint comparer && Techniques.AsTechniqueSet() == comparer.Techniques.AsTechniqueSet();
 
 	/// <inheritdoc/>
-	public override ConflictionResult VerifyConfliction(Constraint other)
-	{
-		if (other is not AnalyzerTechniqueCountConstraint { UniversalQuantifier: UniversalQuantifier.All, TechniqueAppearing.Keys: var techniques })
-		{
-			return ConflictionResult.Successful;
-		}
-
-		var set = Techniques.AsTechniqueSet();
-		var otherSet = (TechniqueSet)([.. techniques]);
-		if ((otherSet & set) == set)
-		{
-			// The other set fully covers the current set, so the current set won't work.
-			return ConflictionResult.Failed(other, ConflictionType.ValueFullyCovered, Severity.Info);
-		}
-
-		return ConflictionResult.Failed(other, ConflictionType.ValueDiffers, Severity.Warning);
-	}
-
-	/// <inheritdoc/>
 	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
 	{
 		if (!context.RequiresAnalyzer)

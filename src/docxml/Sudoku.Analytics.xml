@@ -20195,26 +20195,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.BottleneckType">
-            <summary>
-            Represents a kind of bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.BottleneckType.None">
-            <summary>
-            Indicates the placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.BottleneckType.DirectBottleneck">
-            <summary>
-            Indicates the bottleneck is for direct views.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.BottleneckType.PuzzleBottleneck">
-            <summary>
-            Indicates the bottleneck is for a whole puzzle.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.ChainNode">
             <summary>
             Defines a node used in chaining.

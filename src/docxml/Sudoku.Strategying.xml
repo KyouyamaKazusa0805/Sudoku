@@ -79,151 +79,6 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint">
-            <summary>
-            Represents a constraint that checks for techniques, and their appeared counts.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.UniversalQuantifier">
-            <summary>
-            Indicates the universal quantifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.TechniqueAppearing">
-            <summary>
-            Indicates the dictionary that stores the appearing cases on each technique.
-            </summary>
-            <remarks>
-            The return type of this property is <see cref="T:System.Collections.Frozen.FrozenDictionary`2"/>. You can create an instance
-            by using extension method <c>ToFrozenDictionary</c> in type <see cref="T:System.Collections.Frozen.FrozenDictionary"/>.
-            </remarks>
-            <seealso cref="T:System.Collections.Frozen.FrozenDictionary"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueCountConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint">
-            <summary>
-            Represents a constraint that checks for a technique group.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.TechniqueGroup">
-            <summary>
-            Indicates the desired technique group.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueGroupConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint">
-            <summary>
-            Represents a constraint that checks for the name of the technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.Pattern">
-            <summary>
-            Indicates the desired name pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CurrentCulture">
-            <summary>
-            Indicates the current culture.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.AnalyzerTechniqueNameConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.BottleneckConstraint">
-            <summary>
-            Represents a constraint that checks whether a puzzle contains any bottleneck.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckConstraint.Type">
-            <summary>
-            Indicates the type of the bottleneck will be checked.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
-            <summary>
-            Represents a conclusion constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.UniversalQuantifier">
-            <summary>
-            Indicates the universal quantifier.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusions">
-            <summary>
-            Indicates the conclusions to be checked.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ValidateCore">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.Constraint">
             <summary>
             Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
@@ -350,28 +205,6 @@
             <summary>
             Represents a constraint collection.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCollection.Item(System.Int32)">
-            <summary>
-            Gets the constraint at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.Equals(Sudoku.Strategying.Constraints.ConstraintCollection)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.op_Equality(Sudoku.Strategying.Constraints.ConstraintCollection,Sudoku.Strategying.Constraints.ConstraintCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.op_Inequality(Sudoku.Strategying.Constraints.ConstraintCollection,Sudoku.Strategying.Constraints.ConstraintCollection)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
             <summary>
@@ -667,9 +500,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.VerifyConfliction(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
