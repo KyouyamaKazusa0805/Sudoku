@@ -2410,6 +2410,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Delete.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Delete {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Delete", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be diamond.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Diamond {

@@ -7070,6 +7070,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Count between constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Delete">
+            <summary>
+              Looks up a localized string similar to Delete.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Diamond">
             <summary>
               Looks up a localized string similar to Should be diamond.

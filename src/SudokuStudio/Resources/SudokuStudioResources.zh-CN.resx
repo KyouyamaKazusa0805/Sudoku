@@ -2396,4 +2396,7 @@
   <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
     <value>难度级别约束</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Delete" xml:space="preserve">
+    <value>删除</value>
+  </data>
 </root>

@@ -2375,9 +2375,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_DiamondConstraint" xml:space="preserve">
     <value>Diamond constraint</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
-    <value>Difficulty level constraint</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_IttoryuConstraint" xml:space="preserve">
     <value>Ittoryu constraint</value>
   </data>
@@ -2395,5 +2392,11 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
     <value>Technique constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
+    <value>Difficulty level constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_Delete" xml:space="preserve">
+    <value>Delete</value>
   </data>
 </root>

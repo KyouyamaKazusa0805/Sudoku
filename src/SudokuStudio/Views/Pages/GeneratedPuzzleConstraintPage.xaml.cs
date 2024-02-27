@@ -14,7 +14,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <summary>
 	/// Indicates the internal controls.
 	/// </summary>
-	private readonly ObservableCollection<Control> _controls = [];
+	private readonly ObservableCollection<FrameworkElement> _controls = [];
 
 	/// <summary>
 	/// Indicates the constraints.
@@ -60,13 +60,37 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			}
 		)?.Invoke();
 
+
 		void callback<TConstraint, TControl>(Func<TConstraint, TControl?> method, TConstraint instance)
 			where TConstraint : Constraint
 			where TControl : Control
 		{
 			if (method(instance) is { } control)
 			{
-				_controls.Add(control);
+				var grid = new GridLayout
+				{
+					ColumnDefinitions =
+					{
+						new() { Width = new(1, GridUnitType.Star) },
+						new() { Width = new(20) },
+						new() { Width = new(1, GridUnitType.Auto) }
+					}
+				};
+				var deleteButton = new Button
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Delete"),
+					Foreground = new SolidColorBrush(Colors.White),
+					Background = new SolidColorBrush(Colors.Red),
+					Margin = new(6),
+					VerticalAlignment = VerticalAlignment.Center
+				};
+				deleteButton.Click += (_, _) => { _controls.Remove(grid); _constraints.Remove((Constraint)control.Tag!); };
+				GridLayout.SetColumn(control, 0);
+				GridLayout.SetColumn(deleteButton, 2);
+				grid.Children.Add(control);
+				grid.Children.Add(deleteButton);
+
+				_controls.Add(grid);
 				_constraints.Add(constraint);
 			}
 		}
