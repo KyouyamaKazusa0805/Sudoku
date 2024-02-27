@@ -2446,6 +2446,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu length.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_IttoryuLength {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_IttoryuLength", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be minimal.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Minimal {

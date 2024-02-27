@@ -4,16 +4,15 @@ namespace Sudoku.Strategying.Constraints;
 /// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
 /// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$typeid", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
-[JsonDerivedType(typeof(CountBetweenConstraint), nameof(CountBetweenConstraint))] //
-[JsonDerivedType(typeof(CountConstraint), nameof(CountConstraint))]
-[JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))] //
-[JsonDerivedType(typeof(DifficultyLevelConstraint), nameof(DifficultyLevelConstraint))] //
-[JsonDerivedType(typeof(IttoryuConstraint), nameof(IttoryuConstraint))] //
+[JsonDerivedType(typeof(CountBetweenConstraint), nameof(CountBetweenConstraint))]
+[JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))]
+[JsonDerivedType(typeof(DifficultyLevelConstraint), nameof(DifficultyLevelConstraint))]
+[JsonDerivedType(typeof(IttoryuConstraint), nameof(IttoryuConstraint))]
 [JsonDerivedType(typeof(IttoryuLengthConstraint), nameof(IttoryuLengthConstraint))]
-[JsonDerivedType(typeof(MinimalConstraint), nameof(MinimalConstraint))] //
-[JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))] //
-[JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))] //
-[JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))] //
+[JsonDerivedType(typeof(MinimalConstraint), nameof(MinimalConstraint))]
+[JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
+[JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))]
+[JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
@@ -50,83 +49,4 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// </summary>
 	/// <returns>A <see cref="ValidationResult"/> instance describing the final result on validation.</returns>
 	protected internal abstract ValidationResult ValidateCore();
-
-
-	/// <summary>
-	/// Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-	/// </summary>
-	/// <typeparam name="T1">The type of the first dictionary.</typeparam>
-	/// <typeparam name="T2">The type of the second dictionary.</typeparam>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <param name="universalQuantifier">The universal quantifier.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private protected static bool DictionaryEquals<T1, T2>(T1 left, T2 right, UniversalQuantifier universalQuantifier)
-		where T1 : IDictionary<Technique, int>
-		where T2 : IDictionary<Technique, int>
-	{
-		if (left.Count != right.Count)
-		{
-			return false;
-		}
-
-		foreach (var key in left.Keys)
-		{
-			if (universalQuantifier == UniversalQuantifier.All)
-			{
-				if (!right.TryGetValue(key, out var v) || v != left[key])
-				{
-					return false;
-				}
-			}
-			else
-			{
-				if (right.TryGetValue(key, out var v) && v == left[key])
-				{
-					return true;
-				}
-			}
-		}
-
-		return universalQuantifier == UniversalQuantifier.All;
-	}
-
-	/// <summary>
-	/// Compares instances <typeparamref name="T1"/> and <typeparamref name="T2"/> with inner values.
-	/// </summary>
-	/// <typeparam name="T1">The type of the first dictionary.</typeparam>
-	/// <typeparam name="T2">The type of the second dictionary.</typeparam>
-	/// <param name="left">The first element to be compared.</param>
-	/// <param name="right">The second element to be compared.</param>
-	/// <param name="universalQuantifier">The universal quantifier.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private protected static bool DictionaryGreaterThanOrEquals<T1, T2>(T1 left, T2 right, UniversalQuantifier universalQuantifier)
-		where T1 : IDictionary<Technique, int>
-		where T2 : IDictionary<Technique, int>
-	{
-		if (left.Count < right.Count)
-		{
-			return false;
-		}
-
-		foreach (var key in left.Keys)
-		{
-			if (universalQuantifier == UniversalQuantifier.All)
-			{
-				if ((right.TryGetValue(key, out var v) ? v : 0) < left[key])
-				{
-					return false;
-				}
-			}
-			else
-			{
-				if ((right.TryGetValue(key, out var v) ? v : 0) >= left[key])
-				{
-					return true;
-				}
-			}
-		}
-
-		return universalQuantifier == UniversalQuantifier.All;
-	}
 }

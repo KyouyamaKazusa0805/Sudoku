@@ -2363,4 +2363,7 @@
   <data name="GeneratedPuzzleConstraintPage_AppearingTimes" xml:space="preserve">
     <value>出现次数</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_IttoryuLength" xml:space="preserve">
+    <value>一刀流长度</value>
+  </data>
 </root>

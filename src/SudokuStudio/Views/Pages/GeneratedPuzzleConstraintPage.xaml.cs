@@ -45,6 +45,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 					DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 					IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
+					IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
 					_ => default(Action)
 				}
 			)?.Invoke();
@@ -379,6 +380,38 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
+	private SettingsCard? Create_IttoryuLength(IttoryuLengthConstraint constraint)
+	{
+		if (constraint is not { Length: var length, Operator: var @operator })
+		{
+			return null;
+		}
+
+		//
+		// length
+		//
+		var lengthControl = new IntegerBox { Width = 150, Minimum = 0, Maximum = 9, Value = length };
+		lengthControl.ValueChanged += (_, _) => constraint.Length = length;
+
+		//
+		// operator
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_IttoryuLength"),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { operatorControl, lengthControl }
+			},
+			Tag = constraint
+		};
+	}
+
 	private SettingsExpander? Create_Technique(TechniqueConstraint constraint)
 	{
 		if (constraint is not { Technique: var technique, LimitCount: var appearingTimes, Operator: var @operator })
@@ -417,7 +450,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// comparison operator
 		//
-		var comparisonOperatorControl = ComparisonOperatorControl(@operator, constraint);
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
 
 		return new()
 		{
@@ -428,7 +461,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = 3,
-				Children = { displayerControl, appearingTimesControl, comparisonOperatorControl }
+				Children = { displayerControl, operatorControl, appearingTimesControl }
 			},
 			Tag = constraint
 		};
