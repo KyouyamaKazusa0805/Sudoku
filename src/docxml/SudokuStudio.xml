@@ -7007,6 +7007,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to and.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_AppearingTimes">
+            <summary>
+              Looks up a localized string similar to appearing times.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BothClosed">
             <summary>
               Looks up a localized string similar to , both side included.

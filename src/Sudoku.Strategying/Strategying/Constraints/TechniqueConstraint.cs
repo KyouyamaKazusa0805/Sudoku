@@ -6,35 +6,32 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class TechniqueConstraint : Constraint
+public sealed partial class TechniqueConstraint : Constraint, IComparisonOperatorConstraint
 {
 	/// <summary>
-	/// Indicates the techniques used.
+	/// Indicates the appearing times.
 	/// </summary>
-	public required Technique[] Techniques { get; set; }
-
 	[HashCodeMember]
-	private int TechniquesHashCode
-	{
-		get
-		{
-			var hashCode = new HashCode();
-			foreach (var element in Techniques)
-			{
-				hashCode.Add(element);
-			}
-
-			return hashCode.ToHashCode();
-		}
-	}
-
 	[StringMember]
-	private string TechniquesString => Techniques.AsTechniqueSet().ToString();
+	public required int LimitCount { get; set; }
+
+	/// <inheritdoc/>
+	[HashCodeMember]
+	[StringMember]
+	public required ComparisonOperator Operator { get; set; }
+
+	/// <summary>
+	/// Indicates the technique used.
+	/// </summary>
+	[HashCodeMember]
+	[StringMember]
+	public required Technique Technique { get; set; }
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is TechniqueConstraint comparer && Techniques.AsTechniqueSet() == comparer.Techniques.AsTechniqueSet();
+		=> other is TechniqueConstraint comparer
+		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
 
 	/// <inheritdoc/>
 	protected internal override bool CheckCore(scoped ConstraintCheckingContext context)
@@ -44,20 +41,18 @@ public sealed partial class TechniqueConstraint : Constraint
 			return false;
 		}
 
+		var times = 0;
 		foreach (var step in context.AnalyzerResult)
 		{
-			if (Array.IndexOf(Techniques, step.Code) != -1)
+			if (Technique == step.Code)
 			{
-				return true;
+				times++;
 			}
 		}
 
-		return false;
+		return Operator.GetOperator<int>()(times, LimitCount);
 	}
 
 	/// <inheritdoc/>
-	protected internal override ValidationResult ValidateCore()
-		=> Array.TrueForAll(Techniques, Enum.IsDefined)
-			? ValidationResult.Successful
-			: ValidationResult.Failed(nameof(Techniques), ValidationReason.EnumerationFieldNotDefined, Severity.Warning);
+	protected internal override ValidationResult ValidateCore() => ValidationResult.Successful;
 }

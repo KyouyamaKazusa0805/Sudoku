@@ -2360,4 +2360,7 @@
   <data name="GeneratedPuzzleConstraintPage_NoTechniquesSelected" xml:space="preserve">
     <value>未选择任何技巧</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_AppearingTimes" xml:space="preserve">
+    <value>出现次数</value>
+  </data>
 </root>

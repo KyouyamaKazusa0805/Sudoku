@@ -494,9 +494,17 @@
             contains the specified techniques.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.LimitCount">
             <summary>
-            Indicates the techniques used.
+            Indicates the appearing times.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Technique">
+            <summary>
+            Indicates the technique used.
             </summary>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">

@@ -2360,4 +2360,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_NoTechniquesSelected" xml:space="preserve">
     <value>No techniques selected</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_AppearingTimes" xml:space="preserve">
+    <value>appearing times</value>
+  </data>
 </root>

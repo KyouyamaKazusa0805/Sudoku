@@ -381,7 +381,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsExpander? Create_Technique(TechniqueConstraint constraint)
 	{
-		if (constraint is not { Techniques: var techniques })
+		if (constraint is not { Technique: var technique, LimitCount: var appearingTimes, Operator: var @operator })
 		{
 			return null;
 		}
@@ -393,29 +393,31 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			MaxWidth = 400,
 			TextWrapping = TextWrapping.WrapWholeWords,
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected")
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2")}{ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearingTimes")}"
 		};
 
 		//
 		// technique view
 		//
-		var techniqueControl = new TechniqueView
+		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Single, SelectedTechniques = [technique] };
+		techniqueControl.CurrentSelectedTechniqueChanged += (_, e) =>
 		{
-			SelectionMode = TechniqueViewSelectionMode.Multiple,
-			SelectedTechniques = [.. techniques]
+			var technique = e.Technique;
+			constraint.Technique = technique;
+			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2")}{ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearingTimes")}";
 		};
-		techniqueControl.SelectedTechniquesChanged += (_, _) =>
-		{
-			constraint.Techniques = [.. techniqueControl.SelectedTechniques];
-			displayerControl.Text = techniqueControl.SelectedTechniques switch
-			{
-			[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected"),
-				var techniques => string.Join(
-					ResourceDictionary.Get("_Token_Comma"),
-					from technique in techniques select technique.GetName(App.CurrentCulture)
-				)
-			};
-		};
+
+		//
+		// appearing times
+		//
+		var appearingTimesControl = new IntegerBox { Width = 150, Minimum = 1, Maximum = 20 };
+		appearingTimesControl.ValueChanged += (_, _) => constraint.LimitCount = appearingTimesControl.Value;
+
+		//
+		// comparison operator
+		//
+		var comparisonOperatorControl = ComparisonOperatorControl(@operator, constraint);
 
 		return new()
 		{
@@ -426,7 +428,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = 3,
-				Children = { displayerControl }
+				Children = { displayerControl, appearingTimesControl, comparisonOperatorControl }
 			},
 			Tag = constraint
 		};

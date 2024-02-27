@@ -2320,6 +2320,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to appearing times.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_AppearingTimes {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_AppearingTimes", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , both side included.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_BothClosed {
