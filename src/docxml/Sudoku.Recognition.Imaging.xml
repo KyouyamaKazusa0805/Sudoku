@@ -383,5 +383,20 @@
               Looks up a localized string similar to The training file can&apos;t be found in the folder &apos;traineddata&apos;..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_FailedToFillValueException">
+            <summary>
+              Looks up a localized string similar to Cannot fill cell {0} with digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_RecognizerNotInitializedException">
+            <summary>
+              Looks up a localized string similar to The recognition tools should have been initialized before using the current function..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_TesseractException">
+            <summary>
+              Looks up a localized string similar to Tesseract has encountered an error: {0}..
+            </summary>
+        </member>
     </members>
 </doc>

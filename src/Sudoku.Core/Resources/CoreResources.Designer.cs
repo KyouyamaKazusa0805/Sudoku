@@ -358,6 +358,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
+        /// </summary>
+        internal static string Message_LibraryInitializedException {
+            get {
+                return ResourceManager.GetString("Message_LibraryInitializedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row {0}.
         /// </summary>
         internal static string RowLabel {

@@ -27,5 +27,6 @@ public sealed partial class LibraryInitializedException(
 
 
 	/// <inheritdoc/>
-	public override string Message => $@"The library (local path: '{Directory}\{FileId}') has already been initialized.";
+	public override string Message
+		=> string.Format(ResourceDictionary.Get("Message_LibraryInitializedException"), Directory, FileId);
 }

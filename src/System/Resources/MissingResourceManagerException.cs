@@ -8,7 +8,12 @@ public sealed class MissingResourceManagerException(Assembly assembly) : Resourc
 {
 	/// <inheritdoc/>
 	public override string Message
-		=> $"Assembly '{_assembly}' is lack of invocation '{nameof(ResourceDictionary)}.{nameof(ResourceDictionary.RegisterResourceManager)}'.";
+		=> string.Format(
+			ResourceDictionary.Get("Message_MissingResourceManagerException"),
+			_assembly,
+			nameof(ResourceDictionary),
+			nameof(ResourceDictionary.RegisterResourceManager)
+		);
 
 	/// <inheritdoc/>
 	public override IDictionary Data => new Dictionary<string, object?> { { nameof(assembly), _assembly } };

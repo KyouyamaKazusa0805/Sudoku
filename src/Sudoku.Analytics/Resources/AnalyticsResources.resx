@@ -2814,13 +2814,13 @@
   <data name="Unknown" xml:space="preserve">
     <value>Unknown</value>
   </data>
-	<data name="Moderate" xml:space="preserve">
+  <data name="Moderate" xml:space="preserve">
     <value>Moderate</value>
   </data>
-	<data name="Hard" xml:space="preserve">
+  <data name="Hard" xml:space="preserve">
     <value>Hard</value>
   </data>
-	<data name="Fiendish" xml:space="preserve">
+  <data name="Fiendish" xml:space="preserve">
     <value>Fiendish</value>
   </data>
   <data name="Nightmare" xml:space="preserve">
@@ -2828,5 +2828,20 @@
   </data>
   <data name="LastResort" xml:space="preserve">
     <value>Last Resort</value>
+  </data>
+  <data name="Message_WrongStepException" xml:space="preserve">
+    <value>The step may exist bug that causes the wrong handling.
+Current grid: '{0:#}'
+Current step: '{1}'</value>
+  </data>
+  <data name="Message_PuzzleInvalidException" xml:space="preserve">
+    <value>Unexpected error thrown. This exception may be thrown if the puzzle is invalid.
+Error grid: '{0:#}'</value>
+  </data>
+  <data name="Message_MissingDifficultyLevelException" xml:space="preserve">
+    <value>The member '{0}' is missing difficulty level attribute.</value>
+  </data>
+  <data name="Message_MissingTechniqueGroupException" xml:space="preserve">
+    <value>The member '{0}' is missing technique group attribute.</value>
   </data>
 </root>

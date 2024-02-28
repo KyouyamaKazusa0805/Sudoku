@@ -141,4 +141,13 @@
   <data name="ErrorInfo_FormatInvalid" xml:space="preserve">
     <value>The specified format is invalid.</value>
   </data>
+  <data name="Message_ResourceNotFoundException" xml:space="preserve">
+    <value>Specified resource not found.
+  * Resource key: '{0}',
+  * Assembly: '{1}',
+  * Culture: '{2}'</value>
+  </data>
+  <data name="Message_MissingResourceManagerException" xml:space="preserve">
+    <value>Assembly '{0}' is lack of invocation '{1}.{2}'.</value>
+  </data>
 </root>

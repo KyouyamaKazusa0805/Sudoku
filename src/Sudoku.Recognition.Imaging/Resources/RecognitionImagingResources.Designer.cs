@@ -77,5 +77,32 @@ namespace Sudoku.Resources {
                 return ResourceManager.GetString("ErrorInfo_MissingTrainedDataFile", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannot fill cell {0} with digit {1}.
+        /// </summary>
+        internal static string Message_FailedToFillValueException {
+            get {
+                return ResourceManager.GetString("Message_FailedToFillValueException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The recognition tools should have been initialized before using the current function..
+        /// </summary>
+        internal static string Message_RecognizerNotInitializedException {
+            get {
+                return ResourceManager.GetString("Message_RecognizerNotInitializedException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Tesseract has encountered an error: {0}..
+        /// </summary>
+        internal static string Message_TesseractException {
+            get {
+                return ResourceManager.GetString("Message_TesseractException", resourceCulture);
+            }
+        }
     }
 }

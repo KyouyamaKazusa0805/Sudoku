@@ -246,4 +246,7 @@
   <data name="ErrorInfo_MultipleFlagsExist" xml:space="preserve">
     <value>Multiple flags exist. The method only allows the enumeration field only holds one flag value.</value>
   </data>
+  <data name="Message_LibraryInitializedException" xml:space="preserve">
+    <value>The library (local path: '{0}\{1}') has already been initialized.</value>
+  </data>
 </root>

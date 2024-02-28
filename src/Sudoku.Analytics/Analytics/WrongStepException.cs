@@ -8,10 +8,5 @@ namespace Sudoku.Analytics;
 public sealed partial class WrongStepException(scoped ref readonly Grid grid, [PrimaryConstructorParameter] Step wrongStep) : RuntimeAnalyticsException(in grid)
 {
 	/// <inheritdoc/>
-	public override string Message
-		=> $"""
-		The step may exist bug that causes the wrong handling.
-		Current grid: '{InvalidGrid:#}'
-		Current step: '{WrongStep}'
-		""";
+	public override string Message => string.Format(ResourceDictionary.Get("Message_WrongStepException"), InvalidGrid, WrongStep);
 }

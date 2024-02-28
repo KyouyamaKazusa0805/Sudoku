@@ -20,12 +20,12 @@ public sealed partial class ResourceNotFoundException(
 
 	/// <inheritdoc/>
 	public override string Message
-		=> $"""
-		Specified resource not found.
-		* Resource key: '{_resourceKey}',
-		* Assembly: '{_assembly}',
-		* Culture: '{_culture?.EnglishName ?? CultureNotSpecifiedDefaultText}'
-		""";
+		=> string.Format(
+			ResourceDictionary.Get("Message_ResourceNotFoundException"),
+			_resourceKey,
+			_assembly,
+			_culture?.EnglishName ?? CultureNotSpecifiedDefaultText
+		);
 
 	/// <inheritdoc/>
 	public override IDictionary Data

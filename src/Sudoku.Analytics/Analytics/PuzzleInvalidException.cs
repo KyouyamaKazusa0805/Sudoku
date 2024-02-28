@@ -14,9 +14,5 @@ namespace Sudoku.Analytics;
 public sealed partial class PuzzleInvalidException(scoped ref readonly Grid grid, [PrimaryConstructorParameter] Type stepSearcherType) : RuntimeAnalyticsException(in grid)
 {
 	/// <inheritdoc/>
-	public override string Message
-		=> $"""
-		Unexpected error thrown. This exception may be thrown if the puzzle is invalid.
-		Error grid: '{InvalidGrid:#}'
-		""";
+	public override string Message => string.Format(ResourceDictionary.Get("Message_PuzzleInvalidException"), InvalidGrid);
 }

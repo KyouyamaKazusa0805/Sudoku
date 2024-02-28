@@ -123,4 +123,13 @@
   <data name="ErrorInfo_MissingTrainedDataFile" xml:space="preserve">
     <value>The training file can't be found in the folder 'traineddata'.</value>
   </data>
+  <data name="Message_FailedToFillValueException" xml:space="preserve">
+    <value>Cannot fill cell {0} with digit {1}</value>
+  </data>
+  <data name="Message_TesseractException" xml:space="preserve">
+    <value>Tesseract has encountered an error: {0}.</value>
+  </data>
+  <data name="Message_RecognizerNotInitializedException" xml:space="preserve">
+    <value>The recognition tools should have been initialized before using the current function.</value>
+  </data>
 </root>

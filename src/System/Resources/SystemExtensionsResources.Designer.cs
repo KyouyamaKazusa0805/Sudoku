@@ -131,5 +131,26 @@ namespace System.Resources {
                 return ResourceManager.GetString("ErrorInfo_ValueStopwatchTypeIsUninitialized", resourceCulture);
             }
         }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assembly &apos;{0}&apos; is lack of invocation &apos;{1}.{2}&apos;..
+        /// </summary>
+        internal static string Message_MissingResourceManagerException {
+            get {
+                return ResourceManager.GetString("Message_MissingResourceManagerException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Specified resource not found.
+        ///  * Resource key: &apos;{0}&apos;,
+        ///  * Assembly: &apos;{1}&apos;,
+        ///  * Culture: &apos;{2}&apos;.
+        /// </summary>
+        internal static string Message_ResourceNotFoundException {
+            get {
+                return ResourceManager.GetString("Message_ResourceNotFoundException", resourceCulture);
+            }
+        }
     }
 }

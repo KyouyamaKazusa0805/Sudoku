@@ -3486,6 +3486,19 @@ fixed (short* ptr = instance)
               Looks up a localized string similar to An uninitialized, or &apos;default(ValueStopwatch)&apos;, ValueStopwatch cannot be used for getting elapsed time..
             </summary>
         </member>
+        <member name="P:System.Resources.SystemExtensionsResources.Message_MissingResourceManagerException">
+            <summary>
+              Looks up a localized string similar to Assembly &apos;{0}&apos; is lack of invocation &apos;{1}.{2}&apos;..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.Message_ResourceNotFoundException">
+            <summary>
+              Looks up a localized string similar to Specified resource not found.
+             * Resource key: &apos;{0}&apos;,
+             * Assembly: &apos;{1}&apos;,
+             * Culture: &apos;{2}&apos;.
+            </summary>
+        </member>
         <member name="T:System.SourceGeneration.Accessibility">
             <summary>
             Defines a kind of accessibility being defined in C#.

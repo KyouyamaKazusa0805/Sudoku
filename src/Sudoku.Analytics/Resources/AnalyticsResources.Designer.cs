@@ -3022,6 +3022,45 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
+        /// </summary>
+        public static string Message_MissingDifficultyLevelException {
+            get {
+                return ResourceManager.GetString("Message_MissingDifficultyLevelException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The member &apos;{0}&apos; is missing technique group attribute..
+        /// </summary>
+        public static string Message_MissingTechniqueGroupException {
+            get {
+                return ResourceManager.GetString("Message_MissingTechniqueGroupException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unexpected error thrown. This exception may be thrown if the puzzle is invalid.
+        ///Error grid: &apos;{0:#}&apos;.
+        /// </summary>
+        public static string Message_PuzzleInvalidException {
+            get {
+                return ResourceManager.GetString("Message_PuzzleInvalidException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The step may exist bug that causes the wrong handling.
+        ///Current grid: &apos;{0:#}&apos;
+        ///Current step: &apos;{1}&apos;.
+        /// </summary>
+        public static string Message_WrongStepException {
+            get {
+                return ResourceManager.GetString("Message_WrongStepException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Moderate.
         /// </summary>
         public static string Moderate {

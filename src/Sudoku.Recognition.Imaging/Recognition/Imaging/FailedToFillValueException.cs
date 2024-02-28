@@ -8,7 +8,8 @@ namespace Sudoku.Recognition.Imaging;
 public sealed partial class FailedToFillValueException([PrimaryConstructorParameter] Cell cell, [PrimaryConstructorParameter] Digit digit) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => $"Can't fill the cell {(CellMap)Cell} with the digit {Digit + 1}.";
+	public override string Message
+		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), (CellMap)Cell, Digit + 1);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

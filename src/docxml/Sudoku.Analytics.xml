@@ -23162,6 +23162,29 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to L-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_MissingDifficultyLevelException">
+            <summary>
+              Looks up a localized string similar to The member &apos;{0}&apos; is missing difficulty level attribute..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_MissingTechniqueGroupException">
+            <summary>
+              Looks up a localized string similar to The member &apos;{0}&apos; is missing technique group attribute..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_PuzzleInvalidException">
+             <summary>
+               Looks up a localized string similar to Unexpected error thrown. This exception may be thrown if the puzzle is invalid.
+            Error grid: &apos;{0:#}&apos;.
+             </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Message_WrongStepException">
+             <summary>
+               Looks up a localized string similar to The step may exist bug that causes the wrong handling.
+            Current grid: &apos;{0:#}&apos;
+            Current step: &apos;{1}&apos;.
+             </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Moderate">
             <summary>
               Looks up a localized string similar to Moderate.

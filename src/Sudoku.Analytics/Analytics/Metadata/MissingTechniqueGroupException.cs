@@ -10,5 +10,5 @@ namespace Sudoku.Analytics.Metadata;
 public sealed partial class MissingTechniqueGroupException([PrimaryConstructorParameter] string memberName) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => $"The member '{MemberName}' is missing technique group attribute.";
+	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingTechniqueGroupException"), MemberName);
 }

@@ -7,7 +7,7 @@ namespace Sudoku.Recognition.Imaging;
 public sealed class RecognizerNotInitializedException : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => "The recognition tools should have been initialized before using the current function.";
+	public override string Message => ResourceDictionary.Get("Message_RecognizerNotInitializedException");
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

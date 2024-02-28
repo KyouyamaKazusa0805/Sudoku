@@ -7,7 +7,7 @@ namespace Sudoku.Recognition.Imaging;
 public sealed partial class TesseractException([PrimaryConstructorParameter] string detail) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => $"Tesseract has encountered an error: {Detail}.";
+	public override string Message => string.Format(ResourceDictionary.Get("Message_TesseractException"), Detail);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

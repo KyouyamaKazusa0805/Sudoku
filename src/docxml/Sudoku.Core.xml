@@ -7695,6 +7695,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mega row {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.Message_LibraryInitializedException">
+            <summary>
+              Looks up a localized string similar to The library (local path: &apos;{0}\{1}&apos;) has already been initialized..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.RowLabel">
             <summary>
               Looks up a localized string similar to Row {0}.
