@@ -2626,6 +2626,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique appearing times.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique appearing times constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueCountConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string GeneratingStrategyPage_Cancel {

@@ -361,10 +361,18 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				var techniques = new TechniqueSet();
 				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
 				{
-					if (constraint is TechniqueConstraint { Technique: var technique }
-						and not { Operator: ComparisonOperator.Equality, LimitCount: 0 })
+					switch (constraint)
 					{
-						techniques.Add(technique);
+						case TechniqueConstraint { Techniques: var t }:
+						{
+							techniques |= t;
+							break;
+						}
+						case TechniqueCountConstraint { Technique: var technique } and not { Operator: ComparisonOperator.Equality, LimitCount: 0 }:
+						{
+							techniques.Add(technique);
+							break;
+						}
 					}
 				}
 
@@ -421,10 +429,18 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				var techniques = new TechniqueSet();
 				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
 				{
-					if (constraint is TechniqueConstraint { Technique: var technique }
-						and not { Operator: ComparisonOperator.Equality, LimitCount: 0 })
+					switch (constraint)
 					{
-						techniques.Add(technique);
+						case TechniqueConstraint { Techniques: var t }:
+						{
+							techniques |= t;
+							break;
+						}
+						case TechniqueCountConstraint { Technique: var technique } and not { Operator: ComparisonOperator.Equality, LimitCount: 0 }:
+						{
+							techniques.Add(technique);
+							break;
+						}
 					}
 				}
 

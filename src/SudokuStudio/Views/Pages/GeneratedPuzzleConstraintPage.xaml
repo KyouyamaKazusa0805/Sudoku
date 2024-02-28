@@ -6,7 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:con="using:Sudoku.Strategying.Constraints"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:p="using:SudokuStudio.Views.Pages" xmlns:categorization="using:Sudoku.Analytics.Categorization"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratedPuzzleConstraintPage}">
 	<Grid RowDefinitions="*,Auto">
 		<ScrollViewer Grid.Row="0">
@@ -33,7 +33,17 @@
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:TechniqueConstraint Technique="NakedSingle" LimitCount="1" Operator="GreaterThanOrEqual" />
+								<con:TechniqueConstraint>
+									<con:TechniqueConstraint.Techniques>
+										<categorization:Technique>LockedPair</categorization:Technique>
+										<categorization:Technique>LockedTriple</categorization:Technique>
+									</con:TechniqueConstraint.Techniques>
+								</con:TechniqueConstraint>
+							</MenuFlyoutItem.Tag>
+						</MenuFlyoutItem>
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueCountConstraint}" Click="MenuFlyoutItem_Click">
+							<MenuFlyoutItem.Tag>
+								<con:TechniqueCountConstraint Technique="NakedSingle" LimitCount="1" Operator="GreaterThanOrEqual" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_DifficultyLevelConstraint}" Click="MenuFlyoutItem_Click">

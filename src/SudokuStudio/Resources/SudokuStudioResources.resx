@@ -2390,13 +2390,19 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_SymmetryConstraint" xml:space="preserve">
     <value>Symmetry constraint</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
-    <value>Technique constraint</value>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueCountConstraint" xml:space="preserve">
+    <value>Technique appearing times constraint</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
     <value>Difficulty level constraint</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_Delete" xml:space="preserve">
     <value>Delete</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueCount" xml:space="preserve">
+    <value>Technique appearing times</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
+    <value>Technique constraint</value>
   </data>
 </root>

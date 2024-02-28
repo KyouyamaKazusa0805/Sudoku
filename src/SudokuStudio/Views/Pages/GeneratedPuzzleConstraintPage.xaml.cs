@@ -62,6 +62,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
+				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -473,6 +474,62 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsExpander? Create_Technique(TechniqueConstraint constraint)
 	{
+		if (constraint is not { Techniques: var techniques })
+		{
+			return null;
+		}
+
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = getTechniqueString(techniques)
+		};
+
+		//
+		// technique view
+		//
+		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Multiple, SelectedTechniques = techniques };
+		techniqueControl.SelectedTechniquesChanged += (_, e) =>
+		{
+			var techniques = e.TechniqueSet;
+			constraint.Techniques = techniques;
+			displayerControl.Text = getTechniqueString(techniques);
+		};
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique"),
+			Margin = DefaultMargin,
+			Items = { techniqueControl },
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { displayerControl }
+			},
+			Tag = constraint
+		};
+
+
+		static string getTechniqueString(TechniqueSet techniques)
+			=> techniques.Count switch
+			{
+				0 => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected"),
+				1 => techniques[0].GetName(App.CurrentCulture),
+				_ => string.Join(
+					ResourceDictionary.Get("_Token_Comma"),
+					from technique in techniques select technique.GetName(App.CurrentCulture)
+				)
+			};
+	}
+
+	private SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint)
+	{
 		if (constraint is not { Technique: var technique, LimitCount: var appearingTimes, Operator: var @operator })
 		{
 			return null;
@@ -513,7 +570,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique"),
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_TechniqueCount"),
 			Margin = DefaultMargin,
 			Items = { techniqueControl },
 			Content = new StackPanel

@@ -7110,6 +7110,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Technique constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueCount">
+            <summary>
+              Looks up a localized string similar to Technique appearing times.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueCountConstraint">
+            <summary>
+              Looks up a localized string similar to Technique appearing times constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.

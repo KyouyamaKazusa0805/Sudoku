@@ -435,36 +435,63 @@
         </member>
         <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
             <summary>
-            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
-            contains the specified techniques.
+            Represents a technique constraint. Different with <see cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>,
+            this constraint only controls the appearing techniques, rather than the number of times appeared.
             </summary>
+            <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.LimitCount">
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
             <summary>
-            Indicates the appearing times.
+            Indicates the techniques must appear.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Technique">
-            <summary>
-            Indicates the technique used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.AllowDuplicate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
+            <summary>
+            Indicates the appearing times.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
     </members>

@@ -2351,9 +2351,6 @@
   <data name="GeneratedPuzzleConstraintPage_Ittoryu" xml:space="preserve">
     <value>一刀流轮数</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_Technique" xml:space="preserve">
     <value>必须出现的技巧</value>
   </data>
@@ -2390,13 +2387,22 @@
   <data name="GeneratedPuzzleConstraintPage_SymmetryConstraint" xml:space="preserve">
     <value>对称性约束</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
-    <value>技巧约束</value>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueCountConstraint" xml:space="preserve">
+    <value>技巧次数约束</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_DifficultyLevelConstraint" xml:space="preserve">
     <value>难度级别约束</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_Delete" xml:space="preserve">
     <value>删除</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueCount" xml:space="preserve">
+    <value>技巧出现的次数</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
+    <value>必出技巧约束</value>
   </data>
 </root>
