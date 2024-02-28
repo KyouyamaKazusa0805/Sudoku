@@ -10,7 +10,7 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class TechniqueConstraint : Constraint
 {
 	/// <inheritdoc/>
-	public override bool AllowDuplicate => true;
+	public override bool AllowDuplicate => false;
 
 	/// <summary>
 	/// Indicates the techniques must appear.
@@ -28,6 +28,12 @@ public sealed partial class TechniqueConstraint : Constraint
 		if (!context.RequiresAnalyzer)
 		{
 			return false;
+		}
+
+		// Special case: If a user doesn't select any technique, we should consider this case as "always true".
+		if (Techniques.Count == 0)
+		{
+			return true;
 		}
 
 		foreach (var step in context.AnalyzerResult)
