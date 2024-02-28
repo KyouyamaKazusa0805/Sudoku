@@ -216,4 +216,34 @@
   <data name="ErrorInfo_DuplicatedValuesMayExistOrInvalid" xml:space="preserve">
     <value>Duplicated or invalid values found.</value>
   </data>
+  <data name="SymmetricType_None" xml:space="preserve">
+    <value>No symmetry</value>
+  </data>
+  <data name="SymmetricType_Central" xml:space="preserve">
+    <value>Central</value>
+  </data>
+  <data name="SymmetricType_Diagonal" xml:space="preserve">
+    <value>Diagonal</value>
+  </data>
+  <data name="SymmetricType_XAxis" xml:space="preserve">
+    <value>X axis</value>
+  </data>
+  <data name="SymmetricType_YAxis" xml:space="preserve">
+    <value>Y axis</value>
+  </data>
+  <data name="SymmetricType_AxisBoth" xml:space="preserve">
+    <value>Both axes</value>
+  </data>
+  <data name="SymmetricType_DiagonalBoth" xml:space="preserve">
+    <value>Both diagonals</value>
+  </data>
+  <data name="SymmetricType_All" xml:space="preserve">
+    <value>All symmetry</value>
+  </data>
+  <data name="SymmetricType_AntiDiagonal" xml:space="preserve">
+    <value>Anti-diagonal</value>
+  </data>
+  <data name="ErrorInfo_MultipleFlagsExist" xml:space="preserve">
+    <value>Multiple flags exist. The method only allows the enumeration field only holds one flag value.</value>
+  </data>
 </root>

@@ -19,6 +19,7 @@ public sealed partial class TechniqueSet :
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
+	ICultureFormattable,
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
@@ -257,12 +258,16 @@ public sealed partial class TechniqueSet :
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString()
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override string ToString() => ToString(null);
+
+	/// <inheritdoc/>
+	public string ToString(CultureInfo? culture = null)
 	{
-		var currentCountryOrRegionName = CultureInfo.CurrentUICulture.Parent.Name;
+		var currentCountryOrRegionName = (culture ?? CultureInfo.CurrentUICulture).Parent.Name;
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
-			ResourceDictionary.Get("Comma", CultureInfo.CurrentUICulture),
+			ResourceDictionary.Get("Comma", culture),
 			[
 				..
 				from technique in this

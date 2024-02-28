@@ -37,4 +37,13 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		var isDiamond = context.AnalyzerResult.IsDiamond;
 		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
 	}
+
+	/// <inheritdoc/>
+	public sealed override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("PearlOrDiamondConstraint", culture),
+			ResourceDictionary.Get(CheckPearl ? "PearlString" : "DiamondString", culture).ToUpper(),
+			ShouldBePearlOrDiamond ? string.Empty : ResourceDictionary.Get("NoString", culture),
+			ResourceDictionary.Get(CheckPearl ? "PearlString" : "DiamondString", culture)
+		);
 }

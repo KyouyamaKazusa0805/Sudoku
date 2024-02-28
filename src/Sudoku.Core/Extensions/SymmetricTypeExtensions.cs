@@ -76,6 +76,19 @@ public static class SymmetricTypeExtensions
 		};
 
 	/// <summary>
+	/// Gets the name of thr symmetry.
+	/// </summary>
+	/// <param name="this">The symmetry value.</param>
+	/// <param name="culture">The culture.</param>
+	/// <returns>The string.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetName(this SymmetricType @this, CultureInfo? culture = null)
+		=> PopCount((uint)(int)@this) < 2
+			? ResourceDictionary.Get($"SymmetricType_{@this}", culture)
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleFlagsExist"));
+
+	/// <summary>
 	/// Try to get all possible cells in symmetry axis (or point).
 	/// </summary>
 	/// <param name="this">The symmetry.</param>

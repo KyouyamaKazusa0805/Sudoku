@@ -65,4 +65,16 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context)
 		=> context.RequiresAnalyzer && (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("DifficultyLevelConstraint", culture),
+			Operator.GetOperatorString(),
+			DifficultyLevel.GetName(culture),
+			string.Join(
+				ResourceDictionary.Get("_Token_Comma", culture),
+				from value in ValidDifficultyLevels.GetAllFlags() select value.GetName(culture)
+			)
+		);
 }

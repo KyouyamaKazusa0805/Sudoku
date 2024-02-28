@@ -1123,6 +1123,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Easy.
+        /// </summary>
+        public static string Easy {
+            get {
+                return ResourceManager.GetString("Easy", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
         public static string Ellipsis {
@@ -1744,6 +1753,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Fiendish.
+        /// </summary>
+        public static string Fiendish {
+            get {
+                return ResourceManager.GetString("Fiendish", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to  f.
         /// </summary>
         public static string Fin {
@@ -2271,6 +2289,15 @@ namespace Sudoku.Resources {
         public static string GurthSymmetricalPlacement {
             get {
                 return ResourceManager.GetString("GurthSymmetricalPlacement", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Hard.
+        /// </summary>
+        public static string Hard {
+            get {
+                return ResourceManager.GetString("Hard", resourceCulture);
             }
         }
         
@@ -2986,6 +3013,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Moderate.
+        /// </summary>
+        public static string Moderate {
+            get {
+                return ResourceManager.GetString("Moderate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to W-Wing Multiple Branches.
         /// </summary>
         public static string MultiBranchWWing {
@@ -3504,6 +3540,15 @@ namespace Sudoku.Resources {
         public static string NestedSuffix_Level5OrGreater {
             get {
                 return ResourceManager.GetString("NestedSuffix_Level5OrGreater", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Nightmare.
+        /// </summary>
+        public static string Nightmare {
+            get {
+                return ResourceManager.GetString("Nightmare", resourceCulture);
             }
         }
         

@@ -117,67 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BlockLabel" xml:space="preserve">
-    <value>第 {0} 宫</value>
+  <data name="CountBetweenConstraint" xml:space="preserve">
+    <value>Count between rule: {0} should be between {1} and {2}, {3}</value>
   </data>
-  <data name="CandidateLabel" xml:space="preserve">
-    <value>{0}，数字 {1}</value>
+  <data name="GivenCell" xml:space="preserve">
+    <value>Number of given cells</value>
   </data>
-  <data name="CellLabel" xml:space="preserve">
-    <value>第 {0} 行第 {1} 列</value>
+  <data name="EmptyCell" xml:space="preserve">
+    <value>Number of empty cells</value>
   </data>
-  <data name="CellsLabel" xml:space="preserve">
-    <value>单元格序列：{0}</value>
+  <data name="BothOpen" xml:space="preserve">
+    <value>both side open</value>
   </data>
-  <data name="ColumnLabel" xml:space="preserve">
-    <value>第 {0} 列</value>
+  <data name="LeftOpen" xml:space="preserve">
+    <value>only left open</value>
   </data>
-  <data name="ConjugatePairWith" xml:space="preserve">
-    <value>{0} 和 {1} 为共轭对，数字 {2}</value>
+  <data name="RightOpen" xml:space="preserve">
+    <value>only right open</value>
   </data>
-  <data name="HousesLabel" xml:space="preserve">
-    <value>区域序列：{0}</value>
+  <data name="BothClosed" xml:space="preserve">
+    <value>both side closed</value>
   </data>
-  <data name="LockedCandidatesLabel" xml:space="preserve">
-    <value>{0}{1}</value>
+  <data name="DifficultyLevelConstraint" xml:space="preserve">
+    <value>Difficulty level rule: {0} {1} ({2})</value>
   </data>
-  <data name="MegaColumnLabel" xml:space="preserve">
-    <value>第 {0} 大列</value>
+  <data name="_Token_Comma" xml:space="preserve">
+    <value>, </value>
   </data>
-  <data name="MegaLinesLabel" xml:space="preserve">
-    <value>大区域序列：{0}</value>
+  <data name="IttoryuConstraint" xml:space="preserve">
+    <value>Ittoryu rule: finish puzzle with {0} {1} rounds</value>
   </data>
-  <data name="MegaRowLabel" xml:space="preserve">
-    <value>第 {0} 大行</value>
+  <data name="IttoryuLengthConstraint" xml:space="preserve">
+    <value>Ittoryu length rule: {0} {1} consecutively-finished digits</value>
   </data>
-  <data name="RowLabel" xml:space="preserve">
-    <value>第 {0} 行</value>
+  <data name="MinimalConstraint" xml:space="preserve">
+    <value>Minimal rule: should {0}be a minimal puzzle</value>
   </data>
-  <data name="SymmetricType_None" xml:space="preserve">
-    <value>无对称性</value>
+  <data name="NoString" xml:space="preserve">
+    <value>not </value>
   </data>
-  <data name="SymmetricType_Central" xml:space="preserve">
-    <value>中心对称</value>
+  <data name="PearlOrDiamondConstraint" xml:space="preserve">
+    <value>{0} rule: should {1}be a {2} puzzle</value>
   </data>
-  <data name="SymmetricType_Diagonal" xml:space="preserve">
-    <value>对角线</value>
+  <data name="PearlString" xml:space="preserve">
+    <value>pearl</value>
   </data>
-  <data name="SymmetricType_XAxis" xml:space="preserve">
-    <value>横轴</value>
+  <data name="DiamondString" xml:space="preserve">
+    <value>diamond</value>
   </data>
-  <data name="SymmetricType_YAxis" xml:space="preserve">
-    <value>纵轴</value>
+  <data name="SymmetryConstraint" xml:space="preserve">
+    <value>Symmetry rule: {0}</value>
   </data>
-  <data name="SymmetricType_AxisBoth" xml:space="preserve">
-	<value>两条轴</value>
+  <data name="TechniqueConstraint" xml:space="preserve">
+    <value>Technique rule: {0}</value>
   </data>
-  <data name="SymmetricType_DiagonalBoth" xml:space="preserve">
-    <value>两条对角线</value>
-  </data>
-  <data name="SymmetricType_All" xml:space="preserve">
-    <value>全对称</value>
-  </data>
-  <data name="SymmetricType_AntiDiagonal" xml:space="preserve">
-    <value>反对角线</value>
+  <data name="TechniqueCountConstraint" xml:space="preserve">
+    <value>Technique appearing times rule: {0} appears {1} {2} time(s)</value>
   </data>
 </root>

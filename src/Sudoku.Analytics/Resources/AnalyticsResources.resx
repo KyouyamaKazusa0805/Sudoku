@@ -2808,4 +2808,19 @@
   <data name="ErrorInfo_FilteringExpressionNotSupported" xml:space="preserve">
     <value>The specified match is not supported to be replaced.</value>
   </data>
+  <data name="Easy" xml:space="preserve">
+    <value>Easy</value>
+  </data>
+	<data name="Moderate" xml:space="preserve">
+    <value>Moderate</value>
+  </data>
+	<data name="Hard" xml:space="preserve">
+    <value>Hard</value>
+  </data>
+	<data name="Fiendish" xml:space="preserve">
+    <value>Fiendish</value>
+  </data>
+	<data name="Nightmare" xml:space="preserve">
+    <value>Nightmare</value>
+  </data>
 </root>

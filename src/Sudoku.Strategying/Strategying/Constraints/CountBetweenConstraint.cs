@@ -54,4 +54,24 @@ public sealed partial class CountBetweenConstraint : Constraint
 			BetweenRule.BothClosed => factCount >= min && factCount <= max
 		};
 	}
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("CountBetweenConstraint", culture),
+			CellState switch
+			{
+				CellState.Given => ResourceDictionary.Get("GivenCell", culture),
+				_ => ResourceDictionary.Get("EmptyCell", culture)
+			},
+			Range.Start.Value,
+			Range.End.Value,
+			BetweenRule switch
+			{
+				BetweenRule.BothOpen => ResourceDictionary.Get("BothOpen", culture),
+				BetweenRule.LeftOpen => ResourceDictionary.Get("LeftOpen", culture),
+				BetweenRule.RightOpen => ResourceDictionary.Get("RightOpen", culture),
+				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
+			}
+		);
 }

@@ -1050,6 +1050,20 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Categorization.DifficultyLevel,System.Globalization.CultureInfo)">
+            <summary>
+            Gets the name of the current value, with specified culture.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="culture">The culture.</param>
+            <returns>The string value.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.ReferenceLinkAttribute">
             <summary>
             Represents links the current technique is linked to
@@ -4264,6 +4278,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
             <summary>
@@ -22089,6 +22106,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Dynamic Region Forcing Chains.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Easy">
+            <summary>
+              Looks up a localized string similar to Easy.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Ellipsis">
             <summary>
               Looks up a localized string similar to ....
@@ -22434,6 +22456,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to false.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Fiendish">
+            <summary>
+              Looks up a localized string similar to Fiendish.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Fin">
             <summary>
               Looks up a localized string similar to  f.
@@ -22727,6 +22754,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.GurthSymmetricalPlacement">
             <summary>
               Looks up a localized string similar to Gurth&apos;s Symmetrical Placement.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Hard">
+            <summary>
+              Looks up a localized string similar to Hard.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.HiddenAvoidableRectangle">
@@ -23124,6 +23156,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to L-Wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Moderate">
+            <summary>
+              Looks up a localized string similar to Moderate.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.MultiBranchWWing">
             <summary>
               Looks up a localized string similar to W-Wing Multiple Branches.
@@ -23412,6 +23449,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.NestedSuffix_Level5OrGreater">
             <summary>
               Looks up a localized string similar to  (+ Dynamic Forcing Chains {0}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Nightmare">
+            <summary>
+              Looks up a localized string similar to Nightmare.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.NishioChains">

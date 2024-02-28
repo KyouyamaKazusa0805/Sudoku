@@ -39,4 +39,8 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 		var factLength = Finder.FindPath(in context.Grid).Digits.Length;
 		return Operator.GetOperator<int>()(factLength, Length);
 	}
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(ResourceDictionary.Get("IttoryuLengthConstraint", culture), Operator.GetOperatorString(), Length);
 }

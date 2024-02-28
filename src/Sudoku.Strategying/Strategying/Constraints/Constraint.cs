@@ -18,7 +18,10 @@ namespace Sudoku.Strategying.Constraints;
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
-public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
+public abstract partial class Constraint :
+	ICultureFormattable,
+	IEquatable<Constraint>,
+	IEqualityOperators<Constraint, Constraint, bool>
 {
 	/// <summary>
 	/// Indicates whether the constraint can duplicate.
@@ -34,4 +37,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
+
+	/// <inheritdoc/>
+	public abstract string ToString(CultureInfo? culture = null);
 }

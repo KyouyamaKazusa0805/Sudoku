@@ -50,4 +50,8 @@ public sealed partial class TechniqueConstraint : Constraint
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is TechniqueConstraint comparer && Techniques == comparer.Techniques;
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(ResourceDictionary.Get("TechniqueConstraint", culture), Techniques.ToString(culture));
 }

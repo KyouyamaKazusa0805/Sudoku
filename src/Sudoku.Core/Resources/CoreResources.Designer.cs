@@ -250,6 +250,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
+        /// </summary>
+        internal static string ErrorInfo_MultipleFlagsExist {
+            get {
+                return ResourceManager.GetString("ErrorInfo_MultipleFlagsExist", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple same properties are found..
         /// </summary>
         internal static string ErrorInfo_MultipleSamePropertiesFound {
@@ -354,6 +363,87 @@ namespace Sudoku.Resources {
         internal static string RowLabel {
             get {
                 return ResourceManager.GetString("RowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to All symmetry.
+        /// </summary>
+        internal static string SymmetricType_All {
+            get {
+                return ResourceManager.GetString("SymmetricType_All", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Anti-diagonal.
+        /// </summary>
+        internal static string SymmetricType_AntiDiagonal {
+            get {
+                return ResourceManager.GetString("SymmetricType_AntiDiagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both axes.
+        /// </summary>
+        internal static string SymmetricType_AxisBoth {
+            get {
+                return ResourceManager.GetString("SymmetricType_AxisBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Central.
+        /// </summary>
+        internal static string SymmetricType_Central {
+            get {
+                return ResourceManager.GetString("SymmetricType_Central", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Diagonal.
+        /// </summary>
+        internal static string SymmetricType_Diagonal {
+            get {
+                return ResourceManager.GetString("SymmetricType_Diagonal", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Both diagonals.
+        /// </summary>
+        internal static string SymmetricType_DiagonalBoth {
+            get {
+                return ResourceManager.GetString("SymmetricType_DiagonalBoth", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No symmetry.
+        /// </summary>
+        internal static string SymmetricType_None {
+            get {
+                return ResourceManager.GetString("SymmetricType_None", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to X axis.
+        /// </summary>
+        internal static string SymmetricType_XAxis {
+            get {
+                return ResourceManager.GetString("SymmetricType_XAxis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Y axis.
+        /// </summary>
+        internal static string SymmetricType_YAxis {
+            get {
+                return ResourceManager.GetString("SymmetricType_YAxis", resourceCulture);
             }
         }
     }

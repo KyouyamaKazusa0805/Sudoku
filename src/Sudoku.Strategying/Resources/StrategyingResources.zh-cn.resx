@@ -117,67 +117,61 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <data name="BlockLabel" xml:space="preserve">
-    <value>第 {0} 宫</value>
+  <data name="CountBetweenConstraint" xml:space="preserve">
+    <value>单元格数量：{0}须介于 {1} 和 {2} 之间，{3}</value>
   </data>
-  <data name="CandidateLabel" xml:space="preserve">
-    <value>{0}，数字 {1}</value>
+  <data name="GivenCell" xml:space="preserve">
+    <value>提示数数量</value>
   </data>
-  <data name="CellLabel" xml:space="preserve">
-    <value>第 {0} 行第 {1} 列</value>
+  <data name="EmptyCell" xml:space="preserve">
+    <value>空格数量</value>
   </data>
-  <data name="CellsLabel" xml:space="preserve">
-    <value>单元格序列：{0}</value>
+  <data name="BothOpen" xml:space="preserve">
+    <value>开区间（两侧都不取）</value>
   </data>
-  <data name="ColumnLabel" xml:space="preserve">
-    <value>第 {0} 列</value>
+  <data name="LeftOpen" xml:space="preserve">
+    <value>区间左开右闭</value>
   </data>
-  <data name="ConjugatePairWith" xml:space="preserve">
-    <value>{0} 和 {1} 为共轭对，数字 {2}</value>
+  <data name="RightOpen" xml:space="preserve">
+    <value>区间左闭右开</value>
   </data>
-  <data name="HousesLabel" xml:space="preserve">
-    <value>区域序列：{0}</value>
+  <data name="BothClosed" xml:space="preserve">
+    <value>闭区间（两侧都可取）</value>
   </data>
-  <data name="LockedCandidatesLabel" xml:space="preserve">
-    <value>{0}{1}</value>
+  <data name="DifficultyLevelConstraint" xml:space="preserve">
+    <value>难度级别：{0} {1}（{2}）</value>
   </data>
-  <data name="MegaColumnLabel" xml:space="preserve">
-    <value>第 {0} 大列</value>
+  <data name="_Token_Comma" xml:space="preserve">
+    <value>、</value>
   </data>
-  <data name="MegaLinesLabel" xml:space="preserve">
-    <value>大区域序列：{0}</value>
+  <data name="IttoryuConstraint" xml:space="preserve">
+    <value>一刀流：在 {0} {1} 轮约束下完成题目</value>
   </data>
-  <data name="MegaRowLabel" xml:space="preserve">
-    <value>第 {0} 大行</value>
+  <data name="IttoryuLengthConstraint" xml:space="preserve">
+    <value>一刀流长度：{0} {1} 个连续完成的数字</value>
   </data>
-  <data name="RowLabel" xml:space="preserve">
-    <value>第 {0} 行</value>
+  <data name="MinimalConstraint" xml:space="preserve">
+    <value>最小题：{0}是一个最小题</value>
   </data>
-  <data name="SymmetricType_None" xml:space="preserve">
-    <value>无对称性</value>
+  <data name="NoString" xml:space="preserve">
+    <value>不能</value>
   </data>
-  <data name="SymmetricType_Central" xml:space="preserve">
-    <value>中心对称</value>
+  <data name="PearlOrDiamondConstraint" xml:space="preserve">
+    <value>{0}题：{1}是一个{2}题</value>
   </data>
-  <data name="SymmetricType_Diagonal" xml:space="preserve">
-    <value>对角线</value>
+  <data name="PearlString" xml:space="preserve">
+    <value>珍珠</value>
   </data>
-  <data name="SymmetricType_XAxis" xml:space="preserve">
-    <value>横轴</value>
+  <data name="DiamondString" xml:space="preserve">
+    <value>钻石</value>
   </data>
-  <data name="SymmetricType_YAxis" xml:space="preserve">
-    <value>纵轴</value>
+  <data name="SymmetryConstraint" xml:space="preserve">
+    <value>对称性：{0}</value>
   </data>
-  <data name="SymmetricType_AxisBoth" xml:space="preserve">
-	<value>两条轴</value>
+  <data name="TechniqueConstraint" xml:space="preserve">
+    <value>技巧：{0}</value>
   </data>
-  <data name="SymmetricType_DiagonalBoth" xml:space="preserve">
-    <value>两条对角线</value>
-  </data>
-  <data name="SymmetricType_All" xml:space="preserve">
-    <value>全对称</value>
-  </data>
-  <data name="SymmetricType_AntiDiagonal" xml:space="preserve">
-    <value>反对角线</value>
+  <data name="TechniqueCountConstraint" xml:space="preserve">
+    <value>技巧出现次数：“{0}”需要出现 {1} {2} 次</value>
   </data>
 </root>

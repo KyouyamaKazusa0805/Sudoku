@@ -55,4 +55,13 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 
 		return Operator.GetOperator<int>()(times, LimitCount);
 	}
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("TechniqueCountConstraint", culture),
+			Technique.GetName(culture),
+			Operator.GetOperatorString(),
+			LimitCount
+		);
 }

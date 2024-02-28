@@ -26,4 +26,11 @@ public sealed partial class MinimalConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context) => context.Grid.IsMinimal == ShouldBeMinimal;
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("MinimalConstraint", culture),
+			ShouldBeMinimal ? string.Empty : ResourceDictionary.Get("NoString", culture)
+		);
 }

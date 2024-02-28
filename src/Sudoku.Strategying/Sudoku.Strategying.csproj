@@ -11,4 +11,19 @@
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+		<Compile Update="Resources\StrategyingResources.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>StrategyingResources.resx</DependentUpon>
+		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+		<EmbeddedResource Update="Resources\StrategyingResources.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>StrategyingResources.Designer.cs</LastGenOutput>
+		</EmbeddedResource>
+	</ItemGroup>
+
 </Project>

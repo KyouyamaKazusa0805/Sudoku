@@ -4,6 +4,147 @@
         <name>Sudoku.Strategying</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Resources.StrategyingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources._Token_Comma">
+            <summary>
+              Looks up a localized string similar to , .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.BothClosed">
+            <summary>
+              Looks up a localized string similar to both side closed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.BothOpen">
+            <summary>
+              Looks up a localized string similar to both side open.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.CountBetweenConstraint">
+            <summary>
+              Looks up a localized string similar to Count between rule: {0} should be between {1} and {2}, {3}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.DiamondString">
+            <summary>
+              Looks up a localized string similar to diamond.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.DifficultyLevelConstraint">
+            <summary>
+              Looks up a localized string similar to Difficulty level rule: {0} {1} ({2}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.EmptyCell">
+            <summary>
+              Looks up a localized string similar to Number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.GivenCell">
+            <summary>
+              Looks up a localized string similar to Number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.IttoryuConstraint">
+            <summary>
+              Looks up a localized string similar to Ittoryu rule: finish puzzle with {0} {1} rounds.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.IttoryuLengthConstraint">
+            <summary>
+              Looks up a localized string similar to Ittoryu length rule: {0} {1} consecutively-finished digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.LeftOpen">
+            <summary>
+              Looks up a localized string similar to only left open.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.MinimalConstraint">
+            <summary>
+              Looks up a localized string similar to Minimal rule: should {0}be a minimal puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.NoString">
+            <summary>
+              Looks up a localized string similar to not .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.PearlOrDiamondConstraint">
+            <summary>
+              Looks up a localized string similar to {0} rule: should {1}be a {2} puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.PearlString">
+            <summary>
+              Looks up a localized string similar to pearl.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.RightOpen">
+            <summary>
+              Looks up a localized string similar to only right open.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.SymmetryConstraint">
+            <summary>
+              Looks up a localized string similar to Symmetry rule: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.TechniqueConstraint">
+            <summary>
+              Looks up a localized string similar to Technique rule: {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.TechniqueCountConstraint">
+            <summary>
+              Looks up a localized string similar to Technique appearing times rule: {0} appears {1} {2} time(s).
+            </summary>
+        </member>
         <member name="T:Sudoku.Strategying.BetweenRule">
             <summary>
             Represents a between rule.
@@ -70,6 +211,13 @@
             </summary>
             <seealso cref="T:Sudoku.Strategying.ComparisonOperator"/>
         </member>
+        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperatorString(Sudoku.Strategying.ComparisonOperator)">
+            <summary>
+            Gets the string representation of the operator.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>The string representation.</returns>
+        </member>
         <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Strategying.ComparisonOperator)">
             <summary>
             Creates a delegate method that executes the specified rule of comparison.
@@ -96,6 +244,9 @@
             <param name="context">Indicates the context used.</param>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
@@ -215,6 +366,9 @@
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -258,6 +412,9 @@
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -296,6 +453,9 @@
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -329,6 +489,9 @@
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -352,6 +515,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.GetHashCode">
@@ -396,6 +562,9 @@
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">
             <summary>
             The generated property declaration for parameter <c>checkPearl</c>.
@@ -427,6 +596,9 @@
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -452,6 +624,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
@@ -486,6 +661,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">

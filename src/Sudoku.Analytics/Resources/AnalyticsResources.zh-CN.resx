@@ -3020,4 +3020,19 @@
   <data name="TechniqueFormat_DirectSubsetStep" xml:space="preserve">
     <value>单元格 {0} 的数字 {5} 在 {1} 里形成{6}，于是 {2} 不能填入 {3}，因而形成{4}技巧</value>
   </data>
+  <data name="Easy" xml:space="preserve">
+    <value>容易</value>
+  </data>
+	<data name="Moderate" xml:space="preserve">
+    <value>一般</value>
+  </data>
+	<data name="Hard" xml:space="preserve">
+    <value>困难</value>
+  </data>
+	<data name="Fiendish" xml:space="preserve">
+    <value>极难</value>
+  </data>
+	<data name="Nightmare" xml:space="preserve">
+    <value>地狱</value>
+  </data>
 </root>

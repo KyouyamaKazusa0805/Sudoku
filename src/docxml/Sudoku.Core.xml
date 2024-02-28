@@ -5512,6 +5512,15 @@ if (student is (name: var name, age: >= 18))
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
         </member>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.Concepts.SymmetricType,System.Globalization.CultureInfo)">
+            <summary>
+            Gets the name of thr symmetry.
+            </summary>
+            <param name="this">The symmetry value.</param>
+            <param name="culture">The culture.</param>
+            <returns>The string.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Concepts.SymmetricType)">
             <summary>
             Try to get all possible cells in symmetry axis (or point).
@@ -7626,6 +7635,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Multiple conjuagte pair values found..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleFlagsExist">
+            <summary>
+              Looks up a localized string similar to Multiple flags exist. The method only allows the enumeration field only holds one flag value..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleSamePropertiesFound">
             <summary>
               Looks up a localized string similar to Multiple same properties are found..
@@ -7684,6 +7698,51 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.CoreResources.RowLabel">
             <summary>
               Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">
+            <summary>
+              Looks up a localized string similar to All symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AntiDiagonal">
+            <summary>
+              Looks up a localized string similar to Anti-diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_AxisBoth">
+            <summary>
+              Looks up a localized string similar to Both axes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Central">
+            <summary>
+              Looks up a localized string similar to Central.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_Diagonal">
+            <summary>
+              Looks up a localized string similar to Diagonal.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_DiagonalBoth">
+            <summary>
+              Looks up a localized string similar to Both diagonals.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_None">
+            <summary>
+              Looks up a localized string similar to No symmetry.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_XAxis">
+            <summary>
+              Looks up a localized string similar to X axis.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.SymmetricType_YAxis">
+            <summary>
+              Looks up a localized string similar to Y axis.
             </summary>
         </member>
         <member name="T:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions">

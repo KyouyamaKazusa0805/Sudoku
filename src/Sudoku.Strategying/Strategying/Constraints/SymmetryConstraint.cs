@@ -27,4 +27,11 @@ public sealed partial class SymmetryConstraint : Constraint
 
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context) => (SymmetricTypes & context.Grid.Symmetry) != 0;
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("SymmetryConstraint", culture),
+			string.Join(ResourceDictionary.Get("_Token_Comma"), from type in SymmetricTypes.GetAllFlags() select type.GetName(culture))
+		);
 }

@@ -7,6 +7,23 @@ namespace Sudoku.Strategying;
 public static class ComparisonOperatorExtensions
 {
 	/// <summary>
+	/// Gets the string representation of the operator.
+	/// </summary>
+	/// <param name="this">The value.</param>
+	/// <returns>The string representation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string GetOperatorString(this ComparisonOperator @this)
+		=> @this switch
+		{
+			ComparisonOperator.Equality => "=",
+			ComparisonOperator.Inequality => "<>",
+			ComparisonOperator.GreaterThan => ">",
+			ComparisonOperator.GreaterThanOrEqual => ">=",
+			ComparisonOperator.LessThan => "<",
+			ComparisonOperator.LessThanOrEqual => "<="
+		};
+
+	/// <summary>
 	/// Creates a delegate method that executes the specified rule of comparison.
 	/// </summary>
 	/// <typeparam name="T">The type of the target.</typeparam>
