@@ -188,7 +188,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 我列举一些我这个解决方案里用到和参考的数独技巧网站。这些网站内容都是我自己写和出品的，所以如果你想要了解数独技巧的具体细节，你可以参考这些链接来了解它们。
 
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
-* [标准数独技巧教程（专栏，新版）_bilibili](https://www.bilibili.com/read/readlist/rl717501)
+* [标准数独技巧教程（文章）](https://t.sudoku-studio.wiki)
 
 > 新版专栏尚未完成，请耐心等待。
 
