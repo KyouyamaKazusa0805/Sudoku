@@ -2138,30 +2138,6 @@
   <data name="Yes" xml:space="preserve">
     <value>是</value>
   </data>
-  <data name="_DifficultyLevel_Easy" xml:space="preserve">
-    <value>容易</value>
-  </data>
-  <data name="_DifficultyLevel_Fiendish" xml:space="preserve">
-    <value>极难</value>
-  </data>
-  <data name="_DifficultyLevel_Hard" xml:space="preserve">
-    <value>困难</value>
-  </data>
-  <data name="_DifficultyLevel_LastResort" xml:space="preserve">
-    <value>暴力破解</value>
-  </data>
-  <data name="_DifficultyLevel_Moderate" xml:space="preserve">
-    <value>一般</value>
-  </data>
-  <data name="_DifficultyLevel_Nightmare" xml:space="preserve">
-    <value>地狱</value>
-  </data>
-  <data name="_DifficultyLevel_Other" xml:space="preserve">
-    <value>其他</value>
-  </data>
-  <data name="_DifficultyLevel_Unknown" xml:space="preserve">
-    <value>未知</value>
-  </data>
   <data name="_DrawingMode_BabaGrouping" xml:space="preserve">
     <value>代数</value>
   </data>

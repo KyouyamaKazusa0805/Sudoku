@@ -286,42 +286,42 @@
 				<w:SettingsExpander.Items>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Easy}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Moderate}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[1],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center"/>
+							<TextBlock Text="{m:R Key=Hard}" VerticalAlignment="Center"/>
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[2],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Fiendish}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[3],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Nightmare}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[4],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Unknown}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[5],Mode=TwoWay}" />
 						</StackPanel>
@@ -332,42 +332,42 @@
 				<w:SettingsExpander.Items>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Easy}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Easy}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelForegrounds[0],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Moderate}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Moderate}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[1],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Hard}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Hard}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[2],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Fiendish}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Fiendish}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[3],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Nightmare}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Nightmare}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[4],Mode=TwoWay}" />
 						</StackPanel>
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left" Padding="0,12">
 						<StackPanel Orientation="Horizontal" Spacing="24" Margin="40,0">
-							<TextBlock Text="{m:R Key=_DifficultyLevel_Unknown}" VerticalAlignment="Center" />
+							<TextBlock Text="{m:R Key=Unknown}" VerticalAlignment="Center" />
 							<c:ColorSelector
 								SelectedColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DifficultyLevelBackgrounds[5],Mode=TwoWay}" />
 						</StackPanel>

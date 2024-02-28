@@ -131,31 +131,11 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseDifficultyLevel", App.CurrentCulture),
 			Items =
 			{
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_DifficultyLevel_Easy", App.CurrentCulture),
-					Tag = DifficultyLevel.Easy
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_DifficultyLevel_Moderate", App.CurrentCulture),
-					Tag = DifficultyLevel.Moderate
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_DifficultyLevel_Hard", App.CurrentCulture),
-					Tag = DifficultyLevel.Hard
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_DifficultyLevel_Fiendish", App.CurrentCulture),
-					Tag = DifficultyLevel.Fiendish
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("_DifficultyLevel_Nightmare", App.CurrentCulture),
-					Tag = DifficultyLevel.Nightmare
-				}
+				new ComboBoxItem { Content = DifficultyLevel.Easy.GetName(App.CurrentCulture), Tag = DifficultyLevel.Easy },
+				new ComboBoxItem { Content = DifficultyLevel.Moderate.GetName(App.CurrentCulture), Tag = DifficultyLevel.Moderate },
+				new ComboBoxItem { Content = DifficultyLevel.Hard.GetName(App.CurrentCulture), Tag = DifficultyLevel.Hard },
+				new ComboBoxItem { Content = DifficultyLevel.Fiendish.GetName(App.CurrentCulture), Tag = DifficultyLevel.Fiendish },
+				new ComboBoxItem { Content = DifficultyLevel.Nightmare.GetName(App.CurrentCulture), Tag = DifficultyLevel.Nightmare }
 			}
 		};
 		ComboBoxBindingHandler(difficultyLevelControl, difficultyLevel, value => constraint.DifficultyLevel = value);

@@ -5638,46 +5638,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Less than or equal (&lt;=).
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Easy">
-            <summary>
-              Looks up a localized string similar to Easy.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Fiendish">
-            <summary>
-              Looks up a localized string similar to Fiendish.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Hard">
-            <summary>
-              Looks up a localized string similar to Hard.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_LastResort">
-            <summary>
-              Looks up a localized string similar to Last Resort.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Moderate">
-            <summary>
-              Looks up a localized string similar to Moderate.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Nightmare">
-            <summary>
-              Looks up a localized string similar to Nightmare.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Other">
-            <summary>
-              Looks up a localized string similar to Others.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources._DifficultyLevel_Unknown">
-            <summary>
-              Looks up a localized string similar to Unknown.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources._DrawingMode_BabaGrouping">
             <summary>
               Looks up a localized string similar to Baba Grouping.

@@ -8,24 +8,14 @@ internal static class DifficultyLevelConversion
 	public static string GetName(DifficultyLevel difficultyLevel)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel.Easy => ResourceDictionary.Get("_DifficultyLevel_Easy", App.CurrentCulture),
-			DifficultyLevel.Moderate => ResourceDictionary.Get("_DifficultyLevel_Moderate", App.CurrentCulture),
-			DifficultyLevel.Hard => ResourceDictionary.Get("_DifficultyLevel_Hard", App.CurrentCulture),
-			DifficultyLevel.Fiendish => ResourceDictionary.Get("_DifficultyLevel_Fiendish", App.CurrentCulture),
-			DifficultyLevel.Nightmare => ResourceDictionary.Get("_DifficultyLevel_Nightmare", App.CurrentCulture),
-			DifficultyLevel.LastResort => ResourceDictionary.Get("_DifficultyLevel_LastResort", App.CurrentCulture),
+			not DifficultyLevel.Unknown when Enum.IsDefined(difficultyLevel) => difficultyLevel.GetName(App.CurrentCulture),
 			_ => string.Empty
 		};
 
 	public static string GetNameWithDefault(DifficultyLevel difficultyLevel, string defaultValue)
 		=> difficultyLevel switch
 		{
-			DifficultyLevel.Easy => ResourceDictionary.Get("_DifficultyLevel_Easy", App.CurrentCulture),
-			DifficultyLevel.Moderate => ResourceDictionary.Get("_DifficultyLevel_Moderate", App.CurrentCulture),
-			DifficultyLevel.Hard => ResourceDictionary.Get("_DifficultyLevel_Hard", App.CurrentCulture),
-			DifficultyLevel.Fiendish => ResourceDictionary.Get("_DifficultyLevel_Fiendish", App.CurrentCulture),
-			DifficultyLevel.Nightmare => ResourceDictionary.Get("_DifficultyLevel_Nightmare", App.CurrentCulture),
-			DifficultyLevel.LastResort => ResourceDictionary.Get("_DifficultyLevel_LastResort", App.CurrentCulture),
+			not DifficultyLevel.Unknown when Enum.IsDefined(difficultyLevel) => difficultyLevel.GetName(App.CurrentCulture),
 			_ => defaultValue
 		};
 
