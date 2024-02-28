@@ -41,18 +41,17 @@ public ref partial struct GridBasedPuzzleGenerator([PrimaryConstructorParameter(
 	/// <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A valid <see cref="Grid"/> to be used.</returns>
-	[UnscopedRef]
-	public ref readonly Grid Generate(bool shuffleDigits = false, CancellationToken cancellationToken = default)
+	public Grid Generate(bool shuffleDigits = false, CancellationToken cancellationToken = default)
 	{
 		try
 		{
 			_playground = _seedGrid.UnfixedGrid;
 			getGrid(_solver, in _seedGrid, ref _playground, [.. _seedGrid.GivenCells], ref _resultGrid);
-			return ref _resultGrid;
+			return _resultGrid;
 		}
 		catch (OperationCanceledException)
 		{
-			return ref Grid.Undefined;
+			return Grid.Undefined;
 		}
 		catch
 		{
@@ -142,7 +141,7 @@ public ref partial struct GridBasedPuzzleGenerator([PrimaryConstructorParameter(
 		{
 			// Try to generate a puzzle no matter the puzzle is duplicated with one of elements stored in the current collection.
 			// Make the reference to be mutable because the return value is always points to the field of this type (i.e. '_resultGrid').
-			scoped ref var puzzle = ref Ref.AsMutableRef(in Generate(cancellationToken: cancellationToken));
+			var puzzle = Generate(cancellationToken: cancellationToken);
 
 			// Check for duplicate.
 			var isDupe = false;

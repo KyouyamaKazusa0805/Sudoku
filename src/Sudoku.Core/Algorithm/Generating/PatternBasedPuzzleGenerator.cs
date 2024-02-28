@@ -40,19 +40,18 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A valid <see cref="Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-	[UnscopedRef]
-	public ref readonly Grid Generate(CancellationToken cancellationToken = default)
+	public Grid Generate(CancellationToken cancellationToken = default)
 	{
 		try
 		{
 			var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
 			_playground = Grid.Empty;
 			getGrid(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
-			return ref _resultGrid;
+			return _resultGrid;
 		}
 		catch (OperationCanceledException)
 		{
-			return ref Grid.Undefined;
+			return Grid.Undefined;
 		}
 		catch
 		{

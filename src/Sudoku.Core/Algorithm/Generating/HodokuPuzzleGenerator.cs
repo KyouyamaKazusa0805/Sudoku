@@ -93,8 +93,7 @@ public ref partial struct HodokuPuzzleGenerator
 	/// or the argument <paramref name="cluesCount"/> is invalid.
 	/// </exception>
 	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
-	[UnscopedRef]
-	public ref readonly Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
+	public Grid Generate(int cluesCount = AutoClues, SymmetricType symmetricType = SymmetricType.Central, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(symmetricType.IsFlag(), true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cluesCount is >= 17 and <= 80 or AutoClues, true);
@@ -105,13 +104,13 @@ public ref partial struct HodokuPuzzleGenerator
 
 			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 
-			ref var p = ref _newValidSudoku;
+			scoped ref var p = ref _newValidSudoku;
 			p.Fix();
-			return ref p;
+			return p;
 		}
 		catch (OperationCanceledException)
 		{
-			return ref Grid.Undefined;
+			return Grid.Undefined;
 		}
 	}
 
