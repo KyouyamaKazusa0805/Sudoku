@@ -1,17 +1,27 @@
 namespace Sudoku.Algorithm.Ittoryu;
 
 /// <summary>
-/// Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-/// This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+/// Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+/// This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+/// complex singles won't be supported for now.
 /// </summary>
 /// <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
 public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter] TechniqueSet supportedTechniques)
 {
 	/// <summary>
-	/// Initializes an <see cref="DisorderedIttoryuFinder"/> instance.
+	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public DisorderedIttoryuFinder() : this(TechniqueSets.IttoryuTechniques)
+	{
+	}
+
+	/// <summary>
+	/// Initialzes a <see cref="DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+	/// </summary>
+	/// <param name="techniques">A list of techniques.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public DisorderedIttoryuFinder(IEnumerable<Technique> techniques) : this([.. techniques])
 	{
 	}
 

@@ -98,22 +98,30 @@
         </member>
         <member name="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder">
             <summary>
-            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
             </summary>
             <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
             <summary>
-            Represents an ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle.
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
             </summary>
             <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor">
             <summary>
-            Initializes an <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance.
+            Initializes a <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance.
             </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
+            <summary>
+            Initialzes a <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            </summary>
+            <param name="techniques">A list of techniques.</param>
         </member>
         <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
             <summary>

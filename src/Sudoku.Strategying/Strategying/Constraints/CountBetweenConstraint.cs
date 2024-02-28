@@ -18,8 +18,11 @@ public sealed partial class CountBetweenConstraint : Constraint
 	public Range Range { get; set; }
 
 	/// <summary>
-	/// Indicates the cell state to be checked.
+	/// Indicates the cell state to be checked. The desired values should be
+	/// <see cref="CellState.Given"/> or <see cref="CellState.Empty"/>.
 	/// </summary>
+	/// <seealso cref="CellState.Given"/>
+	/// <seealso cref="CellState.Empty"/>
 	[HashCodeMember]
 	[StringMember]
 	public CellState CellState { get; set; }
@@ -41,13 +44,7 @@ public sealed partial class CountBetweenConstraint : Constraint
 	public override bool Check(scoped ConstraintCheckingContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var factCount = CellState switch
-		{
-			CellState.Empty => grid.EmptiesCount,
-			CellState.Modifiable => grid.ModifiablesCount,
-			_ => grid.GivensCount
-		};
-
+		var factCount = CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount };
 		_ = Range is { Start.Value: var min, End.Value: var max };
 		return BetweenRule switch
 		{

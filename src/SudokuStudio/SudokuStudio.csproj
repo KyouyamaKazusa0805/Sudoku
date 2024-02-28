@@ -159,9 +159,6 @@
 		<Page Update="Views\Controls\TechniqueView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\GeneratingStrategyPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\ContentDialogs\ExceptionThrownOnAnalyzingContent.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -244,9 +241,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Controls\TechniqueSelector.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Controls\RunningStrategy.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Manuals\HotkeyCheatTablePage.xaml">

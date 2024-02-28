@@ -26,5 +26,5 @@ public sealed partial class SymmetryConstraint : Constraint
 		=> other is SymmetryConstraint comparer && SymmetricTypes == comparer.SymmetricTypes;
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context) => ((int)SymmetricTypes >> (int)context.Grid.Symmetry & 1) != 0;
+	public override bool Check(scoped ConstraintCheckingContext context) => (SymmetricTypes & context.Grid.Symmetry) != 0;
 }

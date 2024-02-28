@@ -116,7 +116,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <returns>The task that holds the asynchronous operation.</returns>
 	private async Task HandleGeneratingAsync<T>(
 		bool onlyGenerateOne,
-		GridStateChanger<(Analyzer Analyzer, TechniqueSet Techniques)>? gridStateChanger = null,
+		GridStateChanger<Analyzer>? gridStateChanger = null,
 		Action<string>? gridTextConsumer = null
 	) where T : struct, IEquatable<T>, IProgressDataProvider<T>
 	{
@@ -124,20 +124,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		BasePage.ClearAnalyzeTabsData();
 
 		var processingText = ResourceDictionary.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
-		var preferences = ((App)Application.Current).Preference.UIPreferences;
-		var difficultyLevel = preferences.GeneratorDifficultyLevel;
-		var symmetry = preferences.GeneratorSymmetricPattern;
-		var minimal = preferences.GeneratedPuzzleShouldBeMinimal;
-		var pearl = preferences.GeneratedPuzzleShouldBePearl;
-		var techniques = preferences.GeneratorSelectedTechniques;
-		var givensCount = preferences switch
-		{
-			{ CanRestrictGeneratingGivensCount: true, GeneratedPuzzleGivensCount: var count and not -1 } => count,
-			_ => HodokuPuzzleGenerator.AutoClues
-		};
-		var ittoryuLength = preferences.IttoryuLength;
-		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, preferences.GeneratorDifficultyLevel);
-		var ittoryuFinder = new DisorderedIttoryuFinder([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques]);
+		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
+		var difficultyLevel = constraints.FindFirst(static (DifficultyLevelConstraint constraint) => constraint.DifficultyLevel);
+		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
+		var ittoryuFinder = new DisorderedIttoryuFinder(((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques);
 
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
@@ -145,12 +135,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		try
 		{
 			(_generatingCount, _generatingFilteredCount) = (0, 0);
-			var details = new GeneratingDetails(difficultyLevel, symmetry, minimal, pearl, techniques, givensCount, ittoryuLength);
 			if (onlyGenerateOne)
 			{
 				if (await Task.Run(task) is { IsUndefined: false } grid)
 				{
-					gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
+					gridStateChanger?.Invoke(ref grid, analyzer);
 					gridTextConsumer?.Invoke(grid.ToString("#"));
 				}
 			}
@@ -160,7 +149,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				{
 					if (await Task.Run(task) is { IsUndefined: false } grid)
 					{
-						gridStateChanger?.Invoke(ref grid, (analyzer, techniques));
+						gridStateChanger?.Invoke(ref grid, analyzer);
 						gridTextConsumer?.Invoke(grid.ToString("#"));
 
 						_generatingFilteredCount++;
@@ -172,7 +161,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			}
 
 
-			Grid task() => gridCreator(analyzer, ittoryuFinder, details);
+			Grid task() => gridCreator(analyzer, ittoryuFinder);
 		}
 		catch (TaskCanceledException)
 		{
@@ -184,7 +173,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		Grid gridCreator(Analyzer analyzer, DisorderedIttoryuFinder finder, GeneratingDetails details)
+		Grid gridCreator(Analyzer analyzer, DisorderedIttoryuFinder finder)
 		{
 			try
 			{
@@ -195,7 +184,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 							BasePage.AnalyzeProgressLabel.Text = processingText;
 							BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
 						}
-					), details, cts.Token, analyzer, finder
+					), cts.Token, analyzer, finder
 				) ?? Grid.Undefined;
 			}
 			catch (TaskCanceledException)
@@ -206,7 +195,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		Grid? generatePuzzleCore(
 			Action<T> reportingAction,
-			GeneratingDetails details,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
 			DisorderedIttoryuFinder finder
@@ -214,26 +202,52 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				for (
-					var (progress, (difficultyLevel, symmetry, minimal, pearl, techniques, givensCount, ittoryuLength)) = (
-						new SelfReportingProgress<T>(reportingAction),
-						details
-					); ; _generatingCount++, progress.Report(T.Create(_generatingCount, _generatingFilteredCount)), cancellationToken.ThrowIfCancellationRequested()
-				)
+				var symmetriesOriginal = constraints.FindFirst(static (SymmetryConstraint c) => c.SymmetricTypes, (SymmetricType)0b_0111_1111);
+				var symmetries = (SymmetricType[])[
+					.. symmetriesOriginal.GetAllFlags(),
+
+					// A rescue - if we select all of symmetric types here, we will implicitly add "SymmetricType.None".
+					.. (SymmetricType[])(symmetriesOriginal == (SymmetricType)0b_0111_1111 ? [SymmetricType.None] : [])
+				];
+				var symmetry = symmetries[Random.Shared.Next(0, symmetries.Length)];
+				var (s, e) = constraints.FindFirst(
+					static c => c is CountBetweenConstraint { CellState: CellState.Given },
+					static c =>
+					{
+						var constraint = (CountBetweenConstraint)c;
+						var (s, e) = (constraint.Range.Start.Value, constraint.Range.End.Value);
+						return constraint.BetweenRule switch
+						{
+							BetweenRule.BothOpen => (s + 1, e - 1),
+							BetweenRule.LeftOpen => (s + 1, e),
+							BetweenRule.RightOpen => (s, e + 1),
+							_ => (s, e)
+						};
+					}
+				);
+				var givensCount = (s, e) == (0, 0) ? -1 : Random.Shared.Next(s, e + 1);
+				var difficultyLevels = constraints.FindFirst(static (DifficultyLevelConstraint c) => c.ValidDifficultyLevels, (DifficultyLevel)0b_0001_1111).GetAllFlags();
+				var difficultyLevel = difficultyLevels[Random.Shared.Next(0, difficultyLevels.Length)];
+				var ittoryuLength = constraints.FindFirst(static (IttoryuLengthConstraint c) => c.Length, -1);
+				var progress = new SelfReportingProgress<T>(reportingAction);
+				while (true)
 				{
+					var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
+					var analyzerResult = analyzer.Analyze(in grid);
+
 					switch (difficultyLevel)
 					{
 						case DifficultyLevel.Easy:
 						{
 							// Optimize: transform the grid if worth.
-							var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
 							var foundIttoryu = finder.FindPath(in grid);
 							if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
 							{
 								grid.MakeIttoryu(foundIttoryu);
 							}
 
-							if (basicCondition(in grid) && (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
+							if (constraints.IsValidFor(new(in grid, analyzerResult))
+								&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
 							{
 								return grid;
 							}
@@ -241,8 +255,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						}
 						default:
 						{
-							scoped ref readonly var grid = ref new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
-							if (basicCondition(in grid))
+							if (constraints.IsValidFor(new(in grid, analyzerResult)))
 							{
 								return grid;
 							}
@@ -250,20 +263,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						}
 					}
 
-
-					bool basicCondition(scoped ref readonly Grid grid)
-						=> (givensCount != -1 && grid.GivensCount == givensCount || givensCount == -1)
-						&& analyzer.Analyze(in grid) is
-						{
-							IsSolved: true,
-							IsPearl: var isPearl,
-							DifficultyLevel: var puzzleDifficultyLevel,
-							SolvingPath: var p
-						}
-						&& (difficultyLevel == 0 || puzzleDifficultyLevel == difficultyLevel)
-						&& (minimal && grid.IsMinimal || !minimal)
-						&& (pearl && isPearl is true || !pearl)
-						&& (!!(techniques && p & techniques) || !techniques);
+					progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
+					cancellationToken.ThrowIfCancellationRequested();
 				}
 			}
 			catch (OperationCanceledException)
@@ -349,13 +350,22 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (scoped ref Grid grid, (Analyzer Analyzer, TechniqueSet Techniques) pair) =>
+			static (scoped ref Grid grid, Analyzer analyzer) =>
 			{
-				var (analyzer, techniques) = pair;
 				var analyzerResult = analyzer.Analyze(in grid);
 				if (!analyzerResult.IsSolved)
 				{
 					return;
+				}
+
+				var techniques = new TechniqueSet();
+				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
+				{
+					if (constraint is TechniqueConstraint { Technique: var technique }
+						and not { Operator: ComparisonOperator.Equality, LimitCount: 0 })
+					{
+						techniques.Add(technique);
+					}
 				}
 
 				foreach (var (g, s) in analyzerResult.SolvingPath)
@@ -400,13 +410,22 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (scoped ref Grid grid, (Analyzer Analyzer, TechniqueSet Techniques) pair) =>
+			static (scoped ref Grid grid, Analyzer analyzer) =>
 			{
-				var (analyzer, techniques) = pair;
 				var analyzerResult = analyzer.Analyze(in grid);
 				if (!analyzerResult.IsSolved)
 				{
 					return;
+				}
+
+				var techniques = new TechniqueSet();
+				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
+				{
+					if (constraint is TechniqueConstraint { Technique: var technique }
+						and not { Operator: ComparisonOperator.Equality, LimitCount: 0 })
+					{
+						techniques.Add(technique);
+					}
 				}
 
 				foreach (var (g, s) in analyzerResult.SolvingPath)
@@ -448,20 +467,9 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 /// </summary>
 /// <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
 /// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-/// <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
-/// <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-/// <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
 /// <param name="CountOfGivens">Indicates the limit of givens count.</param>
 /// <param name="IttoryuLength">Indicates the ittoryu length.</param>
-file sealed record GeneratingDetails(
-	DifficultyLevel DifficultyLevel,
-	SymmetricType SymmetricPattern,
-	bool ShouldBeMinimal,
-	bool ShouldBePearl,
-	TechniqueSet SelectedTechniques,
-	int CountOfGivens,
-	int IttoryuLength
-);
+file sealed record GeneratingDetails(DifficultyLevel DifficultyLevel, SymmetricType SymmetricPattern, int CountOfGivens, int IttoryuLength);
 
 /// <summary>
 /// Provides with extension methods on <see cref="Run"/>.

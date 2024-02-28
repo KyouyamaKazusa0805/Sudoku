@@ -16,11 +16,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// </summary>
 	private readonly ObservableCollection<FrameworkElement> _controls = [];
 
-	/// <summary>
-	/// Indicates the constraints.
-	/// </summary>
-	private readonly List<Constraint> _constraints = [];
-
 
 	/// <summary>
 	/// Initializes a <see cref="GeneratedPuzzleConstraintPage"/> instance.
@@ -33,16 +28,32 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 
 	/// <summary>
+	/// Indicates entry that visits constraints property in preference set <see cref="ConstraintPreferenceGroup.Constraints"/>.
+	/// </summary>
+	/// <seealso cref="ConstraintPreferenceGroup.Constraints"/>
+	private static ConstraintCollection ConstraintsEntry => ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
+
+
+	/// <summary>
 	/// Create controls via properties.
 	/// </summary>
 	private void CreateControlsViaProperties()
-		=> ((App)Application.Current).Preference.ConstraintPreferences.Constraints.ForEach(AddControl);
+	{
+		foreach (var constraint in ConstraintsEntry)
+		{
+			AddControl(constraint, false);
+		}
+	}
 
 	/// <summary>
 	/// Add a new control using the specified constraint.
 	/// </summary>
 	/// <param name="constraint">The constraint.</param>
-	private void AddControl(Constraint constraint)
+	/// <param name="createNew">
+	/// Indicates whether the constraint control is created, and also appended into property <see cref="ConstraintsEntry"/>.
+	/// </param>
+	/// <seealso cref="ConstraintsEntry"/>
+	private void AddControl(Constraint constraint, bool createNew)
 	{
 		(
 			constraint switch
@@ -84,14 +95,17 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Margin = new(6),
 					VerticalAlignment = VerticalAlignment.Center
 				};
-				deleteButton.Click += (_, _) => { _controls.Remove(grid); _constraints.Remove((Constraint)control.Tag!); };
+				deleteButton.Click += (_, _) => { _controls.Remove(grid); ConstraintsEntry.Remove((Constraint)control.Tag!); };
 				GridLayout.SetColumn(control, 0);
 				GridLayout.SetColumn(deleteButton, 2);
 				grid.Children.Add(control);
 				grid.Children.Add(deleteButton);
 
 				_controls.Add(grid);
-				_constraints.Add(constraint);
+				if (createNew)
+				{
+					ConstraintsEntry.Add(constraint);
+				}
 			}
 		}
 	}
@@ -161,6 +175,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? Create_Symmetry(SymmetryConstraint constraint)
 	{
+		// There may exist a bug that we cannot select "SymmetricType.None" because the flag value is 0, no flags can use this bit.
+
 		if (constraint is not { SymmetricTypes: var symmetricTypes })
 		{
 			return null;
@@ -239,7 +255,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? Create_PearlOrDiamond<T>(T constraint) where T : PearlOrDiamondConstraint
+	private SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint
 	{
 		if (constraint is not { CheckPearl: var checkPearl, ShouldBePearlOrDiamond: var value })
 		{
@@ -263,7 +279,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? Create_CountBetween(CountBetweenConstraint constraint)
 	{
-		if (constraint is not { Range: { Start.Value: var min, End.Value: var max }, CellState: var cellState, BetweenRule: var rule })
+		if (constraint is not
+			{
+				Range: { Start.Value: var min, End.Value: var max },
+				CellState: var cellState,
+				BetweenRule: var rule
+			})
 		{
 			return null;
 		}
@@ -298,8 +319,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// minimum value box
 		//
-		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, Value = min };
-		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, Value = max };
+		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 5, Value = min };
+		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, SmallChange = 1, LargeChange = 5, Value = max };
 		minimumControl.ValueChanged += (_, _) =>
 		{
 			maximumControl.Minimum = minimumControl.Value + 1;
@@ -307,7 +328,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				maximumControl.Value++;
 			}
-			constraint.Range = minimumControl.Value..max;
+			setter();
 		};
 		maximumControl.ValueChanged += (_, _) =>
 		{
@@ -316,7 +337,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				minimumControl.Value--;
 			}
-			constraint.Range = min..maximumControl.Value;
+			setter();
 		};
 
 		//
@@ -379,6 +400,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
+
+
+		void setter() => constraint.Range = minimumControl.Value..maximumControl.Value;
 	}
 
 	private SettingsCard? Create_Ittoryu(IttoryuConstraint constraint)
@@ -596,12 +620,10 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private void MenuFlyoutItem_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: Constraint constraint })
+		if (sender is MenuFlyoutItem { Tag: Constraint constraint })
 		{
-			return;
+			AddControl(constraint, true);
 		}
-
-		AddControl(constraint);
 	}
 
 	private void MenuFlyout_Opening(object sender, object e)
@@ -610,7 +632,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			if (element is MenuFlyoutItem { Tag: Constraint { AllowDuplicate: var allowDuplicate } constraint })
 			{
-				element.Visibility = !allowDuplicate && _constraints.Exists(c => c.GetType() == constraint.GetType())
+				element.Visibility = !allowDuplicate && ConstraintsEntry.Exists(c => c.GetType() == constraint.GetType())
 					? Visibility.Collapsed
 					: Visibility.Visible;
 			}

@@ -47,7 +47,6 @@ internal sealed partial class MainNavigationPage : Page
 	{
 		_navigatingData = [
 			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
-			(container => container == GeneratingStrategyPageItem, typeof(GeneratingStrategyPage)),
 			(container => container == ConstraintPageItem, typeof(GeneratedPuzzleConstraintPage)),
 			(container => container == AboutPageItem, typeof(AboutPage)),
 			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),

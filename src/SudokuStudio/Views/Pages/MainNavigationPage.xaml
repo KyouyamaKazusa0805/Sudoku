@@ -18,7 +18,6 @@
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
 			<NavigationViewItem x:Name="AnalyzePageItem" Icon="{ui:FontIcon Glyph=&#xE9D9;}" Content="{m:R Key=MainWindow_Analyze}" />
-			<NavigationViewItem x:Name="GeneratingStrategyPageItem" Icon="Favorite" Content="{m:R Key=MainWindow_GeneratingStrategy}" />
 			<NavigationViewItem x:Name="ConstraintPageItem" Icon="{ui:FontIcon Glyph=&#xE8EE;}" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
 			<NavigationViewItem x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}" Icon="{ui:FontIcon Glyph=&#xE7FC;}" />

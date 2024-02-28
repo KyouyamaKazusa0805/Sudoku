@@ -119,28 +119,19 @@
             </summary>
             <param name="grid">Indicates the reference to the grid to be checked.</param>
             <param name="analyzerResult">Indicates the analyzer result.</param>
-            <param name="collectorResult">Indicates the collector result.</param>
-            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
             <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult,Sudoku.Analytics.Step[][],System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult)">
             <summary>
             Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
             </summary>
             <param name="grid">Indicates the reference to the grid to be checked.</param>
             <param name="analyzerResult">Indicates the analyzer result.</param>
-            <param name="collectorResult">Indicates the collector result.</param>
-            <param name="cancellationToken">Indicates the cancellation token that can cancel the current operation.</param>
             <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresAnalyzer">
             <summary>
             Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresCollector">
-            <summary>
-            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult"/>.
             </summary>
         </member>
         <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
@@ -153,20 +144,44 @@
             The generated property declaration for parameter <c>analyzerResult</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CollectorResult">
-            <summary>
-            The generated property declaration for parameter <c>collectorResult</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.CancellationToken">
-            <summary>
-            The generated property declaration for parameter <c>cancellationToken</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConstraintCollection">
             <summary>
             Represents a constraint collection.
             </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.IsValidFor(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <summary>
+            For a given <see cref="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext"/>,
+            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
+            </summary>
+            <param name="context">The context to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.FindFirst``1(System.Func{Sudoku.Strategying.Constraints.Constraint,System.Boolean},System.Func{Sudoku.Strategying.Constraints.Constraint,``0},``0)">
+            <summary>
+            Try to get the first <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> satisfying the specified condition,
+            returning the value of type <typeparamref name="TResult"/> created by the specified method.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="match">The match method.</param>
+            <param name="selector">The selector method.</param>
+            <param name="defaultValue">The default value.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.FindFirst``2(System.Func{``0,``1},``1)">
+            <summary>
+            Try to get the first <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> satisfying the specified condition,
+            returning the value of type <typeparamref name="TResult"/> created by the specified method.
+            </summary>
+            <typeparam name="TConstraint">The type of constraint.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="matchedSelector">
+            Indicates the matched selector. The method will be used in both checking and converting operation.
+            </param>
+            <param name="defaultValue">
+            Indicates the default value used. By default the value equals to <see langword="default"/>(<typeparamref name="TResult"/>).
+            </param>
+            <returns>The final result.</returns>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
             <summary>
@@ -183,8 +198,11 @@
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.CellState">
             <summary>
-            Indicates the cell state to be checked.
+            Indicates the cell state to be checked. The desired values should be
+            <see cref="F:Sudoku.Concepts.CellState.Given"/> or <see cref="F:Sudoku.Concepts.CellState.Empty"/>.
             </summary>
+            <seealso cref="F:Sudoku.Concepts.CellState.Given"/>
+            <seealso cref="F:Sudoku.Concepts.CellState.Empty"/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.BetweenRule">
             <summary>
@@ -228,6 +246,11 @@
         </member>
         <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Operator">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
+            <summary>
+            Indicates all possible <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/> values. 
+            </summary>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>

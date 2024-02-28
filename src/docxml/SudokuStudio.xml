@@ -199,14 +199,6 @@
             The generated property declaration for parameter <c>page</c>.
             </summary>
         </member>
-        <member name="T:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider">
-            <summary>
-            Represents a generating strategy items provider.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.BindableSource.GeneratingStrategyItemsProvider.Items">
-            <inheritdoc/>
-        </member>
         <member name="T:SudokuStudio.BindableSource.LibraryBindableSource">
             <summary>
             Represents a library bindable source. This type is different with <see cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
@@ -934,16 +926,6 @@
         <member name="P:SudokuStudio.ComponentModel.IOperationProviderPage.BasePage">
             <summary>
             Indicates the base page.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.ComponentModel.IRunningStrategyItemsProvider">
-            <summary>
-            Represents a value provider that provides with data to be displayed.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.IRunningStrategyItemsProvider.Items">
-            <summary>
-            Indicates the items to be displayed.
             </summary>
         </member>
         <member name="T:SudokuStudio.ComponentModel.XamlBindingAttribute`1">
@@ -4155,68 +4137,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.All">
             <summary>
             Indicates all nodes should be refreshed.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interaction.RunningStrategyItem">
-            <summary>
-            Represents a type that describes for a running strategy item.
-            </summary>
-            <param name="titleKey">Indicates the title key in resource.</param>
-            <param name="updater">The updater that can assign new value to the target place.</param>
-        </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyItem.#ctor(System.String,SudokuStudio.Interaction.RunningStrategyUpdater)">
-            <summary>
-            Represents a type that describes for a running strategy item.
-            </summary>
-            <param name="titleKey">Indicates the title key in resource.</param>
-            <param name="updater">The updater that can assign new value to the target place.</param>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.TitleKey">
-            <summary>
-            The generated property declaration for parameter <c>titleKey</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyItem.Updater">
-            <summary>
-            The generated property declaration for parameter <c>updater</c>.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Interaction.RunningStrategyUpdater">
-            <summary>
-            Represents a type that encapsulates a router that can route a value to the distination.
-            </summary>
-            <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
-            <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
-            <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
-            <param name="valueRouter">The value router that can assign the value to the distinction.</param>
-        </member>
-        <member name="M:SudokuStudio.Interaction.RunningStrategyUpdater.#ctor(System.String,System.Func{Microsoft.UI.Xaml.FrameworkElement},System.Func{System.String},System.Action{Microsoft.UI.Xaml.FrameworkElement,Microsoft.UI.Xaml.Controls.TextBlock})">
-            <summary>
-            Represents a type that encapsulates a router that can route a value to the distination.
-            </summary>
-            <param name="titleKey">The title key to be assigned. This value is used for disctincting with options set.</param>
-            <param name="updaterControlCreator">A function that creates a control that can update the result.</param>
-            <param name="initializedValueDisplayer">The displayer that displays for initialized values.</param>
-            <param name="valueRouter">The value router that can assign the value to the distinction.</param>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.TitleKey">
-            <summary>
-            The generated property declaration for parameter <c>titleKey</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.UpdaterControlCreator">
-            <summary>
-            The generated property declaration for parameter <c>updaterControlCreator</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.InitializedValueDisplayer">
-            <summary>
-            The generated property declaration for parameter <c>initializedValueDisplayer</c>.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Interaction.RunningStrategyUpdater.ValueRouter">
-            <summary>
-            The generated property declaration for parameter <c>valueRouter</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
@@ -10965,63 +10885,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.IntegerBox.LargeChange">
             <inheritdoc cref="P:Microsoft.UI.Xaml.Controls.NumberBox.LargeChange"/>
         </member>
-        <member name="T:SudokuStudio.Views.Controls.RunningStrategy">
-            <summary>
-            Represents a running strategy control.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Controls.RunningStrategy"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.HideContentPresenters">
-            <summary>
-            Hidden content presenters.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.UpdateValues">
-            <summary>
-            Indicates the value updated.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Controls.RunningStrategy.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.RunningStrategy.StrategyNameProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.RunningStrategy.ItemsProviderProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.RunningStrategy.StrategyName">
-            <summary>
-            Indicates the strategy name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.RunningStrategy.ItemsProvider">
-            <summary>
-            An instance that can create a list of items that can be used for the displaying.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Controls.Shapes.CircleRing">
             <summary>
             Represents a circle ring.
@@ -13816,26 +13679,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the internal controls.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage._constraints">
-            <summary>
-            Indicates the constraints.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage"/> instance.
             </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ConstraintsEntry">
+            <summary>
+            Indicates entry that visits constraints property in preference set <see cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.ConstraintPreferenceGroup.Constraints"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.CreateControlsViaProperties">
             <summary>
             Create controls via properties.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Strategying.Constraints.Constraint,System.Boolean)">
             <summary>
             Add a new control using the specified constraint.
             </summary>
             <param name="constraint">The constraint.</param>
+            <param name="createNew">
+            Indicates whether the constraint control is created, and also appended into property <see cref="P:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ConstraintsEntry"/>.
+            </param>
+            <seealso cref="P:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ConstraintsEntry"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComparisonOperatorControl``1(Sudoku.Strategying.ComparisonOperator,``0)">
             <summary>
@@ -13868,79 +13736,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.GeneratingStrategyPage">
-            <summary>
-            The generating strategy page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.TargetTagName">
-            <summary>
-            The target item that the corresponding control's tag will set this value.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.GeneratingStrategyPage"/> instance.
-            </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Pages.GeneratingStrategyPage.ValueChanged">
-            <summary>
-            An event triggered when the target value is changed.
-            </summary>
-        </member>
-        <member name="E:SudokuStudio.Views.Pages.GeneratingStrategyPage.ValueCanceled">
-            <summary>
-            An event triggered when the target value is canceled.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.InitializeEvents">
-            <summary>
-            Initializes for events.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.EnumerateSubControls">
-            <summary>
-            Try to get all sub-controls in items panel.
-            </summary>
-            <returns>All sub-controls in items panel.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratingStrategyPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHoveredProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsEditing">
-            <summary>
-            Indicates whether the editing operation is processed.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.GeneratingStrategyPage.IsCardHovered">
-            <summary>
-            Indicates whether the edit button is hovered.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.LibraryPage">
@@ -14231,7 +14026,7 @@ if (student is (name: var name, age: >= 18))
             Refreshes puzzle library for combo box.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{System.ValueTuple{Sudoku.Analytics.Analyzer,Sudoku.Analytics.Categorization.TechniqueSet}},System.Action{System.String})">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingOperation.HandleGeneratingAsync``1(System.Boolean,SudokuStudio.Interaction.GridStateChanger{Sudoku.Analytics.Analyzer},System.Action{System.String})">
             <summary>
             Handle generating operation.
             </summary>
@@ -14282,21 +14077,15 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-            <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
-            <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-            <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
             <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Boolean,System.Boolean,Sudoku.Analytics.Categorization.TechniqueSet,System.Int32,System.Int32)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
             <summary>
             The encapsulated type to describe the details for generating puzzles.
             </summary>
             <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
             <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-            <param name="ShouldBeMinimal">Indicates whether generated puzzles should be minimal.</param>
-            <param name="ShouldBePearl">Indicates whether generated puzzles should be pearl.</param>
-            <param name="SelectedTechniques">Indicates the selected technique that you want it to be appeared in generated puzzles.</param>
             <param name="CountOfGivens">Indicates the limit of givens count.</param>
             <param name="IttoryuLength">Indicates the ittoryu length.</param>
         </member>
@@ -14305,15 +14094,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SymmetricPattern">
             <summary>Indicates the symmetric pattern selected.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBeMinimal">
-            <summary>Indicates whether generated puzzles should be minimal.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.ShouldBePearl">
-            <summary>Indicates whether generated puzzles should be pearl.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SelectedTechniques">
-            <summary>Indicates the selected technique that you want it to be appeared in generated puzzles.</summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.CountOfGivens">
             <summary>Indicates the limit of givens count.</summary>
