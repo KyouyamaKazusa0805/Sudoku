@@ -37,51 +37,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 	/// <param name="basePage">The base page.</param>
 	private void SetGeneratingStrategyTooltip(AnalyzePage basePage)
 	{
-		var uiPref = ((App)Application.Current).Preference.UIPreferences;
+		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
 		TextBlockBindable.SetInlines(
 			GeneratorStrategyTooltip,
-			[
-				new Run().WithText($"{null:AnalyzePage_GeneratingStrategySelected}"),
-				new LineBreak(),
-				new Run().WithText($"{(uiPref.CanRestrictGeneratingGivensCount, uiPref.GeneratedPuzzleGivensCount) switch
-				{
-					(false, _) or (_, -1) => (ResourceDictionary.Get("AnalyzePage_GeneratedPuzzleGivensNoRestriction", App.CurrentCulture), string.Empty),
-					_ => (uiPref.GeneratedPuzzleGivensCount, ResourceDictionary.Get("AnalyzePage_NumberOfGivens", App.CurrentCulture))
-				}:AnalyzePage_GeneratedPuzzleGivensIs}"),
-				new LineBreak(),
-				new Run().WithText($"{DifficultyLevelConversion.GetNameWithDefault(
-					uiPref.GeneratorDifficultyLevel,
-					ResourceDictionary.Get("DifficultyLevel_None", App.CurrentCulture)
-				):AnalyzePage_SelectedDifficultyLevelIs}"),
-				new LineBreak(),
-				new Run().WithText($"{ResourceDictionary.Get($"SymmetricType_{uiPref.GeneratorSymmetricPattern}", App.CurrentCulture):AnalyzePage_SelectedSymmetricTypeIs}"),
-				new LineBreak(),
-				new Run().WithText($"{uiPref.GeneratorSelectedTechniques switch
-				{
-					[var f] => string.Format(ResourceDictionary.Get("AnalyzePage_SingleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture)),
-					[var f, ..] and { Count: var fc } => string.Format(ResourceDictionary.Get("AnalyzePage_MultipleTechniquesSelected", App.CurrentCulture), f.GetName(App.CurrentCulture), fc),
-					_ => ResourceDictionary.Get("TechniqueSelector_NoTechniqueSelected", App.CurrentCulture),
-				}:AnalyzePage_SelectedTechniqueIs}"),
-				new LineBreak(),
-				new Run().WithText($"{(
-				uiPref.GeneratedPuzzleShouldBeMinimal
-					? ResourceDictionary.Get("AnalyzePage_IsAMinimal", App.CurrentCulture)
-					: ResourceDictionary.Get("AnalyzePage_IsNotMinimal", App.CurrentCulture)
-				):AnalyzePage_SelectedMinimalRuleIs}"),
-				new LineBreak(),
-				new Run().WithText($"{uiPref.GeneratedPuzzleShouldBePearl switch
-				{
-					true => ResourceDictionary.Get("GeneratingStrategyPage_PearlPuzzle", App.CurrentCulture),
-					false => ResourceDictionary.Get("GeneratingStrategyPage_NormalPuzzle", App.CurrentCulture),
-					//_ => ResourceDictionary.Get("GeneratingStrategyPage_DiamondPuzzle", App.CurrentCulture)
-				}:AnalyzePage_SelectedDiamondRuleIs}"),
-				new LineBreak(),
-				new Run().WithText($"{uiPref.GeneratorDifficultyLevel switch
-				{
-					DifficultyLevel.Easy => string.Format(ResourceDictionary.Get("AnalyzePage_IttoryuLength", App.CurrentCulture), uiPref.IttoryuLength),
-					_ => ResourceDictionary.Get("AnalyzePage_IttoryuPathIsNotLimited", App.CurrentCulture)
-				}:AnalyzePage_SelectedIttoryuIs}")
-			]
+			[new Run { Text = string.Join(Environment.NewLine, [.. from c in constraints select c.ToString()]) }]
 		);
 	}
 

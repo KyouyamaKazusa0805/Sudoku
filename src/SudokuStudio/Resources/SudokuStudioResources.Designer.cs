@@ -1204,24 +1204,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Givens: {0}{1}.
-        /// </summary>
-        internal static string AnalyzePage_GeneratedPuzzleGivensIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_GeneratedPuzzleGivensIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Any number of givens.
-        /// </summary>
-        internal static string AnalyzePage_GeneratedPuzzleGivensNoRestriction {
-            get {
-                return ResourceManager.GetString("AnalyzePage_GeneratedPuzzleGivensNoRestriction", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Should Be Minimal? .
         /// </summary>
         internal static string AnalyzePage_GenerateForMinimalPuzzle {
@@ -1236,15 +1218,6 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_GenerateForMinimalPuzzleTooltip {
             get {
                 return ResourceManager.GetString("AnalyzePage_GenerateForMinimalPuzzleTooltip", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Active strategy: Main.
-        /// </summary>
-        internal static string AnalyzePage_GeneratingStrategySelected {
-            get {
-                return ResourceManager.GetString("AnalyzePage_GeneratingStrategySelected", resourceCulture);
             }
         }
         
@@ -1285,47 +1258,11 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Is a minimal.
-        /// </summary>
-        internal static string AnalyzePage_IsAMinimal {
-            get {
-                return ResourceManager.GetString("AnalyzePage_IsAMinimal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Is Minimal puzzle: .
         /// </summary>
         internal static string AnalyzePage_IsMinimal {
             get {
                 return ResourceManager.GetString("AnalyzePage_IsMinimal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Not a minimal.
-        /// </summary>
-        internal static string AnalyzePage_IsNotMinimal {
-            get {
-                return ResourceManager.GetString("AnalyzePage_IsNotMinimal", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ittoryu path length: {0}.
-        /// </summary>
-        internal static string AnalyzePage_IttoryuLength {
-            get {
-                return ResourceManager.GetString("AnalyzePage_IttoryuLength", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to No limit for ittoryu path length.
-        /// </summary>
-        internal static string AnalyzePage_IttoryuPathIsNotLimited {
-            get {
-                return ResourceManager.GetString("AnalyzePage_IttoryuPathIsNotLimited", resourceCulture);
             }
         }
         
@@ -1420,15 +1357,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} and {1} techniques in total.
-        /// </summary>
-        internal static string AnalyzePage_MultipleTechniquesSelected {
-            get {
-                return ResourceManager.GetString("AnalyzePage_MultipleTechniquesSelected", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to New puzzle.
         /// </summary>
         internal static string AnalyzePage_NewPuzzle {
@@ -1443,15 +1371,6 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_None {
             get {
                 return ResourceManager.GetString("AnalyzePage_None", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to  givens.
-        /// </summary>
-        internal static string AnalyzePage_NumberOfGivens {
-            get {
-                return ResourceManager.GetString("AnalyzePage_NumberOfGivens", resourceCulture);
             }
         }
         
@@ -1834,74 +1753,11 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diamond Rule: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedDiamondRuleIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedDiamondRuleIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Difficulty Level: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedDifficultyLevelIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedDifficultyLevelIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Ittoryu Length: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedIttoryuIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedIttoryuIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Minimal Rule: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedMinimalRuleIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedMinimalRuleIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Symmetric Type: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedSymmetricTypeIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedSymmetricTypeIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Technique: {0}.
-        /// </summary>
-        internal static string AnalyzePage_SelectedTechniqueIs {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SelectedTechniqueIs", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Step Description:.
         /// </summary>
         internal static string AnalyzePage_SimpleDescription {
             get {
                 return ResourceManager.GetString("AnalyzePage_SimpleDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to {0}.
-        /// </summary>
-        internal static string AnalyzePage_SingleTechniquesSelected {
-            get {
-                return ResourceManager.GetString("AnalyzePage_SingleTechniquesSelected", resourceCulture);
             }
         }
         
@@ -2662,15 +2518,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Diamond.
-        /// </summary>
-        internal static string GeneratingStrategyPage_DiamondPuzzle {
-            get {
-                return ResourceManager.GetString("GeneratingStrategyPage_DiamondPuzzle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level: .
         /// </summary>
         internal static string GeneratingStrategyPage_DifficultyLevel {
@@ -2784,24 +2631,6 @@ namespace SudokuStudio.Resources {
         internal static string GeneratingStrategyPage_Main {
             get {
                 return ResourceManager.GetString("GeneratingStrategyPage_Main", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Normal.
-        /// </summary>
-        internal static string GeneratingStrategyPage_NormalPuzzle {
-            get {
-                return ResourceManager.GetString("GeneratingStrategyPage_NormalPuzzle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Pearl.
-        /// </summary>
-        internal static string GeneratingStrategyPage_PearlPuzzle {
-            get {
-                return ResourceManager.GetString("GeneratingStrategyPage_PearlPuzzle", resourceCulture);
             }
         }
         
@@ -6882,7 +6711,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to No technique selected.
+        ///   Looks up a localized string similar to No techniques selected.
         /// </summary>
         internal static string TechniqueSelector_NoTechniqueSelected {
             get {

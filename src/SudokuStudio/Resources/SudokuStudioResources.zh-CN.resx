@@ -408,20 +408,11 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>生成日期：</value>
   </data>
-  <data name="AnalyzePage_GeneratedPuzzleGivensIs" xml:space="preserve">
-    <value>提示数个数限制：{0}{1}</value>
-  </data>
-  <data name="AnalyzePage_GeneratedPuzzleGivensNoRestriction" xml:space="preserve">
-    <value>不限制</value>
-  </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzle" xml:space="preserve">
     <value>是否为精简题？</value>
   </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>精简题是说，某个唯一解的题目的任何一个提示数被去掉，都会变为多解题的题目类型。</value>
-  </data>
-  <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
-    <value>启用的策略：主策略</value>
   </data>
   <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
     <value>正在出题……</value>
@@ -435,20 +426,8 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>初盘格式</value>
   </data>
-  <data name="AnalyzePage_IsAMinimal" xml:space="preserve">
-    <value>为精简题</value>
-  </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>是否为精简题：</value>
-  </data>
-  <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
-    <value>不限制</value>
-  </data>
-  <data name="AnalyzePage_IttoryuLength" xml:space="preserve">
-    <value>一刀流路径长度：{0}</value>
-  </data>
-  <data name="AnalyzePage_IttoryuPathIsNotLimited" xml:space="preserve">
-    <value>不限制</value>
   </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>左右镜面翻转</value>
@@ -480,17 +459,11 @@
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>多行文本盘面格式</value>
   </data>
-  <data name="AnalyzePage_MultipleTechniquesSelected" xml:space="preserve">
-    <value>{0} 等 {1} 个技巧</value>
-  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>新题目</value>
   </data>
   <data name="AnalyzePage_None" xml:space="preserve">
     <value>无</value>
-  </data>
-  <data name="AnalyzePage_NumberOfGivens" xml:space="preserve">
-    <value> 个提示数</value>
   </data>
   <data name="AnalyzePage_Okay" xml:space="preserve">
     <value>好嘞！</value>
@@ -618,29 +591,8 @@
   <data name="AnalyzePage_SelectDrawingMode" xml:space="preserve">
     <value>模式：</value>
   </data>
-  <data name="AnalyzePage_SelectedDiamondRuleIs" xml:space="preserve">
-    <value>题目首步类型：{0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedDifficultyLevelIs" xml:space="preserve">
-    <value>难度：{0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedIttoryuIs" xml:space="preserve">
-    <value>一刀流长度：{0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedMinimalRuleIs" xml:space="preserve">
-    <value>是否为精简题：{0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedSymmetricTypeIs" xml:space="preserve">
-    <value>对称规则：{0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedTechniqueIs" xml:space="preserve">
-    <value>必须出现的技巧：{0}</value>
-  </data>
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>步骤信息：</value>
-  </data>
-  <data name="AnalyzePage_SingleTechniquesSelected" xml:space="preserve">
-    <value>{0}</value>
   </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>解题步骤</value>
@@ -783,9 +735,6 @@
   <data name="GeneratingStrategyPage_CanRestrictGeneratingGivensCount" xml:space="preserve">
     <value>是否限制提示数数量：</value>
   </data>
-  <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
-    <value>钻石题</value>
-  </data>
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>难度级别：</value>
   </data>
@@ -824,12 +773,6 @@
   </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>主策略</value>
-  </data>
-  <data name="GeneratingStrategyPage_NormalPuzzle" xml:space="preserve">
-    <value>普通题</value>
-  </data>
-  <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
-    <value>珍珠题</value>
   </data>
   <data name="GeneratingStrategyPage_RealIttoryu" xml:space="preserve">
     <value>9（一刀流）</value>
@@ -2189,9 +2132,6 @@
   <data name="TechniqueSelectionPage_SudokuExplainerRating" xml:space="preserve">
     <value>Sudoku Explainer (SE) 难度系数</value>
   </data>
-  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
-    <value>未选择技巧</value>
-  </data>
   <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
     <value>是否为珍珠题：</value>
   </data>
@@ -2404,5 +2344,8 @@
   </data>
   <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
     <value>必出技巧约束</value>
+  </data>
+  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>未选择任何技巧</value>
   </data>
 </root>

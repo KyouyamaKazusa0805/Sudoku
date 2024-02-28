@@ -135,9 +135,6 @@
 		<Page Update="Views\Pages\MainNavigationPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\TechniqueSelectionPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\StepSearcherSorterPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

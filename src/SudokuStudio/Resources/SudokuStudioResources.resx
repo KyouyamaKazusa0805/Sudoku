@@ -408,20 +408,11 @@
   <data name="AnalyzePage_GenerateDate" xml:space="preserve">
     <value>Generate date:</value>
   </data>
-  <data name="AnalyzePage_GeneratedPuzzleGivensIs" xml:space="preserve">
-    <value>Givens: {0}{1}</value>
-  </data>
-  <data name="AnalyzePage_GeneratedPuzzleGivensNoRestriction" xml:space="preserve">
-    <value>Any number of givens</value>
-  </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzle" xml:space="preserve">
     <value>Should Be Minimal? </value>
   </data>
   <data name="AnalyzePage_GenerateForMinimalPuzzleTooltip" xml:space="preserve">
     <value>If any one given in a puzzle cannot be removed, the puzzle will be minimal.</value>
-  </data>
-  <data name="AnalyzePage_GeneratingStrategySelected" xml:space="preserve">
-    <value>Active strategy: Main</value>
   </data>
   <data name="AnalyzePage_GeneratorIsProcessing" xml:space="preserve">
     <value>Generator is processing...</value>
@@ -435,20 +426,8 @@
   <data name="AnalyzePage_InitialGridFormat" xml:space="preserve">
     <value>Initial grid format</value>
   </data>
-  <data name="AnalyzePage_IsAMinimal" xml:space="preserve">
-    <value>Is a minimal</value>
-  </data>
   <data name="AnalyzePage_IsMinimal" xml:space="preserve">
     <value>Is Minimal puzzle: </value>
-  </data>
-  <data name="AnalyzePage_IsNotMinimal" xml:space="preserve">
-    <value>Not a minimal</value>
-  </data>
-  <data name="AnalyzePage_IttoryuLength" xml:space="preserve">
-    <value>Ittoryu path length: {0}</value>
-  </data>
-  <data name="AnalyzePage_IttoryuPathIsNotLimited" xml:space="preserve">
-    <value>No limit for ittoryu path length</value>
   </data>
   <data name="AnalyzePage_LeftRightSwapButton" xml:space="preserve">
     <value>Left-Right swap</value>
@@ -480,17 +459,11 @@
   <data name="AnalyzePage_MultipleLineGridFormat" xml:space="preserve">
     <value>Multiple-line simple grid format</value>
   </data>
-  <data name="AnalyzePage_MultipleTechniquesSelected" xml:space="preserve">
-    <value>{0} and {1} techniques in total</value>
-  </data>
   <data name="AnalyzePage_NewPuzzle" xml:space="preserve">
     <value>New puzzle</value>
   </data>
   <data name="AnalyzePage_None" xml:space="preserve">
     <value>None</value>
-  </data>
-  <data name="AnalyzePage_NumberOfGivens" xml:space="preserve">
-    <value> givens</value>
   </data>
   <data name="AnalyzePage_Okay" xml:space="preserve">
     <value>OK</value>
@@ -618,29 +591,8 @@
   <data name="AnalyzePage_SelectDrawingMode" xml:space="preserve">
     <value>Mode: </value>
   </data>
-  <data name="AnalyzePage_SelectedDiamondRuleIs" xml:space="preserve">
-    <value>Diamond Rule: {0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedDifficultyLevelIs" xml:space="preserve">
-    <value>Difficulty Level: {0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedIttoryuIs" xml:space="preserve">
-    <value>Ittoryu Length: {0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedMinimalRuleIs" xml:space="preserve">
-    <value>Minimal Rule: {0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedSymmetricTypeIs" xml:space="preserve">
-    <value>Symmetric Type: {0}</value>
-  </data>
-  <data name="AnalyzePage_SelectedTechniqueIs" xml:space="preserve">
-    <value>Technique: {0}</value>
-  </data>
   <data name="AnalyzePage_SimpleDescription" xml:space="preserve">
     <value>Step Description:</value>
-  </data>
-  <data name="AnalyzePage_SingleTechniquesSelected" xml:space="preserve">
-    <value>{0}</value>
   </data>
   <data name="AnalyzePage_StepDetail" xml:space="preserve">
     <value>Solving Path</value>
@@ -783,9 +735,6 @@
   <data name="GeneratingStrategyPage_CanRestrictGeneratingGivensCount" xml:space="preserve">
     <value>Limit the number of givens: </value>
   </data>
-  <data name="GeneratingStrategyPage_DiamondPuzzle" xml:space="preserve">
-    <value>Diamond</value>
-  </data>
   <data name="GeneratingStrategyPage_DifficultyLevel" xml:space="preserve">
     <value>Difficulty Level: </value>
   </data>
@@ -824,12 +773,6 @@
   </data>
   <data name="GeneratingStrategyPage_Main" xml:space="preserve">
     <value>Main</value>
-  </data>
-  <data name="GeneratingStrategyPage_NormalPuzzle" xml:space="preserve">
-    <value>Normal</value>
-  </data>
-  <data name="GeneratingStrategyPage_PearlPuzzle" xml:space="preserve">
-    <value>Pearl</value>
   </data>
   <data name="GeneratingStrategyPage_RealIttoryu" xml:space="preserve">
     <value>9 (Full Ittoryu)</value>
@@ -2189,9 +2132,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelectionPage_SudokuExplainerRating" xml:space="preserve">
     <value>Sudoku Explainer Rating</value>
   </data>
-  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
-    <value>No technique selected</value>
-  </data>
   <data name="TechniqueSelector_ShouleBePearlPuzzle" xml:space="preserve">
     <value>Should be pearl puzzle: </value>
   </data>
@@ -2404,5 +2344,8 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_TechniqueConstraint" xml:space="preserve">
     <value>Technique constraint</value>
+  </data>
+  <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
+    <value>No techniques selected</value>
   </data>
 </root>

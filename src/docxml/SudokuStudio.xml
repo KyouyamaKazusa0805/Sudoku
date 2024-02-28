@@ -1765,29 +1765,11 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimalProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearlProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndViewProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCountProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotationProperty">
             <summary>
@@ -1927,12 +1909,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSaving"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCountProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLengthProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength"/>.
@@ -2004,18 +1980,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevelProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPatternProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKindProperty">
             <summary>
@@ -2281,12 +2245,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniquesProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColorsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors"/>.
@@ -2383,24 +2341,9 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.TransparentBackground">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBeMinimal">
-            <summary>
-            Indicates whether the generated puzzles should be minimal.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleShouldBePearl">
-            <summary>
-            Indicates whether the generated puzzles should be pearl.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AutoCachePuzzleAndView">
             <summary>
             Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CanRestrictGeneratingGivensCount">
-            <summary>
-            Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeLettersUpperCaseInRxCyNotation">
@@ -2510,11 +2453,6 @@
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.UIPreferenceGroup.DesiredPictureSizeOnSavingProperty" />
         </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratedPuzzleGivensCount">
-            <summary>
-            Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.IttoryuLength">
             <summary>
             Indicates the ittoryu length for the generated puzzles.
@@ -2579,16 +2517,6 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.StepDisplayItems">
             <summary>
             Indicates the tooltip display items.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorDifficultyLevel">
-            <summary>
-            Indicates the difficulty level for generated puzzles.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSymmetricPattern">
-            <summary>
-            Indicates the symmetric pattern for generated puzzles.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.ConceptNotationBasedKind">
@@ -2759,11 +2687,6 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
             <summary>
             Indicates the renderable items produced by last opened puzzle.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GeneratorSelectedTechniques">
-            <summary>
-            Indicates the selected techniques used by generator module.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
@@ -6320,16 +6243,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Generate date:.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratedPuzzleGivensIs">
-            <summary>
-              Looks up a localized string similar to Givens: {0}{1}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratedPuzzleGivensNoRestriction">
-            <summary>
-              Looks up a localized string similar to Any number of givens.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GenerateForMinimalPuzzle">
             <summary>
               Looks up a localized string similar to Should Be Minimal? .
@@ -6338,11 +6251,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GenerateForMinimalPuzzleTooltip">
             <summary>
               Looks up a localized string similar to If any one given in a puzzle cannot be removed, the puzzle will be minimal..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratingStrategySelected">
-            <summary>
-              Looks up a localized string similar to Active strategy: Main.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GeneratorIsProcessing">
@@ -6365,29 +6273,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Initial grid format.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsAMinimal">
-            <summary>
-              Looks up a localized string similar to Is a minimal.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsMinimal">
             <summary>
               Looks up a localized string similar to Is Minimal puzzle: .
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IsNotMinimal">
-            <summary>
-              Looks up a localized string similar to Not a minimal.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IttoryuLength">
-            <summary>
-              Looks up a localized string similar to Ittoryu path length: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_IttoryuPathIsNotLimited">
-            <summary>
-              Looks up a localized string similar to No limit for ittoryu path length.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_LeftRightSwapButton">
@@ -6440,11 +6328,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Multiple-line simple grid format.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_MultipleTechniquesSelected">
-            <summary>
-              Looks up a localized string similar to {0} and {1} techniques in total.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_NewPuzzle">
             <summary>
               Looks up a localized string similar to New puzzle.
@@ -6453,11 +6336,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_None">
             <summary>
               Looks up a localized string similar to None.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_NumberOfGivens">
-            <summary>
-              Looks up a localized string similar to  givens.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_Okay">
@@ -6670,44 +6548,9 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Mode: .
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedDiamondRuleIs">
-            <summary>
-              Looks up a localized string similar to Diamond Rule: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedDifficultyLevelIs">
-            <summary>
-              Looks up a localized string similar to Difficulty Level: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedIttoryuIs">
-            <summary>
-              Looks up a localized string similar to Ittoryu Length: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedMinimalRuleIs">
-            <summary>
-              Looks up a localized string similar to Minimal Rule: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedSymmetricTypeIs">
-            <summary>
-              Looks up a localized string similar to Symmetric Type: {0}.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SelectedTechniqueIs">
-            <summary>
-              Looks up a localized string similar to Technique: {0}.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SimpleDescription">
             <summary>
               Looks up a localized string similar to Step Description:.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SingleTechniquesSelected">
-            <summary>
-              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_StepDetail">
@@ -7130,11 +6973,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Limit the number of givens: .
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_DiamondPuzzle">
-            <summary>
-              Looks up a localized string similar to Diamond.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level: .
@@ -7198,16 +7036,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_Main">
             <summary>
               Looks up a localized string similar to Main.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_NormalPuzzle">
-            <summary>
-              Looks up a localized string similar to Normal.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_PearlPuzzle">
-            <summary>
-              Looks up a localized string similar to Pearl.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_RealIttoryu">
@@ -9480,7 +9308,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueSelector_NoTechniqueSelected">
             <summary>
-              Looks up a localized string similar to No technique selected.
+              Looks up a localized string similar to No techniques selected.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueSelector_ShouleBePearlPuzzle">
@@ -14790,42 +14618,6 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechnique"/>
         </member>
         <member name="P:SudokuStudio.Views.Pages.TechniqueGalleryPage.CurrentSelectedTechnique">
-            <summary>
-            Indicates the currently selected technique.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Views.Pages.TechniqueSelectionPage">
-            <summary>
-            Represents a page that can select multiple techniques.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueSelectionPage"/> instance.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.TechniqueSelectionPage.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechniqueProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique"/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.TechniqueSelectionPage.CurrentSelectedTechnique">
             <summary>
             Indicates the currently selected technique.
             </summary>

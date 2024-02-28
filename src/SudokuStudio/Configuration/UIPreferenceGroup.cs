@@ -14,10 +14,7 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>("EnableRightTapRemovingForSudokuPane", DefaultValue = true, DocSummary = "Indicates whether sudoku pane in analysis page provides with a simpler way to delete digits via right tapping.")]
 [DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EnableAnimationFeedback")]
 [DependencyProperty<bool>("TransparentBackground", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.TransparentBackground")]
-[DependencyProperty<bool>("GeneratedPuzzleShouldBeMinimal", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be minimal.")]
-[DependencyProperty<bool>("GeneratedPuzzleShouldBePearl", DefaultValue = false, DocSummary = "Indicates whether the generated puzzles should be pearl.")]
 [DependencyProperty<bool>("AutoCachePuzzleAndView", DefaultValue = false, DocSummary = "Indicates whether the last puzzle and its views should be cached to local path, in order to recover them after you re-start or launch the program.")]
-[DependencyProperty<bool>("CanRestrictGeneratingGivensCount", DocSummary = "Indicates whether the generator will limit the number of givens. The value should be used with another property 'GeneratingGivensCount'.")]
 [DependencyProperty<bool>("MakeLettersUpperCaseInRxCyNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates if worth.")]
 [DependencyProperty<bool>("MakeLettersUpperCaseInK9Notation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in K9 notation if worth.")]
 [DependencyProperty<bool>("MakeLettersUpperCaseInExcelNotation", DocSummary = "Indicates whether UI makes letters upper-casing on displaying coordinates in Excel notation if worth.")]
@@ -41,7 +38,6 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<int>("EliminationDisplayMode", DefaultValue = (int)EliminationDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EliminationDisplayMode")]
 [DependencyProperty<int>("AssignmentDisplayMode", DefaultValue = (int)AssignmentDisplay.CircleSolid, DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AssignmentDisplayMode")]
 [DependencyProperty<int>("DesiredPictureSizeOnSaving", DefaultValue = 1000)]
-[DependencyProperty<int>("GeneratedPuzzleGivensCount", DefaultValue = -1, DocSummary = "Indicates how many the number of givens will be used for generating. The value must be -1 or between 17 and 80. -1 is for no restriction for generating a puzzle on limiting with the number of givens.")]
 [DependencyProperty<int>("IttoryuLength", DefaultValue = 0, DocSummary = "Indicates the ittoryu length for the generated puzzles.")]
 [DependencyProperty<int>("Language", DefaultValue = 0, DocSummary = "Indicates the language of UI.")]
 [DependencyProperty<string>("GivenFontName", DefaultValue = "Cascadia Code")]
@@ -54,8 +50,6 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<string>("FetchingPuzzleLibrary?", DocSummary = "Indicates the file ID of the puzzle library that you want to be used for generating in analyzer page.")]
 [DependencyProperty<BackdropKind>("Backdrop", DefaultValue = BackdropKind.Acrylic)]
 [DependencyProperty<StepTooltipDisplayItems>("StepDisplayItems", DefaultValue = StepTooltipDisplayItems.TechniqueName | StepTooltipDisplayItems.DifficultyRating | StepTooltipDisplayItems.SimpleDescription | StepTooltipDisplayItems.ExtraDifficultyCases, DocSummary = "Indicates the tooltip display items.")]
-[DependencyProperty<DifficultyLevel>("GeneratorDifficultyLevel", DefaultValue = 0, DocSummary = "Indicates the difficulty level for generated puzzles.")]
-[DependencyProperty<SymmetricType>("GeneratorSymmetricPattern", DefaultValue = 0, DocSummary = "Indicates the symmetric pattern for generated puzzles.")]
 [DependencyProperty<CoordinateType>("ConceptNotationBasedKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the based type for displaying a concept notation.")]
 [DependencyProperty<Theme>("CurrentTheme", DefaultValue = Theme.Default, DocSummary = "Indicates the theme used in this program.")]
 [DependencyProperty<Color>("GivenFontColor")]
@@ -100,7 +94,6 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
 [DependencyProperty<Grid>("LastGridPuzzle", DocSummary = "Indicates the last opened puzzle to be loaded or saved.")]
 [DependencyProperty<UserDefinedRenderable?>("LastRenderable", DocSummary = "Indicates the renderable items produced by last opened puzzle.")]
-[DependencyProperty<TechniqueSet>("GeneratorSelectedTechniques", DocSummary = "Indicates the selected techniques used by generator module.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
 [DependencyProperty<ColorPalette>("DifficultyLevelForegrounds", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.DifficultyLevelForegrounds")]
@@ -262,9 +255,6 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 	[Default]
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;
-
-	[Default]
-	private static readonly TechniqueSet GeneratorSelectedTechniquesDefaultValue = TechniqueSets.None;
 
 	[Default]
 	private static readonly ColorPalette AuxiliaryColorsDefaultValue = [
