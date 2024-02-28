@@ -302,11 +302,13 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_GivensCount"),
 					Tag = CellState.Given
 				},
+#if false
 				new ComboBoxItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ModifiablesCount"),
 					Tag = CellState.Modifiable
 				},
+#endif
 				new ComboBoxItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EmptiesCount"),
