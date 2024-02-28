@@ -14,5 +14,7 @@ public static class DifficultyLevelExtensions
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string GetName(this DifficultyLevel @this, CultureInfo? culture = null)
-		=> ResourceDictionary.Get(@this.ToString(), culture);
+		=> PopCount((uint)(int)@this) < 2
+			? ResourceDictionary.Get(@this.ToString(), culture)
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleFlagsExist"));
 }

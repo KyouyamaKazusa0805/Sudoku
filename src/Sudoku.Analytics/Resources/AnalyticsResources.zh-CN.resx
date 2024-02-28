@@ -3035,4 +3035,10 @@
 	<data name="Nightmare" xml:space="preserve">
     <value>地狱</value>
   </data>
+  <data name="LastResort" xml:space="preserve">
+    <value>爆破技巧</value>
+  </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
 </root>

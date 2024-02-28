@@ -2743,6 +2743,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Last Resort.
+        /// </summary>
+        public static string LastResort {
+            get {
+                return ResourceManager.GetString("LastResort", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Law of Leftover.
         /// </summary>
         public static string LawOfLeftover {
@@ -7986,6 +7995,15 @@ namespace Sudoku.Resources {
         public static string UniqueRectangleXyzWing {
             get {
                 return ResourceManager.GetString("UniqueRectangleXyzWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unknown.
+        /// </summary>
+        public static string Unknown {
+            get {
+                return ResourceManager.GetString("Unknown", resourceCulture);
             }
         }
         

@@ -23006,6 +23006,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Last Digit.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.LastResort">
+            <summary>
+              Looks up a localized string similar to Last Resort.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.LawOfLeftover">
             <summary>
               Looks up a localized string similar to Law of Leftover.
@@ -25919,6 +25924,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleXyzWing">
             <summary>
               Looks up a localized string similar to Unique Rectangle XYZ-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Unknown">
+            <summary>
+              Looks up a localized string similar to Unknown.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UvwxyzWing">

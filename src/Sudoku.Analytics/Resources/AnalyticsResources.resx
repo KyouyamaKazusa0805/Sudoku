@@ -2811,6 +2811,9 @@
   <data name="Easy" xml:space="preserve">
     <value>Easy</value>
   </data>
+  <data name="Unknown" xml:space="preserve">
+    <value>Unknown</value>
+  </data>
 	<data name="Moderate" xml:space="preserve">
     <value>Moderate</value>
   </data>
@@ -2820,7 +2823,10 @@
 	<data name="Fiendish" xml:space="preserve">
     <value>Fiendish</value>
   </data>
-	<data name="Nightmare" xml:space="preserve">
+  <data name="Nightmare" xml:space="preserve">
     <value>Nightmare</value>
+  </data>
+  <data name="LastResort" xml:space="preserve">
+    <value>Last Resort</value>
   </data>
 </root>
