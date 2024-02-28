@@ -9209,11 +9209,12 @@ if (student is (name: var name, age: >= 18))
             <list type="bullet">
             <item>Junior Exocet</item>
             <item>Weak Exocet</item>
+            <item>Lame Weak Exocet</item>
             <item>Double Exocet</item>
             <item>Senior Exocet</item>
-            <!--<item>Complex Junior Exocet</item>-->
+            <item>Complex Junior Exocet</item>
             <item>Complex Senior Exocet</item>
-            <!--<item>Advanced Complex Junior Exocet</item>-->
+            <item>Advanced Complex Junior Exocet</item>
             <item>Advanced Complex Senior Exocet</item>
             <!--<item>Pattern-Locked Quadruple</item>-->
             </list>
