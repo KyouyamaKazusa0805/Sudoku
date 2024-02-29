@@ -18,7 +18,7 @@ public sealed partial class RectangleDeathBlossomStep(
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] RectangleBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options), IEquatableStep<RectangleDeathBlossomStep>
+) : DeathBlossomBaseStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
@@ -47,7 +47,7 @@ public sealed partial class RectangleDeathBlossomStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<RectangleDeathBlossomStep>.operator ==(RectangleDeathBlossomStep left, RectangleDeathBlossomStep right)
-		=> (left.Pattern, left.IsAvoidable, left.Branches) == (right.Pattern, right.IsAvoidable, right.Branches);
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is RectangleDeathBlossomStep comparer
+		&& (Pattern, IsAvoidable, Branches) == (comparer.Pattern, comparer.IsAvoidable, comparer.Branches);
 }

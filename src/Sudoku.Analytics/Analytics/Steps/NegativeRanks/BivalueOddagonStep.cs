@@ -16,7 +16,7 @@ public abstract partial class BivalueOddagonStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2
-) : NegativeRankStep(conclusions, views, options), IEquatableStep<BivalueOddagonStep>
+) : NegativeRankStep(conclusions, views, options)
 {
 	/// <summary>
 	/// Indicates the type of the technique.
@@ -36,7 +36,24 @@ public abstract partial class BivalueOddagonStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<BivalueOddagonStep>.operator ==(BivalueOddagonStep left, BivalueOddagonStep right)
-		=> (left.Type, left.Digit1, left.Digit2, left.LoopCells) == (right.Type, right.Digit1, right.Digit2, right.LoopCells);
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is BivalueOddagonStep comparer
+		&& (Type, Digit1, Digit2, LoopCells) == (comparer.Type, comparer.Digit1, comparer.Digit2, comparer.LoopCells);
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
+	{
+		if (other is not BivalueOddagonStep comparer)
+		{
+			return 1;
+		}
+
+		var r1 = Math.Abs(LoopCells.Count - comparer.LoopCells.Count);
+		if (r1 != 0)
+		{
+			return r1;
+		}
+
+		return Math.Abs(Code - comparer.Code);
+	}
 }

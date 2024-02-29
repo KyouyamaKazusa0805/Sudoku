@@ -363,18 +363,18 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 			if (accumulatorHouse.Count != 0)
 			{
-				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorHouse));
+				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorHouse));
 			}
 
 			if (accumulatorRectangle.Count != 0)
 			{
-				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorRectangle));
+				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorRectangle));
 			}
 
 			if (accumulatorNTimesAls.Count != 0)
 			{
-				ComparableStep.Order(accumulatorNTimesAls);
-				context.Accumulator.AddRange(EquatableStep.Distinct(accumulatorNTimesAls));
+				Step.SortItems(accumulatorNTimesAls);
+				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorNTimesAls));
 			}
 		}
 
@@ -799,13 +799,13 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 		// Check for Z digits.
 		//var clrCands = grid.ToCandidateMaskArray();
-		var (usedAlsesCount, tCand, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, (Mask)0, new int[10]);
+		var (usedAlsesCount, zDigitsMask, entryCellDigitsMask, indexUsed2All) = (0, (Mask)0, (Mask)0, new int[10]);
 		foreach (var cell in selectedAlsEntryCell[..satisfiedSize])
 		{
 			var currentCellDigitsMask = grid.GetCandidates(cell);
 			entryCellDigitsMask |= currentCellDigitsMask;
 
-			tCand = (Mask)(currentCellDigitsMask & ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit)));
+			var tCand = (Mask)(currentCellDigitsMask & ~(selectedCellDigitsMask[satisfiedSize - 1] | (Mask)(1 << wrongDigit)));
 			foreach (var digit in tCand)
 			{
 				var candidate = cell * 9 + digit;
@@ -856,7 +856,6 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			var rcc = (Mask)0;
 			var branchCandidates = CandidateMap.Empty;
 			var view = new View();
-			var branchDigit = -1;
 			for (var currentDigit = 0; currentDigit < 9; currentDigit++)
 			{
 				if (!alsesUsed[usedAlsIndex * 9 + currentDigit])
@@ -865,7 +864,6 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 				}
 
 				nTimesAlsDigitsMask |= (Mask)(1 << currentDigit);
-				branchDigit = currentDigit;
 				rcc |= (Mask)(1 << currentDigit);
 				foreach (var cell in alsesUsed[usedAlsIndex * 9 + currentDigit])
 				{

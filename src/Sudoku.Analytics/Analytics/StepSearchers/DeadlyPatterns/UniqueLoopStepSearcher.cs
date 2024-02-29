@@ -92,10 +92,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultList = from step in EquatableStep.Distinct(resultAccumulator) orderby step.Loop.Count select step;
+		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
+		Step.SortItems(resultList);
+
 		if (onlyFindOne)
 		{
-			return resultList.First();
+			return resultList[0];
 		}
 
 		accumulator.AddRange(resultList);

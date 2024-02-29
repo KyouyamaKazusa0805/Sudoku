@@ -5986,6 +5986,32 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Step.CompareTo(Sudoku.Analytics.Step)">
+            <summary>
+            Compares two <see cref="T:Sudoku.Analytics.Step"/> instances, determining which one is greater.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <returns>
+            An <see cref="T:System.Int32"/> value indicating the result. The comparison rule is:
+            <list type="number">
+            <item>If the argument <paramref name="other"/> is <see langword="null"/>, return 1.</item>
+            <item>
+            If the argument <paramref name="other"/> isn't <see langword="null"/>, compare the technique used.
+            If the code is greater, the instance will be greater.
+            </item>
+            </list>
+            The rule (2) can also be replaced with customized logic
+            if you want to make the comparison perform better and more strict.
+            </returns>
+            <remarks>
+            <para>
+            Please note that the argument can be <see langword="null"/>, which is expected. If the argument is not of the same type
+            as <see langword="this"/>, we should return 1 to describe the comparison is not successful
+            (the number 1 indicates <see langword="this"/> is greater).
+            </para>
+            <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)">
             <summary>
             Try to fetch the name of this technique step, with the specified culture.
@@ -6008,6 +6034,23 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="culture">The culture information.</param>
             <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.SortItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Sorts <typeparamref name="TStep"/> instances from the list collection.
+            </summary>
+            <typeparam name="TStep">The type of each step.</typeparam>
+            <param name="accumulator">The accumulator instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.RemoveDuplicateItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Compares <typeparamref name="TStep"/> instances from the list collection,
+            removing duplicate items by using <see cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/> to as equality comparison rules.
+            </summary>
+            <typeparam name="TStep">The type of each step.</typeparam>
+            <param name="accumulator">The accumulator instance.</param>
+            <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
+            <seealso cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
@@ -6035,6 +6078,49 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.Step.op_Inequality(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.op_GreaterThan(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.op_LessThan(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.op_GreaterThanOrEqual(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.op_LessThanOrEqual(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.EqualityComparer`1">
+            <summary>
+            The internal equality comparer type for <typeparamref name="T"/> instances.
+            </summary>
+            <typeparam name="T">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Analytics.EqualityComparer`1.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.EqualityComparer`1.Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.EqualityComparer`1.GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Comparer`1">
+            <summary>
+            The internal comparer type for <typeparamref name="T"/> instances.
+            </summary>
+            <typeparam name="T">The type of the step.</typeparam>
+        </member>
+        <member name="F:Sudoku.Analytics.Comparer`1.Instance">
+            <summary>
+            The singleton instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Comparer`1.Compare(`0,`0)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>
@@ -11640,7 +11726,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#HouseDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.HouseDeathBlossomStep,Sudoku.Analytics.Steps.HouseDeathBlossomStep)">
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.House">
@@ -11699,10 +11785,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#NTimesAlmostLockedSetDeathBlossomStep}#Compare(Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep,Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#NTimesAlmostLockedSetDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep,Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.NTimesAlmostLockedSetDigitsMask">
@@ -11761,7 +11847,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#RectangleDeathBlossomStep}#op_Equality(Sudoku.Analytics.Steps.RectangleDeathBlossomStep,Sudoku.Analytics.Steps.RectangleDeathBlossomStep)">
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Pattern">
@@ -11968,7 +12054,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.GetLinks(System.Int32)">
             <inheritdoc cref="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#BlossomLoopStep}#Compare(Sudoku.Analytics.Steps.BlossomLoopStep,Sudoku.Analytics.Steps.BlossomLoopStep)">
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.HouseIndex">
@@ -12132,6 +12218,9 @@ if (student is (name: var name, age: >= 18))
             Returns the number of nested views.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Gets parent rules. This method can only be used on advanced chain relations.
@@ -12270,9 +12359,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="target">The target node.</param>
             <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#ChainingStep}#Compare(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
             <summary>
@@ -12427,25 +12513,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>chains</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.ComparableStep">
-            <summary>
-            Represents a type that operates with <see cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(``0[])">
-            <inheritdoc cref="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComparableStep.Order``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Try to order the <typeparamref name="TSelf"/> collection via the specified comparison rule,
-            if type argument <typeparamref name="TSelf"/> implements <see cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>.
-            </summary>
-            <typeparam name="TSelf"><inheritdoc cref="T:Sudoku.Analytics.Steps.IComparableStep`1" path="/typeparam[@name='TSelf']"/></typeparam>
-            <param name="this">A collection.</param>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-            <seealso cref="T:Sudoku.Analytics.Steps.IComparableStep`1"/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
             <summary>
@@ -13280,7 +13347,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueLoopStep}#op_Equality(Sudoku.Analytics.Steps.UniqueLoopStep,Sudoku.Analytics.Steps.UniqueLoopStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Digit1">
@@ -14646,10 +14716,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IComparableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#Compare(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#UniqueRectangleStep}#op_Equality(Sudoku.Analytics.Steps.UniqueRectangleStep,Sudoku.Analytics.Steps.UniqueRectangleStep)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Code">
@@ -15119,7 +15189,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the last cells used that are not empty.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ReverseBivalueUniversalGraveStep}#op_Equality(Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep,Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Digit1">
@@ -15301,37 +15371,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>conjugatePair</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.EquatableStep">
-            <summary>
-            Represents a type that operates with <see cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.IEquatableStep`1"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.EquatableStep.Distinct``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Try to compare elements, removing all duplicated ones in this collection,
-            which uses the operator <see cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/> defined in this interface.
-            </summary>
-            <param name="steps">The list of steps to be processed.</param>
-            <returns>The list of steps.</returns>
-            <remarks>
-            This method does not change the ordering of the original list.
-            In other words, if the original list is in order, the final list after invoking this method will be also in order.
-            </remarks>
-            <seealso cref="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.EqualityComparer`1">
-            <summary>
-            The internal comparer type for <typeparamref name="T"/> instances.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.EqualityComparer`1.GetHashCode(`0)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep">
             <summary>
@@ -16384,7 +16423,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#ComplexFishStep}#op_Equality(Sudoku.Analytics.Steps.ComplexFishStep,Sudoku.Analytics.Steps.ComplexFishStep)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Exofins">
@@ -16579,57 +16618,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the internal name.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.IComparableStep`1">
-            <summary>
-            Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
-            </summary>
-            <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.Compare(`0,`0)">
-            <summary>
-            Compares two <typeparamref name="TSelf"/> instance, and returns an <see cref="T:System.Int32"/> indicating which value is greater.
-            </summary>
-            <param name="left">The left-side value to be compared.</param>
-            <param name="right">The right-side value to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating which is greater.</returns>
-            <inheritdoc cref="M:System.Collections.Generic.IComparer`1.Compare(`0,`0)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_GreaterThan(`0,`0)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_GreaterThanOrEqual(`0,`0)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_LessThan(`0,`0)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IComparableStep`1.op_LessThanOrEqual(`0,`0)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.IEquatableStep`1">
-            <summary>
-            Represents a type that can be used for comparison on two <typeparamref name="TSelf"/> instances.
-            </summary>
-            <typeparam name="TSelf">The type of the comparison object. The type must be derived from <see cref="T:Sudoku.Analytics.Step"/>.</typeparam>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Equality(`0,`0)">
-            <summary>
-            Determines whether two <typeparamref name="TSelf"/> instances are considered equal.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two <typeparamref name="TSelf"/> instances are considered equal.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.IEquatableStep`1.op_Inequality(`0,`0)">
-            <summary>
-            Determines whether two <typeparamref name="TSelf"/> instances are not considered equal.
-            </summary>
-            <param name="left">The first element to be compared.</param>
-            <param name="right">The second element to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether two <typeparamref name="TSelf"/> instances are not considered equal.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
             <summary>
@@ -17356,7 +17344,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#BivalueOddagonStep}#op_Equality(Sudoku.Analytics.Steps.BivalueOddagonStep,Sudoku.Analytics.Steps.BivalueOddagonStep)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.LoopCells">
@@ -17618,7 +17609,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GuardianStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#GuardianStep}#op_Equality(Sudoku.Analytics.Steps.GuardianStep,Sudoku.Analytics.Steps.GuardianStep)">
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.Equals(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Digit">
@@ -17686,7 +17680,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.Sudoku#Analytics#Steps#IEquatableStep{Sudoku#Analytics#Steps#AlignedExclusionStep}#op_Equality(Sudoku.Analytics.Steps.AlignedExclusionStep,Sudoku.Analytics.Steps.AlignedExclusionStep)">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Cells">

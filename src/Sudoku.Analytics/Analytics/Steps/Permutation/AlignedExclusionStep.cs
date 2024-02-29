@@ -14,7 +14,7 @@ public sealed partial class AlignedExclusionStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
-) : PermutationStep(conclusions, views, options), IEquatableStep<AlignedExclusionStep>
+) : PermutationStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
@@ -50,7 +50,5 @@ public sealed partial class AlignedExclusionStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<AlignedExclusionStep>.operator ==(AlignedExclusionStep left, AlignedExclusionStep right)
-		=> left.Cells == right.Cells;
+	public override bool Equals([NotNullWhen(true)] Step? other) => other is AlignedExclusionStep comparer && Cells == comparer.Cells;
 }

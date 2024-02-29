@@ -16,7 +16,7 @@ public sealed partial class GuardianStep(
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap guardians
-) : NegativeRankStep(conclusions, views, options), IEquatableStep<GuardianStep>
+) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 5.5M;
@@ -43,7 +43,23 @@ public sealed partial class GuardianStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<GuardianStep>.operator ==(GuardianStep left, GuardianStep right)
-		=> (left.Digit, left.LoopCells, left.Guardians) == (right.Digit, right.LoopCells, right.Guardians);
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is GuardianStep comparer && (Digit, LoopCells, Guardians) == (comparer.Digit, comparer.LoopCells, comparer.Guardians);
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
+	{
+		if (other is not GuardianStep comparer)
+		{
+			return 1;
+		}
+
+		var r1 = Math.Abs(LoopCells.Count - comparer.LoopCells.Count);
+		if (r1 != 0)
+		{
+			return r1;
+		}
+
+		return Math.Abs(Guardians.Count - comparer.Guardians.Count);
+	}
 }

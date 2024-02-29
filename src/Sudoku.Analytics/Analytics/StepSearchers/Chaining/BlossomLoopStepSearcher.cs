@@ -21,7 +21,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		ComparableStep.Order(result);
+		Step.SortItems(result);
 
 		if (context.OnlyFindOne)
 		{

@@ -18,7 +18,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter(GeneratedMemberName = "CompletePattern")] scoped ref readonly CellMap pattern,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap emptyCells
-) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<ReverseBivalueUniversalGraveStep>
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -56,7 +56,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<ReverseBivalueUniversalGraveStep>.operator ==(ReverseBivalueUniversalGraveStep left, ReverseBivalueUniversalGraveStep right)
-		=> (left.Type, left.CompletePattern, left.Digit1, left.Digit2) == (right.Type, right.CompletePattern, right.Digit1, right.Digit2);
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is ReverseBivalueUniversalGraveStep comparer
+		&& (Type, CompletePattern, Digit1, Digit2) == (comparer.Type, comparer.CompletePattern, comparer.Digit1, comparer.Digit2);
 }

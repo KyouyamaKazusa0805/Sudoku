@@ -36,8 +36,7 @@ public sealed partial class ComplexFishStep(
 	[PrimaryConstructorParameter] bool isCannibalism,
 	bool isSiamese = false
 ) :
-	FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese),
-	IEquatableStep<ComplexFishStep>
+	FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
@@ -109,9 +108,9 @@ public sealed partial class ComplexFishStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<ComplexFishStep>.operator ==(ComplexFishStep left, ComplexFishStep right)
-		=> left.Digit == right.Digit
-		&& left.BaseSetsMask == right.BaseSetsMask && left.CoverSetsMask == right.CoverSetsMask
-		&& left.Exofins == right.Exofins && left.Endofins == right.Endofins;
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is ComplexFishStep comparer
+		&& Digit == comparer.Digit
+		&& BaseSetsMask == comparer.BaseSetsMask && CoverSetsMask == comparer.CoverSetsMask
+		&& Exofins == comparer.Exofins && Endofins == comparer.Endofins;
 }

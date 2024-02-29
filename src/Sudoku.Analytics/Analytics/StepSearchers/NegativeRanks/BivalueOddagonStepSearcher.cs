@@ -42,7 +42,6 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		// making it the start point to execute the recursion.
 		scoped ref readonly var grid = ref context.Grid;
 		var onlyFindOne = context.OnlyFindOne;
-		var resultList = default(IOrderedEnumerable<BivalueOddagonStep>);
 		if (collect(in grid) is not { Count: not 0 } oddagonInfoList)
 		{
 			return null;
@@ -84,7 +83,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		resultList = from step in EquatableStep.Distinct(resultAccumulator) orderby step.LoopCells.Count, step.Code select step;
+		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
+		Step.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
 			return resultList.First();

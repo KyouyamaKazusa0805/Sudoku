@@ -304,9 +304,9 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 			}
 		}
 
-		if (tempAccumulator.Count != 0)
+		if (tempAccumulator.Count != 0 && !context.OnlyFindOne)
 		{
-			context.Accumulator!.AddRange(EquatableStep.Distinct(tempAccumulator));
+			context.Accumulator.AddRange(Step.RemoveDuplicateItems(tempAccumulator));
 		}
 
 		return null;

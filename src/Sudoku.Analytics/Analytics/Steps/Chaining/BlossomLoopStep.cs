@@ -16,7 +16,7 @@ public sealed partial class BlossomLoopStep(
 	[PrimaryConstructorParameter] House houseIndex,
 	[PrimaryConstructorParameter] byte digit,
 	[PrimaryConstructorParameter] MultipleForcingChains chains
-) : Step(conclusions, views, options), IComparableStep<BlossomLoopStep>
+) : Step(conclusions, views, options)
 {
 	internal BlossomLoopStep(Conclusion[] conclusions, StepSearcherOptions options, House houseIndex, byte digit, MultipleForcingChains chains) :
 		this(conclusions, null!, options, houseIndex, digit, chains)
@@ -103,6 +103,6 @@ public sealed partial class BlossomLoopStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static int IComparableStep<BlossomLoopStep>.Compare(BlossomLoopStep left, BlossomLoopStep right) => Math.Sign(left.Difficulty - right.Difficulty);
+	public override int CompareTo(Step? other)
+		=> other is BlossomLoopStep comparer ? Math.Sign(Difficulty - comparer.Difficulty) : 1;
 }

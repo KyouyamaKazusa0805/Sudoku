@@ -18,10 +18,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap nTimesAlmostLockedSetCells,
 	[PrimaryConstructorParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] int freedomDegree
-) :
-	DeathBlossomBaseStep(conclusions, views, options),
-	IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>,
-	IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>
+) : DeathBlossomBaseStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
@@ -54,40 +51,50 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 
 	/// <inheritdoc/>
-	static int IComparableStep<NTimesAlmostLockedSetDeathBlossomStep>.Compare(NTimesAlmostLockedSetDeathBlossomStep left, NTimesAlmostLockedSetDeathBlossomStep right)
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is NTimesAlmostLockedSetDeathBlossomStep comparer
+		&& (NTimesAlmostLockedSetCells, NTimesAlmostLockedSetDigitsMask, Branches) == (comparer.NTimesAlmostLockedSetCells, comparer.NTimesAlmostLockedSetDigitsMask, comparer.Branches);
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
 	{
-		if (left.Branches.Count.CompareTo(right.Branches.Count) is var comparisonResult1 and not 0)
+		if (other is not NTimesAlmostLockedSetDeathBlossomStep comparer)
 		{
-			return comparisonResult1;
+			return 1;
 		}
 
-		var leftCellsCount = left.Branches.Values.Sum(alsCellsCountSelector);
-		var rightCellsCount = right.Branches.Values.Sum(alsCellsCountSelector);
-		if (leftCellsCount.CompareTo(rightCellsCount) is var comparisonResult2 and not 0)
+		if (Branches.Count.CompareTo(comparer.Branches.Count) is var r1 and not 0)
 		{
-			return comparisonResult2;
+			return r1;
 		}
 
-		if (left.Conclusions.Length.CompareTo(right.Conclusions.Length) is var comparisonResult3 and not 0)
+		var leftCellsCount = Branches.Values.Sum(alsCellsCountSelector);
+		var rightCellsCount = comparer.Branches.Values.Sum(alsCellsCountSelector);
+		if (leftCellsCount.CompareTo(rightCellsCount) is var r2 and not 0)
 		{
-			return comparisonResult3;
+			return r2;
 		}
 
-		if (left.NTimesAlmostLockedSetCells.CompareTo(right.NTimesAlmostLockedSetCells) is var comparisonResult4 and not 0)
+		if (Conclusions.Length.CompareTo(comparer.Conclusions.Length) is var r3 and not 0)
 		{
-			return comparisonResult4;
+			return r3;
 		}
 
-		if (left.NTimesAlmostLockedSetDigitsMask.CompareTo(right.NTimesAlmostLockedSetDigitsMask) is var comparisonResult5 and not 0)
+		if (NTimesAlmostLockedSetCells.CompareTo(comparer.NTimesAlmostLockedSetCells) is var r4 and not 0)
 		{
-			return comparisonResult5;
+			return r4;
 		}
 
-		foreach (var branchCandidates in left.Branches.Keys)
+		if (NTimesAlmostLockedSetDigitsMask.CompareTo(comparer.NTimesAlmostLockedSetDigitsMask) is var r5 and not 0)
 		{
-			if (left.Branches[branchCandidates].CompareTo(right.Branches[branchCandidates]) is var comparisonResult6 and not 0)
+			return r5;
+		}
+
+		foreach (var branchCandidates in Branches.Keys)
+		{
+			if (Branches[branchCandidates].CompareTo(comparer.Branches[branchCandidates]) is var r6 and not 0)
 			{
-				return comparisonResult6;
+				return r6;
 			}
 		}
 
@@ -96,11 +103,4 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 		static int alsCellsCountSelector(AlmostLockedSet s) => s.Cells.Count;
 	}
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<NTimesAlmostLockedSetDeathBlossomStep>.operator ==(NTimesAlmostLockedSetDeathBlossomStep left, NTimesAlmostLockedSetDeathBlossomStep right)
-		=> (left.NTimesAlmostLockedSetCells, left.NTimesAlmostLockedSetDigitsMask, left.Branches)
-		== (right.NTimesAlmostLockedSetCells, right.NTimesAlmostLockedSetDigitsMask, right.Branches);
 }

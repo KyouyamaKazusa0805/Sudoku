@@ -32,7 +32,7 @@ public abstract partial class UniqueRectangleStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] int absoluteOffset
-) : DeadlyPatternStep(conclusions, views, options), IComparableStep<UniqueRectangleStep>, IEquatableStep<UniqueRectangleStep>
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;
@@ -48,16 +48,26 @@ public abstract partial class UniqueRectangleStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static int IComparableStep<UniqueRectangleStep>.Compare(UniqueRectangleStep left, UniqueRectangleStep right)
-		=> Math.Sign(left.Code - right.Code) switch { 0 => Math.Sign(left.AbsoluteOffset - right.AbsoluteOffset), var result => result };
+	public override bool Equals([NotNullWhen(true)] Step? other)
+	{
+		if (other is not UniqueRectangleStep comparer)
+		{
+			return false;
+		}
 
+		if ((Code, AbsoluteOffset, Digit1, Digit2) != (comparer.Code, comparer.AbsoluteOffset, comparer.Digit1, comparer.Digit2))
+		{
+			return false;
+		}
+
+		var l = (CandidateMap)from conclusion in Conclusions select conclusion.Candidate;
+		var r = (CandidateMap)from conclusion in comparer.Conclusions select conclusion.Candidate;
+		return l == r;
+	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<UniqueRectangleStep>.operator ==(UniqueRectangleStep left, UniqueRectangleStep right)
-		=> (left.Code, left.AbsoluteOffset, left.Digit1, left.Digit2) == (right.Code, right.AbsoluteOffset, right.Digit1, right.Digit2)
-		&& (CandidateMap)([.. from conclusion in left.Conclusions select conclusion.Candidate]) is var l
-		&& (CandidateMap)([.. from conclusion in right.Conclusions select conclusion.Candidate]) is var r
-		&& l == r;
+	public override int CompareTo(Step? other)
+		=> other is UniqueRectangleStep comparer
+			? Math.Sign(Code - comparer.Code) switch { 0 => Math.Sign(AbsoluteOffset - comparer.AbsoluteOffset), var result => result }
+			: 1;
 }

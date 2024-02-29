@@ -22,7 +22,7 @@ public abstract partial class ChainingStep(
 	[PrimaryConstructorParameter] bool isDynamic = false,
 	[PrimaryConstructorParameter] bool isNishio = false,
 	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
-) : Step(conclusions, views, options), IComparableStep<ChainingStep>
+) : Step(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
@@ -239,6 +239,16 @@ public abstract partial class ChainingStep(
 		}
 	}
 
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
+		=> other is ChainingStep comparer
+			? Math.Sign(Difficulty - comparer.Difficulty) is var r1 and not 0
+				? r1
+				: Math.Sign(Complexity - comparer.Complexity) is var r2 and not 0
+					? r2
+					: Math.Sign(SortKey - comparer.SortKey) is var r3 and not 0 ? r3 : 0
+			: 1;
 
 	/// <summary>
 	/// Gets parent rules. This method can only be used on advanced chain relations.
@@ -625,15 +635,6 @@ public abstract partial class ChainingStep(
 
 		return result;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static int IComparableStep<ChainingStep>.Compare(ChainingStep left, ChainingStep right)
-		=> Math.Sign(left.Difficulty - right.Difficulty) is var d and not 0
-			? d
-			: Math.Sign(left.Complexity - right.Complexity) is var c and not 0
-				? c
-				: Math.Sign(left.SortKey - right.SortKey) is var s and not 0 ? s : 0;
 }
 
 /// <summary>

@@ -12,11 +12,18 @@ namespace Sudoku.Analytics;
 [Equals(OtherModifiers = "sealed")]
 [GetHashCode]
 [EqualityOperators]
+[ComparisonOperators]
 public abstract partial class Step(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,
 	[PrimaryConstructorParameter] View[]? views,
 	[PrimaryConstructorParameter] StepSearcherOptions options
-) : ICultureFormattable, IEqualityOperators<Step, Step, bool>, IEquatable<Step>, IRenderable
+) :
+	IComparable<Step>,
+	IComparisonOperators<Step, Step, bool>,
+	ICultureFormattable,
+	IEqualityOperators<Step, Step, bool>,
+	IEquatable<Step>,
+	IRenderable
 {
 	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:
@@ -213,6 +220,33 @@ public abstract partial class Step(
 		=> other is not null && (Code, ConclusionText) == (other.Code, other.ConclusionText);
 
 	/// <summary>
+	/// Compares two <see cref="Step"/> instances, determining which one is greater.
+	/// </summary>
+	/// <param name="other">The other object to be compared.</param>
+	/// <returns>
+	/// An <see cref="int"/> value indicating the result. The comparison rule is:
+	/// <list type="number">
+	/// <item>If the argument <paramref name="other"/> is <see langword="null"/>, return 1.</item>
+	/// <item>
+	/// If the argument <paramref name="other"/> isn't <see langword="null"/>, compare the technique used.
+	/// If the code is greater, the instance will be greater.
+	/// </item>
+	/// </list>
+	/// The rule (2) can also be replaced with customized logic
+	/// if you want to make the comparison perform better and more strict.
+	/// </returns>
+	/// <remarks>
+	/// <para>
+	/// Please note that the argument can be <see langword="null"/>, which is expected. If the argument is not of the same type
+	/// as <see langword="this"/>, we should return 1 to describe the comparison is not successful
+	/// (the number 1 indicates <see langword="this"/> is greater).
+	/// </para>
+	/// <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public virtual int CompareTo(Step? other) => other is null ? 1 : Math.Sign(Code - other.Code);
+
+	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
 	/// </summary>
 	/// <param name="culture">The culture information instance.</param>
@@ -251,4 +285,69 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(CultureInfo? culture = null)
 		=> culture is null ? $"{Name} => {ConclusionText}" : $"{GetName(culture)} => {ConclusionText}";
+
+
+	/// <summary>
+	/// Sorts <typeparamref name="TStep"/> instances from the list collection.
+	/// </summary>
+	/// <typeparam name="TStep">The type of each step.</typeparam>
+	/// <param name="accumulator">The accumulator instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step => accumulator.Sort(Comparer<TStep>.Instance);
+
+#pragma warning disable format
+	/// <summary>
+	/// Compares <typeparamref name="TStep"/> instances from the list collection,
+	/// removing duplicate items by using <see cref="Equals(Step?)"/> to as equality comparison rules.
+	/// </summary>
+	/// <typeparam name="TStep">The type of each step.</typeparam>
+	/// <param name="accumulator">The accumulator instance.</param>
+	/// <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
+	/// <seealso cref="Equals(Step?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static IEnumerable<TStep> RemoveDuplicateItems<TStep>(List<TStep> accumulator) where TStep : Step
+		=> accumulator switch
+		{
+			[] => [],
+			[var firstElement] => [firstElement],
+			[var a, var b] => a == b ? [a] : [a, b],
+			_ => new HashSet<TStep>(accumulator, EqualityComparer<TStep>.Instance)
+		};
+#pragma warning restore format
+}
+
+/// <summary>
+/// The internal equality comparer type for <typeparamref name="T"/> instances.
+/// </summary>
+/// <typeparam name="T">The type of the step.</typeparam>
+file sealed class EqualityComparer<T> : IEqualityComparer<T> where T : Step
+{
+	/// <summary>
+	/// The singleton instance.
+	/// </summary>
+	public static readonly IEqualityComparer<T> Instance = new EqualityComparer<T>();
+
+
+	/// <inheritdoc/>
+	public bool Equals(T? x, T? y) => x == y;
+
+	/// <inheritdoc/>
+	public int GetHashCode(T obj) => obj.GetHashCode();
+}
+
+/// <summary>
+/// The internal comparer type for <typeparamref name="T"/> instances.
+/// </summary>
+/// <typeparam name="T">The type of the step.</typeparam>
+file sealed class Comparer<T> : IComparer<T> where T : Step
+{
+	/// <summary>
+	/// The singleton instance.
+	/// </summary>
+	public static readonly IComparer<T> Instance = new Comparer<T>();
+
+
+	/// <inheritdoc/>
+	public int Compare(T? left, T? right)
+		=> (left, right) switch { (null, null) => 0, (null, not null) => -1, (not null, null) => 1, _ => left.CompareTo(right) };
 }

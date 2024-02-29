@@ -90,14 +90,14 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			return null;
 		}
 
-		var tempAccumulator = from step in EquatableStep.Distinct(resultAccumulator) orderby step.LoopCells.Count, step.Guardians.Count select step;
+		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
+		Step.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
-			return tempAccumulator.First();
+			return resultList[0];
 		}
 
-		context.Accumulator.AddRange(tempAccumulator);
-
+		context.Accumulator.AddRange(resultList);
 		return null;
 	}
 

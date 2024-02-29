@@ -18,7 +18,7 @@ public sealed partial class HouseDeathBlossomStep(
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] HouseBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options), IEquatableStep<HouseDeathBlossomStep>
+) : DeathBlossomBaseStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
@@ -44,7 +44,7 @@ public sealed partial class HouseDeathBlossomStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<HouseDeathBlossomStep>.operator ==(HouseDeathBlossomStep left, HouseDeathBlossomStep right)
-		=> (left.House, left.Digit, left.Branches) == (right.House, right.Digit, right.Branches);
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is HouseDeathBlossomStep comparer
+		&& (House, Digit, Branches) == (comparer.House, comparer.Digit, comparer.Branches);
 }

@@ -18,7 +18,7 @@ public abstract partial class UniqueLoopStep(
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] loopPath
-) : DeadlyPatternStep(conclusions, views, options), IEquatableStep<UniqueLoopStep>
+) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;
@@ -45,13 +45,16 @@ public abstract partial class UniqueLoopStep(
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static bool IEquatableStep<UniqueLoopStep>.operator ==(UniqueLoopStep left, UniqueLoopStep right)
-		=> (left.Type, left.Loop, left.Digit1, left.Digit2) == (right.Type, right.Loop, right.Digit1, right.Digit2)
-		&& (left, right) switch
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is UniqueLoopStep comparer
+		&& (Type, Loop, Digit1, Digit2) == (comparer.Type, comparer.Loop, comparer.Digit1, comparer.Digit2)
+		&& (this, comparer) switch
 		{
 			(UniqueLoopType3Step { SubsetDigitsMask: var a }, UniqueLoopType3Step { SubsetDigitsMask: var b }) => a == b,
 			(UniqueLoopType4Step { ConjugatePair: var a }, UniqueLoopType4Step { ConjugatePair: var b }) => a == b,
 			_ => true
 		};
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other) => other is UniqueLoopStep comparer ? Math.Abs(Loop.Count - comparer.Loop.Count) : 1;
 }
