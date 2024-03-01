@@ -993,46 +993,6 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>abbr</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
-            <summary>
-            Provides a difficulty kind for a puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown">
-            <summary>
-            Indicates the difficulty level is unknown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Easy">
-            <summary>
-            Indicates the difficulty is easy.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Moderate">
-            <summary>
-            Indicates the difficulty is moderate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard">
-            <summary>
-            Indicates the difficulty is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Fiendish">
-            <summary>
-            Indicates the difficulty is fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Nightmare">
-            <summary>
-            Indicates the difficulty is nightmare.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort">
-            <summary>
-            Indicates the puzzle can't be solved unless using last resort methods.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute">
             <summary>
             Provides with an attribute type that represents the target difficulty level for the specified technique.
@@ -1098,6 +1058,99 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.Technique">
             <summary>
             The generated property declaration for parameter <c>technique</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SupportSiameseAttribute">
+            <summary>
+            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SupportSiameseAttribute.#ctor(System.Boolean)">
+            <summary>
+            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SupportSiameseAttribute.SupportSiamese">
+            <summary>
+            The generated property declaration for parameter <c>supportSiamese</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
+            <summary>
+            The generated property declaration for parameter <c>features</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group">Indicates the group that the current technique belong to.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group">Indicates the group that the current technique belong to.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
+            <summary>
+            The generated property declaration for parameter <c>group</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleSubtype">
@@ -1385,25 +1438,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The subtype.</param>
             <returns>The related technique instance.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SupportSiameseAttribute">
-            <summary>
-            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SupportSiameseAttribute.#ctor(System.Boolean)">
-            <summary>
-            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SupportSiameseAttribute.SupportSiamese">
-            <summary>
-            The generated property declaration for parameter <c>supportSiamese</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
@@ -3782,23 +3816,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the current technique only appears in direct views, i.e. candidates are not displayed.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
-            <summary>
-            The generated property declaration for parameter <c>features</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroup">
             <summary>
             Represents a technique group.
@@ -4037,23 +4054,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.BruteForce">
             <summary>
             Indicates the brute force (BF) technique.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
-            <summary>
-            The generated property declaration for parameter <c>group</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupExtensions">
