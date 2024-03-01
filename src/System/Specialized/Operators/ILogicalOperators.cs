@@ -31,6 +31,15 @@ public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>
 	public static abstract TSelf operator |(TSelf left, TSelf right);
 
 	/// <summary>
+	/// Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
+	/// <b>Not <c><![CDATA[left && ~right || ~left && right]]></c>.</b>
+	/// </summary>
+	/// <param name="left">The left-side value.</param>
+	/// <param name="right">The right-side value.</param>
+	/// <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
+	public static abstract TSelf operator ^(TSelf left, TSelf right);
+
+	/// <summary>
 	/// Determine whether the specified object is determined <see langword="true"/>.
 	/// </summary>
 	/// <param name="value">The value to be determined.</param>

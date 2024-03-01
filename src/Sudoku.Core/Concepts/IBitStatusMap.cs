@@ -527,6 +527,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
+	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
 	public static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
 
 	/// <inheritdoc/>

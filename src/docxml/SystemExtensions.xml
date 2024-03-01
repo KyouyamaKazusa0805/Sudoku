@@ -4618,6 +4618,15 @@ fixed (short* ptr = instance)
             <param name="right">The right-side value.</param>
             <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
         </member>
+        <member name="M:System.ILogicalOperators`1.op_ExclusiveOr(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
+            <b>Not <c><![CDATA[left && ~right || ~left && right]]></c>.</b>
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
+        </member>
         <member name="M:System.ILogicalOperators`1.op_True(`0)">
             <summary>
             Determine whether the specified object is determined <see langword="true"/>.

@@ -4901,6 +4901,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
