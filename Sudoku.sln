@@ -34,8 +34,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Gdip", "src\Sudoku.G
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Analytics", "src\Sudoku.Analytics\Sudoku.Analytics.csproj", "{D188748E-0794-445F-AAE5-08F3874FDF26}"
 EndProject
-Project("{D954291E-2A0B-460D-934E-DC6B0785DB48}") = "SudokuTutorial", "src\SudokuTutorial\SudokuTutorial.shproj", "{597D5691-2E11-43C7-AE3B-826E979450DA}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.SourceGeneration", "src\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj", "{3DEF7C11-4726-4CC9-B31C-79B10D689F16}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RootLevelSourceGeneration", "src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj", "{971E9510-5D09-44A3-9689-5B44A500DF08}"
@@ -58,7 +56,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Logging", "src\Sudok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition.Imaging", "src\Sudoku.Recognition.Imaging\Sudoku.Recognition.Imaging.csproj", "{FCA37794-B4D0-43BD-87C9-9F1B597E339B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Sudoku.Strategying", "src\Sudoku.Strategying\Sudoku.Strategying.csproj", "{8B7C9732-BCBC-4E9E-90C2-F8F5BB5721D5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Strategying", "src\Sudoku.Strategying\Sudoku.Strategying.csproj", "{8B7C9732-BCBC-4E9E-90C2-F8F5BB5721D5}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -435,11 +433,8 @@ Global
 		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-	EndGlobalSection
-	GlobalSection(SharedMSBuildProjectFiles) = preSolution
-		src\SudokuTutorial\SudokuTutorial.projitems*{597d5691-2e11-43c7-ae3b-826e979450da}*SharedItemsImports = 13
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal
