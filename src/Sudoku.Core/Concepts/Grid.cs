@@ -1203,9 +1203,9 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ResetCandidates()
 	{
-		if (ToString("#") is var p && p.Contains(':'))
+		if (ToString("#") is var p && p.IndexOf(':') is var colonTokenPos and not -1)
 		{
-			this = Parse(p[..p.IndexOf(':')]);
+			this = Parse(p[..colonTokenPos]);
 		}
 	}
 
