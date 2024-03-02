@@ -21,4 +21,4 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using static System.Numerics.BitOperations;
-global using unsafe CharChecker = delegate*<char, bool>;
+global using unsafe CharCheckerFuncPtr = delegate*<char, bool>;

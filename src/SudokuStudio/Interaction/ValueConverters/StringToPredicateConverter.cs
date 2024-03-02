@@ -19,7 +19,7 @@ public sealed class StringToPredicateConverter : IValueConverter
 	/// <inheritdoc/>
 	public unsafe object Convert(object? value, Type? targetType, object? parameter, string? language)
 		=> value is string target
-		&& (EnforceNonWhiteSpaceString ? &string.IsNullOrWhiteSpace : (StringChecker)(&string.IsNullOrEmpty)) is var checkerFunc
+		&& (EnforceNonWhiteSpaceString ? &string.IsNullOrWhiteSpace : (StringCheckerFuncPtr)(&string.IsNullOrEmpty)) is var checkerFunc
 			? IsInverted ? !checkerFunc(target) : checkerFunc(target)
 			: IsInverted ? value is not null : value is null;
 

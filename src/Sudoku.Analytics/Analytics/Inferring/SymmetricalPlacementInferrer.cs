@@ -10,7 +10,7 @@ public static unsafe class SymmetricalPlacementInferrer
 	/// <summary>
 	/// The internal methods.
 	/// </summary>
-	private static readonly SymmetricalPlacementCheckerFunc[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
+	private static readonly SymmetricalPlacementCheckerFuncPtr[] Checkers = [&Diagonal, &AntiDiagonal, &Central];
 
 
 	/// <summary>

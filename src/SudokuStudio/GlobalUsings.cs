@@ -132,6 +132,6 @@ global using ResourceDictionary = System.Resources.ResourceDictionary;
 global using Size = Windows.Foundation.Size;
 global using SolvingPath = SudokuStudio.Views.Pages.Analyze.SolvingPath;
 global using SpecialFolder = System.Environment.SpecialFolder;
-global using unsafe StringChecker = delegate*<string, bool>;
+global using unsafe StringCheckerFuncPtr = delegate*<string, bool>;
 global using TokenItemRemovingEventArgs = SudokuStudio.Interaction.TokenItemRemovingEventArgs;
 global using VerticalAlignment = Microsoft.UI.Xaml.VerticalAlignment;

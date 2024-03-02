@@ -33,7 +33,7 @@ internal static class StepRatingHelper
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	internal static unsafe decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluator executor, decimal d)
+	internal static unsafe decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluatorFuncPtr executor, decimal d)
 	{
 		static decimal f(Step step) => step.Difficulty;
 		return steps is null ? d : executor(steps, &f);

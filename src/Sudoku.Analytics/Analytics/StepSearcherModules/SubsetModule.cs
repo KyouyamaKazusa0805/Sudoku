@@ -13,8 +13,8 @@ internal static class SubsetModule
 	/// <returns>The collected steps.</returns>
 	public static unsafe Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context)
 	{
-		var p = stackalloc SubsetModuleSearcherFunc[] { &HiddenSubset, &NakedSubset };
-		var q = stackalloc SubsetModuleSearcherFunc[] { &NakedSubset, &HiddenSubset };
+		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
+		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
 		scoped ref readonly var grid = ref context.Grid;
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)

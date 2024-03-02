@@ -644,7 +644,7 @@ public readonly partial struct Library(
 						TransformType.MirrorAntidiagonal => &mirrorAntidiagonal,
 						TransformType.RotateClockwise => &rotateClockwise,
 						TransformType.RotateCounterclockwise => &rotateCounterclockwise,
-						_ => default(GridRandomizedSuffler)
+						_ => default(GridRandomizedSufflerFuncPtr)
 					}
 				)(rng, ref grid);
 			}

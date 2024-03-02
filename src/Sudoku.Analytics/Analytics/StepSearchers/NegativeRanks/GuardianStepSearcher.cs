@@ -128,7 +128,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			scoped ref readonly CellMap currentLoop,
 			scoped ref readonly CellMap currentGuardians,
 			Digit digit,
-			CollectorPredicateFunc condition,
+			CollectorPredicateFuncPtr condition,
 			List<Pattern> result
 		)
 		{

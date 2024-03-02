@@ -202,10 +202,10 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
 		// we should start with a naked single because they are "direct" in such mode.
-		var p = stackalloc SingleModuleSearcherFunc[] { &CheckFullHouse, &CheckNakedSingle, &CheckHiddenSingle };
-		var q = stackalloc SingleModuleSearcherFunc[] { &CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle };
-		var r = stackalloc SingleModuleSearcherFunc[] { &CheckNakedSingle, &CheckHiddenSingle };
-		var s = stackalloc SingleModuleSearcherFunc[] { &CheckHiddenSingle, &CheckNakedSingle };
+		var p = stackalloc SingleModuleSearcherFuncPtr[] { &CheckFullHouse, &CheckNakedSingle, &CheckHiddenSingle };
+		var q = stackalloc SingleModuleSearcherFuncPtr[] { &CheckFullHouse, &CheckHiddenSingle, &CheckNakedSingle };
+		var r = stackalloc SingleModuleSearcherFuncPtr[] { &CheckNakedSingle, &CheckHiddenSingle };
+		var s = stackalloc SingleModuleSearcherFuncPtr[] { &CheckHiddenSingle, &CheckNakedSingle };
 		var searchers = (EnableFullHouse, isFullyMarkedMode) switch { (true, true) => p, (true, _) => q, (_, true) => r, _ => s };
 		for (var i = 0; i < (searchers == p || searchers == q ? 3 : 2); i++)
 		{

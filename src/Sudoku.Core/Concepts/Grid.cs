@@ -116,12 +116,12 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	public static readonly unsafe void* ValueChanged = (ValueChangedHandler)(&OnValueChanged);
+	public static readonly unsafe void* ValueChanged = (ValueChangedHandlerFuncPtr)(&OnValueChanged);
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	public static readonly unsafe void* RefreshingCandidates = (RefreshingCandidatesHandler)(&OnRefreshingCandidates);
+	public static readonly unsafe void* RefreshingCandidates = (RefreshingCandidatesHandlerFuncPtr)(&OnRefreshingCandidates);
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
@@ -815,7 +815,7 @@ public partial struct Grid :
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
 				GridMaskMergingMethod.Or => &or,
-				_ => default(MaskMergingFunc)
+				_ => default(MaskMergingFuncPtr)
 			};
 
 			foreach (var cell in cells)
@@ -1291,7 +1291,7 @@ public partial struct Grid :
 		var copied = mask;
 		mask = (Mask)((int)state << CellCandidatesCount | mask & MaxCandidatesMask);
 
-		((ValueChangedHandler)ValueChanged)(ref this, cell, copied, mask, -1);
+		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -1306,7 +1306,7 @@ public partial struct Grid :
 		var originalMask = newMask;
 		newMask = mask;
 
-		((ValueChangedHandler)ValueChanged)(ref this, cell, originalMask, newMask, -1);
+		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <summary>
@@ -1350,7 +1350,7 @@ public partial struct Grid :
 				// Note that reset candidates may not trigger the event.
 				this[cell] = DefaultMask;
 
-				((RefreshingCandidatesHandler)RefreshingCandidates)(ref this);
+				((RefreshingCandidatesHandlerFuncPtr)RefreshingCandidates)(ref this);
 
 				break;
 			}
@@ -1363,7 +1363,7 @@ public partial struct Grid :
 				result = (Mask)(ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				((ValueChangedHandler)ValueChanged)(ref this, cell, copied, result, digit);
+				((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, result, digit);
 
 				break;
 			}
@@ -1395,7 +1395,7 @@ public partial struct Grid :
 			}
 
 			// To trigger the event.
-			((ValueChangedHandler)ValueChanged)(ref this, cell, copied, this[cell], -1);
+			((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
@@ -1414,7 +1414,7 @@ public partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly unsafe CellMap GetMap(CellPredicateFunc predicate)
+	private readonly unsafe CellMap GetMap(CellPredicateFuncPtr predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < CellsCount; cell++)
@@ -1436,7 +1436,7 @@ public partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly unsafe CellMap[] GetMaps(CellMapPredicateFunc predicate)
+	private readonly unsafe CellMap[] GetMaps(CellMapPredicateFuncPtr predicate)
 	{
 		var result = new CellMap[CellCandidatesCount];
 		for (var digit = 0; digit < CellCandidatesCount; digit++)
