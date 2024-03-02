@@ -197,7 +197,7 @@ public abstract partial class ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(new EqualityComparer());
+			var processed = new HashSet<ChainingStep>(ChainStepEqualityComparer);
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -222,7 +222,7 @@ public abstract partial class ChainingStep(
 		get
 		{
 			var result = 0;
-			var processed = new HashSet<ChainingStep>(new EqualityComparer());
+			var processed = new HashSet<ChainingStep>(ChainStepEqualityComparer);
 			foreach (var target in ChainsTargets)
 			{
 				foreach (var p in target.FullChainPotentials)
@@ -238,6 +238,52 @@ public abstract partial class ChainingStep(
 			return result;
 		}
 	}
+
+
+	/// <summary>
+	/// Represents an equality comparer of <see cref="ChainingStep"/> instances.
+	/// </summary>
+	private static IEqualityComparer<ChainingStep> ChainStepEqualityComparer
+		=> ValueComparison.Create<ChainingStep?>(
+			static (left, right) =>
+			{
+				return (left, right) switch
+				{
+					(null, null) => true,
+					({ ChainsTargets: var x }, { ChainsTargets: var y }) => x.SequenceEquals(y) && branchEquals(x, y),
+					_ => false
+				};
+
+
+				static bool branchEquals(scoped ReadOnlySpan<ChainNode> a, scoped ReadOnlySpan<ChainNode> b)
+				{
+					scoped var i1 = a.GetEnumerator();
+					scoped var i2 = b.GetEnumerator();
+					while (i1.MoveNext() && i2.MoveNext())
+					{
+						if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))
+						{
+							return false;
+						}
+					}
+
+					return true;
+				}
+			},
+			static ([DisallowNull] obj) =>
+			{
+				var result = 0;
+				foreach (var target in obj.ChainsTargets)
+				{
+					foreach (var p in target.FullChainPotentials)
+					{
+						result ^= p.GetHashCode();
+					}
+				}
+
+				return result;
+			}
+		);
 
 
 	/// <inheritdoc/>
@@ -488,7 +534,7 @@ public abstract partial class ChainingStep(
 	private List<ChainingStep> GetNestedChains()
 	{
 		var result = new List<ChainingStep>();
-		var processed = new HashSet<ChainingStep>(new EqualityComparer());
+		var processed = new HashSet<ChainingStep>(ChainStepEqualityComparer);
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -527,7 +573,7 @@ public abstract partial class ChainingStep(
 	/// <returns>A pair of values.</returns>
 	private (ChainingStep Step, int ViewIndex) GetNestedChain(int nestedViewIndex)
 	{
-		var processed = new HashSet<ChainingStep>(new EqualityComparer());
+		var processed = new HashSet<ChainingStep>(ChainStepEqualityComparer);
 		foreach (var target in ChainsTargets)
 		{
 			foreach (var p in target.FullChainPotentials)
@@ -630,56 +676,6 @@ public abstract partial class ChainingStep(
 						}
 					)
 				);
-			}
-		}
-
-		return result;
-	}
-}
-
-/// <summary>
-/// Defines a equality comparer used for comparison with two <see cref="ChainingStep"/> instances.
-/// </summary>
-/// <seealso cref="ChainingStep"/>
-file sealed class EqualityComparer : IEqualityComparer<ChainingStep>
-{
-	/// <inheritdoc/>
-	public unsafe bool Equals(ChainingStep? x, ChainingStep? y)
-	{
-		return (x, y) switch
-		{
-			(null, null) => true,
-			({ ChainsTargets: var targetsX }, { ChainsTargets: var targetsY })
-				=> targetsX.SequenceEquals(targetsY) && branchEquals(targetsX, targetsY),
-			_ => false
-		};
-
-
-		static bool branchEquals(scoped ReadOnlySpan<ChainNode> a, scoped ReadOnlySpan<ChainNode> b)
-		{
-			scoped var i1 = a.GetEnumerator();
-			scoped var i2 = b.GetEnumerator();
-			while (i1.MoveNext() && i2.MoveNext())
-			{
-				if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))
-				{
-					return false;
-				}
-			}
-
-			return true;
-		}
-	}
-
-	/// <inheritdoc/>
-	public int GetHashCode(ChainingStep obj)
-	{
-		var result = 0;
-		foreach (var target in obj.ChainsTargets)
-		{
-			foreach (var p in target.FullChainPotentials)
-			{
-				result ^= p.GetHashCode();
 			}
 		}
 

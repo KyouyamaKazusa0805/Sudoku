@@ -12218,6 +12218,11 @@ if (student is (name: var name, age: >= 18))
             Returns the number of nested views.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ChainStepEqualityComparer">
+            <summary>
+            Represents an equality comparer of <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
@@ -12389,18 +12394,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>dynamicNestingLevel</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Steps.EqualityComparer">
-            <summary>
-            Defines a equality comparer used for comparison with two <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Steps.ChainingStep"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.EqualityComparer.Equals(Sudoku.Analytics.Steps.ChainingStep,Sudoku.Analytics.Steps.ChainingStep)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.EqualityComparer.GetHashCode(Sudoku.Analytics.Steps.ChainingStep)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ForcingChainStep">
             <summary>
@@ -20706,18 +20699,6 @@ result ^= expression;
 	</requires-compound-invocation>
             </remarks>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.EqualityComparer">
-            <summary>
-            Defines an equality comparer that compares to <see cref="T:Sudoku.Concepts.ChainNode"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ChainNode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.EqualityComparer.Equals(Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.EqualityComparer.GetHashCode(Sudoku.Concepts.ChainNode)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection">
             <summary>
             Represents for a normal blossom branch collection.
@@ -21112,14 +21093,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.CellOrDigitComparer">
-            <summary>
-            Defines a comparer that compares with inner key.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.CellOrDigitComparer.Compare(System.Byte,System.Byte)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.StrongLinkInfo">

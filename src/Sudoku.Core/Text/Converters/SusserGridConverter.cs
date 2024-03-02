@@ -235,7 +235,11 @@ public partial record SusserGridConverter(
 						}
 						case var collection:
 						{
-							switch (new HashSet<Match>(collection, EqualityComparer.Instance))
+							var hashSet = new HashSet<Match>(
+								collection,
+								ValueComparison.Create<Match>(static (l, r) => l.Length == r.Length, static v => v.Length)
+							);
+							switch (hashSet)
 							{
 								case { Count: 1 } set when set.First() is { Length: var firstLength }:
 								{
@@ -288,25 +292,4 @@ public partial record SusserGridConverter(
 				return resultSpan[..spanIndex].ToString();
 			}
 		};
-}
-
-/// <summary>
-/// Represents a comparer instance that compares two <see cref="Match"/> instances via their length.
-/// </summary>
-/// <seealso cref="Match"/>
-file sealed class EqualityComparer : IEqualityComparer<Match>
-{
-	/// <summary>
-	/// The singleton instance.
-	/// </summary>
-	public static readonly EqualityComparer Instance = new();
-
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Match? x, Match? y) => (x?.Value.Length ?? -1) == (y?.Value.Length ?? -1);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetHashCode(Match obj) => obj?.Value.Length ?? -1;
 }

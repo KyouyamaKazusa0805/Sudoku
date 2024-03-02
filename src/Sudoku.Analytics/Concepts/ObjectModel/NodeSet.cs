@@ -10,7 +10,7 @@ public sealed class NodeSet : HashSet<ChainNode>
 	/// Initializes a <see cref="NodeSet"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public NodeSet() : base(new EqualityComparer())
+	public NodeSet() : base(ValueComparison.Create<ChainNode>(static (x, y) => x == y, static v => v.GetHashCode()))
 	{
 	}
 
@@ -19,7 +19,7 @@ public sealed class NodeSet : HashSet<ChainNode>
 	/// </summary>
 	/// <param name="base">The collection of <see cref="ChainNode"/> instances.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public NodeSet(NodeSet @base) : base(@base, new EqualityComparer())
+	public NodeSet(NodeSet @base) : base(@base, ValueComparison.Create<ChainNode>(static (x, y) => x == y, static v => v.GetHashCode()))
 	{
 	}
 
@@ -158,19 +158,4 @@ public sealed class NodeSet : HashSet<ChainNode>
 		left.SymmetricExceptWith(right);
 		return left;
 	}
-}
-
-/// <summary>
-/// Defines an equality comparer that compares to <see cref="ChainNode"/> instances.
-/// </summary>
-/// <seealso cref="ChainNode"/>
-file sealed class EqualityComparer : IEqualityComparer<ChainNode>
-{
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ChainNode x, ChainNode y) => x == y;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int GetHashCode(ChainNode obj) => obj.GetHashCode();
 }

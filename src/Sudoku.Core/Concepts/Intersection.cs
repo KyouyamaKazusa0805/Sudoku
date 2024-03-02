@@ -77,18 +77,6 @@ public readonly record struct Intersection(scoped ref readonly IntersectionBase 
 			}
 		}
 
-		IntersectionMaps = dic.ToFrozenDictionary(new EqualityComparer());
+		IntersectionMaps = dic.ToFrozenDictionary(ValueComparison.Create<IntersectionBase>(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
 	}
-}
-
-/// <summary>
-/// Represents a comparer instance that compares two tuples.
-/// </summary>
-file sealed class EqualityComparer : IEqualityComparer<IntersectionBase>
-{
-	/// <inheritdoc/>
-	public bool Equals(IntersectionBase x, IntersectionBase y) => x == y;
-
-	/// <inheritdoc/>
-	public int GetHashCode(IntersectionBase obj) => obj.Line << 5 | obj.Block;
 }

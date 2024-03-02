@@ -4166,6 +4166,35 @@ fixed (short* ptr = instance)
             <typeparam name="T">The type of the element.</typeparam>
             <param name="value">The value to be initialized.</param>
         </member>
+        <member name="T:System.CompareHandler`1">
+            <summary>
+            Represents a handler that checks the value comparison of two <typeparamref name="T"/> values.
+            </summary>
+            <typeparam name="T">The type of values to be compared.</typeparam>
+            <param name="left">The left value to be compared.</param>
+            <param name="right">The right value to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+        </member>
+        <member name="T:System.EqualsHandler`1">
+            <summary>
+            The specialized equality comparing handler.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="left">The left value to be compared.</param>
+            <param name="right">The right value to be compared.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+        </member>
+        <member name="T:System.GetHashCodeFunc`1">
+            <inheritdoc cref="T:System.GetHashCodeHandler`1"/>
+        </member>
+        <member name="T:System.GetHashCodeHandler`1">
+            <summary>
+            The specialized get hash code handler.
+            </summary>
+            <typeparam name="T">The type of the object.</typeparam>
+            <param name="obj">The object to be calculated.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+        </member>
         <member name="T:System.ComplexValueTupleEnumerator`2">
             <summary>
             Defines a complex value tuple enumerator.
@@ -4948,6 +4977,106 @@ fixed (short* ptr = instance)
             The generated field declaration for parameter <c>chunks</c>.
             </summary>
         </member>
+        <member name="T:System.SpecializedComparer`1">
+            <summary>
+            Represents a specialized comparer.
+            </summary>
+            <typeparam name="T">The type of values to be compared.</typeparam>
+            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
+        </member>
+        <member name="M:System.SpecializedComparer`1.#ctor(System.Boolean)">
+            <summary>
+            Represents a specialized comparer.
+            </summary>
+            <typeparam name="T">The type of values to be compared.</typeparam>
+            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
+        </member>
+        <member name="F:System.SpecializedComparer`1._compare">
+            <summary>
+            The handler for method <see cref="M:System.SpecializedComparer`1.Compare(`0@,`0@)"/>.
+            </summary>
+        </member>
+        <member name="F:System.SpecializedComparer`1._compareUnsafe">
+            <inheritdoc cref="F:System.SpecializedComparer`1._compare"/>
+        </member>
+        <member name="P:System.SpecializedComparer`1.IsUnsafe">
+            <summary>
+            Indicates whether the comparer uses unsafe logic.
+            </summary>
+        </member>
+        <member name="M:System.SpecializedComparer`1.#ctor(System.CompareHandler{`0})">
+            <summary>
+            Initializes a <see cref="T:System.SpecializedComparer`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.SpecializedComparer`1.#ctor()">
+            <summary>
+            Initializes a <see cref="T:System.SpecializedComparer`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.SpecializedComparer`1.Compare(`0@,`0@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
+        <member name="M:System.SpecializedComparer`1.System#Collections#Generic#IComparer{T}#Compare(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.SpecializedEqualityComparer`1">
+            <summary>
+            Represents a specialized equality comparer.
+            </summary>
+            <typeparam name="T">The type of values to be compared.</typeparam>
+            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.Boolean)">
+            <summary>
+            Represents a specialized equality comparer.
+            </summary>
+            <typeparam name="T">The type of values to be compared.</typeparam>
+            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
+        </member>
+        <member name="F:System.SpecializedEqualityComparer`1._equals">
+            <summary>
+            The handler for method <see cref="M:System.SpecializedEqualityComparer`1.Equals(`0@,`0@)"/>.
+            </summary>
+        </member>
+        <member name="F:System.SpecializedEqualityComparer`1._getHashCode">
+            <summary>
+            The handler for method <see cref="M:System.SpecializedEqualityComparer`1.GetHashCode(`0@)"/>.
+            </summary>
+        </member>
+        <member name="F:System.SpecializedEqualityComparer`1._equalsUnsafe">
+            <inheritdoc cref="F:System.SpecializedEqualityComparer`1._equals"/>
+        </member>
+        <member name="F:System.SpecializedEqualityComparer`1._getHashCodeUnsafe">
+            <inheritdoc cref="F:System.SpecializedEqualityComparer`1._getHashCode"/>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.EqualsHandler{`0},System.GetHashCodeHandler{`0})">
+            <summary>
+            Initializes a <see cref="T:System.SpecializedEqualityComparer`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.#ctor(,)">
+            <summary>
+            Initializes a <see cref="T:System.SpecializedEqualityComparer`1"/> instance.
+            </summary>
+        </member>
+        <member name="P:System.SpecializedEqualityComparer`1.IsUnsafe">
+            <summary>
+            Indicates whether the comparer uses unsafe logic.
+            </summary>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.Equals(`0@,`0@)">
+            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)"/>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.GetHashCode(`0@)">
+            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)"/>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#Equals(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#GetHashCode(`0)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Utf8Char">
             <summary>
             Represents a character as a UTF-8 code unit.
@@ -5427,6 +5556,48 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.Timers.ValueStopwatch.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:System.ValueComparison">
+            <summary>
+            Represents a list of methods that creates <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> and <see cref="T:System.Collections.Generic.IComparer`1"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
+            <seealso cref="T:System.Collections.Generic.IComparer`1"/>
+        </member>
+        <member name="M:System.ValueComparison.Create``1(System.Func{``0,``0,System.Boolean},System.GetHashCodeFunc{``0})">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+        </member>
+        <member name="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})">
+            <summary>
+            Creates an <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance via specified methods.
+            </summary>
+            <typeparam name="T">The type of the value to be compared.</typeparam>
+            <param name="equals">The equals method handler.</param>
+            <param name="getHashCode">The get hash code method handler.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> value serving as comparing equality rules.</returns>
+        </member>
+        <member name="M:System.ValueComparison.Create``1(System.Comparison{``0})">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.CompareHandler{``0})"/>
+        </member>
+        <member name="M:System.ValueComparison.Create``1(System.CompareHandler{``0})">
+            <summary>
+            Creates an <see cref="T:System.Collections.Generic.IComparer`1"/> instance via specified method.
+            </summary>
+            <typeparam name="T">The type of the value to be compared.</typeparam>
+            <param name="compare">The compare method handler.</param>
+            <returns>An <see cref="T:System.Collections.Generic.IComparer`1"/> value serving as comparing rules.</returns>
+        </member>
+        <member name="M:System.ValueComparison.CreateUnsafe``1(,)">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+        </member>
+        <member name="M:System.ValueComparison.CreateUnsafe``1(,)">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+        </member>
+        <member name="M:System.ValueComparison.CreateUnsafe``1()">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.CompareHandler{``0})"/>
+        </member>
+        <member name="M:System.ValueComparison.CreateUnsafe``1()">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.CompareHandler{``0})"/>
         </member>
         <member name="T:System.ActionRef`1">
             <summary>
