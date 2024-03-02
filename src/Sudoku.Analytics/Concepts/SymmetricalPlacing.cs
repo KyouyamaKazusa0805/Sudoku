@@ -1,11 +1,9 @@
-#pragma warning disable CS9088
-
-namespace Sudoku.Analytics.Inferring;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a type that checks and infers for technique usages on Gurth's symmetrical placement.
 /// </summary>
-public static unsafe class SymmetricalPlacementInferrer
+public static unsafe class SymmetricalPlacing
 {
 	/// <summary>
 	/// The internal methods.
@@ -39,7 +37,10 @@ public static unsafe class SymmetricalPlacementInferrer
 		}
 
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
+
+#pragma warning disable CS9088
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
+#pragma warning restore CS9088
 	}
 
 	/// <summary>
@@ -50,7 +51,7 @@ public static unsafe class SymmetricalPlacementInferrer
 	/// <param name="mappingDigits">The mapping digits returned.</param>
 	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
-	public static unsafe bool InferSymmetricalPlacement(
+	public static bool InferSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
@@ -59,10 +60,12 @@ public static unsafe class SymmetricalPlacementInferrer
 	{
 		foreach (var functionPointer in Checkers)
 		{
+#pragma warning disable CS9088
 			if (functionPointer(in grid, out symmetricType, out mappingDigits, out selfPairedDigitsMask))
 			{
 				return true;
 			}
+#pragma warning restore CS9088
 		}
 
 		symmetricType = SymmetricType.None;

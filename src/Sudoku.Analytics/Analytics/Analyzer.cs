@@ -160,7 +160,7 @@ public sealed partial class Analyzer :
 				context.GspPatternInferred = symmetricType;
 				context.MappingRelations = mappingDigits;
 
-				if (SymmetricalPlacementInferrer.GetStep(in playground, Options) is { } step)
+				if (SymmetricalPlacing.GetStep(in playground, Options) is { } step)
 				{
 					if (verifyConclusionValidity(in solution, step))
 					{

@@ -30,7 +30,6 @@ global using Sudoku.Algorithm.Ittoryu;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Configuration;
-global using Sudoku.Analytics.Inferring;
 global using Sudoku.Analytics.Metadata;
 global using Sudoku.Analytics.Rating;
 global using Sudoku.Analytics.Steps;
