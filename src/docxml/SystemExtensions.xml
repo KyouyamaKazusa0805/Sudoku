@@ -4630,42 +4630,9 @@ fixed (short* ptr = instance)
         </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
-            Represents for an abstraction unit that supports for boolean logical operators
-            <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> <![CDATA[||]]>.
+            Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.
             </summary>
             <typeparam name="TSelf">The implementation.</typeparam>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_LogicalNot(`0)">
-            <summary>
-            Negates the current instance, and makes the result to be negated one.
-            </summary>
-            <param name="value">The value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_BitwiseOr(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[true(left) ? left : false(left | right)]]></c>.
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
-        </member>
-        <member name="M:System.ILogicalOperators`1.op_ExclusiveOr(`0,`0)">
-            <summary>
-            Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
-            <b>Not <c><![CDATA[left && ~right || ~left && right]]></c>.</b>
-            </summary>
-            <param name="left">The left-side value.</param>
-            <param name="right">The right-side value.</param>
-            <returns>A <typeparamref name="TSelf"/> result indicating the calculation result.</returns>
         </member>
         <member name="M:System.ILogicalOperators`1.op_True(`0)">
             <summary>
@@ -4680,6 +4647,37 @@ fixed (short* ptr = instance)
             </summary>
             <param name="value">The value to be determined.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_LogicalNot(`0)">
+            <summary>
+            Negates the current instance, and makes the result to be negated one.
+            </summary>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[false(left) ? left : false(left & right)]]></c>.
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns>A instance of type <typeparamref name="TSelf"/>, as the result value.</returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_BitwiseOr(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[true(left) ? left : false(left | right)]]></c>.
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
+        </member>
+        <member name="M:System.ILogicalOperators`1.op_ExclusiveOr(`0,`0)">
+            <summary>
+            Equivalent to <c><![CDATA[left & ~right | ~left & right]]></c>.
+            </summary>
+            <param name="left">The left-side value.</param>
+            <param name="right">The right-side value.</param>
+            <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
         </member>
         <member name="T:System.ChunkNode`1">
             <summary>
