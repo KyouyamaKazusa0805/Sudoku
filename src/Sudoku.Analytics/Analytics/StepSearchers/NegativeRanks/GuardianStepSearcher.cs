@@ -28,7 +28,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		scoped var pomContext = new AnalysisContext(pomSteps, ref playground, false, context.PredefinedOptions);
+		scoped var pomContext = new AnalysisContext(pomSteps, in playground, in Grid.NullRef, false, context.PredefinedOptions);
 		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())

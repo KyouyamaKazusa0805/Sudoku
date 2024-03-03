@@ -100,7 +100,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 			Initialize(in playground, playground.SolutionGrid);
 
 			var accumulator = new List<Step>();
-			scoped var context = new AnalysisContext(accumulator, ref playground, false, Options);
+			scoped var context = new AnalysisContext(accumulator, in playground, in puzzle, false, Options);
 			var (l, bag, currentSearcherIndex) = (defaultLevel, new List<Step>(), 0);
 			foreach (var searcher in possibleStepSearchers)
 			{

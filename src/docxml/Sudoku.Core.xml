@@ -3664,6 +3664,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.NullRef">
+            <summary>
+            Represents a default reference of type <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
             <summary>
             Indicates the minimum possible grid value that the current type can reach.

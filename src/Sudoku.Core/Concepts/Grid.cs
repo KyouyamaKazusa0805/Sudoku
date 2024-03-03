@@ -706,6 +706,12 @@ public partial struct Grid :
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;
 
+
+	/// <summary>
+	/// Represents a default reference of type <see cref="Grid"/>.
+	/// </summary>
+	public static ref readonly Grid NullRef => ref Unsafe.NullRef<Grid>();
+
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.

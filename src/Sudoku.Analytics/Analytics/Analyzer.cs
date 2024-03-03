@@ -152,7 +152,7 @@ public sealed partial class Analyzer :
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator = IsFullApplying || RandomizedChoosing ? [] : default(List<Step>);
-			scoped var context = new AnalysisContext(accumulator, ref playground, !IsFullApplying && !RandomizedChoosing, Options);
+			scoped var context = new AnalysisContext(accumulator, in playground, in puzzle, !IsFullApplying && !RandomizedChoosing, Options);
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)

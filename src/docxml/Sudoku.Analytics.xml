@@ -286,6 +286,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
+            <param name="initialGrid">Indicates the initial grid.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
             <param name="predefinedOptions">
             Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
@@ -293,7 +294,7 @@ if (student is (name: var name, age: >= 18))
             </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
@@ -307,6 +308,7 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
+            <param name="initialGrid">Indicates the initial grid.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
             <param name="predefinedOptions">
             Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
@@ -354,6 +356,11 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisContext.InitialGrid">
+            <summary>
+            The generated field declaration for parameter <c>initialGrid</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.Accumulator">

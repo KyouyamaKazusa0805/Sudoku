@@ -13,6 +13,7 @@ namespace Sudoku.Analytics;
 /// </para>
 /// </param>
 /// <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
+/// <param name="initialGrid">Indicates the initial grid.</param>
 /// <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
 /// <param name="predefinedOptions">
 /// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
@@ -27,6 +28,7 @@ namespace Sudoku.Analytics;
 public ref partial struct AnalysisContext(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] List<Step>? accumulator,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "InitialGrid")] ref readonly Grid initialGrid,
 	[PrimaryConstructorParameter(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
 	[PrimaryConstructorParameter] StepSearcherOptions predefinedOptions
 )
