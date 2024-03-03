@@ -88,6 +88,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conclusion count rule: Conclusion {0} should appear {1} time{2}.
+        /// </summary>
+        internal static string ConclusionCountConstraint {
+            get {
+                return ResourceManager.GetString("ConclusionCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Count between rule: {0} should be between {1} and {2}, {3}.
         /// </summary>
         internal static string CountBetweenConstraint {
@@ -174,6 +183,15 @@ namespace Sudoku.Resources {
         internal static string NoString {
             get {
                 return ResourceManager.GetString("NoString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        internal static string NounPluralSuffix {
+            get {
+                return ResourceManager.GetString("NounPluralSuffix", resourceCulture);
             }
         }
         

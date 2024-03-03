@@ -174,4 +174,10 @@
   <data name="TechniqueCountConstraint" xml:space="preserve">
     <value>Technique appearing times rule: {0} appears {1} {2} time(s)</value>
   </data>
+  <data name="ConclusionCountConstraint" xml:space="preserve">
+    <value>Conclusion count rule: Conclusion {0} should appear {1} time{2}</value>
+  </data>
+  <data name="NounPluralSuffix" xml:space="preserve">
+    <value>s</value>
+  </data>
 </root>

@@ -65,6 +65,11 @@
               Looks up a localized string similar to both side open.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.ConclusionCountConstraint">
+            <summary>
+              Looks up a localized string similar to Conclusion count rule: Conclusion {0} should appear {1} time{2}.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.StrategyingResources.CountBetweenConstraint">
             <summary>
               Looks up a localized string similar to Count between rule: {0} should be between {1} and {2}, {3}.
@@ -113,6 +118,11 @@
         <member name="P:Sudoku.Resources.StrategyingResources.NoString">
             <summary>
               Looks up a localized string similar to not .
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.NounPluralSuffix">
+            <summary>
+              Looks up a localized string similar to s.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.PearlOrDiamondConstraint">
@@ -226,6 +236,42 @@
             <param name="this">The comparison.</param>
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConclusionCountConstraint">
+            <summary>
+            Represents a conclusion count constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.AllowDuplicate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.LimitCount">
+            <summary>
+            Indicates the limit count.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Conclusion">
+            <summary>
+            Indicates the conclusion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.Constraint">
             <summary>
