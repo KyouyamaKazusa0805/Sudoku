@@ -326,11 +326,6 @@
             <param name="analyzerResult">Indicates the analyzer result.</param>
             <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.RequiresAnalyzer">
-            <summary>
-            Indicates whether a screening rule requires property <see cref="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult"/>.
-            </summary>
-        </member>
         <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.

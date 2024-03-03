@@ -28,11 +28,6 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	/// <inheritdoc/>
 	public sealed override bool Check(scoped ConstraintCheckingContext context)
 	{
-		if (!context.RequiresAnalyzer)
-		{
-			return false;
-		}
-
 		var isPearl = context.AnalyzerResult.IsPearl;
 		var isDiamond = context.AnalyzerResult.IsDiamond;
 		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));

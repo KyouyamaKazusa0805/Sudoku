@@ -39,11 +39,6 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context)
 	{
-		if (!context.RequiresAnalyzer)
-		{
-			return false;
-		}
-
 		var times = 0;
 		foreach (var step in context.AnalyzerResult)
 		{

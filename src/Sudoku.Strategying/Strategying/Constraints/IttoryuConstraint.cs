@@ -30,11 +30,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context)
 	{
-		if (context is not { RequiresAnalyzer: true, AnalyzerResult: { IsSolved: true, Steps: var steps } })
-		{
-			return false;
-		}
-
+		var steps = context.AnalyzerResult.Steps!;
 		var roundsCount = 1;
 		for (var i = 0; i < steps.Length - 1; i++)
 		{

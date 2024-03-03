@@ -8,12 +8,5 @@ namespace Sudoku.Strategying.Constraints;
 /// <seealso cref="Constraint"/>
 public readonly ref partial struct ConstraintCheckingContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
-	[PrimaryConstructorParameter] AnalyzerResult? analyzerResult
-)
-{
-	/// <summary>
-	/// Indicates whether a screening rule requires property <see cref="AnalyzerResult"/>.
-	/// </summary>
-	[MemberNotNullWhen(true, nameof(AnalyzerResult))]
-	public bool RequiresAnalyzer => AnalyzerResult is not null;
-}
+	[PrimaryConstructorParameter] AnalyzerResult analyzerResult
+);

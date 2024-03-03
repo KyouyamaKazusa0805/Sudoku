@@ -33,11 +33,6 @@ public sealed partial class ConclusionCountConstraint : Constraint, IComparisonO
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context)
 	{
-		if (!context.RequiresAnalyzer)
-		{
-			return false;
-		}
-
 		var count = 0;
 		foreach (var step in context.AnalyzerResult)
 		{
