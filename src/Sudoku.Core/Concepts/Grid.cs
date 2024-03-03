@@ -843,6 +843,33 @@ public partial struct Grid :
 	}
 
 
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void Deconstruct(out CellMap givenCells, out CellMap modifiableCells, out CellMap emptyCells)
+		=> (givenCells, modifiableCells, emptyCells) = (GivenCells, ModifiableCells, EmptyCells);
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void Deconstruct(out CellMap givenCells, out CellMap modifiableCells, out CellMap emptyCells, out CellMap bivalueCells)
+		=> ((givenCells, modifiableCells, emptyCells), bivalueCells) = (this, BivalueCells);
+
+	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly void Deconstruct(
+		out CellMap emptyCells,
+		out CellMap bivalueCells,
+		out ReadOnlySpan<CellMap> candidatesMap,
+		out ReadOnlySpan<CellMap> digitsMap,
+		out ReadOnlySpan<CellMap> valuesMap
+	)
+	{
+		(emptyCells, bivalueCells) = (EmptyCells, BivalueCells);
+		candidatesMap = CandidatesMap;
+		digitsMap = DigitsMap;
+		valuesMap = ValuesMap;
+	}
+
+
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
 	/// </summary>
