@@ -59,6 +59,6 @@ internal static class IntersectionModule
 		scoped ref readonly CellMap emptyCells,
 		out Mask digitsMask
 	)
-		=> (digitsMask = 0, emptyCells & c, grid[in a], grid[in b], grid[in c]) is (_, not [], var maskA, var maskB, var maskC)
+		=> (digitsMask = 0, emptyCells & c, (grid[in a], grid[in b], grid[in c])) is (_, not [], var (maskA, maskB, maskC))
 		&& (digitsMask = (Mask)(maskC & (maskA ^ maskB))) != 0;
 }
