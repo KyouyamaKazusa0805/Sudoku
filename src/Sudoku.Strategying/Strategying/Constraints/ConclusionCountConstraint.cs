@@ -16,12 +16,6 @@ public sealed partial class ConclusionCountConstraint : Constraint, IComparisonO
 	public int LimitCount { get; set; }
 
 	/// <inheritdoc/>
-	public int Minimum => 1;
-
-	/// <inheritdoc/>
-	public int Maximum => 10;
-
-	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public ComparisonOperator Operator { get; set; }
@@ -32,6 +26,13 @@ public sealed partial class ConclusionCountConstraint : Constraint, IComparisonO
 	[HashCodeMember]
 	[StringMember]
 	public Conclusion Conclusion { get; set; }
+
+
+	/// <inheritdoc/>
+	public static int Minimum => 1;
+
+	/// <inheritdoc/>
+	public static int Maximum => 10;
 
 
 	/// <inheritdoc/>

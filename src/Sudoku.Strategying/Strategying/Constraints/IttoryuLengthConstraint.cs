@@ -16,12 +16,6 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 
-	/// <inheritdoc/>
-	public int Minimum => 0;
-
-	/// <inheritdoc/>
-	public int Maximum => 9;
-
 	/// <summary>
 	/// Indicates the length.
 	/// </summary>
@@ -36,6 +30,13 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 
 	/// <inheritdoc/>
 	int ILimitCountConstraint<int>.LimitCount { get => Length; set => Length = value; }
+
+
+	/// <inheritdoc/>
+	public static int Minimum => 0;
+
+	/// <inheritdoc/>
+	public static int Maximum => 9;
 
 
 	/// <inheritdoc/>

@@ -248,12 +248,6 @@
         <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.LimitCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Maximum">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Operator">
             <inheritdoc/>
         </member>
@@ -261,6 +255,12 @@
             <summary>
             Indicates the conclusion.
             </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Maximum">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
@@ -474,12 +474,6 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
             <summary>
             Indicates the rounds used.
@@ -489,6 +483,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
@@ -519,12 +519,6 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
             <summary>
             Indicates the length.
@@ -534,6 +528,12 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
@@ -728,12 +728,6 @@
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Minimum">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
             <inheritdoc/>
         </member>
@@ -744,6 +738,12 @@
             <summary>
             Indicates the technique used.
             </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>

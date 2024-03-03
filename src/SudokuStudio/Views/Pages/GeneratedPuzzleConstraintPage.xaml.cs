@@ -771,7 +771,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <returns>An <see cref="IntegerBox"/> instance.</returns>
 	private static IntegerBox LimitCountControl<T>(int limitCount, T constraint) where T : Constraint, ILimitCountConstraint<int>
 	{
-		var limitCountControl = new IntegerBox { Width = 150, Minimum = constraint.Minimum, Maximum = constraint.Maximum };
+		var limitCountControl = new IntegerBox { Width = 150, Minimum = T.Minimum, Maximum = T.Maximum, Value = limitCount };
 		limitCountControl.ValueChanged += (_, _) => constraint.LimitCount = limitCountControl.Value;
 		return limitCountControl;
 	}

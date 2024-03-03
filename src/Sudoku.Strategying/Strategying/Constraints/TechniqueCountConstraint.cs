@@ -12,12 +12,6 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 	public override bool AllowDuplicate => true;
 
 	/// <inheritdoc/>
-	public int Minimum => 0;
-
-	/// <inheritdoc/>
-	public int Maximum => 20;
-
-	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public int LimitCount { get; set; }
@@ -33,6 +27,13 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 	[HashCodeMember]
 	[StringMember]
 	public Technique Technique { get; set; }
+
+
+	/// <inheritdoc/>
+	public static int Minimum => 0;
+
+	/// <inheritdoc/>
+	public static int Maximum => 20;
 
 
 	/// <inheritdoc/>

@@ -11,13 +11,14 @@ public interface ILimitCountConstraint<TNumber> where TNumber : INumber<TNumber>
 	/// </summary>
 	public abstract TNumber LimitCount { get; set; }
 
+
 	/// <summary>
 	/// Indicates the minimum value.
 	/// </summary>
-	public abstract TNumber Minimum { get; }
+	public static abstract TNumber Minimum { get; }
 
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
-	public abstract TNumber Maximum { get; }
+	public static abstract TNumber Maximum { get; }
 }

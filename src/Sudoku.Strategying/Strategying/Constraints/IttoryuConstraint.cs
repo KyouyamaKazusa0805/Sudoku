@@ -10,12 +10,6 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 
-	/// <inheritdoc/>
-	public int Minimum => 1;
-
-	/// <inheritdoc/>
-	public int Maximum => 10;
-
 	/// <summary>
 	/// Indicates the rounds used.
 	/// </summary>
@@ -30,6 +24,13 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 
 	/// <inheritdoc/>
 	int ILimitCountConstraint<int>.LimitCount { get => Rounds; set => Rounds = value; }
+
+
+	/// <inheritdoc/>
+	public static int Minimum => 1;
+
+	/// <inheritdoc/>
+	public static int Maximum => 10;
 
 
 	/// <inheritdoc/>
