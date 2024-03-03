@@ -68,6 +68,11 @@ public partial class App : Application
 
 
 	/// <summary>
+	/// Indicates the internal converter object.
+	/// </summary>
+	internal static CoordinateConverter Converter { get; private set; } = null!;
+
+	/// <summary>
 	/// Indicates the assembly version.
 	/// </summary>
 	internal static Version AssemblyVersion => CurrentAssembly.GetName().Version!;
@@ -332,7 +337,7 @@ public partial class App : Application
 		var analysisPref = ((App)Current).Preference.AnalysisPreferences;
 		return StepSearcherOptions.Default with
 		{
-			Converter = uiPref.ConceptNotationBasedKind switch
+			Converter = Converter = uiPref.ConceptNotationBasedKind switch
 			{
 				CoordinateType.Literal => new LiteralCoordinateConverter(
 					uiPref.DefaultSeparatorInNotation,

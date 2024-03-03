@@ -2312,9 +2312,6 @@
   <data name="GeneratedPuzzleConstraintPage_Delete" xml:space="preserve">
     <value>删除</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_TechniqueCount" xml:space="preserve">
     <value>技巧出现的次数</value>
   </data>
@@ -2323,5 +2320,23 @@
   </data>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>未选择任何技巧</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_RowLabel" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ColumnLabel" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_AppearTimesLabel" xml:space="preserve">
+    <value>，出现次数</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionCountConstraint" xml:space="preserve">
+    <value>结论次数约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionCount" xml:space="preserve">
+    <value>结论出现次数</value>
   </data>
 </root>

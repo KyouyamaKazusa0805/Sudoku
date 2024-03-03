@@ -2324,4 +2324,19 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>No techniques selected</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_RowLabel" xml:space="preserve">
+    <value>Row</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ColumnLabel" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_AppearTimesLabel" xml:space="preserve">
+    <value>, appears times:</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionCountConstraint" xml:space="preserve">
+    <value>Conclusion count constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionCount" xml:space="preserve">
+    <value>Conclusion appearing times</value>
+  </data>
 </root>

@@ -2122,6 +2122,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , appears times:.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_AppearTimesLabel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_AppearTimesLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , both side included.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_BothClosed {
@@ -2172,6 +2181,33 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_ChooseDifficultyLevel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ChooseDifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ColumnLabel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ColumnLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conclusion appearing times.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ConclusionCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ConclusionCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Conclusion count constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ConclusionCountConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ConclusionCountConstraint", resourceCulture);
             }
         }
         
@@ -2370,6 +2406,15 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_PearlConstraint {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PearlConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_RowLabel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_RowLabel", resourceCulture);
             }
         }
         

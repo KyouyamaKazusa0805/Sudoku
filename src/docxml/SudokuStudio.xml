@@ -69,6 +69,11 @@
             Improved APIs for Picker/Dialog classes that implement <see cref="T:WinRT.Interop.InitializeWithWindow"/>
             </seealso>
         </member>
+        <member name="P:SudokuStudio.App.Converter">
+            <summary>
+            Indicates the internal converter object.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.App.AssemblyVersion">
             <summary>
             Indicates the assembly version.
@@ -4677,6 +4682,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.ComparisonOperatorExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.ConclusionExtension">
+            <summary>
+            Represents a markup extension used by creating <see cref="T:Sudoku.Analytics.Conclusion"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+        </member>
+        <member name="P:SudokuStudio.Markup.ConclusionExtension.Text">
+            <summary>
+            Indicates the conclusion string.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Markup.ConclusionExtension.ProvideValue">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Markup.DifficultyLevelExtension">
             <summary>
             Represents difficulty level markup extension.
@@ -6753,6 +6772,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to appearing times.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_AppearTimesLabel">
+            <summary>
+              Looks up a localized string similar to , appears times:.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BothClosed">
             <summary>
               Looks up a localized string similar to , both side included.
@@ -6781,6 +6805,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseDifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ColumnLabel">
+            <summary>
+              Looks up a localized string similar to Column.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ConclusionCount">
+            <summary>
+              Looks up a localized string similar to Conclusion appearing times.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ConclusionCountConstraint">
+            <summary>
+              Looks up a localized string similar to Conclusion count constraint.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_CountBetween">
@@ -6891,6 +6930,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PearlConstraint">
             <summary>
               Looks up a localized string similar to Pearl constraint.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_RowLabel">
+            <summary>
+              Looks up a localized string similar to Row.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">

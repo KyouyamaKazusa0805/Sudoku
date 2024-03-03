@@ -51,6 +51,11 @@
 								<con:DifficultyLevelConstraint DifficultyLevel="Easy" Operator="Equality" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_ConclusionCountConstraint}" Click="MenuFlyoutItem_Click">
+							<MenuFlyoutItem.Tag>
+								<con:ConclusionCountConstraint LimitCount="1" Operator="GreaterThanOrEqual" Conclusion="{m:Conclusion Text='r5c5 = 5'}" />
+							</MenuFlyoutItem.Tag>
+						</MenuFlyoutItem>
 						<MenuFlyoutSeparator />
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PearlConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>

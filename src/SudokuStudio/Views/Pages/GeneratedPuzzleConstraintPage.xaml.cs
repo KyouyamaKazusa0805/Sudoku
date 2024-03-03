@@ -60,6 +60,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
 				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
+				ConclusionCountConstraint instance => () => callback(Create_ConclusionCount, instance),
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
@@ -210,6 +211,155 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Symmetry", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = symmetryControl,
+			Tag = constraint
+		};
+	}
+
+	private SettingsCard? Create_ConclusionCount(ConclusionCountConstraint constraint)
+	{
+		if (constraint is not { Conclusion: var conclusion, Operator: var @operator, LimitCount: var limitCount })
+		{
+			return null;
+		}
+
+		//
+		// row label
+		//
+		var rowLabelControl = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_RowLabel", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// row selector
+		//
+		var rowControl = new IntegerBox
+		{
+			Minimum = 1,
+			Maximum = 9,
+			SmallChange = 1,
+			LargeChange = 3,
+			Width = 150,
+			Value = conclusion.Cell / 9 + 1
+		};
+		rowControl.ValueChanged += (_, _) => constraint.Conclusion = new(
+			constraint.Conclusion.ConclusionType,
+			(rowControl.Value - 1) * 9 + constraint.Conclusion.Cell % 9,
+			constraint.Conclusion.Digit
+		);
+
+		//
+		// column label
+		//
+		var columnLabelControl = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ColumnLabel", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// column selector
+		//
+		var columnControl = new IntegerBox
+		{
+			Minimum = 1,
+			Maximum = 9,
+			SmallChange = 1,
+			LargeChange = 3,
+			Width = 150,
+			Value = conclusion.Cell % 9 + 1
+		};
+		columnControl.ValueChanged += (_, _) => constraint.Conclusion = new(
+			constraint.Conclusion.ConclusionType,
+			constraint.Conclusion.Cell / 9 * 9 + columnControl.Value - 1,
+			constraint.Conclusion.Digit
+		);
+
+		//
+		// conclusion type selector
+		//
+		var conclusionTypeControl = new ComboBox
+		{
+			Items =
+			{
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_Equality", App.CurrentCulture),
+					Tag = Assignment
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
+					Tag = Elimination
+				}
+			}
+		};
+		ComboBoxBindingHandler(
+			conclusionTypeControl,
+			constraint.Conclusion.ConclusionType,
+			value => constraint.Conclusion = new(value, constraint.Conclusion.Candidate)
+		);
+
+		//
+		// number selector
+		//
+		var numberControl = new IntegerBox
+		{
+			Minimum = 1,
+			Maximum = 9,
+			SmallChange = 1,
+			LargeChange = 3,
+			Width = 150,
+			Value = constraint.Conclusion.Digit + 1
+		};
+		numberControl.ValueChanged += (_, _) => constraint.Conclusion = new(
+			constraint.Conclusion.ConclusionType,
+			constraint.Conclusion.Cell,
+			numberControl.Value - 1
+		);
+
+		//
+		// appear label
+		//
+		var appearLabelControl = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearTimesLabel", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// operator
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		//
+		// times selector
+		//
+		var timesControl = new IntegerBox { Minimum = 0, Maximum = 10, Width = 150, Value = constraint.LimitCount };
+		timesControl.ValueChanged += (_, _) => constraint.LimitCount = timesControl.Value;
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ConclusionCount", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children =
+				{
+					rowLabelControl,
+					rowControl,
+					columnLabelControl,
+					columnControl,
+					conclusionTypeControl,
+					numberControl,
+					appearLabelControl,
+					operatorControl,
+					timesControl
+				}
+			},
 			Tag = constraint
 		};
 	}
