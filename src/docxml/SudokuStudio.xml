@@ -13556,6 +13556,15 @@ if (student is (name: var name, age: >= 18))
             <param name="constraint">The constraint.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.</returns>
         </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.LimitCountControl``1(System.Int32,``0)">
+            <summary>
+            Creates an <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> object for limit count displaying.
+            </summary>
+            <typeparam name="T">The type of the constraint.</typeparam>
+            <param name="limitCount">The limit count.</param>
+            <param name="constraint">The constraint.</param>
+            <returns>An <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> instance.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComboBoxBindingHandler``1(Microsoft.UI.Xaml.Controls.ComboBox,``0,System.Action{``0})">
             <summary>
             The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.

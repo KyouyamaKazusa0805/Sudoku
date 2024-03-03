@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOperatorConstraint
+public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <summary>
 	/// Indicates the disordered ittoryu finder.
@@ -15,6 +15,12 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
+
+	/// <inheritdoc/>
+	public int Minimum => 0;
+
+	/// <inheritdoc/>
+	public int Maximum => 9;
 
 	/// <summary>
 	/// Indicates the length.
@@ -27,6 +33,9 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	[HashCodeMember]
 	[StringMember]
 	public ComparisonOperator Operator { get; set; }
+
+	/// <inheritdoc/>
+	int ILimitCountConstraint<int>.LimitCount { get => Length; set => Length = value; }
 
 
 	/// <inheritdoc/>

@@ -5,10 +5,16 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint
+public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
+
+	/// <inheritdoc/>
+	public int Minimum => 1;
+
+	/// <inheritdoc/>
+	public int Maximum => 10;
 
 	/// <summary>
 	/// Indicates the rounds used.
@@ -22,10 +28,13 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	[StringMember]
 	public ComparisonOperator Operator { get; set; }
 
+	/// <inheritdoc/>
+	int ILimitCountConstraint<int>.LimitCount { get => Rounds; set => Rounds = value; }
+
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is IttoryuConstraint comparer && Rounds == comparer.Rounds;
+		=> other is IttoryuConstraint comparer && (Rounds, Operator) == (comparer.Rounds, comparer.Operator);
 
 	/// <inheritdoc/>
 	public override bool Check(scoped ConstraintCheckingContext context)

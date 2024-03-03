@@ -6,14 +6,18 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint
+public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => true;
 
-	/// <summary>
-	/// Indicates the appearing times.
-	/// </summary>
+	/// <inheritdoc/>
+	public int Minimum => 0;
+
+	/// <inheritdoc/>
+	public int Maximum => 20;
+
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public int LimitCount { get; set; }

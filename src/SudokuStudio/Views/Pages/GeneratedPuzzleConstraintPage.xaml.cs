@@ -334,10 +334,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		var operatorControl = ComparisonOperatorControl(@operator, constraint);
 
 		//
-		// times selector
+		// appearing times selector
 		//
-		var timesControl = new IntegerBox { Minimum = 0, Maximum = 10, Width = 150, Value = constraint.LimitCount };
-		timesControl.ValueChanged += (_, _) => constraint.LimitCount = timesControl.Value;
+		var appearingTimesControl = LimitCountControl(constraint.LimitCount, constraint);
 
 		return new()
 		{
@@ -357,7 +356,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					numberControl,
 					appearLabelControl,
 					operatorControl,
-					timesControl
+					appearingTimesControl
 				}
 			},
 			Tag = constraint
@@ -553,8 +552,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// rounds box
 		//
-		var roundsControl = new IntegerBox { Width = 150, Minimum = 1, Maximum = 10, Value = rounds };
-		roundsControl.ValueChanged += (_, _) => constraint.Rounds = roundsControl.Value;
+		var roundsControl = LimitCountControl(rounds, constraint);
 
 		return new()
 		{
@@ -580,8 +578,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// length
 		//
-		var lengthControl = new IntegerBox { Width = 150, Minimum = 0, Maximum = 9, Value = length };
-		lengthControl.ValueChanged += (_, _) => constraint.Length = length;
+		var lengthControl = LimitCountControl(length, constraint);
 
 		//
 		// operator
@@ -690,8 +687,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// appearing times
 		//
-		var appearingTimesControl = new IntegerBox { Width = 150, Minimum = 1, Maximum = 20 };
-		appearingTimesControl.ValueChanged += (_, _) => constraint.LimitCount = appearingTimesControl.Value;
+		var appearingTimesControl = LimitCountControl(appearingTimes, constraint);
 
 		//
 		// comparison operator
@@ -764,6 +760,20 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		ComboBoxBindingHandler(operatorControl, @operator, value => constraint.Operator = value);
 
 		return operatorControl;
+	}
+
+	/// <summary>
+	/// Creates an <see cref="IntegerBox"/> object for limit count displaying.
+	/// </summary>
+	/// <typeparam name="T">The type of the constraint.</typeparam>
+	/// <param name="limitCount">The limit count.</param>
+	/// <param name="constraint">The constraint.</param>
+	/// <returns>An <see cref="IntegerBox"/> instance.</returns>
+	private static IntegerBox LimitCountControl<T>(int limitCount, T constraint) where T : Constraint, ILimitCountConstraint<int>
+	{
+		var limitCountControl = new IntegerBox { Width = 150, Minimum = constraint.Minimum, Maximum = constraint.Maximum };
+		limitCountControl.ValueChanged += (_, _) => constraint.LimitCount = limitCountControl.Value;
+		return limitCountControl;
 	}
 
 	/// <summary>

@@ -5,17 +5,21 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class ConclusionCountConstraint : Constraint, IComparisonOperatorConstraint
+public sealed partial class ConclusionCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 
-	/// <summary>
-	/// Indicates the limit count.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public int LimitCount { get; set; }
+
+	/// <inheritdoc/>
+	public int Minimum => 1;
+
+	/// <inheritdoc/>
+	public int Maximum => 10;
 
 	/// <inheritdoc/>
 	[HashCodeMember]

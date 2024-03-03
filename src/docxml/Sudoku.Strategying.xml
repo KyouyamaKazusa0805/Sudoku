@@ -246,9 +246,13 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.LimitCount">
-            <summary>
-            Indicates the limit count.
-            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Maximum">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Operator">
             <inheritdoc/>
@@ -462,16 +466,6 @@
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">
-            <summary>
-            Represents a type that supports for comparison operator.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint.Operator">
-            <summary>
-            Indicates the comparison operator used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
             <summary>
             Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
@@ -480,12 +474,21 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
             <summary>
             Indicates the rounds used.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
@@ -516,12 +519,21 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
             <summary>
             Indicates the length.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#LimitCount">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
@@ -617,6 +629,37 @@
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">
+            <summary>
+            Represents a type that supports for comparison operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint.Operator">
+            <summary>
+            Indicates the comparison operator used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ILimitCountConstraint`1">
+            <summary>
+            Represents a type that supports limit number.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.LimitCount">
+            <summary>
+            Indicates the limit number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Minimum">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ILimitCountConstraint`1.Maximum">
+            <summary>
+            Indicates the maximum value.
+            </summary>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
             <summary>
             Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/> can controls this.
@@ -685,10 +728,14 @@
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
-            <summary>
-            Indicates the appearing times.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Operator">
             <inheritdoc/>
