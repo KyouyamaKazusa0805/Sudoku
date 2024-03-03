@@ -84,7 +84,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	{
 		var a = HiddenSubset;
 		var b = NakedSubset;
-		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? new[] { a, b } : new[] { b, a };
+		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? new[] { a, b } : [b, a];
 		scoped ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
 		scoped var candidatesMap = grid.CandidatesMap;

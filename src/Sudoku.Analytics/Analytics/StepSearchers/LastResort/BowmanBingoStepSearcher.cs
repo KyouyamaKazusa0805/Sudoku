@@ -108,7 +108,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	)
 	{
 		scoped var context2 = new AnalysisContext(null, in grid, in Grid.NullRef, true, context.PredefinedOptions);
-		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep singleInfo)
+		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions: [{ Cell: var c, Digit: var d } conclusion, ..] })
 		{
 			// Two cases we don't need to go on.
 			// Case 1: The variable 'length' is 0.
@@ -118,7 +118,6 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		}
 
 		// Try to fill.
-		_ = singleInfo.Conclusions[0] is { Cell: var c, Digit: var d } conclusion;
 		_tempConclusions.Add(conclusion);
 		var (candList, mask) = RecordUndoInfo(in grid, c, d);
 
