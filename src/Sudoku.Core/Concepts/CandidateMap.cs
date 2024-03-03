@@ -252,6 +252,10 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	readonly Candidate[] IBitStatusMap<CandidateMap, Candidate, Enumerator>.Offsets => Offsets;
 
+
+	/// <inheritdoc/>
+	public static ref readonly CandidateMap NullRef => ref Ref.MakeNullReference<CandidateMap>();
+
 	/// <inheritdoc/>
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
 

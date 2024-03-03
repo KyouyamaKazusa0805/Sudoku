@@ -58,6 +58,7 @@ public partial struct Grid :
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	IMinMaxValue<Grid>,
 #endif
+	INullRef<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISimpleFormattable,
 	ISimpleParsable<Grid>,
@@ -707,10 +708,8 @@ public partial struct Grid :
 	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;
 
 
-	/// <summary>
-	/// Represents a default reference of type <see cref="Grid"/>.
-	/// </summary>
-	public static ref readonly Grid NullRef => ref Unsafe.NullRef<Grid>();
+	/// <inheritdoc/>
+	public static ref readonly Grid NullRef => ref Ref.MakeNullReference<Grid>();
 
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>

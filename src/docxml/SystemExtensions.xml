@@ -4555,6 +4555,17 @@ fixed (short* ptr = instance)
             <inheritdoc/>
             <param name="paramName">The parameter name.</param>
         </member>
+        <member name="T:System.INullRef`1">
+            <summary>
+            Represents a type that supports a property returning a <see langword="null"/> reference.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:System.INullRef`1.NullRef">
+            <summary>
+            Represents the default reference of this type.
+            </summary>
+        </member>
         <member name="T:System.ISimpleFormattable">
             <summary>
             Defines a type that supports <c>ToString(<see langword="string"/>?)</c>.

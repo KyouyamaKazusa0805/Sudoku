@@ -2062,6 +2062,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.NullRef">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
@@ -2531,6 +2534,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Offsets">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.NullRef">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
@@ -3665,9 +3671,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.NullRef">
-            <summary>
-            Represents a default reference of type <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
             <summary>
