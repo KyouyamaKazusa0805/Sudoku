@@ -36,7 +36,7 @@ public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>
 	public static abstract TSelf operator &(TSelf left, TSelf right);
 
 	/// <summary>
-	/// Equivalent to <c><![CDATA[true(left) ? left : false(left | right)]]></c>.
+	/// Equivalent to <c><![CDATA[true(left) ? left : true(left | right)]]></c>.
 	/// </summary>
 	/// <param name="left">The left-side value.</param>
 	/// <param name="right">The right-side value.</param>

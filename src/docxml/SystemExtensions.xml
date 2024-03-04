@@ -4665,7 +4665,7 @@ fixed (short* ptr = instance)
         </member>
         <member name="M:System.ILogicalOperators`1.op_BitwiseOr(`0,`0)">
             <summary>
-            Equivalent to <c><![CDATA[true(left) ? left : false(left | right)]]></c>.
+            Equivalent to <c><![CDATA[true(left) ? left : true(left | right)]]></c>.
             </summary>
             <param name="left">The left-side value.</param>
             <param name="right">The right-side value.</param>
