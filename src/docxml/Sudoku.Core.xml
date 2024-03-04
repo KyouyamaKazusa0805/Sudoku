@@ -5322,22 +5322,15 @@ if (student is (name: var name, age: >= 18))
             Indicates the token of the object.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ITokenizable`1.EqualityComparer">
+            <summary>
+            Indicates the equality comparer instance of type <typeparamref name="TSelf"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ITokenizable`1.TokenHashCode">
             <summary>
             Indicates the hash code that is calculated with token.
             </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.ITokenizable`1.System#Collections#Generic#IEqualityComparer{TSelf}#Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ITokenizable`1.System#Collections#Generic#IEqualityComparer{TSelf}#GetHashCode(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ITokenizable`1.Equals(`0,`0)">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ITokenizable`1.GetHashCode(`0)">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.ITokenizable`1.Create(System.String)">
             <summary>
