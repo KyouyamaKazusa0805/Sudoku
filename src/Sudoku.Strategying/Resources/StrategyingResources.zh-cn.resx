@@ -174,7 +174,7 @@
   <data name="TechniqueCountConstraint" xml:space="preserve">
     <value>技巧出现次数：“{0}”需要出现 {1} {2} 次</value>
   </data>
-  <data name="ConclusionCountConstraint" xml:space="preserve">
-    <value>结论数量：结论 {0} 必须出现 {1} 次{2}</value>
+  <data name="ConclusionConstraint" xml:space="preserve">
+    <value>结论：结论 {0} {1}出现</value>
   </data>
 </root>

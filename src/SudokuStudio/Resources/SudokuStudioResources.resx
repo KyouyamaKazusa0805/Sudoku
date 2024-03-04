@@ -2333,10 +2333,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_AppearTimesLabel" xml:space="preserve">
     <value>, appears times:</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_ConclusionCountConstraint" xml:space="preserve">
-    <value>Conclusion count constraint</value>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionConstraint" xml:space="preserve">
+    <value>Conclusion constraint</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_ConclusionCount" xml:space="preserve">
-    <value>Conclusion appearing times</value>
+  <data name="GeneratedPuzzleConstraintPage_Conclusion" xml:space="preserve">
+    <value>Conclusion appearance</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ShouldAppearLabel" xml:space="preserve">
+    <value>, should appear:</value>
   </data>
 </root>

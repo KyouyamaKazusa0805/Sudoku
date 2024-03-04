@@ -2194,20 +2194,20 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion appearing times.
+        ///   Looks up a localized string similar to Conclusion appearance.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_ConclusionCount {
+        internal static string GeneratedPuzzleConstraintPage_Conclusion {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ConclusionCount", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Conclusion", resourceCulture);
             }
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion count constraint.
+        ///   Looks up a localized string similar to Conclusion constraint.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_ConclusionCountConstraint {
+        internal static string GeneratedPuzzleConstraintPage_ConclusionConstraint {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ConclusionCountConstraint", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ConclusionConstraint", resourceCulture);
             }
         }
         
@@ -2415,6 +2415,15 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_RowLabel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_RowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to , should appear:.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_ShouldAppearLabel {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ShouldAppearLabel", resourceCulture);
             }
         }
         

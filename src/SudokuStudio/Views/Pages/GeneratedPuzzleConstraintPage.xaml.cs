@@ -60,7 +60,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
 				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
-				ConclusionCountConstraint instance => () => callback(Create_ConclusionCount, instance),
+				ConclusionConstraint instance => () => callback(Create_ConclusionCount, instance),
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
@@ -215,9 +215,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? Create_ConclusionCount(ConclusionCountConstraint constraint)
+	private SettingsCard? Create_ConclusionCount(ConclusionConstraint constraint)
 	{
-		if (constraint is not { Conclusion: var conclusion, Operator: var @operator, LimitCount: var limitCount })
+		if (constraint is not { Conclusion: var conclusion, ShouldAppear: var shouldAppear })
 		{
 			return null;
 		}
@@ -324,23 +324,19 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		var appearLabelControl = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_AppearTimesLabel", App.CurrentCulture),
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ShouldAppearLabel", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
 		//
-		// operator
+		// appear control
 		//
-		var operatorControl = ComparisonOperatorControl(@operator, constraint);
-
-		//
-		// appearing times selector
-		//
-		var appearingTimesControl = LimitCountControl(constraint.LimitCount, constraint);
+		var appearControl = new ToggleSwitch { IsOn = shouldAppear };
+		appearControl.RegisterPropertyChangedCallback(ToggleSwitch.IsOnProperty, (d, _) => constraint.ShouldAppear = ((ToggleSwitch)d).IsOn);
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ConclusionCount", App.CurrentCulture),
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{
@@ -355,8 +351,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					conclusionTypeControl,
 					numberControl,
 					appearLabelControl,
-					operatorControl,
-					appearingTimesControl
+					appearControl
 				}
 			},
 			Tag = constraint

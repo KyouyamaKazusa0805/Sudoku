@@ -6812,14 +6812,14 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Column.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ConclusionCount">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Conclusion">
             <summary>
-              Looks up a localized string similar to Conclusion appearing times.
+              Looks up a localized string similar to Conclusion appearance.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ConclusionCountConstraint">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ConclusionConstraint">
             <summary>
-              Looks up a localized string similar to Conclusion count constraint.
+              Looks up a localized string similar to Conclusion constraint.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_CountBetween">
@@ -6935,6 +6935,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_RowLabel">
             <summary>
               Looks up a localized string similar to Row.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ShouldAppearLabel">
+            <summary>
+              Looks up a localized string similar to , should appear:.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">

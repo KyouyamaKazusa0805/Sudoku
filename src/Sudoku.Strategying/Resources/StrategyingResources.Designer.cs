@@ -88,11 +88,11 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion count rule: Conclusion {0} should appear {1} time{2}.
+        ///   Looks up a localized string similar to Conclusion count rule: Conclusion {0} should {1}appear.
         /// </summary>
-        internal static string ConclusionCountConstraint {
+        internal static string ConclusionConstraint {
             get {
-                return ResourceManager.GetString("ConclusionCountConstraint", resourceCulture);
+                return ResourceManager.GetString("ConclusionConstraint", resourceCulture);
             }
         }
         

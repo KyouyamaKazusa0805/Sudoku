@@ -2321,9 +2321,6 @@
   <data name="TechniqueSelector_NoTechniqueSelected" xml:space="preserve">
     <value>未选择任何技巧</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_RowLabel" xml:space="preserve">
     <value>行</value>
   </data>
@@ -2333,10 +2330,16 @@
   <data name="GeneratedPuzzleConstraintPage_AppearTimesLabel" xml:space="preserve">
     <value>，出现次数</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_ConclusionCountConstraint" xml:space="preserve">
-    <value>结论次数约束</value>
+  <data name="GeneratedPuzzleConstraintPage_ConclusionConstraint" xml:space="preserve">
+    <value>结论约束</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_ConclusionCount" xml:space="preserve">
-    <value>结论出现次数</value>
+  <data name="GeneratedPuzzleConstraintPage_Conclusion" xml:space="preserve">
+    <value>结论出现情况</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_ShouldAppearLabel" xml:space="preserve">
+    <value>，是否需要出现：</value>
   </data>
 </root>

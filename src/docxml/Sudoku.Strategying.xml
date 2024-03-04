@@ -65,9 +65,9 @@
               Looks up a localized string similar to both side open.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.StrategyingResources.ConclusionCountConstraint">
+        <member name="P:Sudoku.Resources.StrategyingResources.ConclusionConstraint">
             <summary>
-              Looks up a localized string similar to Conclusion count rule: Conclusion {0} should appear {1} time{2}.
+              Looks up a localized string similar to Conclusion count rule: Conclusion {0} should {1}appear.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.CountBetweenConstraint">
@@ -237,44 +237,37 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConclusionCountConstraint">
+        <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
-            Represents a conclusion count constraint.
+            Represents a conclusion constraint.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.AllowDuplicate">
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.LimitCount">
-            <inheritdoc/>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ShouldAppear">
+            <summary>
+            Indicates whether the conclusion should be appeared.
+            </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Operator">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Conclusion">
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusion">
             <summary>
             Indicates the conclusion.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Minimum">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Maximum">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.GetHashCode">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionCountConstraint.ToString">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.Constraint">
