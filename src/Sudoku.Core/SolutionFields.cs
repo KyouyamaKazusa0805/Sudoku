@@ -106,6 +106,11 @@ public static class SolutionFields
 	public static readonly Chute[] Chutes;
 
 	/// <summary>
+	/// Indicates the chute house triplets.
+	/// </summary>
+	public static readonly ChuteHouseTriplet[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
+
+	/// <summary>
 	/// Indicates the possible house types to be iterated.
 	/// </summary>
 	public static readonly HouseType[] HouseTypes = [HouseType.Block, HouseType.Row, HouseType.Column];
@@ -201,11 +206,10 @@ public static class SolutionFields
 		//
 		// Chutes
 		//
-		var h = ((House, House, House)[])[(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
 		Chutes = new Chute[6];
 		for (var chute = 0; chute < 3; chute++)
 		{
-			var ((r1, r2, r3), (c1, c2, c3)) = (h[chute], h[chute + 3]);
+			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
 			(Chutes[chute], Chutes[chute + 3]) = (
 				new(chute, HousesMap[r1] | HousesMap[r2] | HousesMap[r3], true, 1 << r1 | 1 << r2 | 1 << r3),
 				new(chute + 3, HousesMap[c1] | HousesMap[c2] | HousesMap[c3], false, 1 << c1 | 1 << c2 | 1 << c3)

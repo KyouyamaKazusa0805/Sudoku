@@ -43,6 +43,7 @@ global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.SolutionFields;
 global using unsafe CellMapPredicateFuncPtr = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, int /*Digit*/, bool>;
 global using unsafe CellPredicateFuncPtr = delegate*<ref readonly Sudoku.Concepts.Grid, int /*Cell*/, bool>;
+global using ChuteHouseTriplet = (int /*House*/ A, int /*House*/ B, int /*House*/ C);
 global using unsafe GridRandomizedSufflerFuncPtr = delegate*<System.Random, ref Sudoku.Concepts.Grid, void>;
 global using unsafe MaskMergingFuncPtr = delegate*<ref short /*Mask*/, ref readonly Sudoku.Concepts.Grid, int /*Cell*/, void>;
 global using unsafe RefreshingCandidatesHandlerFuncPtr = delegate*<ref Sudoku.Concepts.Grid, void>;

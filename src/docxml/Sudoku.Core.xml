@@ -9028,6 +9028,11 @@ if (student is (name: var name, age: >= 18))
             Indicates a list of <see cref="T:Sudoku.Concepts.Chute"/> instances representing chutes.
             </summary>
         </member>
+        <member name="F:Sudoku.SolutionFields.ChuteHouses">
+            <summary>
+            Indicates the chute house triplets.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.HouseTypes">
             <summary>
             Indicates the possible house types to be iterated.
