@@ -32,11 +32,7 @@ public sealed class ConstraintCollection : List<Constraint>
 	/// <param name="selector">The selector method.</param>
 	/// <param name="defaultValue">The default value.</param>
 	/// <returns>The final result.</returns>
-	public TResult? FindFirst<TResult>(
-		Func<Constraint, bool> match,
-		Func<Constraint, TResult> selector,
-		TResult? defaultValue = default
-	)
+	public TResult? FindFirst<TResult>(Func<Constraint, bool> match, Func<Constraint, TResult> selector, TResult? defaultValue = default)
 	{
 		foreach (var element in this)
 		{
