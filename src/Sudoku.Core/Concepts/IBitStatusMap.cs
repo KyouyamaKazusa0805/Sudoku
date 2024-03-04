@@ -18,6 +18,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	INullRef<TSelf>,
+	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
 	ISimpleParsable<TSelf>,
@@ -73,6 +74,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	protected static abstract TElement MaxCount { get; }
 
+	/// <inheritdoc/>
+	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
+
 
 	/// <summary>
 	/// Get the offset at the specified position index.
@@ -81,11 +85,10 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	public abstract TElement this[int index] { get; }
-
+	public abstract new TElement this[int index] { get; }
 
 	/// <inheritdoc/>
-	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
+	TElement IReadOnlyList<TElement>.this[int index] => this[index];
 
 
 	/// <summary>

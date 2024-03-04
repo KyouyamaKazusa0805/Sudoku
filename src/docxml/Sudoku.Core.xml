@@ -4707,6 +4707,9 @@ if (student is (name: var name, age: >= 18))
             Indicates the maximum number of elements that the collection can be reached.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.Item(System.Int32)">
             <summary>
             Get the offset at the specified position index.
@@ -4716,7 +4719,7 @@ if (student is (name: var name, age: >= 18))
             The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
             </returns>
         </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlyList{TElement}#Item(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Add(`1)">
