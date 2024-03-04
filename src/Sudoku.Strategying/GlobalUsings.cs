@@ -4,6 +4,7 @@ global using System.ComponentModel;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Linq;
+global using System.Linq.Expressions;
 global using System.Numerics;
 global using System.Resources;
 global using System.Runtime.CompilerServices;

@@ -26,7 +26,7 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		&& (CheckPearl, ShouldBePearlOrDiamond) == (comparer.CheckPearl, comparer.ShouldBePearlOrDiamond);
 
 	/// <inheritdoc/>
-	public sealed override bool Check(scoped ConstraintCheckingContext context)
+	public sealed override bool Check(ConstraintCheckingContext context)
 	{
 		var isPearl = context.AnalyzerResult.IsPearl;
 		var isDiamond = context.AnalyzerResult.IsDiamond;

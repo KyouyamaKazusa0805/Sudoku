@@ -44,9 +44,9 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 		=> other is IttoryuLengthConstraint comparer && (Length, Operator) == (comparer.Length, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
-		var factLength = Finder.FindPath(in context.Grid).Digits.Length;
+		var factLength = Finder.FindPath(context.Grid).Digits.Length;
 		return Operator.GetOperator<int>()(factLength, Length);
 	}
 

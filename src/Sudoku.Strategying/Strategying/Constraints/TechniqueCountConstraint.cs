@@ -42,7 +42,7 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
 		var times = 0;
 		foreach (var step in context.AnalyzerResult)

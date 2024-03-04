@@ -26,7 +26,7 @@ public sealed partial class ConclusionConstraint : Constraint
 
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
 		var appeared = false;
 		foreach (var step in context.AnalyzerResult)

@@ -23,7 +23,7 @@ public sealed partial class TechniqueConstraint : Constraint
 
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
 		// Special case: If a user doesn't select any technique, we should consider this case as "always true".
 		if (Techniques.Count == 0)

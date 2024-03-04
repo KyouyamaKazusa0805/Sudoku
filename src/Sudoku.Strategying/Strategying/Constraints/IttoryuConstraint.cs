@@ -38,7 +38,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		=> other is IttoryuConstraint comparer && (Rounds, Operator) == (comparer.Rounds, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
 		var steps = context.AnalyzerResult.Steps!;
 		var roundsCount = 1;

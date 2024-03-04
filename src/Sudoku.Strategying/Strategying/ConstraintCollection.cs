@@ -11,7 +11,7 @@ public sealed class ConstraintCollection : List<Constraint>
 	/// </summary>
 	/// <param name="context">The context to be used.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool IsValidFor(scoped ConstraintCheckingContext context)
+	public bool IsValidFor(ConstraintCheckingContext context)
 	{
 		foreach (var constraint in this)
 		{

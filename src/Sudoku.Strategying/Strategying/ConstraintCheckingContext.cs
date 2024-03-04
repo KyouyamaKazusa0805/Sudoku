@@ -1,12 +1,9 @@
 namespace Sudoku.Strategying;
 
 /// <summary>
-/// Represents context used by <see cref="Constraint"/> instance.
+/// Represents context that will be called by method <see cref="Constraint.Check(ConstraintCheckingContext)"/>.
 /// </summary>
-/// <param name="grid">Indicates the reference to the grid to be checked.</param>
-/// <param name="analyzerResult">Indicates the analyzer result.</param>
-/// <seealso cref="Constraint"/>
-public readonly ref partial struct ConstraintCheckingContext(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
-	[PrimaryConstructorParameter] AnalyzerResult analyzerResult
-);
+/// <param name="Grid">Indicates the reference to the grid to be checked.</param>
+/// <param name="AnalyzerResult">Indicates the analyzer result.</param>
+/// <seealso cref="Constraint.Check(ConstraintCheckingContext)"/>
+public readonly record struct ConstraintCheckingContext(scoped ref readonly Grid Grid, AnalyzerResult AnalyzerResult);

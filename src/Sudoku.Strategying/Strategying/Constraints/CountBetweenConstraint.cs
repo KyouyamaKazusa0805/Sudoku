@@ -41,9 +41,9 @@ public sealed partial class CountBetweenConstraint : Constraint
 		&& Range.Equals(comparer.Range) && (CellState, BetweenRule) == (comparer.CellState, comparer.BetweenRule);
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		var grid = context.Grid;
 		var factCount = CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount };
 		_ = Range is { Start.Value: var min, End.Value: var max };
 		return BetweenRule switch

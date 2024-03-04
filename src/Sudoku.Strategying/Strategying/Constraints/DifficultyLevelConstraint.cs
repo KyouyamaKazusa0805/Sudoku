@@ -63,7 +63,7 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 		=> other is DifficultyLevelConstraint comparer && (DifficultyLevel, Operator) == (comparer.DifficultyLevel, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context)
+	public override bool Check(ConstraintCheckingContext context)
 		=> (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
 
 	/// <inheritdoc/>

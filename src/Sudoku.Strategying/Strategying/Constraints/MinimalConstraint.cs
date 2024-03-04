@@ -25,7 +25,7 @@ public sealed partial class MinimalConstraint : Constraint
 		=> other is MinimalConstraint comparer && ShouldBeMinimal == comparer.ShouldBeMinimal;
 
 	/// <inheritdoc/>
-	public override bool Check(scoped ConstraintCheckingContext context) => context.Grid.IsMinimal == ShouldBeMinimal;
+	public override bool Check(ConstraintCheckingContext context) => context.Grid.IsMinimal == ShouldBeMinimal;
 
 	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
