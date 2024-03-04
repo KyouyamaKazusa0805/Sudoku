@@ -58,6 +58,8 @@ public static class TrueCandidate
 			}
 		}
 
+		cancellationToken.ThrowIfCancellationRequested();
+
 		// Store all multi-value cells.
 		// Suppose the pattern is the simplest BUG + 1 pattern (i.e. Only one multi-value cell).
 		// The comments will help you to understand the processing.
@@ -79,6 +81,8 @@ public static class TrueCandidate
 				pairs[i, z] = pairList[z - 1];
 			}
 		}
+
+		cancellationToken.ThrowIfCancellationRequested();
 
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
@@ -117,6 +121,8 @@ public static class TrueCandidate
 				}
 
 				if (@continue) { break; }
+
+				cancellationToken.ThrowIfCancellationRequested();
 			}
 
 			if (@continue)
@@ -153,6 +159,8 @@ public static class TrueCandidate
 			{
 				chosen[currentIndex--] = 0;
 			}
+
+			cancellationToken.ThrowIfCancellationRequested();
 		} while (currentIndex > 0);
 
 		return result;
