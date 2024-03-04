@@ -5958,37 +5958,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Step.op_LessThanOrEqual(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Analytics.EqualityComparer`1">
-            <summary>
-            The internal equality comparer type for <typeparamref name="T"/> instances.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="F:Sudoku.Analytics.EqualityComparer`1.Instance">
-            <summary>
-            The singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.EqualityComparer`1.Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.EqualityComparer`1.GetHashCode(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Comparer`1">
-            <summary>
-            The internal comparer type for <typeparamref name="T"/> instances.
-            </summary>
-            <typeparam name="T">The type of the step.</typeparam>
-        </member>
-        <member name="F:Sudoku.Analytics.Comparer`1.Instance">
-            <summary>
-            The singleton instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Comparer`1.Compare(`0,`0)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>
             Represents a searcher that can creates <see cref="T:Sudoku.Analytics.Step"/> instances for the specified technique.

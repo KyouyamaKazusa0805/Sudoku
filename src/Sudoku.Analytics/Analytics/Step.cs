@@ -293,7 +293,8 @@ public abstract partial class Step(
 	/// <typeparam name="TStep">The type of each step.</typeparam>
 	/// <param name="accumulator">The accumulator instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step => accumulator.Sort(Comparer<TStep>.Instance);
+	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step
+		=> accumulator.Sort(ValueComparison.Create<TStep>(static (l, r) => l.CompareTo(r)));
 
 #pragma warning disable format
 	/// <summary>
@@ -311,43 +312,7 @@ public abstract partial class Step(
 			[] => [],
 			[var firstElement] => [firstElement],
 			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TStep>(accumulator, EqualityComparer<TStep>.Instance)
+			_ => new HashSet<TStep>(accumulator, ValueComparison.Create<TStep>(static (x, y) => x == y, static v => v.GetHashCode()))
 		};
 #pragma warning restore format
-}
-
-/// <summary>
-/// The internal equality comparer type for <typeparamref name="T"/> instances.
-/// </summary>
-/// <typeparam name="T">The type of the step.</typeparam>
-file sealed class EqualityComparer<T> : IEqualityComparer<T> where T : Step
-{
-	/// <summary>
-	/// The singleton instance.
-	/// </summary>
-	public static readonly IEqualityComparer<T> Instance = new EqualityComparer<T>();
-
-
-	/// <inheritdoc/>
-	public bool Equals(T? x, T? y) => x == y;
-
-	/// <inheritdoc/>
-	public int GetHashCode(T obj) => obj.GetHashCode();
-}
-
-/// <summary>
-/// The internal comparer type for <typeparamref name="T"/> instances.
-/// </summary>
-/// <typeparam name="T">The type of the step.</typeparam>
-file sealed class Comparer<T> : IComparer<T> where T : Step
-{
-	/// <summary>
-	/// The singleton instance.
-	/// </summary>
-	public static readonly IComparer<T> Instance = new Comparer<T>();
-
-
-	/// <inheritdoc/>
-	public int Compare(T? left, T? right)
-		=> (left, right) switch { (null, null) => 0, (null, not null) => -1, (not null, null) => 1, _ => left.CompareTo(right) };
 }
