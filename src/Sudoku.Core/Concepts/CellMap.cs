@@ -4,21 +4,7 @@ namespace Sudoku.Concepts;
 /// Encapsulates a binary series of cell state table.
 /// </summary>
 /// <remarks>
-/// <para>
-/// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
-/// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Cell)"/> or <see cref="op_Addition(in CellMap, Cell)"/>.
-/// <code><![CDATA[
-/// var map = CellMap.Empty;
-/// map += 0; // Adds 'r1c1' into the collection.
-/// map.Add(1); // Adds 'r1c2' into the collection.
-/// map |= [2, 3, 4]; // Adds 'r1c345' into the collection.
-/// map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
-/// ]]></code>
-/// </para>
-/// <para>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
-/// </para>
 /// </remarks>
 [JsonConverter(typeof(CellMapConverter))]
 [StructLayout(LayoutKind.Auto)]
@@ -44,8 +30,11 @@ public partial struct CellMap :
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
-	public static readonly CellMap Empty;
+	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
+	public static readonly CellMap MinValue = [];
+
+	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
+	public static readonly CellMap MaxValue = ~default(CellMap);
 
 	/// <summary>
 	/// The internal cell map parser.
@@ -84,7 +73,7 @@ public partial struct CellMap :
 	[JsonConstructor]
 	public CellMap(string[] segments)
 	{
-		this = Empty;
+		this = [];
 		foreach (var segment in segments)
 		{
 			this |= ParseExact(segment, new RxCyParser());
@@ -375,7 +364,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			var result = Empty;
+			var result = (CellMap)[];
 			foreach (var cell in Offsets)
 			{
 				result |= PeersMap[cell];
@@ -469,13 +458,10 @@ public partial struct CellMap :
 	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>
-	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => Empty;
+	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MaxValue => ~Empty;
-
-	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MinValue => Empty;
+	static CellMap IMinMaxValue<CellMap>.MinValue => MinValue;
 
 
 	/// <inheritdoc/>
@@ -693,7 +679,7 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)
 	{
-		var (result, offsets) = (Empty, Offsets);
+		var (result, offsets) = ((CellMap)[], Offsets);
 		for (int i = start, end = start + count; i < end; i++)
 		{
 			result.Add(offsets[i]);
@@ -928,7 +914,7 @@ public partial struct CellMap :
 		}
 		catch
 		{
-			result = Empty;
+			result = [];
 			return false;
 		}
 	}
@@ -957,7 +943,7 @@ public partial struct CellMap :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
 	{
-		var result = Empty;
+		var result = default(CellMap);
 		foreach (var cell in cells)
 		{
 			result.Add(cell);
@@ -1149,7 +1135,7 @@ public partial struct CellMap :
 	[ExplicitInterfaceImpl(typeof(IMultiplyOperators<,,>))]
 	public static CandidateMap operator *(scoped in CellMap @base, Digit digit)
 	{
-		var result = CandidateMap.Empty;
+		var result = (CandidateMap)[];
 		foreach (var cell in @base.Offsets)
 		{
 			result.Add(cell * 9 + digit);

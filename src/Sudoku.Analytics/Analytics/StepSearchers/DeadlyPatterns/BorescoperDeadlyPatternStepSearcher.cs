@@ -522,7 +522,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				foreach (var combination in (tempMask & orMask).GetAllSets().GetSubsets(currentMap.Count - 1))
 				{
 					var combinationMask = (Mask)0;
-					var combinationMap = CellMap.Empty;
+					var combinationMap = (CellMap)[];
 					var flag = false;
 					foreach (var digit in combination)
 					{
@@ -550,7 +550,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 					// Type 4 forms. Now check eliminations.
 					var finalDigits = (Mask)(tempMask & ~combinationMask);
-					var possibleCandMaps = CellMap.Empty;
+					var possibleCandMaps = (CellMap)[];
 					foreach (var finalDigit in finalDigits)
 					{
 						possibleCandMaps |= CandidatesMap[finalDigit];

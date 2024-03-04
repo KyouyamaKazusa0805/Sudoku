@@ -143,10 +143,10 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	)
 	{
 		// Gets the cells that all branches of 'posToOn' contain. This is used for cell type (into a cell).
-		var cellsAllBranchesContain = ~CellMap.Empty;
+		var cellsAllBranchesContain = ~(CellMap)[];
 		foreach (var (_, nodes) in posToOn)
 		{
-			var tempCells = CellMap.Empty;
+			var tempCells = (CellMap)[];
 			foreach (var node in nodes)
 			{
 				tempCells.Add(node.Cell);
@@ -238,7 +238,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 			foreach (var house in housesAllBranchesContain)
 			{
 				var selectedPotentials = new NodeList();
-				var selectedPotentialCells = CellMap.Empty;
+				var selectedPotentialCells = (CellMap)[];
 				foreach (var (_, nodes) in posToOn)
 				{
 					foreach (var node in nodes)
@@ -306,7 +306,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 				return false;
 			}
 
-			var selectedPositions = CandidateMap.Empty;
+			var selectedPositions = (CandidateMap)[];
 			foreach (var position in potentialPositions)
 			{
 				if (branchStartDigit != baseDigit && position == branchStartCell)

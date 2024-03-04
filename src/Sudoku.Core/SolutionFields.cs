@@ -174,7 +174,7 @@ public static class SolutionFields
 		PeersMap = new CellMap[81];
 		for (var cell = 0; cell < 81; cell++)
 		{
-			var map = CellMap.Empty;
+			var map = (CellMap)[];
 			for (var peerCell = 0; peerCell < 81; peerCell++)
 			{
 				if (cell != peerCell)

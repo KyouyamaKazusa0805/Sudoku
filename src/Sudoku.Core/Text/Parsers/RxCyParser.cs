@@ -44,7 +44,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		var result = CellMap.Empty;
+		var result = (CellMap)[];
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;
@@ -75,7 +75,7 @@ public sealed partial record RxCyParser : CoordinateParser
 			return [];
 		}
 
-		var result = CandidateMap.Empty;
+		var result = (CandidateMap)[];
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;

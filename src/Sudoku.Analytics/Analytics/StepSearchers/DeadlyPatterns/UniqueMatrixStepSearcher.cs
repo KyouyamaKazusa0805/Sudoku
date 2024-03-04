@@ -239,7 +239,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		{
 			var digitsMask = MaskOperations.Create(digits);
 			var extraDigitsMask = (Mask)(mask & ~digitsMask);
-			var tempMap = CellMap.Empty;
+			var tempMap = (CellMap)[];
 			foreach (var digit in extraDigitsMask)
 			{
 				tempMap |= CandidatesMap[digit];
@@ -335,7 +335,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 		{
 			var digitsMask = MaskOperations.Create(digits);
 			var extraDigitsMask = (Mask)(mask & ~digitsMask);
-			var tempMap = CellMap.Empty;
+			var tempMap = (CellMap)[];
 			foreach (var digit in extraDigitsMask)
 			{
 				tempMap |= CandidatesMap[digit];

@@ -92,7 +92,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
-		var cellsNotSymmetrical = CellMap.Empty;
+		var cellsNotSymmetrical = (CellMap)[];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < i; j++)
@@ -224,7 +224,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
-		var cellsNotSymmetrical = CellMap.Empty;
+		var cellsNotSymmetrical = (CellMap)[];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 8 - i; j++)
@@ -356,7 +356,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
-		var cellsNotSymmetrical = CellMap.Empty;
+		var cellsNotSymmetrical = (CellMap)[];
 		for (var i = 0; i < 4; i++)
 		{
 			for (var j = 0; j < 9; j++)
@@ -458,7 +458,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
-		var cellsNotSymmetrical = CellMap.Empty;
+		var cellsNotSymmetrical = (CellMap)[];
 		for (var i = 0; i < 9; i++)
 		{
 			for (var j = 0; j < 4; j++)
@@ -560,7 +560,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 	{
 		scoped var mapping = (stackalloc Digit?[9]);
 		mapping.Clear();
-		var cellsNotSymmetrical = CellMap.Empty;
+		var cellsNotSymmetrical = (CellMap)[];
 		for (var cell = 0; cell < 40; cell++)
 		{
 			var anotherCell = 80 - cell;

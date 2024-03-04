@@ -36,7 +36,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var d2 = mask.GetNextSet(d1);
 
 			var tempLoop = new List<Cell>(14);
-			var loopMap = CellMap.Empty;
+			var loopMap = (CellMap)[];
 			var patterns = new HashSet<Pattern>();
 			CollectUniqueLoops(in grid, cell, d1, d2, tempLoop, ref loopMap, patterns);
 

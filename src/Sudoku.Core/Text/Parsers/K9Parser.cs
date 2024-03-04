@@ -47,7 +47,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		var result = CellMap.Empty;
+		var result = (CellMap)[];
 		foreach (var match in matches.Cast<Match>())
 		{
 			var s = match.Value;
@@ -79,7 +79,7 @@ public sealed partial record K9Parser : CoordinateParser
 			return [];
 		}
 
-		var result = CandidateMap.Empty;
+		var result = (CandidateMap)[];
 		foreach (var match in matches.Cast<Match>())
 		{
 			if (match.Captures is not [{ Value: var rows }, { Value: var columns }, { Value: var digits }])

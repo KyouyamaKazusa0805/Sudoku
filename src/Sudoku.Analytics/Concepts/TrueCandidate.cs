@@ -90,7 +90,7 @@ public static class TrueCandidate
 		scoped var playground = (stackalloc House[3]);
 		scoped var chosen = (stackalloc Candidate[multivalueCellsCount + 1]);
 		var currentIndex = 1;
-		var result = CandidateMap.Empty;
+		var result = (CandidateMap)[];
 
 		chosen.Clear();
 		do

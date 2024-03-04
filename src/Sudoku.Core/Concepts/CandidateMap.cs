@@ -5,22 +5,7 @@ namespace Sudoku.Concepts;
 /// The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
 /// </summary>
 /// <remarks>
-/// <para>
-/// This type holds a <see langword="static readonly"/> field called <see cref="Empty"/>,
-/// it is the only field provided to be used as the entry to create or update collection.
-/// If you want to add elements into it, you can use <see cref="Add(Candidate)"/>
-/// or <see cref="op_Addition(in CandidateMap, Candidate)"/>.
-/// <code><![CDATA[
-/// var map = CandidateMap.Empty;
-/// map += 0; // Adds 'r1c1(1)' into the collection.
-/// map.Add(1); // Adds 'r1c1(2)' into the collection.
-/// map |= [2, 3, 4]; // Adds 'r1c1(345)' into the collection.
-/// map |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
-/// ]]></code>
-/// </para>
-/// <para>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
-/// </para>
 /// </remarks>
 [JsonConverter(typeof(CandidateMapConverter))]
 [StructLayout(LayoutKind.Auto)]
@@ -37,16 +22,10 @@ public partial struct CandidateMap :
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
-	/// <inheritdoc cref="IBitStatusMap{T, TElement, TEnumerator}.Empty"/>
-	public static readonly CandidateMap Empty;
-
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
 	public static readonly CandidateMap MaxValue = ~default(CandidateMap);
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
-	/// <remarks>
-	/// This value is equivalent to <see cref="Empty"/>.
-	/// </remarks>
 	public static readonly CandidateMap MinValue;
 
 
@@ -57,7 +36,7 @@ public partial struct CandidateMap :
 	[JsonConstructor]
 	public CandidateMap(string[] segments)
 	{
-		this = Empty;
+		this = [];
 		foreach (var segment in segments)
 		{
 			this |= ParseExact(segment, new RxCyParser());
@@ -72,7 +51,7 @@ public partial struct CandidateMap :
 	/// <param name="withItself">Indicates whether the map will process itself with <see langword="true"/> value.</param>
 	private CandidateMap(Candidate candidate, bool withItself)
 	{
-		(this, var cell, var digit) = (Empty, candidate / 9, candidate % 9);
+		(this, var cell, var digit) = ([], candidate / 9, candidate % 9);
 		foreach (var c in PeersMap[cell])
 		{
 			Add(c * 9 + digit);
@@ -115,7 +94,7 @@ public partial struct CandidateMap :
 					select digitGroups)
 				{
 					scoped var sb = new StringHandler(50);
-					var cells = CellMap.Empty;
+					var cells = (CellMap)[];
 					foreach (var candidate in digitGroup)
 					{
 						cells.Add(candidate / 9);
@@ -167,10 +146,10 @@ public partial struct CandidateMap :
 			if (_count == 0)
 			{
 				// Empty list can't contain any peer intersections.
-				return Empty;
+				return [];
 			}
 
-			var result = ~Empty;
+			var result = MaxValue;
 			foreach (var candidate in Offsets)
 			{
 				result &= new CandidateMap(candidate, false);
@@ -258,9 +237,6 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
-
-	/// <inheritdoc/>
-	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => Empty;
 
 	/// <inheritdoc/>
 	static CandidateMap IMinMaxValue<CandidateMap>.MaxValue => MaxValue;
@@ -393,7 +369,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)
 	{
-		var result = Empty;
+		var result = (CandidateMap)[];
 		var offsets = Offsets;
 		for (int i = start, end = start + count; i < end; i++)
 		{
@@ -642,7 +618,7 @@ public partial struct CandidateMap :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static CandidateMap Create(scoped ReadOnlySpan<Candidate> candidates)
 	{
-		var result = Empty;
+		var result = default(CandidateMap);
 		foreach (var candidate in candidates)
 		{
 			result.Add(candidate);
@@ -732,7 +708,7 @@ public partial struct CandidateMap :
 	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
 	public static CellMap operator /(scoped in CandidateMap offsets, Digit digit)
 	{
-		var result = CellMap.Empty;
+		var result = (CellMap)[];
 		foreach (var element in offsets)
 		{
 			if (element % 9 == digit)

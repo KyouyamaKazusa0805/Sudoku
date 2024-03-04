@@ -65,17 +65,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <summary>
-	/// Indicates the empty instance.
-	/// </summary>
-	public static abstract TSelf Empty { get; }
-
-	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
 	/// </summary>
 	protected static abstract TElement MaxCount { get; }
 
 	/// <inheritdoc/>
-	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
+	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => (TSelf)[];
 
 
 	/// <summary>
@@ -330,7 +325,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty;
+		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -344,7 +339,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty;
+		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -358,7 +353,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSubsetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty;
+		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
@@ -373,7 +368,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
 	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
 	{
-		var otherCells = TSelf.Empty;
+		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);

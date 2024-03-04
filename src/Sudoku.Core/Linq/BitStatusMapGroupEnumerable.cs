@@ -101,7 +101,7 @@ public static class BitStatusMapGroupEnumerable
 		Func<BitStatusMapGroup<CellMap, Cell, CellMap.Enumerator, TKey>, Cell> selector
 	) where TKey : notnull
 	{
-		var result = CellMap.Empty;
+		var result = (CellMap)[];
 		foreach (var group in @this)
 		{
 			result.Add(selector(group));
@@ -124,7 +124,7 @@ public static class BitStatusMapGroupEnumerable
 		Func<BitStatusMapGroup<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>, Candidate> selector
 	) where TKey : notnull
 	{
-		var result = CandidateMap.Empty;
+		var result = (CandidateMap)[];
 		foreach (var group in @this)
 		{
 			result.Add(selector(group));

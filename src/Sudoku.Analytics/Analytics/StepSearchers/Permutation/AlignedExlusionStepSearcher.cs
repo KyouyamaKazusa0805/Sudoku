@@ -41,7 +41,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 		for (var size = 3; size <= MaxSearchingSize; size++)
 		{
 			// Search for "base" cells that can participate to an exclusion set. For each candidate, collect the potentially excluding cells.
-			var (candidateList, cellExcluders) = (CellMap.Empty, new Dictionary<Cell, CellMap>());
+			var (candidateList, cellExcluders) = ((CellMap)[], new Dictionary<Cell, CellMap>());
 			foreach (var cell in EmptyCells)
 			{
 				if (PopCount((uint)grid.GetCandidates(cell)) < 2)
@@ -50,7 +50,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 				}
 
 				// Look for potentially excluding cells (whose number of candidates is less than size).
-				var excludingCells = CellMap.Empty;
+				var excludingCells = (CellMap)[];
 				foreach (var excludingCell in PeersMap[cell])
 				{
 					var count = PopCount((uint)grid.GetCandidates(excludingCell));
@@ -113,7 +113,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 					}
 
 					// Build the list of common excluding cells for the base cells 'cells'.
-					var commonExcluders = CellMap.Empty;
+					var commonExcluders = (CellMap)[];
 					for (var i = 0; i < size; i++)
 					{
 						var excludingCells = cellExcluders[cells[i]];
@@ -234,7 +234,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 					// For all candidates of all base cells, test if the value is possible in at least one allowed combination.
 					var conclusions = new List<Conclusion>();
-					var conclusionCandidates = CandidateMap.Empty;
+					var conclusionCandidates = (CandidateMap)[];
 					for (var i = 0; i < size; i++)
 					{
 						var cell = cells[i];

@@ -79,7 +79,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// Iterate on each combination of houses as basic cross-line cells used.
 				foreach (var houses in (isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask).GetAllSets().GetSubsets(size))
 				{
-					var (housesEmptyCells, housesCells, housesMask) = (CellMap.Empty, CellMap.Empty, HouseMaskOperations.Create(houses));
+					var (housesEmptyCells, housesCells, housesMask) = ((CellMap)[], (CellMap)[], HouseMaskOperations.Create(houses));
 					foreach (var house in houses)
 					{
 						housesEmptyCells |= HousesMap[house] & EmptyCells;
@@ -492,7 +492,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		int chuteIndex
 	)
 	{
-		var crosslineIncludingTarget = CellMap.Empty;
+		var crosslineIncludingTarget = (CellMap)[];
 		foreach (var house in housesMask)
 		{
 			crosslineIncludingTarget |= HousesMap[house] - baseCells.PeerIntersection;
@@ -929,7 +929,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									foreach (var digitCombination in unappearedDigitsMask.GetAllSets().GetSubsets(endoTargetCellsGroup.Count - 1))
 									{
-										var appearingMap = CellMap.Empty;
+										var appearingMap = (CellMap)[];
 										foreach (var digit in digitCombination)
 										{
 											appearingMap |= CandidatesMap[digit] & HousesMap[endoTargetCellHouse];
@@ -1155,7 +1155,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Check the outside value digit, whether the digit doesn't share a same house as the missing-value cell.
 		var (baseCellUncoveredBlocksMaskCoveringCrossline, baseCellCoveredBlocksMaskCoveringCrossline) = ((Mask)0, (Mask)0);
-		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = (CellMap.Empty, CellMap.Empty);
+		var (baseCellUncoveredBlockCells, baseCellCoveredBlockCells) = ((CellMap)[], (CellMap)[]);
 		foreach (var (_, chuteCells, _, _) in Chutes[isRow ? ..3 : 3..])
 		{
 			if (chuteCells & baseCells)
@@ -1367,7 +1367,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Check for the other pair of base cells.
 		var blocksMask = HouseMaskOperations.AllBlocksMask & ~baseCells.BlockMask & ~crossline.BlockMask;
-		var lastCells = CellMap.Empty;
+		var lastCells = (CellMap)[];
 		foreach (var block in blocksMask)
 		{
 			lastCells |= HousesMap[block];
@@ -1897,7 +1897,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		var conclusions = new List<Conclusion>();
-		var singleMirrors = CellMap.Empty;
+		var singleMirrors = (CellMap)[];
 		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
 		{
 			if (cellGroup.Count == 2)
@@ -2022,7 +2022,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Now try to fetch the defining cells. First, try to get uncovered 4 blocks that the final cells should be located in.
-		var cellsDoNotCover = CellMap.Empty;
+		var cellsDoNotCover = (CellMap)[];
 		foreach (var (_, chuteCells, _, _) in Chutes)
 		{
 			if (chuteCells & baseCells)
@@ -2030,7 +2030,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				cellsDoNotCover |= chuteCells;
 			}
 		}
-		var lastFourBlocks = ~CellMap.Empty - cellsDoNotCover;
+		var lastFourBlocks = ~(CellMap)[] - cellsDoNotCover;
 		var lastFourBlocksNotIntersectedWithCrossline = lastFourBlocks - crossline;
 		var lastFourBlocksIntersectedWithCrossline = lastFourBlocks & crossline;
 
@@ -2120,7 +2120,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Now check for eliminations.
-		var incompatibleCandidates = CandidateMap.Empty;
+		var incompatibleCandidates = (CandidateMap)[];
 		var conclusions = new List<Conclusion>();
 		var targetCellsDigitsMask = grid[in targetCells];
 		foreach (var (elimCell, theOtherCell) in ((base1, base2), (base2, base1)))
@@ -2468,7 +2468,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & (Mask)~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
 						{
 							var extraDigitsMask = MaskOperations.Create(digitsMaskGroup);
-							var lastHoldingMap = CellMap.Empty;
+							var lastHoldingMap = (CellMap)[];
 							foreach (var digit in digitsMaskGroup)
 							{
 								lastHoldingMap |= CandidatesMap[digit];
@@ -3071,7 +3071,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	)
 	{
 		var conclusions = new List<Conclusion>();
-		var targetCells = CellMap.Empty;
+		var targetCells = (CellMap)[];
 		foreach (var groupOfTargetCells in groupsOfTargetCells)
 		{
 			foreach (var cell in groupOfTargetCells)
@@ -4250,7 +4250,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var (conclusions, singleMirrors) = (new List<Conclusion>(), CellMap.Empty);
+		var (conclusions, singleMirrors) = (new List<Conclusion>(), (CellMap)[]);
 		foreach (ref readonly var cellGroup in groupsOfTargetCells)
 		{
 			if (cellGroup.Count == 2)
@@ -4682,7 +4682,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var (flag, r, realLockedDigitsMask) = (false, new LockedMember?[9], (Mask)0);
 		foreach (var lockedDigit in lockedDigitsMask)
 		{
-			var (lockedMemberMap, lockedBlock) = (CellMap.Empty, -1);
+			var (lockedMemberMap, lockedBlock) = ((CellMap)[], -1);
 			foreach (var block in targetCells.BlockMask)
 			{
 				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];

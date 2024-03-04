@@ -129,7 +129,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
-	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = CandidateMap.Empty;
+	private static readonly CandidateMap ViewUnitUsedCandidatesDefaultValue = (CandidateMap)[];
 
 	[Default]
 	private static readonly DashArray StrongLinkDashStyleDefaultValue = [];
@@ -1017,7 +1017,7 @@ file static class Extensions
 				var result = new List<CellMap>(5);
 				for (var i = 1; ; i++)
 				{
-					var map = CellMap.Empty;
+					var map = (CellMap)[];
 					if (pos - i >= 0)
 					{
 						map.Add(cells[pos - i]);
@@ -1044,7 +1044,7 @@ file static class Extensions
 				var result = new List<CellMap>(5);
 				for (var i = 1; ; i++)
 				{
-					var map = CellMap.Empty;
+					var map = (CellMap)[];
 					if (pos - i >= 0)
 					{
 						map.Add(cells[pos - i]);

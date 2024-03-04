@@ -99,7 +99,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
 				pPuzzle[i] = '0';
 			}
 
-			var map = CellMap.Empty;
+			var map = (CellMap)[];
 			for (var i = 0; i < 16; i++)
 			{
 				while (true)

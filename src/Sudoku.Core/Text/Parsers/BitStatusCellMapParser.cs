@@ -15,7 +15,7 @@ public sealed class BitStatusCellMapParser : IConceptParser<CellMap>
 				throw new InvalidOperationException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 81));
 			}
 
-			var result = CellMap.Empty;
+			var result = (CellMap)[];
 			for (var cell = 0; cell < 81; cell++)
 			{
 				var character = str[cell];

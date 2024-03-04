@@ -246,7 +246,7 @@ public sealed partial class Analyzer :
 						}
 						else
 						{
-							var distinctCandidatesKey = CandidateMap.Empty;
+							var distinctCandidatesKey = (CandidateMap)[];
 							foreach (SingleStep step in accumulator)
 							{
 								if (!distinctCandidatesKey.Contains(step.Cell * 9 + step.Digit))

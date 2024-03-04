@@ -86,7 +86,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			foreach (var wrongDigit in wrongDigitsMask)
 			{
 				int satisfiedSize;
-				var availablePivots = CellMap.Empty;
+				var availablePivots = (CellMap)[];
 				var playground = grid.ToCandidateMaskArray();
 
 				// Iterate on each ALS, to find related ALSes.
@@ -422,7 +422,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		zDigitsMask &= (Mask)~pivotDigitsMask;
 
 		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
-		var branchCellsContainingZ = CellMap.Empty;
+		var branchCellsContainingZ = (CellMap)[];
 		foreach (var digit in zDigitsMask)
 		{
 			foreach (var (_, branchCells) in branches.Values)
@@ -553,7 +553,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			zDigitsMask &= (Mask)~(1 << disappearedDigit);
 
 			// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
-			var branchCellsContainingZ = CellMap.Empty;
+			var branchCellsContainingZ = (CellMap)[];
 			foreach (var digit in zDigitsMask)
 			{
 				foreach (var (_, branchCells) in branches.Values)
@@ -665,7 +665,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var branches = new RectangleBlossomBranchCollection();
 		var isFirstEncountered = true;
 		var zDigitsMask = (Mask)0;
-		var disappearedCandidates = CandidateMap.Empty;
+		var disappearedCandidates = (CandidateMap)[];
 		foreach (var urCell in urCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(urCell) & (Mask)~urDigitsMask))
@@ -691,7 +691,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		zDigitsMask &= (Mask)~(Mask)(mergedDigitsMask & ~urDigitsMask);
 
 		// Collect information for branch cells, checking whether branch cells contain any possible Z digits.
-		var branchCellsContainingZ = CellMap.Empty;
+		var branchCellsContainingZ = (CellMap)[];
 		foreach (var digit in zDigitsMask)
 		{
 			foreach (var (_, branchCells) in branches.Values)
@@ -849,12 +849,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var detailViews = new List<View>(9);
 		var branches = new NTimesAlmostLockedSetsBlossomBranchCollection();
 		var nTimesAlsDigitsMask = (Mask)0;
-		var nTimesAlsCells = CellMap.Empty;
-		var cellsAllAlsesUsed = CellMap.Empty;
+		var nTimesAlsCells = (CellMap)[];
+		var cellsAllAlsesUsed = (CellMap)[];
 		for (var usedAlsIndex = 1; usedAlsIndex <= usedAlsesCount; usedAlsIndex++)
 		{
 			var rcc = (Mask)0;
-			var branchCandidates = CandidateMap.Empty;
+			var branchCandidates = (CandidateMap)[];
 			var view = new View();
 			for (var currentDigit = 0; currentDigit < 9; currentDigit++)
 			{

@@ -122,7 +122,7 @@ public ref partial struct HodokuPuzzleGenerator
 	private void GenerateInitPos(int cluesCount, SymmetricType symmetricType, CancellationToken cancellationToken = default)
 	{
 		// We start with the full board.
-		(var used, var usedCount, _newValidSudoku, var remainingClues) = (CellMap.Empty, 81, _newFullSudoku, 81);
+		(var used, var usedCount, _newValidSudoku, var remainingClues) = ((CellMap)[], 81, _newFullSudoku, 81);
 		var candidateCells = new List<Cell>(8);
 
 		// Do until we have only 17 clues left or until all cells have been tried.

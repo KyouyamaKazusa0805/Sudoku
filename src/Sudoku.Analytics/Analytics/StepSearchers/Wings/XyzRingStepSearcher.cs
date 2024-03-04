@@ -89,7 +89,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	private void CollectCore(List<XyzRingStep> accumulator, scoped ref readonly Grid grid, scoped ref readonly AnalysisContext context)
 	{
 		// The pattern starts with a tri-value cell, so check for it.
-		var trivalueCells = CellMap.Empty;
+		var trivalueCells = (CellMap)[];
 		foreach (var cell in EmptyCells)
 		{
 			if (PopCount((uint)grid.GetCandidates(cell)) == 3)

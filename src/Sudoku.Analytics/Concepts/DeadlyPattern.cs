@@ -25,7 +25,7 @@ public static class DeadlyPattern
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.EmptiesCount, 81);
 
 		// Collect all used cells. This value may not be necessary but will make program be a little bit faster if cached.
-		var cellsUsed = CellMap.Empty;
+		var cellsUsed = (CellMap)[];
 		for (var cell = 0; cell < 81; cell++)
 		{
 			if (grid.GetCandidates(cell) != Grid.MaxCandidatesMask)

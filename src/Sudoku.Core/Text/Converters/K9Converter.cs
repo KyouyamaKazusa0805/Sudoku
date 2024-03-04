@@ -119,7 +119,7 @@ public sealed record K9Converter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = CellMap.Empty;
+				var cells = (CellMap)[];
 				foreach (var candidate in digitGroup)
 				{
 					cells.Add(candidate / 9);

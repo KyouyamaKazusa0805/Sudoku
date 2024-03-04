@@ -17,7 +17,7 @@ public static class Crosshatching
 	public static CrosshatchingInfo? GetCrosshatchingInfo(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
-		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, CellMap.Empty, CellMap.Empty);
+		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, (CellMap)[], (CellMap)[]);
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
 			var tempValues = PeersMap[c] & valueCells;

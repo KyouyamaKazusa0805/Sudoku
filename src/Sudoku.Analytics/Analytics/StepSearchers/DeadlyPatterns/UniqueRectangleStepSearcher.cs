@@ -447,7 +447,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
-		var extraCells = CellMap.Empty;
+		var extraCells = (CellMap)[];
 		foreach (var cell in urCells)
 		{
 			if (grid.GetState(cell) == CellState.Empty)
@@ -836,7 +836,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>(16);
-		var extraCells = CellMap.Empty;
+		var extraCells = (CellMap)[];
 		foreach (var cell in urCells)
 		{
 			if (grid.GetState(cell) != CellState.Empty)
@@ -3115,8 +3115,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							}
 
 							var currentBlockMap = selectedCellsInBlock;
-							var elimMapBlock = CellMap.Empty;
-							var elimMapLine = CellMap.Empty;
+							var elimMapBlock = (CellMap)[];
+							var elimMapLine = (CellMap)[];
 
 							// Get the links of the block.
 							var blockMask = grid[in selectedCellsInBlock];
@@ -3180,7 +3180,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				return;
 			}
 
-			var elimMapIsolated = CellMap.Empty;
+			var elimMapIsolated = (CellMap)[];
 			var digitIsolated = TrailingZeroCount(maskIsolated);
 			if (digitIsolated != TrailingZeroCountFallback)
 			{
@@ -4323,7 +4323,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		// Collect all digits that all bi-value cells in the current grid used.
 		// W-Wing should contain a pair of cells which contain same 2 digits.
 		// This step will collect all digits used, in order to check which cells will be skipped.
-		var (bivalueCellsDigitsMask, bivalueCellsFiltered) = ((Mask)0, CellMap.Empty);
+		var (bivalueCellsDigitsMask, bivalueCellsFiltered) = ((Mask)0, (CellMap)[]);
 		foreach (var cell in BivalueCells)
 		{
 			// Check whether the current cell contain either the first or the second digit appeared in UR.

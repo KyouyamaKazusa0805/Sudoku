@@ -126,7 +126,7 @@ public partial record SusserGridConverter(
 				_ => Grid.Undefined
 			};
 
-			var eliminatedCandidates = CandidateMap.Empty;
+			var eliminatedCandidates = (CandidateMap)[];
 			for (var c = 0; c < 81; c++)
 			{
 				var state = grid.GetState(c);
@@ -195,7 +195,7 @@ public partial record SusserGridConverter(
 			static CandidateMap negateElims(scoped ref readonly Grid grid, scoped ref readonly CandidateMap eliminatedCandidates)
 			{
 				var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
-				var result = CandidateMap.Empty;
+				var result = (CandidateMap)[];
 				foreach (var cell in grid.EmptyCells)
 				{
 					if (eliminatedCandidatesCellDistribution.TryGetValue(cell, out var digitsMask))

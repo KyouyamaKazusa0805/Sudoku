@@ -310,7 +310,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									continue;
 								}
 
-								var tempCrosshatchingHouses = CellMap.Empty;
+								var tempCrosshatchingHouses = (CellMap)[];
 								foreach (var cell in cells)
 								{
 									tempCrosshatchingHouses |= HousesMap[cell.ToHouseIndex(crosshatchingHouseType)];

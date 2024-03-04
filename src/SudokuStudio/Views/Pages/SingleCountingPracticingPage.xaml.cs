@@ -278,7 +278,7 @@ file static class Generator
 					(peers[a], peers[b]) = (peers[b], peers[a]);
 				}
 
-				var cells = CellMap.Empty;
+				var cells = (CellMap)[];
 				foreach (var index in (0, 2, 4, 7, 9, 11, 14, 16, 18))
 				{
 					cells.Add(peers[index]);

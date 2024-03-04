@@ -108,7 +108,7 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 	/// <returns>The cells ordered.</returns>
 	private readonly Cell[] OrderPatternCellsViaConnectionDegrees()
 	{
-		var isOrdered = CellMap.Empty;
+		var isOrdered = (CellMap)[];
 		var result = new Cell[_seedPattern.Count];
 		for (var index = 0; index < _seedPattern.Count; index++)
 		{

@@ -1934,20 +1934,6 @@ if (student is (name: var name, age: >= 18))
             The internal buffer size 12 is equivalent to expression <c><![CDATA[floor(729 / sizeof(long) << 6)]]></c>.
             </summary>
             <remarks>
-            <para>
-            This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CandidateMap.Empty" />,
-            it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)" />
-            or <see cref="M:Sudoku.Concepts.CandidateMap.op_Addition(Sudoku.Concepts.CandidateMap@,System.Int32)" />.
-            <code><![CDATA[
-            var map = CandidateMap.Empty;
-            map += 0; // Adds 'r1c1(1)' into the collection.
-            map.Add(1); // Adds 'r1c1(2)' into the collection.
-            map |= [2, 3, 4]; // Adds 'r1c1(345)' into the collection.
-            map |= anotherMap; // Adds a list of another instance of type 'CandidateMap' into the current collection.
-            ]]></code>
-            </para>
-            <para>
             <large-structure>
 		<b>
 			<i>
@@ -1957,7 +1943,6 @@ if (student is (name: var name, age: >= 18))
 			</i>
 		</b>
 	</large-structure>
-            </para>
             </remarks>
         </member>
         <member name="T:Sudoku.Concepts.CandidateMap.CellDigitEnumerator">
@@ -1996,17 +1981,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
-        </member>
         <member name="F:Sudoku.Concepts.CandidateMap.MaxValue">
             <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.MinValue">
             <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MinValue"/>
-            <remarks>
-            This value is equivalent to <see cref="F:Sudoku.Concepts.CandidateMap.Empty"/>.
-            </remarks>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.#ctor(System.String[])">
             <summary>
@@ -2066,9 +2045,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MaxValue">
@@ -2352,19 +2328,6 @@ if (student is (name: var name, age: >= 18))
             Encapsulates a binary series of cell state table.
             </summary>
             <remarks>
-            <para>
-            This type holds a <see langword="static readonly" /> field called <see cref="F:Sudoku.Concepts.CellMap.Empty" />,
-            it is the only field provided to be used as the entry to create or update collection.
-            If you want to add elements into it, you can use <see cref="M:Sudoku.Concepts.CellMap.Add(System.Int32)" /> or <see cref="M:Sudoku.Concepts.CellMap.op_Addition(Sudoku.Concepts.CellMap@,System.Int32)" />.
-            <code><![CDATA[
-            var map = CellMap.Empty;
-            map += 0; // Adds 'r1c1' into the collection.
-            map.Add(1); // Adds 'r1c2' into the collection.
-            map |= [2, 3, 4]; // Adds 'r1c345' into the collection.
-            map |= anotherMap; // Adds a list of another instance of type 'CellMap' into the current collection.
-            ]]></code>
-            </para>
-            <para>
             <large-structure>
 		<b>
 			<i>
@@ -2374,14 +2337,16 @@ if (student is (name: var name, age: >= 18))
 			</i>
 		</b>
 	</large-structure>
-            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Shifting"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
+        <member name="F:Sudoku.Concepts.CellMap.MinValue">
+            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MinValue"/>
+        </member>
+        <member name="F:Sudoku.Concepts.CellMap.MaxValue">
+            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.CellMapParser">
             <summary>
@@ -2541,9 +2506,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MaxValue">
@@ -4566,11 +4528,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Count">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Empty">
-            <summary>
-            Indicates the empty instance.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.MaxCount">
             <summary>

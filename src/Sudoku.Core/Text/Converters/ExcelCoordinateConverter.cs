@@ -96,7 +96,7 @@ public sealed record ExcelCoordinateConverter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = CellMap.Empty;
+				var cells = (CellMap)[];
 				foreach (var candidate in digitGroup)
 				{
 					cells.Add(candidate / 9);
