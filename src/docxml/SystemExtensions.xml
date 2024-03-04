@@ -2669,6 +2669,38 @@ fixed (short* ptr = instance)
             <param name="this">The instance to be iterated.</param>
             <returns>An enumerator instance.</returns>
         </member>
+        <member name="T:System.GenericNumberEnumerator`1">
+            <summary>
+            Defines an enumerator type that iterates on bits of a number of generic type.
+            </summary>
+            <typeparam name="TNumber">The type of the number that supports for iteration on bits.</typeparam>
+            <param name="value">The number to be iterated.</param>
+            <param name="bitsCount">The number of bits to be iterated.</param>
+        </member>
+        <member name="M:System.GenericNumberEnumerator`1.#ctor(`0,System.Int32)">
+            <summary>
+            Defines an enumerator type that iterates on bits of a number of generic type.
+            </summary>
+            <typeparam name="TNumber">The type of the number that supports for iteration on bits.</typeparam>
+            <param name="value">The number to be iterated.</param>
+            <param name="bitsCount">The number of bits to be iterated.</param>
+        </member>
+        <member name="P:System.GenericNumberEnumerator`1.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.GenericNumberEnumerator`1.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.GenericNumberEnumerator`1._value">
+            <summary>
+            The generated field declaration for parameter <c>value</c>.
+            </summary>
+        </member>
+        <member name="F:System.GenericNumberEnumerator`1._bitsCount">
+            <summary>
+            The generated field declaration for parameter <c>bitsCount</c>.
+            </summary>
+        </member>
         <member name="T:System.GetHashCodeFunc`1">
             <inheritdoc cref="T:System.GetHashCodeHandler`1"/>
         </member>
