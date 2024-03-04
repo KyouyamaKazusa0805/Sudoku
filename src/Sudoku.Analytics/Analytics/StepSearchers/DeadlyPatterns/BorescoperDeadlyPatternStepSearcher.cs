@@ -72,8 +72,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			for (var j = 0; j < 4; j++)
 			{
 				_ = blockTriplets[j] is (var t1, var t2, var t3) triplet;
-				var house1 = ((CellMap)t1 + t2).CoveredLine;
-				var house2 = ((CellMap)t1 + t3).CoveredLine;
+				var house1 = ((CellMap)t1 + t2).SharedLine;
+				var house2 = ((CellMap)t1 + t3).SharedLine;
 				var pair1 = new Cell[6, 2];
 				var pair2 = new Cell[6, 2];
 				var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };
@@ -125,8 +125,8 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				return;
 			}
 
-			var house1 = ((CellMap)t1 + t2).CoveredLine;
-			var house2 = ((CellMap)t1 + t3).CoveredLine;
+			var house1 = ((CellMap)t1 + t2).SharedLine;
+			var house2 = ((CellMap)t1 + t3).SharedLine;
 			var pair1 = new Cell[6, 2];
 			var pair2 = new Cell[6, 2];
 			var (o1, o2) = i switch { >= 0 and <= 3 => (9, 1), 4 or 5 => (9, 2), 6 or 7 => (18, 1), 8 => (18, 2) };

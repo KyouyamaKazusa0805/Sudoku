@@ -194,7 +194,7 @@ public sealed partial class AlmostLockedSet(
 						eliminationMap[digit] = map % candidatesMap[digit];
 					}
 
-					var coveredLine = map.CoveredLine;
+					var coveredLine = map.SharedLine;
 					result.Add(
 						new(
 							digitsMask,

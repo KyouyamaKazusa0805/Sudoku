@@ -249,7 +249,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var house in tempMap.CoveredHouses)
+			foreach (var house in tempMap.SharedHouses)
 			{
 				var allCells = (HousesMap[house] & EmptyCells) - pattern;
 				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
@@ -345,7 +345,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (var house in tempMap.CoveredHouses)
+			foreach (var house in tempMap.SharedHouses)
 			{
 				var d1 = -1;
 				var d2 = -1;

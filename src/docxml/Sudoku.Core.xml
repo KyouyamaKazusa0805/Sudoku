@@ -2476,25 +2476,26 @@ if (student is (name: var name, age: >= 18))
             For example, if the cells are <c>[0, 1, 27, 28]</c>, all spanned columns are 0 and 1, so the return mask is <c>0b000000011</c> (i.e. 3).
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.CoveredLine">
+        <member name="P:Sudoku.Concepts.CellMap.SharedLine">
             <summary>
-            Indicates the covered line.
+            Indicates the shared line. In other words, the line will contain all cells in this collection.
             </summary>
             <remarks>
-            If the covered house can't be found, it'll return <see cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>.
+            If no shared houses can be found (i.e. return value of property <see cref="P:Sudoku.Concepts.CellMap.SharedHouses"/> is 0),
+            this property will return <see cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>.
             </remarks>
             <seealso cref="F:Sudoku.SolutionFields.TrailingZeroCountFallback"/>
+            <seealso cref="P:Sudoku.Concepts.CellMap.SharedHouses"/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.CoveredHouses">
+        <member name="P:Sudoku.Concepts.CellMap.SharedHouses">
             <summary>
-            Indicates all houses covered. This property is used to check all houses that all cells
-            of this instance covered. For example, if the cells are <c>[0, 1]</c>, the property
-            <see cref="P:Sudoku.Concepts.CellMap.CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
-            however, if cells spanned two houses or more (e.g. cells <c>[0, 1, 27]</c>),
+            Indicates all houses shared. This property is used to check all houses that all cells of this instance shared.
+            For example, if the cells are <c>[0, 1]</c>, the property <see cref="P:Sudoku.Concepts.CellMap.SharedHouses"/> will return
+            house indices 0 (block 1) and 9 (row 1); however, if cells span two houses or more (e.g. cells <c>[0, 1, 27]</c>),
             this property won't contain any houses.
             </summary>
             <remarks>
-            The return value will be a <see cref="T:System.Int32"/> value indicating each houses. Bits set 1 are covered houses.
+            The return value will be a <see cref="T:System.Int32"/> value indicating each houses. Bits set 1 are shared houses.
             </remarks>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Houses">

@@ -1497,7 +1497,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					break;
 				}
 
-				foreach (var coveredLine in targetCells.CoveredHouses)
+				foreach (var coveredLine in targetCells.SharedHouses)
 				{
 					foreach (var conjugatePairDigit in digitsMask)
 					{
@@ -1568,7 +1568,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								break;
 							}
 
-							foreach (var coveredLine in cellsInThisBlock.CoveredHouses)
+							foreach (var coveredLine in cellsInThisBlock.SharedHouses)
 							{
 								foreach (var conjugatePairDigit in digitsMask)
 								{
@@ -1803,7 +1803,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 
 				var otherCellsDigitsMask = grid[in theOtherEmptyCells];
-				foreach (var house in theOtherEmptyCells.CoveredHouses)
+				foreach (var house in theOtherEmptyCells.SharedHouses)
 				{
 					// Check whether the current house has a conjugate pair in the current cells.
 					foreach (var digit in otherCellsDigitsMask)
@@ -2451,7 +2451,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Now check for empty cells in this house, removing all cells located in the miniline that the target cell located in.
-			foreach (var coveredHouse in mirrorEmptyCells.CoveredHouses)
+			foreach (var coveredHouse in mirrorEmptyCells.SharedHouses)
 			{
 				var otherCells = (HousesMap[coveredHouse] & EmptyCells) - miniline;
 				if (otherCells.Count < 2)
@@ -4399,7 +4399,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				}
 
 				var otherCellsDigitsMask = grid[in theOtherEmptyCells];
-				foreach (var house in theOtherEmptyCells.CoveredHouses)
+				foreach (var house in theOtherEmptyCells.SharedHouses)
 				{
 					// Check whether the current house has a conjugate pair in the current cells.
 					foreach (var digit in otherCellsDigitsMask)
@@ -4643,7 +4643,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static HouseMask GetComplexHouses(bool isRow, scoped ref readonly CellMap baseCells)
 		=> HouseMaskOperations.AllHousesMask
 			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask)
-			& ~baseCells.CoveredHouses;
+			& ~baseCells.SharedHouses;
 
 	/// <summary>
 	/// Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
@@ -4686,7 +4686,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			foreach (var block in targetCells.BlockMask)
 			{
 				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
-				if (!!lastMap && (HousesMap[baseCells.CoveredLine] & lastMap) == lastMap)
+				if (!!lastMap && (HousesMap[baseCells.SharedLine] & lastMap) == lastMap)
 				{
 					(lockedMemberMap, lockedBlock) = (lastMap, block);
 					break;

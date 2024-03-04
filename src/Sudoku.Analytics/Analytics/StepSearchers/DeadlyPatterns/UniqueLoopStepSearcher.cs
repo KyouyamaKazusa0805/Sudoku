@@ -303,7 +303,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			}
 
 			// All extra cells lie in a same house. This is the basic subtype of type 3.
-			foreach (var houseIndex in extraCellsMap.CoveredHouses)
+			foreach (var houseIndex in extraCellsMap.SharedHouses)
 			{
 				if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
 				{
@@ -496,7 +496,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (var houseIndex in extraCellsMap.CoveredHouses)
+		foreach (var houseIndex in extraCellsMap.SharedHouses)
 		{
 			foreach (var (digit, otherDigit) in ((d1, d2), (d2, d1)))
 			{

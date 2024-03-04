@@ -70,8 +70,8 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 					// Check eliminations.
 					var conclusions = new List<Conclusion>();
 					var z = (interMap & houseMap)[0];
-					var c1Map = HousesMap[((CellMap)z + c1).CoveredLine];
-					var c2Map = HousesMap[((CellMap)z + c2).CoveredLine];
+					var c1Map = HousesMap[((CellMap)z + c1).SharedLine];
+					var c2Map = HousesMap[((CellMap)z + c2).SharedLine];
 					foreach (var elimCell in (c1Map | c2Map) - c1 - c2 - erMap)
 					{
 						if (CandidatesMap[d1].Contains(elimCell))

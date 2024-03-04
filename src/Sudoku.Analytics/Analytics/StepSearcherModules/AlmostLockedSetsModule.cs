@@ -61,7 +61,7 @@ internal static class AlmostLockedSetsModule
 						eliminationMap[digit] = map % CandidatesMap[digit];
 					}
 
-					var coveredLine = map.CoveredLine;
+					var coveredLine = map.SharedLine;
 					result.Add(
 						new(
 							digitsMask,

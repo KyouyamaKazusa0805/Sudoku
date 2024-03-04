@@ -129,7 +129,7 @@ internal static class SubsetModule
 					{
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
-						var eliminatingHouse = TrailingZeroCount(cells.CoveredHouses & ~(1 << house));
+						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
 						foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - cells)
 						{
 							foreach (var digit in digitsMask)

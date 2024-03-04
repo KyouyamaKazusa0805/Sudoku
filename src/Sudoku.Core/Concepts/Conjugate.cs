@@ -59,12 +59,12 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <summary>
 	/// Indicates the target line of the two cells lie in.
 	/// </summary>
-	public House Line => Map.CoveredLine;
+	public House Line => Map.SharedLine;
 
 	/// <summary>
 	/// Indicates the house that the current conjugate pair lies in.
 	/// </summary>
-	public HouseMask Houses => Map.CoveredHouses;
+	public HouseMask Houses => Map.SharedHouses;
 
 	/// <summary>
 	/// Indicates the cells (the "from" cell and "to" cell).

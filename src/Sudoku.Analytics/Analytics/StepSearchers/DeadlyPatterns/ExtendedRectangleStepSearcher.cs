@@ -414,7 +414,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		bool onlyFindOne
 	)
 	{
-		foreach (var houseIndex in extraCellsMap.CoveredHouses)
+		foreach (var houseIndex in extraCellsMap.SharedHouses)
 		{
 			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
 			for (var size = 1; size < otherCells.Count; size++)
@@ -585,7 +585,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				foreach (var conjugateDigit in conjugateMask)
 				{
-					foreach (var houseIndex in extraCellsMap.CoveredHouses)
+					foreach (var houseIndex in extraCellsMap.SharedHouses)
 					{
 						var map = HousesMap[houseIndex] & extraCellsMap;
 						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))

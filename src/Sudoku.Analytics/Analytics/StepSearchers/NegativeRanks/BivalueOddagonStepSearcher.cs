@@ -313,7 +313,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		}
 
 		var otherDigitsMask = (Mask)(m & ~comparer);
-		foreach (var house in extraCellsMap.CoveredHouses)
+		foreach (var house in extraCellsMap.SharedHouses)
 		{
 			if ((ValuesMap[d1] | ValuesMap[d2]) & HousesMap[house])
 			{

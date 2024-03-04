@@ -180,9 +180,9 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 							foreach (var (leaf, theOtherLeaf) in ((leafCell1, leafCell2), (leafCell2, leafCell1)))
 							{
 								var linkCellsIntersected = cellsShouldBeCovered & PeersMap[leaf];
-								foreach (var linkCellHouse in linkCellsIntersected.CoveredHouses)
+								foreach (var linkCellHouse in linkCellsIntersected.SharedHouses)
 								{
-									foreach (var leafCellHouse in ((CellMap)pivot + leaf).CoveredHouses)
+									foreach (var leafCellHouse in ((CellMap)pivot + leaf).SharedHouses)
 									{
 										if (linkCellHouse.ToHouseType() == HouseType.Block ^ leafCellHouse.ToHouseType() == HouseType.Block
 											&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)
@@ -208,7 +208,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 											}
 
 											var lastCellsToCheck = cellsShouldBeCovered - linkCellsIntersected + theOtherLeaf;
-											foreach (var house in lastCellsToCheck.CoveredHouses)
+											foreach (var house in lastCellsToCheck.SharedHouses)
 											{
 												foreach (var cell in HousesMap[house] & CandidatesMap[intersectedDigit] - lastCellsToCheck)
 												{

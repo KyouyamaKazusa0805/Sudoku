@@ -98,7 +98,7 @@ public partial struct CellMap :
 	public readonly bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _count <= 3 && PopCount((uint)CoveredHouses) == 2;
+		get => _count <= 3 && PopCount((uint)SharedHouses) == 2;
 	}
 
 	/// <summary>
@@ -254,29 +254,30 @@ public partial struct CellMap :
 	}
 
 	/// <summary>
-	/// Indicates the covered line.
+	/// Indicates the shared line. In other words, the line will contain all cells in this collection.
 	/// </summary>
 	/// <remarks>
-	/// If the covered house can't be found, it'll return <see cref="TrailingZeroCountFallback"/>.
+	/// If no shared houses can be found (i.e. return value of property <see cref="SharedHouses"/> is 0),
+	/// this property will return <see cref="TrailingZeroCountFallback"/>.
 	/// </remarks>
 	/// <seealso cref="TrailingZeroCountFallback"/>
-	public readonly House CoveredLine
+	/// <seealso cref="SharedHouses"/>
+	public readonly House SharedLine
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => TrailingZeroCount(CoveredHouses & ~Grid.MaxCandidatesMask);
+		get => TrailingZeroCount(SharedHouses & ~Grid.MaxCandidatesMask);
 	}
 
 	/// <summary>
-	/// Indicates all houses covered. This property is used to check all houses that all cells
-	/// of this instance covered. For example, if the cells are <c>[0, 1]</c>, the property
-	/// <see cref="CoveredHouses"/> will return the house index 0 (block 1) and 9 (row 1);
-	/// however, if cells spanned two houses or more (e.g. cells <c>[0, 1, 27]</c>),
+	/// Indicates all houses shared. This property is used to check all houses that all cells of this instance shared.
+	/// For example, if the cells are <c>[0, 1]</c>, the property <see cref="SharedHouses"/> will return
+	/// house indices 0 (block 1) and 9 (row 1); however, if cells span two houses or more (e.g. cells <c>[0, 1, 27]</c>),
 	/// this property won't contain any houses.
 	/// </summary>
 	/// <remarks>
-	/// The return value will be a <see cref="HouseMask"/> value indicating each houses. Bits set 1 are covered houses.
+	/// The return value will be a <see cref="HouseMask"/> value indicating each houses. Bits set 1 are shared houses.
 	/// </remarks>
-	public readonly HouseMask CoveredHouses
+	public readonly HouseMask SharedHouses
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get

@@ -572,7 +572,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var size = PopCount((uint)digitsMaskAppearedInCorner);
-		foreach (var cornerCellCoveredHouse in corner.CoveredHouses)
+		foreach (var cornerCellCoveredHouse in corner.SharedHouses)
 		{
 			var emptyCellsInCurrentHouse = HousesMap[cornerCellCoveredHouse] & EmptyCells;
 			var availableCellsToBeIterated = emptyCellsInCurrentHouse - corner;
@@ -694,7 +694,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	{
 		foreach (var digit in digitsMaskAppearedInCorner)
 		{
-			foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).CoveredHouses)
+			foreach (var cornerCellCoveredHouse in (corner & CandidatesMap[digit]).SharedHouses)
 			{
 				if ((CandidatesMap[digit] & HousesMap[cornerCellCoveredHouse]) == corner)
 				{

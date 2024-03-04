@@ -566,7 +566,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var otherDigitsMask = (Mask)(mask ^ comparer);
-		foreach (var houseIndex in otherCellsMap.CoveredHouses)
+		foreach (var houseIndex in otherCellsMap.SharedHouses)
 		{
 			if ((ValuesMap[d1] || ValuesMap[d2]) && HousesMap[houseIndex])
 			{
@@ -693,7 +693,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			return;
 		}
 
-		foreach (var houseIndex in otherCellsMap.CoveredHouses)
+		foreach (var houseIndex in otherCellsMap.SharedHouses)
 		{
 			if (houseIndex < 9)
 			{
@@ -1060,8 +1060,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		{
 			var map1 = (CellMap)abzCell + abxCell;
 			var map2 = (CellMap)abzCell + abyCell;
-			if (map1.CoveredLine is not (var m1cl and not TrailingZeroCountFallback)
-				|| map2.CoveredLine is not (var m2cl and not TrailingZeroCountFallback))
+			if (map1.SharedLine is not (var m1cl and not TrailingZeroCountFallback)
+				|| map2.SharedLine is not (var m2cl and not TrailingZeroCountFallback))
 			{
 				// There's no common covered line to display.
 				continue;
@@ -1366,7 +1366,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						{
 							if (urCell == corner1 || urCell == corner2)
 							{
-								var coveredHouses = ((CellMap)urCell + otherCell).CoveredHouses;
+								var coveredHouses = ((CellMap)urCell + otherCell).SharedHouses;
 								if ((coveredHouses >> house & 1) != 0)
 								{
 									foreach (var d in grid.GetCandidates(urCell))
@@ -1543,7 +1543,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							if (urCell == corner1 || urCell == corner2)
 							{
 								var flag = false;
-								foreach (var r in ((CellMap)urCell + otherCell).CoveredHouses)
+								foreach (var r in ((CellMap)urCell + otherCell).SharedHouses)
 								{
 									if (r == house)
 									{
@@ -1821,7 +1821,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var abyCell = adjacentCellsMap[1];
 			var map1 = (CellMap)abzCell + abxCell;
 			var map2 = (CellMap)abzCell + abyCell;
-			if (!IsConjugatePair(b, in map1, map1.CoveredLine) || !IsConjugatePair(a, in map2, map2.CoveredLine))
+			if (!IsConjugatePair(b, in map1, map1.SharedLine) || !IsConjugatePair(a, in map2, map2.SharedLine))
 			{
 				continue;
 			}
@@ -1878,8 +1878,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						[
 							.. arMode ? GetHighlightCells(urCells) : [],
 							.. candidateOffsets,
-							new HouseViewNode(ColorIdentifier.Normal, map1.CoveredLine),
-							new HouseViewNode(ColorIdentifier.Auxiliary1, map2.CoveredLine)
+							new HouseViewNode(ColorIdentifier.Normal, map1.SharedLine),
+							new HouseViewNode(ColorIdentifier.Auxiliary1, map2.SharedLine)
 						]
 					],
 					context.PredefinedOptions,
@@ -1951,14 +1951,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = (CellMap)begin + abzCell;
 			foreach (var (a, b) in digitPairs)
 			{
-				if (!IsConjugatePair(b, in linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(b, in linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				// Step 2: Get the link cell that is adjacent to 'cornerCell' and check the strong link.
 				var secondLinkMap = (CellMap)cornerCell + begin;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -2080,13 +2080,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = (CellMap)begin + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(b, in linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(b, in linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = (CellMap)cornerCell + end;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -2206,13 +2206,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var linkMap = (CellMap)begin + abzCell;
 			foreach (var (a, b) in ((d1, d2), (d2, d1)))
 			{
-				if (!IsConjugatePair(a, in linkMap, linkMap.CoveredLine))
+				if (!IsConjugatePair(a, in linkMap, linkMap.SharedLine))
 				{
 					continue;
 				}
 
 				var secondLinkMap = (CellMap)cornerCell + end;
-				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.CoveredLine))
+				if (!IsConjugatePair(a, in secondLinkMap, secondLinkMap.SharedLine))
 				{
 					continue;
 				}
@@ -2323,7 +2323,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var link1Map = (CellMap)corner1 + corner2;
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, in link1Map, link1Map.CoveredLine))
+			if (!IsConjugatePair(a, in link1Map, link1Map.SharedLine))
 			{
 				continue;
 			}
@@ -2333,13 +2333,13 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var (head, begin, end, extra) in ((corner2, corner1, abzCell, abwCell), (corner1, corner2, abwCell, abzCell)))
 			{
 				var link2Map = (CellMap)begin + end;
-				if (!IsConjugatePair(b, in link2Map, link2Map.CoveredLine))
+				if (!IsConjugatePair(b, in link2Map, link2Map.SharedLine))
 				{
 					continue;
 				}
 
 				var link3Map = (CellMap)end + extra;
-				if (!IsConjugatePair(a, in link3Map, link3Map.CoveredLine))
+				if (!IsConjugatePair(a, in link3Map, link3Map.SharedLine))
 				{
 					continue;
 				}
@@ -2478,7 +2478,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		scoped var innerMaps = (stackalloc CellMap[2]);
 		foreach (var (a, b) in ((d1, d2), (d2, d1)))
 		{
-			if (!IsConjugatePair(a, in link1Map, link1Map.CoveredLine))
+			if (!IsConjugatePair(a, in link1Map, link1Map.SharedLine))
 			{
 				continue;
 			}
@@ -2488,7 +2488,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			foreach (var (abx, aby, abw, abz) in ((corner2, corner1, extra, end), (corner1, corner2, end, extra)))
 			{
 				var link2Map = (CellMap)aby + abw;
-				if (!IsConjugatePair(a, in link2Map, link2Map.CoveredLine))
+				if (!IsConjugatePair(a, in link2Map, link2Map.SharedLine))
 				{
 					continue;
 				}
@@ -2500,7 +2500,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				for (var i = 0; i < 2; i++)
 				{
 					var linkMap = innerMaps[i];
-					if (!IsConjugatePair(b, in link3Map1, link3Map1.CoveredLine))
+					if (!IsConjugatePair(b, in link3Map1, link3Map1.SharedLine))
 					{
 						continue;
 					}
@@ -3041,8 +3041,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		var otherDigitsMask = (Mask)(mergedMaskInOtherCells & ~comparer);
-		var line = (byte)otherCellsMap.CoveredLine;
-		var block = (byte)TrailingZeroCount(otherCellsMap.CoveredHouses & ~(1 << line));
+		var line = (byte)otherCellsMap.SharedLine;
+		var block = (byte)TrailingZeroCount(otherCellsMap.SharedHouses & ~(1 << line));
 		var (a, _, _, d) = IntersectionMaps[new(line, block)];
 		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
@@ -3361,7 +3361,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			// Check all bi-value cells.
 			foreach (var bivalueCellToCheck in bivalueCellsToCheck)
 			{
-				if (((CellMap)bivalueCellToCheck + targetCell).CoveredLine != TrailingZeroCountFallback)
+				if (((CellMap)bivalueCellToCheck + targetCell).SharedLine != TrailingZeroCountFallback)
 				{
 					// 'targetCell' and 'bivalueCellToCheck' can't lie on a same line.
 					continue;
@@ -3374,7 +3374,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				var urCellInSameBlock = ((HousesMap[block] & cells) - targetCell)[0];
-				var coveredLine = ((CellMap)bivalueCellToCheck + urCellInSameBlock).CoveredLine;
+				var coveredLine = ((CellMap)bivalueCellToCheck + urCellInSameBlock).SharedLine;
 				if (coveredLine == TrailingZeroCountFallback)
 				{
 					// The bi-value cell 'bivalueCellToCheck' should be lie on a same house
@@ -3394,7 +3394,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					// Check the conjugate pair of the extra digit.
 					var resultCell = (cells - urCellInSameBlock - anotherCell - targetCell)[0];
 					var map = (CellMap)targetCell + resultCell;
-					var line = map.CoveredLine;
+					var line = map.SharedLine;
 					if (!IsConjugatePair(extraDigit, in map, line))
 					{
 						continue;
@@ -3505,7 +3505,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					// Sub-type 2.
 					// The extra digit should form a conjugate pair in that line.
 					var anotherMap = (CellMap)urCellInSameBlock + anotherCell;
-					var anotherLine = anotherMap.CoveredLine;
+					var anotherLine = anotherMap.SharedLine;
 					if (!IsConjugatePair(extraDigit, in anotherMap, anotherLine))
 					{
 						continue;
@@ -4158,7 +4158,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (guardianCells.CoveredHouses != 0)
+				if (guardianCells.SharedHouses != 0)
 				{
 					// It is a UR type 4 because all possible guardian cells lie in a same house.
 					continue;
@@ -4394,7 +4394,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (guardianCells.CoveredHouses != 0)
+				if (guardianCells.SharedHouses != 0)
 				{
 					// It is a UR type 4 because all possible guardian cells lie in a same house.
 					continue;
@@ -4881,7 +4881,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
-			if (guardianCells is { Count: not 1, CoveredHouses: 0 })
+			if (guardianCells is { Count: not 1, SharedHouses: 0 })
 			{
 				// All guardian cells must lie in one house.
 				continue;
@@ -5080,7 +5080,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 
 				var otherCells = HousesMap[houseIndex] & CandidatesMap[otherDigit] & PeersMap[anotherCell];
-				var sameHouses = (otherCells + anotherCell).CoveredHouses;
+				var sameHouses = (otherCells + anotherCell).SharedHouses;
 				foreach (var sameHouse in sameHouses)
 				{
 					// Check whether all possible positions of the digit 'b' in this house only
@@ -5224,7 +5224,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static bool IsSameHouseCell(Cell cell1, Cell cell2, out HouseMask houses)
 	{
-		var v = ((CellMap)cell1 + cell2).CoveredHouses;
+		var v = ((CellMap)cell1 + cell2).SharedHouses;
 		(var r, houses) = v != 0 ? (true, v) : (false, 0);
 		return r;
 	}

@@ -361,7 +361,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									context.PredefinedOptions,
 									in cells,
 									in emptyCellsInThisHouse,
-									emptyCellsInThisHouse.CoveredLine
+									emptyCellsInThisHouse.SharedLine
 								);
 								if (context.OnlyFindOne)
 								{
@@ -490,7 +490,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											{
 												foreach (var (elimDigit, theOtherDigit) in ((d1, d2), (d2, d1)))
 												{
-													foreach (var strongXyCellHouse in theOtherNode.CoveredHouses)
+													foreach (var strongXyCellHouse in theOtherNode.SharedHouses)
 													{
 														foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
 														{
@@ -881,7 +881,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 										}
 
 										// Check whether the eliminated side is in a same house.
-										if ((elimSide1 | elimSide2).CoveredHouses == 0)
+										if ((elimSide1 | elimSide2).SharedHouses == 0)
 										{
 											continue;
 										}
@@ -894,7 +894,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 										// Check whether the mid cells side is in a same house.
 										var midCells = midCellSide1 | midCellSide2;
-										if (midCells.CoveredHouses == 0)
+										if (midCells.SharedHouses == 0)
 										{
 											continue;
 										}
@@ -913,7 +913,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 										}
 
 										// Check whether the digit Y forms a strong link with two digits.
-										foreach (var coveredHouse in midCells.CoveredHouses)
+										foreach (var coveredHouse in midCells.SharedHouses)
 										{
 											if ((HousesMap[coveredHouse] & CandidatesMap[digitY]) != midCells)
 											{
@@ -1174,7 +1174,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 										continue;
 									}
 
-									foreach (var startNodeCoveredHouse in startNode.CoveredHouses)
+									foreach (var startNodeCoveredHouse in startNode.SharedHouses)
 									{
 										// Check whether the node 'startNode' and 'yzCell' in a same house.
 										// If not, we cannot conclude anything.

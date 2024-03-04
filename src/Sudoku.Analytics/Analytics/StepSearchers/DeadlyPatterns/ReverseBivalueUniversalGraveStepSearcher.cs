@@ -336,7 +336,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		}
 
 		var numbersOfOtherDigits = PopCount((uint)otherDigitsMask);
-		foreach (var house in cellsChosen.CoveredHouses)
+		foreach (var house in cellsChosen.SharedHouses)
 		{
 			var otherEmptyCells = (EmptyCells & HousesMap[house]) - cellsChosen;
 			if (otherEmptyCells.Count <= numbersOfOtherDigits - 1)

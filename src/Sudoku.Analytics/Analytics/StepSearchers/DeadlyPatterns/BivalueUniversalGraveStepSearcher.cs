@@ -310,7 +310,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		}
 
 		// Iterate on each house that the true candidates lying on.
-		foreach (var house in map.CoveredHouses)
+		foreach (var house in map.SharedHouses)
 		{
 			var houseMap = HousesMap[house];
 			if ((houseMap & EmptyCells) - map is not (var otherCellsMap and not []))
@@ -404,7 +404,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 		// Check two cell has same house.
 		var cells = TargetCandidatesGroup.CreateMapByKeys(candsGroupByCell);
-		var houses = cells.CoveredHouses;
+		var houses = cells.SharedHouses;
 		if (houses != 0)
 		{
 			return null;
