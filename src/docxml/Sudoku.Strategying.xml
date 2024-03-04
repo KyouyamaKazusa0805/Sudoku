@@ -237,6 +237,108 @@
             <returns>A delegate function.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
         </member>
+        <member name="T:Sudoku.Strategying.Constraint">
+            <summary>
+            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraint.AllowDuplicate">
+            <summary>
+            Indicates whether the constraint can duplicate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.op_Equality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.op_Inequality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintCheckingContext">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraint"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Represents context used by <see cref="T:Sudoku.Strategying.Constraint"/> instance.
+            </summary>
+            <param name="grid">Indicates the reference to the grid to be checked.</param>
+            <param name="analyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="T:Sudoku.Strategying.Constraint"/>
+        </member>
+        <member name="F:Sudoku.Strategying.ConstraintCheckingContext.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintCheckingContext.AnalyzerResult">
+            <summary>
+            The generated property declaration for parameter <c>analyzerResult</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintCollection">
+            <summary>
+            Represents a constraint collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
+            <summary>
+            For a given <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>,
+            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
+            </summary>
+            <param name="context">The context to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.FindFirst``1(System.Func{Sudoku.Strategying.Constraint,System.Boolean},System.Func{Sudoku.Strategying.Constraint,``0},``0)">
+            <summary>
+            Try to get the first <see cref="T:Sudoku.Strategying.Constraint"/> satisfying the specified condition,
+            returning the value of type <typeparamref name="TResult"/> created by the specified method.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="match">The match method.</param>
+            <param name="selector">The selector method.</param>
+            <param name="defaultValue">The default value.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.FindFirst``2(System.Func{``0,``1},``1)">
+            <summary>
+            Try to get the first <see cref="T:Sudoku.Strategying.Constraint"/> satisfying the specified condition,
+            returning the value of type <typeparamref name="TResult"/> created by the specified method.
+            </summary>
+            <typeparam name="TConstraint">The type of constraint.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="matchedSelector">
+            Indicates the matched selector. The method will be used in both checking and converting operation.
+            </param>
+            <param name="defaultValue">
+            Indicates the default value used. By default the value equals to <see langword="default"/>(<typeparamref name="TResult"/>).
+            </param>
+            <returns>The final result.</returns>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
             Represents a conclusion constraint.
@@ -255,10 +357,10 @@
             Indicates the conclusion.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.Globalization.CultureInfo)">
@@ -269,108 +371,6 @@
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.Constraint">
-            <summary>
-            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.Constraint.AllowDuplicate">
-            <summary>
-            Indicates whether the constraint can duplicate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <summary>
-            Determine whether the specified grid is passed the constraint.
-            </summary>
-            <param name="context">Indicates the context used.</param>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Equality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.Constraint.op_Inequality(Sudoku.Strategying.Constraints.Constraint,Sudoku.Strategying.Constraints.Constraint)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext">
-            <summary>
-            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult)">
-            <summary>
-            Represents context used by <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> instance.
-            </summary>
-            <param name="grid">Indicates the reference to the grid to be checked.</param>
-            <param name="analyzerResult">Indicates the analyzer result.</param>
-            <seealso cref="T:Sudoku.Strategying.Constraints.Constraint"/>
-        </member>
-        <member name="F:Sudoku.Strategying.Constraints.ConstraintCheckingContext.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConstraintCheckingContext.AnalyzerResult">
-            <summary>
-            The generated property declaration for parameter <c>analyzerResult</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.Constraints.ConstraintCollection">
-            <summary>
-            Represents a constraint collection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.IsValidFor(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
-            <summary>
-            For a given <see cref="T:Sudoku.Strategying.Constraints.ConstraintCheckingContext"/>,
-            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
-            </summary>
-            <param name="context">The context to be used.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.FindFirst``1(System.Func{Sudoku.Strategying.Constraints.Constraint,System.Boolean},System.Func{Sudoku.Strategying.Constraints.Constraint,``0},``0)">
-            <summary>
-            Try to get the first <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> satisfying the specified condition,
-            returning the value of type <typeparamref name="TResult"/> created by the specified method.
-            </summary>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="match">The match method.</param>
-            <param name="selector">The selector method.</param>
-            <param name="defaultValue">The default value.</param>
-            <returns>The final result.</returns>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConstraintCollection.FindFirst``2(System.Func{``0,``1},``1)">
-            <summary>
-            Try to get the first <see cref="T:Sudoku.Strategying.Constraints.Constraint"/> satisfying the specified condition,
-            returning the value of type <typeparamref name="TResult"/> created by the specified method.
-            </summary>
-            <typeparam name="TConstraint">The type of constraint.</typeparam>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="matchedSelector">
-            Indicates the matched selector. The method will be used in both checking and converting operation.
-            </param>
-            <param name="defaultValue">
-            Indicates the default value used. By default the value equals to <see langword="default"/>(<typeparamref name="TResult"/>).
-            </param>
-            <returns>The final result.</returns>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
             <summary>
@@ -398,10 +398,10 @@
             Indicates the between rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
@@ -444,10 +444,10 @@
             Indicates all possible <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/> values. 
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
@@ -484,10 +484,10 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
@@ -529,10 +529,10 @@
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
@@ -557,10 +557,10 @@
             Indicates whether the puzzle shsould be minimal.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
@@ -602,10 +602,10 @@
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdocs/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.Globalization.CultureInfo)">
@@ -667,10 +667,10 @@
             Indicates the supported symmetry types to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
@@ -697,10 +697,10 @@
             Indicates the techniques must appear.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.Globalization.CultureInfo)">
@@ -738,10 +738,10 @@
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraints.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Check(Sudoku.Strategying.Constraints.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">

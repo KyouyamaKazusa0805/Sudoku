@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Strategying;
 
 /// <summary>
 /// Represents context used by <see cref="Constraint"/> instance.

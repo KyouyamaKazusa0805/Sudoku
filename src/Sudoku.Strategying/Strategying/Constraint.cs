@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Strategying;
 
 /// <summary>
 /// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.

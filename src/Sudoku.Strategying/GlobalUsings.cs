@@ -16,4 +16,5 @@ global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Concepts;
 global using Sudoku.Resources;
+global using Sudoku.Strategying.Constraints;
 global using Sudoku.Text;

@@ -13542,7 +13542,7 @@ if (student is (name: var name, age: >= 18))
             Create controls via properties.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Strategying.Constraints.Constraint,System.Boolean)">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.AddControl(Sudoku.Strategying.Constraint,System.Boolean)">
             <summary>
             Add a new control using the specified constraint.
             </summary>
