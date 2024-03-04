@@ -3199,136 +3199,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the notation is based on <b>Excel</b> notation.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.Distance">
-            <summary>
-            Represents the methods that calculates for distance.
-            </summary>
-            <param name="p">Indicates the integer part.</param>
-            <param name="q">Indicates the root part.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
-            <remarks>
-            This type is implemented via irrational numbers logic that only takes a square root.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents the methods that calculates for distance.
-            </summary>
-            <param name="p">Indicates the integer part.</param>
-            <param name="q">Indicates the root part.</param>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
-            <remarks>
-            This type is implemented via irrational numbers logic that only takes a square root.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Distance.DistanceTable">
-            <summary>
-            The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
-            </summary>
-            <remarks>
-            <para>
-            The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
-            <c><see cref="F:Sudoku.Concepts.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
-            If the cell is inside the house, the value will be <see langword="null"/>.
-            </para>
-            <para>
-            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Concepts.Distance.GetDistance(System.Int32,System.Int32)"/>.
-            </para>
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.Distance.GetDistance(System.Int32,System.Int32)"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Distance._p">
-            <summary>
-            The root value of P.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Distance._q">
-            <summary>
-            The root value of Q.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Distance"/> instance via both values 1.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Distance"/> instance via the root part, with the default integer part 1.
-            <i>This value will automatically simplify the root expression, e.g. sqrt(18) -> 3sqrt(2).</i>
-            </summary>
-            <param name="q">The root value.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.Distance.RawValue">
-            <summary>
-            The raw value of the distance. The value will be ouput as a <see cref="T:System.Double"/> value.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.Equals(Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.CompareTo(Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-            <remarks>
-            The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
-            For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.GetDistance(System.Int32,System.Int32)">
-            <summary>
-            Try to fetch the distance for the two cells.
-            </summary>
-            <param name="cell1">The first cell to be compared.</param>
-            <param name="cell2">The second cell to be compared.</param>
-            <returns>The distance result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Try to fetch the distance for two cells stored in a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
-            <returns>The distance result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.SimplifyRootPart(System.Int32@)">
-            <summary>
-            Simplifies for root part.
-            </summary>
-            <param name="base">The root value.</param>
-            <returns>The P value.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_Implicit(Sudoku.Concepts.Distance)~System.Double">
-            <summary>
-            Implicit cast from the <see cref="T:Sudoku.Concepts.Distance"/> instance to a <see cref="T:System.Double"/>.
-            </summary>
-            <param name="distance">The distance value.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_Equality(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_Inequality(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_GreaterThan(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_LessThan(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_GreaterThanOrEqual(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Distance.op_LessThanOrEqual(Sudoku.Concepts.Distance,Sudoku.Concepts.Distance)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -6406,6 +6276,148 @@ if (student is (name: var name, age: >= 18))
             The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
             </returns>
         </member>
+        <member name="T:Sudoku.Measuring.Distance">
+            <summary>
+            Represents the methods that calculates for distance.
+            </summary>
+            <param name="p">Indicates the integer part.</param>
+            <param name="q">Indicates the root part.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
+            <remarks>
+            This type is implemented via irrational numbers logic that only takes a square root.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents the methods that calculates for distance.
+            </summary>
+            <param name="p">Indicates the integer part.</param>
+            <param name="q">Indicates the root part.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when either <paramref name="p"/> or <paramref name="q"/> are less than 1.</exception>
+            <remarks>
+            This type is implemented via irrational numbers logic that only takes a square root.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Measuring.Distance.DistanceTable">
+            <summary>
+            The table that displays the minimal and maximal index of cells that makes the distances least or greatest with the specified cell.
+            </summary>
+            <remarks>
+            <para>
+            The table is grouped with houses. If you want to fetch the smallest or biggest distance value from a cell to a house, you can use
+            <c><see cref="F:Sudoku.Measuring.Distance.DistanceTable"/>[Cell][House]</c>, where <c>Cell</c> is between 0 and 81, and <c>House</c> is between 0 and 27.
+            If the cell is inside the house, the value will be <see langword="null"/>.
+            </para>
+            <para>
+            In further, if you want to get the distance from two cells using this table, just call method <see cref="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)"/>.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)"/>
+        </member>
+        <member name="F:Sudoku.Measuring.Distance._p">
+            <summary>
+            The root value of P.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.Distance._q">
+            <summary>
+            The root value of Q.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Measuring.Distance"/> instance via both values 1.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Measuring.Distance"/> instance via the root part, with the default integer part 1.
+            <i>This value will automatically simplify the root expression, e.g. sqrt(18) -> 3sqrt(2).</i>
+            </summary>
+            <param name="q">The root value.</param>
+        </member>
+        <member name="P:Sudoku.Measuring.Distance.RawValue">
+            <summary>
+            The raw value of the distance. The value will be ouput as a <see cref="T:System.Double"/> value.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.Equals(Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.CompareTo(Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+            <remarks>
+            The output format will be "<c>psq</c>", where <c>p</c> and <c>q</c> are the variables, and <c>s</c> means "square root of".
+            For example, "<c>3s2</c>" means <c>3 * sqrt(2)</c>, i.e. <c>sqrt(18)</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.GetDistance(System.Int32,System.Int32)">
+            <summary>
+            Try to fetch the distance for the two cells.
+            </summary>
+            <param name="cell1">The first cell to be compared.</param>
+            <param name="cell2">The second cell to be compared.</param>
+            <returns>The distance result.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.GetDistance(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to fetch the distance for two cells stored in a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="cells">The <see cref="T:Sudoku.Concepts.CellMap"/> instance storing two cells.</param>
+            <returns>The distance result.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.GetIntermediateCells(System.Int32,System.Int32)">
+            <summary>
+            Try to get the intermediate cells that are between <paramref name="cell1"/> and <paramref name="cell2"/> in logical position
+            for sudoku grid.
+            </summary>
+            <param name="cell1">The first cell.</param>
+            <param name="cell2">The second cell. The value should be greater than <paramref name="cell1"/>.</param>
+            <returns>The intermediate cells.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when cells <paramref name="cell1"/> and <paramref name="cell2"/> are not in a same line (row or column).
+            </exception>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.SimplifyRootPart(System.Int32@)">
+            <summary>
+            Simplifies for root part.
+            </summary>
+            <param name="base">The root value.</param>
+            <returns>The P value.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_Implicit(Sudoku.Measuring.Distance)~System.Double">
+            <summary>
+            Implicit cast from the <see cref="T:Sudoku.Measuring.Distance"/> instance to a <see cref="T:System.Double"/>.
+            </summary>
+            <param name="distance">The distance value.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_Equality(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_Inequality(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_GreaterThan(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_LessThan(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_GreaterThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Distance.op_LessThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
 				<summary>
@@ -7810,6 +7822,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
             <summary>
               Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
+            <summary>
+              Looks up a localized string similar to Two cells must be in a same line (row or column)..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">

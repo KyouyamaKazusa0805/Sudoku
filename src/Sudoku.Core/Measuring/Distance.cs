@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents the methods that calculates for distance.
@@ -196,6 +196,38 @@ public readonly ref partial struct Distance(int p, int q)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cells.Count, 2);
 		return GetDistance(cells[0], cells[1]);
+	}
+
+	/// <summary>
+	/// Try to get the intermediate cells that are between <paramref name="cell1"/> and <paramref name="cell2"/> in logical position
+	/// for sudoku grid.
+	/// </summary>
+	/// <param name="cell1">The first cell.</param>
+	/// <param name="cell2">The second cell. The value should be greater than <paramref name="cell1"/>.</param>
+	/// <returns>The intermediate cells.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when cells <paramref name="cell1"/> and <paramref name="cell2"/> are not in a same line (row or column).
+	/// </exception>
+	public static CellMap GetIntermediateCells(Cell cell1, Cell cell2)
+	{
+		if (cell1 == cell2)
+		{
+			return [];
+		}
+
+		if (cell1 > cell2)
+		{
+			// Keeps the less value as the first cell.
+			Ref.Swap(ref cell1, ref cell2);
+		}
+
+		if (((CellMap)cell1 + cell2).SharedLine is not (var sharedHouse and not TrailingZeroCountFallback))
+		{
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CellsShouldInSameLine"));
+		}
+
+		var houseCells = HouseCells[sharedHouse];
+		return (CellMap)houseCells[(Array.IndexOf(houseCells, cell1) + 1)..Array.IndexOf(houseCells, cell2)];
 	}
 
 	/// <summary>

@@ -249,4 +249,7 @@
   <data name="Message_LibraryInitializedException" xml:space="preserve">
     <value>The library (local path: '{0}\{1}') has already been initialized.</value>
   </data>
+  <data name="ErrorInfo_CellsShouldInSameLine" xml:space="preserve">
+    <value>Two cells must be in a same line (row or column).</value>
+  </data>
 </root>
