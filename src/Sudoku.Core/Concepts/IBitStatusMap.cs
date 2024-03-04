@@ -85,7 +85,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>
 	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
 	/// </returns>
-	public abstract new TElement this[int index] { get; }
+	public new abstract TElement this[int index] { get; }
 
 	/// <inheritdoc/>
 	TElement IReadOnlyList<TElement>.this[int index] => this[index];
