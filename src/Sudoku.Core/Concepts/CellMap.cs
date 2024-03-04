@@ -943,6 +943,11 @@ public partial struct CellMap :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
 	{
+		if (cells.IsEmpty)
+		{
+			return default;
+		}
+
 		var result = default(CellMap);
 		foreach (var cell in cells)
 		{

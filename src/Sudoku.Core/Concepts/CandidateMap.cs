@@ -618,6 +618,11 @@ public partial struct CandidateMap :
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public static CandidateMap Create(scoped ReadOnlySpan<Candidate> candidates)
 	{
+		if (candidates.IsEmpty)
+		{
+			return default;
+		}
+
 		var result = default(CandidateMap);
 		foreach (var candidate in candidates)
 		{
