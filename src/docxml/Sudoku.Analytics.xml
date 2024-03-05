@@ -4704,6 +4704,25 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
             <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
         </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.AllowsHiddenSingleInRowsOrColumns">
+            <summary>
+            Indicates whether the step searcher will checks for hidden singles in rows or columns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.LimitedSingle">
+            <summary>
+            Indicates the preferred single technique. If the value is not <see cref="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.Unknown"/>,
+            the analyzer will ignore the other single technique not related to this field.
+            </summary>
+            <remarks>
+            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.HiddenSingle"/>,
+            the analyzer will automatically ignore naked single steps to analyze the grid.
+            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> with
+            <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <summary>
             Represents a default option-provider instance.

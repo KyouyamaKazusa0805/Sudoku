@@ -181,6 +181,6 @@
     <value>s</value>
   </data>
   <data name="SinglePreferConstraint" xml:space="preserve">
-    <value>Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {2}included</value>
+    <value>Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {1}included</value>
   </data>
 </root>

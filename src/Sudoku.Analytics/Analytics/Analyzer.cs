@@ -151,8 +151,20 @@ public sealed partial class Analyzer :
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
-			var accumulator = IsFullApplying || RandomizedChoosing ? [] : default(List<Step>);
-			scoped var context = new AnalysisContext(accumulator, in playground, in puzzle, !IsFullApplying && !RandomizedChoosing, Options);
+			var accumulator = IsFullApplying || RandomizedChoosing || Options.LimitedSingle != SingleTechniquePrefer.Unknown
+				? []
+				: default(List<Step>);
+			scoped var context = new AnalysisContext(
+				accumulator,
+				in playground,
+				in puzzle,
+				!IsFullApplying && !RandomizedChoosing
+#if SINGLE_TECHNIQUE_LIMIT_FLAG
+					&& Options.LimitedSingle == SingleTechniquePrefer.Unknown
+#endif
+				,
+				Options
+			);
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)
@@ -201,6 +213,90 @@ public sealed partial class Analyzer :
 						// 6. If the searcher is only run for indirect view, and the current is direct view.
 						continue;
 					}
+#if SINGLE_TECHNIQUE_LIMIT_FLAG
+					case (_, SingleStepSearcher, { Options: { AllowsHiddenSingleInRowsOrColumns: var allowLine, LimitedSingle: var limited and not SingleTechniquePrefer.Unknown } }):
+					{
+						accumulator!.Clear();
+
+						searcher.Collect(ref context);
+						if (accumulator.Count == 0)
+						{
+							continue;
+						}
+
+						// Special case: consider the step is a naked single or hidden single,
+						// igonring steps not belonging to the technique set.
+						var chosenSteps = new List<SingleStep>();
+						foreach (var step in accumulator)
+						{
+							if (step is SingleStep { Code: var code } s)
+							{
+								switch (limited, code, allowLine)
+								{
+									case (_, Technique.FullHouse, _):
+									case (
+										SingleTechniquePrefer.HiddenSingle,
+										Technique.LastDigit or Technique.CrosshatchingBlock or Technique.HiddenSingleBlock,
+										false
+									):
+									case (
+										SingleTechniquePrefer.HiddenSingle,
+										Technique.LastDigit
+											or >= Technique.HiddenSingleBlock and <= Technique.HiddenSingleColumn
+											or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn,
+										true
+									):
+									case (SingleTechniquePrefer.NakedSingle, Technique.NakedSingle, _):
+									{
+										chosenSteps.Add(s);
+										break;
+									}
+								}
+							}
+						}
+						if (chosenSteps.Count == 0)
+						{
+							continue;
+						}
+
+						if (IsFullApplying)
+						{
+							foreach (var step in chosenSteps)
+							{
+								if (!verifyConclusionValidity(in solution, step))
+								{
+									throw new WrongStepException(in playground, step);
+								}
+
+								if (onCollectingSteps(
+									collectedSteps, step, in context, ref playground,
+									in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+								{
+									return result;
+								}
+							}
+						}
+						else
+						{
+							var chosenStep = RandomizedChoosing
+								? chosenSteps[_random.Next(0, chosenSteps.Count)]
+								: chosenSteps[0];
+							if (!verifyConclusionValidity(in solution, chosenStep))
+							{
+								throw new WrongStepException(in playground, chosenStep);
+							}
+
+							if (onCollectingSteps(
+								collectedSteps, chosenStep, in context, ref playground,
+								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+							{
+								return result;
+							}
+						}
+
+						goto MakeProgress;
+					}
+#endif
 					case (_, BruteForceStepSearcher, { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();

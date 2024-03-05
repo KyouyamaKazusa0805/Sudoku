@@ -5,6 +5,7 @@
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides analytical APIs for solving and analyzing a sudoku puzzle.</Description>
 		<DocumentationFile>..\docxml\Sudoku.Analytics.xml</DocumentationFile>
+		<DefineConstants>SINGLE_TECHNIQUE_LIMIT_FLAG</DefineConstants>
 	</PropertyGroup>
 
 	<ItemGroup>

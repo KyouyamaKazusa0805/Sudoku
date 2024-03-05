@@ -22,6 +22,27 @@ public sealed record StepSearcherOptions
 	/// <inheritdoc cref="CoordinateConverter"/>
 	public CoordinateConverter Converter { get; init; } = GlobalizedConverter.InvariantCultureConverter;
 
+#if SINGLE_TECHNIQUE_LIMIT_FLAG
+	/// <summary>
+	/// Indicates whether the step searcher will checks for hidden singles in rows or columns.
+	/// </summary>
+	internal bool AllowsHiddenSingleInRowsOrColumns { get; init; } = false;
+
+	/// <summary>
+	/// Indicates the preferred single technique. If the value is not <see cref="SingleTechniquePrefer.Unknown"/>,
+	/// the analyzer will ignore the other single technique not related to this field.
+	/// </summary>
+	/// <remarks>
+	/// For example, if the value is <see cref="SingleTechniquePrefer.HiddenSingle"/>,
+	/// the analyzer will automatically ignore naked single steps to analyze the grid.
+	/// If the puzzle cannot be solved, the analyzer will return an <see cref="AnalyzerResult"/> with
+	/// <see cref="AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
+	/// </remarks>
+	/// <seealso cref="SingleTechniquePrefer"/>
+	/// <seealso cref="AnalyzerResult.IsSolved"/>
+	internal SingleTechniquePrefer LimitedSingle { get; init; } = SingleTechniquePrefer.Unknown;
+#endif
+
 
 	/// <summary>
 	/// Represents a default option-provider instance.

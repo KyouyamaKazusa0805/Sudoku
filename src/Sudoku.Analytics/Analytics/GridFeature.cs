@@ -50,51 +50,27 @@ public readonly ref partial struct GridFeature(
 	/// </summary>
 	/// <param name="allowsRowOrColumn">Indicates whether the method allows using crosshatching in rows or columns.</param>
 	public readonly bool CanOnlyUseHiddenSingle(bool allowsRowOrColumn)
-	{
-		var analyzer = PredefinedAnalyzers.Default
-			.WithStepSearchers([new SingleStepSearcher { EnableLastDigit = true }])
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
-		if (analyzer.Analyze(in Grid) is not { IsSolved: true, Steps: var steps })
-		{
-			return false;
-		}
-
-		foreach (SingleStep step in steps)
-		{
-			switch (allowsRowOrColumn, step.Code)
-			{
-				case (true, not (Technique.CrosshatchingBlock or Technique.LastDigit or Technique.CrosshatchingRow or Technique.CrosshatchingColumn)):
-				case (false, not (Technique.CrosshatchingBlock or Technique.LastDigit)):
+		=> PredefinedAnalyzers.Default
+			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true }])
+			.WithUserDefinedOptions(
+				new()
 				{
-					return false;
+					DistinctDirectMode = true,
+					IsDirectMode = true,
+					LimitedSingle = SingleTechniquePrefer.HiddenSingle,
+					AllowsHiddenSingleInRowsOrColumns = allowsRowOrColumn
 				}
-			}
-		}
-
-		return true;
-	}
+			)
+			.Analyze(in Grid)
+			.IsSolved;
 
 	/// <summary>
 	/// Indicates whether the puzzle can be filled, via only naked singles and full houses.
 	/// </summary>
 	public readonly bool CanOnlyUseNakedSingle()
-	{
-		var analyzer = PredefinedAnalyzers.Default
+		=> PredefinedAnalyzers.Default
 			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true }])
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
-		if (analyzer.Analyze(in Grid) is not { IsSolved: true, Steps: var steps })
-		{
-			return false;
-		}
-
-		foreach (SingleStep step in steps)
-		{
-			if (step.Code is not (Technique.FullHouse or Technique.NakedSingle))
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true, LimitedSingle = SingleTechniquePrefer.NakedSingle })
+			.Analyze(in Grid)
+			.IsSolved;
 }
