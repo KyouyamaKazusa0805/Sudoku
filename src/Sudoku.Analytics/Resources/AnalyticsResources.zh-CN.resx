@@ -3041,4 +3041,10 @@
   <data name="Unknown" xml:space="preserve">
     <value>未知</value>
   </data>
+  <data name="SingleTechniquePrefer_HiddenSingle" xml:space="preserve">
+    <value>排除</value>
+  </data>
+  <data name="SingleTechniquePrefer_NakedSingle" xml:space="preserve">
+    <value>唯一余数</value>
+  </data>
 </root>

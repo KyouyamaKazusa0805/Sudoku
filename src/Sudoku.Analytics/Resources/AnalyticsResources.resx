@@ -2844,4 +2844,10 @@ Error grid: '{0:#}'</value>
   <data name="Message_MissingTechniqueGroupException" xml:space="preserve">
     <value>The member '{0}' is missing technique group attribute.</value>
   </data>
+  <data name="SingleTechniquePrefer_HiddenSingle" xml:space="preserve">
+    <value>Hidden Single</value>
+  </data>
+  <data name="SingleTechniquePrefer_NakedSingle" xml:space="preserve">
+    <value>Naked Single</value>
+  </data>
 </root>

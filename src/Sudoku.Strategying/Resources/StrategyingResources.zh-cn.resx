@@ -177,4 +177,7 @@
   <data name="ConclusionConstraint" xml:space="preserve">
     <value>结论：结论 {0} {1}出现</value>
   </data>
+  <data name="SinglePreferConstraint" xml:space="preserve">
+    <value>出数技巧偏好：希望以{0}技巧作为主技巧解题，行列排除{2}在计算之中</value>
+  </data>
 </root>

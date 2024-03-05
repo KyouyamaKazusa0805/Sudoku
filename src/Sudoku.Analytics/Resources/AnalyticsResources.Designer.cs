@@ -4456,6 +4456,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hidden Single.
+        /// </summary>
+        public static string SingleTechniquePrefer_HiddenSingle {
+            get {
+                return ResourceManager.GetString("SingleTechniquePrefer_HiddenSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Single.
+        /// </summary>
+        public static string SingleTechniquePrefer_NakedSingle {
+            get {
+                return ResourceManager.GetString("SingleTechniquePrefer_NakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Singly-Linked Almost Locked Sets XZ Rule.
         /// </summary>
         public static string SinglyLinkedAlmostLockedSetsXzRule {

@@ -1446,6 +1446,35 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The subtype.</param>
             <returns>The related technique instance.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer">
+            <summary>
+            Represents prefer way that specifies a kind that a user will perfer using a single technique to fill a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.Unknown">
+            <summary>
+            Indicates a user likes an unknown behavior to finish a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.HiddenSingle">
+            <summary>
+            Indicates a user likes using hidden singles to finish a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.NakedSingle">
+            <summary>
+            Indicates a user likes using naked singles to finish a grid.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions.ToTechniqueString(Sudoku.Analytics.Categorization.SingleTechniquePrefer,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Text.ICultureFormattable.ToString(System.Globalization.CultureInfo)"/>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.
@@ -4687,6 +4716,50 @@ if (student is (name: var name, age: >= 18))
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
             </list>
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.GridFeature">
+            <summary>
+            Represents extension methods on checking <see cref="T:Sudoku.Concepts.Grid"/> instances, determining features based on analytics.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents extension methods on checking <see cref="T:Sudoku.Concepts.Grid"/> instances, determining features based on analytics.
+            </summary>
+            <param name="grid">Indicates the grid used.</param>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.IsIttoryu">
+            <summary>
+            Indicates whether the current grid is an ittoryu puzzle, solved in only one round.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseHiddenSingle(System.Boolean)">
+            <summary>
+            Indicates whether the puzzle can be filled, via only hidden singles and last digits.
+            </summary>
+            <param name="allowsRowOrColumn">Indicates whether the method allows using crosshatching in rows or columns.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseNakedSingle">
+            <summary>
+            Indicates whether the puzzle can be filled, via only naked singles and full houses.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.GridFeature.Grid">
+            <summary>
+            The generated field declaration for parameter <c>grid</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.GridFeature.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
             <summary>
@@ -23901,6 +23974,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.Single">
             <summary>
               Looks up a localized string similar to Single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechniquePrefer_HiddenSingle">
+            <summary>
+              Looks up a localized string similar to Hidden Single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechniquePrefer_NakedSingle">
+            <summary>
+              Looks up a localized string similar to Naked Single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.SinglyLinkedAlmostLockedSetsXzRule">

@@ -223,6 +223,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {2}included.
+        /// </summary>
+        internal static string SinglePreferConstraint {
+            get {
+                return ResourceManager.GetString("SinglePreferConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Symmetry rule: {0}.
         /// </summary>
         internal static string SymmetryConstraint {
