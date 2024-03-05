@@ -52,7 +52,7 @@ public readonly ref partial struct GridFeature(
 	public readonly bool CanOnlyUseHiddenSingle(bool allowsRowOrColumn)
 	{
 		var analyzer = PredefinedAnalyzers.Default
-			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true }])
+			.WithStepSearchers([new SingleStepSearcher { EnableLastDigit = true }])
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 		if (analyzer.Analyze(in Grid) is not { IsSolved: true, Steps: var steps })
 		{
@@ -80,7 +80,7 @@ public readonly ref partial struct GridFeature(
 	public readonly bool CanOnlyUseNakedSingle()
 	{
 		var analyzer = PredefinedAnalyzers.Default
-			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true }])
+			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true }])
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 		if (analyzer.Analyze(in Grid) is not { IsSolved: true, Steps: var steps })
 		{

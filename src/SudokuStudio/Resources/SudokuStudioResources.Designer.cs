@@ -2410,6 +2410,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Hidden Single.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PreferHiddenSingle {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferHiddenSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Naked Single.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PreferNakedSingle {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1 {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2 {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Row.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_RowLabel {
@@ -2424,6 +2460,24 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_ShouldAppearLabel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ShouldAppearLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Preferred single.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_SinglePrefer {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_SinglePrefer", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single prefer constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_SinglePreferConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_SinglePreferConstraint", resourceCulture);
             }
         }
         

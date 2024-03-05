@@ -12,6 +12,7 @@ namespace Sudoku.Strategying;
 [JsonDerivedType(typeof(IttoryuLengthConstraint), nameof(IttoryuLengthConstraint))]
 [JsonDerivedType(typeof(MinimalConstraint), nameof(MinimalConstraint))]
 [JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
+[JsonDerivedType(typeof(SinglePreferConstraint), nameof(SinglePreferConstraint))]
 [JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))]
 [JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
@@ -47,7 +48,8 @@ public abstract partial class Constraint :
 	/// <seealso cref="Expression{TDelegate}"/>
 	/// <seealso cref="Expression.OrElse(Expression, Expression)"/>
 	/// <seealso cref="ConstraintCheckingContext"/>
-	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CheckingQueryExpression => static (constraint, context) => constraint.Check(context);
+	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CheckingQueryExpression
+		=> static (constraint, context) => constraint.Check(context);
 
 
 	/// <summary>

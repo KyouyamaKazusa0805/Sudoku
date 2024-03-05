@@ -64,6 +64,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
+				SinglePreferConstraint instance => () => callback(Create_SinglePrefer, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -139,7 +140,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				new ComboBoxItem { Content = DifficultyLevel.Nightmare.GetName(App.CurrentCulture), Tag = DifficultyLevel.Nightmare }
 			}
 		};
-		ComboBoxBindingHandler(difficultyLevelControl, difficultyLevel, value => constraint.DifficultyLevel = value);
+		EnumBinder<ComboBox, ComboBoxItem, DifficultyLevel>(difficultyLevelControl, difficultyLevel, value => constraint.DifficultyLevel = value);
 
 		return new()
 		{
@@ -295,7 +296,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		ComboBoxBindingHandler(
+		EnumBinder<ComboBox, ComboBoxItem, ConclusionType>(
 			conclusionTypeControl,
 			constraint.Conclusion.ConclusionType,
 			value => constraint.Conclusion = new(value, constraint.Conclusion.Candidate)
@@ -441,7 +442,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		ComboBoxBindingHandler(cellStateControl, cellState, value => constraint.CellState = value);
+		EnumBinder<ComboBox, ComboBoxItem, CellState>(cellStateControl, cellState, value => constraint.CellState = value);
 
 		//
 		// minimum value box
@@ -506,7 +507,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		ComboBoxBindingHandler(betweenRuleControl, rule, value => constraint.BetweenRule = value);
+		EnumBinder<ComboBox, ComboBoxItem, BetweenRule>(betweenRuleControl, rule, value => constraint.BetweenRule = value);
 
 		return new()
 		{
@@ -704,6 +705,75 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
+	private SettingsCard? Create_SinglePrefer(SinglePreferConstraint constraint)
+	{
+		if (constraint is not { SinglePrefer: var prefer, AllowsHiddenSingleInRowsOrColumns: var allowsForLine })
+		{
+			return null;
+		}
+
+		//
+		// prefer label
+		//
+		var preferredLabel1 = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+		var preferredLabel2 = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// technique selector
+		//
+		var techniqueSelectorControl = new Segmented
+		{
+			Items =
+			{
+				new SegmentedItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferHiddenSingle", App.CurrentCulture),
+					Tag = SingleTechniquePrefer.HiddenSingle
+				},
+				new SegmentedItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferNakedSingle", App.CurrentCulture),
+					Tag = SingleTechniquePrefer.NakedSingle
+				},
+			}
+		};
+		EnumBinder<Segmented, SegmentedItem, SingleTechniquePrefer>(techniqueSelectorControl, constraint.SinglePrefer, value => constraint.SinglePrefer = value);
+
+		//
+		// allow line control
+		//
+		var allowsLineControl = new ToggleSwitch { IsOn = constraint.AllowsHiddenSingleInRowsOrColumns };
+		allowsLineControl.RegisterPropertyChangedCallback(
+			ToggleSwitch.IsOnProperty,
+			(d, _) => constraint.AllowsHiddenSingleInRowsOrColumns = ((ToggleSwitch)d).IsOn
+		);
+		techniqueSelectorControl.SelectionChanged += (sender, _) => allowsLineControl.IsEnabled = sender is Segmented
+		{
+			SelectedItem: SegmentedItem { Tag: SingleTechniquePrefer.HiddenSingle }
+		};
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_SinglePrefer", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { preferredLabel1, techniqueSelectorControl, preferredLabel2, allowsLineControl }
+			},
+			Tag = constraint
+		};
+	}
+
 
 	/// <summary>
 	/// Creates a <see cref="ComboBox"/> object for comparison operator displaying.
@@ -752,7 +822,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		ComboBoxBindingHandler(operatorControl, @operator, value => constraint.Operator = value);
+		EnumBinder<ComboBox, ComboBoxItem, ComparisonOperator>(operatorControl, @operator, value => constraint.Operator = value);
 
 		return operatorControl;
 	}
@@ -772,30 +842,52 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	}
 
 	/// <summary>
-	/// The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="ComboBox"/> instance.
+	/// The core method that binds a field of type <typeparamref name="TEnum"/> to a <typeparamref name="TControl"/> instance.
 	/// </summary>
+	/// <typeparam name="TItemControl">The type of the item control.</typeparam>
+	/// <typeparam name="TControl">The type of the control.</typeparam>
 	/// <typeparam name="TEnum">The type of the enumeration.</typeparam>
 	/// <param name="control">The control to be operated.</param>
-	/// <param name="comparisonValue">The value to compare.</param>
-	/// <param name="constraintCallback">The constraint callback binder.</param>
-	private static void ComboBoxBindingHandler<TEnum>(ComboBox control, TEnum comparisonValue, Action<TEnum> constraintCallback)
+	/// <param name="valueToCompare">The value to compare.</param>
+	/// <param name="constraintCallback">The constraint callback method.</param>
+	public static unsafe void EnumBinder<TControl, TItemControl, TEnum>(TControl control, TEnum valueToCompare, Action<TEnum> constraintCallback)
+		where TControl : Selector
+		where TItemControl : SelectorItem
 		where TEnum : unmanaged, Enum
 	{
 		var selectedIndex = 0;
 		foreach (var element in control.Items)
 		{
-			if (element is not ComboBoxItem { Tag: TEnum op })
+			if (element is not TItemControl { Tag: TEnum enumValue })
 			{
 				selectedIndex++;
 				continue;
 			}
 
-			var opRawValue = Unsafe.As<TEnum, int>(ref op);
-			var comparisonValueRawValue = Unsafe.As<TEnum, int>(ref comparisonValue);
-			if (opRawValue != comparisonValueRawValue)
+			switch (sizeof(TEnum))
 			{
-				selectedIndex++;
-				continue;
+				case 1 or 2 or 4:
+				{
+					var opRawValue = Unsafe.As<TEnum, int>(ref enumValue);
+					var comparisonValueRawValue = Unsafe.As<TEnum, int>(ref valueToCompare);
+					if (opRawValue != comparisonValueRawValue)
+					{
+						selectedIndex++;
+						continue;
+					}
+					break;
+				}
+				case 8:
+				{
+					var opRawValue = Unsafe.As<TEnum, long>(ref enumValue);
+					var comparisonValueRawValue = Unsafe.As<TEnum, long>(ref valueToCompare);
+					if (opRawValue != comparisonValueRawValue)
+					{
+						selectedIndex++;
+						continue;
+					}
+					break;
+				}
 			}
 
 			break;
@@ -803,8 +895,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		control.SelectedIndex = selectedIndex;
 		control.SelectionChanged += (_, _) =>
 		{
-			if (control.SelectedIndex is var index and not -1
-				&& control.Items[index] is ComboBoxItem { Tag: TEnum value })
+			if (control.SelectedIndex is var index and not -1 && control.Items[index] is TItemControl { Tag: TEnum value })
 			{
 				constraintCallback(value);
 			}

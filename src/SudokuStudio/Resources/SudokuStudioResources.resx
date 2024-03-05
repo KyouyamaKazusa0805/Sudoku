@@ -2342,4 +2342,22 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_ShouldAppearLabel" xml:space="preserve">
     <value>, should appear:</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_SinglePreferConstraint" xml:space="preserve">
+    <value>Single prefer constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1" xml:space="preserve">
+    <value>Technique</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2" xml:space="preserve">
+    <value>should be the only technique allowed in solving puzzle, allows for hidden single in lines:</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferHiddenSingle" xml:space="preserve">
+    <value>Hidden Single</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferNakedSingle" xml:space="preserve">
+    <value>Naked Single</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_SinglePrefer" xml:space="preserve">
+    <value>Preferred single</value>
+  </data>
 </root>

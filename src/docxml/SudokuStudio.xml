@@ -6932,6 +6932,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Pearl constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferHiddenSingle">
+            <summary>
+              Looks up a localized string similar to Hidden Single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferNakedSingle">
+            <summary>
+              Looks up a localized string similar to Naked Single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1">
+            <summary>
+              Looks up a localized string similar to Technique.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2">
+            <summary>
+              Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_RowLabel">
             <summary>
               Looks up a localized string similar to Row.
@@ -6940,6 +6960,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ShouldAppearLabel">
             <summary>
               Looks up a localized string similar to , should appear:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_SinglePrefer">
+            <summary>
+              Looks up a localized string similar to Preferred single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_SinglePreferConstraint">
+            <summary>
+              Looks up a localized string similar to Single prefer constraint.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">
@@ -13570,14 +13600,16 @@ if (student is (name: var name, age: >= 18))
             <param name="constraint">The constraint.</param>
             <returns>An <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> instance.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComboBoxBindingHandler``1(Microsoft.UI.Xaml.Controls.ComboBox,``0,System.Action{``0})">
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.EnumBinder``3(``0,``2,System.Action{``2})">
             <summary>
-            The core method that binds a field of type <typeparamref name="TEnum"/> to a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> instance.
+            The core method that binds a field of type <typeparamref name="TEnum"/> to a <typeparamref name="TControl"/> instance.
             </summary>
+            <typeparam name="TItemControl">The type of the item control.</typeparam>
+            <typeparam name="TControl">The type of the control.</typeparam>
             <typeparam name="TEnum">The type of the enumeration.</typeparam>
             <param name="control">The control to be operated.</param>
-            <param name="comparisonValue">The value to compare.</param>
-            <param name="constraintCallback">The constraint callback binder.</param>
+            <param name="valueToCompare">The value to compare.</param>
+            <param name="constraintCallback">The constraint callback method.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.InitializeComponent">
             <summary>

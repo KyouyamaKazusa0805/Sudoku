@@ -2336,10 +2336,28 @@
   <data name="GeneratedPuzzleConstraintPage_Conclusion" xml:space="preserve">
     <value>结论出现情况</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_ShouldAppearLabel" xml:space="preserve">
+    <value>，是否需要出现：</value>
+  </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_ShouldAppearLabel" xml:space="preserve">
-    <value>，是否需要出现：</value>
+  <data name="GeneratedPuzzleConstraintPage_SinglePreferConstraint" xml:space="preserve">
+    <value>出数技巧约束</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1" xml:space="preserve">
+    <value>技巧</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2" xml:space="preserve">
+    <value>为唯一一种可用解题技巧，允许使用行列排除：</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferHiddenSingle" xml:space="preserve">
+    <value>排除</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_PreferNakedSingle" xml:space="preserve">
+    <value>唯一余数</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_SinglePrefer" xml:space="preserve">
+    <value>偏好的出数技巧</value>
   </data>
 </root>
