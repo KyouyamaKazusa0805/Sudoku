@@ -60,7 +60,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
 				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
-				ConclusionConstraint instance => () => callback(Create_ConclusionCount, instance),
+				ConclusionConstraint instance => () => callback(Create_Conclusion, instance),
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
@@ -216,7 +216,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? Create_ConclusionCount(ConclusionConstraint constraint)
+	private SettingsCard? Create_Conclusion(ConclusionConstraint constraint)
 	{
 		if (constraint is not { Conclusion: var conclusion, ShouldAppear: var shouldAppear })
 		{
