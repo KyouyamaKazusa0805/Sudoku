@@ -49,7 +49,7 @@ public abstract partial class Constraint :
 	/// <seealso cref="Expression{TDelegate}"/>
 	/// <seealso cref="Expression.OrElse(Expression, Expression)"/>
 	/// <seealso cref="ConstraintCheckingContext"/>
-	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CheckingQueryExpression
+	internal Expression<Func<Constraint, ConstraintCheckingContext, bool>> CheckingQueryExpression
 		=> static (constraint, context) => constraint.Check(context);
 
 
