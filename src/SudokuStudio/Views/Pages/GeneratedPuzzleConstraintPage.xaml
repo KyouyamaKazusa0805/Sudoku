@@ -48,7 +48,7 @@
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_EliminationCountConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:EliminationCountConstraint LimitCount="5" Operator="GreaterThanOrEqual" />
+								<con:EliminationCountConstraint Technique="LockedPair" LimitCount="5" Operator="GreaterThanOrEqual" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_DifficultyLevelConstraint}" Click="MenuFlyoutItem_Click">

@@ -87,7 +87,7 @@
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.EliminationCountConstraint">
             <summary>
-              Looks up a localized string similar to Elimination count rule: a step must contain {0} {1} elimination{2}.
+              Looks up a localized string similar to Elimination count rule: a {3} step must contain {0} {1} elimination{2}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.EmptyCell">
@@ -495,6 +495,11 @@
         </member>
         <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.LimitCount">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Operator">
             <inheritdoc/>

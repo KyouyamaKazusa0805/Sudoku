@@ -15,6 +15,13 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 	[StringMember]
 	public int LimitCount { get; set; }
 
+	/// <summary>
+	/// Indicates the technique used.
+	/// </summary>
+	[HashCodeMember]
+	[StringMember]
+	public Technique Technique { get; set; }
+
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
@@ -33,7 +40,7 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 		var @operator = Operator.GetOperator<int>();
 		foreach (var step in context.AnalyzerResult)
 		{
-			if (@operator(LimitCount, step.Conclusions.Length))
+			if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
 			{
 				return true;
 			}
@@ -52,6 +59,7 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 			ResourceDictionary.Get("EliminationCountConstraint", culture),
 			Operator.GetOperatorString(),
 			LimitCount,
-			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture)
+			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture),
+			Technique.GetName(culture)
 		);
 }

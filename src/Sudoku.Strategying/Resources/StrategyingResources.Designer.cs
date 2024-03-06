@@ -124,7 +124,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Elimination count rule: a step must contain {0} {1} elimination{2}.
+        ///   Looks up a localized string similar to Elimination count rule: a {3} step must contain {0} {1} elimination{2}.
         /// </summary>
         internal static string EliminationCountConstraint {
             get {

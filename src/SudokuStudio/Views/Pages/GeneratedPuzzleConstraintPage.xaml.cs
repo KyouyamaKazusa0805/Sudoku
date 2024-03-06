@@ -706,9 +706,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? Create_EliminationCount(EliminationCountConstraint constraint)
+	private SettingsExpander? Create_EliminationCount(EliminationCountConstraint constraint)
 	{
-		if (constraint is not { LimitCount: var limitCount, Operator: var @operator })
+		if (constraint is not { LimitCount: var limitCount, Operator: var @operator, Technique: var technique })
 		{
 			return null;
 		}
@@ -723,15 +723,38 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		var limitCountControl = LimitCountControl(limitCount, constraint);
 
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}"
+		};
+
+		//
+		// technique view
+		//
+		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Single, SelectedTechniques = [technique] };
+		techniqueControl.CurrentSelectedTechniqueChanged += (_, e) =>
+		{
+			var technique = e.Technique;
+			constraint.Technique = technique;
+			displayerControl.Text = $"{technique.GetName(App.CurrentCulture)}{ResourceDictionary.Get("_Token_Comma2", App.CurrentCulture)}";
+		};
+
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
 			Margin = DefaultMargin,
+			Items = { techniqueControl },
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = 3,
-				Children = { operatorControl, limitCountControl }
+				Children = { displayerControl, operatorControl, limitCountControl }
 			},
 			Tag = constraint
 		};
