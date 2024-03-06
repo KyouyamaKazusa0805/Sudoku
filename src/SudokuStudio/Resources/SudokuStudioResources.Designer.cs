@@ -2275,6 +2275,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of eliminations.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_EliminationCount {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_EliminationCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elimination count constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_EliminationCountConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_EliminationCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Empties count is between.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_EmptiesCount {

@@ -64,6 +64,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
+				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
 				SinglePreferConstraint instance => () => callback(Create_SinglePrefer, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -705,6 +706,37 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
+	private SettingsCard? Create_EliminationCount(EliminationCountConstraint constraint)
+	{
+		if (constraint is not { LimitCount: var limitCount, Operator: var @operator })
+		{
+			return null;
+		}
+
+		//
+		// Operator control
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		//
+		// Number control
+		//
+		var limitCountControl = LimitCountControl(limitCount, constraint);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = 3,
+				Children = { operatorControl, limitCountControl }
+			},
+			Tag = constraint
+		};
+	}
+
 	private SettingsCard? Create_SinglePrefer(SinglePreferConstraint constraint)
 	{
 		if (constraint is not { SinglePrefer: var prefer, AllowsHiddenSingleInRowsOrColumns: var allowsForLine })
@@ -850,7 +882,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <param name="control">The control to be operated.</param>
 	/// <param name="valueToCompare">The value to compare.</param>
 	/// <param name="constraintCallback">The constraint callback method.</param>
-	public static unsafe void EnumBinder<TControl, TItemControl, TEnum>(TControl control, TEnum valueToCompare, Action<TEnum> constraintCallback)
+	private static unsafe void EnumBinder<TControl, TItemControl, TEnum>(TControl control, TEnum valueToCompare, Action<TEnum> constraintCallback)
 		where TControl : Selector
 		where TItemControl : SelectorItem
 		where TEnum : unmanaged, Enum

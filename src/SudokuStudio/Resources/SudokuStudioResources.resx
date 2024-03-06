@@ -2360,4 +2360,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_SinglePrefer" xml:space="preserve">
     <value>Preferred single</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_EliminationCountConstraint" xml:space="preserve">
+    <value>Elimination count constraint</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_EliminationCount" xml:space="preserve">
+    <value>Number of eliminations</value>
+  </data>
 </root>

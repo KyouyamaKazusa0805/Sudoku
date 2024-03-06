@@ -6857,6 +6857,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Difficulty level constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_EliminationCount">
+            <summary>
+              Looks up a localized string similar to Number of eliminations.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_EliminationCountConstraint">
+            <summary>
+              Looks up a localized string similar to Elimination count constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_EmptiesCount">
             <summary>
               Looks up a localized string similar to Empties count is between.
