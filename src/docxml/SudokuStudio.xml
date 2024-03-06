@@ -5779,7 +5779,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_FrameworkDescription">
             <summary>
-              Looks up a localized string similar to This application is supported by .NET 7 runtime, with Windows App SDK..
+              Looks up a localized string similar to This application is supported by .NET 8 runtime, with Windows App SDK..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_License">

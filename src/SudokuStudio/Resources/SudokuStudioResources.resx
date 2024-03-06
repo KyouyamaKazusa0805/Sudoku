@@ -142,7 +142,7 @@
     <value>Program Framework Used</value>
   </data>
   <data name="AboutPage_FrameworkDescription" xml:space="preserve">
-    <value>This application is supported by .NET 7 runtime, with Windows App SDK.</value>
+    <value>This application is supported by .NET 8 runtime, with Windows App SDK.</value>
   </data>
   <data name="AboutPage_License" xml:space="preserve">
     <value>open-source license</value>

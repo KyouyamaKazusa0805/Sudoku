@@ -142,7 +142,7 @@
     <value>程序框架</value>
   </data>
   <data name="AboutPage_FrameworkDescription" xml:space="preserve">
-    <value>本应用程序使用 .NET 7 运行时和 Windows 应用 SDK 搭建。</value>
+    <value>本应用程序使用 .NET 8 运行时和 Windows 应用 SDK 搭建。</value>
   </data>
   <data name="AboutPage_License" xml:space="preserve">
     <value>开源代码协议</value>

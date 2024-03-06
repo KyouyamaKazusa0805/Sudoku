@@ -331,7 +331,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This application is supported by .NET 7 runtime, with Windows App SDK..
+        ///   Looks up a localized string similar to This application is supported by .NET 8 runtime, with Windows App SDK..
         /// </summary>
         internal static string AboutPage_FrameworkDescription {
             get {
