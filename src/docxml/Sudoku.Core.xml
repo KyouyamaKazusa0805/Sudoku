@@ -1826,7 +1826,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the unhandled exception thrown.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.ICultureSupportedAnalyzer`2">
+        <member name="T:Sudoku.Analytics.IGlobalizedAnalyzer`2">
             <summary>
             Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
             The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
@@ -1835,7 +1835,7 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TSelf">The type of the solver itself.</typeparam>
             <typeparam name="TResult">The type of the target result.</typeparam>
         </member>
-        <member name="P:Sudoku.Analytics.ICultureSupportedAnalyzer`2.CurrentCulture">
+        <member name="P:Sudoku.Analytics.IGlobalizedAnalyzer`2.CurrentCulture">
             <summary>
             Indicates the current culture that is used for displaying running information.
             </summary>
