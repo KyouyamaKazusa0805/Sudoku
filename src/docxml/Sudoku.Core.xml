@@ -6233,6 +6233,9 @@ if (student is (name: var name, age: >= 18))
             The first element that matches the conditions defined by the specified predicate, if found; otherwise, <see langword="null"/>.
             </returns>
         </member>
+        <member name="M:Sudoku.Linq.ViewEnumerable.SelectMany(Sudoku.Rendering.View[],System.Func{Sudoku.Rendering.View,Sudoku.Rendering.View},System.Func{Sudoku.Rendering.View,Sudoku.Rendering.ViewNode,Sudoku.Rendering.ViewNode})">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
+        </member>
         <member name="T:Sudoku.Measuring.Distance">
             <summary>
             Represents the methods that calculates for distance.

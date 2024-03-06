@@ -95,4 +95,21 @@ public static class ViewEnumerable
 
 		return null;
 	}
+
+	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
+	public static ReadOnlySpan<ViewNode> SelectMany(this View[] source, Func<View, View> collectionSelector, Func<View, ViewNode, ViewNode> resultSelector)
+	{
+		var length = source.Length;
+		var result = new List<ViewNode>(length << 1);
+		for (var i = 0; i < length; i++)
+		{
+			var element = source[i];
+			foreach (var subElement in collectionSelector(element))
+			{
+				result.Add(resultSelector(element, subElement));
+			}
+		}
+
+		return result.AsReadOnlySpan();
+	}
 }

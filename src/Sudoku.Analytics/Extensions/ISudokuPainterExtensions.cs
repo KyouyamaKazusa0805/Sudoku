@@ -17,5 +17,5 @@ public static class ISudokuPainterExtensions
 	public static ISudokuPainter WithStep(this ISudokuPainter @this, Step step)
 		=> @this
 			.WithConclusions(step.Conclusions)
-			.WithNodes(from view in step.Views from node in view select node);
+			.AddNodes(from view in step.Views from node in view select node);
 }
