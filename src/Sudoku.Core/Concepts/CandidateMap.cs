@@ -858,10 +858,6 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CandidateMap(Candidate offset) => [offset];
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CandidateMap(Candidate[] offsets) => [.. offsets];
 
 	/// <inheritdoc/>

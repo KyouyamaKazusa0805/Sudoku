@@ -9,7 +9,7 @@ public sealed partial class FailedToFillValueException([PrimaryConstructorParame
 {
 	/// <inheritdoc/>
 	public override string Message
-		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), (CellMap)Cell, Digit + 1);
+		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), Cell.AsCellMap(), Digit + 1);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

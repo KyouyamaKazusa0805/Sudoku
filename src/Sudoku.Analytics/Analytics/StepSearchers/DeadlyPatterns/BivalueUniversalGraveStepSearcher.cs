@@ -586,10 +586,10 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 			// BUG-XZ found.
 			var conclusions = new List<Conclusion>();
-			var condition = ((CellMap)c1 + cell).InOneHouse(out _);
+			var condition = (c1.AsCellMap() + cell).InOneHouse(out _);
 			var anotherCell = condition ? c2 : c1;
 			var anotherDigit = condition ? d2 : d1;
-			foreach (var peer in ((CellMap)cell + anotherCell).PeerIntersection)
+			foreach (var peer in (cell.AsCellMap() + anotherCell).PeerIntersection)
 			{
 				if (CandidatesMap[anotherDigit].Contains(peer))
 				{

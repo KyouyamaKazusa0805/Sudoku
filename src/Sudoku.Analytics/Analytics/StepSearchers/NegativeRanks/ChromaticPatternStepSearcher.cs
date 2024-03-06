@@ -304,10 +304,10 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 				// XZ rule found.
 				var conclusions = new List<Conclusion>();
-				var condition = ((CellMap)c1 + extraCell).InOneHouse(out _);
+				var condition = (c1.AsCellMap() + extraCell).InOneHouse(out _);
 				var anotherCell = condition ? c2 : c1;
 				var anotherDigit = condition ? d1 : d2;
-				foreach (var peer in ((CellMap)extraCell + anotherCell).PeerIntersection)
+				foreach (var peer in (extraCell.AsCellMap() + anotherCell).PeerIntersection)
 				{
 					if (CandidatesMap[anotherDigit].Contains(peer))
 					{

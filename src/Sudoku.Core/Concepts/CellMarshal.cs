@@ -123,4 +123,12 @@ public static class CellMarshal
 
 		return -1;
 	}
+
+	/// <summary>
+	/// Converts the specified <see cref="Cell"/> into a singleton <see cref="CellMap"/> instance.
+	/// </summary>
+	/// <param name="this">The cell to be converted.</param>
+	/// <returns>A <see cref="CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap AsCellMap(this Cell @this) => [@this];
 }

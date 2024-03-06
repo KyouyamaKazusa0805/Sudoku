@@ -151,7 +151,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 	/// Indicates the candidate string representation.
 	/// </summary>
 	[StringMember(nameof(Candidate))]
-	private string CandidateString => $"{(CellMap)Cell}({Digit + 1})";
+	private string CandidateString => $"{((Cell)Cell).AsCellMap()}({Digit + 1})";
 
 	/// <summary>
 	/// Indicates the string that is used for display on debugger.

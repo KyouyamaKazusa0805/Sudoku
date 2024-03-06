@@ -477,7 +477,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			var conjugatePairCellOuterPattern = (possibleConjugatePairCells - cellsChosen)[0];
 			var conjugatePairCellInnerPattern = (possibleConjugatePairCells - conjugatePairCellOuterPattern)[0];
 			var anotherCell = (cellsChosen - conjugatePairCellInnerPattern)[0];
-			if (!((CellMap)anotherCell + conjugatePairCellOuterPattern).InOneHouse(out _))
+			if (!(anotherCell.AsCellMap() + conjugatePairCellOuterPattern).InOneHouse(out _))
 			{
 				continue;
 			}

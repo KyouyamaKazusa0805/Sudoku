@@ -1197,10 +1197,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(Cell offset) => [offset];
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CellMap(Cell[] offsets) => [.. offsets];
 
 	/// <inheritdoc/>

@@ -95,7 +95,7 @@ internal static class SingleModule
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i] = new(ColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
-					((CellMap)cell + otherCell).InOneHouse(out excluderHouses[i]);
+					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
 
 					i++;
 					break;

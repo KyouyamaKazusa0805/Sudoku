@@ -2210,9 +2210,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#ISubtractionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap}#op_Subtraction(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32)~Sudoku.Concepts.CandidateMap">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
@@ -2322,6 +2319,19 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IDivisionOperators{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CellMap}#op_Division(Sudoku.Concepts.CandidateMap,System.Int32)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMarshal">
+            <summary>
+            Represents methods that operates with <see cref="T:System.Int32"/> values.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32)">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="this">The cell to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
@@ -2773,9 +2783,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="value">A <see cref="T:System.Int128"/> value.</param>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32)~Sudoku.Concepts.CellMap">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
             <inheritdoc/>
         </member>
@@ -2935,6 +2942,13 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The cell.</param>
             <returns>The chute index.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32)">
+            <summary>
+            Converts the specified <see cref="T:System.Int32"/> into a singleton <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="this">The cell to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
         </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
@@ -4878,13 +4892,6 @@ if (student is (name: var name, age: >= 18))
             <param name="left">The base map.</param>
             <param name="right">The template map that the base map to check and cover.</param>
             <returns>The result map.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1)~`0">
-            <summary>
-            Converts an element of type <typeparamref name="TElement"/> into a <typeparamref name="TSelf"/> instance,
-            with only one element - itself.
-            </summary>
-            <param name="offset">The offset to be used.</param>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1[])~`0">
             <summary>

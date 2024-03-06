@@ -552,14 +552,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <summary>
-	/// Converts an element of type <typeparamref name="TElement"/> into a <typeparamref name="TSelf"/> instance,
-	/// with only one element - itself.
-	/// </summary>
-	/// <param name="offset">The offset to be used.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(TElement offset) => [offset];
-
-	/// <summary>
 	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>

@@ -1067,7 +1067,7 @@ file static class Extensions
 			}
 			case HouseType.Block:
 			{
-				return from cell in cells select (CellMap)cell;
+				return from cell in cells select cell.AsCellMap();
 			}
 			default:
 			{

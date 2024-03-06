@@ -221,7 +221,7 @@ public readonly ref partial struct Distance(int p, int q)
 			Ref.Swap(ref cell1, ref cell2);
 		}
 
-		if (((CellMap)cell1 + cell2).SharedLine is not (var sharedHouse and not TrailingZeroCountFallback))
+		if ((cell1.AsCellMap() + cell2).SharedLine is not (var sharedHouse and not TrailingZeroCountFallback))
 		{
 			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CellsShouldInSameLine"));
 		}

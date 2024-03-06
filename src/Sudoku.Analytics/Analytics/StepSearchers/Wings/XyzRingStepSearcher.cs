@@ -120,7 +120,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 					var digitsMask1 = grid.GetCandidates(leafCell1);
 					foreach (var leafCell2 in bivalueCellsFromHouse2)
 					{
-						if (((CellMap)pivot + leafCell1 + leafCell2).InOneHouse(out _))
+						if ((pivot.AsCellMap() + leafCell1 + leafCell2).InOneHouse(out _))
 						{
 							continue;
 						}
@@ -155,7 +155,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 								continue;
 							}
 
-							if ((((CellMap)leafCell1 + leafCell2).ExpandedPeers & cellsShouldBeCovered) != cellsShouldBeCovered)
+							if (((leafCell1.AsCellMap() + leafCell2).ExpandedPeers & cellsShouldBeCovered) != cellsShouldBeCovered)
 							{
 								continue;
 							}
@@ -182,7 +182,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 								var linkCellsIntersected = cellsShouldBeCovered & PeersMap[leaf];
 								foreach (var linkCellHouse in linkCellsIntersected.SharedHouses)
 								{
-									foreach (var leafCellHouse in ((CellMap)pivot + leaf).SharedHouses)
+									foreach (var leafCellHouse in (pivot.AsCellMap() + leaf).SharedHouses)
 									{
 										if (linkCellHouse.ToHouseType() == HouseType.Block ^ leafCellHouse.ToHouseType() == HouseType.Block
 											&& (HousesMap[linkCellHouse] & HousesMap[leafCellHouse]) is var i)

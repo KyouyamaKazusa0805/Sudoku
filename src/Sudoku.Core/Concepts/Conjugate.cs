@@ -83,7 +83,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{(CellMap)From} == {(CellMap)To}({Digit + 1})";
+	public override string ToString() => $"{From.AsCellMap()} == {To.AsCellMap()}({Digit + 1})";
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
