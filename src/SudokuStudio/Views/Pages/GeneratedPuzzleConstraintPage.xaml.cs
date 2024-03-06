@@ -6,6 +6,11 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class GeneratedPuzzleConstraintPage : Page
 {
 	/// <summary>
+	/// Indicates the default spacing.
+	/// </summary>
+	private static readonly double DefaultSpacing = 3;
+
+	/// <summary>
 	/// Indicates the default margin.
 	/// </summary>
 	private static readonly Thickness DefaultMargin = new(0, 6, 0, 6);
@@ -150,7 +155,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { operatorControl, difficultyLevelControl }
 			},
 			Tag = constraint
@@ -343,7 +348,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children =
 				{
 					rowLabelControl,
@@ -517,7 +522,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children =
 				{
 					cellStateControl,
@@ -558,7 +563,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { operatorControl, roundsControl }
 			},
 			Tag = constraint
@@ -589,7 +594,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { operatorControl, lengthControl }
 			},
 			Tag = constraint
@@ -617,7 +622,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// technique view
 		//
-		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Multiple, SelectedTechniques = techniques };
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Multiple,
+			SelectedTechniques = techniques,
+			Margin = new(-56, 0, 0, 0)
+		};
 		techniqueControl.SelectedTechniquesChanged += (_, e) =>
 		{
 			var techniques = e.TechniqueSet;
@@ -625,15 +635,18 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			displayerControl.Text = getTechniqueString(techniques);
 		};
 
+		// Fixes #558:
+		// 'SettingsExpander' always requires 'SettingsCard' as the children control for 'SettingsExpander.Items' property.
+		// See https://github.com/CommunityToolkit/Windows/issues/302#issuecomment-1857686711
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique", App.CurrentCulture),
 			Margin = DefaultMargin,
-			Items = { techniqueControl },
+			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { displayerControl }
 			},
 			Tag = constraint
@@ -673,7 +686,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// technique view
 		//
-		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Single, SelectedTechniques = [technique] };
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Single,
+			SelectedTechniques = [technique],
+			Margin = new(-56, 0, 0, 0)
+		};
 		techniqueControl.CurrentSelectedTechniqueChanged += (_, e) =>
 		{
 			var technique = e.Technique;
@@ -695,11 +713,11 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_TechniqueCount", App.CurrentCulture),
 			Margin = DefaultMargin,
-			Items = { techniqueControl },
+			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { displayerControl, operatorControl, appearingTimesControl }
 			},
 			Tag = constraint
@@ -741,6 +759,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			SelectionMode = TechniqueViewSelectionMode.Single,
 			ShowMode = TechniqueViewShowMode.OnlyEliminations,
+			Margin = new(-56, 0, 0, 0),
 			SelectedTechniques = [technique]
 		};
 		techniqueControl.CurrentSelectedTechniqueChanged += (_, e) =>
@@ -754,11 +773,11 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_EliminationCount", App.CurrentCulture),
 			Margin = DefaultMargin,
-			Items = { techniqueControl },
+			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { displayerControl, operatorControl, limitCountControl }
 			},
 			Tag = constraint
@@ -827,7 +846,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Content = new StackPanel
 			{
 				Orientation = Orientation.Horizontal,
-				Spacing = 3,
+				Spacing = DefaultSpacing,
 				Children = { preferredLabel1, techniqueSelectorControl, preferredLabel2, allowsLineControl }
 			},
 			Tag = constraint

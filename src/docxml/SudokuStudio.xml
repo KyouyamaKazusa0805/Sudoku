@@ -13600,6 +13600,11 @@ if (student is (name: var name, age: >= 18))
             Represents generated puzzle constraint page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultSpacing">
+            <summary>
+            Indicates the default spacing.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultMargin">
             <summary>
             Indicates the default margin.
