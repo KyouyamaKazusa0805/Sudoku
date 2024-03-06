@@ -1,9 +1,11 @@
 namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
-/// Represents condition options.
+/// Represents condition options on <see cref="Analyzer"/>.
 /// </summary>
-internal sealed record ConditionalOptions
+/// <seealso cref="StepSearcher"/>
+/// <seealso cref="Analyzer"/>
+internal sealed record StepSearcherConditionalOptions
 {
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
 	/// <summary>

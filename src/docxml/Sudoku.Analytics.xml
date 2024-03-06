@@ -535,7 +535,7 @@ if (student is (name: var name, age: >= 18))
             <param name="propertySetter">The method to set the target property with new value.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.ConditionalOptions)">
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.StepSearcherConditionalOptions)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/> with the specified value.
             </summary>
@@ -4700,17 +4700,19 @@ if (student is (name: var name, age: >= 18))
             <param name="collectingMode">The mode of the collecting steps.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Configuration.ConditionalOptions">
+        <member name="T:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions">
             <summary>
-            Represents condition options.
+            Represents condition options on <see cref="T:Sudoku.Analytics.Analyzer"/>.
             </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="P:Sudoku.Analytics.Configuration.ConditionalOptions.AllowsHiddenSingleInLines">
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.AllowsHiddenSingleInLines">
             <summary>
             Indicates whether the step searcher will checks for hidden singles in rows or columns.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Configuration.ConditionalOptions.LimitedSingle">
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.LimitedSingle">
             <summary>
             Indicates the preferred single technique. If the value is not (<see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>)0,
             the analyzer will ignore the other single technique not related to this field.
@@ -4731,6 +4733,8 @@ if (student is (name: var name, age: >= 18))
             that a <see cref="T:Sudoku.Analytics.StepSearcher"/> instance can create.
             For example, setting notation to the coordinates.
             </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode">
             <summary>

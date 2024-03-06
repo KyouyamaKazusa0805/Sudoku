@@ -126,7 +126,7 @@ public static class AnalyzerFactory
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Analyzer.ConditionalOptions"/>
-	internal static Analyzer WithConditionalOptions(this Analyzer @this, ConditionalOptions? options)
+	internal static Analyzer WithConditionalOptions(this Analyzer @this, StepSearcherConditionalOptions? options)
 	{
 		@this.ConditionalOptions = options;
 		return @this;

@@ -75,12 +75,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 	/// <inheritdoc/>
 	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
-#if SINGLE_TECHNIQUE_LIMIT_FLAG
 	/// <summary>
 	/// Indicates the conditional options to be set.
 	/// </summary>
-	internal ConditionalOptions? ConditionalOptions { get; set; }
-#endif
+	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; }
 
 	/// <inheritdoc/>
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
@@ -155,7 +153,14 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
-			var accumulator = IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not 0 ? [] : default(List<Step>);
+			var accumulator =
+#if SINGLE_TECHNIQUE_LIMIT_FLAG
+				IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not 0
+#else
+				IsFullApplying || RandomizedChoosing
+#endif
+				? []
+				: default(List<Step>);
 			scoped var context = new AnalysisContext(
 				accumulator,
 				in playground,

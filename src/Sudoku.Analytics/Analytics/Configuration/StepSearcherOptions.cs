@@ -6,6 +6,8 @@ namespace Sudoku.Analytics.Configuration;
 /// that a <see cref="StepSearcher"/> instance can create.
 /// For example, setting notation to the coordinates.
 /// </summary>
+/// <seealso cref="StepSearcher"/>
+/// <seealso cref="Analyzer"/>
 public sealed record StepSearcherOptions
 {
 	/// <summary>
