@@ -13,6 +13,14 @@ public static class TechniqueExtensions
 
 
 	/// <summary>
+	/// Determine whether the specified technique produces assignments.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsAssignment(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
+
+	/// <summary>
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>

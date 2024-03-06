@@ -5,6 +5,7 @@ namespace SudokuStudio.Views.Controls;
 /// </summary>
 [DependencyProperty<double>("HorizontalSpacing", DocSummary = "Indicates the horizontal spacing.")]
 [DependencyProperty<double>("VerticalSpacing", DocSummary = "Indicates the vertical spacing.")]
+[DependencyProperty<TechniqueViewShowMode>("ShowMode", DefaultValue = TechniqueViewShowMode.Both, DocSummary = "Indicates which techniques whose conclusion types are specified will be shown.")]
 [DependencyProperty<TechniqueViewSelectionMode>("SelectionMode", DefaultValue = TechniqueViewSelectionMode.Single, DocSummary = "Indicates the selection mode.")]
 [DependencyProperty<TechniqueSet>("SelectedTechniques", DocSummary = "Indicates the final selected techniques.")]
 public sealed partial class TechniqueView : UserControl
@@ -22,7 +23,11 @@ public sealed partial class TechniqueView : UserControl
 	/// <summary>
 	/// Initializes a <see cref="TechniqueView"/> instance.
 	/// </summary>
-	public TechniqueView() => InitializeComponent();
+	public TechniqueView()
+	{
+		InitializeComponent();
+		UpdateShowMode(ShowMode);
+	}
 
 
 	/// <summary>
@@ -76,6 +81,41 @@ public sealed partial class TechniqueView : UserControl
 		}
 	}
 
+	/// <summary>
+	/// Try to update visibility of technique bound controls.
+	/// </summary>
+	/// <param name="mode">The show mode.</param>
+	private void UpdateShowMode(TechniqueViewShowMode mode)
+	{
+		foreach (var (technique, item) in TokenItems)
+		{
+			item.Visibility = GetVisibility(technique);
+		}
+	}
+
+	/// <summary>
+	/// Gets the visibility.
+	/// </summary>
+	/// <param name="technique">The technique.</param>
+	/// <returns>The <see cref="Visibility"/> result.</returns>
+	private Visibility GetVisibility(Technique technique)
+		=> ShowMode switch
+		{
+			TechniqueViewShowMode.None => Visibility.Collapsed,
+			TechniqueViewShowMode.OnlyAssignments => technique.IsAssignment() ? Visibility.Visible : Visibility.Collapsed,
+			TechniqueViewShowMode.OnlyEliminations => technique.IsAssignment() ? Visibility.Collapsed : Visibility.Visible,
+			_ => Visibility.Visible
+		};
+
+
+	[Callback]
+	private static void ShowModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is (TechniqueView view, { NewValue: TechniqueViewShowMode mode }))
+		{
+			view.UpdateShowMode(mode);
+		}
+	}
 
 	[Callback]
 	private static void SelectedTechniquesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -119,6 +159,7 @@ public sealed partial class TechniqueView : UserControl
 		if (_tokenViews.Count == ItemsSource.Length)
 		{
 			UpdateSelection(SelectedTechniques);
+			UpdateShowMode(ShowMode);
 		}
 	}
 

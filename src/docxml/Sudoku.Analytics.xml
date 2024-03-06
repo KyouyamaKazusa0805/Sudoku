@@ -3693,6 +3693,13 @@ if (student is (name: var name, age: >= 18))
             The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsAssignment(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the specified technique produces assignments.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.

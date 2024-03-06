@@ -4422,6 +4422,31 @@ if (student is (name: var name, age: >= 18))
             Indicates the mode is multiple-selection.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.TechniqueViewShowMode">
+            <summary>
+            The technique view show mode.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewShowMode.None">
+            <summary>
+            Indicates no technique will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewShowMode.OnlyAssignments">
+            <summary>
+            Indicates only assignments will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewShowMode.OnlyEliminations">
+            <summary>
+            Indicates only eliminations will be displayed.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.TechniqueViewShowMode.Both">
+            <summary>
+            Indicates all techniques will be displayed.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.TokenItemRemovingEventArgs">
             <summary>
             Represents for event handler data provider.
@@ -12153,6 +12178,19 @@ if (student is (name: var name, age: >= 18))
             Try to update all token items via selection state.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.UpdateShowMode(SudokuStudio.Interaction.TechniqueViewShowMode)">
+            <summary>
+            Try to update visibility of technique bound controls.
+            </summary>
+            <param name="mode">The show mode.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.TechniqueView.GetVisibility(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets the visibility.
+            </summary>
+            <param name="technique">The technique.</param>
+            <returns>The <see cref="T:Microsoft.UI.Xaml.Visibility"/> result.</returns>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueView.InitializeComponent">
             <summary>
             InitializeComponent()
@@ -12180,6 +12218,12 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView.ShowModeProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.TechniqueView.SelectionModeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode"/>.
@@ -12200,6 +12244,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Controls.TechniqueView.VerticalSpacing">
             <summary>
             Indicates the vertical spacing.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.TechniqueView.ShowMode">
+            <summary>
+            Indicates which techniques whose conclusion types are specified will be shown.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.TechniqueView.SelectionMode">

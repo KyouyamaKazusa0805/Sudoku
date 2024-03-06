@@ -737,7 +737,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// technique view
 		//
-		var techniqueControl = new TechniqueView { SelectionMode = TechniqueViewSelectionMode.Single, SelectedTechniques = [technique] };
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Single,
+			ShowMode = TechniqueViewShowMode.OnlyEliminations,
+			SelectedTechniques = [technique]
+		};
 		techniqueControl.CurrentSelectedTechniqueChanged += (_, e) =>
 		{
 			var technique = e.Technique;
