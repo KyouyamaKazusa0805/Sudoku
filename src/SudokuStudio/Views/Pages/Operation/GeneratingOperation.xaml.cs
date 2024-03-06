@@ -317,7 +317,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					return;
 				}
 
-				var techniques = new TechniqueSet();
+				var techniques = TechniqueSets.None;
 				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
 				{
 					switch (constraint)
@@ -385,7 +385,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					return;
 				}
 
-				var techniques = new TechniqueSet();
+				var techniques = TechniqueSets.None;
 				foreach (var constraint in ((App)Application.Current).Preference.ConstraintPreferences.Constraints)
 				{
 					switch (constraint)

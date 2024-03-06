@@ -357,7 +357,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// </returns>
 	public static TechniqueSet operator &(scoped SolvingPath path, TechniqueSet techniques)
 	{
-		var result = new TechniqueSet();
+		var result = TechniqueSets.None;
 		foreach (var step in path.Steps)
 		{
 			if (techniques.Contains(step.Code))
