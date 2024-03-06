@@ -9,7 +9,7 @@ public static class File2
 	/// <summary>
 	/// The field for invalid path characters as a file name.
 	/// </summary>
-	private static readonly SearchValues<char> InvalidCharacters = SearchValues.Create(@":\/?*<>|""");
+	private static readonly SearchValues<char> InvalidCharacters = SearchValues.Create(""":\/?*<>"|""");
 
 
 	/// <summary>
