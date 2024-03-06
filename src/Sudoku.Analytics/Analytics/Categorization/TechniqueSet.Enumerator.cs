@@ -25,7 +25,7 @@ public partial class TechniqueSet
 
 
 		/// <inheritdoc cref="IEnumerator{T}.Current"/>
-		public readonly Technique Current => (Technique)_currentIndex;
+		public readonly Technique Current => TechniqueProjectionBack(_currentIndex);
 
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>

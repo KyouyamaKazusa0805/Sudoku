@@ -578,11 +578,6 @@
             Indicates the containing group for the current technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the technique.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewBindableSource.TechniqueField">
             <summary>
             The generated property declaration for parameter <c>techniqueField</c>.

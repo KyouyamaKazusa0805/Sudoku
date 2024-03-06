@@ -16,7 +16,7 @@ public sealed partial class TechniqueConstraint : Constraint
 	/// Indicates the techniques must appear.
 	/// </summary>
 	[HashCodeMember]
-	public TechniqueSet Techniques { get; set; } = [];
+	public TechniqueSet Techniques { get; set; } = TechniqueSets.None;
 
 	[StringMember]
 	private string TechniquesString => Techniques.ToString();

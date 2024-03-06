@@ -16,9 +16,4 @@ public sealed partial class TechniqueViewBindableSource([PrimaryConstructorParam
 	/// Indicates the containing group for the current technique.
 	/// </summary>
 	public TechniqueGroup ContainingGroup => TechniqueField.GetGroup();
-
-	/// <summary>
-	/// Indicates the difficulty level of the technique.
-	/// </summary>
-	public DifficultyLevel DifficultyLevel => TechniqueField.GetDifficultyLevel();
 }

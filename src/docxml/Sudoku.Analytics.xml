@@ -4416,6 +4416,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#ICollection{Sudoku#Analytics#Categorization#Technique}#Add(Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueProjection(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Project the <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance into an <see cref="T:System.Int32"/> value as an index of <see cref="T:System.Collections.BitArray"/> field.
+            </summary>
+            <param name="technique">The techniuqe.</param>
+            <returns>The index value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueProjectionBack(System.Int32)">
+            <summary>
+            Projects the <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field back.
+            </summary>
+            <param name="index">The index.</param>
+            <returns>The technique field.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_LogicalNot(Sudoku.Analytics.Categorization.TechniqueSet)">
             <inheritdoc/>
         </member>

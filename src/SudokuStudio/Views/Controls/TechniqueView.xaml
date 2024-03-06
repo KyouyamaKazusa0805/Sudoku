@@ -12,7 +12,7 @@
 		<vcvt:SelectionModeToIsItemClickEnabledConverter x:Key="SelectionModeToClickEnabledConverter" />
 	</UserControl.Resources>
 
-	<ListView x:Name="MainListView" ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
+	<ListView ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:TechniqueViewGroupBindableSource">
 				<StackPanel Margin="0,20">

@@ -39,7 +39,7 @@ public sealed partial class TechniqueSet :
 	/// <summary>
 	/// Indicates the number of techniques included in this solution.
 	/// </summary>
-	private static readonly int TechniquesCount = Enum.GetValues<Technique>().Length;
+	private static readonly int TechniquesCount = Enum.GetValues<Technique>().Length - 1;
 
 
 	/// <summary>
@@ -204,7 +204,7 @@ public sealed partial class TechniqueSet :
 	/// <param name="item">The technique.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Contains(Technique item) => _techniqueBits[(int)item];
+	public bool Contains(Technique item) => _techniqueBits[TechniqueProjection(item)];
 
 	/// <summary>
 	/// Try to add a new technique.
@@ -214,12 +214,12 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Technique item)
 	{
-		if (_techniqueBits[(int)item])
+		if (_techniqueBits[TechniqueProjection(item)])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((int)item, true);
+		_techniqueBits.Set(TechniqueProjection(item), true);
 		return true;
 	}
 
@@ -231,12 +231,12 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Technique item)
 	{
-		if (!_techniqueBits[(int)item])
+		if (!_techniqueBits[TechniqueProjection(item)])
 		{
 			return false;
 		}
 
-		_techniqueBits.Set((int)item, false);
+		_techniqueBits.Set(TechniqueProjection(item), false);
 		return true;
 	}
 
@@ -388,7 +388,7 @@ public sealed partial class TechniqueSet :
 		{
 			if (techniqueBit)
 			{
-				yield return (Technique)index;
+				yield return TechniqueProjectionBack(index);
 			}
 			index++;
 		}
@@ -439,6 +439,23 @@ public sealed partial class TechniqueSet :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ICollection<Technique>.Add(Technique item) => Add(item);
+
+
+	/// <summary>
+	/// Project the <see cref="Technique"/> instance into an <see cref="int"/> value as an index of <see cref="BitArray"/> field.
+	/// </summary>
+	/// <param name="technique">The techniuqe.</param>
+	/// <returns>The index value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static int TechniqueProjection(Technique technique) => (int)technique - 1;
+
+	/// <summary>
+	/// Projects the <see cref="int"/> value into a <see cref="Technique"/> field back.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>The technique field.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static Technique TechniqueProjectionBack(int index) => (Technique)index + 1;
 
 
 	/// <inheritdoc/>

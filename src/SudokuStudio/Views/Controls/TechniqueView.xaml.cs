@@ -11,7 +11,7 @@ namespace SudokuStudio.Views.Controls;
 public sealed partial class TechniqueView : UserControl
 {
 	[Default]
-	private static readonly TechniqueSet SelectedTechniquesDefaultValue = [];
+	private static readonly TechniqueSet SelectedTechniquesDefaultValue = TechniqueSets.None;
 
 
 	/// <summary>
