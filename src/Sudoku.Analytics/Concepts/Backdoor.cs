@@ -1,9 +1,9 @@
-namespace Sudoku.Algorithm.Backdoors;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a backdoor searcher.
 /// </summary>
-public static class BackdoorSearcher
+public static class Backdoor
 {
 	/// <summary>
 	/// The checker.

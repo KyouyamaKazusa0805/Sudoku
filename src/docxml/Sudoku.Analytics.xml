@@ -4,274 +4,6 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Algorithm.Backdoors.BackdoorSearcher">
-            <summary>
-            Defines a backdoor searcher.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Backdoors.BackdoorSearcher.SstsChecker">
-            <summary>
-            The checker.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Backdoors.BackdoorSearcher.GetBackdoors(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get all possible backdoors.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A list of backdoors.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.DigitPath">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.#ctor(System.Int32[])">
-            <summary>
-            Indicates the target digit path.
-            </summary>
-            <param name="Digits">The digits path.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.Digits">
-            <summary>The digits path.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.IsComplete">
-            <summary>
-            Indicates whethe the pattern is complete.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.DigitPath.DigitsString">
-            <summary>
-            Indicates hte digits string.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.CompareTo(Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Equals(Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString(System.String)">
-            <inheritdoc cref="M:Sudoku.Algorithm.Ittoryu.DigitPath.ToString"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.GetEnumerator">
-            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.Create(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/> instance via collection expression.
-            </summary>
-            <param name="digits">A list of digits to be initialized.</param>
-            <returns>A <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_Implicit(System.Int32[])~Sudoku.Algorithm.Ittoryu.DigitPath">
-            <summary>
-            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithm.Ittoryu.DigitPath"/>.
-            </summary>
-            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_GreaterThan(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThan(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_GreaterThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DigitPath.op_LessThanOrEqual(Sudoku.Algorithm.Ittoryu.DigitPath,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder">
-            <summary>
-            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
-            complex singles won't be supported for now.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
-            <summary>
-            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
-            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
-            complex singles won't be supported for now.
-            </summary>
-            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
-            <summary>
-            Initialzes a <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
-            </summary>
-            <param name="techniques">A list of techniques.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
-            <summary>
-            Find a suitable ittoryu path.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>
-            The target digit path. If none found, a longest path will be returned.
-            </returns>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
-            <summary>
-            The generated property declaration for parameter <c>supportedTechniques</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.AlreadyFinishedException">
-            <summary>
-            The internal exception type that reports "Already finished" information, breaking the recursion.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.IttoryuExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithm.Ittoryu.DigitPath)">
-            <summary>
-            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>.
-            </summary>
-            <param name="this">The grid to be adjusted.</param>
-            <param name="ittoryuPath">
-            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
-            </param>
-            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithm.Ittoryu.DigitPath}@)">
-            <summary>
-            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
-            with checking using the specified techniques.
-            </summary>
-            <param name="this">The grid to be checked.</param>
-            <param name="techniques">
-            <para>The techniques supported.</para>
-            <para>
-            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
-            </list>
-            </para>
-            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
-            </param>
-            <param name="path">The first found ittoryu path.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Ittoryu.PathNode">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
-            <summary>
-            Represents for a path node in a whole solving path via ittoryu solving logic.
-            </summary>
-            <param name="Grid">Indicates the currently-used grid.</param>
-            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
-            <param name="Candidate">Indicates the target candidate.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Grid">
-            <summary>Indicates the currently-used grid.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.House">
-            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Candidate">
-            <summary>Indicates the target candidate.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Digit">
-            <summary>
-            Indicates the target digit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Ittoryu.PathNode.Cell">
-            <summary>
-            Indicates the target cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Ittoryu.PathNode.ToString(Sudoku.Text.Converters.CoordinateConverter)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
@@ -4562,20 +4294,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the techniques that ittoryu path finder will use.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuNakedSingleNotIncluded">
             <summary>
             Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
         </member>
         <member name="P:Sudoku.Analytics.Categorization.TechniqueSets.IttoryuBlockHiddenSingle">
             <summary>
             Indicates the techniques that ittroyu path finder will use,
             only containing <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>.
             </summary>
-            <seealso cref="T:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
@@ -5073,7 +4805,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Algorithm.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Concepts.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute">
             <summary>
@@ -20177,6 +19909,24 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Concepts.Backdoor">
+            <summary>
+            Defines a backdoor searcher.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Backdoor.SstsChecker">
+            <summary>
+            The checker.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Backdoor.GetBackdoors(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible backdoors.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of backdoors.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
+        </member>
         <member name="T:Sudoku.Concepts.ChainNode">
             <summary>
             Defines a node used in chaining.
@@ -20445,6 +20195,208 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
         </member>
+        <member name="T:Sudoku.Concepts.DisorderedIttoryuDigitPath">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.DisorderedIttoryuDigitPath.Digits">
+            <summary>The digits path.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.DisorderedIttoryuDigitPath.IsComplete">
+            <summary>
+            Indicates whethe the pattern is complete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.DisorderedIttoryuDigitPath.DigitsString">
+            <summary>
+            Indicates hte digits string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.Equals(Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.DisorderedIttoryuDigitPath"/> instance via collection expression.
+            </summary>
+            <param name="digits">A list of digits to be initialized.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.DisorderedIttoryuDigitPath"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Concepts.DisorderedIttoryuDigitPath">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Concepts.DisorderedIttoryuDigitPath"/>.
+            </summary>
+            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Concepts.DisorderedIttoryuDigitPath,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Concepts.DisorderedIttoryuDigitPath,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Concepts.DisorderedIttoryuDigitPath,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Concepts.DisorderedIttoryuDigitPath,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.DisorderedIttoryuFinder">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuFinder.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
+            <summary>
+            Initialzes a <see cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            </summary>
+            <param name="techniques">A list of techniques.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Concepts.DisorderedIttoryuFinder.SupportedTechniques">
+            <summary>
+            The generated property declaration for parameter <c>supportedTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.AlreadyFinishedException">
+            <summary>
+            The internal exception type that reports "Already finished" information, breaking the recursion.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.PathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.PathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.PathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.PathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.PathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.PathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+<![CDATA[
+public static void Deconstruct(out string name, out int age)
+    => (name, age) = (Name, Age);
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+<![CDATA[
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.PathNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PathNode.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.PathNode.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Grouped">
             <summary>
             Represents a list of methods that operates with concept "Grouped Node".
@@ -20458,6 +20410,54 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit to be checked.</param>
             <param name="house">The house.</param>
             <param name="spannedHousesList">The spanned houses.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.IttoryuExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+            <summary>
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>.
+            </summary>
+            <param name="this">The grid to be adjusted.</param>
+            <param name="ittoryuPath">
+            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
+            <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
+            with checking using the specified techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">
+            <para>The techniques supported.</para>
+            <para>
+            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
+            </list>
+            </para>
+            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
+            </param>
+            <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">

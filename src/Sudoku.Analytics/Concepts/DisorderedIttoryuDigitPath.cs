@@ -1,14 +1,14 @@
-namespace Sudoku.Algorithm.Ittoryu;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Indicates the target digit path.
 /// </summary>
 /// <param name="Digits">The digits path.</param>
 [ComparisonOperators]
-[CollectionBuilder(typeof(DigitPath), nameof(Create))]
-public readonly partial record struct DigitPath(Digit[] Digits) :
-	IComparable<DigitPath>,
-	IComparisonOperators<DigitPath, DigitPath, bool>,
+[CollectionBuilder(typeof(DisorderedIttoryuDigitPath), nameof(Create))]
+public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
+	IComparable<DisorderedIttoryuDigitPath>,
+	IComparisonOperators<DisorderedIttoryuDigitPath, DisorderedIttoryuDigitPath, bool>,
 	IEnumerable<Digit>
 {
 	/// <summary>
@@ -25,11 +25,11 @@ public readonly partial record struct DigitPath(Digit[] Digits) :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(DigitPath other) => GetHashCode().CompareTo(other.GetHashCode());
+	public int CompareTo(DisorderedIttoryuDigitPath other) => GetHashCode().CompareTo(other.GetHashCode());
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(DigitPath other) => Digits.Length == other.Digits.Length && GetHashCode() == other.GetHashCode();
+	public bool Equals(DisorderedIttoryuDigitPath other) => Digits.Length == other.Digits.Length && GetHashCode() == other.GetHashCode();
 
 	/// <inheritdoc/>
 	public override int GetHashCode()
@@ -67,20 +67,20 @@ public readonly partial record struct DigitPath(Digit[] Digits) :
 
 
 	/// <summary>
-	/// Creates a <see cref="DigitPath"/> instance via collection expression.
+	/// Creates a <see cref="DisorderedIttoryuDigitPath"/> instance via collection expression.
 	/// </summary>
 	/// <param name="digits">A list of digits to be initialized.</param>
-	/// <returns>A <see cref="DigitPath"/> instance.</returns>
+	/// <returns>A <see cref="DisorderedIttoryuDigitPath"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
-	public static DigitPath Create(scoped ReadOnlySpan<Digit> digits) => new([.. digits]);
+	public static DisorderedIttoryuDigitPath Create(scoped ReadOnlySpan<Digit> digits) => new([.. digits]);
 
 
 	/// <summary>
-	/// Implicit cast from a <see cref="Digit"/> sequence into a <see cref="DigitPath"/>.
+	/// Implicit cast from a <see cref="Digit"/> sequence into a <see cref="DisorderedIttoryuDigitPath"/>.
 	/// </summary>
 	/// <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator DigitPath(Digit[]? digitSequence) => new(digitSequence is null ? [] : digitSequence);
+	public static implicit operator DisorderedIttoryuDigitPath(Digit[]? digitSequence) => new(digitSequence is null ? [] : digitSequence);
 }

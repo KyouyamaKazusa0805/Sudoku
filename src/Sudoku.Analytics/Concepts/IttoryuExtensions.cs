@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithm.Ittoryu;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.
@@ -15,7 +15,7 @@ public static class IttoryuExtensions
 	/// </param>
 	/// <exception cref="ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
 	/// <seealso cref="DisorderedIttoryuFinder"/>
-	public static void MakeIttoryu(this scoped ref Grid @this, DigitPath ittoryuPath)
+	public static void MakeIttoryu(this scoped ref Grid @this, DisorderedIttoryuDigitPath ittoryuPath)
 	{
 		if (ittoryuPath.Digits is not { Length: >= 2 })
 		{
@@ -59,7 +59,7 @@ public static class IttoryuExtensions
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, [NotNullWhen(true)] out DigitPath? path)
+	public static bool IsIttoryu(this scoped ref readonly Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 		=> @this.IsIttoryu(TechniqueSets.IttoryuTechniques, out path);
 
 	/// <summary>
@@ -84,7 +84,7 @@ public static class IttoryuExtensions
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DigitPath? path)
+	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 	{
 		var pathFinder = new DisorderedIttoryuFinder(techniques);
 		var foundPath = pathFinder.FindPath(in @this);

@@ -11,7 +11,6 @@ global using System.Runtime.CompilerServices;
 global using System.SourceGeneration;
 global using System.Text.Json.Serialization;
 global using Sudoku.Algorithm.Generating;
-global using Sudoku.Algorithm.Ittoryu;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Steps;
