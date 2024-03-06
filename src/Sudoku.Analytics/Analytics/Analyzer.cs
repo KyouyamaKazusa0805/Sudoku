@@ -78,6 +78,13 @@ public sealed partial class Analyzer :
 	/// <inheritdoc/>
 	public override StepSearcherOptions Options { get; set; } = StepSearcherOptions.Default;
 
+#if SINGLE_TECHNIQUE_LIMIT_FLAG
+	/// <summary>
+	/// Indicates the conditional options to be set.
+	/// </summary>
+	internal ConditionalOptions? ConditionalOptions { get; set; }
+#endif
+
 	/// <inheritdoc/>
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
 
@@ -151,18 +158,16 @@ public sealed partial class Analyzer :
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			scoped var stopwatch = ValueStopwatch.NewInstance;
-			var accumulator = IsFullApplying || RandomizedChoosing || Options.LimitedSingle != SingleTechniquePrefer.Unknown
-				? []
-				: default(List<Step>);
+			var accumulator = IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not 0 ? [] : default(List<Step>);
 			scoped var context = new AnalysisContext(
 				accumulator,
 				in playground,
 				in puzzle,
-				!IsFullApplying && !RandomizedChoosing
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-					&& Options.LimitedSingle == SingleTechniquePrefer.Unknown
+				!IsFullApplying && !RandomizedChoosing && ConditionalOptions?.LimitedSingle is null or 0,
+#else
+				!IsFullApplying && !RandomizedChoosing,
 #endif
-				,
 				Options
 			);
 
@@ -214,7 +219,7 @@ public sealed partial class Analyzer :
 						continue;
 					}
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-					case (_, SingleStepSearcher, { Options: { AllowsHiddenSingleInRowsOrColumns: var allowLine, LimitedSingle: var limited and not SingleTechniquePrefer.Unknown } }):
+					case (_, SingleStepSearcher, { ConditionalOptions: { AllowsHiddenSingleInLines: var allowLine, LimitedSingle: var limited and not 0 } }):
 					{
 						accumulator!.Clear();
 
@@ -235,18 +240,18 @@ public sealed partial class Analyzer :
 								{
 									case (_, Technique.FullHouse, _):
 									case (
-										SingleTechniquePrefer.HiddenSingle,
+										SingleTechnique.HiddenSingle,
 										Technique.LastDigit or Technique.CrosshatchingBlock or Technique.HiddenSingleBlock,
 										false
 									):
 									case (
-										SingleTechniquePrefer.HiddenSingle,
+										SingleTechnique.HiddenSingle,
 										Technique.LastDigit
 											or >= Technique.HiddenSingleBlock and <= Technique.HiddenSingleColumn
 											or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn,
 										true
 									):
-									case (SingleTechniquePrefer.NakedSingle, Technique.NakedSingle, _):
+									case (SingleTechnique.NakedSingle, Technique.NakedSingle, _):
 									{
 										chosenSteps.Add(s);
 										break;
@@ -278,9 +283,7 @@ public sealed partial class Analyzer :
 						}
 						else
 						{
-							var chosenStep = RandomizedChoosing
-								? chosenSteps[_random.Next(0, chosenSteps.Count)]
-								: chosenSteps[0];
+							var chosenStep = RandomizedChoosing ? chosenSteps[_random.Next(0, chosenSteps.Count)] : chosenSteps[0];
 							if (!verifyConclusionValidity(in solution, chosenStep))
 							{
 								throw new WrongStepException(in playground, chosenStep);

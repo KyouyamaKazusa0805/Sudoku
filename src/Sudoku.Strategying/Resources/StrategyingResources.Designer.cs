@@ -223,20 +223,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Single rule: {0} is primary technique, Hidden Single in rows or columns {1}included.
+        /// </summary>
+        internal static string PrimarySingleConstraint {
+            get {
+                return ResourceManager.GetString("PrimarySingleConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to only right open.
         /// </summary>
         internal static string RightOpen {
             get {
                 return ResourceManager.GetString("RightOpen", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {1}included.
-        /// </summary>
-        internal static string SinglePreferConstraint {
-            get {
-                return ResourceManager.GetString("SinglePreferConstraint", resourceCulture);
             }
         }
         

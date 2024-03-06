@@ -6967,22 +6967,32 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Pearl constraint.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferHiddenSingle">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryHiddenSingle">
             <summary>
               Looks up a localized string similar to Hidden Single.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferNakedSingle">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryNakedSingle">
             <summary>
               Looks up a localized string similar to Naked Single.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimarySingle">
+            <summary>
+              Looks up a localized string similar to Primary single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimarySingleConstraint">
+            <summary>
+              Looks up a localized string similar to Primary single constraint.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1">
             <summary>
               Looks up a localized string similar to Technique.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2">
             <summary>
               Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
             </summary>
@@ -6995,16 +7005,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ShouldAppearLabel">
             <summary>
               Looks up a localized string similar to , should appear:.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_SinglePrefer">
-            <summary>
-              Looks up a localized string similar to Preferred single.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_SinglePreferConstraint">
-            <summary>
-              Looks up a localized string similar to Single prefer constraint.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Symmetry">

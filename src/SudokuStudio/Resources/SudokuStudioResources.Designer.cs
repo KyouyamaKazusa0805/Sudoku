@@ -2430,36 +2430,54 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Single.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_PreferHiddenSingle {
+        internal static string GeneratedPuzzleConstraintPage_PrimaryHiddenSingle {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferHiddenSingle", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Naked Single.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_PreferNakedSingle {
+        internal static string GeneratedPuzzleConstraintPage_PrimaryNakedSingle {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferNakedSingle", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary single.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PrimarySingle {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimarySingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Primary single constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PrimarySingleConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimarySingleConstraint", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Technique.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1 {
+        internal static string GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1 {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
         /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2 {
+        internal static string GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2 {
             get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2", resourceCulture);
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2", resourceCulture);
             }
         }
         
@@ -2478,24 +2496,6 @@ namespace SudokuStudio.Resources {
         internal static string GeneratedPuzzleConstraintPage_ShouldAppearLabel {
             get {
                 return ResourceManager.GetString("GeneratedPuzzleConstraintPage_ShouldAppearLabel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Preferred single.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_SinglePrefer {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_SinglePrefer", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Single prefer constraint.
-        /// </summary>
-        internal static string GeneratedPuzzleConstraintPage_SinglePreferConstraint {
-            get {
-                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_SinglePreferConstraint", resourceCulture);
             }
         }
         

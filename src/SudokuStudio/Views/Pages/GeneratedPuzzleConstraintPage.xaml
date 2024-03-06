@@ -88,9 +88,9 @@
 								<con:IttoryuLengthConstraint Length="9" Operator="Equality" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
-						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_SinglePreferConstraint}" Click="MenuFlyoutItem_Click">
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PrimarySingleConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:SinglePreferConstraint SinglePrefer="HiddenSingle" AllowsHiddenSingleInRowsOrColumns="False" />
+								<con:PrimarySingleConstraint Primary="HiddenSingle" AllowsHiddenSingleInRowsOrColumns="False" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 					</MenuFlyout>

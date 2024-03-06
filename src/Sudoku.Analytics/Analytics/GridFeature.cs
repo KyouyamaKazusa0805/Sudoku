@@ -52,15 +52,8 @@ public readonly ref partial struct GridFeature(
 	public readonly bool CanOnlyUseHiddenSingle(bool allowsRowOrColumn)
 		=> PredefinedAnalyzers.Default
 			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true }])
-			.WithUserDefinedOptions(
-				new()
-				{
-					DistinctDirectMode = true,
-					IsDirectMode = true,
-					LimitedSingle = SingleTechniquePrefer.HiddenSingle,
-					AllowsHiddenSingleInRowsOrColumns = allowsRowOrColumn
-				}
-			)
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true, })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.HiddenSingle, AllowsHiddenSingleInLines = allowsRowOrColumn })
 			.Analyze(in Grid)
 			.IsSolved;
 
@@ -70,7 +63,8 @@ public readonly ref partial struct GridFeature(
 	public readonly bool CanOnlyUseNakedSingle()
 		=> PredefinedAnalyzers.Default
 			.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true }])
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true, LimitedSingle = SingleTechniquePrefer.NakedSingle })
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.NakedSingle })
 			.Analyze(in Grid)
 			.IsSolved;
 }

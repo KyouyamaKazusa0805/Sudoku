@@ -439,6 +439,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Analyzer.Options">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Analyzer.ConditionalOptions">
+            <summary>
+            Indicates the conditional options to be set.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
@@ -529,6 +534,17 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
             <param name="propertySetter">The method to set the target property with new value.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithConditionalOptions(Sudoku.Analytics.Analyzer,Sudoku.Analytics.Configuration.ConditionalOptions)">
+            <summary>
+            Try to set property <see cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/> with the specified value.
+            </summary>
+            <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
+            <param name="options">
+            The custom option instance. The value can be <see langword="null"/> if you want to revert with default value.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="P:Sudoku.Analytics.Analyzer.ConditionalOptions"/>
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerOrCollector">
             <summary>
@@ -1446,33 +1462,28 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The subtype.</param>
             <returns>The related technique instance.</returns>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer">
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechnique">
             <summary>
             Represents prefer way that specifies a kind that a user will perfer using a single technique to fill a grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.Unknown">
-            <summary>
-            Indicates a user likes an unknown behavior to finish a grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.HiddenSingle">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingle">
             <summary>
             Indicates a user likes using hidden singles to finish a grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.NakedSingle">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.NakedSingle">
             <summary>
             Indicates a user likes using naked singles to finish a grid.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions.ToTechniqueString(Sudoku.Analytics.Categorization.SingleTechniquePrefer,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions.ToTechniqueString(Sudoku.Analytics.Categorization.SingleTechnique,System.Globalization.CultureInfo)">
             <inheritdoc cref="M:Sudoku.Text.ICultureFormattable.ToString(System.Globalization.CultureInfo)"/>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
@@ -4689,6 +4700,30 @@ if (student is (name: var name, age: >= 18))
             <param name="collectingMode">The mode of the collecting steps.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Configuration.ConditionalOptions">
+            <summary>
+            Represents condition options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.ConditionalOptions.AllowsHiddenSingleInLines">
+            <summary>
+            Indicates whether the step searcher will checks for hidden singles in rows or columns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.ConditionalOptions.LimitedSingle">
+            <summary>
+            Indicates the preferred single technique. If the value is not (<see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>)0,
+            the analyzer will ignore the other single technique not related to this field.
+            </summary>
+            <remarks>
+            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingle"/>,
+            the analyzer will automatically ignore naked single steps to analyze the grid.
+            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> with
+            <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -4710,25 +4745,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
             <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.AllowsHiddenSingleInRowsOrColumns">
-            <summary>
-            Indicates whether the step searcher will checks for hidden singles in rows or columns.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.LimitedSingle">
-            <summary>
-            Indicates the preferred single technique. If the value is not <see cref="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.Unknown"/>,
-            the analyzer will ignore the other single technique not related to this field.
-            </summary>
-            <remarks>
-            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniquePrefer.HiddenSingle"/>,
-            the analyzer will automatically ignore naked single steps to analyze the grid.
-            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> with
-            <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniquePrefer"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <summary>
@@ -24002,12 +24018,12 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Single.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechniquePrefer_HiddenSingle">
+        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechnique_HiddenSingle">
             <summary>
               Looks up a localized string similar to Hidden Single.
             </summary>
         </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechniquePrefer_NakedSingle">
+        <member name="P:Sudoku.Resources.AnalyticsResources.SingleTechnique_NakedSingle">
             <summary>
               Looks up a localized string similar to Naked Single.
             </summary>

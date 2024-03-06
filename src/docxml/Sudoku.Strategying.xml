@@ -140,14 +140,14 @@
               Looks up a localized string similar to pearl.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.PrimarySingleConstraint">
+            <summary>
+              Looks up a localized string similar to Single rule: {0} is primary technique, Hidden Single in rows or columns {1}included.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.StrategyingResources.RightOpen">
             <summary>
               Looks up a localized string similar to only right open.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.StrategyingResources.SinglePreferConstraint">
-            <summary>
-              Looks up a localized string similar to Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {1}included.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.SymmetryConstraint">
@@ -688,37 +688,37 @@
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Strategying.Constraints.SinglePreferConstraint">
+        <member name="T:Sudoku.Strategying.Constraints.PrimarySingleConstraint">
             <summary>
-            Represents a single prefer constraint.
+            Represents a primary single constraint.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.SinglePreferConstraint.AllowDuplicate">
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.SinglePreferConstraint.AllowsHiddenSingleInRowsOrColumns">
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInRowsOrColumns">
             <summary>
             Indicates whether the constraint allows hidden singles on rows or columns.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.SinglePreferConstraint.SinglePrefer">
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Primary">
             <summary>
-            Indicates which way a user likes to finish a grid.
+            Indicates which technique a user likes to finish a grid.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SinglePreferConstraint.Equals(Sudoku.Strategying.Constraint)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SinglePreferConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SinglePreferConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SinglePreferConstraint.GetHashCode">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SinglePreferConstraint.ToString">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">

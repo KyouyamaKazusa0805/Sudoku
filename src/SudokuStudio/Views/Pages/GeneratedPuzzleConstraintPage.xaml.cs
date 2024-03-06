@@ -65,7 +65,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
 				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
-				SinglePreferConstraint instance => () => callback(Create_SinglePrefer, instance),
+				PrimarySingleConstraint instance => () => callback(PrimarySingle, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -765,9 +765,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? Create_SinglePrefer(SinglePreferConstraint constraint)
+	private SettingsCard? PrimarySingle(PrimarySingleConstraint constraint)
 	{
-		if (constraint is not { SinglePrefer: var prefer, AllowsHiddenSingleInRowsOrColumns: var allowsForLine })
+		if (constraint is not { Primary: var prefer, AllowsHiddenSingleInRowsOrColumns: var allowsForLine })
 		{
 			return null;
 		}
@@ -777,12 +777,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		var preferredLabel1 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart1", App.CurrentCulture),
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 		var preferredLabel2 = new TextBlock
 		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferredTechniqueLabelPart2", App.CurrentCulture),
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2", App.CurrentCulture),
 			VerticalAlignment = VerticalAlignment.Center
 		};
 
@@ -795,17 +795,17 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferHiddenSingle", App.CurrentCulture),
-					Tag = SingleTechniquePrefer.HiddenSingle
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
+					Tag = SingleTechnique.HiddenSingle
 				},
 				new SegmentedItem
 				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PreferNakedSingle", App.CurrentCulture),
-					Tag = SingleTechniquePrefer.NakedSingle
-				},
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
+					Tag = SingleTechnique.NakedSingle
+				}
 			}
 		};
-		EnumBinder<Segmented, SegmentedItem, SingleTechniquePrefer>(techniqueSelectorControl, constraint.SinglePrefer, value => constraint.SinglePrefer = value);
+		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(techniqueSelectorControl, constraint.Primary, value => constraint.Primary = value);
 
 		//
 		// allow line control
@@ -817,12 +817,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		);
 		techniqueSelectorControl.SelectionChanged += (sender, _) => allowsLineControl.IsEnabled = sender is Segmented
 		{
-			SelectedItem: SegmentedItem { Tag: SingleTechniquePrefer.HiddenSingle }
+			SelectedItem: SegmentedItem { Tag: SingleTechnique.HiddenSingle }
 		};
 
 		return new()
 		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_SinglePrefer", App.CurrentCulture),
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimarySingle", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = new StackPanel
 			{

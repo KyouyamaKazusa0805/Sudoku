@@ -1,11 +1,11 @@
 namespace Sudoku.Strategying.Constraints;
 
 /// <summary>
-/// Represents a single prefer constraint.
+/// Represents a primary single constraint.
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class SinglePreferConstraint : Constraint
+public sealed partial class PrimarySingleConstraint : Constraint
 {
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
@@ -18,24 +18,24 @@ public sealed partial class SinglePreferConstraint : Constraint
 	public bool AllowsHiddenSingleInRowsOrColumns { get; set; }
 
 	/// <summary>
-	/// Indicates which way a user likes to finish a grid.
+	/// Indicates which technique a user likes to finish a grid.
 	/// </summary>
 	[HashCodeMember]
-	public SingleTechniquePrefer SinglePrefer { get; set; }
+	public SingleTechnique Primary { get; set; }
 
-	[StringMember(nameof(SinglePrefer))]
-	private string SinglePreferString => SinglePrefer.ToTechniqueString();
+	[StringMember(nameof(Primary))]
+	private string SinglePreferString => Primary.ToTechniqueString();
 
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is SinglePreferConstraint comparer && SinglePrefer == comparer.SinglePrefer;
+		=> other is PrimarySingleConstraint comparer && Primary == comparer.Primary;
 
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
 		scoped var feature = new GridFeature(context.Grid);
-		return SinglePrefer == SingleTechniquePrefer.HiddenSingle
+		return Primary == SingleTechnique.HiddenSingle
 			? feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInRowsOrColumns)
 			: feature.CanOnlyUseNakedSingle();
 	}
@@ -43,8 +43,8 @@ public sealed partial class SinglePreferConstraint : Constraint
 	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
-			ResourceDictionary.Get("SinglePreferConstraint", culture),
-			SinglePrefer.ToTechniqueString(culture),
+			ResourceDictionary.Get("PrimarySingleConstraint", culture),
+			Primary.ToTechniqueString(culture),
 			AllowsHiddenSingleInRowsOrColumns ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
 }

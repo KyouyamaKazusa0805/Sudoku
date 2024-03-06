@@ -165,9 +165,6 @@
   <data name="AnalysisResultTotal" xml:space="preserve">
     <value>最大</value>
   </data>
-  <data name="Appear" xml:space="preserve">
-    <value>出现</value>
-  </data>
   <data name="BruteForceSolverResultBeenSolved" xml:space="preserve">
     <value>被解出。</value>
   </data>
@@ -254,9 +251,6 @@
   </data>
   <data name="NakedKeyword" xml:space="preserve">
     <value>显性</value>
-  </data>
-  <data name="Only" xml:space="preserve">
-    <value>只</value>
   </data>
   <data name="OrKeywordWithSpaces" xml:space="preserve">
     <value> 或 </value>
@@ -461,6 +455,9 @@
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithConjugatePairStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，并带共轭对 {3}</value>
+  </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者 {3} 位于单元格 {4} 之中</value>
   </data>
   <data name="TechniqueFormat_UniqueRectangleWithSueDeCoqStep" xml:space="preserve">
     <value>数字 {0} 和 {1} 在结构 {2} 里，带一个简化版的融合待定数组存在于单元格 {3} 里，涉及数字 {4}</value>
@@ -1597,9 +1594,6 @@
   <data name="TechniqueFormat_JuniorExocetStep" xml:space="preserve">
     <value>{Name}：基准单元格 {BaseCellsStr}，目标单元格 {TargetCellsStr}，涉及数字 {DigitsStr} =&gt; {ElimStr}</value>
   </data>
-  <data name="TechniqueFormat_UniqueRectangleExternalType1Or2Step" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者 {3} 位于单元格 {4} 之中</value>
-  </data>
   <data name="TechniqueFormat_UniqueRectangleExternalType3Step" xml:space="preserve">
     <value>数字 {0} 和 {1} 位于 {2} 之中，并有外部数组结构，数字为 {3}，单元格为 {4}</value>
   </data>
@@ -1750,12 +1744,12 @@
     <value>可规避矩形・外部类型 4</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
+    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，构成外部的双强链结构</value>
+  </data>
   <data name="UniqueRectangleExternalTurbotFish" xml:space="preserve">
     <value>唯一矩形・外部多宝鱼</value>
     <comment>Technique Name</comment>
-  </data>
-  <data name="TechniqueFormat_UniqueRectangleExternalTurbotFishStep" xml:space="preserve">
-    <value>数字 {0} 和 {1} 位于 {2} 之中，并带有守护者位于单元格 {3} 之中，构成外部的双强链结构</value>
   </data>
   <data name="AbsurdChains" xml:space="preserve">
     <value>动态矛盾强制链</value>
@@ -1977,8 +1971,8 @@
   <data name="ExtraDifficultyFactorNames_Avoidable" xml:space="preserve">
     <value>可规避逻辑</value>
   </data>
-  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
-    <value>X 致命逻辑</value>
+  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
+    <value>同宫定理</value>
   </data>
   <data name="ExtraDifficultyFactorNames_Cannibalism" xml:space="preserve">
     <value>自噬逻辑</value>
@@ -2040,30 +2034,6 @@
   <data name="ExtraDifficultyFactorNames_WingSize" xml:space="preserve">
     <value>Wing 的分支数量</value>
   </data>
-  <data name="ExtraDifficultyFactorNames_IncompatiblePair" xml:space="preserve">
-    <value>同宫定理</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
-    <value>差一数对</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
-    <value>差一四数组;差一四链数</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
-    <value>差一三数组;差一三链数</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
   <data name="TechniqueAlias_FireworkPairType1" xml:space="preserve">
     <value>花火数对</value>
   </data>
@@ -2079,41 +2049,11 @@
   <data name="TechniqueAlias_FireworkTriple" xml:space="preserve">
     <value>花火三数组;花火三链数</value>
   </data>
-  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
-    <value>唯余;唯一余数</value>
-  </data>
-  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
-    <value>数对占位</value>
-  </data>
-  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
-    <value>隐性四链数;四数组占位</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
-    <value>隐性三链数;三数组占位</value>
-  </data>
   <data name="TechniqueAlias_Jellyfish" xml:space="preserve">
     <value>水母</value>
   </data>
-  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
-    <value>排除</value>
-  </data>
   <data name="TechniqueAlias_Leviathan" xml:space="preserve">
     <value>海怪;海妖</value>
-  </data>
-  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
-    <value>数对唯余</value>
-  </data>
-  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
-    <value>区块数对</value>
   </data>
   <data name="TechniqueAlias_NakedQuadruple" xml:space="preserve">
     <value>显性四链数;四数组唯余</value>
@@ -2121,17 +2061,11 @@
   <data name="TechniqueAlias_NakedQuadruplePlus" xml:space="preserve">
     <value>区块四数组</value>
   </data>
-  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
-    <value>唯余;喂鱼</value>
-  </data>
   <data name="TechniqueAlias_NakedTriple" xml:space="preserve">
     <value>三数组唯余;显性三链数</value>
   </data>
   <data name="TechniqueAlias_NakedTriplePlus" xml:space="preserve">
     <value>区块三数组</value>
-  </data>
-  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
-    <value>双强链</value>
   </data>
   <data name="TechniqueAlias_Squirmbag" xml:space="preserve">
     <value>海星</value>
@@ -2139,23 +2073,8 @@
   <data name="TechniqueAlias_Swordfish" xml:space="preserve">
     <value>剑鱼</value>
   </data>
-  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
-    <value>双强链</value>
-  </data>
-  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
-    <value>双强链</value>
-  </data>
   <data name="TechniqueAlias_Whale" xml:space="preserve">
     <value>鲸;鲸鱼</value>
-  </data>
-  <data name="TechniqueAlias_XChain" xml:space="preserve">
-    <value>单数链;单链</value>
-  </data>
-  <data name="TechniqueAlias_XWing" xml:space="preserve">
-    <value>矩形删减法;四角对角线法则</value>
-  </data>
-  <data name="TechniqueAlias_XyChain" xml:space="preserve">
-    <value>双数链</value>
   </data>
   <data name="AlignedPairExclusion" xml:space="preserve">
     <value>均衡数对</value>
@@ -2625,6 +2544,10 @@
     <value>同区九缺一</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
+    <value>伪数组</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="TechniqueFormat_DeathBlossomStep" xml:space="preserve">
     <value>拐点 {0}，每个分支：{1}</value>
   </data>
@@ -2663,10 +2586,6 @@
   <data name="StepSearcherName_ExtendedSubsetPrincipleStepSearcher" xml:space="preserve">
     <value>伪数组</value>
     <comment>Step Searcher Name</comment>
-  </data>
-  <data name="ExtendedSubsetPrinciple" xml:space="preserve">
-    <value>伪数组</value>
-    <comment>Technique Name</comment>
   </data>
   <data name="SiameseGroupedXyzLoop" xml:space="preserve">
     <value>孪生区块 XYZ 半环</value>
@@ -2707,26 +2626,6 @@
     <value>直观区块</value>
     <comment>Step Searcher Name</comment>
   </data>
-  <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
-    <value>区块宫排除・行列区块</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
-    <value>区块列排除・行列区块</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="ClaimingCrosshatchingRow" xml:space="preserve">
-    <value>区块行排除・行列区块</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="ClaimingFullHouse" xml:space="preserve">
-    <value>区块同区九缺一・行列区块</value>
-    <comment>Technique Name</comment>
-  </data>
-  <data name="ClaimingNakedSingle" xml:space="preserve">
-    <value>区块唯一余数・行列区块</value>
-    <comment>Technique Name</comment>
-  </data>
   <data name="PointingCrosshatchingBlock" xml:space="preserve">
     <value>区块宫排除・宫区块</value>
     <comment>Technique Name</comment>
@@ -2745,6 +2644,26 @@
   </data>
   <data name="PointingNakedSingle" xml:space="preserve">
     <value>区块唯一余数・宫区块</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ClaimingCrosshatchingBlock" xml:space="preserve">
+    <value>区块宫排除・行列区块</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ClaimingCrosshatchingColumn" xml:space="preserve">
+    <value>区块列排除・行列区块</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ClaimingCrosshatchingRow" xml:space="preserve">
+    <value>区块行排除・行列区块</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ClaimingFullHouse" xml:space="preserve">
+    <value>区块同区九缺一・行列区块</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="ClaimingNakedSingle" xml:space="preserve">
+    <value>区块唯一余数・行列区块</value>
     <comment>Technique Name</comment>
   </data>
   <data name="TechniqueGroup_ComplexSingle" xml:space="preserve">
@@ -3023,28 +2942,109 @@
   <data name="Easy" xml:space="preserve">
     <value>容易</value>
   </data>
-	<data name="Moderate" xml:space="preserve">
+  <data name="Unknown" xml:space="preserve">
+    <value>未知</value>
+  </data>
+  <data name="Moderate" xml:space="preserve">
     <value>一般</value>
   </data>
-	<data name="Hard" xml:space="preserve">
+  <data name="Hard" xml:space="preserve">
     <value>困难</value>
   </data>
-	<data name="Fiendish" xml:space="preserve">
+  <data name="Fiendish" xml:space="preserve">
     <value>极难</value>
   </data>
-	<data name="Nightmare" xml:space="preserve">
+  <data name="Nightmare" xml:space="preserve">
     <value>地狱</value>
   </data>
   <data name="LastResort" xml:space="preserve">
     <value>爆破技巧</value>
   </data>
-  <data name="Unknown" xml:space="preserve">
-    <value>未知</value>
-  </data>
-  <data name="SingleTechniquePrefer_HiddenSingle" xml:space="preserve">
+  <data name="SingleTechnique_HiddenSingle" xml:space="preserve">
     <value>排除</value>
   </data>
-  <data name="SingleTechniquePrefer_NakedSingle" xml:space="preserve">
+  <data name="SingleTechnique_NakedSingle" xml:space="preserve">
     <value>唯一余数</value>
+  </data>
+  <data name="Appear" xml:space="preserve">
+    <value>出现</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value>只</value>
+  </data>
+  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
+    <value>X 致命逻辑</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
+    <value>差一数对</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
+    <value>差一四数组;差一四链数</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
+    <value>差一三数组;差一三链数</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
+    <value>唯余;唯一余数</value>
+  </data>
+  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
+    <value>数对占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
+    <value>隐性四链数;四数组占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
+    <value>隐性三链数;三数组占位</value>
+  </data>
+  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
+    <value>排除</value>
+  </data>
+  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
+    <value>数对唯余</value>
+  </data>
+  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
+    <value>区块数对</value>
+  </data>
+  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
+    <value>唯余;喂鱼</value>
+  </data>
+  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_XChain" xml:space="preserve">
+    <value>单数链;单链</value>
+  </data>
+  <data name="TechniqueAlias_XWing" xml:space="preserve">
+    <value>矩形删减法;四角对角线法则</value>
+  </data>
+  <data name="TechniqueAlias_XyChain" xml:space="preserve">
+    <value>双数链</value>
   </data>
 </root>

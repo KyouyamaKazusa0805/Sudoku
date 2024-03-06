@@ -13,7 +13,7 @@ namespace Sudoku.Strategying;
 [JsonDerivedType(typeof(IttoryuLengthConstraint), nameof(IttoryuLengthConstraint))]
 [JsonDerivedType(typeof(MinimalConstraint), nameof(MinimalConstraint))]
 [JsonDerivedType(typeof(PearlConstraint), nameof(PearlConstraint))]
-[JsonDerivedType(typeof(SinglePreferConstraint), nameof(SinglePreferConstraint))]
+[JsonDerivedType(typeof(PrimarySingleConstraint), nameof(PrimarySingleConstraint))]
 [JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))]
 [JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]

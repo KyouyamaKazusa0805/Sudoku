@@ -4458,18 +4458,18 @@ namespace Sudoku.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Hidden Single.
         /// </summary>
-        public static string SingleTechniquePrefer_HiddenSingle {
+        public static string SingleTechnique_HiddenSingle {
             get {
-                return ResourceManager.GetString("SingleTechniquePrefer_HiddenSingle", resourceCulture);
+                return ResourceManager.GetString("SingleTechnique_HiddenSingle", resourceCulture);
             }
         }
         
         /// <summary>
         ///   Looks up a localized string similar to Naked Single.
         /// </summary>
-        public static string SingleTechniquePrefer_NakedSingle {
+        public static string SingleTechnique_NakedSingle {
             get {
-                return ResourceManager.GetString("SingleTechniquePrefer_NakedSingle", resourceCulture);
+                return ResourceManager.GetString("SingleTechnique_NakedSingle", resourceCulture);
             }
         }
         
