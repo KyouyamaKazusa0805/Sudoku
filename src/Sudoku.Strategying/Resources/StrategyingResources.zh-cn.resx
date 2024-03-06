@@ -180,4 +180,7 @@
   <data name="SinglePreferConstraint" xml:space="preserve">
     <value>出数技巧偏好：希望以{0}技巧作为主技巧解题，行列排除{1}在计算之中</value>
   </data>
+  <data name="EliminationCountConstraint" xml:space="preserve">
+    <value>删数数量：一个步骤需要有 {0} {1} 个删数结论{2}</value>
+  </data>
 </root>

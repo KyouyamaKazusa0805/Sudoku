@@ -88,7 +88,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion count rule: Conclusion {0} should {1}appear.
+        ///   Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
         /// </summary>
         internal static string ConclusionConstraint {
             get {
@@ -120,6 +120,15 @@ namespace Sudoku.Resources {
         internal static string DifficultyLevelConstraint {
             get {
                 return ResourceManager.GetString("DifficultyLevelConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Elimination count rule: a step must contain {0} {1} elimination{2}.
+        /// </summary>
+        internal static string EliminationCountConstraint {
+            get {
+                return ResourceManager.GetString("EliminationCountConstraint", resourceCulture);
             }
         }
         

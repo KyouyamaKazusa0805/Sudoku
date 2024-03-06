@@ -175,12 +175,15 @@
     <value>Technique appearing times rule: {0} appears {1} {2} time(s)</value>
   </data>
   <data name="ConclusionConstraint" xml:space="preserve">
-    <value>Conclusion count rule: Conclusion {0} should {1}appear</value>
+    <value>Conclusion count rule: conclusion {0} should {1}appear</value>
   </data>
   <data name="NounPluralSuffix" xml:space="preserve">
     <value>s</value>
   </data>
   <data name="SinglePreferConstraint" xml:space="preserve">
     <value>Single prefer rule: {0} is preferred as primary technique, Hidden Single in rows or columns {1}included</value>
+  </data>
+  <data name="EliminationCountConstraint" xml:space="preserve">
+    <value>Elimination count rule: a step must contain {0} {1} elimination{2}</value>
   </data>
 </root>

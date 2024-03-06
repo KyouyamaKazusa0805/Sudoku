@@ -1,0 +1,57 @@
+namespace Sudoku.Strategying.Constraints;
+
+/// <summary>
+/// Represents an elimination count constraint.
+/// </summary>
+[GetHashCode]
+[ToString]
+public sealed partial class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
+{
+	/// <inheritdoc/>
+	public override bool AllowDuplicate => false;
+
+	/// <inheritdoc/>
+	[HashCodeMember]
+	[StringMember]
+	public int LimitCount { get; set; }
+
+	/// <inheritdoc/>
+	[HashCodeMember]
+	[StringMember]
+	public ComparisonOperator Operator { get; set; }
+
+	/// <inheritdoc/>
+	static int ILimitCountConstraint<int>.Maximum => 30;
+
+	/// <inheritdoc/>
+	static int ILimitCountConstraint<int>.Minimum => 0;
+
+
+	/// <inheritdoc/>
+	public override bool Check(ConstraintCheckingContext context)
+	{
+		var @operator = Operator.GetOperator<int>();
+		foreach (var step in context.AnalyzerResult)
+		{
+			if (@operator(LimitCount, step.Conclusions.Length))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Constraint? other)
+		=> other is EliminationCountConstraint comparer && (LimitCount, Operator) == (comparer.LimitCount, comparer.Operator);
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("EliminationCountConstraint", culture),
+			Operator.GetOperatorString(),
+			LimitCount,
+			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture)
+		);
+}

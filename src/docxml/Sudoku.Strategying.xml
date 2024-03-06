@@ -67,7 +67,7 @@
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.ConclusionConstraint">
             <summary>
-              Looks up a localized string similar to Conclusion count rule: Conclusion {0} should {1}appear.
+              Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.CountBetweenConstraint">
@@ -83,6 +83,11 @@
         <member name="P:Sudoku.Resources.StrategyingResources.DifficultyLevelConstraint">
             <summary>
               Looks up a localized string similar to Difficulty level rule: {0} {1} ({2}).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.StrategyingResources.EliminationCountConstraint">
+            <summary>
+              Looks up a localized string similar to Elimination count rule: a step must contain {0} {1} elimination{2}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.StrategyingResources.EmptyCell">
@@ -478,6 +483,41 @@
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.EliminationCountConstraint">
+            <summary>
+            Represents an elimination count constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.AllowDuplicate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
