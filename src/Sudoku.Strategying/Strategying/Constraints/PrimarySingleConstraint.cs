@@ -15,7 +15,7 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public bool AllowsHiddenSingleInRowsOrColumns { get; set; }
+	public bool AllowsHiddenSingleInLines { get; set; }
 
 	/// <summary>
 	/// Indicates which technique a user likes to finish a grid.
@@ -35,9 +35,7 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	public override bool Check(ConstraintCheckingContext context)
 	{
 		scoped var feature = new GridFeature(context.Grid);
-		return Primary == SingleTechnique.HiddenSingle
-			? feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInRowsOrColumns)
-			: feature.CanOnlyUseNakedSingle();
+		return Primary == SingleTechnique.HiddenSingle ? feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines) : feature.CanOnlyUseNakedSingle();
 	}
 
 	/// <inheritdoc/>
@@ -45,6 +43,6 @@ public sealed partial class PrimarySingleConstraint : Constraint
 		=> string.Format(
 			ResourceDictionary.Get("PrimarySingleConstraint", culture),
 			Primary.ToTechniqueString(culture),
-			AllowsHiddenSingleInRowsOrColumns ? string.Empty : ResourceDictionary.Get("NoString", culture)
+			AllowsHiddenSingleInLines ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
 }

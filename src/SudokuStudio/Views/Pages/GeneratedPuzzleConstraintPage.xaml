@@ -90,7 +90,7 @@
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PrimarySingleConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:PrimarySingleConstraint Primary="HiddenSingle" AllowsHiddenSingleInRowsOrColumns="False" />
+								<con:PrimarySingleConstraint Primary="HiddenSingle" AllowsHiddenSingleInLines="False" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 					</MenuFlyout>

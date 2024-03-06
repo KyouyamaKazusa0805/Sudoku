@@ -767,7 +767,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? PrimarySingle(PrimarySingleConstraint constraint)
 	{
-		if (constraint is not { Primary: var prefer, AllowsHiddenSingleInRowsOrColumns: var allowsForLine })
+		if (constraint is not { Primary: var prefer, AllowsHiddenSingleInLines: var allowsForLine })
 		{
 			return null;
 		}
@@ -810,10 +810,10 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// allow line control
 		//
-		var allowsLineControl = new ToggleSwitch { IsOn = constraint.AllowsHiddenSingleInRowsOrColumns };
+		var allowsLineControl = new ToggleSwitch { IsOn = constraint.AllowsHiddenSingleInLines };
 		allowsLineControl.RegisterPropertyChangedCallback(
 			ToggleSwitch.IsOnProperty,
-			(d, _) => constraint.AllowsHiddenSingleInRowsOrColumns = ((ToggleSwitch)d).IsOn
+			(d, _) => constraint.AllowsHiddenSingleInLines = ((ToggleSwitch)d).IsOn
 		);
 		techniqueSelectorControl.SelectionChanged += (sender, _) => allowsLineControl.IsEnabled = sender is Segmented
 		{

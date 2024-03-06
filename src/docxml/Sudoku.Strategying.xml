@@ -696,7 +696,7 @@
         <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInRowsOrColumns">
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInLines">
             <summary>
             Indicates whether the constraint allows hidden singles on rows or columns.
             </summary>

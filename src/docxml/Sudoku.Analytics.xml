@@ -4800,7 +4800,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates whether the puzzle can be filled, via only hidden singles and last digits.
             </summary>
-            <param name="allowsRowOrColumn">Indicates whether the method allows using crosshatching in rows or columns.</param>
+            <param name="allowsLine">Indicates whether the method allows using crosshatching in rows or columns.</param>
         </member>
         <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseNakedSingle">
             <summary>
