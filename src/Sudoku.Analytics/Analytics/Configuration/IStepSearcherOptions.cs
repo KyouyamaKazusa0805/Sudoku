@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Configuration;
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
 /// <seealso cref="Analyzer"/>
-public interface IStepSearcherOptions<TSelf> : IEquatable<TSelf> where TSelf : class, IEquatable<TSelf>, IStepSearcherOptions<TSelf>
+public interface IStepSearcherOptions<TSelf> : IEquatable<TSelf> where TSelf : class?, IEquatable<TSelf>?, IStepSearcherOptions<TSelf>?
 {
 	/// <summary>
 	/// Represents a default instance.

@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Configuration;
 /// </summary>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Analyzer"/>
-internal sealed record StepSearcherConditionalOptions : IStepSearcherOptions<StepSearcherConditionalOptions>
+internal sealed record StepSearcherConditionalOptions : IStepSearcherOptions<StepSearcherConditionalOptions?>
 {
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
 	/// <summary>
@@ -28,6 +28,7 @@ internal sealed record StepSearcherConditionalOptions : IStepSearcherOptions<Ste
 	public SingleTechnique LimitedSingle { get; init; } = 0;
 #endif
 
+
 	/// <inheritdoc/>
-	public static StepSearcherConditionalOptions Default => new();
+	public static StepSearcherConditionalOptions? Default => null;
 }

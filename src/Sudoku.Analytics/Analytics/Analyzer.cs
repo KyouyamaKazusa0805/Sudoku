@@ -78,7 +78,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 	/// <summary>
 	/// Indicates the conditional options to be set.
 	/// </summary>
-	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; }
+	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
 	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
