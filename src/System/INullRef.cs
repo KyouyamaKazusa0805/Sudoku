@@ -9,5 +9,5 @@ public interface INullRef<TSelf> where TSelf : unmanaged, INullRef<TSelf>
 	/// <summary>
 	/// Represents the default reference of this type.
 	/// </summary>
-	public static abstract ref readonly TSelf NullRef { get; }
+	public static virtual ref readonly TSelf NullRef => ref Ref.MakeNullReference<TSelf>();
 }
