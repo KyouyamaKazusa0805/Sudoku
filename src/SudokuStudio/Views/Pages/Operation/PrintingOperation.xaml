@@ -6,6 +6,7 @@
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:PrintingOperation}"
 	Loaded="Page_Loaded" Unloaded="Page_Unloaded">
 	<Page.Resources>
@@ -21,7 +22,7 @@
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 		<AppBarButton
-			x:Name="PrintButton" Icon="Print" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
+			x:Name="PrintButton" Icon="{ui:FontIcon Glyph=&#xE749;}" Label="{m:R Key=AnalyzePage_PrintAnalysisResult}"
 			Click="PrintAnalysisButton_ClickAsync" />
 	</CommandBar>
 </Page>

@@ -72,20 +72,16 @@
 					<!--
 					Navigation-styled functions
 					-->
-					<NavigationView
-						x:Name="CommandBarView" Grid.Row="0" PaneDisplayMode="Top" IsBackButtonVisible="Collapsed" IsSettingsVisible="False"
-						IsTabStop="False" IsPaneOpen="True" IsPaneToggleButtonVisible="False" AlwaysShowHeader="False"
-						Loaded="CommandBarView_Loaded" SelectionChanged="CommandBarView_SelectionChanged" ItemInvoked="CommandBarView_ItemInvoked">
-						<NavigationView.MenuItems>
-							<NavigationViewItem x:Name="BasicOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" />
-							<NavigationViewItem x:Name="GeneratingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_GeneratingOperations}" />
-							<NavigationViewItem x:Name="AttributeCheckingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_AttributeCheckingOperation}" />
-							<NavigationViewItem x:Name="ShuffleOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_ShuffleOperations}" />
-							<NavigationViewItem x:Name="PrintingOperationBar" Content="{m:R Key=AnalyzePage_PivotItem_PrintingOperation}" />
-						</NavigationView.MenuItems>
-
-						<Frame x:Name="CommandBarFrame" Navigated="CommandBarFrame_Navigated" BorderBrush="Transparent" />
-					</NavigationView>
+					<StackPanel>
+						<SelectorBar Grid.Row="0" SelectionChanged="FunctionSelectorBar_SelectionChanged">
+							<SelectorBarItem Icon="{ui:FontIcon Glyph=&#xE8E5;}" Text="{m:R Key=AnalyzePage_PivotItem_BasicOperations}" IsSelected="True" />
+							<SelectorBarItem Icon="{ui:FontIcon Glyph=&#xE78B;}" Text="{m:R Key=AnalyzePage_PivotItem_GeneratingOperations}" />
+							<SelectorBarItem Icon="{ui:FontIcon Glyph=&#xE890;}" Text="{m:R Key=AnalyzePage_PivotItem_AttributeCheckingOperation}" />
+							<SelectorBarItem Icon="{ui:FontIcon Glyph=&#xE8EE;}" Text="{m:R Key=AnalyzePage_PivotItem_ShuffleOperations}" />
+							<SelectorBarItem Icon="{ui:FontIcon Glyph=&#xE749;}" Text="{m:R Key=AnalyzePage_PivotItem_PrintingOperation}" />
+						</SelectorBar>
+						<Frame x:Name="ContentFrame" Navigated="ContentFrame_Navigated" IsNavigationStackEnabled="False" />
+					</StackPanel>
 
 					<!--
 					Common functions

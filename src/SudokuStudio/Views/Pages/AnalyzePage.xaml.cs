@@ -20,6 +20,11 @@ public sealed partial class AnalyzePage : Page
 	[Default]
 	private static readonly ColorPalette UserDefinedPaletteDefaultValue = ((App)Application.Current).Preference.UIPreferences.UserDefinedColorPalette;
 
+	/// <summary>
+	/// Indicates the default thickness.
+	/// </summary>
+	private static readonly Thickness DefaultMarginForAnalyzerPages = new(10);
+
 
 	/// <summary>
 	/// <para>Indicates the previously selected candidate.</para>
@@ -44,19 +49,30 @@ public sealed partial class AnalyzePage : Page
 	internal ViewUnitBindableSource? _userColoringView = new();
 
 	/// <summary>
+	/// Represents a list of <see cref="Type"/> instances, for operation pages.
+	/// </summary>
+	private readonly Type[] _operationPageTypes = [
+		typeof(BasicOperation),
+		typeof(GeneratingOperation),
+		typeof(AttributeCheckingOperation),
+		typeof(ShuffleOperation),
+		typeof(PrintingOperation)
+	];
+
+	/// <summary>
+	/// Indicates the previously-selected index of operation page.
+	/// </summary>
+	private int _previouslySelectedIndexOfOperationPage;
+
+	/// <summary>
 	/// Indicates the tab routing data.
 	/// </summary>
-	private List<AnalyzeTabPageBindableSource> _tabsRoutingData;
+	private AnalyzeTabPageBindableSource[] _tabsRoutingData;
 
 	/// <summary>
 	/// Defines a key-value pair of functions that is used for routing hotkeys.
 	/// </summary>
-	private List<(Hotkey Hotkey, Action Action)> _hotkeyFunctions;
-
-	/// <summary>
-	/// The navigating data.
-	/// </summary>
-	private List<(Func<NavigationViewItemBase, bool> PageChecker, Type PageType)> _navigatingData;
+	private (Hotkey Hotkey, Action Action)[] _hotkeyFunctions;
 
 
 	/// <summary>
@@ -447,37 +463,35 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
-	/// Try to initialize field <see cref="_hotkeyFunctions"/> and <see cref="_navigatingData"/>.
+	/// Try to initialize field <see cref="_hotkeyFunctions"/> and <see cref="_operationPageTypes"/>.
 	/// </summary>
 	/// <seealso cref="_hotkeyFunctions"/>
-	/// <seealso cref="_navigatingData"/>
-	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_navigatingData), nameof(_tabsRoutingData))]
+	/// <seealso cref="_operationPageTypes"/>
+	[MemberNotNull(nameof(_hotkeyFunctions), nameof(_tabsRoutingData))]
 	private void InitializeFields()
 	{
-		var thickness = new Thickness(10);
 		_tabsRoutingData = [
 			new(
 				ResourceDictionary.Get("AnalyzePage_TechniquesTable", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Flag },
-				new Summary { Margin = thickness, BasePage = this }
+				new Summary { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
 				ResourceDictionary.Get("AnalyzePage_StepDetail", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.ShowResults },
-				new SolvingPath { Margin = thickness, BasePage = this }
+				new SolvingPath { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
 				ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Shuffle },
-				new GridGathering { Margin = thickness, BasePage = this }
+				new GridGathering { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
 				ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Edit },
-				new Drawing { Margin = thickness, BasePage = this }
+				new Drawing { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			)
 		];
-
 		_hotkeyFunctions = [
 			(new(VirtualKey.Z, VirtualKeyModifiers.Control), SudokuPane.UndoStep),
 			(new(VirtualKey.Y, VirtualKeyModifiers.Control), SudokuPane.RedoStep),
@@ -492,14 +506,6 @@ public sealed partial class AnalyzePage : Page
 			(new(VirtualKey.Home), SetHomeView),
 			(new(VirtualKey.End), SetEndView),
 			(new(VirtualKey.Escape), ClearView)
-		];
-
-		_navigatingData = [
-			(container => container == BasicOperationBar, typeof(BasicOperation)),
-			(container => container == AttributeCheckingOperationBar, typeof(AttributeCheckingOperation)),
-			(container => container == PrintingOperationBar, typeof(PrintingOperation)),
-			(container => container == ShuffleOperationBar, typeof(ShuffleOperation)),
-			(container => container == GeneratingOperationBar, typeof(GeneratingOperation))
 		];
 	}
 
@@ -521,36 +527,6 @@ public sealed partial class AnalyzePage : Page
 			SudokuPane.DisplayCandidates = showCandidates;
 
 			((App)Application.Current).AppStartingGridInfo = null; // Maybe not necessary...
-		}
-	}
-
-	/// <summary>
-	/// An outer-layered method to switching pages. This method can be used by both
-	/// <see cref="CommandBarView_ItemInvoked"/> and <see cref="CommandBarView_SelectionChanged"/>.
-	/// </summary>
-	/// <param name="container">The container.</param>
-	/// <seealso cref="CommandBarView_ItemInvoked"/>
-	/// <seealso cref="CommandBarView_SelectionChanged"/>
-	private void SwitchingPage(NavigationViewItemBase container)
-	{
-		foreach (var (predicate, type) in _navigatingData)
-		{
-			if (predicate(container))
-			{
-				NavigateToPage(type);
-			}
-		}
-	}
-
-	/// <summary>
-	/// Try to navigate to the target page.
-	/// </summary>
-	/// <param name="pageType">The target page type.</param>
-	private void NavigateToPage(Type pageType)
-	{
-		if (CommandBarFrame.SourcePageType != pageType)
-		{
-			CommandBarFrame.Navigate(pageType, this, DefaultNavigationTransitionInfo);
 		}
 	}
 
@@ -988,15 +964,7 @@ public sealed partial class AnalyzePage : Page
 	}
 
 
-	private void CommandBarView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> SwitchingPage(args.InvokedItemContainer);
-
-	private void CommandBarView_Loaded(object sender, RoutedEventArgs e) => BasicOperationBar.IsSelected = true;
-
-	private void CommandBarView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> SwitchingPage(args.SelectedItemContainer);
-
-	private void CommandBarFrame_Navigated(object sender, NavigationEventArgs e)
+	private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
 	{
 		if (e is not { Content: IOperationProviderPage operationProvider, Parameter: AnalyzePage @this })
 		{
@@ -1359,5 +1327,22 @@ public sealed partial class AnalyzePage : Page
 				break;
 			}
 		}
+	}
+
+	private void FunctionSelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+	{
+		var currentSelectedIndex = sender.Items.IndexOf(sender.SelectedItem);
+		ContentFrame.Navigate(
+			_operationPageTypes[currentSelectedIndex],
+			this,
+			new SlideNavigationTransitionInfo
+			{
+				Effect = currentSelectedIndex - _previouslySelectedIndexOfOperationPage > 0
+					? SlideNavigationTransitionEffect.FromRight
+					: SlideNavigationTransitionEffect.FromLeft
+			}
+		);
+
+		_previouslySelectedIndexOfOperationPage = currentSelectedIndex;
 	}
 }

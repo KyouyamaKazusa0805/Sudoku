@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:po="using:SudokuStudio.Views.Pages.Operation"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=po:ShuffleOperation}">
 	<Page.Resources>
 		<TeachingTip
@@ -15,16 +16,16 @@
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_LeftRightSwapButton}" Click="LeftRightSwapButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_TopBottomSwapButton}" Click="TopBottomSwapButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_DiagonalSwapButton}" Click="DiagonalSwapButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_AntidiagonalSwapButton}" Click="AntidiagonalSwapButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateClockwiseButton}" Click="RotateClockwiseButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotateCounterclockwiseButton}" Click="RotateCounterclockwiseButton_Click" />
-		<AppBarButton Icon="Placeholder" Label="{m:R Key=AnalyzePage_RotatePiButton}" Click="RotatePiButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_LeftRightSwapButton}" Click="LeftRightSwapButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_TopBottomSwapButton}" Click="TopBottomSwapButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_DiagonalSwapButton}" Click="DiagonalSwapButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_AntidiagonalSwapButton}" Click="AntidiagonalSwapButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_RotateClockwiseButton}" Click="RotateClockwiseButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_RotateCounterclockwiseButton}" Click="RotateCounterclockwiseButton_Click" />
+		<AppBarButton Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_RotatePiButton}" Click="RotatePiButton_Click" />
 		<AppBarSeparator />
 		<AppBarButton
-			x:Name="AdjustToMakeIttoryuButton" Icon="Placeholder" Label="{m:R Key=AnalyzePage_AdjustToMakeIttoryuButton}"
+			x:Name="AdjustToMakeIttoryuButton" Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_AdjustToMakeIttoryuButton}"
 			Click="AdjustToMakeIttoryuButton_Click" />
 	</CommandBar>
 </Page>

@@ -12510,6 +12510,11 @@ if (student is (name: var name, age: >= 18))
             Defines a new page that stores a set of controls to analyze a sudoku grid.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage.DefaultMarginForAnalyzerPages">
+            <summary>
+            Indicates the default thickness.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._previousSelectedCandidate">
             <summary>
             <para>Indicates the previously selected candidate.</para>
@@ -12532,6 +12537,16 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
             <seealso cref="F:SudokuStudio.Interaction.PaneMode.Drawing"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._operationPageTypes">
+            <summary>
+            Represents a list of <see cref="T:System.Type"/> instances, for operation pages.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._previouslySelectedIndexOfOperationPage">
+            <summary>
+            Indicates the previously-selected index of operation page.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._tabsRoutingData">
             <summary>
             Indicates the tab routing data.
@@ -12540,11 +12555,6 @@ if (student is (name: var name, age: >= 18))
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions">
             <summary>
             Defines a key-value pair of functions that is used for routing hotkeys.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData">
-            <summary>
-            The navigating data.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isFirstLaunched">
@@ -12643,30 +12653,15 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.InitializeFields">
             <summary>
-            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/> and <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData"/>.
+            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/> and <see cref="F:SudokuStudio.Views.Pages.AnalyzePage._operationPageTypes"/>.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._hotkeyFunctions"/>
-            <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._navigatingData"/>
+            <seealso cref="F:SudokuStudio.Views.Pages.AnalyzePage._operationPageTypes"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.LoadInitialGrid">
             <summary>
             Load initial grid.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
-            <summary>
-            An outer-layered method to switching pages. This method can be used by both
-            <see cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
-            </summary>
-            <param name="container">The container.</param>
-            <seealso cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
-            <seealso cref="M:SudokuStudio.Views.Pages.AnalyzePage.CommandBarView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.NavigateToPage(System.Type)">
-            <summary>
-            Try to navigate to the target page.
-            </summary>
-            <param name="pageType">The target page type.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SetPreviousView">
             <summary>
