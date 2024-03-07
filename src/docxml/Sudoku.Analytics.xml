@@ -4446,6 +4446,18 @@
             <param name="collectingMode">The mode of the collecting steps.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Configuration.IStepSearcherOptions`1">
+            <summary>
+            Represents an option type that will be consumed by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.IStepSearcherOptions`1.Default">
+            <summary>
+            Represents a default instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions">
             <summary>
             Represents condition options on <see cref="T:Sudoku.Analytics.Analyzer"/>.
@@ -4472,6 +4484,9 @@
             <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.Default">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherOptions">
             <summary>
             Represents a type that encapsulates a list of options adjusted by users and used by <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
@@ -4497,9 +4512,7 @@
             <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
-            <summary>
-            Represents a default option-provider instance.
-            </summary>
+            <inheritdoc/>
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">

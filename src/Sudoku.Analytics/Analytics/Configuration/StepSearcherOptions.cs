@@ -8,7 +8,7 @@ namespace Sudoku.Analytics.Configuration;
 /// </summary>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Analyzer"/>
-public sealed record StepSearcherOptions
+public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOptions>
 {
 	/// <summary>
 	/// Indicates whether the step searchers will adjust the searching order to distinct two modes on displaying candidates,
@@ -25,9 +25,7 @@ public sealed record StepSearcherOptions
 	public CoordinateConverter Converter { get; init; } = GlobalizedConverter.InvariantCultureConverter;
 
 
-	/// <summary>
-	/// Represents a default option-provider instance.
-	/// </summary>
+	/// <inheritdoc/>
 	/// <remarks>
 	/// This default option makes the internal members be:
 	/// <list type="bullet">
