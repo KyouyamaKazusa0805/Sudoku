@@ -8,10 +8,6 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<PackageReference Include="ExpressiveParser" Version="2.5.0" />
-	</ItemGroup>
-
-	<ItemGroup>
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 

@@ -17,17 +17,6 @@
 			<Button
 				x:Name="GatherButton" x:FieldModifier="internal" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
 				Margin="0,0,0,3" Click="GatherButton_ClickAsync" />
-			<StackPanel Orientation="Horizontal">
-				<TextBox
-					x:Name="StepGatheringTextBox" Width="300" PlaceholderText="{m:R Key=AnalyzePage_SearchAllSteps}"
-					VerticalAlignment="Center" VerticalContentAlignment="Center" TextChanged="StepGatheringTextBox_TextChanged" />
-				<Button
-					Content="{m:R Key=AnalyzePage_FilterGatheredSteps}"
-					Click="FilterGatheredStepsButton_Click" />
-				<TextBlock
-					x:Name="FilteringExpressionInvalidHint" Foreground="Red" VerticalAlignment="Center" Visibility="Collapsed"
-					Text="{m:R Key=AnalyzePage_FilteringFailedDueToInvalidExpression}" />
-			</StackPanel>
 			<c:TechniqueGroupView
 				x:Name="TechniqueGroupView" x:FieldModifier="internal"
 				StepChosen="TechniqueGroupView_StepChosen" StepApplied="TechniqueGroupView_StepApplied" />

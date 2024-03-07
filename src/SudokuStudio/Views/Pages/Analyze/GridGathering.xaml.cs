@@ -59,28 +59,6 @@ public sealed partial class GridGathering : Page, IAnalyzerTab
 		BasePage.SudokuPane.Puzzle = appliedPuzzle;
 	}
 
-	private void FilterGatheredStepsButton_Click(object sender, RoutedEventArgs e)
-	{
-		var grid = BasePage.SudokuPane.Puzzle;
-		if (_currentFountSteps is null || !grid.IsValid)
-		{
-			return;
-		}
-
-		try
-		{
-			var filtered = TechniqueFiltering.Filter(_currentFountSteps, StepGatheringTextBox.Text);
-			TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(filtered, grid);
-		}
-		catch (ExpressiveException)
-		{
-			FilteringExpressionInvalidHint.Visibility = Visibility.Visible;
-		}
-	}
-
-	private void StepGatheringTextBox_TextChanged(object sender, TextChangedEventArgs e)
-		=> FilteringExpressionInvalidHint.Visibility = Visibility.Collapsed;
-
 	private async void GatherButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var grid = BasePage.SudokuPane.Puzzle;
