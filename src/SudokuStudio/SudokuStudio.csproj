@@ -96,6 +96,9 @@
 		<EmbeddedResource Include="Assets\images\repo-dotnet.png">
 			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
 		</EmbeddedResource>
+		<EmbeddedResource Include="Assets\images\winui-community.jpg">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\SudokuStudioResources.resx">
 			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>SudokuStudioResources.Designer.cs</LastGenOutput>

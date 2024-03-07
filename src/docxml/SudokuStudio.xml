@@ -5827,11 +5827,6 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Learn WinUI 3.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_SpecialThanks_SettingsUI">
-            <summary>
-              Looks up a localized string similar to Settings UI.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_SpecialThanks_UWPSamples">
             <summary>
               Looks up a localized string similar to UWP Samples.
@@ -5845,6 +5840,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_SpecialThanks_WinUI3Gallary">
             <summary>
               Looks up a localized string similar to WinUI 3 Gallery.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_SpecialThanks_WinUICommunity">
+            <summary>
+              Looks up a localized string similar to WinUI Community.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AboutPage_SpecialThanks_WpfSamples">

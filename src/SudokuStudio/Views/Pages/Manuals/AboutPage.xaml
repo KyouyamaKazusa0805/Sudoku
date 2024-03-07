@@ -104,8 +104,8 @@
 						Name="{m:R Key=AboutPage_SpecialThanks_DevToys}" OpenSourceLicense="MIT"
 						Site="https://github.com/veler/DevToys" IconPath="/Assets/images/logo-devtoys.png" IsForReference="True" />
 					<bs:RepositoryInfoBindableSource
-						Name="{m:R Key=AboutPage_SpecialThanks_SettingsUI}" OpenSourceLicense="MIT"
-						Site="https://github.com/WinUICommunity/SettingsUI" Initials="LC" />
+						Name="{m:R Key=AboutPage_SpecialThanks_WinUICommunity}" OpenSourceLicense="MIT"
+						IconPath="/Assets/images/winui-community.jpg" Site="https://github.com/WinUICommunity/WinUICommunity" />
 					<bs:RepositoryInfoBindableSource
 						Name="{m:R Key=AboutPage_SpecialThanks_WindowsCommunityToolkit}" OpenSourceLicense="MIT"
 						Site="https://github.com/CommunityToolkit/WindowsCommunityToolkit" Initials="CT" />

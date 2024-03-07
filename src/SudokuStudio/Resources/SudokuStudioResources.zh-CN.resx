@@ -162,8 +162,8 @@
   <data name="AboutPage_SpecialThanks_LearnWinUI3" xml:space="preserve">
     <value>WinUI 3 学习（Learn WinUI 3）</value>
   </data>
-  <data name="AboutPage_SpecialThanks_SettingsUI" xml:space="preserve">
-    <value>设置页用 UI（SettingsUI）</value>
+  <data name="AboutPage_SpecialThanks_WinUICommunity" xml:space="preserve">
+    <value>WinUI 社区（WinUI Community）</value>
   </data>
   <data name="AboutPage_SpecialThanks_UWPSamples" xml:space="preserve">
     <value>UWP 实例（UWP Samples）</value>

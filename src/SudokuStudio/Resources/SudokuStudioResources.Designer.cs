@@ -385,15 +385,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Settings UI.
-        /// </summary>
-        internal static string AboutPage_SpecialThanks_SettingsUI {
-            get {
-                return ResourceManager.GetString("AboutPage_SpecialThanks_SettingsUI", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to UWP Samples.
         /// </summary>
         internal static string AboutPage_SpecialThanks_UWPSamples {
@@ -417,6 +408,15 @@ namespace SudokuStudio.Resources {
         internal static string AboutPage_SpecialThanks_WinUI3Gallary {
             get {
                 return ResourceManager.GetString("AboutPage_SpecialThanks_WinUI3Gallary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to WinUI Community.
+        /// </summary>
+        internal static string AboutPage_SpecialThanks_WinUICommunity {
+            get {
+                return ResourceManager.GetString("AboutPage_SpecialThanks_WinUICommunity", resourceCulture);
             }
         }
         
