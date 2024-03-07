@@ -282,9 +282,25 @@ public static class ReadOnlySpanEnumerable
 		var copied = new T[@this.Length];
 		@this.CopyTo(copied);
 		Array.Sort(copied, (a, b) => Comparer<TKey>.Default.Compare(keySelector(a), keySelector(b)));
-
 		return copied;
 	}
+
+	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static ReadOnlySpan<T> ThenBy<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector)
+		=> OrderBy(@this, keySelector);
+
+	/// <inheritdoc cref="Enumerable.OrderByDescending{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static ReadOnlySpan<T> OrderByDescending<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector)
+	{
+		var copied = new T[@this.Length];
+		@this.CopyTo(copied);
+		Array.Sort(copied, (a, b) => -Comparer<TKey>.Default.Compare(keySelector(a), keySelector(b)));
+		return copied;
+	}
+
+	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static ReadOnlySpan<T> ThenByDescending<T, TKey>(this scoped ReadOnlySpan<T> @this, Func<T, TKey> keySelector)
+		=> OrderByDescending(@this, keySelector);
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
