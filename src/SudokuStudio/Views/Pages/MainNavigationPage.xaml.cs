@@ -70,7 +70,7 @@ internal sealed partial class MainNavigationPage : Page
 	{
 		if (isSettingsNavigationViewItemSelectedOrInvoked)
 		{
-			ParentWindow.NavigateToPage(typeof(SettingsPage));
+			ParentWindow.NavigateToPage<SettingsPage>();
 		}
 		else
 		{

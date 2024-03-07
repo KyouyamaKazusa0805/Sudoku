@@ -82,33 +82,10 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
-	/// Try to navigate to the target page.
-	/// </summary>
-	/// <typeparam name="T">The type of the data.</typeparam>
-	/// <param name="pageType">The target page type.</param>
-	/// <param name="data">The data.</param>
-	internal void NavigateToPage<T>(Type pageType, T? data) where T : notnull
-	{
-		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
-		{
-			NavigationPage.NavigationViewFrame.Navigate(pageType, data, DefaultNavigationTransitionInfo);
-			NavigationPage.SetFrameDisplayTitle(pageType);
-		}
-	}
-
-	/// <summary>
 	/// Try to navigate to the target page via its type specified as type argument.
 	/// </summary>
 	/// <typeparam name="TPage">The type of the page.</typeparam>
 	internal void NavigateToPage<TPage>() where TPage : Page => NavigateToPage(typeof(TPage));
-
-	/// <summary>
-	/// Try to navigate to the target page via its type specified as type argument, and routing data specified as argument.
-	/// </summary>
-	/// <typeparam name="TPage">The type of the page.</typeparam>
-	/// <typeparam name="TData">The type of the data.</typeparam>
-	/// <param name="data">The data.</param>
-	internal void NavigateToPage<TPage, TData>(TData? data) where TPage : Page where TData : notnull => NavigateToPage(typeof(TPage), data);
 
 	/// <summary>
 	/// Initializes for fields.
