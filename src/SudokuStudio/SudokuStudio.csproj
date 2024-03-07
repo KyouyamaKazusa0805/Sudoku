@@ -43,10 +43,10 @@
 			<PrivateAssets>all</PrivateAssets>
 		</PackageReference>
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240227000" />
-		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.2428" />
+		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
 		<PackageReference Include="QuestPDF" Version="2023.9.0" />
-		<PackageReference Include="WinUICommunity.Core" Version="5.5.1" />
+		<PackageReference Include="WinUICommunity.Core" Version="6.5.0" />
 		<PackageReference Update="Microsoft.CodeAnalysis.Analyzers" Version="3.3.4">
 			<PrivateAssets>all</PrivateAssets>
 			<IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
