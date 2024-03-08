@@ -3099,6 +3099,39 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Input.VirtualKeyModifierState.op_Inequality(Windows.System.VirtualKeyModifiers,SudokuStudio.Input.VirtualKeyModifierState)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>
+            <param name="newValue">The new value.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventArgs.#ctor(System.Int32)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>
+            <param name="newValue">The new value.</param>
+            <remarks>
+            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
+            </remarks>
+        </member>
+        <member name="P:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventArgs.NewValue">
+            <summary>
+            The generated property declaration for parameter <c>newValue</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateChanged"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateChanged"/>
+        </member>
         <member name="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.CandidatesDisplayingToggledEventHandler"/>.
@@ -10617,6 +10650,11 @@ if (student is (name: var name, age: >= 18))
             Update control values via selected candidate.
             </summary>
             <param name="candidate">Indicates the candidate to be updated.</param>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateChanged">
+            <summary>
+            Indicates the event that is triggered when the selected candidate is changed.
+            </summary>
         </member>
         <member name="M:SudokuStudio.Views.Controls.CandidatePicker.InitializeComponent">
             <summary>

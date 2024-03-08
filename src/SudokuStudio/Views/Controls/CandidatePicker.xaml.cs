@@ -41,6 +41,12 @@ public sealed partial class CandidatePicker : UserControl
 	}
 
 
+	/// <summary>
+	/// Indicates the event that is triggered when the selected candidate is changed.
+	/// </summary>
+	public event CandidatePickerSelectedCandidateChangedEventHandler? SelectedCandidateChanged;
+
+
 	[Callback]
 	private static void SelectedCandidatePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((CandidatePicker)d).UpdateControlViaSelectedCandidate((Candidate)e.NewValue);

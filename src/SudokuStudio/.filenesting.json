@@ -27,7 +27,8 @@
           "TechniqueViewSelectedTechniquesChangedEventArgs.cs": [ "TechniqueViewSelectedTechniquesChangedEventHandler.cs" ],
           "TechniqueViewCurrentSelectedTechniqueChangedEventArgs.cs": [ "TechniqueViewCurrentSelectedTechniqueChangedEventHandler.cs" ],
           "ReceivedDroppedFileSuccessfullyEventArgs.cs": [ "ReceivedDroppedFileSuccessfullyEventHandler.cs" ],
-          "ReceivedDroppedFileFailedEventArgs.cs": [ "ReceivedDroppedFileFailedEventHandler.cs" ]
+          "ReceivedDroppedFileFailedEventArgs.cs": [ "ReceivedDroppedFileFailedEventHandler.cs" ],
+          "CandidatePickerSelectedCandidateChangedEventArgs.cs": [ "CandidatePickerSelectedCandidateChangedEventHandler.cs" ]
         }
       }
     }

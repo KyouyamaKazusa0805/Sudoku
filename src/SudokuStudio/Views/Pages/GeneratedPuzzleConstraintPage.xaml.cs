@@ -366,6 +366,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 #else
 		var candidatePicker = new CandidatePicker { SelectedCandidate = 364 }; // r5c5(5)
+		candidatePicker.SelectedCandidateChanged += (_, _) => constraint.Conclusion = new(Elimination, candidatePicker.SelectedCandidate);
+
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
