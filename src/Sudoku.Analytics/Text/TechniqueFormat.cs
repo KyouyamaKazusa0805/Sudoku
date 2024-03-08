@@ -6,10 +6,10 @@ namespace Sudoku.Text;
 /// </summary>
 /// <seealso cref="Step"/>
 [StructLayout(LayoutKind.Auto)]
+[DebuggerStepThrough]
 [Equals(EqualsBehavior.ThrowNotSupportedException)]
 [GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
 [EqualityOperators]
-[method: DebuggerStepThrough]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.Field)] string formatName)
