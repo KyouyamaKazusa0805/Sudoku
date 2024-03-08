@@ -50,7 +50,7 @@ public partial class GurthSymmetricalPlacementStep(
 			var comma = ResourceDictionary.Get("Comma", ResultCurrentCulture);
 			if (Mapping is not null)
 			{
-				scoped var sb = new StringHandler(10);
+				var sb = new StringBuilder(10);
 				for (var i = 0; i < 9; i++)
 				{
 					var currentMappingRelationDigit = Mapping[i];
@@ -60,8 +60,7 @@ public partial class GurthSymmetricalPlacementStep(
 					sb.Append(comma);
 				}
 
-				sb.RemoveFromEnd(comma.Length);
-				return sb.ToStringAndClear();
+				return sb.RemoveFrom(^comma.Length).ToString();
 			}
 
 			return ResourceDictionary.Get("NoMappingRelation", ResultCurrentCulture);

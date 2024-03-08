@@ -14,16 +14,14 @@ public sealed record HodokuTripletConverter : IConceptConverter<CandidateMap>
 
 			static string f(scoped ref readonly CandidateMap collection)
 			{
-				scoped var sb = new StringHandler();
+				var sb = new StringBuilder();
 				foreach (var candidate in collection)
 				{
 					var (cell, digit) = (candidate / 9, candidate % 9);
 					sb.Append($"{digit + 1}{cell / 9 + 1}{cell % 9 + 1} ");
 				}
 
-				sb.RemoveFromEnd(1);
-
-				return sb.ToStringAndClear();
+				return sb.RemoveFrom(^1).ToString();
 			}
 		};
 }

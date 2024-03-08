@@ -93,19 +93,19 @@ public partial struct CandidateMap :
 					orderby digitGroups.Key
 					select digitGroups)
 				{
-					scoped var sb = new StringHandler(50);
+					var sb = new StringBuilder(50);
 					var cells = (CellMap)[];
 					foreach (var candidate in digitGroup)
 					{
 						cells.Add(candidate / 9);
 					}
 
-					sb.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(in cells));
-					sb.Append('(');
-					sb.Append(digitGroup.Key + 1);
-					sb.Append(')');
-
-					list.Add(sb.ToStringAndClear());
+					list.Add(
+						sb
+							.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(in cells))
+							.Append($"({digitGroup.Key + 1})")
+							.ToString()
+					);
 				}
 
 				return [.. list];

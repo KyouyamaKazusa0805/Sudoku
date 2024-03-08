@@ -62,6 +62,21 @@ public static class CommonMethods
 	public static bool False<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !value;
 
 	/// <summary>
+	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
+	/// into a <see cref="string"/> value.
+	/// </summary>
+	/// <typeparam name="T">The type of the argument.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <returns>The <see cref="string"/> value.</returns>
+	/// <exception cref="InvalidOperationException">
+	/// Throws when the argument <paramref name="this"/> return <see langword="null"/>
+	/// as the <c>ToString</c> method result.
+	/// </exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull
+		=> @this.ToString() ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull"));
+
+	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method
 	/// <see cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>.
 	/// </summary>

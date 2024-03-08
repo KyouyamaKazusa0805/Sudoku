@@ -119,7 +119,7 @@ public partial record SusserGridConverter(
 	public virtual FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
-			scoped var sb = new StringHandler(162);
+			var sb = new StringBuilder(162);
 			var originalGrid = this switch
 			{
 				{ WithCandidates: true, ShortenSusser: false } => Grid.Parse((this with { WithCandidates = false }).Converter(in grid)),
@@ -186,7 +186,7 @@ public partial record SusserGridConverter(
 					? eliminatedCandidates
 					: negateElims(in grid, in eliminatedCandidates)
 			);
-			var @base = sb.ToStringAndClear();
+			var @base = sb.ToString();
 			return ShortenSusser
 				? shorten(@base, Placeholder)
 				: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $"{PreeliminationPrefix}{elimsStr}")}";

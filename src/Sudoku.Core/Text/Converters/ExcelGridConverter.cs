@@ -21,7 +21,7 @@ public sealed record ExcelGridConverter : IConceptConverter<Grid>
 		=> (scoped ref readonly Grid grid) =>
 		{
 			scoped var span = grid.ToString(SusserGridConverter.Default with { Placeholder = Zero }).AsSpan();
-			scoped var sb = new StringHandler(81 + 72 + 9);
+			var sb = new StringBuilder(81 + 72 + 9);
 			for (var i = 0; i < 9; i++)
 			{
 				for (var j = 0; j < 9; j++)
@@ -30,15 +30,10 @@ public sealed record ExcelGridConverter : IConceptConverter<Grid>
 					{
 						sb.Append(digit);
 					}
-
 					sb.Append(Tab);
 				}
-
-				sb.RemoveFromEnd(1);
-				sb.AppendLine();
+				sb.RemoveFrom(^1).AppendLine();
 			}
-
-			sb.RemoveFromEnd(Environment.NewLine.Length);
-			return sb.ToStringAndClear();
+			return sb.RemoveFrom(^Environment.NewLine.Length).ToString();
 		};
 }

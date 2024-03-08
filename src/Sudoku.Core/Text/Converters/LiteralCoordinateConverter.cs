@@ -111,7 +111,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 
-				scoped var sb = new StringHandler(50);
+				var sb = new StringBuilder(50);
 				conclusions.SortUnsafe(&cmp);
 
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
@@ -127,7 +127,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 						sb.Append(DefaultSeparator);
 					}
 
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 					if (!hasOnlyOneType)
 					{
 						sb.Append(DefaultSeparator);
@@ -136,10 +136,10 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 				if (!hasOnlyOneType)
 				{
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 				}
 
-				return sb.ToStringAndClear();
+				return sb.ToString();
 			}
 		};
 

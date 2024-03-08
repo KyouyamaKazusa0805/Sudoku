@@ -48,8 +48,8 @@ public sealed record K9Converter(
 
 			string r(scoped ref readonly CellMap cells)
 			{
-				scoped var sbRow = new StringHandler(18);
-				var dic = new Dictionary<Cell, List<Digit>>(9);
+				var sbRow = new StringBuilder(18);
+				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell / 9))
@@ -66,18 +66,16 @@ public sealed record K9Converter(
 							? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
 							: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
 					);
-					sbRow.AppendRange(dic[row], d => DigitConverter((Mask)(1 << d)));
+					sbRow.AppendRange(dic[row].AsReadOnlySpan(), d => DigitConverter((Mask)(1 << d)));
 					sbRow.Append(DefaultSeparator);
 				}
-				sbRow.RemoveFromEnd(DefaultSeparator.Length);
-
-				return sbRow.ToStringAndClear();
+				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 
 			string c(scoped ref readonly CellMap cells)
 			{
-				var dic = new Dictionary<Digit, List<Cell>>(9);
-				scoped var sbColumn = new StringHandler(18);
+				var dic = new Dictionary<Digit, List<RowIndex>>(9);
+				var sbColumn = new StringBuilder(18);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell % 9))
@@ -87,7 +85,6 @@ public sealed record K9Converter(
 
 					dic[cell % 9].Add(cell / 9);
 				}
-
 				foreach (var column in dic.Keys)
 				{
 					foreach (var row in dic[column])
@@ -99,12 +96,9 @@ public sealed record K9Converter(
 						);
 					}
 
-					sbColumn.Append(column + 1);
-					sbColumn.Append(DefaultSeparator);
+					sbColumn.Append(column + 1).Append(DefaultSeparator);
 				}
-				sbColumn.RemoveFromEnd(DefaultSeparator.Length);
-
-				return sbColumn.ToStringAndClear();
+				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 		};
 
@@ -112,7 +106,7 @@ public sealed record K9Converter(
 	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
-			scoped var sb = new StringHandler(50);
+			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
 				from candidate in candidates
 				group candidate by candidate % 9 into digitGroups
@@ -131,9 +125,7 @@ public sealed record K9Converter(
 
 				sb.Append(DefaultSeparator);
 			}
-
-			sb.RemoveFromEnd(DefaultSeparator.Length);
-			return sb.ToStringAndClear();
+			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 		};
 
 	/// <inheritdoc/>
@@ -174,7 +166,7 @@ public sealed record K9Converter(
 				}
 			}
 
-			scoped var sb = new StringHandler(30);
+			var sb = new StringBuilder(30);
 			foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
 			{
 				sb.Append(
@@ -194,7 +186,7 @@ public sealed record K9Converter(
 				);
 			}
 
-			return sb.ToStringAndClear();
+			return sb.ToString();
 		};
 
 	/// <inheritdoc/>
@@ -203,8 +195,8 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -220,7 +212,7 @@ public sealed record K9Converter(
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 
-				scoped var sb = new StringHandler(50);
+				var sb = new StringBuilder(50);
 				conclusions.SortUnsafe(&cmp);
 
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
@@ -236,7 +228,7 @@ public sealed record K9Converter(
 						sb.Append(DefaultSeparator);
 					}
 
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 					if (!hasOnlyOneType)
 					{
 						sb.Append(DefaultSeparator);
@@ -245,10 +237,10 @@ public sealed record K9Converter(
 
 				if (!hasOnlyOneType)
 				{
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 				}
 
-				return sb.ToStringAndClear();
+				return sb.ToString();
 			}
 		};
 
@@ -320,7 +312,7 @@ public sealed record K9Converter(
 				}
 			}
 
-			var sb = new StringHandler(12);
+			var sb = new StringBuilder(12);
 			if (megalines.TryGetValue(true, out var megaRows))
 			{
 				sb.Append(MakeLettersUpperCase ? "Mega Row" : "mega row");
@@ -340,7 +332,7 @@ public sealed record K9Converter(
 				}
 			}
 
-			return sb.ToStringAndClear();
+			return sb.ToString();
 		};
 
 	/// <inheritdoc/>
@@ -352,7 +344,7 @@ public sealed record K9Converter(
 				return string.Empty;
 			}
 
-			var sb = new StringHandler(20);
+			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
 				var fromCellString = CellConverter([conjugatePair.From]);
@@ -360,8 +352,6 @@ public sealed record K9Converter(
 				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}
-			sb.RemoveFromEnd(DefaultSeparator.Length);
-
-			return sb.ToStringAndClear();
+			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 		};
 }

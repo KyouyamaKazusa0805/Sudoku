@@ -68,7 +68,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 	public FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
 		{
-			scoped var sb = new StringHandler(162);
+			var sb = new StringBuilder(162);
 			var originalGrid = Grid.Parse((SusserGridConverter.Default with { WithCandidates = false }).Converter(in grid));
 
 			var eliminatedCandidates = (CandidateMap)[];
@@ -94,38 +94,20 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 			var candidatesDistribution = eliminatedCandidates.CellDistribution;
 			for (var c = 0; c < 81; c++)
 			{
-				var state = grid.GetState(c);
-				switch (state)
+				_ = grid.GetState(c) switch
 				{
-					case CellState.Empty:
-					{
-						sb.Append(
-							candidatesDistribution.TryGetValue(c, out var digits) && digits != 0
-								? $"[{string.Concat([.. from digit in digits select (digit + 1).ToString()])}]"
-								: Placeholder
-						);
-
-						break;
-					}
-					case CellState.Modifiable:
-					{
-						sb.Append(ModifiablePrefix);
-						sb.Append(grid.GetDigit(c) + 1);
-						break;
-					}
-					case CellState.Given:
-					{
-						sb.Append(grid.GetDigit(c) + 1);
-						break;
-					}
-					default:
-					{
-						throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidStateOnParsing"));
-					}
-				}
+					CellState.Empty => sb.Append(
+						candidatesDistribution.TryGetValue(c, out var digits) && digits != 0
+							? $"[{string.Concat([.. from digit in digits select (digit + 1).ToString()])}]"
+							: Placeholder
+					),
+					CellState.Modifiable => sb.Append(ModifiablePrefix).Append(grid.GetDigit(c) + 1),
+					CellState.Given => sb.Append(grid.GetDigit(c) + 1),
+					_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("InvalidStateOnParsing"))
+				};
 			}
 
-			return sb.ToStringAndClear();
+			return sb.ToString();
 
 
 			static CandidateMap negateElims(scoped ref readonly Grid grid, scoped ref readonly CandidateMap eliminatedCandidates)

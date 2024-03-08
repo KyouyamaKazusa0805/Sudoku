@@ -38,38 +38,38 @@ public unsafe struct MinLexCandidate
 	{
 		const string separator = ", ";
 
-		var mapRowsForwardSb = new StringHandler();
+		var mapRowsForwardSb = new StringBuilder();
 		for (var i = 0; i < 9; i++)
 		{
 			mapRowsForwardSb.Append(_mapRowsForward[i]);
 			mapRowsForwardSb.Append(separator);
 		}
-		mapRowsForwardSb.RemoveFromEnd(separator.Length);
+		mapRowsForwardSb.RemoveFrom(^separator.Length);
 
-		var mapRowsBackwardSb = new StringHandler();
+		var mapRowsBackwardSb = new StringBuilder();
 		for (var i = 0; i < 9; i++)
 		{
 			mapRowsBackwardSb.Append(_mapRowsBackward[i]);
 			mapRowsBackwardSb.Append(separator);
 		}
-		mapRowsBackwardSb.RemoveFromEnd(separator.Length);
+		mapRowsBackwardSb.RemoveFrom(^separator.Length);
 
-		var colsPermMaskSb = new StringHandler();
+		var colsPermMaskSb = new StringBuilder();
 		for (var i = 0; i < 3; i++)
 		{
 			colsPermMaskSb.Append(_colsPermMask[i]);
 			colsPermMaskSb.Append(separator);
 		}
-		colsPermMaskSb.RemoveFromEnd(separator.Length);
+		colsPermMaskSb.RemoveFrom(^separator.Length);
 
 		return $$"""
 			{{nameof(MinLexCandidate)}} 
 			{ 
 			{{nameof(_isTransposed)}} = {{_isTransposed}}, 
-			{{nameof(_mapRowsForward)}} = [{{mapRowsForwardSb.ToStringAndClear()}}], 
-			{{nameof(_mapRowsBackward)}} = [{{mapRowsBackwardSb.ToStringAndClear()}}], 
+			{{nameof(_mapRowsForward)}} = [{{mapRowsForwardSb}}], 
+			{{nameof(_mapRowsBackward)}} = [{{mapRowsBackwardSb}}], 
 			{{nameof(_stacksPerm)}} = {{_stacksPerm}}, 
-			{{nameof(_colsPermMask)}} = [{{colsPermMaskSb.ToStringAndClear()}}] 
+			{{nameof(_colsPermMask)}} = [{{colsPermMaskSb}}] 
 			}
 			""".RemoveLineEndings();
 	}

@@ -109,7 +109,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 			}
 
 			// Step 3: outputs all characters.
-			scoped var sb = new StringHandler();
+			var sb = new StringBuilder();
 			for (var i = 0; i < 13; i++)
 			{
 				switch (i)
@@ -118,11 +118,11 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 					{
 						if (SubtleGridLines)
 						{
-							printTabLines(ref sb, '.', '.', '-', maxLengths);
+							printTabLines(sb, '.', '.', '-', maxLengths);
 						}
 						else
 						{
-							printTabLines(ref sb, '+', '+', '-', maxLengths);
+							printTabLines(sb, '+', '+', '-', maxLengths);
 						}
 						break;
 					}
@@ -130,11 +130,11 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 					{
 						if (SubtleGridLines)
 						{
-							printTabLines(ref sb, ':', '+', '-', maxLengths);
+							printTabLines(sb, ':', '+', '-', maxLengths);
 						}
 						else
 						{
-							printTabLines(ref sb, '+', '+', '-', maxLengths);
+							printTabLines(sb, '+', '+', '-', maxLengths);
 						}
 						break;
 					}
@@ -142,17 +142,17 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 					{
 						if (SubtleGridLines)
 						{
-							printTabLines(ref sb, '\'', '\'', '-', maxLengths);
+							printTabLines(sb, '\'', '\'', '-', maxLengths);
 						}
 						else
 						{
-							printTabLines(ref sb, '+', '+', '-', maxLengths);
+							printTabLines(sb, '+', '+', '-', maxLengths);
 						}
 						break;
 					}
 					default: // Print values and tabs.
 					{
-						defaultPrinting(ref sb, valuesByRow[Sequences.A057353(i)], '|', '|', maxLengths);
+						defaultPrinting(sb, valuesByRow[Sequences.A057353(i)], '|', '|', maxLengths);
 
 						break;
 					}
@@ -160,24 +160,24 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 			}
 
 			// The last step: returns the value.
-			sb.RemoveFromEnd(Environment.NewLine.Length);
+			sb.RemoveFrom(^Environment.NewLine.Length);
 			return sb.ToString();
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			void defaultPrinting(scoped ref StringHandler sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)
+			void defaultPrinting(StringBuilder sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)
 			{
 				sb.Append(c1);
-				printValues(ref sb, valuesByRow, 0, 2, maxLengths);
+				printValues(sb, valuesByRow, 0, 2, maxLengths);
 				sb.Append(c2);
-				printValues(ref sb, valuesByRow, 3, 5, maxLengths);
+				printValues(sb, valuesByRow, 3, 5, maxLengths);
 				sb.Append(c2);
-				printValues(ref sb, valuesByRow, 6, 8, maxLengths);
+				printValues(sb, valuesByRow, 6, 8, maxLengths);
 				sb.Append(c1);
 				sb.AppendLine();
 			}
 
-			void printValues(scoped ref StringHandler sb, IList<Mask> valuesByRow, int start, int end, int* maxLengths)
+			void printValues(StringBuilder sb, IList<Mask> valuesByRow, int start, int end, int* maxLengths)
 			{
 				sb.Append(' ');
 				for (var i = start; i <= end; i++)
@@ -203,28 +203,25 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 
 				static string appendingMask(Mask value)
 				{
-					scoped var innerSb = new StringHandler(9);
+					var innerSb = new StringBuilder(9);
 					foreach (var z in value)
 					{
 						innerSb.Append(z + 1);
 					}
-
-					return innerSb.ToStringAndClear();
+					return innerSb.ToString();
 				}
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void printTabLines(scoped ref StringHandler sb, char c1, char c2, char fillingChar, int* m)
-			{
-				sb.Append(c1);
-				sb.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar));
-				sb.Append(c2);
-				sb.Append(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar));
-				sb.Append(c2);
-				sb.Append(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar));
-				sb.Append(c1);
-				sb.AppendLine();
-			}
+			static void printTabLines(StringBuilder sb, char c1, char c2, char fillingChar, int* m)
+				=> sb
+					.Append(c1)
+					.Append(string.Empty.PadRight(m[0] + m[1] + m[2] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(m[3] + m[4] + m[5] + 6, fillingChar))
+					.Append(c2)
+					.Append(string.Empty.PadRight(m[6] + m[7] + m[8] + 6, fillingChar)).Append(c1)
+					.AppendLine();
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static Dictionary<Candidate, List<Mask>> createTempDictionary()

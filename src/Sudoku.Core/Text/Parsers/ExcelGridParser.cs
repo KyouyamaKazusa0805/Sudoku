@@ -33,7 +33,7 @@ public sealed record ExcelGridParser : IConceptParser<Grid>
 				return Grid.Undefined;
 			}
 
-			scoped var sb = new StringHandler(81);
+			var sb = new StringBuilder(81);
 			foreach (var value in values)
 			{
 				foreach (var digitString in value.Split(['\t']))
@@ -42,6 +42,6 @@ public sealed record ExcelGridParser : IConceptParser<Grid>
 				}
 			}
 
-			return Grid.Parse(sb.ToStringAndClear());
+			return Grid.Parse(sb.ToString());
 		};
 }

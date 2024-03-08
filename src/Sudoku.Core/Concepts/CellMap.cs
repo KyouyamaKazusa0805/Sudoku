@@ -132,7 +132,7 @@ public partial struct CellMap :
 		{
 			var convertedString = CellMapConverter.Converter(in this);
 			var bits = convertedString.CutOfLength(27);
-			scoped var sb = new StringHandler(18);
+			var sb = new StringBuilder(18);
 			foreach (var z in (sextuple(getInteger(bits[2])), sextuple(getInteger(bits[1])), sextuple(getInteger(bits[0]))))
 			{
 				foreach (var element in z)
@@ -140,7 +140,7 @@ public partial struct CellMap :
 					sb.Append(Grid.Base32CharSpan[element]);
 				}
 			}
-			return sb.ToStringAndClear();
+			return sb.ToString();
 
 
 			static int getInteger(string bits)

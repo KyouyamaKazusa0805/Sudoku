@@ -50,9 +50,11 @@ public sealed partial record SimpleMultipleLineGridParser : IConceptParser<Grid>
 			}
 
 			// Remove all '\r's and '\n's.
-			scoped var sb = new StringHandler(81 + (9 << 1));
-			sb.Append(from @char in match where @char is not ('\r' or '\n') select @char);
-			return new SusserGridParser().Parser(sb.ToStringAndClear());
+			return new SusserGridParser().Parser(
+				new StringBuilder(81 + (9 << 1))
+					.Append(from @char in match where @char is not ('\r' or '\n') select @char)
+					.ToString()
+			);
 		};
 
 

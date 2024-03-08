@@ -37,8 +37,8 @@ public sealed record ExcelCoordinateConverter(
 
 			string r(scoped ref readonly CellMap cells)
 			{
-				scoped var sbRow = new StringHandler(18);
-				var dic = new Dictionary<Cell, List<Digit>>(9);
+				var sbRow = new StringBuilder(18);
+				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell / 9))
@@ -50,19 +50,17 @@ public sealed record ExcelCoordinateConverter(
 				}
 				foreach (var row in dic.Keys)
 				{
-					sbRow.AppendRange(dic[row], column => ((MakeLettersUpperCase ? 'A' : 'a') + column).ToString());
-					sbRow.Append((row + 1).ToString());
+					sbRow.AppendRange(dic[row].AsReadOnlySpan(), column => ((MakeLettersUpperCase ? 'A' : 'a') + column).ToString());
+					sbRow.Append(row + 1);
 					sbRow.Append(DefaultSeparator);
 				}
-				sbRow.RemoveFromEnd(DefaultSeparator.Length);
-
-				return sbRow.ToStringAndClear();
+				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 
 			string c(scoped ref readonly CellMap cells)
 			{
-				var dic = new Dictionary<Digit, List<Cell>>(9);
-				scoped var sbColumn = new StringHandler(18);
+				var dic = new Dictionary<Digit, List<RowIndex>>(9);
+				var sbColumn = new StringBuilder(18);
 				foreach (var cell in cells)
 				{
 					if (!dic.ContainsKey(cell % 9))
@@ -72,16 +70,13 @@ public sealed record ExcelCoordinateConverter(
 
 					dic[cell % 9].Add(cell / 9);
 				}
-
 				foreach (var column in dic.Keys)
 				{
 					sbColumn.Append((char)((MakeLettersUpperCase ? 'A' : 'a') + column));
-					sbColumn.AppendRange(dic[column], static row => (row + 1).ToString());
+					sbColumn.AppendRange(dic[column].AsReadOnlySpan(), static row => (row + 1).ToString());
 					sbColumn.Append(DefaultSeparator);
 				}
-				sbColumn.RemoveFromEnd(DefaultSeparator.Length);
-
-				return sbColumn.ToStringAndClear();
+				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 		};
 
@@ -89,7 +84,7 @@ public sealed record ExcelCoordinateConverter(
 	public override CandidateNotationConverter CandidateConverter
 		=> (scoped ref readonly CandidateMap candidates) =>
 		{
-			scoped var sb = new StringHandler(50);
+			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
 				from candidate in candidates
 				group candidate by candidate % 9 into digitGroups
@@ -108,9 +103,7 @@ public sealed record ExcelCoordinateConverter(
 
 				sb.Append(DefaultSeparator);
 			}
-
-			sb.RemoveFromEnd(DefaultSeparator.Length);
-			return sb.ToStringAndClear();
+			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 		};
 
 	/// <inheritdoc/>
@@ -123,8 +116,8 @@ public sealed record ExcelCoordinateConverter(
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -140,7 +133,7 @@ public sealed record ExcelCoordinateConverter(
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 
-				scoped var sb = new StringHandler(50);
+				var sb = new StringBuilder(50);
 				conclusions.SortUnsafe(&cmp);
 
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
@@ -156,7 +149,7 @@ public sealed record ExcelCoordinateConverter(
 						sb.Append(DefaultSeparator);
 					}
 
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 					if (!hasOnlyOneType)
 					{
 						sb.Append(DefaultSeparator);
@@ -165,10 +158,10 @@ public sealed record ExcelCoordinateConverter(
 
 				if (!hasOnlyOneType)
 				{
-					sb.RemoveFromEnd(DefaultSeparator.Length);
+					sb.RemoveFrom(^DefaultSeparator.Length);
 				}
 
-				return sb.ToStringAndClear();
+				return sb.ToString();
 			}
 		};
 
@@ -193,7 +186,7 @@ public sealed record ExcelCoordinateConverter(
 				return string.Empty;
 			}
 
-			var sb = new StringHandler(20);
+			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
 				var fromCellString = CellConverter([conjugatePair.From]);
@@ -201,8 +194,6 @@ public sealed record ExcelCoordinateConverter(
 				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}
-			sb.RemoveFromEnd(DefaultSeparator.Length);
-
-			return sb.ToStringAndClear();
+			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
 		};
 }
