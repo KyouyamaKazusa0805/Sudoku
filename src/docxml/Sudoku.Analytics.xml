@@ -748,6 +748,52 @@
             The generated property declaration for parameter <c>abbr</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.BaseDifficultyAttribute">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.#ctor(System.Double)">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.ValueInDirectMode">
+            <summary>
+            Indicates the value that is used in direct mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute">
             <summary>
             Provides with an attribute type that represents the target difficulty level for the specified technique.
@@ -840,6 +886,60 @@
         <member name="P:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.Technique">
             <summary>
             The generated property declaration for parameter <c>technique</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute">
+            <summary>
+            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
+            </summary>
+            <param name="stepTypes">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.#ctor(System.Type[])">
+            <summary>
+            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
+            </summary>
+            <param name="stepTypes">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.StepTypes">
+            <summary>
+            The generated property declaration for parameter <c>stepTypes</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SupportedExtraDifficultyRulesAttribute">
+            <summary>
+            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
+            for which kinds of extra difficulty rating rules.
+            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            </summary>
+            <param name="ruleNames">
+            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            If invalid, the value will be skipped and don't work.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SupportedExtraDifficultyRulesAttribute.#ctor(System.String[])">
+            <summary>
+            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
+            for which kinds of extra difficulty rating rules.
+            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            </summary>
+            <param name="ruleNames">
+            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            If invalid, the value will be skipped and don't work.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SupportedExtraDifficultyRulesAttribute.RuleNames">
+            <summary>
+            The generated property declaration for parameter <c>ruleNames</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
@@ -3451,12 +3551,33 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determines whether the specified technique supports for customization on difficulty values.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            Today this method always return <see langword="true"/> if the value is defined and not <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>;
+            but it might be changed in the future.
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Indicates whether the technique supports for Siamese rule.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetBaseDifficultyFixed(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
+            <summary>
+            Try to get the base difficulty value for the specified technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="valueInDirectMode">
+            An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
+            </param>
+            <returns>The difficulty value.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <summary>

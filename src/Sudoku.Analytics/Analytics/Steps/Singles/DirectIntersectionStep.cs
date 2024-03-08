@@ -51,9 +51,11 @@ public sealed partial class DirectIntersectionStep(
 		{
 			Technique.FullHouse => 1.0M,
 			Technique.CrosshatchingBlock => 1.2M,
-			Technique.CrosshatchingRow or Technique.CrosshatchingColumn => 1.9M,
-			Technique.HiddenSingleBlock => 1.2M,
+			Technique.CrosshatchingRow or Technique.CrosshatchingColumn => 1.5M,
+#if false
+			Technique.HiddenSingleBlock => 1.9M,
 			Technique.HiddenSingleRow or Technique.HiddenSingleColumn => 2.3M,
+#endif
 			Technique.NakedSingle => 2.3M,
 			_ => throw new NotSupportedException(TechniqueNotSupportedMessage)
 		} + .2M;

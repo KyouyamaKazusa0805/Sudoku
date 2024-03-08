@@ -21,6 +21,18 @@ public static class TechniqueExtensions
 	public static bool IsAssignment(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
 
 	/// <summary>
+	/// Determines whether the specified technique supports for customization on difficulty values.
+	/// </summary>
+	/// <param name="this">The value.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// Today this method always return <see langword="true"/> if the value is defined and not <see cref="Technique.None"/>;
+	/// but it might be changed in the future.
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool SupportsCustomizingDifficulty(this Technique @this) => Enum.IsDefined(@this) && @this != Technique.None;
+
+	/// <summary>
 	/// Indicates whether the technique supports for Siamese rule.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
@@ -29,6 +41,22 @@ public static class TechniqueExtensions
 	public static bool SupportsSiamese(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<IsSiameseSupportedAttribute>()?.SupportsSiamese is true
 		|| @this.GetGroup().SupportsSiamese();
+
+	/// <summary>
+	/// Try to get the base difficulty value for the specified technique.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <param name="valueInDirectMode">
+	/// An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
+	/// </param>
+	/// <returns>The difficulty value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static decimal GetBaseDifficultyFixed(this Technique @this, out decimal valueInDirectMode)
+	{
+		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<BaseDifficultyAttribute>()!;
+		valueInDirectMode = Math.Round((decimal)(attribute.ValueInDirectMode == 0 ? attribute.Value : attribute.ValueInDirectMode), 1);
+		return Math.Round((decimal)attribute.Value, 1);
+	}
 
 	/// <summary>
 	/// Try to get the name of the current <see cref="Technique"/>.

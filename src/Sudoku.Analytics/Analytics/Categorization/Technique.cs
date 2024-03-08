@@ -29,6 +29,8 @@ public enum Technique
 	[SudokuExplainerNames("Single")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(FullHouseStep))]
+	[BaseDifficulty(1.0)]
 	FullHouse,
 
 	/// <summary>
@@ -38,6 +40,8 @@ public enum Technique
 	[HodokuTechniquePrefix("0001")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(LastDigitStep), typeof(HiddenSingleStep))]
+	[BaseDifficulty(1.1)]
 	LastDigit,
 
 	/// <summary>
@@ -49,6 +53,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(1.2)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(1.2)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -61,6 +67,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(1.5)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -73,6 +81,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(1.5)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(1.5)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -85,6 +95,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(2.3)]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(NakedSingleStep))]
+	[BaseDifficulty(2.3, ValueInDirectMode = 1.0)]
 	NakedSingle,
 	#endregion
 
@@ -99,6 +111,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(1.9)]
 	CrosshatchingBlock,
 
 	/// <summary>
@@ -108,6 +122,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(2.3)]
 	CrosshatchingRow,
 
 	/// <summary>
@@ -117,6 +133,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
+	[RuntimeStepTypes(typeof(HiddenSingleStep))]
+	[BaseDifficulty(2.3)]
 	CrosshatchingColumn,
 	#endregion
 
@@ -130,6 +148,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	PointingFullHouse,
 
 	/// <summary>
@@ -138,6 +159,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	ClaimingFullHouse,
 
 	/// <summary>
@@ -146,6 +170,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairFullHouse,
 
 	/// <summary>
@@ -154,6 +181,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairPlusFullHouse,
 
 	/// <summary>
@@ -162,6 +192,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenPairFullHouse,
 
 	/// <summary>
@@ -170,6 +203,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedPairFullHouse,
 
 	/// <summary>
@@ -178,6 +214,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenPairFullHouse,
 
 	/// <summary>
@@ -186,6 +225,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTripleFullHouse,
 
 	/// <summary>
@@ -194,6 +236,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTriplePlusFullHouse,
 
 	/// <summary>
@@ -202,6 +247,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenTripleFullHouse,
 
 	/// <summary>
@@ -210,6 +258,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedTripleFullHouse,
 
 	/// <summary>
@@ -218,6 +269,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenTripleFullHouse,
 
 	/// <summary>
@@ -226,6 +280,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadrupleFullHouse,
 
 	/// <summary>
@@ -234,6 +291,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadruplePlusFullHouse,
 
 	/// <summary>
@@ -242,6 +302,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenQuadrupleFullHouse,
 
 	/// <summary>
@@ -250,6 +313,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	PointingCrosshatchingBlock,
 
 	/// <summary>
@@ -258,6 +324,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	ClaimingCrosshatchingBlock,
 
 	/// <summary>
@@ -266,6 +335,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -274,6 +346,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairPlusCrosshatchingBlock,
 
 	/// <summary>
@@ -282,6 +357,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -290,6 +368,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -298,6 +379,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -306,6 +390,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -314,6 +401,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTriplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -322,6 +412,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -330,6 +423,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -338,6 +434,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -346,6 +445,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -354,6 +456,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadruplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -362,6 +467,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -370,6 +478,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	PointingCrosshatchingRow,
 
 	/// <summary>
@@ -378,6 +489,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	ClaimingCrosshatchingRow,
 
 	/// <summary>
@@ -386,6 +500,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairCrosshatchingRow,
 
 	/// <summary>
@@ -394,6 +511,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairPlusCrosshatchingRow,
 
 	/// <summary>
@@ -402,6 +522,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -410,6 +533,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedPairCrosshatchingRow,
 
 	/// <summary>
@@ -418,6 +544,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -426,6 +555,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -434,6 +566,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTriplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -442,6 +577,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -450,6 +588,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -458,6 +599,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -466,6 +610,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -474,6 +621,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadruplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -482,6 +632,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -490,6 +643,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	PointingCrosshatchingColumn,
 
 	/// <summary>
@@ -498,6 +654,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	ClaimingCrosshatchingColumn,
 
 	/// <summary>
@@ -506,6 +665,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -514,6 +676,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairPlusCrosshatchingColumn,
 
 	/// <summary>
@@ -522,6 +687,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -530,6 +698,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -538,6 +709,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -546,6 +720,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -554,6 +731,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTriplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -562,6 +742,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -570,6 +753,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -578,6 +764,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -586,6 +775,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -594,6 +786,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadruplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -602,6 +797,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -610,6 +808,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(5.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	PointingNakedSingle,
 
 	/// <summary>
@@ -618,6 +819,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
+	[BaseDifficulty(5.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	ClaimingNakedSingle,
 
 	/// <summary>
@@ -626,6 +830,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairNakedSingle,
 
 	/// <summary>
@@ -634,6 +841,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedPairPlusNakedSingle,
 
 	/// <summary>
@@ -642,6 +852,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenPairNakedSingle,
 
 	/// <summary>
@@ -650,6 +863,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedPairNakedSingle,
 
 	/// <summary>
@@ -658,6 +874,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenPairNakedSingle,
 
 	/// <summary>
@@ -666,6 +885,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTripleNakedSingle,
 
 	/// <summary>
@@ -674,6 +896,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedTriplePlusNakedSingle,
 
 	/// <summary>
@@ -682,6 +907,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenTripleNakedSingle,
 
 	/// <summary>
@@ -690,6 +918,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedTripleNakedSingle,
 
 	/// <summary>
@@ -698,6 +929,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	LockedHiddenTripleNakedSingle,
 
 	/// <summary>
@@ -706,6 +940,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadrupleNakedSingle,
 
 	/// <summary>
@@ -714,6 +951,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.3)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	NakedQuadruplePlusNakedSingle,
 
 	/// <summary>
@@ -722,6 +962,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexSingle)]
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(DirectSubsetStep))]
+	[BaseDifficulty(3.7)]
+	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
 	HiddenQuadrupleNakedSingle,
 	#endregion
 

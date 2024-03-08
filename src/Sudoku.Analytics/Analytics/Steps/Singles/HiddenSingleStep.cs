@@ -26,11 +26,11 @@ public partial class HiddenSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public sealed override decimal BaseDifficulty
 		=> EnableAndIsLastDigit ? 1.1M : House < 9 ? Options.IsDirectMode ? 1.2M : 1.9M : Options.IsDirectMode ? 1.5M : 2.3M;
 
 	/// <inheritdoc/>
-	public override Technique Code
+	public sealed override Technique Code
 		=> (Options.IsDirectMode, EnableAndIsLastDigit) switch
 		{
 			(_, true) => Technique.LastDigit,
@@ -39,7 +39,7 @@ public partial class HiddenSingleStep(
 		};
 
 	/// <inheritdoc/>
-	public override FormatInterpolation[] FormatInterpolationParts
+	public sealed override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr]),
 			new(ChineseLanguage, EnableAndIsLastDigit ? [DigitStr] : [HouseStr])
