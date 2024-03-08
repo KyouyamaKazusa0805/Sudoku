@@ -1870,6 +1870,33 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to column {0}.
+        /// </summary>
+        internal static string CandidatePicker_ColumnLabel {
+            get {
+                return ResourceManager.GetString("CandidatePicker_ColumnLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to digit {0}.
+        /// </summary>
+        internal static string CandidatePicker_DigitLabel {
+            get {
+                return ResourceManager.GetString("CandidatePicker_DigitLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to row {0}.
+        /// </summary>
+        internal static string CandidatePicker_RowLabel {
+            get {
+                return ResourceManager.GetString("CandidatePicker_RowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Easy.
         /// </summary>
         internal static string DifficultyLevel_Easy {

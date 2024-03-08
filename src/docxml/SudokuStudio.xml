@@ -6652,6 +6652,21 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to &lt;Anonymous&gt;.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_ColumnLabel">
+            <summary>
+              Looks up a localized string similar to column {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_DigitLabel">
+            <summary>
+              Looks up a localized string similar to digit {0}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.CandidatePicker_RowLabel">
+            <summary>
+              Looks up a localized string similar to row {0}.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.DifficultyLevel_Easy">
             <summary>
               Looks up a localized string similar to Easy.
@@ -10581,6 +10596,53 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.TextBlockBindable.InlinesProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.TextBlockBindable.InlinesProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.CandidatePicker">
+            <summary>
+            Represents a candidate picker.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.CandidatePicker"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.InitializeControls">
+            <summary>
+            Initialize control values.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.UpdateControlViaSelectedCandidate(System.Int32)">
+            <summary>
+            Update control values via selected candidate.
+            </summary>
+            <param name="candidate">Indicates the candidate to be updated.</param>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.CandidatePicker.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidateProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.CandidatePicker.SelectedCandidate">
+            <summary>
+            Indicates the selected candidate.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.ColorSelector">
             <summary>

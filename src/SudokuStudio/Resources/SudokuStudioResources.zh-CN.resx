@@ -2366,4 +2366,13 @@
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
+  <data name="CandidatePicker_RowLabel" xml:space="preserve">
+    <value>第 {0} 行</value>
+  </data>
+  <data name="CandidatePicker_ColumnLabel" xml:space="preserve">
+    <value>第 {0} 列</value>
+  </data>
+  <data name="CandidatePicker_DigitLabel" xml:space="preserve">
+    <value>数字 {0}</value>
+  </data>
 </root>

@@ -2366,4 +2366,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_EliminationCount" xml:space="preserve">
     <value>Number of eliminations</value>
   </data>
+  <data name="CandidatePicker_RowLabel" xml:space="preserve">
+    <value>row {0}</value>
+  </data>
+  <data name="CandidatePicker_ColumnLabel" xml:space="preserve">
+    <value>column {0}</value>
+  </data>
+  <data name="CandidatePicker_DigitLabel" xml:space="preserve">
+    <value>digit {0}</value>
+  </data>
 </root>

@@ -229,6 +229,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			return null;
 		}
 
+#if false
 		//
 		// row label
 		//
@@ -363,6 +364,21 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
+#else
+		var candidatePicker = new CandidatePicker { SelectedCandidate = 364 }; // r5c5(5)
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { candidatePicker }
+			},
+			Tag = constraint
+		};
+#endif
 	}
 
 	private SettingsCard? Create_Minimal(MinimalConstraint constraint)

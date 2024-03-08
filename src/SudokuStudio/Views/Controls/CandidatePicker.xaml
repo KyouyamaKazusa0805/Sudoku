@@ -1,0 +1,24 @@
+<UserControl
+    x:Class="SudokuStudio.Views.Controls.CandidatePicker"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:c="using:SudokuStudio.Views.Controls"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:CandidatePicker}">
+	<Button>
+		<Grid ColumnDefinitions="78,78,78" Margin="-12,0">
+			<TextBlock
+				x:Name="RowDisplayer" Grid.Column="0" Foreground="Gray"
+				HorizontalAlignment="Center" VerticalAlignment="Center" />
+			<Border Grid.Column="1" BorderBrush="#ECECEC" BorderThickness="1,0" Margin="0,-6">
+				<TextBlock
+					x:Name="ColumnDisplayer" Foreground="Gray"
+					HorizontalAlignment="Center" VerticalAlignment="Center" />
+			</Border>
+			<TextBlock
+				x:Name="DigitDisplayer" Grid.Column="2" Foreground="Gray"
+				HorizontalAlignment="Center" VerticalAlignment="Center" />
+		</Grid>
+	</Button>
+</UserControl>
