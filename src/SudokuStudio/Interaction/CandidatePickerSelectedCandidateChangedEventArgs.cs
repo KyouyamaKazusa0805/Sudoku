@@ -5,7 +5,4 @@ namespace SudokuStudio.Interaction;
 /// </summary>
 /// <seealso cref="CandidatePickerSelectedCandidateChangedEventHandler"/>
 /// <param name="newValue">The new value.</param>
-/// <remarks>
-/// Initializes an <see cref="OpenFileFailedEventArgs"/> instance via the specified reason.
-/// </remarks>
 public sealed partial class CandidatePickerSelectedCandidateChangedEventArgs([PrimaryConstructorParameter] Candidate newValue) : EventArgs;

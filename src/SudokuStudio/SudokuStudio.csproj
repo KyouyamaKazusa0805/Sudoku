@@ -10,7 +10,11 @@
 		<UseWinUI>true</UseWinUI>
 		<EnableMsixTooling>true</EnableMsixTooling>
 		<RootNamespace>SudokuStudio</RootNamespace>
-		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR<!--;SEARCH_AUTO_SUGGESTION_BOX-->;DISABLE_XAML_GENERATED_MAIN</DefineConstants>
+
+		<!--
+		Other available symbols: SEARCH_AUTO_SUGGESTION_BOX
+		-->
+		<DefineConstants>UI_FEATURE_CUSTOMIZED_TITLE_BAR;DISABLE_XAML_GENERATED_MAIN</DefineConstants>
 		<DocumentationFile>..\docxml\SudokuStudio.xml</DocumentationFile>
 		<Description>The project represents with user interfaces that operates with sudoku puzzles.</Description>
 		<PublishAot>false</PublishAot>
@@ -115,6 +119,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Controls\DigitSet.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Controls\CandidatePicker.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

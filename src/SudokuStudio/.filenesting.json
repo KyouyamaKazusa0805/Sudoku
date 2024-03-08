@@ -28,7 +28,8 @@
           "TechniqueViewCurrentSelectedTechniqueChangedEventArgs.cs": [ "TechniqueViewCurrentSelectedTechniqueChangedEventHandler.cs" ],
           "ReceivedDroppedFileSuccessfullyEventArgs.cs": [ "ReceivedDroppedFileSuccessfullyEventHandler.cs" ],
           "ReceivedDroppedFileFailedEventArgs.cs": [ "ReceivedDroppedFileFailedEventHandler.cs" ],
-          "CandidatePickerSelectedCandidateChangedEventArgs.cs": [ "CandidatePickerSelectedCandidateChangedEventHandler.cs" ]
+          "CandidatePickerSelectedCandidateChangedEventArgs.cs": [ "CandidatePickerSelectedCandidateChangedEventHandler.cs" ],
+          "DigitSetSelectedDigitChangedEventArgs.cs": [ "DigitSetSelectedDigitChangedEventHandler.cs" ]
         }
       }
     }

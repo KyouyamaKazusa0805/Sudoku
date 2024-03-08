@@ -3105,9 +3105,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>
             <param name="newValue">The new value.</param>
-            <remarks>
-            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
-            </remarks>
         </member>
         <member name="M:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventArgs.#ctor(System.Int32)">
             <summary>
@@ -3115,9 +3112,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventHandler"/>
             <param name="newValue">The new value.</param>
-            <remarks>
-            Initializes an <see cref="T:SudokuStudio.Interaction.OpenFileFailedEventArgs"/> instance via the specified reason.
-            </remarks>
         </member>
         <member name="P:SudokuStudio.Interaction.CandidatePickerSelectedCandidateChangedEventArgs.NewValue">
             <summary>
@@ -3164,6 +3158,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:SudokuStudio.Interaction.Conversions.CompilationConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about compilation information.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.ConceptConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about sudoku concepts.
             </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.ConceptNotationConversion">
@@ -3333,6 +3332,33 @@ if (student is (name: var name, age: >= 18))
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.DigitInput"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventArgs">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventHandler"/>
+            <param name="newDigit">Indicates the new digit selected.</param>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventArgs.#ctor(System.Int32)">
+            <summary>
+            Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventHandler"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventHandler"/>
+            <param name="newDigit">Indicates the new digit selected.</param>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventArgs.NewDigit">
+            <summary>
+            The generated property declaration for parameter <c>newDigit</c>.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DigitSetSelectedDigitChangedEventHandler">
+            <summary>
+            Provides an event handler that is used by <see cref="E:SudokuStudio.Views.Controls.DigitSet.SelectedDigitChanged"/>.
+            </summary>
+            <param name="sender">An object which triggers the event.</param>
+            <param name="e">The event data provided.</param>
+            <seealso cref="E:SudokuStudio.Views.Controls.DigitSet.SelectedDigitChanged"/>
         </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
             <summary>
@@ -10785,6 +10811,52 @@ if (student is (name: var name, age: >= 18))
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Controls.DashArrayTextBox.DashArrayProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Controls.DigitSet">
+            <summary>
+            Represents a digit set control.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DigitSet._itemsSource">
+            <summary>
+            Indicates the items source.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DigitSet.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Controls.DigitSet"/> instance.
+            </summary>
+        </member>
+        <member name="E:SudokuStudio.Views.Controls.DigitSet.SelectedDigitChanged">
+            <summary>
+            Indicates the event triggered when the selected digit is changed.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DigitSet.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DigitSet.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Controls.DigitSet.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.DigitSet.SelectedDigitProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.DigitSet.SelectedDigit">
+            <summary>
+            Indicates the selected digit.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Controls.FontPicker">
             <summary>

@@ -50,4 +50,14 @@ public sealed partial class CandidatePicker : UserControl
 	[Callback]
 	private static void SelectedCandidatePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> ((CandidatePicker)d).UpdateControlViaSelectedCandidate((Candidate)e.NewValue);
+
+
+	private void DigitSet_SelectedDigitChanged(DigitSet sender, DigitSetSelectedDigitChangedEventArgs e)
+	{
+		SelectedCandidate = (RowIndexSelector.SelectedDigit * 9 + ColumnIndexSelector.SelectedDigit) * 9 + DigitSelector.SelectedDigit;
+
+		SelectedCandidateChanged?.Invoke(this, new(SelectedCandidate));
+
+		UpdateControlViaSelectedCandidate(SelectedCandidate);
+	}
 }
