@@ -171,16 +171,33 @@ public static class ArrayEnumerable
 	}
 
 	/// <summary>
-	/// Computes the sum of the sequence of <typeparamref name="TInterim"/> values that are obtained by invoking a transform function
+	/// Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
 	/// on each element of the input sequence.
 	/// </summary>
 	/// <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
-	/// <typeparam name="TInterim">The type of interim variables.</typeparam>
-	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, int})"/>
-	public static TInterim Sum<T, TInterim>(this T[] source, Func<T, TInterim> selector)
-		where TInterim : IAdditionOperators<TInterim, TInterim, TInterim>, IAdditiveIdentity<TInterim, TInterim>
+	/// <typeparam name="TResult">The type of the return value.</typeparam>
+	/// <param name="source">Indicates the source values.</param>
+	/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
+	/// <param name="defaultValue">Indicates the result value.</param>
+	/// <returns>The result value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TResult SumNullable<T, TResult>(this T[]? source, Func<T, TResult> selector, TResult defaultValue)
+		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
+		=> source is null ? defaultValue : source.Sum(selector);
+
+	/// <summary>
+	/// Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
+	/// on each element of the input sequence.
+	/// </summary>
+	/// <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
+	/// <typeparam name="TResult">The type of the return value.</typeparam>
+	/// <param name="source">Indicates the source values.</param>
+	/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
+	/// <returns>The result value.</returns>
+	public static TResult Sum<T, TResult>(this T[] source, Func<T, TResult> selector)
+		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
 	{
-		var result = TInterim.AdditiveIdentity;
+		var result = TResult.AdditiveIdentity;
 		foreach (var element in source)
 		{
 			result += selector(element);

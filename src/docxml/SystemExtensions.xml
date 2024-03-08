@@ -2491,14 +2491,28 @@
             An array of <typeparamref name="T"/> instances that contains elements from the input sequence that satisfy the condition.
             </returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})">
+        <member name="M:System.Linq.ArrayEnumerable.SumNullable``2(``0[],System.Func{``0,``1},``1)">
             <summary>
-            Computes the sum of the sequence of <typeparamref name="TInterim"/> values that are obtained by invoking a transform function
+            Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
             on each element of the input sequence.
             </summary>
             <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
-            <typeparam name="TInterim">The type of interim variables.</typeparam>
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32})"/>
+            <typeparam name="TResult">The type of the return value.</typeparam>
+            <param name="source">Indicates the source values.</param>
+            <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
+            <param name="defaultValue">Indicates the result value.</param>
+            <returns>The result value.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})">
+            <summary>
+            Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
+            on each element of the input sequence.
+            </summary>
+            <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
+            <typeparam name="TResult">The type of the return value.</typeparam>
+            <param name="source">Indicates the source values.</param>
+            <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
+            <returns>The result value.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})">
             <summary>
