@@ -34,13 +34,13 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the normal fish technique.
 	/// </summary>
-	[SupportSiamese(true)]
+	[IsSiameseSupported(true)]
 	NormalFish,
 
 	/// <summary>
 	/// Indicates the complex fish technique.
 	/// </summary>
-	[SupportSiamese(true)]
+	[IsSiameseSupported(true)]
 	ComplexFish,
 
 	/// <summary>
@@ -195,7 +195,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the XYZ-Ring technique.
 	/// </summary>
-	[SupportSiamese(true)]
+	[IsSiameseSupported(true)]
 	XyzRing,
 
 	/// <summary>

@@ -12,8 +12,8 @@ public static class TechniqueGroupExtensions
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SupportSiameseRule(this TechniqueGroup @this)
-		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<SupportSiameseAttribute>()?.SupportSiamese ?? false;
+	public static bool SupportsSiamese(this TechniqueGroup @this)
+		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<IsSiameseSupportedAttribute>()?.SupportsSiamese ?? false;
 
 	/// <summary>
 	/// Try to get shortened name of the current <see cref="TechniqueGroup"/> instance. If the group has an abbreviation,

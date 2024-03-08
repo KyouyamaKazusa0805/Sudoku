@@ -779,6 +779,33 @@
             <param name="culture">The culture.</param>
             <returns>The string value.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute">
+            <summary>
+            Represents an attribute type that describes
+            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportsSiamese">
+            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
+            supports for Siamese rule.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute.#ctor(System.Boolean)">
+            <summary>
+            Represents an attribute type that describes
+            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportsSiamese">
+            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
+            supports for Siamese rule.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute.SupportsSiamese">
+            <summary>
+            The generated property declaration for parameter <c>supportsSiamese</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.ReferenceLinkAttribute">
             <summary>
             Represents links the current technique is linked to
@@ -813,25 +840,6 @@
         <member name="P:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.Technique">
             <summary>
             The generated property declaration for parameter <c>technique</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SupportSiameseAttribute">
-            <summary>
-            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SupportSiameseAttribute.#ctor(System.Boolean)">
-            <summary>
-            Represents an attribute type that describes whether a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportSiamese">A <see cref="T:System.Boolean"/> value indicating that.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.SupportSiameseAttribute.SupportSiamese">
-            <summary>
-            The generated property declaration for parameter <c>supportSiamese</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
@@ -3443,6 +3451,13 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Indicates whether the technique supports for Siamese rule.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
@@ -3848,7 +3863,7 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportSiameseRule(Sudoku.Analytics.Categorization.TechniqueGroup)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
             Indicates whether the technique group supports for Siamese rule.
             </summary>

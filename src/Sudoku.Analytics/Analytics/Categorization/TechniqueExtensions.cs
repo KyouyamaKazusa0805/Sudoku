@@ -21,6 +21,16 @@ public static class TechniqueExtensions
 	public static bool IsAssignment(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
 
 	/// <summary>
+	/// Indicates whether the technique supports for Siamese rule.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool SupportsSiamese(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<IsSiameseSupportedAttribute>()?.SupportsSiamese is true
+		|| @this.GetGroup().SupportsSiamese();
+
+	/// <summary>
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
