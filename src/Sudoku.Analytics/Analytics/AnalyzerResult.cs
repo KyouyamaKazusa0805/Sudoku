@@ -309,12 +309,10 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		var culture = converter.CurrentCulture ?? CultureInfo.CurrentUICulture;
 
 		// Print header.
-		scoped var sb = new StringHandler();
+		var sb = new StringBuilder();
 		if (options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(ResourceDictionary.Get("AnalysisResultPuzzle", culture));
-			sb.Append(puzzle.ToString("#"));
-			sb.AppendLine();
+			sb.AppendLine($"{ResourceDictionary.Get("AnalysisResultPuzzle", culture)}{puzzle:#}");
 		}
 
 		// Print solving steps (if worth).
@@ -329,9 +327,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				{
 					if (i > bIndex && !options.HasFlag(FormattingOptions.ShowStepsAfterBottleneck))
 					{
-						sb.Append(ResourceDictionary.Get("Ellipsis", culture));
-						sb.AppendLine();
-
+						sb.AppendLine(ResourceDictionary.Get("Ellipsis", culture));
 						break;
 					}
 
@@ -356,7 +352,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 				if (options.HasFlag(FormattingOptions.ShowBottleneck))
 				{
-					a(ref sb, options.HasFlag(FormattingOptions.ShowSeparators));
+					a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
 
 					sb.Append(ResourceDictionary.Get("AnalysisResultBottleneckStep", culture));
 
@@ -372,23 +368,21 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					sb.AppendLine();
 				}
 
-				a(ref sb, options.HasFlag(FormattingOptions.ShowSeparators));
+				a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
 			}
 		}
 
 		// Print solving step statistics (if worth).
 		if (steps is not null)
 		{
-			sb.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsed", culture));
-			sb.AppendLine();
+			sb.AppendLine(ResourceDictionary.Get("AnalysisResultTechniqueUsed", culture));
 
 			if (options.HasFlag(FormattingOptions.ShowStepDetail))
 			{
-				sb.Append(ResourceDictionary.Get("AnalysisResultMin", culture), 6);
-				sb.Append(',');
-				sb.Append(' ');
-				sb.Append(ResourceDictionary.Get("AnalysisResultTotal", culture), 6);
-				sb.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsing", culture));
+				sb
+					.Append($"{ResourceDictionary.Get("AnalysisResultMin", culture),6}, ")
+					.Append($"{ResourceDictionary.Get("AnalysisResultTotal", culture),6}")
+					.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
 			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
@@ -404,51 +398,31 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 						currentMinimum = Math.Min(currentMinimum, difficulty);
 					}
 
-					sb.Append(currentMinimum, 6, "0.0");
-					sb.Append(',');
-					sb.Append(' ');
-					sb.Append(currentTotal, 6, "0.0");
-					sb.Append(')');
-					sb.Append(' ');
+					sb.Append($"{currentMinimum,6:0.0}, {currentTotal,6:0.0}) ");
 				}
 
-				sb.Append(solvingStepsGroup.Count(), 3);
-				sb.Append(" * ");
-				sb.Append(solvingStepsGroup.Key);
-				sb.AppendLine();
+				sb.AppendLine($"{solvingStepsGroup.Count(),3} * {solvingStepsGroup.Key}");
 			}
 
 			if (options.HasFlag(FormattingOptions.ShowStepDetail))
 			{
-				sb.Append("  (---");
-				sb.Append(total, 8);
-				sb.Append(')');
-				sb.Append(' ');
+				sb.Append($"  (---{total,8}) ");
 			}
 
-			sb.Append(stepsCount, 3);
-			sb.Append(' ');
-			sb.Append(ResourceDictionary.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
-			sb.AppendLine();
+			sb.Append($"{stepsCount,3} ");
+			sb.AppendLine(ResourceDictionary.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 
-			a(ref sb, options.HasFlag(FormattingOptions.ShowSeparators));
+			a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
 		sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleRating", culture));
-		sb.Append(max, "0.0");
-		sb.Append('/');
-		sb.Append(pearl ?? MaximumRatingValueTheory, "0.0");
-		sb.Append('/');
-		sb.Append(diamond ?? MaximumRatingValueTheory, "0.0");
-		sb.AppendLine();
+		sb.AppendLine($"{max:0.0}/{pearl ?? MaximumRatingValueTheory:0.0}/{diamond ?? MaximumRatingValueTheory:0.0}");
 
 		// Print the solution (if not null and worth).
 		if (!solution.IsUndefined && options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
 		{
-			sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleSolution", culture));
-			sb.Append($"{solution:!}");
-			sb.AppendLine();
+			sb.AppendLine($"{ResourceDictionary.Get("AnalysisResultPuzzleSolution", culture)}{solution:!}");
 		}
 
 		// Print the elapsed time.
@@ -461,17 +435,15 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 		sb.AppendLine();
 		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
 		{
-			sb.Append(ResourceDictionary.Get("AnalysisResultTimeElapsed", culture));
-			sb.Append($@"{elapsed:hh\:mm\:ss\.fff}");
-			sb.AppendLine();
+			sb.AppendLine($@"{ResourceDictionary.Get("AnalysisResultTimeElapsed", culture)}{elapsed:hh\:mm\:ss\.fff}");
 		}
 
-		a(ref sb, options.HasFlag(FormattingOptions.ShowSeparators));
-		return sb.ToStringAndClear();
+		a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+		return sb.ToString();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void a(scoped ref StringHandler sb, bool showSeparator)
+		static void a(StringBuilder sb, bool showSeparator)
 		{
 			if (showSeparator)
 			{
