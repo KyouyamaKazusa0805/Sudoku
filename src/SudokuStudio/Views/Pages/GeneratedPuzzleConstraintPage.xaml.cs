@@ -229,61 +229,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			return null;
 		}
 
-#if false
-		//
-		// row label
-		//
-		var rowLabelControl = new TextBlock
-		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_RowLabel", App.CurrentCulture),
-			VerticalAlignment = VerticalAlignment.Center
-		};
-
-		//
-		// row selector
-		//
-		var rowControl = new IntegerBox
-		{
-			Minimum = 1,
-			Maximum = 9,
-			SmallChange = 1,
-			LargeChange = 3,
-			Width = 150,
-			Value = conclusion.Cell / 9 + 1
-		};
-		rowControl.ValueChanged += (_, _) => constraint.Conclusion = new(
-			constraint.Conclusion.ConclusionType,
-			(rowControl.Value - 1) * 9 + constraint.Conclusion.Cell % 9,
-			constraint.Conclusion.Digit
-		);
-
-		//
-		// column label
-		//
-		var columnLabelControl = new TextBlock
-		{
-			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ColumnLabel", App.CurrentCulture),
-			VerticalAlignment = VerticalAlignment.Center
-		};
-
-		//
-		// column selector
-		//
-		var columnControl = new IntegerBox
-		{
-			Minimum = 1,
-			Maximum = 9,
-			SmallChange = 1,
-			LargeChange = 3,
-			Width = 150,
-			Value = conclusion.Cell % 9 + 1
-		};
-		columnControl.ValueChanged += (_, _) => constraint.Conclusion = new(
-			constraint.Conclusion.ConclusionType,
-			constraint.Conclusion.Cell / 9 * 9 + columnControl.Value - 1,
-			constraint.Conclusion.Digit
-		);
-
 		//
 		// conclusion type selector
 		//
@@ -301,7 +246,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Content = ResourceDictionary.Get("_ComparisonOperator_Inequality", App.CurrentCulture),
 					Tag = Elimination
 				}
-			}
+			},
+			VerticalAlignment = VerticalAlignment.Center
 		};
 		EnumBinder<ComboBox, ComboBoxItem, ConclusionType>(
 			conclusionTypeControl,
@@ -309,23 +255,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			value => constraint.Conclusion = new(value, constraint.Conclusion.Candidate)
 		);
 
-		//
-		// number selector
-		//
-		var numberControl = new IntegerBox
-		{
-			Minimum = 1,
-			Maximum = 9,
-			SmallChange = 1,
-			LargeChange = 3,
-			Width = 150,
-			Value = constraint.Conclusion.Digit + 1
-		};
-		numberControl.ValueChanged += (_, _) => constraint.Conclusion = new(
-			constraint.Conclusion.ConclusionType,
-			constraint.Conclusion.Cell,
-			numberControl.Value - 1
-		);
+		var candidatePicker = new CandidatePicker { SelectedCandidate = constraint.Conclusion.Candidate };
+		candidatePicker.SelectedCandidateChanged += selectedCandidateCallback;
 
 		//
 		// appear label
@@ -340,7 +271,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		// appear control
 		//
 		var appearControl = new ToggleSwitch { IsOn = shouldAppear };
-		appearControl.RegisterPropertyChangedCallback(ToggleSwitch.IsOnProperty, (d, _) => constraint.ShouldAppear = ((ToggleSwitch)d).IsOn);
+		appearControl.RegisterPropertyChangedCallback(ToggleSwitch.IsOnProperty, appearControlCallback);
 
 		return new()
 		{
@@ -350,37 +281,16 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = DefaultSpacing,
-				Children =
-				{
-					rowLabelControl,
-					rowControl,
-					columnLabelControl,
-					columnControl,
-					conclusionTypeControl,
-					numberControl,
-					appearLabelControl,
-					appearControl
-				}
+				Children = { conclusionTypeControl, candidatePicker, appearLabelControl, appearControl }
 			},
 			Tag = constraint
 		};
-#else
-		var candidatePicker = new CandidatePicker { SelectedCandidate = 364 }; // r5c5(5)
-		candidatePicker.SelectedCandidateChanged += (_, _) => constraint.Conclusion = new(Elimination, candidatePicker.SelectedCandidate);
 
-		return new()
-		{
-			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Conclusion", App.CurrentCulture),
-			Margin = DefaultMargin,
-			Content = new StackPanel
-			{
-				Orientation = Orientation.Horizontal,
-				Spacing = DefaultSpacing,
-				Children = { candidatePicker }
-			},
-			Tag = constraint
-		};
-#endif
+
+		void selectedCandidateCallback(CandidatePicker _, CandidatePickerSelectedCandidateChangedEventArgs __)
+			=> constraint.Conclusion = new(constraint.Conclusion.ConclusionType, candidatePicker.SelectedCandidate);
+
+		void appearControlCallback(DependencyObject d, DependencyProperty _) => constraint.ShouldAppear = ((ToggleSwitch)d).IsOn;
 	}
 
 	private SettingsCard? Create_Minimal(MinimalConstraint constraint)
