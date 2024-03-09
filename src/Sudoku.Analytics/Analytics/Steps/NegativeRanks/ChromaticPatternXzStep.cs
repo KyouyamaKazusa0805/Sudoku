@@ -25,10 +25,10 @@ public sealed partial class ChromaticPatternXzStep(
 ) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.ChromaticPatternXzRule;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ExtraDigit, .2M)];
+	public override Technique Code => Technique.ChromaticPatternXzRule;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

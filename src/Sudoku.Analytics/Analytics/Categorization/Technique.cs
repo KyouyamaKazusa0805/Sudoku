@@ -4062,6 +4062,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[Abbreviation("SdC")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(SueDeCoqStep))]
+	[BaseDifficulty(5.0)]
+	[SupportedExtraDifficultyRules(Isolated, Cannibalism)]
 	SueDeCoq,
 
 	/// <summary>
@@ -4075,6 +4078,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(SueDeCoqStep))]
+	[BaseDifficulty(5.0)]
+	[SupportedExtraDifficultyRules(Isolated, Cannibalism)]
 	SueDeCoqIsolated,
 
 	/// <summary>
@@ -4083,6 +4089,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(SueDeCoq3DimensionStep))]
+	[BaseDifficulty(5.5)]
 	SueDeCoq3Dimension,
 
 	/// <summary>
@@ -4091,6 +4099,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(SueDeCoqStep))]
+	[BaseDifficulty(5.0)]
+	[SupportedExtraDifficultyRules(Isolated, Cannibalism)]
 	SueDeCoqCannibalism,
 	#endregion
 
@@ -4104,6 +4115,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(FireworkTripleStep))]
+	[BaseDifficulty(6.0)]
 	FireworkTriple,
 
 	/// <summary>
@@ -4112,6 +4125,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(FireworkQuadrupleStep))]
+	[BaseDifficulty(6.3)]
 	FireworkQuadruple,
 	#endregion
 
@@ -4126,6 +4141,8 @@ public enum Technique
 	[HodokuTechniquePrefix("0705")]
 	[TechniqueGroup(TechniqueGroup.BrokenWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(GuardianStep))]
+	[BaseDifficulty(5.5)]
 	BrokenWing,
 	#endregion
 
@@ -4139,6 +4156,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(BivalueOddagonType2Step))]
+	[BaseDifficulty(6.1)]
 	BivalueOddagonType2,
 
 	/// <summary>
@@ -4147,6 +4166,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(BivalueOddagonType3Step))]
+	[BaseDifficulty(6.0)]
+	[SupportedExtraDifficultyRules(Size)]
 	BivalueOddagonType3,
 	#endregion
 
@@ -4162,6 +4184,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ChromaticPatternType1Step))]
+	[BaseDifficulty(6.5)]
 	ChromaticPatternType1,
 
 	/// <summary>
@@ -4200,6 +4224,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RankTheory)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ChromaticPatternXzStep))]
+	[BaseDifficulty(6.7)]
 	ChromaticPatternXzRule,
 	#endregion
 
@@ -4220,6 +4246,8 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.0)]
 	Skyscraper,
 
 	/// <summary>
@@ -4235,6 +4263,8 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.1)]
 	TwoStringKite,
 
 	/// <summary>
@@ -4247,6 +4277,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.6)]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.2)]
 	TurbotFish,
 
 	/// <summary>
@@ -4255,6 +4287,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.2)]
 	GroupedSkyscraper,
 
 	/// <summary>
@@ -4263,6 +4297,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.3)]
 	GroupedTwoStringKite,
 
 	/// <summary>
@@ -4271,6 +4307,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(TwoStrongLinksStep))]
+	[BaseDifficulty(4.4)]
 	GroupedTurbotFish,
 	#endregion
 
@@ -4287,6 +4325,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.EmptyRectangle)]
 	[Abbreviation("ER")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(EmptyRectangleStep))]
+	[BaseDifficulty(4.6)]
 	EmptyRectangle,
 	#endregion
 
