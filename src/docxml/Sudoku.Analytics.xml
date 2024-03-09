@@ -3622,7 +3622,7 @@
             <seealso cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetIntroductionHyperlinks(Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetReferenceLinks(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get all configured links to EnjoySudoku forum describing the current technique.
             </summary>

@@ -114,7 +114,7 @@ public static class TechniqueExtensions
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>All configured links.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] GetIntroductionHyperlinks(this Technique @this)
+	public static string[] GetReferenceLinks(this Technique @this)
 		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
 
 	/// <summary>

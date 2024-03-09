@@ -121,5 +121,5 @@ internal static class TechniqueConversion
 	public static Brush GetBrush(TechniqueFeature feature)
 		=> new SolidColorBrush(feature == TechniqueFeature.None ? Colors.Black : Colors.LightGray);
 
-	public static string[] GetIntroductionLinks(Technique technique) => technique.GetIntroductionHyperlinks();
+	public static string[] GetIntroductionLinks(Technique technique) => technique.GetReferenceLinks();
 }
