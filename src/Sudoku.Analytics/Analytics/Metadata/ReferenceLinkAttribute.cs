@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents links the current technique is linked to

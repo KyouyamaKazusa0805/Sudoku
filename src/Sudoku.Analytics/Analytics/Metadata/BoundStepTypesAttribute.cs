@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Provides with an attribute type that specifies the types where a <see cref="Technique"/> field can be produced.

@@ -775,261 +775,6 @@
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.AbbreviationAttribute">
-            <summary>
-            Represents an attribute type that describes its abbreviation of a technique group.
-            </summary>
-            <param name="abbr">Indicates the abbreviation.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.AbbreviationAttribute.#ctor(System.String)">
-            <summary>
-            Represents an attribute type that describes its abbreviation of a technique group.
-            </summary>
-            <param name="abbr">Indicates the abbreviation.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation">
-            <summary>
-            The generated property declaration for parameter <c>abbr</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.BaseDifficultyAttribute">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="value">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.#ctor(System.Double)">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="value">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.ValueInDirectMode">
-            <summary>
-            Indicates the value that is used in direct mode.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.BaseDifficultyAttribute.Value">
-            <summary>
-            The generated property declaration for parameter <c>value</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.BoundStepTypesAttribute">
-            <summary>
-            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
-            </summary>
-            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.BoundStepTypesAttribute.#ctor(System.Type)">
-            <summary>
-            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
-            </summary>
-            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.BoundStepTypesAttribute.SecondaryTypes">
-            <summary>
-            Indicates the secondary <see cref="T:Sudoku.Analytics.Step"/> types.
-            </summary>
-            <remarks>
-            The types will be used as compatibility. For example, a last digit can be created
-            using <see cref="T:Sudoku.Analytics.Steps.LastDigitStep"/>; however, it can be also created by using <see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>
-            with more arguments. This property will be initialized as <c>[<see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>)]</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.BoundStepTypesAttribute.PrimaryType">
-            <summary>
-            The generated property declaration for parameter <c>primaryType</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.DifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.DifficultyLevelAttribute.Level">
-            <summary>
-            The generated property declaration for parameter <c>level</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevelExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Categorization.DifficultyLevel,System.Globalization.CultureInfo)">
-            <summary>
-            Gets the name of the current value, with specified culture.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="culture">The culture.</param>
-            <returns>The string value.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.ExtraDifficultyFactorsAttribute">
-            <summary>
-            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
-            for which kinds of extra difficulty rating rules.
-            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            </summary>
-            <param name="factorNames">
-            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            If invalid, the value will be skipped and don't work.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.ExtraDifficultyFactorsAttribute.#ctor(System.String[])">
-            <summary>
-            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
-            for which kinds of extra difficulty rating rules.
-            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            </summary>
-            <param name="factorNames">
-            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            If invalid, the value will be skipped and don't work.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.ExtraDifficultyFactorsAttribute.FactorNames">
-            <summary>
-            The generated property declaration for parameter <c>factorNames</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute">
-            <summary>
-            Represents an attribute type that describes
-            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportsSiamese">
-            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
-            supports for Siamese rule.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute.#ctor(System.Boolean)">
-            <summary>
-            Represents an attribute type that describes
-            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportsSiamese">
-            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
-            supports for Siamese rule.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.IsSiameseSupportedAttribute.SupportsSiamese">
-            <summary>
-            The generated property declaration for parameter <c>supportsSiamese</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.ReferenceLinkAttribute">
-            <summary>
-            Represents links the current technique is linked to
-            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
-            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.ReferenceLinkAttribute.#ctor(System.String)">
-            <summary>
-            Represents links the current technique is linked to
-            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
-            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.ReferenceLinkAttribute.Link">
-            <summary>
-            The generated property declaration for parameter <c>link</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute">
-            <summary>
-            Represents an attribute type that describes the related technique of a subtype.
-            </summary>
-            <param name="technique">Indicates the technique related.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.#ctor(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Represents an attribute type that describes the related technique of a subtype.
-            </summary>
-            <param name="technique">Indicates the technique related.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.RelatedTechniqueAttribute.Technique">
-            <summary>
-            The generated property declaration for parameter <c>technique</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
-            <summary>
-            The generated property declaration for parameter <c>features</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
-            <summary>
-            The generated property declaration for parameter <c>group</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
             <summary>
             Provides a difficulty kind for a puzzle.
@@ -1335,27 +1080,6 @@
             Indicates the subtype is Naked Single, with 8 values in the target block.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <summary>
-            Indicates whether the specified subtype is unnecessary in practice.
-            For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
-            </summary>
-            <param name="this">The subtype.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleSubtype)">
-            <summary>
-            Try to get the related technique of the current subtype.
-            </summary>
-            <param name="this">The subtype.</param>
-            <returns>The related technique instance.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechnique">
             <summary>
             Represents prefer way that specifies a kind that a user will perfer using a single technique to fill a grid.
@@ -1370,15 +1094,6 @@
             <summary>
             Indicates a user likes using naked singles to finish a grid.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions.ToTechniqueString(Sudoku.Analytics.Categorization.SingleTechnique,System.Globalization.CultureInfo)">
-            <inheritdoc cref="M:Sudoku.Text.ICultureFormattable.ToString(System.Globalization.CultureInfo)"/>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
@@ -3582,183 +3297,6 @@
             Indicates brute force.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
-            <summary>
-            The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsAssignment(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Determine whether the specified technique produces assignments.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Determines whether the specified technique supports for customization on difficulty values.
-            </summary>
-            <param name="this">The value.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            Today this method always return <see langword="true"/> if the value is defined and not <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>;
-            but it might be changed in the future.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Indicates whether the technique supports for Siamese rule.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetBaseDifficulty(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
-            <summary>
-            Try to get the base difficulty value for the specified technique.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="valueInDirectMode">
-            An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
-            </param>
-            <returns>The difficulty value.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="culture">The culture information.</param>
-            <returns>The name of the current technique.</returns>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the English name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The name of the current technique.</returns>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The abbreviation of the current technique.</returns>
-            <remarks>
-            The routing rule can be described as below:
-            <list type="number">
-            <item>
-            Check whether the field is marked attribute <see cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>,
-            and return property value <see cref="P:Sudoku.Analytics.Categorization.AbbreviationAttribute.Abbreviation"/> if marked.
-            </item>
-            <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
-            <item>If 2) returns <see langword="null"/>, then check its <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>, then return its abbreviation if worth.</item>
-            <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetReferenceLinks(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get all configured links to EnjoySudoku forum describing the current technique.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>All configured links.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="culture">The culture information.</param>
-            <returns>
-            All possible aliases of the current technique.
-            If the technique does not contain any aliases, the return value will be <see langword="null"/>.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetExtraDifficultyFactors(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get all possible configured extra difficulty factors used in this project.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>All configured extra difficulty factors.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.ComplexSingleUsing(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Combine the technique with indirect technique, to produce a new <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field, describing the complex single usage.
-            For example, <see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/> combining with <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPair"/>
-            will produce <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingBlock"/>.
-            </summary>
-            <param name="this">
-            The direct technique used. The value can be:
-            <list type="bullet">
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/></item>
-            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/></item>
-            </list>
-            </param>
-            <param name="indirect">
-            The indirect technique used. The value can be ones of group <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.LockedCandidates"/>
-            and <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.Subset"/>.
-            </param>
-            <returns>The combined result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not a direct technique.</exception>
-            <exception cref="T:System.NotSupportedException">
-            Throws when the argument <paramref name="indirect"/> is neither locked candidates nor subset.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to. If a technique doesn't contain a corresponding group,
-            this method will return <see langword="null"/>. No exception will be thrown.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetGroup(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified <see cref="T:Sudoku.Analytics.Categorization.Technique"/> does not belong to any <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get its static difficulty level for the specified technique.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>
-            The difficulty level that the current technique belongs to.
-            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/> will be returned.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Try to get features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>All found features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.AsTechniqueSet(Sudoku.Analytics.Categorization.Technique[])">
-            <summary>
-            Try to convert the current array instance into a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>The final result.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueFeature">
             <summary>
             Defines a feature flag.
@@ -4033,67 +3571,6 @@
             <summary>
             Indicates the brute force (BF) technique.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Indicates whether the technique group supports for Siamese rule.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Try to get shortened name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance. If the group has an abbreviation,
-            return its abbreviation; otherwise, its full name.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <returns>The shortened name.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get shortened name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance. If the group has an abbreviation,
-            return its abbreviation; otherwise, its full name.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <param name="cultureInfo">The culture information instance.</param>
-            <returns>The shortened name.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <returns>The name.</returns>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <param name="culture">The culture information instance.</param>
-            <returns>The name.</returns>
-            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Try to get abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <returns>The abbreviation.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.
-            </summary>
-            <param name="this">The group to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueMarshal">
             <summary>
@@ -4503,6 +3980,308 @@
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
+            <summary>
+            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
+            <summary>
+            The generated property declaration for parameter <c>features</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group">Indicates the group that the current technique belong to.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Represents an attribute type that describes for a group that the marked technique belongs to.
+            </summary>
+            <param name="group">Indicates the group that the current technique belong to.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
+            <summary>
+            The generated property declaration for parameter <c>group</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Indicates whether the specified subtype is unnecessary in practice.
+            For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Try to get the related technique of the current subtype.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>The related technique instance.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions.ToTechniqueString(Sudoku.Analytics.Categorization.SingleTechnique,System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Text.ICultureFormattable.ToString(System.Globalization.CultureInfo)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
+            <summary>
+            The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsAssignment(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the specified technique produces assignments.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determines whether the specified technique supports for customization on difficulty values.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            Today this method always return <see langword="true"/> if the value is defined and not <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>;
+            but it might be changed in the future.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Indicates whether the technique supports for Siamese rule.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetBaseDifficulty(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
+            <summary>
+            Try to get the base difficulty value for the specified technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="valueInDirectMode">
+            An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
+            </param>
+            <returns>The difficulty value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="culture">The culture information.</param>
+            <returns>The name of the current technique.</returns>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetEnglishName(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the English name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The name of the current technique.</returns>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The abbreviation of the current technique.</returns>
+            <remarks>
+            The routing rule can be described as below:
+            <list type="number">
+            <item>
+            Check whether the field is marked attribute <see cref="T:Sudoku.Analytics.Metadata.AbbreviationAttribute"/>,
+            and return property value <see cref="P:Sudoku.Analytics.Metadata.AbbreviationAttribute.Abbreviation"/> if marked.
+            </item>
+            <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
+            <item>If 2) returns <see langword="null"/>, then check its <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>, then return its abbreviation if worth.</item>
+            <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
+            </list>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Metadata.AbbreviationAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetReferenceLinks(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get all configured links to EnjoySudoku forum describing the current technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>All configured links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="culture">The culture information.</param>
+            <returns>
+            All possible aliases of the current technique.
+            If the technique does not contain any aliases, the return value will be <see langword="null"/>.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetExtraDifficultyFactors(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get all possible configured extra difficulty factors used in this project.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>All configured extra difficulty factors.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.ComplexSingleUsing(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Combine the technique with indirect technique, to produce a new <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field, describing the complex single usage.
+            For example, <see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/> combining with <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPair"/>
+            will produce <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenPairCrosshatchingBlock"/>.
+            </summary>
+            <param name="this">
+            The direct technique used. The value can be:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingBlock"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingRow"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.CrosshatchingColumn"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/></item>
+            </list>
+            </param>
+            <param name="indirect">
+            The indirect technique used. The value can be ones of group <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.LockedCandidates"/>
+            and <see cref="F:Sudoku.Analytics.Categorization.TechniqueGroup.Subset"/>.
+            </param>
+            <returns>The combined result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not a direct technique.</exception>
+            <exception cref="T:System.NotSupportedException">
+            Throws when the argument <paramref name="indirect"/> is neither locked candidates nor subset.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.TryGetGroup(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to. If a technique doesn't contain a corresponding group,
+            this method will return <see langword="null"/>. No exception will be thrown.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetGroup(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the group that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> value that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> belongs to.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified <see cref="T:Sudoku.Analytics.Categorization.Technique"/> does not belong to any <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get its static difficulty level for the specified technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            The difficulty level that the current technique belongs to.
+            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/> will be returned.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>All found features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.AsTechniqueSet(Sudoku.Analytics.Categorization.Technique[])">
+            <summary>
+            Try to convert the current array instance into a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Indicates whether the technique group supports for Siamese rule.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get shortened name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance. If the group has an abbreviation,
+            return its abbreviation; otherwise, its full name.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>The shortened name.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetShortenedName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get shortened name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance. If the group has an abbreviation,
+            return its abbreviation; otherwise, its full name.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <param name="cultureInfo">The culture information instance.</param>
+            <returns>The shortened name.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>The name.</returns>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <param name="culture">The culture information instance.</param>
+            <returns>The name.</returns>
+            <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get abbreviation of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
+            <returns>The abbreviation.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <summary>
+            Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.
+            </summary>
+            <param name="this">The group to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
@@ -4758,6 +4537,164 @@
         <member name="M:Sudoku.Analytics.GridFeature.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.AbbreviationAttribute">
+            <summary>
+            Represents an attribute type that describes its abbreviation of a technique group.
+            </summary>
+            <param name="abbr">Indicates the abbreviation.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.AbbreviationAttribute.#ctor(System.String)">
+            <summary>
+            Represents an attribute type that describes its abbreviation of a technique group.
+            </summary>
+            <param name="abbr">Indicates the abbreviation.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.AbbreviationAttribute.Abbreviation">
+            <summary>
+            The generated property declaration for parameter <c>abbr</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.BaseDifficultyAttribute">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.#ctor(System.Double)">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.ValueInDirectMode">
+            <summary>
+            Indicates the value that is used in direct mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.BoundStepTypesAttribute">
+            <summary>
+            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
+            </summary>
+            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.#ctor(System.Type)">
+            <summary>
+            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
+            </summary>
+            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.SecondaryTypes">
+            <summary>
+            Indicates the secondary <see cref="T:Sudoku.Analytics.Step"/> types.
+            </summary>
+            <remarks>
+            The types will be used as compatibility. For example, a last digit can be created
+            using <see cref="T:Sudoku.Analytics.Steps.LastDigitStep"/>; however, it can be also created by using <see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>
+            with more arguments. This property will be initialized as <c>[<see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>)]</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.PrimaryType">
+            <summary>
+            The generated property declaration for parameter <c>primaryType</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.DifficultyLevelAttribute.Level">
+            <summary>
+            The generated property declaration for parameter <c>level</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Categorization.DifficultyLevel,System.Globalization.CultureInfo)">
+            <summary>
+            Gets the name of the current value, with specified culture.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="culture">The culture.</param>
+            <returns>The string value.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute">
+            <summary>
+            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
+            for which kinds of extra difficulty rating rules.
+            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            </summary>
+            <param name="factorNames">
+            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            If invalid, the value will be skipped and don't work.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute.#ctor(System.String[])">
+            <summary>
+            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
+            for which kinds of extra difficulty rating rules.
+            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            </summary>
+            <param name="factorNames">
+            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
+            If invalid, the value will be skipped and don't work.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
+            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute.FactorNames">
+            <summary>
+            The generated property declaration for parameter <c>factorNames</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -4824,6 +4761,33 @@
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute">
+            <summary>
+            Represents an attribute type that describes
+            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportsSiamese">
+            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
+            supports for Siamese rule.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute.#ctor(System.Boolean)">
+            <summary>
+            Represents an attribute type that describes
+            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
+            </summary>
+            <param name="supportsSiamese">
+            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
+            supports for Siamese rule.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute.SupportsSiamese">
+            <summary>
+            The generated property declaration for parameter <c>supportsSiamese</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.MissingDifficultyLevelException">
             <summary>
             Represents an exception that describes for a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for difficulty level attribute.
@@ -4831,7 +4795,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.#ctor(System.String)">
             <summary>
@@ -4840,7 +4804,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
             <inheritdoc/>
@@ -4874,6 +4838,42 @@
         <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.MemberName">
             <summary>
             The generated property declaration for parameter <c>memberName</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.ReferenceLinkAttribute">
+            <summary>
+            Represents links the current technique is linked to
+            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
+            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.ReferenceLinkAttribute.#ctor(System.String)">
+            <summary>
+            Represents links the current technique is linked to
+            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
+            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.ReferenceLinkAttribute.Link">
+            <summary>
+            The generated property declaration for parameter <c>link</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute">
+            <summary>
+            Represents an attribute type that describes the related technique of a subtype.
+            </summary>
+            <param name="technique">Indicates the technique related.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute.#ctor(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Represents an attribute type that describes the related technique of a subtype.
+            </summary>
+            <param name="technique">Indicates the technique related.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute.Technique">
+            <summary>
+            The generated property declaration for parameter <c>technique</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifier">

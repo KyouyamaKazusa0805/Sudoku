@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents an attribute type that describes its abbreviation of a technique group.

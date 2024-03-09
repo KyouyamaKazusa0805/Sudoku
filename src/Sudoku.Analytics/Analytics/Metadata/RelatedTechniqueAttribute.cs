@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics.Metadata;
 
 /// <summary>
 /// Represents an attribute type that describes the related technique of a subtype.
