@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.Categorization;
 
+using static ExtraDifficultyFactorNames;
+
 /// <summary>
 /// Represents a technique instance, which is used for comparison.
 /// </summary>
@@ -40,7 +42,7 @@ public enum Technique
 	[HodokuTechniquePrefix("0001")]
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
-	[RuntimeStepTypes(typeof(LastDigitStep), typeof(HiddenSingleStep))]
+	[RuntimeStepTypes(typeof(LastDigitStep), SecondaryTypes = [typeof(HiddenSingleStep)])]
 	[BaseDifficulty(1.1)]
 	LastDigit,
 
@@ -150,7 +152,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(3.0)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	PointingFullHouse,
 
 	/// <summary>
@@ -161,7 +163,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(3.0)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	ClaimingFullHouse,
 
 	/// <summary>
@@ -172,7 +174,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairFullHouse,
 
 	/// <summary>
@@ -183,7 +185,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlusFullHouse,
 
 	/// <summary>
@@ -194,7 +196,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPairFullHouse,
 
 	/// <summary>
@@ -205,7 +207,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPairFullHouse,
 
 	/// <summary>
@@ -216,7 +218,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPairFullHouse,
 
 	/// <summary>
@@ -227,7 +229,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTripleFullHouse,
 
 	/// <summary>
@@ -238,7 +240,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlusFullHouse,
 
 	/// <summary>
@@ -249,7 +251,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTripleFullHouse,
 
 	/// <summary>
@@ -260,7 +262,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTripleFullHouse,
 
 	/// <summary>
@@ -271,7 +273,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTripleFullHouse,
 
 	/// <summary>
@@ -282,7 +284,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadrupleFullHouse,
 
 	/// <summary>
@@ -293,7 +295,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlusFullHouse,
 
 	/// <summary>
@@ -304,7 +306,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadrupleFullHouse,
 
 	/// <summary>
@@ -315,7 +317,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(3.2)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	PointingCrosshatchingBlock,
 
 	/// <summary>
@@ -326,7 +328,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(3.2)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	ClaimingCrosshatchingBlock,
 
 	/// <summary>
@@ -337,7 +339,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -348,7 +350,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlusCrosshatchingBlock,
 
 	/// <summary>
@@ -359,7 +361,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -370,7 +372,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -381,7 +383,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -392,7 +394,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -403,7 +405,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -414,7 +416,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -425,7 +427,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -436,7 +438,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -447,7 +449,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -458,7 +460,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -469,7 +471,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -480,7 +482,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	PointingCrosshatchingRow,
 
 	/// <summary>
@@ -491,7 +493,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	ClaimingCrosshatchingRow,
 
 	/// <summary>
@@ -502,7 +504,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairCrosshatchingRow,
 
 	/// <summary>
@@ -513,7 +515,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlusCrosshatchingRow,
 
 	/// <summary>
@@ -524,7 +526,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -535,7 +537,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPairCrosshatchingRow,
 
 	/// <summary>
@@ -546,7 +548,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -557,7 +559,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -568,7 +570,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -579,7 +581,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -590,7 +592,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -601,7 +603,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -612,7 +614,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -623,7 +625,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -634,7 +636,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -645,7 +647,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	PointingCrosshatchingColumn,
 
 	/// <summary>
@@ -656,7 +658,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	ClaimingCrosshatchingColumn,
 
 	/// <summary>
@@ -667,7 +669,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -678,7 +680,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlusCrosshatchingColumn,
 
 	/// <summary>
@@ -689,7 +691,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -700,7 +702,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -711,7 +713,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -722,7 +724,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -733,7 +735,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -744,7 +746,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -755,7 +757,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -766,7 +768,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -777,7 +779,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -788,7 +790,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -799,7 +801,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -810,7 +812,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(5.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	PointingNakedSingle,
 
 	/// <summary>
@@ -821,7 +823,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectIntersectionStep))]
 	[BaseDifficulty(5.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	ClaimingNakedSingle,
 
 	/// <summary>
@@ -832,7 +834,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairNakedSingle,
 
 	/// <summary>
@@ -843,7 +845,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlusNakedSingle,
 
 	/// <summary>
@@ -854,7 +856,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPairNakedSingle,
 
 	/// <summary>
@@ -865,7 +867,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPairNakedSingle,
 
 	/// <summary>
@@ -876,7 +878,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPairNakedSingle,
 
 	/// <summary>
@@ -887,7 +889,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTripleNakedSingle,
 
 	/// <summary>
@@ -898,7 +900,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlusNakedSingle,
 
 	/// <summary>
@@ -909,7 +911,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTripleNakedSingle,
 
 	/// <summary>
@@ -920,7 +922,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTripleNakedSingle,
 
 	/// <summary>
@@ -931,7 +933,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTripleNakedSingle,
 
 	/// <summary>
@@ -942,7 +944,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadrupleNakedSingle,
 
 	/// <summary>
@@ -953,7 +955,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.3)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlusNakedSingle,
 
 	/// <summary>
@@ -964,7 +966,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[RuntimeStepTypes(typeof(DirectSubsetStep))]
 	[BaseDifficulty(3.7)]
-	[SupportedExtraDifficultyRules(ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadrupleNakedSingle,
 	#endregion
 
@@ -983,6 +985,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(2.6)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(LockedCandidatesStep))]
+	[BaseDifficulty(2.6)]
 	Pointing,
 
 	/// <summary>
@@ -996,6 +1000,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(2.8)]
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(LockedCandidatesStep))]
+	[BaseDifficulty(2.8)]
 	Claiming,
 
 	/// <summary>
@@ -1006,6 +1012,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[Abbreviation("LoL")]
+	[RuntimeStepTypes(typeof(LawOfLeftoverStep))]
+	[BaseDifficulty(2.0)]
 	LawOfLeftover,
 	#endregion
 
@@ -1023,6 +1031,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.0)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPair,
 
 	/// <summary>
@@ -1031,6 +1042,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Pair.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedPairPlus,
 
 	/// <summary>
@@ -1046,6 +1060,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedPair,
 
 	/// <summary>
@@ -1058,6 +1075,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.4)]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(HiddenSubsetStep))]
+	[BaseDifficulty(3.4)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenPair,
 
 	/// <summary>
@@ -1066,6 +1086,9 @@ public enum Technique
 	[HodokuTechniquePrefix("0110-2")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(HiddenSubsetStep))]
+	[BaseDifficulty(3.4)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenPair,
 
 	/// <summary>
@@ -1079,6 +1102,9 @@ public enum Technique
 	[SudokuExplainerNames("Naked Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriple,
 
 	/// <summary>
@@ -1087,6 +1113,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Triple.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedTriplePlus,
 
 	/// <summary>
@@ -1102,6 +1131,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedTriple,
 
 	/// <summary>
@@ -1115,6 +1147,9 @@ public enum Technique
 	[SudokuExplainerNames("Hidden Triplet")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(HiddenSubsetStep))]
+	[BaseDifficulty(3.4)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenTriple,
 
 	/// <summary>
@@ -1123,6 +1158,9 @@ public enum Technique
 	[HodokuTechniquePrefix("0111-2")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(HiddenSubsetStep))]
+	[BaseDifficulty(3.4)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	LockedHiddenTriple,
 
 	/// <summary>
@@ -1136,6 +1174,9 @@ public enum Technique
 	[SudokuExplainerNames("Naked Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruple,
 
 	/// <summary>
@@ -1144,6 +1185,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Naked_Quad.html")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(NakedSubsetStep))]
+	[BaseDifficulty(3.0)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	NakedQuadruplePlus,
 
 	/// <summary>
@@ -1157,6 +1201,9 @@ public enum Technique
 	[SudokuExplainerNames("Hidden Quad")]
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
+	[RuntimeStepTypes(typeof(HiddenSubsetStep))]
+	[BaseDifficulty(3.4)]
+	[SupportedExtraDifficultyRules(Size, Locked)]
 	HiddenQuadruple,
 	#endregion
 
@@ -1175,6 +1222,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	XWing,
 
 	/// <summary>
@@ -1189,6 +1239,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	FinnedXWing,
 
 	/// <summary>
@@ -1202,6 +1255,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.5, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SashimiXWing,
 
 	/// <summary>
@@ -1211,6 +1267,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseFinnedXWing,
 
 	/// <summary>
@@ -1219,6 +1278,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseSashimiXWing,
 
 	/// <summary>
@@ -1230,6 +1292,9 @@ public enum Technique
 	[HodokuDifficultyRating(300, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenXWing,
 
 	/// <summary>
@@ -1242,6 +1307,9 @@ public enum Technique
 	[HodokuDifficultyRating(390, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenXWing,
 
 	/// <summary>
@@ -1251,6 +1319,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenXWing,
 
 	/// <summary>
@@ -1261,6 +1332,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenXWing,
 
 	/// <summary>
@@ -1269,6 +1343,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenXWing,
 
 	/// <summary>
@@ -1280,6 +1357,9 @@ public enum Technique
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantXWing,
 
 	/// <summary>
@@ -1292,6 +1372,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantXWing,
 
 	/// <summary>
@@ -1301,6 +1384,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantXWing,
 
 	/// <summary>
@@ -1311,6 +1397,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantXWing,
 
 	/// <summary>
@@ -1320,6 +1409,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantXWing,
 
 	/// <summary>
@@ -1333,6 +1425,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(3.8)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	Swordfish,
 
 	/// <summary>
@@ -1347,6 +1442,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.0, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	FinnedSwordfish,
 
 	/// <summary>
@@ -1360,6 +1458,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SashimiSwordfish,
 
 	/// <summary>
@@ -1369,6 +1470,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseFinnedSwordfish,
 
 	/// <summary>
@@ -1377,6 +1481,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseSashimiSwordfish,
 
 	/// <summary>
@@ -1390,6 +1497,9 @@ public enum Technique
 	[HodokuDifficultyRating(350, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenSwordfish,
 
 	/// <summary>
@@ -1403,6 +1513,9 @@ public enum Technique
 	[HodokuDifficultyRating(410, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenSwordfish,
 
 	/// <summary>
@@ -1413,6 +1526,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenSwordfish,
 
 	/// <summary>
@@ -1424,6 +1540,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenSwordfish,
 
 	/// <summary>
@@ -1434,6 +1553,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenSwordfish,
 
 	/// <summary>
@@ -1446,6 +1568,9 @@ public enum Technique
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantSwordfish,
 
 	/// <summary>
@@ -1459,6 +1584,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantSwordfish,
 
 	/// <summary>
@@ -1469,6 +1597,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantSwordfish,
 
 	/// <summary>
@@ -1480,6 +1611,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantSwordfish,
 
 	/// <summary>
@@ -1490,6 +1624,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Swordfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantSwordfish,
 
 	/// <summary>
@@ -1503,6 +1640,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.2)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	Jellyfish,
 
 	/// <summary>
@@ -1517,6 +1657,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	FinnedJellyfish,
 
 	/// <summary>
@@ -1530,6 +1673,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SashimiJellyfish,
 
 	/// <summary>
@@ -1539,6 +1685,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseFinnedJellyfish,
 
 	/// <summary>
@@ -1547,6 +1696,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(NormalFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi)]
 	SiameseSashimiJellyfish,
 
 	/// <summary>
@@ -1559,6 +1711,9 @@ public enum Technique
 	[HodokuDifficultyRating(370, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenJellyfish,
 
 	/// <summary>
@@ -1572,6 +1727,9 @@ public enum Technique
 	[HodokuDifficultyRating(430, HodokuDifficultyLevel.Unfair)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenJellyfish,
 
 	/// <summary>
@@ -1582,6 +1740,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenJellyfish,
 
 	/// <summary>
@@ -1593,6 +1754,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenJellyfish,
 
 	/// <summary>
@@ -1603,6 +1767,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenJellyfish,
 
 	/// <summary>
@@ -1615,6 +1782,9 @@ public enum Technique
 	[HodokuDifficultyRating(450, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantJellyfish,
 
 	/// <summary>
@@ -1628,6 +1798,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantJellyfish,
 
 	/// <summary>
@@ -1638,6 +1811,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantJellyfish,
 
 	/// <summary>
@@ -1649,6 +1825,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantJellyfish,
 
 	/// <summary>
@@ -1659,6 +1838,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Jellyfish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantJellyfish,
 
 	/// <summary>
@@ -1703,6 +1885,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedSquirmbag,
 
@@ -1711,6 +1894,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiSquirmbag,
 
@@ -1724,6 +1908,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenSquirmbag,
 
 	/// <summary>
@@ -1736,6 +1923,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenSquirmbag,
 
 	/// <summary>
@@ -1745,6 +1935,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -1755,6 +1948,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenSquirmbag,
 
 	/// <summary>
@@ -1764,6 +1960,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenSquirmbag,
 
 	/// <summary>
@@ -1776,6 +1975,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantSquirmbag,
 
 	/// <summary>
@@ -1788,6 +1990,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantSquirmbag,
 
 	/// <summary>
@@ -1797,6 +2002,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantSquirmbag,
 
 	/// <summary>
@@ -1807,6 +2015,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantSquirmbag,
 
 	/// <summary>
@@ -1816,6 +2027,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantSquirmbag,
 
 	/// <summary>
@@ -1860,6 +2074,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedWhale,
 
@@ -1868,6 +2083,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiWhale,
 
@@ -1881,6 +2097,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenWhale,
 
 	/// <summary>
@@ -1893,6 +2112,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenWhale,
 
 	/// <summary>
@@ -1902,6 +2124,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenWhale,
 
 	/// <summary>
@@ -1912,6 +2137,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenWhale,
 
 	/// <summary>
@@ -1921,6 +2149,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenWhale,
 
 	/// <summary>
@@ -1933,6 +2164,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantWhale,
 
 	/// <summary>
@@ -1945,6 +2179,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantWhale,
 
 	/// <summary>
@@ -1954,6 +2191,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantWhale,
 
 	/// <summary>
@@ -1964,6 +2204,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantWhale,
 
 	/// <summary>
@@ -1973,6 +2216,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantWhale,
 
 	/// <summary>
@@ -2017,6 +2263,7 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2793")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseFinnedLeviathan,
 
@@ -2025,6 +2272,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html")]
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
+	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	SiameseSashimiLeviathan,
 
@@ -2038,6 +2286,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenLeviathan,
 
 	/// <summary>
@@ -2050,6 +2301,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenLeviathan,
 
 	/// <summary>
@@ -2059,6 +2313,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenLeviathan,
 
 	/// <summary>
@@ -2069,6 +2326,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenLeviathan,
 
 	/// <summary>
@@ -2078,6 +2338,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Franken_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenLeviathan,
 
 	/// <summary>
@@ -2090,6 +2353,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	MutantLeviathan,
 
 	/// <summary>
@@ -2102,6 +2368,9 @@ public enum Technique
 	[HodokuDifficultyRating(470, HodokuDifficultyLevel.Extreme)]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantLeviathan,
 
 	/// <summary>
@@ -2111,6 +2380,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantLeviathan,
 
 	/// <summary>
@@ -2121,6 +2393,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantLeviathan,
 
 	/// <summary>
@@ -2130,6 +2405,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Mutant_Fish.html")]
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexFishStep))]
+	[BaseDifficulty(3.2)]
+	[SupportedExtraDifficultyRules(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantLeviathan,
 	#endregion
 
@@ -2147,6 +2425,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.2)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	XyWing,
 
 	/// <summary>
@@ -2159,6 +2440,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.4)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	XyzWing,
 
 	/// <summary>
@@ -2170,6 +2454,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	WxyzWing,
 
 	/// <summary>
@@ -2179,6 +2466,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	VwxyzWing,
 
 	/// <summary>
@@ -2188,6 +2478,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	UvwxyzWing,
 
 	/// <summary>
@@ -2197,6 +2490,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	TuvwxyzWing,
 
 	/// <summary>
@@ -2206,6 +2502,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	StuvwxyzWing,
 
 	/// <summary>
@@ -2215,6 +2514,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	RstuvwxyzWing,
 
 	/// <summary>
@@ -2223,6 +2525,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteWxyzWing,
 
 	/// <summary>
@@ -2230,6 +2535,9 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteVwxyzWing,
 
 	/// <summary>
@@ -2238,6 +2546,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
@@ -2246,6 +2557,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
@@ -2254,6 +2568,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
@@ -2262,6 +2579,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(RegularWingStep))]
+	[BaseDifficulty(4.2)]
+	[SupportedExtraDifficultyRules(Size, Incompleteness)]
 	IncompleteRstuvwxyzWing,
 	#endregion
 
@@ -2279,6 +2599,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(WWingStep))]
+	[BaseDifficulty(4.4)]
 	WWing,
 
 	/// <summary>
@@ -2287,6 +2609,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(MultiBranchWWingStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(Size)]
 	MultiBranchWWing,
 
 	/// <summary>
@@ -2295,6 +2620,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(WWingStep))]
+	[BaseDifficulty(4.4)]
 	GroupedWWing,
 
 	/// <summary>
@@ -2302,6 +2629,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(MWingStep))]
+	[BaseDifficulty(4.5)]
 	MWing,
 
 	/// <summary>
@@ -2309,6 +2638,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(MWingStep))]
+	[BaseDifficulty(4.5)]
 	GroupedMWing,
 
 	/// <summary>
@@ -2316,6 +2647,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(SWingStep))]
+	[BaseDifficulty(4.7)]
 	SWing,
 
 	/// <summary>
@@ -2323,6 +2656,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(SWingStep))]
+	[BaseDifficulty(4.7)]
 	GroupedSWing,
 
 	/// <summary>
@@ -2331,6 +2666,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(LWingStep))]
+	[BaseDifficulty(4.8)]
 	LWing,
 
 	/// <summary>
@@ -2339,6 +2676,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(LWingStep))]
+	[BaseDifficulty(4.8)]
 	GroupedLWing,
 
 	/// <summary>
@@ -2347,6 +2686,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(HWingStep))]
+	[BaseDifficulty(4.7)]
 	HWing,
 
 	/// <summary>
@@ -2355,6 +2696,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(HWingStep))]
+	[BaseDifficulty(4.7)]
 	GroupedHWing,
 	#endregion
 

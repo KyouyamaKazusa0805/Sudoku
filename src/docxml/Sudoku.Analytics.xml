@@ -892,21 +892,31 @@
             <summary>
             Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
             </summary>
-            <param name="stepTypes">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.#ctor(System.Type[])">
+        <member name="M:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.#ctor(System.Type)">
             <summary>
             Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
             </summary>
-            <param name="stepTypes">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
+            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
-        <member name="P:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.StepTypes">
+        <member name="P:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.SecondaryTypes">
             <summary>
-            The generated property declaration for parameter <c>stepTypes</c>.
+            Indicates the secondary <see cref="T:Sudoku.Analytics.Step"/> types.
+            </summary>
+            <remarks>
+            The types will be used as compatibility. For example, a last digit can be created
+            using <see cref="T:Sudoku.Analytics.Steps.LastDigitStep"/>; however, it can be also created by using <see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>
+            with more arguments. This property will be initialized as <c>[<see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>)]</c>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.RuntimeStepTypesAttribute.PrimaryType">
+            <summary>
+            The generated property declaration for parameter <c>primaryType</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SupportedExtraDifficultyRulesAttribute">

@@ -35,8 +35,7 @@ public sealed partial class ComplexFishStep(
 	bool? isSashimi,
 	[PrimaryConstructorParameter] bool isCannibalism,
 	bool isSiamese = false
-) :
-	FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese)
+) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.2M;
