@@ -133,8 +133,8 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	public static AlmostLockedSet ParseExact(string str, CoordinateParser parser)
-		=> str.SplitBy(['/']) is [var digitsStr, var cellsStrAndHouseStr]
-			? cellsStrAndHouseStr.SplitBy([' ']) is [var cellsStr, _, _]
+		=> str.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
+			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
 				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));

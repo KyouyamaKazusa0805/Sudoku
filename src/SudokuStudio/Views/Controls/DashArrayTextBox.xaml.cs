@@ -25,7 +25,7 @@ public sealed partial class DashArrayTextBox : UserControl
 			return;
 		}
 
-		var values = from element in CoreBox.Text.SplitBy([',']) select double.TryParse(element, out var r) && r is >= 0 and <= 10 ? r : 0;
+		var values = from element in CoreBox.Text.SplitBy(',') select double.TryParse(element, out var r) && r is >= 0 and <= 10 ? r : 0;
 		if (Array.FindAll(values, static value => value == 0).Length >= 2)
 		{
 			DashArrayChanged?.Invoke(this, DashArray = []);

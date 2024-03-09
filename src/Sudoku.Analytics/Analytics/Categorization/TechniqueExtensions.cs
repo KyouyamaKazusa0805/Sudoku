@@ -109,21 +109,6 @@ public static class TechniqueExtensions
 		);
 
 	/// <summary>
-	/// Try to get all aliases of the current <see cref="Technique"/>.
-	/// </summary>
-	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <param name="cultureInfo">The culture information.</param>
-	/// <returns>
-	/// All possible aliases of the current technique.
-	/// If the technique does not contain any aliases, the return value will be <see langword="null"/>.
-	/// </returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[]? GetAliases(this Technique @this, CultureInfo? cultureInfo = null)
-		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, cultureInfo ?? CultureInfo.CurrentUICulture)
-			? resource.SplitBy([';'])
-			: null;
-
-	/// <summary>
 	/// Try to get all configured links to EnjoySudoku forum describing the current technique.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
@@ -131,6 +116,21 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetIntroductionHyperlinks(this Technique @this)
 		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
+
+	/// <summary>
+	/// Try to get all aliases of the current <see cref="Technique"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <param name="culture">The culture information.</param>
+	/// <returns>
+	/// All possible aliases of the current technique.
+	/// If the technique does not contain any aliases, the return value will be <see langword="null"/>.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string[]? GetAliasedNames(this Technique @this, CultureInfo? culture = null)
+		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, culture ?? CultureInfo.CurrentUICulture)
+			? resource.SplitBy(';')
+			: null;
 
 	/// <summary>
 	/// Try to get all possible configured extra difficulty factors used in this project.

@@ -208,7 +208,7 @@ public static partial class StringExtensions
 	/// <param name="this">The array itself.</param>
 	/// <param name="separator">The separator characters.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[] SplitBy(this string @this, char[] separator)
+	public static string[] SplitBy(this string @this, params char[] separator)
 		=> @this.Split(separator, StringSplitOptions.RemoveEmptyEntries | StringSplitOptions.TrimEntries);
 
 	/// <summary>

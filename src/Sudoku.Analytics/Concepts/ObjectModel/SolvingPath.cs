@@ -218,7 +218,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 					return pair;
 				}
 
-				var aliases = step.Code.GetAliases();
+				var aliases = step.Code.GetAliasedNames();
 				if (aliases is not null && Array.Exists(aliases, nameEquality))
 				{
 					return pair;

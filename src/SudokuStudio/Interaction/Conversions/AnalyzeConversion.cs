@@ -128,7 +128,7 @@ internal static class AnalyzeConversion
 			result.Add(
 				new Run
 				{
-					Text = technique.GetAliases(App.CurrentCulture) is { } aliases and not []
+					Text = technique.GetAliasedNames(App.CurrentCulture) is { } aliases and not []
 						? string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), aliases)
 						: ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture)
 				}

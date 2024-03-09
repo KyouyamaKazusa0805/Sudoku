@@ -11,7 +11,7 @@ public sealed record HodokuTripletParser : IConceptParser<CandidateMap>
 	public Func<string, CandidateMap> Parser
 		=> static str =>
 		{
-			var segments = str.SplitBy([' ']);
+			var segments = str.SplitBy(' ');
 			if (Array.IndexOf(segments, string.Empty) != -1)
 			{
 				throw new FormatException(ResourceDictionary.ExceptionMessage("ContainsEmptySegmentOnParsing"));

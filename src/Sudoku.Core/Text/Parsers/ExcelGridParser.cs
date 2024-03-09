@@ -28,7 +28,7 @@ public sealed record ExcelGridParser : IConceptParser<Grid>
 				return Grid.Undefined;
 			}
 
-			if (str.SplitBy(['\r', '\n']) is not { Length: 9 } values)
+			if (str.SplitBy('\r', '\n') is not { Length: 9 } values)
 			{
 				return Grid.Undefined;
 			}
@@ -36,7 +36,7 @@ public sealed record ExcelGridParser : IConceptParser<Grid>
 			var sb = new StringBuilder(81);
 			foreach (var value in values)
 			{
-				foreach (var digitString in value.Split(['\t']))
+				foreach (var digitString in value.Split('\t'))
 				{
 					sb.Append(string.IsNullOrEmpty(digitString) ? '.' : digitString[0]);
 				}

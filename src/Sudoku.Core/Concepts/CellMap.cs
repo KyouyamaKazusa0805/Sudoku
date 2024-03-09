@@ -165,7 +165,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString(GlobalizedConverter.InvariantCultureConverter).SplitBy([',', ' ']) : [];
+	public readonly string[] StringChunks => this ? ToString(GlobalizedConverter.InvariantCultureConverter).SplitBy(',', ' ') : [];
 
 	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.

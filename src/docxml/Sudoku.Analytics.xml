@@ -3622,23 +3622,23 @@
             <seealso cref="T:Sudoku.Analytics.Categorization.AbbreviationAttribute"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliases(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
-            <summary>
-            Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="cultureInfo">The culture information.</param>
-            <returns>
-            All possible aliases of the current technique.
-            If the technique does not contain any aliases, the return value will be <see langword="null"/>.
-            </returns>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetIntroductionHyperlinks(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get all configured links to EnjoySudoku forum describing the current technique.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>All configured links.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <param name="culture">The culture information.</param>
+            <returns>
+            All possible aliases of the current technique.
+            If the technique does not contain any aliases, the return value will be <see langword="null"/>.
+            </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetExtraDifficultyFactors(Sudoku.Analytics.Categorization.Technique)">
             <summary>
