@@ -39,6 +39,9 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 )
 {
 	/// <inheritdoc/>
+	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
+
+	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
 		=> [
 			new(ExtraDifficultyFactorNames.Guardian, A004526(GuardianCells.Count) * .1M),

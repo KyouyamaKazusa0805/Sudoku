@@ -2703,11 +2703,6 @@
             Indicates avoidable rectangle sue de coq.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleBrokenWing">
-            <summary>
-            Indicates avoidable rectangle guardian.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.AvoidableRectangleHiddenSingleBlock">
             <summary>
             Indicates avoidable rectangle hidden single in block.
@@ -14163,6 +14158,9 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
@@ -21716,11 +21714,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangle3X">
             <summary>
               Looks up a localized string similar to Avoidable Rectangle + 3X.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleBrokenWing">
-            <summary>
-              Looks up a localized string similar to Avoidable Rectangle Guardian.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.AvoidableRectangleExternalAlmostLockedSetsXz">

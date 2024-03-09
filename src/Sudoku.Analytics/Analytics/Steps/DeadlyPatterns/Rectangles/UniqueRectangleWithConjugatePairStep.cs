@@ -27,7 +27,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
-	public sealed override decimal BaseDifficulty => 4.4M;
+	public sealed override decimal BaseDifficulty => base.BaseDifficulty - .1M;
 
 	/// <inheritdoc/>
 	public sealed override ExtraDifficultyFactor[] ExtraDifficultyFactors

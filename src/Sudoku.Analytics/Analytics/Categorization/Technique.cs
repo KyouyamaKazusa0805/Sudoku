@@ -2714,6 +2714,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALP")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AlmostLockedCandidatesStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ValueCell)]
 	AlmostLockedPair,
 
 	/// <summary>
@@ -2725,6 +2728,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[Abbreviation("ALT")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AlmostLockedCandidatesStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ValueCell)]
 	AlmostLockedTriple,
 
 	/// <summary>
@@ -2737,6 +2743,9 @@ public enum Technique
 	[Abbreviation("ALQ")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AlmostLockedCandidatesStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ValueCell)]
 	AlmostLockedQuadruple,
 
 	/// <summary>
@@ -2747,6 +2756,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AlmostLockedCandidatesStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ValueCell)]
 	AlmostLockedTripleValueType,
 
 	/// <summary>
@@ -2757,6 +2769,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AlmostLockedCandidatesStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ValueCell)]
 	AlmostLockedQuadrupleValueType,
 	#endregion
 
@@ -2774,6 +2789,9 @@ public enum Technique
 	[HodokuAliasedNames("Subset Counting")]
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ExtendedSubsetPrincipleStep))]
+	[BaseDifficulty(5.5)]
+	[SupportedExtraDifficultyRules(Size)]
 	ExtendedSubsetPrinciple,
 	#endregion
 
@@ -2795,6 +2813,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType1Step))]
+	[BaseDifficulty(4.5)]
 	UniqueRectangleType1,
 
 	/// <summary>
@@ -2812,6 +2832,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType2Step))]
+	[BaseDifficulty(4.6)]
 	UniqueRectangleType2,
 
 	/// <summary>
@@ -2829,6 +2851,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType3Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, Hidden)]
 	UniqueRectangleType3,
 
 	/// <summary>
@@ -2846,6 +2871,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair)]
 	UniqueRectangleType4,
 
 	/// <summary>
@@ -2861,6 +2889,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType2Step))]
+	[BaseDifficulty(4.5)]
 	UniqueRectangleType5,
 
 	/// <summary>
@@ -2876,6 +2906,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair)]
 	UniqueRectangleType6,
 
 	/// <summary>
@@ -2892,6 +2925,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[Abbreviation("HUR")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	HiddenUniqueRectangle,
 
 	/// <summary>
@@ -2903,6 +2939,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangle2DOr3XStep))]
+	[BaseDifficulty(4.6)]
 	UniqueRectangle2D,
 
 	/// <summary>
@@ -2913,6 +2951,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle2B1,
 
 	/// <summary>
@@ -2923,6 +2964,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle2D1,
 
 	/// <summary>
@@ -2934,6 +2978,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangle2DOr3XStep))]
+	[BaseDifficulty(4.6)]
 	UniqueRectangle3X,
 
 	/// <summary>
@@ -2964,6 +3010,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle3X2,
 
 	/// <summary>
@@ -2974,6 +3023,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle3N2,
 
 	/// <summary>
@@ -2984,6 +3036,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle3U2,
 
 	/// <summary>
@@ -2994,6 +3049,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle3E2,
 
 	/// <summary>
@@ -3044,6 +3102,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle4X3,
 
 	/// <summary>
@@ -3054,6 +3115,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	UniqueRectangle4C3,
 
 	/// <summary>
@@ -3064,6 +3128,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	UniqueRectangleXyWing,
 
 	/// <summary>
@@ -3074,6 +3141,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	UniqueRectangleXyzWing,
 
 	/// <summary>
@@ -3084,6 +3154,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	UniqueRectangleWxyzWing,
 
 	/// <summary>
@@ -3094,6 +3167,11 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+#if UNIQUE_RECTANGLE_W_WING
+	[RuntimeStepTypes(typeof(UniqueRectangleWWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable)]
+#endif
 	UniqueRectangleWWing,
 
 	/// <summary>
@@ -3104,6 +3182,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithSueDeCoqStep))]
+	[BaseDifficulty(5.0)]
+	[SupportedExtraDifficultyRules(Size, Isolated, Cannibalism, Avoidable)]
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
@@ -3114,6 +3195,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithBabaGroupingStep))]
+	[BaseDifficulty(4.9)]
 	UniqueRectangleBabaGrouping,
 
 	/// <summary>
@@ -3124,6 +3207,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
+	[BaseDifficulty(4.5)]
 	UniqueRectangleExternalType1,
 
 	/// <summary>
@@ -3134,6 +3219,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
+	[BaseDifficulty(4.5)]
 	UniqueRectangleExternalType2,
 
 	/// <summary>
@@ -3144,6 +3231,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType3Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Size, Avoidable, Incompleteness)]
 	UniqueRectangleExternalType3,
 
 	/// <summary>
@@ -3154,6 +3244,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType4Step))]
+	[BaseDifficulty(4.7)]
+	[SupportedExtraDifficultyRules(Avoidable, Incompleteness)]
 	UniqueRectangleExternalType4,
 
 	/// <summary>
@@ -3164,6 +3257,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalTurbotFishStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Guardian, Incompleteness)]
 	UniqueRectangleExternalTurbotFish,
 
 	/// <summary>
@@ -3174,6 +3270,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalWWingStep))]
+	[BaseDifficulty(4.8)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalWWing,
 
 	/// <summary>
@@ -3184,6 +3283,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalXyWingStep))]
+	[BaseDifficulty(4.7)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalXyWing,
 
 	/// <summary>
@@ -3194,6 +3296,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalAlmostLockedSetsXzStep))]
+	[BaseDifficulty(4.8)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -3211,6 +3316,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType1Step))]
+	[BaseDifficulty(4.5)]
 	AvoidableRectangleType1,
 
 	/// <summary>
@@ -3223,6 +3330,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType2Step))]
+	[BaseDifficulty(4.6)]
 	AvoidableRectangleType2,
 
 	/// <summary>
@@ -3231,6 +3340,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType3Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, Hidden)]
 	AvoidableRectangleType3,
 
 	/// <summary>
@@ -3239,6 +3351,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleType2Step))]
+	[BaseDifficulty(4.5)]
 	AvoidableRectangleType5,
 
 	/// <summary>
@@ -3248,6 +3362,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[Abbreviation("HAR")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
+	[BaseDifficulty(4.4)]
+	[SupportedExtraDifficultyRules(ConjugatePair, Avoidable)]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
@@ -3257,6 +3374,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangle2DOr3XStep))]
+	[BaseDifficulty(4.6)]
 	AvoidableRectangle2D,
 
 	/// <summary>
@@ -3266,6 +3385,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangle2DOr3XStep))]
+	[BaseDifficulty(4.6)]
 	AvoidableRectangle3X,
 
 	/// <summary>
@@ -3274,6 +3395,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	AvoidableRectangleXyWing,
 
 	/// <summary>
@@ -3282,6 +3406,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	AvoidableRectangleXyzWing,
 
 	/// <summary>
@@ -3290,6 +3417,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable, WingSize)]
 	AvoidableRectangleWxyzWing,
 
 	/// <summary>
@@ -3298,6 +3428,11 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+#if UNIQUE_RECTANGLE_W_WING
+	[RuntimeStepTypes(typeof(UniqueRectangleWWingStep))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Avoidable)]
+#endif
 	AvoidableRectangleWWing,
 
 	/// <summary>
@@ -3306,15 +3441,10 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleWithSueDeCoqStep))]
+	[BaseDifficulty(5.0)]
+	[SupportedExtraDifficultyRules(Size, Isolated, Cannibalism, Avoidable)]
 	AvoidableRectangleSueDeCoq,
-
-	/// <summary>
-	/// Indicates avoidable rectangle guardian.
-	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[DifficultyLevel(DifficultyLevel.Fiendish)]
-	AvoidableRectangleBrokenWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.
@@ -3322,6 +3452,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
+	[BaseDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleBlock,
 
 	/// <summary>
@@ -3330,6 +3462,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
+	[BaseDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleRow,
 
 	/// <summary>
@@ -3338,6 +3472,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
+	[BaseDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
@@ -3346,6 +3482,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
+	[BaseDifficulty(4.5)]
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
@@ -3354,6 +3492,8 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
+	[BaseDifficulty(4.5)]
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
@@ -3362,6 +3502,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType3Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Size, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
@@ -3370,6 +3513,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalType4Step))]
+	[BaseDifficulty(4.7)]
+	[SupportedExtraDifficultyRules(Avoidable, Incompleteness)]
 	AvoidableRectangleExternalType4,
 
 	/// <summary>
@@ -3378,6 +3524,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalXyWingStep))]
+	[BaseDifficulty(4.7)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalXyWing,
 
 	/// <summary>
@@ -3387,6 +3536,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalWWingStep))]
+	[BaseDifficulty(4.8)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalWWing,
 
 	/// <summary>
@@ -3395,6 +3547,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueRectangleExternalAlmostLockedSetsXzStep))]
+	[BaseDifficulty(4.8)]
+	[SupportedExtraDifficultyRules(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
 

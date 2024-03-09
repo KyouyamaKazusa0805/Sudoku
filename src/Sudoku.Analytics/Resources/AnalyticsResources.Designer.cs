@@ -394,15 +394,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Avoidable Rectangle Guardian.
-        /// </summary>
-        public static string AvoidableRectangleBrokenWing {
-            get {
-                return ResourceManager.GetString("AvoidableRectangleBrokenWing", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Avoidable Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
         public static string AvoidableRectangleExternalAlmostLockedSetsXz {

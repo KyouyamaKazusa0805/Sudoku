@@ -28,17 +28,7 @@ public sealed partial class UniqueRectangleWithWingStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap petals,
 	[PrimaryConstructorParameter] Mask extraDigitsMask,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	code,
-	digit1,
-	digit2,
-	in cells,
-	isAvoidable,
-	absoluteOffset
-)
+) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors

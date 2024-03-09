@@ -1014,9 +1014,6 @@
   <data name="AvoidableRectangleSueDeCoq" xml:space="preserve">
     <value>Avoidable Rectangle Sue de Coq</value>
   </data>
-  <data name="AvoidableRectangleBrokenWing" xml:space="preserve">
-    <value>Avoidable Rectangle Guardian</value>
-  </data>
   <data name="AvoidableRectangleHiddenSingleBlock" xml:space="preserve">
     <value>Avoidable Rectangle Hidden Single in Block</value>
   </data>
