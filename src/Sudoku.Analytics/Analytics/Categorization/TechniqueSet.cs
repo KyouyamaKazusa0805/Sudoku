@@ -271,7 +271,7 @@ public sealed partial class TechniqueSet :
 			[
 				..
 				from technique in this
-				let name = technique.GetName()
+				let name = technique.GetName(culture)
 				select isCurrentCountryOrRegionUseEnglish ? $"{name}" : $"{name} ({technique.GetEnglishName()})"
 			]
 		);
