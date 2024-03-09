@@ -70,7 +70,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	protected static abstract TElement MaxCount { get; }
 
 	/// <inheritdoc/>
-	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => (TSelf)[];
+	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => [];
 
 
 	/// <summary>
