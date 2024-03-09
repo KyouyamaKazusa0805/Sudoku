@@ -13475,7 +13475,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType2Step.FormatInterpolationParts">
@@ -13556,6 +13556,9 @@ if (student is (name: var name, age: >= 18))
             <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType4Step.FormatInterpolationParts">
@@ -13651,6 +13654,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.Type">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -13723,7 +13729,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.FormatInterpolationParts">
@@ -13882,7 +13888,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.FormatInterpolationParts">
@@ -13976,7 +13982,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.FormatInterpolationParts">

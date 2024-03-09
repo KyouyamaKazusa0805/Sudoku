@@ -3884,6 +3884,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BorescoperDeadlyPatternType1Step))]
+	[BaseDifficulty(5.3)]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
@@ -3891,6 +3893,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BorescoperDeadlyPatternType2Step))]
+	[BaseDifficulty(5.5)]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
@@ -3898,6 +3902,9 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BorescoperDeadlyPatternType3Step))]
+	[BaseDifficulty(5.3)]
+	[SupportedExtraDifficultyRules(Size)]
 	BorescoperDeadlyPatternType3,
 
 	/// <summary>
@@ -3905,6 +3912,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BorescoperDeadlyPatternType4Step))]
+	[BaseDifficulty(5.5)]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -3919,6 +3928,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternType1Step))]
+	[BaseDifficulty(5.8)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
@@ -3928,6 +3939,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternType2Step))]
+	[BaseDifficulty(5.9)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
@@ -3937,6 +3950,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternType3Step))]
+	[BaseDifficulty(5.8)]
+	[SupportedExtraDifficultyRules(Size)]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
@@ -3946,6 +3962,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternType4Step))]
+	[BaseDifficulty(6.0)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
@@ -3955,6 +3973,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternLockedTypeStep))]
+	[BaseDifficulty(6.0)]
 	LockedQiuDeadlyPattern,
 
 	/// <summary>
@@ -3964,6 +3984,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternExternalType1Step))]
+	[BaseDifficulty(6.0)]
 	QiuDeadlyPatternExternalType1,
 
 	/// <summary>
@@ -3973,6 +3995,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(QiuDeadlyPatternExternalType2Step))]
+	[BaseDifficulty(6.1)]
 	QiuDeadlyPatternExternalType2,
 	#endregion
 
@@ -3986,6 +4010,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueMatrixType1Step))]
+	[BaseDifficulty(5.3)]
 	UniqueMatrixType1,
 
 	/// <summary>
@@ -3994,6 +4020,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueMatrixType2Step))]
+	[BaseDifficulty(5.4)]
 	UniqueMatrixType2,
 
 	/// <summary>
@@ -4002,6 +4030,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueMatrixType3Step))]
+	[BaseDifficulty(5.3)]
+	[SupportedExtraDifficultyRules(Size)]
 	UniqueMatrixType3,
 
 	/// <summary>
@@ -4010,6 +4041,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniqueMatrixType4Step))]
+	[BaseDifficulty(5.5)]
 	UniqueMatrixType4,
 	#endregion
 

@@ -28,6 +28,9 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+
+	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [PatternStr, DigitStr, CellsStr]), new(ChineseLanguage, [PatternStr, CellsStr, DigitStr])];
 

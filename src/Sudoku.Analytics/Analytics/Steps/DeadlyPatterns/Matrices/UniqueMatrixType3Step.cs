@@ -25,7 +25,7 @@ public sealed partial class UniqueMatrixType3Step(
 
 	/// <inheritdoc/>
 	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M)];
+		=> [new(ExtraDifficultyFactorNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

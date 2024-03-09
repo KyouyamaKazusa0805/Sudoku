@@ -17,10 +17,10 @@ public abstract partial class UniqueMatrixStep(
 ) : DeadlyPatternStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override bool OnlyUseBivalueCells => true;
+	public sealed override bool OnlyUseBivalueCells => true;
 
 	/// <inheritdoc/>
-	public sealed override decimal BaseDifficulty => 5.3M;
+	public override decimal BaseDifficulty => 5.3M;
 
 	/// <summary>
 	/// Indicates the type of the current technique step.
