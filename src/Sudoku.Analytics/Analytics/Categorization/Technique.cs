@@ -4343,6 +4343,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.6, 6.9)]
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	XChain,
 
 	/// <summary>
@@ -4355,6 +4358,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	YChain,
 
 	/// <summary>
@@ -4367,6 +4373,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	FishyCycle,
 
 	/// <summary>
@@ -4378,6 +4387,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	XyChain,
 
 	/// <summary>
@@ -4387,6 +4399,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.6, 7.0)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	XyCycle,
 
 	/// <summary>
@@ -4395,6 +4410,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	XyXChain,
 
 	/// <summary>
@@ -4405,6 +4423,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	RemotePair,
 
 	/// <summary>
@@ -4413,6 +4434,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	PurpleCow,
 
 	/// <summary>
@@ -4427,6 +4451,9 @@ public enum Technique
 	[Abbreviation("DNL")]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	DiscontinuousNiceLoop,
 
 	/// <summary>
@@ -4440,6 +4467,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("CNL")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -4453,6 +4483,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[Abbreviation("AIC")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ForcingChainStep))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -4565,6 +4598,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(RegionForcingChainsStep))]
+	[BaseDifficulty(8.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -4576,6 +4612,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(8.2, 8.6)]
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(CellForcingChainsStep))]
+	[BaseDifficulty(8.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	CellForcingChains,
 
 	/// <summary>
@@ -4588,6 +4627,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[RuntimeStepTypes(typeof(RegionForcingChainsStep))]
+	[BaseDifficulty(8.5)]
+	[SupportedExtraDifficultyRules(Length)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -4600,6 +4642,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[RuntimeStepTypes(typeof(CellForcingChainsStep))]
+	[BaseDifficulty(8.5)]
+	[SupportedExtraDifficultyRules(Length)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -4612,6 +4657,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[RuntimeStepTypes(typeof(BinaryForcingChainsStep))]
+	[BaseDifficulty(9.5)]
+	[SupportedExtraDifficultyRules(Length)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -4624,6 +4672,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[RuntimeStepTypes(typeof(BinaryForcingChainsStep))]
+	[BaseDifficulty(9.5)]
+	[SupportedExtraDifficultyRules(Length)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -4645,6 +4696,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BlossomLoop)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
+	[RuntimeStepTypes(typeof(BlossomLoopStep))]
+	[BaseDifficulty(8.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	BlossomLoop,
 	#endregion
 
@@ -4664,6 +4718,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.2)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlignedExclusionStep))]
+	[BaseDifficulty(6.2)]
 	AlignedPairExclusion,
 
 	/// <summary>
@@ -4677,6 +4733,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(7.5)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlignedExclusionStep))]
+	[BaseDifficulty(7.5)]
 	AlignedTripleExclusion,
 
 	/// <summary>
@@ -4686,6 +4744,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlignedExclusionStep))]
+	[BaseDifficulty(8.1)]
 	AlignedQuadrupleExclusion,
 
 	/// <summary>
@@ -4695,6 +4755,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlignedExclusion)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlignedExclusionStep))]
+	[BaseDifficulty(8.4)]
 	AlignedQuintupleExclusion,
 	#endregion
 
@@ -4708,6 +4770,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.0)]
 	XyzLoop,
 
 	/// <summary>
@@ -4716,6 +4780,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.0)]
 	SiameseXyzLoop,
 
 	/// <summary>
@@ -4724,6 +4790,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.2)]
 	XyzNiceLoop,
 
 	/// <summary>
@@ -4732,6 +4800,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.2)]
 	SiameseXyzNiceLoop,
 
 	/// <summary>
@@ -4740,6 +4810,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.0)]
 	GroupedXyzLoop,
 
 	/// <summary>
@@ -4748,6 +4820,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.0)]
 	SiameseGroupedXyzLoop,
 
 	/// <summary>
@@ -4756,6 +4830,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.2)]
 	GroupedXyzNiceLoop,
 
 	/// <summary>
@@ -4764,6 +4840,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(XyzRingStep))]
+	[BaseDifficulty(5.2)]
 	SiameseGroupedXyzNiceLoop,
 	#endregion
 
@@ -4782,6 +4860,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XZ")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlmostLockedSetsXzStep))]
+	[BaseDifficulty(5.5)]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -4794,6 +4874,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XZ")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlmostLockedSetsXzStep))]
+	[BaseDifficulty(5.7)]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -4807,6 +4889,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-XY-Wing")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlmostLockedSetsXyWingStep))]
+	[BaseDifficulty(6.0)]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
@@ -4815,6 +4899,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedSetsChainingLike)]
 	[Abbreviation("ALS-W-Wing")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AlmostLockedSetsWWingStep))]
+	[BaseDifficulty(6.2)]
 	AlmostLockedSetsWWing,
 
 	/// <summary>
@@ -4840,6 +4926,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.EmptyRectangleIntersectionPair)]
 	[Abbreviation("ERIP")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(EmptyRectangleIntersectionPairStep))]
+	[BaseDifficulty(6.0)]
 	EmptyRectangleIntersectionPair,
 	#endregion
 
@@ -4856,6 +4944,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[Abbreviation("DB")]
+	[RuntimeStepTypes(typeof(DeathBlossomStep))]
+	[BaseDifficulty(8.2)]
+	[SupportedExtraDifficultyRules(Petals)]
 	DeathBlossom,
 
 	/// <summary>
@@ -4864,6 +4955,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(HouseDeathBlossomStep))]
+	[BaseDifficulty(8.3)]
+	[SupportedExtraDifficultyRules(Petals)]
 	HouseDeathBlossom,
 
 	/// <summary>
@@ -4872,6 +4966,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(RectangleDeathBlossomStep))]
+	[BaseDifficulty(8.5)]
+	[SupportedExtraDifficultyRules(Petals)]
 	RectangleDeathBlossom,
 
 	/// <summary>
@@ -4880,6 +4977,9 @@ public enum Technique
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Death_Blossom.html")]
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(NTimesAlmostLockedSetDeathBlossomStep))]
+	[BaseDifficulty(8.7)]
+	[SupportedExtraDifficultyRules(Petals)]
 	NTimesAlmostLockedSetDeathBlossom,
 	#endregion
 
@@ -4895,6 +4995,8 @@ public enum Technique
 	[Abbreviation("GSP")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(GurthSymmetricalPlacementStep))]
+	[BaseDifficulty(7.0)]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
@@ -4912,6 +5014,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Symmetry)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(AntiGurthSymmetricalPlacementStep), SecondaryTypes = [typeof(GurthSymmetricalPlacementStep)])]
+	[BaseDifficulty(7.3)]
 	AntiGurthSymmetricalPlacement,
 	#endregion
 
@@ -5228,6 +5332,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.DominoLoop)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(DominoLoopStep))]
+	[BaseDifficulty(9.6)]
 	DominoLoop,
 	#endregion
 
@@ -5243,6 +5349,8 @@ public enum Technique
 	[Abbreviation("MSLS")]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(MultisectorLockedSetsStep))]
+	[BaseDifficulty(9.4)]
 	MultisectorLockedSets,
 	#endregion
 
@@ -5258,6 +5366,8 @@ public enum Technique
 	[Abbreviation("POM")]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
+	[RuntimeStepTypes(typeof(PatternOverlayStep))]
+	[BaseDifficulty(8.5)]
 	PatternOverlay,
 	#endregion
 
@@ -5274,6 +5384,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Templating)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
+	[RuntimeStepTypes(typeof(TemplateStep))]
+	[BaseDifficulty(9.0)]
 	TemplateSet,
 
 	/// <summary>
@@ -5285,6 +5397,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Templating)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
+	[RuntimeStepTypes(typeof(TemplateStep))]
+	[BaseDifficulty(9.0)]
 	TemplateDelete,
 	#endregion
 
@@ -5299,6 +5413,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
+	[RuntimeStepTypes(typeof(BowmanBingoStep))]
+	[BaseDifficulty(8.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	BowmanBingo,
 	#endregion
 
@@ -5316,6 +5433,8 @@ public enum Technique
 	[Abbreviation("BF")]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
+	[RuntimeStepTypes(typeof(BruteForceStep))]
+	[BaseDifficulty((double)AnalyzerResult.MaximumRatingValueTheory)]
 	BruteForce,
 	#endregion
 }
