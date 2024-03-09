@@ -2317,7 +2317,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 #if SEARCH_JUNIOR_EXOCET
-	private static JuniorExocetGeneralizedFishStepConclusion? CheckGeneralizedFish(
+	private static JuniorExocetGeneralizedFishStep? CheckGeneralizedFish(
 		scoped ref AnalysisContext context,
 		Grid grid,
 		scoped ref readonly CellMap baseCells,
@@ -2366,7 +2366,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		var step = new JuniorExocetGeneralizedFishStepConclusion(
+		var step = new JuniorExocetGeneralizedFishStep(
 			[.. conclusions],
 			[
 				[

@@ -5030,6 +5030,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[Abbreviation("JE")]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetBaseStep))]
+	[BaseDifficulty(9.4)]
 	JuniorExocet,
 
 	/// <summary>
@@ -5038,6 +5040,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetBaseStep))]
+	[BaseDifficulty(9.4)]
 	JuniorExocetConjugatePair,
 
 	/// <summary>
@@ -5046,6 +5050,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetMirrorConjugatePairStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	JuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -5054,6 +5061,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetAdjacentTargetStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	JuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -5062,6 +5072,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetIncompatiblePairStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(IncompatiblePair)]
 	JuniorExocetIncompatiblePair,
 
 	/// <summary>
@@ -5070,6 +5083,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetTargetPairStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(TargetPair)]
 	JuniorExocetTargetPair,
 
 	/// <summary>
@@ -5078,6 +5094,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetGeneralizedFishStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(GeneralizedFish)]
 	JuniorExocetGeneralizedFish,
 
 	/// <summary>
@@ -5086,6 +5105,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetMirrorAlmostHiddenSetStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(AlmostHiddenSet)]
 	JuniorExocetMirrorAlmostHiddenSet,
 
 	/// <summary>
@@ -5094,6 +5116,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetLockedMemberStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	JuniorExocetLockedMember,
 
 	/// <summary>
@@ -5102,6 +5127,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(JuniorExocetMirrorSyncStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	JuniorExocetMirrorSync,
 
 	/// <summary>
@@ -5111,6 +5139,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("SE")]
+	[RuntimeStepTypes(typeof(ExocetBaseStep))]
+	[BaseDifficulty(9.6)]
 	SeniorExocet,
 
 	/// <summary>
@@ -5119,6 +5149,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetMirrorConjugatePairStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	SeniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -5127,6 +5160,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ExocetLockedMemberStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	SeniorExocetLockedMember,
 
 	/// <summary>
@@ -5135,6 +5171,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(SeniorExocetTrueBaseStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(TrueBase)]
 	SeniorExocetTrueBase,
 
 	/// <summary>
@@ -5145,6 +5184,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("WE")]
+	[RuntimeStepTypes(typeof(WeakExocetStep))]
+	[BaseDifficulty(9.7)]
+	[SupportedExtraDifficultyRules(MissingStabilityBalancer)]
 	WeakExocet,
 
 	/// <summary>
@@ -5154,6 +5196,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(WeakExocetAdjacentTargetStep))]
+	[BaseDifficulty(9.7)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	WeakExocetAdjacentTarget,
 
 	/// <summary>
@@ -5163,6 +5208,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(WeakExocetSlashStep))]
+	[BaseDifficulty(9.7)]
+	[SupportedExtraDifficultyRules(SlashElimination)]
 	WeakExocetSlash,
 
 	/// <summary>
@@ -5172,6 +5220,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(WeakExocetBzRectangleStep))]
+	[BaseDifficulty(9.7)]
+	[SupportedExtraDifficultyRules(BzRectangle)]
 	WeakExocetBzRectangle,
 
 	/// <summary>
@@ -5181,6 +5232,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/weak-exocet-t39651.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(WeakExocetStep))]
+	[BaseDifficulty(9.7)]
+	[SupportedExtraDifficultyRules(MissingStabilityBalancer)]
 	LameWeakExocet,
 
 	/// <summary>
@@ -5189,6 +5243,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetBaseStep))]
+	[BaseDifficulty(9.8)]
 	FrankenJuniorExocet,
 
 	/// <summary>
@@ -5197,6 +5253,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetLockedMemberStep))]
+	[BaseDifficulty(9.8)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	FrankenJuniorExocetLockedMember,
 
 	/// <summary>
@@ -5205,6 +5264,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexJuniorExocetAdjacentTargetStep))]
+	[BaseDifficulty(9.8)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	FrankenJuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -5213,6 +5275,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexJuniorExocetMirrorConjugatePairStep))]
+	[BaseDifficulty(9.8)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	FrankenJuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -5221,6 +5286,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetBaseStep))]
+	[BaseDifficulty(10.0)]
 	MutantJuniorExocet,
 
 	/// <summary>
@@ -5229,6 +5296,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetLockedMemberStep))]
+	[BaseDifficulty(10.0)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	MutantJuniorExocetLockedMember,
 
 	/// <summary>
@@ -5237,6 +5307,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexJuniorExocetAdjacentTargetStep))]
+	[BaseDifficulty(10.0)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	MutantJuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -5245,6 +5318,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexJuniorExocetMirrorConjugatePairStep))]
+	[BaseDifficulty(10.0)]
+	[SupportedExtraDifficultyRules(Mirror)]
 	MutantJuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -5253,6 +5329,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetBaseStep))]
+	[BaseDifficulty(10.0)]
 	FrankenSeniorExocet,
 
 	/// <summary>
@@ -5261,6 +5339,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetLockedMemberStep))]
+	[BaseDifficulty(10.0)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	FrankenSeniorExocetLockedMember,
 
 	/// <summary>
@@ -5269,6 +5350,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
+	[BaseDifficulty(9.8)]
 	AdvancedFrankenSeniorExocet,
 
 	/// <summary>
@@ -5277,6 +5360,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetBaseStep))]
+	[BaseDifficulty(10.2)]
 	MutantSeniorExocet,
 
 	/// <summary>
@@ -5285,6 +5370,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(ComplexExocetLockedMemberStep))]
+	[BaseDifficulty(10.2)]
+	[SupportedExtraDifficultyRules(LockedMember)]
 	MutantSeniorExocetLockedMember,
 
 	/// <summary>
@@ -5293,6 +5381,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
+	[BaseDifficulty(10.1)]
 	AdvancedMutantSeniorExocet,
 
 	/// <summary>
@@ -5301,6 +5391,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(DoubleExocetBaseStep))]
+	[BaseDifficulty(9.4)]
 	DoubleExocet,
 
 	/// <summary>
@@ -5309,6 +5401,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
+	[RuntimeStepTypes(typeof(DoubleExocetGeneralizedFishStep))]
+	[BaseDifficulty(9.4)]
+	[SupportedExtraDifficultyRules(GeneralizedFish)]
 	DoubleExocetGeneralizedFish,
 
 	/// <summary>

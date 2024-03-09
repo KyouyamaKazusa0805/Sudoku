@@ -15593,6 +15593,9 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Code">
             <inheritdoc/>
         </member>
@@ -15803,7 +15806,7 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>singleMirrors</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion">
+        <member name="T:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Fish)</b> technique.
             </summary>
@@ -15816,7 +15819,7 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Fish)</b> technique.
             </summary>
@@ -15829,13 +15832,13 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStepConclusion.TargetPairMask">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.TargetPairMask">
             <summary>
             The generated property declaration for parameter <c>targetPairMask</c>.
             </summary>

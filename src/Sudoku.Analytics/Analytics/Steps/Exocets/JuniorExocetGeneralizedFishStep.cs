@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="baseCells"><inheritdoc/></param>
 /// <param name="targetCells"><inheritdoc/></param>
 /// <param name="crosslineCells"><inheritdoc/></param>
-public sealed partial class JuniorExocetGeneralizedFishStepConclusion(
+public sealed partial class JuniorExocetGeneralizedFishStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
