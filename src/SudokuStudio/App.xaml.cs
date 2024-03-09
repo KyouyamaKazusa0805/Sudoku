@@ -29,7 +29,7 @@ public partial class App : Application
 	/// Indicates the project-wide <see cref="Sudoku.Analytics.Analyzer"/> instance.
 	/// </summary>
 	/// <seealso cref="Sudoku.Analytics.Analyzer"/>
-	public Analyzer Analyzer { get; } = PredefinedAnalyzers.Default;
+	public Analyzer Analyzer { get; } = Analyzers.Default;
 
 	/// <summary>
 	/// Indicates the project-wide <see cref="Sudoku.Analytics.Collector"/> instance.

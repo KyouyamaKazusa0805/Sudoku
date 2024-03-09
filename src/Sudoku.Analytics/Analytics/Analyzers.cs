@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Represents a list of <see cref="Analyzer"/> instances that are already configured.
 /// </summary>
 /// <seealso cref="Analyzer"/>
-public static class PredefinedAnalyzers
+public static class Analyzers
 {
 	/// <summary>
 	/// Indicates the default <see cref="Analyzer"/> instance that has no extra configuration.
@@ -61,12 +61,12 @@ public static class PredefinedAnalyzers
 	/// <seealso cref="NormalSubsetStepSearcher"/>
 	public static Analyzer SstsOnly
 		=> Default
-			.WithStepSearchers([
+			.WithStepSearchers(
 				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = false },
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
 				new NormalSubsetStepSearcher()
-			])
+			)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 	/// <summary>
@@ -74,7 +74,7 @@ public static class PredefinedAnalyzers
 	/// </summary>
 	public static Analyzer SudokuExplainer
 		=> Default
-			.WithStepSearchers([
+			.WithStepSearchers(
 				new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = false },
 				new LockedSubsetStepSearcher(),
 				new LockedCandidatesStepSearcher(),
@@ -87,7 +87,7 @@ public static class PredefinedAnalyzers
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
 				new NonMultipleChainingStepSearcher(),
 				new MultipleChainingStepSearcher()
-			])
+			)
 			.WithAlgorithmLimits(false, false)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 }

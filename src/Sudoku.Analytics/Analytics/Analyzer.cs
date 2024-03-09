@@ -8,13 +8,13 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <remarks>
 /// Please note that this type has no accessible constructors,
-/// you can just use type <see cref="PredefinedAnalyzers"/> to get <see cref="Analyzer"/>s you want to get.
+/// you can just use type <see cref="Analyzers"/> to get <see cref="Analyzer"/>s you want to get.
 /// In addition, you can also use <see cref="AnalyzerFactory"/> to create some extra configuration.
 /// </remarks>
 /// <seealso cref="AnalyzerResult"/>
-/// <seealso cref="PredefinedAnalyzers"/>
+/// <seealso cref="Analyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
-/// <completionlist cref="PredefinedAnalyzers"/>
+/// <completionlist cref="Analyzers"/>
 public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<Analyzer, AnalyzerResult>, IRandomizedAnalyzer<Analyzer, AnalyzerResult>
 {
 	/// <summary>

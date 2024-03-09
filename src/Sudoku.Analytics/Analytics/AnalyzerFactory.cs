@@ -72,6 +72,11 @@ public static class AnalyzerFactory
 		return @this;
 	}
 
+	/// <inheritdoc cref="WithStepSearchers(Analyzer, StepSearcher[], DifficultyLevel)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Analyzer WithStepSearchers(this Analyzer @this, params StepSearcher[] stepSearchers)
+		=> @this.WithStepSearchers(stepSearchers, default);
+
 	/// <summary>
 	/// Try to set property <see cref="Analyzer.StepSearchers"/> with the specified value.
 	/// </summary>

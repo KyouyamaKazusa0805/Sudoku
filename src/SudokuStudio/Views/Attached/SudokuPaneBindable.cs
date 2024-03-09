@@ -9,7 +9,7 @@ namespace SudokuStudio.Views.Attached;
 public static partial class SudokuPaneBindable
 {
 	[Default]
-	private static readonly Analyzer AnalyzerDefaultValue = PredefinedAnalyzers.Balanced;
+	private static readonly Analyzer AnalyzerDefaultValue = Analyzers.Balanced;
 
 	[Default]
 	private static readonly Collector StepCollectorDefaultValue = new();

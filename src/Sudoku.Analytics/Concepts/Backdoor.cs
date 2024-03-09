@@ -8,7 +8,7 @@ public static class Backdoor
 	/// <summary>
 	/// The checker.
 	/// </summary>
-	private static readonly Analyzer SstsChecker = PredefinedAnalyzers.SstsOnly;
+	private static readonly Analyzer SstsChecker = Analyzers.SstsOnly;
 
 
 	/// <summary>
