@@ -21436,6 +21436,14 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
         </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Cast``1(Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> instances.
+            </summary>
+            <typeparam name="T">The type of each element casted.</typeparam>
+            <param name="this">The instance to be casted.</param>
+            <returns>A list of <typeparamref name="T"/> instances.</returns>
+        </member>
         <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Where(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition.

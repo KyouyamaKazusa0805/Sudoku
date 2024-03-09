@@ -7,6 +7,15 @@ namespace Sudoku.Linq;
 public static class AnalyzerResultEnumerable
 {
 	/// <summary>
+	/// Cast the object into a <see cref="ReadOnlySpan{T}"/> of <typeparamref name="T"/> instances.
+	/// </summary>
+	/// <typeparam name="T">The type of each element casted.</typeparam>
+	/// <param name="this">The instance to be casted.</param>
+	/// <returns>A list of <typeparamref name="T"/> instances.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<T> Cast<T>(this AnalyzerResult @this) where T : Step => from element in @this select (T)element;
+
+	/// <summary>
 	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition.
 	/// </summary>
 	/// <param name="this">The instance.</param>
