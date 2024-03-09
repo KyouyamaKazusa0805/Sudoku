@@ -12574,11 +12574,6 @@ if (student is (name: var name, age: >= 18))
             Indicates the size of the subset.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.GetDigitVariance(Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Try to get digit variance for true candidates.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.TrueCandidates">
             <summary>
             The generated property declaration for parameter <c>trueCandidates</c>.
@@ -12667,10 +12662,10 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">Indicates the cells used.</param>
             <param name="xzCell">Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.FormatInterpolationParts">
@@ -13057,7 +13052,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.FormatInterpolationParts">
@@ -13143,7 +13138,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.FormatInterpolationParts">
@@ -15122,7 +15117,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.FormatInterpolationParts">
@@ -15209,7 +15204,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.FormatInterpolationParts">

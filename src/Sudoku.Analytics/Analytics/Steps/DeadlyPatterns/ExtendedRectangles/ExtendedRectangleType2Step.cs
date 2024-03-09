@@ -22,8 +22,7 @@ public sealed partial class ExtendedRectangleType2Step(
 	public override int Type => 2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [.. base.ExtraDifficultyFactors, new(ExtraDifficultyFactorNames.ExtraDigit, .1M)];
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

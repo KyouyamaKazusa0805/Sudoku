@@ -3565,6 +3565,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.6, 5.0)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueLoopType1Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Length)]
 	UniqueLoopType1,
 
 	/// <summary>
@@ -3576,6 +3579,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueLoopType2Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	UniqueLoopType2,
 
 	/// <summary>
@@ -3587,6 +3593,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueLoopType3Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Length, Size)]
 	UniqueLoopType3,
 
 	/// <summary>
@@ -3598,6 +3607,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(UniqueLoopType4Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Length)]
 	UniqueLoopType4,
 	#endregion
 
@@ -3613,6 +3625,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ExtendedRectangleType1Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size)]
 	ExtendedRectangleType1,
 
 	/// <summary>
@@ -3623,6 +3638,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ExtendedRectangleType2Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Size)]
 	ExtendedRectangleType2,
 
 	/// <summary>
@@ -3633,6 +3651,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ExtendedRectangleType3Step))]
+	[BaseDifficulty(4.5)]
+	[SupportedExtraDifficultyRules(Size, ExtraDigit)]
 	ExtendedRectangleType3,
 
 	/// <summary>
@@ -3643,6 +3664,9 @@ public enum Technique
 #endif
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(ExtendedRectangleType4Step))]
+	[BaseDifficulty(4.6)]
+	[SupportedExtraDifficultyRules(Size)]
 	ExtendedRectangleType4,
 	#endregion
 
@@ -3662,6 +3686,8 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.6)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveType1Step))]
+	[BaseDifficulty(5.6)]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
@@ -3673,6 +3699,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveType2Step))]
+	[BaseDifficulty(5.6)]
+	[SupportedExtraDifficultyRules(ExtraDigit)]
 	BivalueUniversalGraveType2,
 
 	/// <summary>
@@ -3684,6 +3713,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.8, 6.1)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveType3Step))]
+	[BaseDifficulty(5.6)]
+	[SupportedExtraDifficultyRules(Size, Hidden)]
 	BivalueUniversalGraveType3,
 
 	/// <summary>
@@ -3695,6 +3727,9 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(5.7)]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveType4Step))]
+	[BaseDifficulty(5.6)]
+	[SupportedExtraDifficultyRules(ConjugatePair)]
 	BivalueUniversalGraveType4,
 
 	/// <summary>
@@ -3707,6 +3742,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG + n")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveMultipleStep))]
+	[BaseDifficulty(5.7)]
+	[SupportedExtraDifficultyRules(Size)]
 	BivalueUniversalGravePlusN,
 
 	/// <summary>
@@ -3716,6 +3754,8 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveFalseCandidateTypeStep))]
+	[BaseDifficulty(5.7)]
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
@@ -3736,6 +3776,8 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[Abbreviation("BUG-XZ")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
+	[RuntimeStepTypes(typeof(BivalueUniversalGraveXzStep))]
+	[BaseDifficulty(5.8)]
 	BivalueUniversalGraveXzRule,
 
 	/// <summary>
@@ -3760,6 +3802,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ReverseBivalueUniversalGraveType1Step))]
+	[BaseDifficulty(6.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	ReverseBivalueUniversalGraveType1,
 
 	/// <summary>
@@ -3769,6 +3814,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ReverseBivalueUniversalGraveType2Step))]
+	[BaseDifficulty(6.1)]
+	[SupportedExtraDifficultyRules(Length)]
 	ReverseBivalueUniversalGraveType2,
 
 	/// <summary>
@@ -3778,6 +3826,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ReverseBivalueUniversalGraveType3Step))]
+	[BaseDifficulty(6.0)]
+	[SupportedExtraDifficultyRules(Length)]
 	ReverseBivalueUniversalGraveType3,
 
 	/// <summary>
@@ -3787,6 +3838,9 @@ public enum Technique
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4431")]
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(ReverseBivalueUniversalGraveType4Step))]
+	[BaseDifficulty(6.3)]
+	[SupportedExtraDifficultyRules(Length)]
 	ReverseBivalueUniversalGraveType4,
 	#endregion
 
@@ -3802,6 +3856,9 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
+	[RuntimeStepTypes(typeof(UniquenessClueCoverStep))]
+	[BaseDifficulty(6.5)]
+	[SupportedExtraDifficultyRules(Size)]
 	UniquenessClueCover,
 	#endregion
 

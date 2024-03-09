@@ -48,22 +48,4 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
-
-
-	/// <summary>
-	/// Try to get digit variance for true candidates.
-	/// </summary>
-	private int GetDigitVariance(scoped ref readonly CandidateMap trueCandidates)
-	{
-		var result = 0;
-		foreach (var pair in trueCandidates.GetSubsets(2))
-		{
-			if (pair[0] % 9 != pair[1] % 9)
-			{
-				result++;
-			}
-		}
-
-		return result;
-	}
 }
