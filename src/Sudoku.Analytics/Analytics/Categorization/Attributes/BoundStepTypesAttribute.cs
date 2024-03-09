@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="Technique"/>
 /// <seealso cref="Step"/>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class RuntimeStepTypesAttribute([PrimaryConstructorParameter] Type primaryType) : Attribute
+public sealed partial class BoundStepTypesAttribute([PrimaryConstructorParameter] Type primaryType) : Attribute
 {
 	/// <summary>
 	/// Indicates the secondary <see cref="Step"/> types.

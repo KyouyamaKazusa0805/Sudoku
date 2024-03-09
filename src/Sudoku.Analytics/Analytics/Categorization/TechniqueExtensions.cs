@@ -51,7 +51,7 @@ public static class TechniqueExtensions
 	/// </param>
 	/// <returns>The difficulty value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static decimal GetBaseDifficultyFixed(this Technique @this, out decimal valueInDirectMode)
+	public static decimal GetBaseDifficulty(this Technique @this, out decimal valueInDirectMode)
 	{
 		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<BaseDifficultyAttribute>()!;
 		valueInDirectMode = Math.Round((decimal)(attribute.ValueInDirectMode == 0 ? attribute.Value : attribute.ValueInDirectMode), 1);
@@ -131,6 +131,15 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetIntroductionHyperlinks(this Technique @this)
 		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
+
+	/// <summary>
+	/// Try to get all possible configured extra difficulty factors used in this project.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>All configured extra difficulty factors.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string[]? GetExtraDifficultyFactors(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<ExtraDifficultyFactorsAttribute>()?.FactorNames;
 
 	/// <summary>
 	/// Combine the technique with indirect technique, to produce a new <see cref="Technique"/> field, describing the complex single usage.
