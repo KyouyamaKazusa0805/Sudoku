@@ -966,12 +966,10 @@ public sealed partial class AnalyzePage : Page
 
 	private void ContentFrame_Navigated(object sender, NavigationEventArgs e)
 	{
-		if (e is not { Content: IOperationProviderPage operationProvider, Parameter: AnalyzePage @this })
+		if (e is { Content: IOperationProviderPage page, Parameter: AnalyzePage @this })
 		{
-			return;
+			page.BasePage = @this;
 		}
-
-		operationProvider.BasePage = @this;
 	}
 
 	private void FixGridButton_Click(object sender, RoutedEventArgs e) => SudokuPane.UpdateGrid(SudokuPane.Puzzle.FixedGrid);

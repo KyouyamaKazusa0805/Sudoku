@@ -5786,6 +5786,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Weak.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources._PluralSuffix">
+            <summary>
+              Looks up a localized string similar to s.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources._ProgramName">
             <summary>
               Looks up a localized string similar to Sudoku Studio.
@@ -6121,6 +6126,26 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Common Commands.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionsCountIs">
+            <summary>
+              Looks up a localized string similar to {0} Conclusion{1}.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Assignment">
+            <summary>
+              Looks up a localized string similar to Assigning Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Both">
+            <summary>
+              Looks up a localized string similar to Others.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Elimination">
+            <summary>
+              Looks up a localized string similar to Eliminating Techniques.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_CopyCommandName">
             <summary>
               Looks up a localized string similar to Copy.
@@ -6283,7 +6308,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GatherStepsInCurrentGrid">
             <summary>
-              Looks up a localized string similar to Gather steps.
+              Looks up a localized string similar to Collect steps.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_GenerateComment">
@@ -6609,6 +6634,21 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SimpleDescription">
             <summary>
               Looks up a localized string similar to Step Description:.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SortByCell">
+            <summary>
+              Looks up a localized string similar to cell.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SortByConclusionCount">
+            <summary>
+              Looks up a localized string similar to number of conclusions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SortByTechnique">
+            <summary>
+              Looks up a localized string similar to technique.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_StepDetail">
@@ -13124,9 +13164,19 @@ if (student is (name: var name, age: >= 18))
             Defines a step collecting page.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting._currentFountSteps">
+        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting._nodesSortedByTechnique">
             <summary>
-            Indicates the found steps currently.
+            A collection sorted by technique.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting._nodesSortedByEliminationCount">
+            <summary>
+            A collection sorted by the number of eliminations.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting._nodesSortedByCell">
+            <summary>
+            A collection sorted by cell index value.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.#ctor">
@@ -13140,12 +13190,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.GetTechniqueGroups(Sudoku.Analytics.Step[],Sudoku.Concepts.Grid)">
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.CollectStepsAsync(Sudoku.Analytics.Step[])">
             <summary>
             Converts the specified collection into the target view source collection.
             </summary>
             <param name="collection">The raw collection.</param>
-            <param name="grid">The puzzle.</param>
             <returns>The collection that can be used as view source.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.InitializeComponent">
@@ -13162,6 +13211,18 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSourceProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSource"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSource"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSource">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSourceProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.Analyze.StepCollecting.TreeViewItemsSourceProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.Summary">
             <summary>

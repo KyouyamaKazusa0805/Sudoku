@@ -793,6 +793,20 @@
             <param name="match"><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/param[@name='match']"/></param>
             <returns><inheritdoc cref="M:System.Collections.Generic.List`1.FindLastIndex(System.Predicate{`0})" path="/returns"/></returns>
         </member>
+        <member name="T:System.Collections.Generic.ICollectionExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.ICollection`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.ICollectionExtensions.AddRange``1(System.Collections.Generic.ICollection{``0},System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Adds the elements of the specified collection to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The source collection.</param>
+            <param name="elements">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
+        </member>
         <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.
@@ -2623,6 +2637,14 @@
             <typeparam name="T">The type of the element.</typeparam>
             <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.Linq.Enumerable2.ToObservableCollection``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            Converts the collection into an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list of elements.</param>
+            <returns>An <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance.</returns>
         </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>

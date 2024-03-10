@@ -205,6 +205,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        internal static string _PluralSuffix {
+            get {
+                return ResourceManager.GetString("_PluralSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku Studio.
         /// </summary>
         internal static string _ProgramName {
@@ -808,6 +817,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to {0} Conclusion{1}.
+        /// </summary>
+        internal static string AnalyzePage_ConclusionsCountIs {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ConclusionsCountIs", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Assigning Techniques.
+        /// </summary>
+        internal static string AnalyzePage_ConclusionType_Assignment {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ConclusionType_Assignment", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Others.
+        /// </summary>
+        internal static string AnalyzePage_ConclusionType_Both {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ConclusionType_Both", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Eliminating Techniques.
+        /// </summary>
+        internal static string AnalyzePage_ConclusionType_Elimination {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ConclusionType_Elimination", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy.
         /// </summary>
         internal static string AnalyzePage_CopyCommandName {
@@ -1096,7 +1141,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Gather steps.
+        ///   Looks up a localized string similar to Collect steps.
         /// </summary>
         internal static string AnalyzePage_GatherStepsInCurrentGrid {
             get {
@@ -1686,6 +1731,33 @@ namespace SudokuStudio.Resources {
         internal static string AnalyzePage_SimpleDescription {
             get {
                 return ResourceManager.GetString("AnalyzePage_SimpleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to cell.
+        /// </summary>
+        internal static string AnalyzePage_SortByCell {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SortByCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to number of conclusions.
+        /// </summary>
+        internal static string AnalyzePage_SortByConclusionCount {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SortByConclusionCount", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to technique.
+        /// </summary>
+        internal static string AnalyzePage_SortByTechnique {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SortByTechnique", resourceCulture);
             }
         }
         

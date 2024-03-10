@@ -397,7 +397,7 @@
     <value>Fix grid</value>
   </data>
   <data name="AnalyzePage_GatherStepsInCurrentGrid" xml:space="preserve">
-    <value>Gather steps</value>
+    <value>Collect steps</value>
   </data>
   <data name="AnalyzePage_GenerateComment" xml:space="preserve">
     <value>The program uses a simple way to solve a puzzle, so the result is only used for reference.</value>
@@ -2374,5 +2374,29 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="CandidatePicker_DigitLabel" xml:space="preserve">
     <value>digit {0}</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Assignment" xml:space="preserve">
+    <value>Assigning Techniques</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Elimination" xml:space="preserve">
+    <value>Eliminating Techniques</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Both" xml:space="preserve">
+    <value>Others</value>
+  </data>
+  <data name="AnalyzePage_ConclusionsCountIs" xml:space="preserve">
+    <value>{0} Conclusion{1}</value>
+  </data>
+  <data name="_PluralSuffix" xml:space="preserve">
+    <value>s</value>
+  </data>
+  <data name="AnalyzePage_SortByTechnique" xml:space="preserve">
+    <value>technique</value>
+  </data>
+  <data name="AnalyzePage_SortByConclusionCount" xml:space="preserve">
+    <value>number of conclusions</value>
+  </data>
+  <data name="AnalyzePage_SortByCell" xml:space="preserve">
+    <value>cell</value>
   </data>
 </root>

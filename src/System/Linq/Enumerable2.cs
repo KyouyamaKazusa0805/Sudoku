@@ -1,3 +1,5 @@
+using System.Collections.ObjectModel;
+
 namespace System.Linq;
 
 /// <summary>
@@ -48,4 +50,13 @@ public static class Enumerable2
 
 		return true;
 	}
+
+	/// <summary>
+	/// Converts the collection into an <see cref="ObservableCollection{T}"/> instance.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The list of elements.</param>
+	/// <returns>An <see cref="ObservableCollection{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ObservableCollection<T> ToObservableCollection<T>(this IEnumerable<T> @this) => new(@this);
 }

@@ -3,12 +3,23 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a step collecting page.
 /// </summary>
+[DependencyProperty<ObservableCollection<TreeViewItem>>("TreeViewItemsSource?", Accessibility = Accessibility.Internal)]
 public sealed partial class StepCollecting : Page, IAnalyzerTab
 {
 	/// <summary>
-	/// Indicates the found steps currently.
+	/// A collection sorted by technique.
 	/// </summary>
-	internal Step[]? _currentFountSteps;
+	private ObservableCollection<TreeViewItem>? _nodesSortedByTechnique;
+
+	/// <summary>
+	/// A collection sorted by the number of eliminations.
+	/// </summary>
+	private ObservableCollection<TreeViewItem>? _nodesSortedByEliminationCount;
+
+	/// <summary>
+	/// A collection sorted by cell index value.
+	/// </summary>
+	private ObservableCollection<TreeViewItem>? _nodesSortedByCell;
 
 
 	/// <summary>
@@ -28,29 +39,94 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	/// Converts the specified collection into the target view source collection.
 	/// </summary>
 	/// <param name="collection">The raw collection.</param>
-	/// <param name="grid">The puzzle.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	private ObservableCollection<TechniqueGroupBindableSource> GetTechniqueGroups(Step[] collection, Grid grid)
+	private async Task CollectStepsAsync(Step[] collection)
 	{
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
-		return new(
-			from step in collection
-			let technique = step.Code
-			orderby step.DifficultyLevel, technique.GetGroup(), technique
-			group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
-			let name = stepsGroupedByName.Key
-			let elements =
-				from step in stepsGroupedByName
-				orderby step.DifficultyLevel, step.Difficulty
-				select new SolvingPathStepBindableSource { DisplayItems = displayItems, Step = step, StepGrid = grid }
-			select new TechniqueGroupBindableSource(elements) { Key = name }
+		var converter = App.Converter;
+		_nodesSortedByTechnique = await Task.FromResult(
+			new ObservableCollection<TreeViewItem>(
+				from step in collection
+				let technique = step.Code
+				orderby step.DifficultyLevel, technique.GetGroup(), technique
+				group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
+				let name = stepsGroupedByName.Key
+				select rootOrIntermediateItems(
+					name,
+					(
+						from step in stepsGroupedByName
+						orderby step.DifficultyLevel, step.Difficulty
+						select leafItems(step, displayItems)
+					).ToObservableCollection()
+				)
+			)
 		);
+		_nodesSortedByEliminationCount = await Task.FromResult(
+			new ObservableCollection<TreeViewItem>(
+				from step in collection
+				let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
+				orderby sortKey
+				group step by sortKey into stepsGroupedByConclusionTypes
+				let type = stepsGroupedByConclusionTypes.Key
+				let nameSegment = type switch { 1 => nameof(Assignment), 2 => nameof(Elimination), _ => "Both" }
+				let conclusionTypeName = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{nameSegment}", App.CurrentCulture)
+				select rootOrIntermediateItems(
+					conclusionTypeName,
+					(
+						from step in stepsGroupedByConclusionTypes
+						let conclusionsCount = step.Conclusions.Length
+						orderby conclusionsCount descending
+						group step by conclusionsCount into stepsGroupedByConclusionsCount
+						let conclusionsCount = stepsGroupedByConclusionsCount.Key
+						select rootOrIntermediateItems(
+							string.Format(
+								ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
+								conclusionsCount,
+								conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture)
+							),
+							(
+								from step in stepsGroupedByConclusionsCount
+								orderby step.DifficultyLevel, step.Difficulty
+								select leafItems(step, displayItems)
+							).ToObservableCollection()
+						)
+					).ToObservableCollection()
+				)
+			)
+		);
+		_nodesSortedByCell = await Task.FromResult(
+			new ObservableCollection<TreeViewItem>(
+				from step in collection
+				let cells = from conclusion in step.Conclusions select conclusion.Cell
+				from cell in cells
+				orderby cell
+				group step by cell into stepsGroupedByCell
+				let cell = stepsGroupedByCell.Key
+				select rootOrIntermediateItems(
+					converter.CellConverter([cell]),
+					(
+						from step in stepsGroupedByCell
+						orderby step.DifficultyLevel, step.Difficulty
+						select leafItems(step, displayItems)
+					).ToObservableCollection()
+				)
+			)
+		);
+
+
+		static TreeViewItem leafItems(Step step, StepTooltipDisplayItems displayItems)
+		{
+			var result = new TreeViewItem { Content = step.ToSimpleString(App.CurrentCulture), Tag = step };
+			ToolTipService.SetToolTip(result, AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step }));
+			return result;
+		}
+
+		static TreeViewItem rootOrIntermediateItems(string displayKey, ObservableCollection<TreeViewItem> leafItems)
+			=> new() { Content = displayKey, ItemsSource = leafItems };
 	}
 
 
-	private void TechniqueGroupView_StepChosen(TechniqueGroupView sender, TechniqueGroupViewStepChosenEventArgs e)
-		=> BasePage.VisualUnit = e.ChosenStep;
-
+#if false
 	private void TechniqueGroupView_StepApplied(TechniqueGroupView sender, TechniqueGroupViewStepAppliedEventArgs e)
 	{
 		var appliedPuzzle = BasePage.SudokuPane.Puzzle;
@@ -58,6 +134,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 
 		BasePage.SudokuPane.Puzzle = appliedPuzzle;
 	}
+#endif
 
 	private async void CollectButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
@@ -69,7 +146,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 
 		CollectButton.IsEnabled = false;
 		BasePage.IsGathererLaunched = true;
-		TechniqueGroupView.ClearViewSource();
+		TreeViewItemsSource = null;
 
 		var textFormat = ResourceDictionary.Get("AnalyzePage_AnalyzerProgress", App.CurrentCulture);
 		using var cts = new CancellationTokenSource();
@@ -87,26 +164,9 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 
 		try
 		{
-			switch (await Task.Run(() =>
+			if (await Task.Run(collectCore) is { } result)
 			{
-				lock (AnalyzingRelatedSyncRoot)
-				{
-					return collector.Collect(in grid, new Progress<AnalyzerProgress>(progress => DispatcherQueue.TryEnqueue(() =>
-					{
-						var (stepSearcherName, percent) = progress;
-						BasePage.ProgressPercent = percent * 100;
-						BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
-						BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
-					})), cts.Token).ToArray();
-				}
-			}))
-			{
-				case { } result:
-				{
-					_currentFountSteps = result;
-					TechniqueGroupView.TechniqueGroups.Source = GetTechniqueGroups(result, grid);
-					break;
-				}
+				await CollectStepsAsync(result);
 			}
 		}
 		catch (TaskCanceledException)
@@ -117,6 +177,48 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			BasePage._ctsForAnalyzingRelatedOperations = null;
 			CollectButton.IsEnabled = true;
 			BasePage.IsGathererLaunched = false;
+
+			PageSelector.SelectedIndex = 0;
+		}
+
+
+		Step[] collectCore()
+		{
+			lock (AnalyzingRelatedSyncRoot)
+			{
+				return collector.Collect(
+					in grid,
+					new Progress<AnalyzerProgress>(
+						progress => DispatcherQueue.TryEnqueue(
+							() =>
+							{
+								var (stepSearcherName, percent) = progress;
+								BasePage.ProgressPercent = percent * 100;
+								BasePage.AnalyzeProgressLabel.Text = string.Format(textFormat, percent);
+								BasePage.AnalyzeStepSearcherNameLabel.Text = stepSearcherName;
+							}
+						)
+					),
+					cts.Token
+				).ToArray();
+			}
+		}
+	}
+
+	private void Segmented_SelectionChanged(object sender, SelectionChangedEventArgs e)
+		=> TreeViewItemsSource = PageSelector.Items.IndexOf(PageSelector.SelectedItem) switch
+		{
+			0 => _nodesSortedByTechnique,
+			1 => _nodesSortedByEliminationCount,
+			2 => _nodesSortedByCell,
+			_ => null
+		};
+
+	private void MainTreeView_SelectionChanged(TreeView sender, TreeViewSelectionChangedEventArgs args)
+	{
+		if (sender.SelectedItem is TreeViewItem { Tag: Step step })
+		{
+			BasePage.VisualUnit = step;
 		}
 	}
 }

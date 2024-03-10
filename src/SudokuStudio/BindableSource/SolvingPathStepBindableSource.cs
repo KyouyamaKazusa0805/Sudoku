@@ -23,7 +23,7 @@ public sealed class SolvingPathStepBindableSource
 	/// <summary>
 	/// Indicates the step grid used.
 	/// </summary>
-	public required Grid StepGrid { get; set; }
+	public Grid StepGrid { get; set; }
 
 	/// <summary>
 	/// Indicates the kinds of items which the step tooltip will be displayed.

@@ -2363,9 +2363,6 @@
   <data name="GeneratedPuzzleConstraintPage_EliminationCount" xml:space="preserve">
     <value>删数数量</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="CandidatePicker_RowLabel" xml:space="preserve">
     <value>第 {0} 行</value>
   </data>
@@ -2374,5 +2371,29 @@
   </data>
   <data name="CandidatePicker_DigitLabel" xml:space="preserve">
     <value>数字 {0}</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Assignment" xml:space="preserve">
+    <value>出数技巧</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Elimination" xml:space="preserve">
+    <value>删数技巧</value>
+  </data>
+  <data name="AnalyzePage_ConclusionType_Both" xml:space="preserve">
+    <value>其他技巧</value>
+  </data>
+  <data name="AnalyzePage_ConclusionsCountIs" xml:space="preserve">
+    <value>{0} 个结论{1}</value>
+  </data>
+  <data name="AnalyzePage_SortByTechnique" xml:space="preserve">
+    <value>技巧</value>
+  </data>
+  <data name="AnalyzePage_SortByConclusionCount" xml:space="preserve">
+    <value>结论数</value>
+  </data>
+  <data name="AnalyzePage_SortByCell" xml:space="preserve">
+    <value>单元格</value>
   </data>
 </root>
