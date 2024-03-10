@@ -1,9 +1,9 @@
 namespace SudokuStudio.Views.Pages.Analyze;
 
 /// <summary>
-/// Defines the gathering page.
+/// Defines a step collecting page.
 /// </summary>
-public sealed partial class GridGathering : Page, IAnalyzerTab
+public sealed partial class StepCollecting : Page, IAnalyzerTab
 {
 	/// <summary>
 	/// Indicates the found steps currently.
@@ -12,9 +12,9 @@ public sealed partial class GridGathering : Page, IAnalyzerTab
 
 
 	/// <summary>
-	/// Initializes a <see cref="GridGathering"/> instance.
+	/// Initializes a <see cref="StepCollecting"/> instance.
 	/// </summary>
-	public GridGathering() => InitializeComponent();
+	public StepCollecting() => InitializeComponent();
 
 
 	/// <inheritdoc/>
@@ -59,7 +59,7 @@ public sealed partial class GridGathering : Page, IAnalyzerTab
 		BasePage.SudokuPane.Puzzle = appliedPuzzle;
 	}
 
-	private async void GatherButton_ClickAsync(object sender, RoutedEventArgs e)
+	private async void CollectButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var grid = BasePage.SudokuPane.Puzzle;
 		if (!grid.IsValid)
@@ -67,7 +67,7 @@ public sealed partial class GridGathering : Page, IAnalyzerTab
 			return;
 		}
 
-		GatherButton.IsEnabled = false;
+		CollectButton.IsEnabled = false;
 		BasePage.IsGathererLaunched = true;
 		TechniqueGroupView.ClearViewSource();
 
@@ -115,7 +115,7 @@ public sealed partial class GridGathering : Page, IAnalyzerTab
 		finally
 		{
 			BasePage._ctsForAnalyzingRelatedOperations = null;
-			GatherButton.IsEnabled = true;
+			CollectButton.IsEnabled = true;
 			BasePage.IsGathererLaunched = false;
 		}
 	}

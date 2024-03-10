@@ -1,5 +1,5 @@
 <Page
-	x:Class="SudokuStudio.Views.Pages.Analyze.GridGathering"
+	x:Class="SudokuStudio.Views.Pages.Analyze.StepCollecting"
 	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -7,7 +7,7 @@
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pa="using:SudokuStudio.Views.Pages.Analyze"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:GridGathering}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:StepCollecting}">
 	<Page.Resources>
 		<ResourceDictionary Source="ms-appx:///Microsoft.UI.Xaml/DensityStyles/Compact.xaml" />
 	</Page.Resources>
@@ -15,8 +15,8 @@
 	<ScrollViewer>
 		<StackPanel>
 			<Button
-				x:Name="GatherButton" x:FieldModifier="internal" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
-				Margin="0,0,0,3" Click="GatherButton_ClickAsync" />
+				x:Name="CollectButton" x:FieldModifier="internal" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
+				Margin="0,0,0,3" Click="CollectButton_ClickAsync" />
 			<c:TechniqueGroupView
 				x:Name="TechniqueGroupView" x:FieldModifier="internal"
 				StepChosen="TechniqueGroupView_StepChosen" StepApplied="TechniqueGroupView_StepApplied" />

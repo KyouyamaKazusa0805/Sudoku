@@ -203,7 +203,7 @@
 		<Page Update="Views\Controls\TechniqueGroupView.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
-		<Page Update="Views\Pages\Analyze\GridGathering.xaml">
+		<Page Update="Views\Pages\Analyze\StepCollecting.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\Analyze\SolvingPath.xaml">

@@ -13080,50 +13080,6 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Analyze.GridGathering">
-            <summary>
-            Defines the gathering page.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Analyze.GridGathering._currentFountSteps">
-            <summary>
-            Indicates the found steps currently.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.#ctor">
-            <summary>
-            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.GridGathering"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.BasePage">
-            <inheritdoc/>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Analyze.GridGathering.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
-            <inheritdoc/>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetTechniqueGroups(Sudoku.Analytics.Step[],Sudoku.Concepts.Grid)">
-            <summary>
-            Converts the specified collection into the target view source collection.
-            </summary>
-            <param name="collection">The raw collection.</param>
-            <param name="grid">The puzzle.</param>
-            <returns>The collection that can be used as view source.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.InitializeComponent">
-            <summary>
-            InitializeComponent()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.Connect(System.Int32,System.Object)">
-            <summary>
-            Connect()
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.GridGathering.GetBindingConnector(System.Int32,System.Object)">
-            <summary>
-            GetBindingConnector(int connectionId, object target)
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.SolvingPath">
             <summary>
             Defines the solving path page.
@@ -13161,6 +13117,50 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.SolvingPath.AnalysisResult">
             <summary>
             Indicates the analysis result.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Analyze.StepCollecting">
+            <summary>
+            Defines a step collecting page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Analyze.StepCollecting._currentFountSteps">
+            <summary>
+            Indicates the found steps currently.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Analyze.StepCollecting"/> instance.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.BasePage">
+            <inheritdoc/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.GetTechniqueGroups(Sudoku.Analytics.Step[],Sudoku.Concepts.Grid)">
+            <summary>
+            Converts the specified collection into the target view source collection.
+            </summary>
+            <param name="collection">The raw collection.</param>
+            <param name="grid">The puzzle.</param>
+            <returns>The collection that can be used as view source.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Analyze.Summary">

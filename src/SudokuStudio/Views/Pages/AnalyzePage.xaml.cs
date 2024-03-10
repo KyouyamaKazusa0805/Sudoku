@@ -484,7 +484,7 @@ public sealed partial class AnalyzePage : Page
 			new(
 				ResourceDictionary.Get("AnalyzePage_AllStepsInCurrentGrid", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Shuffle },
-				new GridGathering { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
+				new StepCollecting { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			),
 			new(
 				ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
