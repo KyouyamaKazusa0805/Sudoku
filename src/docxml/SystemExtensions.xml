@@ -2811,15 +2811,9 @@
             <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.ReadOnlySpanEnumerable.ThenBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.OrderByDescending``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="M:System.Linq.ReadOnlySpanEnumerable.ThenByDescending``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.First``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
@@ -2841,6 +2835,83 @@
             <param name="this">The array.</param>
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
+        </member>
+        <member name="T:System.Linq.ReadOnlySpanOrderedEnumerable`1">
+            <summary>
+            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <typeparam name="T">Indicates the type of each element.</typeparam>
+            <param name="values">Indicates the values.</param>
+            <param name="selectors">
+            Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
+            </param>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.Func{`0,`0,System.Int32}[])">
+            <summary>
+            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
+            </summary>
+            <typeparam name="T">Indicates the type of each element.</typeparam>
+            <param name="values">Indicates the values.</param>
+            <param name="selectors">
+            Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
+            </param>
+        </member>
+        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.Length">
+            <summary>
+            Indicates the number of elements stored in the collection.
+            </summary>
+        </member>
+        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.OrderedSpan">
+            <summary>
+            Creates an ordered <see cref="T:System.Span`1"/> instance.
+            </summary>
+            <returns>An ordered <see cref="T:System.Span`1"/> instance, whose value is from the current enumerable instance.</returns>
+        </member>
+        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.Item(System.Int32)">
+            <inheritdoc cref="P:System.ReadOnlySpan`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Select``1(System.Func{`0,``0})">
+            <summary>
+            Projects each element into a new transform.
+            </summary>
+            <typeparam name="TResult">The type of the result values.</typeparam>
+            <param name="selector">The selector to be used by transforming the <typeparamref name="T"/> instances.</param>
+            <returns>A span of <typeparamref name="TResult"/> values.</returns>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Where(System.Func{`0,System.Boolean})">
+            <summary>
+            Filters the collection using the specified condition.
+            </summary>
+            <param name="condition">The condition to be used.</param>
+            <returns>A span of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GetEnumerator">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
+        </member>
+        <member name="F:System.Linq.ReadOnlySpanOrderedEnumerable`1._values">
+            <summary>
+            The generated field declaration for parameter <c>values</c>.
+            </summary>
+        </member>
+        <member name="F:System.Linq.ReadOnlySpanOrderedEnumerable`1._selectors">
+            <summary>
+            The generated field declaration for parameter <c>selectors</c>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Linq.StringEnumerable">
             <summary>
