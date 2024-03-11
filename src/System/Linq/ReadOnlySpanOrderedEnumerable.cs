@@ -32,24 +32,24 @@ public readonly ref partial struct ReadOnlySpanOrderedEnumerable<T>(
 	{
 		get
 		{
-			// Sort for span.
+			// Copy field in order to make the variable can be used inside lambda.
 			var selectors = _selectors;
+
+			// Sort the span of values.
 			var result = new T[_values.Length].AsSpan();
 			_values.CopyTo(result);
 			result.Sort(
-				ValueComparison.Create(
-					(scoped ref readonly T l, scoped ref readonly T r) =>
+				(l, r) =>
+				{
+					foreach (var selector in selectors)
 					{
-						foreach (var selector in selectors)
+						if (selector(l, r) is var tempResult and not 0)
 						{
-							if (selector(l, r) is var tempResult and not 0)
-							{
-								return tempResult;
-							}
+							return tempResult;
 						}
-						return 0;
 					}
-				)
+					return 0;
+				}
 			);
 
 			return result;
