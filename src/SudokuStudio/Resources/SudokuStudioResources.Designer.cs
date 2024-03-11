@@ -817,7 +817,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to {0} Conclusion{1}.
+        ///   Looks up a localized string similar to {0} {2}{1}.
         /// </summary>
         internal static string AnalyzePage_ConclusionsCountIs {
             get {
@@ -826,7 +826,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Assigning Techniques.
+        ///   Looks up a localized string similar to Assignment.
         /// </summary>
         internal static string AnalyzePage_ConclusionType_Assignment {
             get {
@@ -835,7 +835,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Others.
+        ///   Looks up a localized string similar to Other.
         /// </summary>
         internal static string AnalyzePage_ConclusionType_Both {
             get {
@@ -844,7 +844,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Eliminating Techniques.
+        ///   Looks up a localized string similar to Elimination.
         /// </summary>
         internal static string AnalyzePage_ConclusionType_Elimination {
             get {

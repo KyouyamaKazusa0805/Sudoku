@@ -2376,16 +2376,16 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>digit {0}</value>
   </data>
   <data name="AnalyzePage_ConclusionType_Assignment" xml:space="preserve">
-    <value>Assigning Techniques</value>
+    <value>Assignment</value>
   </data>
   <data name="AnalyzePage_ConclusionType_Elimination" xml:space="preserve">
-    <value>Eliminating Techniques</value>
+    <value>Elimination</value>
   </data>
   <data name="AnalyzePage_ConclusionType_Both" xml:space="preserve">
-    <value>Others</value>
+    <value>Other</value>
   </data>
   <data name="AnalyzePage_ConclusionsCountIs" xml:space="preserve">
-    <value>{0} Conclusion{1}</value>
+    <value>{0} {2}{1}</value>
   </data>
   <data name="_PluralSuffix" xml:space="preserve">
     <value>s</value>

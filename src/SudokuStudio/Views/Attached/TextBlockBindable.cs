@@ -15,8 +15,13 @@ public static partial class TextBlockBindable
 			return;
 		}
 
+		if (e.NewValue is not IEnumerable<Inline> inlines)
+		{
+			return;
+		}
+
 		target.Inlines.Clear();
-		foreach (var inline in (IEnumerable<Inline>)e.NewValue)
+		foreach (var inline in inlines)
 		{
 			target.Inlines.Add(inline);
 		}

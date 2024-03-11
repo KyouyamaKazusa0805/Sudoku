@@ -3,23 +3,23 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a step collecting page.
 /// </summary>
-[DependencyProperty<ObservableCollection<TreeViewItem>>("TreeViewItemsSource?", Accessibility = Accessibility.Internal)]
+[DependencyProperty<ObservableCollection<CollectedStepBindableSource>>("TreeViewItemsSource?", Accessibility = Accessibility.Internal)]
 public sealed partial class StepCollecting : Page, IAnalyzerTab
 {
 	/// <summary>
 	/// A collection sorted by technique.
 	/// </summary>
-	private ObservableCollection<TreeViewItem>? _nodesSortedByTechnique;
+	private ObservableCollection<CollectedStepBindableSource>? _nodesSortedByTechnique;
 
 	/// <summary>
 	/// A collection sorted by the number of eliminations.
 	/// </summary>
-	private ObservableCollection<TreeViewItem>? _nodesSortedByEliminationCount;
+	private ObservableCollection<CollectedStepBindableSource>? _nodesSortedByEliminationCount;
 
 	/// <summary>
 	/// A collection sorted by cell index value.
 	/// </summary>
-	private ObservableCollection<TreeViewItem>? _nodesSortedByCell;
+	private ObservableCollection<CollectedStepBindableSource>? _nodesSortedByCell;
 
 
 	/// <summary>
@@ -45,7 +45,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		var converter = App.Converter;
 		_nodesSortedByTechnique = await Task.FromResult(
-			new ObservableCollection<TreeViewItem>(
+			new ObservableCollection<CollectedStepBindableSource>(
 				from step in collection
 				let technique = step.Code
 				orderby step.DifficultyLevel, technique.GetGroup(), technique
@@ -53,49 +53,50 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				let name = stepsGroupedByName.Key
 				select rootOrIntermediateItems(
 					name,
-					(
+					[
+						..
 						from step in stepsGroupedByName
 						orderby step.DifficultyLevel, step.Difficulty
 						select leafItems(step, displayItems)
-					).ToObservableCollection()
+					]
 				)
 			)
 		);
 		_nodesSortedByEliminationCount = await Task.FromResult(
-			new ObservableCollection<TreeViewItem>(
+			new ObservableCollection<CollectedStepBindableSource>(
 				from step in collection
 				let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
-				orderby sortKey
-				group step by sortKey into stepsGroupedByConclusionTypes
-				let type = stepsGroupedByConclusionTypes.Key
-				let nameSegment = type switch { 1 => nameof(Assignment), 2 => nameof(Elimination), _ => "Both" }
-				let conclusionTypeName = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{nameSegment}", App.CurrentCulture)
+				let conclusionsCount = step.Conclusions.Length
+				orderby sortKey, conclusionsCount
+				group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
+				let keyPair = stepsGroupedByConclusion.Key
+				let conclusionsCount = keyPair.Count
 				select rootOrIntermediateItems(
-					conclusionTypeName,
-					(
-						from step in stepsGroupedByConclusionTypes
-						let conclusionsCount = step.Conclusions.Length
-						orderby conclusionsCount descending
-						group step by conclusionsCount into stepsGroupedByConclusionsCount
-						let conclusionsCount = stepsGroupedByConclusionsCount.Key
-						select rootOrIntermediateItems(
-							string.Format(
-								ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
-								conclusionsCount,
-								conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture)
-							),
-							(
-								from step in stepsGroupedByConclusionsCount
-								orderby step.DifficultyLevel, step.Difficulty
-								select leafItems(step, displayItems)
-							).ToObservableCollection()
+					string.Format(
+						ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
+						conclusionsCount,
+						conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture),
+						ResourceDictionary.Get(
+							$"AnalyzePage_ConclusionType_{keyPair.ConclusionTypeSortKey switch
+							{
+								1 => nameof(Assignment),
+								2 => nameof(Elimination),
+								_ => "Both"
+							}}",
+							App.CurrentCulture
 						)
-					).ToObservableCollection()
+					),
+					[
+						..
+						from step in stepsGroupedByConclusion
+						orderby step.DifficultyLevel, step.Difficulty
+						select leafItems(step, displayItems)
+					]
 				)
 			)
 		);
 		_nodesSortedByCell = await Task.FromResult(
-			new ObservableCollection<TreeViewItem>(
+			new ObservableCollection<CollectedStepBindableSource>(
 				from step in collection
 				let cells = from conclusion in step.Conclusions select conclusion.Cell
 				from cell in cells
@@ -104,25 +105,27 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				let cell = stepsGroupedByCell.Key
 				select rootOrIntermediateItems(
 					converter.CellConverter([cell]),
-					(
+					[
+						..
 						from step in stepsGroupedByCell
 						orderby step.DifficultyLevel, step.Difficulty
 						select leafItems(step, displayItems)
-					).ToObservableCollection()
+					]
 				)
 			)
 		);
 
 
-		static TreeViewItem leafItems(Step step, StepTooltipDisplayItems displayItems)
-		{
-			var result = new TreeViewItem { Content = step.ToSimpleString(App.CurrentCulture), Tag = step };
-			ToolTipService.SetToolTip(result, AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step }));
-			return result;
-		}
+		static CollectedStepBindableSource leafItems(Step step, StepTooltipDisplayItems displayItems)
+			=> new()
+			{
+				Title = step.ToSimpleString(App.CurrentCulture),
+				Description = AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step }),
+				Step = step
+			};
 
-		static TreeViewItem rootOrIntermediateItems(string displayKey, ObservableCollection<TreeViewItem> leafItems)
-			=> new() { Content = displayKey, ItemsSource = leafItems };
+		static CollectedStepBindableSource rootOrIntermediateItems(string displayKey, ObservableCollection<CollectedStepBindableSource> leafItems)
+			=> new() { Title = displayKey, Children = leafItems };
 	}
 
 
@@ -215,10 +218,5 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		};
 
 	private void MainTreeView_SelectionChanged(TreeView sender, TreeViewSelectionChangedEventArgs args)
-	{
-		if (sender.SelectedItem is TreeViewItem { Tag: Step step })
-		{
-			BasePage.VisualUnit = step;
-		}
-	}
+		=> BasePage.VisualUnit = sender.SelectedItem is CollectedStepBindableSource { Step: { } step } ? step : null;
 }

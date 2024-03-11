@@ -2372,20 +2372,17 @@
   <data name="CandidatePicker_DigitLabel" xml:space="preserve">
     <value>数字 {0}</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="AnalyzePage_ConclusionType_Assignment" xml:space="preserve">
-    <value>出数技巧</value>
+    <value>出数</value>
   </data>
   <data name="AnalyzePage_ConclusionType_Elimination" xml:space="preserve">
-    <value>删数技巧</value>
+    <value>删数</value>
   </data>
   <data name="AnalyzePage_ConclusionType_Both" xml:space="preserve">
-    <value>其他技巧</value>
+    <value>其他结论</value>
   </data>
   <data name="AnalyzePage_ConclusionsCountIs" xml:space="preserve">
-    <value>{0} 个结论{1}</value>
+    <value>{0} 个{2}结论{1}</value>
   </data>
   <data name="AnalyzePage_SortByTechnique" xml:space="preserve">
     <value>技巧</value>
@@ -2395,5 +2392,8 @@
   </data>
   <data name="AnalyzePage_SortByCell" xml:space="preserve">
     <value>单元格</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
   </data>
 </root>

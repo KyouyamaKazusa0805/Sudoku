@@ -204,6 +204,31 @@
             The generated property declaration for parameter <c>page</c>.
             </summary>
         </member>
+        <member name="T:SudokuStudio.BindableSource.CollectedStepBindableSource">
+            <summary>
+            Represents a bindable source for collected steps.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Title">
+            <summary>
+            Indicates the title.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Step">
+            <summary>
+            Indicates the step.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Children">
+            <summary>
+            Indicates the values.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Description">
+            <summary>
+            Indicates the description.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.BindableSource.LibraryBindableSource">
             <summary>
             Represents a library bindable source. This type is different with <see cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
@@ -3294,6 +3319,24 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.SolvingPathTextBlockTemplateSelector.SelectTemplateCore(System.Object)">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Interaction.DataTemplateSelectors.StepCollectingInfoTemplateSelector">
+            <summary>
+            Represents a template selector.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.StepCollectingInfoTemplateSelector.RootTemplate">
+            <summary>
+            Indicates the root template.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Interaction.DataTemplateSelectors.StepCollectingInfoTemplateSelector.LeafTemplate">
+            <summary>
+            Indicates the leaf template.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.DataTemplateSelectors.StepCollectingInfoTemplateSelector.SelectTemplateCore(System.Object)">
+            <inheritdoc/>
+        </member>
         <member name="T:SudokuStudio.Interaction.DigitInputEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>.
@@ -6128,22 +6171,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionsCountIs">
             <summary>
-              Looks up a localized string similar to {0} Conclusion{1}.
+              Looks up a localized string similar to {0} {2}{1}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Assignment">
             <summary>
-              Looks up a localized string similar to Assigning Techniques.
+              Looks up a localized string similar to Assignment.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Both">
             <summary>
-              Looks up a localized string similar to Others.
+              Looks up a localized string similar to Other.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ConclusionType_Elimination">
             <summary>
-              Looks up a localized string similar to Eliminating Techniques.
+              Looks up a localized string similar to Elimination.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_CopyCommandName">
