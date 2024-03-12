@@ -40,71 +40,65 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	/// </summary>
 	/// <param name="collection">The raw collection.</param>
 	/// <returns>The collection that can be used as view source.</returns>
-	private async Task CollectStepsAsync(Step[] collection)
+	private void CollectSteps(Step[] collection)
 	{
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		var converter = App.Converter;
-		_nodesSortedByTechnique = await Task.FromResult(
-			new ObservableCollection<CollectedStepBindableSource>(
-				from step in collection
-				let technique = step.Code
-				orderby step.DifficultyLevel, technique.GetGroup(), technique
-				group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
-				let name = stepsGroupedByName.Key
-				select rootOrIntermediateItems(
-					name,
-					from step in stepsGroupedByName
-					orderby step.DifficultyLevel, step.Difficulty
-					select leafItems(step, displayItems)
-				)
+		_nodesSortedByTechnique = (
+			from step in collection
+			let technique = step.Code
+			orderby step.DifficultyLevel, technique.GetGroup(), technique
+			group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
+			let name = stepsGroupedByName.Key
+			select rootOrIntermediateItems(
+				name,
+				from step in stepsGroupedByName
+				orderby step.DifficultyLevel, step.Difficulty
+				select leafItems(step, displayItems)
 			)
-		);
-		_nodesSortedByEliminationCount = await Task.FromResult(
-			new ObservableCollection<CollectedStepBindableSource>(
-				from step in collection
-				let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
-				let conclusionsCount = step.Conclusions.Length
-				orderby sortKey, conclusionsCount descending
-				group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
-				let keyPair = stepsGroupedByConclusion.Key
-				let conclusionsCount = keyPair.Count
-				select rootOrIntermediateItems(
-					string.Format(
-						ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
-						conclusionsCount,
-						conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture),
-						ResourceDictionary.Get(
-							$"AnalyzePage_ConclusionType_{keyPair.ConclusionTypeSortKey switch
-							{
-								1 => nameof(Assignment),
-								2 => nameof(Elimination),
-								_ => "Both"
-							}}",
-							App.CurrentCulture
-						)
-					),
-					from step in stepsGroupedByConclusion
-					orderby step.DifficultyLevel, step.Difficulty
-					select leafItems(step, displayItems)
-				)
+		).ToObservableCollection();
+		_nodesSortedByEliminationCount = (
+			from step in collection
+			let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
+			let conclusionsCount = step.Conclusions.Length
+			orderby sortKey, conclusionsCount descending
+			group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
+			let keyPair = stepsGroupedByConclusion.Key
+			let conclusionsCount = keyPair.Count
+			select rootOrIntermediateItems(
+				string.Format(
+					ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
+					conclusionsCount,
+					conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture),
+					ResourceDictionary.Get(
+						$"AnalyzePage_ConclusionType_{keyPair.ConclusionTypeSortKey switch
+						{
+							1 => nameof(Assignment),
+							2 => nameof(Elimination),
+							_ => "Both"
+						}}",
+						App.CurrentCulture
+					)
+				),
+				from step in stepsGroupedByConclusion
+				orderby step.DifficultyLevel, step.Difficulty
+				select leafItems(step, displayItems)
 			)
-		);
-		_nodesSortedByCell = await Task.FromResult(
-			new ObservableCollection<CollectedStepBindableSource>(
-				from step in collection
-				let cells = from conclusion in step.Conclusions select conclusion.Cell
-				from cell in cells
-				orderby cell
-				group step by cell into stepsGroupedByCell
-				let cell = stepsGroupedByCell.Key
-				select rootOrIntermediateItems(
-					converter.CellConverter([cell]),
-					from step in stepsGroupedByCell
-					orderby step.DifficultyLevel, step.Difficulty
-					select leafItems(step, displayItems)
-				)
+		).ToObservableCollection();
+		_nodesSortedByCell = (
+			from step in collection
+			let cells = from conclusion in step.Conclusions select conclusion.Cell
+			from cell in cells
+			orderby cell
+			group step by cell into stepsGroupedByCell
+			let cell = stepsGroupedByCell.Key
+			select rootOrIntermediateItems(
+				converter.CellConverter([cell]),
+				from step in stepsGroupedByCell
+				orderby step.DifficultyLevel, step.Difficulty
+				select leafItems(step, displayItems)
 			)
-		);
+		).ToObservableCollection();
 
 
 		static CollectedStepBindableSource leafItems(Step step, StepTooltipDisplayItems displayItems)
@@ -160,7 +154,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		{
 			if (await Task.Run(collectCore) is { } result)
 			{
-				await CollectStepsAsync(result);
+				CollectSteps(result);
 			}
 		}
 		catch (TaskCanceledException)

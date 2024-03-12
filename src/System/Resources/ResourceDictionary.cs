@@ -91,10 +91,7 @@ public static class ResourceDictionary
 			{
 				if (a == assembly)
 				{
-					return (
-						resource = (culture is null ? m.GetString(resourceKey) : m.GetString(resourceKey, culture))
-							?? m.GetString(resourceKey, DefaultCulture)
-					) is not null;
+					return (resource = r(m, resourceKey, culture)) is not null;
 				}
 			}
 
@@ -103,7 +100,7 @@ public static class ResourceDictionary
 
 		foreach (var m in ResourceManagers.Values)
 		{
-			if (((culture is null ? m.GetString(resourceKey) : m.GetString(resourceKey, culture)) ?? m.GetString(resourceKey, DefaultCulture)) is { } result)
+			if (r(m, resourceKey, culture) is { } result)
 			{
 				resource = result;
 				return true;
@@ -112,5 +109,12 @@ public static class ResourceDictionary
 
 		resource = null;
 		return false;
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string? r(ResourceManager m, string resourceKey, CultureInfo? culture)
+			=> culture is null
+				? m.GetString(resourceKey) ?? m.GetString(resourceKey, DefaultCulture)
+				: m.GetString(resourceKey, culture);
 	}
 }

@@ -13246,7 +13246,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Views.Pages.Analyze.StepCollecting.SudokuStudio#ComponentModel#IAnalyzerTab#AnalysisResult">
             <inheritdoc/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.CollectStepsAsync(Sudoku.Analytics.Step[])">
+        <member name="M:SudokuStudio.Views.Pages.Analyze.StepCollecting.CollectSteps(Sudoku.Analytics.Step[])">
             <summary>
             Converts the specified collection into the target view source collection.
             </summary>

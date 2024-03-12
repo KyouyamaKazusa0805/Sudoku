@@ -2168,6 +2168,10 @@
   <data name="_Inference_Weak" xml:space="preserve">
     <value>弱链关系</value>
   </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="_ProgramName" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>
   </data>
@@ -2382,7 +2386,10 @@
     <value>其他结论</value>
   </data>
   <data name="AnalyzePage_ConclusionsCountIs" xml:space="preserve">
-    <value>{0} 个{2}结论{1}</value>
+    <value>{0} 个{2}结论</value>
+  </data>
+  <data name="_PluralSuffix" xml:space="preserve">
+    <value> </value>
   </data>
   <data name="AnalyzePage_SortByTechnique" xml:space="preserve">
     <value>技巧</value>
