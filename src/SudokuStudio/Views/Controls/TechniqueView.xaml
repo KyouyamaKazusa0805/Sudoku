@@ -7,12 +7,16 @@
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueView}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueView}"
+	Loaded="UserControl_LoadedAsync">
 	<UserControl.Resources>
 		<vcvt:SelectionModeToIsItemClickEnabledConverter x:Key="SelectionModeToClickEnabledConverter" />
 	</UserControl.Resources>
 
-	<ListView ItemsSource="{x:Bind ItemsSource}" SelectionMode="None">
+	<ListView ItemsSource="{x:Bind _itemsSource,Mode=OneWay}" SelectionMode="None">
+		<ListView.Transitions>
+			<AddDeleteThemeTransition />
+		</ListView.Transitions>
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:TechniqueViewGroupBindableSource">
 				<StackPanel Margin="0,20">

@@ -12411,14 +12411,14 @@ if (student is (name: var name, age: >= 18))
             Indicates the internal token views.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.TechniqueView._itemsSource">
+            <summary>
+            Represents a collection that stores all technique groups used by list view in UI.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Controls.TechniqueView.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Controls.TechniqueView"/> instance.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.TechniqueView.ItemsSource">
-            <summary>
-            The items source.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.TechniqueView.TokenItems">

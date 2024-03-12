@@ -19,6 +19,11 @@ public sealed partial class TechniqueView : UserControl
 	/// </summary>
 	private readonly List<TokenView> _tokenViews = [];
 
+	/// <summary>
+	/// Represents a collection that stores all technique groups used by list view in UI.
+	/// </summary>
+	private readonly ObservableCollection<TechniqueViewGroupBindableSource> _itemsSource = [];
+
 
 	/// <summary>
 	/// Initializes a <see cref="TechniqueView"/> instance.
@@ -29,20 +34,6 @@ public sealed partial class TechniqueView : UserControl
 		UpdateShowMode(ShowMode);
 	}
 
-
-	/// <summary>
-	/// The items source.
-	/// </summary>
-	private TechniqueViewGroupBindableSource[] ItemsSource
-		=> [
-			..
-			from technique in Enum.GetValues<Technique>()[1..]
-			where !technique.GetFeature().HasFlag(TechniqueFeature.NotImplemented)
-			select new TechniqueViewBindableSource(technique) into item
-			group item by item.ContainingGroup into itemGroup
-			orderby itemGroup.Key
-			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup])
-		];
 
 	/// <summary>
 	/// The entry that can traverse for all tokens.
@@ -156,7 +147,7 @@ public sealed partial class TechniqueView : UserControl
 
 		_tokenViews.Add(p);
 
-		if (_tokenViews.Count == ItemsSource.Length)
+		if (_tokenViews.Count == _itemsSource.Count)
 		{
 			UpdateSelection(SelectedTechniques);
 			UpdateShowMode(ShowMode);
@@ -200,5 +191,21 @@ public sealed partial class TechniqueView : UserControl
 
 
 		static bool lambda(TokenItem s, Technique field) => s.Content is TechniqueViewBindableSource { TechniqueField: var f } && f == field;
+	}
+
+	private async void UserControl_LoadedAsync(object sender, RoutedEventArgs e)
+	{
+		await Task.Delay(500);
+		foreach (var source in
+			from technique in Enum.GetValues<Technique>()[1..]
+			where !technique.GetFeature().HasFlag(TechniqueFeature.NotImplemented)
+			select new TechniqueViewBindableSource(technique) into item
+			group item by item.ContainingGroup into itemGroup
+			orderby itemGroup.Key
+			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup]))
+		{
+			_itemsSource.Add(source);
+			await Task.Delay(100);
+		}
 	}
 }
