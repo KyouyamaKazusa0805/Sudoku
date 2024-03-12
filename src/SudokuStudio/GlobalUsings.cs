@@ -121,6 +121,7 @@ global using HorizontalAlignment = Microsoft.UI.Xaml.HorizontalAlignment;
 global using @io = System.IO;
 global using LaunchActivatedEventArgs = Microsoft.UI.Xaml.LaunchActivatedEventArgs;
 global using LineGeometry = Microsoft.UI.Xaml.Media.LineGeometry;
+global using Millisecond = int;
 global using Path = Microsoft.UI.Xaml.Shapes.Path;
 global using PathGeometry = Microsoft.UI.Xaml.Media.PathGeometry;
 global using PdfColors = QuestPDF.Helpers.Colors;

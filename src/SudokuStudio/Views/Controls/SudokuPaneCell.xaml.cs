@@ -43,7 +43,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 	/// <remarks><i>
 	/// This method returns <see langword="void"/> on purpose because we do not want to make the method wait-able by user.
 	/// </i></remarks>
-	public async void LightUpAsync(int duration)
+	public async void LightUpAsync(Millisecond duration)
 	{
 		if (!((App)Application.Current).Preference.UIPreferences.EnableAnimationFeedback)
 		{
