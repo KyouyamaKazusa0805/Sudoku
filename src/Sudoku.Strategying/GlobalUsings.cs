@@ -9,6 +9,7 @@ global using System.Numerics;
 global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.SourceGeneration;
+global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using Sudoku.Algorithm.Generating;
 global using Sudoku.Analytics;

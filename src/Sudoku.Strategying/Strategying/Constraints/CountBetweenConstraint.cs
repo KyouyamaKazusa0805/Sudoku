@@ -15,6 +15,7 @@ public sealed partial class CountBetweenConstraint : Constraint
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
+	[JsonConverter(typeof(RangeConverter))]
 	public Range Range { get; set; }
 
 	/// <summary>
@@ -59,11 +60,7 @@ public sealed partial class CountBetweenConstraint : Constraint
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("CountBetweenConstraint", culture),
-			CellState switch
-			{
-				CellState.Given => ResourceDictionary.Get("GivenCell", culture),
-				_ => ResourceDictionary.Get("EmptyCell", culture)
-			},
+			ResourceDictionary.Get(CellState switch { CellState.Given => "GivenCell", _ => "EmptyCell" }, culture),
 			Range.Start.Value,
 			Range.End.Value,
 			BetweenRule switch
