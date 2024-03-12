@@ -12,25 +12,6 @@
 	xmlns:ui="using:CommunityToolkit.WinUI"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pa:StepCollecting}">
-	<Page.Resources>
-		<dts:StepCollectingInfoTemplateSelector x:Key="TemplateSelector">
-			<dts:StepCollectingInfoTemplateSelector.RootTemplate>
-				<DataTemplate x:DataType="bs:CollectedStepBindableSource">
-					<TreeViewItem Content="{x:Bind Title}" ItemsSource="{x:Bind Children}" />
-				</DataTemplate>
-			</dts:StepCollectingInfoTemplateSelector.RootTemplate>
-			<dts:StepCollectingInfoTemplateSelector.LeafTemplate>
-				<DataTemplate x:DataType="bs:CollectedStepBindableSource">
-					<TreeViewItem Content="{x:Bind Title}" ItemsSource="{x:Bind Children}">
-						<ToolTipService.ToolTip>
-							<TextBlock a:TextBlockBindable.Inlines="{x:Bind Description}" TextWrapping="WrapWholeWords" />
-						</ToolTipService.ToolTip>
-					</TreeViewItem>
-				</DataTemplate>
-			</dts:StepCollectingInfoTemplateSelector.LeafTemplate>
-		</dts:StepCollectingInfoTemplateSelector>
-	</Page.Resources>
-
 	<Grid RowDefinitions="Auto,*,Auto">
 		<w:Segmented
 			x:Name="PageSelector" Grid.Row="0" Margin="0,0,0,6" HorizontalAlignment="Center" VerticalAlignment="Center"
@@ -42,8 +23,27 @@
 		<ScrollViewer Grid.Row="1">
 			<TreeView
 				x:Name="MainTreeView" SelectionMode="Single" ItemsSource="{x:Bind TreeViewItemsSource,Mode=OneWay}"
-				CanReorderItems="False" CanDragItems="False" ItemTemplateSelector="{StaticResource TemplateSelector}"
-				SelectionChanged="MainTreeView_SelectionChanged" />
+				CanReorderItems="False" CanDragItems="False"
+				SelectionChanged="MainTreeView_SelectionChanged">
+				<TreeView.ItemTemplateSelector>
+					<dts:StepCollectingInfoTemplateSelector>
+						<dts:StepCollectingInfoTemplateSelector.RootTemplate>
+							<DataTemplate x:DataType="bs:CollectedStepBindableSource">
+								<TreeViewItem Content="{x:Bind Title}" ItemsSource="{x:Bind Children}" />
+							</DataTemplate>
+						</dts:StepCollectingInfoTemplateSelector.RootTemplate>
+						<dts:StepCollectingInfoTemplateSelector.LeafTemplate>
+							<DataTemplate x:DataType="bs:CollectedStepBindableSource">
+								<TreeViewItem Content="{x:Bind Title}" ItemsSource="{x:Bind Children}">
+									<ToolTipService.ToolTip>
+										<TextBlock a:TextBlockBindable.Inlines="{x:Bind Description}" TextWrapping="WrapWholeWords" />
+									</ToolTipService.ToolTip>
+								</TreeViewItem>
+							</DataTemplate>
+						</dts:StepCollectingInfoTemplateSelector.LeafTemplate>
+					</dts:StepCollectingInfoTemplateSelector>
+				</TreeView.ItemTemplateSelector>
+			</TreeView>
 		</ScrollViewer>
 		<Button
 			x:Name="CollectButton" Grid.Row="2" Content="{m:R Key=AnalyzePage_GatherStepsInCurrentGrid}"
