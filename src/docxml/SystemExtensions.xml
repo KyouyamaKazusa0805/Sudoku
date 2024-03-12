@@ -2689,14 +2689,6 @@
             <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Linq.Enumerable2.ToObservableCollection``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Converts the collection into an <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list of elements.</param>
-            <returns>An <see cref="T:System.Collections.ObjectModel.ObservableCollection`1"/> instance.</returns>
-        </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>
             Provides with some extension methods for enumeration types.

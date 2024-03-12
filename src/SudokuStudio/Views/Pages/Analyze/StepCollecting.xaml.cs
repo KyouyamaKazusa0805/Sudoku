@@ -44,15 +44,17 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	{
 		var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 		var converter = App.Converter;
-		_nodesSortedByTechnique = (
+		_nodesSortedByTechnique = [
+			..
 			from step in collection
 			let technique = step.Code
 			orderby step.DifficultyLevel, technique.GetGroup(), technique
 			group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
 			let name = stepsGroupedByName.Key
 			select rootOrIntermediateItems(name, g(stepsGroupedByName, displayItems))
-		).ToObservableCollection();
-		_nodesSortedByEliminationCount = (
+		];
+		_nodesSortedByEliminationCount = [
+			..
 			from step in collection
 			let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
 			let conclusions = new HashSet<Conclusion>(step.Conclusions) // step.Conclusions make contain duplicate items
@@ -68,8 +70,9 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			let conclusionTypeString = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{segment}", App.CurrentCulture)
 			let displayKey = string.Format(format, conclusionsCount, pluralSuffix, conclusionTypeString)
 			select rootOrIntermediateItems(displayKey, g(stepsGroupedByConclusion, displayItems))
-		).ToObservableCollection();
-		_nodesSortedByCell = (
+		];
+		_nodesSortedByCell = [
+			..
 			from step in collection
 			let cells = from conclusion in step.Conclusions select conclusion.Cell
 			from cell in cells
@@ -77,7 +80,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			group step by cell into stepsGroupedByCell
 			let cell = stepsGroupedByCell.Key
 			select rootOrIntermediateItems(converter.CellConverter([cell]), g(stepsGroupedByCell, displayItems))
-		).ToObservableCollection();
+		];
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
