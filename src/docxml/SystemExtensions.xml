@@ -1603,19 +1603,6 @@
             </code>
             </remarks>
         </member>
-        <member name="T:System.TimeSpanExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.TimeSpan"/>.
-            </summary>
-            <seealso cref="T:System.TimeSpan"/>
-        </member>
-        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.TimeSpan)">
-            <summary>
-            Creates a <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance used for <see langword="await"/> expressions.
-            </summary>
-            <param name="this">The time span.</param>
-            <returns>A <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance.</returns>
-        </member>
         <member name="T:System.Runtime.CompilerServices.TupleExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Runtime.CompilerServices.ITuple"/>.
@@ -4406,6 +4393,19 @@
         </member>
         <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#GetHashCode(`0)">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Threading.Tasks.TimeSpanAwaitable">
+            <summary>
+            Provides with extension methods on <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <seealso cref="T:System.TimeSpan"/>
+        </member>
+        <member name="M:System.Threading.Tasks.TimeSpanAwaitable.GetAwaiter(System.TimeSpan)">
+            <summary>
+            Creates a <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance used for <see langword="await"/> expressions.
+            </summary>
+            <param name="this">The time span.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance.</returns>
         </member>
         <member name="T:System.Threading.Tasks.TimeSpanAwaiter">
             <summary>
