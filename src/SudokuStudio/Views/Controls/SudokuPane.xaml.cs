@@ -511,7 +511,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		foreach (var cells in e.LastCell.GetCellsOrdered(e.House))
 		{
 			cells.ForEach(cell => _children[cell].LightUpAsync(250));
-			await Task.Delay(100);
+			await .1.Seconds();
 		}
 	}
 

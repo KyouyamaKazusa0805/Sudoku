@@ -899,6 +899,20 @@
             <param name="epsilon">The epsilon value (the minimal differ).</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.DoubleExtensions.Seconds(System.Double)">
+            <summary>
+            Creates a <see cref="T:System.TimeSpan"/> instane using the specified value as seconds.
+            </summary>
+            <param name="this">The seconds.</param>
+            <returns>A <see cref="T:System.TimeSpan"/> instance.</returns>
+        </member>
+        <member name="M:System.DoubleExtensions.Milliseconds(System.Double)">
+            <summary>
+            Creates a <see cref="T:System.TimeSpan"/> instane using the specified value as milliseconds.
+            </summary>
+            <param name="this">The milliseconds.</param>
+            <returns>A <see cref="T:System.TimeSpan"/> instance.</returns>
+        </member>
         <member name="T:System.EnumExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Enum"/>.
@@ -968,6 +982,18 @@
             This method only supports for Windows now. For other OS platforms, this method cannot determine the end line characters
             because I have already forgotten them...
             </i></remarks>
+        </member>
+        <member name="T:System.Int32Extensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Int32"/>.
+            </summary>
+            <seealso cref="T:System.Int32"/>
+        </member>
+        <member name="M:System.Int32Extensions.Seconds(System.Int32)">
+            <inheritdoc cref="M:System.DoubleExtensions.Seconds(System.Double)"/>
+        </member>
+        <member name="M:System.Int32Extensions.Milliseconds(System.Int32)">
+            <inheritdoc cref="M:System.DoubleExtensions.Milliseconds(System.Double)"/>
         </member>
         <member name="T:System.Text.Json.JsonSerializerOptionsExtensions">
             <summary>
@@ -1564,6 +1590,19 @@
                         ○ Match a whitespace character atomically at least once.<br/>
             </code>
             </remarks>
+        </member>
+        <member name="T:System.TimeSpanExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.TimeSpan"/>.
+            </summary>
+            <seealso cref="T:System.TimeSpan"/>
+        </member>
+        <member name="M:System.TimeSpanExtensions.GetAwaiter(System.TimeSpan)">
+            <summary>
+            Creates a <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance used for <see langword="await"/> expressions.
+            </summary>
+            <param name="this">The time span.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.TimeSpanAwaiter"/> instance.</returns>
         </member>
         <member name="T:System.Runtime.CompilerServices.TupleExtensions">
             <summary>
@@ -4363,6 +4402,34 @@
         </member>
         <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#GetHashCode(`0)">
             <inheritdoc/>
+        </member>
+        <member name="T:System.Threading.Tasks.TimeSpanAwaiter">
+            <summary>
+            Represents an awaiter for <see cref="T:System.TimeSpan"/> instance.
+            </summary>
+            <param name="awaiter">The base awaiter instance.</param>
+            <seealso cref="T:System.TimeSpan"/>
+        </member>
+        <member name="M:System.Threading.Tasks.TimeSpanAwaiter.#ctor(System.Runtime.CompilerServices.TaskAwaiter)">
+            <summary>
+            Represents an awaiter for <see cref="T:System.TimeSpan"/> instance.
+            </summary>
+            <param name="awaiter">The base awaiter instance.</param>
+            <seealso cref="T:System.TimeSpan"/>
+        </member>
+        <member name="P:System.Threading.Tasks.TimeSpanAwaiter.IsCompleted">
+            <inheritdoc cref="P:System.Runtime.CompilerServices.TaskAwaiter.IsCompleted"/>
+        </member>
+        <member name="M:System.Threading.Tasks.TimeSpanAwaiter.GetResult">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.GetResult"/>
+        </member>
+        <member name="M:System.Threading.Tasks.TimeSpanAwaiter.OnCompleted(System.Action)">
+            <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.OnCompleted(System.Action)"/>
+        </member>
+        <member name="F:System.Threading.Tasks.TimeSpanAwaiter._awaiter">
+            <summary>
+            The generated field declaration for parameter <c>awaiter</c>.
+            </summary>
         </member>
         <member name="T:System.Timers.ValueStopwatch">
             <summary>

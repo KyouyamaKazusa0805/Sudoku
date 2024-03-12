@@ -26,4 +26,20 @@ public static class DoubleExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool NearlyEquals(this double @this, double other, double epsilon) => Math.Abs(@this - other) < epsilon;
+
+	/// <summary>
+	/// Creates a <see cref="TimeSpan"/> instane using the specified value as seconds.
+	/// </summary>
+	/// <param name="this">The seconds.</param>
+	/// <returns>A <see cref="TimeSpan"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TimeSpan Seconds(this double @this) => TimeSpan.FromSeconds(@this);
+
+	/// <summary>
+	/// Creates a <see cref="TimeSpan"/> instane using the specified value as milliseconds.
+	/// </summary>
+	/// <param name="this">The milliseconds.</param>
+	/// <returns>A <see cref="TimeSpan"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TimeSpan Milliseconds(this double @this) => TimeSpan.FromMicroseconds(@this);
 }

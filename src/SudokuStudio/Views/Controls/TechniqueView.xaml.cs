@@ -195,7 +195,7 @@ public sealed partial class TechniqueView : UserControl
 
 	private async void UserControl_LoadedAsync(object sender, RoutedEventArgs e)
 	{
-		await Task.Delay(500);
+		await .5.Seconds();
 		foreach (var source in
 			from technique in Enum.GetValues<Technique>()[1..]
 			where !technique.GetFeature().HasFlag(TechniqueFeature.NotImplemented)
@@ -205,7 +205,7 @@ public sealed partial class TechniqueView : UserControl
 			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup]))
 		{
 			_itemsSource.Add(source);
-			await Task.Delay(100);
+			await .1.Seconds();
 		}
 	}
 }

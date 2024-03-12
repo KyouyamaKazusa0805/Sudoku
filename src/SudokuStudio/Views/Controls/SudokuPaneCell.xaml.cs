@@ -51,7 +51,7 @@ internal sealed partial class SudokuPaneCell : UserControl
 		}
 
 		ValueSurrounder.Background = new SolidColorBrush(BasePane.HouseCompletedFeedbackColor);
-		await Task.Delay(duration);
+		await duration.Milliseconds();
 		ValueSurrounder.Background = null;
 	}
 
