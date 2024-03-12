@@ -208,25 +208,38 @@
             <summary>
             Represents a bindable source for collected steps.
             </summary>
+            <param name="title">Indicates the title.</param>
+            <param name="step">Indicates the step.</param>
+            <param name="children">Indicates the values.</param>
+            <param name="description">Indicates the description.</param>
+        </member>
+        <member name="M:SudokuStudio.BindableSource.CollectedStepBindableSource.#ctor(System.String,Sudoku.Analytics.Step,System.Collections.Generic.IEnumerable{SudokuStudio.BindableSource.CollectedStepBindableSource},System.Collections.Generic.IEnumerable{Microsoft.UI.Xaml.Documents.Inline})">
+            <summary>
+            Represents a bindable source for collected steps.
+            </summary>
+            <param name="title">Indicates the title.</param>
+            <param name="step">Indicates the step.</param>
+            <param name="children">Indicates the values.</param>
+            <param name="description">Indicates the description.</param>
         </member>
         <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Title">
             <summary>
-            Indicates the title.
+            The generated property declaration for parameter <c>title</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Step">
             <summary>
-            Indicates the step.
+            The generated property declaration for parameter <c>step</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Children">
             <summary>
-            Indicates the values.
+            The generated property declaration for parameter <c>children</c>.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.CollectedStepBindableSource.Description">
             <summary>
-            Indicates the description.
+            The generated property declaration for parameter <c>description</c>.
             </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.LibraryBindableSource">

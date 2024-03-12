@@ -53,12 +53,9 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				let name = stepsGroupedByName.Key
 				select rootOrIntermediateItems(
 					name,
-					[
-						..
-						from step in stepsGroupedByName
-						orderby step.DifficultyLevel, step.Difficulty
-						select leafItems(step, displayItems)
-					]
+					from step in stepsGroupedByName
+					orderby step.DifficultyLevel, step.Difficulty
+					select leafItems(step, displayItems)
 				)
 			)
 		);
@@ -67,7 +64,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				from step in collection
 				let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
 				let conclusionsCount = step.Conclusions.Length
-				orderby sortKey, conclusionsCount
+				orderby sortKey, conclusionsCount descending
 				group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
 				let keyPair = stepsGroupedByConclusion.Key
 				let conclusionsCount = keyPair.Count
@@ -86,12 +83,9 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 							App.CurrentCulture
 						)
 					),
-					[
-						..
-						from step in stepsGroupedByConclusion
-						orderby step.DifficultyLevel, step.Difficulty
-						select leafItems(step, displayItems)
-					]
+					from step in stepsGroupedByConclusion
+					orderby step.DifficultyLevel, step.Difficulty
+					select leafItems(step, displayItems)
 				)
 			)
 		);
@@ -105,27 +99,24 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				let cell = stepsGroupedByCell.Key
 				select rootOrIntermediateItems(
 					converter.CellConverter([cell]),
-					[
-						..
-						from step in stepsGroupedByCell
-						orderby step.DifficultyLevel, step.Difficulty
-						select leafItems(step, displayItems)
-					]
+					from step in stepsGroupedByCell
+					orderby step.DifficultyLevel, step.Difficulty
+					select leafItems(step, displayItems)
 				)
 			)
 		);
 
 
 		static CollectedStepBindableSource leafItems(Step step, StepTooltipDisplayItems displayItems)
-			=> new()
-			{
-				Title = step.ToSimpleString(App.CurrentCulture),
-				Description = AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step }),
-				Step = step
-			};
+			=> new(
+				step.ToSimpleString(App.CurrentCulture),
+				step,
+				null,
+				AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step })
+			);
 
-		static CollectedStepBindableSource rootOrIntermediateItems(string displayKey, ObservableCollection<CollectedStepBindableSource> leafItems)
-			=> new() { Title = displayKey, Children = leafItems };
+		static CollectedStepBindableSource rootOrIntermediateItems(string displayKey, IEnumerable<CollectedStepBindableSource> leafItems)
+			=> new(displayKey, null, leafItems, null);
 	}
 
 
