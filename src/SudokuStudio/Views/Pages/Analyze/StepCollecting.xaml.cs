@@ -55,7 +55,8 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 		_nodesSortedByEliminationCount = (
 			from step in collection
 			let sortKey = step.IsAssignment switch { true => 1, false => 2, null => 3 }
-			let conclusionsCount = step.Conclusions.Length
+			let conclusions = new HashSet<Conclusion>(step.Conclusions) // step.Conclusions make contain duplicate items
+			let conclusionsCount = conclusions.Count
 			orderby sortKey, conclusionsCount descending
 			group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
 			let keyPair = stepsGroupedByConclusion.Key
