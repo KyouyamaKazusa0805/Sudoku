@@ -13,7 +13,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	{
 		IncludeFields = true,
 		IgnoreReadOnlyProperties = false,
-		Converters = { new JsonStringEnumConverter(PascalCaseJsonNamingPolicy.PascalCase, true) },
+		Converters = { new JsonStringEnumConverter(PascalCaseJsonNamingPolicy.PascalCase, true), new RangeConverter() },
 		UnmappedMemberHandling = JsonUnmappedMemberHandling.Skip
 	};
 

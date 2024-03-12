@@ -1094,6 +1094,18 @@
         <member name="M:System.Text.Json.PascalCaseJsonNamingPolicy.ConvertName(System.String)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.Json.RangeConverter">
+            <summary>
+            Represents a JSON converter that serializes and deserialize a <see cref="T:System.Range"/> object.
+            </summary>
+            <seealso cref="T:System.Range"/>
+        </member>
+        <member name="M:System.Text.Json.RangeConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.RangeConverter.Write(System.Text.Json.Utf8JsonWriter,System.Range,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
