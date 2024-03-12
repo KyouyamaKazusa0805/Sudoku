@@ -50,12 +50,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			orderby step.DifficultyLevel, technique.GetGroup(), technique
 			group step by step.GetName(App.CurrentCulture) into stepsGroupedByName
 			let name = stepsGroupedByName.Key
-			select rootOrIntermediateItems(
-				name,
-				from step in stepsGroupedByName
-				orderby step.DifficultyLevel, step.Difficulty
-				select leafItems(step, displayItems)
-			)
+			select rootOrIntermediateItems(name, g(stepsGroupedByName, displayItems))
 		).ToObservableCollection();
 		_nodesSortedByEliminationCount = (
 			from step in collection
@@ -64,26 +59,14 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			orderby sortKey, conclusionsCount descending
 			group step by (ConclusionTypeSortKey: sortKey, Count: conclusionsCount) into stepsGroupedByConclusion
 			let keyPair = stepsGroupedByConclusion.Key
+			let sortkey = keyPair.ConclusionTypeSortKey
 			let conclusionsCount = keyPair.Count
-			select rootOrIntermediateItems(
-				string.Format(
-					ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture),
-					conclusionsCount,
-					conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture),
-					ResourceDictionary.Get(
-						$"AnalyzePage_ConclusionType_{keyPair.ConclusionTypeSortKey switch
-						{
-							1 => nameof(Assignment),
-							2 => nameof(Elimination),
-							_ => "Both"
-						}}",
-						App.CurrentCulture
-					)
-				),
-				from step in stepsGroupedByConclusion
-				orderby step.DifficultyLevel, step.Difficulty
-				select leafItems(step, displayItems)
-			)
+			let segment = sortkey switch { 1 => nameof(Assignment), 2 => nameof(Elimination), _ => "Both" }
+			let format = ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture)
+			let pluralSuffix = conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture)
+			let conclusionTypeString = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{segment}", App.CurrentCulture)
+			let displayKey = string.Format(format, conclusionsCount, pluralSuffix, conclusionTypeString)
+			select rootOrIntermediateItems(displayKey, g(stepsGroupedByConclusion, displayItems))
 		).ToObservableCollection();
 		_nodesSortedByCell = (
 			from step in collection
@@ -92,15 +75,11 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			orderby cell
 			group step by cell into stepsGroupedByCell
 			let cell = stepsGroupedByCell.Key
-			select rootOrIntermediateItems(
-				converter.CellConverter([cell]),
-				from step in stepsGroupedByCell
-				orderby step.DifficultyLevel, step.Difficulty
-				select leafItems(step, displayItems)
-			)
+			select rootOrIntermediateItems(converter.CellConverter([cell]), g(stepsGroupedByCell, displayItems))
 		).ToObservableCollection();
 
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static CollectedStepBindableSource leafItems(Step step, StepTooltipDisplayItems displayItems)
 			=> new(
 				step.ToSimpleString(App.CurrentCulture),
@@ -109,8 +88,13 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step })
 			);
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static CollectedStepBindableSource rootOrIntermediateItems(string displayKey, IEnumerable<CollectedStepBindableSource> leafItems)
 			=> new(displayKey, null, leafItems, null);
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static IEnumerable<CollectedStepBindableSource> g<TKey>(IGrouping<TKey, Step> stepsGrouped, StepTooltipDisplayItems displayItems)
+			=> from step in stepsGrouped orderby step.DifficultyLevel, step.Difficulty select leafItems(step, displayItems);
 	}
 
 
