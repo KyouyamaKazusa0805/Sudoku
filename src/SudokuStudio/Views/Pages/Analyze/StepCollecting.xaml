@@ -25,7 +25,7 @@
 			<TreeView
 				x:Name="MainTreeView" SelectionMode="Single" ItemsSource="{x:Bind TreeViewItemsSource,Mode=OneWay}"
 				CanReorderItems="False" CanDragItems="False"
-				SelectionChanged="MainTreeView_SelectionChanged">
+				ItemInvoked="MainTreeView_ItemInvoked">
 				<TreeView.ItemTemplateSelector>
 					<dts:StepCollectingInfoTemplateSelector>
 						<dts:StepCollectingInfoTemplateSelector.RootTemplate>
