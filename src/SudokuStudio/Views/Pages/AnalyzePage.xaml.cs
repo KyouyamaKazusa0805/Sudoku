@@ -914,6 +914,7 @@ public sealed partial class AnalyzePage : Page
 		if (value == -1)
 		{
 			page.VisualUnit = null;
+			page.SudokuPane.ViewUnit = null;
 			return;
 		}
 

@@ -10,20 +10,32 @@ public static partial class TextBlockBindable
 	[Callback]
 	private static void InlinesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if (d is not TextBlock target)
+		if ((d, e) is not (TextBlock target, { NewValue: IEnumerable<Inline> inlines }))
 		{
 			return;
 		}
 
-		if (e.NewValue is not IEnumerable<Inline> inlines)
-		{
-			return;
-		}
+		var originalCollectionValues = new Inline[target.Inlines.Count];
+		target.Inlines.CopyTo(originalCollectionValues, 0);
 
-		target.Inlines.Clear();
-		foreach (var inline in inlines)
+		try
 		{
-			target.Inlines.Add(inline);
+			target.Inlines.Clear();
+			foreach (var inline in inlines)
+			{
+				target.Inlines.Add(inline);
+			}
+		}
+		catch (COMException ex) when (ex.HResult == -2146496512)
+		{
+#if false
+			// Rollback.
+			target.Inlines.Clear();
+			foreach (var inline in originalCollectionValues)
+			{
+				target.Inlines.Add(inline);
+			}
+#endif
 		}
 	}
 }
