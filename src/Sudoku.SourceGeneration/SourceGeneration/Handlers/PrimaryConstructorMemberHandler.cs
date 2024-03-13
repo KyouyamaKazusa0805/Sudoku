@@ -181,6 +181,8 @@ internal static class PrimaryConstructorMemberHandler
 
 			#nullable enable
 
+			#pragma warning disable CS8500
+
 			{{string.Join("\r\n\r\n", types)}}
 			"""
 		);
