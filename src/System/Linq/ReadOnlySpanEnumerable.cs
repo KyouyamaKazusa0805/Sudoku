@@ -290,12 +290,14 @@ public static class ReadOnlySpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpanOrderedEnumerable<T> OrderBy<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector) where TKey : IComparable<TKey>
+	public static ReadOnlySpanOrderedEnumerable<T> OrderBy<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
+		where TKey : IComparable<TKey>
 		=> new(@this, (l, r) => selector(l).CompareTo(selector(r)));
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpanOrderedEnumerable<T> OrderByDescending<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector) where TKey : IComparable<TKey>
+	public static ReadOnlySpanOrderedEnumerable<T> OrderByDescending<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
+		where TKey : IComparable<TKey>
 		=> new(@this, (l, r) => -selector(l).CompareTo(selector(r)));
 
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
