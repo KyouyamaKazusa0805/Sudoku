@@ -300,6 +300,29 @@ public static class ReadOnlySpanEnumerable
 		where TKey : IComparable<TKey>
 		=> new(@this, (l, r) => -selector(l).CompareTo(selector(r)));
 
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
+	public static unsafe ReadOnlySpan<ReadOnlySpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector) where TKey : notnull, IEquatable<TKey>
+	{
+		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
+		foreach (var element in values)
+		{
+			var key = keySelector(element);
+			if (!tempDictionary.TryAdd(key, [element]))
+			{
+				tempDictionary[key].Add(element);
+			}
+		}
+
+		var result = new List<ReadOnlySpanGrouping<TSource, TKey>>(tempDictionary.Count);
+		foreach (var key in tempDictionary.Keys)
+		{
+			var tempValues = tempDictionary[key];
+			var sourcePointer = (TSource*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0]));
+			result.Add(new(sourcePointer, tempValues.Count, key));
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
