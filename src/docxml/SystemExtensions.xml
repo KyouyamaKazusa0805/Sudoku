@@ -2804,6 +2804,17 @@
             <param name="this">A list of elements to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Skip``1(System.ReadOnlySpan{``0},System.Int32)">
+            <summary>
+            Skips the specified number of elements, make a new <see cref="T:System.ReadOnlySpan`1"/> instance points to it.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The original span.</param>
+            <param name="count">The number of elements to skip.</param>
+            <returns>
+            The new instance that points to the first element that has already skipped the specified number of elements.
+            </returns>
+        </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.FindAll``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Retrieves all the elements that match the conditions defined by the specified predicate.

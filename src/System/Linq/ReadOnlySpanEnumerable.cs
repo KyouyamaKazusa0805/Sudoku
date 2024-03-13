@@ -188,6 +188,18 @@ public static class ReadOnlySpanEnumerable
 	}
 
 	/// <summary>
+	/// Skips the specified number of elements, make a new <see cref="ReadOnlySpan{T}"/> instance points to it.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The original span.</param>
+	/// <param name="count">The number of elements to skip.</param>
+	/// <returns>
+	/// The new instance that points to the first element that has already skipped the specified number of elements.
+	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<T> Skip<T>(this ReadOnlySpan<T> @this, int count) => new(in @this[count]);
+
+	/// <summary>
 	/// Retrieves all the elements that match the conditions defined by the specified predicate.
 	/// </summary>
 	/// <typeparam name="T">The type of the elements of the span.</typeparam>
