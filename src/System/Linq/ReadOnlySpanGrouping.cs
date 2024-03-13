@@ -14,21 +14,37 @@ namespace System.Linq;
 [Equals]
 [GetHashCode]
 [ToString]
-[SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
+[EqualityOperators]
 public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "unsafe")] TSource* elements,
-	[PrimaryConstructorParameter] int length,
-	[PrimaryConstructorParameter] TKey key
-) : IEnumerable<TSource>, IGrouping<TKey, TSource>, IReadOnlyCollection<TSource> where TKey : notnull, IEquatable<TKey>
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
+) :
+	IEnumerable<TSource>,
+	IEqualityOperators<ReadOnlySpanGrouping<TSource, TKey>, ReadOnlySpanGrouping<TSource, TKey>, bool>,
+	IEquatable<ReadOnlySpanGrouping<TSource, TKey>>,
+	IGrouping<TKey, TSource>,
+	IReadOnlyCollection<TSource>
+	where TKey : notnull, IEquatable<TKey>
 {
 	/// <inheritdoc/>
 	int IReadOnlyCollection<TSource>.Count => Length;
+
+	[HashCodeMember]
+	private nint ElementsRawPointerValue => (nint)_elements;
+
+	[StringMember]
+	private string FirstElementString => _elements[0].ToString()!;
 
 	/// <summary>
 	/// Creates a <see cref="ReadOnlySpan{T}"/> instance that is aligned as <see cref="_elements"/>.
 	/// </summary>
 	/// <seealso cref="_elements"/>
-	private ReadOnlySpan<TSource> SourceSpan => new(_elements, Length);
+	private ReadOnlySpan<TSource> SourceSpan
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => new(_elements, Length);
+	}
 
 
 	/// <summary>
@@ -42,6 +58,11 @@ public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
 		get => ref _elements[index];
 	}
 
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals(ReadOnlySpanGrouping<TSource, TKey> other)
+		=> _elements == other._elements && Length == other.Length && Key.Equals(other.Key);
 
 	/// <summary>
 	/// Projects elements into a new form.
@@ -83,6 +104,11 @@ public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
 	/// <returns>An enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ReadOnlySpan<TSource>.Enumerator GetEnumerator() => SourceSpan.GetEnumerator();
+
+	/// <inheritdoc cref="ReadOnlySpan{T}.GetPinnableReference"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	public ref readonly TSource GetPinnableReference() => ref _elements[0];
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TSource>)this).GetEnumerator();

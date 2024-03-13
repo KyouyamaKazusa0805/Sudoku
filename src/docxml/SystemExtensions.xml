@@ -2924,6 +2924,9 @@
             <param name="index">The desired index.</param>
             <returns>The reference to the element at the specified index.</returns>
         </member>
+        <member name="M:System.Linq.ReadOnlySpanGrouping`2.Equals(System.Linq.ReadOnlySpanGrouping{`0,`1})">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Linq.ReadOnlySpanGrouping`2.Select``1(System.Func{`0,``0})">
             <summary>
             Projects elements into a new form.
@@ -2944,6 +2947,9 @@
             Creates an enumerator that can enumerate each element in the source collection.
             </summary>
             <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanGrouping`2.GetPinnableReference">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
         </member>
         <member name="M:System.Linq.ReadOnlySpanGrouping`2.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -2974,6 +2980,12 @@
         </member>
         <member name="M:System.Linq.ReadOnlySpanGrouping`2.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanGrouping`2.op_Equality(System.Linq.ReadOnlySpanGrouping{`0,`1},System.Linq.ReadOnlySpanGrouping{`0,`1})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanGrouping`2.op_Inequality(System.Linq.ReadOnlySpanGrouping{`0,`1},System.Linq.ReadOnlySpanGrouping{`0,`1})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:System.Linq.ReadOnlySpanOrderedEnumerable`1">
             <summary>
