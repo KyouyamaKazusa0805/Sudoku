@@ -315,11 +315,39 @@ public static class ReadOnlySpanEnumerable
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
-	public static T? FirstOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> condition)
+	public static T? FirstOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
 		foreach (var element in @this)
 		{
-			if (condition(element))
+			if (predicate(element))
+			{
+				return element;
+			}
+		}
+
+		return default;
+	}
+
+	/// <inheritdoc cref="Enumerable.Last{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static T Last<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		foreach (var element in @this.EnumerateReversely())
+		{
+			if (predicate(element))
+			{
+				return element;
+			}
+		}
+
+		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchElementSatisfyingCondition"));
+	}
+
+	/// <inheritdoc cref="Enumerable.LastOrDefault{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
+	public static T? LastOrDefault<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
+	{
+		foreach (var element in @this.EnumerateReversely())
+		{
+			if (predicate(element))
 			{
 				return element;
 			}
