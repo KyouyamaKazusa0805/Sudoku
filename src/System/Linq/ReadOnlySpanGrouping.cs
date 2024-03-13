@@ -16,7 +16,7 @@ namespace System.Linq;
 [ToString]
 [EqualityOperators]
 public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "unsafe")] TSource* elements,
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
 ) :
