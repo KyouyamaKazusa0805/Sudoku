@@ -27,7 +27,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// Indicates the maximum length of the bowman bingo you want to search for. The maximum possible value is 64 (81 - 17).
 	/// The default value is 32.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.BowmanBingoMaxLength)]
+	[SettingItemName(SettingItemNames.BowmanBingoMaxLength)]
 	public int MaxLength { get; set; } = 32;
 
 

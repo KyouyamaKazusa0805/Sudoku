@@ -21,7 +21,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher searches for extended types.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.SearchExtendedDeathBlossomTypes)]
+	[SettingItemName(SettingItemNames.SearchExtendedDeathBlossomTypes)]
 	public bool SearchExtendedTypes { get; set; }
 
 

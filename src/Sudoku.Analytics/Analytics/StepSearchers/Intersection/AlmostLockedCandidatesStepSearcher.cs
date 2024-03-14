@@ -29,13 +29,13 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the searcher checks the almost locked quadruple.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
+	[SettingItemName(SettingItemNames.CheckAlmostLockedQuadruple)]
 	public bool CheckAlmostLockedQuadruple { get; set; }
 
 	/// <summary>
 	/// Indicates whether the searcher checks for value types.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.CheckValueTypes)]
+	[SettingItemName(SettingItemNames.CheckValueTypes)]
 	public bool CheckValueTypes { get; set; }
 
 

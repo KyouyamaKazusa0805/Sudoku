@@ -14,7 +14,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing)]
+	[SettingItemName(SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing)]
 	public bool AllowCollision { get; set; }
 
 

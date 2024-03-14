@@ -55,13 +55,13 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// This option may be used when you are used to spotting skyscrapers (grouped or non-grouped).
 	/// All Finned X-Wings can be replaced with Grouped Skyscrapers, and all Sashimi X-Wings can be replaced with Non-grouped Skyscrapers.
 	/// </remarks>
-	[RuntimeIdentifier(RuntimeIdentifier.DisableFinnedOrSashimiXWing)]
+	[SettingItemName(SettingItemNames.DisableFinnedOrSashimiXWing)]
 	public bool DisableFinnedOrSashimiXWing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for Siamese fishes.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseNormalFish)]
+	[SettingItemName(SettingItemNames.AllowSiameseNormalFish)]
 	public bool AllowSiamese { get; set; }
 
 

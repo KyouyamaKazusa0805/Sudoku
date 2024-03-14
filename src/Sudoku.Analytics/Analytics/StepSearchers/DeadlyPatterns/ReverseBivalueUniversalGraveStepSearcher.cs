@@ -27,14 +27,14 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// Indicates whether the searcher can search for partially-used types, meaning the formed reverse BUG pattern may <b>not</b> be required
 	/// occupying <b>all</b> value cells of two digits. The default value is <see langword="true"/>.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes)]
+	[SettingItemName(SettingItemNames.SearchForReverseBugPartiallyUsedTypes)]
 	public bool AllowPartiallyUsedTypes { get; set; } = true;
 
 	/// <summary>
 	/// Indicates the maximum number of cells the step searcher will be searched for. This value controls the complexity of the technique.
 	/// The maximum value is 4, and recommend value is 2. This value cannot be negative. The default value is 4.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount)]
+	[SettingItemName(SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount)]
 	public int MaxSearchingEmptyCellsCount { get; set; } = 4;
 
 

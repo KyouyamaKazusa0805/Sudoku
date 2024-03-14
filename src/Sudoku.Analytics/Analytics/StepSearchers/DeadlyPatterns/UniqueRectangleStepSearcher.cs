@@ -79,7 +79,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// This is a complete pattern, and we may remove an <c>ab</c> in a certain corner.
 	/// The incomplete pattern may not contain all four <c>ab</c>s in the pattern.
 	/// </remarks>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowIncompleteUniqueRectangles)]
+	[SettingItemName(SettingItemNames.AllowIncompleteUniqueRectangles)]
 	public bool AllowIncompleteUniqueRectangles { get; set; }
 
 	/// <summary>
@@ -88,7 +88,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <remarks>
 	/// The basic types are type 1 to type 6, all other types are extended ones.
 	/// </remarks>
-	[RuntimeIdentifier(RuntimeIdentifier.SearchForExtendedUniqueRectangles)]
+	[SettingItemName(SettingItemNames.SearchForExtendedUniqueRectangles)]
 	public bool SearchForExtendedUniqueRectangles { get; set; }
 
 

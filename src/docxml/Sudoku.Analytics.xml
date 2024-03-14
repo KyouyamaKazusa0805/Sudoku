@@ -4429,6 +4429,169 @@
             Represents a default instance.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute">
+            <summary>
+            Represents an attribute that can be applied to a property in a <see cref="T:Sudoku.Analytics.StepSearcher"/>,
+            indicating the runtime identifier. This property will be used for checking and replacing values in runtime.
+            </summary>
+            <param name="identifier">
+            Indicates the runtime identifier value. You can use <see cref="T:Sudoku.Analytics.Configuration.SettingItemNames"/> type to get the target name.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Configuration.SettingItemNames"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Configuration.SettingItemNameAttribute.#ctor(System.String)">
+            <summary>
+            Represents an attribute that can be applied to a property in a <see cref="T:Sudoku.Analytics.StepSearcher"/>,
+            indicating the runtime identifier. This property will be used for checking and replacing values in runtime.
+            </summary>
+            <param name="identifier">
+            Indicates the runtime identifier value. You can use <see cref="T:Sudoku.Analytics.Configuration.SettingItemNames"/> type to get the target name.
+            </param>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.Configuration.SettingItemNames"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Configuration.SettingItemNameAttribute.Identifier">
+            <summary>
+            The generated property declaration for parameter <c>identifier</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Configuration.SettingItemNames">
+            <summary>
+            Represents a list of <see cref="T:System.String"/>s indicating the runtime identifier recognized by UI,
+            used by <see cref="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.EnableFullHouse">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.EnableLastDigit">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.HiddenSinglesInBlockFirst">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AnalyzerUseIttoryuMode">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectPointing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectClaiming">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectClaiming"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectHiddenSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectLockedHiddenSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectNakedSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectLockedSubset">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DirectNakedSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DirectHiddenSubsetMaxSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableFinnedOrSashimiXWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSiameseNormalFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSiameseComplexFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSiameseXyzRing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowWWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowMWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowLWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowHWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowIncompleteUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForExtendedUniqueRectangles">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchExtendedBivalueUniversalGraveTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetXzRule">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetXzRule">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForReverseBugPartiallyUsedTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AlignedExclusionMaxSearchingSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.MaxSizeOfRegularWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.MaxSizeOfComplexFish">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.TemplateDeleteOnly">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.BowmanBingoMaxLength">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.CheckAlmostLockedQuadruple">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.CheckValueTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchExtendedDeathBlossomTypes">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.LogicalSolverIsFullApplying">
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.LogicalSolverIgnoresSlowAlgorithms">
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.LogicalSolverIgnoresHighAllocationAlgorithms">
+            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DifficultyLevelMode">
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.StepGathererMaxStepsGathered">
+            <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.IttoryuSupportedTechniques">
+            <inheritdoc cref="P:Sudoku.Concepts.DisorderedIttoryuFinder.SupportedTechniques"/>
+        </member>
         <member name="T:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions">
             <summary>
             Represents condition options on <see cref="T:Sudoku.Analytics.Analyzer"/>.
@@ -4828,169 +4991,6 @@
         <member name="P:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute.Technique">
             <summary>
             The generated property declaration for parameter <c>technique</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifier">
-            <summary>
-            Represents a list of <see cref="T:System.String"/>s indicating the runtime identifier recognized by UI,
-            used by <see cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.EnableFullHouse">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableFullHouse"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.EnableLastDigit">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.EnableLastDigit"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.HiddenSinglesInBlockFirst">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.HiddenSinglesInBlockFirst"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AnalyzerUseIttoryuMode">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectPointing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectClaiming">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectClaiming"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectHiddenSubset">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectHiddenSubset"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectLockedHiddenSubset">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedHiddenSubset"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectNakedSubset">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectNakedSubset"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowDirectLockedSubset">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.AllowDirectLockedSubset"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DirectNakedSubsetMaxSize">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DirectHiddenSubsetMaxSize">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DisableFinnedOrSashimiXWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseNormalFish">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.AllowSiamese"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseComplexFish">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.AllowSiamese"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSiameseXyzRing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowWWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowMWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowSWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowLWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowHWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowIncompleteUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.SearchForExtendedUniqueRectangles">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.SearchForExtendedUniqueRectangles"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.SearchExtendedBivalueUniversalGraveTypes">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher.SearchExtendedTypes"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowCollision"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowLoopedPatternsOnAlmostLockedSetXzRule">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXzStepSearcher.AllowLoopedPatterns"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.MaxSearchingEmptyCellsCount"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.AlignedExclusionMaxSearchingSize">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlignedExclusionStepSearcher.MaxSearchingSize"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.MaxSizeOfRegularWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.MaxSizeOfComplexFish">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexFishStepSearcher.MaxSize"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.TemplateDeleteOnly">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.TemplateStepSearcher.TemplateDeleteOnly"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.BowmanBingoMaxLength">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.BowmanBingoStepSearcher.MaxLength"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckAlmostLockedQuadruple">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckAlmostLockedQuadruple"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.CheckValueTypes">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedCandidatesStepSearcher.CheckValueTypes"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.SearchExtendedDeathBlossomTypes">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DeathBlossomStepSearcher.SearchExtendedTypes"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIsFullApplying">
-            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IsFullApplying"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms">
-            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms">
-            <inheritdoc cref="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.DifficultyLevelMode">
-            <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.StepGathererMaxStepsGathered">
-            <inheritdoc cref="P:Sudoku.Analytics.Collector.MaxStepsGathered"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.RuntimeIdentifier.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Concepts.DisorderedIttoryuFinder.SupportedTechniques"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute">
-            <summary>
-            Represents an attribute that can be applied to a property in a <see cref="T:Sudoku.Analytics.StepSearcher"/>,
-            indicating the runtime identifier. This property will be used for checking and replacing values in runtime.
-            </summary>
-            <param name="runtimeIdentifier">
-            Indicates the runtime identifier value. You can use <see cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifier"/> type to get the target name.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifier"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute.#ctor(System.String)">
-            <summary>
-            Represents an attribute that can be applied to a property in a <see cref="T:Sudoku.Analytics.StepSearcher"/>,
-            indicating the runtime identifier. This property will be used for checking and replacing values in runtime.
-            </summary>
-            <param name="runtimeIdentifier">
-            Indicates the runtime identifier value. You can use <see cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifier"/> type to get the target name.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifier"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute.RuntimeIdentifier">
-            <summary>
-            The generated property declaration for parameter <c>runtimeIdentifier</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute">

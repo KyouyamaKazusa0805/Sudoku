@@ -19,7 +19,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for Siamese XYZ-Rings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseXyzRing)]
+	[SettingItemName(SettingItemNames.AllowSiameseXyzRing)]
 	public bool AllowSiamese { get; set; }
 
 

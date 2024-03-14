@@ -36,25 +36,25 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the solver enables the technique full house.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.EnableFullHouse)]
+	[SettingItemName(SettingItemNames.EnableFullHouse)]
 	public bool EnableFullHouse { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver enables the technique last digit.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.EnableLastDigit)]
+	[SettingItemName(SettingItemNames.EnableLastDigit)]
 	public bool EnableLastDigit { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver checks for hidden single in block firstly.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.HiddenSinglesInBlockFirst)]
+	[SettingItemName(SettingItemNames.HiddenSinglesInBlockFirst)]
 	public bool HiddenSinglesInBlockFirst { get; set; }
 
 	/// <summary>
 	/// Indicates whether the solver uses ittoryu mode to solve a puzzle.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AnalyzerUseIttoryuMode)]
+	[SettingItemName(SettingItemNames.AnalyzerUseIttoryuMode)]
 	public bool UseIttoryuMode { get; set; }
 
 

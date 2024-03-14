@@ -9914,7 +9914,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks>
             All names of attached properties in this type can be corresponded to the target property in one <see cref="T:Sudoku.Analytics.StepSearcher"/>,
-            via <see cref="T:Sudoku.Analytics.Metadata.RuntimeIdentifierAttribute"/>.
+            via <see cref="T:Sudoku.Analytics.Configuration.SettingItemNameAttribute"/>.
             </remarks>
             <seealso cref="T:SudokuStudio.Views.Controls.SudokuPane"/>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>

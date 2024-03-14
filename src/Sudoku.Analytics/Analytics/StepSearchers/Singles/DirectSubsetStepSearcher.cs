@@ -44,38 +44,38 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for direct hidden subset.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectLockedSubset)]
+	[SettingItemName(SettingItemNames.AllowDirectLockedSubset)]
 	public bool AllowDirectHiddenSubset { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for direct locked hidden subset.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectLockedHiddenSubset)]
+	[SettingItemName(SettingItemNames.AllowDirectLockedHiddenSubset)]
 	public bool AllowDirectLockedHiddenSubset { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for direct naked subset.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectNakedSubset)]
+	[SettingItemName(SettingItemNames.AllowDirectNakedSubset)]
 	public bool AllowDirectNakedSubset { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for direct locked subset.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectLockedSubset)]
+	[SettingItemName(SettingItemNames.AllowDirectLockedSubset)]
 	public bool AllowDirectLockedSubset { get; set; }
 
 	/// <summary>
 	/// Indicates the size of the naked subsets you want to search for (including locked subsets and naked subsets (+)).
 	/// The maximum value is 4.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.DirectNakedSubsetMaxSize)]
+	[SettingItemName(SettingItemNames.DirectNakedSubsetMaxSize)]
 	public int DirectNakedSubsetMaxSize { get; set; } = 2;
 
 	/// <summary>
 	/// Indicates the size of the hidden subsets you want to search for (including locked hidden subsets). The maximum value is 4.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.DirectHiddenSubsetMaxSize)]
+	[SettingItemName(SettingItemNames.DirectHiddenSubsetMaxSize)]
 	public int DirectHiddenSubsetMaxSize { get; set; } = 2;
 
 

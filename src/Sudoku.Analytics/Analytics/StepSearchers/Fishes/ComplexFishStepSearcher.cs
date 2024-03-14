@@ -54,14 +54,14 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for Siamese fishes.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowSiameseComplexFish)]
+	[SettingItemName(SettingItemNames.AllowSiameseComplexFish)]
 	public bool AllowSiamese { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum size of the fish the step searcher instance can search for. The maximum possible value of this property is 7.
 	/// The default value is 3.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.MaxSizeOfComplexFish)]
+	[SettingItemName(SettingItemNames.MaxSizeOfComplexFish)]
 	public int MaxSize { get; set; } = 3;
 
 

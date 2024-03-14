@@ -5,51 +5,51 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <remarks>
 /// All names of attached properties in this type can be corresponded to the target property in one <see cref="StepSearcher"/>,
-/// via <see cref="RuntimeIdentifierAttribute"/>.
+/// via <see cref="SettingItemNameAttribute"/>.
 /// </remarks>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Analyzer"/>
-[AttachedProperty<bool>(RuntimeIdentifier.EnableFullHouse, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.EnableLastDigit, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.HiddenSinglesInBlockFirst, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AnalyzerUseIttoryuMode)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectPointing, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectClaiming, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectLockedSubset, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectNakedSubset, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectLockedHiddenSubset, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowDirectHiddenSubset, DefaultValue = true)]
-[AttachedProperty<int>(RuntimeIdentifier.DirectNakedSubsetMaxSize, DefaultValue = 2)]
-[AttachedProperty<int>(RuntimeIdentifier.DirectHiddenSubsetMaxSize, DefaultValue = 2)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowIncompleteUniqueRectangles, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.SearchForExtendedUniqueRectangles, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.SearchExtendedBivalueUniversalGraveTypes, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXzRule, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowLoopedPatternsOnAlmostLockedSetXzRule, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.DisableFinnedOrSashimiXWing, DefaultValue = true)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseNormalFish)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseComplexFish)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowSiameseXyzRing)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowWWing)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowMWing)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowSWing)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowLWing)]
-[AttachedProperty<bool>(RuntimeIdentifier.AllowHWing)]
-[AttachedProperty<int>(RuntimeIdentifier.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
-[AttachedProperty<int>(RuntimeIdentifier.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
-[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfRegularWing, DefaultValue = 5)]
-[AttachedProperty<int>(RuntimeIdentifier.MaxSizeOfComplexFish, DefaultValue = 5)]
-[AttachedProperty<bool>(RuntimeIdentifier.TemplateDeleteOnly)]
-[AttachedProperty<int>(RuntimeIdentifier.BowmanBingoMaxLength, DefaultValue = 64)]
-[AttachedProperty<bool>(RuntimeIdentifier.SearchExtendedDeathBlossomTypes)]
-[AttachedProperty<bool>(RuntimeIdentifier.CheckValueTypes)]
-[AttachedProperty<bool>(RuntimeIdentifier.CheckAlmostLockedQuadruple)]
-[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIsFullApplying)]
-[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresSlowAlgorithms)]
-[AttachedProperty<bool>(RuntimeIdentifier.LogicalSolverIgnoresHighAllocationAlgorithms)]
-[AttachedProperty<List<Technique>>(RuntimeIdentifier.IttoryuSupportedTechniques)]
+[AttachedProperty<bool>(SettingItemNames.EnableFullHouse, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.EnableLastDigit, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.HiddenSinglesInBlockFirst, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AnalyzerUseIttoryuMode)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectPointing, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectClaiming, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectLockedSubset, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectNakedSubset, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectLockedHiddenSubset, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowDirectHiddenSubset, DefaultValue = true)]
+[AttachedProperty<int>(SettingItemNames.DirectNakedSubsetMaxSize, DefaultValue = 2)]
+[AttachedProperty<int>(SettingItemNames.DirectHiddenSubsetMaxSize, DefaultValue = 2)]
+[AttachedProperty<bool>(SettingItemNames.AllowIncompleteUniqueRectangles, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.SearchForExtendedUniqueRectangles, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.SearchExtendedBivalueUniversalGraveTypes, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetXzRule, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetXzRule, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.DisableFinnedOrSashimiXWing, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowSiameseNormalFish)]
+[AttachedProperty<bool>(SettingItemNames.AllowSiameseComplexFish)]
+[AttachedProperty<bool>(SettingItemNames.AllowSiameseXyzRing)]
+[AttachedProperty<bool>(SettingItemNames.AllowWWing)]
+[AttachedProperty<bool>(SettingItemNames.AllowMWing)]
+[AttachedProperty<bool>(SettingItemNames.AllowSWing)]
+[AttachedProperty<bool>(SettingItemNames.AllowLWing)]
+[AttachedProperty<bool>(SettingItemNames.AllowHWing)]
+[AttachedProperty<int>(SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
+[AttachedProperty<int>(SettingItemNames.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
+[AttachedProperty<int>(SettingItemNames.MaxSizeOfRegularWing, DefaultValue = 5)]
+[AttachedProperty<int>(SettingItemNames.MaxSizeOfComplexFish, DefaultValue = 5)]
+[AttachedProperty<bool>(SettingItemNames.TemplateDeleteOnly)]
+[AttachedProperty<int>(SettingItemNames.BowmanBingoMaxLength, DefaultValue = 64)]
+[AttachedProperty<bool>(SettingItemNames.SearchExtendedDeathBlossomTypes)]
+[AttachedProperty<bool>(SettingItemNames.CheckValueTypes)]
+[AttachedProperty<bool>(SettingItemNames.CheckAlmostLockedQuadruple)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIsFullApplying)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIgnoresSlowAlgorithms)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIgnoresHighAllocationAlgorithms)]
+[AttachedProperty<List<Technique>>(SettingItemNames.IttoryuSupportedTechniques)]
 public static partial class AnalyzerProperties
 {
 	/// <summary>
@@ -97,7 +97,7 @@ public static partial class AnalyzerProperties
 
 
 			bool methodNameMatcher(PropertyInfo property)
-				=> property.GetCustomAttribute<RuntimeIdentifierAttribute>() is { RuntimeIdentifier: var identifier }
+				=> property.GetCustomAttribute<SettingItemNameAttribute>() is { Identifier: var identifier }
 				&& methodName[GetSetterName.Length..] == identifier;
 		}
 

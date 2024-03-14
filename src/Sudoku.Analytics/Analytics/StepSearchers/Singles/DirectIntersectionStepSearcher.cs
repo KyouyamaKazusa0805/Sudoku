@@ -39,13 +39,13 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows for searching for direct pointing.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectPointing)]
+	[SettingItemName(SettingItemNames.AllowDirectPointing)]
 	public bool AllowDirectPointing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows for searching for direct claiming.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowDirectClaiming)]
+	[SettingItemName(SettingItemNames.AllowDirectClaiming)]
 	public bool AllowDirectClaiming { get; set; }
 
 

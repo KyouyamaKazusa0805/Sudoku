@@ -1,11 +1,11 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
 /// Represents a list of <see cref="string"/>s indicating the runtime identifier recognized by UI,
-/// used by <see cref="RuntimeIdentifierAttribute"/>.
+/// used by <see cref="SettingItemNameAttribute"/>.
 /// </summary>
-/// <seealso cref="RuntimeIdentifierAttribute"/>
-public static class RuntimeIdentifier
+/// <seealso cref="SettingItemNameAttribute"/>
+public static class SettingItemNames
 {
 	//
 	// Step searcher property names

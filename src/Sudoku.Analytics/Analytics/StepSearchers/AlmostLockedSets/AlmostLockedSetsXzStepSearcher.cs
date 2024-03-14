@@ -16,14 +16,14 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowCollisionOnAlmostLockedSetXzRule)]
+	[SettingItemName(SettingItemNames.AllowCollisionOnAlmostLockedSetXzRule)]
 	public bool AllowCollision { get; set; }
 
 	/// <summary>
 	/// Indicates whether the searcher will enhance the searching to find all possible eliminations
 	/// for looped-ALS eliminations.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowLoopedPatternsOnAlmostLockedSetXzRule)]
+	[SettingItemName(SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetXzRule)]
 	public bool AllowLoopedPatterns { get; set; }
 
 

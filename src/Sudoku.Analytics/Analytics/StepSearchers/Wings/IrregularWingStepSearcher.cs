@@ -58,31 +58,31 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for W-Wings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowWWing)]
+	[SettingItemName(SettingItemNames.AllowWWing)]
 	public bool AllowWWing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for M-Wings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowMWing)]
+	[SettingItemName(SettingItemNames.AllowMWing)]
 	public bool AllowMWing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for S-Wings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowSWing)]
+	[SettingItemName(SettingItemNames.AllowSWing)]
 	public bool AllowSWing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for L-Wings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowLWing)]
+	[SettingItemName(SettingItemNames.AllowLWing)]
 	public bool AllowLWing { get; set; }
 
 	/// <summary>
 	/// Indicates whether the step searcher allows searching for H-Wings.
 	/// </summary>
-	[RuntimeIdentifier(RuntimeIdentifier.AllowHWing)]
+	[SettingItemName(SettingItemNames.AllowHWing)]
 	public bool AllowHWing { get; set; }
 
 
