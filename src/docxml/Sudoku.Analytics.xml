@@ -4554,52 +4554,6 @@
             The generated property declaration for parameter <c>abbr</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.BaseDifficultyAttribute">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="value">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.#ctor(System.Double)">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="value">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.ValueInDirectMode">
-            <summary>
-            Indicates the value that is used in direct mode.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.BaseDifficultyAttribute.Value">
-            <summary>
-            The generated property declaration for parameter <c>value</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.BoundStepTypesAttribute">
             <summary>
             Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
@@ -5073,6 +5027,52 @@
         <member name="P:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute.PropertyNamesAndValues">
             <summary>
             The generated property declaration for parameter <c>propertyNamesAndValues</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StaticDifficultyAttribute">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.#ctor(System.Double)">
+            <summary>
+            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
+            </summary>
+            <param name="value">Indicates the value of the rating.</param>
+            <remarks>
+            <para>
+            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
+            here we use a <see cref="T:System.Double"/> value to achieve this.
+            </para>
+            <para>
+            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
+            but sometimes they are not.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.ValueInDirectMode">
+            <summary>
+            Indicates the value that is used in direct mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.Value">
+            <summary>
+            The generated property declaration for parameter <c>value</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">

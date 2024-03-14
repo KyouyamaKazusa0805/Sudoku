@@ -53,7 +53,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static decimal GetBaseDifficulty(this Technique @this, out decimal valueInDirectMode)
 	{
-		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<BaseDifficultyAttribute>()!;
+		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<StaticDifficultyAttribute>()!;
 		valueInDirectMode = Math.Round((decimal)(attribute.ValueInDirectMode == 0 ? attribute.Value : attribute.ValueInDirectMode), 1);
 		return Math.Round((decimal)attribute.Value, 1);
 	}

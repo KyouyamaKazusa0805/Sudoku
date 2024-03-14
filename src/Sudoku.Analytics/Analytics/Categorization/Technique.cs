@@ -32,7 +32,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(FullHouseStep))]
-	[BaseDifficulty(1.0)]
+	[StaticDifficulty(1.0)]
 	FullHouse,
 
 	/// <summary>
@@ -43,7 +43,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(LastDigitStep), SecondaryTypes = [typeof(HiddenSingleStep)])]
-	[BaseDifficulty(1.1)]
+	[StaticDifficulty(1.1)]
 	LastDigit,
 
 	/// <summary>
@@ -56,7 +56,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(1.2)]
+	[StaticDifficulty(1.2)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -70,7 +70,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(1.5)]
+	[StaticDifficulty(1.5)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -84,7 +84,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(1.5)]
+	[StaticDifficulty(1.5)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -98,7 +98,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(NakedSingleStep))]
-	[BaseDifficulty(2.3, ValueInDirectMode = 1.0)]
+	[StaticDifficulty(2.3, ValueInDirectMode = 1.0)]
 	NakedSingle,
 	#endregion
 
@@ -114,7 +114,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(1.9)]
+	[StaticDifficulty(1.9)]
 	CrosshatchingBlock,
 
 	/// <summary>
@@ -125,7 +125,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(2.3)]
+	[StaticDifficulty(2.3)]
 	CrosshatchingRow,
 
 	/// <summary>
@@ -136,7 +136,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
-	[BaseDifficulty(2.3)]
+	[StaticDifficulty(2.3)]
 	CrosshatchingColumn,
 	#endregion
 
@@ -151,7 +151,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	PointingFullHouse,
 
@@ -162,7 +162,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	ClaimingFullHouse,
 
@@ -173,7 +173,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairFullHouse,
 
@@ -184,7 +184,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlusFullHouse,
 
@@ -195,7 +195,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPairFullHouse,
 
@@ -206,7 +206,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPairFullHouse,
 
@@ -217,7 +217,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPairFullHouse,
 
@@ -228,7 +228,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTripleFullHouse,
 
@@ -239,7 +239,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlusFullHouse,
 
@@ -250,7 +250,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTripleFullHouse,
 
@@ -261,7 +261,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTripleFullHouse,
 
@@ -272,7 +272,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTripleFullHouse,
 
@@ -283,7 +283,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadrupleFullHouse,
 
@@ -294,7 +294,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlusFullHouse,
 
@@ -305,7 +305,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadrupleFullHouse,
 
@@ -316,7 +316,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	PointingCrosshatchingBlock,
 
@@ -327,7 +327,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	ClaimingCrosshatchingBlock,
 
@@ -338,7 +338,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairCrosshatchingBlock,
 
@@ -349,7 +349,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlusCrosshatchingBlock,
 
@@ -360,7 +360,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPairCrosshatchingBlock,
 
@@ -371,7 +371,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPairCrosshatchingBlock,
 
@@ -382,7 +382,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPairCrosshatchingBlock,
 
@@ -393,7 +393,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTripleCrosshatchingBlock,
 
@@ -404,7 +404,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlusCrosshatchingBlock,
 
@@ -415,7 +415,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTripleCrosshatchingBlock,
 
@@ -426,7 +426,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTripleCrosshatchingBlock,
 
@@ -437,7 +437,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTripleCrosshatchingBlock,
 
@@ -448,7 +448,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadrupleCrosshatchingBlock,
 
@@ -459,7 +459,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingBlock,
 
@@ -470,7 +470,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadrupleCrosshatchingBlock,
 
@@ -481,7 +481,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	PointingCrosshatchingRow,
 
@@ -492,7 +492,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	ClaimingCrosshatchingRow,
 
@@ -503,7 +503,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairCrosshatchingRow,
 
@@ -514,7 +514,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlusCrosshatchingRow,
 
@@ -525,7 +525,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPairCrosshatchingRow,
 
@@ -536,7 +536,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPairCrosshatchingRow,
 
@@ -547,7 +547,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPairCrosshatchingRow,
 
@@ -558,7 +558,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTripleCrosshatchingRow,
 
@@ -569,7 +569,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlusCrosshatchingRow,
 
@@ -580,7 +580,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTripleCrosshatchingRow,
 
@@ -591,7 +591,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTripleCrosshatchingRow,
 
@@ -602,7 +602,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTripleCrosshatchingRow,
 
@@ -613,7 +613,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadrupleCrosshatchingRow,
 
@@ -624,7 +624,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingRow,
 
@@ -635,7 +635,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadrupleCrosshatchingRow,
 
@@ -646,7 +646,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	PointingCrosshatchingColumn,
 
@@ -657,7 +657,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	ClaimingCrosshatchingColumn,
 
@@ -668,7 +668,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairCrosshatchingColumn,
 
@@ -679,7 +679,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlusCrosshatchingColumn,
 
@@ -690,7 +690,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPairCrosshatchingColumn,
 
@@ -701,7 +701,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPairCrosshatchingColumn,
 
@@ -712,7 +712,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPairCrosshatchingColumn,
 
@@ -723,7 +723,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTripleCrosshatchingColumn,
 
@@ -734,7 +734,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlusCrosshatchingColumn,
 
@@ -745,7 +745,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTripleCrosshatchingColumn,
 
@@ -756,7 +756,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTripleCrosshatchingColumn,
 
@@ -767,7 +767,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTripleCrosshatchingColumn,
 
@@ -778,7 +778,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadrupleCrosshatchingColumn,
 
@@ -789,7 +789,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlusCrosshatchingColumn,
 
@@ -800,7 +800,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadrupleCrosshatchingColumn,
 
@@ -811,7 +811,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	PointingNakedSingle,
 
@@ -822,7 +822,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	ClaimingNakedSingle,
 
@@ -833,7 +833,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairNakedSingle,
 
@@ -844,7 +844,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlusNakedSingle,
 
@@ -855,7 +855,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPairNakedSingle,
 
@@ -866,7 +866,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPairNakedSingle,
 
@@ -877,7 +877,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPairNakedSingle,
 
@@ -888,7 +888,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTripleNakedSingle,
 
@@ -899,7 +899,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlusNakedSingle,
 
@@ -910,7 +910,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTripleNakedSingle,
 
@@ -921,7 +921,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTripleNakedSingle,
 
@@ -932,7 +932,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTripleNakedSingle,
 
@@ -943,7 +943,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadrupleNakedSingle,
 
@@ -954,7 +954,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.3)]
+	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlusNakedSingle,
 
@@ -965,7 +965,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.DirectTechniques)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(DirectSubsetStep))]
-	[BaseDifficulty(3.7)]
+	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadrupleNakedSingle,
 	#endregion
@@ -986,7 +986,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(LockedCandidatesStep))]
-	[BaseDifficulty(2.6)]
+	[StaticDifficulty(2.6)]
 	Pointing,
 
 	/// <summary>
@@ -1001,7 +1001,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.LockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(LockedCandidatesStep))]
-	[BaseDifficulty(2.8)]
+	[StaticDifficulty(2.8)]
 	Claiming,
 
 	/// <summary>
@@ -1013,7 +1013,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[Abbreviation("LoL")]
 	[BoundStepTypes(typeof(LawOfLeftoverStep))]
-	[BaseDifficulty(2.0)]
+	[StaticDifficulty(2.0)]
 	LawOfLeftover,
 	#endregion
 
@@ -1032,7 +1032,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPair,
 
@@ -1043,7 +1043,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedPairPlus,
 
@@ -1061,7 +1061,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedPair,
 
@@ -1076,7 +1076,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(HiddenSubsetStep))]
-	[BaseDifficulty(3.4)]
+	[StaticDifficulty(3.4)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenPair,
 
@@ -1087,7 +1087,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(HiddenSubsetStep))]
-	[BaseDifficulty(3.4)]
+	[StaticDifficulty(3.4)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenPair,
 
@@ -1103,7 +1103,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriple,
 
@@ -1114,7 +1114,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedTriplePlus,
 
@@ -1132,7 +1132,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedTriple,
 
@@ -1148,7 +1148,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(HiddenSubsetStep))]
-	[BaseDifficulty(3.4)]
+	[StaticDifficulty(3.4)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenTriple,
 
@@ -1159,7 +1159,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(HiddenSubsetStep))]
-	[BaseDifficulty(3.4)]
+	[StaticDifficulty(3.4)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	LockedHiddenTriple,
 
@@ -1175,7 +1175,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruple,
 
@@ -1186,7 +1186,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(NakedSubsetStep))]
-	[BaseDifficulty(3.0)]
+	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	NakedQuadruplePlus,
 
@@ -1202,7 +1202,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Subset)]
 	[DifficultyLevel(DifficultyLevel.Moderate)]
 	[BoundStepTypes(typeof(HiddenSubsetStep))]
-	[BaseDifficulty(3.4)]
+	[StaticDifficulty(3.4)]
 	[ExtraDifficultyFactors(Size, Locked)]
 	HiddenQuadruple,
 	#endregion
@@ -1223,7 +1223,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	XWing,
 
@@ -1240,7 +1240,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	FinnedXWing,
 
@@ -1256,7 +1256,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SashimiXWing,
 
@@ -1268,7 +1268,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseFinnedXWing,
 
@@ -1279,7 +1279,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseSashimiXWing,
 
@@ -1293,7 +1293,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenXWing,
 
@@ -1308,7 +1308,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenXWing,
 
@@ -1320,7 +1320,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenXWing,
 
@@ -1333,7 +1333,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenXWing,
 
@@ -1344,7 +1344,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenXWing,
 
@@ -1358,7 +1358,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantXWing,
 
@@ -1373,7 +1373,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantXWing,
 
@@ -1385,7 +1385,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantXWing,
 
@@ -1398,7 +1398,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantXWing,
 
@@ -1410,7 +1410,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantXWing,
 
@@ -1426,7 +1426,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	Swordfish,
 
@@ -1443,7 +1443,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	FinnedSwordfish,
 
@@ -1459,7 +1459,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SashimiSwordfish,
 
@@ -1471,7 +1471,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseFinnedSwordfish,
 
@@ -1482,7 +1482,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseSashimiSwordfish,
 
@@ -1498,7 +1498,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenSwordfish,
 
@@ -1514,7 +1514,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenSwordfish,
 
@@ -1527,7 +1527,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenSwordfish,
 
@@ -1541,7 +1541,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenSwordfish,
 
@@ -1554,7 +1554,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenSwordfish,
 
@@ -1569,7 +1569,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantSwordfish,
 
@@ -1585,7 +1585,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantSwordfish,
 
@@ -1598,7 +1598,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantSwordfish,
 
@@ -1612,7 +1612,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantSwordfish,
 
@@ -1625,7 +1625,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantSwordfish,
 
@@ -1641,7 +1641,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	Jellyfish,
 
@@ -1658,7 +1658,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	FinnedJellyfish,
 
@@ -1674,7 +1674,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SashimiJellyfish,
 
@@ -1686,7 +1686,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseFinnedJellyfish,
 
@@ -1697,7 +1697,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.NormalFish)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(NormalFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi)]
 	SiameseSashimiJellyfish,
 
@@ -1712,7 +1712,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenJellyfish,
 
@@ -1728,7 +1728,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenJellyfish,
 
@@ -1741,7 +1741,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenJellyfish,
 
@@ -1755,7 +1755,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenJellyfish,
 
@@ -1768,7 +1768,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenJellyfish,
 
@@ -1783,7 +1783,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantJellyfish,
 
@@ -1799,7 +1799,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantJellyfish,
 
@@ -1812,7 +1812,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantJellyfish,
 
@@ -1826,7 +1826,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantJellyfish,
 
@@ -1839,7 +1839,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantJellyfish,
 
@@ -1909,7 +1909,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenSquirmbag,
 
@@ -1924,7 +1924,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenSquirmbag,
 
@@ -1936,7 +1936,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenSquirmbag,
 
@@ -1949,7 +1949,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenSquirmbag,
 
@@ -1961,7 +1961,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenSquirmbag,
 
@@ -1976,7 +1976,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantSquirmbag,
 
@@ -1991,7 +1991,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantSquirmbag,
 
@@ -2003,7 +2003,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantSquirmbag,
 
@@ -2016,7 +2016,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantSquirmbag,
 
@@ -2028,7 +2028,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantSquirmbag,
 
@@ -2098,7 +2098,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenWhale,
 
@@ -2113,7 +2113,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenWhale,
 
@@ -2125,7 +2125,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenWhale,
 
@@ -2138,7 +2138,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenWhale,
 
@@ -2150,7 +2150,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenWhale,
 
@@ -2165,7 +2165,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantWhale,
 
@@ -2180,7 +2180,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantWhale,
 
@@ -2192,7 +2192,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantWhale,
 
@@ -2205,7 +2205,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantWhale,
 
@@ -2217,7 +2217,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantWhale,
 
@@ -2287,7 +2287,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FrankenLeviathan,
 
@@ -2302,7 +2302,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedFrankenLeviathan,
 
@@ -2314,7 +2314,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiFrankenLeviathan,
 
@@ -2327,7 +2327,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedFrankenLeviathan,
 
@@ -2339,7 +2339,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiFrankenLeviathan,
 
@@ -2354,7 +2354,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	MutantLeviathan,
 
@@ -2369,7 +2369,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	FinnedMutantLeviathan,
 
@@ -2381,7 +2381,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SashimiMutantLeviathan,
 
@@ -2394,7 +2394,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseFinnedMutantLeviathan,
 
@@ -2406,7 +2406,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ComplexFish)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexFishStep))]
-	[BaseDifficulty(3.2)]
+	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Sashimi, FishShape, Cannibalism)]
 	SiameseSashimiMutantLeviathan,
 	#endregion
@@ -2426,7 +2426,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	XyWing,
 
@@ -2441,7 +2441,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	XyzWing,
 
@@ -2455,7 +2455,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	WxyzWing,
 
@@ -2467,7 +2467,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	VwxyzWing,
 
@@ -2479,7 +2479,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	UvwxyzWing,
 
@@ -2491,7 +2491,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	TuvwxyzWing,
 
@@ -2503,7 +2503,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	StuvwxyzWing,
 
@@ -2515,7 +2515,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	RstuvwxyzWing,
 
@@ -2526,7 +2526,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteWxyzWing,
 
@@ -2536,7 +2536,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.RegularWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteVwxyzWing,
 
@@ -2547,7 +2547,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteUvwxyzWing,
 
@@ -2558,7 +2558,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteTuvwxyzWing,
 
@@ -2569,7 +2569,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteStuvwxyzWing,
 
@@ -2580,7 +2580,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(RegularWingStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	[ExtraDifficultyFactors(Size, Incompleteness)]
 	IncompleteRstuvwxyzWing,
 	#endregion
@@ -2600,7 +2600,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(WWingStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	WWing,
 
 	/// <summary>
@@ -2610,7 +2610,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(MultiBranchWWingStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(Size)]
 	MultiBranchWWing,
 
@@ -2621,7 +2621,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(WWingStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	GroupedWWing,
 
 	/// <summary>
@@ -2630,7 +2630,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(MWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	MWing,
 
 	/// <summary>
@@ -2639,7 +2639,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(MWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	GroupedMWing,
 
 	/// <summary>
@@ -2648,7 +2648,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(SWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	SWing,
 
 	/// <summary>
@@ -2657,7 +2657,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(SWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	GroupedSWing,
 
 	/// <summary>
@@ -2667,7 +2667,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(LWingStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	LWing,
 
 	/// <summary>
@@ -2677,7 +2677,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(LWingStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	GroupedLWing,
 
 	/// <summary>
@@ -2687,7 +2687,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(HWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	HWing,
 
 	/// <summary>
@@ -2697,7 +2697,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.IrregularWing)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(HWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	GroupedHWing,
 	#endregion
 
@@ -2715,7 +2715,7 @@ public enum Technique
 	[Abbreviation("ALP")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ValueCell)]
 	AlmostLockedPair,
 
@@ -2729,7 +2729,7 @@ public enum Technique
 	[Abbreviation("ALT")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ValueCell)]
 	AlmostLockedTriple,
 
@@ -2744,7 +2744,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ValueCell)]
 	AlmostLockedQuadruple,
 
@@ -2757,7 +2757,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ValueCell)]
 	AlmostLockedTripleValueType,
 
@@ -2770,7 +2770,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ValueCell)]
 	AlmostLockedQuadrupleValueType,
 	#endregion
@@ -2790,7 +2790,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ExtendedSubsetPrinciple)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ExtendedSubsetPrincipleStep))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	[ExtraDifficultyFactors(Size)]
 	ExtendedSubsetPrinciple,
 	#endregion
@@ -2814,7 +2814,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType1Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	UniqueRectangleType1,
 
 	/// <summary>
@@ -2833,7 +2833,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	UniqueRectangleType2,
 
 	/// <summary>
@@ -2852,7 +2852,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType3Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Hidden)]
 	UniqueRectangleType3,
 
@@ -2872,7 +2872,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair)]
 	UniqueRectangleType4,
 
@@ -2890,7 +2890,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	UniqueRectangleType5,
 
 	/// <summary>
@@ -2907,7 +2907,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair)]
 	UniqueRectangleType6,
 
@@ -2926,7 +2926,7 @@ public enum Technique
 	[Abbreviation("HUR")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	HiddenUniqueRectangle,
 
@@ -2940,7 +2940,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	UniqueRectangle2D,
 
 	/// <summary>
@@ -2952,7 +2952,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle2B1,
 
@@ -2965,7 +2965,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle2D1,
 
@@ -2979,7 +2979,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	UniqueRectangle3X,
 
 	/// <summary>
@@ -3011,7 +3011,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle3X2,
 
@@ -3024,7 +3024,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle3N2,
 
@@ -3037,7 +3037,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle3U2,
 
@@ -3050,7 +3050,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle3E2,
 
@@ -3103,7 +3103,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle4X3,
 
@@ -3116,7 +3116,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithConjugatePairStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	UniqueRectangle4C3,
 
@@ -3129,7 +3129,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	UniqueRectangleXyWing,
 
@@ -3142,7 +3142,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	UniqueRectangleXyzWing,
 
@@ -3155,7 +3155,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	UniqueRectangleWxyzWing,
 
@@ -3183,7 +3183,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleWithSueDeCoqStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	[ExtraDifficultyFactors(Size, Isolated, Cannibalism, Avoidable)]
 	UniqueRectangleSueDeCoq,
 
@@ -3196,7 +3196,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleWithBabaGroupingStep))]
-	[BaseDifficulty(4.9)]
+	[StaticDifficulty(4.9)]
 	UniqueRectangleBabaGrouping,
 
 	/// <summary>
@@ -3208,7 +3208,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	UniqueRectangleExternalType1,
 
 	/// <summary>
@@ -3220,7 +3220,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	UniqueRectangleExternalType2,
 
 	/// <summary>
@@ -3232,7 +3232,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType3Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Size, Avoidable, Incompleteness)]
 	UniqueRectangleExternalType3,
 
@@ -3245,7 +3245,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType4Step))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	[ExtraDifficultyFactors(Avoidable, Incompleteness)]
 	UniqueRectangleExternalType4,
 
@@ -3258,7 +3258,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalTurbotFishStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Guardian, Incompleteness)]
 	UniqueRectangleExternalTurbotFish,
 
@@ -3271,7 +3271,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalWWingStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalWWing,
 
@@ -3284,7 +3284,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalXyWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalXyWing,
 
@@ -3297,7 +3297,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalAlmostLockedSetsXzStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	UniqueRectangleExternalAlmostLockedSetsXz,
 	#endregion
@@ -3317,7 +3317,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType1Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	AvoidableRectangleType1,
 
 	/// <summary>
@@ -3331,7 +3331,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	AvoidableRectangleType2,
 
 	/// <summary>
@@ -3341,7 +3341,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType3Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Hidden)]
 	AvoidableRectangleType3,
 
@@ -3352,7 +3352,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	AvoidableRectangleType5,
 
 	/// <summary>
@@ -3363,7 +3363,7 @@ public enum Technique
 	[Abbreviation("HAR")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
 	HiddenAvoidableRectangle,
 
@@ -3375,7 +3375,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	AvoidableRectangle2D,
 
 	/// <summary>
@@ -3386,7 +3386,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	AvoidableRectangle3X,
 
 	/// <summary>
@@ -3396,7 +3396,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	AvoidableRectangleXyWing,
 
@@ -3407,7 +3407,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	AvoidableRectangleXyzWing,
 
@@ -3418,7 +3418,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueRectangleWithWingStep))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Avoidable, WingSize)]
 	AvoidableRectangleWxyzWing,
 
@@ -3442,7 +3442,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleWithSueDeCoqStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	[ExtraDifficultyFactors(Size, Isolated, Cannibalism, Avoidable)]
 	AvoidableRectangleSueDeCoq,
 
@@ -3453,7 +3453,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleBlock,
 
 	/// <summary>
@@ -3463,7 +3463,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleRow,
 
 	/// <summary>
@@ -3473,7 +3473,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
@@ -3483,7 +3483,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
@@ -3493,7 +3493,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
@@ -3503,7 +3503,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType3Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Size, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalType3,
 
@@ -3514,7 +3514,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalType4Step))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	[ExtraDifficultyFactors(Avoidable, Incompleteness)]
 	AvoidableRectangleExternalType4,
 
@@ -3525,7 +3525,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalXyWingStep))]
-	[BaseDifficulty(4.7)]
+	[StaticDifficulty(4.7)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalXyWing,
 
@@ -3537,7 +3537,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalWWingStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalWWing,
 
@@ -3548,7 +3548,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueRectangleExternalAlmostLockedSetsXzStep))]
-	[BaseDifficulty(4.8)]
+	[StaticDifficulty(4.8)]
 	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
@@ -3566,7 +3566,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueLoopType1Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Length)]
 	UniqueLoopType1,
 
@@ -3580,7 +3580,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueLoopType2Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	UniqueLoopType2,
 
@@ -3594,7 +3594,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueLoopType3Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Length, Size)]
 	UniqueLoopType3,
 
@@ -3608,7 +3608,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.UniqueLoop)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(UniqueLoopType4Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	UniqueLoopType4,
 	#endregion
@@ -3626,7 +3626,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ExtendedRectangleType1Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size)]
 	ExtendedRectangleType1,
 
@@ -3639,7 +3639,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ExtendedRectangleType2Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Size)]
 	ExtendedRectangleType2,
 
@@ -3652,7 +3652,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ExtendedRectangleType3Step))]
-	[BaseDifficulty(4.5)]
+	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, ExtraDigit)]
 	ExtendedRectangleType3,
 
@@ -3665,7 +3665,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ExtendedRectangle)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(ExtendedRectangleType4Step))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Size)]
 	ExtendedRectangleType4,
 	#endregion
@@ -3687,7 +3687,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveType1Step))]
-	[BaseDifficulty(5.6)]
+	[StaticDifficulty(5.6)]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
@@ -3700,7 +3700,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveType2Step))]
-	[BaseDifficulty(5.6)]
+	[StaticDifficulty(5.6)]
 	[ExtraDifficultyFactors(ExtraDigit)]
 	BivalueUniversalGraveType2,
 
@@ -3714,7 +3714,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveType3Step))]
-	[BaseDifficulty(5.6)]
+	[StaticDifficulty(5.6)]
 	[ExtraDifficultyFactors(Size, Hidden)]
 	BivalueUniversalGraveType3,
 
@@ -3728,7 +3728,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveType4Step))]
-	[BaseDifficulty(5.6)]
+	[StaticDifficulty(5.6)]
 	[ExtraDifficultyFactors(ConjugatePair)]
 	BivalueUniversalGraveType4,
 
@@ -3743,7 +3743,7 @@ public enum Technique
 	[Abbreviation("BUG + n")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveMultipleStep))]
-	[BaseDifficulty(5.7)]
+	[StaticDifficulty(5.7)]
 	[ExtraDifficultyFactors(Size)]
 	BivalueUniversalGravePlusN,
 
@@ -3755,7 +3755,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveFalseCandidateTypeStep))]
-	[BaseDifficulty(5.7)]
+	[StaticDifficulty(5.7)]
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
@@ -3777,7 +3777,7 @@ public enum Technique
 	[Abbreviation("BUG-XZ")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BivalueUniversalGraveXzStep))]
-	[BaseDifficulty(5.8)]
+	[StaticDifficulty(5.8)]
 	BivalueUniversalGraveXzRule,
 
 	/// <summary>
@@ -3803,7 +3803,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ReverseBivalueUniversalGraveType1Step))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	[ExtraDifficultyFactors(Length)]
 	ReverseBivalueUniversalGraveType1,
 
@@ -3815,7 +3815,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ReverseBivalueUniversalGraveType2Step))]
-	[BaseDifficulty(6.1)]
+	[StaticDifficulty(6.1)]
 	[ExtraDifficultyFactors(Length)]
 	ReverseBivalueUniversalGraveType2,
 
@@ -3827,7 +3827,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ReverseBivalueUniversalGraveType3Step))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	[ExtraDifficultyFactors(Length)]
 	ReverseBivalueUniversalGraveType3,
 
@@ -3839,7 +3839,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ReverseBivalueUniversalGrave)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ReverseBivalueUniversalGraveType4Step))]
-	[BaseDifficulty(6.3)]
+	[StaticDifficulty(6.3)]
 	[ExtraDifficultyFactors(Length)]
 	ReverseBivalueUniversalGraveType4,
 	#endregion
@@ -3857,7 +3857,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniquenessClueCoverStep))]
-	[BaseDifficulty(6.5)]
+	[StaticDifficulty(6.5)]
 	[ExtraDifficultyFactors(Size)]
 	UniquenessClueCover,
 	#endregion
@@ -3885,7 +3885,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BorescoperDeadlyPatternType1Step))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
@@ -3894,7 +3894,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BorescoperDeadlyPatternType2Step))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
@@ -3903,7 +3903,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BorescoperDeadlyPatternType3Step))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size)]
 	BorescoperDeadlyPatternType3,
 
@@ -3913,7 +3913,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(BorescoperDeadlyPatternType4Step))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -3929,7 +3929,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternType1Step))]
-	[BaseDifficulty(5.8)]
+	[StaticDifficulty(5.8)]
 	QiuDeadlyPatternType1,
 
 	/// <summary>
@@ -3940,7 +3940,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternType2Step))]
-	[BaseDifficulty(5.9)]
+	[StaticDifficulty(5.9)]
 	QiuDeadlyPatternType2,
 
 	/// <summary>
@@ -3951,7 +3951,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternType3Step))]
-	[BaseDifficulty(5.8)]
+	[StaticDifficulty(5.8)]
 	[ExtraDifficultyFactors(Size)]
 	QiuDeadlyPatternType3,
 
@@ -3963,7 +3963,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternType4Step))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	QiuDeadlyPatternType4,
 
 	/// <summary>
@@ -3974,7 +3974,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternLockedTypeStep))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	LockedQiuDeadlyPattern,
 
 	/// <summary>
@@ -3985,7 +3985,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternExternalType1Step))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	QiuDeadlyPatternExternalType1,
 
 	/// <summary>
@@ -3996,7 +3996,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(QiuDeadlyPatternExternalType2Step))]
-	[BaseDifficulty(6.1)]
+	[StaticDifficulty(6.1)]
 	QiuDeadlyPatternExternalType2,
 	#endregion
 
@@ -4011,7 +4011,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueMatrixType1Step))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	UniqueMatrixType1,
 
 	/// <summary>
@@ -4021,7 +4021,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueMatrixType2Step))]
-	[BaseDifficulty(5.4)]
+	[StaticDifficulty(5.4)]
 	UniqueMatrixType2,
 
 	/// <summary>
@@ -4031,7 +4031,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueMatrixType3Step))]
-	[BaseDifficulty(5.3)]
+	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size)]
 	UniqueMatrixType3,
 
@@ -4042,7 +4042,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(UniqueMatrixType4Step))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	UniqueMatrixType4,
 	#endregion
 
@@ -4063,7 +4063,7 @@ public enum Technique
 	[Abbreviation("SdC")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(SueDeCoqStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	[ExtraDifficultyFactors(Isolated, Cannibalism)]
 	SueDeCoq,
 
@@ -4079,7 +4079,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(SueDeCoqStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	[ExtraDifficultyFactors(Isolated, Cannibalism)]
 	SueDeCoqIsolated,
 
@@ -4090,7 +4090,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(SueDeCoq3DimensionStep))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	SueDeCoq3Dimension,
 
 	/// <summary>
@@ -4100,7 +4100,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(SueDeCoqStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	[ExtraDifficultyFactors(Isolated, Cannibalism)]
 	SueDeCoqCannibalism,
 	#endregion
@@ -4116,7 +4116,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(FireworkTripleStep))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	FireworkTriple,
 
 	/// <summary>
@@ -4126,7 +4126,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Firework)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(FireworkQuadrupleStep))]
-	[BaseDifficulty(6.3)]
+	[StaticDifficulty(6.3)]
 	FireworkQuadruple,
 	#endregion
 
@@ -4142,7 +4142,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BrokenWing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(GuardianStep))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	BrokenWing,
 	#endregion
 
@@ -4157,7 +4157,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(BivalueOddagonType2Step))]
-	[BaseDifficulty(6.1)]
+	[StaticDifficulty(6.1)]
 	BivalueOddagonType2,
 
 	/// <summary>
@@ -4167,7 +4167,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(BivalueOddagonType3Step))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	[ExtraDifficultyFactors(Size)]
 	BivalueOddagonType3,
 	#endregion
@@ -4185,7 +4185,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ChromaticPatternType1Step))]
-	[BaseDifficulty(6.5)]
+	[StaticDifficulty(6.5)]
 	ChromaticPatternType1,
 
 	/// <summary>
@@ -4225,7 +4225,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ChromaticPatternXzStep))]
-	[BaseDifficulty(6.7)]
+	[StaticDifficulty(6.7)]
 	ChromaticPatternXzRule,
 	#endregion
 
@@ -4247,7 +4247,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.0)]
+	[StaticDifficulty(4.0)]
 	Skyscraper,
 
 	/// <summary>
@@ -4264,7 +4264,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.1)]
+	[StaticDifficulty(4.1)]
 	TwoStringKite,
 
 	/// <summary>
@@ -4278,7 +4278,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	TurbotFish,
 
 	/// <summary>
@@ -4288,7 +4288,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.2)]
+	[StaticDifficulty(4.2)]
 	GroupedSkyscraper,
 
 	/// <summary>
@@ -4298,7 +4298,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.3)]
+	[StaticDifficulty(4.3)]
 	GroupedTwoStringKite,
 
 	/// <summary>
@@ -4308,7 +4308,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[BaseDifficulty(4.4)]
+	[StaticDifficulty(4.4)]
 	GroupedTurbotFish,
 	#endregion
 
@@ -4326,7 +4326,7 @@ public enum Technique
 	[Abbreviation("ER")]
 	[DifficultyLevel(DifficultyLevel.Hard)]
 	[BoundStepTypes(typeof(EmptyRectangleStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	EmptyRectangle,
 	#endregion
 
@@ -4344,7 +4344,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	XChain,
 
@@ -4359,7 +4359,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	YChain,
 
@@ -4374,7 +4374,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	FishyCycle,
 
@@ -4388,7 +4388,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	XyChain,
 
@@ -4400,7 +4400,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	XyCycle,
 
@@ -4411,7 +4411,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	XyXChain,
 
@@ -4424,7 +4424,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	RemotePair,
 
@@ -4435,7 +4435,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	PurpleCow,
 
@@ -4452,7 +4452,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.NotImplemented)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	DiscontinuousNiceLoop,
 
@@ -4468,7 +4468,7 @@ public enum Technique
 	[Abbreviation("CNL")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	ContinuousNiceLoop,
 
@@ -4484,7 +4484,7 @@ public enum Technique
 	[Abbreviation("AIC")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(ForcingChainStep))]
-	[BaseDifficulty(4.6)]
+	[StaticDifficulty(4.6)]
 	[ExtraDifficultyFactors(Length)]
 	AlternatingInferenceChain,
 
@@ -4599,7 +4599,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(RegionForcingChainsStep))]
-	[BaseDifficulty(8.0)]
+	[StaticDifficulty(8.0)]
 	[ExtraDifficultyFactors(Length)]
 	RegionForcingChains,
 
@@ -4613,7 +4613,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.ForcingChains)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(CellForcingChainsStep))]
-	[BaseDifficulty(8.0)]
+	[StaticDifficulty(8.0)]
 	[ExtraDifficultyFactors(Length)]
 	CellForcingChains,
 
@@ -4628,7 +4628,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[BoundStepTypes(typeof(RegionForcingChainsStep))]
-	[BaseDifficulty(8.5)]
+	[StaticDifficulty(8.5)]
 	[ExtraDifficultyFactors(Length)]
 	DynamicRegionForcingChains,
 
@@ -4643,7 +4643,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[BoundStepTypes(typeof(CellForcingChainsStep))]
-	[BaseDifficulty(8.5)]
+	[StaticDifficulty(8.5)]
 	[ExtraDifficultyFactors(Length)]
 	DynamicCellForcingChains,
 
@@ -4658,7 +4658,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[BoundStepTypes(typeof(BinaryForcingChainsStep))]
-	[BaseDifficulty(9.5)]
+	[StaticDifficulty(9.5)]
 	[ExtraDifficultyFactors(Length)]
 	DynamicContradictionForcingChains,
 
@@ -4673,7 +4673,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[BoundStepTypes(typeof(BinaryForcingChainsStep))]
-	[BaseDifficulty(9.5)]
+	[StaticDifficulty(9.5)]
 	[ExtraDifficultyFactors(Length)]
 	DynamicDoubleForcingChains,
 
@@ -4697,7 +4697,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[BoundStepTypes(typeof(BlossomLoopStep))]
-	[BaseDifficulty(8.0)]
+	[StaticDifficulty(8.0)]
 	[ExtraDifficultyFactors(Length)]
 	BlossomLoop,
 	#endregion
@@ -4719,7 +4719,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlignedExclusionStep))]
-	[BaseDifficulty(6.2)]
+	[StaticDifficulty(6.2)]
 	AlignedPairExclusion,
 
 	/// <summary>
@@ -4734,7 +4734,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlignedExclusionStep))]
-	[BaseDifficulty(7.5)]
+	[StaticDifficulty(7.5)]
 	AlignedTripleExclusion,
 
 	/// <summary>
@@ -4745,7 +4745,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlignedExclusionStep))]
-	[BaseDifficulty(8.1)]
+	[StaticDifficulty(8.1)]
 	AlignedQuadrupleExclusion,
 
 	/// <summary>
@@ -4756,7 +4756,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlignedExclusionStep))]
-	[BaseDifficulty(8.4)]
+	[StaticDifficulty(8.4)]
 	AlignedQuintupleExclusion,
 	#endregion
 
@@ -4771,7 +4771,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	XyzLoop,
 
 	/// <summary>
@@ -4781,7 +4781,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	SiameseXyzLoop,
 
 	/// <summary>
@@ -4791,7 +4791,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.2)]
+	[StaticDifficulty(5.2)]
 	XyzNiceLoop,
 
 	/// <summary>
@@ -4801,7 +4801,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.2)]
+	[StaticDifficulty(5.2)]
 	SiameseXyzNiceLoop,
 
 	/// <summary>
@@ -4811,7 +4811,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	GroupedXyzLoop,
 
 	/// <summary>
@@ -4821,7 +4821,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.0)]
+	[StaticDifficulty(5.0)]
 	SiameseGroupedXyzLoop,
 
 	/// <summary>
@@ -4831,7 +4831,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.2)]
+	[StaticDifficulty(5.2)]
 	GroupedXyzNiceLoop,
 
 	/// <summary>
@@ -4841,7 +4841,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.XyzRing)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(XyzRingStep))]
-	[BaseDifficulty(5.2)]
+	[StaticDifficulty(5.2)]
 	SiameseGroupedXyzNiceLoop,
 	#endregion
 
@@ -4861,7 +4861,7 @@ public enum Technique
 	[Abbreviation("ALS-XZ")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlmostLockedSetsXzStep))]
-	[BaseDifficulty(5.5)]
+	[StaticDifficulty(5.5)]
 	SinglyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -4875,7 +4875,7 @@ public enum Technique
 	[Abbreviation("ALS-XZ")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlmostLockedSetsXzStep))]
-	[BaseDifficulty(5.7)]
+	[StaticDifficulty(5.7)]
 	DoublyLinkedAlmostLockedSetsXzRule,
 
 	/// <summary>
@@ -4890,7 +4890,7 @@ public enum Technique
 	[Abbreviation("ALS-XY-Wing")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlmostLockedSetsXyWingStep))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	AlmostLockedSetsXyWing,
 
 	/// <summary>
@@ -4900,7 +4900,7 @@ public enum Technique
 	[Abbreviation("ALS-W-Wing")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AlmostLockedSetsWWingStep))]
-	[BaseDifficulty(6.2)]
+	[StaticDifficulty(6.2)]
 	AlmostLockedSetsWWing,
 
 	/// <summary>
@@ -4927,7 +4927,7 @@ public enum Technique
 	[Abbreviation("ERIP")]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(EmptyRectangleIntersectionPairStep))]
-	[BaseDifficulty(6.0)]
+	[StaticDifficulty(6.0)]
 	EmptyRectangleIntersectionPair,
 	#endregion
 
@@ -4945,7 +4945,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[Abbreviation("DB")]
 	[BoundStepTypes(typeof(DeathBlossomStep))]
-	[BaseDifficulty(8.2)]
+	[StaticDifficulty(8.2)]
 	[ExtraDifficultyFactors(Petals)]
 	DeathBlossom,
 
@@ -4956,7 +4956,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(HouseDeathBlossomStep))]
-	[BaseDifficulty(8.3)]
+	[StaticDifficulty(8.3)]
 	[ExtraDifficultyFactors(Petals)]
 	HouseDeathBlossom,
 
@@ -4967,7 +4967,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(RectangleDeathBlossomStep))]
-	[BaseDifficulty(8.5)]
+	[StaticDifficulty(8.5)]
 	[ExtraDifficultyFactors(Petals)]
 	RectangleDeathBlossom,
 
@@ -4978,7 +4978,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.DeathBlossom)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(NTimesAlmostLockedSetDeathBlossomStep))]
-	[BaseDifficulty(8.7)]
+	[StaticDifficulty(8.7)]
 	[ExtraDifficultyFactors(Petals)]
 	NTimesAlmostLockedSetDeathBlossom,
 	#endregion
@@ -4996,7 +4996,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(GurthSymmetricalPlacementStep))]
-	[BaseDifficulty(7.0)]
+	[StaticDifficulty(7.0)]
 	GurthSymmetricalPlacement,
 
 	/// <summary>
@@ -5015,7 +5015,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Fiendish)]
 	[BoundStepTypes(typeof(AntiGurthSymmetricalPlacementStep), SecondaryTypes = [typeof(GurthSymmetricalPlacementStep)])]
-	[BaseDifficulty(7.3)]
+	[StaticDifficulty(7.3)]
 	AntiGurthSymmetricalPlacement,
 	#endregion
 
@@ -5031,7 +5031,7 @@ public enum Technique
 	[Abbreviation("JE")]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetBaseStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	JuniorExocet,
 
 	/// <summary>
@@ -5041,7 +5041,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetBaseStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	JuniorExocetConjugatePair,
 
 	/// <summary>
@@ -5051,7 +5051,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetMirrorConjugatePairStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(Mirror)]
 	JuniorExocetMirrorConjugatePair,
 
@@ -5062,7 +5062,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetAdjacentTargetStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(Mirror)]
 	JuniorExocetAdjacentTarget,
 
@@ -5073,7 +5073,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetIncompatiblePairStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(IncompatiblePair)]
 	JuniorExocetIncompatiblePair,
 
@@ -5084,7 +5084,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetTargetPairStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(TargetPair)]
 	JuniorExocetTargetPair,
 
@@ -5095,7 +5095,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetGeneralizedFishStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(GeneralizedFish)]
 	JuniorExocetGeneralizedFish,
 
@@ -5106,7 +5106,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetMirrorAlmostHiddenSetStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(AlmostHiddenSet)]
 	JuniorExocetMirrorAlmostHiddenSet,
 
@@ -5117,7 +5117,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetLockedMemberStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(LockedMember)]
 	JuniorExocetLockedMember,
 
@@ -5128,7 +5128,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(JuniorExocetMirrorSyncStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(Mirror)]
 	JuniorExocetMirrorSync,
 
@@ -5140,7 +5140,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("SE")]
 	[BoundStepTypes(typeof(ExocetBaseStep))]
-	[BaseDifficulty(9.6)]
+	[StaticDifficulty(9.6)]
 	SeniorExocet,
 
 	/// <summary>
@@ -5150,7 +5150,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetMirrorConjugatePairStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(Mirror)]
 	SeniorExocetMirrorConjugatePair,
 
@@ -5161,7 +5161,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ExocetLockedMemberStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(LockedMember)]
 	SeniorExocetLockedMember,
 
@@ -5172,7 +5172,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(SeniorExocetTrueBaseStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(TrueBase)]
 	SeniorExocetTrueBase,
 
@@ -5185,7 +5185,7 @@ public enum Technique
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[Abbreviation("WE")]
 	[BoundStepTypes(typeof(WeakExocetStep))]
-	[BaseDifficulty(9.7)]
+	[StaticDifficulty(9.7)]
 	[ExtraDifficultyFactors(MissingStabilityBalancer)]
 	WeakExocet,
 
@@ -5197,7 +5197,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(WeakExocetAdjacentTargetStep))]
-	[BaseDifficulty(9.7)]
+	[StaticDifficulty(9.7)]
 	[ExtraDifficultyFactors(Mirror)]
 	WeakExocetAdjacentTarget,
 
@@ -5209,7 +5209,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(WeakExocetSlashStep))]
-	[BaseDifficulty(9.7)]
+	[StaticDifficulty(9.7)]
 	[ExtraDifficultyFactors(SlashElimination)]
 	WeakExocetSlash,
 
@@ -5221,7 +5221,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(WeakExocetBzRectangleStep))]
-	[BaseDifficulty(9.7)]
+	[StaticDifficulty(9.7)]
 	[ExtraDifficultyFactors(BzRectangle)]
 	WeakExocetBzRectangle,
 
@@ -5233,7 +5233,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(WeakExocetStep))]
-	[BaseDifficulty(9.7)]
+	[StaticDifficulty(9.7)]
 	[ExtraDifficultyFactors(MissingStabilityBalancer)]
 	LameWeakExocet,
 
@@ -5244,7 +5244,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[BaseDifficulty(9.8)]
+	[StaticDifficulty(9.8)]
 	FrankenJuniorExocet,
 
 	/// <summary>
@@ -5254,7 +5254,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetLockedMemberStep))]
-	[BaseDifficulty(9.8)]
+	[StaticDifficulty(9.8)]
 	[ExtraDifficultyFactors(LockedMember)]
 	FrankenJuniorExocetLockedMember,
 
@@ -5265,7 +5265,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexJuniorExocetAdjacentTargetStep))]
-	[BaseDifficulty(9.8)]
+	[StaticDifficulty(9.8)]
 	[ExtraDifficultyFactors(Mirror)]
 	FrankenJuniorExocetAdjacentTarget,
 
@@ -5276,7 +5276,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexJuniorExocetMirrorConjugatePairStep))]
-	[BaseDifficulty(9.8)]
+	[StaticDifficulty(9.8)]
 	[ExtraDifficultyFactors(Mirror)]
 	FrankenJuniorExocetMirrorConjugatePair,
 
@@ -5287,7 +5287,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	MutantJuniorExocet,
 
 	/// <summary>
@@ -5297,7 +5297,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetLockedMemberStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	[ExtraDifficultyFactors(LockedMember)]
 	MutantJuniorExocetLockedMember,
 
@@ -5308,7 +5308,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexJuniorExocetAdjacentTargetStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	[ExtraDifficultyFactors(Mirror)]
 	MutantJuniorExocetAdjacentTarget,
 
@@ -5319,7 +5319,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexJuniorExocetMirrorConjugatePairStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	[ExtraDifficultyFactors(Mirror)]
 	MutantJuniorExocetMirrorConjugatePair,
 
@@ -5330,7 +5330,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	FrankenSeniorExocet,
 
 	/// <summary>
@@ -5340,7 +5340,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetLockedMemberStep))]
-	[BaseDifficulty(10.0)]
+	[StaticDifficulty(10.0)]
 	[ExtraDifficultyFactors(LockedMember)]
 	FrankenSeniorExocetLockedMember,
 
@@ -5351,7 +5351,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
-	[BaseDifficulty(9.8)]
+	[StaticDifficulty(9.8)]
 	AdvancedFrankenSeniorExocet,
 
 	/// <summary>
@@ -5361,7 +5361,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[BaseDifficulty(10.2)]
+	[StaticDifficulty(10.2)]
 	MutantSeniorExocet,
 
 	/// <summary>
@@ -5371,7 +5371,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(ComplexExocetLockedMemberStep))]
-	[BaseDifficulty(10.2)]
+	[StaticDifficulty(10.2)]
 	[ExtraDifficultyFactors(LockedMember)]
 	MutantSeniorExocetLockedMember,
 
@@ -5382,7 +5382,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
-	[BaseDifficulty(10.1)]
+	[StaticDifficulty(10.1)]
 	AdvancedMutantSeniorExocet,
 
 	/// <summary>
@@ -5392,7 +5392,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(DoubleExocetBaseStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	DoubleExocet,
 
 	/// <summary>
@@ -5402,7 +5402,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Exocet)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(DoubleExocetGeneralizedFishStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	[ExtraDifficultyFactors(GeneralizedFish)]
 	DoubleExocetGeneralizedFish,
 
@@ -5428,7 +5428,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(DominoLoopStep))]
-	[BaseDifficulty(9.6)]
+	[StaticDifficulty(9.6)]
 	DominoLoop,
 	#endregion
 
@@ -5445,7 +5445,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
 	[DifficultyLevel(DifficultyLevel.Nightmare)]
 	[BoundStepTypes(typeof(MultisectorLockedSetsStep))]
-	[BaseDifficulty(9.4)]
+	[StaticDifficulty(9.4)]
 	MultisectorLockedSets,
 	#endregion
 
@@ -5462,7 +5462,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	[BoundStepTypes(typeof(PatternOverlayStep))]
-	[BaseDifficulty(8.5)]
+	[StaticDifficulty(8.5)]
 	PatternOverlay,
 	#endregion
 
@@ -5480,7 +5480,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	[BoundStepTypes(typeof(TemplateStep))]
-	[BaseDifficulty(9.0)]
+	[StaticDifficulty(9.0)]
 	TemplateSet,
 
 	/// <summary>
@@ -5493,7 +5493,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	[BoundStepTypes(typeof(TemplateStep))]
-	[BaseDifficulty(9.0)]
+	[StaticDifficulty(9.0)]
 	TemplateDelete,
 	#endregion
 
@@ -5509,7 +5509,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	[BoundStepTypes(typeof(BowmanBingoStep))]
-	[BaseDifficulty(8.0)]
+	[StaticDifficulty(8.0)]
 	[ExtraDifficultyFactors(Length)]
 	BowmanBingo,
 	#endregion
@@ -5529,7 +5529,7 @@ public enum Technique
 	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
 	[DifficultyLevel(DifficultyLevel.LastResort)]
 	[BoundStepTypes(typeof(BruteForceStep))]
-	[BaseDifficulty((double)AnalyzerResult.MaximumRatingValueTheory)]
+	[StaticDifficulty((double)AnalyzerResult.MaximumRatingValueTheory)]
 	BruteForce,
 	#endregion
 }

@@ -17,7 +17,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="Technique"/>
 /// <seealso cref="SudokuExplainerTechniqueAttribute"/>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class BaseDifficultyAttribute([PrimaryConstructorParameter] double value) : Attribute
+public sealed partial class StaticDifficultyAttribute([PrimaryConstructorParameter] double value) : Attribute
 {
 	/// <summary>
 	/// Indicates the value that is used in direct mode.
