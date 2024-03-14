@@ -33,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-			[] => string.Empty,
-			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -195,8 +195,8 @@ public sealed record RxCyConverter(
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -222,7 +222,7 @@ public sealed record RxCyConverter(
 					var op = typeGroup.Key.Notation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.Append((CellMap)([.. from conclusion in digitGroup select conclusion.Cell]));
+						sb.AppendValueRef((CellMap)([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);
@@ -252,22 +252,18 @@ public sealed record RxCyConverter(
 	public override IntersectionNotationConverter IntersectionConverter
 		=> intersections => DefaultSeparator switch
 		{
-			null or [] => string.Concat([
-				..
+			null or [] => string.Concat(
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
 				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
-			]),
+			),
 			_ => string.Join(
 				DefaultSeparator,
-				[
-					..
-					from intersection in intersections
-					let baseSet = intersection.Base.Line
-					let coverSet = intersection.Base.Block
-					select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
-				]
+				from intersection in intersections
+				let baseSet = intersection.Base.Line
+				let coverSet = intersection.Base.Block
+				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
 			)
 		};
 

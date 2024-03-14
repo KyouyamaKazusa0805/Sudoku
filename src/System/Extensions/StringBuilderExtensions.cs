@@ -26,6 +26,34 @@ public static class StringBuilderExtensions
 		=> @this.Remove(startIndex.GetOffset(@this.Length), startIndex.Value);
 
 	/// <summary>
+	/// Appends the value into the builder.
+	/// </summary>
+	/// <typeparam name="T">The type of the instance.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <param name="value">The value to be added.</param>
+	/// <returns>The reference of the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static StringBuilder AppendValue<T>(this StringBuilder @this, T value)
+	{
+		@this.Append(value?.ToString());
+		return @this;
+	}
+
+	/// <summary>
+	/// Appends the value into the builder.
+	/// </summary>
+	/// <typeparam name="T">The type of the instance.</typeparam>
+	/// <param name="this">The instance.</param>
+	/// <param name="value">The value to be added.</param>
+	/// <returns>The reference of the current instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static StringBuilder AppendValueRef<T>(this StringBuilder @this, scoped ref readonly T value)
+	{
+		@this.Append(value?.ToString());
+		return @this;
+	}
+
+	/// <summary>
 	/// Appends a list of elements of type <typeparamref name="T"/> into the <see cref="StringBuilder"/> instance.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>

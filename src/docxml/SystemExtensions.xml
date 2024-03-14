@@ -1128,6 +1128,24 @@
             <param name="startIndex">The start index.</param>
             <returns>The reference of the current instance.</returns>
         </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendValue``1(System.Text.StringBuilder,``0)">
+            <summary>
+            Appends the value into the builder.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="value">The value to be added.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
+        <member name="M:System.Text.StringBuilderExtensions.AppendValueRef``1(System.Text.StringBuilder,``0@)">
+            <summary>
+            Appends the value into the builder.
+            </summary>
+            <typeparam name="T">The type of the instance.</typeparam>
+            <param name="this">The instance.</param>
+            <param name="value">The value to be added.</param>
+            <returns>The reference of the current instance.</returns>
+        </member>
         <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.ReadOnlySpan{``0})">
             <summary>
             Appends a list of elements of type <typeparamref name="T"/> into the <see cref="T:System.Text.StringBuilder"/> instance.

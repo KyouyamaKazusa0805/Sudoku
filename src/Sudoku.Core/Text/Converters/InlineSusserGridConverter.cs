@@ -99,7 +99,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 					CellState.Empty => sb.Append(
 						candidatesDistribution.TryGetValue(c, out var digits) && digits != 0
 							? $"[{string.Concat([.. from digit in digits select (digit + 1).ToString()])}]"
-							: Placeholder
+							: Placeholder.ToString()
 					),
 					CellState.Modifiable => sb.Append(ModifiablePrefix).Append(grid.GetDigit(c) + 1),
 					CellState.Given => sb.Append(grid.GetDigit(c) + 1),
