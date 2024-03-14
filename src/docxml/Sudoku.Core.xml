@@ -10315,6 +10315,9 @@ if (student is (name: var name, age: >= 18))
             <param name="culture">The current culture to be used.</param>
             <returns>The final <see cref="T:System.String"/> representation of the object.</returns>
         </member>
+        <member name="M:Sudoku.Text.ICultureFormattable.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Text.Languages">
             <summary>
             Indicates the supported languages in resource.
