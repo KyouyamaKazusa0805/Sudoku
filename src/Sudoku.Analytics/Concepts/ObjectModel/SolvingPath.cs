@@ -212,7 +212,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 			{
 				var (_, step) = pair;
 
-				var name = step.Name;
+				var name = step.GetName();
 				if (nameEquality(name))
 				{
 					return pair;

@@ -68,21 +68,8 @@ public abstract partial class Step(
 	}
 
 	/// <summary>
-	/// Indicates the technique name.
-	/// </summary>
-	/// <remarks>
-	/// The technique name are all stored in the resource dictionary,
-	/// you can find them in the <c>Strings</c> folder (Type <see cref="ResourceDictionary"/>).
-	/// </remarks>
-	public virtual string Name => GetName(ResultCurrentCulture);
-
-	/// <summary>
 	/// Indicates the English name of the technique.
 	/// </summary>
-	/// <remarks>
-	/// <inheritdoc cref="Name" path="/remarks"/>
-	/// </remarks>
-	/// <!--<exception cref="TargetResourceNotFoundException">Throws when the resource doesn't contain the name of the technique.</exception>-->
 	public virtual string EnglishName
 		=> Code.GetEnglishName() ?? throw new ResourceNotFoundException(GetType().Assembly, Code.ToString(), ResultCurrentCulture);
 
@@ -252,7 +239,7 @@ public abstract partial class Step(
 	/// <param name="culture">The culture information instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string GetName(CultureInfo? culture) => Code.GetName(culture ?? ResultCurrentCulture);
+	public virtual string GetName(CultureInfo? culture = null) => Code.GetName(culture ?? ResultCurrentCulture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
@@ -283,8 +270,7 @@ public abstract partial class Step(
 	/// <param name="culture">The culture information.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString(CultureInfo? culture = null)
-		=> culture is null ? $"{Name} => {ConclusionText}" : $"{GetName(culture)} => {ConclusionText}";
+	public string ToSimpleString(CultureInfo? culture = null) => $"{GetName(culture ?? ResultCurrentCulture)} => {ConclusionText}";
 
 
 	/// <summary>

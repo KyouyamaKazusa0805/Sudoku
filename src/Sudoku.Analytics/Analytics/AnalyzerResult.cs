@@ -385,7 +385,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
-			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.Name)
+			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.GetName())
 			{
 				if (options.HasFlag(FormattingOptions.ShowStepDetail))
 				{

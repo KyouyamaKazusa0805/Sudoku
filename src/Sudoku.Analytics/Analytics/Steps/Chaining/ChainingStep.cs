@@ -39,48 +39,6 @@ public abstract partial class ChainingStep(
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 
-	/// <inheritdoc/>
-	public override string Name
-	{
-		get
-		{
-			return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
-
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			string dynamicKeyword() => $"{ResourceDictionary.Get("DynamicKeyword", ResultCurrentCulture)}{space()}";
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			string nestedSuffix(int level)
-				=> level switch
-				{
-					1 => ResourceDictionary.Get("NestedSuffix_Level1", ResultCurrentCulture),
-					2 => ResourceDictionary.Get("NestedSuffix_Level2", ResultCurrentCulture),
-					3 => ResourceDictionary.Get("NestedSuffix_Level3", ResultCurrentCulture),
-					4 => ResourceDictionary.Get("NestedSuffix_Level4", ResultCurrentCulture),
-					>= 5 => string.Format(ResourceDictionary.Get("NestedSuffix_Level5OrGreater", ResultCurrentCulture), nestedSuffix(level - 3)),
-					_ => string.Empty
-				};
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			string prefixWithoutLevel()
-				=> this switch
-				{
-					ForcingChainStep or BidirectionalCycleStep => ResourceDictionary.Get("NormalChains", ResultCurrentCulture),
-					CellForcingChainsStep { IsDynamic: false } => ResourceDictionary.Get("CellChains", ResultCurrentCulture),
-					CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{ResourceDictionary.Get("CellChains", ResultCurrentCulture)}",
-					RegionForcingChainsStep { IsDynamic: false } => ResourceDictionary.Get("HouseChains", ResultCurrentCulture),
-					RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{ResourceDictionary.Get("HouseChains", ResultCurrentCulture)}",
-					BinaryForcingChainsStep { IsNishio: true } => ResourceDictionary.Get("NishioChains", ResultCurrentCulture),
-					BinaryForcingChainsStep { IsAbsurd: true } => ResourceDictionary.Get("AbsurdChains", ResultCurrentCulture),
-					BinaryForcingChainsStep => ResourceDictionary.Get("DoubleChains", ResultCurrentCulture)
-				};
-		}
-	}
-
 	/// <summary>
 	/// Indicates the complexity of the chain.
 	/// </summary>
@@ -295,6 +253,46 @@ public abstract partial class ChainingStep(
 					? r2
 					: Math.Sign(SortKey - comparer.SortKey) is var r3 and not 0 ? r3 : 0
 			: 1;
+
+	/// <inheritdoc/>
+	public override string GetName(CultureInfo? culture = null)
+	{
+		culture ??= ResultCurrentCulture;
+		return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string space() => CultureInfo.CurrentCulture.Name switch { ['Z' or 'z', 'H' or 'h', ..] => string.Empty, _ => " " };
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		string dynamicKeyword() => $"{ResourceDictionary.Get("DynamicKeyword", culture)}{space()}";
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		string nestedSuffix(int level)
+			=> level switch
+			{
+				1 => ResourceDictionary.Get("NestedSuffix_Level1", culture),
+				2 => ResourceDictionary.Get("NestedSuffix_Level2", culture),
+				3 => ResourceDictionary.Get("NestedSuffix_Level3", culture),
+				4 => ResourceDictionary.Get("NestedSuffix_Level4", culture),
+				>= 5 => string.Format(ResourceDictionary.Get("NestedSuffix_Level5OrGreater", culture), nestedSuffix(level - 3)),
+				_ => string.Empty
+			};
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		string prefixWithoutLevel()
+			=> this switch
+			{
+				ForcingChainStep or BidirectionalCycleStep => ResourceDictionary.Get("NormalChains", culture),
+				CellForcingChainsStep { IsDynamic: false } => ResourceDictionary.Get("CellChains", culture),
+				CellForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{ResourceDictionary.Get("CellChains", culture)}",
+				RegionForcingChainsStep { IsDynamic: false } => ResourceDictionary.Get("HouseChains", culture),
+				RegionForcingChainsStep { IsDynamic: true } => $"{dynamicKeyword()}{ResourceDictionary.Get("HouseChains", culture)}",
+				BinaryForcingChainsStep { IsNishio: true } => ResourceDictionary.Get("NishioChains", culture),
+				BinaryForcingChainsStep { IsAbsurd: true } => ResourceDictionary.Get("AbsurdChains", culture),
+				BinaryForcingChainsStep => ResourceDictionary.Get("DoubleChains", culture)
+			};
+	}
 
 	/// <summary>
 	/// Gets parent rules. This method can only be used on advanced chain relations.

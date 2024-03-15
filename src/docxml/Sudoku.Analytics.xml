@@ -5739,23 +5739,10 @@
             </summary>
             <exception cref="T:System.NotSupportedException">Throws when the step contains no conclusions.</exception>
         </member>
-        <member name="P:Sudoku.Analytics.Step.Name">
-            <summary>
-            Indicates the technique name.
-            </summary>
-            <remarks>
-            The technique name are all stored in the resource dictionary,
-            you can find them in the <c>Strings</c> folder (Type <see cref="T:System.Resources.ResourceDictionary"/>).
-            </remarks>
-        </member>
         <member name="P:Sudoku.Analytics.Step.EnglishName">
             <summary>
             Indicates the English name of the technique.
             </summary>
-            <remarks>
-            <inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="/remarks"/>
-            </remarks>
-            <!--<exception cref="TargetResourceNotFoundException">Throws when the resource doesn't contain the name of the technique.</exception>-->
         </member>
         <member name="P:Sudoku.Analytics.Step.BaseDifficulty">
             <summary>
@@ -12025,9 +12012,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Name">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Complexity">
             <summary>
             Indicates the complexity of the chain.
@@ -12090,6 +12074,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetName(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
@@ -12423,26 +12410,10 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="trueCandidates">Indicates the true candidates.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Name">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="/summary"/>
-            </summary>
-            <remarks>
-            <para><inheritdoc cref="P:Sudoku.Analytics.Step.Name" path="//remarks"/></para>
-            <para>
-            In addition, the expression <c>..^4</c> means
-            we have cut the name part " + n" (4 characters in total) in the full name "Bivalue Universal Grave + n".
-            </para>
-            </remarks>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.EnglishName">
             <summary>
             <inheritdoc cref="P:Sudoku.Analytics.Step.EnglishName" path="/summary"/>
             </summary>
-            <remarks>
-            <para><inheritdoc cref="P:Sudoku.Analytics.Step.EnglishName" path="//remarks"/></para>
-            <para><inheritdoc cref="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Name" path="//remarks/para[2]"/></para>
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.BaseDifficulty">
             <inheritdoc/>
