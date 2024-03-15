@@ -3555,6 +3555,12 @@
             The internal resource managers.
             </summary>
         </member>
+        <member name="P:System.Resources.ResourceDictionary.ResourceFetchingHandler">
+            <summary>
+            Represents the resource fetching rule. This method can control the fetching rule,
+            especially for the cases using culture-switching.
+            </summary>
+        </member>
         <member name="M:System.Resources.ResourceDictionary.RegisterResourceManager``1">
             <summary>
             Register a new resource manager for the current assembly calling this method.

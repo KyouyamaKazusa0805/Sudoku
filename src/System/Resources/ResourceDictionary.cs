@@ -23,6 +23,14 @@ public static class ResourceDictionary
 
 
 	/// <summary>
+	/// Represents the resource fetching rule. This method can control the fetching rule,
+	/// especially for the cases using culture-switching.
+	/// </summary>
+	public static Func<ResourceManager, string, CultureInfo?, string?> ResourceFetchingHandler { get; set; } =
+		static (m, k, c) => c is null ? m.GetString(k) ?? m.GetString(k, DefaultCulture) : m.GetString(k, c);
+
+
+	/// <summary>
 	/// Register a new resource manager for the current assembly calling this method.
 	/// </summary>
 	/// <typeparam name="TResourceManagerProvider">
@@ -78,12 +86,7 @@ public static class ResourceDictionary
 	/// <param name="assembly">The assembly storing the resource dictionaries.</param>
 	/// <returns>The result string result.</returns>
 	/// <exception cref="MissingResourceManagerException">Throws when the resource manager object is missing.</exception>
-	public static bool TryGet(
-		string resourceKey,
-		[NotNullWhen(true)] out string? resource,
-		CultureInfo? culture = null,
-		Assembly? assembly = null
-	)
+	public static bool TryGet(string resourceKey, [NotNullWhen(true)] out string? resource, CultureInfo? culture = null, Assembly? assembly = null)
 	{
 		if (assembly is not null)
 		{
@@ -91,7 +94,7 @@ public static class ResourceDictionary
 			{
 				if (a == assembly)
 				{
-					return (resource = r(m, resourceKey, culture)) is not null;
+					return (resource = ResourceFetchingHandler(m, resourceKey, culture)) is not null;
 				}
 			}
 
@@ -100,7 +103,7 @@ public static class ResourceDictionary
 
 		foreach (var m in ResourceManagers.Values)
 		{
-			if (r(m, resourceKey, culture) is { } result)
+			if (ResourceFetchingHandler(m, resourceKey, culture) is { } result)
 			{
 				resource = result;
 				return true;
@@ -109,12 +112,5 @@ public static class ResourceDictionary
 
 		resource = null;
 		return false;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string? r(ResourceManager m, string resourceKey, CultureInfo? culture)
-			=> culture is null
-				? m.GetString(resourceKey) ?? m.GetString(resourceKey, DefaultCulture)
-				: m.GetString(resourceKey, culture);
 	}
 }
