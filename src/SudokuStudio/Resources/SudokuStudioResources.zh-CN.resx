@@ -2168,10 +2168,6 @@
   <data name="_Inference_Weak" xml:space="preserve">
     <value>弱链关系</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_ProgramName" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="_Token_ClosedBrace" xml:space="preserve">
     <value>）</value>
   </data>
@@ -2402,5 +2398,26 @@
   </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_Description" xml:space="preserve">
+    <value>你可以通过该页面修改技巧的配置数据（技巧的难度级别和难度分），可用于技巧的搜索模块之中。</value>
+  </data>
+  <data name="MainWindow_TechniqueInfoModifierPageTitle" xml:space="preserve">
+    <value>技巧配置数据</value>
+  </data>
+  <data name="MainWindow_TechniqueInfoModifierPage" xml:space="preserve">
+    <value>技巧配置数据</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_TechniqueName" xml:space="preserve">
+    <value>技巧名</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_TechniqueEnglishName" xml:space="preserve">
+    <value>英文名</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyLevel" xml:space="preserve">
+    <value>难度级别</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyRating" xml:space="preserve">
+    <value>难度分</value>
   </data>
 </root>

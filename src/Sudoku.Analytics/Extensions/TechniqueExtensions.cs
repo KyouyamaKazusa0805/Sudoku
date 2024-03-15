@@ -78,7 +78,7 @@ public static class TechniqueExtensions
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetEnglishName(this Technique @this) => ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
+	public static string GetEnglishName(this Technique @this) => ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
 	/// <summary>
 	/// Try to get the abbreviation of the current <see cref="Technique"/>.

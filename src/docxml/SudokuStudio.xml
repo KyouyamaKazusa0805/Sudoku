@@ -1644,6 +1644,9 @@
         <member name="P:SudokuStudio.Configuration.ProgramPreference.StepSearcherOrdering">
             <inheritdoc cref="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.ProgramPreference.TechniqueInfoPreferences">
+            <inheritdoc cref="T:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup"/>
+        </member>
         <member name="M:SudokuStudio.Configuration.ProgramPreference.CoverBy(SudokuStudio.Configuration.ProgramPreference)">
             <summary>
             Try to cover the preference from the specified instance <paramref name="new"/>.
@@ -1736,6 +1739,87 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup.StepSearchersOrderProperty" />
+        </member>
+        <member name="T:SudokuStudio.Configuration.TechniqueData">
+            <summary>
+            Represents the technique data to be used.
+            </summary>
+            <param name="Rating">Indicates the difficulty rating value.</param>
+            <param name="Level">
+            <para>Indicates the difficulty level value.</para>
+            <para>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>
+            or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
+            one of the such difficulty levels cannot be modified its difficulty level and rating value.
+            </para>
+            </param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Decimal,Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Represents the technique data to be used.
+            </summary>
+            <param name="Rating">Indicates the difficulty rating value.</param>
+            <param name="Level">
+            <para>Indicates the difficulty level value.</para>
+            <para>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>
+            or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
+            one of the such difficulty levels cannot be modified its difficulty level and rating value.
+            </para>
+            </param>
+        </member>
+        <member name="P:SudokuStudio.Configuration.TechniqueData.Rating">
+            <summary>Indicates the difficulty rating value.</summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.TechniqueData.Level">
+            <summary>
+            <para>Indicates the difficulty level value.</para>
+            <para>
+            Note: The value cannot be <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort"/>, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>
+            or other undefined values. Such fields are reserved values on purpose. In fact, all techniques that hold
+            one of the such difficulty levels cannot be modified its difficulty level and rating value.
+            </para>
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup">
+            <summary>
+            Represents a preference group that defines the custom difficulty level and rating values for the techniques.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateValue``1(Sudoku.Analytics.Categorization.Technique,``0)">
+            <summary>
+            Try to append or update the technique data in the property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the data to be modified. The supported types are <see cref="T:System.Int32"/> or <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
+            </typeparam>
+            <param name="technique">The technique.</param>
+            <param name="ratingOrLevel">The value to be updated or appended.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRating(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the rating value for the specified technique.
+            </summary>
+            <param name="technique">The technique.</param>
+            <returns>The rating value.</returns>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the difficulty level for the specified technique.
+            </summary>
+            <param name="technique">The technique.</param>
+            <returns>The difficulty level.</returns>
+        </member>
+        <member name="F:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueDataProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData">
+            <summary>
+            Indicates the customized technique data.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
             <summary>
@@ -7902,6 +7986,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Techniques Gallery.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueInfoModifierPage">
+            <summary>
+              Looks up a localized string similar to Technique Configuration Data.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueInfoModifierPageTitle">
+            <summary>
+              Looks up a localized string similar to Technique Configured Data.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueSelectionPageTitle">
             <summary>
               Looks up a localized string similar to Select Techniques....
@@ -9438,6 +9532,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueGalleryPage_UniqueRectangles3">
             <summary>
               Looks up a localized string similar to Unique Rectangles with Techniques.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_Description">
+            <summary>
+              Looks up a localized string similar to This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_DifficultyLevel">
+            <summary>
+              Looks up a localized string similar to Difficulty Level.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_DifficultyRating">
+            <summary>
+              Looks up a localized string similar to Rating Value.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_TechniqueEnglishName">
+            <summary>
+              Looks up a localized string similar to English Name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_TechniqueName">
+            <summary>
+              Looks up a localized string similar to Technique Name.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueSelectionPage_Abbreviation">
@@ -14923,6 +15042,48 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the currently selected technique.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.TechniqueInfoModifierPage">
+            <summary>
+            Represents a technique information modifier page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.DefaultHeight">
+            <summary>
+            Indicates the default grid row height.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueInfoModifierPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup">
+            <summary>
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>

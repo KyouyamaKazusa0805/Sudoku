@@ -1,0 +1,24 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.TechniqueInfoModifierPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:p="using:SudokuStudio.Views.Pages"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueInfoModifierPage}"
+	Loaded="Page_Loaded">
+	<StackPanel Spacing="6" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+		<TextBlock Text="{m:R Key=TechniqueInfoModifierPage_Description}" />
+		<TextBlock
+			x:Name="TechniqueGroupDisplayer"
+			FontWeight="Bold" FontSize="24" Margin="0,8,0,0" HorizontalAlignment="Center" TextAlignment="Center" />
+		<ScrollViewer>
+			<Grid x:Name="MainGrid" ColumnDefinitions="1.5*,2.5*,1.5*,*" BorderBrush="DimGray" BorderThickness="0,1">
+				<Grid.ChildrenTransitions>
+					<AddDeleteThemeTransition />
+				</Grid.ChildrenTransitions>
+			</Grid>
+		</ScrollViewer>
+	</StackPanel>
+</Page>

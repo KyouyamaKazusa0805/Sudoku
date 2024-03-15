@@ -20,6 +20,9 @@ public sealed class ProgramPreference
 	/// <inheritdoc cref="StepSearcherOrderingPreferenceGroup"/>
 	public StepSearcherOrderingPreferenceGroup StepSearcherOrdering { get; set; } = new();
 
+	/// <inheritdoc cref="TechniqueInfoPreferenceGroup"/>
+	public TechniqueInfoPreferenceGroup TechniqueInfoPreferences { get; set; } = new();
+
 
 	/// <summary>
 	/// Try to cover the preference from the specified instance <paramref name="new"/>.

@@ -3922,6 +3922,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique Configuration Data.
+        /// </summary>
+        internal static string MainWindow_TechniqueInfoModifierPage {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueInfoModifierPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique Configured Data.
+        /// </summary>
+        internal static string MainWindow_TechniqueInfoModifierPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueInfoModifierPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Select Techniques....
         /// </summary>
         internal static string MainWindow_TechniqueSelectionPageTitle {
@@ -6680,6 +6698,51 @@ namespace SudokuStudio.Resources {
         internal static string TechniqueGalleryPage_UniqueRectangles3 {
             get {
                 return ResourceManager.GetString("TechniqueGalleryPage_UniqueRectangles3", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules..
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_Description {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty Level.
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_DifficultyLevel {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_DifficultyLevel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating Value.
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_DifficultyRating {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_DifficultyRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to English Name.
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_TechniqueEnglishName {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_TechniqueEnglishName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique Name.
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_TechniqueName {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_TechniqueName", resourceCulture);
             }
         }
         

@@ -2399,4 +2399,25 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="AnalyzePage_SortByCell" xml:space="preserve">
     <value>cell</value>
   </data>
+  <data name="TechniqueInfoModifierPage_Description" xml:space="preserve">
+    <value>This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules.</value>
+  </data>
+  <data name="MainWindow_TechniqueInfoModifierPageTitle" xml:space="preserve">
+    <value>Technique Configured Data</value>
+  </data>
+  <data name="MainWindow_TechniqueInfoModifierPage" xml:space="preserve">
+    <value>Technique Configuration Data</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_TechniqueName" xml:space="preserve">
+    <value>Technique Name</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_TechniqueEnglishName" xml:space="preserve">
+    <value>English Name</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyLevel" xml:space="preserve">
+    <value>Difficulty Level</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyRating" xml:space="preserve">
+    <value>Rating Value</value>
+  </data>
 </root>

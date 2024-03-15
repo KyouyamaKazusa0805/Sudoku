@@ -9,8 +9,7 @@ internal static class TechniqueConversion
 
 	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(App.CurrentCulture);
 
-	public static string GetEnglishName(Technique technique)
-		=> technique == Technique.None ? string.Empty : technique.GetEnglishName() ?? ResourceDictionary.Get("TechniqueSelectionPage_NoEnglishName", App.CurrentCulture);
+	public static string GetEnglishName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetEnglishName();
 
 	public static string GetDifficultyLevel(Technique technique)
 		=> technique == Technique.None

@@ -36,15 +36,6 @@ public static class TechniqueGroupExtensions
 		=> @this.GetAbbreviation() is { } abbr ? abbr : @this.GetName(cultureInfo ?? CultureInfo.CurrentUICulture);
 
 	/// <summary>
-	/// Try to get name of the current <see cref="TechniqueGroup"/> instance.
-	/// </summary>
-	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
-	/// <returns>The name.</returns>
-	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this TechniqueGroup @this) => @this.GetName(CultureInfo.CurrentUICulture);
-
-	/// <summary>
 	/// Try to get name of the current <see cref="TechniqueGroup"/> instance, with the specified culture information.
 	/// </summary>
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
@@ -52,7 +43,7 @@ public static class TechniqueGroupExtensions
 	/// <returns>The name.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this TechniqueGroup @this, CultureInfo? culture)
+	public static string GetName(this TechniqueGroup @this, CultureInfo? culture = null)
 		=> ResourceDictionary.Get($"{nameof(TechniqueGroup)}_{@this}", culture ?? CultureInfo.CurrentUICulture);
 
 	/// <summary>

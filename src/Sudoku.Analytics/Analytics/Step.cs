@@ -70,8 +70,7 @@ public abstract partial class Step(
 	/// <summary>
 	/// Indicates the English name of the technique.
 	/// </summary>
-	public virtual string EnglishName
-		=> Code.GetEnglishName() ?? throw new ResourceNotFoundException(GetType().Assembly, Code.ToString(), ResultCurrentCulture);
+	public virtual string EnglishName => Code.GetEnglishName();
 
 	/// <summary>
 	/// Indicates the difficulty of this technique step.
