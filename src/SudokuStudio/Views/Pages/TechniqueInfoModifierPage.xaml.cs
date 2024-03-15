@@ -156,8 +156,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 					}
 				)
 			);
-
-			await Task.Delay(100);
+			await Task.Delay(10);
 		}
 
 
