@@ -25,8 +25,10 @@
 			<NavigationViewItem x:Name="TechniqueGalleryPageItem" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
 			<NavigationViewItem x:Name="HotkeyCheatTablePageItem" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
-			<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
 		</NavigationView.MenuItems>
+		<NavigationView.FooterMenuItems>
+			<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
+		</NavigationView.FooterMenuItems>
 
 		<Grid ColumnDefinitions="Auto,*">
 			<wc:PropertySizer
