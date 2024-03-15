@@ -58,5 +58,5 @@ global using unsafe SingleModuleSearcherFuncPtr = delegate*<Sudoku.Analytics.Ste
 global using unsafe StepRatingEvaluatorFuncPtr = delegate*<Sudoku.Analytics.Step[], delegate*<Sudoku.Analytics.Step, decimal>, decimal>;
 global using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref Sudoku.Analytics.AnalysisContext, ref readonly Sudoku.Concepts.Grid, int, bool, Sudoku.Analytics.Step?>;
 global using unsafe SymmetricalPlacementCheckerFuncPtr = delegate*<ref readonly Sudoku.Concepts.Grid, out Sudoku.Concepts.SymmetricType, out System.ReadOnlySpan<int /*Digit*/?>, out short /*Mask*/, bool>;
-global using TargetCandidatesGroup = Sudoku.Linq.BitStatusMapGroup<Sudoku.Concepts.CandidateMap, int /*Candidate*/, Sudoku.Concepts.CandidateMap.Enumerator, int /*Cell*/>;
-global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGroup<Sudoku.Concepts.CellMap, int /*Cell*/, Sudoku.Concepts.CellMap.Enumerator, int /*House*/>;
+global using TargetCandidatesGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CandidateMap, int /*Candidate*/, Sudoku.Concepts.CandidateMap.Enumerator, int /*Cell*/>;
+global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CellMap, int /*Cell*/, Sudoku.Concepts.CellMap.Enumerator, int /*House*/>;

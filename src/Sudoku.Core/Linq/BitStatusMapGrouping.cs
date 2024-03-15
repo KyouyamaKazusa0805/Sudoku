@@ -15,13 +15,13 @@ namespace Sudoku.Linq;
 [GetHashCode]
 [EqualityOperators]
 [LargeStructure]
-public readonly partial struct BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>(
+public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[PrimaryConstructorParameter] TKey key,
 	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly TMap values
 ) :
 	IEnumerable<TElement>,
-	IEquatable<BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>>,
-	IEqualityOperators<BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>, BitStatusMapGroup<TMap, TElement, TEnumerator, TKey>, bool>,
+	IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>,
+	IEqualityOperators<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, bool>,
 	IGrouping<TKey, TElement>
 	where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
@@ -46,7 +46,7 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TEnumerator, TK
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public bool Equals(scoped ref readonly BitStatusMapGroup<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
+	public bool Equals(scoped ref readonly BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
@@ -57,11 +57,11 @@ public readonly partial struct BitStatusMapGroup<TMap, TElement, TEnumerator, TK
 
 	/// <summary>
 	/// Makes a <see cref="CellMap"/> instance that is concatenated by a list of groups
-	/// of type <see cref="BitStatusMapGroup{TMap, TElement, TEnumerator, TKey}"/>, adding their keys.
+	/// of type <see cref="BitStatusMapGrouping{TMap, TElement, TEnumerator, TKey}"/>, adding their keys.
 	/// </summary>
 	/// <param name="groups">The groups.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGroup<TMap, TElement, TEnumerator, Cell>> groups)
+	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
 	{
 		var result = (CellMap)[];
 		foreach (ref readonly var group in groups)

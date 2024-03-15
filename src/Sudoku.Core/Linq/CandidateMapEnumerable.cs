@@ -111,7 +111,7 @@ public static class CandidateMapEnumerable
 	}
 
 	/// <inheritdoc cref="CellMapEnumerable.GroupBy{TKey}(ref readonly CellMap, Func{int, TKey})"/>
-	public static ReadOnlySpan<BitStatusMapGroup<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> GroupBy<TKey>(
+	public static ReadOnlySpan<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> GroupBy<TKey>(
 		this scoped ref readonly CandidateMap @this,
 		Func<Candidate, TKey> keySelector
 	) where TKey : notnull
@@ -128,7 +128,7 @@ public static class CandidateMapEnumerable
 			}
 		}
 
-		var result = new BitStatusMapGroup<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>[dictionary.Count];
+		var result = new BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>[dictionary.Count];
 		var i = 0;
 		foreach (var (key, value) in dictionary)
 		{

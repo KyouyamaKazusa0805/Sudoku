@@ -5621,12 +5621,12 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
-        <member name="T:Sudoku.Linq.BitStatusMapGroup`4">
+        <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.</typeparam>
-            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.</typeparam>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.</typeparam>
             <typeparam name="TEnumerator">The type of enumerator.</typeparam>
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
@@ -5634,12 +5634,12 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.#ctor(`3,`0@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.#ctor(`3,`0@)">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
-            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.</typeparam>
-            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.</typeparam>
+            <typeparam name="TMap">The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.</typeparam>
+            <typeparam name="TElement">The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.</typeparam>
             <typeparam name="TEnumerator">The type of enumerator.</typeparam>
             <typeparam name="TKey">The type of the key in the group.</typeparam>
             <param name="key">Indicates the key used.</param>
@@ -5647,16 +5647,16 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`4.Count">
+        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Count">
             <summary>
-            Indicates the number of values stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>, i.e. the shorthand of expression <c>Values.Count</c>.
+            Indicates the number of values stored in <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>, i.e. the shorthand of expression <c>Values.Count</c>.
             </summary>
-            <seealso cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>
+            <seealso cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>
         </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`4.Item(System.Int32)">
+        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Item(System.Int32)">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Item(System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.Deconstruct(`3@,`0@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.Deconstruct(`3@,`0@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -5694,75 +5694,75 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3}@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.Equals(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3}@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.GetEnumerator">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.GetEnumerator">
             <summary>
             Returns an enumerator that iterates through a collection.
             </summary>
             <returns>An enumerator object that can be used to iterate through the collection.</returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.CreateMapByKeys(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,System.Int32}})">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.CreateMapByKeys(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,System.Int32}})">
             <summary>
             Makes a <see cref="T:Sudoku.Concepts.CellMap"/> instance that is concatenated by a list of groups
-            of type <see cref="T:Sudoku.Linq.BitStatusMapGroup`4"/>, adding their keys.
+            of type <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>, adding their keys.
             </summary>
             <param name="groups">The groups.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`4.Key">
+        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Key">
             <summary>
             The generated property declaration for parameter <c>key</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Linq.BitStatusMapGroup`4.Values">
+        <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Values">
             <summary>
             The generated property declaration for parameter <c>values</c>.
             </summary>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.Equals(System.Object)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.GetHashCode">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3}@,Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3}@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.op_Equality(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3}@,Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3}@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3}@,Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3}@)">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.op_Inequality(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3}@,Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3}@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TEnumerator,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TEnumerator,TKey},System#Boolean}#op_Equality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3})">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGrouping{TMap,TElement,TEnumerator,TKey},Sudoku#Linq#BitStatusMapGrouping{TMap,TElement,TEnumerator,TKey},System#Boolean}#op_Equality(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3},Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TEnumerator,TKey},Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TEnumerator,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3},Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3})">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Numerics#IEqualityOperators{Sudoku#Linq#BitStatusMapGrouping{TMap,TElement,TEnumerator,TKey},Sudoku#Linq#BitStatusMapGrouping{TMap,TElement,TEnumerator,TKey},System#Boolean}#op_Inequality(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3},Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroup`4.System#IEquatable{Sudoku#Linq#BitStatusMapGroup{TMap,TElement,TEnumerator,TKey}}#Equals(Sudoku.Linq.BitStatusMapGroup{`0,`1,`2,`3})">
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#IEquatable{Sudoku#Linq#BitStatusMapGrouping{TMap,TElement,TEnumerator,TKey}}#Equals(Sudoku.Linq.BitStatusMapGrouping{`0,`1,`2,`3})">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Linq.BitStatusMapGroupEnumerable">
+        <member name="T:Sudoku.Linq.BitStatusMapGroupingEnumerable">
             <summary>
-            Represents a list of LINQ methods used by <see cref="T:Sudoku.Linq.BitStatusMapGroup`4"/> instances.
+            Represents a list of LINQ methods used by <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`4"/>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Where``4(Sudoku.Linq.BitStatusMapGroup{``0,``1,``2,``3},System.Func{``1,System.Boolean})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroupingEnumerable.Where``4(Sudoku.Linq.BitStatusMapGrouping{``0,``1,``2,``3},System.Func{``1,System.Boolean})">
             <summary>
             Filters a sequence of values based on a predicate.
             </summary>
             <typeparam name="TMap">
-            The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.
+            The type of the map that stores the <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.
             </typeparam>
             <typeparam name="TElement">
-            The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGroup`4.Values"/>.
+            The type of elements stored in <see cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>.
             </typeparam>
             <typeparam name="TEnumerator">The type of enumerator.</typeparam>
             <typeparam name="TKey">The type of the key in the group.</typeparam>
@@ -5770,18 +5770,18 @@ if (student is (name: var name, age: >= 18))
             <param name="predicate">A function to test each element for a condition.</param>
             <returns>A (An) <typeparamref name="TElement"/>[] that contains elements from the input sequence that satisfy the condition.</returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``5(Sudoku.Linq.BitStatusMapGroup{``0,``1,``2,``3},System.Func{``1,``4})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroupingEnumerable.Select``5(Sudoku.Linq.BitStatusMapGrouping{``0,``1,``2,``3},System.Func{``1,``4})">
             <summary>
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/summary"/>
             </summary>
             <typeparam name="TMap">
-            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`4" path="/typeparam[@name='TMap']"/>
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGrouping`4" path="/typeparam[@name='TMap']"/>
             </typeparam>
             <typeparam name="TElement">
-            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`4" path="/typeparam[@name='TElement']"/>
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGrouping`4" path="/typeparam[@name='TElement']"/>
             </typeparam>
             <typeparam name="TKey">
-            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGroup`4" path="/typeparam[@name='TKey']"/>
+            <inheritdoc cref="T:Sudoku.Linq.BitStatusMapGrouping`4" path="/typeparam[@name='TKey']"/>
             </typeparam>
             <typeparam name="TEnumerator">
             The type of enumerator.
@@ -5798,9 +5798,9 @@ if (student is (name: var name, age: >= 18))
             on each element of the current instance.
             </returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0},System.Int32})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroupingEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGrouping{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0}},System.Func{Sudoku.Linq.BitStatusMapGrouping{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator,``0},System.Int32})">
             <summary>
-            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`4"/> of types <see cref="T:Sudoku.Concepts.CellMap"/>,
+            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/> of types <see cref="T:Sudoku.Concepts.CellMap"/>,
             <see cref="T:System.Int32"/> and <typeparamref name="TKey"/>, into a <see cref="T:System.Int32"/> value; collect converted results and merge
             into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
             </summary>
@@ -5809,9 +5809,9 @@ if (student is (name: var name, age: >= 18))
             <param name="selector">The transform method to apply to each element.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Linq.BitStatusMapGroupEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator,``0}},System.Func{Sudoku.Linq.BitStatusMapGroup{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator,``0},System.Int32})">
+        <member name="M:Sudoku.Linq.BitStatusMapGroupingEnumerable.Select``1(System.ReadOnlySpan{Sudoku.Linq.BitStatusMapGrouping{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator,``0}},System.Func{Sudoku.Linq.BitStatusMapGrouping{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator,``0},System.Int32})">
             <summary>
-            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`4"/> of types <see cref="T:Sudoku.Concepts.CandidateMap"/>,
+            Projects a list of <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/> of types <see cref="T:Sudoku.Concepts.CandidateMap"/>,
             <see cref="T:System.Int32"/> and <typeparamref name="TKey"/>, into a <see cref="T:System.Int32"/> value; collect converted results
             and merge into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
             </summary>
@@ -5983,9 +5983,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})" path="/param[@name='keySelector']"/>
             </param>
             <returns>
-            A list of <see cref="T:Sudoku.Linq.BitStatusMapGroup`4"/> instances where each value object contains a sequence of objects and a key.
+            A list of <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/> instances where each value object contains a sequence of objects and a key.
             </returns>
-            <seealso cref="T:Sudoku.Linq.BitStatusMapGroup`4"/>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>
         </member>
         <member name="M:Sudoku.Linq.CellMapEnumerable.SelectMany``1(Sudoku.Concepts.CellMap@,System.Func{System.Int32,System.Int16},System.Func{System.Int32,System.Int32,``0})">
             <summary>
