@@ -76,7 +76,11 @@ public sealed partial class MainWindow : Window
 	{
 		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
 		{
-			NavigationPage.NavigationViewFrame.Navigate(pageType, null, DefaultNavigationTransitionInfo);
+			NavigationPage.NavigationViewFrame.Navigate(
+				pageType,
+				null,
+				new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight }
+			);
 			NavigationPage.SetFrameDisplayTitle(pageType);
 		}
 	}

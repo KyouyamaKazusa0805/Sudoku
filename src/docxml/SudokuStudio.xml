@@ -5033,11 +5033,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:System.Reflection.Assembly"/>
         </member>
-        <member name="F:SudokuStudio.ProjectWideConstants.DefaultNavigationTransitionInfo">
-            <summary>
-            Indicates the default <see cref="T:Microsoft.UI.Xaml.Media.Animation.NavigationTransitionInfo"/> instance that describes the details of data while switching pages.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Rendering.AnimatedResultCollection">
             <summary>
             Represents a type that records a list of animating data.

@@ -17,10 +17,4 @@ internal static class ProjectWideConstants
 	/// </summary>
 	/// <seealso cref="Assembly"/>
 	public static readonly Assembly CurrentAssembly = typeof(ProjectWideConstants).Assembly;
-
-	/// <summary>
-	/// Indicates the default <see cref="NavigationTransitionInfo"/> instance that describes the details of data while switching pages.
-	/// </summary>
-	public static readonly NavigationTransitionInfo DefaultNavigationTransitionInfo =
-		new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight };
 }
