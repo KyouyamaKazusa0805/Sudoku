@@ -59,7 +59,11 @@ public static class TechniqueGroupExtensions
 	/// Try to get all possible <see cref="Technique"/> fields belonging to the current group.
 	/// </summary>
 	/// <param name="this">The group to be checked.</param>
+	/// <param name="filter">Indicates the filter.</param>
 	/// <returns>A <see cref="TechniqueSet"/> instance that contains all <see cref="Technique"/> fields belonging to the current group.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueSet GetTechniques(this TechniqueGroup @this) => TechniqueSet.TechniqueRelationGroups[@this];
+	public static TechniqueSet GetTechniques(this TechniqueGroup @this, Func<Technique, bool>? filter = null)
+		=> filter is null
+			? TechniqueSet.TechniqueRelationGroups[@this]
+			: from technique in TechniqueSet.TechniqueRelationGroups[@this] where filter(technique) select technique;
 }

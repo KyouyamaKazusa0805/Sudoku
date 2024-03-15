@@ -5,6 +5,16 @@ namespace SudokuStudio.Interaction.Conversions;
 /// </summary>
 internal static class TechniqueConversion
 {
+	/// <summary>
+	/// Indicates all technique groups that contains configurable techniques.
+	/// </summary>
+	public static readonly TechniqueGroup[] ConfigurableTechniqueGroups = [.. TechniqueSet.ConfigurableTechniqueRelationGroups.Keys];
+
+
+	public static bool IsTechniqueConfigPreviousButtonEnabled(int index) => index > 0;
+
+	public static bool IsTechniqueConfigNextButtonEnabled(int index) => index < ConfigurableTechniqueGroups.Length - 1;
+
 	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
 
 	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(App.CurrentCulture);

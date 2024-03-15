@@ -3627,9 +3627,15 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueRelationGroups">
             <summary>
             Indicates the information for the techniques, can lookup the relation via its belonging technique group.
-            This field will be used in extension method <see cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)"/>.
+            This field will be used in extension method
+            <see cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})"/>.
             </summary>
-            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)"/>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.ConfigurableTechniqueRelationGroups">
+            <summary>
+            Indicates the technique groups and its containing techniques that supports customization on difficulty rating and level.
+            </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniquesCount">
             <summary>
@@ -4062,16 +4068,19 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsLastResort(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the technique is last resort.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Determines whether the specified technique supports for customization on difficulty values.
             </summary>
             <param name="this">The value.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <remarks>
-            Today this method always return <see langword="true"/> if the value is defined and not <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>;
-            but it might be changed in the future.
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -4267,11 +4276,12 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
             <returns>The abbreviation.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetTechniques(Sudoku.Analytics.Categorization.TechniqueGroup,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <summary>
             Try to get all possible <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.
             </summary>
             <param name="this">The group to be checked.</param>
+            <param name="filter">Indicates the filter.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Collector">

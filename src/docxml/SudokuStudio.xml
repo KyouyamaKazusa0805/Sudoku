@@ -3365,6 +3365,11 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about technique.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Interaction.Conversions.TechniqueConversion.ConfigurableTechniqueGroups">
+            <summary>
+            Indicates all technique groups that contains configurable techniques.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.UndoRedoButtonConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about undo and redo buttons.
@@ -15073,17 +15078,17 @@ if (student is (name: var name, age: >= 18))
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty">
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndexProperty">
             <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup"/>.
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>.
             </summary>
-            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup"/>
+            <seealso cref="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex"/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroup">
+        <member name="P:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndex">
             <summary>
-            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty"/> to get or set value.
+            Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndexProperty"/> to get or set value.
             </summary>
-            <seealso cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentTechniqueGroupProperty" />
+            <seealso cref="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.CurrentIndexProperty" />
         </member>
         <member name="T:SudokuStudio.Views.Windows.MainWindow">
             <summary>

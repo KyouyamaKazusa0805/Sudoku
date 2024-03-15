@@ -31,10 +31,16 @@ public sealed partial class TechniqueSet :
 {
 	/// <summary>
 	/// Indicates the information for the techniques, can lookup the relation via its belonging technique group.
-	/// This field will be used in extension method <see cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup)"/>.
+	/// This field will be used in extension method
+	/// <see cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup, Func{Technique, bool}?)"/>.
 	/// </summary>
-	/// <seealso cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup)"/>
+	/// <seealso cref="TechniqueGroupExtensions.GetTechniques(TechniqueGroup, Func{Technique, bool}?)"/>
 	public static readonly FrozenDictionary<TechniqueGroup, TechniqueSet> TechniqueRelationGroups;
+
+	/// <summary>
+	/// Indicates the technique groups and its containing techniques that supports customization on difficulty rating and level.
+	/// </summary>
+	public static readonly FrozenDictionary<TechniqueGroup, TechniqueSet> ConfigurableTechniqueRelationGroups;
 
 	/// <summary>
 	/// Indicates the number of techniques included in this solution.
@@ -78,8 +84,18 @@ public sealed partial class TechniqueSet :
 				dic[group].Add(technique);
 			}
 		}
-
 		TechniqueRelationGroups = dic.ToFrozenDictionary();
+
+		var configurableDic = new Dictionary<TechniqueGroup, TechniqueSet>();
+		foreach (var technique in Enum.GetValues<Technique>())
+		{
+			if (technique.SupportsCustomizingDifficulty()
+				&& technique.TryGetGroup() is { } group && !configurableDic.TryAdd(group, [technique]))
+			{
+				configurableDic[group].Add(technique);
+			}
+		}
+		ConfigurableTechniqueRelationGroups = configurableDic.ToFrozenDictionary();
 	}
 
 

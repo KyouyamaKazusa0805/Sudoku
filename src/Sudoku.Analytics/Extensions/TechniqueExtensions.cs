@@ -21,16 +21,25 @@ public static class TechniqueExtensions
 	public static bool IsAssignment(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
 
 	/// <summary>
+	/// Determine whether the technique is last resort.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsLastResort(this Technique @this)
+		=> @this.GetGroup() is TechniqueGroup.BowmanBingo or TechniqueGroup.PatternOverlay or TechniqueGroup.Templating or TechniqueGroup.BruteForce;
+
+	/// <summary>
 	/// Determines whether the specified technique supports for customization on difficulty values.
 	/// </summary>
 	/// <param name="this">The value.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <remarks>
-	/// Today this method always return <see langword="true"/> if the value is defined and not <see cref="Technique.None"/>;
-	/// but it might be changed in the future.
-	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool SupportsCustomizingDifficulty(this Technique @this) => Enum.IsDefined(@this) && @this != Technique.None;
+	public static bool SupportsCustomizingDifficulty(this Technique @this)
+		=> Enum.IsDefined(@this) && @this != Technique.None
+		&& !@this.IsLastResort()
+		&& TypeOfTechnique.GetField(@this.ToString())!.IsDefined(typeof(StaticDifficultyAttribute))
+		&& TypeOfTechnique.GetField(@this.ToString())!.IsDefined(typeof(StaticDifficultyLevelAttribute));
 
 	/// <summary>
 	/// Indicates whether the technique supports for Siamese rule.

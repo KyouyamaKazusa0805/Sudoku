@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a technique information modifier page.
 /// </summary>
-[DependencyProperty<TechniqueGroup>("CurrentTechniqueGroup", Accessibility = Accessibility.Internal)]
+[DependencyProperty<int>("CurrentIndex", DefaultValue = -1, Accessibility = Accessibility.Internal)]
 public sealed partial class TechniqueInfoModifierPage : Page
 {
 	/// <summary>
@@ -19,24 +19,33 @@ public sealed partial class TechniqueInfoModifierPage : Page
 
 
 	[Callback]
-	private static void CurrentTechniqueGroupPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	private static async void CurrentIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: TechniqueGroup techniqueGroup }))
+		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: int index }))
 		{
 			return;
 		}
 
-		var values = techniqueGroup.GetTechniques();
-		var g = p.MainGrid;
-		setRowDefinitions(g, values);
+		var techniqueGroup = TechniqueConversion.ConfigurableTechniqueGroups[index];
 
-		// Add for table title.
+		// Change text block.
+		p.TechniqueGroupDisplayer.Text = techniqueGroup.GetName(App.CurrentCulture);
+
+		// Change values.
+		var values = techniqueGroup.GetTechniques(static technique => technique.SupportsCustomizingDifficulty());
+		var g = p.MainGrid;
+
+		clearChildren(g);
+		setRowDefinitions(g, values);
 		addTableTitleRow(g);
 
 		// Add for children controls.
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		for (var (i, j) = (1, 0); j < values.Count; i++, j++)
 		{
+			addRowDefinition(g);
+
 			var technique = values[j];
 			var name = technique.GetName(App.CurrentCulture);
 			var englishName = technique.GetEnglishName();
@@ -136,29 +145,33 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			GridLayout.SetRow(ratingControl, i);
 			GridLayout.SetColumn(ratingControl, 3);
 
-			g.Children.Add(nameControl);
-			g.Children.Add(englishNameControl);
-			g.Children.Add(difficultyLevelControl);
-			g.Children.Add(ratingControl);
+			await Task.Run(
+				() => p.DispatcherQueue.TryEnqueue(
+					() =>
+					{
+						g.Children.Add(nameControl);
+						g.Children.Add(englishNameControl);
+						g.Children.Add(difficultyLevelControl);
+						g.Children.Add(ratingControl);
+					}
+				)
+			);
+
+			await Task.Delay(100);
 		}
 
+
+		static void clearChildren(GridLayout g) => g.Children.Clear();
 
 		static void setRowDefinitions(GridLayout g, TechniqueSet values)
 		{
 			g.RowDefinitions.Clear();
 
-			// Add a title row
-			g.RowDefinitions.Add(r());
-
-			// Add children rows
-			for (var i = 0; i < values.Count; i++)
-			{
-				g.RowDefinitions.Add(r());
-			}
-
-
-			static RowDefinition r() => new() { Height = DefaultHeight };
+			// This is a title row.
+			addRowDefinition(g);
 		}
+
+		static void addRowDefinition(GridLayout g) => g.RowDefinitions.Add(r());
 
 		static void addTableTitleRow(GridLayout g)
 		{
@@ -166,39 +179,40 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1));
 			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2));
 			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3, HorizontalAlignment.Right));
+		}
 
+		static RowDefinition r() => new() { Height = DefaultHeight };
 
-			static TextBlock t(string resourceKey, int column, HorizontalAlignment? horizontalAlignment = null)
+		static TextBlock t(string resourceKey, int column, HorizontalAlignment? horizontalAlignment = null)
+		{
+			var result = new TextBlock
 			{
-				var result = new TextBlock
+				Text = ResourceDictionary.Get(resourceKey, App.CurrentCulture),
+				HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Center,
+				FontWeight = FontWeights.Bold
+			};
+			if (horizontalAlignment is { } alignment)
+			{
+				Debug.Assert(alignment is HorizontalAlignment.Left or HorizontalAlignment.Right);
+				result.Margin = alignment switch
 				{
-					Text = ResourceDictionary.Get(resourceKey, App.CurrentCulture),
-					HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
-					VerticalAlignment = VerticalAlignment.Center,
-					FontWeight = FontWeights.Bold
+					HorizontalAlignment.Left => new(6, 0, 0, 0),
+					HorizontalAlignment.Right => new(0, 0, 6, 0)
 				};
-				if (horizontalAlignment is { } alignment)
-				{
-					Debug.Assert(alignment is HorizontalAlignment.Left or HorizontalAlignment.Right);
-					result.Margin = alignment switch
-					{
-						HorizontalAlignment.Left => new(6, 0, 0, 0),
-						HorizontalAlignment.Right => new(0, 0, 6, 0)
-					};
-				}
-
-				GridLayout.SetRow(result, 0);
-				GridLayout.SetColumn(result, column);
-
-				return result;
 			}
+
+			GridLayout.SetRow(result, 0);
+			GridLayout.SetColumn(result, column);
+
+			return result;
 		}
 	}
 
 
-	private void Page_Loaded(object sender, RoutedEventArgs e)
-	{
-		CurrentTechniqueGroup = TechniqueGroup.Single;
-		TechniqueGroupDisplayer.Text = CurrentTechniqueGroup.GetName(App.CurrentCulture);
-	}
+	private void MovePreviousButton_Click(object sender, RoutedEventArgs e) => CurrentIndex--;
+
+	private void MoveNextButton_Click(object sender, RoutedEventArgs e) => CurrentIndex++;
+
+	private void Page_Loaded(object sender, RoutedEventArgs e) => CurrentIndex = 0;
 }
