@@ -216,7 +216,7 @@ public static class TechniqueExtensions
 	public static DifficultyLevel GetDifficultyLevel(this Technique @this)
 	{
 		var fi = TypeOfTechnique.GetField(@this.ToString())!;
-		return (fi.GetCustomAttribute<TechniqueFeatureAttribute>(), fi.GetCustomAttribute<DifficultyLevelAttribute>()) switch
+		return (fi.GetCustomAttribute<TechniqueFeatureAttribute>(), fi.GetCustomAttribute<StaticDifficultyLevelAttribute>()) switch
 		{
 			({ Features: var feature }, _) when feature.HasFlag(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
 			(_, { Level: var level }) => level,

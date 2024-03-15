@@ -4748,23 +4748,6 @@
             The generated property declaration for parameter <c>primaryType</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.DifficultyLevelAttribute.Level">
-            <summary>
-            The generated property declaration for parameter <c>level</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
@@ -4912,7 +4895,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.#ctor(System.String)">
             <summary>
@@ -4921,7 +4904,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.DifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
             <inheritdoc/>
@@ -5073,6 +5056,23 @@
         <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.Value">
             <summary>
             The generated property declaration for parameter <c>value</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Provides with an attribute type that represents the target difficulty level for the specified technique.
+            </summary>
+            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute.Level">
+            <summary>
+            The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">

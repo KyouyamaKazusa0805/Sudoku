@@ -5,4 +5,4 @@ namespace Sudoku.Analytics.Metadata;
 /// </summary>
 /// <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class DifficultyLevelAttribute([PrimaryConstructorParameter] DifficultyLevel level) : Attribute;
+public sealed partial class StaticDifficultyLevelAttribute([PrimaryConstructorParameter] DifficultyLevel level) : Attribute;
