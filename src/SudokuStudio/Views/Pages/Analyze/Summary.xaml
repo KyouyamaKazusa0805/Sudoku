@@ -72,51 +72,6 @@
 					</wc:DataGridTemplateColumn>
 				</wc:DataGrid.Columns>
 			</wc:DataGrid>
-			<!--
-			<ListView x:Name="SummaryTable">
-				<ListView.Header>
-					<c:DataTable Margin="12,0,0,0">
-						<c:DataColumn DesiredWidth="*">
-							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_TechniqueOrTechniqueGroupName}" />
-						</c:DataColumn>
-						<c:DataColumn MinWidth="120">
-							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_TechniqueCount}" />
-						</c:DataColumn>
-						<c:DataColumn DesiredWidth="80">
-							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyLevel}" />
-						</c:DataColumn>
-						<c:DataColumn DesiredWidth="50">
-							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyTotal}" />
-						</c:DataColumn>
-						<c:DataColumn DesiredWidth="50">
-							<TextBlock FontWeight="Bold" Text="{m:R Key=AnalyzePage_DifficultyMax}" />
-						</c:DataColumn>
-					</c:DataTable>
-				</ListView.Header>
-				<ListView.ItemTemplate>
-					<DataTemplate x:DataType="model:SummaryViewBindableSource">
-						<c:DataRow>
-							<TextBlock VerticalAlignment="Center" Text="{x:Bind TechniqueName}" />
-							<TextBlock VerticalAlignment="Center" Text="{x:Bind CountOfSteps}" />
-							<Border
-								Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(DifficultyLevel)}"
-								CornerRadius="5" Margin="24,3">
-								<TextBlock
-									Text="{x:Bind cvt:DifficultyLevelConversion.GetName(DifficultyLevel)}" Style="{StaticResource LabelStyle}"
-									HorizontalAlignment="Center" Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(DifficultyLevel)}" />
-							</Border>
-							<TextBlock VerticalAlignment="Center" Text="{x:Bind TotalDifficulty}" />
-							<TextBlock VerticalAlignment="Center" Text="{x:Bind MaximumDifficulty}" />
-						</c:DataRow>
-					</DataTemplate>
-				</ListView.ItemTemplate>
-				<ListView.ItemContainerStyle>
-					<Style BasedOn="{StaticResource DefaultListViewItemStyle}" TargetType="ListViewItem">
-						<Setter Property="HorizontalContentAlignment" Value="Stretch" />
-					</Style>
-				</ListView.ItemContainerStyle>
-			</ListView>
-			-->
 		</StackPanel>
 	</ScrollViewer>
 </Page>

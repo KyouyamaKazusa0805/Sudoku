@@ -49,12 +49,21 @@ internal sealed partial class SummaryViewBindableSource(
 				select new SummaryViewBindableSource(
 					stepGroup.Key,
 					difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
-					stepGroupArray.Sum(static step => step.Difficulty),
-					stepGroupArray.Max(static step => step.Difficulty),
+					stepGroupArray.Sum(r),
+					stepGroupArray.Max(r),
 					stepGroupArray.Length
 				)
 			],
 			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrUnique"))
 		};
+
+
+		static decimal r(Step step)
+		{
+			var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+			return pref.GetRating(step.Code) is { } integerValue
+				? integerValue / pref.RatingScale
+				: step.Difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue / pref.RatingScale;
+		}
 	}
 }

@@ -8,7 +8,7 @@ namespace SudokuStudio.Configuration;
 public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 {
 	[Default]
-	private static readonly decimal RatingScaleDefaultValue = 10M;
+	internal static readonly decimal RatingScaleDefaultValue = 10M;
 
 	[Default]
 	private static readonly Dictionary<Technique, TechniqueData> CustomizedTechniqueDataDefaultValue = [];
@@ -31,7 +31,9 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		var newData = ratingOrLevel switch
 		{
 			int value => isNullRef ? new(value, technique.GetDifficultyLevel()) : data with { Rating = value },
-			DifficultyLevel value => isNullRef ? new(technique.GetBaseDifficulty(out _), value) : data with { Level = value }
+			DifficultyLevel value => isNullRef
+				? new((int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue), value)
+				: data with { Level = value }
 		};
 		if (isNullRef)
 		{
@@ -44,8 +46,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	}
 
 	/// <inheritdoc cref="GetRatingOrDefault(Technique)"/>
-	public int? GetRating(Technique technique)
-		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? (int)(pair.Rating * RatingScale) : null;
+	public int? GetRating(Technique technique) => CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Rating : null;
 
 	/// <summary>
 	/// Try to get the rating value for the specified technique.
@@ -53,10 +54,9 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	/// <param name="technique">The technique.</param>
 	/// <returns>The rating value.</returns>
 	public int GetRatingOrDefault(Technique technique)
-	{
-		var r = CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Rating : technique.GetBaseDifficulty(out _);
-		return (int)(r * RatingScale);
-	}
+		=> CustomizedTechniqueData.TryGetValue(technique, out var pair)
+			? pair.Rating
+			: (int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue);
 
 	/// <inheritdoc cref="GetDifficultyLevelOrDefault(Technique)"/>
 	public DifficultyLevel? GetDifficultyLevel(Technique technique)

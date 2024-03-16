@@ -34,7 +34,7 @@
 						Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"
 						Text="{m:R Key=TechniqueInfoModifierPage_ScaleValue}" />
 					<NumberBox
-						x:Name="ScaleValueBox" Grid.Column="1" Minimum="0.1" Maximum="100" SmallChange="0.1" LargeChange="1" Width="200"
+						x:Name="ScaleValueBox" Grid.Column="1" Minimum="0.01" Maximum="100" SmallChange="0.01" LargeChange="1" Width="200"
 						HorizontalAlignment="Left" VerticalAlignment="Center"
 						Value="{x:Bind (x:Double)((z:App)y:Application.Current).Preference.TechniqueInfoPreferences.RatingScale}"
 						ValueChanged="ScaleValueBox_ValueChanged">

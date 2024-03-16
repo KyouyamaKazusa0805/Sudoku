@@ -1754,7 +1754,7 @@
             </para>
             </param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Decimal,Sudoku.Analytics.Categorization.DifficultyLevel)">
+        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Int32,Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Represents the technique data to be used.
             </summary>
@@ -3283,6 +3283,33 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Provides with conversion methods used by XAML designer, about analyze tab pages.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Conversions.AnalyzeConversion.GetFormatOfDifficulty(System.Decimal)">
+            <summary>
+            Try to get the format string via the decimal value.
+            </summary>
+            <param name="scaling">The scaling value.</param>
+            <returns>
+            The format string. The value will be:
+            <list type="table">
+            <listheader>
+            <term>The number of digits after period token '<c>.</c>'</term>
+            <description>Result format string</description>
+            </listheader>
+            <item>
+            <term>2</term>
+            <description>"<c>0.00</c>"</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>"<c>0.0</c>"</description>
+            </item>
+            <item>
+            <term>0 or others</term>
+            <description>"<c>0</c>"</description>
+            </item>
+            </list>
+            </returns>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>
