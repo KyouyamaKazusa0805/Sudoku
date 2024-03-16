@@ -3635,7 +3635,10 @@
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.ConfigurableTechniqueRelationGroups">
             <summary>
             Indicates the technique groups and its containing techniques that supports customization on difficulty rating and level.
+            Call <see cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)"/>
+            to check whether a technique supports configuration.
             </summary>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.SupportsCustomizingDifficulty(Sudoku.Analytics.Categorization.Technique)"/>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueSet.TechniquesCount">
             <summary>

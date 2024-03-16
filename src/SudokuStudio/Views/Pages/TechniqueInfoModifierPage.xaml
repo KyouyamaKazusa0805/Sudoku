@@ -13,13 +13,15 @@
 	<ScrollViewer>
 		<StackPanel Spacing="6" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 			<TextBlock Text="{m:R Key=TechniqueInfoModifierPage_Description}" />
-			<Grid ColumnDefinitions="Auto,Auto,*">
+			<Grid RowDefinitions="64" ColumnDefinitions="64,64,*">
 				<Button
-					Grid.Column="0" Margin="0,0,6,0" Content="{ui:FontIcon FontSize=24,Glyph=&#xE96F;}"
+					x:Name="MovePreviousButton" Grid.Column="0" Margin="0,0,6,0" Content="{ui:FontIcon FontSize=24,Glyph=&#xE96F;}"
+					HorizontalAlignment="Center" VerticalAlignment="Center"
 					IsEnabled="{x:Bind cvt:TechniqueConversion.IsTechniqueConfigPreviousButtonEnabled(CurrentIndex),Mode=OneWay}"
 					Click="MovePreviousButton_Click" />
 				<Button
-					Grid.Column="1" Content="{ui:FontIcon FontSize=24,Glyph=&#xE970;}"
+					x:Name="MoveNextButton" Grid.Column="1" Content="{ui:FontIcon FontSize=24,Glyph=&#xE970;}"
+					HorizontalAlignment="Center" VerticalAlignment="Center"
 					IsEnabled="{x:Bind cvt:TechniqueConversion.IsTechniqueConfigNextButtonEnabled(CurrentIndex),Mode=OneWay}"
 					Click="MoveNextButton_Click" />
 				<TextBlock

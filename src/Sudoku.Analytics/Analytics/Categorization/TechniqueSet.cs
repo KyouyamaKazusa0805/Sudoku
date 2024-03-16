@@ -39,7 +39,10 @@ public sealed partial class TechniqueSet :
 
 	/// <summary>
 	/// Indicates the technique groups and its containing techniques that supports customization on difficulty rating and level.
+	/// Call <see cref="TechniqueExtensions.SupportsCustomizingDifficulty(Technique)"/>
+	/// to check whether a technique supports configuration.
 	/// </summary>
+	/// <seealso cref="TechniqueExtensions.SupportsCustomizingDifficulty(Technique)"/>
 	public static readonly FrozenDictionary<TechniqueGroup, TechniqueSet> ConfigurableTechniqueRelationGroups;
 
 	/// <summary>

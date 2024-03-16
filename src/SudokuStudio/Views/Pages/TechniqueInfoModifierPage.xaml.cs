@@ -22,7 +22,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 	private static async void CurrentIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: int index }))
+		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: int index, OldValue: int originalIndex }))
 		{
 			return;
 		}
@@ -53,12 +53,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			// Name
 			//
-			var nameControl = new TextBlock
-			{
-				Text = name,
-				VerticalAlignment = VerticalAlignment.Center,
-				Margin = new(6, 0, 0, 0)
-			};
+			var nameControl = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, Margin = new(6, 0, 0, 0) };
 			GridLayout.SetRow(nameControl, i);
 			GridLayout.SetColumn(nameControl, 0);
 
@@ -159,6 +154,9 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			await Task.Delay(10);
 		}
 
+		p.MovePreviousButton.Visibility = Visibility.Visible;
+		p.MoveNextButton.Visibility = Visibility.Visible;
+
 
 		static void clearChildren(GridLayout g) => g.Children.Clear();
 
@@ -209,9 +207,19 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	}
 
 
-	private void MovePreviousButton_Click(object sender, RoutedEventArgs e) => CurrentIndex--;
+	private void MovePreviousButton_Click(object sender, RoutedEventArgs e)
+	{
+		MovePreviousButton.Visibility = Visibility.Collapsed;
+		MoveNextButton.Visibility = Visibility.Collapsed;
+		CurrentIndex--;
+	}
 
-	private void MoveNextButton_Click(object sender, RoutedEventArgs e) => CurrentIndex++;
+	private void MoveNextButton_Click(object sender, RoutedEventArgs e)
+	{
+		MovePreviousButton.Visibility = Visibility.Collapsed;
+		MoveNextButton.Visibility = Visibility.Collapsed;
+		CurrentIndex++;
+	}
 
 	private void Page_Loaded(object sender, RoutedEventArgs e) => CurrentIndex = 0;
 }
