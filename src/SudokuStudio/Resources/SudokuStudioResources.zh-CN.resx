@@ -2396,11 +2396,9 @@
   <data name="AnalyzePage_SortByCell" xml:space="preserve">
     <value>单元格</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="TechniqueInfoModifierPage_Description" xml:space="preserve">
-    <value>你可以通过该页面修改技巧的配置数据（技巧的难度级别和难度分），可用于技巧的搜索模块之中。</value>
+    <value>你可以通过该页面修改技巧的配置数据（技巧的难度级别和难度分），可用于技巧的搜索模块之中。
+所有的默认配置难度分都是小数。由于评分系统的设计因素，如果你需要设置为一个整数，请将其改成一个大于 10 的整十数。</value>
   </data>
   <data name="MainWindow_TechniqueInfoModifierPageTitle" xml:space="preserve">
     <value>技巧配置数据</value>
@@ -2419,5 +2417,8 @@
   </data>
   <data name="TechniqueInfoModifierPage_DifficultyRating" xml:space="preserve">
     <value>难度分</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
   </data>
 </root>

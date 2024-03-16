@@ -6702,7 +6702,8 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules..
+        ///   Looks up a localized string similar to This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules.
+        ///All values are decimal digits by default. Due to design of rating system of this application, if you want to set an integer value, please set the value that is greater than or equals 10, and ends with 0..
         /// </summary>
         internal static string TechniqueInfoModifierPage_Description {
             get {
