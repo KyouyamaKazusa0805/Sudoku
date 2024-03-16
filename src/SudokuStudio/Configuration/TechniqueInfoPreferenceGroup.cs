@@ -3,9 +3,13 @@ namespace SudokuStudio.Configuration;
 /// <summary>
 /// Represents a preference group that defines the custom difficulty level and rating values for the techniques.
 /// </summary>
+[DependencyProperty<decimal>("RatingScale", DocSummary = "Indicates the rating scale value. The value will be used by scaling the value stored in property <see cref=\"CustomizedTechniqueData\"/>.")]
 [DependencyProperty<Dictionary<Technique, TechniqueData>>("CustomizedTechniqueData", DocSummary = "Indicates the customized technique data.")]
 public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 {
+	[Default]
+	private static readonly decimal RatingScaleDefaultValue = 10M;
+
 	[Default]
 	private static readonly Dictionary<Technique, TechniqueData> CustomizedTechniqueDataDefaultValue = [];
 
@@ -41,7 +45,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 	/// <inheritdoc cref="GetRatingOrDefault(Technique)"/>
 	public int? GetRating(Technique technique)
-		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? (int)(pair.Rating * 10) : null;
+		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? (int)(pair.Rating * RatingScale) : null;
 
 	/// <summary>
 	/// Try to get the rating value for the specified technique.
@@ -51,7 +55,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	public int GetRatingOrDefault(Technique technique)
 	{
 		var r = CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Rating : technique.GetBaseDifficulty(out _);
-		return (int)(r * 10);
+		return (int)(r * RatingScale);
 	}
 
 	/// <inheritdoc cref="GetDifficultyLevelOrDefault(Technique)"/>

@@ -146,7 +146,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				VerticalAlignment = VerticalAlignment.Center,
 				Margin = RightMargin
 			};
-			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value / 10M);
+			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value / pref.RatingScale);
 			GridLayout.SetRow(ratingControl, i);
 			GridLayout.SetColumn(ratingControl, 3);
 
@@ -234,4 +234,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		MoveNextButton.Visibility = Visibility.Collapsed;
 		CurrentIndex = 0;
 	}
+
+	private void ScaleValueBox_ValueChanged(NumberBox sender, NumberBoxValueChangedEventArgs args)
+		=> ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale = (decimal)sender.Value;
 }
