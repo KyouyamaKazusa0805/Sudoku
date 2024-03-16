@@ -35,5 +35,17 @@ internal static class DifficultyLevelConversion
 
 	public static SolidColorBrush GetBackgroundColor(DifficultyLevel difficultyLevel) => new(GetBackgroundRawColor(difficultyLevel));
 
+	public static SolidColorBrush GetBackgroundColorFromCode(Technique technique)
+	{
+		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		return GetBackgroundColor(pref.GetDifficultyLevelOrDefault(technique));
+	}
+
 	public static SolidColorBrush GetForegroundColor(DifficultyLevel difficultyLevel) => new(GetForegroundRawColor(difficultyLevel));
+
+	public static SolidColorBrush GetForegroundColorFromCode(Technique technique)
+	{
+		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		return GetForegroundColor(pref.GetDifficultyLevelOrDefault(technique));
+	}
 }

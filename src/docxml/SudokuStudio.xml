@@ -1797,6 +1797,9 @@
             <param name="ratingOrLevel">The value to be updated or appended.</param>
         </member>
         <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRating(Sudoku.Analytics.Categorization.Technique)">
+            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Analytics.Categorization.Technique)"/>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the rating value for the specified technique.
             </summary>
@@ -1804,6 +1807,9 @@
             <returns>The rating value.</returns>
         </member>
         <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevel(Sudoku.Analytics.Categorization.Technique)">
+            <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Analytics.Categorization.Technique)"/>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetDifficultyLevelOrDefault(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the difficulty level for the specified technique.
             </summary>

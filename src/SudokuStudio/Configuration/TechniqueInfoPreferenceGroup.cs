@@ -18,7 +18,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	/// </typeparam>
 	/// <param name="technique">The technique.</param>
 	/// <param name="ratingOrLevel">The value to be updated or appended.</param>
-	internal void AppendOrUpdateValue<T>(Technique technique, T ratingOrLevel)
+	public void AppendOrUpdateValue<T>(Technique technique, T ratingOrLevel)
 	{
 		Debug.Assert(ratingOrLevel is int or DifficultyLevel);
 
@@ -39,22 +39,30 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		}
 	}
 
+	/// <inheritdoc cref="GetRatingOrDefault(Technique)"/>
+	public int? GetRating(Technique technique)
+		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? (int)(pair.Rating * 10) : null;
+
 	/// <summary>
 	/// Try to get the rating value for the specified technique.
 	/// </summary>
 	/// <param name="technique">The technique.</param>
 	/// <returns>The rating value.</returns>
-	internal int GetRating(Technique technique)
+	public int GetRatingOrDefault(Technique technique)
 	{
 		var r = CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Rating : technique.GetBaseDifficulty(out _);
 		return (int)(r * 10);
 	}
+
+	/// <inheritdoc cref="GetDifficultyLevelOrDefault(Technique)"/>
+	public DifficultyLevel? GetDifficultyLevel(Technique technique)
+		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Level : null;
 
 	/// <summary>
 	/// Try to get the difficulty level for the specified technique.
 	/// </summary>
 	/// <param name="technique">The technique.</param>
 	/// <returns>The difficulty level.</returns>
-	internal DifficultyLevel GetDifficultyLevel(Technique technique)
+	public DifficultyLevel GetDifficultyLevelOrDefault(Technique technique)
 		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Level : technique.GetDifficultyLevel();
 }

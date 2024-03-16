@@ -118,7 +118,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 						Tag = DifficultyLevel.Nightmare
 					}
 				},
-				SelectedIndex = Log2((uint)(int)pref.GetDifficultyLevel(technique)),
+				SelectedIndex = Log2((uint)(int)pref.GetDifficultyLevelOrDefault(technique)),
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			difficultyLevelControl.SelectionChanged += (_, _) =>
@@ -137,7 +137,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			var ratingControl = new IntegerBox
 			{
 				Width = 150,
-				Value = pref.GetRating(technique),
+				Value = pref.GetRatingOrDefault(technique),
 				Minimum = 0,
 				Maximum = 1000000,
 				SmallChange = 1,

@@ -29,7 +29,9 @@ internal sealed partial class SummaryViewBindableSource(
 	/// <returns>The result list of <see cref="SummaryViewBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
 	public static ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
-		=> analyzerResult switch
+	{
+		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
+		return analyzerResult switch
 		{
 			{ IsSolved: true, Steps: var steps } => [
 				..
@@ -39,7 +41,8 @@ internal sealed partial class SummaryViewBindableSource(
 				let stepGroupArray = (Step[])[.. stepGroup]
 				let difficultyLevels =
 					from step in stepGroupArray
-					group step by step.DifficultyLevel into stepGroupedByDifficultyLevel
+					let code = step.Code
+					group step by pref.GetDifficultyLevelOrDefault(code) into stepGroupedByDifficultyLevel
 					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
 					orderby targetDifficultyLevel
 					select targetDifficultyLevel
@@ -53,4 +56,5 @@ internal sealed partial class SummaryViewBindableSource(
 			],
 			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrUnique"))
 		};
+	}
 }
