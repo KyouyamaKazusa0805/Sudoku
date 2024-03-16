@@ -181,13 +181,11 @@ internal static class AnalyzeConversion
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(cases, pref.RatingScale));
-
 					break;
 				}
 				default:
 				{
 					result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_None", App.CurrentCulture) });
-
 					break;
 				}
 			}
@@ -271,6 +269,6 @@ internal static class AnalyzeConversion
 		var s = scaling.ToString();
 		var length = s.Length;
 		var pos = s.IndexOf('.'); // 'pos' can be -1.
-		return pos == -1 ? "0" : (length - pos - 1) switch { 1 => "0.0", 2 => "0.00", _ => "0" };
+		return pos == -1 ? "0" : (length - pos - 1) switch { 0 => "0", 1 => "0.0", 2 => "0.00", _ => "0.00" };
 	}
 }
