@@ -11,21 +11,35 @@
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:MainNavigationPage}">
 	<NavigationView
 		x:Name="MainNavigationView" x:FieldModifier="internal" IsPaneOpen="True" IsPaneToggleButtonVisible="False"
-		IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" AlwaysShowHeader="True" PaneTitle="{m:R Key=MainWindow_Menu}"
-		IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}"
+		IsSettingsVisible="True" IsBackButtonVisible="Auto" IsTabStop="False" AlwaysShowHeader="True"
+		PaneTitle="{m:R Key=MainWindow_Menu}" IsBackEnabled="{x:Bind NavigationViewFrame.CanGoBack,Mode=OneWay}"
 		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged" ItemInvoked="NavigationView_ItemInvoked"
 		BackRequested="MainNavigationView_BackRequested">
 		<NavigationView.MenuItems>
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
-			<NavigationViewItem x:Name="AnalyzePageItem" Icon="{ui:FontIcon Glyph=&#xE9D9;}" Content="{m:R Key=MainWindow_Analyze}" />
-			<NavigationViewItem x:Name="ConstraintPageItem" Icon="{ui:FontIcon Glyph=&#xE8EE;}" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}" />
-			<NavigationViewItem x:Name="TechniqueDataPageItem" Icon="{ui:FontIcon Glyph=&#xEF90;}" Content="{m:R Key=MainWindow_TechniqueInfoModifierPage}" />
+			<NavigationViewItem
+				x:Name="AnalyzePageItem" Icon="{ui:FontIcon Glyph=&#xE9D9;}"
+				Content="{m:R Key=MainWindow_Analyze}" />
+			<NavigationViewItem
+				x:Name="ConstraintPageItem" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}"
+				Icon="{ui:FontIcon Glyph=&#xE8EE;}" />
+			<NavigationViewItem
+				x:Name="TechniqueDataPageItem" Content="{m:R Key=MainWindow_TechniqueInfoModifierPage}"
+				Icon="{ui:FontIcon Glyph=&#xEF90;}" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
-			<NavigationViewItem x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}" Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
-			<NavigationViewItem x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}" Icon="Library" />
-			<NavigationViewItem x:Name="TechniqueGalleryPageItem" Content="{m:R Key=MainWindow_TechniqueGallery}" Icon="List" />
+			<NavigationViewItem
+				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
+				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
+			<NavigationViewItem
+				x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}"
+				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
+			<NavigationViewItem
+				x:Name="TechniqueGalleryPageItem" Content="{m:R Key=MainWindow_TechniqueGallery}"
+				Icon="{ui:FontIcon Glyph=&#xEA37;}" />
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
-			<NavigationViewItem x:Name="HotkeyCheatTablePageItem" Content="{m:R Key=MainWindow_HotkeyCheatTable}" Icon="List" />
+			<NavigationViewItem
+				x:Name="HotkeyCheatTablePageItem" Content="{m:R Key=MainWindow_HotkeyCheatTable}"
+				Icon="{ui:FontIcon Glyph=&#xE92E;}" />
 		</NavigationView.MenuItems>
 		<NavigationView.FooterMenuItems>
 			<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
