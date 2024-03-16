@@ -136,17 +136,17 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			var ratingControl = new IntegerBox
 			{
-				Width = 150,
+				Width = 300,
 				Value = pref.GetRatingOrDefault(technique),
 				Minimum = 0,
 				Maximum = 1000000,
 				SmallChange = 1,
 				LargeChange = 100,
-				HorizontalAlignment = HorizontalAlignment.Right,
+				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
 				Margin = RightMargin
 			};
-			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value);
+			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value / 10M);
 			GridLayout.SetRow(ratingControl, i);
 			GridLayout.SetColumn(ratingControl, 3);
 
@@ -185,7 +185,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueName", 0, HorizontalAlignment.Left));
 			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1));
 			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3, HorizontalAlignment.Right));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3));
 		}
 
 		static RowDefinition r() => new() { Height = DefaultHeight };
@@ -198,6 +198,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
 				FontWeight = FontWeights.Bold,
+				FontSize = 18,
 				Margin = horizontalAlignment switch
 				{
 					HorizontalAlignment.Left => LeftMargin,

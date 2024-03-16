@@ -28,7 +28,7 @@
 					x:Name="TechniqueGroupDisplayer" Grid.ColumnSpan="3"
 					FontWeight="Bold" FontSize="24" Margin="0,8,0,0" HorizontalAlignment="Center" TextAlignment="Center" />
 			</Grid>
-			<Grid x:Name="MainGrid" ColumnDefinitions="*,1.5*,1.5*,*" BorderBrush="DimGray" BorderThickness="0,1">
+			<Grid x:Name="MainGrid" ColumnDefinitions="*,1.5*,1.25*,1.25*" BorderBrush="DimGray" BorderThickness="0,1">
 				<Grid.ChildrenTransitions>
 					<AddDeleteThemeTransition />
 				</Grid.ChildrenTransitions>
