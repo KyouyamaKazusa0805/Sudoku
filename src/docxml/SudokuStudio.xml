@@ -15058,6 +15058,16 @@ if (student is (name: var name, age: >= 18))
             Indicates the default grid row height.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.LeftMargin">
+            <summary>
+            Indicates the margin value that only inserts for left.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.RightMargin">
+            <summary>
+            Indicates the margin value that only inserts for right.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.TechniqueInfoModifierPage"/> instance.

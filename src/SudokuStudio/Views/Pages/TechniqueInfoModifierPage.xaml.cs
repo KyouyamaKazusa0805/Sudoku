@@ -11,6 +11,16 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	/// </summary>
 	private static readonly GridLength DefaultHeight = new(50, GridUnitType.Pixel);
 
+	/// <summary>
+	/// Indicates the margin value that only inserts for left.
+	/// </summary>
+	private static readonly Thickness LeftMargin = new(6, 0, 0, 0);
+
+	/// <summary>
+	/// Indicates the margin value that only inserts for right.
+	/// </summary>
+	private static readonly Thickness RightMargin = new(0, 0, 6, 0);
+
 
 	/// <summary>
 	/// Initializes a <see cref="TechniqueInfoModifierPage"/> instance.
@@ -53,7 +63,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			// Name
 			//
-			var nameControl = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, Margin = new(6, 0, 0, 0) };
+			var nameControl = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, Margin = LeftMargin };
 			GridLayout.SetRow(nameControl, i);
 			GridLayout.SetColumn(nameControl, 0);
 
@@ -134,7 +144,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				LargeChange = 100,
 				HorizontalAlignment = HorizontalAlignment.Right,
 				VerticalAlignment = VerticalAlignment.Center,
-				Margin = new(0, 0, 6, 0)
+				Margin = RightMargin
 			};
 			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value);
 			GridLayout.SetRow(ratingControl, i);
@@ -187,18 +197,14 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				Text = ResourceDictionary.Get(resourceKey, App.CurrentCulture),
 				HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
-				FontWeight = FontWeights.Bold
-			};
-			if (horizontalAlignment is { } alignment)
-			{
-				Debug.Assert(alignment is HorizontalAlignment.Left or HorizontalAlignment.Right);
-				result.Margin = alignment switch
+				FontWeight = FontWeights.Bold,
+				Margin = horizontalAlignment switch
 				{
-					HorizontalAlignment.Left => new(6, 0, 0, 0),
-					HorizontalAlignment.Right => new(0, 0, 6, 0)
-				};
-			}
-
+					HorizontalAlignment.Left => LeftMargin,
+					HorizontalAlignment.Right => RightMargin,
+					_ => new(0)
+				}
+			};
 			GridLayout.SetRow(result, 0);
 			GridLayout.SetColumn(result, column);
 
