@@ -227,5 +227,10 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		CurrentIndex++;
 	}
 
-	private void Page_Loaded(object sender, RoutedEventArgs e) => CurrentIndex = 0;
+	private void Page_Loaded(object sender, RoutedEventArgs e)
+	{
+		MovePreviousButton.Visibility = Visibility.Collapsed;
+		MoveNextButton.Visibility = Visibility.Collapsed;
+		CurrentIndex = 0;
+	}
 }
