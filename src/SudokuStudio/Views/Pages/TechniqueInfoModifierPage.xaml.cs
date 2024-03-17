@@ -119,6 +119,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 					}
 				},
 				SelectedIndex = Log2((uint)(int)pref.GetDifficultyLevelOrDefault(technique)),
+				HorizontalAlignment = HorizontalAlignment.Center, 
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			difficultyLevelControl.SelectionChanged += (_, _) =>
@@ -211,11 +212,11 @@ public sealed partial class TechniqueInfoModifierPage : Page
 
 		static void addTableTitleRow(GridLayout g)
 		{
-			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueName", 0, HorizontalAlignment.Left));
-			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyDirectRating", 4));
+			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueName", 0, HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1, HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2, HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3, HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyDirectRating", 4, HorizontalAlignment.Center));
 		}
 
 		static RowDefinition r() => new() { Height = DefaultHeight };
