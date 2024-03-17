@@ -1,5 +1,8 @@
 #define HORIZONTAL_GRID_LINES
 #undef VERTICAL_GRID_LINES
+#if !HORIZONTAL_GRID_LINES && VERTICAL_GRID_LINES && !DEBUG
+#warning You cannot configure for only vertical grid lines because it is really ugly in UI. Either configure 'DEBUG' symbol or break "vertical grid line only" rule and continue.
+#endif
 
 namespace SudokuStudio.Views.Pages;
 
