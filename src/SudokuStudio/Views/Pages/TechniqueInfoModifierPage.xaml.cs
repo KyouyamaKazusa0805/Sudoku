@@ -32,12 +32,12 @@ public sealed partial class TechniqueInfoModifierPage : Page
 	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
 	private static async void CurrentIndexPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: int index, OldValue: int originalIndex }))
+		if ((d, e) is not (TechniqueInfoModifierPage p, { NewValue: int techniqueGroupIndex, OldValue: int originalTechniqueGroupIndex }))
 		{
 			return;
 		}
 
-		var techniqueGroup = TechniqueConversion.ConfigurableTechniqueGroups[index];
+		var techniqueGroup = TechniqueConversion.ConfigurableTechniqueGroups[techniqueGroupIndex];
 
 		// Change text block.
 		p.TechniqueGroupDisplayer.Text = techniqueGroup.GetName(App.CurrentCulture);
@@ -52,26 +52,37 @@ public sealed partial class TechniqueInfoModifierPage : Page
 
 		// Add for children controls.
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
-		for (var (i, j) = (1, 0); j < values.Count; i++, j++)
+		for (var (rowIndex, i) = (1, 0); i < values.Count; rowIndex++, i++)
 		{
 			addRowDefinition(g);
 
-			var technique = values[j];
+			var technique = values[i];
 			var name = technique.GetName(App.CurrentCulture);
 			var englishName = technique.GetEnglishName();
 
 			//
 			// Name
 			//
-			var nameControl = new TextBlock { Text = name, VerticalAlignment = VerticalAlignment.Center, Margin = LeftMargin };
-			GridLayout.SetRow(nameControl, i);
+			var nameControl = new TextBlock
+			{
+				Text = name,
+				HorizontalAlignment = HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Center,
+				Margin = LeftMargin
+			};
+			GridLayout.SetRow(nameControl, rowIndex);
 			GridLayout.SetColumn(nameControl, 0);
 
 			//
 			// English name
 			//
-			var englishNameControl = new TextBlock { Text = englishName, VerticalAlignment = VerticalAlignment.Center };
-			GridLayout.SetRow(englishNameControl, i);
+			var englishNameControl = new TextBlock
+			{
+				Text = englishName,
+				HorizontalAlignment = HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Center
+			};
+			GridLayout.SetRow(englishNameControl, rowIndex);
 			GridLayout.SetColumn(englishNameControl, 1);
 
 			//
@@ -119,7 +130,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 					}
 				},
 				SelectedIndex = Log2((uint)(int)pref.GetDifficultyLevelOrDefault(technique)),
-				HorizontalAlignment = HorizontalAlignment.Center, 
+				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center
 			};
 			difficultyLevelControl.SelectionChanged += (_, _) =>
@@ -129,7 +140,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 					pref.AppendOrUpdateDifficultyLevel(technique, d);
 				}
 			};
-			GridLayout.SetRow(difficultyLevelControl, i);
+			GridLayout.SetRow(difficultyLevelControl, rowIndex);
 			GridLayout.SetColumn(difficultyLevelControl, 2);
 
 			//
@@ -148,7 +159,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				Margin = RightMargin
 			};
 			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateRating(technique, ratingControl.Value);
-			GridLayout.SetRow(ratingControl, i);
+			GridLayout.SetRow(ratingControl, rowIndex);
 			GridLayout.SetColumn(ratingControl, 3);
 
 			//
@@ -171,9 +182,18 @@ public sealed partial class TechniqueInfoModifierPage : Page
 					Margin = RightMargin
 				};
 				directRatingControl.ValueChanged += (_, _) => pref.AppendOrUpdateDirectRating(technique, directRatingControl.Value);
-				GridLayout.SetRow(directRatingControl, i);
+				GridLayout.SetRow(directRatingControl, rowIndex);
 				GridLayout.SetColumn(directRatingControl, 4);
 			}
+
+			//
+			// Border line
+			//
+			var borderGridLine = new Border { BorderBrush = new SolidColorBrush(Colors.Gray), BorderThickness = new(0, .5, 0, 0) };
+			Canvas.SetZIndex(borderGridLine, -1);
+			GridLayout.SetRow(borderGridLine, rowIndex);
+			GridLayout.SetColumn(borderGridLine, 0);
+			GridLayout.SetColumnSpan(borderGridLine, 5);
 
 			await Task.Run(
 				() => p.DispatcherQueue.TryEnqueue(
@@ -188,6 +208,8 @@ public sealed partial class TechniqueInfoModifierPage : Page
 							Debug.Assert(directRatingControl is not null);
 							g.Children.Add(directRatingControl);
 						}
+
+						g.Children.Add(borderGridLine);
 					}
 				)
 			);
