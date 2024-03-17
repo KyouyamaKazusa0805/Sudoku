@@ -15,34 +15,85 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 
 	/// <summary>
-	/// Try to append or update the technique data in the property <see cref="CustomizedTechniqueData"/>.
+	/// Add or update rating value.
 	/// </summary>
-	/// <typeparam name="T">
-	/// The type of the data to be modified. The supported types are <see cref="int"/> or <see cref="DifficultyLevel"/>.
-	/// </typeparam>
 	/// <param name="technique">The technique.</param>
-	/// <param name="ratingOrLevel">The value to be updated or appended.</param>
-	public void AppendOrUpdateValue<T>(Technique technique, T ratingOrLevel)
+	/// <param name="value">The rating value to be set.</param>
+	public unsafe void AppendOrUpdateRating(Technique technique, int value)
 	{
-		Debug.Assert(ratingOrLevel is int or DifficultyLevel);
+		AppendOrUpdateValue(technique, value, &dataCreator, &dataModifier);
 
+
+		static TechniqueData dataCreator(Technique technique, int value)
+		{
+			technique.GetBaseDifficulty(out var directRating);
+			return new(value, (int)(directRating * RatingScaleDefaultValue), technique.GetDifficultyLevel());
+		}
+
+		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { Rating = value };
+	}
+
+	/// <summary>
+	/// Add or update direct rating value.
+	/// </summary>
+	/// <param name="technique">The technique.</param>
+	/// <param name="value">The rating value to be set.</param>
+	public unsafe void AppendOrUpdateDirectRating(Technique technique, int value)
+	{
+		AppendOrUpdateValue(technique, value, &dataCreator, &dataModifier);
+
+
+		static TechniqueData dataCreator(Technique technique, int value)
+			=> new((int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue), value, technique.GetDifficultyLevel());
+
+		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { DirectRating = value };
+	}
+
+	/// <summary>
+	/// Add or update difficulty level.
+	/// </summary>
+	/// <param name="technique">The technique.</param>
+	/// <param name="value">The difficulty level to be set.</param>
+	public unsafe void AppendOrUpdateDifficultyLevel(Technique technique, DifficultyLevel value)
+	{
+		AppendOrUpdateValue(technique, value, &dataCreator, &dataModifier);
+
+
+		static TechniqueData dataCreator(Technique technique, DifficultyLevel value)
+		{
+			var rating = technique.GetBaseDifficulty(out var directRating);
+			return new((int)(rating * RatingScaleDefaultValue), (int)(directRating * RatingScaleDefaultValue), value);
+		}
+
+		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, DifficultyLevel value) => data with { Level = value };
+	}
+
+
+	/// <summary>
+	/// Append or update value.
+	/// </summary>
+	/// <typeparam name="T">The type of the value to be set.</typeparam>
+	/// <param name="technique">The technique.</param>
+	/// <param name="value">The value to be set.</param>
+	/// <param name="dataCreator">The data creator method that will be called when the collection doesn't contain the technique.</param>
+	/// <param name="dataModifier">The data modifier method that will be called when the collection contains the technique.</param>
+	private unsafe void AppendOrUpdateValue<T>(
+		Technique technique,
+		T value,
+		delegate*<Technique, T, TechniqueData> dataCreator,
+		delegate*<ref readonly TechniqueData, T, TechniqueData> dataModifier
+	)
+	{
 		scoped ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
 		var isNullRef = Ref.IsNullReference(in data);
-		var newData = ratingOrLevel switch
-		{
-			int value => isNullRef ? new(value, technique.GetDifficultyLevel()) : data with { Rating = value },
-			DifficultyLevel value => isNullRef
-				? new((int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue), value)
-				: data with { Level = value }
-		};
-		if (isNullRef)
-		{
-			CustomizedTechniqueData.Add(technique, newData);
-		}
-		else
-		{
-			data = newData;
-		}
+		var a = valueUpdaterWhenNullRef;
+		var b = valueUpdaterWhenNotNullRef;
+		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(in data, value));
+
+
+		void valueUpdaterWhenNullRef(scoped ref TechniqueData data, TechniqueData newData) => CustomizedTechniqueData.Add(technique, newData);
+
+		void valueUpdaterWhenNotNullRef(scoped ref TechniqueData data, TechniqueData newData) => data = newData;
 	}
 
 	/// <inheritdoc cref="GetRatingOrDefault(Technique)"/>

@@ -1745,6 +1745,7 @@
             Represents the technique data to be used.
             </summary>
             <param name="Rating">Indicates the difficulty rating value.</param>
+            <param name="DirectRating">Indicatees the direct difficulty rating value.</param>
             <param name="Level">
             <para>Indicates the difficulty level value.</para>
             <para>
@@ -1754,11 +1755,12 @@
             </para>
             </param>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Int32,Sudoku.Analytics.Categorization.DifficultyLevel)">
+        <member name="M:SudokuStudio.Configuration.TechniqueData.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Categorization.DifficultyLevel)">
             <summary>
             Represents the technique data to be used.
             </summary>
             <param name="Rating">Indicates the difficulty rating value.</param>
+            <param name="DirectRating">Indicatees the direct difficulty rating value.</param>
             <param name="Level">
             <para>Indicates the difficulty level value.</para>
             <para>
@@ -1770,6 +1772,9 @@
         </member>
         <member name="P:SudokuStudio.Configuration.TechniqueData.Rating">
             <summary>Indicates the difficulty rating value.</summary>
+        </member>
+        <member name="P:SudokuStudio.Configuration.TechniqueData.DirectRating">
+            <summary>Indicatees the direct difficulty rating value.</summary>
         </member>
         <member name="P:SudokuStudio.Configuration.TechniqueData.Level">
             <summary>
@@ -1786,15 +1791,36 @@
             Represents a preference group that defines the custom difficulty level and rating values for the techniques.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateValue``1(Sudoku.Analytics.Categorization.Technique,``0)">
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateRating(Sudoku.Analytics.Categorization.Technique,System.Int32)">
             <summary>
-            Try to append or update the technique data in the property <see cref="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData"/>.
+            Add or update rating value.
             </summary>
-            <typeparam name="T">
-            The type of the data to be modified. The supported types are <see cref="T:System.Int32"/> or <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
-            </typeparam>
             <param name="technique">The technique.</param>
-            <param name="ratingOrLevel">The value to be updated or appended.</param>
+            <param name="value">The rating value to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDirectRating(Sudoku.Analytics.Categorization.Technique,System.Int32)">
+            <summary>
+            Add or update direct rating value.
+            </summary>
+            <param name="technique">The technique.</param>
+            <param name="value">The rating value to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateDifficultyLevel(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.DifficultyLevel)">
+            <summary>
+            Add or update difficulty level.
+            </summary>
+            <param name="technique">The technique.</param>
+            <param name="value">The difficulty level to be set.</param>
+        </member>
+        <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.AppendOrUpdateValue``1(Sudoku.Analytics.Categorization.Technique,``0,,)">
+            <summary>
+            Append or update value.
+            </summary>
+            <typeparam name="T">The type of the value to be set.</typeparam>
+            <param name="technique">The technique.</param>
+            <param name="value">The value to be set.</param>
+            <param name="dataCreator">The data creator method that will be called when the collection doesn't contain the technique.</param>
+            <param name="dataModifier">The data modifier method that will be called when the collection contains the technique.</param>
         </member>
         <member name="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRating(Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc cref="M:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.GetRatingOrDefault(Sudoku.Analytics.Categorization.Technique)"/>
@@ -9588,6 +9614,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to This page can modify configurations on difficulty level and rating values, in order to be used by step searcher modules..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_DifficultyDirectRating">
+            <summary>
+              Looks up a localized string similar to Direct Difficulty Rating.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_DifficultyLevel">
             <summary>
               Looks up a localized string similar to Difficulty Level.
@@ -9595,7 +9626,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_DifficultyRating">
             <summary>
-              Looks up a localized string similar to Rating Value.
+              Looks up a localized string similar to Difficulty Rating.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueInfoModifierPage_ScaleValue">

@@ -2418,12 +2418,15 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Difficulty Level</value>
   </data>
   <data name="TechniqueInfoModifierPage_DifficultyRating" xml:space="preserve">
-    <value>Rating Value</value>
+    <value>Difficulty Rating</value>
   </data>
   <data name="TechniqueInfoModifierPage_ScaleValue" xml:space="preserve">
     <value>Scale value: </value>
   </data>
   <data name="TechniqueInfoModifierPage_ScaleValueDescription" xml:space="preserve">
     <value>Sets the scale value using by values of technique rating values set in the page. The final rating of the technique equals to the base technique value you set divided by this scale value.</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyDirectRating" xml:space="preserve">
+    <value>Direct Difficulty Rating</value>
   </data>
 </root>

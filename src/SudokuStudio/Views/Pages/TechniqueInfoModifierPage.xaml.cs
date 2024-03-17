@@ -125,7 +125,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			{
 				if (difficultyLevelControl.SelectedItem is SegmentedItem { Tag: DifficultyLevel d })
 				{
-					pref.AppendOrUpdateValue(technique, d);
+					pref.AppendOrUpdateDifficultyLevel(technique, d);
 				}
 			};
 			GridLayout.SetRow(difficultyLevelControl, i);
@@ -136,7 +136,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			var ratingControl = new IntegerBox
 			{
-				Width = 300,
+				Width = 225,
 				Value = pref.GetRatingOrDefault(technique),
 				Minimum = 0,
 				Maximum = 1000000,
@@ -146,9 +146,33 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				VerticalAlignment = VerticalAlignment.Center,
 				Margin = RightMargin
 			};
-			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateValue(technique, ratingControl.Value / pref.RatingScale);
+			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateRating(technique, ratingControl.Value);
 			GridLayout.SetRow(ratingControl, i);
 			GridLayout.SetColumn(ratingControl, 3);
+
+			//
+			// Direct rating
+			//
+			var directRatingControl = default(IntegerBox);
+			var hasDirectRating = technique.IsDirect();
+			if (hasDirectRating)
+			{
+				directRatingControl = new()
+				{
+					Width = 225,
+					Value = pref.GetRatingOrDefault(technique),
+					Minimum = 0,
+					Maximum = 1000000,
+					SmallChange = 1,
+					LargeChange = 100,
+					HorizontalAlignment = HorizontalAlignment.Left,
+					VerticalAlignment = VerticalAlignment.Center,
+					Margin = RightMargin
+				};
+				directRatingControl.ValueChanged += (_, _) => pref.AppendOrUpdateDirectRating(technique, directRatingControl.Value);
+				GridLayout.SetRow(directRatingControl, i);
+				GridLayout.SetColumn(directRatingControl, 4);
+			}
 
 			await Task.Run(
 				() => p.DispatcherQueue.TryEnqueue(
@@ -158,6 +182,11 @@ public sealed partial class TechniqueInfoModifierPage : Page
 						g.Children.Add(englishNameControl);
 						g.Children.Add(difficultyLevelControl);
 						g.Children.Add(ratingControl);
+						if (hasDirectRating)
+						{
+							Debug.Assert(directRatingControl is not null);
+							g.Children.Add(directRatingControl);
+						}
 					}
 				)
 			);
@@ -186,6 +215,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1));
 			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2));
 			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyDirectRating", 4));
 		}
 
 		static RowDefinition r() => new() { Height = DefaultHeight };

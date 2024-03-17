@@ -17,8 +17,43 @@ public static class TechniqueExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <remarks>
+	/// <para>
+	/// In mechanism, an assignment technique must produce assignment conclusions.
+	/// However, some techniques can also produce them like BUG + 1, Discontinuous Nice Loop, etc..
+	/// This method today won't return <see langword="true"/> for such techniques now, but this rule might be changed in the future.
+	/// </para>
+	/// <para>
+	/// If you want to check whether the technique is a single, please call method <see cref="IsDirect(Technique)"/>
+	/// or <see cref="IsSingle(Technique)"/> instead.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="IsDirect(Technique)"/>
+	/// <seealso cref="IsSingle(Technique)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsAssignment(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
+
+	/// <summary>
+	/// Determine whether the specified technique is a single technique.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsSingle(this Technique @this) => @this.GetGroup() is TechniqueGroup.Single or TechniqueGroup.ComplexSingle;
+
+	/// <summary>
+	/// Determine whether the specified technique is a technique that can only be produced in direct views.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool IsDirect(this Technique @this)
+		=> TypeOfTechnique
+			.GetField(@this.ToString())!
+			.GetCustomAttribute<TechniqueFeatureAttribute>()?
+			.Features
+			.HasFlag(TechniqueFeature.DirectTechniques)
+		?? false;
 
 	/// <summary>
 	/// Determine whether the technique is last resort.

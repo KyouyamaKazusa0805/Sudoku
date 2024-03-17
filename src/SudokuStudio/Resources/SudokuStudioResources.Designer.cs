@@ -6711,6 +6711,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Direct Difficulty Rating.
+        /// </summary>
+        internal static string TechniqueInfoModifierPage_DifficultyDirectRating {
+            get {
+                return ResourceManager.GetString("TechniqueInfoModifierPage_DifficultyDirectRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Difficulty Level.
         /// </summary>
         internal static string TechniqueInfoModifierPage_DifficultyLevel {
@@ -6720,7 +6729,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Rating Value.
+        ///   Looks up a localized string similar to Difficulty Rating.
         /// </summary>
         internal static string TechniqueInfoModifierPage_DifficultyRating {
             get {

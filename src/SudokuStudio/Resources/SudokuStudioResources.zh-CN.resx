@@ -2417,13 +2417,16 @@
   <data name="TechniqueInfoModifierPage_DifficultyRating" xml:space="preserve">
     <value>难度分</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="TechniqueInfoModifierPage_ScaleValue" xml:space="preserve">
     <value>比例数值：</value>
   </data>
   <data name="TechniqueInfoModifierPage_ScaleValueDescription" xml:space="preserve">
     <value>设置一个适用于可设置难度分的比例数值。你设置的技巧难度分会除以该比例数值，作为这个技巧最终的分值。</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="TechniqueInfoModifierPage_DifficultyDirectRating" xml:space="preserve">
+    <value>直观难度分</value>
   </data>
 </root>

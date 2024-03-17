@@ -4070,6 +4070,33 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <remarks>
+            <para>
+            In mechanism, an assignment technique must produce assignment conclusions.
+            However, some techniques can also produce them like BUG + 1, Discontinuous Nice Loop, etc..
+            This method today won't return <see langword="true"/> for such techniques now, but this rule might be changed in the future.
+            </para>
+            <para>
+            If you want to check whether the technique is a single, please call method <see cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsDirect(Sudoku.Analytics.Categorization.Technique)"/>
+            or <see cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsSingle(Sudoku.Analytics.Categorization.Technique)"/> instead.
+            </para>
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsDirect(Sudoku.Analytics.Categorization.Technique)"/>
+            <seealso cref="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsSingle(Sudoku.Analytics.Categorization.Technique)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsSingle(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the specified technique is a single technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsDirect(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the specified technique is a technique that can only be produced in direct views.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsLastResort(Sudoku.Analytics.Categorization.Technique)">
             <summary>
