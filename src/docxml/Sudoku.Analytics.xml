@@ -4253,6 +4253,19 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>All found features for the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSupportedPencilmarkVisibilityModes(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get supported pencilmark-visibility modes that the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/> can be used in application.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>
+            <para>A <see cref="T:Sudoku.Analytics.Metadata.PencilmarkVisibility"/> value indicating the supported modes.</para>
+            <para>
+            The result will be merged via flag values. Use <see cref="M:System.Enum.HasFlag(System.Enum)"/> to determine what flag you want to check.
+            </para>
+            </returns>
+            <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.AsTechniqueSet(Sudoku.Analytics.Categorization.Technique[])">
             <summary>
             Try to convert the current array instance into a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
@@ -4970,6 +4983,38 @@
         <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.MemberName">
             <summary>
             The generated property declaration for parameter <c>memberName</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.PencilmarkVisibility">
+            <summary>
+            Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Direct">
+            <summary>
+            Indicates the technique can be applied to direct mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Indirect">
+            <summary>
+            Indicates the technique can be applied to indirect mode.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute">
+            <summary>
+            Indicates the visibility mode for pencilmarks that will be used in puzzle-solving for a technique.
+            </summary>
+            <param name="visibilityModes">The supported visibility modes.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute.#ctor(Sudoku.Analytics.Metadata.PencilmarkVisibility)">
+            <summary>
+            Indicates the visibility mode for pencilmarks that will be used in puzzle-solving for a technique.
+            </summary>
+            <param name="visibilityModes">The supported visibility modes.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute.VisibilityModes">
+            <summary>
+            The generated property declaration for parameter <c>visibilityModes</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.ReferenceLinkAttribute">

@@ -278,6 +278,22 @@ public static class TechniqueExtensions
 		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueFeatureAttribute>()?.Features ?? 0;
 
 	/// <summary>
+	/// Try to get supported pencilmark-visibility modes that the current <see cref="Technique"/> can be used in application.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>
+	/// <para>A <see cref="PencilmarkVisibility"/> value indicating the supported modes.</para>
+	/// <para>
+	/// The result will be merged via flag values. Use <see cref="Enum.HasFlag(Enum)"/> to determine what flag you want to check.
+	/// </para>
+	/// </returns>
+	/// <seealso cref="Enum.HasFlag(Enum)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static PencilmarkVisibility GetSupportedPencilmarkVisibilityModes(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<PencilmarkVisibilityAttribute>()?.VisibilityModes
+		?? PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
+
+	/// <summary>
 	/// Try to convert the current array instance into a <see cref="TechniqueSet"/> instance.
 	/// </summary>
 	/// <param name="this">The current instance.</param>

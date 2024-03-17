@@ -57,6 +57,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(1.2)]
+	[PencilmarkVisibility(PencilmarkVisibility.Indirect)]
 	HiddenSingleBlock,
 
 	/// <summary>
@@ -71,6 +72,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(1.5)]
+	[PencilmarkVisibility(PencilmarkVisibility.Indirect)]
 	HiddenSingleRow,
 
 	/// <summary>
@@ -85,6 +87,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(1.5)]
+	[PencilmarkVisibility(PencilmarkVisibility.Indirect)]
 	HiddenSingleColumn,
 
 	/// <summary>
@@ -115,6 +118,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(1.9)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	CrosshatchingBlock,
 
 	/// <summary>
@@ -126,6 +130,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(2.3)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	CrosshatchingRow,
 
 	/// <summary>
@@ -137,6 +142,7 @@ public enum Technique
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(HiddenSingleStep))]
 	[StaticDifficulty(2.3)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	CrosshatchingColumn,
 	#endregion
 
@@ -153,6 +159,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	PointingFullHouse,
 
 	/// <summary>
@@ -164,6 +171,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(3.0)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	ClaimingFullHouse,
 
 	/// <summary>
@@ -175,6 +183,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairFullHouse,
 
 	/// <summary>
@@ -186,6 +195,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairPlusFullHouse,
 
 	/// <summary>
@@ -197,6 +207,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenPairFullHouse,
 
 	/// <summary>
@@ -208,6 +219,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedPairFullHouse,
 
 	/// <summary>
@@ -219,6 +231,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenPairFullHouse,
 
 	/// <summary>
@@ -230,6 +243,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTripleFullHouse,
 
 	/// <summary>
@@ -241,6 +255,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTriplePlusFullHouse,
 
 	/// <summary>
@@ -252,6 +267,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenTripleFullHouse,
 
 	/// <summary>
@@ -263,6 +279,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedTripleFullHouse,
 
 	/// <summary>
@@ -274,6 +291,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenTripleFullHouse,
 
 	/// <summary>
@@ -285,6 +303,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadrupleFullHouse,
 
 	/// <summary>
@@ -296,6 +315,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadruplePlusFullHouse,
 
 	/// <summary>
@@ -307,6 +327,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenQuadrupleFullHouse,
 
 	/// <summary>
@@ -318,6 +339,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	PointingCrosshatchingBlock,
 
 	/// <summary>
@@ -329,6 +351,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(3.2)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	ClaimingCrosshatchingBlock,
 
 	/// <summary>
@@ -340,6 +363,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -351,6 +375,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairPlusCrosshatchingBlock,
 
 	/// <summary>
@@ -362,6 +387,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -373,6 +399,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -384,6 +411,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -395,6 +423,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -406,6 +435,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTriplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -417,6 +447,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -428,6 +459,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -439,6 +471,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -450,6 +483,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -461,6 +495,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadruplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -472,6 +507,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -483,6 +519,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	PointingCrosshatchingRow,
 
 	/// <summary>
@@ -494,6 +531,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	ClaimingCrosshatchingRow,
 
 	/// <summary>
@@ -505,6 +543,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairCrosshatchingRow,
 
 	/// <summary>
@@ -516,6 +555,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairPlusCrosshatchingRow,
 
 	/// <summary>
@@ -527,6 +567,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -538,6 +579,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedPairCrosshatchingRow,
 
 	/// <summary>
@@ -549,6 +591,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -560,6 +603,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -571,6 +615,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTriplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -582,6 +627,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -593,6 +639,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -604,6 +651,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -615,6 +663,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -626,6 +675,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadruplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -637,6 +687,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -648,6 +699,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	PointingCrosshatchingColumn,
 
 	/// <summary>
@@ -659,6 +711,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(4.5)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	ClaimingCrosshatchingColumn,
 
 	/// <summary>
@@ -670,6 +723,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -681,6 +735,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairPlusCrosshatchingColumn,
 
 	/// <summary>
@@ -692,6 +747,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -703,6 +759,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -714,6 +771,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -725,6 +783,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -736,6 +795,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTriplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -747,6 +807,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -758,6 +819,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -769,6 +831,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -780,6 +843,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -791,6 +855,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadruplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -802,6 +867,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -813,6 +879,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	PointingNakedSingle,
 
 	/// <summary>
@@ -824,6 +891,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectIntersectionStep))]
 	[StaticDifficulty(5.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	ClaimingNakedSingle,
 
 	/// <summary>
@@ -835,6 +903,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairNakedSingle,
 
 	/// <summary>
@@ -846,6 +915,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedPairPlusNakedSingle,
 
 	/// <summary>
@@ -857,6 +927,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenPairNakedSingle,
 
 	/// <summary>
@@ -868,6 +939,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedPairNakedSingle,
 
 	/// <summary>
@@ -879,6 +951,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenPairNakedSingle,
 
 	/// <summary>
@@ -890,6 +963,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTripleNakedSingle,
 
 	/// <summary>
@@ -901,6 +975,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedTriplePlusNakedSingle,
 
 	/// <summary>
@@ -912,6 +987,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenTripleNakedSingle,
 
 	/// <summary>
@@ -923,6 +999,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedTripleNakedSingle,
 
 	/// <summary>
@@ -934,6 +1011,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LockedHiddenTripleNakedSingle,
 
 	/// <summary>
@@ -945,6 +1023,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadrupleNakedSingle,
 
 	/// <summary>
@@ -956,6 +1035,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.3)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	NakedQuadruplePlusNakedSingle,
 
 	/// <summary>
@@ -967,6 +1047,7 @@ public enum Technique
 	[BoundStepTypes(typeof(DirectSubsetStep))]
 	[StaticDifficulty(3.7)]
 	[ExtraDifficultyFactors(Size, Locked)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	HiddenQuadrupleNakedSingle,
 	#endregion
 
@@ -1014,6 +1095,7 @@ public enum Technique
 	[Abbreviation("LoL")]
 	[BoundStepTypes(typeof(LawOfLeftoverStep))]
 	[StaticDifficulty(2.0)]
+	[PencilmarkVisibility(PencilmarkVisibility.Direct)]
 	LawOfLeftover,
 	#endregion
 

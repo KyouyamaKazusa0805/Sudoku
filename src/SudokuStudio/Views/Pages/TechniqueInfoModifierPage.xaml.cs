@@ -150,27 +150,33 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			// Rating
 			//
-			var ratingControl = new IntegerBox
+			var supportedModes = technique.GetSupportedPencilmarkVisibilityModes();
+			var ratingControl = default(IntegerBox);
+			var hasIndirectRating = supportedModes.HasFlag(PencilmarkVisibility.Indirect);
+			if (hasIndirectRating)
 			{
-				Width = 225,
-				Value = pref.GetRatingOrDefault(technique),
-				Minimum = 0,
-				Maximum = 1000000,
-				SmallChange = 1,
-				LargeChange = 100,
-				HorizontalAlignment = HorizontalAlignment.Left,
-				VerticalAlignment = VerticalAlignment.Center,
-				Margin = RightMargin
-			};
-			ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateRating(technique, ratingControl.Value);
-			GridLayout.SetRow(ratingControl, rowIndex);
-			GridLayout.SetColumn(ratingControl, 3);
+				ratingControl = new IntegerBox
+				{
+					Width = 225,
+					Value = pref.GetRatingOrDefault(technique),
+					Minimum = 0,
+					Maximum = 1000000,
+					SmallChange = 1,
+					LargeChange = 100,
+					HorizontalAlignment = HorizontalAlignment.Left,
+					VerticalAlignment = VerticalAlignment.Center,
+					Margin = RightMargin
+				};
+				ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateRating(technique, ratingControl.Value);
+				GridLayout.SetRow(ratingControl, rowIndex);
+				GridLayout.SetColumn(ratingControl, 3);
+			}
 
 			//
 			// Direct rating
 			//
 			var directRatingControl = default(IntegerBox);
-			var hasDirectRating = technique.IsDirect();
+			var hasDirectRating = supportedModes.HasFlag(PencilmarkVisibility.Direct);
 			if (hasDirectRating)
 			{
 				directRatingControl = new()
@@ -208,7 +214,11 @@ public sealed partial class TechniqueInfoModifierPage : Page
 						g.Children.Add(nameControl);
 						g.Children.Add(englishNameControl);
 						g.Children.Add(difficultyLevelControl);
-						g.Children.Add(ratingControl);
+						if (hasIndirectRating)
+						{
+							Debug.Assert(ratingControl is not null);
+							g.Children.Add(ratingControl);
+						}
 						if (hasDirectRating)
 						{
 							Debug.Assert(directRatingControl is not null);
