@@ -1,3 +1,6 @@
+#define HORIZONTAL_GRID_LINES
+#undef VERTICAL_GRID_LINES
+
 namespace SudokuStudio.Views.Pages;
 
 /// <summary>
@@ -80,7 +83,8 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			{
 				Text = englishName,
 				HorizontalAlignment = HorizontalAlignment.Left,
-				VerticalAlignment = VerticalAlignment.Center
+				VerticalAlignment = VerticalAlignment.Center,
+				Margin = LeftMargin
 			};
 			GridLayout.SetRow(englishNameControl, rowIndex);
 			GridLayout.SetColumn(englishNameControl, 1);
@@ -186,14 +190,16 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				GridLayout.SetColumn(directRatingControl, 4);
 			}
 
+#if HORIZONTAL_GRID_LINES
 			//
-			// Border line
+			// Horizontal grid line
 			//
 			var borderGridLine = new Border { BorderBrush = new SolidColorBrush(Colors.Gray), BorderThickness = new(0, .5, 0, 0) };
 			Canvas.SetZIndex(borderGridLine, -1);
 			GridLayout.SetRow(borderGridLine, rowIndex);
 			GridLayout.SetColumn(borderGridLine, 0);
 			GridLayout.SetColumnSpan(borderGridLine, 5);
+#endif
 
 			await Task.Run(
 				() => p.DispatcherQueue.TryEnqueue(
@@ -209,12 +215,30 @@ public sealed partial class TechniqueInfoModifierPage : Page
 							g.Children.Add(directRatingControl);
 						}
 
+#if HORIZONTAL_GRID_LINES
 						g.Children.Add(borderGridLine);
+#endif
 					}
 				)
 			);
 			await Task.Delay(10);
 		}
+
+#if VERTICAL_GRID_LINES
+		//
+		// Vertical border lines
+		//
+		for (var (i, cr, cc) = (1, g.RowDefinitions.Count, g.ColumnDefinitions.Count); i <= cc - 1; i++)
+		{
+			var borderGridLine = new Border { BorderBrush = new SolidColorBrush(Colors.Gray), BorderThickness = new(0, 0, .5, 0) };
+			Canvas.SetZIndex(borderGridLine, -1);
+			GridLayout.SetRow(borderGridLine, 0);
+			GridLayout.SetRowSpan(borderGridLine, cr);
+			GridLayout.SetColumn(borderGridLine, i - 1);
+
+			g.Children.Add(borderGridLine);
+		}
+#endif
 
 		p.MovePreviousButton.Visibility = Visibility.Visible;
 		p.MoveNextButton.Visibility = Visibility.Visible;

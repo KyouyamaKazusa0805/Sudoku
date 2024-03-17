@@ -27,8 +27,8 @@
 					IsEnabled="{x:Bind cvt:TechniqueConversion.IsTechniqueConfigNextButtonEnabled(CurrentIndex),Mode=OneWay}"
 					Click="MoveNextButton_Click" />
 				<TextBlock
-					x:Name="TechniqueGroupDisplayer" Grid.ColumnSpan="3"
-					FontWeight="Bold" FontSize="24" Margin="0,8,0,0" HorizontalAlignment="Center" TextAlignment="Center" />
+					x:Name="TechniqueGroupDisplayer" Grid.ColumnSpan="3" FontWeight="Bold" FontSize="24" Margin="0,8,0,0"
+					HorizontalAlignment="Center" VerticalAlignment="Bottom" TextAlignment="Center" />
 				<Grid Grid.Column="2" ColumnDefinitions="*,Auto" HorizontalAlignment="Right">
 					<TextBlock
 						Grid.Column="0" HorizontalAlignment="Right" VerticalAlignment="Center"
