@@ -14,7 +14,7 @@ public enum SymmetricType
 	/// <summary>
 	/// Indicates the central symmetry type.
 	/// </summary>
-	Central = 1,
+	Central = 1 << 0,
 
 	/// <summary>
 	/// Indicates the diagonal symmetry type.

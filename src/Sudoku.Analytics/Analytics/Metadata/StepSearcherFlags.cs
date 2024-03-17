@@ -25,7 +25,7 @@ public enum StepSearcherFlags
 	/// can only be used for searching in a standard sudoku, sukakus are disabled.
 	/// </summary>
 	/// <seealso cref="UniqueRectangleStepSearcher"/>
-	Standard = 1,
+	Standard = 1 << 0,
 
 	/// <summary>
 	/// Indicates a <see cref="StepSearcher"/> will produce high time complexity,

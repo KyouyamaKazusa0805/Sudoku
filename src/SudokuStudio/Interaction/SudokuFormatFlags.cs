@@ -15,7 +15,7 @@ internal enum SudokuFormatFlags
 	/// <summary>
 	/// Indicates the initial grid format.
 	/// </summary>
-	InitialFormat = 1,
+	InitialFormat = 1 << 0,
 
 	/// <summary>
 	/// Indicates the current grid format.

@@ -14,7 +14,7 @@ public enum CellState : byte
 	/// <summary>
 	/// Indicates that the cell is empty.
 	/// </summary>
-	Empty = 1,
+	Empty = 1 << 0,
 
 	/// <summary>
 	/// Indicates the current cell has been filled a value that is not given from initial grid.

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Indicates a fin modifier that is used for a complex fish pattern.
@@ -9,7 +9,7 @@ internal enum FishFinKind
 	/// <summary>
 	/// Indicates the normal fish (i.e. no fins).
 	/// </summary>
-	Normal = 1,
+	Normal = 1 << 0,
 
 	/// <summary>
 	/// Indicates the finned fish

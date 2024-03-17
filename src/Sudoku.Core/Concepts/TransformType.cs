@@ -15,7 +15,7 @@ public enum TransformType
 	/// <summary>
 	/// Indicates the transform type is to swap digits.
 	/// </summary>
-	DigitSwap = 1,
+	DigitSwap = 1 << 0,
 
 	/// <summary>
 	/// Indicates the transform type is to swap rows.

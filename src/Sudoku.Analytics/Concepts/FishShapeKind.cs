@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Analytics.Steps;
 
 /// <summary>
 /// Indicates a shape modifier that is used for a complex fish pattern.
@@ -9,7 +9,7 @@ internal enum FishShapeKind
 	/// <summary>
 	/// Indicates the basic fish.
 	/// </summary>
-	Basic = 1,
+	Basic = 1 << 0,
 
 	/// <summary>
 	/// Indicates the franken fish.

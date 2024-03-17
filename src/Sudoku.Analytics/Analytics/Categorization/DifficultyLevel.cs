@@ -14,7 +14,7 @@ public enum DifficultyLevel
 	/// <summary>
 	/// Indicates the difficulty is easy.
 	/// </summary>
-	Easy = 1,
+	Easy = 1 << 0,
 
 	/// <summary>
 	/// Indicates the difficulty is moderate.

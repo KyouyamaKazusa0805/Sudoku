@@ -15,7 +15,7 @@ public enum StepTooltipDisplayItems
 	/// <summary>
 	/// Indicates the technique name will be displayed.
 	/// </summary>
-	TechniqueName = 1,
+	TechniqueName = 1 << 0,
 
 	/// <summary>
 	/// Indicates the position of the step in the whole solving path.

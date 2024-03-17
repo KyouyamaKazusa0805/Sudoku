@@ -9,7 +9,7 @@ public enum PencilmarkVisibility
 	/// <summary>
 	/// Indicates the technique can be applied to direct mode.
 	/// </summary>
-	Direct = 1,
+	Direct = 1 << 0,
 
 	/// <summary>
 	/// Indicates the technique can be applied to indirect mode.

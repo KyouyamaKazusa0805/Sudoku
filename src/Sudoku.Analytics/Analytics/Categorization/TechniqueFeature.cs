@@ -14,7 +14,7 @@ public enum TechniqueFeature
 	/// <summary>
 	/// Indicates it is hard to create a puzzle with this technique.
 	/// </summary>
-	HardToBeGenerated = 1,
+	HardToBeGenerated = 1 << 0,
 
 	/// <summary>
 	/// Indicates the current technique won't be appeared because it will be replaced with other techniques.

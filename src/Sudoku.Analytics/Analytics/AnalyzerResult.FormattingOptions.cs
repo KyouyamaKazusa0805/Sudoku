@@ -17,7 +17,7 @@ public partial record AnalyzerResult
 		/// <summary>
 		/// Indicates the analysis result will append separators.
 		/// </summary>
-		ShowSeparators = 1,
+		ShowSeparators = 1 << 0,
 
 		/// <summary>
 		/// Indicates the analysis result will append the step label.

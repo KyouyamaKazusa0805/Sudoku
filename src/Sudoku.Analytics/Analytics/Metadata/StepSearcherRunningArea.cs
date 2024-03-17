@@ -14,7 +14,7 @@ public enum StepSearcherRunningArea
 	/// <summary>
 	/// Indicates the mode is normal searching.
 	/// </summary>
-	Searching = 1,
+	Searching = 1 << 0,
 
 	/// <summary>
 	/// Indicates the mode is collecting.

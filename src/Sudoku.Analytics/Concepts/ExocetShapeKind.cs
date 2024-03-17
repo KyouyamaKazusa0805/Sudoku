@@ -9,7 +9,7 @@ internal enum ExocetShapeKind
 	/// <summary>
 	/// Indicates the basic exocet. This field is a reserved field.
 	/// </summary>
-	Basic = 1,
+	Basic = 1 << 0,
 
 	/// <summary>
 	/// Indicates the franken exocet.
