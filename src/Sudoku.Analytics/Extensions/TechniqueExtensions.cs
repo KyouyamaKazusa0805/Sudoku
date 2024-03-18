@@ -95,11 +95,11 @@ public static class TechniqueExtensions
 	/// </param>
 	/// <returns>The difficulty value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static decimal GetBaseDifficulty(this Technique @this, out decimal valueInDirectMode)
+	public static decimal GetDefaultRating(this Technique @this, out decimal valueInDirectMode)
 	{
 		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<StaticDifficultyAttribute>()!;
-		valueInDirectMode = Math.Round((decimal)(attribute.ValueInDirectMode == 0 ? attribute.Value : attribute.ValueInDirectMode), 1);
-		return Math.Round((decimal)attribute.Value, 1);
+		valueInDirectMode = Math.Round((decimal)(attribute.DirectRating == 0 ? attribute.DefaultRating : attribute.DirectRating), 1);
+		return Math.Round((decimal)attribute.DefaultRating, 1);
 	}
 
 	/// <summary>

@@ -26,7 +26,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 		static TechniqueData dataCreator(Technique technique, int value)
 		{
-			technique.GetBaseDifficulty(out var directRating);
+			technique.GetDefaultRating(out var directRating);
 			return new(value, (int)(directRating * RatingScaleDefaultValue), technique.GetDifficultyLevel());
 		}
 
@@ -44,7 +44,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 
 		static TechniqueData dataCreator(Technique technique, int value)
-			=> new((int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue), value, technique.GetDifficultyLevel());
+			=> new((int)(technique.GetDefaultRating(out _) * RatingScaleDefaultValue), value, technique.GetDifficultyLevel());
 
 		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { DirectRating = value };
 	}
@@ -61,7 +61,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 		static TechniqueData dataCreator(Technique technique, DifficultyLevel value)
 		{
-			var rating = technique.GetBaseDifficulty(out var directRating);
+			var rating = technique.GetDefaultRating(out var directRating);
 			return new((int)(rating * RatingScaleDefaultValue), (int)(directRating * RatingScaleDefaultValue), value);
 		}
 
@@ -107,7 +107,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	public int GetRatingOrDefault(Technique technique)
 		=> CustomizedTechniqueData.TryGetValue(technique, out var pair)
 			? pair.Rating
-			: (int)(technique.GetBaseDifficulty(out _) * RatingScaleDefaultValue);
+			: (int)(technique.GetDefaultRating(out _) * RatingScaleDefaultValue);
 
 	/// <inheritdoc cref="GetDifficultyLevelOrDefault(Technique)"/>
 	public DifficultyLevel? GetDifficultyLevel(Technique technique)

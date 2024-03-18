@@ -13,6 +13,17 @@ namespace SudokuStudio.Views.Pages;
 public sealed partial class TechniqueInfoModifierPage : Page
 {
 	/// <summary>
+	/// Indicates the maximum rating value can be set.
+	/// </summary>
+	private const int MaximumRatingValue = 1000000;
+
+	/// <summary>
+	/// Indicates the default with for rating control.
+	/// </summary>
+	private const int DefaultWidthForRatingControl = 190;
+
+
+	/// <summary>
 	/// Indicates the default grid row height.
 	/// </summary>
 	private static readonly GridLength DefaultHeight = new(50, GridUnitType.Pixel);
@@ -160,10 +171,10 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			{
 				ratingControl = new IntegerBox
 				{
-					Width = 225,
+					Width = DefaultWidthForRatingControl,
 					Value = pref.GetRatingOrDefault(technique),
 					Minimum = 0,
-					Maximum = 1000000,
+					Maximum = MaximumRatingValue,
 					SmallChange = 1,
 					LargeChange = 100,
 					HorizontalAlignment = HorizontalAlignment.Left,
@@ -184,10 +195,10 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			{
 				directRatingControl = new()
 				{
-					Width = 225,
+					Width = DefaultWidthForRatingControl,
 					Value = pref.GetRatingOrDefault(technique),
 					Minimum = 0,
-					Maximum = 1000000,
+					Maximum = MaximumRatingValue,
 					SmallChange = 1,
 					LargeChange = 100,
 					HorizontalAlignment = HorizontalAlignment.Left,

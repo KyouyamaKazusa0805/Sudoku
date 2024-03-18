@@ -15138,6 +15138,16 @@ if (student is (name: var name, age: >= 18))
             Represents a technique information modifier page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.MaximumRatingValue">
+            <summary>
+            Indicates the maximum rating value can be set.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.DefaultWidthForRatingControl">
+            <summary>
+            Indicates the default with for rating control.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.TechniqueInfoModifierPage.DefaultHeight">
             <summary>
             Indicates the default grid row height.

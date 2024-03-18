@@ -4119,7 +4119,7 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetBaseDifficulty(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDefaultRating(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
             <summary>
             Try to get the base difficulty value for the specified technique.
             </summary>
@@ -5093,7 +5093,7 @@
             <summary>
             Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
             </summary>
-            <param name="value">Indicates the value of the rating.</param>
+            <param name="defaultRating">Indicates the value of the rating.</param>
             <remarks>
             <para>
             Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
@@ -5111,7 +5111,7 @@
             <summary>
             Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
             </summary>
-            <param name="value">Indicates the value of the rating.</param>
+            <param name="defaultRating">Indicates the value of the rating.</param>
             <remarks>
             <para>
             Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
@@ -5125,14 +5125,14 @@
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.ValueInDirectMode">
+        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.DirectRating">
             <summary>
             Indicates the value that is used in direct mode.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.Value">
+        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.DefaultRating">
             <summary>
-            The generated property declaration for parameter <c>value</c>.
+            The generated property declaration for parameter <c>defaultRating</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute">

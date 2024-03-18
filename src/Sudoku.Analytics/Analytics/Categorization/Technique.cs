@@ -101,7 +101,7 @@ public enum Technique
 	[TechniqueGroup(TechniqueGroup.Single)]
 	[StaticDifficultyLevel(DifficultyLevel.Easy)]
 	[BoundStepTypes(typeof(NakedSingleStep))]
-	[StaticDifficulty(2.3, ValueInDirectMode = 1.0)]
+	[StaticDifficulty(2.3, DirectRating = 1.0)]
 	NakedSingle,
 	#endregion
 
