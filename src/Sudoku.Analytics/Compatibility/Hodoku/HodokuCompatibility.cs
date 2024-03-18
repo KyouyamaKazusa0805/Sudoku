@@ -94,7 +94,7 @@ public static class HodokuCompatibility
 		{
 			{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuAttribute>() switch
 			{
-				{ RatingValue: var rating, DifficultyLevel: var level } => (rating, level),
+				{ Rating: var rating, DifficultyLevel: var level } => (rating, level),
 				_ => (null, null)
 			},
 			_ => default((int?, HodokuDifficultyLevel?))

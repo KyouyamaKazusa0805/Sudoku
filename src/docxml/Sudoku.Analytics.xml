@@ -5265,7 +5265,7 @@
             Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
             describing its detail which can be defined as fixed one, to be stored as metadata.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
             <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
             <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
@@ -5275,7 +5275,7 @@
             Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
             describing its detail which can be defined as fixed one, to be stored as metadata.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
             <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
             <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
@@ -5290,7 +5290,7 @@
             Indicates whether the current technique supports for Dual logic.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DirectRatingValue">
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DirectRating">
             <summary>
             Indicates the rating value defined in direct mode.
             </summary>
@@ -5328,9 +5328,9 @@
             Indicates the secondarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.RatingValue">
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Rating">
             <summary>
-            The generated property declaration for parameter <c>ratingValue</c>.
+            The generated property declaration for parameter <c>rating</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DifficultyLevel">
@@ -19095,14 +19095,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents compatibility rules for Hodoku.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor(System.Int32,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel)">
             <summary>
             Represents compatibility rules for Hodoku.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor">
@@ -19117,9 +19117,9 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso href="https://hodoku.sourceforge.net/en/libs.php">Hodoku: libraries</seealso>
         </member>
-        <member name="P:Sudoku.Compatibility.HodokuAttribute.RatingValue">
+        <member name="P:Sudoku.Compatibility.HodokuAttribute.Rating">
             <summary>
-            The generated property declaration for parameter <c>ratingValue</c>.
+            The generated property declaration for parameter <c>rating</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Compatibility.HodokuAttribute.DifficultyLevel">
@@ -19241,7 +19241,7 @@ if (student is (name: var name, age: >= 18))
             Represents the aliased names for the current technique defined in the current program.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValue">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Rating">
             <summary>
             Indicates the rating value used.
             </summary>
@@ -19271,19 +19271,19 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents compatibility rules for Sudoku Explainer.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
         </member>
         <member name="M:Sudoku.Compatibility.SudokuExplainerAttribute.#ctor(System.Double,Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique)">
             <summary>
             Represents compatibility rules for Sudoku Explainer.
             </summary>
-            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="rating">Indicates the rating value.</param>
             <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.RatingValue">
+        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.Rating">
             <summary>
-            The generated property declaration for parameter <c>ratingValue</c>.
+            The generated property declaration for parameter <c>rating</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.DifficultyLevel">

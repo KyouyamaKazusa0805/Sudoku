@@ -78,7 +78,7 @@ public enum Technique
 	[SudokuExplainer(2.3, SudokuExplainerTechnique.NakedSingle)]
 	[TechniqueMetadata(
 		2.3, DifficultyLevel.Easy, TechniqueGroup.Single, typeof(NakedSingleStep),
-		DirectRatingValue = 1.0, Links = ["http://sudopedia.enjoysudoku.com/Naked_Single.html"])]
+		DirectRating = 1.0, Links = ["http://sudopedia.enjoysudoku.com/Naked_Single.html"])]
 	NakedSingle,
 	#endregion
 

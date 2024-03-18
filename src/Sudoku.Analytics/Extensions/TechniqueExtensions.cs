@@ -75,7 +75,7 @@ public static class TechniqueExtensions
 		&& !@this.IsLastResort()
 		&& TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>() is
 		{
-			RatingValue: not double.MinValue,
+			Rating: not double.MinValue,
 			DifficultyLevel: not (DifficultyLevel)int.MinValue
 		};
 
@@ -101,8 +101,8 @@ public static class TechniqueExtensions
 	public static decimal GetDefaultRating(this Technique @this, out decimal directRatingValue)
 	{
 		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
-		directRatingValue = Math.Round((decimal)(attribute.DirectRatingValue == 0 ? attribute.RatingValue : attribute.DirectRatingValue), 1);
-		return Math.Round((decimal)attribute.RatingValue, 1);
+		directRatingValue = Math.Round((decimal)(attribute.DirectRating == 0 ? attribute.Rating : attribute.DirectRating), 1);
+		return Math.Round((decimal)attribute.Rating, 1);
 	}
 
 	/// <summary>

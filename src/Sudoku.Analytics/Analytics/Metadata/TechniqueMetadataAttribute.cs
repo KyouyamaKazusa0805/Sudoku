@@ -4,13 +4,13 @@ namespace Sudoku.Analytics.Metadata;
 /// Represents an attribute type that will be applied to fields defined in <see cref="Technique"/>,
 /// describing its detail which can be defined as fixed one, to be stored as metadata.
 /// </summary>
-/// <param name="ratingValue">Indicates the rating value.</param>
+/// <param name="rating">Indicates the rating value.</param>
 /// <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
 /// <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
 /// <param name="primarySupportedType">Indicates the primarily-supported <see cref="Step"/> type.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class TechniqueMetadataAttribute(
-	[PrimaryConstructorParameter(Accessibility = "public override")] double ratingValue = double.MinValue,
+	[PrimaryConstructorParameter(Accessibility = "public override")] double rating = double.MinValue,
 	[PrimaryConstructorParameter(Accessibility = "public override")] DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
 	[PrimaryConstructorParameter] TechniqueGroup containingGroup = TechniqueGroup.None,
 	[PrimaryConstructorParameter] Type? primarySupportedType = null
@@ -29,7 +29,7 @@ public sealed partial class TechniqueMetadataAttribute(
 	/// <summary>
 	/// Indicates the rating value defined in direct mode.
 	/// </summary>
-	public double DirectRatingValue { get; set; }
+	public double DirectRating { get; set; }
 
 	/// <summary>
 	/// Indicates the abbreviation of the technique.

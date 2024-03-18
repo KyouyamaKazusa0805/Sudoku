@@ -73,7 +73,7 @@ public static class SudokuExplainerCompatibility
 					=> new(new((half)min1, (half)min1), new((half)min2, (half)max2)),
 				[{ RatingValueOriginal: [var min1, var max1], RatingValueAdvanced: [var min2, var max2] }]
 					=> new(new((half)min1, (half)max1), new((half)min2, (half)max2)),
-				[{ RatingValue: var r }] => new(new((half)r, (half)r), null),
+				[{ Rating: var r }] => new(new((half)r, (half)r), null),
 				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TooMuchAttributes"))
 			};
 #pragma warning restore format

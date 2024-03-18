@@ -18,7 +18,7 @@ public abstract class ProgramMetadataAttribute<TRating, TDifficultyLevel> : Attr
 	/// <summary>
 	/// Indicates the rating value used.
 	/// </summary>
-	public abstract TRating RatingValue { get; }
+	public abstract TRating Rating { get; }
 
 	/// <summary>
 	/// Indicates the rating value that is defined in original program.

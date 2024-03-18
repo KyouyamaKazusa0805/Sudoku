@@ -3,11 +3,11 @@ namespace Sudoku.Compatibility;
 /// <summary>
 /// Represents compatibility rules for Hodoku.
 /// </summary>
-/// <param name="ratingValue">Indicates the rating value.</param>
+/// <param name="rating">Indicates the rating value.</param>
 /// <param name="difficultyLevel">Indicates the difficulty level.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class HodokuAttribute(
-	[PrimaryConstructorParameter(Accessibility = "public override")] int ratingValue,
+	[PrimaryConstructorParameter(Accessibility = "public override")] int rating,
 	[PrimaryConstructorParameter(Accessibility = "public override")] HodokuDifficultyLevel difficultyLevel
 ) : ProgramMetadataAttribute<int, HodokuDifficultyLevel>
 {
