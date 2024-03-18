@@ -30,6 +30,7 @@ global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearcherModules;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Analytics.Traits;
+global using Sudoku.Compatibility;
 global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;

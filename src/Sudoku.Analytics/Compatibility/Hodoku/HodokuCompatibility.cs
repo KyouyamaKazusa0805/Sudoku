@@ -21,7 +21,7 @@ public static class HodokuCompatibility
 	public static string[]? GetAliases(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
-				? fieldInfo.GetCustomAttribute<HodokuAliasedNamesAttribute>() is { Aliases: var aliases } ? aliases : null
+				? fieldInfo.GetCustomAttribute<HodokuAttribute>() is { Aliases: var aliases } ? aliases : null
 				: null
 			: throw new ArgumentOutOfRangeException(nameof(@this));
 
@@ -63,7 +63,7 @@ public static class HodokuCompatibility
 	public static string? GetHodokuLibraryPrefix(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
-				? fieldInfo.GetCustomAttribute<HodokuTechniquePrefixAttribute>() is { Prefix: var prefix } ? prefix : null
+				? fieldInfo.GetCustomAttribute<HodokuAttribute>() is { Prefix: var prefix } ? prefix : null
 				: null
 			: throw new ArgumentOutOfRangeException(nameof(@this));
 
@@ -92,14 +92,13 @@ public static class HodokuCompatibility
 
 		(var @return, difficultyLevel) = typeof(Technique).GetField(@this.ToString()) switch
 		{
-			{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuDifficultyRatingAttribute>() switch
+			{ } fieldInfo => fieldInfo.GetCustomAttribute<HodokuAttribute>() switch
 			{
-				var (rating, level) => (rating, level),
+				{ RatingValue: var rating, DifficultyLevel: var level } => (rating, level),
 				_ => (null, null)
 			},
 			_ => default((int?, HodokuDifficultyLevel?))
 		};
-
 		return @return;
 	}
 }
