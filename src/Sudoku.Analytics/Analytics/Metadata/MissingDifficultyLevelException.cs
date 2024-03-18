@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="memberName">The field name.</param>
 /// <seealso cref="Technique"/>
 /// <seealso cref="DifficultyLevel"/>
-/// <seealso cref="StaticDifficultyLevelAttribute"/>
+/// <seealso cref="TechniqueMetadataAttribute"/>
 public sealed partial class MissingDifficultyLevelException([PrimaryConstructorParameter] string memberName) : Exception
 {
 	/// <inheritdoc/>

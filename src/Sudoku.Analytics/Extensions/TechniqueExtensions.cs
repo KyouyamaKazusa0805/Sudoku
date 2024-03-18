@@ -7,7 +7,7 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueExtensions
 {
 	/// <summary>
-	/// The internal <see cref="Type"/> instance to visit members for <see cref="Technique"/> via reflection.
+	/// Represents <see langword="typeof"/>(<see cref="Technique"/>).
 	/// </summary>
 	private static readonly Type TypeOfTechnique = typeof(Technique);
 
@@ -50,7 +50,7 @@ public static class TechniqueExtensions
 	public static bool IsDirect(this Technique @this)
 		=> TypeOfTechnique
 			.GetField(@this.ToString())!
-			.GetCustomAttribute<TechniqueFeatureAttribute>()?
+			.GetCustomAttribute<TechniqueMetadataAttribute>()?
 			.Features
 			.HasFlag(TechniqueFeature.DirectTechniques)
 		?? false;
@@ -73,8 +73,11 @@ public static class TechniqueExtensions
 	public static bool SupportsCustomizingDifficulty(this Technique @this)
 		=> Enum.IsDefined(@this) && @this != Technique.None
 		&& !@this.IsLastResort()
-		&& TypeOfTechnique.GetField(@this.ToString())!.IsDefined(typeof(StaticDifficultyAttribute))
-		&& TypeOfTechnique.GetField(@this.ToString())!.IsDefined(typeof(StaticDifficultyLevelAttribute));
+		&& TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>() is
+		{
+			RatingValue: not double.MinValue,
+			DifficultyLevel: not (DifficultyLevel)int.MinValue
+		};
 
 	/// <summary>
 	/// Indicates whether the technique supports for Siamese rule.
@@ -83,23 +86,23 @@ public static class TechniqueExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SupportsSiamese(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<IsSiameseSupportedAttribute>()?.SupportsSiamese is true
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.SupportsSiamese is true
 		|| @this.GetGroup().SupportsSiamese();
 
 	/// <summary>
 	/// Try to get the base difficulty value for the specified technique.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <param name="valueInDirectMode">
+	/// <param name="directRatingValue">
 	/// An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
 	/// </param>
 	/// <returns>The difficulty value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static decimal GetDefaultRating(this Technique @this, out decimal valueInDirectMode)
+	public static decimal GetDefaultRating(this Technique @this, out decimal directRatingValue)
 	{
-		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<StaticDifficultyAttribute>()!;
-		valueInDirectMode = Math.Round((decimal)(attribute.DirectRating == 0 ? attribute.DefaultRating : attribute.DirectRating), 1);
-		return Math.Round((decimal)attribute.DefaultRating, 1);
+		var attribute = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
+		directRatingValue = Math.Round((decimal)(attribute.DirectRatingValue == 0 ? attribute.RatingValue : attribute.DirectRatingValue), 1);
+		return Math.Round((decimal)attribute.RatingValue, 1);
 	}
 
 	/// <summary>
@@ -129,23 +132,10 @@ public static class TechniqueExtensions
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>The abbreviation of the current technique.</returns>
-	/// <remarks>
-	/// The routing rule can be described as below:
-	/// <list type="number">
-	/// <item>
-	/// Check whether the field is marked attribute <see cref="AbbreviationAttribute"/>,
-	/// and return property value <see cref="AbbreviationAttribute.Abbreviation"/> if marked.
-	/// </item>
-	/// <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
-	/// <item>If 2) returns <see langword="null"/>, then check its <see cref="TechniqueGroup"/>, then return its abbreviation if worth.</item>
-	/// <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
-	/// </list>
-	/// </remarks>
-	/// <seealso cref="AbbreviationAttribute"/>
 	/// <seealso cref="TechniqueGroup"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.Abbreviation
 		?? (
 			ResourceDictionary.TryGet($"TechniqueAbbr_{@this}", out var resource, ResourceDictionary.DefaultCulture)
 				? resource
@@ -159,7 +149,7 @@ public static class TechniqueExtensions
 	/// <returns>All configured links.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] GetReferenceLinks(this Technique @this)
-		=> from attr in (ReferenceLinkAttribute[])TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttributes<ReferenceLinkAttribute>() select attr.Link;
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.Links ?? [];
 
 	/// <summary>
 	/// Try to get all aliases of the current <see cref="Technique"/>.
@@ -183,7 +173,7 @@ public static class TechniqueExtensions
 	/// <returns>All configured extra difficulty factors.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[]? GetExtraDifficultyFactors(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<ExtraDifficultyFactorsAttribute>()?.FactorNames;
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.ExtraFactors;
 
 	/// <summary>
 	/// Combine the technique with indirect technique, to produce a new <see cref="Technique"/> field, describing the complex single usage.
@@ -234,7 +224,7 @@ public static class TechniqueExtensions
 	/// <returns>The <see cref="TechniqueGroup"/> value that the current <see cref="Technique"/> belongs to.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueGroup? TryGetGroup(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueGroupAttribute>()?.Group;
+		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueMetadataAttribute>()?.ContainingGroup;
 
 	/// <summary>
 	/// Try to get the group that the current <see cref="Technique"/> belongs to.
@@ -260,10 +250,10 @@ public static class TechniqueExtensions
 	public static DifficultyLevel GetDifficultyLevel(this Technique @this)
 	{
 		var fi = TypeOfTechnique.GetField(@this.ToString())!;
-		return (fi.GetCustomAttribute<TechniqueFeatureAttribute>(), fi.GetCustomAttribute<StaticDifficultyLevelAttribute>()) switch
+		return (fi.GetCustomAttribute<TechniqueMetadataAttribute>(), fi.GetCustomAttribute<TechniqueMetadataAttribute>()) switch
 		{
 			({ Features: var feature }, _) when feature.HasFlag(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
-			(_, { Level: var level }) => level,
+			(_, { DifficultyLevel: var level }) => level,
 			_ => throw new MissingDifficultyLevelException(@this.ToString())
 		};
 	}
@@ -275,7 +265,7 @@ public static class TechniqueExtensions
 	/// <returns>All found features for the current <see cref="Technique"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueFeature GetFeature(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueFeatureAttribute>()?.Features ?? 0;
+		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueMetadataAttribute>()?.Features ?? 0;
 
 	/// <summary>
 	/// Try to get supported pencilmark-visibility modes that the current <see cref="Technique"/> can be used in application.
@@ -290,7 +280,7 @@ public static class TechniqueExtensions
 	/// <seealso cref="Enum.HasFlag(Enum)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static PencilmarkVisibility GetSupportedPencilmarkVisibilityModes(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<PencilmarkVisibilityAttribute>()?.VisibilityModes
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PencilmarkVisibility
 		?? PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
 
 	/// <summary>

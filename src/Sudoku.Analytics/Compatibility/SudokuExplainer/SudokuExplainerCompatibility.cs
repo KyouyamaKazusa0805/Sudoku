@@ -22,7 +22,7 @@ public static class SudokuExplainerCompatibility
 	public static string[]? GetAliases(Technique @this)
 		=> (@this != Technique.None && Enum.IsDefined(@this))
 			? typeof(Technique).GetField(@this.ToString()) is { } fieldInfo
-				? fieldInfo.GetCustomAttribute<SudokuExplainerNamesAttribute>() is { Names: var names } ? names : null
+				? fieldInfo.GetCustomAttribute<SudokuExplainerAttribute>() is { Aliases: var names } ? names : null
 				: null
 			: throw new ArgumentOutOfRangeException(nameof(@this));
 
@@ -30,22 +30,14 @@ public static class SudokuExplainerCompatibility
 	/// Try to get the corresponding technique defined by Sudoku Explainer.
 	/// </summary>
 	/// <param name="this">The technique.</param>
-	/// <param name="isAdvanced">Indicates whether the technique is not defined by the program with original version.</param>
 	/// <returns>
 	/// The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SudokuExplainerTechnique? GetCorrespondingTechnique(Technique @this, out bool isAdvanced)
+	public static SudokuExplainerTechnique? GetCorrespondingTechnique(Technique @this)
 	{
-		var found = typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<SudokuExplainerTechniqueAttribute>();
-		if (found is not { Technique: var flag, IsAdvancedDefined: var isAdvancedDefinition })
-		{
-			isAdvanced = false;
-			return null;
-		}
-
-		isAdvanced = isAdvancedDefinition;
-		return flag;
+		var found = typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<SudokuExplainerAttribute>();
+		return found is { DifficultyLevel: var flag } ? flag : null;
 	}
 
 	/// <summary>
@@ -62,16 +54,27 @@ public static class SudokuExplainerCompatibility
 	/// </exception>
 	/// <seealso cref="Technique"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+#pragma warning disable format
 	public static SudokuExplainerRating? GetDifficultyRatingRange(Technique @this)
 		=> @this == Technique.None || !Enum.IsDefined(@this)
 			? throw new ArgumentOutOfRangeException(nameof(@this))
-			: (SudokuExplainerDifficultyRatingAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerDifficultyRatingAttribute>() switch
+			: (SudokuExplainerAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerAttribute>() switch
 			{
 				[] => null,
-				[(var min, var max, false)] => new(new(min, max ?? min), null),
-				[(var min, var max, true)] => new(null, new(min, max ?? min)),
-				[(var min1, var max1, false), (var min2, var max2, true)] => new(new(min1, max1 ?? min1), new(min2, max2 ?? min2)),
-				[(var min1, var max1, true), (var min2, var max2, false)] => new(new(min2, max2 ?? min2), new(min1, max1 ?? min1)),
+				[{ RatingValueOriginal: [var min], RatingValueAdvanced: null }] => new(new((half)min, (half)min), null),
+				[{ RatingValueOriginal: [var min, var max], RatingValueAdvanced: null }] => new(new((half)min, (half)max), null),
+				[{ RatingValueAdvanced: [var min], RatingValueOriginal: null }] => new(null, new((half)min, (half)min)),
+				[{ RatingValueAdvanced: [var min, var max], RatingValueOriginal: null }] => new(null, new((half)min, (half)max)),
+				[{ RatingValueOriginal: [var min1], RatingValueAdvanced: [var min2] }]
+					=> new(new((half)min1, (half)min1), new((half)min2, (half)min2)),
+				[{ RatingValueOriginal: [var min1, var max1], RatingValueAdvanced: [var min2] }]
+					=> new(new((half)min1, (half)max1), new((half)min2, (half)min2)),
+				[{ RatingValueOriginal: [var min1], RatingValueAdvanced: [var min2, var max2] }]
+					=> new(new((half)min1, (half)min1), new((half)min2, (half)max2)),
+				[{ RatingValueOriginal: [var min1, var max1], RatingValueAdvanced: [var min2, var max2] }]
+					=> new(new((half)min1, (half)max1), new((half)min2, (half)max2)),
+				[{ RatingValue: var r }] => new(new((half)r, (half)r), null),
 				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TooMuchAttributes"))
 			};
+#pragma warning restore format
 }

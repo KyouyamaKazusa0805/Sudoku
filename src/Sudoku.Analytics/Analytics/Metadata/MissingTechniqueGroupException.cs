@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="memberName">Indicates the field name.</param>
 /// <seealso cref="Technique"/>
 /// <seealso cref="TechniqueGroup"/>
-/// <seealso cref="TechniqueGroupAttribute"/>
+/// <seealso cref="TechniqueMetadataAttribute"/>
 public sealed partial class MissingTechniqueGroupException([PrimaryConstructorParameter] string memberName) : Exception
 {
 	/// <inheritdoc/>

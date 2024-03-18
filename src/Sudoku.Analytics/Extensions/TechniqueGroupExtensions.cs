@@ -7,13 +7,19 @@ namespace Sudoku.Analytics.Categorization;
 public static class TechniqueGroupExtensions
 {
 	/// <summary>
+	/// Represents <see langword="typeof"/>(<see cref="TechniqueGroup"/>).
+	/// </summary>
+	private static readonly Type TypeOfTechniqueGroup = typeof(TechniqueGroup);
+
+
+	/// <summary>
 	/// Indicates whether the technique group supports for Siamese rule.
 	/// </summary>
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SupportsSiamese(this TechniqueGroup @this)
-		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<IsSiameseSupportedAttribute>()?.SupportsSiamese ?? false;
+		=> TypeOfTechniqueGroup.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.SupportsSiamese ?? false;
 
 	/// <summary>
 	/// Try to get shortened name of the current <see cref="TechniqueGroup"/> instance. If the group has an abbreviation,
@@ -53,7 +59,7 @@ public static class TechniqueGroupExtensions
 	/// <returns>The abbreviation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetAbbreviation(this TechniqueGroup @this)
-		=> typeof(TechniqueGroup).GetField(@this.ToString())!.GetCustomAttribute<AbbreviationAttribute>()?.Abbreviation;
+		=> TypeOfTechniqueGroup.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.Abbreviation;
 
 	/// <summary>
 	/// Try to get all possible <see cref="Technique"/> fields belonging to the current group.

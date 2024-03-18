@@ -3989,40 +3989,6 @@
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueFeature)">
-            <summary>
-            Represents a type that is used by a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> type, indicating the runtime feature to be described.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueFeatureAttribute.Features">
-            <summary>
-            The generated property declaration for parameter <c>features</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup)">
-            <summary>
-            Represents an attribute type that describes for a group that the marked technique belongs to.
-            </summary>
-            <param name="group">Indicates the group that the current technique belong to.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Categorization.TechniqueGroupAttribute.Group">
-            <summary>
-            The generated property declaration for parameter <c>group</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
@@ -4061,7 +4027,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueExtensions.TypeOfTechnique">
             <summary>
-            The internal <see cref="T:System.Type"/> instance to visit members for <see cref="T:Sudoku.Analytics.Categorization.Technique"/> via reflection.
+            Represents <see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Categorization.Technique"/>).
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.IsAssignment(Sudoku.Analytics.Categorization.Technique)">
@@ -4124,7 +4090,7 @@
             Try to get the base difficulty value for the specified technique.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="valueInDirectMode">
+            <param name="directRatingValue">
             An extra value that is defined in direct mode. If undefined, the argument will keep a same value as the return value.
             </param>
             <returns>The difficulty value.</returns>
@@ -4152,19 +4118,6 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>The abbreviation of the current technique.</returns>
-            <remarks>
-            The routing rule can be described as below:
-            <list type="number">
-            <item>
-            Check whether the field is marked attribute <see cref="T:Sudoku.Analytics.Metadata.AbbreviationAttribute"/>,
-            and return property value <see cref="P:Sudoku.Analytics.Metadata.AbbreviationAttribute.Abbreviation"/> if marked.
-            </item>
-            <item>If 1) returns <see langword="null"/>, then search for resource dictionary, and return the target value if found.</item>
-            <item>If 2) returns <see langword="null"/>, then check its <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>, then return its abbreviation if worth.</item>
-            <item>If 3) returns <see langword="null"/>, this method will return <see langword="null"/>; otherwise, a valid value.</item>
-            </list>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Metadata.AbbreviationAttribute"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetReferenceLinks(Sudoku.Analytics.Categorization.Technique)">
@@ -4278,6 +4231,11 @@
             Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.TypeOfTechniqueGroup">
+            <summary>
+            Represents <see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>).
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.SupportsSiamese(Sudoku.Analytics.Categorization.TechniqueGroup)">
             <summary>
@@ -4745,54 +4703,6 @@
         <member name="M:Sudoku.Analytics.GridFeature.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.AbbreviationAttribute">
-            <summary>
-            Represents an attribute type that describes its abbreviation of a technique group.
-            </summary>
-            <param name="abbr">Indicates the abbreviation.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.AbbreviationAttribute.#ctor(System.String)">
-            <summary>
-            Represents an attribute type that describes its abbreviation of a technique group.
-            </summary>
-            <param name="abbr">Indicates the abbreviation.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.AbbreviationAttribute.Abbreviation">
-            <summary>
-            The generated property declaration for parameter <c>abbr</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.BoundStepTypesAttribute">
-            <summary>
-            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
-            </summary>
-            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.#ctor(System.Type)">
-            <summary>
-            Provides with an attribute type that specifies the types where a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field can be produced.
-            </summary>
-            <param name="primaryType">Indicates the types derived from <see cref="T:Sudoku.Analytics.Step"/>.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.SecondaryTypes">
-            <summary>
-            Indicates the secondary <see cref="T:Sudoku.Analytics.Step"/> types.
-            </summary>
-            <remarks>
-            The types will be used as compatibility. For example, a last digit can be created
-            using <see cref="T:Sudoku.Analytics.Steps.LastDigitStep"/>; however, it can be also created by using <see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>
-            with more arguments. This property will be initialized as <c>[<see langword="typeof"/>(<see cref="T:Sudoku.Analytics.Steps.HiddenSingleStep"/>)]</c>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.BoundStepTypesAttribute.PrimaryType">
-            <summary>
-            The generated property declaration for parameter <c>primaryType</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
@@ -4806,39 +4716,6 @@
             <param name="this">The value.</param>
             <param name="culture">The culture.</param>
             <returns>The string value.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute">
-            <summary>
-            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
-            for which kinds of extra difficulty rating rules.
-            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            </summary>
-            <param name="factorNames">
-            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            If invalid, the value will be skipped and don't work.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute.#ctor(System.String[])">
-            <summary>
-            Provides an attribute type that describes for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance supporting
-            for which kinds of extra difficulty rating rules.
-            The values can be viewed in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            </summary>
-            <param name="factorNames">
-            Indicates the name of rules. The values must be matched with fields in <see cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>.
-            If invalid, the value will be skipped and don't work.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.ExtraDifficultyFactorsAttribute.FactorNames">
-            <summary>
-            The generated property declaration for parameter <c>factorNames</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
             <summary>
@@ -4906,33 +4783,6 @@
             that always produces a valid step, guaranteeing that the solver will never give up at all time.
             </i></remarks>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute">
-            <summary>
-            Represents an attribute type that describes
-            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportsSiamese">
-            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
-            supports for Siamese rule.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute.#ctor(System.Boolean)">
-            <summary>
-            Represents an attribute type that describes
-            whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance supports for Siamese rule.
-            </summary>
-            <param name="supportsSiamese">
-            A <see cref="T:System.Boolean"/> value indicating whether a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> or <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance
-            supports for Siamese rule.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.IsSiameseSupportedAttribute.SupportsSiamese">
-            <summary>
-            The generated property declaration for parameter <c>supportsSiamese</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.MissingDifficultyLevelException">
             <summary>
             Represents an exception that describes for a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for difficulty level attribute.
@@ -4940,7 +4790,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.#ctor(System.String)">
             <summary>
@@ -4949,7 +4799,7 @@
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
-            <seealso cref="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
             <inheritdoc/>
@@ -4966,7 +4816,7 @@
             <param name="memberName">Indicates the field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.#ctor(System.String)">
             <summary>
@@ -4975,7 +4825,7 @@
             <param name="memberName">Indicates the field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
             <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueGroupAttribute"/>
+            <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.Message">
             <inheritdoc/>
@@ -4998,42 +4848,6 @@
         <member name="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Indirect">
             <summary>
             Indicates the technique can be applied to indirect mode.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute">
-            <summary>
-            Indicates the visibility mode for pencilmarks that will be used in puzzle-solving for a technique.
-            </summary>
-            <param name="visibilityModes">The supported visibility modes.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute.#ctor(Sudoku.Analytics.Metadata.PencilmarkVisibility)">
-            <summary>
-            Indicates the visibility mode for pencilmarks that will be used in puzzle-solving for a technique.
-            </summary>
-            <param name="visibilityModes">The supported visibility modes.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.PencilmarkVisibilityAttribute.VisibilityModes">
-            <summary>
-            The generated property declaration for parameter <c>visibilityModes</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.ReferenceLinkAttribute">
-            <summary>
-            Represents links the current technique is linked to
-            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
-            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.ReferenceLinkAttribute.#ctor(System.String)">
-            <summary>
-            Represents links the current technique is linked to
-            <see href="http://forum.enjoysudoku.com/collection-of-solving-techniques-t3315.html">EnjoySudoku forum</see>
-            and <see href="http://sudopedia.enjoysudoku.com/Solving_Technique.html">its mirror site</see>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.ReferenceLinkAttribute.Link">
-            <summary>
-            The generated property declaration for parameter <c>link</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute">
@@ -5087,69 +4901,6 @@
         <member name="P:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute.PropertyNamesAndValues">
             <summary>
             The generated property declaration for parameter <c>propertyNamesAndValues</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StaticDifficultyAttribute">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="defaultRating">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.#ctor(System.Double)">
-            <summary>
-            Provides with difficulty rating value defined in this project for a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.
-            </summary>
-            <param name="defaultRating">Indicates the value of the rating.</param>
-            <remarks>
-            <para>
-            Due to design of C#, <see cref="T:System.Decimal"/> values cannot be as an argument while initializing an attribute type,
-            here we use a <see cref="T:System.Double"/> value to achieve this.
-            </para>
-            <para>
-            In addition, this type may contain same value as arguments passing into <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>;
-            but sometimes they are not.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.DirectRating">
-            <summary>
-            Indicates the value that is used in direct mode.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyAttribute.DefaultRating">
-            <summary>
-            The generated property declaration for parameter <c>defaultRating</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel)">
-            <summary>
-            Provides with an attribute type that represents the target difficulty level for the specified technique.
-            </summary>
-            <param name="level">The difficulty level. This value is used to describe the target difficulty for the specified technique.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StaticDifficultyLevelAttribute.Level">
-            <summary>
-            The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherAttribute">
@@ -5507,6 +5258,94 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute.CanDeriveTypes">
             <summary>
             Indicates whether the current step searcher can be used for deriving. This property controls the behavior on generated members.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute">
+            <summary>
+            Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            describing its detail which can be defined as fixed one, to be stored as metadata.
+            </summary>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
+            <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
+            <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.#ctor(System.Double,Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Analytics.Categorization.TechniqueGroup,System.Type)">
+            <summary>
+            Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
+            describing its detail which can be defined as fixed one, to be stored as metadata.
+            </summary>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
+            <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
+            <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese">
+            <summary>
+            Indicates whether the current technique supports for Siamese logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsDual">
+            <summary>
+            Indicates whether the current technique supports for Dual logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DirectRatingValue">
+            <summary>
+            Indicates the rating value defined in direct mode.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Abbreviation">
+            <summary>
+            Indicates the abbreviation of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Links">
+            <summary>
+            Indicates the reference links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ExtraFactors">
+            <summary>
+            Indicates the extra difficulty factors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PencilmarkVisibility">
+            <summary>
+            Indicates the mode that the current technique can be used by solving a puzzle.
+            By default the value is both <see cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Direct"/> and <see cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Indirect"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Direct"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Indirect"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Features">
+            <summary>
+            Indicates the features of the technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SecondarySupportedType">
+            <summary>
+            Indicates the secondarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.RatingValue">
+            <summary>
+            The generated property declaration for parameter <c>ratingValue</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DifficultyLevel">
+            <summary>
+            The generated property declaration for parameter <c>difficultyLevel</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ContainingGroup">
+            <summary>
+            The generated property declaration for parameter <c>containingGroup</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimarySupportedType">
+            <summary>
+            The generated property declaration for parameter <c>primarySupportedType</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">
@@ -19252,23 +19091,40 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute">
+        <member name="T:Sudoku.Compatibility.HodokuAttribute">
             <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Hodoku.
+            Represents compatibility rules for Hodoku.
             </summary>
-            <param name="aliases">Indicates the aliased names of the technique.</param>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute.#ctor(System.String[])">
+        <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor(System.Int32,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel)">
             <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Hodoku.
+            Represents compatibility rules for Hodoku.
             </summary>
-            <param name="aliases">Indicates the aliased names of the technique.</param>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuAliasedNamesAttribute.Aliases">
+        <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor">
             <summary>
-            The generated property declaration for parameter <c>aliases</c>.
+            Initializes a <see cref="T:Sudoku.Compatibility.HodokuAttribute"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.HodokuAttribute.Prefix">
+            <summary>
+            Indicates the technique prefix defined in Hodoku program.
+            See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
+            </summary>
+            <seealso href="https://hodoku.sourceforge.net/en/libs.php">Hodoku: libraries</seealso>
+        </member>
+        <member name="P:Sudoku.Compatibility.HodokuAttribute.RatingValue">
+            <summary>
+            The generated property declaration for parameter <c>ratingValue</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.HodokuAttribute.DifficultyLevel">
+            <summary>
+            The generated property declaration for parameter <c>difficultyLevel</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuCompatibility">
@@ -19373,83 +19229,66 @@ if (student is (name: var name, age: >= 18))
             Indicates the level is extreme.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute">
+        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute`2">
             <summary>
-            Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Hodoku.
+            Represents program compatibility attribute type.
             </summary>
-            <param name="difficultyRating">Indicates the difficulty rating.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
+            <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
+            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.#ctor(System.Int32,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel)">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Aliases">
             <summary>
-            Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Hodoku.
-            </summary>
-            <param name="difficultyRating">Indicates the difficulty rating.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.Deconstruct(System.Int32@,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.DifficultyRating">
-            <summary>
-            The generated property declaration for parameter <c>difficultyRating</c>.
+            Represents the aliased names for the current technique defined in the current program.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuDifficultyRatingAttribute.DifficultyLevel">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValue">
             <summary>
-            The generated property declaration for parameter <c>difficultyLevel</c>.
+            Indicates the rating value used.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal">
             <summary>
-            Defines an attribute that is applied to a field in technique, indicating a compatible prefix value defined by Hodoku.
+            Indicates the rating value that is defined in original program.
             </summary>
-            <param name="prefix">Indicates the prefix value.</param>
+            <remarks>
+            The value of this property is an array of 1 or 2 elements.
+            If two, the first one is the minimal possible rating value of the technique;
+            and the second one is the maximum possible rating value.
+            </remarks>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.#ctor(System.String)">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueAdvanced">
             <summary>
-            Defines an attribute that is applied to a field in technique, indicating a compatible prefix value defined by Hodoku.
+            Indicates the rating value that is defined in advanced concept.
             </summary>
-            <param name="prefix">Indicates the prefix value.</param>
+            <remarks><inheritdoc cref="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal" path="/remarks"/></remarks>
         </member>
-        <member name="P:Sudoku.Compatibility.Hodoku.HodokuTechniquePrefixAttribute.Prefix">
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.DifficultyLevel">
             <summary>
-            The generated property declaration for parameter <c>prefix</c>.
+            Indicates the difficulty level the current technique is at.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.SudokuExplainerAttribute">
+            <summary>
+            Represents compatibility rules for Sudoku Explainer.
+            </summary>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.SudokuExplainerAttribute.#ctor(System.Double,Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique)">
+            <summary>
+            Represents compatibility rules for Sudoku Explainer.
+            </summary>
+            <param name="ratingValue">Indicates the rating value.</param>
+            <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.RatingValue">
+            <summary>
+            The generated property declaration for parameter <c>ratingValue</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.DifficultyLevel">
+            <summary>
+            The generated property declaration for parameter <c>techniqueDefined</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
@@ -19473,12 +19312,11 @@ if (student is (name: var name, age: >= 18))
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetCorrespondingTechnique(Sudoku.Analytics.Categorization.Technique,System.Boolean@)">
+        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility.GetCorrespondingTechnique(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to get the corresponding technique defined by Sudoku Explainer.
             </summary>
             <param name="this">The technique.</param>
-            <param name="isAdvanced">Indicates whether the technique is not defined by the program with original version.</param>
             <returns>
             The corresponding technique defined by Sudoku Explainer. If not found, <see langword="null"/> will be returned.
             </returns>
@@ -19497,121 +19335,6 @@ if (student is (name: var name, age: >= 18))
             or the value is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/>.
             </exception>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute">
-            <summary>
-            Defines an attribute that is applied to a field in technique, indicating difficulty rating value defined by Sudoku Explainer.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.#ctor(System.Double)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating value.
-            </summary>
-            <param name="difficultyRating">
-            The difficulty rating value. Assign <see cref="F:System.Double.NaN"/> if you don't know the real value.
-            </param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.#ctor(System.Double,System.Double)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute"/> via the specified difficulty rating values
-            as a range.
-            </summary>
-            <param name="minDifficultyRating">
-            The minimum difficulty rating value of the range that the specified technique can be reached.
-            Assign <see cref="F:System.Double.NaN"/> if you don't know the real value.
-            </param>
-            <param name="maxDifficultyRating">
-            The maximum difficulty rating value of the range that the specified technique can be reached.
-            Assign <see cref="F:System.Double.NaN"/> if you don't know the real value.
-            </param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.IsAdvancedDefined">
-            <summary>
-            Indicates whether the specified technique is defined by advanced version of Sudoku Explainer,
-            which is not original program, or other implementations compatible with original Sudoku Explainer's
-            rating system.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.IsRange">
-            <summary>
-            Indicates whether the value is not accurate one to measure the technique's difficulty.
-            If the value is <see langword="true"/>, the difficulty rating is the minimum value
-            (in other words, threshold) of the difficulty corresponding to specified technique.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.DifficultyRating">
-            <summary>
-            Indicates the difficulty rating.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.DifficultyRatingMaximumThreshold">
-            <summary>
-            <para>Indicates the maximum possible difficulty rating value that a technique can be reached.</para>
-            <para>
-            The value is <see langword="null"/> by default, but if the property <see cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.IsRange"/>
-            is set to <see langword="true"/>, this value will not be <see langword="null"/>.
-            </para>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerDifficultyRatingAttribute.Deconstruct(System.Half@,System.Nullable{System.Half}@,System.Boolean@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute">
-            <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
-            </summary>
-            <param name="names">Indicates the aliased names of the technique.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute.#ctor(System.String[])">
-            <summary>
-            Defines an attribute that is applied to a field of technique,
-            indicating the aliased name (or names) of specified technique that is defined by Sudoku Explainer.
-            </summary>
-            <param name="names">Indicates the aliased names of the technique.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerNamesAttribute.Names">
-            <summary>
-            The generated property declaration for parameter <c>names</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerRating">
             <summary>
@@ -19861,31 +19584,9 @@ if (student is (name: var name, age: >= 18))
             Represents nested forcing chains.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute">
+        <member name="F:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique.BruteForce">
             <summary>
-            Represents an attribute type that describes the corresponding technique usage designed by Sudoku Explainer.
-            </summary>
-            <param name="technique">Indicates the technique.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.#ctor(Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique)">
-            <summary>
-            Represents an attribute type that describes the corresponding technique usage designed by Sudoku Explainer.
-            </summary>
-            <param name="technique">Indicates the technique.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.IsAdvancedDefined">
-            <summary>
-            Indicates whether the specified technique is defined by advanced version of Sudoku Explainer,
-            which is not original program, or other implementations compatible with original Sudoku Explainer's
-            rating system.
-            </summary>
-            <remarks>
-            The default value is <see langword="false"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechniqueAttribute.Technique">
-            <summary>
-            The generated property declaration for parameter <c>technique</c>.
+            Represents brute force.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.AlmostLockedSet">

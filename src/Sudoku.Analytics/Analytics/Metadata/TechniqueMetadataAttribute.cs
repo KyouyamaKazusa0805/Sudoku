@@ -29,7 +29,7 @@ public sealed partial class TechniqueMetadataAttribute(
 	/// <summary>
 	/// Indicates the rating value defined in direct mode.
 	/// </summary>
-	public double DirectRating { get; set; }
+	public double DirectRatingValue { get; set; }
 
 	/// <summary>
 	/// Indicates the abbreviation of the technique.

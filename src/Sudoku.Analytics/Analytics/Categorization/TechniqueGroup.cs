@@ -23,7 +23,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the locked candidates (LC) technique.
 	/// </summary>
-	[Abbreviation("LC")]
+	[TechniqueMetadata(Abbreviation = "LC")]
 	LockedCandidates,
 
 	/// <summary>
@@ -34,13 +34,13 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the normal fish technique.
 	/// </summary>
-	[IsSiameseSupported(true)]
+	[TechniqueMetadata(SupportsSiamese = true)]
 	NormalFish,
 
 	/// <summary>
 	/// Indicates the complex fish technique.
 	/// </summary>
-	[IsSiameseSupported(true)]
+	[TechniqueMetadata(SupportsSiamese = true)]
 	ComplexFish,
 
 	/// <summary>
@@ -56,31 +56,31 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the wing extension (extended subset principle) technique.
 	/// </summary>
-	[Abbreviation("ESP")]
+	[TechniqueMetadata(Abbreviation = "ESP")]
 	ExtendedSubsetPrinciple,
 
 	/// <summary>
 	/// Indicates the empty rectangle technique.
 	/// </summary>
-	[Abbreviation("ER")]
+	[TechniqueMetadata(Abbreviation = "ER")]
 	EmptyRectangle,
 
 	/// <summary>
 	/// Indicates the single digit pattern (SDP) technique.
 	/// </summary>
-	[Abbreviation("SDP")]
+	[TechniqueMetadata(Abbreviation = "SDP")]
 	SingleDigitPattern,
 
 	/// <summary>
 	/// Indicates the empty rectangle intersection pair (ERIP) technique.
 	/// </summary>
-	[Abbreviation("ERIP")]
+	[TechniqueMetadata(Abbreviation = "ERIP")]
 	EmptyRectangleIntersectionPair,
 
 	/// <summary>
 	/// Indicates the almost locked candidates (ALC) technique.
 	/// </summary>
-	[Abbreviation("ALC")]
+	[TechniqueMetadata(Abbreviation = "ALC")]
 	AlmostLockedCandidates,
 
 	/// <summary>
@@ -91,7 +91,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the alternating inference chain (AIC) technique.
 	/// </summary>
-	[Abbreviation("AIC")]
+	[TechniqueMetadata(Abbreviation = "AIC")]
 	AlternatingInferenceChain,
 
 	/// <summary>
@@ -107,37 +107,37 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the unique rectangle (UR) technique.
 	/// </summary>
-	[Abbreviation("UR")]
+	[TechniqueMetadata(Abbreviation = "UR")]
 	UniqueRectangle,
 
 	/// <summary>
 	/// Indicates the unique rectangle plus (UR+) technique.
 	/// </summary>
-	[Abbreviation("UR+")]
+	[TechniqueMetadata(Abbreviation = "UR+")]
 	UniqueRectanglePlus,
 
 	/// <summary>
 	/// Indicates the avoidable rectangle (AR) technique.
 	/// </summary>
-	[Abbreviation("AR")]
+	[TechniqueMetadata(Abbreviation = "AR")]
 	AvoidableRectangle,
 
 	/// <summary>
 	/// Indicates the unique loop (UL) technique.
 	/// </summary>
-	[Abbreviation("UL")]
+	[TechniqueMetadata(Abbreviation = "UL")]
 	UniqueLoop,
 
 	/// <summary>
 	/// Indicates the extended rectangle (XR) technique.
 	/// </summary>
-	[Abbreviation("XR")]
+	[TechniqueMetadata(Abbreviation = "XR")]
 	ExtendedRectangle,
 
 	/// <summary>
 	/// Indicates the bi-value universal grave (BUG) technique.
 	/// </summary>
-	[Abbreviation("BUG")]
+	[TechniqueMetadata(Abbreviation = "BUG")]
 	BivalueUniversalGrave,
 
 	/// <summary>
@@ -168,7 +168,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the uniqueness clue cover.
 	/// </summary>
-	[Abbreviation("UCC")]
+	[TechniqueMetadata(Abbreviation = "UCC")]
 	UniquenessClueCover,
 
 	/// <summary>
@@ -184,7 +184,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the sue de coq (SdC) technique.
 	/// </summary>
-	[Abbreviation("SdC")]
+	[TechniqueMetadata(Abbreviation = "SdC")]
 	SueDeCoq,
 
 	/// <summary>
@@ -195,7 +195,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the XYZ-Ring technique.
 	/// </summary>
-	[IsSiameseSupported(true)]
+	[TechniqueMetadata(SupportsSiamese = true)]
 	XyzRing,
 
 	/// <summary>
@@ -221,7 +221,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the multi-sector locked sets (MSLS) technique.
 	/// </summary>
-	[Abbreviation("MSLS")]
+	[TechniqueMetadata(Abbreviation = "MSLS")]
 	MultisectorLockedSets,
 
 	/// <summary>
@@ -247,7 +247,7 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the pattern overlay method (POM) technique.
 	/// </summary>
-	[Abbreviation("POM")]
+	[TechniqueMetadata(Abbreviation = "POM")]
 	PatternOverlay,
 
 	/// <summary>
@@ -258,6 +258,6 @@ public enum TechniqueGroup
 	/// <summary>
 	/// Indicates the brute force (BF) technique.
 	/// </summary>
-	[Abbreviation("BF")]
+	[TechniqueMetadata(Abbreviation = "BF")]
 	BruteForce
 }

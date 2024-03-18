@@ -188,5 +188,10 @@ public enum SudokuExplainerTechnique
 	/// <summary>
 	/// Represents nested forcing chains.
 	/// </summary>
-	NestedForcingChain
+	NestedForcingChain,
+
+	/// <summary>
+	/// Represents brute force.
+	/// </summary>
+	BruteForce,
 }
