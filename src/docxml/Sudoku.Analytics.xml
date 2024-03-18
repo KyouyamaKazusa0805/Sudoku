@@ -5328,16 +5328,6 @@
             Indicates the secondarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Rating">
-            <summary>
-            The generated property declaration for parameter <c>rating</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DifficultyLevel">
-            <summary>
-            The generated property declaration for parameter <c>difficultyLevel</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ContainingGroup">
             <summary>
             The generated property declaration for parameter <c>containingGroup</c>.
@@ -19105,27 +19095,12 @@ if (student is (name: var name, age: >= 18))
             <param name="rating">Indicates the rating value.</param>
             <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
-        <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Compatibility.HodokuAttribute"/> instance.
-            </summary>
-        </member>
         <member name="P:Sudoku.Compatibility.HodokuAttribute.Prefix">
             <summary>
             Indicates the technique prefix defined in Hodoku program.
             See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
             </summary>
             <seealso href="https://hodoku.sourceforge.net/en/libs.php">Hodoku: libraries</seealso>
-        </member>
-        <member name="P:Sudoku.Compatibility.HodokuAttribute.Rating">
-            <summary>
-            The generated property declaration for parameter <c>rating</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.HodokuAttribute.DifficultyLevel">
-            <summary>
-            The generated property declaration for parameter <c>difficultyLevel</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuCompatibility">
             <summary>
@@ -19235,15 +19210,21 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
             <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
+            <param name="rating">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level.</param>
+        </member>
+        <member name="M:Sudoku.Compatibility.ProgramMetadataAttribute`2.#ctor(`0,`1)">
+            <summary>
+            Represents program compatibility attribute type.
+            </summary>
+            <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
+            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
+            <param name="rating">Indicates the rating value.</param>
+            <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Aliases">
             <summary>
             Represents the aliased names for the current technique defined in the current program.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Rating">
-            <summary>
-            Indicates the rating value used.
             </summary>
         </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal">
@@ -19262,9 +19243,14 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks><inheritdoc cref="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal" path="/remarks"/></remarks>
         </member>
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Rating">
+            <summary>
+            The generated property declaration for parameter <c>rating</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.DifficultyLevel">
             <summary>
-            Indicates the difficulty level the current technique is at.
+            The generated property declaration for parameter <c>difficultyLevel</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainerAttribute">
@@ -19280,16 +19266,6 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="rating">Indicates the rating value.</param>
             <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.Rating">
-            <summary>
-            The generated property declaration for parameter <c>rating</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.DifficultyLevel">
-            <summary>
-            The generated property declaration for parameter <c>techniqueDefined</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
             <summary>

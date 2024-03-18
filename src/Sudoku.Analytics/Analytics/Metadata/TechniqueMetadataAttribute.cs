@@ -10,11 +10,11 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="primarySupportedType">Indicates the primarily-supported <see cref="Step"/> type.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class TechniqueMetadataAttribute(
-	[PrimaryConstructorParameter(Accessibility = "public override")] double rating = double.MinValue,
-	[PrimaryConstructorParameter(Accessibility = "public override")] DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
+	double rating = double.MinValue,
+	DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
 	[PrimaryConstructorParameter] TechniqueGroup containingGroup = TechniqueGroup.None,
 	[PrimaryConstructorParameter] Type? primarySupportedType = null
-) : ProgramMetadataAttribute<double, DifficultyLevel>
+) : ProgramMetadataAttribute<double, DifficultyLevel>(rating, difficultyLevel)
 {
 	/// <summary>
 	/// Indicates whether the current technique supports for Siamese logic.

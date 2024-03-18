@@ -5,7 +5,12 @@ namespace Sudoku.Compatibility;
 /// </summary>
 /// <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
 /// <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
-public abstract class ProgramMetadataAttribute<TRating, TDifficultyLevel> : Attribute
+/// <param name="rating">Indicates the rating value.</param>
+/// <param name="difficultyLevel">Indicates the difficulty level.</param>
+public abstract partial class ProgramMetadataAttribute<TRating, TDifficultyLevel>(
+	[PrimaryConstructorParameter(SetterExpression = "set")] TRating rating,
+	[PrimaryConstructorParameter(SetterExpression = "set")] TDifficultyLevel difficultyLevel
+) : Attribute
 	where TRating : unmanaged, INumberBase<TRating>
 	where TDifficultyLevel : unmanaged, Enum
 {
@@ -14,11 +19,6 @@ public abstract class ProgramMetadataAttribute<TRating, TDifficultyLevel> : Attr
 	/// </summary>
 	[DisallowNull]
 	public string[]? Aliases { get; set; }
-
-	/// <summary>
-	/// Indicates the rating value used.
-	/// </summary>
-	public abstract TRating Rating { get; }
 
 	/// <summary>
 	/// Indicates the rating value that is defined in original program.
@@ -37,9 +37,4 @@ public abstract class ProgramMetadataAttribute<TRating, TDifficultyLevel> : Attr
 	/// <remarks><inheritdoc cref="RatingValueOriginal" path="/remarks"/></remarks>
 	[DisallowNull]
 	public TRating[]? RatingValueAdvanced { get; set; }
-
-	/// <summary>
-	/// Indicates the difficulty level the current technique is at.
-	/// </summary>
-	public abstract TDifficultyLevel DifficultyLevel { get; }
 }

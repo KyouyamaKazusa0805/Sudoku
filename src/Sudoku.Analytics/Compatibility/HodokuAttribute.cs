@@ -7,18 +7,10 @@ namespace Sudoku.Compatibility;
 /// <param name="difficultyLevel">Indicates the difficulty level.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class HodokuAttribute(
-	[PrimaryConstructorParameter(Accessibility = "public override")] int rating,
-	[PrimaryConstructorParameter(Accessibility = "public override")] HodokuDifficultyLevel difficultyLevel
-) : ProgramMetadataAttribute<int, HodokuDifficultyLevel>
+	int rating = int.MinValue,
+	HodokuDifficultyLevel difficultyLevel = (HodokuDifficultyLevel)int.MinValue
+) : ProgramMetadataAttribute<int, HodokuDifficultyLevel>(rating, difficultyLevel)
 {
-	/// <summary>
-	/// Initializes a <see cref="HodokuAttribute"/> instance.
-	/// </summary>
-	public HodokuAttribute() : this(int.MinValue, (HodokuDifficultyLevel)int.MinValue)
-	{
-	}
-
-
 	/// <summary>
 	/// Indicates the technique prefix defined in Hodoku program.
 	/// See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
