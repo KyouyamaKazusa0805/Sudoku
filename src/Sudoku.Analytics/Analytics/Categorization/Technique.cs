@@ -2019,104 +2019,84 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/XY-Wing.html")]
 	[Hodoku(160, HodokuDifficultyLevel.Hard, Prefix = "0800")]
 	[SudokuExplainer(4.2, SudokuExplainerTechnique.XyWing)]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness])]
+		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XY-Wing.html"])]
 	XyWing,
 
 	/// <summary>
 	/// Indicates XYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/XYZ-Wing.html")]
 	[Hodoku(180, HodokuDifficultyLevel.Hard, Prefix = "0801")]
 	[SudokuExplainer(4.4, SudokuExplainerTechnique.XyzWing)]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness])]
+		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XYZ-Wing.html"])]
 	XyzWing,
 
 	/// <summary>
 	/// Indicates WXYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
-	[HodokuTechniquePrefix("0802")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.XyzWing, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[Hodoku(Prefix = "0802")]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.XyzWing, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness])]
+		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
 	WxyzWing,
 
 	/// <summary>
 	/// Indicates VWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	VwxyzWing,
 
 	/// <summary>
 	/// Indicates UVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	UvwxyzWing,
 
 	/// <summary>
 	/// Indicates TUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	TuvwxyzWing,
 
 	/// <summary>
 	/// Indicates STUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	StuvwxyzWing,
 
 	/// <summary>
 	/// Indicates RSTUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainerDifficultyRating(double.NaN, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	RstuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete WXYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/WXYZ-Wing.html")]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness])]
+		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
 	IncompleteWxyzWing,
 
 	/// <summary>
@@ -2130,45 +2110,33 @@ public enum Technique
 	/// <summary>
 	/// Indicates incomplete UVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete TUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete STUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
 	/// Indicates incomplete RSTUVWXYZ-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.RegularWing)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(RegularWingStep))]
-	[StaticDifficulty(4.2)]
-	[ExtraDifficultyFactors(Size, Incompleteness)]
+	[TechniqueMetadata(
+		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
 	IncompleteRstuvwxyzWing,
 	#endregion
 
@@ -2179,109 +2147,83 @@ public enum Technique
 	/// <summary>
 	/// Indicates W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0803")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.WWing, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.4, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(WWingStep))]
-	[StaticDifficulty(4.4)]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.WWing, RatingValueAdvanced = [4.4])]
+	[TechniqueMetadata(
+		4.4, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(WWingStep),
+		Links = ["http://sudopedia.enjoysudoku.com/W-Wing.html"])]
 	WWing,
 
 	/// <summary>
 	/// Indicates Multi-Branch W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(MultiBranchWWingStep),
-		ExtraFactors = [Size])]
+		ExtraFactors = [Size], Links = ["http://sudopedia.enjoysudoku.com/W-Wing.html"])]
 	MultiBranchWWing,
 
 	/// <summary>
 	/// Indicates grouped W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/W-Wing.html")]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(WWingStep))]
-	[StaticDifficulty(4.4)]
+	[TechniqueMetadata(
+		4.4, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(WWingStep),
+		Links = ["http://sudopedia.enjoysudoku.com/W-Wing.html"])]
 	GroupedWWing,
 
 	/// <summary>
 	/// Indicates M-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(MWingStep))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(4.5, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(MWingStep))]
 	MWing,
 
 	/// <summary>
 	/// Indicates grouped M-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(MWingStep))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(4.5, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(MWingStep))]
 	GroupedMWing,
 
 	/// <summary>
 	/// Indicates S-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(SWingStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(4.7, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(SWingStep))]
 	SWing,
 
 	/// <summary>
 	/// Indicates grouped S-Wing.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(SWingStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(4.7, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(SWingStep))]
 	GroupedSWing,
 
 	/// <summary>
 	/// Indicates local wing.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(LWingStep))]
-	[StaticDifficulty(4.8)]
+	[TechniqueMetadata(
+		4.8, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(LWingStep),
+		Links = ["http://forum.enjoysudoku.com/local-wing-t34685.html"])]
 	LWing,
 
 	/// <summary>
 	/// Indicates grouped local wing.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/local-wing-t34685.html")]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(LWingStep))]
-	[StaticDifficulty(4.8)]
+	[TechniqueMetadata(
+		4.8, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(LWingStep),
+		Links = ["http://forum.enjoysudoku.com/local-wing-t34685.html"])]
 	GroupedLWing,
 
 	/// <summary>
 	/// Indicates hybrid wing.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(HWingStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(
+		4.7, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(HWingStep),
+		Links = ["http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html"])]
 	HWing,
 
 	/// <summary>
 	/// Indicates grouped hybrid wing.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html")]
-	[TechniqueGroup(TechniqueGroup.IrregularWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(HWingStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(
+		4.7, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(HWingStep),
+		Links = ["http://forum.enjoysudoku.com/hybrid-wings-work-in-progress-t34212.html"])]
 	GroupedHWing,
 	#endregion
 
@@ -2292,66 +2234,51 @@ public enum Technique
 	/// <summary>
 	/// Indicates almost locked pair.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALP")]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[StaticDifficulty(4.5)]
-	[ExtraDifficultyFactors(Size, ValueCell)]
+	[SudokuExplainer(RatingValueAdvanced = [4.5])]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
+		Abbreviation = "ALP", ExtraFactors = [Size, ValueCell],
+		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedPair,
 
 	/// <summary>
 	/// Indicates almost locked triple.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[SudokuExplainerDifficultyRating(5.2, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALT")]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[StaticDifficulty(4.5)]
-	[ExtraDifficultyFactors(Size, ValueCell)]
+	[SudokuExplainer(RatingValueAdvanced = [5.2])]
+	[TechniqueMetadata(
+		5.2, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
+		Abbreviation = "ALT", ExtraFactors = [Size, ValueCell],
+		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedTriple,
 
 	/// <summary>
 	/// Indicates almost locked quadruple.
 	/// The technique may not be useful because it'll be replaced with Sue de Coq.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
-	[TechniqueGroup(TechniqueGroup.AlmostLockedCandidates)]
-	[Abbreviation("ALQ")]
-	[TechniqueFeature(TechniqueFeature.OnlyExistInTheory)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AlmostLockedCandidatesStep))]
-	[StaticDifficulty(4.5)]
-	[ExtraDifficultyFactors(Size, ValueCell)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
+		Abbreviation = "ALQ", ExtraFactors = [Size, ValueCell], Features = TechniqueFeature.OnlyExistInTheory,
+		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadruple,
 
 	/// <summary>
 	/// Indicates almost locked triple value type.
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		ExtraFactors = [Size, ValueCell])]
+		ExtraFactors = [Size, ValueCell],
+		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedTripleValueType,
 
 	/// <summary>
 	/// Indicates almost locked quadruple value type.
 	/// The technique may not be often used because it'll be replaced with some kinds of Sue de Coq.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=4477")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		ExtraFactors = [Size, ValueCell])]
+		ExtraFactors = [Size, ValueCell],
+		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadrupleValueType,
 	#endregion
 
@@ -2362,14 +2289,11 @@ public enum Technique
 	/// <summary>
 	/// Indicates extended subset principle.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Subset_Counting.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=3479")]
-	[HodokuTechniquePrefix("1102")]
-	[Abbreviation("ESP")]
-	[HodokuAliasedNames("Subset Counting")]
+	[Hodoku(Prefix = "1102", Aliases = ["Subset Counting"])]
 	[TechniqueMetadata(
 		5.5, DifficultyLevel.Fiendish, TechniqueGroup.ExtendedSubsetPrinciple, typeof(ExtendedSubsetPrincipleStep),
-		ExtraFactors = [Size])]
+		ExtraFactors = [Size], Abbreviation = "ESP",
+		Links = ["http://sudopedia.enjoysudoku.com/Subset_Counting.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3479"])]
 	ExtendedSubsetPrinciple,
 	#endregion
 
@@ -2380,449 +2304,493 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 1.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0600")]
-	[HodokuAliasedNames("Uniqueness Test 1")]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0600", Aliases = ["Uniqueness Test 1"])]
 	[SudokuExplainer(4.5, SudokuExplainerTechnique.UniqueRectangle)]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType1Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleType1Step),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType1,
 
 	/// <summary>
 	/// Indicates unique rectangle type 2.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0601")]
-	[HodokuAliasedNames("Uniqueness Test 2")]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0601", Aliases = ["Uniqueness Test 2"])]
 	[SudokuExplainer(4.5, SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[StaticDifficulty(4.6)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleType2Step),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType2,
 
 	/// <summary>
 	/// Indicates unique rectangle type 3.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0602")]
-	[HodokuAliasedNames("Uniqueness Test 3")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueRectangle)]
-	[SudokuExplainerDifficultyRating(4.5, 4.8)]
-	[SudokuExplainerDifficultyRating(4.6, 4.9, IsAdvancedDefined = true)]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0602", Aliases = ["Uniqueness Test 3"])]
+	[SudokuExplainer(
+		techniqueDefined: SudokuExplainerTechnique.UniqueRectangle,
+		RatingValueOriginal = [4.5, 4.8], RatingValueAdvanced = [4.6, 4.9])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleType3Step),
-		ExtraFactors = [Size, Hidden])]
+		ExtraFactors = [Size, Hidden],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType3,
 
 	/// <summary>
 	/// Indicates unique rectangle type 4.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2000")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0603")]
-	[HodokuAliasedNames("Uniqueness Test 4")]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0603", Aliases = ["Uniqueness Test 4"])]
 	[SudokuExplainer(4.5, SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair])]
+		ExtraFactors = [ConjugatePair],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType4,
 
 	/// <summary>
 	/// Indicates unique rectangle type 5.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0604")]
-	[HodokuAliasedNames("Uniqueness Test 5")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueRectangle, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[StaticDifficulty(4.5)]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0604", Aliases = ["Uniqueness Test 5"])]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleType2Step),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType5,
 
 	/// <summary>
 	/// Indicates unique rectangle type 6.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0605")]
-	[HodokuAliasedNames("Uniqueness Test 6")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueRectangle, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.6, IsAdvancedDefined = true)]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0605", Aliases = ["Uniqueness Test 6"])]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair])]
+		ExtraFactors = [ConjugatePair],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleType6,
 
 	/// <summary>
 	/// Indicates hidden unique rectangle.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0606")]
-	[HodokuAliasedNames("Hidden Rectangle")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueRectangle, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.8, IsAdvancedDefined = true)]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[Abbreviation("HUR")]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
-	[StaticDifficulty(4.4)]
-	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
+	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0606", Aliases = ["Hidden Rectangle"])]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.8])]
+	[TechniqueMetadata(
+		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(HiddenUniqueRectangleStep),
+		Abbreviation = "HUR", SecondarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	HiddenUniqueRectangle,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2D.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[StaticDifficulty(4.6)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangle2DOr3XStep),
+		Features = TechniqueFeature.HardToBeGenerated,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle2D,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2B / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle2B1,
 
 	/// <summary>
 	/// Indicates unique rectangle + 2D / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle2D1,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[StaticDifficulty(4.6)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangle2DOr3XStep),
+		Features = TechniqueFeature.HardToBeGenerated,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3X,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3x / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3X / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3X2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3N / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3N2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3U / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3U2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 3E / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle3E2,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4X1L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 1SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4X1U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4x / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4X2L,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 2SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
+	[TechniqueMetadata(
+		difficultyLevel: DifficultyLevel.Hard, containingGroup: TechniqueGroup.UniqueRectangle,
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4X2U,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4X / 3SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4X3,
 
 	/// <summary>
 	/// Indicates unique rectangle + 4C / 3SL.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable])]
+		ExtraFactors = [ConjugatePair, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangle4C3,
 
 	/// <summary>
 	/// Indicates unique rectangle-XY-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-XYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle-WXYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates unique rectangle W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
 #if UNIQUE_RECTANGLE_W_WING
-	[RuntimeStepTypes(typeof(UniqueRectangleWWingStep))]
-	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(Avoidable)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWWingStep),
+		ExtraFactors = [Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 #endif
 	UniqueRectangleWWing,
 
 	/// <summary>
 	/// Indicates unique rectangle sue de coq.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithSueDeCoqStep),
-		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable])]
+		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates unique rectangle baba grouping.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueRectangleWithBabaGroupingStep))]
-	[StaticDifficulty(4.9)]
+	[TechniqueMetadata(
+		4.9, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithBabaGroupingStep),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleBabaGrouping,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 1.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType1Or2Step),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 2.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
-	[TechniqueGroup(TechniqueGroup.UniqueRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType1Or2Step),
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 3.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [Size, Avoidable, Incompleteness])]
+		ExtraFactors = [Size, Avoidable, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates unique rectangle external type 4.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType4Step),
-		ExtraFactors = [Avoidable, Incompleteness])]
+		ExtraFactors = [Avoidable, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates unique rectangle external turbot fish.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalTurbotFishStep),
-		ExtraFactors = [Guardian, Incompleteness])]
+		ExtraFactors = [Guardian, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalTurbotFish,
 
 	/// <summary>
 	/// Indicates unique rectangle external W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalWWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness])]
+		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalWWing,
 
 	/// <summary>
 	/// Indicates unique rectangle external XY-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness])]
+		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates unique rectangle external almost locked sets XZ rule.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Unique_Rectangle.html")]
-	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448")]
-	[ReferenceLink("http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html")]
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness])]
+		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
 	UniqueRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -2833,227 +2801,185 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0607")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.AvoidableRectangle, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.7, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType1Step))]
-	[StaticDifficulty(4.5)]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.7])] // I think this difficulty may be a mistake.
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleType1Step),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType1,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 2.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0608")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.AvoidableRectangle, IsAdvancedDefined = true)]
-	[SudokuExplainerDifficultyRating(4.5, IsAdvancedDefined = true)] // I think this difficulty may be a mistake.
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[StaticDifficulty(4.6)]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.5])] // I think this difficulty may be a mistake.
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleType2Step),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 3.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleType3Step),
-		ExtraFactors = [Size, Hidden])]
+		ExtraFactors = [Size, Hidden], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle type 5.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangleType2Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleType2Step),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType5,
 
 	/// <summary>
 	/// Indicates hidden avoidable rectangle.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[Abbreviation("HAR")]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(HiddenUniqueRectangleStep), SecondaryTypes = [typeof(UniqueRectangleWithConjugatePairStep)])]
-	[StaticDifficulty(4.4)]
-	[ExtraDifficultyFactors(ConjugatePair, Avoidable)]
+	[TechniqueMetadata(
+		4.4, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(HiddenUniqueRectangleStep),
+		Abbreviation = "HAR", SecondarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		ExtraFactors = [ConjugatePair, Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 2D.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[StaticDifficulty(4.6)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangle2DOr3XStep),
+		Features = TechniqueFeature.HardToBeGenerated, Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangle2D,
 
 	/// <summary>
 	/// Indicates avoidable rectangle + 3X.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(UniqueRectangle2DOr3XStep))]
-	[StaticDifficulty(4.6)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangle2DOr3XStep),
+		Features = TechniqueFeature.HardToBeGenerated, Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangle3X,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XY-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle XYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle WXYZ-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize])]
+		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWxyzWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
 #if UNIQUE_RECTANGLE_W_WING
-	[RuntimeStepTypes(typeof(UniqueRectangleWWingStep))]
-	[BaseDifficulty(4.5)]
-	[SupportedExtraDifficultyRules(Avoidable)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWWingStep),
+		ExtraFactors = Avoidable, Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 #endif
 	AvoidableRectangleWWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle sue de coq.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithSueDeCoqStep),
-		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable])]
+		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleSueDeCoq,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in block.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(
+		4.7, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(AvoidableRectangleWithHiddenSingleStep),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleBlock,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in row.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(
+		4.7, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(AvoidableRectangleWithHiddenSingleStep),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleRow,
 
 	/// <summary>
 	/// Indicates avoidable rectangle hidden single in column.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(AvoidableRectangleWithHiddenSingleStep))]
-	[StaticDifficulty(4.7)]
+	[TechniqueMetadata(
+		4.7, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(AvoidableRectangleWithHiddenSingleStep),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleColumn,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 1.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType1Or2Step),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType1,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 2.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueRectangleExternalType1Or2Step))]
-	[StaticDifficulty(4.5)]
+	[TechniqueMetadata(
+		4.5, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType1Or2Step),
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType2,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 3.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [Size, Avoidable, Incompleteness])]
+		ExtraFactors = [Size, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external type 4.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType4Step),
-		ExtraFactors = [Avoidable, Incompleteness])]
+		ExtraFactors = [Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType4,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external XY-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness])]
+		ExtraFactors = [Guardian, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalXyWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external W-Wing.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
-	[TechniqueGroup(TechniqueGroup.AvoidableRectangle)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[BoundStepTypes(typeof(UniqueRectangleExternalWWingStep))]
-	[StaticDifficulty(4.8)]
-	[ExtraDifficultyFactors(Guardian, Avoidable, Incompleteness)]
+	[TechniqueMetadata(
+		4.8, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalWWingStep),
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalWWing,
 
 	/// <summary>
 	/// Indicates avoidable rectangle external almost locked sets XZ rule.
 	/// </summary>
-	[ReferenceLink("http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html")]
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness])]
+		ExtraFactors = [Guardian, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -3064,48 +2990,43 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
-	[SudokuExplainerDifficultyRating(4.6, 5.0)]
+	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType1Step),
-		ExtraFactors = [Length])]
+		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType1,
 
 	/// <summary>
 	/// Indicates unique loop type 2.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
-	[SudokuExplainerDifficultyRating(4.6, 5.0)]
-	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[SudokuExplainer(
+		techniqueDefined: SudokuExplainerTechnique.UniqueLoop,
+		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType2Step),
-		ExtraFactors = [Length])]
+		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType2,
 
 	/// <summary>
 	/// Indicates unique loop type 3.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
-	[SudokuExplainerDifficultyRating(4.6, 5.0)]
-	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[SudokuExplainer(
+		techniqueDefined: SudokuExplainerTechnique.UniqueLoop,
+		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType3Step),
-		ExtraFactors = [Length, Size])]
+		ExtraFactors = [Length, Size], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType3,
 
 	/// <summary>
 	/// Indicates unique loop type 4.
 	/// </summary>
-	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748")]
-	[SudokuExplainerTechnique(SudokuExplainerTechnique.UniqueLoop)]
-	[SudokuExplainerDifficultyRating(4.6, 5.0)]
-	[SudokuExplainerDifficultyRating(4.7, 5.1, IsAdvancedDefined = true)]
+	[SudokuExplainer(
+		techniqueDefined: SudokuExplainerTechnique.UniqueLoop,
+		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType4Step),
-		ExtraFactors = [Length])]
+		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType4,
 	#endregion
 
@@ -3117,7 +3038,7 @@ public enum Technique
 	/// Indicates extended rectangle type 1.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[HodokuTechniquePrefix("0620")]
+	[Hodoku(Prefix = "0620")]
 #endif
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType1Step),
@@ -3128,7 +3049,7 @@ public enum Technique
 	/// Indicates extended rectangle type 2.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[HodokuTechniquePrefix("0621")]
+	[Hodoku(Prefix = "0621")]
 #endif
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType2Step),
@@ -3139,7 +3060,7 @@ public enum Technique
 	/// Indicates extended rectangle type 3.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[HodokuTechniquePrefix("0622")]
+	[Hodoku(Prefix = "0622")]
 #endif
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType3Step),
@@ -3150,7 +3071,7 @@ public enum Technique
 	/// Indicates extended rectangle type 4.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[HodokuTechniquePrefix("0623")]
+	[Hodoku(Prefix = "0623")]
 #endif
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType4Step),
@@ -3170,10 +3091,7 @@ public enum Technique
 	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0610")]
 	[HodokuAliasedNames("Bivalue Universal Grave + 1")]
 	[SudokuExplainer(5.6, SudokuExplainerTechnique.BivalueUniversalGrave)]
-	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(BivalueUniversalGraveType1Step))]
-	[StaticDifficulty(5.6)]
+	[TechniqueMetadata(5.6, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveType1Step))]
 	BivalueUniversalGraveType1,
 
 	/// <summary>
@@ -3229,10 +3147,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=2352")]
-	[TechniqueGroup(TechniqueGroup.BivalueUniversalGrave)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(BivalueUniversalGraveFalseCandidateTypeStep))]
-	[StaticDifficulty(5.7)]
+	[TechniqueMetadata(5.7, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveFalseCandidateTypeStep))]
 	BivalueUniversalGraveFalseCandidateType,
 
 	/// <summary>
@@ -3322,12 +3237,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html")]
 	[ReferenceLink("http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html")]
-	[TechniqueGroup(TechniqueGroup.UniquenessClueCover)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniquenessClueCoverStep))]
-	[StaticDifficulty(6.5)]
-	[ExtraDifficultyFactors(Size)]
+	[TechniqueMetadata(
+		6.5, DifficultyLevel.Fiendish, TechniqueGroup.UniquenessClueCover, typeof(UniquenessClueCoverStep),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size])]
 	UniquenessClueCover,
 	#endregion
 
@@ -3351,19 +3263,13 @@ public enum Technique
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 1.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(BorescoperDeadlyPatternType1Step))]
-	[StaticDifficulty(5.3)]
+	[TechniqueMetadata(5.3, DifficultyLevel.Hard, TechniqueGroup.BorescoperDeadlyPattern, typeof(BorescoperDeadlyPatternType1Step))]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 2.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(BorescoperDeadlyPatternType2Step))]
-	[StaticDifficulty(5.5)]
+	[TechniqueMetadata(5.5, DifficultyLevel.Hard, TechniqueGroup.BorescoperDeadlyPattern, typeof(BorescoperDeadlyPatternType2Step))]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
@@ -3377,10 +3283,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates Borescoper's deadly pattern type 4.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.BorescoperDeadlyPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(BorescoperDeadlyPatternType4Step))]
-	[StaticDifficulty(5.5)]
+	[TechniqueMetadata(5.5, DifficultyLevel.Hard, TechniqueGroup.BorescoperDeadlyPattern, typeof(BorescoperDeadlyPatternType4Step))]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -3414,12 +3317,9 @@ public enum Technique
 	/// Indicates Qiu's deadly pattern type 3.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/distinction-theory-t35042.html")]
-	[TechniqueGroup(TechniqueGroup.QiuDeadlyPattern)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(QiuDeadlyPatternType3Step))]
-	[StaticDifficulty(5.8)]
-	[ExtraDifficultyFactors(Size)]
+	[TechniqueMetadata(
+		5.8, DifficultyLevel.Fiendish, TechniqueGroup.QiuDeadlyPattern, typeof(QiuDeadlyPatternType3Step),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size])]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
@@ -3494,12 +3394,9 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique matrix type 3.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.UniqueMatrix)]
-	[TechniqueFeature(TechniqueFeature.HardToBeGenerated)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(UniqueMatrixType3Step))]
-	[StaticDifficulty(5.3)]
-	[ExtraDifficultyFactors(Size)]
+	[TechniqueMetadata(
+		5.3, DifficultyLevel.Fiendish, TechniqueGroup.UniqueMatrix, typeof(UniqueMatrixType3Step),
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size])]
 	UniqueMatrixType3,
 
 	/// <summary>
@@ -3550,10 +3447,7 @@ public enum Technique
 	/// Indicates 3-dimensional sue de coq.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Sue_de_Coq.html")]
-	[TechniqueGroup(TechniqueGroup.SueDeCoq)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(SueDeCoq3DimensionStep))]
-	[StaticDifficulty(5.5)]
+	[TechniqueMetadata(5.5, DifficultyLevel.Fiendish, TechniqueGroup.SueDeCoq, typeof(SueDeCoq3DimensionStep))]
 	SueDeCoq3Dimension,
 
 	/// <summary>
@@ -3574,20 +3468,14 @@ public enum Technique
 	/// Indicates firework triple.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(FireworkTripleStep))]
-	[StaticDifficulty(6.0)]
+	[TechniqueMetadata(6.0, DifficultyLevel.Fiendish, TechniqueGroup.Firework, typeof(FireworkTripleStep))]
 	FireworkTriple,
 
 	/// <summary>
 	/// Indicates firework quadruple.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/fireworks-t39513.html")]
-	[TechniqueGroup(TechniqueGroup.Firework)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(FireworkQuadrupleStep))]
-	[StaticDifficulty(6.3)]
+	[TechniqueMetadata(6.3, DifficultyLevel.Fiendish, TechniqueGroup.Firework, typeof(FireworkQuadrupleStep))]
 	FireworkQuadruple,
 	#endregion
 
@@ -3600,10 +3488,7 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Broken_Wing.html")]
 	[HodokuTechniquePrefix("0705")]
-	[TechniqueGroup(TechniqueGroup.BrokenWing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(GuardianStep))]
-	[StaticDifficulty(5.5)]
+	[TechniqueMetadata(5.5, DifficultyLevel.Fiendish, TechniqueGroup.BrokenWing, typeof(GuardianStep))]
 	BrokenWing,
 	#endregion
 
@@ -3615,10 +3500,7 @@ public enum Technique
 	/// Indicates bi-value oddagon type 2.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html")]
-	[TechniqueGroup(TechniqueGroup.BivalueOddagon)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(BivalueOddagonType2Step))]
-	[StaticDifficulty(6.1)]
+	[TechniqueMetadata(6.1, DifficultyLevel.Fiendish, TechniqueGroup.BivalueOddagon, typeof(BivalueOddagonType2Step))]
 	BivalueOddagonType2,
 
 	/// <summary>
@@ -3702,10 +3584,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.0)]
+	[TechniqueMetadata(4.0, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	Skyscraper,
 
 	/// <summary>
@@ -3718,10 +3597,7 @@ public enum Technique
 	[SudokuExplainerDifficultyRating(6.6)]
 	[SudokuExplainerAliasNames("Turbot Fish")]
 #endif
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.1)]
+	[TechniqueMetadata(4.1, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	TwoStringKite,
 
 	/// <summary>
@@ -3731,40 +3607,28 @@ public enum Technique
 	[Hodoku(120, HodokuDifficultyLevel.Hard, Prefix = "0403")]
 	[SudokuExplainerTechnique(SudokuExplainerTechnique.TurbotFish)]
 	[SudokuExplainerDifficultyRating(6.6)]
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.2)]
+	[TechniqueMetadata(4.2, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	TurbotFish,
 
 	/// <summary>
 	/// Indicates grouped skyscraper.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Skyscraper.html")]
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.2)]
+	[TechniqueMetadata(4.2, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	GroupedSkyscraper,
 
 	/// <summary>
 	/// Indicates grouped two-string kite.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/2-String_Kite.html")]
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.3)]
+	[TechniqueMetadata(4.3, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	GroupedTwoStringKite,
 
 	/// <summary>
 	/// Indicates grouped turbot fish.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/viewtopic.php?t=833")]
-	[TechniqueGroup(TechniqueGroup.SingleDigitPattern)]
-	[StaticDifficultyLevel(DifficultyLevel.Hard)]
-	[BoundStepTypes(typeof(TwoStrongLinksStep))]
-	[StaticDifficulty(4.4)]
+	[TechniqueMetadata(4.4, DifficultyLevel.Hard, TechniqueGroup.SingleDigitPattern, typeof(TwoStrongLinksStep))]
 	GroupedTurbotFish,
 	#endregion
 
@@ -3806,12 +3670,9 @@ public enum Technique
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0702")]
 #endif
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length])]
 	YChain,
 
 	/// <summary>
@@ -3821,12 +3682,9 @@ public enum Technique
 	[HodokuTechniquePrefix("0704")]
 	[SudokuExplainerDifficultyRating(6.5, 6.6)]
 	[SudokuExplainerNames("Bidirectional X-Cycle")]
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length])]
 	FishyCycle,
 
 	/// <summary>
@@ -3834,12 +3692,9 @@ public enum Technique
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/XY-Chain.html")]
 	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0702")]
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
 	XyChain,
 
 	/// <summary>
@@ -3857,35 +3712,26 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-X-Chain.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
 	XyXChain,
 
 	/// <summary>
 	/// Indicates remote pair.
 	/// </summary>
 	[Hodoku(110, HodokuDifficultyLevel.Hard, Prefix = "0703")]
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
 	RemotePair,
 
 	/// <summary>
 	/// Indicates purple cow.
 	/// </summary>
-	[TechniqueGroup(TechniqueGroup.AlternatingInferenceChain)]
-	[TechniqueFeature(TechniqueFeature.NotImplemented)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(ForcingChainStep))]
-	[StaticDifficulty(4.6)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
 	PurpleCow,
 
 	/// <summary>
@@ -4201,80 +4047,56 @@ public enum Technique
 	/// Indicates XYZ loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.0)]
+	[TechniqueMetadata(5.0, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	XyzLoop,
 
 	/// <summary>
 	/// Indicates Siamese XYZ loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.0)]
+	[TechniqueMetadata(5.0, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	SiameseXyzLoop,
 
 	/// <summary>
 	/// Indicates XYZ nice loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.2)]
+	[TechniqueMetadata(5.2, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	XyzNiceLoop,
 
 	/// <summary>
 	/// Indicates Siamese XYZ nice loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.2)]
+	[TechniqueMetadata(5.2, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	SiameseXyzNiceLoop,
 
 	/// <summary>
 	/// Indicates grouped XYZ loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.0)]
+	[TechniqueMetadata(5.0, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	GroupedXyzLoop,
 
 	/// <summary>
 	/// Indicates Siamese grouped XYZ loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.0)]
+	[TechniqueMetadata(5.0, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	SiameseGroupedXyzLoop,
 
 	/// <summary>
 	/// Indicates grouped XYZ nice loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.2)]
+	[TechniqueMetadata(5.2, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	GroupedXyzNiceLoop,
 
 	/// <summary>
 	/// Indicates Siamese grouped XYZ nice loop.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/xyz-ring-t42209.html")]
-	[TechniqueGroup(TechniqueGroup.XyzRing)]
-	[StaticDifficultyLevel(DifficultyLevel.Fiendish)]
-	[BoundStepTypes(typeof(XyzRingStep))]
-	[StaticDifficulty(5.2)]
+	[TechniqueMetadata(5.2, DifficultyLevel.Fiendish, TechniqueGroup.XyzRing, typeof(XyzRingStep))]
 	SiameseGroupedXyzNiceLoop,
 	#endregion
 
@@ -4460,10 +4282,7 @@ public enum Technique
 	/// Indicates junior exocet with target conjugate pair.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(ExocetBaseStep))]
-	[StaticDifficulty(9.4)]
+	[TechniqueMetadata(9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ExocetBaseStep))]
 	JuniorExocetConjugatePair,
 
 	/// <summary>
@@ -4633,10 +4452,7 @@ public enum Technique
 	/// Indicates franken junior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[StaticDifficulty(9.8)]
+	[TechniqueMetadata(9.8, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetBaseStep))]
 	FrankenJuniorExocet,
 
 	/// <summary>
@@ -4670,10 +4486,7 @@ public enum Technique
 	/// Indicates mutant junior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[StaticDifficulty(10.0)]
+	[TechniqueMetadata(10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetBaseStep))]
 	MutantJuniorExocet,
 
 	/// <summary>
@@ -4707,10 +4520,7 @@ public enum Technique
 	/// Indicates franken senior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[StaticDifficulty(10.0)]
+	[TechniqueMetadata(10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetBaseStep))]
 	FrankenSeniorExocet,
 
 	/// <summary>
@@ -4726,20 +4536,14 @@ public enum Technique
 	/// Indicates advanced franken senior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
-	[StaticDifficulty(9.8)]
+	[TechniqueMetadata(9.8, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(AdvancedComplexSeniorExocetStep))]
 	AdvancedFrankenSeniorExocet,
 
 	/// <summary>
 	/// Indicates mutant senior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(ComplexExocetBaseStep))]
-	[StaticDifficulty(10.2)]
+	[TechniqueMetadata(10.2, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetBaseStep))]
 	MutantSeniorExocet,
 
 	/// <summary>
@@ -4755,20 +4559,14 @@ public enum Technique
 	/// Indicates advanced mutant senior exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(AdvancedComplexSeniorExocetStep))]
-	[StaticDifficulty(10.1)]
+	[TechniqueMetadata(10.1, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(AdvancedComplexSeniorExocetStep))]
 	AdvancedMutantSeniorExocet,
 
 	/// <summary>
 	/// Indicates double exocet.
 	/// </summary>
 	[ReferenceLink("http://forum.enjoysudoku.com/jexocet-compendium-t32370.html")]
-	[TechniqueGroup(TechniqueGroup.Exocet)]
-	[StaticDifficultyLevel(DifficultyLevel.Nightmare)]
-	[BoundStepTypes(typeof(DoubleExocetBaseStep))]
-	[StaticDifficulty(9.4)]
+	[TechniqueMetadata(9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(DoubleExocetBaseStep))]
 	DoubleExocet,
 
 	/// <summary>
@@ -4877,12 +4675,9 @@ public enum Technique
 	/// Indicates bowman's bingo.
 	/// </summary>
 	[ReferenceLink("http://sudopedia.enjoysudoku.com/Bowman_Bingo.html")]
-	[TechniqueGroup(TechniqueGroup.BowmanBingo)]
-	[TechniqueFeature(TechniqueFeature.WillBeReplacedByOtherTechnique)]
-	[StaticDifficultyLevel(DifficultyLevel.LastResort)]
-	[BoundStepTypes(typeof(BowmanBingoStep))]
-	[StaticDifficulty(8.0)]
-	[ExtraDifficultyFactors(Length)]
+	[TechniqueMetadata(
+		8.0, DifficultyLevel.LastResort, TechniqueGroup.BowmanBingo, typeof(BowmanBingoStep),
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length])]
 	BowmanBingo,
 	#endregion
 
