@@ -8,5 +8,5 @@ namespace Sudoku.Compatibility;
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed partial class SudokuExplainerAttribute(
 	double rating = double.MinValue,
-	SudokuExplainerTechnique techniqueDefined = (SudokuExplainerTechnique)int.MinValue
+	[PrimaryConstructorParameter(SetterExpression = "set")] SudokuExplainerTechnique techniqueDefined = (SudokuExplainerTechnique)int.MinValue
 ) : ProgramMetadataAttribute<double, SudokuExplainerTechnique>(rating, techniqueDefined);

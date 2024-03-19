@@ -12,8 +12,8 @@ namespace Sudoku.Analytics.Metadata;
 public sealed partial class TechniqueMetadataAttribute(
 	double rating = double.MinValue,
 	DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-	[PrimaryConstructorParameter] TechniqueGroup containingGroup = TechniqueGroup.None,
-	[PrimaryConstructorParameter] Type? primarySupportedType = null
+	[PrimaryConstructorParameter(SetterExpression = "set")] TechniqueGroup containingGroup = TechniqueGroup.None,
+	[PrimaryConstructorParameter(SetterExpression = "set")] Type? primarySupportedType = null
 ) : ProgramMetadataAttribute<double, DifficultyLevel>(rating, difficultyLevel)
 {
 	/// <summary>

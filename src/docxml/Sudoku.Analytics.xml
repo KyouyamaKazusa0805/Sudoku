@@ -19267,6 +19267,11 @@ if (student is (name: var name, age: >= 18))
             <param name="rating">Indicates the rating value.</param>
             <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
         </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.TechniqueDefined">
+            <summary>
+            The generated property declaration for parameter <c>techniqueDefined</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">
             <summary>
             Represents some methods that are used for get the details supported and defined
