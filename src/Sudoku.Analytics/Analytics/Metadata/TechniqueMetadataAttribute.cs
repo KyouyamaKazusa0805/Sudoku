@@ -4,51 +4,47 @@ namespace Sudoku.Analytics.Metadata;
 /// Represents an attribute type that will be applied to fields defined in <see cref="Technique"/>,
 /// describing its detail which can be defined as fixed one, to be stored as metadata.
 /// </summary>
-/// <param name="rating">Indicates the rating value.</param>
-/// <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
-/// <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
-/// <param name="primarySupportedType">Indicates the primarily-supported <see cref="Step"/> type.</param>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed partial class TechniqueMetadataAttribute(
-	double rating = double.MinValue,
-	DifficultyLevel difficultyLevel = DifficultyLevel.Unknown,
-	[PrimaryConstructorParameter(SetterExpression = "set")] TechniqueGroup containingGroup = TechniqueGroup.None,
-	[PrimaryConstructorParameter(SetterExpression = "set")] Type? primarySupportedType = null
-) : ProgramMetadataAttribute<double, DifficultyLevel>(rating, difficultyLevel)
+public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double, DifficultyLevel>
 {
 	/// <summary>
 	/// Indicates whether the current technique supports for Siamese logic.
 	/// </summary>
-	public bool SupportsSiamese { get; set; }
+	public bool SupportsSiamese { get; init; }
 
 	/// <summary>
 	/// Indicates whether the current technique supports for Dual logic.
 	/// </summary>
-	public bool SupportsDual { get; set; }
+	public bool SupportsDual { get; init; }
 
 	/// <summary>
 	/// Indicates the rating value defined in direct mode.
 	/// </summary>
-	public double DirectRating { get; set; }
+	public double DirectRating { get; init; }
 
 	/// <summary>
 	/// Indicates the abbreviation of the technique.
 	/// </summary>
 	[DisallowNull]
-	public string? Abbreviation { get; set; }
+	public string? Abbreviation { get; init; }
 
 	/// <summary>
 	/// Indicates the reference links.
 	/// </summary>
 	[StringSyntax(StringSyntax.Uri)]
 	[DisallowNull]
-	public string[]? Links { get; set; }
+	public string[]? Links { get; init; }
 
 	/// <summary>
 	/// Indicates the extra difficulty factors.
 	/// </summary>
 	[DisallowNull]
-	public string[]? ExtraFactors { get; set; }
+	public string[]? ExtraFactors { get; init; }
+
+	/// <summary>
+	/// Indicates the containing techniuqe group that the current technique belongs to.
+	/// </summary>
+	public TechniqueGroup ContainingGroup { get; init; }
 
 	/// <summary>
 	/// Indicates the mode that the current technique can be used by solving a puzzle.
@@ -56,16 +52,21 @@ public sealed partial class TechniqueMetadataAttribute(
 	/// </summary>
 	/// <seealso cref="PencilmarkVisibility.Direct"/>
 	/// <seealso cref="PencilmarkVisibility.Indirect"/>
-	public PencilmarkVisibility PencilmarkVisibility { get; set; } = PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
+	public PencilmarkVisibility PencilmarkVisibility { get; init; } = PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
 
 	/// <summary>
 	/// Indicates the features of the technique.
 	/// </summary>
-	public TechniqueFeature Features { get; set; }
+	public TechniqueFeature Features { get; init; }
+
+	/// <summary>
+	/// Indicates the primarily-supported <see cref="Step"/> type.
+	/// </summary>
+	public Type? PrimarySupportedType { get; init; }
 
 	/// <summary>
 	/// Indicates the secondarily-supported <see cref="Step"/> type.
 	/// </summary>
 	[DisallowNull]
-	public Type? SecondarySupportedType { get; set; }
+	public Type? SecondarySupportedType { get; init; }
 }

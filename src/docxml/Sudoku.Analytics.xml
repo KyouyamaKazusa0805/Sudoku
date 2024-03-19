@@ -5265,20 +5265,6 @@
             Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
             describing its detail which can be defined as fixed one, to be stored as metadata.
             </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
-            <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
-            <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.#ctor(System.Double,Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Analytics.Categorization.TechniqueGroup,System.Type)">
-            <summary>
-            Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
-            describing its detail which can be defined as fixed one, to be stored as metadata.
-            </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level for the current technique.</param>
-            <param name="containingGroup">Indicates the group that the current technique belongs to.</param>
-            <param name="primarySupportedType">Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.</param>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese">
             <summary>
@@ -5310,6 +5296,11 @@
             Indicates the extra difficulty factors.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ContainingGroup">
+            <summary>
+            Indicates the containing techniuqe group that the current technique belongs to.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PencilmarkVisibility">
             <summary>
             Indicates the mode that the current technique can be used by solving a puzzle.
@@ -5323,19 +5314,14 @@
             Indicates the features of the technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimarySupportedType">
+            <summary>
+            Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SecondarySupportedType">
             <summary>
             Indicates the secondarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ContainingGroup">
-            <summary>
-            The generated property declaration for parameter <c>containingGroup</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimarySupportedType">
-            <summary>
-            The generated property declaration for parameter <c>primarySupportedType</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">
@@ -19085,15 +19071,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents compatibility rules for Hodoku.
             </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.HodokuAttribute.#ctor(System.Int32,Sudoku.Compatibility.Hodoku.HodokuDifficultyLevel)">
-            <summary>
-            Represents compatibility rules for Hodoku.
-            </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="P:Sudoku.Compatibility.HodokuAttribute.Prefix">
             <summary>
@@ -19208,23 +19185,19 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents program compatibility attribute type.
             </summary>
-            <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
+            <typeparam name="TRating">
+            Indicates the type of the rating value. The value must be a number (e.g. a <see cref="T:System.Double"/> or an <see cref="T:System.Int32"/>).
+            </typeparam>
             <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.ProgramMetadataAttribute`2.#ctor(`0,`1)">
-            <summary>
-            Represents program compatibility attribute type.
-            </summary>
-            <typeparam name="TRating">Indicates the type of the rating value.</typeparam>
-            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="difficultyLevel">Indicates the difficulty level.</param>
         </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Aliases">
             <summary>
             Represents the aliased names for the current technique defined in the current program.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Rating">
+            <summary>
+            Indicates the type of the rating value.
             </summary>
         </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal">
@@ -19243,33 +19216,19 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <remarks><inheritdoc cref="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.RatingValueOriginal" path="/remarks"/></remarks>
         </member>
-        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.Rating">
-            <summary>
-            The generated property declaration for parameter <c>rating</c>.
-            </summary>
-        </member>
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.DifficultyLevel">
             <summary>
-            The generated property declaration for parameter <c>difficultyLevel</c>.
+            Indicates the difficulty level.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainerAttribute">
             <summary>
             Represents compatibility rules for Sudoku Explainer.
             </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
-        </member>
-        <member name="M:Sudoku.Compatibility.SudokuExplainerAttribute.#ctor(System.Double,Sudoku.Compatibility.SudokuExplainer.SudokuExplainerTechnique)">
-            <summary>
-            Represents compatibility rules for Sudoku Explainer.
-            </summary>
-            <param name="rating">Indicates the rating value.</param>
-            <param name="techniqueDefined">Indicates the defined technique enumeration field in Sudoku Explainer.</param>
         </member>
         <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.TechniqueDefined">
             <summary>
-            The generated property declaration for parameter <c>techniqueDefined</c>.
+            Indicates the defined technique enumeration field in Sudoku Explainer.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerCompatibility">

@@ -23,7 +23,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates full house. This technique is the most elementary technique to be used in the candidate view mode.
 	/// </summary>
-	[Hodoku(4, HodokuDifficultyLevel.Easy, Prefix = "0000")]
+	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0000")]
 	[SudokuExplainer(Rating = 1.0, TechniqueDefined = SudokuExplainerTechnique.Single, Aliases = ["Single"])]
 	[TechniqueMetadata(
 		Rating = 1.0, DifficultyLevel = DifficultyLevel.Easy, ContainingGroup = TechniqueGroup.Single,
@@ -43,7 +43,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in block).
 	/// </summary>
-	[Hodoku(14, HodokuDifficultyLevel.Easy, Prefix = "0002")]
+	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
 	[SudokuExplainer(Rating = 1.2, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
 	[TechniqueMetadata(
 		Rating = 1.9, DifficultyLevel = DifficultyLevel.Easy, ContainingGroup = TechniqueGroup.Single,
@@ -54,7 +54,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in row).
 	/// </summary>
-	[Hodoku(14, HodokuDifficultyLevel.Easy, Prefix = "0002")]
+	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
 	[SudokuExplainer(Rating = 1.5, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
 	[TechniqueMetadata(
 		Rating = 2.3, DifficultyLevel = DifficultyLevel.Easy, ContainingGroup = TechniqueGroup.Single,
@@ -65,7 +65,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden single (in column).
 	/// </summary>
-	[Hodoku(14, HodokuDifficultyLevel.Easy, Prefix = "0002")]
+	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
 	[SudokuExplainer(Rating = 1.5, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
 	[TechniqueMetadata(
 		Rating = 2.3, DifficultyLevel = DifficultyLevel.Easy, ContainingGroup = TechniqueGroup.Single,
@@ -76,7 +76,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked single.
 	/// </summary>
-	[Hodoku(4, HodokuDifficultyLevel.Easy, Prefix = "0003")]
+	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0003")]
 	[SudokuExplainer(Rating = 2.3, TechniqueDefined = SudokuExplainerTechnique.NakedSingle)]
 	[TechniqueMetadata(
 		Rating = 2.3, DifficultyLevel = DifficultyLevel.Easy, ContainingGroup = TechniqueGroup.Single,
@@ -807,7 +807,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates pointing.
 	/// </summary>
-	[Hodoku(50, HodokuDifficultyLevel.Medium, Prefix = "0100", Aliases = ["Locked Candidates Type 1"])]
+	[Hodoku(Rating = 50, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0100", Aliases = ["Locked Candidates Type 1"])]
 	[SudokuExplainer(Rating = 2.6, TechniqueDefined = SudokuExplainerTechnique.Pointing)]
 	[TechniqueMetadata(
 		Rating = 2.6, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.LockedCandidates, PrimarySupportedType = typeof(LockedCandidatesStep),
@@ -817,7 +817,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates claiming.
 	/// </summary>
-	[Hodoku(50, HodokuDifficultyLevel.Medium, Prefix = "0101", Aliases = ["Locked Candidates Type 2"])]
+	[Hodoku(Rating = 50, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0101", Aliases = ["Locked Candidates Type 2"])]
 	[SudokuExplainer(Rating = 2.8, TechniqueDefined = SudokuExplainerTechnique.Claiming)]
 	[TechniqueMetadata(
 		Rating = 2.8, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.LockedCandidates, PrimarySupportedType = typeof(LockedCandidatesStep),
@@ -841,7 +841,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked pair.
 	/// </summary>
-	[Hodoku(60, HodokuDifficultyLevel.Medium, Prefix = "0200")]
+	[Hodoku(Rating = 60, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0200")]
 	[SudokuExplainer(Rating = 3.0, TechniqueDefined = SudokuExplainerTechnique.NakedPair)]
 	[TechniqueMetadata(
 		Rating = 3.0, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -863,7 +863,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates locked pair.
 	/// </summary>
-	[Hodoku(40, HodokuDifficultyLevel.Medium, Prefix = "0110-1")]
+	[Hodoku(Rating = 40, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0110-1")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Rating = 2.0, TechniqueDefined = SudokuExplainerTechnique.DirectHiddenPair, Aliases = ["Direct Hidden Pair"])]
 #endif
@@ -877,7 +877,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden pair.
 	/// </summary>
-	[Hodoku(70, HodokuDifficultyLevel.Medium, Prefix = "0210")]
+	[Hodoku(Rating = 70, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0210")]
 	[SudokuExplainer(Rating = 3.4, TechniqueDefined = SudokuExplainerTechnique.HiddenPair)]
 	[TechniqueMetadata(
 		Rating = 3.4, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -899,7 +899,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked triple.
 	/// </summary>
-	[Hodoku(80, HodokuDifficultyLevel.Medium, Prefix = "0201")]
+	[Hodoku(Rating = 80, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0201")]
 	[SudokuExplainer(Rating = 3.6, TechniqueDefined = SudokuExplainerTechnique.NakedTriplet, Aliases = ["Naked Triplet"])]
 	[TechniqueMetadata(
 		Rating = 3.0, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -919,7 +919,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates locked triple.
 	/// </summary>
-	[Hodoku(60, HodokuDifficultyLevel.Medium, Prefix = "0111-1")]
+	[Hodoku(Rating = 60, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0111-1")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Rating = 2.5, TechniqueDefined = SudokuExplainerTechnique.DirectHiddenTriplet, Aliases = ["Direct Hidden Triplet"])]
 #endif
@@ -932,7 +932,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden triple.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Medium, Prefix = "0211")]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0211")]
 	[SudokuExplainer(Rating = 4.0, TechniqueDefined = SudokuExplainerTechnique.HiddenTriplet, Aliases = ["Hidden Triplet"])]
 	[TechniqueMetadata(
 		Rating = 3.4, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -953,7 +953,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates naked quadruple.
 	/// </summary>
-	[Hodoku(120, HodokuDifficultyLevel.Hard, Prefix = "0202")]
+	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0202")]
 	[SudokuExplainer(Rating = 5.0, TechniqueDefined = SudokuExplainerTechnique.NakedQuad, Aliases = ["Naked Quad"])]
 	[TechniqueMetadata(
 		Rating = 3.0, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -975,7 +975,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden quadruple.
 	/// </summary>
-	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0212")]
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0212")]
 	[SudokuExplainer(Rating = 5.4, TechniqueDefined = SudokuExplainerTechnique.HiddenQuad, Aliases = ["Hidden Quad"])]
 	[TechniqueMetadata(
 		Rating = 3.4, DifficultyLevel = DifficultyLevel.Moderate, ContainingGroup = TechniqueGroup.Subset,
@@ -992,7 +992,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates X-Wing.
 	/// </summary>
-	[Hodoku(140, HodokuDifficultyLevel.Hard, Prefix = "0300")]
+	[Hodoku(Rating = 140, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0300")]
 	[SudokuExplainer(Rating = 3.2, TechniqueDefined = SudokuExplainerTechnique.XWing)]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1003,7 +1003,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned X-Wing.
 	/// </summary>
-	[Hodoku(130, HodokuDifficultyLevel.Hard, Prefix = "0310")]
+	[Hodoku(Rating = 130, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0310")]
 	[SudokuExplainer(RatingValueAdvanced = [3.4])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1019,7 +1019,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi X-Wing.
 	/// </summary>
-	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0320")]
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0320")]
 	[SudokuExplainer(RatingValueAdvanced = [3.5])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1051,7 +1051,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken X-Wing.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0330")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0330")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1061,7 +1061,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken X-Wing.
 	/// </summary>
-	[Hodoku(390, HodokuDifficultyLevel.Unfair, Prefix = "0340")]
+	[Hodoku(Rating = 390, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0340")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1105,7 +1105,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant X-Wing.
 	/// </summary>
-	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0350")]
+	[Hodoku(Rating = 450, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0350")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1115,7 +1115,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant X-Wing.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0360")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0360")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1160,7 +1160,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates swordfish.
 	/// </summary>
-	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0301")]
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0301")]
 	[SudokuExplainer(Rating = 3.8, TechniqueDefined = SudokuExplainerTechnique.Swordfish)]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1171,7 +1171,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned swordfish.
 	/// </summary>
-	[Hodoku(200, HodokuDifficultyLevel.Unfair, Prefix = "0311")]
+	[Hodoku(Rating = 200, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0311")]
 	[SudokuExplainer(RatingValueAdvanced = [4.0])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1187,7 +1187,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi swordfish.
 	/// </summary>
-	[Hodoku(240, HodokuDifficultyLevel.Unfair, Prefix = "0321")]
+	[Hodoku(Rating = 240, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0321")]
 	[SudokuExplainer(RatingValueAdvanced = [4.1])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1219,7 +1219,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates swordfish.
 	/// </summary>
-	[Hodoku(350, HodokuDifficultyLevel.Unfair, Prefix = "0331")]
+	[Hodoku(Rating = 350, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0331")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1234,7 +1234,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken swordfish.
 	/// </summary>
-	[Hodoku(410, HodokuDifficultyLevel.Unfair, Prefix = "0341")]
+	[Hodoku(Rating = 410, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0341")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1289,7 +1289,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant swordfish.
 	/// </summary>
-	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0351")]
+	[Hodoku(Rating = 450, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0351")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1303,7 +1303,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant swordfish.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0361")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0361")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1358,7 +1358,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates jellyfish.
 	/// </summary>
-	[Hodoku(160, HodokuDifficultyLevel.Hard, Prefix = "0302")]
+	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0302")]
 	[SudokuExplainer(Rating = 5.2, TechniqueDefined = SudokuExplainerTechnique.Jellyfish)]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1369,7 +1369,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned jellyfish.
 	/// </summary>
-	[Hodoku(250, HodokuDifficultyLevel.Unfair, Prefix = "0312")]
+	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0312")]
 	[SudokuExplainer(RatingValueAdvanced = [5.4])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1385,7 +1385,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi jellyfish.
 	/// </summary>
-	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0322")]
+	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0322")]
 	[SudokuExplainer(RatingValueAdvanced = [5.6])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.NormalFish, PrimarySupportedType = typeof(NormalFishStep),
@@ -1417,7 +1417,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken jellyfish.
 	/// </summary>
-	[Hodoku(370, HodokuDifficultyLevel.Unfair, Prefix = "0332")]
+	[Hodoku(Rating = 370, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0332")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1431,7 +1431,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken jellyfish.
 	/// </summary>
-	[Hodoku(430, HodokuDifficultyLevel.Unfair, Prefix = "0342")]
+	[Hodoku(Rating = 430, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0342")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1486,7 +1486,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant jellyfish.
 	/// </summary>
-	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0352")]
+	[Hodoku(Rating = 450, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0352")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1500,7 +1500,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant jellyfish.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0362")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0362")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1555,7 +1555,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0303")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0303")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory, Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
@@ -1564,7 +1564,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0313")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0313")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1578,7 +1578,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0323")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0323")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1606,7 +1606,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0333")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0333")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1616,7 +1616,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0343")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0343")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1661,7 +1661,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0353")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0353")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1671,7 +1671,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant squirmbag.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0363")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0363")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1716,7 +1716,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0304")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0304")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory, Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
@@ -1725,7 +1725,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0314")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0314")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1739,7 +1739,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0324")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0324")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1767,7 +1767,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates franken whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0334")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0334")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1777,7 +1777,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned franken whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0344")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0344")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1822,7 +1822,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0354")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0354")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1832,7 +1832,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant whale.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0364")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0364")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1877,7 +1877,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0305")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0305")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory, Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
@@ -1886,7 +1886,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0315")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0315")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1900,7 +1900,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sashimi leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Unfair, Prefix = "0325")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0325")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.NormalFish,
 		Features = TechniqueFeature.OnlyExistInTheory,
@@ -1931,13 +1931,13 @@ public enum Technique
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0335")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0335")]
 	FrankenLeviathan,
 
 	/// <summary>
 	/// Indicates finned franken leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0345")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0345")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1982,7 +1982,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates mutant leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0355")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0355")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -1992,7 +1992,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates finned mutant leviathan.
 	/// </summary>
-	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0365")]
+	[Hodoku(Rating = 470, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "0365")]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ComplexFish, PrimarySupportedType = typeof(ComplexFishStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
@@ -2042,7 +2042,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Wing.
 	/// </summary>
-	[Hodoku(160, HodokuDifficultyLevel.Hard, Prefix = "0800")]
+	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0800")]
 	[SudokuExplainer(Rating = 4.2, TechniqueDefined = SudokuExplainerTechnique.XyWing)]
 	[TechniqueMetadata(
 		Rating = 4.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.RegularWing, PrimarySupportedType = typeof(RegularWingStep),
@@ -2052,7 +2052,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XYZ-Wing.
 	/// </summary>
-	[Hodoku(180, HodokuDifficultyLevel.Hard, Prefix = "0801")]
+	[Hodoku(Rating = 180, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0801")]
 	[SudokuExplainer(Rating = 4.4, TechniqueDefined = SudokuExplainerTechnique.XyzWing)]
 	[TechniqueMetadata(
 		Rating = 4.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.RegularWing, PrimarySupportedType = typeof(RegularWingStep),
@@ -2170,7 +2170,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates W-Wing.
 	/// </summary>
-	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0803")]
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0803")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.WWing, RatingValueAdvanced = [4.4])]
 	[TechniqueMetadata(
 		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.IrregularWing, PrimarySupportedType = typeof(WWingStep),
@@ -2327,7 +2327,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 1.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0600", Aliases = ["Uniqueness Test 1"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0600", Aliases = ["Uniqueness Test 1"])]
 	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle)]
 	[TechniqueMetadata(
 		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2343,7 +2343,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 2.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0601", Aliases = ["Uniqueness Test 2"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0601", Aliases = ["Uniqueness Test 2"])]
 	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2359,7 +2359,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 3.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0602", Aliases = ["Uniqueness Test 3"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0602", Aliases = ["Uniqueness Test 3"])]
 	[SudokuExplainer(
 		TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle,
 		RatingValueOriginal = [4.5, 4.8], RatingValueAdvanced = [4.6, 4.9])]
@@ -2378,7 +2378,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 4.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0603", Aliases = ["Uniqueness Test 4"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0603", Aliases = ["Uniqueness Test 4"])]
 	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2395,7 +2395,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 5.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0604", Aliases = ["Uniqueness Test 5"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0604", Aliases = ["Uniqueness Test 5"])]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2410,7 +2410,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique rectangle type 6.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0605", Aliases = ["Uniqueness Test 6"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0605", Aliases = ["Uniqueness Test 6"])]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2426,7 +2426,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates hidden unique rectangle.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0606", Aliases = ["Hidden Rectangle"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0606", Aliases = ["Hidden Rectangle"])]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.8])]
 	[TechniqueMetadata(
 		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
@@ -2839,7 +2839,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0607")]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0607")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.7])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.AvoidableRectangle, PrimarySupportedType = typeof(UniqueRectangleType1Step),
@@ -2849,7 +2849,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates avoidable rectangle type 2.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0608")]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0608")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.5])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.AvoidableRectangle, PrimarySupportedType = typeof(UniqueRectangleType2Step),
@@ -3141,7 +3141,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 1.
 	/// </summary>
-	[Hodoku(100, HodokuDifficultyLevel.Hard, Prefix = "0610", Aliases = ["Bivalue Universal Grave + 1"])]
+	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0610", Aliases = ["Bivalue Universal Grave + 1"])]
 	[SudokuExplainer(Rating = 5.6, TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[TechniqueMetadata(
 		Rating = 5.6, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.BivalueUniversalGrave, PrimarySupportedType = typeof(BivalueUniversalGraveType1Step),
@@ -3429,7 +3429,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq.
 	/// </summary>
-	[Hodoku(250, HodokuDifficultyLevel.Unfair, Prefix = "1101")]
+	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "1101")]
 	[SudokuExplainer(RatingValueAdvanced = [5.0])]
 	[TechniqueMetadata(
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.SueDeCoq, PrimarySupportedType = typeof(SueDeCoqStep),
@@ -3444,7 +3444,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates sue de coq with isolated digit.
 	/// </summary>
-	[Hodoku(250, HodokuDifficultyLevel.Unfair, Prefix = "1101")]
+	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "1101")]
 	[SudokuExplainer(RatingValueAdvanced = [5.0])]
 	[TechniqueMetadata(
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.SueDeCoq, PrimarySupportedType = typeof(SueDeCoqStep),
@@ -3585,7 +3585,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates skyscraper.
 	/// </summary>
-	[Hodoku(130, HodokuDifficultyLevel.Hard, Prefix = "0400")]
+	[Hodoku(Rating = 130, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0400")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Rating = 6.6, TechniqueDefined = SudokuExplainerTechnique.TurbotFish, Aliases = ["Turbot Fish"])]
 #endif
@@ -3597,7 +3597,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates two-string kite.
 	/// </summary>
-	[Hodoku(150, HodokuDifficultyLevel.Hard, Prefix = "0401")]
+	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0401")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
 	[SudokuExplainer(Rating = 6.6, TechniqueDefined = SudokuExplainerTechnique.TurbotFish, Aliases = ["Turbot Fish"])]
 #endif
@@ -3609,7 +3609,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates turbot fish.
 	/// </summary>
-	[Hodoku(120, HodokuDifficultyLevel.Hard, Prefix = "0403")]
+	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0403")]
 	[SudokuExplainer(Rating = 6.6, TechniqueDefined = SudokuExplainerTechnique.TurbotFish)]
 	[TechniqueMetadata(
 		Rating = 4.2, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.SingleDigitPattern, PrimarySupportedType = typeof(TwoStrongLinksStep),
@@ -3648,7 +3648,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates empty rectangle.
 	/// </summary>
-	[Hodoku(120, HodokuDifficultyLevel.Hard, Prefix = "0402")]
+	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0402")]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.EmptyRectangle, PrimarySupportedType = typeof(EmptyRectangleStep),
 		Abbreviation = "ER", Links = ["http://sudopedia.enjoysudoku.com/Empty_Rectangle.html"])]
@@ -3662,7 +3662,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates X-Chain.
 	/// </summary>
-	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0701")]
+	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0701")]
 	[SudokuExplainer(RatingValueOriginal = [6.6, 6.9])]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
@@ -3673,7 +3673,7 @@ public enum Technique
 	/// Indicates Y-Chain.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0702")]
+	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0702")]
 #endif
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
@@ -3694,7 +3694,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Chain.
 	/// </summary>
-	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0702")]
+	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0702")]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
 		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://sudopedia.enjoysudoku.com/XY-Chain.html"])]
@@ -3720,7 +3720,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates remote pair.
 	/// </summary>
-	[Hodoku(110, HodokuDifficultyLevel.Hard, Prefix = "0703")]
+	[Hodoku(Rating = 110, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0703")]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
 		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length])]
@@ -3737,7 +3737,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates discontinuous nice loop.
 	/// </summary>
-	[Hodoku(280, HodokuDifficultyLevel.Unfair, Prefix = "0707")]
+	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0707")]
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6], Aliases = ["Forcing Chain"])]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
@@ -3748,7 +3748,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates continuous nice loop.
 	/// </summary>
-	[Hodoku(280, HodokuDifficultyLevel.Unfair, Prefix = "0706")]
+	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0706")]
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.3], Aliases = ["Bidirectional Cycle"])]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
@@ -3758,7 +3758,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates alternating inference chain.
 	/// </summary>
-	[Hodoku(280, HodokuDifficultyLevel.Unfair, Prefix = "0708")]
+	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0708")]
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6])]
 	[TechniqueMetadata(
 		Rating = 4.6, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain, PrimarySupportedType = typeof(ForcingChainStep),
@@ -3817,7 +3817,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped discontinuous nice loop.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0710")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0710")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		Features = TechniqueFeature.NotImplemented)]
@@ -3826,7 +3826,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped continuous nice loop.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0709")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0709")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		Features = TechniqueFeature.NotImplemented)]
@@ -3835,7 +3835,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped alternating inference chain.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0711")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0711")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		Features = TechniqueFeature.NotImplemented)]
@@ -3866,7 +3866,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates region forcing chains (i.e. house forcing chains).
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1301")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		Rating = 8.0, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(RegionForcingChainsStep),
@@ -3876,7 +3876,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates cell forcing chains.
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1301")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		Rating = 8.0, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(CellForcingChainsStep),
@@ -3886,7 +3886,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1303")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		Rating = 8.5, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(RegionForcingChainsStep),
@@ -3896,7 +3896,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates dynamic cell forcing chains.
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1303")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		Rating = 8.5, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(CellForcingChainsStep),
@@ -3906,7 +3906,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates dynamic contradiction forcing chains.
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1304")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		Rating = 9.5, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(BinaryForcingChainsStep),
@@ -3916,7 +3916,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates dynamic double forcing chains.
 	/// </summary>
-	[Hodoku(500, HodokuDifficultyLevel.Extreme, Prefix = "1304")]
+	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		Rating = 9.5, DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains, PrimarySupportedType = typeof(BinaryForcingChainsStep),
@@ -4066,7 +4066,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0901")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AlsXz, RatingValueAdvanced = [7.5])]
 	[TechniqueMetadata(
 		Rating = 5.5, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike, PrimarySupportedType = typeof(AlmostLockedSetsXzStep),
@@ -4076,7 +4076,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates doubly linked ALS-XZ.
 	/// </summary>
-	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0901")]
+	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
 	[SudokuExplainer(RatingValueAdvanced = [7.5])]
 	[TechniqueMetadata(
 		Rating = 5.7, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike, PrimarySupportedType = typeof(AlmostLockedSetsXzStep),
@@ -4086,7 +4086,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates ALS-XY-Wing.
 	/// </summary>
-	[Hodoku(320, HodokuDifficultyLevel.Unfair, Prefix = "0902")]
+	[Hodoku(Rating = 320, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0902")]
 	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AlsXyWing, RatingValueAdvanced = [8.0])]
 	[TechniqueMetadata(
 		Rating = 6.0, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike, PrimarySupportedType = typeof(AlmostLockedSetsXyWingStep),
@@ -4104,7 +4104,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates ALS chain.
 	/// </summary>
-	[Hodoku(340, HodokuDifficultyLevel.Unfair, Prefix = "0903")]
+	[Hodoku(Rating = 340, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0903")]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		Features = TechniqueFeature.NotImplemented, Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html"])]
@@ -4131,7 +4131,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates death blossom.
 	/// </summary>
-	[Hodoku(360, HodokuDifficultyLevel.Unfair, Prefix = "0904")]
+	[Hodoku(Rating = 360, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0904")]
 	[TechniqueMetadata(
 		Rating = 8.2, DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.DeathBlossom, PrimarySupportedType = typeof(DeathBlossomStep),
 		Abbreviation = "DB", ExtraFactors = [ExtraDifficultyFactorNames.Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
@@ -4538,7 +4538,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates template set.
 	/// </summary>
-	[Hodoku(10000, HodokuDifficultyLevel.Extreme, Prefix = "1201")]
+	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1201")]
 	[TechniqueMetadata(
 		Rating = 9.0, DifficultyLevel = DifficultyLevel.LastResort, ContainingGroup = TechniqueGroup.Templating, PrimarySupportedType = typeof(TemplateStep),
 		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
@@ -4547,7 +4547,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates template delete.
 	/// </summary>
-	[Hodoku(10000, HodokuDifficultyLevel.Extreme, Prefix = "1202")]
+	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1202")]
 	[TechniqueMetadata(
 		Rating = 9.0, DifficultyLevel = DifficultyLevel.LastResort, ContainingGroup = TechniqueGroup.Templating, PrimarySupportedType = typeof(TemplateStep),
 		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
@@ -4575,10 +4575,13 @@ public enum Technique
 	/// <summary>
 	/// Indicates brute force.
 	/// </summary>
-	[Hodoku(10000, HodokuDifficultyLevel.Extreme)]
-	[SudokuExplainer((double)AnalyzerResult.MaximumRatingValueTheory, TechniqueDefined = SudokuExplainerTechnique.BruteForce, Aliases = ["Try & Error"])]
+	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme)]
+	[SudokuExplainer(
+		Rating = (double)AnalyzerResult.MaximumRatingValueTheory, TechniqueDefined = SudokuExplainerTechnique.BruteForce,
+		Aliases = ["Try & Error"])]
 	[TechniqueMetadata(
-		(double)AnalyzerResult.MaximumRatingValueTheory, DifficultyLevel = DifficultyLevel.LastResort, ContainingGroup = TechniqueGroup.BruteForce, PrimarySupportedType = typeof(BruteForceStep),
+		Rating = (double)AnalyzerResult.MaximumRatingValueTheory, DifficultyLevel = DifficultyLevel.LastResort,
+		ContainingGroup = TechniqueGroup.BruteForce, PrimarySupportedType = typeof(BruteForceStep),
 		Abbreviation = "BF", Features = TechniqueFeature.OnlyExistInTheory,
 		Links = ["http://sudopedia.enjoysudoku.com/Trial_%26_Error.html"])]
 	BruteForce,
