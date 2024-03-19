@@ -26631,6 +26631,7 @@ if (student is (name: var name, age: >= 18))
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
+            <param name="techniqueName">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="M:Sudoku.Text.TechniqueFormat.#ctor(System.String)">
@@ -26638,6 +26639,7 @@ if (student is (name: var name, age: >= 18))
             Represents a resource format. This type is used by <see cref="T:Sudoku.Analytics.Step"/> instances to describe the technique format
             stored in resource dictionary.
             </summary>
+            <param name="techniqueName">Indicates the technique identifier name.</param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="F:Sudoku.Text.TechniqueFormat.FormatPrefix">
@@ -26645,7 +26647,7 @@ if (student is (name: var name, age: >= 18))
             The format prefix.
             </summary>
         </member>
-        <member name="F:Sudoku.Text.TechniqueFormat._formatFullName">
+        <member name="P:Sudoku.Text.TechniqueFormat.TechniqueResourceName">
             <summary>
             Full name of the format.
             </summary>
@@ -26672,11 +26674,11 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Creates a <see cref="T:Sudoku.Text.TechniqueFormat"/> instance using the specified format name stored in resource file.
             </summary>
-            <param name="formatName">TThe format name.</param>
+            <param name="techniqueName">TThe format name.</param>
         </member>
-        <member name="F:Sudoku.Text.TechniqueFormat._formatName">
+        <member name="F:Sudoku.Text.TechniqueFormat._techniqueName">
             <summary>
-            The generated field declaration for parameter <c>formatName</c>.
+            The generated field declaration for parameter <c>techniqueName</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Text.TechniqueFormat.Equals(System.Object)">

@@ -4,6 +4,7 @@ namespace Sudoku.Text;
 /// Represents a resource format. This type is used by <see cref="Step"/> instances to describe the technique format
 /// stored in resource dictionary.
 /// </summary>
+/// <param name="techniqueName">Indicates the technique identifier name.</param>
 /// <seealso cref="Step"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
@@ -12,7 +13,7 @@ namespace Sudoku.Text;
 [EqualityOperators]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.Field)] string formatName)
+public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.Field)] string techniqueName)
 {
 	/// <summary>
 	/// The format prefix.
@@ -23,7 +24,7 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	/// <summary>
 	/// Full name of the format.
 	/// </summary>
-	private readonly string _formatFullName = $"{FormatPrefix}_{formatName}";
+	private readonly string TechniqueResourceName => $"{FormatPrefix}_{_techniqueName}";
 
 
 	/// <summary>
@@ -31,7 +32,7 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	/// </summary>
 	/// <param name="culture">The culture information.</param>
 	public readonly string? GetTargetFormat(CultureInfo? culture)
-		=> _formatName is not null && ResourceDictionary.TryGet(_formatFullName, out var resource, culture ?? CultureInfo.CurrentUICulture)
+		=> _techniqueName is not null && ResourceDictionary.TryGet(TechniqueResourceName, out var resource, culture ?? CultureInfo.CurrentUICulture)
 			? resource
 			: null;
 
@@ -50,13 +51,13 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	public readonly string ToString(CultureInfo? culture, params string[] formatArguments)
 		=> GetTargetFormat(culture) is { } p
 			? string.Format(p, formatArguments)
-			: throw new ResourceNotFoundException(typeof(TechniqueFormat).Assembly, _formatFullName, culture);
+			: throw new ResourceNotFoundException(typeof(TechniqueFormat).Assembly, TechniqueResourceName, culture);
 
 
 	/// <summary>
 	/// Creates a <see cref="TechniqueFormat"/> instance using the specified format name stored in resource file.
 	/// </summary>
-	/// <param name="formatName">TThe format name.</param>
+	/// <param name="techniqueName">TThe format name.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator TechniqueFormat(string formatName) => new(formatName);
+	public static implicit operator TechniqueFormat(string techniqueName) => new(techniqueName);
 }
