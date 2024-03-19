@@ -44,7 +44,7 @@
 					</NumberBox>
 				</Grid>
 			</Grid>
-			<Grid x:Name="MainGrid" ColumnDefinitions="*,1.5*,1.25*,.75*,.75*" BorderBrush="DimGray" BorderThickness="0,1">
+			<Grid x:Name="MainGrid" BorderBrush="DimGray" BorderThickness="0,1">
 				<Grid.ChildrenTransitions>
 					<AddDeleteThemeTransition />
 				</Grid.ChildrenTransitions>

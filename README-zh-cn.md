@@ -51,6 +51,10 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ![](docs/pic/puzzle-lib.png)
 
+### 技巧难度配置页
+
+![](docs/pic/config.png)
+
 ### 技巧展览馆
 
 ![](docs/pic/gallery.png)

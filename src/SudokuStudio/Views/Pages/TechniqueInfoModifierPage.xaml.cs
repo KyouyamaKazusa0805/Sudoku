@@ -54,6 +54,10 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			return;
 		}
 
+		// Check whether the current culture is English.
+		var isCultureEnglish = App.CurrentCulture.Name.StartsWith("en", StringComparison.OrdinalIgnoreCase);
+
+		// Get the current technique group.
 		var techniqueGroup = TechniqueConversion.ConfigurableTechniqueGroups[techniqueGroupIndex];
 
 		// Change text block.
@@ -66,6 +70,27 @@ public sealed partial class TechniqueInfoModifierPage : Page
 		clearChildren(g);
 		setRowDefinitions(g, values);
 		addTableTitleRow(g);
+
+		if (g.ColumnDefinitions.Count == 0)
+		{
+			if (isCultureEnglish)
+			{
+				// 1.5*,2.25*,.75*,.75*
+				g.ColumnDefinitions.Add(new() { Width = new(1.5, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(2.25, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(.75, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(.75, GridUnitType.Star) });
+			}
+			else
+			{
+				// *,1.5*,1.25*,.75*,.75*
+				g.ColumnDefinitions.Add(new() { Width = new(1, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(1.5, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(1.25, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(.75, GridUnitType.Star) });
+				g.ColumnDefinitions.Add(new() { Width = new(.75, GridUnitType.Star) });
+			}
+		}
 
 		// Add for children controls.
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
@@ -80,15 +105,19 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			//
 			// Name
 			//
-			var nameControl = new TextBlock
+			var nameControl = default(TextBlock);
+			if (!isCultureEnglish)
 			{
-				Text = name,
-				HorizontalAlignment = HorizontalAlignment.Left,
-				VerticalAlignment = VerticalAlignment.Center,
-				Margin = LeftMargin
-			};
-			GridLayout.SetRow(nameControl, rowIndex);
-			GridLayout.SetColumn(nameControl, 0);
+				nameControl = new()
+				{
+					Text = name,
+					HorizontalAlignment = HorizontalAlignment.Left,
+					VerticalAlignment = VerticalAlignment.Center,
+					Margin = LeftMargin
+				};
+				GridLayout.SetRow(nameControl, rowIndex);
+				GridLayout.SetColumn(nameControl, 0);
+			}
 
 			//
 			// English name
@@ -101,7 +130,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				Margin = LeftMargin
 			};
 			GridLayout.SetRow(englishNameControl, rowIndex);
-			GridLayout.SetColumn(englishNameControl, 1);
+			GridLayout.SetColumn(englishNameControl, 1 - (isCultureEnglish ? 1 : 0));
 
 			//
 			// Difficulty level
@@ -159,7 +188,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				}
 			};
 			GridLayout.SetRow(difficultyLevelControl, rowIndex);
-			GridLayout.SetColumn(difficultyLevelControl, 2);
+			GridLayout.SetColumn(difficultyLevelControl, 2 - (isCultureEnglish ? 1 : 0));
 
 			//
 			// Rating
@@ -183,7 +212,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				};
 				ratingControl.ValueChanged += (_, _) => pref.AppendOrUpdateRating(technique, ratingControl.Value);
 				GridLayout.SetRow(ratingControl, rowIndex);
-				GridLayout.SetColumn(ratingControl, 3);
+				GridLayout.SetColumn(ratingControl, 3 - (isCultureEnglish ? 1 : 0));
 			}
 
 			//
@@ -207,7 +236,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				};
 				directRatingControl.ValueChanged += (_, _) => pref.AppendOrUpdateDirectRating(technique, directRatingControl.Value);
 				GridLayout.SetRow(directRatingControl, rowIndex);
-				GridLayout.SetColumn(directRatingControl, 4);
+				GridLayout.SetColumn(directRatingControl, 4 - (isCultureEnglish ? 1 : 0));
 			}
 
 #if HORIZONTAL_GRID_LINES
@@ -218,14 +247,17 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			Canvas.SetZIndex(borderGridLine, -1);
 			GridLayout.SetRow(borderGridLine, rowIndex);
 			GridLayout.SetColumn(borderGridLine, 0);
-			GridLayout.SetColumnSpan(borderGridLine, 5);
+			GridLayout.SetColumnSpan(borderGridLine, 5 - (isCultureEnglish ? 1 : 0));
 #endif
 
 			await Task.Run(
 				() => p.DispatcherQueue.TryEnqueue(
 					() =>
 					{
-						g.Children.Add(nameControl);
+						if (!isCultureEnglish)
+						{
+							g.Children.Add(nameControl);
+						}
 						g.Children.Add(englishNameControl);
 						g.Children.Add(difficultyLevelControl);
 						if (hasIndirectRating)
@@ -280,18 +312,9 @@ public sealed partial class TechniqueInfoModifierPage : Page
 
 		static void addRowDefinition(GridLayout g) => g.RowDefinitions.Add(r());
 
-		static void addTableTitleRow(GridLayout g)
-		{
-			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueName", 0, HorizontalAlignment.Center));
-			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1, HorizontalAlignment.Center));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2, HorizontalAlignment.Center));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3, HorizontalAlignment.Center));
-			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyDirectRating", 4, HorizontalAlignment.Center));
-		}
-
 		static RowDefinition r() => new() { Height = DefaultHeight };
 
-		static TextBlock t(string resourceKey, int column, HorizontalAlignment? horizontalAlignment = null)
+		TextBlock t(string resourceKey, int column, HorizontalAlignment? horizontalAlignment = null)
 		{
 			var result = new TextBlock
 			{
@@ -299,7 +322,7 @@ public sealed partial class TechniqueInfoModifierPage : Page
 				HorizontalAlignment = horizontalAlignment ?? HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Center,
 				FontWeight = FontWeights.Bold,
-				FontSize = 18,
+				FontSize = isCultureEnglish ? 16 : 18,
 				Margin = horizontalAlignment switch
 				{
 					HorizontalAlignment.Left => LeftMargin,
@@ -311,6 +334,18 @@ public sealed partial class TechniqueInfoModifierPage : Page
 			GridLayout.SetColumn(result, column);
 
 			return result;
+		}
+
+		void addTableTitleRow(GridLayout g)
+		{
+			if (!isCultureEnglish)
+			{
+				g.Children.Add(t("TechniqueInfoModifierPage_TechniqueName", 0, HorizontalAlignment.Center));
+			}
+			g.Children.Add(t("TechniqueInfoModifierPage_TechniqueEnglishName", 1 - (isCultureEnglish ? 1 : 0), HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyLevel", 2 - (isCultureEnglish ? 1 : 0), HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyRating", 3 - (isCultureEnglish ? 1 : 0), HorizontalAlignment.Center));
+			g.Children.Add(t("TechniqueInfoModifierPage_DifficultyDirectRating", 4 - (isCultureEnglish ? 1 : 0), HorizontalAlignment.Center));
 		}
 	}
 

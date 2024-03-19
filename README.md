@@ -51,6 +51,10 @@ This repository is created for the following users:
 
 ![](docs/pic/ui-en.png)
 
+### Technique Configuration Page
+
+![](docs/pic/config-en.png)
+
 ### Technique Gallery Page
 
 ![](docs/pic/gallery-en.png)
