@@ -20273,13 +20273,13 @@ if (student is (name: var name, age: >= 18))
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.IttoryuExtensions">
+        <member name="T:Sudoku.Concepts.Ittoryu">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.IttoryuExtensions.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
+        <member name="M:Sudoku.Concepts.Ittoryu.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Concepts.DisorderedIttoryuDigitPath)">
             <summary>
             Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>.
             </summary>
@@ -20290,7 +20290,7 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
             <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
         </member>
-        <member name="M:Sudoku.Concepts.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
+        <member name="M:Sudoku.Concepts.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
             <summary>
             Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
             </summary>
@@ -20298,7 +20298,7 @@ if (student is (name: var name, age: >= 18))
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IttoryuExtensions.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
+        <member name="M:Sudoku.Concepts.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Concepts.DisorderedIttoryuDigitPath}@)">
             <summary>
             Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
             with checking using the specified techniques.

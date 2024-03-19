@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class IttoryuExtensions
+public static class Ittoryu
 {
 	/// <summary>
 	/// Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="DisorderedIttoryuFinder"/>.
