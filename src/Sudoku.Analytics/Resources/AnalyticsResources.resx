@@ -2847,4 +2847,73 @@ Error grid: '{0:#}'</value>
   <data name="SingleTechnique_NakedSingle" xml:space="preserve">
     <value>Naked Single</value>
   </data>
+  <data name="CountBetweenConstraint" xml:space="preserve">
+    <value>Count between rule: {0} should be between {1} and {2}, {3}</value>
+  </data>
+	<data name="GivenCell" xml:space="preserve">
+    <value>Number of given cells</value>
+  </data>
+	<data name="EmptyCell" xml:space="preserve">
+    <value>Number of empty cells</value>
+  </data>
+	<data name="BothOpen" xml:space="preserve">
+    <value>both side open</value>
+  </data>
+	<data name="LeftOpen" xml:space="preserve">
+    <value>only left open</value>
+  </data>
+	<data name="RightOpen" xml:space="preserve">
+    <value>only right open</value>
+  </data>
+	<data name="BothClosed" xml:space="preserve">
+    <value>both side closed</value>
+  </data>
+	<data name="DifficultyLevelConstraint" xml:space="preserve">
+    <value>Difficulty level rule: {0} {1} ({2})</value>
+  </data>
+	<data name="_Token_Comma" xml:space="preserve">
+    <value>, </value>
+  </data>
+	<data name="IttoryuConstraint" xml:space="preserve">
+    <value>Ittoryu rule: finish puzzle with {0} {1} rounds</value>
+  </data>
+	<data name="IttoryuLengthConstraint" xml:space="preserve">
+    <value>Ittoryu length rule: {0} {1} consecutively-finished digits</value>
+  </data>
+	<data name="MinimalConstraint" xml:space="preserve">
+    <value>Minimal rule: should {0}be a minimal puzzle</value>
+  </data>
+	<data name="NoString" xml:space="preserve">
+    <value>not </value>
+  </data>
+	<data name="PearlOrDiamondConstraint" xml:space="preserve">
+    <value>{0} rule: should {1}be a {2} puzzle</value>
+  </data>
+	<data name="PearlString" xml:space="preserve">
+    <value>pearl</value>
+  </data>
+	<data name="DiamondString" xml:space="preserve">
+    <value>diamond</value>
+  </data>
+	<data name="SymmetryConstraint" xml:space="preserve">
+    <value>Symmetry rule: {0}</value>
+  </data>
+	<data name="TechniqueConstraint" xml:space="preserve">
+    <value>Technique rule: {0}</value>
+  </data>
+	<data name="TechniqueCountConstraint" xml:space="preserve">
+    <value>Technique appearing times rule: {0} appears {1} {2} time(s)</value>
+  </data>
+	<data name="ConclusionConstraint" xml:space="preserve">
+    <value>Conclusion count rule: conclusion {0} should {1}appear</value>
+  </data>
+	<data name="NounPluralSuffix" xml:space="preserve">
+    <value>s</value>
+  </data>
+	<data name="PrimarySingleConstraint" xml:space="preserve">
+    <value>Single rule: {0} is primary technique, Hidden Single in rows or columns {1}included</value>
+  </data>
+	<data name="EliminationCountConstraint" xml:space="preserve">
+    <value>Elimination count rule: a {3} step must contain {0} {1} elimination{2}</value>
+  </data>
 </root>

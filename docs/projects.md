@@ -9,7 +9,6 @@
 属于该类型的项目有：
 
 * [`Sudoku.Analytics`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Analytics)：提供分析数独基本技巧或搜索技巧序列的 API；
-* [`Sudoku.Strategying`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Strategying)：提供解析数独期间（如解析题目、分析题目等操作）采用不同策略需要的 API；
 * [`Sudoku.Core`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Core)：提供基本的数独相关的数据结构的实现，如数独盘面的实现 [`Grid`](https://github.com/SunnieShine/Sudoku/blob/main/src/Sudoku.Core/Collections/Grid.cs) 类型等；
 * [`Sudoku.Gdip`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Gdip)：提供一种简单、轻量级的数独绘图 API；
 * [`Sudoku.Recognition.Imaging`](https://github.com/SunnieShine/Sudoku/tree/main/src/Sudoku.Recognition.Imaging)：提供识别一个图片里的数独题目的基本 API（实现得非常简单）；

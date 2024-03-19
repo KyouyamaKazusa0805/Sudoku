@@ -61,7 +61,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
-		<ProjectReference Include="..\Sudoku.Strategying\Sudoku.Strategying.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

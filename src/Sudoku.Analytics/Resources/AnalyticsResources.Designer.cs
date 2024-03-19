@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to , .
+        /// </summary>
+        public static string _Token_Comma {
+            get {
+                return ResourceManager.GetString("_Token_Comma", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Dynamic Contradiction Forcing Chains.
         /// </summary>
         public static string AbsurdChains {
@@ -718,6 +727,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to both side closed.
+        /// </summary>
+        public static string BothClosed {
+            get {
+                return ResourceManager.GetString("BothClosed", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to both side open.
+        /// </summary>
+        public static string BothOpen {
+            get {
+                return ResourceManager.GetString("BothOpen", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bowman Bingo.
         /// </summary>
         public static string BowmanBingo {
@@ -952,11 +979,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
+        /// </summary>
+        public static string ConclusionConstraint {
+            get {
+                return ResourceManager.GetString("ConclusionConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Continuous Nice Loop.
         /// </summary>
         public static string ContinuousNiceLoop {
             get {
                 return ResourceManager.GetString("ContinuousNiceLoop", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Count between rule: {0} should be between {1} and {2}, {3}.
+        /// </summary>
+        public static string CountBetweenConstraint {
+            get {
+                return ResourceManager.GetString("CountBetweenConstraint", resourceCulture);
             }
         }
         
@@ -1002,6 +1047,24 @@ namespace Sudoku.Resources {
         public static string DiagonalSymmetry {
             get {
                 return ResourceManager.GetString("DiagonalSymmetry", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to diamond.
+        /// </summary>
+        public static string DiamondString {
+            get {
+                return ResourceManager.GetString("DiamondString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Difficulty level rule: {0} {1} ({2}).
+        /// </summary>
+        public static string DifficultyLevelConstraint {
+            get {
+                return ResourceManager.GetString("DifficultyLevelConstraint", resourceCulture);
             }
         }
         
@@ -1123,11 +1186,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Elimination count rule: a {3} step must contain {0} {1} elimination{2}.
+        /// </summary>
+        public static string EliminationCountConstraint {
+            get {
+                return ResourceManager.GetString("EliminationCountConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ....
         /// </summary>
         public static string Ellipsis {
             get {
                 return ResourceManager.GetString("Ellipsis", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of empty cells.
+        /// </summary>
+        public static string EmptyCell {
+            get {
+                return ResourceManager.GetString("EmptyCell", resourceCulture);
             }
         }
         
@@ -2077,6 +2158,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of given cells.
+        /// </summary>
+        public static string GivenCell {
+            get {
+                return ResourceManager.GetString("GivenCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped Alternating Inference Chain.
         /// </summary>
         public static string GroupedAlternatingInferenceChain {
@@ -2599,6 +2689,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Ittoryu rule: finish puzzle with {0} {1} rounds.
+        /// </summary>
+        public static string IttoryuConstraint {
+            get {
+                return ResourceManager.GetString("IttoryuConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Ittoryu length rule: {0} {1} consecutively-finished digits.
+        /// </summary>
+        public static string IttoryuLengthConstraint {
+            get {
+                return ResourceManager.GetString("IttoryuLengthConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Jellyfish.
         /// </summary>
         public static string Jellyfish {
@@ -2748,6 +2856,15 @@ namespace Sudoku.Resources {
         public static string LawOfLeftover {
             get {
                 return ResourceManager.GetString("LawOfLeftover", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to only left open.
+        /// </summary>
+        public static string LeftOpen {
+            get {
+                return ResourceManager.GetString("LeftOpen", resourceCulture);
             }
         }
         
@@ -3048,6 +3165,15 @@ namespace Sudoku.Resources {
         public static string Message_WrongStepException {
             get {
                 return ResourceManager.GetString("Message_WrongStepException", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Minimal rule: should {0}be a minimal puzzle.
+        /// </summary>
+        public static string MinimalConstraint {
+            get {
+                return ResourceManager.GetString("MinimalConstraint", resourceCulture);
             }
         }
         
@@ -3646,6 +3772,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to not .
+        /// </summary>
+        public static string NoString {
+            get {
+                return ResourceManager.GetString("NoString", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to s.
+        /// </summary>
+        public static string NounPluralSuffix {
+            get {
+                return ResourceManager.GetString("NounPluralSuffix", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Death Blossom (ALS Blooming).
         /// </summary>
         public static string NTimesAlmostLockedSetDeathBlossom {
@@ -3678,6 +3822,24 @@ namespace Sudoku.Resources {
         public static string PatternOverlay {
             get {
                 return ResourceManager.GetString("PatternOverlay", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0} rule: should {1}be a {2} puzzle.
+        /// </summary>
+        public static string PearlOrDiamondConstraint {
+            get {
+                return ResourceManager.GetString("PearlOrDiamondConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to pearl.
+        /// </summary>
+        public static string PearlString {
+            get {
+                return ResourceManager.GetString("PearlString", resourceCulture);
             }
         }
         
@@ -3732,6 +3894,15 @@ namespace Sudoku.Resources {
         public static string PointingNakedSingle {
             get {
                 return ResourceManager.GetString("PointingNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Single rule: {0} is primary technique, Hidden Single in rows or columns {1}included.
+        /// </summary>
+        public static string PrimarySingleConstraint {
+            get {
+                return ResourceManager.GetString("PrimarySingleConstraint", resourceCulture);
             }
         }
         
@@ -3858,6 +4029,15 @@ namespace Sudoku.Resources {
         public static string ReverseBivalueUniversalGraveType4 {
             get {
                 return ResourceManager.GetString("ReverseBivalueUniversalGraveType4", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to only right open.
+        /// </summary>
+        public static string RightOpen {
+            get {
+                return ResourceManager.GetString("RightOpen", resourceCulture);
             }
         }
         
@@ -5068,6 +5248,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Symmetry rule: {0}.
+        /// </summary>
+        public static string SymmetryConstraint {
+            get {
+                return ResourceManager.GetString("SymmetryConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALP.
         /// </summary>
         public static string TechniqueAbbr_AlmostLockedPair {
@@ -6117,6 +6306,24 @@ namespace Sudoku.Resources {
         public static string TechniqueAlias_Whale {
             get {
                 return ResourceManager.GetString("TechniqueAlias_Whale", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique rule: {0}.
+        /// </summary>
+        public static string TechniqueConstraint {
+            get {
+                return ResourceManager.GetString("TechniqueConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique appearing times rule: {0} appears {1} {2} time(s).
+        /// </summary>
+        public static string TechniqueCountConstraint {
+            get {
+                return ResourceManager.GetString("TechniqueCountConstraint", resourceCulture);
             }
         }
         
