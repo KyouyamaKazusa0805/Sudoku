@@ -3060,6 +3060,9 @@
         <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
         </member>

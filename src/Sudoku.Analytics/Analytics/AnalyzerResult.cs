@@ -385,7 +385,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					.Append(ResourceDictionary.Get("AnalysisResultTechniqueUsing", culture));
 			}
 
-			foreach (var solvingStepsGroup in from s in steps orderby s.Difficulty group s by s.GetName())
+			foreach (var solvingStepsGroup in from s in steps.AsReadOnlySpan() orderby s.Difficulty group s by s.GetName())
 			{
 				if (options.HasFlag(FormattingOptions.ShowStepDetail))
 				{
@@ -401,7 +401,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					sb.Append($"{currentMinimum,6:0.0}, {currentTotal,6:0.0}) ");
 				}
 
-				sb.AppendLine($"{solvingStepsGroup.Count(),3} * {solvingStepsGroup.Key}");
+				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
 			if (options.HasFlag(FormattingOptions.ShowStepDetail))

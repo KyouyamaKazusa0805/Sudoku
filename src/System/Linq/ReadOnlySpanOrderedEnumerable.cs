@@ -105,6 +105,30 @@ public readonly ref partial struct ReadOnlySpanOrderedEnumerable<T>(
 	public ReadOnlySpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
 		=> new(_values, [.. _selectors, (l, r) => -selector(l).CompareTo(selector(r))]);
 
+	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+	public unsafe ReadOnlySpan<ReadOnlySpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector)
+		where TKey : notnull, IEquatable<TKey>
+	{
+		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
+		foreach (var element in _values)
+		{
+			var key = keySelector(element);
+			if (!tempDictionary.TryAdd(key, [element]))
+			{
+				tempDictionary[key].Add(element);
+			}
+		}
+
+		var result = new List<ReadOnlySpanGrouping<T, TKey>>(tempDictionary.Count);
+		foreach (var key in tempDictionary.Keys)
+		{
+			var tempValues = tempDictionary[key];
+			var sourcePointer = (T*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0]));
+			result.Add(new(sourcePointer, tempValues.Count, key));
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Span<T>.Enumerator GetEnumerator() => OrderedSpan.GetEnumerator();

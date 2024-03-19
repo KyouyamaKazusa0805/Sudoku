@@ -301,7 +301,8 @@ public static class ReadOnlySpanEnumerable
 		=> new(@this, (l, r) => -selector(l).CompareTo(selector(r)));
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static unsafe ReadOnlySpan<ReadOnlySpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector) where TKey : notnull, IEquatable<TKey>
+	public static unsafe ReadOnlySpan<ReadOnlySpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
+		where TKey : notnull, IEquatable<TKey>
 	{
 		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
 		foreach (var element in values)
