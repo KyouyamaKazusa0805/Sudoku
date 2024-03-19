@@ -2628,12 +2628,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-					[] when mirrorCellsThisTarget is [var a, var b]
-						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 					[var a] when mirrorCellsThisTarget - a is [var b]
-						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-					[var a, var b]
-						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+							=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+							[var a, var b]
+							=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
 				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
 				{
@@ -4705,14 +4705,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		(var result, lockedDigitsMask) = flag ? (r, realLockedDigitsMask) : ([], 0);
 		return result;
 	}
-
-
-	/// <summary>
-	/// Represents a locked member. This type is only used by searching for exocets.
-	/// </summary>
-	/// <param name="LockedCells">Indicates the locked cells.</param>
-	/// <param name="LockedBlock">Indicates the locked block.</param>
-	private sealed record LockedMember(scoped ref readonly CellMap LockedCells, House LockedBlock);
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

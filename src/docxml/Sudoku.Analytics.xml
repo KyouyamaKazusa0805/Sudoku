@@ -9215,7 +9215,7 @@ if (student is (name: var name, age: >= 18))
             <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember}@,System.Int16@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Concepts.LockedMember}@,System.Int16@)">
             <summary>
             Try to fetch locked members in the pattern, and verify validity of the pattern.
             </summary>
@@ -9274,26 +9274,6 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells">The target cells.</param>
             <param name="lockedDigitsMask">A mask that holds a list of digits that may be locked memebrs.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.CellMap"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.LockedCells">
-            <summary>Indicates the locked cells.</summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.LockedMember.LockedBlock">
-            <summary>Indicates the locked block.</summary>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.Extensions">
             <target name="class" when="extension">
@@ -20320,6 +20300,26 @@ if (student is (name: var name, age: >= 18))
             </param>
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.LockedMember">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.LockedMember.LockedCells">
+            <summary>Indicates the locked cells.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
+            <summary>Indicates the locked block.</summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
