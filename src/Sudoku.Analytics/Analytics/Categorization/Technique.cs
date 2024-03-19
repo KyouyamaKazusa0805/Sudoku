@@ -2,8 +2,6 @@
 
 namespace Sudoku.Analytics.Categorization;
 
-using static ExtraDifficultyFactorNames;
-
 /// <summary>
 /// Represents a technique instance, which is used for comparison.
 /// </summary>
@@ -127,7 +125,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingFullHouse,
 
 	/// <summary>
@@ -136,7 +134,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingFullHouse,
 
 	/// <summary>
@@ -145,7 +143,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairFullHouse,
 
 	/// <summary>
@@ -154,7 +152,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusFullHouse,
 
 	/// <summary>
@@ -163,7 +161,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairFullHouse,
 
 	/// <summary>
@@ -172,7 +170,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairFullHouse,
 
 	/// <summary>
@@ -181,7 +179,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairFullHouse,
 
 	/// <summary>
@@ -190,7 +188,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleFullHouse,
 
 	/// <summary>
@@ -199,7 +197,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusFullHouse,
 
 	/// <summary>
@@ -208,7 +206,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleFullHouse,
 
 	/// <summary>
@@ -217,7 +215,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleFullHouse,
 
 	/// <summary>
@@ -226,7 +224,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleFullHouse,
 
 	/// <summary>
@@ -235,7 +233,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleFullHouse,
 
 	/// <summary>
@@ -244,7 +242,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusFullHouse,
 
 	/// <summary>
@@ -253,7 +251,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleFullHouse,
 
 	/// <summary>
@@ -262,7 +260,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingBlock,
 
 	/// <summary>
@@ -271,7 +269,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingBlock,
 
 	/// <summary>
@@ -280,7 +278,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -289,7 +287,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingBlock,
 
 	/// <summary>
@@ -298,7 +296,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -307,7 +305,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingBlock,
 
 	/// <summary>
@@ -316,7 +314,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingBlock,
 
 	/// <summary>
@@ -325,7 +323,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -334,7 +332,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -343,7 +341,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -352,7 +350,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -361,7 +359,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingBlock,
 
 	/// <summary>
@@ -370,7 +368,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -379,7 +377,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingBlock,
 
 	/// <summary>
@@ -388,7 +386,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingBlock,
 
 	/// <summary>
@@ -397,7 +395,7 @@ public enum Technique
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingRow,
 
 	/// <summary>
@@ -406,7 +404,7 @@ public enum Technique
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingRow,
 
 	/// <summary>
@@ -415,7 +413,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingRow,
 
 	/// <summary>
@@ -424,7 +422,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingRow,
 
 	/// <summary>
@@ -433,7 +431,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -442,7 +440,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingRow,
 
 	/// <summary>
@@ -451,7 +449,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingRow,
 
 	/// <summary>
@@ -460,7 +458,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -469,7 +467,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -478,7 +476,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -487,7 +485,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingRow,
 
 	/// <summary>
@@ -496,7 +494,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingRow,
 
 	/// <summary>
@@ -505,7 +503,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -514,7 +512,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingRow,
 
 	/// <summary>
@@ -523,7 +521,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingRow,
 
 	/// <summary>
@@ -532,7 +530,7 @@ public enum Technique
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingColumn,
 
 	/// <summary>
@@ -541,7 +539,7 @@ public enum Technique
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingColumn,
 
 	/// <summary>
@@ -550,7 +548,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -559,7 +557,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingColumn,
 
 	/// <summary>
@@ -568,7 +566,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -577,7 +575,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingColumn,
 
 	/// <summary>
@@ -586,7 +584,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingColumn,
 
 	/// <summary>
@@ -595,7 +593,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -604,7 +602,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -613,7 +611,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -622,7 +620,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -631,7 +629,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingColumn,
 
 	/// <summary>
@@ -640,7 +638,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -649,7 +647,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingColumn,
 
 	/// <summary>
@@ -658,7 +656,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingColumn,
 
 	/// <summary>
@@ -667,7 +665,7 @@ public enum Technique
 	[TechniqueMetadata(
 		5.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingNakedSingle,
 
 	/// <summary>
@@ -676,7 +674,7 @@ public enum Technique
 	[TechniqueMetadata(
 		5.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectIntersectionStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingNakedSingle,
 
 	/// <summary>
@@ -685,7 +683,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairNakedSingle,
 
 	/// <summary>
@@ -694,7 +692,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusNakedSingle,
 
 	/// <summary>
@@ -703,7 +701,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairNakedSingle,
 
 	/// <summary>
@@ -712,7 +710,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairNakedSingle,
 
 	/// <summary>
@@ -721,7 +719,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairNakedSingle,
 
 	/// <summary>
@@ -730,7 +728,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleNakedSingle,
 
 	/// <summary>
@@ -739,7 +737,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusNakedSingle,
 
 	/// <summary>
@@ -748,7 +746,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleNakedSingle,
 
 	/// <summary>
@@ -757,7 +755,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleNakedSingle,
 
 	/// <summary>
@@ -766,7 +764,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleNakedSingle,
 
 	/// <summary>
@@ -775,7 +773,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleNakedSingle,
 
 	/// <summary>
@@ -784,7 +782,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.3, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusNakedSingle,
 
 	/// <summary>
@@ -793,7 +791,7 @@ public enum Technique
 	[TechniqueMetadata(
 		3.7, DifficultyLevel.Moderate, TechniqueGroup.ComplexSingle, typeof(DirectSubsetStep),
 		PencilmarkVisibility = PencilmarkVisibility.Direct, Features = TechniqueFeature.DirectTechniques,
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleNakedSingle,
 	#endregion
 
@@ -842,7 +840,7 @@ public enum Technique
 	[SudokuExplainer(3.0, SudokuExplainerTechnique.NakedPair)]
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
 	NakedPair,
 
 	/// <summary>
@@ -850,7 +848,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
 	NakedPairPlus,
 
 	/// <summary>
@@ -862,7 +860,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Locked_Pair.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Locked_Pair.html"])]
 	LockedPair,
 
 	/// <summary>
@@ -872,7 +870,7 @@ public enum Technique
 	[SudokuExplainer(3.4, SudokuExplainerTechnique.HiddenPair)]
 	[TechniqueMetadata(
 		3.4, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(HiddenSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Pair.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Pair.html"])]
 	HiddenPair,
 
 	/// <summary>
@@ -881,7 +879,7 @@ public enum Technique
 	[Hodoku(Prefix = "0110-2")]
 	[TechniqueMetadata(
 		3.4, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(HiddenSubsetStep),
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPair,
 
 	/// <summary>
@@ -891,7 +889,7 @@ public enum Technique
 	[SudokuExplainer(3.6, SudokuExplainerTechnique.NakedTriplet, Aliases = ["Naked Triplet"])]
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
 	NakedTriple,
 
 	/// <summary>
@@ -899,7 +897,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
 	NakedTriplePlus,
 
 	/// <summary>
@@ -911,7 +909,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Locked_Triple.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Locked_Triple.html"])]
 	LockedTriple,
 
 	/// <summary>
@@ -921,7 +919,7 @@ public enum Technique
 	[SudokuExplainer(4.0, SudokuExplainerTechnique.HiddenTriplet, Aliases = ["Hidden Triplet"])]
 	[TechniqueMetadata(
 		3.4, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(HiddenSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Triple.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Triple.html"])]
 	HiddenTriple,
 
 	/// <summary>
@@ -930,7 +928,7 @@ public enum Technique
 	[Hodoku(Prefix = "0111-2")]
 	[TechniqueMetadata(
 		3.4, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(HiddenSubsetStep),
-		ExtraFactors = [Size, Locked])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTriple,
 
 	/// <summary>
@@ -940,7 +938,7 @@ public enum Technique
 	[SudokuExplainer(5.0, SudokuExplainerTechnique.NakedQuad, Aliases = ["Naked Quad"])]
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
 	NakedQuadruple,
 
 	/// <summary>
@@ -948,7 +946,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.0, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(NakedSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
 	NakedQuadruplePlus,
 
 	/// <summary>
@@ -958,7 +956,7 @@ public enum Technique
 	[SudokuExplainer(5.4, SudokuExplainerTechnique.HiddenQuad, Aliases = ["Hidden Quad"])]
 	[TechniqueMetadata(
 		3.4, DifficultyLevel.Moderate, TechniqueGroup.Subset, typeof(HiddenSubsetStep),
-		ExtraFactors = [Size, Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Quad.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked], Links = ["http://sudopedia.enjoysudoku.com/Hidden_Quad.html"])]
 	HiddenQuadruple,
 	#endregion
 
@@ -973,7 +971,7 @@ public enum Technique
 	[SudokuExplainer(3.2, SudokuExplainerTechnique.XWing)]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://sudopedia.enjoysudoku.com/X-Wing.html", "http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	XWing,
 
@@ -984,7 +982,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [3.4])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -1000,7 +998,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [3.5])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
@@ -1013,7 +1011,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
 	SiameseFinnedXWing,
 
@@ -1022,7 +1020,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseSashimiXWing,
 
 	/// <summary>
@@ -1031,7 +1029,7 @@ public enum Technique
 	[Hodoku(300, HodokuDifficultyLevel.Unfair, Prefix = "0330")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	FrankenXWing,
 
@@ -1041,7 +1039,7 @@ public enum Technique
 	[Hodoku(390, HodokuDifficultyLevel.Unfair, Prefix = "0340")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1054,7 +1052,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SashimiFrankenXWing,
 
@@ -1063,7 +1061,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1076,7 +1074,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseSashimiFrankenXWing,
 
 	/// <summary>
@@ -1085,7 +1083,7 @@ public enum Technique
 	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0350")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	MutantXWing,
 
@@ -1095,7 +1093,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0360")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1108,7 +1106,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SashimiMutantXWing,
 
@@ -1117,7 +1115,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1130,7 +1128,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantXWing,
 
@@ -1141,7 +1139,7 @@ public enum Technique
 	[SudokuExplainer(3.8, SudokuExplainerTechnique.Swordfish)]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Swordfish.html"])]
 	Swordfish,
 
@@ -1152,7 +1150,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [4.0])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -1168,7 +1166,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [4.1])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
@@ -1181,7 +1179,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
 	SiameseFinnedSwordfish,
 
@@ -1190,7 +1188,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseSashimiSwordfish,
 
 	/// <summary>
@@ -1199,7 +1197,7 @@ public enum Technique
 	[Hodoku(350, HodokuDifficultyLevel.Unfair, Prefix = "0331")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1214,7 +1212,7 @@ public enum Technique
 	[Hodoku(410, HodokuDifficultyLevel.Unfair, Prefix = "0341")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1228,7 +1226,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1241,7 +1239,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1255,7 +1253,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1269,7 +1267,7 @@ public enum Technique
 	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0351")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1283,7 +1281,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0361")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1297,7 +1295,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1310,7 +1308,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1324,7 +1322,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1339,7 +1337,7 @@ public enum Technique
 	[SudokuExplainer(5.2, SudokuExplainerTechnique.Jellyfish)]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Jellyfish.html"])]
 	Jellyfish,
 
@@ -1350,7 +1348,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [5.4])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -1366,7 +1364,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [5.6])]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",
@@ -1379,7 +1377,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
 	SiameseFinnedJellyfish,
 
@@ -1388,7 +1386,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Hard, TechniqueGroup.NormalFish, typeof(NormalFishStep),
-		ExtraFactors = [Size, Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi], Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseSashimiJellyfish,
 
 	/// <summary>
@@ -1397,7 +1395,7 @@ public enum Technique
 	[Hodoku(370, HodokuDifficultyLevel.Unfair, Prefix = "0332")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1411,7 +1409,7 @@ public enum Technique
 	[Hodoku(430, HodokuDifficultyLevel.Unfair, Prefix = "0342")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1425,7 +1423,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1438,7 +1436,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1452,7 +1450,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Franken_Fish.html",
@@ -1466,7 +1464,7 @@ public enum Technique
 	[Hodoku(450, HodokuDifficultyLevel.Extreme, Prefix = "0352")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1480,7 +1478,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0362")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1494,7 +1492,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1507,7 +1505,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1521,7 +1519,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Fiendish, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Mutant_Fish.html",
@@ -1586,7 +1584,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0333")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	FrankenSquirmbag,
 
@@ -1596,7 +1594,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0343")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1609,7 +1607,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SashimiFrankenSquirmbag,
 
@@ -1618,7 +1616,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1631,7 +1629,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SiameseSashimiFrankenSquirmbag,
 
@@ -1641,7 +1639,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0353")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	MutantSquirmbag,
 
@@ -1651,7 +1649,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0363")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1664,7 +1662,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SashimiMutantSquirmbag,
 
@@ -1673,7 +1671,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1686,7 +1684,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantSquirmbag,
 
@@ -1747,7 +1745,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0334")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	FrankenWhale,
 
@@ -1757,7 +1755,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0344")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1770,7 +1768,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SashimiFrankenWhale,
 
@@ -1779,7 +1777,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1792,7 +1790,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SiameseSashimiFrankenWhale,
 
@@ -1802,7 +1800,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0354")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	MutantWhale,
 
@@ -1812,7 +1810,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0364")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1825,7 +1823,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SashimiMutantWhale,
 
@@ -1834,7 +1832,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1847,7 +1845,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantWhale,
 
@@ -1906,7 +1904,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0335")]
 	FrankenLeviathan,
@@ -1917,7 +1915,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0345")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1930,7 +1928,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SashimiFrankenLeviathan,
 
@@ -1939,7 +1937,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1952,7 +1950,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Franken_Fish.html"])]
 	SiameseSashimiFrankenLeviathan,
 
@@ -1962,7 +1960,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0355")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		Features = TechniqueFeature.OnlyExistInTheory, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	MutantLeviathan,
 
@@ -1972,7 +1970,7 @@ public enum Technique
 	[Hodoku(470, HodokuDifficultyLevel.Extreme, Prefix = "0365")]
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -1985,7 +1983,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SashimiMutantLeviathan,
 
@@ -1994,7 +1992,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2793",
@@ -2007,7 +2005,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		3.2, DifficultyLevel.Nightmare, TechniqueGroup.ComplexFish, typeof(ComplexFishStep),
-		ExtraFactors = [Size, Sashimi, FishShape, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Sashimi, ExtraDifficultyFactorNames.FishShape, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Mutant_Fish.html"])]
 	SiameseSashimiMutantLeviathan,
 	#endregion
@@ -2023,7 +2021,7 @@ public enum Technique
 	[SudokuExplainer(4.2, SudokuExplainerTechnique.XyWing)]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XY-Wing.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XY-Wing.html"])]
 	XyWing,
 
 	/// <summary>
@@ -2033,7 +2031,7 @@ public enum Technique
 	[SudokuExplainer(4.4, SudokuExplainerTechnique.XyzWing)]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XYZ-Wing.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/XYZ-Wing.html"])]
 	XyzWing,
 
 	/// <summary>
@@ -2043,7 +2041,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.XyzWing, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
 	WxyzWing,
 
 	/// <summary>
@@ -2052,7 +2050,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	VwxyzWing,
 
 	/// <summary>
@@ -2061,7 +2059,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	UvwxyzWing,
 
 	/// <summary>
@@ -2070,7 +2068,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	TuvwxyzWing,
 
 	/// <summary>
@@ -2079,7 +2077,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	StuvwxyzWing,
 
 	/// <summary>
@@ -2088,7 +2086,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	RstuvwxyzWing,
 
 	/// <summary>
@@ -2096,7 +2094,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Hard, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/WXYZ-Wing.html"])]
 	IncompleteWxyzWing,
 
 	/// <summary>
@@ -2104,7 +2102,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		ExtraFactors = [Size, Incompleteness])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteVwxyzWing,
 
 	/// <summary>
@@ -2112,7 +2110,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteUvwxyzWing,
 
 	/// <summary>
@@ -2120,7 +2118,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteTuvwxyzWing,
 
 	/// <summary>
@@ -2128,7 +2126,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteStuvwxyzWing,
 
 	/// <summary>
@@ -2136,7 +2134,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.2, DifficultyLevel.Fiendish, TechniqueGroup.RegularWing, typeof(RegularWingStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size, Incompleteness])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteRstuvwxyzWing,
 	#endregion
 
@@ -2159,7 +2157,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.IrregularWing, typeof(MultiBranchWWingStep),
-		ExtraFactors = [Size], Links = ["http://sudopedia.enjoysudoku.com/W-Wing.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size], Links = ["http://sudopedia.enjoysudoku.com/W-Wing.html"])]
 	MultiBranchWWing,
 
 	/// <summary>
@@ -2237,7 +2235,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [4.5])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		Abbreviation = "ALP", ExtraFactors = [Size, ValueCell],
+		Abbreviation = "ALP", ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedPair,
 
@@ -2247,7 +2245,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [5.2])]
 	[TechniqueMetadata(
 		5.2, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		Abbreviation = "ALT", ExtraFactors = [Size, ValueCell],
+		Abbreviation = "ALT", ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedTriple,
 
@@ -2257,7 +2255,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		Abbreviation = "ALQ", ExtraFactors = [Size, ValueCell], Features = TechniqueFeature.OnlyExistInTheory,
+		Abbreviation = "ALQ", ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell], Features = TechniqueFeature.OnlyExistInTheory,
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadruple,
 
@@ -2267,7 +2265,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		ExtraFactors = [Size, ValueCell],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedTripleValueType,
 
@@ -2277,7 +2275,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AlmostLockedCandidates, typeof(AlmostLockedCandidatesStep),
-		ExtraFactors = [Size, ValueCell],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadrupleValueType,
 	#endregion
@@ -2292,7 +2290,7 @@ public enum Technique
 	[Hodoku(Prefix = "1102", Aliases = ["Subset Counting"])]
 	[TechniqueMetadata(
 		5.5, DifficultyLevel.Fiendish, TechniqueGroup.ExtendedSubsetPrinciple, typeof(ExtendedSubsetPrincipleStep),
-		ExtraFactors = [Size], Abbreviation = "ESP",
+		ExtraFactors = [ExtraDifficultyFactorNames.Size], Abbreviation = "ESP",
 		Links = ["http://sudopedia.enjoysudoku.com/Subset_Counting.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3479"])]
 	ExtendedSubsetPrinciple,
 	#endregion
@@ -2340,7 +2338,7 @@ public enum Technique
 		RatingValueOriginal = [4.5, 4.8], RatingValueAdvanced = [4.6, 4.9])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleType3Step),
-		ExtraFactors = [Size, Hidden],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
@@ -2356,7 +2354,7 @@ public enum Technique
 	[SudokuExplainer(4.5, SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
@@ -2386,7 +2384,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2402,7 +2400,7 @@ public enum Technique
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(HiddenUniqueRectangleStep),
 		Abbreviation = "HUR", SecondarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2428,7 +2426,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2441,7 +2439,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2491,7 +2489,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2504,7 +2502,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2517,7 +2515,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2530,7 +2528,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2591,7 +2589,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2604,7 +2602,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2617,7 +2615,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize],
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2630,7 +2628,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize],
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2643,7 +2641,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize],
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2662,7 +2660,7 @@ public enum Technique
 #if !UNIQUE_RECTANGLE_W_WING
 		Features = TechniqueFeature.NotImplemented,
 #endif
-		ExtraFactors = [Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2675,7 +2673,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleWithSueDeCoqStep),
-		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2724,7 +2722,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [Size, Avoidable, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2737,7 +2735,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalType4Step),
-		ExtraFactors = [Avoidable, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2750,7 +2748,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalTurbotFishStep),
-		ExtraFactors = [Guardian, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2763,7 +2761,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalWWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2776,7 +2774,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2789,7 +2787,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.UniqueRectangle, typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness],
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -2827,7 +2825,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleType3Step),
-		ExtraFactors = [Size, Hidden], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType3,
 
 	/// <summary>
@@ -2844,7 +2843,8 @@ public enum Technique
 	[TechniqueMetadata(
 		4.4, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(HiddenUniqueRectangleStep),
 		Abbreviation = "HAR", SecondarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
-		ExtraFactors = [ConjugatePair, Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	HiddenAvoidableRectangle,
 
 	/// <summary>
@@ -2868,7 +2868,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyWing,
 
 	/// <summary>
@@ -2876,7 +2877,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyzWing,
 
 	/// <summary>
@@ -2884,7 +2886,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithWingStep),
-		ExtraFactors = [Avoidable, WingSize], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWxyzWing,
 
 	/// <summary>
@@ -2898,7 +2901,7 @@ public enum Technique
 #if !UNIQUE_RECTANGLE_W_WING
 		Features = TechniqueFeature.NotImplemented,
 #endif
-		ExtraFactors = [Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWWing,
 
 	/// <summary>
@@ -2906,7 +2909,11 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleWithSueDeCoqStep),
-		ExtraFactors = [Size, Isolated, Cannibalism, Avoidable], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Isolated,
+			ExtraDifficultyFactorNames.Cannibalism, ExtraDifficultyFactorNames.Avoidable
+		],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleSueDeCoq,
 
 	/// <summary>
@@ -2954,7 +2961,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [Size, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType3,
 
 	/// <summary>
@@ -2962,7 +2970,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalType4Step),
-		ExtraFactors = [Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType4,
 
 	/// <summary>
@@ -2970,7 +2979,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.7, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalXyWing,
 
 	/// <summary>
@@ -2978,8 +2988,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalWWingStep),
-		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Guardian, Avoidable, Incompleteness],
-		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		Features = TechniqueFeature.NotImplemented, Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"],
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness])]
 	AvoidableRectangleExternalWWing,
 
 	/// <summary>
@@ -2987,7 +2997,8 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.8, DifficultyLevel.Fiendish, TechniqueGroup.AvoidableRectangle, typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [Guardian, Avoidable, Incompleteness], Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
 
@@ -3001,7 +3012,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType1Step),
-		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType1,
 
 	/// <summary>
@@ -3012,7 +3023,7 @@ public enum Technique
 		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType2Step),
-		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType2,
 
 	/// <summary>
@@ -3023,7 +3034,7 @@ public enum Technique
 		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType3Step),
-		ExtraFactors = [Length, Size], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length, ExtraDifficultyFactorNames.Size], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType3,
 
 	/// <summary>
@@ -3034,7 +3045,7 @@ public enum Technique
 		RatingValueOriginal = [4.6, 5.0], RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.UniqueLoop, typeof(UniqueLoopType4Step),
-		ExtraFactors = [Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType4,
 	#endregion
 
@@ -3050,7 +3061,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType1Step),
-		ExtraFactors = [Size])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType1,
 
 	/// <summary>
@@ -3061,7 +3072,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType2Step),
-		ExtraFactors = [Size])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType2,
 
 	/// <summary>
@@ -3072,7 +3083,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		4.5, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType3Step),
-		ExtraFactors = [Size, ExtraDigit])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ExtraDigit])]
 	ExtendedRectangleType3,
 
 	/// <summary>
@@ -3083,7 +3094,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Hard, TechniqueGroup.ExtendedRectangle, typeof(ExtendedRectangleType4Step),
-		ExtraFactors = [Size])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType4,
 	#endregion
 
@@ -3107,7 +3118,7 @@ public enum Technique
 	[SudokuExplainer(5.7, SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[TechniqueMetadata(
 		5.6, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveType2Step),
-		ExtraFactors = [ExtraDigit],
+		ExtraFactors = [ExtraDifficultyFactorNames.ExtraDigit],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType2,
 
@@ -3117,7 +3128,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.BivalueUniversalGrave, RatingValueOriginal = [5.8, 6.1])]
 	[TechniqueMetadata(
 		5.6, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveType3Step),
-		ExtraFactors = [Size, Hidden],
+		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType3,
 
@@ -3127,7 +3138,7 @@ public enum Technique
 	[SudokuExplainer(5.7, SudokuExplainerTechnique.BivalueUniversalGrave)]
 	[TechniqueMetadata(
 		5.6, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveType4Step),
-		ExtraFactors = [ConjugatePair],
+		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType4,
 
@@ -3137,7 +3148,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.BivalueUniversalGravePlusN, RatingValueAdvanced = [5.7])]
 	[TechniqueMetadata(
 		5.7, DifficultyLevel.Hard, TechniqueGroup.BivalueUniversalGrave, typeof(BivalueUniversalGraveMultipleStep),
-		Abbreviation = "BUG + n", ExtraFactors = [Size],
+		Abbreviation = "BUG + n", ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGravePlusN,
 
@@ -3186,7 +3197,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.0, DifficultyLevel.Fiendish, TechniqueGroup.ReverseBivalueUniversalGrave, typeof(ReverseBivalueUniversalGraveType1Step),
-		ExtraFactors = [Length],
+		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType1,
 
@@ -3195,7 +3206,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.1, DifficultyLevel.Fiendish, TechniqueGroup.ReverseBivalueUniversalGrave, typeof(ReverseBivalueUniversalGraveType2Step),
-		ExtraFactors = [Length],
+		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType2,
 
@@ -3204,7 +3215,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.0, DifficultyLevel.Fiendish, TechniqueGroup.ReverseBivalueUniversalGrave, typeof(ReverseBivalueUniversalGraveType3Step),
-		ExtraFactors = [Length],
+		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType3,
 
@@ -3213,7 +3224,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.3, DifficultyLevel.Fiendish, TechniqueGroup.ReverseBivalueUniversalGrave, typeof(ReverseBivalueUniversalGraveType4Step),
-		ExtraFactors = [Length],
+		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType4,
 	#endregion
@@ -3227,7 +3238,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.5, DifficultyLevel.Fiendish, TechniqueGroup.UniquenessClueCover, typeof(UniquenessClueCoverStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size],
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html", "http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html"])]
 	UniquenessClueCover,
 	#endregion
@@ -3266,7 +3277,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.3, DifficultyLevel.Hard, TechniqueGroup.BorescoperDeadlyPattern, typeof(BorescoperDeadlyPatternType3Step),
-		ExtraFactors = [Size])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	BorescoperDeadlyPatternType3,
 
 	/// <summary>
@@ -3301,7 +3312,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.8, DifficultyLevel.Fiendish, TechniqueGroup.QiuDeadlyPattern, typeof(QiuDeadlyPatternType3Step),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size],
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternType3,
 
@@ -3363,7 +3374,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.3, DifficultyLevel.Fiendish, TechniqueGroup.UniqueMatrix, typeof(UniqueMatrixType3Step),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Size])]
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	UniqueMatrixType3,
 
 	/// <summary>
@@ -3386,7 +3397,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [5.0])]
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.SueDeCoq, typeof(SueDeCoqStep),
-		Abbreviation = "SdC", ExtraFactors = [Isolated, Cannibalism],
+		Abbreviation = "SdC", ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Sue_de_Coq.html",
 			"http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html",
@@ -3401,7 +3412,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueAdvanced = [5.0])]
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.SueDeCoq, typeof(SueDeCoqStep),
-		ExtraFactors = [Isolated, Cannibalism],
+		ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Sue_de_Coq.html",
 			"http://forum.enjoysudoku.com/two-sector-disjoint-subsets-t2033.html",
@@ -3422,7 +3433,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		5.0, DifficultyLevel.Fiendish, TechniqueGroup.SueDeCoq, typeof(SueDeCoqStep),
-		ExtraFactors = [Isolated, Cannibalism], Links = ["http://sudopedia.enjoysudoku.com/Sue_de_Coq.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism], Links = ["http://sudopedia.enjoysudoku.com/Sue_de_Coq.html"])]
 	SueDeCoqCannibalism,
 	#endregion
 
@@ -3478,7 +3489,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		6.0, DifficultyLevel.Fiendish, TechniqueGroup.BivalueOddagon, typeof(BivalueOddagonType3Step),
-		ExtraFactors = [Size], Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Size], Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
 	BivalueOddagonType3,
 	#endregion
 
@@ -3619,7 +3630,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [6.6, 6.9])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		ExtraFactors = [Length], Links = ["http://sudopedia.enjoysudoku.com/X-Chain.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://sudopedia.enjoysudoku.com/X-Chain.html"])]
 	XChain,
 
 	/// <summary>
@@ -3630,7 +3641,7 @@ public enum Technique
 #endif
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length])]
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	YChain,
 
 	/// <summary>
@@ -3640,7 +3651,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [6.5, 6.6], Aliases = ["Bidirectional X-Cycle"])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length],
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Fishy_Cycle.html"])]
 	FishyCycle,
 
@@ -3650,7 +3661,7 @@ public enum Technique
 	[Hodoku(260, HodokuDifficultyLevel.Unfair, Prefix = "0702")]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length], Links = ["http://sudopedia.enjoysudoku.com/XY-Chain.html"])]
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://sudopedia.enjoysudoku.com/XY-Chain.html"])]
 	XyChain,
 
 	/// <summary>
@@ -3659,7 +3670,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [6.6, 7.0])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		ExtraFactors = [Length], Features = TechniqueFeature.NotImplemented)]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.NotImplemented)]
 	XyCycle,
 
 	/// <summary>
@@ -3667,7 +3678,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	XyXChain,
 
 	/// <summary>
@@ -3676,7 +3687,7 @@ public enum Technique
 	[Hodoku(110, HodokuDifficultyLevel.Hard, Prefix = "0703")]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	RemotePair,
 
 	/// <summary>
@@ -3684,7 +3695,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented, ExtraFactors = [Length])]
+		Features = TechniqueFeature.NotImplemented, ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	PurpleCow,
 
 	/// <summary>
@@ -3694,7 +3705,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6], Aliases = ["Forcing Chain"])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Abbreviation = "DNL", ExtraFactors = [Length], Features = TechniqueFeature.NotImplemented,
+		Abbreviation = "DNL", ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?t=2859"])]
 	DiscontinuousNiceLoop,
 
@@ -3705,7 +3716,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.3], Aliases = ["Bidirectional Cycle"])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Abbreviation = "CNL", ExtraFactors = [Length], Links = ["http://sudopedia.enjoysudoku.com/Nice_Loop.html"])]
+		Abbreviation = "CNL", ExtraFactors = [ExtraDifficultyFactorNames.Length], Links = ["http://sudopedia.enjoysudoku.com/Nice_Loop.html"])]
 	ContinuousNiceLoop,
 
 	/// <summary>
@@ -3715,7 +3726,7 @@ public enum Technique
 	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6])]
 	[TechniqueMetadata(
 		4.6, DifficultyLevel.Fiendish, TechniqueGroup.AlternatingInferenceChain, typeof(ForcingChainStep),
-		Abbreviation = "AIC", ExtraFactors = [Length],
+		Abbreviation = "AIC", ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Alternating_Inference_Chain.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3865"])]
 	AlternatingInferenceChain,
 
@@ -3823,7 +3834,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		8.0, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(RegionForcingChainsStep),
-		ExtraFactors = [Length])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	RegionForcingChains,
 
 	/// <summary>
@@ -3833,7 +3844,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		8.0, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(CellForcingChainsStep),
-		ExtraFactors = [Length])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	CellForcingChains,
 
 	/// <summary>
@@ -3843,7 +3854,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		8.5, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(RegionForcingChainsStep),
-		ExtraFactors = [Length], Features = TechniqueFeature.HardToBeGenerated)]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.HardToBeGenerated)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -3853,7 +3864,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		8.5, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(CellForcingChainsStep),
-		ExtraFactors = [Length], Features = TechniqueFeature.HardToBeGenerated)]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.HardToBeGenerated)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -3863,7 +3874,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		9.5, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(BinaryForcingChainsStep),
-		ExtraFactors = [Length], Features = TechniqueFeature.HardToBeGenerated)]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.HardToBeGenerated)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -3873,7 +3884,7 @@ public enum Technique
 	[SudokuExplainer(techniqueDefined: SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		9.5, DifficultyLevel.Nightmare, TechniqueGroup.ForcingChains, typeof(BinaryForcingChainsStep),
-		ExtraFactors = [Length], Features = TechniqueFeature.HardToBeGenerated)]
+		ExtraFactors = [ExtraDifficultyFactorNames.Length], Features = TechniqueFeature.HardToBeGenerated)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -3892,7 +3903,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		8.0, DifficultyLevel.Nightmare, TechniqueGroup.BlossomLoop, typeof(BlossomLoopStep),
-		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [Length],
+		Features = TechniqueFeature.HardToBeGenerated, ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
 	BlossomLoop,
 	#endregion
@@ -4087,7 +4098,7 @@ public enum Technique
 	[Hodoku(360, HodokuDifficultyLevel.Unfair, Prefix = "0904")]
 	[TechniqueMetadata(
 		8.2, DifficultyLevel.Fiendish, TechniqueGroup.DeathBlossom, typeof(DeathBlossomStep),
-		Abbreviation = "DB", ExtraFactors = [Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
+		Abbreviation = "DB", ExtraFactors = [ExtraDifficultyFactorNames.Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	DeathBlossom,
 
 	/// <summary>
@@ -4095,7 +4106,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		8.3, DifficultyLevel.Fiendish, TechniqueGroup.DeathBlossom, typeof(HouseDeathBlossomStep),
-		ExtraFactors = [Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	HouseDeathBlossom,
 
 	/// <summary>
@@ -4103,7 +4114,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		8.5, DifficultyLevel.Nightmare, TechniqueGroup.DeathBlossom, typeof(RectangleDeathBlossomStep),
-		ExtraFactors = [Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	RectangleDeathBlossom,
 
 	/// <summary>
@@ -4111,7 +4122,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		8.7, DifficultyLevel.Nightmare, TechniqueGroup.DeathBlossom, typeof(NTimesAlmostLockedSetDeathBlossomStep),
-		ExtraFactors = [Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Petals], Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	NTimesAlmostLockedSetDeathBlossom,
 	#endregion
 
@@ -4170,7 +4181,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ExocetMirrorConjugatePairStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -4178,7 +4189,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetAdjacentTargetStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -4186,7 +4197,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetIncompatiblePairStep),
-		ExtraFactors = [IncompatiblePair], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.IncompatiblePair], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetIncompatiblePair,
 
 	/// <summary>
@@ -4194,7 +4205,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetTargetPairStep),
-		ExtraFactors = [TargetPair], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.TargetPair], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetTargetPair,
 
 	/// <summary>
@@ -4202,7 +4213,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetGeneralizedFishStep),
-		ExtraFactors = [GeneralizedFish], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.GeneralizedFish], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetGeneralizedFish,
 
 	/// <summary>
@@ -4210,7 +4221,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetMirrorAlmostHiddenSetStep),
-		ExtraFactors = [AlmostHiddenSet], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.AlmostHiddenSet], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorAlmostHiddenSet,
 
 	/// <summary>
@@ -4218,7 +4229,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetLockedMember,
 
 	/// <summary>
@@ -4226,7 +4237,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(JuniorExocetMirrorSyncStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorSync,
 
 	/// <summary>
@@ -4242,7 +4253,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ExocetMirrorConjugatePairStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -4250,7 +4261,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetLockedMember,
 
 	/// <summary>
@@ -4258,7 +4269,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(SeniorExocetTrueBaseStep),
-		ExtraFactors = [TrueBase], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.TrueBase], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetTrueBase,
 
 	/// <summary>
@@ -4266,7 +4277,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.7, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(WeakExocetStep),
-		Abbreviation = "WE", ExtraFactors = [MissingStabilityBalancer],
+		Abbreviation = "WE", ExtraFactors = [ExtraDifficultyFactorNames.MissingStabilityBalancer],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocet,
 
@@ -4275,7 +4286,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.7, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(WeakExocetAdjacentTargetStep),
-		ExtraFactors = [Mirror],
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetAdjacentTarget,
 
@@ -4284,7 +4295,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.7, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(WeakExocetSlashStep),
-		ExtraFactors = [SlashElimination],
+		ExtraFactors = [ExtraDifficultyFactorNames.SlashElimination],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetSlash,
 
@@ -4293,7 +4304,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.7, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(WeakExocetBzRectangleStep),
-		ExtraFactors = [BzRectangle],
+		ExtraFactors = [ExtraDifficultyFactorNames.BzRectangle],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetBzRectangle,
 
@@ -4302,7 +4313,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.7, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(WeakExocetStep),
-		ExtraFactors = [MissingStabilityBalancer],
+		ExtraFactors = [ExtraDifficultyFactorNames.MissingStabilityBalancer],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	LameWeakExocet,
 
@@ -4319,7 +4330,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.8, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetLockedMember,
 
 	/// <summary>
@@ -4327,7 +4338,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.8, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexJuniorExocetAdjacentTargetStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -4335,7 +4346,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.8, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexJuniorExocetMirrorConjugatePairStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -4351,7 +4362,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetLockedMember,
 
 	/// <summary>
@@ -4359,7 +4370,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexJuniorExocetAdjacentTargetStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetAdjacentTarget,
 
 	/// <summary>
@@ -4367,7 +4378,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexJuniorExocetMirrorConjugatePairStep),
-		ExtraFactors = [Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.Mirror], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetMirrorConjugatePair,
 
 	/// <summary>
@@ -4383,7 +4394,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		10.0, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenSeniorExocetLockedMember,
 
 	/// <summary>
@@ -4407,7 +4418,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		10.2, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(ComplexExocetLockedMemberStep),
-		ExtraFactors = [LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantSeniorExocetLockedMember,
 
 	/// <summary>
@@ -4431,7 +4442,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		9.4, DifficultyLevel.Nightmare, TechniqueGroup.Exocet, typeof(DoubleExocetGeneralizedFishStep),
-		ExtraFactors = [GeneralizedFish], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
+		ExtraFactors = [ExtraDifficultyFactorNames.GeneralizedFish], Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	DoubleExocetGeneralizedFish,
 
 	/// <summary>
@@ -4516,7 +4527,7 @@ public enum Technique
 	/// </summary>
 	[TechniqueMetadata(
 		8.0, DifficultyLevel.LastResort, TechniqueGroup.BowmanBingo, typeof(BowmanBingoStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [Length],
+		Features = TechniqueFeature.WillBeReplacedByOtherTechnique, ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Bowman_Bingo.html"])]
 	BowmanBingo,
 	#endregion
