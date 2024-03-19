@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Rating;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents a rating data provider.

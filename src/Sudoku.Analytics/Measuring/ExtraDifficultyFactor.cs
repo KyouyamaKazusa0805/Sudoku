@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Rating;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.

@@ -45,7 +45,7 @@ public sealed partial class BlossomLoopStep(
 	/// <summary>
 	/// Indicates the total length difficulty.
 	/// </summary>
-	private decimal LengthDifficulty => StepRatingHelper.GetExtraDifficultyByLength(Chains.Potentials.Sum(ChainingStep.AncestorsCountOf));
+	private decimal LengthDifficulty => DifficultyMeasuring.GetLengthDifficulty(Chains.Potentials.Sum(ChainingStep.AncestorsCountOf));
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

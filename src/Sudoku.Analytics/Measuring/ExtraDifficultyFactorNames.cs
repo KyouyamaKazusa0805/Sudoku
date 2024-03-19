@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Rating;
+namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.

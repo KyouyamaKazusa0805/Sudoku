@@ -647,6 +647,29 @@
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Helper">
+            <summary>
+            The helper type.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Helper.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="steps">The steps to be calculated.</param>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="N:Sudoku.Analytics.Steps"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Helper.MaxUnsafe``1(``0[],)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Helper.SumUnsafe``1(``0[],)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
+        </member>
         <member name="T:Sudoku.Analytics.Analyzers">
             <summary>
             Represents a list of <see cref="T:Sudoku.Analytics.Analyzer"/> instances that are already configured.
@@ -5358,233 +5381,6 @@
             The generated property declaration for parameter <c>stepSearcherType</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor">
-            <summary>
-            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
-            </summary>
-            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
-            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.#ctor(System.String,System.Decimal)">
-            <summary>
-            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
-            </summary>
-            <param name="FactorName"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></param>
-            <param name="Value"><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.FactorName">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName" path="/summary"/></summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Value">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value" path="/summary"/></summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.ExtraDifficultyFactor.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames">
-            <summary>
-            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Size">
-            <summary>
-            Indicates the kind is the size. This field is used for sized techniques,
-            such as deadly patterns of type 3, naked or hidden subsets, fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ExtraDigit">
-            <summary>
-            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Sashimi">
-            <summary>
-            Indicates the kind is the sashimi. This field is only used for fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.FishShape">
-            <summary>
-            Indicates the kind is the fish shape. This field is only used for complex fishes.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Hidden">
-            <summary>
-            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Locked">
-            <summary>
-            Indicates the kind is the locked. This field is only used for naked subsets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.LockedDigit">
-            <summary>
-            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Length">
-            <summary>
-            Indicates the kind is the length. This field is used for variable-length chaining techniques.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ConjugatePair">
-            <summary>
-            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
-            or advanced Unique Rectangle techniques.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Guardian">
-            <summary>
-            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
-            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Petals">
-            <summary>
-            Indicates the number of petals used in death blossom.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ValueCell">
-            <summary>
-            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.IsGrouped">
-            <summary>
-            Indicates the kind is the pattern use grouped nodes, such as irregular wings and chains.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Incompleteness">
-            <summary>
-            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Avoidable">
-            <summary>
-            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.WingSize">
-            <summary>
-            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
-            or Regular Wing technique itself.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Isolated">
-            <summary>
-            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
-            or Unique Rectangle + Sue de Coq.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Cannibalism">
-            <summary>
-            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.Mirror">
-            <summary>
-            Indicates the kind is the mirror eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.IncompatiblePair">
-            <summary>
-            Indicates the kind is the incompatible pair eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.TargetPair">
-            <summary>
-            Indicates the kind is the target pair eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.GeneralizedFish">
-            <summary>
-            Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.AlmostHiddenSet">
-            <summary>
-            Indicates the kind is the almost hidden set. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.LockedMember">
-            <summary>
-            Indicates the kind is the locked member. This field is only used for exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.TrueBase">
-            <summary>
-            Indicates the kind is the true base. This field is only used for senior exocets and complex senior exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.ExtraHouse">
-            <summary>
-            Indicates the kind is the extra house. This field is only used for complex senior exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.SlashElimination">
-            <summary>
-            Indicates the kind is the slash pattern elimination. This field is only used for weak exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.BzRectangle">
-            <summary>
-            Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Rating.ExtraDifficultyFactorNames.MissingStabilityBalancer">
-            <summary>
-            Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.IRatingDataProvider">
-            <summary>
-            Represents a rating data provider.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.IRatingDataProvider.FactorName">
-            <summary>
-            Indicates the factor name that describes the difficulty of this factor.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Rating.IRatingDataProvider.Value">
-            <summary>
-            Indicates the factor value that describes how difficult the factor is.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Rating.StepRatingHelper">
-            <summary>
-            The helper type that calculates for <see cref="T:Sudoku.Analytics.Step"/> instances.
-            </summary>
-            <see cref="T:Sudoku.Analytics.Step"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.GetExtraDifficultyByLength(System.Int32)">
-            <summary>
-            Get extra difficulty rating for a chain node sequence.
-            </summary>
-            <param name="length">The length.</param>
-            <returns>The difficulty.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
-            <summary>
-            The inner executor to get the difficulty value (total, average).
-            </summary>
-            <param name="steps">The steps to be calculated.</param>
-            <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="N:Sudoku.Analytics.Steps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.MaxUnsafe``1(``0[],)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Rating.StepRatingHelper.SumUnsafe``1(``0[],)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
-        </member>
         <member name="T:Sudoku.Analytics.Step">
             <summary>
             Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
@@ -5651,11 +5447,11 @@
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
             <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>. For property <see cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>,
-            the result is to sum all values up of inner property <see cref="P:Sudoku.Analytics.Rating.ExtraDifficultyFactor.Value"/>.
+            the result is to sum all values up of inner property <see cref="P:Sudoku.Measuring.ExtraDifficultyFactor.Value"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
             <seealso cref="P:Sudoku.Analytics.Step.ExtraDifficultyFactors"/>
-            <seealso cref="T:Sudoku.Analytics.Rating.ExtraDifficultyFactor"/>
+            <seealso cref="T:Sudoku.Measuring.ExtraDifficultyFactor"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Code">
             <summary>
@@ -21196,6 +20992,214 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Where(Sudoku.Analytics.Categorization.TechniqueSet,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="T:Sudoku.Measuring.DifficultyMeasuring">
+            <summary>
+            Represents a factory type that stores a list of commonly-used difficulty-measuring formulas and its corresponding rule name.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.DifficultyMeasuring.GetLengthDifficulty(System.Int32)">
+            <summary>
+            Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
+            </summary>
+            <param name="length">The length of the pattern.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.ExtraDifficultyFactor">
+            <summary>
+            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
+            </summary>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.Value" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.ExtraDifficultyFactor.#ctor(System.String,System.Decimal)">
+            <summary>
+            Defines a pair of data that represents the extra difficulty rating for a technique step, limited by its name and the value.
+            </summary>
+            <param name="FactorName"><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.FactorName" path="/summary"/></param>
+            <param name="Value"><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.Value" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.ExtraDifficultyFactor.FactorName">
+            <summary><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.FactorName" path="/summary"/></summary>
+        </member>
+        <member name="P:Sudoku.Measuring.ExtraDifficultyFactor.Value">
+            <summary><inheritdoc cref="P:Sudoku.Measuring.IRatingDataProvider.Value" path="/summary"/></summary>
+        </member>
+        <member name="M:Sudoku.Measuring.ExtraDifficultyFactor.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Measuring.ExtraDifficultyFactor.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.ExtraDifficultyFactorNames">
+            <summary>
+            Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Size">
+            <summary>
+            Indicates the kind is the size. This field is used for sized techniques,
+            such as deadly patterns of type 3, naked or hidden subsets, fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.ExtraDigit">
+            <summary>
+            Indicates the kind is the extra digit. This field is used for deadly patterns of type 2.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Sashimi">
+            <summary>
+            Indicates the kind is the sashimi. This field is only used for fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.FishShape">
+            <summary>
+            Indicates the kind is the fish shape. This field is only used for complex fishes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Hidden">
+            <summary>
+            Indicates the kind is the hidden. This field is used for some techniques that has hidden views.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Locked">
+            <summary>
+            Indicates the kind is the locked. This field is only used for naked subsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.LockedDigit">
+            <summary>
+            Indicates the kind is the locked digit. This field is only used for Locked Qiu's Deadly Pattern.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Length">
+            <summary>
+            Indicates the kind is the length. This field is used for variable-length chaining techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.ConjugatePair">
+            <summary>
+            Indicates the kind is the conjugate pair. This field is used for deadly patterns of type 4,
+            or advanced Unique Rectangle techniques.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Guardian">
+            <summary>
+            Indicates the kind is the guardian. This field is used for some guardian-related techniques,
+            such as guardian itself, Unique Rectangle + Guardian (i.e. Unique Rectangle External Types).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Petals">
+            <summary>
+            Indicates the number of petals used in death blossom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.ValueCell">
+            <summary>
+            Indicates the kind is the value cell used in the pattern. This field is used for Almost Locked Candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.IsGrouped">
+            <summary>
+            Indicates the kind is the pattern use grouped nodes, such as irregular wings and chains.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Incompleteness">
+            <summary>
+            Indicates the kind is the incompleteness. This field is used for Unique Rectangle incomplete types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Avoidable">
+            <summary>
+            Indicates the kind is the avoidable. This field is used for avoidable rectangles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.WingSize">
+            <summary>
+            Indicates the kind is the wing size. This field is used for Unique Rectangle + Wings,
+            or Regular Wing technique itself.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Isolated">
+            <summary>
+            Indicates the kind is the isolated digits. This field is used for Sue de Coq variant types,
+            or Unique Rectangle + Sue de Coq.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Cannibalism">
+            <summary>
+            Indicates the kind is the cannibalism. This field is used for Sue de Coq variant types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.Mirror">
+            <summary>
+            Indicates the kind is the mirror eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.IncompatiblePair">
+            <summary>
+            Indicates the kind is the incompatible pair eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.TargetPair">
+            <summary>
+            Indicates the kind is the target pair eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.GeneralizedFish">
+            <summary>
+            Indicates the kind is the generalized fish eliminations. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.AlmostHiddenSet">
+            <summary>
+            Indicates the kind is the almost hidden set. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.LockedMember">
+            <summary>
+            Indicates the kind is the locked member. This field is only used for exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.TrueBase">
+            <summary>
+            Indicates the kind is the true base. This field is only used for senior exocets and complex senior exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.ExtraHouse">
+            <summary>
+            Indicates the kind is the extra house. This field is only used for complex senior exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.SlashElimination">
+            <summary>
+            Indicates the kind is the slash pattern elimination. This field is only used for weak exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.BzRectangle">
+            <summary>
+            Indicates the kind is the BZ rectangle pattern elimination. This field is only used for weak exocets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.MissingStabilityBalancer">
+            <summary>
+            Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.IRatingDataProvider">
+            <summary>
+            Represents a rating data provider.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.IRatingDataProvider.FactorName">
+            <summary>
+            Indicates the factor name that describes the difficulty of this factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.IRatingDataProvider.Value">
+            <summary>
+            Indicates the factor value that describes how difficult the factor is.
+            </summary>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
