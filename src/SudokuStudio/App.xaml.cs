@@ -219,24 +219,18 @@ public partial class App : Application
 	/// </summary>
 	private void HandleOnProgramOpeningEntryCase()
 	{
-		switch (AppInstance.GetCurrent().GetActivatedEventArgs())
-		{
-#if false
-			case { Kind: ExtendedActivationKind.Protocol, Data: IProtocolActivatedEventArgs { Uri: _ } }:
-			{
-				break;
-			}
-#endif
-			case
+		var args = AppInstance.GetCurrent().GetActivatedEventArgs();
+		if (args is
 			{
 				Kind: ExtendedActivationKind.File,
-				Data: IFileActivatedEventArgs { Files: [StorageFile { FileType: FileExtensions.Text, Path: var filePath }] }
+				Data: IFileActivatedEventArgs
+				{
+					Files: [StorageFile { FileType: FileExtensions.Text or FileExtensions.PlainText, Path: var filePath }]
+				}
 			}
-			when SudokuFileHandler.Read(filePath) is [var instance, ..]:
-			{
-				AppStartingGridInfo = instance;
-				break;
-			}
+			&& SudokuFileHandler.Read(filePath) is [var instance, ..])
+		{
+			AppStartingGridInfo = instance;
 		}
 	}
 
