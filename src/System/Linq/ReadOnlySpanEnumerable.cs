@@ -290,18 +290,18 @@ public static class ReadOnlySpanEnumerable
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpanOrderedEnumerable<T> OrderBy<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
+	public static SpanOrderedEnumerable<T> OrderBy<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
 		where TKey : IComparable<TKey>
 		=> new(@this, (l, r) => selector(l).CompareTo(selector(r)));
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpanOrderedEnumerable<T> OrderByDescending<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
+	public static SpanOrderedEnumerable<T> OrderByDescending<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
 		where TKey : IComparable<TKey>
 		=> new(@this, (l, r) => -selector(l).CompareTo(selector(r)));
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public static unsafe ReadOnlySpan<ReadOnlySpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
+	public static unsafe ReadOnlySpan<SpanGrouping<TSource, TKey>> GroupBy<TSource, TKey>(this scoped ReadOnlySpan<TSource> values, Func<TSource, TKey> keySelector)
 		where TKey : notnull, IEquatable<TKey>
 	{
 		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
@@ -314,7 +314,7 @@ public static class ReadOnlySpanEnumerable
 			}
 		}
 
-		var result = new List<ReadOnlySpanGrouping<TSource, TKey>>(tempDictionary.Count);
+		var result = new List<SpanGrouping<TSource, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
 			var tempValues = tempDictionary[key];

@@ -15,14 +15,14 @@ namespace System.Linq;
 [GetHashCode]
 [ToString]
 [EqualityOperators]
-public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
+public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
 ) :
 	IEnumerable<TSource>,
-	IEqualityOperators<ReadOnlySpanGrouping<TSource, TKey>, ReadOnlySpanGrouping<TSource, TKey>, bool>,
-	IEquatable<ReadOnlySpanGrouping<TSource, TKey>>,
+	IEqualityOperators<SpanGrouping<TSource, TKey>, SpanGrouping<TSource, TKey>, bool>,
+	IEquatable<SpanGrouping<TSource, TKey>>,
 	IGrouping<TKey, TSource>,
 	IReadOnlyCollection<TSource>
 	where TKey : notnull, IEquatable<TKey>
@@ -61,7 +61,7 @@ public readonly unsafe partial struct ReadOnlySpanGrouping<TSource, TKey>(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ReadOnlySpanGrouping<TSource, TKey> other)
+	public bool Equals(SpanGrouping<TSource, TKey> other)
 		=> _elements == other._elements && Length == other.Length && Key.Equals(other.Key);
 
 	/// <summary>

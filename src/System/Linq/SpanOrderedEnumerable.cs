@@ -14,7 +14,7 @@ namespace System.Linq;
 [GetHashCode]
 [ToString]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly ref partial struct ReadOnlySpanOrderedEnumerable<T>(
+public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
 	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
 )
@@ -97,16 +97,16 @@ public readonly ref partial struct ReadOnlySpanOrderedEnumerable<T>(
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
+	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
 		=> new(_values, [.. _selectors, (l, r) => selector(l).CompareTo(selector(r))]);
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
+	public SpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
 		=> new(_values, [.. _selectors, (l, r) => -selector(l).CompareTo(selector(r))]);
 
 	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
-	public unsafe ReadOnlySpan<ReadOnlySpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector)
+	public unsafe ReadOnlySpan<SpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector)
 		where TKey : notnull, IEquatable<TKey>
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
@@ -119,7 +119,7 @@ public readonly ref partial struct ReadOnlySpanOrderedEnumerable<T>(
 			}
 		}
 
-		var result = new List<ReadOnlySpanGrouping<T, TKey>>(tempDictionary.Count);
+		var result = new List<SpanGrouping<T, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
 			var tempValues = tempDictionary[key];

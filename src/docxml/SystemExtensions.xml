@@ -2904,7 +2904,7 @@
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
-        <member name="T:System.Linq.ReadOnlySpanGrouping`2">
+        <member name="T:System.Linq.SpanGrouping`2">
             <summary>
             Represents a type that enumerates elements of type <typeparamref name="TSource"/> in a <see cref="T:System.ReadOnlySpan`1"/>,
             grouped by the specified key of type <typeparamref name="TKey"/>.
@@ -2915,7 +2915,7 @@
             <param name="length">Indicates the length of elements stored in this collection.</param>
             <param name="key">Indicates the key that can compare each element.</param>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.#ctor(`0*,System.Int32,`1)">
+        <member name="M:System.Linq.SpanGrouping`2.#ctor(`0*,System.Int32,`1)">
             <summary>
             Represents a type that enumerates elements of type <typeparamref name="TSource"/> in a <see cref="T:System.ReadOnlySpan`1"/>,
             grouped by the specified key of type <typeparamref name="TKey"/>.
@@ -2926,26 +2926,26 @@
             <param name="length">Indicates the length of elements stored in this collection.</param>
             <param name="key">Indicates the key that can compare each element.</param>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanGrouping`2.System#Collections#Generic#IReadOnlyCollection{TSource}#Count">
+        <member name="P:System.Linq.SpanGrouping`2.System#Collections#Generic#IReadOnlyCollection{TSource}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanGrouping`2.SourceSpan">
+        <member name="P:System.Linq.SpanGrouping`2.SourceSpan">
             <summary>
-            Creates a <see cref="T:System.ReadOnlySpan`1"/> instance that is aligned as <see cref="F:System.Linq.ReadOnlySpanGrouping`2._elements"/>.
+            Creates a <see cref="T:System.ReadOnlySpan`1"/> instance that is aligned as <see cref="F:System.Linq.SpanGrouping`2._elements"/>.
             </summary>
-            <seealso cref="F:System.Linq.ReadOnlySpanGrouping`2._elements"/>
+            <seealso cref="F:System.Linq.SpanGrouping`2._elements"/>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanGrouping`2.Item(System.Int32)">
+        <member name="P:System.Linq.SpanGrouping`2.Item(System.Int32)">
             <summary>
             Gets the element at the specified index.
             </summary>
             <param name="index">The desired index.</param>
             <returns>The reference to the element at the specified index.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.Equals(System.Linq.ReadOnlySpanGrouping{`0,`1})">
+        <member name="M:System.Linq.SpanGrouping`2.Equals(System.Linq.SpanGrouping{`0,`1})">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.Select``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.SpanGrouping`2.Select``1(System.Func{`0,``0})">
             <summary>
             Projects elements into a new form.
             </summary>
@@ -2953,59 +2953,59 @@
             <param name="selector">The selector method that transform the object into new one.</param>
             <returns>A list of <typeparamref name="TResult"/> values.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.Where(System.Func{`0,System.Boolean})">
+        <member name="M:System.Linq.SpanGrouping`2.Where(System.Func{`0,System.Boolean})">
             <summary>
             Filters the collection, only reserving elements satisfying the specified condition.
             </summary>
             <param name="predicate">The condition that checks for each element.</param>
             <returns>A list of <typeparamref name="TSource"/> elements satisfying the condition.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.GetEnumerator">
+        <member name="M:System.Linq.SpanGrouping`2.GetEnumerator">
             <summary>
             Creates an enumerator that can enumerate each element in the source collection.
             </summary>
             <returns>An enumerator instance.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.GetPinnableReference">
+        <member name="M:System.Linq.SpanGrouping`2.GetPinnableReference">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.System#Collections#IEnumerable#GetEnumerator">
+        <member name="M:System.Linq.SpanGrouping`2.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.System#Collections#Generic#IEnumerable{TSource}#GetEnumerator">
+        <member name="M:System.Linq.SpanGrouping`2.System#Collections#Generic#IEnumerable{TSource}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="F:System.Linq.ReadOnlySpanGrouping`2._elements">
+        <member name="F:System.Linq.SpanGrouping`2._elements">
             <summary>
             The generated field declaration for parameter <c>elements</c>.
             </summary>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanGrouping`2.Length">
+        <member name="P:System.Linq.SpanGrouping`2.Length">
             <summary>
             The generated property declaration for parameter <c>length</c>.
             </summary>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanGrouping`2.Key">
+        <member name="P:System.Linq.SpanGrouping`2.Key">
             <summary>
             The generated property declaration for parameter <c>key</c>.
             </summary>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.Equals(System.Object)">
+        <member name="M:System.Linq.SpanGrouping`2.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.GetHashCode">
+        <member name="M:System.Linq.SpanGrouping`2.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.ToString">
+        <member name="M:System.Linq.SpanGrouping`2.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.op_Equality(System.Linq.ReadOnlySpanGrouping{`0,`1},System.Linq.ReadOnlySpanGrouping{`0,`1})">
+        <member name="M:System.Linq.SpanGrouping`2.op_Equality(System.Linq.SpanGrouping{`0,`1},System.Linq.SpanGrouping{`0,`1})">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanGrouping`2.op_Inequality(System.Linq.ReadOnlySpanGrouping{`0,`1},System.Linq.ReadOnlySpanGrouping{`0,`1})">
+        <member name="M:System.Linq.SpanGrouping`2.op_Inequality(System.Linq.SpanGrouping{`0,`1},System.Linq.SpanGrouping{`0,`1})">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:System.Linq.ReadOnlySpanOrderedEnumerable`1">
+        <member name="T:System.Linq.SpanOrderedEnumerable`1">
             <summary>
             Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
@@ -3015,7 +3015,7 @@
             Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
             </param>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.Func{`0,`0,System.Int32}[])">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.Func{`0,`0,System.Int32}[])">
             <summary>
             Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
@@ -3025,21 +3025,21 @@
             Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
             </param>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.Length">
+        <member name="P:System.Linq.SpanOrderedEnumerable`1.Length">
             <summary>
             Indicates the number of elements stored in the collection.
             </summary>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.OrderedSpan">
+        <member name="P:System.Linq.SpanOrderedEnumerable`1.OrderedSpan">
             <summary>
             Creates an ordered <see cref="T:System.Span`1"/> instance.
             </summary>
             <returns>An ordered <see cref="T:System.Span`1"/> instance, whose value is from the current enumerable instance.</returns>
         </member>
-        <member name="P:System.Linq.ReadOnlySpanOrderedEnumerable`1.Item(System.Int32)">
+        <member name="P:System.Linq.SpanOrderedEnumerable`1.Item(System.Int32)">
             <inheritdoc cref="P:System.ReadOnlySpan`1.Item(System.Int32)"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Select``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.Select``1(System.Func{`0,``0})">
             <summary>
             Projects each element into a new transform.
             </summary>
@@ -3047,42 +3047,42 @@
             <param name="selector">The selector to be used by transforming the <typeparamref name="T"/> instances.</param>
             <returns>A span of <typeparamref name="TResult"/> values.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Where(System.Func{`0,System.Boolean})">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.Where(System.Func{`0,System.Boolean})">
             <summary>
             Filters the collection using the specified condition.
             </summary>
             <param name="condition">The condition to be used.</param>
             <returns>A span of <typeparamref name="T"/> instances.</returns>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GetEnumerator">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
         </member>
-        <member name="F:System.Linq.ReadOnlySpanOrderedEnumerable`1._values">
+        <member name="F:System.Linq.SpanOrderedEnumerable`1._values">
             <summary>
             The generated field declaration for parameter <c>values</c>.
             </summary>
         </member>
-        <member name="F:System.Linq.ReadOnlySpanOrderedEnumerable`1._selectors">
+        <member name="F:System.Linq.SpanOrderedEnumerable`1._selectors">
             <summary>
             The generated field declaration for parameter <c>selectors</c>.
             </summary>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.Equals(System.Object)">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.GetHashCode">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:System.Linq.ReadOnlySpanOrderedEnumerable`1.ToString">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:System.Linq.StringEnumerable">
