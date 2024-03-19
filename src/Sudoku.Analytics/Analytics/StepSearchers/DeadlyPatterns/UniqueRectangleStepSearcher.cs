@@ -4212,7 +4212,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 					foreach (var otherCellInWeakLinkHouse in otherCellsInWeakLinkHouse)
 					{
-						foreach (var strongLinkHouse in (otherCellInWeakLinkHouse.AsCellMap()).Houses)
+						foreach (var strongLinkHouse in otherCellInWeakLinkHouse.AsCellMap().Houses)
 						{
 							if ((HousesMap[strongLinkHouse] & CandidatesMap[guardianDigit]) - otherCellInWeakLinkHouse is not [var finalCell])
 							{
