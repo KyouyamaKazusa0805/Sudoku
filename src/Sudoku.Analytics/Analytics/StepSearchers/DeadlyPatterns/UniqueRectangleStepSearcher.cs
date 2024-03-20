@@ -2687,6 +2687,15 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							continue;
 						}
 
+						// The burred subset must contain 1 digit that is UR digit.
+						var onlyDigit = (Mask)(subsetDigitsMask & comparer);
+						if (!IsPow2((uint)onlyDigit))
+						{
+							continue;
+						}
+
+						var elimDigit = Log2((uint)onlyDigit);
+
 						// Check whether the extra cells holds all possible digits appeared in 'thisCorner',
 						// with UR digits having been removed.
 						if ((subsetDigitsMask & otherDigits) != otherDigits)
@@ -2733,7 +2742,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 						accumulator.Add(
 							new UniqueRectangleBurredSubsetStep(
-								[.. from digit in elimDigitsMask select new Conclusion(Elimination, elimCorner, digit)],
+								[new(Elimination, elimCorner, elimDigit)],
 								[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
 								context.PredefinedOptions,
 								d1,
