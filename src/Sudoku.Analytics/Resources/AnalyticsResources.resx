@@ -2919,4 +2919,7 @@ Error grid: '{0:#}'</value>
   <data name="UniqueRectangleBurredSubset" xml:space="preserve">
     <value>Unique Rectangle Burred Subset</value>
   </data>
+  <data name="TechniqueFormat_UniqueRectangleBurredSubsetStep" xml:space="preserve">
+    <value>Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms</value>
+  </data>
 </root>

@@ -3028,6 +3028,10 @@
   <data name="EliminationCountConstraint" xml:space="preserve">
     <value>删数数量：一个{3}步骤需要有 {0} {1} 个删数结论{2}</value>
   </data>
+  <data name="UniqueRectangleBurredSubset" xml:space="preserve">
+    <value>唯一矩形・毛刺数组</value>
+    <comment>Technique Name</comment>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3109,8 +3113,7 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="UniqueRectangleBurredSubset" xml:space="preserve">
-    <value>唯一矩形・毛刺数组</value>
-    <comment>Technique Name</comment>
+  <data name="TechniqueFormat_UniqueRectangleBurredSubsetStep" xml:space="preserve">
+    <value>要么 {0} 的数字 {1} 构成 UR，要么 {2} 构成关于 {3} 的数组</value>
   </data>
 </root>

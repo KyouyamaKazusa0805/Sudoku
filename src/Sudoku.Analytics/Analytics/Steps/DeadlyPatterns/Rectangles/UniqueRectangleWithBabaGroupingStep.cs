@@ -46,7 +46,5 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 
 	private string TargetCellStr => Options.Converter.CellConverter([TargetCell]);
 
-	private string DigitsStr => Options.Converter.DigitConverter((Mask)(1 << Digit1 | 1 << Digit2));
-
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

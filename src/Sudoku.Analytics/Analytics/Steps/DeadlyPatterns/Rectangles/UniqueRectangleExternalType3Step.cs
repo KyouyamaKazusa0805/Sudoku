@@ -54,11 +54,11 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, DigitsStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, SubsetCellsStr])
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, SubsetDigitsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsStr, SubsetCellsStr])
 		];
 
-	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
+	private string SubsetDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string SubsetCellsStr => Options.Converter.CellConverter(SubsetCells);
 }

@@ -52,11 +52,11 @@ public sealed partial class UniqueRectangleType3Step(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, DigitsStr, OnlyKeyword, CellsStr, HouseStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, DigitsStr, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeyword, CellsStr, HouseStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
 		];
 
-	private string DigitsStr => Options.Converter.DigitConverter(ExtraDigitsMask);
+	private string SubsetDigitsMask => Options.Converter.DigitConverter(ExtraDigitsMask);
 
 	private string OnlyKeyword => IsNaked ? string.Empty : "only ";
 

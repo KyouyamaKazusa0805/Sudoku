@@ -13854,10 +13854,12 @@ if (student is (name: var name, age: >= 18))
             <param name="digit1"><inheritdoc/></param>
             <param name="digit2"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
-            <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells used.</param>
+            <param name="subsetIncludedCorner">Indicates the subset-included corner cell.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Burred Subset</b> technique.
             </summary>
@@ -13867,8 +13869,34 @@ if (student is (name: var name, age: >= 18))
             <param name="digit1"><inheritdoc/></param>
             <param name="digit2"><inheritdoc/></param>
             <param name="cells"><inheritdoc/></param>
-            <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
+            <param name="extraCells">Indicates the extra cells used.</param>
+            <param name="subsetIncludedCorner">Indicates the subset-included corner cell.</param>
+            <param name="extraDigitsMask">Indicates the extra digits used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraDifficultyFactors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraCells">
+            <summary>
+            The generated property declaration for parameter <c>extraCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.SubsetIncludedCorner">
+            <summary>
+            The generated property declaration for parameter <c>subsetIncludedCorner</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>extraDigitsMask</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep">
             <summary>
@@ -25326,6 +25354,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangle2DOr3XStep">
             <summary>
               Looks up a localized string similar to Digits {0} and {1} in {2}, with X = {3}, Y = {4} and a bi-value cell {5}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleBurredSubsetStep">
+            <summary>
+              Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep">

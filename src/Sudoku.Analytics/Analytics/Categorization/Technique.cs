@@ -2656,7 +2656,7 @@ public enum Technique
 	/// Indicates unique rectangle burred subset.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimarySupportedType = typeof(UniqueRectangleBurredSubsetStep), ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",

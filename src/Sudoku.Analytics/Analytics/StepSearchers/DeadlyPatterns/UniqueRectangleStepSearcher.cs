@@ -2642,16 +2642,112 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		int index
 	)
 	{
-		var digitsMask1 = grid.GetCandidates(otherCellsMap[0]);
-		var digitsMask2 = grid.GetCandidates(otherCellsMap[1]);
-		if ((Mask)(digitsMask1 & digitsMask2) != comparer)
+		// Deconstruct the other cells, determining whether they holds a same two digits.
+		if (otherCellsMap is not [var c1, var c2]
+			|| grid.GetCandidates(c1) is var digitsMask1 && grid.GetCandidates(c2) is var digitsMask2
+			&& (digitsMask1 != comparer || digitsMask2 != comparer))
 		{
 			return;
 		}
 
-		foreach (var (thisExtraCell, otherExtraCell) in ((otherCellsMap[0], otherCellsMap[1]), (otherCellsMap[1], otherCellsMap[0])))
+		// Check whether corner cells hold both digits.
+		if (grid.GetCandidates(corner1) is var digitsMaskCorner1 && grid.GetCandidates(corner2) is var digitsMaskCorner2
+			&& (Mask)(digitsMaskCorner1 & digitsMaskCorner2) != comparer)
 		{
+			return;
+		}
 
+		// Determine whether a corner holds both and only two digits.
+		if (digitsMaskCorner1 == comparer || digitsMaskCorner2 == comparer)
+		{
+			return;
+		}
+
+		// Iterate on each combination of corner cells, determining the final cell as conclusion producer.
+		foreach (var house in (corner1.AsCellMap() + corner2).SharedHouses)
+		{
+			var extraCells = (HousesMap[house] & EmptyCells) - corner1 - corner2;
+			for (var size = 2; size <= extraCells.Count - 1; size++)
+			{
+				foreach (var (thisCorner, elimCorner) in ((corner1, corner2), (corner2, corner1)))
+				{
+					var otherDigits = (Mask)(grid.GetCandidates(thisCorner) & (Mask)~comparer);
+					if (otherDigits == 0)
+					{
+						// There is not necessary to determine the pattern because 3 of 4 cells are only two digits.
+						return;
+					}
+
+					foreach (ref readonly var subsetCells in extraCells.GetSubsets(size))
+					{
+						// Determine whether the 'size' cells contain 'size + 1' digits.
+						var subsetDigitsMask = grid[in subsetCells];
+						if (PopCount((uint)subsetDigitsMask) != size + 1)
+						{
+							continue;
+						}
+
+						// Check whether the extra cells holds all possible digits appeared in 'thisCorner',
+						// with UR digits having been removed.
+						if ((subsetDigitsMask & otherDigits) != otherDigits)
+						{
+							continue;
+						}
+
+						// Check whether the other side 'elimCorner' contains elimination digit.
+						var elimDigitsMask = (Mask)(grid.GetCandidates(elimCorner) & subsetDigitsMask);
+						if (elimDigitsMask == 0)
+						{
+							// No elimination exists.
+							continue;
+						}
+
+						var candidateOffsets = new List<CandidateViewNode>();
+						foreach (var cell in otherCellsMap)
+						{
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+							}
+						}
+						foreach (var digit in grid.GetCandidates(thisCorner))
+						{
+							candidateOffsets.Add(
+								new(
+									(comparer >> digit & 1) != 0 ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1,
+									thisCorner * 9 + digit
+								)
+							);
+						}
+						foreach (var digit in (Mask)(grid.GetCandidates(elimCorner) & comparer))
+						{
+							candidateOffsets.Add(new(ColorIdentifier.Normal, elimCorner * 9 + digit));
+						}
+						foreach (var cell in subsetCells)
+						{
+							foreach (var digit in grid.GetCandidates(cell))
+							{
+								candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+							}
+						}
+
+						accumulator.Add(
+							new UniqueRectangleBurredSubsetStep(
+								[.. from digit in elimDigitsMask select new Conclusion(Elimination, elimCorner, digit)],
+								[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
+								context.PredefinedOptions,
+								d1,
+								d2,
+								(CellMap)urCells,
+								index,
+								in subsetCells,
+								thisCorner,
+								subsetDigitsMask
+							)
+						);
+					}
+				}
+			}
 		}
 	}
 

@@ -69,11 +69,11 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, DigitsStr])
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask])
 		];
 
 	private string MergedCellsStr => Options.Converter.CellConverter(LineCells | BlockCells);
 
-	private string DigitsStr => Options.Converter.DigitConverter((Mask)(LineMask | BlockMask));
+	private string SueDeCoqDigitsMask => Options.Converter.DigitConverter((Mask)(LineMask | BlockMask));
 }

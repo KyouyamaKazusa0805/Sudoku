@@ -7237,6 +7237,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Either a UR in cells {0} of digits {1} forms, or a subset in cells {2} of digits {3} forms.
+        /// </summary>
+        public static string TechniqueFormat_UniqueRectangleBurredSubsetStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_UniqueRectangleBurredSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Digits {0} and {1} in {2} with a guardian in cells {3}, with external ALS {4}.
         /// </summary>
         public static string TechniqueFormat_UniqueRectangleExternalAlmostLockedSetsXzStep {

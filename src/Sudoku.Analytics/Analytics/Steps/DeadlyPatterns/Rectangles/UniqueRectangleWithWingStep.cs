@@ -48,11 +48,11 @@ public sealed partial class UniqueRectangleWithWingStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
-			new(EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr]),
-			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, DigitsStr])
+			new(EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr]),
+			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr])
 		];
 
 	private string BranchesStr => Options.Converter.CellConverter(Branches);
 
-	private string DigitsStr => Options.Converter.DigitConverter(ExtraDigitsMask);
+	private string SubsetDigitsStr => Options.Converter.DigitConverter(ExtraDigitsMask);
 }
