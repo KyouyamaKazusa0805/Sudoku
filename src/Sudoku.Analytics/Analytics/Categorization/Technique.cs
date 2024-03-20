@@ -2524,7 +2524,8 @@ public enum Technique
 	/// Indicates unique rectangle + 3X / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2537,7 +2538,8 @@ public enum Technique
 	/// Indicates unique rectangle + 3N / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2550,7 +2552,8 @@ public enum Technique
 	/// Indicates unique rectangle + 3U / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2563,7 +2566,8 @@ public enum Technique
 	/// Indicates unique rectangle + 3E / 2SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2624,7 +2628,8 @@ public enum Technique
 	/// Indicates unique rectangle + 4X / 3SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2637,7 +2642,8 @@ public enum Technique
 	/// Indicates unique rectangle + 4C / 3SL.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
+		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithConjugatePairStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2647,10 +2653,24 @@ public enum Technique
 	UniqueRectangle4C3,
 
 	/// <summary>
+	/// Indicates unique rectangle burred subset.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleBurredSubsetStep), ExtraFactors = [ExtraDifficultyFactorNames.Size],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
+		])]
+	UniqueRectangleBurredSubset,
+
+	/// <summary>
 	/// Indicates unique rectangle-XY-Wing.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
+		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2663,7 +2683,8 @@ public enum Technique
 	/// Indicates unique rectangle-XYZ-Wing.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
+		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -2676,7 +2697,8 @@ public enum Technique
 	/// Indicates unique rectangle-WXYZ-Wing.
 	/// </summary>
 	[TechniqueMetadata(
-		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle, PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
+		Rating = 4.5, DifficultyLevel = DifficultyLevel.Hard, ContainingGroup = TechniqueGroup.UniqueRectangle,
+		PrimarySupportedType = typeof(UniqueRectangleWithWingStep),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",

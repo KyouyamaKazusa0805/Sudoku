@@ -8083,6 +8083,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Unique Rectangle Burred Subset.
+        /// </summary>
+        public static string UniqueRectangleBurredSubset {
+            get {
+                return ResourceManager.GetString("UniqueRectangleBurredSubset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Unique Rectangle External Almost Locked Sets XZ Rule.
         /// </summary>
         public static string UniqueRectangleExternalAlmostLockedSetsXz {

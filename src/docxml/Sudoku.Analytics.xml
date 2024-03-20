@@ -2355,6 +2355,11 @@
             Indicates unique rectangle + 4C / 3SL.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleBurredSubset">
+            <summary>
+            Indicates unique rectangle burred subset.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.UniqueRectangleXyWing">
             <summary>
             Indicates unique rectangle-XY-Wing.
@@ -8008,7 +8013,7 @@ if (student is (name: var name, age: >= 18))
             </list>
             </item>
             <item>
-            Constructed types:
+            Other types:
             <list type="bullet">
             <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
             <item>Avoidable Rectangle + Hidden Single</item>
@@ -8026,12 +8031,19 @@ if (student is (name: var name, age: >= 18))
             <item>Unique Rectangle External Turbot Fish</item>
             </list>
             </item>
+            <item>
+            Unique Rectangle burred types:
+            <list type="bullet">
+            <item>Unique Rectangle Burred Subset</item>
+            </list>
+            </item>
             </list>
             </item>
             <item>
-            Miscellaneous types:
+            Miscellaneous:
             <list type="bullet">
             <item>Unique Rectangle 2D, 3X</item>
+            <!--<item>Avoidable Rectangle 2D, 3X</item>-->
             </list>
             </item>
             </list>
@@ -8533,6 +8545,33 @@ if (student is (name: var name, age: >= 18))
              abz       abw
             ]]></code>
             </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckBurredSubset(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check burred subset.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The pattern:
+            <code><![CDATA[
+             ↓ corner1, corner2
+            (abx) | (abcd) cde cde
+             ab   |  ab
+            ]]></code>
+            where the digits <c>x</c> may not be used. However, if all digits <c>x</c> are false,
+            the UR pattern will be degenerated into type 1, and the normal subset with digits <c>c, d, e</c> will be formed.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckRegularWing(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean)">
@@ -13776,6 +13815,60 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>xyCell</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleBurredStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Burred</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Burred</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="code"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Burred Subset</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+            <summary>
+            Provides with a step that is a <b>Unique Rectangle Burred Subset</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="digit1"><inheritdoc/></param>
+            <param name="digit2"><inheritdoc/></param>
+            <param name="cells"><inheritdoc/></param>
+            <param name="isAvoidable"><inheritdoc/></param>
+            <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep">
             <summary>
@@ -25703,6 +25796,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBabaGrouping">
             <summary>
               Looks up a localized string similar to Unique Rectangle Baba Grouping.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleBurredSubset">
+            <summary>
+              Looks up a localized string similar to Unique Rectangle Burred Subset.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.UniqueRectangleExternalAlmostLockedSetsXz">

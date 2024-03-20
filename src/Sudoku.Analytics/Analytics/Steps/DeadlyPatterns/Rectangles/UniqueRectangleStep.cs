@@ -48,7 +48,7 @@ public abstract partial class UniqueRectangleStep(
 
 
 	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Step? other)
+	public sealed override bool Equals([NotNullWhen(true)] Step? other)
 	{
 		if (other is not UniqueRectangleStep comparer)
 		{
@@ -66,7 +66,7 @@ public abstract partial class UniqueRectangleStep(
 	}
 
 	/// <inheritdoc/>
-	public override int CompareTo(Step? other)
+	public sealed override int CompareTo(Step? other)
 		=> other is UniqueRectangleStep comparer
 			? Math.Sign(Code - comparer.Code) switch { 0 => Math.Sign(AbsoluteOffset - comparer.AbsoluteOffset), var result => result }
 			: 1;

@@ -16,7 +16,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </item>
 /// <item>
-/// Constructed types:
+/// Other types:
 /// <list type="bullet">
 /// <item>Unique Rectangle + Conjugate Pair (also called "Unique Rectangle + Strong Link")</item>
 /// <item>Avoidable Rectangle + Hidden Single</item>
@@ -34,34 +34,58 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Unique Rectangle External Turbot Fish</item>
 /// </list>
 /// </item>
+/// <item>
+/// Unique Rectangle burred types:
+/// <list type="bullet">
+/// <item>Unique Rectangle Burred Subset</item>
+/// </list>
+/// </item>
 /// </list>
 /// </item>
 /// <item>
-/// Miscellaneous types:
+/// Miscellaneous:
 /// <list type="bullet">
 /// <item>Unique Rectangle 2D, 3X</item>
+/// <!--<item>Avoidable Rectangle 2D, 3X</item>-->
 /// </list>
 /// </item>
 /// </list>
 /// </summary>
 [StepSearcher(
+	// Basic types (Avoidable rectangle lacks type 4 and 6)
 	Technique.UniqueRectangleType1, Technique.UniqueRectangleType2, Technique.UniqueRectangleType3, Technique.UniqueRectangleType4,
-	Technique.UniqueRectangleType5, Technique.UniqueRectangleType6, Technique.HiddenUniqueRectangle, Technique.HiddenAvoidableRectangle,
-	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2, Technique.UniqueRectangleExternalType3,
-	Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing, Technique.UniqueRectangleExternalTurbotFish,
-	Technique.UniqueRectangleExternalWWing, Technique.UniqueRectangleExternalAlmostLockedSetsXz, Technique.UniqueRectangleBabaGrouping,
-	Technique.UniqueRectangleSueDeCoq, Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
-	Technique.UniqueRectangleWWing, Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2,
-	Technique.UniqueRectangle3N2, Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X, Technique.UniqueRectangle3X1L,
-	Technique.UniqueRectangle3X1U, Technique.UniqueRectangle3X2, Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X1L,
-	Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L, Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
-	Technique.AvoidableRectangleType1, Technique.AvoidableRectangleType2, Technique.AvoidableRectangleType3, Technique.AvoidableRectangleType5,
-	Technique.AvoidableRectangleExternalType1, Technique.AvoidableRectangleExternalType2, Technique.AvoidableRectangleExternalType3,
-	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
-	Technique.AvoidableRectangleExternalAlmostLockedSetsXz, Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
+	Technique.UniqueRectangleType5, Technique.UniqueRectangleType6, Technique.HiddenUniqueRectangle,
+	Technique.AvoidableRectangleType1, Technique.AvoidableRectangleType2, Technique.AvoidableRectangleType3,
+	Technique.AvoidableRectangleType5, Technique.HiddenAvoidableRectangle,
+
+	// Strong-link types (Conjugate pair types)
+	Technique.UniqueRectangle2B1, Technique.UniqueRectangle2D1, Technique.UniqueRectangle3E2, Technique.UniqueRectangle3N2,
+	Technique.UniqueRectangle3U2, Technique.UniqueRectangle3X1L, Technique.UniqueRectangle3X1U, Technique.UniqueRectangle3X2,
+	Technique.UniqueRectangle4C3, Technique.UniqueRectangle4X1L, Technique.UniqueRectangle4X1U, Technique.UniqueRectangle4X2L,
+	Technique.UniqueRectangle4X2U, Technique.UniqueRectangle4X3,
+
+	// Burred types
+	Technique.UniqueRectangleBurredSubset,
+
+	// Pattern-based types
+	Technique.UniqueRectangleBabaGrouping, Technique.UniqueRectangleSueDeCoq,
+	Technique.UniqueRectangleXyWing, Technique.UniqueRectangleXyzWing, Technique.UniqueRectangleWxyzWing,
+	Technique.UniqueRectangleWWing,
 	Technique.AvoidableRectangleHiddenSingleBlock, Technique.AvoidableRectangleHiddenSingleRow,
 	Technique.AvoidableRectangleHiddenSingleColumn, Technique.AvoidableRectangleSueDeCoq, Technique.AvoidableRectangleXyWing,
-	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing)]
+	Technique.AvoidableRectangleXyzWing, Technique.AvoidableRectangleWxyzWing, Technique.AvoidableRectangleWWing,
+
+	// External types (UR/AR + Guardian)
+	Technique.UniqueRectangleExternalType1, Technique.UniqueRectangleExternalType2, Technique.UniqueRectangleExternalType3,
+	Technique.UniqueRectangleExternalType4, Technique.UniqueRectangleExternalXyWing, Technique.UniqueRectangleExternalTurbotFish,
+	Technique.UniqueRectangleExternalWWing, Technique.UniqueRectangleExternalAlmostLockedSetsXz,
+	Technique.AvoidableRectangleExternalType1, Technique.AvoidableRectangleExternalType2, Technique.AvoidableRectangleExternalType3,
+	Technique.AvoidableRectangleExternalType4, Technique.AvoidableRectangleExternalXyWing, Technique.AvoidableRectangleExternalWWing,
+	Technique.AvoidableRectangleExternalAlmostLockedSetsXz,
+
+	// Miscellaneous
+	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
+	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X)]
 [StepSearcherFlags(StepSearcherFlags.Standard)]
 [StepSearcherRuntimeName("StepSearcherName_UniqueRectangleStepSearcher")]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
@@ -193,19 +217,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var c1 = 0; c1 < 4; c1++)
 					{
 						var corner1 = urCells[c1];
-						var otherCellsMap = (CellMap)urCells - corner1;
+						var cellsExcluding1CornerCell = (CellMap)urCells - corner1;
 
-						CheckType1(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckType5(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
-						CheckHidden(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in otherCellsMap, index);
+						CheckType1(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+						CheckType5(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+						CheckHidden(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 
 						if (!arMode && SearchForExtendedUniqueRectangles)
 						{
-							Check3X(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3N2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3U2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
-							Check3E2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in otherCellsMap, index);
+							Check3X(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+							Check3X2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+							Check3N2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+							Check3U2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
+							Check3E2SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 						}
 
 						// If we aim to a single cell, all four cells should be checked.
@@ -220,14 +244,14 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						for (var c2 = c1 + 1; c2 < 4; c2++)
 						{
 							var corner2 = urCells[c2];
-							var tempOtherCellsMap = otherCellsMap - corner2;
+							var cellsExcluding2CornerCells = cellsExcluding1CornerCell - corner2;
 
 							// Both diagonal and non-diagonal.
-							CheckType2(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+							CheckType2(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 
 							if (SearchForExtendedUniqueRectangles)
 							{
-								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index, (c1, c2) is (0, 3) or (1, 2));
+								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index, (c1, c2) is (0, 3) or (1, 2));
 #if UNIQUE_RECTANGLE_W_WING
 								CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 #endif
@@ -242,17 +266,17 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 									{
 										if (SearchForExtendedUniqueRectangles)
 										{
-											CheckHiddenSingleAvoidable(collected, in grid, ref context, urCells, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											CheckHiddenSingleAvoidable(collected, in grid, ref context, urCells, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 										}
 									}
 									else
 									{
-										CheckType6(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType6(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2D(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check2D1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2D(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											Check2D1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 										}
 									}
 
@@ -262,23 +286,24 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								// Non-diagonal type.
 								default:
 								{
-									CheckType3(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+									CheckType3(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 
 									if (!arMode)
 									{
-										CheckType4(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckType4(collected, in grid, ref context, urCells, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 
 										if (SearchForExtendedUniqueRectangles)
 										{
-											Check2B1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4X3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
-											Check4C3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+											Check2B1SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											Check4X3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											Check4C3SL(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
+											CheckBurredSubset(collected, in grid, ref context, urCells, false, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 										}
 									}
 
 									if (SearchForExtendedUniqueRectangles)
 									{
-										CheckSueDeCoq(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+										CheckSueDeCoq(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index);
 									}
 
 									break;
@@ -2574,6 +2599,59 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					);
 				}
 			}
+		}
+	}
+
+	/// <summary>
+	/// Check burred subset.
+	/// </summary>
+	/// <param name="accumulator">The technique accumulator.</param>
+	/// <param name="grid">The grid.</param>
+	/// <param name="context">The context.</param>
+	/// <param name="urCells">All UR cells.</param>
+	/// <param name="arMode">Indicates whether the current mode is AR mode.</param>
+	/// <param name="comparer">The mask comparer.</param>
+	/// <param name="d1">The digit 1 used in UR.</param>
+	/// <param name="d2">The digit 2 used in UR.</param>
+	/// <param name="corner1">The corner cell 1.</param>
+	/// <param name="corner2">The corner cell 2.</param>
+	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+	/// <param name="index">The index.</param>
+	/// <remarks>
+	/// The pattern:
+	/// <code><![CDATA[
+	///  ↓ corner1, corner2
+	/// (abx) | (abcd) cde cde
+	///  ab   |  ab
+	/// ]]></code>
+	/// where the digits <c>x</c> may not be used. However, if all digits <c>x</c> are false,
+	/// the UR pattern will be degenerated into type 1, and the normal subset with digits <c>c, d, e</c> will be formed.
+	/// </remarks>
+	private void CheckBurredSubset(
+		List<UniqueRectangleStep> accumulator,
+		scoped ref readonly Grid grid,
+		scoped ref AnalysisContext context,
+		Cell[] urCells,
+		bool arMode,
+		Mask comparer,
+		Digit d1,
+		Digit d2,
+		Cell corner1,
+		Cell corner2,
+		scoped ref readonly CellMap otherCellsMap,
+		int index
+	)
+	{
+		var digitsMask1 = grid.GetCandidates(otherCellsMap[0]);
+		var digitsMask2 = grid.GetCandidates(otherCellsMap[1]);
+		if ((Mask)(digitsMask1 & digitsMask2) != comparer)
+		{
+			return;
+		}
+
+		foreach (var (thisExtraCell, otherExtraCell) in ((otherCellsMap[0], otherCellsMap[1]), (otherCellsMap[1], otherCellsMap[0])))
+		{
+
 		}
 	}
 
