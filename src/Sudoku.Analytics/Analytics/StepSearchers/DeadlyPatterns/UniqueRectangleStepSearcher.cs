@@ -9,10 +9,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>
 /// Basic types:
 /// <list type="bullet">
-/// <item>Unique Rectangle Type 1-6</item>
-/// <item>Avoidable Rectangle Type 1-3, 5</item>
-/// <item>Hidden Unique Rectangle</item>
-/// <item>Hidden Avoidable Rectangle</item>
+/// <item>Unique Rectangle Type 1-6, Hidden Unique Rectangle</item>
+/// <item>Avoidable Rectangle Type 1-3, 5, Hidden Avoidable Rectangle</item>
 /// </list>
 /// </item>
 /// <item>
@@ -22,8 +20,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Avoidable Rectangle + Hidden Single</item>
 /// <item>Unique Rectangle + Baba Grouping</item>
 /// <item>Unique Rectangle + Sue de Coq</item>
-/// <item>Unique Rectangle + XY-Wing, XYZ-Wing and WXYZ-Wing</item>
-/// <item>Unique Rectangle + W-Wing</item>
+/// <item>Unique Rectangle + XY-Wing, XYZ-Wing, WXYZ-Wing and W-Wing</item>
 /// <item>
 /// Unique/Avoidable Rectangle + Guardian (This program call it "External Types"):
 /// <list type="bullet">
