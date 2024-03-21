@@ -2621,7 +2621,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1, corner2
-	/// (abx) | (abcd) cde cde
+	/// (abx) | (abcde) cde cde
 	///  ab   |  ab
 	/// ]]></code>
 	/// where the digits <c>x</c> may not be used. However, if all digits <c>x</c> are false,
