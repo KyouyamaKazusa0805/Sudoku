@@ -2615,14 +2615,19 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
 	/// <param name="index">The index.</param>
 	/// <remarks>
+	/// <para>
 	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1, corner2
-	/// (abx) | (abcde) cde cde
+	/// (abx) | (abcd) bcd bcd
 	///  ab   |  ab
 	/// ]]></code>
-	/// where the digits <c>x</c> may not be used. However, if all digits <c>x</c> are false,
-	/// the UR pattern will be degenerated into type 1, and the normal subset with digits <c>c, d, e</c> will be formed.
+	/// will remove the digit <c>b</c> in the corner cell <c>abx</c>.
+	/// </para>
+	/// <para>
+	/// The letter <c>x</c> may present multiple digits and not be used. However, if all digits <c>x</c> are false,
+	/// the UR pattern will be degenerated into type 1, and the normal subset with digits <c>c</c> and <c>d</c> will be formed.
+	/// </para>
 	/// </remarks>
 	private void CheckBurredSubset(
 		List<UniqueRectangleStep> accumulator,
