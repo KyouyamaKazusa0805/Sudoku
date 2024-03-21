@@ -3189,11 +3189,6 @@ if (student is (name: var name, age: >= 18))
 			</i>
 		</b>
 	</large-structure></para>
-            <para>
-            Begin with C# 12, we can use feature "Inline Arrays" to access internal masks as raw values via indexers.
-            For example, You can use <c>grid[cellIndex]</c> to get the raw mask at the index <c>cellIndex</c>, whose value is between 0 and 81
-            (include 0 but not include 81).
-            </para>
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
