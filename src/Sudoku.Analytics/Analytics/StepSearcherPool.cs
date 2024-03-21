@@ -7,6 +7,12 @@ namespace Sudoku.Analytics;
 public static class StepSearcherPool
 {
 	/// <summary>
+	/// Indicates the default binding flags.
+	/// </summary>
+	private const BindingFlags DefaultBindingFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
+
+
+	/// <summary>
 	/// Indicates the current assembly.
 	/// </summary>
 	private static readonly Assembly ThisAssembly = typeof(StepSearcherPool).Assembly;
@@ -111,7 +117,9 @@ public static class StepSearcherPool
 
 					// Sets the split priority value.
 					// We should use reflection to set value because keyword used of the property is 'init', rather than 'set'.
-					type.GetProperty(nameof(inst.SplitPriority))!.GetInitMethod(true)!.Invoke(inst, [a.Priority]);
+					type.GetProperty(nameof(inst.SplitPriority), DefaultBindingFlags)!
+						.GetInitMethod(true)!
+						.Invoke(inst, [a.Priority]);
 					stepSearcherArray[i++] = inst;
 				}
 

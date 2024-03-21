@@ -12,7 +12,8 @@ internal static class StepSearcherListViewConversion
 	public static object? GetStepSearcherSupportedTechniqueCollection(StepSearcherInfo? info)
 		=> info is null ? null : from t in GetMatchedStepSearcher(info).Metadata.SupportedTechniques orderby t.GetDifficultyLevel() select t;
 
-	public static string GetStepSearcherName(StepSearcherInfo? info) => info is null ? string.Empty : GetMatchedStepSearcher(info).Name;
+	public static string GetStepSearcherName(StepSearcherInfo? info)
+		=> info is null ? string.Empty : GetMatchedStepSearcher(info).Metadata.GetName(App.CurrentCulture);
 
 	public static string GetTechniqueName(Technique technique) => technique.GetName(App.CurrentCulture);
 

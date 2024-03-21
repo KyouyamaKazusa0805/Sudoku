@@ -38,9 +38,14 @@ public abstract partial class StepSearcher(
 ) : ICultureFormattable
 {
 	/// <summary>
+	/// Indicates the implementation details of the current step searcher instance.
+	/// </summary>
+	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
+
+	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.
 	/// </summary>
-	public int PriorityId => Priority << 4 | SplitPriority;
+	internal int PriorityId => Priority << 4 | SplitPriority;
 
 	/// <summary>
 	/// Indicates the split priority. This value cannot be greater than 16 due to design of <see cref="SplitStepSearcherAttribute"/>.
@@ -51,25 +56,20 @@ public abstract partial class StepSearcher(
 	/// </exception>
 	/// <seealso cref="SplitStepSearcherAttribute"/>
 	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public int SplitPriority
+	internal int SplitPriority
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => _splitPriority;
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		internal init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
+		init => _splitPriority = value is >= 0 and < 16 ? value : throw new ArgumentOutOfRangeException(nameof(value));
 	}
 
 	/// <summary>
 	/// Returns the real name of this instance.
 	/// </summary>
 	[StringMember]
-	public string Name => Metadata.GetName(null);
-
-	/// <summary>
-	/// Indicates the implementation details of the current step searcher instance.
-	/// </summary>
-	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
+	private string Name => Metadata.GetName(null);
 
 
 	/// <inheritdoc/>

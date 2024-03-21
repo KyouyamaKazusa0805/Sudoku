@@ -5731,6 +5731,11 @@
             </param>
             <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearcher.Metadata">
+            <summary>
+            Indicates the implementation details of the current step searcher instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.PriorityId">
             <summary>
             Indicates the final priority value ID of the step searcher. This property is used as comparison.
@@ -5749,11 +5754,6 @@
         <member name="P:Sudoku.Analytics.StepSearcher.Name">
             <summary>
             Returns the real name of this instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearcher.Metadata">
-            <summary>
-            Indicates the implementation details of the current step searcher instance.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
@@ -6086,6 +6086,11 @@
             Represents a provider type that can find built-in <see cref="T:Sudoku.Analytics.StepSearcher"/> instances.
             </summary>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearcherPool.DefaultBindingFlags">
+            <summary>
+            Indicates the default binding flags.
+            </summary>
         </member>
         <member name="F:Sudoku.Analytics.StepSearcherPool.ThisAssembly">
             <summary>
