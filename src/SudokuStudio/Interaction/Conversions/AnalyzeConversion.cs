@@ -151,9 +151,9 @@ internal static class AnalyzeConversion
 
 			var difficultyValue = pref.GetRating(technique) switch
 			{
-				{ } integerValue => integerValue / pref.RatingScale,
+				{ } integerValue => integerValue,
 				_ => difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue
-			};
+			} / pref.RatingScale;
 
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
@@ -173,9 +173,9 @@ internal static class AnalyzeConversion
 				{
 					var baseDifficultyValue = pref.GetRating(technique) switch
 					{
-						{ } integerValue => integerValue / pref.RatingScale,
+						{ } integerValue => integerValue,
 						_ => baseDifficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue
-					};
+					} / pref.RatingScale;
 					var baseDifficultyString = baseDifficultyValue.ToString(GetFormatOfDifficulty(baseDifficultyValue));
 
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
