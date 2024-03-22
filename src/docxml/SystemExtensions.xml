@@ -2611,6 +2611,9 @@
             </param>
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.Aggregate``2(``0[],``1,System.Func{``1,``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})"/>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.SortBy``2(``0[],System.Func{``0,``1})">
             <summary>
             Sort the specified array using the specified key selector.

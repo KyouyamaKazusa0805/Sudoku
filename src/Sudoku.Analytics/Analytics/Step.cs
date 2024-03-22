@@ -48,24 +48,13 @@ public abstract partial class Step(
 	/// </summary>
 	/// <exception cref="NotSupportedException">Throws when the step contains no conclusions.</exception>
 	public bool? IsAssignment
-	{
-		get
+		=> Conclusions.Aggregate(0, static (interim, next) => interim | (next.ConclusionType == Assignment ? 0b01 : 0b10)) switch
 		{
-			var bits = 0b00;
-			foreach (var conclusion in Conclusions)
-			{
-				bits |= conclusion.ConclusionType == Assignment ? 0b01 : 0b10;
-			}
-
-			return bits switch
-			{
-				0b11 => null,
-				0b01 => true,
-				0b10 => false,
-				_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("StepContainsNoConclusions"))
-			};
-		}
-	}
+			0b11 => null,
+			0b01 => true,
+			0b10 => false,
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("StepContainsNoConclusions"))
+		};
 
 	/// <summary>
 	/// Indicates the English name of the technique.

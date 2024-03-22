@@ -270,6 +270,18 @@ public static class ArrayEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
+	public static TAccumulate Aggregate<TSource, TAccumulate>(this TSource[] @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
+	{
+		var result = seed;
+		foreach (var element in @this)
+		{
+			result = func(result, element);
+		}
+
+		return result;
+	}
+
 	/// <summary>
 	/// Sort the specified array using the specified key selector.
 	/// </summary>
