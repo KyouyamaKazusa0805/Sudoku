@@ -1393,6 +1393,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot call setter &apos;Rating.set&apos; because the property &apos;Rating&apos; has an invalid value that cannot return with only one value..
+        /// </summary>
+        public static string ErrorInfo_SudokuExplainerAttributeInvalidRating {
+            get {
+                return ResourceManager.GetString("ErrorInfo_SudokuExplainerAttributeInvalidRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target level is unknown. If you see this exception thrown, please append &apos;Sudoku.Analytics.Categorization.DifficultyLevelAttribute&apos; to the target technique code field defined in type &apos;Sudoku.Analytics.Categorization.Technique&apos;..
         /// </summary>
         public static string ErrorInfo_TechniqueLevelCannotBeDetermined {

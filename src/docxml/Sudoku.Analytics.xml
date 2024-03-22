@@ -5313,6 +5313,9 @@
             Indicates the rating value defined in direct mode.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Rating">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ResourceKey">
             <summary>
             Indicates the resource key that can fetch the corresponding resource string.
@@ -19013,6 +19016,9 @@ if (student is (name: var name, age: >= 18))
             Represents compatibility rules for Hodoku.
             </summary>
         </member>
+        <member name="P:Sudoku.Compatibility.HodokuAttribute.Rating">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Compatibility.HodokuAttribute.Prefix">
             <summary>
             Indicates the technique prefix defined in Hodoku program.
@@ -19166,6 +19172,9 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents compatibility rules for Sudoku Explainer.
             </summary>
+        </member>
+        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.Rating">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.TechniqueDefined">
             <summary>
@@ -22150,6 +22159,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SubsetSizeExceeds">
             <summary>
               Looks up a localized string similar to The subset is too complex to be calculated..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SudokuExplainerAttributeInvalidRating">
+            <summary>
+              Looks up a localized string similar to Cannot call setter &apos;Rating.set&apos; because the property &apos;Rating&apos; has an invalid value that cannot return with only one value..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_TechniqueLevelCannotBeDetermined">

@@ -6,6 +6,9 @@ namespace Sudoku.Compatibility;
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed class HodokuAttribute : ProgramMetadataAttribute<int, HodokuDifficultyLevel>
 {
+	/// <inheritdoc/>
+	public override int Rating { get; init; }
+
 	/// <summary>
 	/// Indicates the technique prefix defined in Hodoku program.
 	/// See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.

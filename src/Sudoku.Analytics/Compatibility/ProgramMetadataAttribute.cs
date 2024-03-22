@@ -20,7 +20,7 @@ public abstract class ProgramMetadataAttribute<TRating, TDifficultyLevel> : Attr
 	/// <summary>
 	/// Indicates the type of the rating value.
 	/// </summary>
-	public TRating Rating { get; init; }
+	public abstract TRating Rating { get; init; }
 
 	/// <summary>
 	/// Indicates the rating value that is defined in original program.
