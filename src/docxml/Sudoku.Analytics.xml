@@ -5309,6 +5309,11 @@
             Indicates the rating value defined in direct mode.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ResourceKey">
+            <summary>
+            Indicates the resource key that can fetch the corresponding resource string.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Abbreviation">
             <summary>
             Indicates the abbreviation of the technique.
@@ -5342,14 +5347,19 @@
             Indicates the features of the technique.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimarySupportedType">
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimaryStepType">
             <summary>
-            Indicates the primarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
+            Indicates the primarily <see cref="T:Sudoku.Analytics.Step"/> type.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SecondarySupportedType">
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SecondaryStepType">
             <summary>
-            Indicates the secondarily-supported <see cref="T:Sudoku.Analytics.Step"/> type.
+            Indicates the secondarily <see cref="T:Sudoku.Analytics.Step"/> type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.StepSearcherType">
+            <summary>
+            Indicates the step searcher type that can produce steps that describes the current technique.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">

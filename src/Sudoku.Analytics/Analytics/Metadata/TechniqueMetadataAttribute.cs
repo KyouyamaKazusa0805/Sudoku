@@ -23,6 +23,12 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	public double DirectRating { get; init; }
 
 	/// <summary>
+	/// Indicates the resource key that can fetch the corresponding resource string.
+	/// </summary>
+	[DisallowNull]
+	public string? ResourceKey { get; init; }
+
+	/// <summary>
 	/// Indicates the abbreviation of the technique.
 	/// </summary>
 	[DisallowNull]
@@ -60,13 +66,19 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	public TechniqueFeature Features { get; init; }
 
 	/// <summary>
-	/// Indicates the primarily-supported <see cref="Step"/> type.
+	/// Indicates the primarily <see cref="Step"/> type.
 	/// </summary>
-	public Type? PrimarySupportedType { get; init; }
+	public Type? PrimaryStepType { get; init; }
 
 	/// <summary>
-	/// Indicates the secondarily-supported <see cref="Step"/> type.
+	/// Indicates the secondarily <see cref="Step"/> type.
 	/// </summary>
 	[DisallowNull]
-	public Type? SecondarySupportedType { get; init; }
+	public Type? SecondaryStepType { get; init; }
+
+	/// <summary>
+	/// Indicates the step searcher type that can produce steps that describes the current technique.
+	/// </summary>
+	[DisallowNull]
+	public Type? StepSearcherType { get; init; }
 }
