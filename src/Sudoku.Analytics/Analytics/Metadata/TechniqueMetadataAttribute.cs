@@ -26,9 +26,6 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// </summary>
 	public double DirectRating { get; init; }
 
-	/// <inheritdoc/>
-	public override double Rating { get; init; }
-
 	/// <summary>
 	/// Indicates the resource key that can fetch the corresponding resource string.
 	/// </summary>

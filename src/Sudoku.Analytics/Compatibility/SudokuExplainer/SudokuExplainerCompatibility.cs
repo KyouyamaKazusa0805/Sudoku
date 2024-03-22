@@ -37,7 +37,7 @@ public static class SudokuExplainerCompatibility
 	public static SudokuExplainerTechnique? GetCorrespondingTechnique(Technique @this)
 	{
 		var found = typeof(Technique).GetField(@this.ToString())?.GetCustomAttribute<SudokuExplainerAttribute>();
-		return found is { DifficultyLevel: var flag } ? flag : null;
+		return found is { Technique: var flag } ? flag : null;
 	}
 
 	/// <summary>
@@ -61,19 +61,18 @@ public static class SudokuExplainerCompatibility
 			: (SudokuExplainerAttribute[])typeof(Technique).GetField(@this.ToString())!.GetCustomAttributes<SudokuExplainerAttribute>() switch
 			{
 				[] => null,
-				[{ RatingValueOriginal: [var min], RatingValueAdvanced: null }] => new(new((half)min, (half)min), null),
-				[{ RatingValueOriginal: [var min, var max], RatingValueAdvanced: null }] => new(new((half)min, (half)max), null),
-				[{ RatingValueAdvanced: [var min], RatingValueOriginal: null }] => new(null, new((half)min, (half)min)),
-				[{ RatingValueAdvanced: [var min, var max], RatingValueOriginal: null }] => new(null, new((half)min, (half)max)),
-				[{ RatingValueOriginal: [var min1], RatingValueAdvanced: [var min2] }]
+				[{ RatingOriginal: [var min], RatingAdvanced: null }] => new(new((half)min, (half)min), null),
+				[{ RatingOriginal: [var min, var max], RatingAdvanced: null }] => new(new((half)min, (half)max), null),
+				[{ RatingAdvanced: [var min], RatingOriginal: null }] => new(null, new((half)min, (half)min)),
+				[{ RatingAdvanced: [var min, var max], RatingOriginal: null }] => new(null, new((half)min, (half)max)),
+				[{ RatingOriginal: [var min1], RatingAdvanced: [var min2] }]
 					=> new(new((half)min1, (half)min1), new((half)min2, (half)min2)),
-				[{ RatingValueOriginal: [var min1, var max1], RatingValueAdvanced: [var min2] }]
+				[{ RatingOriginal: [var min1, var max1], RatingAdvanced: [var min2] }]
 					=> new(new((half)min1, (half)max1), new((half)min2, (half)min2)),
-				[{ RatingValueOriginal: [var min1], RatingValueAdvanced: [var min2, var max2] }]
+				[{ RatingOriginal: [var min1], RatingAdvanced: [var min2, var max2] }]
 					=> new(new((half)min1, (half)min1), new((half)min2, (half)max2)),
-				[{ RatingValueOriginal: [var min1, var max1], RatingValueAdvanced: [var min2, var max2] }]
+				[{ RatingOriginal: [var min1, var max1], RatingAdvanced: [var min2, var max2] }]
 					=> new(new((half)min1, (half)max1), new((half)min2, (half)max2)),
-				[{ Rating: var r }] => new(new((half)r, (half)r), null),
 				_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("TooMuchAttributes"))
 			};
 #pragma warning restore format

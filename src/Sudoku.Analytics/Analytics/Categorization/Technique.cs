@@ -24,7 +24,7 @@ public enum Technique
 	/// Indicates full house. This technique is the most elementary technique to be used in the candidate view mode.
 	/// </summary>
 	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0000")]
-	[SudokuExplainer(Rating = 1.0, TechniqueDefined = SudokuExplainerTechnique.Single, Aliases = ["Single"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Single, RatingOriginal = [1.0], Aliases = ["Single"])]
 	[TechniqueMetadata(
 		Rating = 1.0,
 		DifficultyLevel = DifficultyLevel.Easy,
@@ -52,7 +52,7 @@ public enum Technique
 	/// Indicates hidden single (in block).
 	/// </summary>
 	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
-	[SudokuExplainer(Rating = 1.2, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenSingle, RatingOriginal = [1.2])]
 	[TechniqueMetadata(
 		Rating = 1.9,
 		DifficultyLevel = DifficultyLevel.Easy,
@@ -67,7 +67,7 @@ public enum Technique
 	/// Indicates hidden single (in row).
 	/// </summary>
 	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
-	[SudokuExplainer(Rating = 1.5, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenSingle, RatingOriginal = [1.5])]
 	[TechniqueMetadata(
 		Rating = 2.3,
 		DifficultyLevel = DifficultyLevel.Easy,
@@ -82,7 +82,7 @@ public enum Technique
 	/// Indicates hidden single (in column).
 	/// </summary>
 	[Hodoku(Rating = 14, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0002")]
-	[SudokuExplainer(Rating = 1.5, TechniqueDefined = SudokuExplainerTechnique.HiddenSingle)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenSingle, RatingOriginal = [1.5])]
 	[TechniqueMetadata(
 		Rating = 2.3,
 		DifficultyLevel = DifficultyLevel.Easy,
@@ -97,7 +97,7 @@ public enum Technique
 	/// Indicates naked single.
 	/// </summary>
 	[Hodoku(Rating = 4, DifficultyLevel = HodokuDifficultyLevel.Easy, Prefix = "0003")]
-	[SudokuExplainer(Rating = 2.3, TechniqueDefined = SudokuExplainerTechnique.NakedSingle)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedSingle, RatingOriginal = [2.3])]
 	[TechniqueMetadata(
 		Rating = 2.3,
 		DirectRating = 1.0,
@@ -1223,7 +1223,7 @@ public enum Technique
 		DifficultyLevel = HodokuDifficultyLevel.Medium,
 		Prefix = "0100",
 		Aliases = ["Locked Candidates Type 1"])]
-	[SudokuExplainer(Rating = 2.6, TechniqueDefined = SudokuExplainerTechnique.Pointing)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Pointing, RatingOriginal = [2.6])]
 	[TechniqueMetadata(
 		Rating = 2.6,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1241,7 +1241,7 @@ public enum Technique
 		DifficultyLevel = HodokuDifficultyLevel.Medium,
 		Prefix = "0101",
 		Aliases = ["Locked Candidates Type 2"])]
-	[SudokuExplainer(Rating = 2.8, TechniqueDefined = SudokuExplainerTechnique.Claiming)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Claiming, RatingOriginal = [2.8])]
 	[TechniqueMetadata(
 		Rating = 2.8,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1275,7 +1275,7 @@ public enum Technique
 	/// Indicates naked pair.
 	/// </summary>
 	[Hodoku(Rating = 60, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0200")]
-	[SudokuExplainer(Rating = 3.0, TechniqueDefined = SudokuExplainerTechnique.NakedPair)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedPair, RatingOriginal = [3.0])]
 	[TechniqueMetadata(
 		Rating = 3.0,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1304,7 +1304,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 40, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0110-1")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[SudokuExplainer(Rating = 2.0, TechniqueDefined = SudokuExplainerTechnique.DirectHiddenPair, Aliases = ["Direct Hidden Pair"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DirectHiddenPair, RatingOriginal = [2.0], Aliases = ["Direct Hidden Pair"])]
 #endif
 	[TechniqueMetadata(
 		Rating = 3.0,
@@ -1320,7 +1320,7 @@ public enum Technique
 	/// Indicates hidden pair.
 	/// </summary>
 	[Hodoku(Rating = 70, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0210")]
-	[SudokuExplainer(Rating = 3.4, TechniqueDefined = SudokuExplainerTechnique.HiddenPair)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenPair, RatingOriginal = [3.4])]
 	[TechniqueMetadata(
 		Rating = 3.4,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1348,7 +1348,7 @@ public enum Technique
 	/// Indicates naked triple.
 	/// </summary>
 	[Hodoku(Rating = 80, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0201")]
-	[SudokuExplainer(Rating = 3.6, TechniqueDefined = SudokuExplainerTechnique.NakedTriplet, Aliases = ["Naked Triplet"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedTriplet, RatingOriginal = [3.6], Aliases = ["Naked Triplet"])]
 	[TechniqueMetadata(
 		Rating = 3.0,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1377,7 +1377,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 60, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0111-1")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[SudokuExplainer(Rating = 2.5, TechniqueDefined = SudokuExplainerTechnique.DirectHiddenTriplet, Aliases = ["Direct Hidden Triplet"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DirectHiddenTriplet, RatingOriginal = [2.5], Aliases = ["Direct Hidden Triplet"])]
 #endif
 	[TechniqueMetadata(
 		Rating = 3.0,
@@ -1393,7 +1393,7 @@ public enum Technique
 	/// Indicates hidden triple.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Medium, Prefix = "0211")]
-	[SudokuExplainer(Rating = 4.0, TechniqueDefined = SudokuExplainerTechnique.HiddenTriplet, Aliases = ["Hidden Triplet"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenTriplet, RatingOriginal = [4.0], Aliases = ["Hidden Triplet"])]
 	[TechniqueMetadata(
 		Rating = 3.4,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1421,7 +1421,7 @@ public enum Technique
 	/// Indicates naked quadruple.
 	/// </summary>
 	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0202")]
-	[SudokuExplainer(Rating = 5.0, TechniqueDefined = SudokuExplainerTechnique.NakedQuad, Aliases = ["Naked Quad"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NakedQuad, RatingOriginal = [5.0], Aliases = ["Naked Quad"])]
 	[TechniqueMetadata(
 		Rating = 3.0,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1449,7 +1449,7 @@ public enum Technique
 	/// Indicates hidden quadruple.
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0212")]
-	[SudokuExplainer(Rating = 5.4, TechniqueDefined = SudokuExplainerTechnique.HiddenQuad, Aliases = ["Hidden Quad"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.HiddenQuad, RatingOriginal = [5.4], Aliases = ["Hidden Quad"])]
 	[TechniqueMetadata(
 		Rating = 3.4,
 		DifficultyLevel = DifficultyLevel.Moderate,
@@ -1469,7 +1469,7 @@ public enum Technique
 	/// Indicates X-Wing.
 	/// </summary>
 	[Hodoku(Rating = 140, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0300")]
-	[SudokuExplainer(Rating = 3.2, TechniqueDefined = SudokuExplainerTechnique.XWing)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.XWing, RatingOriginal = [3.2])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1484,7 +1484,7 @@ public enum Technique
 	/// Indicates finned X-Wing.
 	/// </summary>
 	[Hodoku(Rating = 130, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0310")]
-	[SudokuExplainer(RatingValueAdvanced = [3.4])]
+	[SudokuExplainer(RatingAdvanced = [3.4])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.NormalFish,
@@ -1503,7 +1503,7 @@ public enum Technique
 	/// Indicates sashimi X-Wing.
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0320")]
-	[SudokuExplainer(RatingValueAdvanced = [3.5])]
+	[SudokuExplainer(RatingAdvanced = [3.5])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1745,7 +1745,7 @@ public enum Technique
 	/// Indicates swordfish.
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0301")]
-	[SudokuExplainer(Rating = 3.8, TechniqueDefined = SudokuExplainerTechnique.Swordfish)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Swordfish, RatingOriginal = [3.8])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1760,7 +1760,7 @@ public enum Technique
 	/// Indicates finned swordfish.
 	/// </summary>
 	[Hodoku(Rating = 200, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0311")]
-	[SudokuExplainer(RatingValueAdvanced = [4.0])]
+	[SudokuExplainer(RatingAdvanced = [4.0])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -1782,7 +1782,7 @@ public enum Technique
 		Rating = 240,
 		DifficultyLevel = HodokuDifficultyLevel.Unfair,
 		Prefix = "0321")]
-	[SudokuExplainer(RatingValueAdvanced = [4.1])]
+	[SudokuExplainer(RatingAdvanced = [4.1])]
 	[TechniqueMetadata(
 		Rating = 3.2, DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.NormalFish,
@@ -2057,7 +2057,7 @@ public enum Technique
 	/// Indicates jellyfish.
 	/// </summary>
 	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0302")]
-	[SudokuExplainer(Rating = 5.2, TechniqueDefined = SudokuExplainerTechnique.Jellyfish)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.Jellyfish, RatingOriginal = [5.2])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -2072,7 +2072,7 @@ public enum Technique
 	/// Indicates finned jellyfish.
 	/// </summary>
 	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0312")]
-	[SudokuExplainer(RatingValueAdvanced = [5.4])]
+	[SudokuExplainer(RatingAdvanced = [5.4])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -2092,7 +2092,7 @@ public enum Technique
 	/// Indicates sashimi jellyfish.
 	/// </summary>
 	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0322")]
-	[SudokuExplainer(RatingValueAdvanced = [5.6])]
+	[SudokuExplainer(RatingAdvanced = [5.6])]
 	[TechniqueMetadata(
 		Rating = 3.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3146,7 +3146,7 @@ public enum Technique
 	/// Indicates XY-Wing.
 	/// </summary>
 	[Hodoku(Rating = 160, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0800")]
-	[SudokuExplainer(Rating = 4.2, TechniqueDefined = SudokuExplainerTechnique.XyWing)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.XyWing, RatingOriginal = [4.2])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3161,7 +3161,7 @@ public enum Technique
 	/// Indicates XYZ-Wing.
 	/// </summary>
 	[Hodoku(Rating = 180, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0801")]
-	[SudokuExplainer(Rating = 4.4, TechniqueDefined = SudokuExplainerTechnique.XyzWing)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.XyzWing, RatingOriginal = [4.4])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3176,7 +3176,7 @@ public enum Technique
 	/// Indicates WXYZ-Wing.
 	/// </summary>
 	[Hodoku(Prefix = "0802")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.XyzWing, RatingValueAdvanced = [4.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.XyzWing, RatingAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3190,7 +3190,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates VWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[SudokuExplainer(RatingAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -3204,7 +3204,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates UVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[SudokuExplainer(RatingAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -3218,7 +3218,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates TUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[SudokuExplainer(RatingAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -3232,7 +3232,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates STUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[SudokuExplainer(RatingAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -3246,7 +3246,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates RSTUVWXYZ-Wing.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [double.NaN])]
+	[SudokuExplainer(RatingAdvanced = [double.NaN])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -3343,7 +3343,7 @@ public enum Technique
 	/// Indicates W-Wing.
 	/// </summary>
 	[Hodoku(Rating = 150, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0803")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.WWing, RatingValueAdvanced = [4.4])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.WWing, RatingAdvanced = [4.4])]
 	[TechniqueMetadata(
 		Rating = 4.4,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3478,7 +3478,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates almost locked pair.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [4.5])]
+	[SudokuExplainer(RatingAdvanced = [4.5])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3493,7 +3493,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates almost locked triple.
 	/// </summary>
-	[SudokuExplainer(RatingValueAdvanced = [5.2])]
+	[SudokuExplainer(RatingAdvanced = [5.2])]
 	[TechniqueMetadata(
 		Rating = 5.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3578,7 +3578,7 @@ public enum Technique
 	/// Indicates unique rectangle type 1.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0600", Aliases = ["Uniqueness Test 1"])]
-	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3597,7 +3597,7 @@ public enum Technique
 	/// Indicates unique rectangle type 2.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0601", Aliases = ["Uniqueness Test 2"])]
-	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5], RatingAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3616,9 +3616,7 @@ public enum Technique
 	/// Indicates unique rectangle type 3.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0602", Aliases = ["Uniqueness Test 3"])]
-	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueOriginal = [4.5, 4.8],
-		RatingValueAdvanced = [4.6, 4.9])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5, 4.8], RatingAdvanced = [4.6, 4.9])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3638,9 +3636,10 @@ public enum Technique
 	/// Indicates unique rectangle type 4.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0603", Aliases = ["Uniqueness Test 4"])]
-	[SudokuExplainer(Rating = 4.5, TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingOriginal = [4.5], RatingAdvanced = [4.6])]
 	[TechniqueMetadata(
-		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard,
+		Rating = 4.4,
+		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
 		StepSearcherType = typeof(UniqueRectangleStepSearcher),
@@ -3657,7 +3656,7 @@ public enum Technique
 	/// Indicates unique rectangle type 5.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0604", Aliases = ["Uniqueness Test 5"])]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3675,7 +3674,7 @@ public enum Technique
 	/// Indicates unique rectangle type 6.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0605", Aliases = ["Uniqueness Test 6"])]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingAdvanced = [4.6])]
 	[TechniqueMetadata(
 		Rating = 4.4,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -3694,7 +3693,7 @@ public enum Technique
 	/// Indicates hidden unique rectangle.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0606", Aliases = ["Hidden Rectangle"])]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueRectangle, RatingValueAdvanced = [4.8])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueRectangle, RatingAdvanced = [4.8])]
 	[TechniqueMetadata(
 		Rating = 4.4,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4244,7 +4243,7 @@ public enum Technique
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0607")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.7])] // I think this difficulty may be a mistake.
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AvoidableRectangle, RatingAdvanced = [4.7])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4258,7 +4257,7 @@ public enum Technique
 	/// Indicates avoidable rectangle type 2.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0608")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.5])] // I think this difficulty may be a mistake.
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AvoidableRectangle, RatingAdvanced = [4.5])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4559,7 +4558,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates unique loop type 1.
 	/// </summary>
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.UniqueLoop, RatingOriginal = [4.6, 5.0])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4574,9 +4573,9 @@ public enum Technique
 	/// Indicates unique loop type 2.
 	/// </summary>
 	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop,
-		RatingValueOriginal = [4.6, 5.0],
-		RatingValueAdvanced = [4.7, 5.1])]
+		Technique = SudokuExplainerTechnique.UniqueLoop,
+		RatingOriginal = [4.6, 5.0],
+		RatingAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4591,8 +4590,8 @@ public enum Technique
 	/// Indicates unique loop type 3.
 	/// </summary>
 	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0],
-		RatingValueAdvanced = [4.7, 5.1])]
+		Technique = SudokuExplainerTechnique.UniqueLoop, RatingOriginal = [4.6, 5.0],
+		RatingAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4607,8 +4606,8 @@ public enum Technique
 	/// Indicates unique loop type 4.
 	/// </summary>
 	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0],
-		RatingValueAdvanced = [4.7, 5.1])]
+		Technique = SudokuExplainerTechnique.UniqueLoop, RatingOriginal = [4.6, 5.0],
+		RatingAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4697,7 +4696,7 @@ public enum Technique
 		DifficultyLevel = HodokuDifficultyLevel.Hard,
 		Prefix = "0610",
 		Aliases = ["Bivalue Universal Grave + 1"])]
-	[SudokuExplainer(Rating = 5.6, TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGrave)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.BivalueUniversalGrave, RatingOriginal = [5.6])]
 	[TechniqueMetadata(
 		Rating = 5.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4710,7 +4709,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 2.
 	/// </summary>
-	[SudokuExplainer(Rating = 5.7, TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGrave)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.BivalueUniversalGrave, RatingOriginal = [5.7])]
 	[TechniqueMetadata(
 		Rating = 5.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4724,7 +4723,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 3.
 	/// </summary>
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGrave, RatingValueOriginal = [5.8, 6.1])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.BivalueUniversalGrave, RatingOriginal = [5.8, 6.1])]
 	[TechniqueMetadata(
 		Rating = 5.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4738,7 +4737,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave type 4.
 	/// </summary>
-	[SudokuExplainer(Rating = 5.7, TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGrave)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.BivalueUniversalGrave, RatingOriginal = [5.7])]
 	[TechniqueMetadata(
 		Rating = 5.6,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -4752,9 +4751,10 @@ public enum Technique
 	/// <summary>
 	/// Indicates bi-value universal grave + n.
 	/// </summary>
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.BivalueUniversalGravePlusN, RatingValueAdvanced = [5.7])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.BivalueUniversalGravePlusN, RatingAdvanced = [5.7])]
 	[TechniqueMetadata(
-		Rating = 5.7, DifficultyLevel = DifficultyLevel.Hard,
+		Rating = 5.7,
+		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveMultipleStep),
 		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
@@ -5110,7 +5110,7 @@ public enum Technique
 	/// Indicates sue de coq.
 	/// </summary>
 	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "1101")]
-	[SudokuExplainer(RatingValueAdvanced = [5.0])]
+	[SudokuExplainer(RatingAdvanced = [5.0])]
 	[TechniqueMetadata(
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
@@ -5129,7 +5129,7 @@ public enum Technique
 	/// Indicates sue de coq with isolated digit.
 	/// </summary>
 	[Hodoku(Rating = 250, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "1101")]
-	[SudokuExplainer(RatingValueAdvanced = [5.0])]
+	[SudokuExplainer(RatingAdvanced = [5.0])]
 	[TechniqueMetadata(
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
@@ -5315,7 +5315,7 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 130, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0400")]
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES
-	[SudokuExplainer(Rating = 6.6, TechniqueDefined = SudokuExplainerTechnique.TurbotFish, Aliases = ["Turbot Fish"])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.TurbotFish, RatingOriginal = [6.6], Aliases = ["Turbot Fish"])]
 #endif
 	[TechniqueMetadata(
 		Rating = 4.0,
@@ -5346,7 +5346,7 @@ public enum Technique
 	/// Indicates turbot fish.
 	/// </summary>
 	[Hodoku(Rating = 120, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0403")]
-	[SudokuExplainer(Rating = 6.6, TechniqueDefined = SudokuExplainerTechnique.TurbotFish)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.TurbotFish, RatingOriginal = [6.6])]
 	[TechniqueMetadata(
 		Rating = 4.2,
 		DifficultyLevel = DifficultyLevel.Hard,
@@ -5420,7 +5420,7 @@ public enum Technique
 	/// Indicates X-Chain.
 	/// </summary>
 	[Hodoku(Rating = 260, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0701")]
-	[SudokuExplainer(RatingValueOriginal = [6.6, 6.9])]
+	[SudokuExplainer(RatingOriginal = [6.6, 6.9])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5451,7 +5451,7 @@ public enum Technique
 	/// Indicates fishy cycle (X-Cycle).
 	/// </summary>
 	[Hodoku(Prefix = "0704")]
-	[SudokuExplainer(RatingValueOriginal = [6.5, 6.6], Aliases = ["Bidirectional X-Cycle"])]
+	[SudokuExplainer(RatingOriginal = [6.5, 6.6], Aliases = ["Bidirectional X-Cycle"])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5481,7 +5481,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates XY-Cycle.
 	/// </summary>
-	[SudokuExplainer(RatingValueOriginal = [6.6, 7.0])]
+	[SudokuExplainer(RatingOriginal = [6.6, 7.0])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5536,7 +5536,7 @@ public enum Technique
 	/// Indicates discontinuous nice loop.
 	/// </summary>
 	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0707")]
-	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6], Aliases = ["Forcing Chain"])]
+	[SudokuExplainer(RatingOriginal = [7.0, 7.6], Aliases = ["Forcing Chain"])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5553,7 +5553,7 @@ public enum Technique
 	/// Indicates continuous nice loop.
 	/// </summary>
 	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0706")]
-	[SudokuExplainer(RatingValueOriginal = [7.0, 7.3], Aliases = ["Bidirectional Cycle"])]
+	[SudokuExplainer(RatingOriginal = [7.0, 7.3], Aliases = ["Bidirectional Cycle"])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5569,7 +5569,7 @@ public enum Technique
 	/// Indicates alternating inference chain.
 	/// </summary>
 	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0708")]
-	[SudokuExplainer(RatingValueOriginal = [7.0, 7.6])]
+	[SudokuExplainer(RatingOriginal = [7.0, 7.6])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5682,7 +5682,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates nishio forcing chains.
 	/// </summary>
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.NishioForcingChain, RatingValueOriginal = [7.6, 8.1])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.NishioForcingChain, RatingOriginal = [7.6, 8.1])]
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
@@ -5693,7 +5693,7 @@ public enum Technique
 	/// Indicates region forcing chains (i.e. house forcing chains).
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		Rating = 8.0,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5707,7 +5707,7 @@ public enum Technique
 	/// Indicates cell forcing chains.
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1301")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.MultipleForcingChain, RatingValueOriginal = [8.2, 8.6])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.MultipleForcingChain, RatingOriginal = [8.2, 8.6])]
 	[TechniqueMetadata(
 		Rating = 8.0,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5721,7 +5721,7 @@ public enum Technique
 	/// Indicates dynamic region forcing chains (i.e. dynamic house forcing chains).
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		Rating = 8.5,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5736,7 +5736,7 @@ public enum Technique
 	/// Indicates dynamic cell forcing chains.
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1303")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.6, 9.4])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.6, 9.4])]
 	[TechniqueMetadata(
 		Rating = 8.5,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5751,7 +5751,7 @@ public enum Technique
 	/// Indicates dynamic contradiction forcing chains.
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		Rating = 9.5,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5766,7 +5766,7 @@ public enum Technique
 	/// Indicates dynamic double forcing chains.
 	/// </summary>
 	[Hodoku(Rating = 500, DifficultyLevel = HodokuDifficultyLevel.Extreme, Prefix = "1304")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.DynamicForcingChain, RatingValueOriginal = [8.8, 9.4])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.DynamicForcingChain, RatingOriginal = [8.8, 9.4])]
 	[TechniqueMetadata(
 		Rating = 9.5,
 		DifficultyLevel = DifficultyLevel.Nightmare,
@@ -5813,7 +5813,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned pair exclusion.
 	/// </summary>
-	[SudokuExplainer(Rating = 6.2, TechniqueDefined = SudokuExplainerTechnique.AlignedPairExclusion)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlignedPairExclusion, RatingOriginal = [6.2])]
 	[TechniqueMetadata(
 		Rating = 6.2,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5832,7 +5832,7 @@ public enum Technique
 	/// <summary>
 	/// Indicates aligned triple exclusion.
 	/// </summary>
-	[SudokuExplainer(Rating = 7.5, TechniqueDefined = SudokuExplainerTechnique.AlignedTripletExclusion)]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlignedTripletExclusion, RatingOriginal = [7.5])]
 	[TechniqueMetadata(
 		Rating = 7.5,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5981,7 +5981,7 @@ public enum Technique
 	/// Indicates singly linked ALS-XZ.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AlsXz, RatingValueAdvanced = [7.5])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlsXz, RatingAdvanced = [7.5])]
 	[TechniqueMetadata(
 		Rating = 5.5,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -5996,7 +5996,7 @@ public enum Technique
 	/// Indicates doubly linked ALS-XZ.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0901")]
-	[SudokuExplainer(RatingValueAdvanced = [7.5])]
+	[SudokuExplainer(RatingAdvanced = [7.5])]
 	[TechniqueMetadata(
 		Rating = 5.7,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -6011,7 +6011,7 @@ public enum Technique
 	/// Indicates ALS-XY-Wing.
 	/// </summary>
 	[Hodoku(Rating = 320, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0902")]
-	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AlsXyWing, RatingValueAdvanced = [8.0])]
+	[SudokuExplainer(Technique = SudokuExplainerTechnique.AlsXyWing, RatingAdvanced = [8.0])]
 	[TechniqueMetadata(
 		Rating = 6.0,
 		DifficultyLevel = DifficultyLevel.Fiendish,
@@ -6745,8 +6745,8 @@ public enum Technique
 	/// </summary>
 	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainer(
-		Rating = (double)AnalyzerResult.MaximumRatingValueTheory,
-		TechniqueDefined = SudokuExplainerTechnique.BruteForce,
+		Technique = SudokuExplainerTechnique.BruteForce,
+		RatingOriginal = [(double)AnalyzerResult.MaximumRatingValueTheory],
 		Aliases = ["Try & Error"])]
 	[TechniqueMetadata(
 		Rating = (double)AnalyzerResult.MaximumRatingValueTheory,
