@@ -3325,37 +3325,37 @@
             Indicates brute force.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeature">
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueFeatures">
             <summary>
             Defines a feature flag.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.None">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.None">
             <summary>
             Indicates no feature.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.HardToBeGenerated">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.HardToBeGenerated">
             <summary>
             Indicates it is hard to create a puzzle with this technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.WillBeReplacedByOtherTechnique">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.WillBeReplacedByOtherTechnique">
             <summary>
             Indicates the current technique won't be appeared because it will be replaced with other techniques.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.OnlyExistInTheory">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.OnlyExistInTheory">
             <summary>
             Indicates the current technique can only exist in theory. In practice, this technique won't be appeared.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.NotImplemented">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.NotImplemented">
             <summary>
             Indicates the current technique hasn't implemented by author.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeature.DirectTechniques">
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.DirectTechniques">
             <summary>
             Indicates the current technique only appears in direct views, i.e. candidates are not displayed.
             </summary>
@@ -5298,11 +5298,15 @@
             <summary>
             Indicates whether the current technique supports for Siamese logic.
             </summary>
+            <remarks>
+            <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> field instead of a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.</b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsDual">
             <summary>
             Indicates whether the current technique supports for Dual logic.
             </summary>
+            <remarks><inheritdoc cref="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese" path="/remarks"/></remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DirectRating">
             <summary>
@@ -5347,6 +5351,11 @@
             Indicates the features of the technique.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SpecialFlags">
+            <summary>
+            Indicates the special flags that the current technique will be applied in metadata.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimaryStepType">
             <summary>
             Indicates the primarily <see cref="T:Sudoku.Analytics.Step"/> type.
@@ -5361,6 +5370,24 @@
             <summary>
             Indicates the step searcher type that can produce steps that describes the current technique.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.TechniqueMetadataSpecialFlags">
+            <summary>
+            Represents a special flag describing how special the current technique is.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.TechniqueMetadataSpecialFlags.None">
+            <summary>
+            Indicates no flag.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.TechniqueMetadataSpecialFlags.SymmetricalPlacement">
+            <summary>
+            Indicates the technique is defined as a Gurth's Symmetrical Placement rule.
+            </summary>
+            <remarks>
+            This technique is specially-handled - it will be executed before all possible step searchers.
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">
             <summary>
@@ -14421,9 +14448,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType2Step">
+        <member name="T:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> or <b>Unique Rectangle Type 5</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -14436,9 +14463,9 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+            Provides with a step that is a <b>Unique Rectangle Type 2</b> or <b>Unique Rectangle Type 5</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -14451,13 +14478,13 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.BaseDifficulty">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Step.ExtraDigit">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.ExtraDigit">
             <summary>
             The generated property declaration for parameter <c>extraDigit</c>.
             </summary>

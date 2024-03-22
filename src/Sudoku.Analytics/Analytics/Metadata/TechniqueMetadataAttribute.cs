@@ -10,11 +10,15 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// <summary>
 	/// Indicates whether the current technique supports for Siamese logic.
 	/// </summary>
+	/// <remarks>
+	/// <b>This property can only be applied to a <see cref="TechniqueGroup"/> field instead of a <see cref="Technique"/> field.</b>
+	/// </remarks>
 	public bool SupportsSiamese { get; init; }
 
 	/// <summary>
 	/// Indicates whether the current technique supports for Dual logic.
 	/// </summary>
+	/// <remarks><inheritdoc cref="SupportsSiamese" path="/remarks"/></remarks>
 	public bool SupportsDual { get; init; }
 
 	/// <summary>
@@ -63,7 +67,12 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// <summary>
 	/// Indicates the features of the technique.
 	/// </summary>
-	public TechniqueFeature Features { get; init; }
+	public TechniqueFeatures Features { get; init; }
+
+	/// <summary>
+	/// Indicates the special flags that the current technique will be applied in metadata.
+	/// </summary>
+	public TechniqueMetadataSpecialFlags SpecialFlags { get; init; }
 
 	/// <summary>
 	/// Indicates the primarily <see cref="Step"/> type.

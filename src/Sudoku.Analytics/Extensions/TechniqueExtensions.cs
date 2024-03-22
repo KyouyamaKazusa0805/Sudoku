@@ -52,7 +52,7 @@ public static class TechniqueExtensions
 			.GetField(@this.ToString())!
 			.GetCustomAttribute<TechniqueMetadataAttribute>()?
 			.Features
-			.HasFlag(TechniqueFeature.DirectTechniques)
+			.HasFlag(TechniqueFeatures.DirectTechniques)
 		?? false;
 
 	/// <summary>
@@ -252,7 +252,7 @@ public static class TechniqueExtensions
 		var fi = TypeOfTechnique.GetField(@this.ToString())!;
 		return (fi.GetCustomAttribute<TechniqueMetadataAttribute>(), fi.GetCustomAttribute<TechniqueMetadataAttribute>()) switch
 		{
-			({ Features: var feature }, _) when feature.HasFlag(TechniqueFeature.NotImplemented) => DifficultyLevel.Unknown,
+			({ Features: var feature }, _) when feature.HasFlag(TechniqueFeatures.NotImplemented) => DifficultyLevel.Unknown,
 			(_, { DifficultyLevel: var level }) => level,
 			_ => throw new MissingDifficultyLevelException(@this.ToString())
 		};
@@ -264,7 +264,7 @@ public static class TechniqueExtensions
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
 	/// <returns>All found features for the current <see cref="Technique"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueFeature GetFeature(this Technique @this)
+	public static TechniqueFeatures GetFeature(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())?.GetCustomAttribute<TechniqueMetadataAttribute>()?.Features ?? 0;
 
 	/// <summary>

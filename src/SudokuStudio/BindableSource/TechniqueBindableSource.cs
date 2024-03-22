@@ -18,5 +18,5 @@ public sealed class TechniqueBindableSource
 	/// <summary>
 	/// Indicates the feature for the current technique.
 	/// </summary>
-	public TechniqueFeature Feature { get; set; }
+	public TechniqueFeatures Feature { get; set; }
 }

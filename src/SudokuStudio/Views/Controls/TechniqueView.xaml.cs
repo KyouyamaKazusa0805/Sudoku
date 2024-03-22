@@ -198,7 +198,7 @@ public sealed partial class TechniqueView : UserControl
 		await .5.Seconds();
 		foreach (var source in
 			from technique in Enum.GetValues<Technique>()[1..]
-			where !technique.GetFeature().HasFlag(TechniqueFeature.NotImplemented)
+			where !technique.GetFeature().HasFlag(TechniqueFeatures.NotImplemented)
 			select new TechniqueViewBindableSource(technique) into item
 			group item by item.ContainingGroup into itemGroup
 			orderby itemGroup.Key

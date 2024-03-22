@@ -15,7 +15,7 @@ internal static class TechniqueConversion
 
 	public static bool IsTechniqueConfigNextButtonEnabled(int index) => index < ConfigurableTechniqueGroups.Length - 1;
 
-	public static int GetDisplayNameColumnSpan(TechniqueFeature feature) => feature == TechniqueFeature.None ? 2 : 1;
+	public static int GetDisplayNameColumnSpan(TechniqueFeatures feature) => feature == TechniqueFeatures.None ? 2 : 1;
 
 	public static string GetName(Technique technique) => technique == Technique.None ? string.Empty : technique.GetName(App.CurrentCulture);
 
@@ -100,35 +100,35 @@ internal static class TechniqueConversion
 	public static string GetHodokuPrefix(Technique technique)
 		=> technique == Technique.None ? string.Empty : HodokuCompatibility.GetHodokuLibraryPrefix(technique) ?? ResourceDictionary.Get("TechniqueSelectionPage_NoHodokuPrefix", App.CurrentCulture);
 
-	public static string GetStringResourceViaFeature(TechniqueFeature feature)
+	public static string GetStringResourceViaFeature(TechniqueFeatures feature)
 		=> feature switch
 		{
-			TechniqueFeature.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGeneratedShort", App.CurrentCulture),
-			TechniqueFeature.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechniqueShort", App.CurrentCulture),
-			TechniqueFeature.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheoryShort", App.CurrentCulture),
-			TechniqueFeature.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplementedShort", App.CurrentCulture),
-			TechniqueFeature.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniquesShort", App.CurrentCulture),
+			TechniqueFeatures.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGeneratedShort", App.CurrentCulture),
+			TechniqueFeatures.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechniqueShort", App.CurrentCulture),
+			TechniqueFeatures.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheoryShort", App.CurrentCulture),
+			TechniqueFeatures.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplementedShort", App.CurrentCulture),
+			TechniqueFeatures.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniquesShort", App.CurrentCulture),
 			_ => string.Empty
 		};
 
-	public static string? GetStringTooltipViaFeature(TechniqueFeature feature)
+	public static string? GetStringTooltipViaFeature(TechniqueFeatures feature)
 		=> feature switch
 		{
-			TechniqueFeature.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGenerated", App.CurrentCulture),
-			TechniqueFeature.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechnique", App.CurrentCulture),
-			TechniqueFeature.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheory", App.CurrentCulture),
-			TechniqueFeature.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplemented", App.CurrentCulture),
-			TechniqueFeature.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniques", App.CurrentCulture),
+			TechniqueFeatures.HardToBeGenerated => ResourceDictionary.Get("TechniqueFeature_HardToBeGenerated", App.CurrentCulture),
+			TechniqueFeatures.WillBeReplacedByOtherTechnique => ResourceDictionary.Get("TechniqueFeature_WillBeReplacedByOtherTechnique", App.CurrentCulture),
+			TechniqueFeatures.OnlyExistInTheory => ResourceDictionary.Get("TechniqueFeature_OnlyExistInTheory", App.CurrentCulture),
+			TechniqueFeatures.NotImplemented => ResourceDictionary.Get("TechniqueFeature_NotImplemented", App.CurrentCulture),
+			TechniqueFeatures.DirectTechniques => ResourceDictionary.Get("TechniqueFeature_DirectTechniques", App.CurrentCulture),
 			_ => null
 		};
 
-	public static Visibility GetExtraDescriptionVisibility(TechniqueFeature feature)
-		=> feature == TechniqueFeature.None ? Visibility.Collapsed : Visibility.Visible;
+	public static Visibility GetExtraDescriptionVisibility(TechniqueFeatures feature)
+		=> feature == TechniqueFeatures.None ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetFeatureVisibility(Technique technique) => GetExtraDescriptionVisibility(technique.GetFeature());
 
-	public static Brush GetBrush(TechniqueFeature feature)
-		=> new SolidColorBrush(feature == TechniqueFeature.None ? Colors.Black : Colors.LightGray);
+	public static Brush GetBrush(TechniqueFeatures feature)
+		=> new SolidColorBrush(feature == TechniqueFeatures.None ? Colors.Black : Colors.LightGray);
 
 	public static string[] GetIntroductionLinks(Technique technique) => technique.GetReferenceLinks();
 }

@@ -498,7 +498,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 		var isType5 = !(corner1.AsCellMap() + corner2).InOneHouse(out _);
 		accumulator.Add(
-			new UniqueRectangleType2Step(
+			new UniqueRectangleType2Or5Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				context.PredefinedOptions,
@@ -882,7 +882,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		accumulator.Add(
-			new UniqueRectangleType2Step(
+			new UniqueRectangleType2Or5Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
 				context.PredefinedOptions,

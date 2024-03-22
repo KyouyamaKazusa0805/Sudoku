@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Unique Rectangle Type 2</b> technique.
+/// Provides with a step that is a <b>Unique Rectangle Type 2</b> or <b>Unique Rectangle Type 5</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAvoidable"><inheritdoc/></param>
 /// <param name="extraDigit">Indicates the extra digit used.</param>
 /// <param name="absoluteOffset"><inheritdoc/></param>
-public sealed partial class UniqueRectangleType2Step(
+public sealed partial class UniqueRectangleType2Or5Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

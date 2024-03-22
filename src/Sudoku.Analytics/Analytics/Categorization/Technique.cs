@@ -124,7 +124,7 @@ public enum Technique
 		StepSearcherType = typeof(SingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
-		Features = TechniqueFeature.DirectTechniques)]
+		Features = TechniqueFeatures.DirectTechniques)]
 	CrosshatchingBlock,
 
 	/// <summary>
@@ -138,7 +138,7 @@ public enum Technique
 		StepSearcherType = typeof(SingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
-		Features = TechniqueFeature.DirectTechniques)]
+		Features = TechniqueFeatures.DirectTechniques)]
 	CrosshatchingRow,
 
 	/// <summary>
@@ -152,7 +152,7 @@ public enum Technique
 		StepSearcherType = typeof(SingleStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
-		Features = TechniqueFeature.DirectTechniques)]
+		Features = TechniqueFeatures.DirectTechniques)]
 	CrosshatchingColumn,
 	#endregion
 
@@ -170,7 +170,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingFullHouse,
 
@@ -184,7 +184,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingFullHouse,
 
@@ -198,7 +198,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairFullHouse,
 
@@ -212,7 +212,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusFullHouse,
 
@@ -226,7 +226,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairFullHouse,
 
@@ -240,7 +240,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairFullHouse,
 
@@ -254,7 +254,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairFullHouse,
 
@@ -268,7 +268,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleFullHouse,
 
@@ -282,7 +282,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusFullHouse,
 
@@ -296,7 +296,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleFullHouse,
 
@@ -310,7 +310,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleFullHouse,
 
@@ -324,7 +324,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleFullHouse,
 
@@ -338,7 +338,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleFullHouse,
 
@@ -352,7 +352,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusFullHouse,
 
@@ -366,7 +366,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleFullHouse,
 
@@ -380,7 +380,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingBlock,
 
@@ -394,7 +394,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingBlock,
 
@@ -408,7 +408,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingBlock,
 
@@ -422,7 +422,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingBlock,
 
@@ -436,7 +436,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingBlock,
 
@@ -450,7 +450,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingBlock,
 
@@ -464,7 +464,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingBlock,
 
@@ -478,7 +478,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingBlock,
 
@@ -492,7 +492,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingBlock,
 
@@ -506,7 +506,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingBlock,
 
@@ -520,7 +520,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingBlock,
 
@@ -534,7 +534,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingBlock,
 
@@ -548,7 +548,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingBlock,
 
@@ -562,7 +562,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingBlock,
 
@@ -576,7 +576,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingBlock,
 
@@ -590,7 +590,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingRow,
 
@@ -604,7 +604,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingRow,
 
@@ -618,7 +618,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingRow,
 
@@ -632,7 +632,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingRow,
 
@@ -646,7 +646,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingRow,
 
@@ -660,7 +660,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingRow,
 
@@ -674,7 +674,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingRow,
 
@@ -688,7 +688,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingRow,
 
@@ -702,7 +702,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingRow,
 
@@ -716,7 +716,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingRow,
 
@@ -730,7 +730,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingRow,
 
@@ -744,7 +744,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingRow,
 
@@ -758,7 +758,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingRow,
 
@@ -772,7 +772,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingRow,
 
@@ -786,7 +786,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingRow,
 
@@ -800,7 +800,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingCrosshatchingColumn,
 
@@ -814,7 +814,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingCrosshatchingColumn,
 
@@ -828,7 +828,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairCrosshatchingColumn,
 
@@ -842,7 +842,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusCrosshatchingColumn,
 
@@ -856,7 +856,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairCrosshatchingColumn,
 
@@ -870,7 +870,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairCrosshatchingColumn,
 
@@ -884,7 +884,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairCrosshatchingColumn,
 
@@ -898,7 +898,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleCrosshatchingColumn,
 
@@ -912,7 +912,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusCrosshatchingColumn,
 
@@ -926,7 +926,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleCrosshatchingColumn,
 
@@ -940,7 +940,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleCrosshatchingColumn,
 
@@ -954,7 +954,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleCrosshatchingColumn,
 
@@ -968,7 +968,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleCrosshatchingColumn,
 
@@ -982,7 +982,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusCrosshatchingColumn,
 
@@ -996,7 +996,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleCrosshatchingColumn,
 
@@ -1010,7 +1010,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	PointingNakedSingle,
 
@@ -1024,7 +1024,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectIntersectionStep),
 		StepSearcherType = typeof(DirectIntersectionStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	ClaimingNakedSingle,
 
@@ -1038,7 +1038,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairNakedSingle,
 
@@ -1052,7 +1052,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedPairPlusNakedSingle,
 
@@ -1066,7 +1066,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenPairNakedSingle,
 
@@ -1080,7 +1080,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedPairNakedSingle,
 
@@ -1094,7 +1094,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenPairNakedSingle,
 
@@ -1108,7 +1108,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTripleNakedSingle,
 
@@ -1122,7 +1122,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedTriplePlusNakedSingle,
 
@@ -1136,7 +1136,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenTripleNakedSingle,
 
@@ -1150,7 +1150,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedTripleNakedSingle,
 
@@ -1164,7 +1164,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	LockedHiddenTripleNakedSingle,
 
@@ -1178,7 +1178,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadrupleNakedSingle,
 
@@ -1192,7 +1192,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	NakedQuadruplePlusNakedSingle,
 
@@ -1206,7 +1206,7 @@ public enum Technique
 		PrimaryStepType = typeof(DirectSubsetStep),
 		StepSearcherType = typeof(DirectSubsetStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Locked])]
 	HiddenQuadrupleNakedSingle,
 	#endregion
@@ -1262,7 +1262,7 @@ public enum Technique
 		StepSearcherType = typeof(LawOfLeftoverStepSearcher),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Abbreviation = "LoL",
-		Features = TechniqueFeature.DirectTechniques,
+		Features = TechniqueFeatures.DirectTechniques,
 		Links = ["http://sudopedia.enjoysudoku.com/Law_of_Leftovers.html"])]
 	LawOfLeftover,
 	#endregion
@@ -2368,7 +2368,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	Squirmbag,
 
@@ -2379,7 +2379,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -2394,7 +2394,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
 	SashimiSquirmbag,
 
@@ -2404,7 +2404,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseFinnedSquirmbag,
 
@@ -2414,7 +2414,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
 	SiameseSashimiSquirmbag,
 
@@ -2428,7 +2428,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -2528,7 +2528,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -2625,7 +2625,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	Whale,
 
@@ -2636,7 +2636,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -2651,7 +2651,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html"])]
 	SashimiWhale,
 
@@ -2661,7 +2661,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseFinnedWhale,
 
@@ -2671,7 +2671,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
 	SiameseSashimiWhale,
 
@@ -2685,7 +2685,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -2786,7 +2786,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -2885,7 +2885,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	Leviathan,
 
@@ -2896,7 +2896,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = [
 			"http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html",
 			"http://sudopedia.enjoysudoku.com/Finned_Fish.html",
@@ -2911,7 +2911,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://sudopedia.enjoysudoku.com/Sashimi_Fish.html",])]
 	SashimiLeviathan,
 
@@ -2921,7 +2921,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2793"])]
 	SiameseFinnedLeviathan,
 
@@ -2931,7 +2931,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.NormalFish,
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://forum.enjoysudoku.com/the-ultimate-fish-guide-t4993.html"])]
 	SiameseSashimiLeviathan,
 
@@ -2945,7 +2945,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -3046,7 +3046,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.ComplexFish,
 		PrimaryStepType = typeof(ComplexFishStep),
 		StepSearcherType = typeof(ComplexFishStepSearcher),
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Sashimi,
@@ -3197,7 +3197,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	VwxyzWing,
 
@@ -3211,7 +3211,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	UvwxyzWing,
 
@@ -3225,7 +3225,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	TuvwxyzWing,
 
@@ -3239,7 +3239,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	StuvwxyzWing,
 
@@ -3253,7 +3253,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	RstuvwxyzWing,
 
@@ -3291,7 +3291,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteUvwxyzWing,
 
@@ -3304,7 +3304,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteTuvwxyzWing,
 
@@ -3317,7 +3317,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteStuvwxyzWing,
 
@@ -3330,7 +3330,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.RegularWing,
 		PrimaryStepType = typeof(RegularWingStep),
 		StepSearcherType = typeof(RegularWingStepSearcher),
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Incompleteness])]
 	IncompleteRstuvwxyzWing,
 	#endregion
@@ -3484,6 +3484,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AlmostLockedCandidates,
 		PrimaryStepType = typeof(AlmostLockedCandidatesStep),
+		StepSearcherType = typeof(AlmostLockedCandidatesStepSearcher),
 		Abbreviation = "ALP",
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
@@ -3498,6 +3499,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AlmostLockedCandidates,
 		PrimaryStepType = typeof(AlmostLockedCandidatesStep),
+		StepSearcherType = typeof(AlmostLockedCandidatesStepSearcher),
 		Abbreviation = "ALT",
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
@@ -3512,9 +3514,10 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AlmostLockedCandidates,
 		PrimaryStepType = typeof(AlmostLockedCandidatesStep),
+		StepSearcherType = typeof(AlmostLockedCandidatesStepSearcher),
 		Abbreviation = "ALQ",
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadruple,
 
@@ -3527,6 +3530,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AlmostLockedCandidates,
 		PrimaryStepType = typeof(AlmostLockedCandidatesStep),
+		StepSearcherType = typeof(AlmostLockedCandidatesStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedTripleValueType,
@@ -3540,6 +3544,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AlmostLockedCandidates,
 		PrimaryStepType = typeof(AlmostLockedCandidatesStep),
+		StepSearcherType = typeof(AlmostLockedCandidatesStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ValueCell],
 		Links = ["http://sudopedia.enjoysudoku.com/Almost_Locked_Candidates.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4477"])]
 	AlmostLockedQuadrupleValueType,
@@ -3558,6 +3563,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ExtendedSubsetPrinciple,
 		PrimaryStepType = typeof(ExtendedSubsetPrincipleStep),
+		StepSearcherType = typeof(ExtendedSubsetPrincipleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Abbreviation = "ESP",
 		Links = ["http://sudopedia.enjoysudoku.com/Subset_Counting.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3479"])]
@@ -3578,6 +3584,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleType1Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
@@ -3595,7 +3602,8 @@ public enum Technique
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		PrimaryStepType = typeof(UniqueRectangleType2Step),
+		PrimaryStepType = typeof(UniqueRectangleType2Or5Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/viewtopic.php?t=2000",
@@ -3616,6 +3624,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleType3Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3634,6 +3643,7 @@ public enum Technique
 		Rating = 4.4, DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3652,7 +3662,8 @@ public enum Technique
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
-		PrimaryStepType = typeof(UniqueRectangleType2Step),
+		PrimaryStepType = typeof(UniqueRectangleType2Or5Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -3670,6 +3681,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3688,8 +3700,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(HiddenUniqueRectangleStep),
-		Abbreviation = "HUR",
 		SecondaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Abbreviation = "HUR",
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3706,7 +3719,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangle2DOr3XStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -3722,6 +3736,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3738,6 +3753,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3754,7 +3770,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangle2DOr3XStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
@@ -3796,6 +3813,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3812,6 +3830,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3828,6 +3847,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3844,6 +3864,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3912,6 +3933,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3928,6 +3950,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3944,7 +3967,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleBurredSubsetStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Size], Links = [
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [ExtraDifficultyFactorNames.Size],
+		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
 			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
@@ -3959,6 +3984,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3975,6 +4001,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
@@ -3991,9 +4018,11 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleWxyzWing,
@@ -4007,12 +4036,15 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 #if UNIQUE_RECTANGLE_W_WING
 		PrimarySupportedType = typeof(UniqueRectangleWWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 #endif
 #if !UNIQUE_RECTANGLE_W_WING
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 #endif
-		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable], Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable],
+		Links = [
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleWWing,
@@ -4025,11 +4057,16 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithSueDeCoqStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Isolated,
-		ExtraDifficultyFactorNames.Cannibalism,
-		ExtraDifficultyFactorNames.Avoidable],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Size,
+			ExtraDifficultyFactorNames.Isolated,
+			ExtraDifficultyFactorNames.Cannibalism,
+			ExtraDifficultyFactorNames.Avoidable
+		],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleSueDeCoq,
@@ -4042,6 +4079,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithBabaGroupingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
@@ -4056,6 +4094,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType1Or2Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
@@ -4070,8 +4109,10 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType1Or2Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalType2,
@@ -4084,10 +4125,15 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Avoidable,
-		ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Size,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalType3,
@@ -4100,9 +4146,11 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType4Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalType4,
@@ -4115,9 +4163,11 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalTurbotFishStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Incompleteness],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalTurbotFish,
@@ -4130,10 +4180,15 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalWWingStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable,
-		ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalWWing,
@@ -4146,10 +4201,15 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable,
-		ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalXyWing,
@@ -4162,10 +4222,15 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable,
-		ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = [
-			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html", "http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
+			"http://sudopedia.enjoysudoku.com/Unique_Rectangle.html",
+			"http://forum.enjoysudoku.com/uniqueness-type-6-ur-meets-x-wing-t3709-30.html#p26448",
 			"http://forum.enjoysudoku.com/unique-rectangles-gallery-t33752.html"
 		])]
 	UniqueRectangleExternalAlmostLockedSetsXz,
@@ -4179,14 +4244,13 @@ public enum Technique
 	/// Indicates avoidable rectangle type 1.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0607")]
-	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle,
-		RatingValueAdvanced = [4.7])] // I think this difficulty may be a mistake.
+	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.7])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleType1Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType1,
 
@@ -4194,14 +4258,13 @@ public enum Technique
 	/// Indicates avoidable rectangle type 2.
 	/// </summary>
 	[Hodoku(Rating = 100, DifficultyLevel = HodokuDifficultyLevel.Hard, Prefix = "0608")]
-	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle,
-		RatingValueAdvanced = [4.5])] // I think this difficulty may be a mistake.
+	[SudokuExplainer(TechniqueDefined = SudokuExplainerTechnique.AvoidableRectangle, RatingValueAdvanced = [4.5])] // I think this difficulty may be a mistake.
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		PrimaryStepType = typeof(UniqueRectangleType2Step),
+		PrimaryStepType = typeof(UniqueRectangleType2Or5Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType2,
 
@@ -4213,6 +4276,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleType3Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType3,
@@ -4224,7 +4288,8 @@ public enum Technique
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
-		PrimaryStepType = typeof(UniqueRectangleType2Step),
+		PrimaryStepType = typeof(UniqueRectangleType2Or5Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleType5,
 
@@ -4236,8 +4301,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(HiddenUniqueRectangleStep),
-		Abbreviation = "HAR",
 		SecondaryStepType = typeof(UniqueRectangleWithConjugatePairStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Abbreviation = "HAR",
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair, ExtraDifficultyFactorNames.Avoidable],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	HiddenAvoidableRectangle,
@@ -4250,7 +4316,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangle2DOr3XStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangle2D,
 
@@ -4262,7 +4329,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangle2DOr3XStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangle3X,
 
@@ -4274,6 +4342,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyWing,
@@ -4286,6 +4355,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleXyzWing,
@@ -4298,6 +4368,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.WingSize],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleWxyzWing,
@@ -4311,9 +4382,10 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 #if UNIQUE_RECTANGLE_W_WING
 		PrimarySupportedType = typeof(UniqueRectangleWWingStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 #endif
 #if !UNIQUE_RECTANGLE_W_WING
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 #endif
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
@@ -4327,6 +4399,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleWithSueDeCoqStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [
 			ExtraDifficultyFactorNames.Size,
 			ExtraDifficultyFactorNames.Isolated,
@@ -4344,6 +4417,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleBlock,
 
@@ -4355,6 +4429,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleRow,
 
@@ -4366,6 +4441,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(AvoidableRectangleWithHiddenSingleStep),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleHiddenSingleColumn,
 
@@ -4377,6 +4453,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType1Or2Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType1,
 
@@ -4388,6 +4465,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType1Or2Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType2,
 
@@ -4399,7 +4477,12 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType3Step),
-		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Size,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType3,
 
@@ -4411,6 +4494,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalType4Step),
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalType4,
@@ -4423,7 +4507,12 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalXyWingStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalXyWing,
 
@@ -4435,9 +4524,14 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalWWingStep),
-		Features = TechniqueFeature.NotImplemented,
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"],
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness])]
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		])]
 	AvoidableRectangleExternalWWing,
 
 	/// <summary>
@@ -4448,7 +4542,12 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AvoidableRectangle,
 		PrimaryStepType = typeof(UniqueRectangleExternalAlmostLockedSetsXzStep),
-		ExtraFactors = [ExtraDifficultyFactorNames.Guardian, ExtraDifficultyFactorNames.Avoidable, ExtraDifficultyFactorNames.Incompleteness],
+		StepSearcherType = typeof(UniqueRectangleStepSearcher),
+		ExtraFactors = [
+			ExtraDifficultyFactorNames.Guardian,
+			ExtraDifficultyFactorNames.Avoidable,
+			ExtraDifficultyFactorNames.Incompleteness
+		],
 		Links = ["http://sudopedia.enjoysudoku.com/Avoidable_Rectangle.html"])]
 	AvoidableRectangleExternalAlmostLockedSetsXz,
 	#endregion
@@ -4466,6 +4565,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueLoop,
 		PrimaryStepType = typeof(UniqueLoopType1Step),
+		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType1,
@@ -4482,6 +4582,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueLoop,
 		PrimaryStepType = typeof(UniqueLoopType2Step),
+		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType2,
@@ -4490,14 +4591,14 @@ public enum Technique
 	/// Indicates unique loop type 3.
 	/// </summary>
 	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop,
-		RatingValueOriginal = [4.6, 5.0],
+		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0],
 		RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		Rating = 4.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueLoop,
 		PrimaryStepType = typeof(UniqueLoopType3Step),
+		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length, ExtraDifficultyFactorNames.Size],
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType3,
@@ -4506,14 +4607,14 @@ public enum Technique
 	/// Indicates unique loop type 4.
 	/// </summary>
 	[SudokuExplainer(
-		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop,
-		RatingValueOriginal = [4.6, 5.0],
+		TechniqueDefined = SudokuExplainerTechnique.UniqueLoop, RatingValueOriginal = [4.6, 5.0],
 		RatingValueAdvanced = [4.7, 5.1])]
 	[TechniqueMetadata(
 		Rating = 4.6,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.UniqueLoop,
 		PrimaryStepType = typeof(UniqueLoopType4Step),
+		StepSearcherType = typeof(UniqueLoopStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=39748#p39748"])]
 	UniqueLoopType4,
@@ -4534,6 +4635,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ExtendedRectangle,
 		PrimaryStepType = typeof(ExtendedRectangleType1Step),
+		StepSearcherType = typeof(ExtendedRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType1,
 
@@ -4548,6 +4650,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ExtendedRectangle,
 		PrimaryStepType = typeof(ExtendedRectangleType2Step),
+		StepSearcherType = typeof(ExtendedRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType2,
 
@@ -4562,6 +4665,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ExtendedRectangle,
 		PrimaryStepType = typeof(ExtendedRectangleType3Step),
+		StepSearcherType = typeof(ExtendedRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.ExtraDigit])]
 	ExtendedRectangleType3,
 
@@ -4576,6 +4680,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.ExtendedRectangle,
 		PrimaryStepType = typeof(ExtendedRectangleType4Step),
+		StepSearcherType = typeof(ExtendedRectangleStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	ExtendedRectangleType4,
 	#endregion
@@ -4598,6 +4703,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType1,
 
@@ -4610,6 +4716,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveType2Step),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ExtraDigit],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType2,
@@ -4623,6 +4730,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveType3Step),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size, ExtraDifficultyFactorNames.Hidden],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType3,
@@ -4636,6 +4744,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveType4Step),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.ConjugatePair],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveType4,
@@ -4648,6 +4757,7 @@ public enum Technique
 		Rating = 5.7, DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveMultipleStep),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		Abbreviation = "BUG + n",
 		ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
@@ -4661,6 +4771,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveFalseCandidateTypeStep),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveFalseCandidateType,
 
@@ -4670,7 +4781,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGravePlusNForcingChains,
 
@@ -4682,6 +4793,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		PrimaryStepType = typeof(BivalueUniversalGraveXzStep),
+		StepSearcherType = typeof(BivalueUniversalGraveStepSearcher),
 		Abbreviation = "BUG-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveXzRule,
@@ -4693,6 +4805,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BivalueUniversalGrave,
 		Abbreviation = "BUG-XY-Wing",
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://sudopedia.enjoysudoku.com/Bivalue_Universal_Grave.html", "http://forum.enjoysudoku.com/viewtopic.php?t=2352"])]
 	BivalueUniversalGraveXyWing,
 	#endregion
@@ -4709,6 +4822,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ReverseBivalueUniversalGrave,
 		PrimaryStepType = typeof(ReverseBivalueUniversalGraveType1Step),
+		StepSearcherType = typeof(ReverseBivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType1,
@@ -4721,6 +4835,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ReverseBivalueUniversalGrave,
 		PrimaryStepType = typeof(ReverseBivalueUniversalGraveType2Step),
+		StepSearcherType = typeof(ReverseBivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType2,
@@ -4733,6 +4848,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ReverseBivalueUniversalGrave,
 		PrimaryStepType = typeof(ReverseBivalueUniversalGraveType3Step),
+		StepSearcherType = typeof(ReverseBivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType3,
@@ -4745,6 +4861,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.ReverseBivalueUniversalGrave,
 		PrimaryStepType = typeof(ReverseBivalueUniversalGraveType4Step),
+		StepSearcherType = typeof(ReverseBivalueUniversalGraveStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Reverse_BUG.html", "http://forum.enjoysudoku.com/viewtopic.php?t=4431"])]
 	ReverseBivalueUniversalGraveType4,
@@ -4762,7 +4879,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniquenessClueCover,
 		PrimaryStepType = typeof(UniquenessClueCoverStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniquenessClueCoverStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html", "http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html"])]
 	UniquenessClueCover,
@@ -4778,7 +4896,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RwDeadlyPattern,
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/yet-another-crazy-uniqueness-technique-t5589.html"])]
 	RwDeadlyPattern,
 	#endregion
@@ -4794,7 +4912,8 @@ public enum Technique
 		Rating = 5.3,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BorescoperDeadlyPattern,
-		PrimaryStepType = typeof(BorescoperDeadlyPatternType1Step))]
+		PrimaryStepType = typeof(BorescoperDeadlyPatternType1Step),
+		StepSearcherType = typeof(BorescoperDeadlyPatternStepSearcher))]
 	BorescoperDeadlyPatternType1,
 
 	/// <summary>
@@ -4804,7 +4923,8 @@ public enum Technique
 		Rating = 5.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BorescoperDeadlyPattern,
-		PrimaryStepType = typeof(BorescoperDeadlyPatternType2Step))]
+		PrimaryStepType = typeof(BorescoperDeadlyPatternType2Step),
+		StepSearcherType = typeof(BorescoperDeadlyPatternStepSearcher))]
 	BorescoperDeadlyPatternType2,
 
 	/// <summary>
@@ -4815,6 +4935,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BorescoperDeadlyPattern,
 		PrimaryStepType = typeof(BorescoperDeadlyPatternType3Step),
+		StepSearcherType = typeof(BorescoperDeadlyPatternStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	BorescoperDeadlyPatternType3,
 
@@ -4825,7 +4946,8 @@ public enum Technique
 		Rating = 5.5,
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.BorescoperDeadlyPattern,
-		PrimaryStepType = typeof(BorescoperDeadlyPatternType4Step))]
+		PrimaryStepType = typeof(BorescoperDeadlyPatternType4Step),
+		StepSearcherType = typeof(BorescoperDeadlyPatternStepSearcher))]
 	BorescoperDeadlyPatternType4,
 	#endregion
 
@@ -4841,7 +4963,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternType1Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternType1,
 
@@ -4853,7 +4976,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternType2Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternType2,
 
@@ -4865,8 +4989,10 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternType3Step),
-		Features = TechniqueFeature.HardToBeGenerated,
-		ExtraFactors = [ExtraDifficultyFactorNames.Size], Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
+		ExtraFactors = [ExtraDifficultyFactorNames.Size],
+		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternType3,
 
 	/// <summary>
@@ -4877,7 +5003,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternType4Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternType4,
 
@@ -4889,7 +5016,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternLockedTypeStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	LockedQiuDeadlyPattern,
 
@@ -4901,7 +5029,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternExternalType1Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternExternalType1,
 
@@ -4913,7 +5042,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.QiuDeadlyPattern,
 		PrimaryStepType = typeof(QiuDeadlyPatternExternalType2Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(QiuDeadlyPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/distinction-theory-t35042.html"])]
 	QiuDeadlyPatternExternalType2,
 	#endregion
@@ -4930,7 +5060,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueMatrix,
 		PrimaryStepType = typeof(UniqueMatrixType1Step),
-		Features = TechniqueFeature.HardToBeGenerated)]
+		StepSearcherType = typeof(UniqueMatrixStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	UniqueMatrixType1,
 
 	/// <summary>
@@ -4941,7 +5072,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueMatrix,
 		PrimaryStepType = typeof(UniqueMatrixType2Step),
-		Features = TechniqueFeature.HardToBeGenerated)]
+		StepSearcherType = typeof(UniqueMatrixStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	UniqueMatrixType2,
 
 	/// <summary>
@@ -4952,7 +5084,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueMatrix,
 		PrimaryStepType = typeof(UniqueMatrixType3Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(UniqueMatrixStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Size])]
 	UniqueMatrixType3,
 
@@ -4964,7 +5097,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.UniqueMatrix,
 		PrimaryStepType = typeof(UniqueMatrixType4Step),
-		Features = TechniqueFeature.HardToBeGenerated)]
+		StepSearcherType = typeof(UniqueMatrixStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	UniqueMatrixType4,
 	#endregion
 
@@ -4981,6 +5115,7 @@ public enum Technique
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
 		PrimaryStepType = typeof(SueDeCoqStep),
+		StepSearcherType = typeof(SueDeCoqStepSearcher),
 		Abbreviation = "SdC",
 		ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
@@ -4999,6 +5134,7 @@ public enum Technique
 		Rating = 5.0, DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
 		PrimaryStepType = typeof(SueDeCoqStep),
+		StepSearcherType = typeof(SueDeCoqStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism],
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Sue_de_Coq.html",
@@ -5015,6 +5151,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
 		PrimaryStepType = typeof(SueDeCoq3DimensionStep),
+		StepSearcherType = typeof(SueDeCoq3DimensionStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Sue_de_Coq.html"])]
 	SueDeCoq3Dimension,
 
@@ -5026,6 +5163,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.SueDeCoq,
 		PrimaryStepType = typeof(SueDeCoqStep),
+		StepSearcherType = typeof(SueDeCoqStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Isolated, ExtraDifficultyFactorNames.Cannibalism],
 		Links = ["http://sudopedia.enjoysudoku.com/Sue_de_Coq.html"])]
 	SueDeCoqCannibalism,
@@ -5043,6 +5181,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.Firework,
 		PrimaryStepType = typeof(FireworkTripleStep),
+		StepSearcherType = typeof(FireworkStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/fireworks-t39513.html"])]
 	FireworkTriple,
 
@@ -5054,6 +5193,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.Firework,
 		PrimaryStepType = typeof(FireworkQuadrupleStep),
+		StepSearcherType = typeof(FireworkStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/fireworks-t39513.html"])]
 	FireworkQuadruple,
 	#endregion
@@ -5071,6 +5211,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.BrokenWing,
 		PrimaryStepType = typeof(GuardianStep),
+		StepSearcherType = typeof(GuardianStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Broken_Wing.html"])]
 	BrokenWing,
 	#endregion
@@ -5087,6 +5228,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.BivalueOddagon,
 		PrimaryStepType = typeof(BivalueOddagonType2Step),
+		StepSearcherType = typeof(BivalueOddagonStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
 	BivalueOddagonType2,
 
@@ -5098,6 +5240,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.BivalueOddagon,
 		PrimaryStepType = typeof(BivalueOddagonType3Step),
+		StepSearcherType = typeof(BivalueOddagonStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Size],
 		Links = ["http://forum.enjoysudoku.com/technique-share-odd-bivalue-loop-bivalue-oddagon-t33153.html"])]
 	BivalueOddagonType3,
@@ -5115,7 +5258,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RankTheory,
 		PrimaryStepType = typeof(ChromaticPatternType1Step),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(ChromaticPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	ChromaticPatternType1,
 
@@ -5125,7 +5269,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RankTheory,
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	ChromaticPatternType2,
 
@@ -5135,7 +5279,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RankTheory,
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	ChromaticPatternType3,
 
@@ -5145,7 +5289,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RankTheory,
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/chromatic-patterns-t39885.html", "http://forum.enjoysudoku.com/the-tridagon-rule-t39859.html"])]
 	ChromaticPatternType4,
 
@@ -5157,7 +5301,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.RankTheory,
 		PrimaryStepType = typeof(ChromaticPatternXzStep),
-		Features = TechniqueFeature.HardToBeGenerated)]
+		StepSearcherType = typeof(ChromaticPatternStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	ChromaticPatternXzRule,
 	#endregion
 
@@ -5177,6 +5322,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Skyscraper.html"])]
 	Skyscraper,
 
@@ -5192,6 +5338,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/2-String_Kite.html"])]
 	TwoStringKite,
 
@@ -5205,6 +5352,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?t=833"])]
 	TurbotFish,
 
@@ -5216,6 +5364,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Skyscraper.html"])]
 	GroupedSkyscraper,
 
@@ -5227,6 +5376,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/2-String_Kite.html"])]
 	GroupedTwoStringKite,
 
@@ -5238,6 +5388,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.SingleDigitPattern,
 		PrimaryStepType = typeof(TwoStrongLinksStep),
+		StepSearcherType = typeof(TwoStrongLinksStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/2-String_Kite.html"])]
 	GroupedTurbotFish,
 	#endregion
@@ -5255,6 +5406,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Hard,
 		ContainingGroup = TechniqueGroup.EmptyRectangle,
 		PrimaryStepType = typeof(EmptyRectangleStep),
+		StepSearcherType = typeof(EmptyRectangleStepSearcher),
 		Abbreviation = "ER",
 		Links = ["http://sudopedia.enjoysudoku.com/Empty_Rectangle.html"])]
 	EmptyRectangle,
@@ -5274,6 +5426,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/X-Chain.html"])]
 	XChain,
@@ -5289,7 +5442,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	YChain,
 
@@ -5303,7 +5457,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Fishy_Cycle.html"])]
 	FishyCycle,
@@ -5317,7 +5472,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.NotImplemented,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/XY-Chain.html"])]
 	XyChain,
@@ -5331,8 +5487,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	XyCycle,
 
 	/// <summary>
@@ -5343,7 +5500,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.NotImplemented,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	XyXChain,
 
@@ -5356,7 +5514,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.NotImplemented,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	RemotePair,
 
@@ -5368,7 +5527,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
-		Features = TechniqueFeature.NotImplemented,
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		Features = TechniqueFeatures.NotImplemented,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	PurpleCow,
 
@@ -5382,9 +5542,10 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
 		Abbreviation = "DNL",
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?t=2859"])]
 	DiscontinuousNiceLoop,
 
@@ -5398,6 +5559,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
 		Abbreviation = "CNL",
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Nice_Loop.html"])]
@@ -5413,6 +5575,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
 		PrimaryStepType = typeof(ForcingChainStep),
+		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
 		Abbreviation = "AIC",
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Alternating_Inference_Chain.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3865"])]
@@ -5424,7 +5587,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedXChain,
 
 	/// <summary>
@@ -5433,7 +5596,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedFishyCycle,
 
 	/// <summary>
@@ -5442,7 +5605,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedXyChain,
 
 	/// <summary>
@@ -5451,7 +5614,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedXyCycle,
 
 	/// <summary>
@@ -5460,7 +5623,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedXyXChain,
 
 	/// <summary>
@@ -5469,7 +5632,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedPurpleCow,
 
 	/// <summary>
@@ -5479,7 +5642,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
@@ -5489,7 +5652,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
@@ -5499,7 +5662,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	GroupedAlternatingInferenceChain,
 
 	/// <summary>
@@ -5508,7 +5671,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeature.NotImplemented)]
+		Features = TechniqueFeatures.NotImplemented)]
 	NodeCollision,
 	#endregion
 
@@ -5536,6 +5699,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(RegionForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	RegionForcingChains,
 
@@ -5549,6 +5713,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(CellForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length])]
 	CellForcingChains,
 
@@ -5562,8 +5727,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(RegionForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -5576,8 +5742,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(CellForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -5590,8 +5757,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(BinaryForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -5604,14 +5772,18 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
 		PrimaryStepType = typeof(BinaryForcingChainsStep),
+		StepSearcherType = typeof(MultipleChainingStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
-		Features = TechniqueFeature.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
 	/// Indicates dynamic forcing chains.
 	/// </summary>
-	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Nightmare, ContainingGroup = TechniqueGroup.ForcingChains)]
+	[TechniqueMetadata(
+		DifficultyLevel = DifficultyLevel.Nightmare,
+		ContainingGroup = TechniqueGroup.ForcingChains,
+		Features = TechniqueFeatures.NotImplemented)]
 	DynamicForcingChains,
 	#endregion
 
@@ -5627,7 +5799,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.BlossomLoop,
 		PrimaryStepType = typeof(BlossomLoopStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(BlossomLoopStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
 	BlossomLoop,
@@ -5646,8 +5819,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlignedExclusion,
 		PrimaryStepType = typeof(AlignedExclusionStep),
+		StepSearcherType = typeof(AlignedExclusionStepSearcher),
 		Abbreviation = "APE",
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = [
 			"http://sudopedia.enjoysudoku.com/Subset_Exclusion.html",
 			"http://sudopedia.enjoysudoku.com/Aligned_Pair_Exclusion.html",
@@ -5664,8 +5838,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlignedExclusion,
 		PrimaryStepType = typeof(AlignedExclusionStep),
+		StepSearcherType = typeof(AlignedExclusionStepSearcher),
 		Abbreviation = "ATE",
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Subset_Exclusion.html", "http://sudopedia.enjoysudoku.com/Aligned_Pair_Exclusion.html",])]
 	AlignedTripleExclusion,
 
@@ -5677,8 +5852,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlignedExclusion,
 		PrimaryStepType = typeof(AlignedExclusionStep),
+		StepSearcherType = typeof(AlignedExclusionStepSearcher),
 		Abbreviation = "AQE",
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Subset_Exclusion.html"])]
 	AlignedQuadrupleExclusion,
 
@@ -5690,7 +5866,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlignedExclusion,
 		PrimaryStepType = typeof(AlignedExclusionStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		StepSearcherType = typeof(AlignedExclusionStepSearcher),
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Subset_Exclusion.html"])]
 	AlignedQuintupleExclusion,
 	#endregion
@@ -5707,6 +5884,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	XyzLoop,
 
@@ -5718,6 +5896,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	SiameseXyzLoop,
 
@@ -5729,6 +5908,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	XyzNiceLoop,
 
@@ -5740,6 +5920,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	SiameseXyzNiceLoop,
 
@@ -5751,6 +5932,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	GroupedXyzLoop,
 
@@ -5762,6 +5944,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	SiameseGroupedXyzLoop,
 
@@ -5773,6 +5956,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	GroupedXyzNiceLoop,
 
@@ -5784,6 +5968,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.XyzRing,
 		PrimaryStepType = typeof(XyzRingStep),
+		StepSearcherType = typeof(XyzRingStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/xyz-ring-t42209.html"])]
 	SiameseGroupedXyzNiceLoop,
 	#endregion
@@ -5802,6 +5987,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		PrimaryStepType = typeof(AlmostLockedSetsXzStep),
+		StepSearcherType = typeof(AlmostLockedSetsXzStepSearcher),
 		Abbreviation = "ALS-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XZ.html"])]
 	SinglyLinkedAlmostLockedSetsXzRule,
@@ -5816,6 +6002,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		PrimaryStepType = typeof(AlmostLockedSetsXzStep),
+		StepSearcherType = typeof(AlmostLockedSetsXzStepSearcher),
 		Abbreviation = "ALS-XZ",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XZ.html"])]
 	DoublyLinkedAlmostLockedSetsXzRule,
@@ -5830,6 +6017,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		PrimaryStepType = typeof(AlmostLockedSetsXyWingStep),
+		StepSearcherType = typeof(AlmostLockedSetsXyWingStepSearcher),
 		Abbreviation = "ALS-XY-Wing",
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Wing.html"])]
 	AlmostLockedSetsXyWing,
@@ -5842,6 +6030,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
 		PrimaryStepType = typeof(AlmostLockedSetsWWingStep),
+		StepSearcherType = typeof(AlmostLockedSetsWWingStepSearcher),
 		Abbreviation = "ALS-W-Wing")]
 	AlmostLockedSetsWWing,
 
@@ -5852,7 +6041,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlmostLockedSetsChainingLike,
-		Features = TechniqueFeature.NotImplemented,
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://sudopedia.enjoysudoku.com/ALS-XY-Chain.html"])]
 	AlmostLockedSetsChain,
 	#endregion
@@ -5869,6 +6058,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.EmptyRectangleIntersectionPair,
 		PrimaryStepType = typeof(EmptyRectangleIntersectionPairStep),
+		StepSearcherType = typeof(EmptyRectangleIntersectionPairStepSearcher),
 		Abbreviation = "ERIP",
 		Links = ["http://forum.enjoysudoku.com/post288015.html"])]
 	EmptyRectangleIntersectionPair,
@@ -5887,6 +6077,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
 		PrimaryStepType = typeof(DeathBlossomStep),
+		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		Abbreviation = "DB",
 		ExtraFactors = [ExtraDifficultyFactorNames.Petals],
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
@@ -5900,6 +6091,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
 		PrimaryStepType = typeof(HouseDeathBlossomStep),
+		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Petals],
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	HouseDeathBlossom,
@@ -5912,6 +6104,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
 		PrimaryStepType = typeof(RectangleDeathBlossomStep),
+		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Petals],
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	RectangleDeathBlossom,
@@ -5924,6 +6117,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.DeathBlossom,
 		PrimaryStepType = typeof(NTimesAlmostLockedSetDeathBlossomStep),
+		StepSearcherType = typeof(DeathBlossomStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Petals],
 		Links = ["http://sudopedia.enjoysudoku.com/Death_Blossom.html"])]
 	NTimesAlmostLockedSetDeathBlossom,
@@ -5942,7 +6136,8 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Symmetry,
 		PrimaryStepType = typeof(GurthSymmetricalPlacementStep),
 		Abbreviation = "GSP",
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
+		SpecialFlags = TechniqueMetadataSpecialFlags.SymmetricalPlacement,
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?p=32842#p32842"])]
 	GurthSymmetricalPlacement,
 
@@ -5952,7 +6147,7 @@ public enum Technique
 	[TechniqueMetadata(
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Symmetry,
-		Features = TechniqueFeature.NotImplemented | TechniqueFeature.HardToBeGenerated)]
+		Features = TechniqueFeatures.NotImplemented | TechniqueFeatures.HardToBeGenerated)]
 	ExtendedGurthSymmetricalPlacement,
 
 	/// <summary>
@@ -5964,7 +6159,8 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Symmetry,
 		PrimaryStepType = typeof(AntiGurthSymmetricalPlacementStep),
 		SecondaryStepType = typeof(GurthSymmetricalPlacementStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(AntiGurthSymmetricalPlacementStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/new-type-of-gsp-t40470.html"])]
 	AntiGurthSymmetricalPlacement,
 	#endregion
@@ -5981,6 +6177,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Abbreviation = "JE",
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocet,
@@ -5993,6 +6190,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetConjugatePair,
 
@@ -6004,6 +6202,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetMirrorConjugatePairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorConjugatePair,
@@ -6016,6 +6215,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetAdjacentTargetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetAdjacentTarget,
@@ -6028,6 +6228,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetIncompatiblePairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.IncompatiblePair],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetIncompatiblePair,
@@ -6040,6 +6241,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetTargetPairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.TargetPair],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetTargetPair,
@@ -6052,6 +6254,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetGeneralizedFishStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.GeneralizedFish],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetGeneralizedFish,
@@ -6064,6 +6267,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetMirrorAlmostHiddenSetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.AlmostHiddenSet],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorAlmostHiddenSet,
@@ -6076,6 +6280,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetLockedMember,
@@ -6088,6 +6293,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(JuniorExocetMirrorSyncStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	JuniorExocetMirrorSync,
@@ -6100,6 +6306,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Abbreviation = "SE",
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocet,
@@ -6112,6 +6319,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetMirrorConjugatePairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetMirrorConjugatePair,
@@ -6124,6 +6332,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetLockedMember,
@@ -6136,6 +6345,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(SeniorExocetTrueBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.TrueBase],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	SeniorExocetTrueBase,
@@ -6149,6 +6359,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(WeakExocetStep),
 		Abbreviation = "WE",
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.MissingStabilityBalancer],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocet,
@@ -6161,6 +6372,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(WeakExocetAdjacentTargetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetAdjacentTarget,
@@ -6173,6 +6385,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(WeakExocetSlashStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.SlashElimination],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetSlash,
@@ -6185,6 +6398,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(WeakExocetBzRectangleStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.BzRectangle],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	WeakExocetBzRectangle,
@@ -6197,6 +6411,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(WeakExocetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.MissingStabilityBalancer],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html", "http://forum.enjoysudoku.com/weak-exocet-t39651.html"])]
 	LameWeakExocet,
@@ -6209,6 +6424,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocet,
 
@@ -6220,6 +6436,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetLockedMember,
@@ -6232,6 +6449,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexJuniorExocetAdjacentTargetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetAdjacentTarget,
@@ -6244,6 +6462,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexJuniorExocetMirrorConjugatePairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenJuniorExocetMirrorConjugatePair,
@@ -6256,6 +6475,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocet,
 
@@ -6267,6 +6487,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetLockedMember,
@@ -6279,6 +6500,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexJuniorExocetAdjacentTargetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetAdjacentTarget,
@@ -6291,6 +6513,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexJuniorExocetMirrorConjugatePairStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.Mirror],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantJuniorExocetMirrorConjugatePair,
@@ -6303,6 +6526,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenSeniorExocet,
 
@@ -6314,6 +6538,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	FrankenSeniorExocetLockedMember,
@@ -6326,6 +6551,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(AdvancedComplexSeniorExocetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	AdvancedFrankenSeniorExocet,
 
@@ -6337,6 +6563,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantSeniorExocet,
 
@@ -6348,6 +6575,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(ComplexExocetLockedMemberStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.LockedMember],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	MutantSeniorExocetLockedMember,
@@ -6360,6 +6588,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(AdvancedComplexSeniorExocetStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	AdvancedMutantSeniorExocet,
 
@@ -6371,6 +6600,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(DoubleExocetBaseStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	DoubleExocet,
 
@@ -6382,6 +6612,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		PrimaryStepType = typeof(DoubleExocetGeneralizedFishStep),
+		StepSearcherType = typeof(ExocetStepSearcher),
 		ExtraFactors = [ExtraDifficultyFactorNames.GeneralizedFish],
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	DoubleExocetGeneralizedFish,
@@ -6393,6 +6624,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.Exocet,
 		Abbreviation = "PLQ",
+		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/jexocet-compendium-t32370.html"])]
 	PatternLockedQuadruple,
 	#endregion
@@ -6409,7 +6641,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.DominoLoop,
 		PrimaryStepType = typeof(DominoLoopStep),
-		Features = TechniqueFeature.HardToBeGenerated,
+		StepSearcherType = typeof(DominoLoopStepSearcher),
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/domino-loops-sk-loops-beyond-t32789.html"])]
 	DominoLoop,
 	#endregion
@@ -6426,8 +6659,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.MultisectorLockedSets,
 		PrimaryStepType = typeof(MultisectorLockedSetsStep),
+		StepSearcherType = typeof(MultisectorLockedSetsStepSearcher),
 		Abbreviation = "MSLS",
-		Features = TechniqueFeature.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated,
 		Links = ["http://forum.enjoysudoku.com/exotic-patterns-a-resume-t30508-270.html"])]
 	MultisectorLockedSets,
 	#endregion
@@ -6444,8 +6678,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.PatternOverlay,
 		PrimaryStepType = typeof(PatternOverlayStep),
+		StepSearcherType = typeof(PatternOverlayStepSearcher),
 		Abbreviation = "POM",
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Pattern_Overlay_Method.html"])]
 	PatternOverlay,
 	#endregion
@@ -6463,7 +6698,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.Templating,
 		PrimaryStepType = typeof(TemplateStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		StepSearcherType = typeof(TemplateStepSearcher),
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
 	TemplateSet,
 
@@ -6476,7 +6712,7 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.Templating,
 		PrimaryStepType = typeof(TemplateStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Templating.html"])]
 	TemplateDelete,
 	#endregion
@@ -6493,7 +6729,8 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.BowmanBingo,
 		PrimaryStepType = typeof(BowmanBingoStep),
-		Features = TechniqueFeature.WillBeReplacedByOtherTechnique,
+		StepSearcherType = typeof(BowmanBingoStepSearcher),
+		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		ExtraFactors = [ExtraDifficultyFactorNames.Length],
 		Links = ["http://sudopedia.enjoysudoku.com/Bowman_Bingo.html"])]
 	BowmanBingo,
@@ -6516,8 +6753,9 @@ public enum Technique
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.BruteForce,
 		PrimaryStepType = typeof(BruteForceStep),
+		StepSearcherType = typeof(BruteForceStepSearcher),
 		Abbreviation = "BF",
-		Features = TechniqueFeature.OnlyExistInTheory,
+		Features = TechniqueFeatures.OnlyExistInTheory,
 		Links = ["http://sudopedia.enjoysudoku.com/Trial_%26_Error.html"])]
 	BruteForce,
 	#endregion

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Categorization;
 /// Defines a feature flag.
 /// </summary>
 [Flags]
-public enum TechniqueFeature
+public enum TechniqueFeatures
 {
 	/// <summary>
 	/// Indicates no feature.
