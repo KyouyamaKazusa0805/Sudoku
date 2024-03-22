@@ -2619,10 +2619,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// The pattern:
 	/// <code><![CDATA[
 	///  ↓ corner1, corner2
-	/// (abx) | (abcd) bcd bcd
+	/// (abx) | (abcd) acd acd
 	///  ab   |  ab
 	/// ]]></code>
-	/// will remove the digit <c>b</c> in the corner cell <c>abx</c>.
+	/// will remove the digit <c>a</c> in the corner cell <c>abx</c>.
 	/// </para>
 	/// <para>
 	/// The letter <c>x</c> may present multiple digits and not be used. However, if all digits <c>x</c> are false,
