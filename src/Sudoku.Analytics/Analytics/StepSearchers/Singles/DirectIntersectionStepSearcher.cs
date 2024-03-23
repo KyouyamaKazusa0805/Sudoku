@@ -171,9 +171,9 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				digit,
 				house switch
 				{
-					< 9 => SingleSubtype.FullHouseBlock,
-					< 18 => SingleSubtype.FullHouseRow,
-					_ => SingleSubtype.FullHouseColumn
+					< 9 => SingleTechniqueSubtype.FullHouseBlock,
+					< 18 => SingleTechniqueSubtype.FullHouseRow,
+					_ => SingleTechniqueSubtype.FullHouseColumn
 				},
 				Technique.FullHouse,
 				baseSet < 9
@@ -317,7 +317,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				baseSet,
 				[lastCell],
 				digit,
-				SingleSubtype.NakedSingle0 + (HousesMap[lastCell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
+				SingleTechniqueSubtype.NakedSingle0 + (HousesMap[lastCell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
 				Technique.NakedSingle,
 				baseSet < 9
 			);

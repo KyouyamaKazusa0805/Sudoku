@@ -1,10 +1,10 @@
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Provides with extension methods on <see cref="SingleSubtype"/>.
+/// Provides with extension methods on <see cref="SingleTechniqueSubtype"/>.
 /// </summary>
-/// <seealso cref="SingleSubtype"/>
-public static class SingleSubtypeExtensions
+/// <seealso cref="SingleTechniqueSubtype"/>
+public static class SingleTechniqueSubtypeExtensions
 {
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
@@ -13,9 +13,9 @@ public static class SingleSubtypeExtensions
 	/// <param name="this">The subtype.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the subtype is unnecessary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsUnnecessary(this SingleSubtype @this)
-		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
-		or SingleSubtype.NakedSingle8;
+	public static bool IsUnnecessary(this SingleTechniqueSubtype @this)
+		=> @this is SingleTechniqueSubtype.BlockHiddenSingle000 or SingleTechniqueSubtype.RowHiddenSingle000 or SingleTechniqueSubtype.ColumnHiddenSingle000
+		or SingleTechniqueSubtype.NakedSingle8;
 
 #pragma warning disable format
 	/// <summary>
@@ -25,10 +25,10 @@ public static class SingleSubtypeExtensions
 	/// <param name="this">Indicates the subtype.</param>
 	/// <returns>The number of excluder value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetExcludersCount(this SingleSubtype @this)
+	public static int GetExcludersCount(this SingleTechniqueSubtype @this)
 		=> @this switch
 		{
-			>= SingleSubtype.BlockHiddenSingle000 and < SingleSubtype.NakedSingle0 => @this.GetAttribute().ExtraArguments switch
+			>= SingleTechniqueSubtype.BlockHiddenSingle000 and < SingleTechniqueSubtype.NakedSingle0 => @this.GetAttribute().ExtraArguments switch
 			{
 				[int value] => value,
 				_ => 0
@@ -43,12 +43,12 @@ public static class SingleSubtypeExtensions
 	/// <param name="this">The subtype.</param>
 	/// <returns>The related technique instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetRelatedTechnique(this SingleSubtype @this) => @this.GetAttribute().RelatedTechnique;
+	public static Technique GetRelatedTechnique(this SingleTechniqueSubtype @this) => @this.GetAttribute().RelatedTechnique;
 
 	/// <summary>
 	/// Gets the attribute.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static TechniqueMetadataAttribute GetAttribute(this SingleSubtype @this)
-		=> typeof(SingleSubtype).GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
+	private static TechniqueMetadataAttribute GetAttribute(this SingleTechniqueSubtype @this)
+		=> typeof(SingleTechniqueSubtype).GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
 }

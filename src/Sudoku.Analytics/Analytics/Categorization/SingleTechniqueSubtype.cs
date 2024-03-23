@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <summary>
 /// Represents a subtype of the single technique set.
 /// </summary>
-public enum SingleSubtype
+public enum SingleTechniqueSubtype
 {
 	/// <summary>
 	/// Indicates the subtype is Full House in Block.

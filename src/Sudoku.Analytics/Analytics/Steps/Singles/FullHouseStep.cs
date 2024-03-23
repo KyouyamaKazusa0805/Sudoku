@@ -22,7 +22,7 @@ public sealed partial class FullHouseStep(
 	options,
 	cell,
 	digit,
-	house switch { < 9 => SingleSubtype.FullHouseBlock, >= 9 and < 18 => SingleSubtype.FullHouseRow, _ => SingleSubtype.FullHouseColumn }
+	house switch { < 9 => SingleTechniqueSubtype.FullHouseBlock, >= 9 and < 18 => SingleTechniqueSubtype.FullHouseRow, _ => SingleTechniqueSubtype.FullHouseColumn }
 )
 {
 	/// <inheritdoc/>

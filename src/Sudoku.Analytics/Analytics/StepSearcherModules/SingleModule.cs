@@ -46,7 +46,7 @@ internal static class SingleModule
 	/// <param name="house">Indicates the house.</param>
 	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>The subtype of the hidden single.</returns>
-	public static SingleSubtype GetHiddenSingleSubtype(
+	public static SingleTechniqueSubtype GetHiddenSingleSubtype(
 		scoped ref readonly Grid grid,
 		Cell cell,
 		House house,
@@ -67,7 +67,7 @@ internal static class SingleModule
 			}
 		}
 
-		return Enum.Parse<SingleSubtype>(
+		return Enum.Parse<SingleTechniqueSubtype>(
 			house switch
 			{
 				>= 0 and < 9 => $"{HouseType.Block}HiddenSingle0{r}{c}",
