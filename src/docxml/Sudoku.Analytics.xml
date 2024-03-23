@@ -26407,6 +26407,11 @@ if (student is (name: var name, age: >= 18))
             Represents difficulty level constraint.
             </summary>
         </member>
+        <member name="F:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.AllValidDifficultyLevelFlags">
+            <summary>
+            Indicates all valid difficulty level flags.
+            </summary>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.AllowDuplicate">
             <inheritdoc/>
         </member>

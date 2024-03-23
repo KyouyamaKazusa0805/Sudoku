@@ -9,6 +9,12 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonOperatorConstraint
 {
+	/// <summary>
+	/// Indicates all valid difficulty level flags.
+	/// </summary>
+	public const DifficultyLevel AllValidDifficultyLevelFlags = (DifficultyLevel)0b0001_1111;
+
+
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 

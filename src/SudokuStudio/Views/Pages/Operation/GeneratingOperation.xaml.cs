@@ -161,41 +161,57 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				var symmetriesOriginal = constraints.FindFirst(static (SymmetryConstraint c) => c.SymmetricTypes, SymmetryConstraint.AllSymmetricTypes);
-				var symmetries = symmetriesOriginal switch
-				{
-					SymmetryConstraint.InvalidSymmetricType => [],
-					SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
-					_ => symmetriesOriginal.GetAllFlags()
-				};
-
-				var (s, e) = constraints.FindFirst(
-					static c => c is CountBetweenConstraint { CellState: CellState.Given },
-					static c => c switch
+				var (symmetries, givensCount, difficultyLevel, ittoryuLength, progress) = (
+					constraints.FindFirst(
+						static (SymmetryConstraint c) => c.SymmetricTypes,
+						SymmetryConstraint.AllSymmetricTypes
+					) switch
 					{
-						CountBetweenConstraint { BetweenRule: var br, Range: { Start.Value: var s, End.Value: var e } } => br switch
+						SymmetryConstraint.InvalidSymmetricType => [],
+						SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
+						var s => s.GetAllFlags()
+					},
+					constraints.FindFirst(
+						static c => c is CountBetweenConstraint { CellState: CellState.Given },
+						static c => (CountBetweenConstraint)c switch
 						{
-							BetweenRule.BothOpen => (s + 1, e - 1),
-							BetweenRule.LeftOpen => (s + 1, e),
-							BetweenRule.RightOpen => (s, e + 1),
-							_ => (s, e)
+							{ BetweenRule: var br, Range: { Start.Value: var s, End.Value: var e } } => br switch
+							{
+								BetweenRule.BothOpen => (s + 1, e - 1),
+								BetweenRule.LeftOpen => (s + 1, e),
+								BetweenRule.RightOpen => (s, e + 1),
+								_ => (s, e)
+							}
 						}
-					}
+					) switch
+					{
+						(0, 0) => -1,
+						var (s, e) => Random.Shared.Next(s, e + 1)
+					},
+					constraints.FindFirst(
+						static (DifficultyLevelConstraint c) => c.ValidDifficultyLevels,
+						DifficultyLevelConstraint.AllValidDifficultyLevelFlags
+					).GetAllFlags() switch
+					{
+						var difficultyLevels => difficultyLevels[Random.Shared.Next(0, difficultyLevels.Length)]
+					},
+					constraints.FindFirst(static (IttoryuLengthConstraint c) => c.Length, -1),
+					new SelfReportingProgress<T>(reportingAction)
 				);
-				var givensCount = (s, e) == (0, 0) ? -1 : Random.Shared.Next(s, e + 1);
-				var difficultyLevels = constraints.FindFirst(static (DifficultyLevelConstraint c) => c.ValidDifficultyLevels, (DifficultyLevel)0b_0001_1111).GetAllFlags();
-				var difficultyLevel = difficultyLevels[Random.Shared.Next(0, difficultyLevels.Length)];
-				var ittoryuLength = constraints.FindFirst(static (IttoryuLengthConstraint c) => c.Length, -1);
-				var progress = new SelfReportingProgress<T>(reportingAction);
+
 				while (true)
 				{
 					if (symmetries.Length == 0)
 					{
+						// Temporary solution: Auto-cancel the generating operation.
 						throw new OperationCanceledException();
 					}
 
-					var symmetry = symmetries[Random.Shared.Next(0, symmetries.Length)];
-					var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
+					var grid = new HodokuPuzzleGenerator().Generate(
+						givensCount,
+						symmetries[Random.Shared.Next(0, symmetries.Length)],
+						cancellationToken
+					);
 					var analyzerResult = analyzer.Analyze(in grid);
 					switch (difficultyLevel)
 					{
