@@ -4891,31 +4891,6 @@
             Indicates the technique can be applied to indirect mode.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.ProgramMetadataAttribute`1">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <typeparam name="TRating">
-            Indicates the type of the rating value. The value must be a number (e.g. a <see cref="T:System.Double"/> or an <see cref="T:System.Int32"/>).
-            </typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.ProgramMetadataAttribute`1.Rating">
-            <summary>
-            Indicates the type of the rating value.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.ProgramMetadataAttribute`2">
-            <summary>
-            <inheritdoc/>
-            </summary>
-            <typeparam name="TRating"><inheritdoc/></typeparam>
-            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.ProgramMetadataAttribute`2.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute">
             <summary>
             Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
@@ -19167,6 +19142,31 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute.Aliases">
             <summary>
             Represents the aliased names for the current technique defined in the current program.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute`1">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <typeparam name="TRating">
+            Indicates the type of the rating value. The value must be a number (e.g. a <see cref="T:System.Double"/> or an <see cref="T:System.Int32"/>).
+            </typeparam>
+        </member>
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`1.Rating">
+            <summary>
+            Indicates the type of the rating value.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Compatibility.ProgramMetadataAttribute`2">
+            <summary>
+            <inheritdoc/>
+            </summary>
+            <typeparam name="TRating"><inheritdoc/></typeparam>
+            <typeparam name="TDifficultyLevel">Indicates the type of the difficulty level enumeration.</typeparam>
+        </member>
+        <member name="P:Sudoku.Compatibility.ProgramMetadataAttribute`2.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
             </summary>
         </member>
         <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute">

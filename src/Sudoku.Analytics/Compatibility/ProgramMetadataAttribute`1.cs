@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Compatibility;
 
 /// <summary>
 /// <inheritdoc/>
