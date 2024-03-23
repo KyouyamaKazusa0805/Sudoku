@@ -1681,7 +1681,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Save the puzzle to the library.
+        ///   Looks up a localized string similar to Save to lib.
         /// </summary>
         internal static string AnalyzePage_SavePuzzleToLibrary {
             get {
@@ -6243,7 +6243,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy code.
+        ///   Looks up a localized string similar to Copy.
         /// </summary>
         internal static string SudokuPane_Copy {
             get {
@@ -6252,7 +6252,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Copy code kind ....
+        ///   Looks up a localized string similar to Copy as....
         /// </summary>
         internal static string SudokuPane_CopyKind {
             get {

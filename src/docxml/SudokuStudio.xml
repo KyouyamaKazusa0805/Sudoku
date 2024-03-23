@@ -6818,7 +6818,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SavePuzzleToLibrary">
             <summary>
-              Looks up a localized string similar to Save the puzzle to the library.
+              Looks up a localized string similar to Save to lib.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SearchAllSteps">
@@ -9356,12 +9356,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SudokuPane_Copy">
             <summary>
-              Looks up a localized string similar to Copy code.
+              Looks up a localized string similar to Copy.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SudokuPane_CopyKind">
             <summary>
-              Looks up a localized string similar to Copy code kind ....
+              Looks up a localized string similar to Copy as....
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SudokuPane_Delete1">

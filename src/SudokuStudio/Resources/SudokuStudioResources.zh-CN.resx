@@ -577,7 +577,7 @@
     <value>另存格式</value>
   </data>
   <data name="AnalyzePage_SavePuzzleToLibrary" xml:space="preserve">
-    <value>将此题存入题库</value>
+    <value>存入题库</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
     <value>查询表达式，如 name like '唯一矩形.*'</value>
@@ -1920,10 +1920,10 @@
     <value>数独</value>
   </data>
   <data name="SudokuPane_Copy" xml:space="preserve">
-    <value>复制代码</value>
+    <value>复制</value>
   </data>
   <data name="SudokuPane_CopyKind" xml:space="preserve">
-    <value>复制代码类型……</value>
+    <value>复制……</value>
   </data>
   <data name="SudokuPane_Delete1" xml:space="preserve">
     <value>删 1</value>
@@ -2423,10 +2423,10 @@
   <data name="TechniqueInfoModifierPage_ScaleValueDescription" xml:space="preserve">
     <value>设置一个适用于可设置难度分的比例数值。你设置的技巧难度分会除以该比例数值，作为这个技巧最终的分值。</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="TechniqueInfoModifierPage_DifficultyDirectRating" xml:space="preserve">
     <value>直观难度分</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
   </data>
 </root>

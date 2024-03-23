@@ -577,7 +577,7 @@
     <value>Save as</value>
   </data>
   <data name="AnalyzePage_SavePuzzleToLibrary" xml:space="preserve">
-    <value>Save the puzzle to the library</value>
+    <value>Save to lib</value>
   </data>
   <data name="AnalyzePage_SearchAllSteps" xml:space="preserve">
     <value>Input search expression, e.g. name like '[Uu]nique\sRectangle.*'</value>
@@ -1920,10 +1920,10 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Sudoku</value>
   </data>
   <data name="SudokuPane_Copy" xml:space="preserve">
-    <value>Copy code</value>
+    <value>Copy</value>
   </data>
   <data name="SudokuPane_CopyKind" xml:space="preserve">
-    <value>Copy code kind ...</value>
+    <value>Copy as...</value>
   </data>
   <data name="SudokuPane_Delete1" xml:space="preserve">
     <value>Delete 1</value>
