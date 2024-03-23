@@ -4,6 +4,14 @@ namespace Sudoku.Analytics.Metadata;
 /// Represents an attribute type that will be applied to fields defined in <see cref="Technique"/>,
 /// describing its detail which can be defined as fixed one, to be stored as metadata.
 /// </summary>
+/// <shared-comments>
+/// <para>
+/// <b>This property can only be applied to a <see cref="TechniqueGroup"/> field.</b>
+/// </para>
+/// <para>
+/// <b>This property can only be applied to a <see cref="SingleSubtype"/> field.</b>
+/// </para>
+/// </shared-comments>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double, DifficultyLevel>
 {
@@ -11,14 +19,14 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// Indicates whether the current technique supports for Siamese logic.
 	/// </summary>
 	/// <remarks>
-	/// <b>This property can only be applied to a <see cref="TechniqueGroup"/> field instead of a <see cref="Technique"/> field.</b>
+	/// <inheritdoc cref="TechniqueMetadataAttribute" path="//shared-comments/para[1]"/>
 	/// </remarks>
 	public bool SupportsSiamese { get; init; }
 
 	/// <summary>
 	/// Indicates whether the current technique supports for Dual logic.
 	/// </summary>
-	/// <remarks><inheritdoc cref="SupportsSiamese" path="/remarks"/></remarks>
+	/// <remarks><inheritdoc cref="TechniqueMetadataAttribute" path="//shared-comments/para[1]"/></remarks>
 	public bool SupportsDual { get; init; }
 
 	/// <summary>
@@ -63,6 +71,14 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// <seealso cref="PencilmarkVisibility.Direct"/>
 	/// <seealso cref="PencilmarkVisibility.Indirect"/>
 	public PencilmarkVisibility PencilmarkVisibility { get; init; } = PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
+
+	/// <summary>
+	/// Indicates the customized related technique that the current technique is applied.
+	/// </summary>
+	/// <remarks>
+	/// <inheritdoc cref="TechniqueMetadataAttribute" path="//shared-comments/para[2]"/>
+	/// </remarks>
+	public Technique RelatedTechnique { get; init; }
 
 	/// <summary>
 	/// Indicates the features of the technique.

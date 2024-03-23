@@ -14,9 +14,7 @@ public static class SingleSubtypeExtensions
 	/// <returns>A <see cref="bool"/> result indicating whether the subtype is unnecessary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsUnnecessary(this SingleSubtype @this)
-		=> @this is SingleSubtype.BlockHiddenSingle000
-		or SingleSubtype.RowHiddenSingle000
-		or SingleSubtype.ColumnHiddenSingle000
+		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
 		or SingleSubtype.NakedSingle8;
 
 	/// <summary>
@@ -26,5 +24,5 @@ public static class SingleSubtypeExtensions
 	/// <returns>The related technique instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Technique GetRelatedTechnique(this SingleSubtype @this)
-		=> typeof(SingleSubtype).GetField(@this.ToString())!.GetCustomAttribute<RelatedTechniqueAttribute>()!.Technique;
+		=> typeof(SingleSubtype).GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!.RelatedTechnique;
 }

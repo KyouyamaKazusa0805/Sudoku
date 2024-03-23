@@ -4903,23 +4903,6 @@
             Indicates the difficulty level.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute">
-            <summary>
-            Represents an attribute type that describes the related technique of a subtype.
-            </summary>
-            <param name="technique">Indicates the technique related.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute.#ctor(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Represents an attribute type that describes the related technique of a subtype.
-            </summary>
-            <param name="technique">Indicates the technique related.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.RelatedTechniqueAttribute.Technique">
-            <summary>
-            The generated property declaration for parameter <c>technique</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.SplitStepSearcherAttribute">
             <summary>
             Defines an attribute that applies to a type derived from <see cref="T:Sudoku.Analytics.StepSearcher"/>,
@@ -5318,20 +5301,28 @@
             Represents an attribute type that will be applied to fields defined in <see cref="T:Sudoku.Analytics.Categorization.Technique"/>,
             describing its detail which can be defined as fixed one, to be stored as metadata.
             </summary>
+            <shared-comments>
+            <para>
+            <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> field.</b>
+            </para>
+            <para>
+            <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> field.</b>
+            </para>
+            </shared-comments>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese">
             <summary>
             Indicates whether the current technique supports for Siamese logic.
             </summary>
             <remarks>
-            <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> field instead of a <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field.</b>
+            <inheritdoc cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute" path="//shared-comments/para[1]"/>
             </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsDual">
             <summary>
             Indicates whether the current technique supports for Dual logic.
             </summary>
-            <remarks><inheritdoc cref="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese" path="/remarks"/></remarks>
+            <remarks><inheritdoc cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute" path="//shared-comments/para[1]"/></remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.DirectRating">
             <summary>
@@ -5370,6 +5361,14 @@
             </summary>
             <seealso cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Direct"/>
             <seealso cref="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Indirect"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.RelatedTechnique">
+            <summary>
+            Indicates the customized related technique that the current technique is applied.
+            </summary>
+            <remarks>
+            <inheritdoc cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute" path="//shared-comments/para[2]"/>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Features">
             <summary>
