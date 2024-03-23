@@ -11,7 +11,8 @@ namespace Sudoku.Analytics;
 /// <see cref="StepSearcherType"/> to learn more information.
 /// </remarks>
 /// <seealso cref="StepSearcherType"/>
-public sealed partial class PuzzleInvalidException(scoped ref readonly Grid grid, [PrimaryConstructorParameter] Type stepSearcherType) : RuntimeAnalyticsException(in grid)
+public sealed partial class PuzzleInvalidException(scoped ref readonly Grid grid, [PrimaryConstructorParameter] Type stepSearcherType) :
+	RuntimeAnalyticsException(in grid)
 {
 	/// <inheritdoc/>
 	public override string Message => string.Format(ResourceDictionary.Get("Message_PuzzleInvalidException"), InvalidGrid);
