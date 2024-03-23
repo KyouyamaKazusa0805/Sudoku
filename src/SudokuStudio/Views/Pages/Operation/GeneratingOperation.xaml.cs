@@ -84,7 +84,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		var processingText = ResourceDictionary.Get("AnalyzePage_GeneratorIsProcessing", App.CurrentCulture);
 		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
-		var difficultyLevel = constraints.FindFirst(static (DifficultyLevelConstraint constraint) => constraint.DifficultyLevel);
+		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
 		var ittoryuFinder = new DisorderedIttoryuFinder(((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques);
 

@@ -23,45 +23,6 @@ public sealed class ConstraintCollection : List<Constraint>
 		return true;
 	}
 
-	/// <summary>
-	/// Try to get the first <see cref="Constraint"/> satisfying the specified condition,
-	/// returning the value of type <typeparamref name="TResult"/> created by the specified method.
-	/// </summary>
-	/// <typeparam name="TResult">The type of the result.</typeparam>
-	/// <param name="match">The match method.</param>
-	/// <param name="selector">The selector method.</param>
-	/// <param name="defaultValue">The default value.</param>
-	/// <returns>The final result.</returns>
-	public TResult? FindFirst<TResult>(Func<Constraint, bool> match, Func<Constraint, TResult> selector, TResult? defaultValue = default)
-	{
-		foreach (var element in this)
-		{
-			if (match(element))
-			{
-				return selector(element);
-			}
-		}
-		return defaultValue;
-	}
-
-	/// <summary>
-	/// Try to get the first <see cref="Constraint"/> satisfying the specified condition,
-	/// returning the value of type <typeparamref name="TResult"/> created by the specified method.
-	/// </summary>
-	/// <typeparam name="TConstraint">The type of constraint.</typeparam>
-	/// <typeparam name="TResult">The type of the result.</typeparam>
-	/// <param name="matchedSelector">
-	/// Indicates the matched selector. The method will be used in both checking and converting operation.
-	/// </param>
-	/// <param name="defaultValue">
-	/// Indicates the default value used. By default the value equals to <see langword="default"/>(<typeparamref name="TResult"/>).
-	/// </param>
-	/// <returns>The final result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public TResult? FindFirst<TConstraint, TResult>(Func<TConstraint, TResult> matchedSelector, TResult? defaultValue = default)
-		where TConstraint : Constraint, new()
-		=> FindFirst(static c => c is TConstraint, c => matchedSelector((TConstraint)c), defaultValue);
-
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
 	public Constraint? FirstOrDefault(Func<Constraint, bool> match)
 	{
