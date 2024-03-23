@@ -161,44 +161,27 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				var (symmetries, givensCount, difficultyLevel, ittoryuLength, progress) = (
-					constraints.FindFirst(
-						static (SymmetryConstraint c) => c.SymmetricTypes,
-						SymmetryConstraint.AllSymmetricTypes
-					) switch
-					{
-						SymmetryConstraint.InvalidSymmetricType => [],
-						SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
-						var s => s.GetAllFlags()
-					},
-					constraints.FindFirst(
-						static c => c is CountBetweenConstraint { CellState: CellState.Given },
-						static c => (CountBetweenConstraint)c switch
-						{
-							{ BetweenRule: var br, Range: { Start.Value: var s, End.Value: var e } } => br switch
-							{
-								BetweenRule.BothOpen => (s + 1, e - 1),
-								BetweenRule.LeftOpen => (s + 1, e),
-								BetweenRule.RightOpen => (s, e + 1),
-								_ => (s, e)
-							}
-						}
-					) switch
-					{
-						(0, 0) => -1,
-						var (s, e) => Random.Shared.Next(s, e + 1)
-					},
-					constraints.FindFirst(
-						static (DifficultyLevelConstraint c) => c.ValidDifficultyLevels,
-						DifficultyLevelConstraint.AllValidDifficultyLevelFlags
-					).GetAllFlags() switch
-					{
-						var difficultyLevels => difficultyLevels[Random.Shared.Next(0, difficultyLevels.Length)]
-					},
-					constraints.FindFirst(static (IttoryuLengthConstraint c) => c.Length, -1),
-					new SelfReportingProgress<T>(reportingAction)
-				);
+				scoped var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
+				scoped var chosenGivensCount =
+					from c in constraints.OfType<CountBetweenConstraint>()
+					where c.CellState == CellState.Given
+					select (c.BetweenRule, (c.Range.Start.Value, c.Range.End.Value));
+				scoped var chosenDifficultyLevels =
+					from c in constraints.OfType<DifficultyLevelConstraint>()
+					select c.ValidDifficultyLevels.GetAllFlags();
+				scoped var chosenIttoryuLength = from c in constraints.OfType<IttoryuLengthConstraint>() select c.Length;
 
+				var progress = new SelfReportingProgress<T>(reportingAction);
+				var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
+				{
+					SymmetryConstraint.InvalidSymmetricType => [],
+					SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
+					var symmetricTypes => symmetricTypes.GetAllFlags()
+				};
+				var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
+				var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? Random.Shared.Next(s, e + 1) : -1;
+				var difficultyLevel = chosenDifficultyLevels is [var d] ? d[Random.Shared.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
+				var ittoryuLength = chosenIttoryuLength is [var length] ? length : -1;
 				while (true)
 				{
 					if (symmetries.Length == 0)
@@ -250,6 +233,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				return null;
 			}
 		}
+
+
+		static (int, int) b(BetweenRule betweenRule, int start, int end)
+			=> betweenRule switch
+			{
+				BetweenRule.BothOpen => (start + 1, end - 1),
+				BetweenRule.LeftOpen => (start + 1, end),
+				BetweenRule.RightOpen => (start, end + 1),
+				_ => (start, end)
+			};
 	}
 
 

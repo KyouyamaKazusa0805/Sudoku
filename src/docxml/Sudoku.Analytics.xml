@@ -26318,6 +26318,31 @@ if (student is (name: var name, age: >= 18))
             </param>
             <returns>The final result.</returns>
         </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.OfType``1">
+            <summary>
+            Filter the collection, only reserving constraints of type <typeparamref name="TConstraint"/>.
+            </summary>
+            <typeparam name="TConstraint">The type of the target constraint to be reserved.</typeparam>
+            <returns>A new collection that only contains <typeparamref name="TConstraint"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <summary>
+            Filters the collection, only reserving constraints satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be satisfied.</param>
+            <returns>A new collection that only contains constraints satisfying the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
+            <summary>
+            Projects each element in this collection into a new form.
+            </summary>
+            <typeparam name="TResult">The type of each result element.</typeparam>
+            <param name="selector">The selector method to convert the value into <typeparamref name="TResult"/> instance.</param>
+            <returns>A list of <typeparamref name="TResult"/> instances.</returns>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
             Represents a conclusion constraint.
