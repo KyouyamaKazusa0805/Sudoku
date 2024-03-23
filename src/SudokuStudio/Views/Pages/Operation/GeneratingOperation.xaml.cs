@@ -161,27 +161,25 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			try
 			{
-				var symmetriesOriginal = constraints.FindFirst(static (SymmetryConstraint c) => c.SymmetricTypes, (SymmetricType)0b_0111_1111);
-				var symmetries = (SymmetricType[])[
-					.. symmetriesOriginal.GetAllFlags(),
+				var symmetriesOriginal = constraints.FindFirst(static (SymmetryConstraint c) => c.SymmetricTypes, SymmetryConstraint.AllSymmetricTypes);
+				var symmetries = symmetriesOriginal switch
+				{
+					SymmetryConstraint.InvalidSymmetricType => [],
+					SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
+					_ => symmetriesOriginal.GetAllFlags()
+				};
 
-					// A rescue - if we select all of symmetric types here, we will implicitly add "SymmetricType.None".
-					.. (SymmetricType[])(symmetriesOriginal == (SymmetricType)0b_0111_1111 ? [SymmetricType.None] : [])
-				];
-				var symmetry = symmetries[Random.Shared.Next(0, symmetries.Length)];
 				var (s, e) = constraints.FindFirst(
 					static c => c is CountBetweenConstraint { CellState: CellState.Given },
-					static c =>
+					static c => c switch
 					{
-						var constraint = (CountBetweenConstraint)c;
-						var (s, e) = (constraint.Range.Start.Value, constraint.Range.End.Value);
-						return constraint.BetweenRule switch
+						CountBetweenConstraint { BetweenRule: var br, Range: { Start.Value: var s, End.Value: var e } } => br switch
 						{
 							BetweenRule.BothOpen => (s + 1, e - 1),
 							BetweenRule.LeftOpen => (s + 1, e),
 							BetweenRule.RightOpen => (s, e + 1),
 							_ => (s, e)
-						};
+						}
 					}
 				);
 				var givensCount = (s, e) == (0, 0) ? -1 : Random.Shared.Next(s, e + 1);
@@ -191,9 +189,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				var progress = new SelfReportingProgress<T>(reportingAction);
 				while (true)
 				{
+					if (symmetries.Length == 0)
+					{
+						throw new OperationCanceledException();
+					}
+
+					var symmetry = symmetries[Random.Shared.Next(0, symmetries.Length)];
 					var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetry, cancellationToken);
 					var analyzerResult = analyzer.Analyze(in grid);
-
 					switch (difficultyLevel)
 					{
 						case DifficultyLevel.Easy:

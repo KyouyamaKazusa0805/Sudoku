@@ -8,6 +8,17 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class SymmetryConstraint : Constraint
 {
+	/// <summary>
+	/// Indicates an invalid value.
+	/// </summary>
+	public const SymmetricType InvalidSymmetricType = (SymmetricType)(-1);
+
+	/// <summary>
+	/// Indicates all possible symmetric types are included.
+	/// </summary>
+	public const SymmetricType AllSymmetricTypes = (SymmetricType)255;
+
+
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 
@@ -32,6 +43,13 @@ public sealed partial class SymmetryConstraint : Constraint
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("SymmetryConstraint", culture),
-			string.Join(ResourceDictionary.Get("_Token_Comma"), from type in SymmetricTypes.GetAllFlags() select type.GetName(culture))
+			SymmetricTypes switch
+			{
+				InvalidSymmetricType => ResourceDictionary.Get("SymmetryConstraint_NoSymmetrySelected"),
+				_ => string.Join(
+					ResourceDictionary.Get("_Token_Comma"),
+					from type in SymmetricTypes.GetAllFlags() select type.GetName(culture)
+				)
+			}
 		);
 }

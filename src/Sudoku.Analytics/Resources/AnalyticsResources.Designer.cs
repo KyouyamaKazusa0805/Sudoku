@@ -5266,6 +5266,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to &lt;None Selected&gt;.
+        /// </summary>
+        public static string SymmetryConstraint_NoSymmetrySelected {
+            get {
+                return ResourceManager.GetString("SymmetryConstraint_NoSymmetrySelected", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to ALP.
         /// </summary>
         public static string TechniqueAbbr_AlmostLockedPair {

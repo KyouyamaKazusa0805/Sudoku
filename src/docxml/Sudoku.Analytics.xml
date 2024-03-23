@@ -24328,6 +24328,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Symmetry rule: {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SymmetryConstraint_NoSymmetrySelected">
+            <summary>
+              Looks up a localized string similar to &lt;None Selected&gt;.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueAbbr_AlmostLockedPair">
             <summary>
               Looks up a localized string similar to ALP.
@@ -26705,6 +26710,16 @@ if (student is (name: var name, age: >= 18))
             Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/> can controls this.
             </summary>
             <seealso cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator"/>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.InvalidSymmetricType">
+            <summary>
+            Indicates an invalid value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.AllSymmetricTypes">
+            <summary>
+            Indicates all possible symmetric types are included.
+            </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.AllowDuplicate">
             <inheritdoc/>

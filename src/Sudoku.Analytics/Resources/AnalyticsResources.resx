@@ -2925,4 +2925,7 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_SudokuExplainerAttributeInvalidRating" xml:space="preserve">
     <value>Cannot call setter 'Rating.set' because the property 'Rating' has an invalid value that cannot return with only one value.</value>
   </data>
+  <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
+    <value>&lt;None Selected&gt;</value>
+  </data>
 </root>

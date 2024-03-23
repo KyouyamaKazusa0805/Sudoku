@@ -204,6 +204,12 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					constraint.SymmetricTypes &= ~type;
 				}
 			}
+
+			// Special case: If a user has unselected all symmetric types, we should define as an invalid value.
+			if (constraint.SymmetricTypes == 0)
+			{
+				constraint.SymmetricTypes = SymmetryConstraint.InvalidSymmetricType;
+			}
 		};
 		foreach (SegmentedItem element in symmetryControl.Items)
 		{
