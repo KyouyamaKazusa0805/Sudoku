@@ -8,13 +8,16 @@ namespace Sudoku.Analytics.Metadata;
 /// <para>
 /// <b>This property can only be applied to a <see cref="TechniqueGroup"/> field.</b>
 /// </para>
-/// <para>
-/// <b>This property can only be applied to a <see cref="SingleSubtype"/> field.</b>
-/// </para>
 /// </shared-comments>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
 public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double, DifficultyLevel>
 {
+	/// <summary>
+	/// Indicates the customized tag to be used. The value may be used in reflection to define your customized data
+	/// that will be considered as <see langword="static"/> one.
+	/// </summary>
+	public object?[]? ExtraArguments { get; init; }
+
 	/// <summary>
 	/// Indicates whether the current technique supports for Siamese logic.
 	/// </summary>
@@ -75,9 +78,6 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// <summary>
 	/// Indicates the customized related technique that the current technique is applied.
 	/// </summary>
-	/// <remarks>
-	/// <inheritdoc cref="TechniqueMetadataAttribute" path="//shared-comments/para[2]"/>
-	/// </remarks>
 	public Technique RelatedTechnique { get; init; }
 
 	/// <summary>

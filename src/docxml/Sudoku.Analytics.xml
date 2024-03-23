@@ -4031,12 +4031,25 @@
             <param name="this">The subtype.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the subtype is unnecessary.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetExcludersCount(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Try to get the number of excluders that the current single subtype will use.
+            This method will return a non-zero value if and only if it is a hidden single.
+            </summary>
+            <param name="this">Indicates the subtype.</param>
+            <returns>The number of excluder value.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Try to get the related technique of the current subtype.
             </summary>
             <param name="this">The subtype.</param>
             <returns>The related technique instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetAttribute(Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Gets the attribute.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
             <summary>
@@ -5305,10 +5318,13 @@
             <para>
             <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> field.</b>
             </para>
-            <para>
-            <b>This property can only be applied to a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> field.</b>
-            </para>
             </shared-comments>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.ExtraArguments">
+            <summary>
+            Indicates the customized tag to be used. The value may be used in reflection to define your customized data
+            that will be considered as <see langword="static"/> one.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SupportsSiamese">
             <summary>
@@ -5366,9 +5382,6 @@
             <summary>
             Indicates the customized related technique that the current technique is applied.
             </summary>
-            <remarks>
-            <inheritdoc cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute" path="//shared-comments/para[2]"/>
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.Features">
             <summary>
