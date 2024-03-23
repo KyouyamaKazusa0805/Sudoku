@@ -7,7 +7,7 @@
 		<!--Project configuration-->
 		<Authors>Sunnie</Authors>
 		<Copyright>Copyright (c) Sunnie 2019-2024</Copyright>
-		<Version>3.2.6</Version>
+		<Version>3.2.7</Version>
 
 		<!--Syntax configuration-->
 		<AllowUnsafeBlocks>true</AllowUnsafeBlocks>
