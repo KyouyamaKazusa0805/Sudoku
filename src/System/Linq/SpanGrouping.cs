@@ -25,7 +25,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	IEquatable<SpanGrouping<TSource, TKey>>,
 	IGrouping<TKey, TSource>,
 	IReadOnlyCollection<TSource>
-	where TKey : notnull, IEquatable<TKey>
+	where TKey : notnull
 {
 	/// <inheritdoc/>
 	int IReadOnlyCollection<TSource>.Count => Length;

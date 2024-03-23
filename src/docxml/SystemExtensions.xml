@@ -3033,7 +3033,7 @@
             Indicates the number of elements stored in the collection.
             </summary>
         </member>
-        <member name="P:System.Linq.SpanOrderedEnumerable`1.OrderedSpan">
+        <member name="P:System.Linq.SpanOrderedEnumerable`1.Span">
             <summary>
             Creates an ordered <see cref="T:System.Span`1"/> instance.
             </summary>

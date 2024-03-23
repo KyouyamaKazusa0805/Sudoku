@@ -28,7 +28,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// Creates an ordered <see cref="Span{T}"/> instance.
 	/// </summary>
 	/// <returns>An ordered <see cref="Span{T}"/> instance, whose value is from the current enumerable instance.</returns>
-	private Span<T> OrderedSpan
+	private Span<T> Span
 	{
 		get
 		{
@@ -70,7 +70,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public ReadOnlySpan<TResult> Select<TResult>(Func<T, TResult> selector)
 	{
 		var result = new List<TResult>(_values.Length);
-		foreach (var element in OrderedSpan)
+		foreach (var element in Span)
 		{
 			result.Add(selector(element));
 		}
@@ -85,7 +85,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public ReadOnlySpan<T> Where(Func<T, bool> condition)
 	{
 		var result = new List<T>(_values.Length);
-		foreach (var element in OrderedSpan)
+		foreach (var element in Span)
 		{
 			if (condition(element))
 			{
@@ -97,17 +97,36 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
-		=> new(_values, [.. _selectors, (l, r) => selector(l).CompareTo(selector(r))]);
+	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
+		=> new(
+			_values,
+			[
+				.. _selectors,
+				(l, r) => (selector(l), selector(r)) switch
+				{
+					(IComparable<TKey> left, var right) => left.CompareTo(right),
+					var (a, b) => Comparer<TKey>.Default.Compare(a, b)
+				}
+			]
+		);
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector) where TKey : IComparable<TKey>
-		=> new(_values, [.. _selectors, (l, r) => -selector(l).CompareTo(selector(r))]);
+	public SpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector)
+		=> new(
+			_values,
+			[
+				.. _selectors,
+				(l, r) => (selector(l), selector(r)) switch
+				{
+					(IComparable<TKey> left, var right) => -left.CompareTo(right),
+					var (a, b) => -Comparer<TKey>.Default.Compare(a, b)
+				}
+			]
+		);
 
 	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
-	public unsafe ReadOnlySpan<SpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector)
-		where TKey : notnull, IEquatable<TKey>
+	public ReadOnlySpan<SpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
 		foreach (var element in _values)
@@ -122,14 +141,22 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		var result = new List<SpanGrouping<T, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
-			var tempValues = tempDictionary[key];
-			var sourcePointer = (T*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0]));
-			result.Add(new(sourcePointer, tempValues.Count, key));
+			unsafe
+			{
+				var tempValues = tempDictionary[key];
+				result.Add(
+					new(
+						(T*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0])),
+						tempValues.Count,
+						key
+					)
+				);
+			}
 		}
 		return result.AsReadOnlySpan();
 	}
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Span<T>.Enumerator GetEnumerator() => OrderedSpan.GetEnumerator();
+	public Span<T>.Enumerator GetEnumerator() => Span.GetEnumerator();
 }
