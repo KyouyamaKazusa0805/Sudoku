@@ -1,4 +1,4 @@
-namespace Sudoku.Compatibility;
+namespace Sudoku.Compatibility.SudokuExplainer;
 
 /// <summary>
 /// Represents compatibility rules for Sudoku Explainer.

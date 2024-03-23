@@ -19045,12 +19045,12 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.HodokuAttribute">
+        <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
             <summary>
             Represents compatibility rules for Hodoku.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.HodokuAttribute.Prefix">
+        <member name="P:Sudoku.Compatibility.Hodoku.HodokuAttribute.Prefix">
             <summary>
             Indicates the technique prefix defined in Hodoku program.
             See <see href="https://hodoku.sourceforge.net/en/libs.php">this link</see> to learn more information about the library format.
@@ -19169,12 +19169,12 @@ if (student is (name: var name, age: >= 18))
             Represents the aliased names for the current technique defined in the current program.
             </summary>
         </member>
-        <member name="T:Sudoku.Compatibility.SudokuExplainerAttribute">
+        <member name="T:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute">
             <summary>
             Represents compatibility rules for Sudoku Explainer.
             </summary>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.RatingOriginal">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal">
             <summary>
             Indicates the rating value that is defined in original program.
             </summary>
@@ -19184,13 +19184,13 @@ if (student is (name: var name, age: >= 18))
             and the second one is the maximum possible rating value.
             </remarks>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.RatingAdvanced">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingAdvanced">
             <summary>
             Indicates the rating value that is defined in advanced concept.
             </summary>
-            <remarks><inheritdoc cref="P:Sudoku.Compatibility.SudokuExplainerAttribute.RatingOriginal" path="/remarks"/></remarks>
+            <remarks><inheritdoc cref="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.RatingOriginal" path="/remarks"/></remarks>
         </member>
-        <member name="P:Sudoku.Compatibility.SudokuExplainerAttribute.Technique">
+        <member name="P:Sudoku.Compatibility.SudokuExplainer.SudokuExplainerAttribute.Technique">
             <summary>
             Indicates the defined technique enumeration field in Sudoku Explainer.
             </summary>
