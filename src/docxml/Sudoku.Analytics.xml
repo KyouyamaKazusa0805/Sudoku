@@ -26284,6 +26284,25 @@ if (student is (name: var name, age: >= 18))
             Represents a constraint collection.
             </summary>
         </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(Sudoku.Strategying.ConstraintCollection)">
+            <summary>
+            Create a new instance and copy elements.
+            </summary>
+            <param name="other">The other collection.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Has``1">
+            <summary>
+            Determine whether the collection contains an element of the specified type.
+            </summary>
+            <typeparam name="TConstraint">The type of the constraint to be checked.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
             <summary>
             For a given <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>,
@@ -26316,6 +26335,12 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TResult">The type of each result element.</typeparam>
             <param name="selector">The selector method to convert the value into <typeparamref name="TResult"/> instance.</param>
             <returns>A list of <typeparamref name="TResult"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Addition(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Subtraction(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>
@@ -26485,6 +26510,11 @@ if (student is (name: var name, age: >= 18))
         <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
             <summary>
             Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.IttoryuConstraint.Analyzer">
+            <summary>
+            Indicates the step searcher used.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.AllowDuplicate">

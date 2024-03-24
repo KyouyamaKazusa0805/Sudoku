@@ -7,6 +7,14 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
+	/// <summary>
+	/// Indicates the step searcher used.
+	/// </summary>
+	private static readonly Analyzer Analyzer = Analyzers.Default
+		.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true }])
+		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+
+
 	/// <inheritdoc/>
 	public override bool AllowDuplicate => false;
 
@@ -40,9 +48,26 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		var steps = context.AnalyzerResult.Steps!;
+		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
+		{
+			// Bug fix: We won't check for steps if the grid is hard than 'DifficultyLevel.Easy'.
+			// For example if a moderate puzzle is found, the expression '(SingleStep)steps[i]' will throw an InvalidCastException
+			// because the step 'steps[i]' may not be a 'SingleStep'.
+			return false;
+		}
+
+		if (Analyzer.Analyze(context.Grid) is not
+			{
+				IsSolved: true,
+				DifficultyLevel: DifficultyLevel.Easy,
+				Steps: { Length: var stepsCount } steps
+			})
+		{
+			return false;
+		}
+
 		var roundsCount = 1;
-		for (var i = 0; i < steps.Length - 1; i++)
+		for (var i = 0; i < stepsCount - 1; i++)
 		{
 			var a = ((SingleStep)steps[i]).Digit;
 			var b = ((SingleStep)steps[i + 1]).Digit;

@@ -3,8 +3,50 @@ namespace Sudoku.Strategying;
 /// <summary>
 /// Represents a constraint collection.
 /// </summary>
-public sealed class ConstraintCollection : List<Constraint>
+public sealed class ConstraintCollection :
+	List<Constraint>,
+	IAdditionOperators<ConstraintCollection, Constraint?, ConstraintCollection>,
+	ISubtractionOperators<ConstraintCollection, Constraint?, ConstraintCollection>
 {
+	/// <inheritdoc cref="List{T}()"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConstraintCollection() : base()
+	{
+	}
+
+	/// <inheritdoc cref="List{T}(int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConstraintCollection(int capacity) : base(capacity)
+	{
+	}
+
+	/// <summary>
+	/// Create a new instance and copy elements.
+	/// </summary>
+	/// <param name="other">The other collection.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConstraintCollection(ConstraintCollection other) : base(other)
+	{
+	}
+
+
+	/// <summary>
+	/// Determine whether the collection contains an element of the specified type.
+	/// </summary>
+	/// <typeparam name="TConstraint">The type of the constraint to be checked.</typeparam>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Has<TConstraint>() where TConstraint : Constraint
+	{
+		foreach (var element in this)
+		{
+			if (element is TConstraint)
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
 	/// <summary>
 	/// For a given <see cref="ConstraintCheckingContext"/>,
 	/// determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
@@ -86,5 +128,50 @@ public sealed class ConstraintCollection : List<Constraint>
 			result.Add(selector(element));
 		}
 		return result.AsReadOnlySpan();
+	}
+
+
+	/// <inheritdoc/>
+	public static ConstraintCollection operator +(ConstraintCollection left, Constraint? right)
+	{
+		if (right is null)
+		{
+			return new(left);
+		}
+
+		var result = new ConstraintCollection(left.Count + 1);
+		foreach (var element in left)
+		{
+			if (element == right)
+			{
+				return new(left);
+			}
+		}
+
+		result.Add(right);
+		return result;
+	}
+
+	/// <inheritdoc/>
+	public static ConstraintCollection operator -(ConstraintCollection left, Constraint? right)
+	{
+		if (right is null)
+		{
+			return new(left);
+		}
+
+		var result = new ConstraintCollection(left.Count - 1);
+		foreach (var element in left)
+		{
+#if false
+			if (!ReferenceEquals(element, right))
+#else
+			if (element != right)
+#endif
+			{
+				result.Add(element);
+			}
+		}
+		return result;
 	}
 }

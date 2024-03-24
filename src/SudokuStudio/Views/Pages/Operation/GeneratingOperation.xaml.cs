@@ -169,7 +169,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				scoped var chosenDifficultyLevels =
 					from c in constraints.OfType<DifficultyLevelConstraint>()
 					select c.ValidDifficultyLevels.GetAllFlags();
-				scoped var chosenIttoryuLength = from c in constraints.OfType<IttoryuLengthConstraint>() select c.Length;
+				var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
 
 				var progress = new SelfReportingProgress<T>(reportingAction);
 				var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
@@ -181,7 +181,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
 				var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? Random.Shared.Next(s, e + 1) : -1;
 				var difficultyLevel = chosenDifficultyLevels is [var d] ? d[Random.Shared.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
-				var ittoryuLength = chosenIttoryuLength is [var length] ? length : -1;
 				while (true)
 				{
 					if (symmetries.Length == 0)
@@ -190,11 +189,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						throw new OperationCanceledException();
 					}
 
-					var grid = new HodokuPuzzleGenerator().Generate(
-						givensCount,
-						symmetries[Random.Shared.Next(0, symmetries.Length)],
-						cancellationToken
-					);
+					var symmetryIndex = Random.Shared.Next(0, symmetries.Length);
+					var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetries[symmetryIndex], cancellationToken);
 					if (grid.IsUndefined)
 					{
 						// Cancel the task if 'Grid.Undefined' is encountered.
@@ -203,19 +199,38 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 
 					var analyzerResult = analyzer.Analyze(in grid);
-					switch (difficultyLevel)
+					var ccc = new ConstraintCheckingContext(in grid, analyzerResult);
+					switch (difficultyLevel, analyzerResult.DifficultyLevel)
 					{
-						case DifficultyLevel.Easy:
+						case (DifficultyLevel.Easy, DifficultyLevel.Easy):
 						{
 							// Optimize: transform the grid if worth.
-							var foundIttoryu = finder.FindPath(in grid);
-							if (ittoryuLength >= 5 && foundIttoryu.Digits.Length >= 5)
+							if (ittoryu is { Operator: ComparisonOperator.Equality, Rounds: 1 })
 							{
-								grid.MakeIttoryu(foundIttoryu);
+								switch (finder.FindPath(in grid))
+								{
+									case { IsComplete: true } foundIttoryu:
+									{
+										grid.MakeIttoryu(foundIttoryu);
+										goto CheckIttoryuConstraint;
+									}
+									default:
+									{
+										break;
+									}
+								}
+								break;
 							}
 
-							if (constraints.IsValidFor(new(in grid, analyzerResult))
-								&& (ittoryuLength != -1 && foundIttoryu.Digits.Length >= ittoryuLength || ittoryuLength == -1))
+						CheckIttoryuConstraint:
+							// Check for ittoryu and ittoryu length constraint if worth.
+							if (!(ittoryu?.Check(ccc) ?? true))
+							{
+								break;
+							}
+
+							// Check for the last constraints.
+							if ((constraints - ittoryu).IsValidFor(new(in grid, analyzerResult)))
 							{
 								return grid;
 							}
@@ -223,7 +238,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						}
 						default:
 						{
-							if (constraints.IsValidFor(new(in grid, analyzerResult)))
+							if (constraints.IsValidFor(ccc))
 							{
 								return grid;
 							}
