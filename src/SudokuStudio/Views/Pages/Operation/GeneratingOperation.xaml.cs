@@ -195,6 +195,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						symmetries[Random.Shared.Next(0, symmetries.Length)],
 						cancellationToken
 					);
+					if (grid.IsUndefined)
+					{
+						// Cancel the task if 'Grid.Undefined' is encountered.
+						// The value can be returned by method 'HodokuPuzzleGenerator.Generate' if cancelled.
+						throw new OperationCanceledException();
+					}
+
 					var analyzerResult = analyzer.Analyze(in grid);
 					switch (difficultyLevel)
 					{
