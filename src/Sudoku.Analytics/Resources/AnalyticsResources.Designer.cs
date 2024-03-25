@@ -1267,6 +1267,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The argument must be a single..
+        /// </summary>
+        public static string ErrorInfo_ArgumentMustBeSingle {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ArgumentMustBeSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target type of the chain is not supported. You should override this property for that type..
         /// </summary>
         public static string ErrorInfo_ChainMemberNotOverridden {

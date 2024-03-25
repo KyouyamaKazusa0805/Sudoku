@@ -10,8 +10,16 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <summary>
 	/// Indicates the step searcher used.
 	/// </summary>
-	private static readonly Analyzer Analyzer = Analyzers.Default
-		.WithStepSearchers([new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true }])
+	private static readonly Analyzer LocalAnalyzer = Analyzers.Default
+		.WithStepSearchers(
+			new SingleStepSearcher
+			{
+				EnableFullHouse = true,
+				EnableLastDigit = true,
+				HiddenSinglesInBlockFirst = true,
+				UseIttoryuMode = true
+			}
+		)
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 
@@ -24,6 +32,13 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	[HashCodeMember]
 	[StringMember]
 	public int Rounds { get; set; }
+
+	/// <summary>
+	/// Indicates the single technique that can be used in the checking.
+	/// </summary>
+	[HashCodeMember]
+	[StringMember]
+	public SingleTechnique LimitedSingle { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
@@ -43,7 +58,8 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is IttoryuConstraint comparer && (Rounds, Operator) == (comparer.Rounds, comparer.Operator);
+		=> other is IttoryuConstraint comparer
+		&& (Rounds, Operator, LimitedSingle) == (comparer.Rounds, comparer.Operator, comparer.LimitedSingle);
 
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
@@ -56,13 +72,20 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			return false;
 		}
 
-		if (Analyzer.Analyze(context.Grid) is not
+		if (LocalAnalyzer.Analyze(context.Grid) is not
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,
 				Steps: { Length: var stepsCount } steps
 			})
 		{
+			return false;
+		}
+
+		var maximum = new SortedSet<SingleTechnique>(from step in steps select step.Code.GetSingleTechnique()).Max;
+		if (maximum >= LimitedSingle)
+		{
+			// The puzzle will use advanced techniques.
 			return false;
 		}
 

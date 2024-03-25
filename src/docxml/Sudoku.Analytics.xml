@@ -840,17 +840,32 @@
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechnique">
             <summary>
-            Represents prefer way that specifies a kind that a user will perfer using a single technique to fill a grid.
+            Represents a single technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.None">
+            <summary>
+            Represents none of technique used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.FullHouse">
+            <summary>
+            Represents full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.LastDigit">
+            <summary>
+            Represents last digit.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingle">
             <summary>
-            Indicates a user likes using hidden singles to finish a grid.
+            Represents hidden single.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.NakedSingle">
             <summary>
-            Indicates a user likes using naked singles to finish a grid.
+            Represents naked single.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueSubtype">
@@ -4239,6 +4254,14 @@
             The difficulty level that the current technique belongs to.
             If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/> will be returned.
             </returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get the corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> for the specified single <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>The corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the technique is not single.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
             <summary>
@@ -22105,6 +22128,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to The ALS notation must contain only 1 slash character..
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ArgumentMustBeSingle">
+            <summary>
+              Looks up a localized string similar to The argument must be a single..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ChainMemberNotOverridden">
             <summary>
               Looks up a localized string similar to The target type of the chain is not supported. You should override this property for that type..
@@ -26512,7 +26540,7 @@ if (student is (name: var name, age: >= 18))
             Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
             </summary>
         </member>
-        <member name="F:Sudoku.Strategying.Constraints.IttoryuConstraint.Analyzer">
+        <member name="F:Sudoku.Strategying.Constraints.IttoryuConstraint.LocalAnalyzer">
             <summary>
             Indicates the step searcher used.
             </summary>
@@ -26523,6 +26551,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
             <summary>
             Indicates the rounds used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.LimitedSingle">
+            <summary>
+            Indicates the single technique that can be used in the checking.
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">

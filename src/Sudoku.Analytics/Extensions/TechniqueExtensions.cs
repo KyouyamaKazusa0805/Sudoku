@@ -259,6 +259,23 @@ public static class TechniqueExtensions
 	}
 
 	/// <summary>
+	/// Try to get the corresponding <see cref="SingleTechnique"/> for the specified single <see cref="Technique"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>The corresponding <see cref="SingleTechnique"/> instance.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the technique is not single.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static SingleTechnique GetSingleTechnique(this Technique @this)
+		=> @this switch
+		{
+			Technique.FullHouse => SingleTechnique.FullHouse,
+			Technique.LastDigit => SingleTechnique.LastDigit,
+			>= Technique.HiddenSingleBlock and <= Technique.HiddenSingleColumn => SingleTechnique.HiddenSingle,
+			Technique.NakedSingle => SingleTechnique.NakedSingle,
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgumentMustBeSingle"))
+		};
+
+	/// <summary>
 	/// Try to get features for the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>

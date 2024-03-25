@@ -2928,4 +2928,7 @@ Error grid: '{0:#}'</value>
   <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
     <value>&lt;None Selected&gt;</value>
   </data>
+  <data name="ErrorInfo_ArgumentMustBeSingle" xml:space="preserve">
+    <value>The argument must be a single.</value>
+  </data>
 </root>

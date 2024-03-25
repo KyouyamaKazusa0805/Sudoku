@@ -1,17 +1,32 @@
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Represents prefer way that specifies a kind that a user will perfer using a single technique to fill a grid.
+/// Represents a single technique.
 /// </summary>
 public enum SingleTechnique
 {
 	/// <summary>
-	/// Indicates a user likes using hidden singles to finish a grid.
+	/// Represents none of technique used.
 	/// </summary>
-	HiddenSingle = 1,
+	None,
 
 	/// <summary>
-	/// Indicates a user likes using naked singles to finish a grid.
+	/// Represents full house.
 	/// </summary>
-	NakedSingle = 2
+	FullHouse,
+
+	/// <summary>
+	/// Represents last digit.
+	/// </summary>
+	LastDigit,
+
+	/// <summary>
+	/// Represents hidden single.
+	/// </summary>
+	HiddenSingle,
+
+	/// <summary>
+	/// Represents naked single.
+	/// </summary>
+	NakedSingle
 }
