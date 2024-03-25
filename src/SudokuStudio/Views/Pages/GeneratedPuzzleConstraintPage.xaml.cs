@@ -496,6 +496,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			Items =
 			{
+#if false
 				new SegmentedItem
 				{
 					Content = SingleTechnique.FullHouse.GetName(App.CurrentCulture),
@@ -508,6 +509,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Tag = SingleTechnique.LastDigit,
 					IsEnabled = false
 				},
+#endif
 				new SegmentedItem
 				{
 					Content = SingleTechnique.HiddenSingleBlock.GetName(App.CurrentCulture),

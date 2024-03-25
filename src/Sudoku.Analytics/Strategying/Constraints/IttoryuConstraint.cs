@@ -53,7 +53,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	public static int Minimum => 1;
 
 	/// <inheritdoc/>
-	public static int Maximum => 10;
+	public static int Maximum => 2;
 
 
 	/// <inheritdoc/>
