@@ -83,7 +83,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		}
 
 		var maximum = new SortedSet<SingleTechnique>(from step in steps select step.Code.GetSingleTechnique()).Max;
-		if (maximum >= LimitedSingle)
+		if (maximum > LimitedSingle)
 		{
 			// The puzzle will use advanced techniques.
 			return false;

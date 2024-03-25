@@ -270,7 +270,9 @@ public static class TechniqueExtensions
 		{
 			Technique.FullHouse => SingleTechnique.FullHouse,
 			Technique.LastDigit => SingleTechnique.LastDigit,
-			>= Technique.HiddenSingleBlock and <= Technique.HiddenSingleColumn => SingleTechnique.HiddenSingle,
+			Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => SingleTechnique.HiddenSingleBlock,
+			Technique.CrosshatchingRow or Technique.HiddenSingleRow => SingleTechnique.HiddenSingleRow,
+			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => SingleTechnique.HiddenSingleColumn,
 			Technique.NakedSingle => SingleTechnique.NakedSingle,
 			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgumentMustBeSingle"))
 		};

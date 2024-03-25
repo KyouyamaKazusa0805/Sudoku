@@ -863,6 +863,21 @@
             Represents hidden single.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleBlock">
+            <summary>
+            Represents hidden single in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleRow">
+            <summary>
+            Represents hidden single in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleColumn">
+            <summary>
+            Represents hidden single in column.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.NakedSingle">
             <summary>
             Represents naked single.
@@ -4031,6 +4046,21 @@
             <seealso cref="T:Sudoku.Concepts.DisorderedIttoryuFinder"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
             <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechnique,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> instance.</param>
+            <param name="culture">The culture information.</param>
+            <returns>The name of the current technique.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the target technique is out of range.</exception>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniquePreferExtensions">
             <summary>
@@ -22631,6 +22661,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.FullHouse">
             <summary>
               Looks up a localized string similar to Full House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.GeneratedPuzzleConstraintPage_HighestSingleTechnique">
+            <summary>
+              Looks up a localized string similar to Highest technique (Must be Hidden Single or Naked Single):.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GivenCell">

@@ -2931,4 +2931,7 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_ArgumentMustBeSingle" xml:space="preserve">
     <value>The argument must be a single.</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
+    <value>Highest technique (Must be Hidden Single or Naked Single):</value>
+  </data>
 </root>

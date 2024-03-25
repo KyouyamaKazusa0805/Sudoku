@@ -3035,6 +3035,9 @@
   <data name="TechniqueFormat_UniqueRectangleBurredSubsetStep" xml:space="preserve">
     <value>要么 {0} 的数字 {1} 构成 UR，要么 {2} 构成关于 {3} 的数组</value>
   </data>
+  <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
+    <value>&lt;未选择任何对称性&gt;</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3116,7 +3119,11 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
-    <value>&lt;未选择任何对称性&gt;</value>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="ErrorInfo_ArgumentMustBeSingle" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
+    <value>最高难度技巧（必须是排除或唯一余数）：</value>
   </data>
 </root>

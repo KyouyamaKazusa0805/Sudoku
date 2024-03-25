@@ -475,10 +475,62 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? Create_Ittoryu(IttoryuConstraint constraint)
 	{
-		if (constraint is not { Operator: var @operator, Rounds: var rounds })
+		if (constraint is not { LimitedSingle: var limitedSingle, Operator: var @operator, Rounds: var rounds })
 		{
 			return null;
 		}
+
+		//
+		// highest technique displayer
+		//
+		var highestTechniqueControl = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_HighestSingleTechnique", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// limited single
+		//
+		var singleControl = new Segmented
+		{
+			Items =
+			{
+				new SegmentedItem
+				{
+					Content = SingleTechnique.FullHouse.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.FullHouse,
+					IsEnabled = false
+				},
+				new SegmentedItem
+				{
+					Content = SingleTechnique.LastDigit.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.LastDigit,
+					IsEnabled = false
+				},
+				new SegmentedItem
+				{
+					Content = SingleTechnique.HiddenSingleBlock.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.HiddenSingleBlock
+				},
+				new SegmentedItem
+				{
+					Content = SingleTechnique.HiddenSingleRow.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.HiddenSingleRow
+				},
+				new SegmentedItem
+				{
+					Content = SingleTechnique.HiddenSingleColumn.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.HiddenSingleColumn
+				},
+				new SegmentedItem
+				{
+					Content = SingleTechnique.NakedSingle.GetName(App.CurrentCulture),
+					Tag = SingleTechnique.NakedSingle
+				}
+			}
+		};
+		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(singleControl, limitedSingle, value => constraint.LimitedSingle = value);
 
 		//
 		// operator selector
@@ -498,7 +550,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = DefaultSpacing,
-				Children = { operatorControl, roundsControl }
+				Children = { highestTechniqueControl, singleControl, operatorControl, roundsControl }
 			},
 			Tag = constraint
 		};

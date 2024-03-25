@@ -80,7 +80,7 @@
 						<MenuFlyoutSeparator />
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_IttoryuConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
-								<con:IttoryuConstraint Operator="Equality" Rounds="1" />
+								<con:IttoryuConstraint LimitedSingle="NakedSingle" Operator="Equality" Rounds="1" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_IttoryuLengthConstraint}" Click="MenuFlyoutItem_Click">

@@ -86,7 +86,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
 		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
-		var ittoryuFinder = new DisorderedIttoryuFinder(((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques);
+		var ittoryuFinder = new DisorderedIttoryuFinder(TechniqueSets.IttoryuTechniques);
 
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;
@@ -199,7 +199,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 
 					var analyzerResult = analyzer.Analyze(in grid);
-					var ccc = new ConstraintCheckingContext(in grid, analyzerResult);
 					switch (difficultyLevel, analyzerResult.DifficultyLevel)
 					{
 						case (DifficultyLevel.Easy, DifficultyLevel.Easy):
@@ -224,7 +223,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 						CheckIttoryuConstraint:
 							// Check for ittoryu and ittoryu length constraint if worth.
-							if (!(ittoryu?.Check(ccc) ?? true))
+							if (!(ittoryu?.Check(new(in grid, analyzerResult)) ?? true))
 							{
 								break;
 							}
@@ -238,7 +237,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 						}
 						default:
 						{
-							if (constraints.IsValidFor(ccc))
+							if (constraints.IsValidFor(new(in grid, analyzerResult)))
 							{
 								return grid;
 							}
