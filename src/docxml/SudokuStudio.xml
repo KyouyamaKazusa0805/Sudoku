@@ -7286,6 +7286,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Pearl constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryFullHouse">
+            <summary>
+              Looks up a localized string similar to Full House.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryHiddenSingle">
             <summary>
               Looks up a localized string similar to Hidden Single.

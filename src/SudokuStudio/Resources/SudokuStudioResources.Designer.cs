@@ -2527,6 +2527,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Full House.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_PrimaryFullHouse {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_PrimaryFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Hidden Single.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_PrimaryHiddenSingle {

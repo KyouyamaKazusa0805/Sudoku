@@ -802,6 +802,11 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				new SegmentedItem
 				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
+					Tag = SingleTechnique.FullHouse
+				},
+				new SegmentedItem
+				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
 					Tag = SingleTechnique.HiddenSingle
 				},

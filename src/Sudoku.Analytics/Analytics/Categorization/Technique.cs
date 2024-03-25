@@ -31,6 +31,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		PrimaryStepType = typeof(FullHouseStep),
 		StepSearcherType = typeof(SingleStepSearcher),
+		PuzzleGeneratorType = typeof(FullHousePuzzleGenerator),
 		Links = ["http://sudopedia.enjoysudoku.com/Full_House.html"])]
 	FullHouse,
 

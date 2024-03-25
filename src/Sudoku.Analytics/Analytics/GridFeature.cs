@@ -46,13 +46,23 @@ public readonly ref partial struct GridFeature(
 	}
 
 	/// <summary>
+	/// Indicates whether the puzzle can be filled via only full house.
+	/// </summary>
+	public readonly bool CanOnlyUseFullHouse()
+		=> Analyzers.Default
+			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.FullHouse })
+			.Analyze(in Grid)
+			.IsSolved;
+
+	/// <summary>
 	/// Indicates whether the puzzle can be filled, via only hidden singles and last digits.
 	/// </summary>
 	/// <param name="allowsLine">Indicates whether the method allows using crosshatching in rows or columns.</param>
 	public readonly bool CanOnlyUseHiddenSingle(bool allowsLine)
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true, })
+			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.HiddenSingle, AllowsHiddenSingleInLines = allowsLine })
 			.Analyze(in Grid)
 			.IsSolved;

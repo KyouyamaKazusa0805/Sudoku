@@ -309,4 +309,31 @@ public static class TechniqueExtensions
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet AsTechniqueSet(this Technique[] @this) => [.. @this];
+
+	/// <summary>
+	/// Creates a <see cref="TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
+	/// </summary>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>A <see cref="TechniqueBasedPuzzleGenerator"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TechniqueBasedPuzzleGenerator? GetSpecificPuzzleGenerator(this Technique @this)
+	{
+		var type = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PuzzleGeneratorType;
+		return type is null ? null : (TechniqueBasedPuzzleGenerator?)Activator.CreateInstance(type);
+	}
+
+	/// <summary>
+	/// Creates an instance of type <typeparamref name="TGenerator"/> that creates puzzles that uses the specified technique.
+	/// </summary>
+	/// <typeparam name="TGenerator">The type of the generator.</typeparam>
+	/// <param name="this">The <see cref="Technique"/> instance.</param>
+	/// <returns>An instance of type <typeparamref name="TGenerator"/>.</returns>
+	/// <exception cref="MissingMemberException">Throws when the type is not found.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static TGenerator GetSpecificPuzzleGenerator<TGenerator>(this Technique @this)
+		where TGenerator : TechniqueBasedPuzzleGenerator, new()
+	{
+		var type = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PuzzleGeneratorType;
+		return type is null ? throw new MissingMemberException() : (TGenerator)Activator.CreateInstance(type)!;
+	}
 }

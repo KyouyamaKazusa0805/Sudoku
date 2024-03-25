@@ -2429,4 +2429,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueInfoModifierPage_DifficultyDirectRating" xml:space="preserve">
     <value>Direct Difficulty Rating</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_PrimaryFullHouse" xml:space="preserve">
+    <value>Full House</value>
+  </data>
 </root>

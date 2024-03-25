@@ -155,7 +155,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			scoped var stopwatch = ValueStopwatch.NewInstance;
 			var accumulator =
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-				IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not 0
+				IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not (null or 0)
 #else
 				IsFullApplying || RandomizedChoosing
 #endif
@@ -231,7 +231,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 							continue;
 						}
 
-						// Special case: consider the step is a naked single or hidden single,
+						// Special case: consider the step is a full house, hidden single or naked single,
 						// igonring steps not belonging to the technique set.
 						var chosenSteps = new List<SingleStep>();
 						foreach (var step in accumulator)
@@ -240,6 +240,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 							{
 								switch (limited, code, allowLine)
 								{
+									case (SingleTechnique.FullHouse, not Technique.FullHouse, _):
+									{
+										break;
+									}
 									case (_, Technique.FullHouse, _):
 									case (
 										SingleTechnique.HiddenSingle,

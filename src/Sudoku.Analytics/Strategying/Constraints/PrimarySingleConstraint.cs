@@ -24,7 +24,7 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	public SingleTechnique Primary { get; set; }
 
 	[StringMember(nameof(Primary))]
-	private string SinglePreferString => Primary.ToTechniqueString();
+	private string SinglePreferString => Primary.GetName();
 
 
 	/// <inheritdoc/>
@@ -35,14 +35,19 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	public override bool Check(ConstraintCheckingContext context)
 	{
 		scoped var feature = new GridFeature(context.Grid);
-		return Primary == SingleTechnique.HiddenSingle ? feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines) : feature.CanOnlyUseNakedSingle();
+		return Primary switch
+		{
+			SingleTechnique.FullHouse => feature.CanOnlyUseFullHouse(),
+			SingleTechnique.HiddenSingle => feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines),
+			SingleTechnique.NakedSingle => feature.CanOnlyUseNakedSingle()
+		};
 	}
 
 	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("PrimarySingleConstraint", culture),
-			Primary.ToTechniqueString(culture),
+			Primary.GetName(culture),
 			AllowsHiddenSingleInLines ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
 }

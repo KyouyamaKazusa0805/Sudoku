@@ -91,19 +91,26 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	public TechniqueMetadataSpecialFlags SpecialFlags { get; init; }
 
 	/// <summary>
-	/// Indicates the primarily <see cref="Step"/> type.
+	/// Indicates a that that can create a <see cref="Step"/> instance as the primary choice.
 	/// </summary>
+	[DisallowNull]
 	public Type? PrimaryStepType { get; init; }
 
 	/// <summary>
-	/// Indicates the secondarily <see cref="Step"/> type.
+	/// Indicates a that that can create a <see cref="Step"/> instance as the secondary choice.
 	/// </summary>
 	[DisallowNull]
 	public Type? SecondaryStepType { get; init; }
 
 	/// <summary>
-	/// Indicates the step searcher type that can produce steps that describes the current technique.
+	/// Indicates a step searcher type that can produce steps that describes the current technique.
 	/// </summary>
 	[DisallowNull]
 	public Type? StepSearcherType { get; init; }
+
+	/// <summary>
+	/// Indicates a step searcher type that can produce puzzles that always uses the current technique.
+	/// </summary>
+	[DisallowNull]
+	public Type? PuzzleGeneratorType { get; init; }
 }
