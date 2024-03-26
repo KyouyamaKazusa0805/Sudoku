@@ -336,7 +336,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 		return new()
 		{
-			Header = ResourceDictionary.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}"),
+			Header = ResourceDictionary.Get($"GeneratedPuzzleConstraintPage_{(checkPearl ? "Pearl" : "Diamond")}", App.CurrentCulture),
 			Margin = DefaultMargin,
 			Content = control,
 			Tag = constraint
