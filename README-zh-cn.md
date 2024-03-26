@@ -194,7 +194,9 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 * [标准数独技巧教程（视频）_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程（文章）](https://t.sudoku-studio.wiki)
 
-> 新版专栏尚未完成，请耐心等待。
+二维码
+
+![](docs/pic/qrcode.png)
 
 ## 作者
 

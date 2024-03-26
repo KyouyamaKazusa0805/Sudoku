@@ -188,6 +188,10 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 * [标准数独技巧教程 (Video)_bilibili](https://www.bilibili.com/video/BV1Mx411z7uq)
 * [标准数独技巧教程 (Text)](https://t.sudoku-studio.wiki)
 
+QR Code
+
+![](docs/pic/qrcode.png)
+
 ## Author
 
 Sunnie, from Chengdu, SiChuan, China. I'm not a developer, but I like it!
