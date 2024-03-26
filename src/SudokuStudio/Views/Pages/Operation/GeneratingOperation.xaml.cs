@@ -118,11 +118,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					break;
 				}
 			}
-
-
-			Grid task() => gridCreator(analyzer, ittoryuFinder);
 		}
-		catch (TaskCanceledException)
+		catch (OperationCanceledException)
 		{
 		}
 		finally
@@ -132,138 +129,128 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		Grid gridCreator(Analyzer analyzer, DisorderedIttoryuFinder finder)
-		{
-			try
-			{
-				return generatePuzzleCore(
-					progress => DispatcherQueue.TryEnqueue(
-						() =>
-						{
-							BasePage.AnalyzeProgressLabel.Text = processingText;
-							BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-						}
-					), cts.Token, analyzer, finder
-				) ?? Grid.Undefined;
-			}
-			catch (TaskCanceledException)
-			{
-				return Grid.Undefined;
-			}
-		}
-
-		Grid? generatePuzzleCore(
+		Grid handler_default(
+			ConstraintCollection constraints,
 			Action<T> reportingAction,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
 			DisorderedIttoryuFinder finder
 		)
 		{
-			try
+			var rs = Random.Shared;
+			scoped var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
+			scoped var chosenGivensCount =
+				from c in constraints.OfType<CountBetweenConstraint>()
+				where c.CellState == CellState.Given
+				select (c.BetweenRule, (c.Range.Start.Value, c.Range.End.Value));
+			scoped var chosenDifficultyLevels =
+				from c in constraints.OfType<DifficultyLevelConstraint>()
+				select c.ValidDifficultyLevels.GetAllFlags();
+			var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
+			var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
 			{
-				scoped var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
-				scoped var chosenGivensCount =
-					from c in constraints.OfType<CountBetweenConstraint>()
-					where c.CellState == CellState.Given
-					select (c.BetweenRule, (c.Range.Start.Value, c.Range.End.Value));
-				scoped var chosenDifficultyLevels =
-					from c in constraints.OfType<DifficultyLevelConstraint>()
-					select c.ValidDifficultyLevels.GetAllFlags();
-				var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
+				SymmetryConstraint.InvalidSymmetricType => [],
+				SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
+				var symmetricTypes => symmetricTypes.GetAllFlags()
+			};
+			if (symmetries.Length == 0)
+			{
+				// Temporary solution: Auto-cancel the generating operation.
+				return Grid.Undefined;
+			}
 
-				var progress = new SelfReportingProgress<T>(reportingAction);
-				var symmetries = (chosenSymmetries is [var p] ? p : SymmetryConstraint.AllSymmetricTypes) switch
+			var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
+			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rs.Next(s, e + 1) : -1;
+			var difficultyLevel = chosenDifficultyLevels is [var d] ? d[rs.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
+
+			var progress = new SelfReportingProgress<T>(reportingAction);
+			while (true)
+			{
+				var symmetryIndex = rs.Next(0, symmetries.Length);
+				var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetries[symmetryIndex], cancellationToken);
+				if (grid.IsUndefined)
 				{
-					SymmetryConstraint.InvalidSymmetricType => [],
-					SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
-					var symmetricTypes => symmetricTypes.GetAllFlags()
-				};
-				var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
-				var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? Random.Shared.Next(s, e + 1) : -1;
-				var difficultyLevel = chosenDifficultyLevels is [var d] ? d[Random.Shared.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
-				while (true)
-				{
-					if (symmetries.Length == 0)
-					{
-						// Temporary solution: Auto-cancel the generating operation.
-						throw new OperationCanceledException();
-					}
-
-					var symmetryIndex = Random.Shared.Next(0, symmetries.Length);
-					var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetries[symmetryIndex], cancellationToken);
-					if (grid.IsUndefined)
-					{
-						// Cancel the task if 'Grid.Undefined' is encountered.
-						// The value can be returned by method 'HodokuPuzzleGenerator.Generate' if cancelled.
-						throw new OperationCanceledException();
-					}
-
-					var analyzerResult = analyzer.Analyze(in grid);
-					switch (difficultyLevel, analyzerResult.DifficultyLevel)
-					{
-						case (DifficultyLevel.Easy, DifficultyLevel.Easy):
-						{
-							// Optimize: transform the grid if worth.
-							if (ittoryu is { Operator: ComparisonOperator.Equality, Rounds: 1 })
-							{
-								switch (finder.FindPath(in grid))
-								{
-									case { IsComplete: true } foundIttoryu:
-									{
-										grid.MakeIttoryu(foundIttoryu);
-										goto CheckIttoryuConstraint;
-									}
-									default:
-									{
-										break;
-									}
-								}
-								break;
-							}
-
-						CheckIttoryuConstraint:
-							// Check for ittoryu and ittoryu length constraint if worth.
-							if (!(ittoryu?.Check(new(in grid, analyzerResult)) ?? true))
-							{
-								break;
-							}
-
-							// Check for the last constraints.
-							if ((constraints - ittoryu).IsValidFor(new(in grid, analyzerResult)))
-							{
-								return grid;
-							}
-							break;
-						}
-						default:
-						{
-							if (constraints.IsValidFor(new(in grid, analyzerResult)))
-							{
-								return grid;
-							}
-							break;
-						}
-					}
-
-					progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
-					cancellationToken.ThrowIfCancellationRequested();
+					// Cancel the task if 'Grid.Undefined' is encountered.
+					// The value can be returned by method 'HodokuPuzzleGenerator.Generate' if cancelled.
+					throw new OperationCanceledException();
 				}
+
+				var analyzerResult = analyzer.Analyze(in grid);
+				switch (difficultyLevel, analyzerResult.DifficultyLevel)
+				{
+					case (DifficultyLevel.Easy, DifficultyLevel.Easy):
+					{
+						// Optimize: transform the grid if worth.
+						if (ittoryu is { Operator: ComparisonOperator.Equality, Rounds: 1 })
+						{
+							switch (finder.FindPath(in grid))
+							{
+								case { IsComplete: true } foundIttoryu:
+								{
+									grid.MakeIttoryu(foundIttoryu);
+									goto CheckIttoryuConstraint;
+								}
+								default:
+								{
+									break;
+								}
+							}
+							break;
+						}
+
+					CheckIttoryuConstraint:
+						// Check for ittoryu and ittoryu length constraint if worth.
+						if (!(ittoryu?.Check(new(in grid, analyzerResult)) ?? true))
+						{
+							break;
+						}
+
+						// Check for the last constraints.
+						if ((constraints - ittoryu).IsValidFor(new(in grid, analyzerResult)))
+						{
+							return grid;
+						}
+						break;
+					}
+					default:
+					{
+						if (constraints.IsValidFor(new(in grid, analyzerResult)))
+						{
+							return grid;
+						}
+						break;
+					}
+				}
+
+				progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
+				cancellationToken.ThrowIfCancellationRequested();
 			}
-			catch (OperationCanceledException)
-			{
-				return null;
-			}
+
+
+			static (int, int) b(BetweenRule betweenRule, int start, int end)
+				=> betweenRule switch
+				{
+					BetweenRule.BothOpen => (start + 1, end - 1),
+					BetweenRule.LeftOpen => (start + 1, end),
+					BetweenRule.RightOpen => (start, end + 1),
+					_ => (start, end)
+				};
 		}
 
-
-		static (int, int) b(BetweenRule betweenRule, int start, int end)
-			=> betweenRule switch
-			{
-				BetweenRule.BothOpen => (start + 1, end - 1),
-				BetweenRule.LeftOpen => (start + 1, end),
-				BetweenRule.RightOpen => (start, end + 1),
-				_ => (start, end)
-			};
+		Grid task()
+			=> handler_default(
+				constraints,
+				progress => DispatcherQueue.TryEnqueue(
+					() =>
+					{
+						BasePage.AnalyzeProgressLabel.Text = processingText;
+						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+					}
+				),
+				cts.Token,
+				analyzer,
+				ittoryuFinder
+			);
 	}
 
 
