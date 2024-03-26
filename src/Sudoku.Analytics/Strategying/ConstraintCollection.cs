@@ -130,6 +130,17 @@ public sealed class ConstraintCollection :
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc cref="List{T}.Slice(int, int)"/>
+	public new ConstraintCollection Slice(int start, int count)
+	{
+		var result = new ConstraintCollection(count);
+		for (var i = start; i < start + count; i++)
+		{
+			result.Add(this[i]);
+		}
+		return result;
+	}
+
 
 	/// <inheritdoc/>
 	public static ConstraintCollection operator +(ConstraintCollection left, Constraint? right)

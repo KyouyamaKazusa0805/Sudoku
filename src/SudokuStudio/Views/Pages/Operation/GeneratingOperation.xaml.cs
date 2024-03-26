@@ -129,9 +129,60 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-		Grid handler_default(
+
+		static (int, int) b(BetweenRule betweenRule, int start, int end)
+			=> betweenRule switch
+			{
+				BetweenRule.BothOpen => (start + 1, end - 1),
+				BetweenRule.LeftOpen => (start + 1, end),
+				BetweenRule.RightOpen => (start, end + 1),
+				_ => (start, end)
+			};
+
+		void reporter(T progress)
+			=> DispatcherQueue.TryEnqueue(
+				() =>
+				{
+					BasePage.AnalyzeProgressLabel.Text = processingText;
+					BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+				}
+			);
+
+#pragma warning disable format
+		Grid task()
+			=> constraints switch
+			{
+				[PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }]
+					=> handle_FullHouse(null, cts.Token),
+				[PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }, CountBetweenConstraint constraint]
+					=> handle_FullHouse(constraint, cts.Token),
+				[CountBetweenConstraint constraint, PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }]
+					=> handle_FullHouse(constraint, cts.Token),
+				_
+					=> handler_Default(constraints, reporter, cts.Token, analyzer, ittoryuFinder)
+			};
+#pragma warning restore format
+
+		Grid handle_FullHouse(CountBetweenConstraint? constraint, CancellationToken cancellationToken)
+		{
+			var (start, end) = constraint switch
+			{
+				{ BetweenRule: var br, CellState: CellState.Given, Range: { Start.Value: var s, End.Value: var e } }
+					=> b(br, 81 - e, 81 - s),
+				{ BetweenRule: var br, CellState: CellState.Empty, Range: { Start.Value: var s, End.Value: var e } }
+					=> b(br, s, e),
+				_ => (1, 21)
+			};
+			(start, end) = (Max(start, 1), Min(end, 21));
+			var next = Random.Shared.Next(start, end);
+			return new FullHousePuzzleGenerator { EmptyCellsCount = next }.TryGenerateUnique(out var result, cancellationToken: cancellationToken)
+				? result
+				: throw new OperationCanceledException();
+		}
+
+		Grid handler_Default(
 			ConstraintCollection constraints,
-			Action<T> reportingAction,
+			Action<T> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
 			DisorderedIttoryuFinder finder
@@ -163,7 +214,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rs.Next(s, e + 1) : -1;
 			var difficultyLevel = chosenDifficultyLevels is [var d] ? d[rs.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
 
-			var progress = new SelfReportingProgress<T>(reportingAction);
+			var progress = new SelfReportingProgress<T>(reporter);
 			while (true)
 			{
 				var symmetryIndex = rs.Next(0, symmetries.Length);
@@ -225,32 +276,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
 			}
-
-
-			static (int, int) b(BetweenRule betweenRule, int start, int end)
-				=> betweenRule switch
-				{
-					BetweenRule.BothOpen => (start + 1, end - 1),
-					BetweenRule.LeftOpen => (start + 1, end),
-					BetweenRule.RightOpen => (start, end + 1),
-					_ => (start, end)
-				};
 		}
-
-		Grid task()
-			=> handler_default(
-				constraints,
-				progress => DispatcherQueue.TryEnqueue(
-					() =>
-					{
-						BasePage.AnalyzeProgressLabel.Text = processingText;
-						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-					}
-				),
-				cts.Token,
-				analyzer,
-				ittoryuFinder
-			);
 	}
 
 

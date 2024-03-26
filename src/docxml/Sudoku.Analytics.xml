@@ -38,17 +38,18 @@
         <member name="P:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.SupportedTechnique">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUniqueOnlyThis(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUniqueOnlyThis(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <summary>
             The core method that creates a <see cref="T:Sudoku.Concepts.Grid"/> that can be solved via only this technique.
             </summary>
             <param name="result">The result grid.</param>
+            <param name="progress">The progress object.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the process is successfully-executed.</returns>
         </member>
@@ -66,26 +67,6 @@
             with only the current technique used.
             </summary>
         </member>
-        <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedGenerator">
-            <summary>
-            Represents a generator that create puzzles containing the specified technique.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedGenerator.Generate(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Analyzer,System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle that contains the specified technique.
-            </summary>
-            <param name="technique">The technique to be checked.</param>
-            <param name="analyzer">The analyzer object that solves for the puzzle.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="technique"/> is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/> or not defined.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="technique"/> is not implemented for searching rule.
-            </exception>
-        </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
             <summary>
             Represents a generator type that generates puzzles, relating to a kind of technique.
@@ -101,20 +82,21 @@
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
             that can be solved in logic.
             </summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
             </summary>
             <param name="result">
             The puzzle returned. The argument becomes valid if and only if the return value is <see langword="true"/>.
             </param>
+            <param name="progress">The progress object that can report the current state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
             <para>
@@ -26540,6 +26522,9 @@ if (student is (name: var name, age: >= 18))
             <typeparam name="TResult">The type of each result element.</typeparam>
             <param name="selector">The selector method to convert the value into <typeparamref name="TResult"/> instance.</param>
             <returns>A list of <typeparamref name="TResult"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.op_Addition(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
             <inheritdoc/>
