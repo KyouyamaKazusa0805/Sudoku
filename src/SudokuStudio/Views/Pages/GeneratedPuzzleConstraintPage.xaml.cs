@@ -786,6 +786,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		var techniqueSelectorControl = new Segmented
 		{
+			Style = (Style)Application.Current.Resources["ButtonSegmentedStyle"]!,
 			Items =
 			{
 				new SegmentedItem
