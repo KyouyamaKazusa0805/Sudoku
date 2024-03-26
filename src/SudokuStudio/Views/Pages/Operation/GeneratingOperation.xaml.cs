@@ -148,40 +148,31 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				}
 			);
 
-#pragma warning disable format
 		Grid task()
-			=> constraints switch
-			{
-				[PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }]
-					=> handle_FullHouse(null, cts.Token),
-				[PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }, CountBetweenConstraint constraint]
-					=> handle_FullHouse(constraint, cts.Token),
-				[CountBetweenConstraint constraint, PrimarySingleConstraint { Primary: SingleTechnique.FullHouse }]
-					=> handle_FullHouse(constraint, cts.Token),
-				_
-					=> handler_Default(constraints, reporter, cts.Token, analyzer, ittoryuFinder)
-			};
-#pragma warning restore format
-
-		Grid handle_FullHouse(CountBetweenConstraint? constraint, CancellationToken cancellationToken)
 		{
-			var (start, end) = constraint switch
-			{
-				{ BetweenRule: var br, CellState: CellState.Given, Range: { Start.Value: var s, End.Value: var e } }
-					=> b(br, 81 - e, 81 - s),
-				{ BetweenRule: var br, CellState: CellState.Empty, Range: { Start.Value: var s, End.Value: var e } }
-					=> b(br, s, e),
-				_ => (1, 21)
-			};
-			(start, end) = (Max(start, 1), Min(end, 21));
-			var next = Random.Shared.Next(start, end);
-			return new FullHousePuzzleGenerator { EmptyCellsCount = next }.TryGenerateUnique(out var result, cancellationToken: cancellationToken)
-				? result
-				: throw new OperationCanceledException();
+			var primarySingle = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse } p] ? p : null;
+			return coreHandler(
+				constraints,
+				primarySingle switch
+				{
+					null => static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct),
+					_ => static (givens, symmetry, ct) =>
+					{
+						var generator = new FullHousePuzzleGenerator { EmptyCellsCount = 81 - givens };
+						generator.TryGenerateUnique(out var result, cancellationToken: ct);
+						return result;
+					}
+				},
+				reporter,
+				cts.Token,
+				analyzer,
+				ittoryuFinder
+			);
 		}
 
-		Grid handler_Default(
+		Grid coreHandler(
 			ConstraintCollection constraints,
+			Func<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
 			Action<T> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,
@@ -192,8 +183,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			scoped var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
 			scoped var chosenGivensCount =
 				from c in constraints.OfType<CountBetweenConstraint>()
-				where c.CellState == CellState.Given
-				select (c.BetweenRule, (c.Range.Start.Value, c.Range.End.Value));
+				let betweenRule = c.BetweenRule
+				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
+				let targetPair = c.CellState switch { CellState.Given => (pair.Start, pair.End), CellState.Empty => (81 - pair.End, 81 - pair.Start) }
+				select (betweenRule, targetPair);
 			scoped var chosenDifficultyLevels =
 				from c in constraints.OfType<DifficultyLevelConstraint>()
 				select c.ValidDifficultyLevels.GetAllFlags();
@@ -212,18 +205,25 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 			var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
 			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rs.Next(s, e + 1) : -1;
-			var difficultyLevel = chosenDifficultyLevels is [var d] ? d[rs.Next(0, d.Length)] : DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
+			var difficultyLevel = chosenDifficultyLevels is [var d]
+				? d[rs.Next(0, d.Length)]
+				: DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
 
 			var progress = new SelfReportingProgress<T>(reporter);
 			while (true)
 			{
-				var symmetryIndex = rs.Next(0, symmetries.Length);
-				var grid = new HodokuPuzzleGenerator().Generate(givensCount, symmetries[symmetryIndex], cancellationToken);
+				var grid = gridCreator(givensCount, symmetries[rs.Next(0, symmetries.Length)], cancellationToken);
 				if (grid.IsUndefined)
 				{
 					// Cancel the task if 'Grid.Undefined' is encountered.
 					// The value can be returned by method 'HodokuPuzzleGenerator.Generate' if cancelled.
 					throw new OperationCanceledException();
+				}
+
+				if (grid.IsEmpty)
+				{
+					// The other case that return an invalid value.
+					goto ReportState;
 				}
 
 				var analyzerResult = analyzer.Analyze(in grid);
@@ -273,6 +273,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 				}
 
+			ReportState:
 				progress.Report(T.Create(++_generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
 			}

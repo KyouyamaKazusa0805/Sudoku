@@ -57,6 +57,8 @@ public sealed class FullHousePuzzleGenerator :
 	/// <returns>A <see cref="bool"/> result indicating whether the process is successfully-executed.</returns>
 	private bool TryGenerateUniqueOnlyThis(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
 	{
+		EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, 21);
+
 		for (var i = 1; ; i++)
 		{
 			// Try generating a solution.
