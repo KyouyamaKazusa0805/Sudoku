@@ -31,13 +31,13 @@ public sealed partial class CandidatePicker : UserControl
 		var digit = candidate % 9;
 		RowDisplayer.Text = SelectedCandidate == -1
 			? "row" :
-			string.Format(ResourceDictionary.Get("CandidatePicker_RowLabel"), cell / 9 + 1);
+			string.Format(ResourceDictionary.Get("CandidatePicker_RowLabel", App.CurrentCulture), cell / 9 + 1);
 		ColumnDisplayer.Text = SelectedCandidate == -1
 			? "column"
-			: string.Format(ResourceDictionary.Get("CandidatePicker_ColumnLabel"), cell % 9 + 1);
+			: string.Format(ResourceDictionary.Get("CandidatePicker_ColumnLabel", App.CurrentCulture), cell % 9 + 1);
 		DigitDisplayer.Text = SelectedCandidate == -1
 			? "digit"
-			: string.Format(ResourceDictionary.Get("CandidatePicker_DigitLabel"), digit + 1);
+			: string.Format(ResourceDictionary.Get("CandidatePicker_DigitLabel", App.CurrentCulture), digit + 1);
 	}
 
 

@@ -70,7 +70,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				TechniqueConstraint instance => () => callback(Create_Technique, instance),
 				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
 				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
-				PrimarySingleConstraint instance => () => callback(PrimarySingle, instance),
+				PrimarySingleConstraint instance => () => callback(Create_PrimarySingle, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
@@ -177,6 +177,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		var symmetryControl = new Segmented
 		{
 			SelectionMode = ListViewSelectionMode.Multiple,
+			Style = (Style)Application.Current.Resources["ButtonSegmentedStyle"]!,
 			Items =
 			{
 				new SegmentedItem { Content = ResourceDictionary.Get("SymmetricType_Central", App.CurrentCulture), Tag = SymmetricType.Central },
@@ -494,22 +495,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		var singleControl = new Segmented
 		{
+			Style = (Style)Application.Current.Resources["ButtonSegmentedStyle"]!,
 			Items =
 			{
-#if false
-				new SegmentedItem
-				{
-					Content = SingleTechnique.FullHouse.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.FullHouse,
-					IsEnabled = false
-				},
-				new SegmentedItem
-				{
-					Content = SingleTechnique.LastDigit.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.LastDigit,
-					IsEnabled = false
-				},
-#endif
 				new SegmentedItem
 				{
 					Content = SingleTechnique.HiddenSingleBlock.GetName(App.CurrentCulture),
@@ -772,7 +760,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 	}
 
-	private SettingsCard? PrimarySingle(PrimarySingleConstraint constraint)
+	private SettingsCard? Create_PrimarySingle(PrimarySingleConstraint constraint)
 	{
 		if (constraint is not { Primary: var prefer, AllowsHiddenSingleInLines: var allowsForLine })
 		{
@@ -860,6 +848,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		var operatorControl = new ComboBox
 		{
 			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseComparisonOperator", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center,
 			Items =
 			{
 				new ComboBoxItem
@@ -908,7 +897,14 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <returns>An <see cref="IntegerBox"/> instance.</returns>
 	private static IntegerBox LimitCountControl<T>(int limitCount, T constraint) where T : Constraint, ILimitCountConstraint<int>
 	{
-		var limitCountControl = new IntegerBox { Width = 150, Minimum = T.Minimum, Maximum = T.Maximum, Value = limitCount };
+		var limitCountControl = new IntegerBox
+		{
+			Width = 150,
+			Minimum = T.Minimum,
+			Maximum = T.Maximum,
+			Value = limitCount,
+			VerticalAlignment = VerticalAlignment.Center
+		};
 		limitCountControl.ValueChanged += (_, _) => constraint.LimitCount = limitCountControl.Value;
 		return limitCountControl;
 	}

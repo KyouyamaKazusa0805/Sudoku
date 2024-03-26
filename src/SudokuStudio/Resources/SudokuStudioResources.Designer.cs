@@ -2572,7 +2572,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Technique.
+        ///   Looks up a localized string similar to Using.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1 {
             get {
@@ -2581,7 +2581,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
+        ///   Looks up a localized string similar to only, allows for hidden single in lines:.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2 {
             get {

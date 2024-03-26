@@ -2346,10 +2346,10 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Primary single constraint</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1" xml:space="preserve">
-    <value>Technique</value>
+    <value>Using</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2" xml:space="preserve">
-    <value>should be the only technique allowed in solving puzzle, allows for hidden single in lines:</value>
+    <value>only, allows for hidden single in lines:</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryHiddenSingle" xml:space="preserve">
     <value>Hidden Single</value>

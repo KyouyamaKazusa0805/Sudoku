@@ -2185,7 +2185,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Highest technique (Must be Hidden Single or Naked Single):.
+        ///   Looks up a localized string similar to Highest technique:.
         /// </summary>
         public static string GeneratedPuzzleConstraintPage_HighestSingleTechnique {
             get {

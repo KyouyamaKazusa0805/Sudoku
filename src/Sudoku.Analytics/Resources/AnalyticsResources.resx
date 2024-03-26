@@ -2932,7 +2932,7 @@ Error grid: '{0:#}'</value>
     <value>The argument must be a single.</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
-    <value>Highest technique (Must be Hidden Single or Naked Single):</value>
+    <value>Highest technique:</value>
   </data>
   <data name="ErrorInfo_TechniqueIsNotImplemented" xml:space="preserve">
     <value>The current technique is not implemented.</value>

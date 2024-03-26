@@ -2343,10 +2343,10 @@
     <value>出数技巧约束</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1" xml:space="preserve">
-    <value>技巧</value>
+    <value>只能用</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2" xml:space="preserve">
-    <value>为唯一一种可用解题技巧，允许使用行列排除：</value>
+    <value>，允许使用行列排除：</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryHiddenSingle" xml:space="preserve">
     <value>排除</value>
@@ -2426,10 +2426,10 @@
   <data name="TechniqueInfoModifierPage_DifficultyDirectRating" xml:space="preserve">
     <value>直观难度分</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="GeneratedPuzzleConstraintPage_PrimaryFullHouse" xml:space="preserve">
     <value>同区九缺一</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
   </data>
 </root>

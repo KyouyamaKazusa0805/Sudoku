@@ -7313,12 +7313,12 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart1">
             <summary>
-              Looks up a localized string similar to Technique.
+              Looks up a localized string similar to Using.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_PrimaryTechniqueLabelPart2">
             <summary>
-              Looks up a localized string similar to should be the only technique allowed in solving puzzle, allows for hidden single in lines:.
+              Looks up a localized string similar to only, allows for hidden single in lines:.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_RowLabel">

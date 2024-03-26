@@ -22789,7 +22789,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GeneratedPuzzleConstraintPage_HighestSingleTechnique">
             <summary>
-              Looks up a localized string similar to Highest technique (Must be Hidden Single or Naked Single):.
+              Looks up a localized string similar to Highest technique:.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GivenCell">
