@@ -2934,4 +2934,7 @@ Error grid: '{0:#}'</value>
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
     <value>Highest technique (Must be Hidden Single or Naked Single):</value>
   </data>
+  <data name="ErrorInfo_TechniqueIsNotImplemented" xml:space="preserve">
+    <value>The current technique is not implemented.</value>
+  </data>
 </root>

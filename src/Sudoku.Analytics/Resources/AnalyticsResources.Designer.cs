@@ -1411,6 +1411,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The current technique is not implemented..
+        /// </summary>
+        public static string ErrorInfo_TechniqueIsNotImplemented {
+            get {
+                return ResourceManager.GetString("ErrorInfo_TechniqueIsNotImplemented", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target level is unknown. If you see this exception thrown, please append &apos;Sudoku.Analytics.Categorization.DifficultyLevelAttribute&apos; to the target technique code field defined in type &apos;Sudoku.Analytics.Categorization.Technique&apos;..
         /// </summary>
         public static string ErrorInfo_TechniqueLevelCannotBeDetermined {

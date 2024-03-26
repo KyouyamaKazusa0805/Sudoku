@@ -66,6 +66,26 @@
             with only the current technique used.
             </summary>
         </member>
+        <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedGenerator">
+            <summary>
+            Represents a generator that create puzzles containing the specified technique.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedGenerator.Generate(Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Analyzer,System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle that contains the specified technique.
+            </summary>
+            <param name="technique">The technique to be checked.</param>
+            <param name="analyzer">The analyzer object that solves for the puzzle.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="technique"/> is <see cref="F:Sudoku.Analytics.Categorization.Technique.None"/> or not defined.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="technique"/> is not implemented for searching rule.
+            </exception>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
             <summary>
             Represents a generator type that generates puzzles, relating to a kind of technique.
@@ -4426,15 +4446,6 @@
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSpecificPuzzleGenerator``1(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Creates an instance of type <typeparamref name="TGenerator"/> that creates puzzles that uses the specified technique.
-            </summary>
-            <typeparam name="TGenerator">The type of the generator.</typeparam>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>An instance of type <typeparamref name="TGenerator"/>.</returns>
-            <exception cref="T:System.MissingMemberException">Throws when the type is not found.</exception>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.TechniqueGroupExtensions">
             <summary>
@@ -22362,6 +22373,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SudokuExplainerAttributeInvalidRating">
             <summary>
               Looks up a localized string similar to Cannot call setter &apos;Rating.set&apos; because the property &apos;Rating&apos; has an invalid value that cannot return with only one value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_TechniqueIsNotImplemented">
+            <summary>
+              Looks up a localized string similar to The current technique is not implemented..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_TechniqueLevelCannotBeDetermined">
