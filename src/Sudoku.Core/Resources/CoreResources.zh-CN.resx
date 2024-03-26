@@ -169,7 +169,7 @@
     <value>纵轴</value>
   </data>
   <data name="SymmetricType_AxisBoth" xml:space="preserve">
-	<value>两条轴</value>
+    <value>两条轴</value>
   </data>
   <data name="SymmetricType_DiagonalBoth" xml:space="preserve">
     <value>两条对角线</value>
@@ -179,5 +179,14 @@
   </data>
   <data name="SymmetricType_AntiDiagonal" xml:space="preserve">
     <value>反对角线</value>
+  </data>
+  <data name="RowName" xml:space="preserve">
+    <value>行</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>列</value>
+  </data>
+  <data name="DigitName" xml:space="preserve">
+    <value>数字</value>
   </data>
 </root>

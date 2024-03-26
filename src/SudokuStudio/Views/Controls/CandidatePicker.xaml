@@ -6,6 +6,7 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
+	xmlns:m="using:SudokuStudio.Markup"
     mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:CandidatePicker}">
 	<UserControl.Resources>
 		<Style x:Key="SeparatorStyle" TargetType="Border">
@@ -18,25 +19,36 @@
 	<Button>
 		<Button.Flyout>
 			<Flyout>
-				<Grid ColumnDefinitions="*,*,*">
-					<c:DigitSet
-						x:Name="RowIndexSelector"
-						Grid.Column="0" SelectedDigit="{x:Bind cvt:ConceptConversion.GetRowIndex(SelectedCandidate),Mode=OneWay}"
-						HorizontalAlignment="Center" VerticalAlignment="Center"
-						SelectedDigitChanged="DigitSet_SelectedDigitChanged" />
-					<Border Grid.Column="1" Style="{StaticResource SeparatorStyle}">
+				<StackPanel>
+					<Grid RowDefinitions="Auto,*" ColumnDefinitions="*,*,*">
+						<TextBlock
+							Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center"
+							FontWeight="Bold" Text="{m:R Key=RowName}" Margin="0,0,0,6" />
+						<TextBlock
+							Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center"
+							FontWeight="Bold" Text="{m:R Key=ColumnName}" Margin="0,0,0,6" />
+						<TextBlock
+							Grid.Row="0" Grid.Column="2" HorizontalAlignment="Center"
+							FontWeight="Bold" Text="{m:R Key=DigitName}" Margin="0,0,0,6" />
 						<c:DigitSet
-							x:Name="ColumnIndexSelector"
-							Grid.Column="1" SelectedDigit="{x:Bind cvt:ConceptConversion.GetColumnIndex(SelectedCandidate),Mode=OneWay}"
+							x:Name="RowIndexSelector" Grid.Row="1" Grid.Column="0"
+							SelectedDigit="{x:Bind cvt:ConceptConversion.GetRowIndex(SelectedCandidate),Mode=OneWay}"
 							HorizontalAlignment="Center" VerticalAlignment="Center"
 							SelectedDigitChanged="DigitSet_SelectedDigitChanged" />
-					</Border>
-					<c:DigitSet
-						x:Name="DigitSelector"
-						Grid.Column="2" SelectedDigit="{x:Bind cvt:ConceptConversion.GetDigit(SelectedCandidate),Mode=OneWay}"
-						HorizontalAlignment="Center" VerticalAlignment="Center"
-						SelectedDigitChanged="DigitSet_SelectedDigitChanged" />
-				</Grid>
+						<Border Grid.Row="1" Grid.Column="1" Style="{StaticResource SeparatorStyle}">
+							<c:DigitSet
+								x:Name="ColumnIndexSelector"
+								SelectedDigit="{x:Bind cvt:ConceptConversion.GetColumnIndex(SelectedCandidate),Mode=OneWay}"
+								HorizontalAlignment="Center" VerticalAlignment="Center"
+								SelectedDigitChanged="DigitSet_SelectedDigitChanged" />
+						</Border>
+						<c:DigitSet
+							x:Name="DigitSelector" Grid.Row="1" Grid.Column="2"
+							SelectedDigit="{x:Bind cvt:ConceptConversion.GetDigit(SelectedCandidate),Mode=OneWay}"
+							HorizontalAlignment="Center" VerticalAlignment="Center"
+							SelectedDigitChanged="DigitSet_SelectedDigitChanged" />
+					</Grid>
+				</StackPanel>
 			</Flyout>
 		</Button.Flyout>
 

@@ -252,4 +252,13 @@
   <data name="ErrorInfo_CellsShouldInSameLine" xml:space="preserve">
     <value>Two cells must be in a same line (row or column).</value>
   </data>
+  <data name="RowName" xml:space="preserve">
+    <value>Row</value>
+  </data>
+  <data name="ColumnName" xml:space="preserve">
+    <value>Column</value>
+  </data>
+  <data name="DigitName" xml:space="preserve">
+    <value>Digit</value>
+  </data>
 </root>

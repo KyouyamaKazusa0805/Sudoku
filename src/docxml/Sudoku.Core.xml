@@ -7771,9 +7771,19 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Column {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.CoreResources.ColumnName">
+            <summary>
+              Looks up a localized string similar to Column.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.CoreResources.ConjugatePairWith">
             <summary>
               Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.DigitName">
+            <summary>
+              Looks up a localized string similar to Digit.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.Error_ArgExtensionShouldBeValid">
@@ -7924,6 +7934,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.CoreResources.RowLabel">
             <summary>
               Looks up a localized string similar to Row {0}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.RowName">
+            <summary>
+              Looks up a localized string similar to Row.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.SymmetricType_All">

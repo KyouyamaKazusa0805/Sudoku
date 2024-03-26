@@ -106,11 +106,29 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Column.
+        /// </summary>
+        internal static string ColumnName {
+            get {
+                return ResourceManager.GetString("ColumnName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {0} conjugates with {1}, for digit {2}.
         /// </summary>
         internal static string ConjugatePairWith {
             get {
                 return ResourceManager.GetString("ConjugatePairWith", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digit.
+        /// </summary>
+        internal static string DigitName {
+            get {
+                return ResourceManager.GetString("DigitName", resourceCulture);
             }
         }
         
@@ -381,6 +399,15 @@ namespace Sudoku.Resources {
         internal static string RowLabel {
             get {
                 return ResourceManager.GetString("RowLabel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Row.
+        /// </summary>
+        internal static string RowName {
+            get {
+                return ResourceManager.GetString("RowName", resourceCulture);
             }
         }
         
