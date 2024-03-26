@@ -146,13 +146,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			=> coreHandler(
 				constraints,
 				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }]
-					? static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct)
-					: static (givens, _, ct) =>
+					? static (givens, _, ct) =>
 					{
 						var generator = new FullHousePuzzleGenerator { EmptyCellsCount = 81 - givens };
 						generator.TryGenerateUnique(out var result, cancellationToken: ct);
 						return result;
-					},
+					}
+					: static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct),
 				progress => DispatcherQueue.TryEnqueue(
 					() =>
 					{
