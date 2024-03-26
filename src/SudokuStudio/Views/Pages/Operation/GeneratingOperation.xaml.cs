@@ -96,20 +96,18 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			(_generatingCount, _generatingFilteredCount) = (0, 0);
 			if (onlyGenerateOne)
 			{
-				if (await Task.Run(task) is { IsUndefined: false } grid)
+				if (await Task.Run(taskEntry) is { IsUndefined: false } grid)
 				{
-					gridStateChanger?.Invoke(ref grid, analyzer);
-					gridTextConsumer?.Invoke(grid.ToString("#"));
+					h(ref grid, analyzer);
 				}
 			}
 			else
 			{
 				while (true)
 				{
-					if (await Task.Run(task) is { IsUndefined: false } grid)
+					if (await Task.Run(taskEntry) is { IsUndefined: false } grid)
 					{
-						gridStateChanger?.Invoke(ref grid, analyzer);
-						gridTextConsumer?.Invoke(grid.ToString("#"));
+						h(ref grid, analyzer);
 
 						_generatingFilteredCount++;
 						continue;
@@ -129,7 +127,6 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		}
 
 
-
 		static (int, int) b(BetweenRule betweenRule, int start, int end)
 			=> betweenRule switch
 			{
@@ -139,36 +136,34 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				_ => (start, end)
 			};
 
-		void reporter(T progress)
-			=> DispatcherQueue.TryEnqueue(
-				() =>
-				{
-					BasePage.AnalyzeProgressLabel.Text = processingText;
-					BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-				}
-			);
-
-		Grid task()
+		void h(scoped ref Grid grid, Analyzer analyzer)
 		{
-			var primarySingle = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse } p] ? p : null;
-			return coreHandler(
+			gridStateChanger?.Invoke(ref grid, analyzer);
+			gridTextConsumer?.Invoke(grid.ToString("#"));
+		}
+
+		Grid taskEntry()
+			=> coreHandler(
 				constraints,
-				primarySingle switch
-				{
-					null => static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct),
-					_ => static (givens, symmetry, ct) =>
+				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }]
+					? static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct)
+					: static (givens, _, ct) =>
 					{
 						var generator = new FullHousePuzzleGenerator { EmptyCellsCount = 81 - givens };
 						generator.TryGenerateUnique(out var result, cancellationToken: ct);
 						return result;
+					},
+				progress => DispatcherQueue.TryEnqueue(
+					() =>
+					{
+						BasePage.AnalyzeProgressLabel.Text = processingText;
+						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
 					}
-				},
-				reporter,
+				),
 				cts.Token,
 				analyzer,
 				ittoryuFinder
 			);
-		}
 
 		Grid coreHandler(
 			ConstraintCollection constraints,
