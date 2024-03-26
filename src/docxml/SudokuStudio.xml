@@ -14511,36 +14511,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.Report(`0)">
             <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.GeneratingDetails">
-            <summary>
-            The encapsulated type to describe the details for generating puzzles.
-            </summary>
-            <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
-            <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-            <param name="CountOfGivens">Indicates the limit of givens count.</param>
-            <param name="IttoryuLength">Indicates the ittoryu length.</param>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.GeneratingDetails.#ctor(Sudoku.Analytics.Categorization.DifficultyLevel,Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
-            <summary>
-            The encapsulated type to describe the details for generating puzzles.
-            </summary>
-            <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
-            <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-            <param name="CountOfGivens">Indicates the limit of givens count.</param>
-            <param name="IttoryuLength">Indicates the ittoryu length.</param>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.DifficultyLevel">
-            <summary>Indicates the difficulty level selected.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.SymmetricPattern">
-            <summary>Indicates the symmetric pattern selected.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.CountOfGivens">
-            <summary>Indicates the limit of givens count.</summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.GeneratingDetails.IttoryuLength">
-            <summary>Indicates the ittoryu length.</summary>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
             Represents printing operation.

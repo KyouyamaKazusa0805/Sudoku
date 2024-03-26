@@ -456,12 +456,3 @@ file sealed class SelfReportingProgress<T>(Action<T> handler) : Progress<T>(hand
 	/// <inheritdoc cref="Progress{T}.OnReport(T)"/>
 	public void Report(T value) => OnReport(value);
 }
-
-/// <summary>
-/// The encapsulated type to describe the details for generating puzzles.
-/// </summary>
-/// <param name="DifficultyLevel">Indicates the difficulty level selected.</param>
-/// <param name="SymmetricPattern">Indicates the symmetric pattern selected.</param>
-/// <param name="CountOfGivens">Indicates the limit of givens count.</param>
-/// <param name="IttoryuLength">Indicates the ittoryu length.</param>
-file sealed record GeneratingDetails(DifficultyLevel DifficultyLevel, SymmetricType SymmetricPattern, int CountOfGivens, int IttoryuLength);
