@@ -37,15 +37,6 @@
         <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUniqueOnlyThis(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
-            <summary>
-            The core method that creates a <see cref="T:Sudoku.Concepts.Grid"/> that can be solved via only this technique.
-            </summary>
-            <param name="result">The result grid.</param>
-            <param name="progress">The progress object.</param>
-            <param name="cancellationToken">The cancellation token.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether the process is successfully-executed.</returns>
-        </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
             <summary>
             Represents a generator type that generates puzzles, relating to a kind of technique.

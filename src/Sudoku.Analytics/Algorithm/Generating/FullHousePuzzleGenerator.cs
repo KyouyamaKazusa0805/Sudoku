@@ -31,20 +31,6 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
-		=> TryGenerateUniqueOnlyThis(out result, progress, cancellationToken);
-
-	/// <inheritdoc/>
-	public override bool TryGenerateOnlyOneCell(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
-		=> ReturnDefault(out result);
-
-	/// <summary>
-	/// The core method that creates a <see cref="Grid"/> that can be solved via only this technique.
-	/// </summary>
-	/// <param name="result">The result grid.</param>
-	/// <param name="progress">The progress object.</param>
-	/// <param name="cancellationToken">The cancellation token.</param>
-	/// <returns>A <see cref="bool"/> result indicating whether the process is successfully-executed.</returns>
-	private bool TryGenerateUniqueOnlyThis(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
 	{
 		EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, 21);
 
@@ -89,4 +75,8 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
+
+	/// <inheritdoc/>
+	public override bool TryGenerateOnlyOneCell(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+		=> ReturnDefault(out result);
 }
