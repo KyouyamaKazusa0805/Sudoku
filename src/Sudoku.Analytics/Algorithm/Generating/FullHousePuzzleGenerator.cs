@@ -26,11 +26,21 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 	public int EmptyCellsCount { get; set; } = -1;
 
 	/// <inheritdoc/>
-	public override Technique SupportedTechnique => Technique.FullHouse;
+	public override SudokuType SupportedPuzzleTypes => SudokuType.Standard | SudokuType.JustOneCell;
+
+	/// <inheritdoc/>
+	public override TechniqueSet SupportedTechniques => [Technique.FullHouse];
 
 
 	/// <inheritdoc/>
-	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
+	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
+	{
+		result = Grid.Undefined;
+		return GenerationResult.NotSupported;
+	}
+
+	/// <inheritdoc/>
+	public override GenerationResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
 		{
@@ -43,7 +53,8 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			var grid = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
-				return ReturnDefault(out result);
+				result = Grid.Undefined;
+				return GenerationResult.Canceled;
 			}
 
 			// Replace with solution grid.
@@ -70,14 +81,10 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			{
 				// Check validity of the puzzle.
 				result = grid.FixedGrid;
-				return true;
+				return GenerationResult.Success;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
-
-	/// <inheritdoc/>
-	public override bool TryGenerateOnlyOneCell(out Grid result, CancellationToken cancellationToken = default)
-		=> ReturnDefault(out result);
 }

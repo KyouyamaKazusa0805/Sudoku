@@ -5301,6 +5301,31 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.SudokuType">
+            <summary>
+            Represents a type of sudoku puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SudokuType.None">
+            <summary>
+            The placeholder of the enumeration field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SudokuType.Standard">
+            <summary>
+            Indicates the sudoku puzzle is a standard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SudokuType.Sukaku">
+            <summary>
+            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.SudokuType.JustOneCell">
+            <summary>
+            Indicates the sudoku puzzle is a just-one-cell sudoku.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.SymmetricType">
             <summary>
             Represents a symmetric type that can describe which one a pattern or a puzzle uses.

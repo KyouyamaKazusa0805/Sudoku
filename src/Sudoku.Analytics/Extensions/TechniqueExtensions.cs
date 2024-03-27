@@ -318,7 +318,7 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueBasedPuzzleGenerator? GetSpecificPuzzleGenerator(this Technique @this)
 	{
-		var type = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PuzzleGeneratorType;
+		var type = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.GeneratorType;
 		return type is null ? null : (TechniqueBasedPuzzleGenerator?)Activator.CreateInstance(type);
 	}
 }
