@@ -31,10 +31,10 @@
         <member name="P:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.SupportedTechnique">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
@@ -52,21 +52,20 @@
             Indicates the random number generator.
             </summary>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateOnlyOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
             that can be solved in logic.
             </summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.IProgress{System.Int32},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.TryGenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
             </summary>
             <param name="result">
             The puzzle returned. The argument becomes valid if and only if the return value is <see langword="true"/>.
             </param>
-            <param name="progress">The progress object that can report the current state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
             <para>

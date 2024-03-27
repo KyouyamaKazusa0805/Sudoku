@@ -167,7 +167,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
 			{
 				var generator = new FullHousePuzzleGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens };
-				generator.TryGenerateUnique(out var result, cancellationToken: ct);
+				generator.TryGenerateUnique(out var result, ct);
 				return result;
 			}
 

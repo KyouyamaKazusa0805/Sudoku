@@ -21,8 +21,8 @@ public abstract class TechniqueBasedPuzzleGenerator
 	/// Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
 	/// that can be solved in logic.
 	/// </summary>
-	/// <inheritdoc cref="TryGenerateUnique(out Grid, IProgress{int}, CancellationToken)"/>
-	public abstract bool TryGenerateOnlyOneCell(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default);
+	/// <inheritdoc cref="TryGenerateUnique(out Grid, CancellationToken)"/>
+	public abstract bool TryGenerateOnlyOneCell(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
@@ -30,7 +30,6 @@ public abstract class TechniqueBasedPuzzleGenerator
 	/// <param name="result">
 	/// The puzzle returned. The argument becomes valid if and only if the return value is <see langword="true"/>.
 	/// </param>
-	/// <param name="progress">The progress object that can report the current state.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>
 	/// <para>
@@ -43,7 +42,7 @@ public abstract class TechniqueBasedPuzzleGenerator
 	/// </para>
 	/// </returns>
 	/// <seealso cref="Grid.Undefined"/>
-	public abstract bool TryGenerateUnique(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default);
+	public abstract bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// A default method that always return <see langword="false"/>.

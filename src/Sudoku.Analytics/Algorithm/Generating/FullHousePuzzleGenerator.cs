@@ -30,7 +30,7 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override bool TryGenerateUnique(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+	public override bool TryGenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
 		{
@@ -74,12 +74,11 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 				return true;
 			}
 
-			progress?.Report(i);
 			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 
 	/// <inheritdoc/>
-	public override bool TryGenerateOnlyOneCell(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
+	public override bool TryGenerateOnlyOneCell(out Grid result, CancellationToken cancellationToken = default)
 		=> ReturnDefault(out result);
 }
