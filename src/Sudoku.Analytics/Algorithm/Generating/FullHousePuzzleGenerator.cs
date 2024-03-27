@@ -3,9 +3,7 @@ namespace Sudoku.Algorithm.Generating;
 /// <summary>
 /// Represents a type that generates puzzles that only contains full house usages.
 /// </summary>
-public sealed class FullHousePuzzleGenerator :
-	TechniqueBasedPuzzleGenerator,
-	IElementaryTechniqueBasedPuzzleGenerator<FullHousePuzzleGenerator>
+public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 {
 	/// <summary>
 	/// Represents a seed array that can be used in the following methods.
@@ -17,13 +15,6 @@ public sealed class FullHousePuzzleGenerator :
 	/// </summary>
 	private static readonly Analyzer Analyzer = new() { StepSearchers = [new SingleStepSearcher { EnableFullHouse = true }] };
 
-
-	/// <inheritdoc/>
-	/// <remarks>
-	/// The type is special: this property is <see langword="true"/> by default, because all puzzles contain full houses.
-	/// There is no need implementing generalized logic for this technique.
-	/// </remarks>
-	public bool CanOnlyUseThisTechnique { get; set; } = true;
 
 	/// <summary>
 	/// <para>Indicates the number of empty cells that generated puzzles will be used.</para>
@@ -40,9 +31,7 @@ public sealed class FullHousePuzzleGenerator :
 
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
-		=> CanOnlyUseThisTechnique
-			? TryGenerateUniqueOnlyThis(out result, progress, cancellationToken)
-			: ReturnDefault(out result); // All puzzles contain full houses; unmeaningful to define handling logic.
+		=> TryGenerateUniqueOnlyThis(out result, progress, cancellationToken);
 
 	/// <inheritdoc/>
 	public override bool TryGenerateOnlyOneCell(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)

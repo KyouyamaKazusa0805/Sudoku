@@ -19,13 +19,6 @@
             Represents an analyzer.
             </summary>
         </member>
-        <member name="P:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.CanOnlyUseThisTechnique">
-            <inheritdoc/>
-            <remarks>
-            The type is special: this property is <see langword="true"/> by default, because all puzzles contain full houses.
-            There is no need implementing generalized logic for this technique.
-            </remarks>
-        </member>
         <member name="P:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.EmptyCellsCount">
             <summary>
             <para>Indicates the number of empty cells that generated puzzles will be used.</para>
@@ -52,20 +45,6 @@
             <param name="progress">The progress object.</param>
             <param name="cancellationToken">The cancellation token.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the process is successfully-executed.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.IElementaryTechniqueBasedPuzzleGenerator`1">
-            <summary>
-            Represents a generator type that binds with a technique usage.
-            </summary>
-            <typeparam name="TSelf">
-            The type of the generator itself; it must be derived from <see cref="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator"/>.
-            </typeparam>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.IElementaryTechniqueBasedPuzzleGenerator`1.CanOnlyUseThisTechnique">
-            <summary>
-            Indicates whether the generator will generate a puzzle that only allows a user solves the puzzle,
-            with only the current technique used.
-            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
             <summary>
