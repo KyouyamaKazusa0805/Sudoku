@@ -43,8 +43,7 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			var grid = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
-				result = grid;
-				return false;
+				return ReturnDefault(out result);
 			}
 
 			// Replace with solution grid.
