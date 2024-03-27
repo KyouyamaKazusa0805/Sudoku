@@ -3,7 +3,7 @@ namespace Sudoku.Algorithm.Generating;
 /// <summary>
 /// Represents a generator type that generates puzzles, relating to a kind of technique.
 /// </summary>
-public abstract class TechniqueBasedPuzzleGenerator
+public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable
 {
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
@@ -24,7 +24,7 @@ public abstract class TechniqueBasedPuzzleGenerator
 	/// <summary>
 	/// Indicates the supported sudoku puzzle types.
 	/// </summary>
-	public abstract SudokuType SupportedPuzzleTypes { get; }
+	public abstract SudokuType SupportedTypes { get; }
 
 	/// <summary>
 	/// Indicates the supported techniques.
@@ -37,6 +37,12 @@ public abstract class TechniqueBasedPuzzleGenerator
 	/// </summary>
 	private protected static Random Rng => Random.Shared;
 
+
+	/// <inheritdoc/>
+	public sealed override string ToString() => ToString(null);
+
+	/// <inheritdoc/>
+	public string ToString(CultureInfo? culture = null) => SupportedTechniques.ToString(culture);
 
 	/// <summary>
 	/// Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled

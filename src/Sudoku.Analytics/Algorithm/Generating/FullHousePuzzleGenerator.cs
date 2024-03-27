@@ -3,7 +3,7 @@ namespace Sudoku.Algorithm.Generating;
 /// <summary>
 /// Represents a type that generates puzzles that only contains full house usages.
 /// </summary>
-public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
+public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 {
 	/// <summary>
 	/// Represents an analyzer.
@@ -21,14 +21,14 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 	public int EmptyCellsCount { get; set; } = -1;
 
 	/// <inheritdoc/>
-	public override SudokuType SupportedPuzzleTypes => SudokuType.Standard | SudokuType.JustOneCell;
+	public override SudokuType SupportedTypes => base.SupportedTypes | SudokuType.Standard;
 
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques => [Technique.FullHouse];
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
+	public override GenerationResult GenerateJustOneCell(bool interfering, out Grid result, CancellationToken cancellationToken = default)
 	{
 		var selectedHouse = Rng.Next(0, 27);
 		var digitMissing = Rng.Next(0, 9);
@@ -39,8 +39,7 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			Rng.Shuffle(DigitSeed);
 		}
 
-		result = Grid.Empty;
-		i = 0;
+		(result, i) = (Grid.Empty, 0);
 		foreach (var cell in HousesCells[selectedHouse])
 		{
 			result.SetDigit(cell, DigitSeed[i++]);
