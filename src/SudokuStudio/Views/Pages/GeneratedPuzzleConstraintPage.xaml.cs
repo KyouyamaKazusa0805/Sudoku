@@ -413,19 +413,15 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			value =>
 			{
 				constraint.CellState = value;
-				if (value == CellState.Given)
+
+				// Sync for minimum and maximum value for integer boxes.
+				if (value is CellState.Given or CellState.Empty)
 				{
-					minimumControl.Minimum = 17;
-					minimumControl.Maximum = 80;
-					maximumControl.Minimum = 18;
-					maximumControl.Maximum = 81;
-				}
-				if (value == CellState.Empty)
-				{
-					minimumControl.Minimum = 1;
-					minimumControl.Maximum = 63; // 81 - 17 - 1
-					maximumControl.Minimum = 2;
-					maximumControl.Maximum = 64; // 81 - 17
+					((minimumControl.Minimum, minimumControl.Maximum), (maximumControl.Minimum, maximumControl.Maximum)) = value switch
+					{
+						CellState.Given => ((17, 80), (18, 81)),
+						CellState.Empty => ((1, 63), (2, 64))
+					};
 				}
 			}
 		);
