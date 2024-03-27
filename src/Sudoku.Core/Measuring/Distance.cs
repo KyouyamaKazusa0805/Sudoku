@@ -226,7 +226,7 @@ public readonly ref partial struct Distance(int p, int q)
 			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CellsShouldInSameLine"));
 		}
 
-		var houseCells = HouseCells[sharedHouse];
+		var houseCells = HousesCells[sharedHouse];
 		return (CellMap)houseCells[(Array.IndexOf(houseCells, cell1) + 1)..Array.IndexOf(houseCells, cell2)];
 	}
 

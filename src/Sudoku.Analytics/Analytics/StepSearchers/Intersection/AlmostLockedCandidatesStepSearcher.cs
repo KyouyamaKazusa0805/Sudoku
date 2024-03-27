@@ -162,7 +162,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var ahsCells = (CellMap)[];
 			foreach (var pos in ahsMask)
 			{
-				ahsCells.Add(HouseCells[coverSet][pos]);
+				ahsCells.Add(HousesCells[coverSet][pos]);
 			}
 
 			// Value cells checker.

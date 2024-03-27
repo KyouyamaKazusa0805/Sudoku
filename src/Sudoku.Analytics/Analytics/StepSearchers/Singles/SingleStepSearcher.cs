@@ -102,7 +102,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				foreach (var houseType in HouseTypes)
 				{
 					var peerHouse = resultCell.ToHouseIndex(houseType);
-					foreach (var cell in HouseCells[peerHouse])
+					foreach (var cell in HousesCells[peerHouse])
 					{
 						if (grid.GetState(cell) == CellState.Empty)
 						{

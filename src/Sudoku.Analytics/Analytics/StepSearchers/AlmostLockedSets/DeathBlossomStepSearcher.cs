@@ -136,7 +136,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 							{
 								var house = pivot.ToHouseIndex(houseType);
 								var disappearedDigitsMask = Grid.MaxCandidatesMask;
-								foreach (var cell in HouseCells[house])
+								foreach (var cell in HousesCells[house])
 								{
 									disappearedDigitsMask &= (Mask)~playground[cell];
 								}

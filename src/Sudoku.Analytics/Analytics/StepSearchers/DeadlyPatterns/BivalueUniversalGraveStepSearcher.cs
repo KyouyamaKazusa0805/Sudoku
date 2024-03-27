@@ -436,8 +436,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				// Check whether the conjugate pair lies in current two cells.
 				var first = TrailingZeroCount(mask);
 				var second = mask.GetNextSet(first);
-				var c1 = HouseCells[house][first];
-				var c2 = HouseCells[house][second];
+				var c1 = HousesCells[house][first];
+				var c2 = HousesCells[house][second];
 				if (c1 != cells[0] || c2 != cells[1])
 				{
 					continue;

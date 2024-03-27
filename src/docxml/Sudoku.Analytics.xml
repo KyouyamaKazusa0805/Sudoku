@@ -9,11 +9,6 @@
             Represents a type that generates puzzles that only contains full house usages.
             </summary>
         </member>
-        <member name="F:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.Seed">
-            <summary>
-            Represents a seed array that can be used in the following methods.
-            </summary>
-        </member>
         <member name="F:Sudoku.Algorithm.Generating.FullHousePuzzleGenerator.Analyzer">
             <summary>
             Represents an analyzer.
@@ -102,6 +97,21 @@
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator">
             <summary>
             Represents a generator type that generates puzzles, relating to a kind of technique.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.CellSeed">
+            <summary>
+            Represents a seed array for cells that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.HouseSeed">
+            <summary>
+            Represents a seed array for houses that can be used in core methods.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.DigitSeed">
+            <summary>
+            Represents a seed array for digits that can be used in core methods.
             </summary>
         </member>
         <member name="P:Sudoku.Algorithm.Generating.TechniqueBasedPuzzleGenerator.SupportedPuzzleTypes">

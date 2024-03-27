@@ -152,10 +152,10 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			var c1 = HouseCells[blocks[0]][0];
-			var c2 = HouseCells[blocks[1]][0];
-			var c3 = HouseCells[blocks[2]][0];
-			var c4 = HouseCells[blocks[3]][0];
+			var c1 = HousesCells[blocks[0]][0];
+			var c2 = HousesCells[blocks[1]][0];
+			var c3 = HousesCells[blocks[2]][0];
+			var c4 = HousesCells[blocks[3]][0];
 			foreach (var (a, b, c, d) in PatternOffsets)
 			{
 				var pattern = f(a, c1) | f(b, c2) | f(c, c3) | f(d, c4);

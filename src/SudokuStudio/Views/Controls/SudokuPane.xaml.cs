@@ -631,7 +631,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		var lastCells = new List<Cell>((byte)PopCount((uint)housesToBeCompleted));
 		foreach (var houseToBeCompleted in housesToBeCompleted)
 		{
-			foreach (var cell in HouseCells[houseToBeCompleted])
+			foreach (var cell in HousesCells[houseToBeCompleted])
 			{
 				if (_puzzle.GetState(cell) == CellState.Empty && value.GetState(cell) != CellState.Empty)
 				{
@@ -1008,7 +1008,7 @@ file static class Extensions
 {
 	public static CellMap[] GetCellsOrdered(this Cell @this, House house)
 	{
-		var cells = HouseCells[house];
+		var cells = HousesCells[house];
 		switch (house.ToHouseType())
 		{
 			case HouseType.Row:

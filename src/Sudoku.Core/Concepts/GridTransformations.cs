@@ -275,7 +275,7 @@ public static unsafe class GridTransformations
 
 		for (var i = 0; i < 9; i++)
 		{
-			Ref.Swap(ref @this[HouseCells[houseIndex1][i]], ref @this[HouseCells[houseIndex2][i]]);
+			Ref.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
 		}
 
 		return ref @this;

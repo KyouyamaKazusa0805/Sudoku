@@ -130,7 +130,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					var (map, pairs) = ((CellMap)[], (List<(Cell, Cell)>)[]);
 					foreach (var pos in mask)
 					{
-						var (cell1, cell2) = (HouseCells[house1][pos], HouseCells[house2][pos]);
+						var (cell1, cell2) = (HousesCells[house1][pos], HousesCells[house2][pos]);
 						map.Add(cell1);
 						map.Add(cell2);
 						pairs.Add((cell1, cell2));

@@ -484,7 +484,7 @@ public partial struct Grid :
 			for (var houseIndex = 0; houseIndex < 27; houseIndex++)
 			{
 				var isCompleted = true;
-				foreach (var cell in HouseCells[houseIndex])
+				foreach (var cell in HousesCells[houseIndex])
 				{
 					if (emptyCells.Contains(cell))
 					{

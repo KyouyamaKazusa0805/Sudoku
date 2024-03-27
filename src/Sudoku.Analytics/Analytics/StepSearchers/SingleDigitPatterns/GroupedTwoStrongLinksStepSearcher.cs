@@ -52,22 +52,22 @@ public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 					foreach (var pos in mask1Subgroups[0])
 					{
 						scoped ref var currentMap = ref cellsForHouse1[0];
-						currentMap.Add(HouseCells[h1][pos]);
+						currentMap.Add(HousesCells[h1][pos]);
 					}
 					foreach (var pos in mask1Subgroups[1])
 					{
 						scoped ref var currentMap = ref cellsForHouse1[1];
-						currentMap.Add(HouseCells[h1][pos]);
+						currentMap.Add(HousesCells[h1][pos]);
 					}
 					foreach (var pos in mask2Subgroups[0])
 					{
 						scoped ref var currentMap = ref cellsForHouse2[0];
-						currentMap.Add(HouseCells[h2][pos]);
+						currentMap.Add(HousesCells[h2][pos]);
 					}
 					foreach (var pos in mask2Subgroups[1])
 					{
 						scoped ref var currentMap = ref cellsForHouse2[1];
-						currentMap.Add(HouseCells[h2][pos]);
+						currentMap.Add(HousesCells[h2][pos]);
 					}
 					foreach (var (cells1, cells2, headCells, tailCells) in (
 						(cellsForHouse1[0], cellsForHouse2[0], cellsForHouse1[1], cellsForHouse2[1]),

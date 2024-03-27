@@ -169,7 +169,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		{
 			for (var (i, cur) = (0, 0); i < 9; i++)
 			{
-				var cell = HouseCells[houseIndex][i];
+				var cell = HousesCells[houseIndex][i];
 				if (block == cell.ToHouseIndex(HouseType.Block))
 				{
 					continue;

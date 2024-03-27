@@ -42,7 +42,7 @@ internal class ChainingModule
 		foreach (var houseType in HouseTypes)
 		{
 			var houseIndex = cell.ToHouseIndex(houseType);
-			foreach (byte tempCell in HouseCells[houseIndex])
+			foreach (byte tempCell in HousesCells[houseIndex])
 			{
 				if (tempCell != cell && (grid.GetCandidates(tempCell) >> digit & 1) != 0)
 				{
@@ -152,7 +152,7 @@ internal class ChainingModule
 			foreach (var pos in (Mask)(g(in original, houseIndex, digit) & (Mask)~g(in current, houseIndex, digit)))
 			{
 				// Add a hidden parent.
-				if (offPotentials.GetNullable(new((byte)HouseCells[houseIndex][pos], digit, false)) is not { } parent)
+				if (offPotentials.GetNullable(new((byte)HousesCells[houseIndex][pos], digit, false)) is not { } parent)
 				{
 					throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ParentNotFoundInChain"));
 				}
@@ -166,7 +166,7 @@ internal class ChainingModule
 				var result = (Mask)0;
 				for (var i = 0; i < 9; i++)
 				{
-					if (grid.Exists(HouseCells[houseIndex][i], digit) is true)
+					if (grid.Exists(HousesCells[houseIndex][i], digit) is true)
 					{
 						result |= (Mask)(1 << i);
 					}

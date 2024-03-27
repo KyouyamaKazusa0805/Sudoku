@@ -1159,7 +1159,7 @@ public partial struct CellMap :
 	public static Mask operator /(scoped in CellMap map, House houseIndex)
 	{
 		var (p, i) = ((Mask)0, 0);
-		foreach (var cell in HouseCells[houseIndex])
+		foreach (var cell in HousesCells[houseIndex])
 		{
 			if (map.Contains(cell))
 			{

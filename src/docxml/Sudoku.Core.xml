@@ -9033,7 +9033,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the first cell offset for each house.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.HouseCells">
+        <member name="F:Sudoku.SolutionFields.HousesCells">
             <summary>
             <para>
             The map of all cell offsets in its specified house.

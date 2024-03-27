@@ -69,7 +69,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				{
 					foreach (var posPair in LineOffsets)
 					{
-						patternsForCase1.Add(new([HouseCells[cornerHouse][posPair[0]], HouseCells[cornerHouse][posPair[1]]], linesMask));
+						patternsForCase1.Add(new([HousesCells[cornerHouse][posPair[0]], HousesCells[cornerHouse][posPair[1]]], linesMask));
 					}
 				}
 			}
@@ -192,12 +192,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var (l1AlignedMask, l2AlignedMask) = ((Mask)0, (Mask)0);
 		for (var pos = 0; pos < 9; pos++)
 		{
-			if (valueCellsInBothLines.Contains(HouseCells[l1][pos]))
+			if (valueCellsInBothLines.Contains(HousesCells[l1][pos]))
 			{
 				alignedPosMask |= (Mask)(1 << pos);
 				l1AlignedMask |= (Mask)(1 << pos);
 			}
-			if (valueCellsInBothLines.Contains(HouseCells[l2][pos]))
+			if (valueCellsInBothLines.Contains(HousesCells[l2][pos]))
 			{
 				alignedPosMask |= (Mask)(1 << pos);
 				l2AlignedMask |= (Mask)(1 << pos);
@@ -213,11 +213,11 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var emptyCellsInPairedCells = (CellMap)[];
 		foreach (var pos in alignedPosMask)
 		{
-			if (HouseCells[l1][pos] is var cell1 && grid.GetState(cell1) == CellState.Empty)
+			if (HousesCells[l1][pos] is var cell1 && grid.GetState(cell1) == CellState.Empty)
 			{
 				emptyCellsInPairedCells.Add(cell1);
 			}
-			if (HouseCells[l2][pos] is var cell2 && grid.GetState(cell2) == CellState.Empty)
+			if (HousesCells[l2][pos] is var cell2 && grid.GetState(cell2) == CellState.Empty)
 			{
 				emptyCellsInPairedCells.Add(cell2);
 			}

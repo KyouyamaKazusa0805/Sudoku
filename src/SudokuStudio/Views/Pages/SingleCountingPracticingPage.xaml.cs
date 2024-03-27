@@ -255,7 +255,7 @@ file static class Generator
 			case GeneratingMode.House5 or GeneratingMode.FullHouse:
 			{
 				var house = mode == GeneratingMode.House5 ? Rng.Next(0, 3) * 9 + 4 : Rng.Next(0, 27);
-				var cell = HouseCells[house][Rng.Next(0, 9)];
+				var cell = HousesCells[house][Rng.Next(0, 9)];
 
 				var i = 0;
 				foreach (var otherCell in HousesMap[house] - cell)

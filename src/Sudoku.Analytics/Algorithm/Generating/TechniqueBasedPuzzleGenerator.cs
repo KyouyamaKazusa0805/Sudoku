@@ -6,6 +6,22 @@ namespace Sudoku.Algorithm.Generating;
 public abstract class TechniqueBasedPuzzleGenerator
 {
 	/// <summary>
+	/// Represents a seed array for cells that can be used in core methods.
+	/// </summary>
+	private protected static readonly Cell[] CellSeed = Enumerable.Range(0, 81).ToArray();
+
+	/// <summary>
+	/// Represents a seed array for houses that can be used in core methods.
+	/// </summary>
+	private protected static readonly House[] HouseSeed = Enumerable.Range(0, 27).ToArray();
+
+	/// <summary>
+	/// Represents a seed array for digits that can be used in core methods.
+	/// </summary>
+	private protected static readonly Digit[] DigitSeed = Enumerable.Range(0, 9).ToArray();
+
+
+	/// <summary>
 	/// Indicates the supported sudoku puzzle types.
 	/// </summary>
 	public abstract SudokuType SupportedPuzzleTypes { get; }

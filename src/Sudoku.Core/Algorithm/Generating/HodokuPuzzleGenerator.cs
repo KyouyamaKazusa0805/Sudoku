@@ -328,7 +328,7 @@ public ref partial struct HodokuPuzzleGenerator
 					var houseMask = 0;
 					for (var i = 0; i < 9; i++)
 					{
-						var cell = HouseCells[house][i];
+						var cell = HousesCells[house][i];
 						if (emptyCells.Contains(cell) && (grid.GetCandidates(cell) >> digit & 1) != 0)
 						{
 							houseMask |= 1 << i;
@@ -338,7 +338,7 @@ public ref partial struct HodokuPuzzleGenerator
 					if (IsPow2(houseMask))
 					{
 						// Hidden single.
-						var cell = HouseCells[house][TrailingZeroCount(houseMask)];
+						var cell = HousesCells[house][TrailingZeroCount(houseMask)];
 						grid.SetDigit(cell, digit);
 						if (!checkValidityOnDuplicate(in grid, cell))
 						{

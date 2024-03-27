@@ -6,11 +6,6 @@ namespace Sudoku.Algorithm.Generating;
 public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 {
 	/// <summary>
-	/// Represents a seed array that can be used in the following methods.
-	/// </summary>
-	private static readonly Cell[] Seed = Enumerable.Range(0, 81).ToArray();
-
-	/// <summary>
 	/// Represents an analyzer.
 	/// </summary>
 	private static readonly Analyzer Analyzer = new() { StepSearchers = [new SingleStepSearcher { EnableFullHouse = true }] };
@@ -35,8 +30,27 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 	/// <inheritdoc/>
 	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
 	{
-		result = Grid.Undefined;
-		return GenerationResult.NotSupported;
+		var selectedHouse = Rng.Next(0, 27);
+		var digitMissing = Rng.Next(0, 9);
+
+		var i = 0;
+		for (; i < 3; i++)
+		{
+			Rng.Shuffle(DigitSeed);
+		}
+
+		result = Grid.Empty;
+		i = 0;
+		foreach (var cell in HousesCells[selectedHouse])
+		{
+			result.SetDigit(cell, DigitSeed[i++]);
+			result.SetState(cell, CellState.Given);
+		}
+
+		var targetCell = HousesCells[selectedHouse][digitMissing];
+		result.SetDigit(targetCell, -1);
+		result.SetState(targetCell, CellState.Empty);
+		return GenerationResult.Success;
 	}
 
 	/// <inheritdoc/>
@@ -63,11 +77,11 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 			// Then randomly removed some digits in some cells, and keeps the grid valid.
 			for (var times = 0; times < 3; times++)
 			{
-				Rng.Shuffle(Seed);
+				Rng.Shuffle(CellSeed);
 			}
 
 			// Removes the selected cells.
-			var pattern = (CellMap)Seed[..(EmptyCellsCount == -1 ? Rng.Next(1, 22) : EmptyCellsCount)];
+			var pattern = (CellMap)CellSeed[..(EmptyCellsCount == -1 ? Rng.Next(1, 22) : EmptyCellsCount)];
 			foreach (var cell in pattern)
 			{
 				grid.SetDigit(cell, -1);
