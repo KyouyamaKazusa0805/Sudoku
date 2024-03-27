@@ -146,21 +146,23 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }];
 			var hasSymmetryConstraint = constraints.OfType<SymmetryConstraint>() is not [];
-			return coreHandler(
-				constraints,
-				hasFullHouseConstraint && !hasSymmetryConstraint ? handlerFullHouse : handlerDefault,
-				progress => DispatcherQueue.TryEnqueue(
-					() =>
-					{
-						BasePage.AnalyzeProgressLabel.Text = processingText;
-						BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
-					}
-				),
-				cts.Token,
-				analyzer,
-				ittoryuFinder
-			);
+			var a = handlerFullHouse;
+			var b = handlerDefault;
+			var handler = hasFullHouseConstraint && !hasSymmetryConstraint ? a : b;
+			return coreHandler(constraints, handler, progressReporter, cts.Token, analyzer, ittoryuFinder);
 
+
+			void progressReporter(T progress)
+			{
+				DispatcherQueue.TryEnqueue(dispatchingHandler);
+
+
+				void dispatchingHandler()
+				{
+					BasePage.AnalyzeProgressLabel.Text = processingText;
+					BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
+				}
+			}
 
 			Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
 			{
