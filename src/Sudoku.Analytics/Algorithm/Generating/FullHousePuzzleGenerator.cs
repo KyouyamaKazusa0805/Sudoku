@@ -32,7 +32,10 @@ public sealed class FullHousePuzzleGenerator : TechniqueBasedPuzzleGenerator
 	/// <inheritdoc/>
 	public override bool TryGenerateUnique(out Grid result, IProgress<int>? progress = null, CancellationToken cancellationToken = default)
 	{
-		EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, 21);
+		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
+		{
+			EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, 21);
+		}
 
 		for (var i = 1; ; i++)
 		{
