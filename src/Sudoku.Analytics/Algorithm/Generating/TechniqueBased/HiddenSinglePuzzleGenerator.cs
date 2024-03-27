@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithm.Generating;
+namespace Sudoku.Algorithm.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a puzzle generator that uses hidden single.
@@ -7,11 +7,14 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques
-		=> [Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn];
+		=> [
+			Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn,
+			Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn
+		];
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(bool interfering, out Grid result, CancellationToken cancellationToken = default)
+	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
 	{
 		result = Grid.Undefined;
 		return GenerationResult.NotSupported;

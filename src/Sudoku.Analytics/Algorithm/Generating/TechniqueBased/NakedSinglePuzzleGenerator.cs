@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithm.Generating;
+namespace Sudoku.Algorithm.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a puzzle generator that can create puzzles using naked singles.
@@ -10,7 +10,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(bool interfering, out Grid result, CancellationToken cancellationToken = default)
+	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
 	{
 		result = Grid.Undefined;
 		return GenerationResult.NotSupported;

@@ -1,4 +1,4 @@
-namespace Sudoku.Algorithm.Generating;
+namespace Sudoku.Algorithm.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a type that generates puzzles that only contains full house usages.
@@ -28,7 +28,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(bool interfering, out Grid result, CancellationToken cancellationToken = default)
+	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
 	{
 		var selectedHouse = Rng.Next(0, 27);
 		var digitMissing = Rng.Next(0, 9);
