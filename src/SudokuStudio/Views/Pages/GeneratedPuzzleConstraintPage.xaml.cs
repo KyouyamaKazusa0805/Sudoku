@@ -357,6 +357,30 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 
 		//
+		// minimum value box
+		//
+		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 5, Value = min };
+		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, SmallChange = 1, LargeChange = 5, Value = max };
+		minimumControl.ValueChanged += (_, _) =>
+		{
+			maximumControl.Minimum = minimumControl.Value + 1;
+			if (minimumControl.Value >= maximumControl.Value)
+			{
+				maximumControl.Value++;
+			}
+			rangeSetter();
+		};
+		maximumControl.ValueChanged += (_, _) =>
+		{
+			minimumControl.Maximum = maximumControl.Value - 1;
+			if (maximumControl.Value <= minimumControl.Value)
+			{
+				minimumControl.Value--;
+			}
+			rangeSetter();
+		};
+
+		//
 		// cell-state selector
 		//
 		var cellStateControl = new ComboBox
@@ -383,31 +407,28 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		};
-		EnumBinder<ComboBox, ComboBoxItem, CellState>(cellStateControl, cellState, value => constraint.CellState = value);
-
-		//
-		// minimum value box
-		//
-		var minimumControl = new IntegerBox { Width = 150, Minimum = 17, Maximum = 80, SmallChange = 1, LargeChange = 5, Value = min };
-		var maximumControl = new IntegerBox { Width = 150, Minimum = 18, Maximum = 81, SmallChange = 1, LargeChange = 5, Value = max };
-		minimumControl.ValueChanged += (_, _) =>
-		{
-			maximumControl.Minimum = minimumControl.Value + 1;
-			if (minimumControl.Value >= maximumControl.Value)
+		EnumBinder<ComboBox, ComboBoxItem, CellState>(
+			cellStateControl,
+			cellState,
+			value =>
 			{
-				maximumControl.Value++;
+				constraint.CellState = value;
+				if (value == CellState.Given)
+				{
+					minimumControl.Minimum = 17;
+					minimumControl.Maximum = 80;
+					maximumControl.Minimum = 18;
+					maximumControl.Maximum = 81;
+				}
+				if (value == CellState.Empty)
+				{
+					minimumControl.Minimum = 1;
+					minimumControl.Maximum = 63; // 81 - 17 - 1
+					maximumControl.Minimum = 2;
+					maximumControl.Maximum = 64; // 81 - 17
+				}
 			}
-			setter();
-		};
-		maximumControl.ValueChanged += (_, _) =>
-		{
-			minimumControl.Maximum = maximumControl.Value - 1;
-			if (maximumControl.Value <= minimumControl.Value)
-			{
-				minimumControl.Value--;
-			}
-			setter();
-		};
+		);
 
 		//
 		// "and" text block
@@ -471,7 +492,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 
 
-		void setter() => constraint.Range = minimumControl.Value..maximumControl.Value;
+		void rangeSetter() => constraint.Range = minimumControl.Value..maximumControl.Value;
 	}
 
 	private SettingsCard? Create_Ittoryu(IttoryuConstraint constraint)
