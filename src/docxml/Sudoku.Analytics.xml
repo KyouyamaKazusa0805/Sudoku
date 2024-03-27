@@ -163,6 +163,9 @@
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
             <seealso cref="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Success"/>
         </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.

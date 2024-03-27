@@ -3,7 +3,7 @@ namespace Sudoku.Algorithm.Generating.TechniqueBased;
 /// <summary>
 /// Represents a generator type that generates puzzles, relating to a kind of technique.
 /// </summary>
-public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable
+public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzzleGenerator
 {
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
@@ -64,4 +64,11 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable
 	/// <seealso cref="Grid.Undefined"/>
 	/// <seealso cref="GenerationResult.Success"/>
 	public abstract GenerationResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default);
+
+	/// <inheritdoc/>
+	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+	{
+		var generationResult = GenerateUnique(out var result, cancellationToken);
+		return generationResult != GenerationResult.Success ? Grid.Undefined : result;
+	}
 }
