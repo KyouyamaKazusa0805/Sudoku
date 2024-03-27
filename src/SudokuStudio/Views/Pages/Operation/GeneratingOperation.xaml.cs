@@ -139,20 +139,16 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		void h(scoped ref Grid grid, Analyzer analyzer)
 		{
 			gridStateChanger?.Invoke(ref grid, analyzer);
-			gridTextConsumer?.Invoke(grid.ToString("#"));
+			gridTextConsumer?.Invoke($"{grid:#}");
 		}
 
 		Grid taskEntry()
-			=> coreHandler(
+		{
+			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }];
+			var hasSymmetryConstraint = constraints.OfType<SymmetryConstraint>() is not [];
+			return coreHandler(
 				constraints,
-				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }]
-					? static (givens, _, ct) =>
-					{
-						var generator = new FullHousePuzzleGenerator { EmptyCellsCount = 81 - givens };
-						generator.TryGenerateUnique(out var result, cancellationToken: ct);
-						return result;
-					}
-					: static (givens, symmetry, ct) => new HodokuPuzzleGenerator().Generate(givens, symmetry, ct),
+				hasFullHouseConstraint && !hasSymmetryConstraint ? handlerFullHouse : handlerDefault,
 				progress => DispatcherQueue.TryEnqueue(
 					() =>
 					{
@@ -164,6 +160,18 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				analyzer,
 				ittoryuFinder
 			);
+
+
+			Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
+			{
+				var generator = new FullHousePuzzleGenerator { EmptyCellsCount = 81 - givens };
+				generator.TryGenerateUnique(out var result, cancellationToken: ct);
+				return result;
+			}
+
+			Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
+				=> new HodokuPuzzleGenerator().Generate(givens, symmetry, ct);
+		}
 
 		Grid coreHandler(
 			ConstraintCollection constraints,
@@ -205,6 +213,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				: DifficultyLevelConstraint.AllValidDifficultyLevelFlags;
 
 			var progress = new SelfReportingProgress<T>(reporter);
+
 			while (true)
 			{
 				var grid = gridCreator(givensCount, symmetries[rs.Next(0, symmetries.Length)], cancellationToken);
