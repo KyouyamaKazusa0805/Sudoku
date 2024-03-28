@@ -9,7 +9,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 	/// Indicates whether the generator will create for block excluders.
 	/// This option will only be used if the generator generates for hidden single in lines.
 	/// </summary>
-	public bool HasBlockExcluders { get; set; }
+	public bool AllowsBlockExcluders { get; set; }
 
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques
@@ -32,7 +32,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 		do
 		{
 			subtype = subtypes[Rng.Next(0, subtypes.Length)];
-		} while (subtype.IsUnnecessary() || !HasBlockExcluders && subtype.GetExcludersCount(HouseType.Block) != 0);
+		} while (subtype.IsUnnecessary() || !AllowsBlockExcluders && subtype.GetExcludersCount(HouseType.Block) != 0);
 
 		var a = GenerateForBlock;
 		var b = GenerateForLine;
@@ -43,14 +43,13 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
 		=> new FullPuzzleFailed(GeneratingFailedReason.Unnecessary);
 
-
 	/// <summary>
 	/// Generate for block.
 	/// </summary>
 	/// <param name="house">The target house.</param>
 	/// <param name="subtype">The selected subtype.</param>
 	/// <returns>The final result generated.</returns>
-	private static JustOneCellPuzzle GenerateForBlock(House house, SingleTechniqueSubtype subtype)
+	private JustOneCellPuzzle GenerateForBlock(House house, SingleTechniqueSubtype subtype)
 	{
 		// Placeholders may not necessary. Just check for excluders.
 		var cellsInHouse = HousesMap[house];
@@ -125,71 +124,92 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 	/// <param name="house">The target house.</param>
 	/// <param name="subtype">The selected subtype.</param>
 	/// <returns>The final result generated.</returns>
-	private static JustOneCellPuzzle GenerateForLine(House house, SingleTechniqueSubtype subtype)
+	private JustOneCellPuzzle GenerateForLine(House house, SingleTechniqueSubtype subtype)
 	{
 		var cellsInHouse = HousesMap[house];
-		var (excluderBlocks, excluderLines) = (0, 0);
-		var (blocks, lines) = (cellsInHouse.BlockMask << 9, house < 18 ? cellsInHouse.ColumnMask << 18 : cellsInHouse.RowMask << 9);
-		for (var i = 0; i < subtype.GetExcludersCount(HouseType.Block); i++)
+		while (true)
 		{
-			House excluderHouse;
-			do
+			var (excluderBlocks, excluderLines) = (0, 0);
+			var (blocks, lines) = (cellsInHouse.BlockMask << 9, house < 18 ? cellsInHouse.ColumnMask << 18 : cellsInHouse.RowMask << 9);
+			for (var i = 0; i < subtype.GetExcludersCount(HouseType.Block); i++)
 			{
-				excluderHouse = Rng.Next(0, 9);
-			} while ((blocks >> excluderHouse & 1) == 0);
-			_ = (excluderBlocks |= 1 << excluderHouse, blocks &= ~(1 << excluderHouse));
-		}
-		for (var i = 0; i < subtype.GetExcludersCount(house < 18 ? HouseType.Column : HouseType.Row); i++)
-		{
-			House excluderHouse;
-			do
+				House excluderHouse;
+				do
+				{
+					excluderHouse = Rng.Next(0, 9);
+				} while ((blocks >> excluderHouse & 1) == 0);
+				_ = (excluderBlocks |= 1 << excluderHouse, blocks &= ~(1 << excluderHouse));
+			}
+			for (var i = 0; i < subtype.GetExcludersCount(house < 18 ? HouseType.Column : HouseType.Row); i++)
 			{
-				excluderHouse = house < 18 ? Rng.Next(18, 27) : Rng.Next(9, 18);
-			} while ((lines >> excluderHouse & 1) == 0);
-			_ = (excluderLines |= 1 << excluderHouse, lines &= ~(1 << excluderHouse));
-		}
-		var excluders = (CellMap)[];
-		foreach (var r in excluderBlocks)
-		{
-			var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;
-			excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
-		}
-		foreach (var c in excluderLines)
-		{
-			var lastCellsAvailable = HousesMap[c] - cellsInHouse - excluders.ExpandedPeers;
-			excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
-		}
-
-		// Now checks for uncovered cells in the target house, one of the uncovered cells is the target cell,
-		// and the others should be placeholders.
-		ShuffleSequence(DigitSeed);
-		var targetDigit = DigitSeed[Rng.Next(0, 9)];
-		var puzzle = Grid.Empty;
-		var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
-		var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];
-		var tempIndex = 0;
-		foreach (var placeholderCell in uncoveredCells - targetCell)
-		{
-			if (DigitSeed[tempIndex] == targetDigit)
+				House excluderHouse;
+				do
+				{
+					excluderHouse = house < 18 ? Rng.Next(18, 27) : Rng.Next(9, 18);
+				} while ((lines >> excluderHouse & 1) == 0);
+				_ = (excluderLines |= 1 << excluderHouse, lines &= ~(1 << excluderHouse));
+			}
+			var excluders = (CellMap)[];
+			foreach (var r in excluderBlocks)
 			{
-				tempIndex++;
+				var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;
+				excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
+			}
+			foreach (var c in excluderLines)
+			{
+				var lastCellsAvailable = HousesMap[c] - cellsInHouse - excluders.ExpandedPeers;
+				excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
 			}
 
-			puzzle.SetDigit(placeholderCell, DigitSeed[tempIndex]);
-			puzzle.SetState(placeholderCell, CellState.Given);
-			tempIndex++;
-		}
-		foreach (var excluder in excluders)
-		{
-			puzzle.SetDigit(excluder, targetDigit);
-			puzzle.SetState(excluder, CellState.Given);
-		}
+			// Now checks for uncovered cells in the target house, one of the uncovered cells is the target cell,
+			// and the others should be placeholders.
+			ShuffleSequence(DigitSeed);
+			var targetDigit = DigitSeed[Rng.Next(0, 9)];
+			var puzzle = Grid.Empty;
+			var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
+			var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];
+			var tempIndex = 0;
+			foreach (var placeholderCell in uncoveredCells - targetCell)
+			{
+				if (DigitSeed[tempIndex] == targetDigit)
+				{
+					tempIndex++;
+				}
 
-		return new JustOneCellPuzzleSuccessful(
-			in puzzle,
-			targetCell,
-			targetDigit,
-			new HiddenSingleStep([], [], new(), targetCell, targetDigit, house, false, subtype)
-		);
+				puzzle.SetDigit(placeholderCell, DigitSeed[tempIndex]);
+				puzzle.SetState(placeholderCell, CellState.Given);
+				tempIndex++;
+			}
+			if (!AllowsBlockExcluders)
+			{
+				var emptyCellsRelatedBlocksContainAnyExcluder = false;
+				foreach (var block in (HousesMap[house] - puzzle.GivenCells).BlockMask)
+				{
+					if (HousesMap[block] & excluders)
+					{
+						emptyCellsRelatedBlocksContainAnyExcluder = true;
+						break;
+					}
+				}
+				if (emptyCellsRelatedBlocksContainAnyExcluder)
+				{
+					// Invalid case. Try again.
+					continue;
+				}
+			}
+
+			foreach (var excluder in excluders)
+			{
+				puzzle.SetDigit(excluder, targetDigit);
+				puzzle.SetState(excluder, CellState.Given);
+			}
+
+			return new JustOneCellPuzzleSuccessful(
+				in puzzle,
+				targetCell,
+				targetDigit,
+				new HiddenSingleStep([], [], new(), targetCell, targetDigit, house, false, subtype)
+			);
+		}
 	}
 }

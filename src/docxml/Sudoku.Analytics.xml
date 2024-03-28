@@ -21212,7 +21212,7 @@ if (student is (name: var name, age: >= 18))
             Represents a puzzle generator that uses hidden single.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.HasBlockExcluders">
+        <member name="P:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.AllowsBlockExcluders">
             <summary>
             Indicates whether the generator will create for block excluders.
             This option will only be used if the generator generates for hidden single in lines.
