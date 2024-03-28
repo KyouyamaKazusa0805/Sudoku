@@ -16,8 +16,19 @@ namespace Sudoku.Generating.TechniqueBased;
 /// </para>
 /// </param>
 [GetHashCode]
-public partial class JustOneCellPuzzle([PrimaryConstructorParameter] Cell cell, [PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] Step? step) : PuzzleBase, ICultureFormattable
+public partial class JustOneCellPuzzle(
+	[PrimaryConstructorParameter] Cell cell,
+	[PrimaryConstructorParameter] Digit digit,
+	[PrimaryConstructorParameter] Step? step
+) : PuzzleBase, ICultureFormattable
 {
+	/// <summary>
+	/// Indicates whether the data represents "success" message and values are valid in use.
+	/// </summary>
+	[MemberNotNullWhen(true, nameof(Step))]
+	public bool Success => Result == GeneratingFailedReason.None;
+
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);
