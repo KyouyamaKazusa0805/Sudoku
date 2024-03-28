@@ -21193,7 +21193,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
@@ -21204,10 +21204,16 @@ if (student is (name: var name, age: >= 18))
             Represents a puzzle generator that uses hidden single.
             </summary>
         </member>
+        <member name="P:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.HasBlockExcluders">
+            <summary>
+            Indicates whether the generator will create for block excluders.
+            This option will only be used if the generator generates for hidden single in lines.
+            </summary>
+        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
@@ -21303,7 +21309,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
@@ -21363,26 +21369,29 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell">
             <summary>
             Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
             that can be solved in logic.
             </summary>
-            <inheritdoc cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)"/>
+            <returns>A type that encapsulates the result detail.</returns>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
             </summary>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>
-            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> enumeration field describing whether the generation is failed, and why failed.
-            </returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            <seealso cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>
+            <returns>A type that encapsulates the result detail.</returns>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ShuffleSequence``1(``0[])">
+            <summary>
+            Try to shuffle the sequence for 3 times.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="values">The values to be shuffled.</param>
         </member>
         <member name="T:Sudoku.Linq.AnalyzerResultEnumerable">
             <summary>

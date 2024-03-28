@@ -48,18 +48,14 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	/// Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
 	/// that can be solved in logic.
 	/// </summary>
-	/// <inheritdoc cref="GenerateUnique(CancellationToken)"/>
-	public abstract JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default);
+	/// <returns>A type that encapsulates the result detail.</returns>
+	public abstract JustOneCellPuzzle GenerateJustOneCell();
 
 	/// <summary>
 	/// Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	/// <returns>
-	/// A <see cref="GeneratingFailedReason"/> enumeration field describing whether the generation is failed, and why failed.
-	/// </returns>
-	/// <seealso cref="Grid.Undefined"/>
-	/// <seealso cref="GeneratingFailedReason.None"/>
+	/// <returns>A type that encapsulates the result detail.</returns>
 	public abstract FullPuzzle GenerateUnique(CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
@@ -67,5 +63,19 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	{
 		var result = GenerateUnique(cancellationToken);
 		return result.Result != GeneratingFailedReason.None ? Grid.Undefined : result.Puzzle;
+	}
+
+
+	/// <summary>
+	/// Try to shuffle the sequence for 3 times.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="values">The values to be shuffled.</param>
+	protected static void ShuffleSequence<T>(T[] values)
+	{
+		for (var i = 0; i < 3; i++)
+		{
+			Rng.Shuffle(values);
+		}
 	}
 }

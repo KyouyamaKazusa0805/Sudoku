@@ -28,31 +28,27 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default)
+	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
 		var selectedHouse = Rng.Next(0, 27);
 		var digitMissing = Rng.Next(0, 9);
 
-		var i = 0;
-		for (; i < 3; i++)
-		{
-			Rng.Shuffle(DigitSeed);
-		}
+		ShuffleSequence(DigitSeed);
 
-		(var result, i) = (Grid.Empty, 0);
+		var (puzzle, i) = (Grid.Empty, 0);
 		foreach (var cell in HousesCells[selectedHouse])
 		{
-			result.SetDigit(cell, DigitSeed[i++]);
-			result.SetState(cell, CellState.Given);
+			puzzle.SetDigit(cell, DigitSeed[i++]);
+			puzzle.SetState(cell, CellState.Given);
 		}
 
 		var targetCell = HousesCells[selectedHouse][digitMissing];
-		var targetDigit = result.GetDigit(targetCell);
-		result.SetDigit(targetCell, -1);
-		result.SetState(targetCell, CellState.Empty);
+		var targetDigit = puzzle.GetDigit(targetCell);
+		puzzle.SetDigit(targetCell, -1);
+		puzzle.SetState(targetCell, CellState.Empty);
 
 		return new JustOneCellPuzzleSuccessful(
-			in result,
+			in puzzle,
 			targetCell,
 			targetDigit,
 			new FullHouseStep([], [], new(), selectedHouse, targetCell, targetDigit)

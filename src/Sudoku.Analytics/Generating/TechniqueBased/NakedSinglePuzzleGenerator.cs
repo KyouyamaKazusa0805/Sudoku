@@ -10,7 +10,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default)
+	public override JustOneCellPuzzle GenerateJustOneCell()
 		=> new JustOneCellPuzzleFailed(GeneratingFailedReason.NotSupported);
 
 	/// <inheritdoc/>
