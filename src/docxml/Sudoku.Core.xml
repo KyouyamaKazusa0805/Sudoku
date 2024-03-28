@@ -4,1329 +4,6 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Algorithm.Generating.FilteredGeneratorProgress">
-            <summary>
-            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>, but with filtered data.
-            </summary>
-            <param name="Count">The number of checked puzzles.</param>
-            <param name="Succeeded">The number of succeeded puzzles.</param>
-            <seealso cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.#ctor(System.Int32,System.Int32)">
-            <summary>
-            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>, but with filtered data.
-            </summary>
-            <param name="Count">The number of checked puzzles.</param>
-            <param name="Succeeded">The number of succeeded puzzles.</param>
-            <seealso cref="T:Sudoku.Algorithm.Generating.GeneratorProgress"/>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Count">
-            <summary>The number of checked puzzles.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Succeeded">
-            <summary>The number of succeeded puzzles.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Percentage">
-            <summary>
-            Indicates the percentage.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.GeneratingResult">
-            <summary>
-            Represents a result that describes why the generation failed/successful.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Success">
-            <summary>
-            Indicates the generation is success without any error.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.NotSupported">
-            <summary>
-            Indicates the generation not supported.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Canceled">
-            <summary>
-            Indicates a user canceled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Unnecessary">
-            <summary>
-            Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.GeneratorProgress">
-            <summary>
-            Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
-            </summary>
-            <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.#ctor(System.Int32)">
-            <summary>
-            Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
-            </summary>
-            <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.GeneratorProgress.Count">
-            <summary>The number of puzzles generated currently.</summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#ToDisplayString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator">
-            <summary>
-            Represents a grid-based puzzle generator.
-            </summary>
-            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a grid-based puzzle generator.
-            </summary>
-            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._solver">
-            <summary>
-            The internal solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._playground">
-            <summary>
-            Indicates the playground.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._resultGrid">
-            <summary>
-            Indicates the result grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.SeedGrid">
-            <summary>
-            Indicates the seed grid to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle using the specified seed pattern.
-            </summary>
-            <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> to be used.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.BatchGenerate(System.Int32,System.Boolean,System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Batch generating puzzles.
-            </summary>
-            <param name="times">The times of the pattern will be tried.</param>
-            <param name="shuffleDigits"><inheritdoc cref="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='shuffleDigits']"/></param>
-            <param name="progress">The <see cref="T:System.IProgress`1"/> instance that can report the progess.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A list of valid <see cref="T:Sudoku.Concepts.Grid"/> values.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.ShuffleDigitsFor10Times(Sudoku.Concepts.Grid@)">
-            <summary>
-            Shuffle digits for 10 times.
-            </summary>
-            <param name="puzzle">The puzzle to be shuffle.</param>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator._seedGrid">
-            <summary>
-            The generated field declaration for parameter <c>seedGrid</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.GridBasedPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator">
-            <summary>
-            Defines a puzzle generator that makes the given pattern as a hard one.
-            A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.BlockFactor">
-            <summary>
-            Indicates the block factor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.SwappingFactor">
-            <summary>
-            Indicates the swapping factor.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._solver">
-            <summary>
-            Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
-            of a puzzle being generated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator._rng">
-            <summary>
-            Indicates the random number generator.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
-            <summary>
-            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
-            </summary>
-            <param name="pPuzzle">The pointer that points to the puzzle.</param>
-            <param name="pSolution">
-            The pointer that points to the solution. The result value will be changed here.
-            </param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32*)">
-            <summary>
-            Creates a start pattern based on a base pattern.
-            </summary>
-            <param name="pattern">The base pattern.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32*)">
-            <summary>
-            To re-create the pattern.
-            </summary>
-            <param name="pattern">The pointer that points to an array of the pattern values.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
-            <summary>
-            Check whether the digit in its peer cells has duplicate ones.
-            </summary>
-            <param name="ptrGrid">The pointer that points to a grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator">
-            <summary>
-            Represents a puzzle generator, implemented by HoDoKu.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.AutoClues">
-            <summary>
-            Indicates the auto clues count.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._generateIndices">
-            <summary>
-            The order in which cells are set when generating a full grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._rng">
-            <summary>
-            A random generator for creating new puzzles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._solver">
-            <summary>
-            Indicates the internal fast solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._stack">
-            <summary>
-            The recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newValidSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator" />.
-            </summary>
-            <remarks>
-            <target name="constructor">
-				<i>
-					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
-					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
-					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
-				</i>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
-            </summary>
-            <param name="cluesCount">
-            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
-            <para>
-            Please note that the target puzzle may not contain the same number of givens as this value.
-            If the number of givens from a puzzle is below this value but it also has a unique solution,
-            this puzzle will be still treated as valid one.
-            </para>
-            </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.SymmetricType.Central"/> by default.</param>
-            <param name="cancellationToken">
-            <inheritdoc
-                cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"
-                path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
-            or the argument <paramref name="cluesCount"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Takes a full sudoku from <see cref="F:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
-            If a deletion produces a grid with more than one solution it is of course undone.
-            </summary>
-            <inheritdoc cref="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
-            <summary>
-            Generate a solution grid.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.HodokuPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.IProgressDataProvider`1">
-            <summary>
-            Indicates the data provider type,
-            </summary>
-            <typeparam name="T">The type of the implementation data provider.</typeparam>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.IProgressDataProvider`1.Count">
-            <summary>
-            Indicates the number of puzzles having been generated.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.IProgressDataProvider`1.ToDisplayString">
-            <summary>
-            Try to fetch display string for the current instance.
-            </summary>
-            <returns>The display string.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
-            <summary>
-            Try to create a <typeparamref name="T"/> instance.
-            </summary>
-            <param name="count">The number of puzzles generated.</param>
-            <param name="succeeded">The number of puzzles has passed the checking.</param>
-            <returns>A <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.IPuzzleGenerator">
-            <summary>
-            Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Creates a sudoku grid puzzle.
-            </summary>
-            <param name="progress">
-            <inheritdoc
-                cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"
-                path="/param[@name='progress']"/>
-            </param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>
-            The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator">
-            <summary>
-            Represents a generator that is based on pattern.
-            </summary>
-            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Represents a generator that is based on pattern.
-            </summary>
-            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._solver">
-            <summary>
-            The internal solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._playground">
-            <summary>
-            Indicates the test grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._resultGrid">
-            <summary>
-            Indicates the result grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Pattern">
-            <summary>
-            Indicates the predefind pattern used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle using the specified pattern.
-            </summary>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.OrderPatternCellsViaConnectionDegrees">
-            <summary>
-            Order the pattern cells via connection complexity.
-            </summary>
-            <returns>The cells ordered.</returns>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator._seedPattern">
-            <summary>
-            The generated field declaration for parameter <c>seedPattern</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.PuzzleBase">
-            <summary>
-            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
-            </summary>
-            <param name="Result">Indicates the generation result.</param>
-            <param name="Puzzle">
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <seealso cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/>
-            <seealso cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Generating.PuzzleBase.#ctor(Sudoku.Algorithm.Generating.GeneratingResult,Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
-            </summary>
-            <param name="Result">Indicates the generation result.</param>
-            <param name="Puzzle">
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <seealso cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/>
-            <seealso cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.PuzzleBase.Result">
-            <summary>Indicates the generation result.</summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Generating.PuzzleBase.Puzzle">
-            <summary>
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.RecursionStackEntry">
-            <summary>
-            One entry in recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates">
-            <summary>
-            The candidates for cells <see cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Cell">
-            <summary>
-            The index of the cell that's being tried.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.CandidateIndex">
-            <summary>
-            The index of the last tried candidate in <see cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Algorithm.Generating.RecursionStackEntry.Candidates"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.RecursionStackEntry.SudokuGrid">
-            <summary>
-            The current state of the sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.BestTriplet">
-            <summary>
-            Represents for a best triplet permutation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet.BestTripletPermutations">
-            <summary>
-            The best triplet permutations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.BestTriplet._field">
-            <summary>
-            The field that points to the zero-indexed position.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.BestResult">
-            <summary>
-            The total score of the pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultMask">
-            <summary>
-            The result mask.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.BestTriplet.ResultNumBits">
-            <summary>
-            The result number bits.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.BestTriplet.Create(System.ReadOnlySpan{System.Int32})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> instance via collection expression.
-            </summary>
-            <param name="values">The values.</param>
-            <returns>A valid <see cref="T:Sudoku.Algorithm.MinLex.BestTriplet"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.GridPattern">
-            <summary>
-            Represents for a pattern for a grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Rows">
-            <summary>
-            Indicates the rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.GridPattern.Digits">
-            <summary>
-            Indicates the digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.MinLex.GridPattern.BestTopRowScore">
-            <summary>
-            Indicates the best top-row score.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromString(System.String,Sudoku.Algorithm.MinLex.GridPattern@,Sudoku.Algorithm.MinLex.GridPattern@)">
-            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)"/>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="text"/> does not have 81 characters.</exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*)">
-            <summary>
-            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
-            indicating the data equivalent to the grid.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="pair">The pair of pointers indicating the normal and transposed cases. <i><b>The length must be 2.</b></i></param>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.Algorithm.MinLex.GridPattern*,Sudoku.Algorithm.MinLex.GridPattern*)">
-            <summary>
-            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> results
-            indicating the data equivalent to the grid.
-            </summary>
-            <param name="text">The text.</param>
-            <param name="normal">The normal converted data.</param>
-            <param name="transposed">The transposed converted data.</param>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.MinLexCandidate">
-            <summary>
-            Represents for the basic data for candidates used by MinLex operations.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.MinLex.MinLexCandidate.Perm">
-            <summary>
-            The permutation cases.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.#ctor">
-            <summary>
-            Skips for initialization for <see langword="this"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.ExpandStacks(Sudoku.Algorithm.MinLex.GridPattern*,System.Int32,Sudoku.Algorithm.MinLex.MinLexCandidate*,System.Int32*)">
-            <summary>
-            Try to expand stacks for the specified pair of <see cref="T:Sudoku.Algorithm.MinLex.GridPattern"/> instances.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.Init(System.Boolean,System.Int32)">
-            <summary>
-            To initialize data manually.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexCandidate.PatCanon(System.String,System.String@,System.Boolean)">
-            <summary>
-            Find minimum lexicographical-ordered string for the specified grid as a string value.
-            </summary>
-            <param name="source">The source grid.</param>
-            <param name="result">The result grid.</param>
-            <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
-        </member>
-        <member name="T:Sudoku.Algorithm.MinLex.MinLexFinder">
-            <summary>
-            Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
-            </summary>
-            <remarks>
-            This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
-            two grids will contain a same minimal lexicographic value.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(System.String,System.Boolean)">
-            <inheritdoc cref="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)">
-            <summary>
-            Find for the minimal lexicographic result for a grid.
-            </summary>
-            <param name="grid">The specified grid.</param>
-            <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
-            <returns>The minimal result.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.BacktrackingSolver">
-            <summary>
-            Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
-            </summary>
-            <remarks>
-            <para>
-            Please note that the current type has no optimization on solving. Therefore sometimes the puzzle will be
-            extremely slowly to be solved although it is not very hard by manually solved.
-            One of the examples satisfying the above condition is:
-            <code>
-            ..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9
-            </code>
-            The current solver may spend about 4.5 min on solving this puzzle.
-            </para>
-            <para>
-            For more information, please visit
-            <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">this link</see>.
-            </para>
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.BacktrackingSolver.UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BacktrackingSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            To solve the specified grid.
-            </summary>
-            <param name="grid">The grid to be solved.</param>
-            <param name="result">
-            <para>The result of the grid.</para>
-            <para>
-            Different with other methods whose containing type is <see cref="T:Sudoku.Algorithm.Solving.ISolver"/>,
-            this argument can be used no matter what the result value will be.
-            </para>
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
-            Please note that the method will return three possible values:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has multiple solutions.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has no solution.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.BitwiseSolver">
-            <summary>
-            Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
-            </summary>
-            <remarks>
-            <para>
-            The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
-            to handle a sudoku grid, which is more efficient.
-            </para>
-            <para><b><i>
-            This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
-            </i></b></para>
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver.BufferLength">
-            <summary>
-            The buffer length of a solution puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver.BitSet27">
-            <summary>
-            All pencil marks set - 27 bits per band.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._stack">
-            <summary>
-            Stack to store current and previous states.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._singleApplied">
-            <summary>
-            Nasty global flag telling if <see cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
-            </summary>
-            <seealso cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._solution">
-            <summary>
-            Pointer to where to store the first solution. This value can be <see langword="null"/>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._numSolutions">
-            <summary>
-            The number of solutions found so far.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._limitSolutions">
-            <summary>
-            The max number of solution we're looking for.
-            </summary>
-            <remarks>
-            For the consideration on the performance, I have refused to use auto-implemented property instead.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolver._g">
-            <summary>
-            Pointer to the currently active slot.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.BitwiseSolver.UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The pointer to the puzzle.</param>
-            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Solve(System.String,System.Char*,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Solve(System.String,System.String@,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">
-            The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
-            </param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.Char*)">
-            <summary>
-            Same as <see cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
-            any <see langword="out"/> parameters.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
-            </exception>
-            <seealso cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String)">
-            <summary>
-            Same as <see cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
-            any <see langword="out"/> parameters.
-            </summary>
-            <param name="grid">The grid.</param>
-            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
-            <seealso cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)">
-            <summary>
-            Check the validity of the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
-            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Grid@)">
-            <summary>
-            To solve the puzzle, and get the solution.
-            </summary>
-            <param name="puzzle">The puzzle to solve.</param>
-            <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.ClearStack">
-            <summary>
-            To clear the field <see cref="F:Sudoku.Algorithm.Solving.BitwiseSolver._stack"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Algorithm.Solving.BitwiseSolver._stack"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
-            <summary>
-            Set a cell as solved - used in <see cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
-            <summary>
-            Eliminate a digit - used in <see cref="M:Sudoku.Algorithm.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
-            </summary>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
-            <summary>
-            Set a cell as solved - used in various guess routines.
-            </summary>
-            <param name="band">The band.</param>
-            <param name="mask">The mask.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.InitSudoku(System.Char*)">
-            <summary>
-            Setup everything and load the puzzle.
-            </summary>
-            <param name="puzzle">The pointer that points to a puzzle buffer.</param>
-            <returns>The <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Update">
-            <summary>
-            Core of fast processing.
-            </summary>
-            <returns>The <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.ApplySingleOrEmptyCells">
-            <summary>
-            Find singles, bi-value cells, and impossible cells.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
-            <summary>
-            The internal solving method.
-            </summary>
-            <param name="puzzle">The pointer to the puzzle string.</param>
-            <param name="solutionPtr">The pointer to the solution string.</param>
-            <param name="limit">The limitation for the number of all final solutions.</param>
-            <returns>The number of solutions found.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.ExtractSolution(System.Char*)">
-            <summary>
-            Extract solution as a string.
-            </summary>
-            <param name="solution">
-            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Algorithm.Solving.BitwiseSolver.BufferLength"/>
-            of value of length.</b>
-            </param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.GuessBiValueInCell">
-            <summary>
-            Try both options for cells with exactly two pencil marks.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.GuessFirstCell">
-            <summary>
-            Guess all possibilities in first unsolved cell.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.Guess">
-            <summary>
-            Either already solved, or guess and recurse.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.FullUpdate">
-            <summary>
-            Get as far as possible without guessing.
-            </summary>
-            <returns>A <see cref="T:System.Byte"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.BitPos(System.UInt32)">
-            <summary>
-            Get the bit position.
-            </summary>
-            <param name="map">The map.</param>
-            <returns>The position.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.BitwiseSolver.StringLengthOf(System.Char*)">
-            <summary>
-            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
-            </summary>
-            <param name="ptr">The pointer.</param>
-            <returns>The total length.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
-            </exception>
-            <remarks>
-            In C#, this function is unsafe because the implementation of
-            <see cref="T:System.String"/> types between C and C# is totally different.
-            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
-            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
-            However, C# not.
-            </remarks>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.BitwiseSolverState">
-            <summary>
-            Represents a data structure, used by type <see cref="T:Sudoku.Algorithm.Solving.BitwiseSolver" />, describing state for a current grid using binary values.
-            </summary>
-            <remarks>
-            <large-structure>
-		<b>
-			<i>
-				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
-				to tell runtime that it should be copied by its reference instead of internal value.
-			</i>
-		</b>
-	</large-structure>
-            </remarks>
-            <seealso cref="T:Sudoku.Algorithm.Solving.BitwiseSolver" />
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolverState.Bands">
-            <summary>
-            Pencil marks in bands by digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolverState.PrevBands">
-            <summary>
-            Value of bands last time it was calculated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolverState.UnsolvedCells">
-            <summary>
-            Bit vector of unsolved cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolverState.UnsolvedRows">
-            <summary>
-            Bit vector of unsolved rows - three bits per band.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.BitwiseSolverState.Pairs">
-            <summary>
-            Bit vector of cells with exactly two pencil marks.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.ColumnNode">
-            <summary>
-            Represents a column node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.ColumnNode.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Solving.ColumnNode"/> instance via the specified ID value.
-            </summary>
-            <param name="id">The ID value.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.ColumnNode.Size">
-            <summary>
-            Indicates the size of the node.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.DancingLinkNode">
-            <summary>
-            Represents a dancing link node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinkNode.#ctor(System.Int32)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
-            </summary>
-            <param name="id">The ID value.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinkNode.#ctor(System.Int32,Sudoku.Algorithm.Solving.ColumnNode)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Algorithm.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
-            </summary>
-            <param name="id">The ID value.</param>
-            <param name="column">The column node.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Id">
-            <summary>
-            Indicates the ID of the node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Column">
-            <summary>
-            Indicates the current column node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Left">
-            <summary>
-            Indicates the pointer that points to the left node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Right">
-            <summary>
-            Indicates the pointer that points to the right node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Up">
-            <summary>
-            Indicates the pointer that points to the up node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinkNode.Down">
-            <summary>
-            Indicates the pointer that points to the down node.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.DancingLinksSolver">
-            <summary>
-            Defines a solver that uses the dancing links algorithm.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DancingLinksSolver._answerNodesStack">
-            <summary>
-            Indicates the stack that stores the raw data for the solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DancingLinksSolver._solutionCount">
-            <summary>
-            indicates the number of all found solutions.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DancingLinksSolver._solution">
-            <summary>
-            Indicates the found solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DancingLinksSolver._root">
-            <summary>
-            Indicates the root node of the full link map.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLinksSolver.UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Search">
-            <summary>
-            Try to search the full dancing link map and get the possible solution.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Cover(Sudoku.Algorithm.Solving.DancingLinkNode)">
-            <summary>
-            Cover the nodes for the specified column.
-            </summary>
-            <param name="column">The column.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.Uncover(Sudoku.Algorithm.Solving.DancingLinkNode)">
-            <summary>
-            Uncover the nodes for the specified column.
-            </summary>
-            <param name="column">The column.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Algorithm.Solving.DancingLinkNode},Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to gather all possible solutions, and determine whether the puzzle is valid.
-            </summary>
-            <param name="answer">The answers found.</param>
-            <param name="result">The solution if the puzzle is unique.</param>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle has no possible solutions.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLinksSolver.ChooseNextColumn">
-            <summary>
-            Try to choose the next column node.
-            </summary>
-            <returns>The chosen next column node.</returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.DancingLink">
-            <summary>
-            Represents as a dancing link.
-            </summary>
-            <param name="root">The root node.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.#ctor(Sudoku.Algorithm.Solving.ColumnNode)">
-            <summary>
-            Represents as a dancing link.
-            </summary>
-            <param name="root">The root node.</param>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DancingLink.Root">
-            <summary>
-            Indicates the root node.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.CreateLinkedList(System.Int32[])">
-            <summary>
-            Creates the links.
-            </summary>
-            <param name="gridArray">The grid array.</param>
-            <returns>The column node for the root node.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRow(Sudoku.Algorithm.Solving.MatrixRow@)">
-            <summary>
-            Links the row.
-            </summary>
-            <param name="d">The matrix row instance.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.LinkRowToColumn(Sudoku.Algorithm.Solving.DancingLinkNode)">
-            <summary>
-            Links the row to the column.
-            </summary>
-            <param name="section">The section.</param>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Algorithm.Solving.ColumnNode},System.Int32,System.Int32,System.Int32)">
-            <summary>
-            To form the links via the specified columns, the cell index and the digit used.
-            </summary>
-            <param name="columns">The columns having been stored.</param>
-            <param name="x">The current row index.</param>
-            <param name="y">The current column index.</param>
-            <param name="d">The current digit.</param>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.DictionaryQuerySolver">
-            <summary>
-            Defines a <see cref="T:System.Collections.Generic.Dictionary`2"/>-based LINQ solver that solves a sudoku grid,
-            using a different algorithm with the other one of type <see cref="T:Sudoku.Algorithm.Solving.EnumerableQuerySolver"/>.
-            </summary>
-            <remarks>
-            <para>
-            This algorithm is originally written by Python, posted from <see href="http://norvig.com/sudo.py">here</see>
-            by Richard Birkby, June 2007. For more information, please visit
-            <see href="http://norvig.com/sudoku.html">this link</see>.
-            </para>
-            <para>
-            Also, <see href="https://bugzilla.mozilla.org/attachment.cgi?id=266577">this link</see> is for the same algorithm
-            written by JavaScript 1.8+.
-            </para>
-            </remarks>
-            <seealso cref="T:Sudoku.Algorithm.Solving.EnumerableQuerySolver"/>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Rows">
-            <summary>
-            Indicates the characters of all rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Columns">
-            <summary>
-            Indicates the characters of all columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Digits">
-            <summary>
-            Indicates the characters of all digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Coordinates">
-            <summary>
-            Indicates all possible coordinates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Peers">
-            <summary>
-            Indicates the peers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Houses">
-            <summary>
-            Indicates the houses.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.#cctor">
-            <static-constructor>
-		<summary>
-			<para>
-				Indicates the <see langword="static" /> constructor of the current type.
-			</para>
-			<para>
-				This constructor will initialize some <see langword="static readonly" /> data members
-				of this type that can't use a simple expression to describe the initial value.
-			</para>
-		</summary>
-	</static-constructor>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.DictionaryQuerySolver.UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            To solve the puzzle.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="result">The result.</param>
-            <returns>
-            <para>
-            The method will return <see langword="false"/> if the puzzle has more than one solution,
-            or <see langword="null"/> if the puzzle cannot be solved.
-            </para>
-            <para>
-            Please note that the method cannot return <see langword="true"/>
-            due to not being aware of the uniqueness of the puzzle.
-            </para>
-            </returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.AllNotNull``1(System.ReadOnlySpan{``0})">
-            <summary>
-            Determines whether all elements in this collection are not <see langword="null"/>.
-            </summary>
-            <typeparam name="T">The type of the element in the sequence.</typeparam>
-            <param name="sequence">The whole sequence.</param>
-            <returns>A <see cref="T:System.Boolean"/> value.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.AllNotNull``1(System.Collections.Generic.IEnumerable{``0})">
-            <inheritdoc cref="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.AllNotNull``1(System.ReadOnlySpan{``0})"/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Zip(System.String[],System.String[])">
-            <summary>
-            To zip two lists of <see cref="T:System.String"/>s.
-            </summary>
-            <param name="a">The first array.</param>
-            <param name="b">The second array.</param>
-            <returns>The final zipped collection.</returns>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.ParseGrid(System.String)">
-            <summary>
-            Given a string of 81 digits (or <c>'.'</c>, <c>'0'</c> or <c>'-'</c>),
-            and return a dictionary of a key-value pair of cell and the candidates.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Search(System.Collections.Generic.Dictionary{System.String,System.String})">
-            <summary>
-            Using depth-first search and propagation to try all possible values.
-            </summary>
-            <returns>A first found solution.</returns>
-            <remarks>
-            This algorithm is hard to determine whether the puzzle has multiple solutions, due to DFS.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Assign(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
-            <summary>
-            Eliminate all the other values (except d) from <c>values[s]</c> and propagate.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.DictionaryQuerySolver.Eliminate(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
-            <summary>
-            Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.EnumerableQuerySolver">
-            <summary>
-            Defines a solver that can solve a sudoku puzzle, using LINQ.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Solving.EnumerableQuerySolver.DigitCharacters">
-            <summary>
-            Indicates the characters for 1 to 9.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.EnumerableQuerySolver.UriLink">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.ISolver">
-            <summary>
-            Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
-            and returns its solution grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Algorithm.Solving.ISolver.UriLink">
-            <summary>
-            Indicates the URI link that links to the introduction of the algorithm.
-            </summary>
-            <remarks>
-            This property is reserved as information that is offered to the algorithm learners.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            Solve the specified grid, and return the solution via argument <paramref name="result"/>
-            with returning a <see cref="T:System.Boolean"/>? value indicating the solved state.
-            </summary>
-            <param name="grid">The grid to be solved.</param>
-            <param name="result">
-            <para>The result of the grid.</para>
-            <para>
-            Please note that if the return value is not <see langword="true"/>,
-            the value should be a discard and should not be used, because the argument
-            keeps a memory-randomized value currently.
-            </para>
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
-            Please note that the method will return three possible values:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has multiple solutions.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has no solution.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="T:Sudoku.Algorithm.Solving.MatrixRow">
-            <summary>
-            The matrix row.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Algorithm.Solving.MatrixRow.#ctor(Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode,Sudoku.Algorithm.Solving.DancingLinkNode)">
-            <summary>
-            The matrix row.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.AnalyzerProgress">
             <summary>
             Represents a progress used by
@@ -3580,18 +2257,18 @@ if (student is (name: var name, age: >= 18))
             Indicates the minimum possible grid value that the current type can reach.
             </summary>
             <remarks>
-            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>.
+            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Solving.BacktrackingSolver"/>.
             </remarks>
-            <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
+            <seealso cref="T:Sudoku.Solving.BacktrackingSolver"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MaxValue">
             <summary>
             Indicates the maximum possible grid value that the current type can reach.
             </summary>
             <remarks>
-            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>.
+            This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Solving.BacktrackingSolver"/>.
             </remarks>
-            <seealso cref="T:Sudoku.Algorithm.Solving.BacktrackingSolver"/>
+            <seealso cref="T:Sudoku.Solving.BacktrackingSolver"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Base32CharSpan">
             <summary>
@@ -5701,6 +4378,481 @@ if (student is (name: var name, age: >= 18))
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
         </member>
+        <member name="T:Sudoku.Generating.FilteredGeneratorProgress">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Generating.GeneratorProgress"/>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Represents a progress data type that is nearly same as <see cref="T:Sudoku.Generating.GeneratorProgress"/>, but with filtered data.
+            </summary>
+            <param name="Count">The number of checked puzzles.</param>
+            <param name="Succeeded">The number of succeeded puzzles.</param>
+            <seealso cref="T:Sudoku.Generating.GeneratorProgress"/>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Count">
+            <summary>The number of checked puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Succeeded">
+            <summary>The number of succeeded puzzles.</summary>
+        </member>
+        <member name="P:Sudoku.Generating.FilteredGeneratorProgress.Percentage">
+            <summary>
+            Indicates the percentage.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#FilteredGeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.FilteredGeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.GeneratingResult">
+            <summary>
+            Represents a result that describes why the generation failed/successful.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratingResult.Success">
+            <summary>
+            Indicates the generation is success without any error.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratingResult.NotSupported">
+            <summary>
+            Indicates the generation not supported.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratingResult.Canceled">
+            <summary>
+            Indicates a user canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratingResult.Unnecessary">
+            <summary>
+            Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.GeneratorProgress">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.#ctor(System.Int32)">
+            <summary>
+            Represents a progress used by <see cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="Count">The number of puzzles generated currently.</param>
+            <seealso cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Generating.GeneratorProgress.Count">
+            <summary>The number of puzzles generated currently.</summary>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#GeneratorProgress}#ToDisplayString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.GeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Generating.GridBasedPuzzleGenerator">
+            <summary>
+            Represents a grid-based puzzle generator.
+            </summary>
+            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a grid-based puzzle generator.
+            </summary>
+            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._solver">
+            <summary>
+            The internal solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._playground">
+            <summary>
+            Indicates the playground.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._resultGrid">
+            <summary>
+            Indicates the result grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid">
+            <summary>
+            Indicates the seed grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle using the specified seed pattern.
+            </summary>
+            <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> to be used.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.BatchGenerate(System.Int32,System.Boolean,System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Batch generating puzzles.
+            </summary>
+            <param name="times">The times of the pattern will be tried.</param>
+            <param name="shuffleDigits"><inheritdoc cref="M:Sudoku.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='shuffleDigits']"/></param>
+            <param name="progress">The <see cref="T:System.IProgress`1"/> instance that can report the progess.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A list of valid <see cref="T:Sudoku.Concepts.Grid"/> values.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.ShuffleDigitsFor10Times(Sudoku.Concepts.Grid@)">
+            <summary>
+            Shuffle digits for 10 times.
+            </summary>
+            <param name="puzzle">The puzzle to be shuffle.</param>
+        </member>
+        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._seedGrid">
+            <summary>
+            The generated field declaration for parameter <c>seedGrid</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
+            <summary>
+            Defines a puzzle generator that makes the given pattern as a hard one.
+            A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.BlockFactor">
+            <summary>
+            Indicates the block factor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator.SwappingFactor">
+            <summary>
+            Indicates the swapping factor.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._solver">
+            <summary>
+            Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
+            of a puzzle being generated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._rng">
+            <summary>
+            Indicates the random number generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+            <summary>
+            Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
+            </summary>
+            <param name="pPuzzle">The pointer that points to the puzzle.</param>
+            <param name="pSolution">
+            The pointer that points to the solution. The result value will be changed here.
+            </param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32*)">
+            <summary>
+            Creates a start pattern based on a base pattern.
+            </summary>
+            <param name="pattern">The base pattern.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32*)">
+            <summary>
+            To re-create the pattern.
+            </summary>
+            <param name="pattern">The pointer that points to an array of the pattern values.</param>
+        </member>
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+            <summary>
+            Check whether the digit in its peer cells has duplicate ones.
+            </summary>
+            <param name="ptrGrid">The pointer that points to a grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.HodokuPuzzleGenerator">
+            <summary>
+            Represents a puzzle generator, implemented by HoDoKu.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator.AutoClues">
+            <summary>
+            Indicates the auto clues count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._generateIndices">
+            <summary>
+            The order in which cells are set when generating a full grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._rng">
+            <summary>
+            A random generator for creating new puzzles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._solver">
+            <summary>
+            Indicates the internal fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._stack">
+            <summary>
+            The recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._newFullSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.HodokuPuzzleGenerator._newValidSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Sudoku.Generating.HodokuPuzzleGenerator" />.
+            </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            <inheritdoc cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
+            </summary>
+            <param name="cluesCount">
+            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+            <para>
+            Please note that the target puzzle may not contain the same number of givens as this value.
+            If the number of givens from a puzzle is below this value but it also has a unique solution,
+            this puzzle will be still treated as valid one.
+            </para>
+            </param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.SymmetricType.Central"/> by default.</param>
+            <param name="cancellationToken">
+            <inheritdoc
+                cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"
+                path="/param[@name='cancellationToken']"/>
+            </param>
+            <returns><inheritdoc cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
+            or the argument <paramref name="cluesCount"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            If a deletion produces a grid with more than one solution it is of course undone.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
+            <summary>
+            Generate a solution grid.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.IProgressDataProvider`1">
+            <summary>
+            Indicates the data provider type,
+            </summary>
+            <typeparam name="T">The type of the implementation data provider.</typeparam>
+        </member>
+        <member name="P:Sudoku.Generating.IProgressDataProvider`1.Count">
+            <summary>
+            Indicates the number of puzzles having been generated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.IProgressDataProvider`1.ToDisplayString">
+            <summary>
+            Try to fetch display string for the current instance.
+            </summary>
+            <returns>The display string.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
+            <summary>
+            Try to create a <typeparamref name="T"/> instance.
+            </summary>
+            <param name="count">The number of puzzles generated.</param>
+            <param name="succeeded">The number of puzzles has passed the checking.</param>
+            <returns>A <typeparamref name="T"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.IPuzzleGenerator">
+            <summary>
+            Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Creates a sudoku grid puzzle.
+            </summary>
+            <param name="progress">
+            <inheritdoc
+                cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"
+                path="/param[@name='progress']"/>
+            </param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>
+            The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </returns>
+        </member>
+        <member name="T:Sudoku.Generating.PatternBasedPuzzleGenerator">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents a generator that is based on pattern.
+            </summary>
+            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._solver">
+            <summary>
+            The internal solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._playground">
+            <summary>
+            Indicates the test grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._resultGrid">
+            <summary>
+            Indicates the result grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern">
+            <summary>
+            Indicates the predefind pattern used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle using the specified pattern.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.OrderPatternCellsViaConnectionDegrees">
+            <summary>
+            Order the pattern cells via connection complexity.
+            </summary>
+            <returns>The cells ordered.</returns>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
+            <summary>
+            The generated field declaration for parameter <c>seedPattern</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Generating.PuzzleBase">
+            <summary>
+            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result.</param>
+            <param name="Puzzle">
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </param>
+            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
+            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.#ctor(Sudoku.Generating.GeneratingResult,Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result.</param>
+            <param name="Puzzle">
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </param>
+            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
+            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Generating.PuzzleBase.Result">
+            <summary>Indicates the generation result.</summary>
+        </member>
+        <member name="P:Sudoku.Generating.PuzzleBase.Puzzle">
+            <summary>
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.RecursionStackEntry">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.Candidates">
+            <summary>
+            The candidates for cells <see cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.Cell">
+            <summary>
+            The index of the cell that's being tried.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.CandidateIndex">
+            <summary>
+            The index of the last tried candidate in <see cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.SudokuGrid">
+            <summary>
+            The current state of the sudoku.
+            </summary>
+        </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
@@ -6464,6 +5616,140 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Measuring.Distance.op_LessThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.MinLex.BestTriplet">
+            <summary>
+            Represents for a best triplet permutation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTriplet.BestTripletPermutations">
+            <summary>
+            The best triplet permutations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTriplet._field">
+            <summary>
+            The field that points to the zero-indexed position.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MinLex.BestTriplet.BestResult">
+            <summary>
+            The total score of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MinLex.BestTriplet.ResultMask">
+            <summary>
+            The result mask.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MinLex.BestTriplet.ResultNumBits">
+            <summary>
+            The result number bits.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.BestTriplet.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.MinLex.BestTriplet"/> instance via collection expression.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>A valid <see cref="T:Sudoku.MinLex.BestTriplet"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.MinLex.GridPattern">
+            <summary>
+            Represents for a pattern for a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.GridPattern.Rows">
+            <summary>
+            Indicates the rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.GridPattern.Digits">
+            <summary>
+            Indicates the digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MinLex.GridPattern.BestTopRowScore">
+            <summary>
+            Indicates the best top-row score.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.GridPattern.FromString(System.String,Sudoku.MinLex.GridPattern@,Sudoku.MinLex.GridPattern@)">
+            <inheritdoc cref="M:Sudoku.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.MinLex.GridPattern*,Sudoku.MinLex.GridPattern*)"/>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="text"/> does not have 81 characters.</exception>
+        </member>
+        <member name="M:Sudoku.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.MinLex.GridPattern*)">
+            <summary>
+            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.MinLex.GridPattern"/> results
+            indicating the data equivalent to the grid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="pair">The pair of pointers indicating the normal and transposed cases. <i><b>The length must be 2.</b></i></param>
+        </member>
+        <member name="M:Sudoku.MinLex.GridPattern.FromStringUnsafe(System.String,Sudoku.MinLex.GridPattern*,Sudoku.MinLex.GridPattern*)">
+            <summary>
+            Loads a string text, parsing the data and returns two <see cref="T:Sudoku.MinLex.GridPattern"/> results
+            indicating the data equivalent to the grid.
+            </summary>
+            <param name="text">The text.</param>
+            <param name="normal">The normal converted data.</param>
+            <param name="transposed">The transposed converted data.</param>
+        </member>
+        <member name="T:Sudoku.MinLex.MinLexCandidate">
+            <summary>
+            Represents for the basic data for candidates used by MinLex operations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.Perm">
+            <summary>
+            The permutation cases.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.#ctor">
+            <summary>
+            Skips for initialization for <see langword="this"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.ExpandStacks(Sudoku.MinLex.GridPattern*,System.Int32,Sudoku.MinLex.MinLexCandidate*,System.Int32*)">
+            <summary>
+            Try to expand stacks for the specified pair of <see cref="T:Sudoku.MinLex.GridPattern"/> instances.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.Init(System.Boolean,System.Int32)">
+            <summary>
+            To initialize data manually.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.PatCanon(System.String,System.String@,System.Boolean)">
+            <summary>
+            Find minimum lexicographical-ordered string for the specified grid as a string value.
+            </summary>
+            <param name="source">The source grid.</param>
+            <param name="result">The result grid.</param>
+            <param name="patternOnly">Indicates whether the method only studies with pattern.</param>
+        </member>
+        <member name="T:Sudoku.MinLex.MinLexFinder">
+            <summary>
+            Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
+            </summary>
+            <remarks>
+            This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
+            two grids will contain a same minimal lexicographic value.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexFinder.Find(System.String,System.Boolean)">
+            <inheritdoc cref="M:Sudoku.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)"/>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Find for the minimal lexicographic result for a grid.
+            </summary>
+            <param name="grid">The specified grid.</param>
+            <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
+            <returns>The minimal result.</returns>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
@@ -9170,6 +8456,720 @@ if (student is (name: var name, age: >= 18))
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="T:Sudoku.Solving.BacktrackingSolver">
+            <summary>
+            Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
+            </summary>
+            <remarks>
+            <para>
+            Please note that the current type has no optimization on solving. Therefore sometimes the puzzle will be
+            extremely slowly to be solved although it is not very hard by manually solved.
+            One of the examples satisfying the above condition is:
+            <code>
+            ..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9
+            </code>
+            The current solver may spend about 4.5 min on solving this puzzle.
+            </para>
+            <para>
+            For more information, please visit
+            <see href="https://en.wikipedia.org/wiki/Sudoku_solving_algorithms#cite_note-difficult_17_clue-1">this link</see>.
+            </para>
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Solving.BacktrackingSolver.UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BacktrackingSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            To solve the specified grid.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.ISolver"/>,
+            this argument can be used no matter what the result value will be.
+            </para>
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.BitwiseSolver">
+            <summary>
+            Indicates the solver that is able to solve a sudoku puzzle, and then get the solution of that sudoku.
+            </summary>
+            <remarks>
+            <para>
+            The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
+            to handle a sudoku grid, which is more efficient.
+            </para>
+            <para><b><i>
+            This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
+            </i></b></para>
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BufferLength">
+            <summary>
+            The buffer length of a solution puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitSet27">
+            <summary>
+            All pencil marks set - 27 bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._stack">
+            <summary>
+            Stack to store current and previous states.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._singleApplied">
+            <summary>
+            Nasty global flag telling if <see cref="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/> found anything.
+            </summary>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells"/>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._solution">
+            <summary>
+            Pointer to where to store the first solution. This value can be <see langword="null"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._numSolutions">
+            <summary>
+            The number of solutions found so far.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._limitSolutions">
+            <summary>
+            The max number of solution we're looking for.
+            </summary>
+            <remarks>
+            For the consideration on the performance, I have refused to use auto-implemented property instead.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver._g">
+            <summary>
+            Pointer to the currently active slot.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.BitwiseSolver.UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.Char*,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.String@,System.Int32)">
+            <summary>
+            The inner solver.
+            </summary>
+            <param name="puzzle">The puzzle.</param>
+            <param name="solution">
+            The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
+            </param>
+            <param name="limit">The limit.</param>
+            <returns>The number of all solutions.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="grid"/> is <see langword="null"/>.
+            </exception>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String)">
+            <summary>
+            Same as <see cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>, but doesn't contain
+            any <see langword="out"/> parameters.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+            <seealso cref="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.String,System.String@)">
+            <summary>
+            Check the validity of the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="solutionIfUnique">The solution if the puzzle is unique.</param>
+            <returns>The <see cref="T:System.Boolean"/> result. <see langword="true"/> for unique solution.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Grid@)">
+            <summary>
+            To solve the puzzle, and get the solution.
+            </summary>
+            <param name="puzzle">The puzzle to solve.</param>
+            <returns>The solution. If failed to solve, <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.</returns>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ClearStack">
+            <summary>
+            To clear the field <see cref="F:Sudoku.Solving.BitwiseSolver._stack"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Solving.BitwiseSolver._stack"/>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedDigit(System.Int32,System.Int32)">
+            <summary>
+            Set a cell as solved - used in <see cref="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.EliminateDigit(System.Int32,System.Int32)">
+            <summary>
+            Eliminate a digit - used in <see cref="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)"/>.
+            </summary>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SetSolvedMask(System.Int32,System.UInt32)">
+            <summary>
+            Set a cell as solved - used in various guess routines.
+            </summary>
+            <param name="band">The band.</param>
+            <param name="mask">The mask.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.InitSudoku(System.Char*)">
+            <summary>
+            Setup everything and load the puzzle.
+            </summary>
+            <param name="puzzle">The pointer that points to a puzzle buffer.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Update">
+            <summary>
+            Core of fast processing.
+            </summary>
+            <returns>The <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ApplySingleOrEmptyCells">
+            <summary>
+            Find singles, bi-value cells, and impossible cells.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.InternalSolve(System.Char*,System.Char*,System.Int32)">
+            <summary>
+            The internal solving method.
+            </summary>
+            <param name="puzzle">The pointer to the puzzle string.</param>
+            <param name="solutionPtr">The pointer to the solution string.</param>
+            <param name="limit">The limitation for the number of all final solutions.</param>
+            <returns>The number of solutions found.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.ExtractSolution(System.Char*)">
+            <summary>
+            Extract solution as a string.
+            </summary>
+            <param name="solution">
+            The solution pointer. <b>The buffer should be at least <see cref="F:Sudoku.Solving.BitwiseSolver.BufferLength"/>
+            of value of length.</b>
+            </param>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.GuessBiValueInCell">
+            <summary>
+            Try both options for cells with exactly two pencil marks.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.GuessFirstCell">
+            <summary>
+            Guess all possibilities in first unsolved cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.Guess">
+            <summary>
+            Either already solved, or guess and recurse.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.FullUpdate">
+            <summary>
+            Get as far as possible without guessing.
+            </summary>
+            <returns>A <see cref="T:System.Byte"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.BitPos(System.UInt32)">
+            <summary>
+            Get the bit position.
+            </summary>
+            <param name="map">The map.</param>
+            <returns>The position.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.BitwiseSolver.StringLengthOf(System.Char*)">
+            <summary>
+            Get the length of the specified string which is represented by a <see cref="T:System.Char"/>*.
+            </summary>
+            <param name="ptr">The pointer.</param>
+            <returns>The total length.</returns>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="ptr"/> is <see langword="null"/>.
+            </exception>
+            <remarks>
+            In C#, this function is unsafe because the implementation of
+            <see cref="T:System.String"/> types between C and C# is totally different.
+            In C, <see cref="T:System.String"/> is like a <see cref="T:System.Char"/>* or a
+            <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
+            However, C# not.
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Solving.BitwiseSolverState">
+            <summary>
+            Represents a data structure, used by type <see cref="T:Sudoku.Solving.BitwiseSolver" />, describing state for a current grid using binary values.
+            </summary>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.BitwiseSolver" />
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolverState.Bands">
+            <summary>
+            Pencil marks in bands by digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolverState.PrevBands">
+            <summary>
+            Value of bands last time it was calculated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolverState.UnsolvedCells">
+            <summary>
+            Bit vector of unsolved cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolverState.UnsolvedRows">
+            <summary>
+            Bit vector of unsolved rows - three bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolverState.Pairs">
+            <summary>
+            Bit vector of cells with exactly two pencil marks.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.ColumnNode">
+            <summary>
+            Represents a column node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.ColumnNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.ColumnNode"/> instance via the specified ID value.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="P:Sudoku.Solving.ColumnNode.Size">
+            <summary>
+            Indicates the size of the node.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinkNode">
+            <summary>
+            Represents a dancing link node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinkNode.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinkNode.#ctor(System.Int32,Sudoku.Solving.ColumnNode)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Solving.DancingLinkNode"/> instance via the specified ID value and the column node.
+            </summary>
+            <param name="id">The ID value.</param>
+            <param name="column">The column node.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Id">
+            <summary>
+            Indicates the ID of the node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Column">
+            <summary>
+            Indicates the current column node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Left">
+            <summary>
+            Indicates the pointer that points to the left node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Right">
+            <summary>
+            Indicates the pointer that points to the right node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Up">
+            <summary>
+            Indicates the pointer that points to the up node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinkNode.Down">
+            <summary>
+            Indicates the pointer that points to the down node.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLinksSolver">
+            <summary>
+            Defines a solver that uses the dancing links algorithm.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._answerNodesStack">
+            <summary>
+            Indicates the stack that stores the raw data for the solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._solutionCount">
+            <summary>
+            indicates the number of all found solutions.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._solution">
+            <summary>
+            Indicates the found solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DancingLinksSolver._root">
+            <summary>
+            Indicates the root node of the full link map.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLinksSolver.UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Search">
+            <summary>
+            Try to search the full dancing link map and get the possible solution.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has multiple solutions.</exception>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Cover(Sudoku.Solving.DancingLinkNode)">
+            <summary>
+            Cover the nodes for the specified column.
+            </summary>
+            <param name="column">The column.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.Uncover(Sudoku.Solving.DancingLinkNode)">
+            <summary>
+            Uncover the nodes for the specified column.
+            </summary>
+            <param name="column">The column.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.RecordSolution(System.Collections.Generic.Stack{Sudoku.Solving.DancingLinkNode},Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to gather all possible solutions, and determine whether the puzzle is valid.
+            </summary>
+            <param name="answer">The answers found.</param>
+            <param name="result">The solution if the puzzle is unique.</param>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle has no possible solutions.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLinksSolver.ChooseNextColumn">
+            <summary>
+            Try to choose the next column node.
+            </summary>
+            <returns>The chosen next column node.</returns>
+        </member>
+        <member name="T:Sudoku.Solving.DancingLink">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.#ctor(Sudoku.Solving.ColumnNode)">
+            <summary>
+            Represents as a dancing link.
+            </summary>
+            <param name="root">The root node.</param>
+        </member>
+        <member name="P:Sudoku.Solving.DancingLink.Root">
+            <summary>
+            Indicates the root node.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.CreateLinkedList(System.Int32[])">
+            <summary>
+            Creates the links.
+            </summary>
+            <param name="gridArray">The grid array.</param>
+            <returns>The column node for the root node.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.LinkRow(Sudoku.Solving.MatrixRow@)">
+            <summary>
+            Links the row.
+            </summary>
+            <param name="d">The matrix row instance.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.LinkRowToColumn(Sudoku.Solving.DancingLinkNode)">
+            <summary>
+            Links the row to the column.
+            </summary>
+            <param name="section">The section.</param>
+        </member>
+        <member name="M:Sudoku.Solving.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Solving.ColumnNode},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            To form the links via the specified columns, the cell index and the digit used.
+            </summary>
+            <param name="columns">The columns having been stored.</param>
+            <param name="x">The current row index.</param>
+            <param name="y">The current column index.</param>
+            <param name="d">The current digit.</param>
+        </member>
+        <member name="T:Sudoku.Solving.DictionaryQuerySolver">
+            <summary>
+            Defines a <see cref="T:System.Collections.Generic.Dictionary`2"/>-based LINQ solver that solves a sudoku grid,
+            using a different algorithm with the other one of type <see cref="T:Sudoku.Solving.EnumerableQuerySolver"/>.
+            </summary>
+            <remarks>
+            <para>
+            This algorithm is originally written by Python, posted from <see href="http://norvig.com/sudo.py">here</see>
+            by Richard Birkby, June 2007. For more information, please visit
+            <see href="http://norvig.com/sudoku.html">this link</see>.
+            </para>
+            <para>
+            Also, <see href="https://bugzilla.mozilla.org/attachment.cgi?id=266577">this link</see> is for the same algorithm
+            written by JavaScript 1.8+.
+            </para>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.EnumerableQuerySolver"/>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Rows">
+            <summary>
+            Indicates the characters of all rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Columns">
+            <summary>
+            Indicates the characters of all columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Digits">
+            <summary>
+            Indicates the characters of all digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Coordinates">
+            <summary>
+            Indicates all possible coordinates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Peers">
+            <summary>
+            Indicates the peers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.DictionaryQuerySolver.Houses">
+            <summary>
+            Indicates the houses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.#cctor">
+            <static-constructor>
+		<summary>
+			<para>
+				Indicates the <see langword="static" /> constructor of the current type.
+			</para>
+			<para>
+				This constructor will initialize some <see langword="static readonly" /> data members
+				of this type that can't use a simple expression to describe the initial value.
+			</para>
+		</summary>
+	</static-constructor>
+        </member>
+        <member name="P:Sudoku.Solving.DictionaryQuerySolver.UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            To solve the puzzle.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="result">The result.</param>
+            <returns>
+            <para>
+            The method will return <see langword="false"/> if the puzzle has more than one solution,
+            or <see langword="null"/> if the puzzle cannot be solved.
+            </para>
+            <para>
+            Please note that the method cannot return <see langword="true"/>
+            due to not being aware of the uniqueness of the puzzle.
+            </para>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.AllNotNull``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Determines whether all elements in this collection are not <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the element in the sequence.</typeparam>
+            <param name="sequence">The whole sequence.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.AllNotNull``1(System.Collections.Generic.IEnumerable{``0})">
+            <inheritdoc cref="M:Sudoku.Solving.DictionaryQuerySolver.AllNotNull``1(System.ReadOnlySpan{``0})"/>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.Zip(System.String[],System.String[])">
+            <summary>
+            To zip two lists of <see cref="T:System.String"/>s.
+            </summary>
+            <param name="a">The first array.</param>
+            <param name="b">The second array.</param>
+            <returns>The final zipped collection.</returns>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.ParseGrid(System.String)">
+            <summary>
+            Given a string of 81 digits (or <c>'.'</c>, <c>'0'</c> or <c>'-'</c>),
+            and return a dictionary of a key-value pair of cell and the candidates.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.Search(System.Collections.Generic.Dictionary{System.String,System.String})">
+            <summary>
+            Using depth-first search and propagation to try all possible values.
+            </summary>
+            <returns>A first found solution.</returns>
+            <remarks>
+            This algorithm is hard to determine whether the puzzle has multiple solutions, due to DFS.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.Assign(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            Eliminate all the other values (except d) from <c>values[s]</c> and propagate.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.DictionaryQuerySolver.Eliminate(System.Collections.Generic.Dictionary{System.String,System.String},System.String,System.String)">
+            <summary>
+            Eliminate d from <c>values[s]</c>; propagate when values or places <![CDATA[<=]]> 2.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Solving.EnumerableQuerySolver">
+            <summary>
+            Defines a solver that can solve a sudoku puzzle, using LINQ.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.EnumerableQuerySolver.DigitCharacters">
+            <summary>
+            Indicates the characters for 1 to 9.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.EnumerableQuerySolver.UriLink">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Solving.ISolver">
+            <summary>
+            Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
+            and returns its solution grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Solving.ISolver.UriLink">
+            <summary>
+            Indicates the URI link that links to the introduction of the algorithm.
+            </summary>
+            <remarks>
+            This property is reserved as information that is offered to the algorithm learners.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Solving.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Solve the specified grid, and return the solution via argument <paramref name="result"/>
+            with returning a <see cref="T:System.Boolean"/>? value indicating the solved state.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Please note that if the return value is not <see langword="true"/>,
+            the value should be a discard and should not be used, because the argument
+            keeps a memory-randomized value currently.
+            </para>
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Solving.MatrixRow">
+            <summary>
+            The matrix row.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode)">
+            <summary>
+            The matrix row.
+            </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
             <summary>

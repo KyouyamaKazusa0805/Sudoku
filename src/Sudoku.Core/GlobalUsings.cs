@@ -23,7 +23,7 @@ global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using System.Threading.Tasks;
-global using Sudoku.Algorithm.Solving;
+global using Sudoku.Solving;
 global using Sudoku.Analytics;
 global using Sudoku.Concepts;
 global using Sudoku.Linq;
