@@ -10,16 +10,13 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
-	{
-		result = Grid.Undefined;
-		return GenerationResult.NotSupported;
-	}
+	public override JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default)
+		=> new(GeneratingResult.NotSupported);
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
+	public override GeneratingResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		result = Grid.Undefined;
-		return GenerationResult.Unnecessary;
+		return GeneratingResult.Unnecessary;
 	}
 }

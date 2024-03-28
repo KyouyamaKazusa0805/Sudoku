@@ -1,9 +1,9 @@
-namespace Sudoku.Algorithm.Generating.TechniqueBased;
+namespace Sudoku.Algorithm.Generating;
 
 /// <summary>
 /// Represents a result that describes why the generation failed/successful.
 /// </summary>
-public enum GenerationResult
+public enum GeneratingResult
 {
 	/// <summary>
 	/// Indicates the generation is success without any error.

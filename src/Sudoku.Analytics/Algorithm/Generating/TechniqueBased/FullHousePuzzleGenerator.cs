@@ -28,7 +28,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default)
+	public override JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default)
 	{
 		var selectedHouse = Rng.Next(0, 27);
 		var digitMissing = Rng.Next(0, 9);
@@ -39,7 +39,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 			Rng.Shuffle(DigitSeed);
 		}
 
-		(result, i) = (Grid.Empty, 0);
+		(var result, i) = (Grid.Empty, 0);
 		foreach (var cell in HousesCells[selectedHouse])
 		{
 			result.SetDigit(cell, DigitSeed[i++]);
@@ -47,13 +47,21 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 		}
 
 		var targetCell = HousesCells[selectedHouse][digitMissing];
+		var targetDigit = result.GetDigit(targetCell);
 		result.SetDigit(targetCell, -1);
 		result.SetState(targetCell, CellState.Empty);
-		return GenerationResult.Success;
+
+		return new(
+			GeneratingResult.Success,
+			in result,
+			targetCell,
+			targetDigit,
+			new FullHouseStep([], [], new(), selectedHouse, targetCell, targetDigit)
+		);
 	}
 
 	/// <inheritdoc/>
-	public override GenerationResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
+	public override GeneratingResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
 	{
 		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
 		{
@@ -67,7 +75,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 			if (grid.IsUndefined)
 			{
 				result = Grid.Undefined;
-				return GenerationResult.Canceled;
+				return GeneratingResult.Canceled;
 			}
 
 			// Replace with solution grid.
@@ -94,7 +102,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 			{
 				// Check validity of the puzzle.
 				result = grid.FixedGrid;
-				return GenerationResult.Success;
+				return GeneratingResult.Success;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();

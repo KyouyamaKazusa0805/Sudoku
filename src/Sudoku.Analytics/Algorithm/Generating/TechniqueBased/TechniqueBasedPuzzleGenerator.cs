@@ -49,26 +49,26 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	/// that can be solved in logic.
 	/// </summary>
 	/// <inheritdoc cref="GenerateUnique(out Grid, CancellationToken)"/>
-	public abstract GenerationResult GenerateJustOneCell(out Grid result, CancellationToken cancellationToken = default);
+	public abstract JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default);
 
 	/// <summary>
 	/// Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
 	/// </summary>
 	/// <param name="result">
-	/// The puzzle returned. The argument becomes valid if and only if the return value is <see cref="GenerationResult.Success"/>.
+	/// The puzzle returned. The argument becomes valid if and only if the return value is <see cref="GeneratingResult.Success"/>.
 	/// </param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>
-	/// A <see cref="GenerationResult"/> enumeration field describing whether the generation is failed, and why failed.
+	/// A <see cref="GeneratingResult"/> enumeration field describing whether the generation is failed, and why failed.
 	/// </returns>
 	/// <seealso cref="Grid.Undefined"/>
-	/// <seealso cref="GenerationResult.Success"/>
-	public abstract GenerationResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default);
+	/// <seealso cref="GeneratingResult.Success"/>
+	public abstract GeneratingResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 	{
 		var generationResult = GenerateUnique(out var result, cancellationToken);
-		return generationResult != GenerationResult.Success ? Grid.Undefined : result;
+		return generationResult != GeneratingResult.Success ? Grid.Undefined : result;
 	}
 }

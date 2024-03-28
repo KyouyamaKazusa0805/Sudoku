@@ -29,36 +29,11 @@
         <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.FullHousePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult">
-            <summary>
-            Represents a result that describes why the generation failed/successful.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Success">
-            <summary>
-            Indicates the generation is success without any error.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.NotSupported">
-            <summary>
-            Indicates the generation not supported.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Canceled">
-            <summary>
-            Indicates a user canceled the task.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Unnecessary">
-            <summary>
-            Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
-            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBased.HiddenSinglePuzzleGenerator">
             <summary>
@@ -68,10 +43,78 @@
         <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle">
+            <summary>
+            Represents the answer to a just-one-cell sudoku puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result for the pattern.</param>
+            <param name="Puzzle">Indicates the generated puzzle.</param>
+            <param name="Cell">Indicates the target cell.</param>
+            <param name="Digit">Indicates the target digit.</param>
+            <param name="Step">
+            <para>Indiactes the step for the pattern.</para>
+            <para>
+            Assign a not-<see langword="null"/> value to this parameter
+            if argument <paramref name="Result"/> is <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>.
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
+            in order to avoid the potential bug on displaying details.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.#ctor(Sudoku.Algorithm.Generating.GeneratingResult,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+            <summary>
+            Represents the answer to a just-one-cell sudoku puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result for the pattern.</param>
+            <param name="Puzzle">Indicates the generated puzzle.</param>
+            <param name="Cell">Indicates the target cell.</param>
+            <param name="Digit">Indicates the target digit.</param>
+            <param name="Step">
+            <para>Indiactes the step for the pattern.</para>
+            <para>
+            Assign a not-<see langword="null"/> value to this parameter
+            if argument <paramref name="Result"/> is <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>.
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
+            in order to avoid the potential bug on displaying details.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.Cell">
+            <summary>Indicates the target cell.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.Digit">
+            <summary>Indicates the target digit.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.Step">
+            <summary>
+            <para>Indiactes the step for the pattern.</para>
+            <para>
+            Assign a not-<see langword="null"/> value to this parameter
+            if argument <paramref name="Result"/> is <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>.
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
+            in order to avoid the potential bug on displaying details.
+            </para>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.#ctor(Sudoku.Algorithm.Generating.GeneratingResult)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle"/> instance, via the values.
+            </summary>
+            <param name="result">The generating result.</param>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.JustOneCellPuzzle.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.TechniqueBased.NakedSinglePuzzleGenerator">
@@ -82,7 +125,7 @@
         <member name="P:Sudoku.Algorithm.Generating.TechniqueBased.NakedSinglePuzzleGenerator.SupportedTechniques">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateUnique(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
@@ -142,7 +185,7 @@
         <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell(System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
             that can be solved in logic.
@@ -154,14 +197,14 @@
             Generates a puzzle that has a unique solution, with a must that contains the specified technique appeared in the puzzle.
             </summary>
             <param name="result">
-            The puzzle returned. The argument becomes valid if and only if the return value is <see cref="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Success"/>.
+            The puzzle returned. The argument becomes valid if and only if the return value is <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>.
             </param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
-            A <see cref="T:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult"/> enumeration field describing whether the generation is failed, and why failed.
+            A <see cref="T:Sudoku.Algorithm.Generating.GeneratingResult"/> enumeration field describing whether the generation is failed, and why failed.
             </returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            <seealso cref="F:Sudoku.Algorithm.Generating.TechniqueBased.GenerationResult.Success"/>
+            <seealso cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>
         </member>
         <member name="M:Sudoku.Algorithm.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Algorithm#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>

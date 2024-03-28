@@ -37,6 +37,31 @@
         <member name="M:Sudoku.Algorithm.Generating.FilteredGeneratorProgress.Sudoku#Algorithm#Generating#IProgressDataProvider{Sudoku#Algorithm#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Algorithm.Generating.GeneratingResult">
+            <summary>
+            Represents a result that describes why the generation failed/successful.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Success">
+            <summary>
+            Indicates the generation is success without any error.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.NotSupported">
+            <summary>
+            Indicates the generation not supported.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Canceled">
+            <summary>
+            Indicates a user canceled the task.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Algorithm.Generating.GeneratingResult.Unnecessary">
+            <summary>
+            Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
+            </summary>
+        </member>
         <member name="T:Sudoku.Algorithm.Generating.GeneratorProgress">
             <summary>
             Represents a progress used by <see cref="M:Sudoku.Algorithm.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Algorithm.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
@@ -391,6 +416,41 @@
         </member>
         <member name="M:Sudoku.Algorithm.Generating.PatternBasedPuzzleGenerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Algorithm.Generating.PuzzleBase">
+            <summary>
+            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result.</param>
+            <param name="Puzzle">
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </param>
+            <seealso cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/>
+            <seealso cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Algorithm.Generating.PuzzleBase.#ctor(Sudoku.Algorithm.Generating.GeneratingResult,Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
+            </summary>
+            <param name="Result">Indicates the generation result.</param>
+            <param name="Puzzle">
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </param>
+            <seealso cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/>
+            <seealso cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.PuzzleBase.Result">
+            <summary>Indicates the generation result.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithm.Generating.PuzzleBase.Puzzle">
+            <summary>
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Algorithm.Generating.PuzzleBase.Result"/> returns a value
+            not <see cref="F:Sudoku.Algorithm.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
         </member>
         <member name="T:Sudoku.Algorithm.Generating.RecursionStackEntry">
             <summary>
