@@ -51,17 +51,15 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 		result.SetDigit(targetCell, -1);
 		result.SetState(targetCell, CellState.Empty);
 
-		return new(
-			GeneratingResult.Success,
-			in result,
-			targetCell,
-			targetDigit,
-			new FullHouseStep([], [], new(), selectedHouse, targetCell, targetDigit)
-		);
+		return new(targetCell, targetDigit, new FullHouseStep([], [], new(), selectedHouse, targetCell, targetDigit))
+		{
+			Puzzle = result,
+			Result = GeneratingResult.Success
+		};
 	}
 
 	/// <inheritdoc/>
-	public override GeneratingResult GenerateUnique(out Grid result, CancellationToken cancellationToken = default)
+	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
 	{
 		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
 		{
@@ -74,8 +72,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 			var grid = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
-				result = Grid.Undefined;
-				return GeneratingResult.Canceled;
+				return new() { Result = GeneratingResult.Canceled };
 			}
 
 			// Replace with solution grid.
@@ -101,8 +98,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{
 				// Check validity of the puzzle.
-				result = grid.FixedGrid;
-				return GeneratingResult.Success;
+				return new() { Puzzle = grid.FixedGrid, Result = GeneratingResult.Success };
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();

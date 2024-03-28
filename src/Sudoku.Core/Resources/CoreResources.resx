@@ -261,4 +261,7 @@
   <data name="DigitName" xml:space="preserve">
     <value>Digit</value>
   </data>
+  <data name="ErrorInfo_CannotAssignSuccessForFailureCases" xml:space="preserve">
+    <value>Cannot assign success field to describe such failure.</value>
+  </data>
 </root>

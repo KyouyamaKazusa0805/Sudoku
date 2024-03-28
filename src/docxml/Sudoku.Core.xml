@@ -4411,6 +4411,25 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.FilteredGeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#FilteredGeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Generating.FullPuzzle">
+            <summary>
+            Represents a full puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.FullPuzzle.Solution">
+            <summary>
+            Indicates the solution to the puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.FullPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.FullPuzzle.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.FullPuzzle.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Generating.GeneratingResult">
             <summary>
             Represents a result that describes why the generation failed/successful.
@@ -4795,36 +4814,44 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
             </summary>
-            <param name="Result">Indicates the generation result.</param>
-            <param name="Puzzle">
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
-            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="M:Sudoku.Generating.PuzzleBase.#ctor(Sudoku.Generating.GeneratingResult,Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
-            </summary>
-            <param name="Result">Indicates the generation result.</param>
-            <param name="Puzzle">
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </param>
-            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
-            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="P:Sudoku.Generating.PuzzleBase.Result">
-            <summary>Indicates the generation result.</summary>
+            <summary>
+            Indicates the generation result.
+            </summary>
         </member>
         <member name="P:Sudoku.Generating.PuzzleBase.Puzzle">
             <summary>
             Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
             not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
+            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
+            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.Equals(Sudoku.Generating.PuzzleBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.op_Equality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="F:Sudoku.Generating.PuzzleBase._result">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Generating.PuzzleBase.Result"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
         </member>
         <member name="T:Sudoku.Generating.RecursionStackEntry">
             <summary>
@@ -7165,6 +7192,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Resources.CoreResources.Error_UnrecognizedGridFormat">
             <summary>
               Looks up a localized string similar to You cannot append text that cannot be recognized as a valid sudoku grid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CannotAssignSuccessForFailureCases">
+            <summary>
+              Looks up a localized string similar to Cannot assign success field to describe such failure..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">

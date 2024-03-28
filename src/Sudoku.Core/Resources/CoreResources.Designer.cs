@@ -151,6 +151,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannot assign success field to describe such failure..
+        /// </summary>
+        internal static string ErrorInfo_CannotAssignSuccessForFailureCases {
+            get {
+                return ResourceManager.GetString("ErrorInfo_CannotAssignSuccessForFailureCases", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Two cells must be in a same line (row or column)..
         /// </summary>
         internal static string ErrorInfo_CellsShouldInSameLine {
