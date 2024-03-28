@@ -239,24 +239,22 @@ file static class Generator
 			mode = Rng.Next(0, 1000) < 500 ? GeneratingMode.FullHouse : GeneratingMode.NakedSingle;
 		}
 
-		scoped var digits = (Span<Cell>)Digits[..];
-
-		// Shuffle digits.
-		for (var currentShuffleRound = 0; currentShuffleRound < 10; currentShuffleRound++)
-		{
-			var a = Rng.Next(0, 9);
-			var b = Rng.Next(0, 9) is var t && t == a ? (t + 1) % 9 : t;
-			(digits[a], digits[b]) = (digits[b], digits[a]);
-		}
-
-		var result = Grid.Empty;
 		switch (mode)
 		{
 			case GeneratingMode.House5 or GeneratingMode.FullHouse:
 			{
+				scoped var digits = (Span<Cell>)Digits[..];
+
+				// Shuffle digits.
+				for (var currentShuffleRound = 0; currentShuffleRound < 10; currentShuffleRound++)
+				{
+					Rng.Shuffle(digits);
+				}
+
 				var house = mode == GeneratingMode.House5 ? Rng.Next(0, 3) * 9 + 4 : Rng.Next(0, 27);
 				var cell = HousesCells[house][Rng.Next(0, 9)];
 
+				var result = Grid.Empty;
 				var i = 0;
 				foreach (var otherCell in HousesMap[house] - cell)
 				{
@@ -264,42 +262,23 @@ file static class Generator
 				}
 
 				targetCandidate = cell * 9 + digits[^1];
-				break;
+				return result.FixedGrid;
 			}
-			case GeneratingMode.NakedSingle:
+			case GeneratingMode.NakedSingle when new NakedSinglePuzzleGenerator().GenerateJustOneCell() is
 			{
-				var cell = Rng.Next(0, 81);
-				scoped var peers = new Span<Cell>(PeersMap[cell].ToArray()[..]);
-
-				for (var currentShuffleRound = 0; currentShuffleRound < 15; currentShuffleRound++)
-				{
-					var a = Rng.Next(0, 20);
-					var b = Rng.Next(0, 20) is var t && t == a ? (t + 1) % 20 : t;
-					(peers[a], peers[b]) = (peers[b], peers[a]);
-				}
-
-				var cells = (CellMap)[];
-				foreach (var index in (0, 2, 4, 7, 9, 11, 14, 16, 18))
-				{
-					cells.Add(peers[index]);
-				}
-
-				var i = 0;
-				foreach (var otherCell in cells - cells[Rng.Next(0, 9)])
-				{
-					result.SetDigit(otherCell, digits[i++]);
-				}
-
-				targetCandidate = cell * 9 + digits[^1];
-				break;
+				Success: true,
+				Puzzle: var puzzle,
+				Step: NakedSingleStep { Cell: var cell, Digit: var digit }
+			}:
+			{
+				targetCandidate = cell * 9 + digit;
+				return puzzle;
 			}
 			default:
 			{
 				throw new ArgumentException(ResourceDictionary.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
 			}
 		}
-
-		return result.FixedGrid;
 	}
 }
 
