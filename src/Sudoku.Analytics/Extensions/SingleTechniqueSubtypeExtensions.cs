@@ -23,7 +23,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// This method will return a non-zero value if and only if it is a hidden single.
 	/// </summary>
 	/// <param name="this">Indicates the subtype.</param>
-	/// <returns>The number of excluder value.</returns>
+	/// <returns>The number of excluders.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExcludersCount(this SingleTechniqueSubtype @this)
 		=> @this switch
@@ -36,6 +36,16 @@ public static class SingleTechniqueSubtypeExtensions
 			_ => 0
 		};
 #pragma warning restore format
+
+	/// <summary>
+	/// Try to get the number of excluders that the current single subtype will use in the specified house type.
+	/// </summary>
+	/// <param name="this">Indicates the subtype.</param>
+	/// <param name="houseType">The house type.</param>
+	/// <returns>The number of excluders.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetExcludersCount(this SingleTechniqueSubtype @this, HouseType houseType)
+		=> @this.ToString()[^(3 - (int)houseType)] - '0';
 
 	/// <summary>
 	/// Try to get the related technique of the current subtype.

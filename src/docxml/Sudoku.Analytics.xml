@@ -4082,7 +4082,15 @@
             This method will return a non-zero value if and only if it is a hidden single.
             </summary>
             <param name="this">Indicates the subtype.</param>
-            <returns>The number of excluder value.</returns>
+            <returns>The number of excluders.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetExcludersCount(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,Sudoku.Concepts.HouseType)">
+            <summary>
+            Try to get the number of excluders that the current single subtype will use in the specified house type.
+            </summary>
+            <param name="this">Indicates the subtype.</param>
+            <param name="houseType">The house type.</param>
+            <returns>The number of excluders.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
             <summary>
@@ -21218,6 +21226,22 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForBlock(System.Int32,Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
+            <summary>
+            Generate for block.
+            </summary>
+            <param name="house">The target house.</param>
+            <param name="subtype">The selected subtype.</param>
+            <returns>The final result generated.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForLine(System.Int32,Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
+            <summary>
+            Generate for line.
+            </summary>
+            <param name="house">The target house.</param>
+            <param name="subtype">The selected subtype.</param>
+            <returns>The final result generated.</returns>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle">
             <summary>
