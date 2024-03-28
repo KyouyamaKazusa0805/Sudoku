@@ -21207,6 +21207,32 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Generating.TechniqueBased.GridAlignment">
+            <summary>
+            Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.NotLimited">
+            <summary>
+            Indicates the rule is not limited.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterHouses">
+            <summary>
+            Indicates the rule is limited in row 5, column 5 and block 5. However, the conclusion can be outside the block 5
+            to display other positions like some cells adjacent to grid borders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterBlock">
+            <summary>
+            Indicates the rule is limited in only block 5. No matter what technique used, the conclusion must be inside the block 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.OnlyCenterCell">
+            <summary>
+            Indicates the conclusion can only be placed in <c>r5c5</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator">
             <summary>
             Represents a puzzle generator that uses hidden single.
@@ -21349,10 +21375,18 @@ if (student is (name: var name, age: >= 18))
             Represents a puzzle generator that generates for puzzles using single techniques.
             </summary>
         </member>
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.OnlyCenterHouses">
+            <summary>
+            Indicates the generator only generates for puzzles aiming to the center houses, i.e. the row 5, column 5 and block 5.
+            </summary>
+        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.HasInterfererDigits">
             <summary>
             Indicates whether the generator will also create for interferer digits.
             </summary>
+        </member>
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.Alignment">
+            <inheritdoc cref="T:Sudoku.Generating.TechniqueBased.GridAlignment"/>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.SupportedTypes">
             <inheritdoc/>

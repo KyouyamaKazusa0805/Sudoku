@@ -30,7 +30,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 	/// <inheritdoc/>
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
-		var selectedHouse = Rng.Next(0, 27);
+		var selectedHouse = OnlyCenterHouses ? 9 * Rng.Next(0, 3) + 4 : Rng.Next(0, 27);
 		var digitMissing = Rng.Next(0, 9);
 
 		ShuffleSequence(DigitSeed);

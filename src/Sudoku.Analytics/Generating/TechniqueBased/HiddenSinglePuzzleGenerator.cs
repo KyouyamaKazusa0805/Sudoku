@@ -22,7 +22,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 	/// <inheritdoc/>
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
-		var house = Rng.Next(0, 27);
+		var house = OnlyCenterHouses ? 9 * Rng.Next(0, 3) + 4 : Rng.Next(0, 27);
 		var digit = Rng.Next(0, 9);
 
 		ShuffleSequence(DigitSeed);

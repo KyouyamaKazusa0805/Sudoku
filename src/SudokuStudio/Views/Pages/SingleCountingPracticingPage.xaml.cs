@@ -101,7 +101,11 @@ public sealed partial class SingleCountingPracticingPage : Page
 				page._stopwatch.Stop();
 				page._currentPuzzleIndex = -1;
 
-				var correctCount = page._answeredData.CountWithSameIndex(page._targetResultData, (a, b) => a.Candidate == b, testedCount);
+				var correctCount = page._answeredData.CountWithSameIndex(
+					page._targetResultData,
+					static (a, b) => a.Candidate == b,
+					testedCount
+				);
 				var totalTimeSpan = page._answeredData[testedCount - 1].TimeSpan;
 				page.ResultDataDisplayer.Text = string.Format(
 					ResourceDictionary.Get("SingleCountingPracticingPage_ResultDisplayLabel", App.CurrentCulture),

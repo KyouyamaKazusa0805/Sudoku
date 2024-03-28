@@ -13,7 +13,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
 		// Randomly select a cell as target cell.
-		var targetCell = Rng.Next(0, 81);
+		var targetCell = OnlyCenterHouses ? (PeersMap[40] + 40)[Rng.Next(0, 21)] : Rng.Next(0, 81);
 		var peerCells = PeersMap[targetCell].ToArray()[..];
 		ShuffleSequence(peerCells);
 		ShuffleSequence(DigitSeed);
