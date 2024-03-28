@@ -9,29 +9,15 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <para>Indiactes the step for the pattern.</para>
 /// <para>
 /// Assign a not-<see langword="null"/> value to this parameter
-/// if argument <see cref="PuzzleBase.Result"/> is <see cref="GeneratingResult.Success"/>.
+/// if argument <see cref="PuzzleBase.Result"/> is <see cref="GeneratingFailedReason.None"/>.
 /// Set the arguments of constructor <see cref="Step.Step(Conclusion[], View[], StepSearcherOptions)"/>
 /// to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
 /// in order to avoid the potential bug on displaying details.
 /// </para>
 /// </param>
 [GetHashCode]
-public sealed partial class JustOneCellPuzzle(
-	[PrimaryConstructorParameter] Cell cell,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] Step? step
-) :
-	PuzzleBase,
-	ICultureFormattable
+public partial class JustOneCellPuzzle([PrimaryConstructorParameter] Cell cell, [PrimaryConstructorParameter] Digit digit, [PrimaryConstructorParameter] Step? step) : PuzzleBase, ICultureFormattable
 {
-	/// <summary>
-	/// Initializes a <see cref="JustOneCellPuzzle"/> instance.
-	/// </summary>
-	public JustOneCellPuzzle() : this(-1, -1, null)
-	{
-	}
-
-
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);

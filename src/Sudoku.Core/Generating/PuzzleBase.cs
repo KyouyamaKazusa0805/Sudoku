@@ -12,30 +12,16 @@ public abstract partial class PuzzleBase : IEquatable<PuzzleBase>, IEqualityOper
 	/// <summary>
 	/// Indicates the generation result.
 	/// </summary>
-	[ImplicitField]
 	[HashCodeMember]
 	[StringMember]
-	public required GeneratingResult Result
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _result;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		init
-		{
-			if ((_result = value) != GeneratingResult.Success)
-			{
-				Puzzle = Grid.Undefined;
-			}
-		}
-	}
+	public GeneratingFailedReason Result { get; init; }
 
 	/// <summary>
 	/// Indicates the puzzle just created. If the value <see cref="Result"/> returns a value
-	/// not <see cref="GeneratingResult.Success"/>, the value will always be <see cref="Grid.Undefined"/>.
+	/// not <see cref="GeneratingFailedReason.None"/>, the value will always be <see cref="Grid.Undefined"/>.
 	/// </summary>
 	/// <seealso cref="Result"/>
-	/// <seealso cref="GeneratingResult.Success"/>
+	/// <seealso cref="GeneratingFailedReason.None"/>
 	/// <seealso cref="Grid.Undefined"/>
 	[HashCodeMember]
 	[StringMember]

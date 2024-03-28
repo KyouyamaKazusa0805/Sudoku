@@ -15,9 +15,9 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 
 	/// <inheritdoc/>
 	public override JustOneCellPuzzle GenerateJustOneCell(CancellationToken cancellationToken = default)
-		=> new() { Result = GeneratingResult.NotSupported };
+		=> new JustOneCellPuzzleFailed(GeneratingFailedReason.NotSupported);
 
 	/// <inheritdoc/>
 	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
-		=> new() { Result = GeneratingResult.Unnecessary };
+		=> new FullPuzzleFailed(GeneratingFailedReason.Unnecessary);
 }

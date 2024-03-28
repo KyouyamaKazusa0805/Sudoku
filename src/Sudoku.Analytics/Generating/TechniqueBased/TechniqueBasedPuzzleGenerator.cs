@@ -56,16 +56,16 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>
-	/// A <see cref="GeneratingResult"/> enumeration field describing whether the generation is failed, and why failed.
+	/// A <see cref="GeneratingFailedReason"/> enumeration field describing whether the generation is failed, and why failed.
 	/// </returns>
 	/// <seealso cref="Grid.Undefined"/>
-	/// <seealso cref="GeneratingResult.Success"/>
+	/// <seealso cref="GeneratingFailedReason.None"/>
 	public abstract FullPuzzle GenerateUnique(CancellationToken cancellationToken = default);
 
 	/// <inheritdoc/>
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 	{
 		var result = GenerateUnique(cancellationToken);
-		return result.Result != GeneratingResult.Success ? Grid.Undefined : result.Puzzle;
+		return result.Result != GeneratingFailedReason.None ? Grid.Undefined : result.Puzzle;
 	}
 }

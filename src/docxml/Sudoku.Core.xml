@@ -4430,27 +4430,47 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.FullPuzzle.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Generating.GeneratingResult">
+        <member name="T:Sudoku.Generating.FullPuzzleFailed">
             <summary>
-            Represents a result that describes why the generation failed/successful.
+            Provides failed for generating full puzzle.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GeneratingResult.Success">
+        <member name="M:Sudoku.Generating.FullPuzzleFailed.#ctor(Sudoku.Generating.GeneratingFailedReason)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.FullPuzzleFailed"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.FullPuzzleSuccessful">
+            <summary>
+            Provides successful for generating full puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.FullPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.FullPuzzleSuccessful"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.GeneratingFailedReason">
+            <summary>
+            Represents a result that describes why the generation failed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratingFailedReason.None">
             <summary>
             Indicates the generation is success without any error.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GeneratingResult.NotSupported">
+        <member name="F:Sudoku.Generating.GeneratingFailedReason.NotSupported">
             <summary>
             Indicates the generation not supported.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GeneratingResult.Canceled">
+        <member name="F:Sudoku.Generating.GeneratingFailedReason.Canceled">
             <summary>
             Indicates a user canceled the task.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GeneratingResult.Unnecessary">
+        <member name="F:Sudoku.Generating.GeneratingFailedReason.Unnecessary">
             <summary>
             Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
             </summary>
@@ -4823,10 +4843,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.PuzzleBase.Puzzle">
             <summary>
             Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
-            not <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            not <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
-            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.Equals(Sudoku.Generating.PuzzleBase)">
@@ -4846,12 +4866,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="F:Sudoku.Generating.PuzzleBase._result">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Generating.PuzzleBase.Result"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
         </member>
         <member name="T:Sudoku.Generating.RecursionStackEntry">
             <summary>

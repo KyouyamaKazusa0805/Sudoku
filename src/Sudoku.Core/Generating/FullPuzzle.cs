@@ -5,7 +5,7 @@ namespace Sudoku.Generating;
 /// </summary>
 [GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
-public sealed partial class FullPuzzle : PuzzleBase
+public partial class FullPuzzle : PuzzleBase
 {
 	/// <summary>
 	/// Indicates the solution to the puzzle.

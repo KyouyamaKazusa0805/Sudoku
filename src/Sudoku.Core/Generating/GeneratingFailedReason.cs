@@ -1,14 +1,14 @@
 namespace Sudoku.Generating;
 
 /// <summary>
-/// Represents a result that describes why the generation failed/successful.
+/// Represents a result that describes why the generation failed.
 /// </summary>
-public enum GeneratingResult
+public enum GeneratingFailedReason
 {
 	/// <summary>
 	/// Indicates the generation is success without any error.
 	/// </summary>
-	Success = 0,
+	None = 0,
 
 	/// <summary>
 	/// Indicates the generation not supported.

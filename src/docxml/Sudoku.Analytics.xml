@@ -21223,7 +21223,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indiactes the step for the pattern.</para>
             <para>
             Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>.
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
             Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
@@ -21240,17 +21240,12 @@ if (student is (name: var name, age: >= 18))
             <para>Indiactes the step for the pattern.</para>
             <para>
             Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingResult.Success"/>.
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
             Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
             </para>
             </param>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.#ctor">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle"/> instance.
-            </summary>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.ToString">
             <inheritdoc/>
@@ -21278,6 +21273,27 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed">
+            <summary>
+            Provides failed for generating just-one-cell puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed.#ctor(Sudoku.Generating.GeneratingFailedReason)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed"/> instance.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful">
+            <summary>
+            Provides with successful generating for just-one-cell puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful"/> instance.
+            </summary>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator">
             <summary>
@@ -21360,10 +21376,10 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>
-            A <see cref="T:Sudoku.Generating.GeneratingResult"/> enumeration field describing whether the generation is failed, and why failed.
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> enumeration field describing whether the generation is failed, and why failed.
             </returns>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            <seealso cref="F:Sudoku.Generating.GeneratingResult.Success"/>
+            <seealso cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
