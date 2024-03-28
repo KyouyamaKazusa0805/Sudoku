@@ -30,28 +30,62 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 	/// <inheritdoc/>
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
-		var selectedHouse = OnlyCenterHouses ? 9 * Rng.Next(0, 3) + 4 : Rng.Next(0, 27);
-		var digitMissing = Rng.Next(0, 9);
+		// Choose the target house.
+		var selectedHouse = Alignment switch
+		{
+			GridAlignment.NotLimited => Rng.Next(0, 27),
+			GridAlignment.CenterHouses => 9 * Rng.Next(0, 3) + 4,
+			GridAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
+			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
+		};
 
+		// Shuffle the digits.
 		ShuffleSequence(DigitSeed);
 
+		// Set the given values.
 		var (puzzle, i) = (Grid.Empty, 0);
 		foreach (var cell in HousesCells[selectedHouse])
 		{
 			puzzle.SetDigit(cell, DigitSeed[i++]);
-			puzzle.SetState(cell, CellState.Given);
+			puzzle.SetState(cell, CellState.Modifiable);
 		}
 
-		var targetCell = HousesCells[selectedHouse][digitMissing];
-		var targetDigit = puzzle.GetDigit(targetCell);
-		puzzle.SetDigit(targetCell, -1);
-		puzzle.SetState(targetCell, CellState.Empty);
+		// Clear the target cell with the value set -1.
+		int targetCell, targetDigit;
+		switch (Alignment)
+		{
+			case GridAlignment.NotLimited or GridAlignment.CenterHouses:
+			case GridAlignment.CenterBlock when selectedHouse == 4:
+			{
+				var missingPos = Rng.Next(0, 9);
+				targetCell = HousesCells[selectedHouse][missingPos];
+				targetDigit = DigitSeed[missingPos];
+				break;
+			}
+			case GridAlignment.CenterBlock:
+			{
+				var availableCells = HousesMap[selectedHouse] & HousesMap[4];
+				targetCell = availableCells[Rng.Next(0, availableCells.Count)];
+				targetDigit = puzzle.GetDigit(targetCell);
+				break;
+			}
+			case GridAlignment.OnlyCenterCell:
+			{
+				targetDigit = puzzle.GetDigit(targetCell = 40);
+				break;
+			}
+			default:
+			{
+				return new JustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
+			}
+		}
 
+		puzzle.SetDigit(targetCell, -1);
 		return new JustOneCellPuzzleSuccessful(
-			in puzzle,
+			puzzle.FixedGrid,
 			targetCell,
 			targetDigit,
-			new FullHouseStep([], null, new(), selectedHouse, targetCell, targetDigit)
+			new FullHouseStep(null!, null, null!, selectedHouse, targetCell, targetDigit)
 		);
 	}
 

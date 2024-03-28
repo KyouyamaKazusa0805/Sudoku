@@ -4465,6 +4465,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the generation not supported.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.GeneratingFailedReason.InvalidData">
+            <summary>
+            Indicates the argument or member hold invalid data.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.GeneratingFailedReason.Canceled">
             <summary>
             Indicates a user canceled the task.

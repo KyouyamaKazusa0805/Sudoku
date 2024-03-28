@@ -16,6 +16,11 @@ public enum GeneratingFailedReason
 	NotSupported,
 
 	/// <summary>
+	/// Indicates the argument or member hold invalid data.
+	/// </summary>
+	InvalidData,
+
+	/// <summary>
 	/// Indicates a user canceled the task.
 	/// </summary>
 	Canceled,

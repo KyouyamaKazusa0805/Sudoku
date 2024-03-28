@@ -21375,6 +21375,16 @@ if (student is (name: var name, age: >= 18))
             Represents a puzzle generator that generates for puzzles using single techniques.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.CenterHouses">
+            <summary>
+            Indicates center houses.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.StrictCenterHouses">
+            <summary>
+            Indicates center houses, strictly.
+            </summary>
+        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.OnlyCenterHouses">
             <summary>
             Indicates the generator only generates for puzzles aiming to the center houses, i.e. the row 5, column 5 and block 5.

@@ -6,6 +6,17 @@ namespace Sudoku.Generating.TechniqueBased;
 public abstract class SinglePuzzleGenerator : TechniqueBasedPuzzleGenerator
 {
 	/// <summary>
+	/// Indicates center houses.
+	/// </summary>
+	protected static readonly House[] CenterHouses = [4, 12, 13, 14, 21, 22, 23];
+
+	/// <summary>
+	/// Indicates center houses, strictly.
+	/// </summary>
+	protected static readonly House[] StrictCenterHouses = [4, 13, 22];
+
+
+	/// <summary>
 	/// Indicates the generator only generates for puzzles aiming to the center houses, i.e. the row 5, column 5 and block 5.
 	/// </summary>
 	public bool OnlyCenterHouses { get; set; }
