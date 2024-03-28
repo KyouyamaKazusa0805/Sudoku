@@ -114,7 +114,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 			in puzzle,
 			targetCell,
 			targetDigit,
-			new HiddenSingleStep([], [], new(), targetCell, targetDigit, house, false, subtype)
+			new HiddenSingleStep([], null, new(), targetCell, targetDigit, house, false, subtype)
 		);
 	}
 
@@ -208,7 +208,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
 				in puzzle,
 				targetCell,
 				targetDigit,
-				new HiddenSingleStep([], [], new(), targetCell, targetDigit, house, false, subtype)
+				new HiddenSingleStep([], null, new(), targetCell, targetDigit, house, false, subtype)
 			);
 		}
 	}

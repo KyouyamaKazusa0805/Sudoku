@@ -51,7 +51,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
 			in puzzle,
 			targetCell,
 			targetDigit,
-			new FullHouseStep([], [], new(), selectedHouse, targetCell, targetDigit)
+			new FullHouseStep([], null, new(), selectedHouse, targetCell, targetDigit)
 		);
 	}
 
