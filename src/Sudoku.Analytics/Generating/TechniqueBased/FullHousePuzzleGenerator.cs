@@ -159,10 +159,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			grid = grid.SolutionGrid.UnfixedGrid;
 
 			// Then randomly removed some digits in some cells, and keeps the grid valid.
-			for (var times = 0; times < 3; times++)
-			{
-				Rng.Shuffle(CellSeed);
-			}
+			ShuffleSequence(CellSeed);
 
 			// Removes the selected cells.
 			var pattern = (CellMap)CellSeed[..(EmptyCellsCount == -1 ? Rng.Next(1, 22) : EmptyCellsCount)];
