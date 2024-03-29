@@ -9,7 +9,9 @@ public static class CommonMethods
 	/// Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void DoNothing() { }
+	public static void DoNothing()
+	{
+	}
 
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value.
@@ -113,4 +115,25 @@ public static class CommonMethods
 	/// <returns>The value itself.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static T Self<T>(T value) => value;
+
+	/// <summary>
+	/// Represents Y-Combinator. This method can allow you create recursive lambdas.
+	/// </summary>
+	/// <typeparam name="T">The type of the argument to be passed.</typeparam>
+	/// <typeparam name="TResult">The type of the result.</typeparam>
+	/// <param name="f">The recursion logic.</param>
+	/// <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
+	/// <remarks>
+	/// You can use this to create customized recursive lambda:
+	/// <code><![CDATA[
+	/// //                           T TResult
+	/// var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
+	/// //                          ~~~  ~~~
+	/// int result = factorial(5); // T -> TResult
+	/// Console.WriteLine(result);
+	/// ]]></code>
+	/// </remarks>
+	public static Func<T, TResult> YCombinator<T, TResult>(Func<Func<T, TResult>, Func<T, TResult>> f)
+		// We cannot simplify the lambda to 'f(YCombinator(f))' here.
+		=> value => f(YCombinator(f))(value);
 }
