@@ -37,7 +37,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 			in puzzle,
 			targetCell,
 			targetDigit,
-			new NakedSingleStep([], null, new(), targetCell, targetDigit, SingleTechniqueSubtype.NakedSingle0 + blockCellsCount)
+			new NakedSingleStep(null!, null, null!, targetCell, targetDigit, SingleTechniqueSubtype.NakedSingle0 + blockCellsCount)
 		);
 	}
 
