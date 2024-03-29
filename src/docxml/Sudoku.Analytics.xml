@@ -6145,6 +6145,16 @@
             <param name="chosenCells">The chosen cells.</param>
             <returns>The subtype of the hidden single.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
+            <summary>
+            Get all <see cref="T:System.Int32"/>s that represents as excluders.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+            <param name="excluderHouses">The excluder houses.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
             Get all <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s that represents as excluders.
@@ -21381,7 +21391,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
@@ -21404,7 +21414,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForBlock(System.Int32,Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
@@ -21434,7 +21444,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1">
@@ -21455,9 +21465,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SingleAnalyzer">
             <summary>
-            Indicates the analyzer. This field can only be called inside method <see cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)"/>.
+            Indicates the analyzer. This field can only be called inside method <see cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)"/>.
             </summary>
-            <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.HasInterfererDigits">
             <summary>
@@ -21470,7 +21480,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle that is a just-one-cell, but is created from a normal puzzle that contains a unique solution.
             </summary>

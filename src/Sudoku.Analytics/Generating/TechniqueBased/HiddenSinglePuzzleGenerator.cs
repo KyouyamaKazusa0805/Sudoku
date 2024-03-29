@@ -30,9 +30,68 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 	}
 
 	/// <inheritdoc/>
-	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype? subtype = null, CancellationToken cancellationToken = default)
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
+		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.Unknown,
+		CancellationToken cancellationToken = default
+	)
 	{
-		return null!;
+		try
+		{
+			if (!Enum.IsDefined(subtype))
+			{
+				return new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
+			}
+
+			return g(subtype, cancellationToken);
+		}
+		catch (OperationCanceledException)
+		{
+			return new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.Canceled);
+		}
+
+
+		static PhasedJustOneCellPuzzle g(SingleTechniqueSubtype subtype, CancellationToken cancellationToken)
+		{
+			while (true)
+			{
+				var puzzle = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
+				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is { IsSolved: true, SolvingPath: var path })
+				{
+					foreach (var (currentGrid, step) in path)
+					{
+						if (step is not HiddenSingleStep { Cell: var cell, Digit: var digit, House: var house, Subtype: var currentSubtype })
+						{
+							continue;
+						}
+
+						if (subtype != SingleTechniqueSubtype.Unknown && subtype != currentSubtype)
+						{
+							continue;
+						}
+
+						if (Crosshatching.GetCrosshatchingInfo(in currentGrid, digit, house, [cell]) is not { BaseCells: var baseCells })
+						{
+							continue;
+						}
+
+						var extractedGrid = currentGrid;
+						extractedGrid.Unfix();
+
+						for (var c = 0; c < 81; c++)
+						{
+							if (!HousesMap[house].Contains(c) && !baseCells.Contains(c))
+							{
+								extractedGrid.SetDigit(c, -1);
+							}
+						}
+
+						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
+					}
+				}
+
+				cancellationToken.ThrowIfCancellationRequested();
+			}
+		}
 	}
 
 	/// <summary>
