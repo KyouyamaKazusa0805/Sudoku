@@ -21398,11 +21398,6 @@ if (student is (name: var name, age: >= 18))
             Indicates center houses, strictly.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.OnlyCenterHouses">
-            <summary>
-            Indicates the generator only generates for puzzles aiming to the center houses, i.e. the row 5, column 5 and block 5.
-            </summary>
-        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.HasInterfererDigits">
             <summary>
             Indicates whether the generator will also create for interferer digits.

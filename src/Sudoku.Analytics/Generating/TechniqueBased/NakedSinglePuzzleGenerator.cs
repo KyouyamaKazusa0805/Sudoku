@@ -13,7 +13,13 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
 		// Randomly select a cell as target cell.
-		var targetCell = OnlyCenterHouses ? (PeersMap[40] + 40)[Rng.Next(0, 21)] : Rng.Next(0, 81);
+		var targetCell = Alignment switch
+		{
+			GridAlignment.NotLimited => Rng.Next(0, 81),
+			GridAlignment.CenterHouses => (PeersMap[40] + 40)[Rng.Next(0, 21)],
+			GridAlignment.CenterBlock => HousesMap[4][Rng.Next(0, 9)],
+			_ => 40
+		};
 		var peerCells = PeersMap[targetCell].ToArray()[..];
 		ShuffleSequence(peerCells);
 		ShuffleSequence(DigitSeed);
@@ -37,7 +43,25 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 			in puzzle,
 			targetCell,
 			targetDigit,
-			new NakedSingleStep(null!, null, null!, targetCell, targetDigit, SingleTechniqueSubtype.NakedSingle0 + blockCellsCount)
+			new NakedSingleStep(
+				null!,
+				null,
+				null!,
+				targetCell,
+				targetDigit,
+				blockCellsCount switch
+				{
+					0 => SingleTechniqueSubtype.NakedSingle0,
+					1 => SingleTechniqueSubtype.NakedSingle1,
+					2 => SingleTechniqueSubtype.NakedSingle2,
+					3 => SingleTechniqueSubtype.NakedSingle3,
+					4 => SingleTechniqueSubtype.NakedSingle4,
+					5 => SingleTechniqueSubtype.NakedSingle5,
+					6 => SingleTechniqueSubtype.NakedSingle6,
+					7 => SingleTechniqueSubtype.NakedSingle7,
+					8 => SingleTechniqueSubtype.NakedSingle8
+				}
+			)
 		);
 	}
 
