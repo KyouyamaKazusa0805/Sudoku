@@ -21370,36 +21370,42 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator">
+        <member name="T:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1">
             <summary>
             Represents a puzzle generator that generates for puzzles using single techniques.
             </summary>
+            <typeparam name="TStep">The type of the step supported.</typeparam>
         </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.CenterHouses">
+        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.CenterHouses">
             <summary>
             Indicates center houses.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.StrictCenterHouses">
+        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.StrictCenterHouses">
             <summary>
             Indicates center houses, strictly.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.OnlyCenterHouses">
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.OnlyCenterHouses">
             <summary>
             Indicates the generator only generates for puzzles aiming to the center houses, i.e. the row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.HasInterfererDigits">
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.HasInterfererDigits">
             <summary>
             Indicates whether the generator will also create for interferer digits.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.Alignment">
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment">
             <inheritdoc cref="T:Sudoku.Generating.TechniqueBased.GridAlignment"/>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator.SupportedTypes">
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedType">
+            <summary>
+            Indicates the supported <typeparamref name="TStep"/> type.
+            </summary>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator">
             <summary>

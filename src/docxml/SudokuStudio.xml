@@ -14991,24 +14991,6 @@ if (student is (name: var name, age: >= 18))
             <param name="this">The collection.</param>
             <param name="count">The number of elements to be created.</param>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Generator">
-            <summary>
-            The local puzzle generator.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.Generator.Rng">
-            <summary>
-            A random number generator.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Generator.Generate(SudokuStudio.Views.Pages.GeneratingMode,System.Int32@)">
-            <summary>
-            Try to generate a new puzzle.
-            </summary>
-            <param name="mode">The mode.</param>
-            <param name="targetCandidate">Indicates the target candidate as the result.</param>
-            <returns>The result.</returns>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratingMode">
             <summary>
             Indicates the generating mode.

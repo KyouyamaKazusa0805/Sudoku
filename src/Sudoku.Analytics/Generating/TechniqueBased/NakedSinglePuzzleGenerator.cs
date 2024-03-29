@@ -3,7 +3,7 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <summary>
 /// Represents a puzzle generator that can create puzzles using naked singles.
 /// </summary>
-public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator
+public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSingleStep>
 {
 	/// <inheritdoc/>
 	public override TechniqueSet SupportedTechniques => [Technique.NakedSingle];

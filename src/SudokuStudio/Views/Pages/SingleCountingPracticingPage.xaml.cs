@@ -74,9 +74,61 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// </summary>
 	private void GeneratePuzzle()
 	{
-		var final = Generator.Generate((GeneratingMode)SelectedMode, out var targetCandidate);
+		var final = g((GeneratingMode)SelectedMode, out var targetCandidate);
 		SudokuPane.Puzzle = final;
 		_targetResultData[_currentPuzzleIndex] = targetCandidate;
+
+
+		static Grid g(GeneratingMode mode, out Candidate targetCandidate)
+		{
+			if (mode == GeneratingMode.Both)
+			{
+				mode = Random.Shared.Next(0, 1000) < 500 ? GeneratingMode.FullHouse : GeneratingMode.NakedSingle;
+			}
+
+			switch (mode)
+			{
+				case GeneratingMode.House5 or GeneratingMode.FullHouse:
+				{
+					var targetAlignment = mode == GeneratingMode.House5 ? GridAlignment.CenterHouses : GridAlignment.NotLimited;
+					if (h(new FullHousePuzzleGenerator { Alignment = targetAlignment }, out var p, out targetCandidate))
+					{
+						return p;
+					}
+
+					goto default;
+				}
+				case GeneratingMode.NakedSingle:
+				{
+					if (h(new NakedSinglePuzzleGenerator(), out var puzzle, out targetCandidate))
+					{
+						return puzzle;
+					}
+
+					goto default;
+				}
+				default:
+				{
+					throw new ArgumentException(ResourceDictionary.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
+				}
+			}
+
+
+			static bool h<TStep>(SinglePuzzleGenerator<TStep> generator, out Grid result, out Candidate targetCandidate)
+				where TStep : SingleStep
+			{
+				if (generator.GenerateJustOneCell() is { Success: true, Puzzle: var p, Step: TStep { Cell: var c, Digit: var d } })
+				{
+					targetCandidate = c * 9 + d;
+					result = p;
+					return true;
+				}
+
+				targetCandidate = -1;
+				result = Grid.Undefined;
+				return false;
+			}
+		}
 	}
 
 
@@ -215,73 +267,6 @@ file static class Extensions
 		for (var i = 0; i < count; i++)
 		{
 			@this.Add(default);
-		}
-	}
-}
-
-/// <summary>
-/// The local puzzle generator.
-/// </summary>
-file static class Generator
-{
-	/// <summary>
-	/// A random number generator.
-	/// </summary>
-	private static readonly Random Rng = new();
-
-
-	/// <summary>
-	/// Try to generate a new puzzle.
-	/// </summary>
-	/// <param name="mode">The mode.</param>
-	/// <param name="targetCandidate">Indicates the target candidate as the result.</param>
-	/// <returns>The result.</returns>
-	public static Grid Generate(GeneratingMode mode, out Candidate targetCandidate)
-	{
-		if (mode == GeneratingMode.Both)
-		{
-			mode = Rng.Next(0, 1000) < 500 ? GeneratingMode.FullHouse : GeneratingMode.NakedSingle;
-		}
-
-		switch (mode)
-		{
-			case GeneratingMode.House5 or GeneratingMode.FullHouse:
-			{
-				scoped var digits = (Span<Cell>)Digits[..];
-
-				// Shuffle digits.
-				for (var currentShuffleRound = 0; currentShuffleRound < 10; currentShuffleRound++)
-				{
-					Rng.Shuffle(digits);
-				}
-
-				var house = mode == GeneratingMode.House5 ? Rng.Next(0, 3) * 9 + 4 : Rng.Next(0, 27);
-				var cell = HousesCells[house][Rng.Next(0, 9)];
-
-				var result = Grid.Empty;
-				var i = 0;
-				foreach (var otherCell in HousesMap[house] - cell)
-				{
-					result.SetDigit(otherCell, digits[i++]);
-				}
-
-				targetCandidate = cell * 9 + digits[^1];
-				return result.FixedGrid;
-			}
-			case GeneratingMode.NakedSingle when new NakedSinglePuzzleGenerator().GenerateJustOneCell() is
-			{
-				Success: true,
-				Puzzle: var puzzle,
-				Step: NakedSingleStep { Cell: var cell, Digit: var digit }
-			}:
-			{
-				targetCandidate = cell * 9 + digit;
-				return puzzle;
-			}
-			default:
-			{
-				throw new ArgumentException(ResourceDictionary.ExceptionMessage("ModeInvalidOrUndefined"), nameof(mode));
-			}
 		}
 	}
 }

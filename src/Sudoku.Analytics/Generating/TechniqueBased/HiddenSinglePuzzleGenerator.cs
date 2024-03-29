@@ -3,7 +3,7 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <summary>
 /// Represents a puzzle generator that uses hidden single.
 /// </summary>
-public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator
+public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSingleStep>
 {
 	/// <summary>
 	/// Indicates whether the generator will create for block excluders.

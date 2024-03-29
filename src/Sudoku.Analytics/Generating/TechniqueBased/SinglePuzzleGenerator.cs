@@ -3,7 +3,8 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <summary>
 /// Represents a puzzle generator that generates for puzzles using single techniques.
 /// </summary>
-public abstract class SinglePuzzleGenerator : TechniqueBasedPuzzleGenerator
+/// <typeparam name="TStep">The type of the step supported.</typeparam>
+public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerator where TStep : SingleStep
 {
 	/// <summary>
 	/// Indicates center houses.
@@ -31,4 +32,9 @@ public abstract class SinglePuzzleGenerator : TechniqueBasedPuzzleGenerator
 
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => SudokuType.JustOneCell;
+
+	/// <summary>
+	/// Indicates the supported <typeparamref name="TStep"/> type.
+	/// </summary>
+	public Type SupportedType => typeof(TStep);
 }

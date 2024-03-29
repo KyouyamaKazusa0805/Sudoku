@@ -3,7 +3,7 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <summary>
 /// Represents a type that generates puzzles that only contains full house usages.
 /// </summary>
-public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator
+public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseStep>
 {
 	/// <summary>
 	/// Represents an analyzer.
