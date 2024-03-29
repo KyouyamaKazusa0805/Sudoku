@@ -31,7 +31,7 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	public ComparisonOperator Operator { get; set; }
 
 	/// <summary>
-	/// Indicates all possible <see cref="Analytics.Categorization.DifficultyLevel"/> values. 
+	/// Indicates all possible <see cref="Analytics.DifficultyLevel"/> values. 
 	/// </summary>
 	public DifficultyLevel ValidDifficultyLevels
 	{

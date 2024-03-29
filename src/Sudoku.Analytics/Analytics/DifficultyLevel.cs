@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Categorization;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides a difficulty kind for a puzzle.

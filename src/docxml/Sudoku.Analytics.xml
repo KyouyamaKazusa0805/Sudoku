@@ -246,9 +246,9 @@
             <seealso cref="P:Sudoku.Analytics.Analyzer.Options"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[])">
-            <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.Categorization.DifficultyLevel)">
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithStepSearchers(Sudoku.Analytics.Analyzer,Sudoku.Analytics.StepSearcher[],Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Try to set property <see cref="P:Sudoku.Analytics.Analyzer.StepSearchers"/> with the specified value.
             </summary>
@@ -469,7 +469,7 @@
         <member name="P:Sudoku.Analytics.AnalyzerResult.DifficultyLevel">
             <summary>
             Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Solution">
@@ -797,46 +797,6 @@
             </summary>
             <param name="g">The grid.</param>
             <param name="s">The solution of <paramref name="g"/>.</param>
-        </member>
-        <member name="T:Sudoku.Analytics.Categorization.DifficultyLevel">
-            <summary>
-            Provides a difficulty kind for a puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown">
-            <summary>
-            Indicates the difficulty level is unknown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Easy">
-            <summary>
-            Indicates the difficulty is easy.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Moderate">
-            <summary>
-            Indicates the difficulty is moderate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Hard">
-            <summary>
-            Indicates the difficulty is hard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Fiendish">
-            <summary>
-            Indicates the difficulty is fiendish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.Nightmare">
-            <summary>
-            Indicates the difficulty is nightmare.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.DifficultyLevel.LastResort">
-            <summary>
-            Indicates the puzzle can't be solved unless using last resort methods.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleSubtype">
             <summary>
@@ -3752,7 +3712,7 @@
             Indicates the range of difficulty that the current collection containss.
             </summary>
             <remarks>
-            This property returns a list of <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/> flags, merged into one instance.
+            This property returns a list of <see cref="T:Sudoku.Analytics.DifficultyLevel"/> flags, merged into one instance.
             If you want to get the internal fields of flags the return value contains, use <see langword="foreach"/> loop to iterate them,
             or use method <see cref="M:System.EnumExtensions.GetAllFlags``1(``0)"/>.
             </remarks>
@@ -4305,7 +4265,7 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>
             The difficulty level that the current technique belongs to.
-            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/> will be returned.
+            If it doesn't contain a static difficulty level value, <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/> will be returned.
             </returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.Technique)">
@@ -4783,6 +4743,46 @@
             </list>
             </remarks>
         </member>
+        <member name="T:Sudoku.Analytics.DifficultyLevel">
+            <summary>
+            Provides a difficulty kind for a puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Unknown">
+            <summary>
+            Indicates the difficulty level is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Easy">
+            <summary>
+            Indicates the difficulty is easy.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Moderate">
+            <summary>
+            Indicates the difficulty is moderate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Hard">
+            <summary>
+            Indicates the difficulty is hard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Fiendish">
+            <summary>
+            Indicates the difficulty is fiendish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.Nightmare">
+            <summary>
+            Indicates the difficulty is nightmare.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.DifficultyLevel.LastResort">
+            <summary>
+            Indicates the puzzle can't be solved unless using last resort methods.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.GridFeature">
             <summary>
             Represents extension methods on checking <see cref="T:Sudoku.Concepts.Grid"/> instances, determining features based on analytics.
@@ -4834,11 +4834,11 @@
         </member>
         <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelExtensions.GetName(Sudoku.Analytics.Categorization.DifficultyLevel,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.Globalization.CultureInfo)">
             <summary>
             Gets the name of the current value, with specified culture.
             </summary>
@@ -4918,7 +4918,7 @@
             </summary>
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.#ctor(System.String)">
@@ -4927,7 +4927,7 @@
             </summary>
             <param name="memberName">The field name.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>
+            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
             <seealso cref="T:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
@@ -5286,7 +5286,7 @@
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.DifficultyLevelRange">
             <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
+            Indicates the <see cref="T:Sudoku.Analytics.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetName(System.Globalization.CultureInfo)">
@@ -5615,7 +5615,7 @@
             during generating puzzles.
             </remarks>
             <exception cref="T:System.InvalidOperationException">
-            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.Categorization.DifficultyLevel.Unknown"/>.
+            Throws when the target difficulty level is <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
             </exception>
             <seealso cref="T:System.FlagsAttribute"/>
         </member>
@@ -20803,7 +20803,7 @@ result ^= expression;
             </returns>
             <seealso cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/>
         </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(Sudoku.Analytics.Categorization.DifficultyLevel)">
+        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(Sudoku.Analytics.DifficultyLevel)">
             <summary>
             Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
             </summary>
@@ -26948,7 +26948,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
             <summary>
-            Indicates all possible <see cref="T:Sudoku.Analytics.Categorization.DifficultyLevel"/> values. 
+            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
             </summary>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">

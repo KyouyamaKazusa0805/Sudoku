@@ -4,6 +4,7 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:analytics="using:Sudoku.Analytics"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:categorization="using:Sudoku.Analytics.Categorization"
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
@@ -44,13 +45,13 @@
 						<ItemsRepeater
 							ItemsSource="{x:Bind cvt:StepSearcherListViewConversion.GetStepSearcherSupportedDifficultyLevelCollection(CurrentSelectedStepSearcher),Mode=OneWay}">
 							<ItemsRepeater.ItemTemplate>
-								<DataTemplate x:DataType="categorization:DifficultyLevel">
+								<DataTemplate x:DataType="analytics:DifficultyLevel">
 									<Border
 										CornerRadius="5" Padding="6"
-										Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor((categorization:DifficultyLevel))}">
+										Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor((analytics:DifficultyLevel))}">
 										<TextBlock
-											Text="{x:Bind cvt:DifficultyLevelConversion.GetName((categorization:DifficultyLevel))}" Margin="10,0"
-											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor((categorization:DifficultyLevel))}" />
+											Text="{x:Bind cvt:DifficultyLevelConversion.GetName((analytics:DifficultyLevel))}" Margin="10,0"
+											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor((analytics:DifficultyLevel))}" />
 									</Border>
 								</DataTemplate>
 							</ItemsRepeater.ItemTemplate>
