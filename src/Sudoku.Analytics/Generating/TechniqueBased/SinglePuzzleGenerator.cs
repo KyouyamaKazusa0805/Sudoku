@@ -32,9 +32,4 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => SudokuType.JustOneCell;
-
-	/// <summary>
-	/// Indicates the supported <typeparamref name="TStep"/> type.
-	/// </summary>
-	public Type SupportedType => typeof(TStep);
 }

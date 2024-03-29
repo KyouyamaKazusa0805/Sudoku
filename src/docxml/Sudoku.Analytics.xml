@@ -21402,11 +21402,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedType">
-            <summary>
-            Indicates the supported <typeparamref name="TStep"/> type.
-            </summary>
-        </member>
         <member name="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator">
             <summary>
             Represents a generator type that generates puzzles, relating to a kind of technique.
