@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Generating.TechniqueBased;
+namespace Sudoku.Generating.TechniqueBased;
 
 /// <summary>
 /// Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
@@ -24,5 +24,5 @@ public enum GridAlignment
 	/// <summary>
 	/// Indicates the conclusion can only be placed in <c>r5c5</c>.
 	/// </summary>
-	OnlyCenterCell
+	CenterCell
 }

@@ -21240,7 +21240,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the rule is limited in only block 5. No matter what technique used, the conclusion must be inside the block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.OnlyCenterCell">
+        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterCell">
             <summary>
             Indicates the conclusion can only be placed in <c>r5c5</c>.
             </summary>
@@ -21413,6 +21413,28 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse">
+            <summary>
+            Randomly select a house, obeying the rule <see cref="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment"/>.
+            </summary>
+            <returns>The house index.</returns>
+            <seealso cref="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment"/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectSubtype(System.Int32,System.Func{Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Boolean})">
+            <summary>
+            Randomly select a <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueSubtype"/> instance.
+            </summary>
+            <param name="house">The house selected.</param>
+            <param name="match">The extra match method.</param>
+            <returns>The subtype selected.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
+            <summary>
+            Checks for the block position of the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The block position.</returns>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator">
             <summary>

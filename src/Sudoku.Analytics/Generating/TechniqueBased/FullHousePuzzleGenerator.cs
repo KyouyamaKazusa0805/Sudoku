@@ -31,13 +31,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
 		// Choose the target house.
-		var selectedHouse = Alignment switch
-		{
-			GridAlignment.NotLimited => Rng.Next(0, 27),
-			GridAlignment.CenterHouses => 9 * Rng.Next(0, 3) + 4,
-			GridAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
-			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
-		};
+		var selectedHouse = RandomlySelectHouse();
 
 		// Shuffle the digits.
 		ShuffleSequence(DigitSeed);
@@ -69,9 +63,10 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 				targetDigit = puzzle.GetDigit(targetCell);
 				break;
 			}
-			case GridAlignment.OnlyCenterCell:
+			case GridAlignment.CenterCell:
 			{
-				targetDigit = puzzle.GetDigit(targetCell = 40);
+				targetCell = 40;
+				targetDigit = puzzle.GetDigit(targetCell);
 				break;
 			}
 			default:
