@@ -43,23 +43,6 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
 		};
 
-	/// <summary>
-	/// Randomly select a <see cref="SingleTechniqueSubtype"/> instance.
-	/// </summary>
-	/// <param name="house">The house selected.</param>
-	/// <param name="match">The extra match method.</param>
-	/// <returns>The subtype selected.</returns>
-	private protected SingleTechniqueSubtype RandomlySelectSubtype(House house, Func<SingleTechniqueSubtype, bool> match)
-	{
-		var range = Enum.GetValues<SingleTechniqueSubtype>()[house switch { < 9 => 4..13, < 18 => 14..28, _ => 29..43 }];
-		SingleTechniqueSubtype subtype;
-		do
-		{
-			subtype = range[Rng.Next(0, range.Length)];
-		} while (subtype.IsUnnecessary() || !match(subtype));
-		return subtype;
-	}
-
 
 	/// <summary>
 	/// Checks for the block position of the specified cell.
@@ -80,5 +63,22 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 			i++;
 		}
 		return -1;
+	}
+
+	/// <summary>
+	/// Randomly select a <see cref="SingleTechniqueSubtype"/> instance.
+	/// </summary>
+	/// <param name="house">The house selected.</param>
+	/// <param name="match">The extra match method.</param>
+	/// <returns>The subtype selected.</returns>
+	private protected static SingleTechniqueSubtype RandomlySelectSubtype(House house, Func<SingleTechniqueSubtype, bool> match)
+	{
+		var range = Enum.GetValues<SingleTechniqueSubtype>()[house switch { < 9 => 4..13, < 18 => 14..28, _ => 29..43 }];
+		SingleTechniqueSubtype subtype;
+		do
+		{
+			subtype = range[Rng.Next(0, range.Length)];
+		} while (subtype.IsUnnecessary() || !match(subtype));
+		return subtype;
 	}
 }

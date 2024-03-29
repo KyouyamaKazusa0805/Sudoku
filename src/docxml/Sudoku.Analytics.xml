@@ -21416,6 +21416,13 @@ if (student is (name: var name, age: >= 18))
             <returns>The house index.</returns>
             <seealso cref="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment"/>
         </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
+            <summary>
+            Checks for the block position of the specified cell.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The block position.</returns>
+        </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectSubtype(System.Int32,System.Func{Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Boolean})">
             <summary>
             Randomly select a <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueSubtype"/> instance.
@@ -21423,13 +21430,6 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house selected.</param>
             <param name="match">The extra match method.</param>
             <returns>The subtype selected.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
-            <summary>
-            Checks for the block position of the specified cell.
-            </summary>
-            <param name="cell">The cell.</param>
-            <returns>The block position.</returns>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator">
             <summary>
