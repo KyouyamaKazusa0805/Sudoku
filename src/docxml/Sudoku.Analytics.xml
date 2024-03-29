@@ -1148,6 +1148,11 @@
             Indicates the subtype is Naked Single, with 8 values in the target block.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueSubtype.Unknown">
+            <summary>
+            Represents unknown technique.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
             <summary>
             Represents a technique instance, which is used for comparison.

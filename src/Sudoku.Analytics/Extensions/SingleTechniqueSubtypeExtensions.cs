@@ -17,7 +17,6 @@ public static class SingleTechniqueSubtypeExtensions
 		=> @this is SingleTechniqueSubtype.BlockHiddenSingle000 or SingleTechniqueSubtype.RowHiddenSingle000 or SingleTechniqueSubtype.ColumnHiddenSingle000
 		or SingleTechniqueSubtype.NakedSingle8;
 
-#pragma warning disable format
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.
 	/// This method will return a non-zero value if and only if it is a hidden single.
@@ -26,16 +25,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <returns>The number of excluders.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetExcludersCount(this SingleTechniqueSubtype @this)
-		=> @this switch
-		{
-			>= SingleTechniqueSubtype.BlockHiddenSingle000 and < SingleTechniqueSubtype.NakedSingle0 => @this.GetAttribute().ExtraArguments switch
-			{
-				[int value] => value,
-				_ => 0
-			},
-			_ => 0
-		};
-#pragma warning restore format
+		=> @this.GetExcludersCount(HouseType.Block) + @this.GetExcludersCount(HouseType.Row) + @this.GetExcludersCount(HouseType.Column);
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use in the specified house type.
