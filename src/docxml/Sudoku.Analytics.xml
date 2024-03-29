@@ -888,6 +888,11 @@
             Represents a subtype of the single technique set.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueSubtype.None">
+            <summary>
+            Represents the default value of this type.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueSubtype.FullHouseBlock">
             <summary>
             Indicates the subtype is Full House in Block.
@@ -1150,7 +1155,7 @@
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueSubtype.Unknown">
             <summary>
-            Represents unknown technique.
+            Indicates the unknown technique.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Categorization.Technique">
@@ -4096,6 +4101,13 @@
             <param name="this">Indicates the subtype.</param>
             <param name="houseType">The house type.</param>
             <returns>The number of excluders.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetDirectDifficultyLevel(Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
+            <summary>
+            Try to get the direct difficulty level of the curreent subtype.
+            </summary>
+            <param name="this">The subtype.</param>
+            <returns>The direct difficulty level.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
             <summary>

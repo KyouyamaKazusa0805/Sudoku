@@ -38,6 +38,14 @@ public static class SingleTechniqueSubtypeExtensions
 		=> @this.ToString()[^(3 - (int)houseType)] - '0';
 
 	/// <summary>
+	/// Try to get the direct difficulty level of the curreent subtype.
+	/// </summary>
+	/// <param name="this">The subtype.</param>
+	/// <returns>The direct difficulty level.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static int GetDirectDifficultyLevel(this SingleTechniqueSubtype @this) => (int)@this / 100;
+
+	/// <summary>
 	/// Gets the abbreviation of the subtype.
 	/// </summary>
 	/// <param name="this">Indicates the subtype.</param>

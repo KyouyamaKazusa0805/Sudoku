@@ -44,10 +44,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>A <see cref="PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
 	/// <seealso cref="PhasedJustOneCellPuzzle"/>
-	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
-		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.Unknown,
-		CancellationToken cancellationToken = default
-	);
+	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None, CancellationToken cancellationToken = default);
 
 
 	/// <summary>

@@ -6,319 +6,324 @@ namespace Sudoku.Analytics.Categorization;
 public enum SingleTechniqueSubtype
 {
 	/// <summary>
+	/// Represents the default value of this type.
+	/// </summary>
+	None = 0,
+
+	/// <summary>
 	/// Indicates the subtype is Full House in Block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "FH1", RelatedTechnique = Technique.FullHouse)]
-	FullHouseBlock = 0,
+	FullHouseBlock = 100,
 
 	/// <summary>
 	/// Indicates the subtype is Full House in Row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "FH2", RelatedTechnique = Technique.FullHouse)]
-	FullHouseRow = 100,
+	FullHouseRow = 200,
 
 	/// <summary>
 	/// Indicates the subtype is Full House in Column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "FH3", RelatedTechnique = Technique.FullHouse)]
-	FullHouseColumn = 101,
+	FullHouseColumn = 201,
 
 	/// <summary>
 	/// Indicates the subtype is Last Digit.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "LD", RelatedTechnique = Technique.LastDigit)]
-	LastDigit = 102,
+	LastDigit = 202,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with no excluder values.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB00", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle000 = 901,
+	BlockHiddenSingle000 = 1001,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 2 excluders (1 row + 1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB11", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle011 = 203,
+	BlockHiddenSingle011 = 303,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 1 excluder (1 row).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB10", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle010 = 201,
+	BlockHiddenSingle010 = 301,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 1 excluder (1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB01", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle001 = 202,
+	BlockHiddenSingle001 = 302,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 2 excluders (2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB02", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle002 = 302,
+	BlockHiddenSingle002 = 402,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 2 excluders (2 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB20", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle020 = 301,
+	BlockHiddenSingle020 = 401,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 3 excluders (2 rows + 1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB21", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle021 = 303,
+	BlockHiddenSingle021 = 403,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 3 excluders (1 row + 2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB12", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle012 = 304,
+	BlockHiddenSingle012 = 404,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Block, with 4 excluders (2 rows + 2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB22", RelatedTechnique = Technique.CrosshatchingBlock)]
-	BlockHiddenSingle022 = 403,
+	BlockHiddenSingle022 = 503,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with no excluders.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR00", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle000 = 902,
+	RowHiddenSingle000 = 1002,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 1 excluder (1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR10", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle001 = 401,
+	RowHiddenSingle001 = 501,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 2 excluder (2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR20", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle002 = 501,
+	RowHiddenSingle002 = 601,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 1 excluder (1 block).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR01", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle100 = 504,
+	RowHiddenSingle100 = 604,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 2 excluders (1 block + 1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR11", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle101 = 507,
+	RowHiddenSingle101 = 607,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 3 excluders (3 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR30", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle003 = 513,
+	RowHiddenSingle003 = 613,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 3 excluders (1 block + 2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR21", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle102 = 515,
+	RowHiddenSingle102 = 615,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 4 excluders (4 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR40", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle004 = 520,
+	RowHiddenSingle004 = 620,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 4 excluders (1 block + 3 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR31", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle103 = 521,
+	RowHiddenSingle103 = 621,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 5 excluders (1 block + 4 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR41", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle104 = 525,
+	RowHiddenSingle104 = 625,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 5 excluders (5 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR50", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle005 = 527,
+	RowHiddenSingle005 = 627,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR60", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle006 = 529,
+	RowHiddenSingle006 = 629,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR02", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle200 = 508,
+	RowHiddenSingle200 = 608,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR12", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle201 = 509,
+	RowHiddenSingle201 = 609,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR22", RelatedTechnique = Technique.CrosshatchingRow)]
-	RowHiddenSingle202 = 516,
+	RowHiddenSingle202 = 616,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with no excluders.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC00", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle000 = 903,
+	ColumnHiddenSingle000 = 1003,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 1 excluder (1 row).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC10", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle010 = 402,
+	ColumnHiddenSingle010 = 502,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 2 excluders (2 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC20", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle020 = 503,
+	ColumnHiddenSingle020 = 603,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 1 excluder (1 block).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC01", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle100 = 506,
+	ColumnHiddenSingle100 = 606,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 2 excluders (1 block + 1 row).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC11", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle110 = 510,
+	ColumnHiddenSingle110 = 610,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 3 excluders (3 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC30", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle030 = 514,
+	ColumnHiddenSingle030 = 614,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 3 excluders (1 block + 2 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC21", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle120 = 517,
+	ColumnHiddenSingle120 = 617,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 4 excluders (4 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC40", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle040 = 522,
+	ColumnHiddenSingle040 = 622,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 4 excluders (1 block + 3 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC31", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle130 = 523,
+	ColumnHiddenSingle130 = 623,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 5 excluders (5 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC50", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle050 = 528,
+	ColumnHiddenSingle050 = 628,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC60", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle060 = 530,
+	ColumnHiddenSingle060 = 630,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC41", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle140 = 526,
+	ColumnHiddenSingle140 = 626,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC02", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle200 = 511,
+	ColumnHiddenSingle200 = 611,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC12", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle210 = 512,
+	ColumnHiddenSingle210 = 612,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC22", RelatedTechnique = Technique.CrosshatchingColumn)]
-	ColumnHiddenSingle220 = 518,
+	ColumnHiddenSingle220 = 618,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with no values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS0", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle0 = 532,
+	NakedSingle0 = 632,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 1 value in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS1", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle1 = 531,
+	NakedSingle1 = 631,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 2 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS2", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle2 = 524,
+	NakedSingle2 = 624,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 3 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS3", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle3 = 519,
+	NakedSingle3 = 619,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 4 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS4", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle4 = 505,
+	NakedSingle4 = 605,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 5 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS5", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle5 = 502,
+	NakedSingle5 = 602,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 6 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS6", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle6 = 405,
+	NakedSingle6 = 505,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 7 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS7", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle7 = 404,
+	NakedSingle7 = 504,
 
 	/// <summary>
 	/// Indicates the subtype is Naked Single, with 8 values in the target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS8", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle8 = 904,
+	NakedSingle8 = 1004,
 
 	/// <summary>
-	/// Represents unknown technique.
+	/// Indicates the unknown technique.
 	/// </summary>
-	Unknown = 1000
+	Unknown = 2000
 }

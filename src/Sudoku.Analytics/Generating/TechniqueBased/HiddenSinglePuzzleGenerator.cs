@@ -31,18 +31,15 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 
 	/// <inheritdoc/>
 	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
-		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.Unknown,
+		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None,
 		CancellationToken cancellationToken = default
 	)
 	{
 		try
 		{
-			if (!Enum.IsDefined(subtype))
-			{
-				return new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
-			}
-
-			return g(subtype, cancellationToken);
+			return Enum.IsDefined(subtype) && subtype != SingleTechniqueSubtype.Unknown
+				? g(subtype, cancellationToken)
+				: new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
 		catch (OperationCanceledException)
 		{
@@ -64,7 +61,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 							continue;
 						}
 
-						if (subtype != SingleTechniqueSubtype.Unknown && subtype != currentSubtype)
+						if (subtype != SingleTechniqueSubtype.None && subtype != currentSubtype)
 						{
 							continue;
 						}
