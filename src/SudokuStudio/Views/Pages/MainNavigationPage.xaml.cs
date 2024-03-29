@@ -10,7 +10,7 @@ internal sealed partial class MainNavigationPage : Page
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
 	/// <seealso cref="NavigationViewFrame"/>
-	private List<(Func<NavigationViewItemBase, bool> PageChecker, Type PageType)> _navigatingData;
+	private List<(Func<NavigationViewItemBase, bool>, Type)> _navigatingData;
 
 
 	/// <summary>
@@ -59,53 +59,26 @@ internal sealed partial class MainNavigationPage : Page
 		MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
 	}
 
-	/// <summary>
-	/// An outer-layered method to switching pages. This method can be used by both
-	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
-	/// </summary>
-	/// <param name="container">The container.</param>
-	/// <param name="isSettingsNavigationViewItemSelectedOrInvoked">
-	/// A <see cref="bool"/> value indicating whether the settings item is invoked or selected.
-	/// </param>
-	private void SwitchingPage(NavigationViewItemBase container, bool isSettingsNavigationViewItemSelectedOrInvoked)
+	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
+
+	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 	{
-		if (isSettingsNavigationViewItemSelectedOrInvoked)
+		if (args.IsSettingsSelected)
 		{
 			ParentWindow.NavigateToPage<SettingsPage>();
 		}
 		else
 		{
-			SwitchingPage(container);
-		}
-	}
-
-	/// <summary>
-	/// An outer-layered method to switching pages. This method can be used by both
-	/// <see cref="NavigationView_ItemInvoked"/> and <see cref="MainNavigationView_SelectionChanged"/>.
-	/// </summary>
-	/// <param name="container">The container.</param>
-	/// <seealso cref="NavigationView_ItemInvoked"/>
-	/// <seealso cref="MainNavigationView_SelectionChanged"/>
-	private void SwitchingPage(NavigationViewItemBase container)
-	{
-		foreach (var (condition, pageType) in _navigatingData)
-		{
-			if (condition(container))
+			foreach (var (match, pageType) in _navigatingData)
 			{
-				ParentWindow.NavigateToPage(pageType);
-				return;
+				if (match(args.SelectedItemContainer))
+				{
+					ParentWindow.NavigateToPage(pageType);
+					return;
+				}
 			}
 		}
 	}
-
-
-	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
-
-	private void NavigationView_ItemInvoked(NavigationView sender, NavigationViewItemInvokedEventArgs args)
-		=> SwitchingPage(args.InvokedItemContainer, args.IsSettingsInvoked);
-
-	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-		=> SwitchingPage(args.SelectedItemContainer, args.IsSettingsSelected);
 
 	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
 	{

@@ -13034,11 +13034,6 @@ if (student is (name: var name, age: >= 18))
             Defines a key-value pair of functions that is used for routing hotkeys.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.AnalyzePage._isFirstLaunched">
-            <summary>
-            Indicates whether the current page is launched for the first time. This value is <see langword="false"/> after switching pages.
-            </summary>
-        </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.#ctor">
             <summary>
             Initializes an <see cref="T:SudokuStudio.Views.Pages.AnalyzePage"/> instance.
@@ -14235,25 +14230,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Initializes fields.
             </summary>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Boolean)">
-            <summary>
-            An outer-layered method to switching pages. This method can be used by both
-            <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
-            </summary>
-            <param name="container">The container.</param>
-            <param name="isSettingsNavigationViewItemSelectedOrInvoked">
-            A <see cref="T:System.Boolean"/> value indicating whether the settings item is invoked or selected.
-            </param>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SwitchingPage(Microsoft.UI.Xaml.Controls.NavigationViewItemBase)">
-            <summary>
-            An outer-layered method to switching pages. This method can be used by both
-            <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/> and <see cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>.
-            </summary>
-            <param name="container">The container.</param>
-            <seealso cref="M:SudokuStudio.Views.Pages.MainNavigationPage.NavigationView_ItemInvoked(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewItemInvokedEventArgs)"/>
-            <seealso cref="M:SudokuStudio.Views.Pages.MainNavigationPage.MainNavigationView_SelectionChanged(Microsoft.UI.Xaml.Controls.NavigationView,Microsoft.UI.Xaml.Controls.NavigationViewSelectionChangedEventArgs)"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeComponent">
             <summary>

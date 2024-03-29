@@ -76,12 +76,6 @@ public sealed partial class AnalyzePage : Page
 
 
 	/// <summary>
-	/// Indicates whether the current page is launched for the first time. This value is <see langword="false"/> after switching pages.
-	/// </summary>
-	private static bool _isFirstLaunched = true;
-
-
-	/// <summary>
 	/// Initializes an <see cref="AnalyzePage"/> instance.
 	/// </summary>
 	public AnalyzePage()
@@ -1263,18 +1257,16 @@ public sealed partial class AnalyzePage : Page
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 		// This method is created to solve the problem that WinUI cannot cache navigation view pages due to internal error.
-		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView && !_isFirstLaunched)
+		if (((App)Application.Current).Preference.UIPreferences.AutoCachePuzzleAndView)
 		{
+#if false
 			var pref = ((App)Application.Current).Preference.UIPreferences;
 
 			SudokuPane.Puzzle = pref.LastGridPuzzle;
 			SudokuPane.ViewUnit = pref.LastRenderable is ({ } conclusions, [var view, ..])
 				? new() { Conclusions = conclusions, View = view }
 				: null;
-		}
-		else if (_isFirstLaunched)
-		{
-			_isFirstLaunched = false;
+#endif
 		}
 	}
 
