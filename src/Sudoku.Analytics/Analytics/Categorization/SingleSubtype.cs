@@ -3,7 +3,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <summary>
 /// Represents a subtype of the single technique set.
 /// </summary>
-public enum SingleTechniqueSubtype
+public enum SingleSubtype
 {
 	/// <summary>
 	/// Represents the default value of this type.

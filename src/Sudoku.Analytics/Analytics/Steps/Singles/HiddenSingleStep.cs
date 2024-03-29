@@ -22,7 +22,7 @@ public partial class HiddenSingleStep(
 	Digit digit,
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
-	SingleTechniqueSubtype subtype
+	SingleSubtype subtype
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>

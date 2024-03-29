@@ -409,9 +409,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					eliminatedDigitsMask,
 					houseType switch
 					{
-						HouseType.Block => SingleTechniqueSubtype.FullHouseBlock,
-						HouseType.Row => SingleTechniqueSubtype.FullHouseRow,
-						_ => SingleTechniqueSubtype.FullHouseColumn
+						HouseType.Block => SingleSubtype.FullHouseBlock,
+						HouseType.Row => SingleSubtype.FullHouseRow,
+						_ => SingleSubtype.FullHouseColumn
 					},
 					Technique.FullHouse,
 					subsetTechnique
@@ -570,7 +570,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleTechniqueSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
+				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
 				Technique.NakedSingle,
 				subsetTechnique
 			);
@@ -671,9 +671,9 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					eliminatedDigitsMask,
 					houseType switch
 					{
-						HouseType.Block => SingleTechniqueSubtype.FullHouseBlock,
-						HouseType.Row => SingleTechniqueSubtype.FullHouseRow,
-						_ => SingleTechniqueSubtype.FullHouseColumn
+						HouseType.Block => SingleSubtype.FullHouseBlock,
+						HouseType.Row => SingleSubtype.FullHouseRow,
+						_ => SingleSubtype.FullHouseColumn
 					},
 					Technique.FullHouse,
 					subsetTechnique
@@ -831,7 +831,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleTechniqueSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
+				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
 				Technique.NakedSingle,
 				subsetTechnique
 			);

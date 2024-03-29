@@ -1,9 +1,9 @@
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Provides with extension methods on <see cref="SingleTechniqueSubtype"/>.
+/// Provides with extension methods on <see cref="SingleSubtype"/>.
 /// </summary>
-/// <seealso cref="SingleTechniqueSubtype"/>
+/// <seealso cref="SingleSubtype"/>
 public static class SingleTechniqueSubtypeExtensions
 {
 	/// <summary>
@@ -13,9 +13,9 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="this">The subtype.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the subtype is unnecessary.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsUnnecessary(this SingleTechniqueSubtype @this)
-		=> @this is SingleTechniqueSubtype.BlockHiddenSingle000 or SingleTechniqueSubtype.RowHiddenSingle000 or SingleTechniqueSubtype.ColumnHiddenSingle000
-		or SingleTechniqueSubtype.NakedSingle8;
+	public static bool IsUnnecessary(this SingleSubtype @this)
+		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
+		or SingleSubtype.NakedSingle8;
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.
@@ -24,7 +24,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="this">Indicates the subtype.</param>
 	/// <returns>The number of excluders.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetExcludersCount(this SingleTechniqueSubtype @this)
+	public static int GetExcludersCount(this SingleSubtype @this)
 		=> @this.GetExcludersCount(HouseType.Block) + @this.GetExcludersCount(HouseType.Row) + @this.GetExcludersCount(HouseType.Column);
 
 	/// <summary>
@@ -34,7 +34,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="houseType">The house type.</param>
 	/// <returns>The number of excluders.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetExcludersCount(this SingleTechniqueSubtype @this, HouseType houseType)
+	public static int GetExcludersCount(this SingleSubtype @this, HouseType houseType)
 		=> @this.ToString()[^(3 - (int)houseType)] - '0';
 
 	/// <summary>
@@ -43,7 +43,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="this">The subtype.</param>
 	/// <returns>The direct difficulty level.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int GetDirectDifficultyLevel(this SingleTechniqueSubtype @this) => (int)@this / 100;
+	public static int GetDirectDifficultyLevel(this SingleSubtype @this) => (int)@this / 100;
 
 	/// <summary>
 	/// Gets the abbreviation of the subtype.
@@ -51,7 +51,7 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="this">Indicates the subtype.</param>
 	/// <returns>The abbreviation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetAbbreviation(this SingleTechniqueSubtype @this) => @this.GetAttribute().Abbreviation;
+	public static string? GetAbbreviation(this SingleSubtype @this) => @this.GetAttribute().Abbreviation;
 
 	/// <summary>
 	/// Try to get the related technique of the current subtype.
@@ -59,12 +59,12 @@ public static class SingleTechniqueSubtypeExtensions
 	/// <param name="this">The subtype.</param>
 	/// <returns>The related technique instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Technique GetRelatedTechnique(this SingleTechniqueSubtype @this) => @this.GetAttribute().RelatedTechnique;
+	public static Technique GetRelatedTechnique(this SingleSubtype @this) => @this.GetAttribute().RelatedTechnique;
 
 	/// <summary>
 	/// Gets the attribute.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static TechniqueMetadataAttribute GetAttribute(this SingleTechniqueSubtype @this)
-		=> typeof(SingleTechniqueSubtype).GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
+	private static TechniqueMetadataAttribute GetAttribute(this SingleSubtype @this)
+		=> typeof(SingleSubtype).GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()!;
 }

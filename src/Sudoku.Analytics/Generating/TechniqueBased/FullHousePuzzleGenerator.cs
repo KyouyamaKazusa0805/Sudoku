@@ -85,14 +85,11 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	}
 
 	/// <inheritdoc/>
-	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
-		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None,
-		CancellationToken cancellationToken = default
-	)
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default)
 	{
 		try
 		{
-			return Enum.IsDefined(subtype) && subtype != SingleTechniqueSubtype.Unknown
+			return Enum.IsDefined(subtype) && subtype != SingleSubtype.Unknown
 				? g(subtype, cancellationToken)
 				: new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
@@ -102,7 +99,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		}
 
 
-		static PhasedJustOneCellPuzzle g(SingleTechniqueSubtype subtype, CancellationToken cancellationToken)
+		static PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
 		{
 			while (true)
 			{
@@ -116,7 +113,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 							continue;
 						}
 
-						if (subtype != SingleTechniqueSubtype.None && subtype != currentSubtype)
+						if (subtype != SingleSubtype.None && subtype != currentSubtype)
 						{
 							continue;
 						}

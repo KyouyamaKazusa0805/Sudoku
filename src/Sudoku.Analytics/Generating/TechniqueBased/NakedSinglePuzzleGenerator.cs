@@ -51,29 +51,26 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 				targetDigit,
 				blockCellsCount switch
 				{
-					0 => SingleTechniqueSubtype.NakedSingle0,
-					1 => SingleTechniqueSubtype.NakedSingle1,
-					2 => SingleTechniqueSubtype.NakedSingle2,
-					3 => SingleTechniqueSubtype.NakedSingle3,
-					4 => SingleTechniqueSubtype.NakedSingle4,
-					5 => SingleTechniqueSubtype.NakedSingle5,
-					6 => SingleTechniqueSubtype.NakedSingle6,
-					7 => SingleTechniqueSubtype.NakedSingle7,
-					8 => SingleTechniqueSubtype.NakedSingle8
+					0 => SingleSubtype.NakedSingle0,
+					1 => SingleSubtype.NakedSingle1,
+					2 => SingleSubtype.NakedSingle2,
+					3 => SingleSubtype.NakedSingle3,
+					4 => SingleSubtype.NakedSingle4,
+					5 => SingleSubtype.NakedSingle5,
+					6 => SingleSubtype.NakedSingle6,
+					7 => SingleSubtype.NakedSingle7,
+					8 => SingleSubtype.NakedSingle8
 				}
 			)
 		);
 	}
 
 	/// <inheritdoc/>
-	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
-		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None,
-		CancellationToken cancellationToken = default
-	)
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default)
 	{
 		try
 		{
-			return Enum.IsDefined(subtype) && subtype != SingleTechniqueSubtype.Unknown
+			return Enum.IsDefined(subtype) && subtype != SingleSubtype.Unknown
 				? g(subtype, cancellationToken)
 				: new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
@@ -83,7 +80,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		}
 
 
-		static PhasedJustOneCellPuzzle g(SingleTechniqueSubtype subtype, CancellationToken cancellationToken)
+		static PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
 		{
 			while (true)
 			{
@@ -97,7 +94,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 							continue;
 						}
 
-						if (subtype != SingleTechniqueSubtype.None && subtype != currentSubtype)
+						if (subtype != SingleSubtype.None && subtype != currentSubtype)
 						{
 							continue;
 						}

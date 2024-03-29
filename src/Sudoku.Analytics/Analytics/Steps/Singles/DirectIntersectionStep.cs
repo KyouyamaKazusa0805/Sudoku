@@ -25,7 +25,7 @@ public sealed partial class DirectIntersectionStep(
 	[PrimaryConstructorParameter] House intersectionHouse,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap interim,
 	[PrimaryConstructorParameter] Digit interimDigit,
-	SingleTechniqueSubtype subtype,
+	SingleSubtype subtype,
 	Technique basedOn,
 	[PrimaryConstructorParameter] bool isPointing
 ) : ComplexSingleStep(

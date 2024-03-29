@@ -30,14 +30,11 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 	}
 
 	/// <inheritdoc/>
-	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(
-		SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None,
-		CancellationToken cancellationToken = default
-	)
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default)
 	{
 		try
 		{
-			return Enum.IsDefined(subtype) && subtype != SingleTechniqueSubtype.Unknown
+			return Enum.IsDefined(subtype) && subtype != SingleSubtype.Unknown
 				? g(subtype, cancellationToken)
 				: new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
@@ -47,7 +44,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 		}
 
 
-		static PhasedJustOneCellPuzzle g(SingleTechniqueSubtype subtype, CancellationToken cancellationToken)
+		static PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
 		{
 			while (true)
 			{
@@ -61,7 +58,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 							continue;
 						}
 
-						if (subtype != SingleTechniqueSubtype.None && subtype != currentSubtype)
+						if (subtype != SingleSubtype.None && subtype != currentSubtype)
 						{
 							continue;
 						}
@@ -97,7 +94,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 	/// <param name="house">The target house.</param>
 	/// <param name="subtype">The selected subtype.</param>
 	/// <returns>The final result generated.</returns>
-	private JustOneCellPuzzle GenerateForBlock(House house, SingleTechniqueSubtype subtype)
+	private JustOneCellPuzzle GenerateForBlock(House house, SingleSubtype subtype)
 	{
 		while (true)
 		{
@@ -261,7 +258,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 	/// <param name="house">The target house.</param>
 	/// <param name="subtype">The selected subtype.</param>
 	/// <returns>The final result generated.</returns>
-	private JustOneCellPuzzle GenerateForLine(House house, SingleTechniqueSubtype subtype)
+	private JustOneCellPuzzle GenerateForLine(House house, SingleSubtype subtype)
 	{
 		// Adjust if values are invalid.
 		house = (subtype.GetRelatedTechnique(), house) switch

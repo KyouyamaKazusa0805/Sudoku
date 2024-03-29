@@ -15,5 +15,5 @@ public abstract partial class SingleStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] SingleTechniqueSubtype subtype
+	[PrimaryConstructorParameter] SingleSubtype subtype
 ) : Step(conclusions, views, options);

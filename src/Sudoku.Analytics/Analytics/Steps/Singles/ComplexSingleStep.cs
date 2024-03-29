@@ -37,7 +37,7 @@ public abstract partial class ComplexSingleStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	SingleTechniqueSubtype subtype,
+	SingleSubtype subtype,
 	[PrimaryConstructorParameter] Technique basedOn,
 	[PrimaryConstructorParameter] Technique[][] indirectTechniques
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)

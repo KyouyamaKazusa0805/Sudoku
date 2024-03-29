@@ -225,7 +225,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The subtype of the naked single.</returns>
-	private static SingleTechniqueSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
+	private static SingleSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
 	{
 		var valuesCountInBlock = 0;
 		foreach (var c in HousesMap[cell.ToHouseIndex(HouseType.Block)])
@@ -237,15 +237,15 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		}
 		return valuesCountInBlock switch
 		{
-			0 => SingleTechniqueSubtype.NakedSingle0,
-			1 => SingleTechniqueSubtype.NakedSingle1,
-			2 => SingleTechniqueSubtype.NakedSingle2,
-			3 => SingleTechniqueSubtype.NakedSingle3,
-			4 => SingleTechniqueSubtype.NakedSingle4,
-			5 => SingleTechniqueSubtype.NakedSingle5,
-			6 => SingleTechniqueSubtype.NakedSingle6,
-			7 => SingleTechniqueSubtype.NakedSingle7,
-			_ => SingleTechniqueSubtype.NakedSingle8
+			0 => SingleSubtype.NakedSingle0,
+			1 => SingleSubtype.NakedSingle1,
+			2 => SingleSubtype.NakedSingle2,
+			3 => SingleSubtype.NakedSingle3,
+			4 => SingleSubtype.NakedSingle4,
+			5 => SingleSubtype.NakedSingle5,
+			6 => SingleSubtype.NakedSingle6,
+			7 => SingleSubtype.NakedSingle7,
+			_ => SingleSubtype.NakedSingle8
 		};
 	}
 

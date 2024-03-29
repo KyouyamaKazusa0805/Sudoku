@@ -15,7 +15,7 @@ public sealed partial class NakedSingleStep(
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	SingleTechniqueSubtype subtype
+	SingleSubtype subtype
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>

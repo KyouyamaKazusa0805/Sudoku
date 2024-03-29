@@ -27,7 +27,7 @@ public sealed partial class DirectSubsetStep(
 	[PrimaryConstructorParameter] House subsetHouse,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap interim,
 	[PrimaryConstructorParameter] Mask interimDigitsMask,
-	SingleTechniqueSubtype subtype,
+	SingleSubtype subtype,
 	Technique basedOn,
 	[PrimaryConstructorParameter] Technique subsetTechnique
 ) : ComplexSingleStep(

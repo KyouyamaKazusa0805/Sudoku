@@ -44,7 +44,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
 	/// <returns>A <see cref="PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
 	/// <seealso cref="PhasedJustOneCellPuzzle"/>
-	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype subtype = SingleTechniqueSubtype.None, CancellationToken cancellationToken = default);
+	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default);
 
 
 	/// <summary>
@@ -82,15 +82,15 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 		};
 
 	/// <summary>
-	/// Randomly select a <see cref="SingleTechniqueSubtype"/> instance.
+	/// Randomly select a <see cref="SingleSubtype"/> instance.
 	/// </summary>
 	/// <param name="house">The house selected.</param>
 	/// <param name="match">The extra match method.</param>
 	/// <returns>The subtype selected.</returns>
-	private protected static SingleTechniqueSubtype RandomlySelectSubtype(House house, Func<SingleTechniqueSubtype, bool> match)
+	private protected static SingleSubtype RandomlySelectSubtype(House house, Func<SingleSubtype, bool> match)
 	{
-		var range = Enum.GetValues<SingleTechniqueSubtype>()[house switch { < 9 => 4..13, < 18 => 14..28, _ => 29..43 }];
-		SingleTechniqueSubtype subtype;
+		var range = Enum.GetValues<SingleSubtype>()[house switch { < 9 => 4..13, < 18 => 14..28, _ => 29..43 }];
+		SingleSubtype subtype;
 		do
 		{
 			subtype = range[Rng.Next(0, range.Length)];
