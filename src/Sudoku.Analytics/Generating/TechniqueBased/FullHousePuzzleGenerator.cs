@@ -31,7 +31,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
 		// Choose the target house.
-		var selectedHouse = RandomlySelectHouse();
+		var selectedHouse = RandomlySelectHouse(Alignment);
 
 		// Shuffle the digits.
 		ShuffleSequence(DigitSeed);

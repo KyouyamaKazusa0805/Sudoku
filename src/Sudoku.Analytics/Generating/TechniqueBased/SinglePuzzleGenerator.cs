@@ -30,26 +30,11 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 
 
 	/// <summary>
-	/// Randomly select a house, obeying the rule <see cref="Alignment"/>.
-	/// </summary>
-	/// <returns>The house index.</returns>
-	/// <seealso cref="Alignment"/>
-	private protected House RandomlySelectHouse()
-		=> Alignment switch
-		{
-			GridAlignment.NotLimited => Rng.Next(0, 27),
-			GridAlignment.CenterHouses => 9 * Rng.Next(0, 3) + 4,
-			GridAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
-			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
-		};
-
-
-	/// <summary>
 	/// Checks for the block position of the specified cell.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The block position.</returns>
-	private protected static int BlockPositionOf(Cell cell)
+	private protected static Digit BlockPositionOf(Cell cell)
 	{
 		var block = cell.ToHouseIndex(HouseType.Block);
 		var i = 0;
@@ -59,11 +44,24 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 			{
 				return i;
 			}
-
 			i++;
 		}
 		return -1;
 	}
+
+	/// <summary>
+	/// Randomly select a house, obeying the specified grid alignment rule.
+	/// </summary>
+	/// <param name="alignment">Indicates the grid alignment value to be used.</param>
+	/// <returns>The house index.</returns>
+	private protected static House RandomlySelectHouse(GridAlignment alignment)
+		=> alignment switch
+		{
+			GridAlignment.NotLimited => Rng.Next(0, 27),
+			GridAlignment.CenterHouses => 9 * Rng.Next(0, 3) + 4,
+			GridAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
+			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
+		};
 
 	/// <summary>
 	/// Randomly select a <see cref="SingleTechniqueSubtype"/> instance.

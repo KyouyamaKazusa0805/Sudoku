@@ -21409,19 +21409,19 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse">
-            <summary>
-            Randomly select a house, obeying the rule <see cref="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment"/>.
-            </summary>
-            <returns>The house index.</returns>
-            <seealso cref="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment"/>
-        </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
             <summary>
             Checks for the block position of the specified cell.
             </summary>
             <param name="cell">The cell.</param>
             <returns>The block position.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.TechniqueBased.GridAlignment)">
+            <summary>
+            Randomly select a house, obeying the specified grid alignment rule.
+            </summary>
+            <param name="alignment">Indicates the grid alignment value to be used.</param>
+            <returns>The house index.</returns>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectSubtype(System.Int32,System.Func{Sudoku.Analytics.Categorization.SingleTechniqueSubtype,System.Boolean})">
             <summary>

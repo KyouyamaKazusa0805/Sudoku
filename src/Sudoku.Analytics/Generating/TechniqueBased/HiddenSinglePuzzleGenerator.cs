@@ -22,7 +22,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 	/// <inheritdoc/>
 	public override JustOneCellPuzzle GenerateJustOneCell()
 	{
-		var house = RandomlySelectHouse();
+		var house = RandomlySelectHouse(Alignment);
 		var subtype = RandomlySelectSubtype(house, s => AllowsBlockExcluders || s.GetExcludersCount(HouseType.Block) == 0);
 		var a = GenerateForBlock;
 		var b = GenerateForLine;
