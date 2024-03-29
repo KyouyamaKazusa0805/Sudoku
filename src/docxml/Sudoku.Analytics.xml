@@ -4097,6 +4097,13 @@
             <param name="houseType">The house type.</param>
             <returns>The number of excluders.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetAbbreviation(Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
+            <summary>
+            Gets the abbreviation of the subtype.
+            </summary>
+            <param name="this">Indicates the subtype.</param>
+            <returns>The abbreviation.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetRelatedTechnique(Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
             <summary>
             Try to get the related technique of the current subtype.

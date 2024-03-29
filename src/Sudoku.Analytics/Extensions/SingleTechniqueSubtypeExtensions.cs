@@ -38,6 +38,14 @@ public static class SingleTechniqueSubtypeExtensions
 		=> @this.ToString()[^(3 - (int)houseType)] - '0';
 
 	/// <summary>
+	/// Gets the abbreviation of the subtype.
+	/// </summary>
+	/// <param name="this">Indicates the subtype.</param>
+	/// <returns>The abbreviation.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string? GetAbbreviation(this SingleTechniqueSubtype @this) => @this.GetAttribute().Abbreviation;
+
+	/// <summary>
 	/// Try to get the related technique of the current subtype.
 	/// </summary>
 	/// <param name="this">The subtype.</param>
