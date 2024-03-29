@@ -56,7 +56,8 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
 	/// <returns>A type that encapsulates the result detail.</returns>
-	public abstract FullPuzzle GenerateUnique(CancellationToken cancellationToken = default);
+	public virtual FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
+		=> new FullPuzzleFailed(GeneratingFailedReason.Unnecessary);
 
 	/// <inheritdoc/>
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)

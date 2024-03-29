@@ -66,6 +66,8 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 	}
 
 	/// <inheritdoc/>
-	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
-		=> new FullPuzzleFailed(GeneratingFailedReason.Unnecessary);
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype? subtype = null, CancellationToken cancellationToken = default)
+	{
+		return null!;
+	}
 }

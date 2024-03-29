@@ -21188,6 +21188,171 @@ if (student is (name: var name, age: >= 18))
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
         </member>
+        <member name="T:Sudoku.Generating.GridAlignment">
+            <summary>
+            Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridAlignment.NotLimited">
+            <summary>
+            Indicates the rule is not limited.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridAlignment.CenterHouses">
+            <summary>
+            Indicates the rule is limited in row 5, column 5 and block 5. However, the conclusion can be outside the block 5
+            to display other positions like some cells adjacent to grid borders.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridAlignment.CenterBlock">
+            <summary>
+            Indicates the rule is limited in only block 5. No matter what technique used, the conclusion must be inside the block 5.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.GridAlignment.CenterCell">
+            <summary>
+            Indicates the conclusion can only be placed in <c>r5c5</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.JustOneCellPuzzle">
+            <summary>
+            Represents the answer to a just-one-cell sudoku puzzle.
+            </summary>
+            <param name="cell">Indicates the target cell.</param>
+            <param name="digit">Indicates the target digit.</param>
+            <param name="step">
+            <para>Indiactes the step for the pattern.</para>
+            <para>
+            Assign a not-<see langword="null"/> value to this parameter
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
+            in order to avoid the potential bug on displaying details.
+            </para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step)">
+            <summary>
+            Represents the answer to a just-one-cell sudoku puzzle.
+            </summary>
+            <param name="cell">Indicates the target cell.</param>
+            <param name="digit">Indicates the target digit.</param>
+            <param name="step">
+            <para>Indiactes the step for the pattern.</para>
+            <para>
+            Assign a not-<see langword="null"/> value to this parameter
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
+            in order to avoid the potential bug on displaying details.
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Generating.JustOneCellPuzzle.Success">
+            <summary>
+            Indicates whether the data represents "success" message and values are valid in use.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzle.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzle.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.JustOneCellPuzzle.Cell">
+            <summary>
+            The generated property declaration for parameter <c>cell</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.JustOneCellPuzzle.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.JustOneCellPuzzle.Step">
+            <summary>
+            The generated property declaration for parameter <c>step</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzle.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Generating.JustOneCellPuzzleFailed">
+            <summary>
+            Provides failed for generating just-one-cell puzzles.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzleFailed.#ctor(Sudoku.Generating.GeneratingFailedReason)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.JustOneCellPuzzleFailed"/> instance.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="T:Sudoku.Generating.JustOneCellPuzzleSuccessful">
+            <summary>
+            Provides with successful generating for just-one-cell puzzle.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.JustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.JustOneCellPuzzleSuccessful"/> instance.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Generating.PhasedJustOneCellPuzzle">
+            <summary>
+            Represents a just-one-cell puzzle, but contains the base puzzle that has a unique solution.
+            </summary>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="step"><inheritdoc/></param>
+            <param name="baseGrid">Indicates the base grid.</param>
+        </member>
+        <member name="M:Sudoku.Generating.PhasedJustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents a just-one-cell puzzle, but contains the base puzzle that has a unique solution.
+            </summary>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="step"><inheritdoc/></param>
+            <param name="baseGrid">Indicates the base grid.</param>
+        </member>
+        <member name="M:Sudoku.Generating.PhasedJustOneCellPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Generating.PhasedJustOneCellPuzzle.BaseGrid">
+            <summary>
+            The generated property declaration for parameter <c>baseGrid</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.PhasedJustOneCellPuzzle.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Generating.PhasedJustOneCellPuzzleFailed">
+            <summary>
+            Provides failed message for <see cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/>
+        </member>
+        <member name="M:Sudoku.Generating.PhasedJustOneCellPuzzleFailed.#ctor(Sudoku.Generating.GeneratingFailedReason)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.JustOneCellPuzzleFailed"/> instance.
+            </summary>
+            <param name="reason">The failed reason.</param>
+        </member>
+        <member name="T:Sudoku.Generating.PhasedJustOneCellPuzzleSuccessful">
+            <summary>
+            Provides successful message for <see cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/>
+        </member>
+        <member name="M:Sudoku.Generating.PhasedJustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Generating.JustOneCellPuzzleSuccessful"/> instance.
+            </summary>
+        </member>
         <member name="T:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator">
             <summary>
             Represents a type that generates puzzles that only contains full house usages.
@@ -21216,34 +21381,11 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Generating.TechniqueBased.GridAlignment">
-            <summary>
-            Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.NotLimited">
-            <summary>
-            Indicates the rule is not limited.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterHouses">
-            <summary>
-            Indicates the rule is limited in row 5, column 5 and block 5. However, the conclusion can be outside the block 5
-            to display other positions like some cells adjacent to grid borders.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterBlock">
-            <summary>
-            Indicates the rule is limited in only block 5. No matter what technique used, the conclusion must be inside the block 5.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.TechniqueBased.GridAlignment.CenterCell">
-            <summary>
-            Indicates the conclusion can only be placed in <c>r5c5</c>.
-            </summary>
+        <member name="M:Sudoku.Generating.TechniqueBased.FullHousePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator">
             <summary>
@@ -21262,7 +21404,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForBlock(System.Int32,Sudoku.Analytics.Categorization.SingleTechniqueSubtype)">
@@ -21281,93 +21423,6 @@ if (student is (name: var name, age: >= 18))
             <param name="subtype">The selected subtype.</param>
             <returns>The final result generated.</returns>
         </member>
-        <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle">
-            <summary>
-            Represents the answer to a just-one-cell sudoku puzzle.
-            </summary>
-            <param name="cell">Indicates the target cell.</param>
-            <param name="digit">Indicates the target digit.</param>
-            <param name="step">
-            <para>Indiactes the step for the pattern.</para>
-            <para>
-            Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
-            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
-            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
-            in order to avoid the potential bug on displaying details.
-            </para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step)">
-            <summary>
-            Represents the answer to a just-one-cell sudoku puzzle.
-            </summary>
-            <param name="cell">Indicates the target cell.</param>
-            <param name="digit">Indicates the target digit.</param>
-            <param name="step">
-            <para>Indiactes the step for the pattern.</para>
-            <para>
-            Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
-            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
-            to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
-            in order to avoid the potential bug on displaying details.
-            </para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.Success">
-            <summary>
-            Indicates whether the data represents "success" message and values are valid in use.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.Cell">
-            <summary>
-            The generated property declaration for parameter <c>cell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.Digit">
-            <summary>
-            The generated property declaration for parameter <c>digit</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.Step">
-            <summary>
-            The generated property declaration for parameter <c>step</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzle.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed">
-            <summary>
-            Provides failed for generating just-one-cell puzzles.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed.#ctor(Sudoku.Generating.GeneratingFailedReason)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleFailed"/> instance.
-            </summary>
-            <param name="reason">The failed reason.</param>
-        </member>
-        <member name="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful">
-            <summary>
-            Provides with successful generating for just-one-cell puzzle.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Generating.TechniqueBased.JustOneCellPuzzleSuccessful"/> instance.
-            </summary>
-        </member>
         <member name="T:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator">
             <summary>
             Represents a puzzle generator that can create puzzles using naked singles.
@@ -21379,7 +21434,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCell">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateUnique(System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1">
@@ -21398,16 +21453,31 @@ if (student is (name: var name, age: >= 18))
             Indicates center houses, strictly.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SingleAnalyzer">
+            <summary>
+            Indicates the analyzer. This field can only be called inside method <see cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)"/>.
+            </summary>
+            <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)"/>
+        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.HasInterfererDigits">
             <summary>
             Indicates whether the generator will also create for interferer digits.
             </summary>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment">
-            <inheritdoc cref="T:Sudoku.Generating.TechniqueBased.GridAlignment"/>
+            <inheritdoc cref="T:Sudoku.Generating.GridAlignment"/>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(System.Nullable{Sudoku.Analytics.Categorization.SingleTechniqueSubtype},System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle that is a just-one-cell, but is created from a normal puzzle that contains a unique solution.
+            </summary>
+            <param name="subtype">Indicates the subtype to be checked.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+            <returns>A <see cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
+            <seealso cref="T:Sudoku.Generating.PhasedJustOneCellPuzzle"/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
             <summary>
@@ -21416,7 +21486,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <returns>The block position.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.TechniqueBased.GridAlignment)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.GridAlignment)">
             <summary>
             Randomly select a house, obeying the specified grid alignment rule.
             </summary>

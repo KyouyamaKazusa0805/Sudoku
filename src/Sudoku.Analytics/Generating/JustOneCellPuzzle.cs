@@ -1,4 +1,4 @@
-namespace Sudoku.Generating.TechniqueBased;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Represents the answer to a just-one-cell sudoku puzzle.
@@ -30,6 +30,11 @@ public partial class JustOneCellPuzzle(
 
 
 	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
+		=> other is JustOneCellPuzzle comparer
+		&& (Result, Puzzle, Cell, Digit, Step) == (comparer.Result, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step);
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);
 
@@ -45,10 +50,4 @@ public partial class JustOneCellPuzzle(
 		var str = $"{Step.ToString(culture)}";
 		return str[..(str.IndexOf(str.Match("""=>[\s\S]*$""")!) + 1)];
 	}
-
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
-		=> other is JustOneCellPuzzle comparer
-		&& (Result, Puzzle, Cell, Digit, Step) == (comparer.Result, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step);
 }

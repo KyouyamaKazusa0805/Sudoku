@@ -85,6 +85,58 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	}
 
 	/// <inheritdoc/>
+	public override PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype? subtype = null, CancellationToken cancellationToken = default)
+	{
+		try
+		{
+			return g(subtype, cancellationToken);
+		}
+		catch (OperationCanceledException)
+		{
+			return new PhasedJustOneCellPuzzleFailed(GeneratingFailedReason.Canceled);
+		}
+
+
+		static PhasedJustOneCellPuzzle g(SingleTechniqueSubtype? subtype, CancellationToken cancellationToken)
+		{
+			while (true)
+			{
+				var puzzle = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
+				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is { IsSolved: true, SolvingPath: var path })
+				{
+					foreach (var (currentGrid, step) in path)
+					{
+						if (step is not FullHouseStep { Cell: var cell, Digit: var digit, House: var house, Subtype: var currentSubtype })
+						{
+							continue;
+						}
+
+						if (subtype is not null && subtype != currentSubtype)
+						{
+							continue;
+						}
+
+						var extractedGrid = currentGrid;
+						extractedGrid.Unfix();
+						for (var c = 0; c < 81; c++)
+						{
+							if (!HousesMap[house].Contains(c))
+							{
+								extractedGrid.SetDigit(c, -1);
+							}
+						}
+
+						// Found. Now return the value.
+						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
+					}
+				}
+
+				cancellationToken.ThrowIfCancellationRequested();
+			}
+		}
+	}
+
+	/// <inheritdoc/>
 	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
 	{
 		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))

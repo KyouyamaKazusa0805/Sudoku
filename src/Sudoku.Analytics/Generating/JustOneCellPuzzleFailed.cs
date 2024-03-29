@@ -1,4 +1,4 @@
-namespace Sudoku.Generating.TechniqueBased;
+namespace Sudoku.Generating;
 
 /// <summary>
 /// Provides failed for generating just-one-cell puzzles.

@@ -16,6 +16,14 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// </summary>
 	private protected static readonly House[] StrictCenterHouses = [4, 13, 22];
 
+	/// <summary>
+	/// Indicates the analyzer. This field can only be called inside method <see cref="GenerateJustOneCellPhased"/>.
+	/// </summary>
+	/// <seealso cref="GenerateJustOneCellPhased"/>
+	private protected static readonly Analyzer SingleAnalyzer = Analyzers.Default
+		.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true })
+		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
+
 
 	/// <summary>
 	/// Indicates whether the generator will also create for interferer digits.
@@ -27,6 +35,16 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => SudokuType.JustOneCell;
+
+
+	/// <summary>
+	/// Generates a puzzle that is a just-one-cell, but is created from a normal puzzle that contains a unique solution.
+	/// </summary>
+	/// <param name="subtype">Indicates the subtype to be checked.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the current operation.</param>
+	/// <returns>A <see cref="PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
+	/// <seealso cref="PhasedJustOneCellPuzzle"/>
+	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleTechniqueSubtype? subtype = null, CancellationToken cancellationToken = default);
 
 
 	/// <summary>
