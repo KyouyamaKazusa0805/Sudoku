@@ -25,8 +25,8 @@ public static partial class BitOperationsExtensions
 	public static partial Int32Enumerator GetEnumerator(this uint @this);
 	public static partial Int64Enumerator GetEnumerator(this long @this);
 	public static partial Int64Enumerator GetEnumerator(this ulong @this);
-	public static partial NativeIntEnumerator GetEnumerator(this nint @this);
-	public static partial NativeIntEnumerator GetEnumerator(this nuint @this);
+	public static partial NativeIntegerEnumerator GetEnumerator(this nint @this);
+	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this);
 
 	public static partial int GetNextSet(this byte @this, int index);
 	public static partial int GetNextSet(this short @this, int index);

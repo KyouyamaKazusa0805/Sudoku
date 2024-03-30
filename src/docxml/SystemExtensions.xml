@@ -2174,38 +2174,38 @@
         <member name="M:System.Numerics.MaskCombinationEnumerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:System.Numerics.NativeIntEnumerator">
+        <member name="T:System.Numerics.NativeIntegerEnumerator">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="value">The value to be iterated.</param>
         </member>
-        <member name="M:System.Numerics.NativeIntEnumerator.#ctor(System.UIntPtr)">
+        <member name="M:System.Numerics.NativeIntegerEnumerator.#ctor(System.UIntPtr)">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.IntPtr"/> or <see cref="T:System.UIntPtr"/> value.
             </summary>
             <param name="value">The value to be iterated.</param>
         </member>
-        <member name="P:System.Numerics.NativeIntEnumerator.PopulationCount">
+        <member name="P:System.Numerics.NativeIntegerEnumerator.PopulationCount">
             <summary>
             Indicates the population count of the value.
             </summary>
         </member>
-        <member name="P:System.Numerics.NativeIntEnumerator.Bits">
+        <member name="P:System.Numerics.NativeIntegerEnumerator.Bits">
             <summary>
             Indicates the bits set.
             </summary>
         </member>
-        <member name="P:System.Numerics.NativeIntEnumerator.Current">
+        <member name="P:System.Numerics.NativeIntegerEnumerator.Current">
             <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
         </member>
-        <member name="P:System.Numerics.NativeIntEnumerator.Item(System.Int32)">
+        <member name="P:System.Numerics.NativeIntegerEnumerator.Item(System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
         </member>
-        <member name="M:System.Numerics.NativeIntEnumerator.MoveNext">
+        <member name="M:System.Numerics.NativeIntegerEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.Numerics.NativeIntEnumerator._value">
+        <member name="F:System.Numerics.NativeIntegerEnumerator._value">
             <summary>
             The generated field declaration for parameter <c>value</c>.
             </summary>

@@ -50,9 +50,9 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial NativeIntEnumerator GetEnumerator(this nint @this) => new((nuint)@this);
+	public static partial NativeIntegerEnumerator GetEnumerator(this nint @this) => new((nuint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static partial NativeIntEnumerator GetEnumerator(this nuint @this) => new(@this);
+	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this) => new(@this);
 }
