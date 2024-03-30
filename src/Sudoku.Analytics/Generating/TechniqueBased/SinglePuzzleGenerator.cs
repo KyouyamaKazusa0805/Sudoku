@@ -26,14 +26,6 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 
-	/// <summary>
-	/// Indicates whether the generator will also create for interferer digits.
-	/// </summary>
-	public bool HasInterfererDigits { get; set; }
-
-	/// <inheritdoc cref="ConlusionCellAlignment"/>
-	public ConlusionCellAlignment Alignment { get; set; }
-
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => SudokuType.JustOneCell;
 

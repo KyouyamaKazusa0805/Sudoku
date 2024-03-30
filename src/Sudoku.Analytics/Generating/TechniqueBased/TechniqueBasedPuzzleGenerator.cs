@@ -26,6 +26,24 @@ public abstract class TechniqueBasedPuzzleGenerator :
 
 
 	/// <summary>
+	/// Indicates the percentage of interfering digits to be inserted into a just-one-cell puzzle, interfering the puzzle and user.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// The value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
+	/// The value is 0 by default.
+	/// </para>
+	/// <para>This property will be used in method <see cref="GenerateJustOneCell"/> only.</para>
+	/// </remarks>
+	/// <seealso cref="GenerateJustOneCell"/>
+	public double InterferingPercentage { get; set; }
+
+	/// <summary>
+	/// Indicates the aligning rule controlling the case what position just-one-cell puzzles produce conclusion cells can be at.
+	/// </summary>
+	public ConlusionCellAlignment Alignment { get; set; }
+
+	/// <summary>
 	/// Indicates the supported sudoku puzzle types.
 	/// </summary>
 	public abstract SudokuType SupportedTypes { get; }
