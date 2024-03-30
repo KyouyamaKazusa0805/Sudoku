@@ -94,7 +94,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 		do
 		{
 			subtype = range[Rng.Next(0, range.Length)];
-		} while (subtype.IsUnnecessary() || !match(subtype));
+		} while (!match(subtype));
 		return subtype;
 	}
 }
