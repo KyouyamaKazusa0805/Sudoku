@@ -1189,7 +1189,7 @@
             <param name="elements">The elements to be appended.</param>
             <returns>The reference of the current instance.</returns>
         </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.ReadOnlySpan{``0},System.Func{``0,System.String},System.Text.StringBuilderAppender{System.String})">
+        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.ReadOnlySpan{``0},System.Func{``0,System.String},System.Func{System.Text.StringBuilder,System.String,System.Text.StringBuilder})">
             <summary>
             Appends a list of elements of type <typeparamref name="T"/> into the <see cref="T:System.Text.StringBuilder"/> instance,
             using the specified converter to convert each element into <see cref="T:System.String"/> value.
@@ -1261,15 +1261,6 @@
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
-        </member>
-        <member name="T:System.Text.StringBuilderAppender`1">
-            <summary>
-            Represents an appender method, adding the specified instance into the <see cref="T:System.Text.StringBuilder"/> instance.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="this">The string builder instance.</param>
-            <param name="value">The value to be added.</param>
-            <returns>The reference that is same as the argument <paramref name="this"/>.</returns>
         </member>
         <member name="T:System.MathExtensions">
             <summary>

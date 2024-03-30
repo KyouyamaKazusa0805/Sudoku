@@ -84,7 +84,7 @@ public static class StringBuilderExtensions
 		this StringBuilder @this,
 		scoped ReadOnlySpan<T> elements,
 		Func<T, string> stringConverter,
-		StringBuilderAppender<string>? builderAppender = null
+		Func<StringBuilder, string, StringBuilder>? builderAppender = null
 	) where T : notnull
 	{
 		builderAppender ??= static (sb, v) => sb.Append(v);
