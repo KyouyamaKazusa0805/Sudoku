@@ -213,7 +213,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Conclusion.GetSymmetricConclusion(Sudoku.Concepts.SymmetricType,System.Int32)">
+        <member name="M:Sudoku.Analytics.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
             <summary>
             Try to get a new <see cref="T:Sudoku.Analytics.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
             </summary>
@@ -4038,146 +4038,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.SudokuType">
-            <summary>
-            Represents a type of sudoku puzzle.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SudokuType.None">
-            <summary>
-            The placeholder of the enumeration field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SudokuType.Standard">
-            <summary>
-            Indicates the sudoku puzzle is a standard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SudokuType.Sukaku">
-            <summary>
-            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SudokuType.JustOneCell">
-            <summary>
-            Indicates the sudoku puzzle is a just-one-cell sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.SymmetricType">
-            <summary>
-            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.None">
-            <summary>
-            Indicates none of symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.Central">
-            <summary>
-            Indicates the central symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.Diagonal">
-            <summary>
-            Indicates the diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.AntiDiagonal">
-            <summary>
-            Indicates the anti-diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.XAxis">
-            <summary>
-            Indicates the x-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.YAxis">
-            <summary>
-            Indicates the y-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.AxisBoth">
-            <summary>
-            Indicates both X-axis and Y-axis symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.DiagonalBoth">
-            <summary>
-            Indicates both diagonal and anti-diagonal symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.SymmetricType.All">
-            <summary>
-            Indicates all symmetry types should be satisfied.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.TransformType">
-            <summary>
-            Represents a type of transformation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.DigitSwap">
-            <summary>
-            Indicates the transform type is to swap digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.RowSwap">
-            <summary>
-            Indicates the transform type is to swap rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.ColumnSwap">
-            <summary>
-            Indicates the transform type is to swap columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.BandSwap">
-            <summary>
-            Indicates the transform type is to swap bands.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.TowerSwap">
-            <summary>
-            Indicates the transform type is to swap towers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.MirrorLeftRight">
-            <summary>
-            Indicates the transform type is to mirror left and right.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.MirrorTopBottom">
-            <summary>
-            Indicates the transform type is to mirror top and bottom.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.MirrorDiagonal">
-            <summary>
-            Indicates the transform type is to mirror diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.MirrorAntidiagonal">
-            <summary>
-            Indicates the transform type is to mirror anti-diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.RotateClockwise">
-            <summary>
-            Indicates the transform type is to rotate clockwise.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.TransformType.RotateCounterclockwise">
-            <summary>
-            Indicates the transform type is to ratate counter-clockwise.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.CoordinateType"/>.
@@ -4294,11 +4154,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.SymmetricType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.SymmetricType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.SymmetricType"/>
+            <seealso cref="T:Sudoku.SymmetricType"/>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.Concepts.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.SymmetricType)">
             <summary>
             Try to get the number of cells that the current symmetry should be formed a complete symmetric pattern.
             </summary>
@@ -4311,14 +4171,14 @@ if (student is (name: var name, age: >= 18))
             <description>Return value</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Concepts.SymmetricType.None"/> (0)</term>
+            <term><see cref="F:Sudoku.SymmetricType.None"/> (0)</term>
             <description>1 (Itself)</description>
             </item>
             <item>
             <term>
-            <see cref="F:Sudoku.Concepts.SymmetricType.Central"/>,
-            <see cref="F:Sudoku.Concepts.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.Concepts.SymmetricType.AntiDiagonal"/>,
-            <see cref="F:Sudoku.Concepts.SymmetricType.XAxis"/>, <see cref="F:Sudoku.Concepts.SymmetricType.YAxis"/>
+            <see cref="F:Sudoku.SymmetricType.Central"/>,
+            <see cref="F:Sudoku.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.SymmetricType.AntiDiagonal"/>,
+            <see cref="F:Sudoku.SymmetricType.XAxis"/>, <see cref="F:Sudoku.SymmetricType.YAxis"/>
             </term>
             <description>2</description>
             </item>
@@ -4334,18 +4194,18 @@ if (student is (name: var name, age: >= 18))
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.Concepts.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.SymmetricType)">
             <summary>
             Try to get the number of axes of the specified symmetric type.
             </summary>
             <param name="this">The symmetry.</param>
             <returns>
             The number of axes the current symmetric type contains.
-            If <paramref name="this"/> is <see cref="F:Sudoku.Concepts.SymmetricType.None"/>, -1 will be returned.
+            If <paramref name="this"/> is <see cref="F:Sudoku.SymmetricType.None"/>, -1 will be returned.
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.Concepts.SymmetricType,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.SymmetricType,System.Globalization.CultureInfo)">
             <summary>
             Gets the name of thr symmetry.
             </summary>
@@ -4354,22 +4214,22 @@ if (student is (name: var name, age: >= 18))
             <returns>The string.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Concepts.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.SymmetricType)">
             <summary>
             Try to get all possible cells in symmetry axis (or point).
             </summary>
             <param name="this">The symmetry.</param>
             <returns>Returns cells in the symmetry axis (or point).</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.Concepts.SymmetricType.None"/>.
+            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.SymmetricType.None"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)"/>
-            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)"/></param>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/>
+            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/></param>
             <param name="cell">Indicates the target cell to be checked.</param>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.SymmetricType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
             </summary>
@@ -4683,7 +4543,7 @@ if (student is (name: var name, age: >= 18))
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             <inheritdoc cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
             </summary>
@@ -4695,7 +4555,7 @@ if (student is (name: var name, age: >= 18))
             this puzzle will be still treated as valid one.
             </para>
             </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.SymmetricType.Central"/> by default.</param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">
             <inheritdoc
                 cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"
@@ -4707,12 +4567,12 @@ if (student is (name: var name, age: >= 18))
             or the argument <paramref name="cluesCount"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Generating.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <inheritdoc cref="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.Concepts.SymmetricType,System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.GenerateForFullGrid">
             <summary>
@@ -7856,13 +7716,13 @@ if (student is (name: var name, age: >= 18))
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Concepts.TransformType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
             <param name="transformTypes">
             Indicates the available transform type that the chosen grid can be transformed.
-            Use <see cref="T:Sudoku.Concepts.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Concepts.TransformType"/>, <see cref="T:Sudoku.Concepts.TransformType"/>)
+            Use <see cref="T:Sudoku.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.TransformType"/>, <see cref="T:Sudoku.TransformType"/>)
             to combine multiple flags.
             </param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
@@ -9236,6 +9096,81 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode)">
             <summary>
             The matrix row.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SudokuType">
+            <summary>
+            Represents a type of sudoku puzzle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.None">
+            <summary>
+            The placeholder of the enumeration field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.Standard">
+            <summary>
+            Indicates the sudoku puzzle is a standard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.Sukaku">
+            <summary>
+            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.JustOneCell">
+            <summary>
+            Indicates the sudoku puzzle is a just-one-cell sudoku.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SymmetricType">
+            <summary>
+            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.None">
+            <summary>
+            Indicates none of symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.Central">
+            <summary>
+            Indicates the central symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.Diagonal">
+            <summary>
+            Indicates the diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.AntiDiagonal">
+            <summary>
+            Indicates the anti-diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.XAxis">
+            <summary>
+            Indicates the x-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.YAxis">
+            <summary>
+            Indicates the y-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.AxisBoth">
+            <summary>
+            Indicates both X-axis and Y-axis symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.DiagonalBoth">
+            <summary>
+            Indicates both diagonal and anti-diagonal symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.All">
+            <summary>
+            Indicates all symmetry types should be satisfied.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
@@ -11435,6 +11370,71 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.TransformType">
+            <summary>
+            Represents a type of transformation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.DigitSwap">
+            <summary>
+            Indicates the transform type is to swap digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.RowSwap">
+            <summary>
+            Indicates the transform type is to swap rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.ColumnSwap">
+            <summary>
+            Indicates the transform type is to swap columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.BandSwap">
+            <summary>
+            Indicates the transform type is to swap bands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.TowerSwap">
+            <summary>
+            Indicates the transform type is to swap towers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.MirrorLeftRight">
+            <summary>
+            Indicates the transform type is to mirror left and right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.MirrorTopBottom">
+            <summary>
+            Indicates the transform type is to mirror top and bottom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.MirrorDiagonal">
+            <summary>
+            Indicates the transform type is to mirror diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.MirrorAntidiagonal">
+            <summary>
+            Indicates the transform type is to mirror anti-diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.RotateClockwise">
+            <summary>
+            Indicates the transform type is to rotate clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.TransformType.RotateCounterclockwise">
+            <summary>
+            Indicates the transform type is to ratate counter-clockwise.
+            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.AuthorPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the AuthorPattern method.</summary>

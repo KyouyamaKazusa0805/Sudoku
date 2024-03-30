@@ -4940,7 +4940,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:Sudoku.Concepts.TransformType"/> to a <see cref="T:System.Boolean"/> value.
+            Represents a value converter that can convert a <see cref="T:Sudoku.TransformType"/> to a <see cref="T:System.Boolean"/> value.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
