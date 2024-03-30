@@ -27322,9 +27322,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
             <summary>
-            Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Generating.HodokuPuzzleGenerator"/> can controls this.
+            Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator"/> can controls this.
             </summary>
-            <seealso cref="T:Sudoku.Generating.HodokuPuzzleGenerator"/>
+            <seealso cref="T:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator"/>
         </member>
         <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.InvalidSymmetricType">
             <summary>
