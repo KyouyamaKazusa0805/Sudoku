@@ -27,7 +27,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		// Update values and create a grid.
 		var puzzle = Grid.Empty;
 		var i = 0;
-		var digitsMask = (Mask)511;
+		var digitsMask = Grid.MaxCandidatesMask;
 		foreach (var cell in peerCells[..8])
 		{
 			var digit = DigitSeed[i++];

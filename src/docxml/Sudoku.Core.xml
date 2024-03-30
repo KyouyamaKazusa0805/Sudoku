@@ -2558,8 +2558,9 @@ if (student is (name: var name, age: >= 18))
             Serializes this instance to an array, where all digit value will be stored.
             </summary>
             <returns>
-            This array. All elements are the raw masks that between 0 and 511.
+            This array. All elements are the raw masks that between 0 and <see cref="F:Sudoku.Concepts.Grid.MaxCandidatesMask"/> (i.e. 511).
             </returns>
+            <seealso cref="F:Sudoku.Concepts.Grid.MaxCandidatesMask"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetCandidates(System.Int32)">
             <summary>

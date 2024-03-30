@@ -1109,8 +1109,9 @@ public partial struct Grid :
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
 	/// <returns>
-	/// This array. All elements are the raw masks that between 0 and 511.
+	/// This array. All elements are the raw masks that between 0 and <see cref="MaxCandidatesMask"/> (i.e. 511).
 	/// </returns>
+	/// <seealso cref="MaxCandidatesMask"/>
 	public readonly Mask[] ToCandidateMaskArray()
 	{
 		var result = new Mask[CellsCount];
