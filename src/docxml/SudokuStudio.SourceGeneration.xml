@@ -1,0 +1,231 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SudokuStudio.SourceGeneration</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.SourceGeneration.AccessibilityExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Sudoku.SourceGeneration.Accessibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Accessibility"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AccessibilityExtensions.GetName(Sudoku.SourceGeneration.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind">
+            <summary>
+            Defines a kind of default value generating member.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind.Field">
+            <summary>
+            Indicates the member type is a field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind.Property">
+            <summary>
+            Indicates the member type is a property.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind.ParameterlessMethod">
+            <summary>
+            Indicates the member type is a parameterless method.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind.CannotReference">
+            <summary>
+            Indicates the member cannot be referenced.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind.Otherwise">
+            <summary>
+            Otherwise.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.DocumentationCommentData">
+            <summary>
+            The documentation comment data used by XAML binding generator functions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.DocumentationCommentData.#ctor(System.String,System.String,System.String,System.String)">
+            <summary>
+            The documentation comment data used by XAML binding generator functions.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Generator">
+            <summary>
+            Represents the source generator.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.CommonMethods">
+            <summary>
+            Represents a set of methods that can be used by the types in this file.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CommonMethods.NotNullPredicate``1(``0)">
+            <summary>
+            Determine whether the value is not <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CommonMethods.NotNullSelector``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            Try to get the internal value without nullability checking.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
+            <param name="_"/>
+            <returns>The value.</returns>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.CommonMethods.NotNullSelector``1(System.Nullable{``0},System.Threading.CancellationToken)">
+            <summary>
+            Try to get the internal value without nullability checking.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value with <c>?</c> token being annotated, but not <see langword="null"/> currently.</param>
+            <param name="_"/>
+            <returns>The value.</returns>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean)">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler.Data})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.AttachedPropertyHandler"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler">
+            <summary>
+            The generator handler for dependency properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,System.Collections.Immutable.ImmutableArray{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Transform(Microsoft.CodeAnalysis.GeneratorAttributeSyntaxContext,System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data.#ctor(System.String,Microsoft.CodeAnalysis.ITypeSymbol,Sudoku.SourceGeneration.DocumentationCommentData,System.String,System.Nullable{Sudoku.SourceGeneration.DefaultValueGeneratingMemberKind},System.Object,System.String,System.Boolean,Sudoku.SourceGeneration.Accessibility,System.String[])">
+            <summary>
+            The nesting data structure for <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamedTypeSymbol,System.Collections.Generic.List{Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler.Data})">
+            <summary>
+            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Handlers.DependencyPropertyHandler"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.NameAttribute">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.NameAttribute.#ctor(System.String)">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.NameAttribute.Name">
+            <summary>
+            Indicates the name of the attribute.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.XamlBinding">
+            <summary>
+            Provides with some commonly-used methods.
+            </summary>
+        </member>
+        <member name="T:RootLevelSourceGeneration.SolutionVersion">
+            <summary>
+            Represents the data that describes the version used in the project or solution.
+            </summary>
+        </member>
+        <member name="F:RootLevelSourceGeneration.SolutionVersion.Value">
+            <summary>
+            Indicates the version value represented as a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+    </members>
+</doc>
