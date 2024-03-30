@@ -4,7 +4,7 @@ namespace Sudoku.Generating;
 /// Represents a full puzzle.
 /// </summary>
 [GetHashCode]
-public partial class FullPuzzle : PuzzleBase
+public abstract partial class FullPuzzle : PuzzleBase
 {
 	/// <summary>
 	/// Indicates the solution to the puzzle.

@@ -8,7 +8,7 @@ namespace Sudoku.Generating;
 /// <param name="step"><inheritdoc/></param>
 /// <param name="baseGrid">Indicates the base grid.</param>
 [GetHashCode]
-public partial class PhasedJustOneCellPuzzle(
+public abstract partial class PhasedJustOneCellPuzzle(
 	Cell cell,
 	Digit digit,
 	Step? step,

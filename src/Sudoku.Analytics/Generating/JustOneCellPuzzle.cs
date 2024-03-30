@@ -16,7 +16,7 @@ namespace Sudoku.Generating;
 /// </para>
 /// </param>
 [GetHashCode]
-public partial class JustOneCellPuzzle(
+public abstract partial class JustOneCellPuzzle(
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] Step? step
