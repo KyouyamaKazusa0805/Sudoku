@@ -152,7 +152,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			var playground = puzzle;
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
-			scoped var stopwatch = ValueStopwatch.NewInstance;
+			var timestampOriginal = Stopwatch.GetTimestamp();
 			var accumulator =
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
 				IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not (null or 0)
@@ -184,7 +184,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 					if (verifyConclusionValidity(in solution, step))
 					{
 						if (onCollectingSteps(
-							collectedSteps, step, in context, ref playground, in stopwatch,
+							collectedSteps, step, in context, ref playground, timestampOriginal,
 							stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
@@ -281,7 +281,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 								if (onCollectingSteps(
 									collectedSteps, step, in context, ref playground,
-									in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+									timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 								{
 									return result;
 								}
@@ -297,7 +297,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, in context, ref playground,
-								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -325,7 +325,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, in context, ref playground,
-							in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -371,7 +371,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 						if (onCollectingSteps(
 							collectedSteps, chosenStep, in context, ref playground,
-							in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+							timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 						{
 							return result;
 						}
@@ -399,7 +399,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 							if (onCollectingSteps(
 								collectedSteps, chosenStep, in context, ref playground,
-								in stopwatch, stepGrids, resultBase, cancellationToken, out var result))
+								timestampOriginal, stepGrids, resultBase, cancellationToken, out var result))
 							{
 								return result;
 							}
@@ -414,7 +414,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 								}
 
 								if (onCollectingSteps(
-									collectedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
+									collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
 									resultBase, cancellationToken, out var result))
 								{
 									return result;
@@ -439,7 +439,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 								if (verifyConclusionValidity(in solution, foundStep))
 								{
 									if (onCollectingSteps(
-										collectedSteps, foundStep, in context, ref playground, in stopwatch, stepGrids,
+										collectedSteps, foundStep, in context, ref playground, timestampOriginal, stepGrids,
 										resultBase, cancellationToken, out var result))
 									{
 										return result;
@@ -467,7 +467,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			return resultBase with
 			{
 				FailedReason = FailedReason.PuzzleIsTooHard,
-				ElapsedTime = stopwatch.ElapsedTime,
+				ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
 				Steps = [.. collectedSteps],
 				SteppingGrids = [.. stepGrids]
 			};
@@ -496,7 +496,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 				Step step,
 				scoped ref readonly AnalysisContext context,
 				scoped ref Grid playground,
-				scoped ref readonly ValueStopwatch stopwatch,
+				long timestampOriginal,
 				List<Grid> steppingGrids,
 				AnalyzerResult resultBase,
 				CancellationToken cancellationToken,
@@ -549,7 +549,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						{
 							IsSolved = true,
 							Solution = playground,
-							ElapsedTime = stopwatch.ElapsedTime,
+							ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
 							Steps = [.. steps],
 							SteppingGrids = [.. steppingGrids]
 						};

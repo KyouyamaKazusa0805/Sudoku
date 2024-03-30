@@ -120,9 +120,6 @@
   <data name="ErrorInfo_UnderlyingTypeNotSupported" xml:space="preserve">
     <value>The target enumeration type has a wrong underlying numeric type. All possible underlying types for an enumeration type must be of size 1, 2, 4 or 8 bits.</value>
   </data>
-  <data name="ErrorInfo_ValueStopwatchTypeIsUninitialized" xml:space="preserve">
-    <value>An uninitialized, or 'default(ValueStopwatch)', ValueStopwatch cannot be used for getting elapsed time.</value>
-  </data>
   <data name="ErrorInfo_SpecifiedValueMustBeEven" xml:space="preserve">
     <value>The argument must be of an even length.</value>
   </data>

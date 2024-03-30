@@ -3743,11 +3743,6 @@
               Looks up a localized string similar to The target enumeration type has a wrong underlying numeric type. All possible underlying types for an enumeration type must be of size 1, 2, 4 or 8 bits..
             </summary>
         </member>
-        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_ValueStopwatchTypeIsUninitialized">
-            <summary>
-              Looks up a localized string similar to An uninitialized, or &apos;default(ValueStopwatch)&apos;, ValueStopwatch cannot be used for getting elapsed time..
-            </summary>
-        </member>
         <member name="P:System.Resources.SystemExtensionsResources.Message_MissingResourceManagerException">
             <summary>
               Looks up a localized string similar to Assembly &apos;{0}&apos; is lack of invocation &apos;{1}.{2}&apos;..
@@ -4610,49 +4605,6 @@
             <summary>
             The generated field declaration for parameter <c>awaiter</c>.
             </summary>
-        </member>
-        <member name="T:System.Timers.ValueStopwatch">
-            <summary>
-            Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
-            </summary>
-            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.#ctor(System.Int64)">
-            <summary>
-            Defines a stopwatch that uses <see langword="struct"/> instead of <see langword="class"/> to optimize the performance.
-            </summary>
-            <param name="startTimestamp">The timestamp value that is represented as a <see cref="T:System.Int64"/> value.</param>
-        </member>
-        <member name="F:System.Timers.ValueStopwatch.TimestampToTicks">
-            <summary>
-            The read-only value that indicates the formula converting from timestamp to ticks.
-            </summary>
-        </member>
-        <member name="P:System.Timers.ValueStopwatch.ElapsedTime">
-            <summary>
-            Try to get the elapsed time.
-            </summary>
-            <returns>The elapsed time, specified as a <see cref="T:System.TimeSpan"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the current stopwatch is not active at present.
-            </exception>
-        </member>
-        <member name="P:System.Timers.ValueStopwatch.NewInstance">
-            <summary>
-            Indicates a new instance. Use this property to start a new stopwatch instead of expressions like
-            <see langword="new"/> <see cref="T:System.Timers.ValueStopwatch"/>() and <see langword="default"/>(<see cref="T:System.Timers.ValueStopwatch"/>).
-            </summary>
-        </member>
-        <member name="F:System.Timers.ValueStopwatch._startTimestamp">
-            <summary>
-            The generated field declaration for parameter <c>startTimestamp</c>.
-            </summary>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.Timers.ValueStopwatch.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:System.Utf8Char">
             <summary>

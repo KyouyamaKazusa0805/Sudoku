@@ -20,6 +20,5 @@ global using System.Text.Encodings.Web;
 global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
-global using System.Threading.Tasks;
 global using static System.Numerics.BitOperations;
 global using unsafe CharCheckerFuncPtr = delegate*<char, bool>;

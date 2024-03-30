@@ -124,15 +124,6 @@ namespace System.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to An uninitialized, or &apos;default(ValueStopwatch)&apos;, ValueStopwatch cannot be used for getting elapsed time..
-        /// </summary>
-        internal static string ErrorInfo_ValueStopwatchTypeIsUninitialized {
-            get {
-                return ResourceManager.GetString("ErrorInfo_ValueStopwatchTypeIsUninitialized", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Assembly &apos;{0}&apos; is lack of invocation &apos;{1}.{2}&apos;..
         /// </summary>
         internal static string Message_MissingResourceManagerException {

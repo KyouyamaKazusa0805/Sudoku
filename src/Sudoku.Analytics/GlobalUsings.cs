@@ -21,7 +21,6 @@ global using System.Text.Json;
 global using System.Text.Json.Serialization;
 global using System.Text.RegularExpressions;
 global using System.Threading;
-global using System.Timers;
 global using Sudoku.Analytics;
 global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Configuration;
