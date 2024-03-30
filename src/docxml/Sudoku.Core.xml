@@ -520,7 +520,7 @@ if (student is (name: var name, age: >= 18))
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
             </summary>
             <param name="puzzle">The puzzle to be analyzed.</param>
-            <param name="progress">A <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
         </member>
@@ -4729,6 +4729,24 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Generating.IGenerator`1">
+            <summary>
+            Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
+            encapsulating the details of the result.
+            </summary>
+            <typeparam name="TResult">The type of the result.</typeparam>
+        </member>
+        <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
+            </summary>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result returned.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.IGenerator`1.Sudoku#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
             Indicates the data provider type,
@@ -4763,11 +4781,7 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Creates a sudoku grid puzzle.
             </summary>
-            <param name="progress">
-            <inheritdoc
-                cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"
-                path="/param[@name='progress']"/>
-            </param>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>
             The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.

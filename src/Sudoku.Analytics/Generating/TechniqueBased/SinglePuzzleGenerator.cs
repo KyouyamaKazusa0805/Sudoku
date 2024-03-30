@@ -4,7 +4,8 @@ namespace Sudoku.Generating.TechniqueBased;
 /// Represents a puzzle generator that generates for puzzles using single techniques.
 /// </summary>
 /// <typeparam name="TStep">The type of the step supported.</typeparam>
-public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerator where TStep : SingleStep
+public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerator, IGenerator<PhasedJustOneCellPuzzle>
+	where TStep : SingleStep
 {
 	/// <summary>
 	/// Indicates center houses.
@@ -45,6 +46,10 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <returns>A <see cref="PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
 	/// <seealso cref="PhasedJustOneCellPuzzle"/>
 	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default);
+
+	/// <inheritdoc/>
+	PhasedJustOneCellPuzzle IGenerator<PhasedJustOneCellPuzzle>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+		=> GenerateJustOneCellPhased(cancellationToken: cancellationToken);
 
 
 	/// <summary>

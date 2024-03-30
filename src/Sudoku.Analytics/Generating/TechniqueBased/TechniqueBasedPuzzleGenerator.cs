@@ -3,7 +3,11 @@ namespace Sudoku.Generating.TechniqueBased;
 /// <summary>
 /// Represents a generator type that generates puzzles, relating to a kind of technique.
 /// </summary>
-public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzzleGenerator
+public abstract class TechniqueBasedPuzzleGenerator :
+	ICultureFormattable,
+	IPuzzleGenerator,
+	IGenerator<FullPuzzle>,
+	IGenerator<JustOneCellPuzzle>
 {
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
@@ -61,10 +65,15 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 
 	/// <inheritdoc/>
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
-	{
-		var result = GenerateUnique(cancellationToken);
-		return result.FailedReason != GeneratingFailedReason.None ? Grid.Undefined : result.Puzzle;
-	}
+		=> GenerateUnique(cancellationToken) is { Success: true, Puzzle: var result } ? result : Grid.Undefined;
+
+	/// <inheritdoc/>
+	FullPuzzle IGenerator<FullPuzzle>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+		=> GenerateUnique(cancellationToken);
+
+	/// <inheritdoc/>
+	JustOneCellPuzzle IGenerator<JustOneCellPuzzle>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+		=> GenerateJustOneCell();
 
 
 	/// <summary>
@@ -72,7 +81,7 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="values">The values to be shuffled.</param>
-	protected static void ShuffleSequence<T>(T[] values)
+	private protected static void ShuffleSequence<T>(T[] values)
 	{
 		for (var i = 0; i < 3; i++)
 		{
