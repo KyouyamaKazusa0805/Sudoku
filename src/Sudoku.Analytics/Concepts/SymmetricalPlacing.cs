@@ -1,5 +1,7 @@
 namespace Sudoku.Concepts;
 
+using unsafe SymmetricalPlacementCheckerFuncPtr = delegate*<ref readonly Grid, out SymmetricType, out ReadOnlySpan<Digit?>, out Mask, bool>;
+
 /// <summary>
 /// Represents a type that checks and infers for technique usages on Gurth's symmetrical placement.
 /// </summary>

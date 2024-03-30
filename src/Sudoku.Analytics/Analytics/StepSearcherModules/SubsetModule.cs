@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearcherModules;
 
+using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref AnalysisContext, ref readonly Grid, int, bool, Step?>;
+
 /// <summary>
 /// Represents a subset module.
 /// </summary>

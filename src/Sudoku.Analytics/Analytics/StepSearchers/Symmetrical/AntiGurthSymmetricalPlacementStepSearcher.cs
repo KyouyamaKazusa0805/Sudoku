@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref readonly Grid, ref AnalysisContext, AntiGurthSymmetricalPlacementStep?>;
+
 /// <summary>
 /// Provides with a <b>Gurth's Symmetrical Placement</b> step searcher.
 /// The step searcher will include the following techniques:
