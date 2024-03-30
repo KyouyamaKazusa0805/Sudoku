@@ -71,7 +71,7 @@ public ref partial struct HodokuPuzzleGenerator
 
 
 	/// <summary>
-	/// <inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/summary"/>
+	/// Try to generate a puzzle.
 	/// </summary>
 	/// <param name="cluesCount">
 	/// <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
@@ -82,12 +82,8 @@ public ref partial struct HodokuPuzzleGenerator
 	/// </para>
 	/// </param>
 	/// <param name="symmetricType">The symmetric type to be specified. The value is <see cref="SymmetricType.Central"/> by default.</param>
-	/// <param name="cancellationToken">
-	/// <inheritdoc
-	///     cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)"
-	///     path="/param[@name='cancellationToken']"/>
-	/// </param>
-	/// <returns><inheritdoc cref="IPuzzleGenerator.Generate(IProgress{GeneratorProgress}?, CancellationToken)" path="/returns"/></returns>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	/// <returns>The result grid.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
 	/// or the argument <paramref name="cluesCount"/> is invalid.

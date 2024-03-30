@@ -4339,17 +4339,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Generating.GeneratorProgress">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.GeneratorProgress.#ctor(System.Int32)">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Generating.GeneratorProgress.Count">
             <summary>The number of puzzles generated currently.</summary>
@@ -4545,7 +4545,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Generating.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/summary"/>
+            Try to generate a puzzle.
             </summary>
             <param name="cluesCount">
             <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
@@ -4556,12 +4556,8 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
             <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
-            <param name="cancellationToken">
-            <inheritdoc
-                cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"
-                path="/param[@name='cancellationToken']"/>
-            </param>
-            <returns><inheritdoc cref="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)" path="/returns"/></returns>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result grid.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
             or the argument <paramref name="cluesCount"/> is invalid.
@@ -4594,7 +4590,11 @@ if (student is (name: var name, age: >= 18))
             Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
             encapsulating the details of the result.
             </summary>
-            <typeparam name="TResult">The type of the result.</typeparam>
+            <typeparam name="TResult">
+            The type of the result. This type must be either <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:Sudoku.Generating.PuzzleBase"/>.
+            </typeparam>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="T:Sudoku.Generating.PuzzleBase"/>
         </member>
         <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
@@ -4603,9 +4603,6 @@ if (student is (name: var name, age: >= 18))
             <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>The result returned.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.IGenerator`1.Sudoku#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
@@ -4631,21 +4628,6 @@ if (student is (name: var name, age: >= 18))
             <param name="count">The number of puzzles generated.</param>
             <param name="succeeded">The number of puzzles has passed the checking.</param>
             <returns>A <typeparamref name="T"/> instance.</returns>
-        </member>
-        <member name="T:Sudoku.Generating.IPuzzleGenerator">
-            <summary>
-            Represents an instance that has ability to create a new sudoku puzzle game, allow cancelling.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.IPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Creates a sudoku grid puzzle.
-            </summary>
-            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
-            <returns>
-            The result puzzle generated. If canceled, the return value will be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </returns>
         </member>
         <member name="T:Sudoku.Generating.PatternBasedPuzzleGenerator">
             <summary>

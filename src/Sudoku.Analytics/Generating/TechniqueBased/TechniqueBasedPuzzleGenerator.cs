@@ -5,9 +5,9 @@ namespace Sudoku.Generating.TechniqueBased;
 /// </summary>
 public abstract class TechniqueBasedPuzzleGenerator :
 	ICultureFormattable,
+	IGenerator<Grid>,
 	IGenerator<FullPuzzle>,
-	IGenerator<JustOneCellPuzzle>,
-	IPuzzleGenerator
+	IGenerator<JustOneCellPuzzle>
 {
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
@@ -171,7 +171,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	}
 
 	/// <inheritdoc/>
-	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
+	Grid IGenerator<Grid>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 		=> GenerateUnique(cancellationToken) is { Success: true, Puzzle: var result } ? result : Grid.Undefined;
 
 	/// <inheritdoc/>

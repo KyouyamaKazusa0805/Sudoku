@@ -4,7 +4,7 @@ namespace Sudoku.Generating;
 /// Defines a puzzle generator that makes the given pattern as a hard one.
 /// A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
 /// </summary>
-public sealed unsafe class HardPatternPuzzleGenerator : IPuzzleGenerator
+public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates the block factor.
