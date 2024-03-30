@@ -3,7 +3,8 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents a rating data provider.
 /// </summary>
-internal interface IRatingDataProvider
+[Obsolete("This type is being deprecated. I'll implement a new kind of API to cover such rule and allow users modifying the calculation formula.", false)]
+public interface IRatingDataProvider
 {
 	/// <summary>
 	/// Indicates the factor name that describes the difficulty of this factor.

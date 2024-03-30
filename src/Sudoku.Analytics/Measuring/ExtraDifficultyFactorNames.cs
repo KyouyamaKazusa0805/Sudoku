@@ -3,6 +3,7 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents with kinds of the phased difficulty rating that is used for the calculations the total rating of a step.
 /// </summary>
+[Obsolete("This type is being deprecated. I'll implement a new kind of API to cover such rule and allow users modifying the calculation formula.", false)]
 public static class ExtraDifficultyFactorNames
 {
 	/// <summary>

@@ -5,6 +5,7 @@ namespace Sudoku.Measuring;
 /// </summary>
 /// <param name="FactorName"><inheritdoc cref="IRatingDataProvider.FactorName" path="/summary"/></param>
 /// <param name="Value"><inheritdoc cref="IRatingDataProvider.Value" path="/summary"/></param>
+[Obsolete("This type is being deprecated. I'll implement a new kind of API to cover such rule and allow users modifying the calculation formula.", false)]
 public readonly record struct ExtraDifficultyFactor(string FactorName, decimal Value) : ICultureFormattable, IRatingDataProvider
 {
 	/// <inheritdoc cref="object.ToString"/>

@@ -3,6 +3,7 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents a factory type that stores a list of commonly-used difficulty-measuring formulas and its corresponding rule name.
 /// </summary>
+[Obsolete("This type is being deprecated. I will extract the type into a new position to store formulas, allow users modifying and customize calculation.", false)]
 public static class DifficultyMeasuring
 {
 	/// <summary>
