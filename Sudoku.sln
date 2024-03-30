@@ -56,7 +56,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Logging", "src\Sudok
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Recognition.Imaging", "src\Sudoku.Recognition.Imaging\Sudoku.Recognition.Imaging.csproj", "{FCA37794-B4D0-43BD-87C9-9F1B597E339B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SudokuStudio.SourceGeneration", "src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj", "{AB156C6F-56B1-4DF4-B69B-5C24BB6C75D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SudokuStudio.SourceGeneration", "src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj", "{AB156C6F-56B1-4DF4-B69B-5C24BB6C75D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generators", "Source Generators", "{46337DBB-9B25-4B23-B7A8-1873A1522B04}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -430,11 +432,14 @@ Global
 		{84B6F2B7-13D6-496B-8CAF-608E0CC0DEA0} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 		{B3EAA001-CAD9-46DA-B0FA-62B64007EA39} = {5A289988-A100-41DA-B297-F4A3DE001B78}
 		{18A31D32-6FC6-4380-891E-F783C04BF2CD} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+		{3DEF7C11-4726-4CC9-B31C-79B10D689F16} = {46337DBB-9B25-4B23-B7A8-1873A1522B04}
+		{971E9510-5D09-44A3-9689-5B44A500DF08} = {46337DBB-9B25-4B23-B7A8-1873A1522B04}
 		{984A4BA8-BFA8-40DE-9C1E-E9FE2D765282} = {5A289988-A100-41DA-B297-F4A3DE001B78}
+		{AB156C6F-56B1-4DF4-B69B-5C24BB6C75D0} = {46337DBB-9B25-4B23-B7A8-1873A1522B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		RESX_ShowErrorsInErrorList = False
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
 	EndGlobalSection
 EndGlobal
