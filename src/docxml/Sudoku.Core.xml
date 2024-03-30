@@ -4427,9 +4427,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.FullPuzzle.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Generating.FullPuzzle.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Generating.FullPuzzleFailed">
             <summary>
             Provides failed for generating full puzzle.
@@ -4840,21 +4837,29 @@ if (student is (name: var name, age: >= 18))
             Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Generating.PuzzleBase.Result">
+        <member name="P:Sudoku.Generating.PuzzleBase.Success">
             <summary>
-            Indicates the generation result.
+            Indicates whether the data represents "success" message and values are valid in use.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.PuzzleBase.FailedReason">
+            <summary>
+            Indicates the failed reason why causes the failure.
             </summary>
         </member>
         <member name="P:Sudoku.Generating.PuzzleBase.Puzzle">
             <summary>
-            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> returns a value
+            Indicates the puzzle just created. If the value <see cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/> returns a value
             not <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>, the value will always be <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
-            <seealso cref="P:Sudoku.Generating.PuzzleBase.Result"/>
+            <seealso cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/>
             <seealso cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.Equals(Sudoku.Generating.PuzzleBase)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Generating.PuzzleBase.ToString">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.Equals(System.Object)">
@@ -4862,9 +4867,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.PuzzleBase.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.op_Equality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

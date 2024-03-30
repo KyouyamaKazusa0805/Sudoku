@@ -10,5 +10,5 @@ public sealed class JustOneCellPuzzleSuccessful : JustOneCellPuzzle
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public JustOneCellPuzzleSuccessful(scoped ref readonly Grid puzzle, Cell cell, Digit digit, Step step) : base(cell, digit, step)
-		=> (Puzzle, Result) = (puzzle, GeneratingFailedReason.None);
+		=> (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
 }

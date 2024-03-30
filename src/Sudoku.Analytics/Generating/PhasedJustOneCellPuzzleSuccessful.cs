@@ -16,5 +16,5 @@ public sealed class PhasedJustOneCellPuzzleSuccessful : PhasedJustOneCellPuzzle
 		Cell cell,
 		Digit digit,
 		Step step
-	) : base(cell, digit, step, in baseGrid) => (Puzzle, Result) = (puzzle, GeneratingFailedReason.None);
+	) : base(cell, digit, step, in baseGrid) => (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
 }

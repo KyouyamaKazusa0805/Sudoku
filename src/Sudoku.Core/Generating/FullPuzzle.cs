@@ -4,7 +4,6 @@ namespace Sudoku.Generating;
 /// Represents a full puzzle.
 /// </summary>
 [GetHashCode]
-[ToString(ToStringBehavior.RecordLike)]
 public partial class FullPuzzle : PuzzleBase
 {
 	/// <summary>
@@ -15,5 +14,5 @@ public partial class FullPuzzle : PuzzleBase
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
-		=> other is FullPuzzle comparer && (Result, Puzzle) == (comparer.Result, comparer.Puzzle);
+		=> other is FullPuzzle comparer && (FailedReason, Puzzle) == (comparer.FailedReason, comparer.Puzzle);
 }

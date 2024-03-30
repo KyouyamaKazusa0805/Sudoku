@@ -5,22 +5,26 @@ namespace Sudoku.Generating;
 /// </summary>
 [Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
-[ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
 public abstract partial class PuzzleBase : IEquatable<PuzzleBase>, IEqualityOperators<PuzzleBase, PuzzleBase, bool>
 {
 	/// <summary>
-	/// Indicates the generation result.
+	/// Indicates whether the data represents "success" message and values are valid in use.
+	/// </summary>
+	public virtual bool Success => FailedReason == GeneratingFailedReason.None;
+
+	/// <summary>
+	/// Indicates the failed reason why causes the failure.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public GeneratingFailedReason Result { get; init; }
+	public GeneratingFailedReason FailedReason { get; init; }
 
 	/// <summary>
-	/// Indicates the puzzle just created. If the value <see cref="Result"/> returns a value
+	/// Indicates the puzzle just created. If the value <see cref="FailedReason"/> returns a value
 	/// not <see cref="GeneratingFailedReason.None"/>, the value will always be <see cref="Grid.Undefined"/>.
 	/// </summary>
-	/// <seealso cref="Result"/>
+	/// <seealso cref="FailedReason"/>
 	/// <seealso cref="GeneratingFailedReason.None"/>
 	/// <seealso cref="Grid.Undefined"/>
 	[HashCodeMember]
@@ -30,4 +34,7 @@ public abstract partial class PuzzleBase : IEquatable<PuzzleBase>, IEqualityOper
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] PuzzleBase? other);
+
+	/// <inheritdoc/>
+	public override string ToString() => Puzzle.ToString();
 }

@@ -9,5 +9,5 @@ public sealed class FullPuzzleSuccessful : FullPuzzle
 	/// Initializes a <see cref="FullPuzzleSuccessful"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FullPuzzleSuccessful(scoped ref readonly Grid puzzle) => (Puzzle, Result) = (puzzle, GeneratingFailedReason.None);
+	public FullPuzzleSuccessful(scoped ref readonly Grid puzzle) => (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
 }

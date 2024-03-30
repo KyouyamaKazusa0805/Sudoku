@@ -18,5 +18,5 @@ public partial class PhasedJustOneCellPuzzle(
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
 		=> other is PhasedJustOneCellPuzzle comparer
-		&& (Result, Puzzle, Cell, Digit, Step, BaseGrid) == (comparer.Result, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step, comparer.BaseGrid);
+		&& (FailedReason, Puzzle, Cell, Digit, Step, BaseGrid) == (comparer.FailedReason, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step, comparer.BaseGrid);
 }

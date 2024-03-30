@@ -63,7 +63,7 @@ public abstract class TechniqueBasedPuzzleGenerator : ICultureFormattable, IPuzz
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 	{
 		var result = GenerateUnique(cancellationToken);
-		return result.Result != GeneratingFailedReason.None ? Grid.Undefined : result.Puzzle;
+		return result.FailedReason != GeneratingFailedReason.None ? Grid.Undefined : result.Puzzle;
 	}
 
 

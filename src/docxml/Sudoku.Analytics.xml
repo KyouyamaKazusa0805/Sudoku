@@ -21246,7 +21246,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indiactes the step for the pattern.</para>
             <para>
             Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
             Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
@@ -21263,7 +21263,7 @@ if (student is (name: var name, age: >= 18))
             <para>Indiactes the step for the pattern.</para>
             <para>
             Assign a not-<see langword="null"/> value to this parameter
-            if argument <see cref="P:Sudoku.Generating.PuzzleBase.Result"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
+            if argument <see cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
             Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
@@ -21271,17 +21271,9 @@ if (student is (name: var name, age: >= 18))
             </param>
         </member>
         <member name="P:Sudoku.Generating.JustOneCellPuzzle.Success">
-            <summary>
-            Indicates whether the data represents "success" message and values are valid in use.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.JustOneCellPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.JustOneCellPuzzle.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Generating.JustOneCellPuzzle.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Generating.JustOneCellPuzzle.Cell">

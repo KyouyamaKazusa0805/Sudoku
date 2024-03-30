@@ -10,5 +10,5 @@ public sealed class JustOneCellPuzzleFailed : JustOneCellPuzzle
 	/// </summary>
 	/// <param name="reason">The failed reason.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public JustOneCellPuzzleFailed(GeneratingFailedReason reason) : base(-1, -1, null) => (Puzzle, Result) = (Grid.Undefined, reason);
+	public JustOneCellPuzzleFailed(GeneratingFailedReason reason) : base(-1, -1, null) => (Puzzle, FailedReason) = (Grid.Undefined, reason);
 }

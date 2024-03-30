@@ -9,5 +9,5 @@ public sealed class FullPuzzleFailed : FullPuzzle
 	/// Initializes a <see cref="FullPuzzleFailed"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FullPuzzleFailed(GeneratingFailedReason failedResult) => (Puzzle, Result) = (Grid.Undefined, failedResult);
+	public FullPuzzleFailed(GeneratingFailedReason failedResult) => (Puzzle, FailedReason) = (Grid.Undefined, failedResult);
 }
