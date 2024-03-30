@@ -34,6 +34,10 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// The value is 0 by default.
 	/// </para>
 	/// <para>This property will be used in method <see cref="GenerateJustOneCell"/> only.</para>
+	/// <para><b>
+	/// Please note that the greater the value will be, the more unstable the puzzle will be.
+	/// This means, if the value is larger than expectation, the puzzle may not guarantee uniqueness on answer.
+	/// </b></para>
 	/// </remarks>
 	/// <seealso cref="GenerateJustOneCell"/>
 	public double InterferingPercentage { get; set; }
