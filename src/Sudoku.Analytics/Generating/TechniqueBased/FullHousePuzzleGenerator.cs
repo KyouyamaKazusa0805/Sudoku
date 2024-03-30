@@ -71,7 +71,9 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			puzzle.FixedGrid,
 			targetCell,
 			targetDigit,
-			new FullHouseStep(null!, null, null!, selectedHouse, targetCell, targetDigit)
+			new FullHouseStep(null!, null, null!, selectedHouse, targetCell, targetDigit),
+			in interferingCells,
+			InterferingPercentage
 		);
 	}
 
@@ -123,7 +125,15 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
 
 						// Found. Now return the value.
-						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
+						return new PhasedJustOneCellPuzzleSuccessful(
+							extractedGrid.FixedGrid,
+							in currentGrid,
+							cell,
+							digit,
+							step,
+							in interferingCells,
+							InterferingPercentage
+						);
 					}
 				}
 

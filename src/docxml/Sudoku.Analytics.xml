@@ -21251,8 +21251,10 @@ if (student is (name: var name, age: >= 18))
             in order to avoid the potential bug on displaying details.
             </para>
             </param>
+            <param name="interferingCells">Indicates the interfering digits.</param>
+            <param name="interferingRatio">Indicates the interfering ratio.</param>
         </member>
-        <member name="M:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.CellMap@,System.Double)">
             <summary>
             Represents the answer to a just-one-cell sudoku puzzle.
             </summary>
@@ -21268,6 +21270,8 @@ if (student is (name: var name, age: >= 18))
             in order to avoid the potential bug on displaying details.
             </para>
             </param>
+            <param name="interferingCells">Indicates the interfering digits.</param>
+            <param name="interferingRatio">Indicates the interfering ratio.</param>
         </member>
         <member name="P:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.Success">
             <inheritdoc/>
@@ -21290,6 +21294,16 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>step</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.InterferingCells">
+            <summary>
+            The generated property declaration for parameter <c>interferingCells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.InterferingRatio">
+            <summary>
+            The generated property declaration for parameter <c>interferingRatio</c>.
+            </summary>
+        </member>
         <member name="M:Sudoku.Generating.JustOneCell.JustOneCellPuzzle.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
@@ -21309,7 +21323,7 @@ if (student is (name: var name, age: >= 18))
             Provides with successful generating for just-one-cell puzzle.
             </summary>
         </member>
-        <member name="M:Sudoku.Generating.JustOneCell.JustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Generating.JustOneCell.JustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.CellMap@,System.Double)">
             <summary>
             Initializes a <see cref="T:Sudoku.Generating.JustOneCell.JustOneCellPuzzleSuccessful"/> instance.
             </summary>
@@ -21322,8 +21336,10 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="step"><inheritdoc/></param>
             <param name="baseGrid">Indicates the base grid.</param>
+            <param name="interferingCells"><inheritdoc/></param>
+            <param name="interferingRatio"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Double)">
             <summary>
             Represents a just-one-cell puzzle, but contains the base puzzle that has a unique solution.
             </summary>
@@ -21331,6 +21347,8 @@ if (student is (name: var name, age: >= 18))
             <param name="digit"><inheritdoc/></param>
             <param name="step"><inheritdoc/></param>
             <param name="baseGrid">Indicates the base grid.</param>
+            <param name="interferingCells"><inheritdoc/></param>
+            <param name="interferingRatio"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle.Equals(Sudoku.Generating.PuzzleBase)">
             <inheritdoc/>
@@ -21361,7 +21379,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <seealso cref="T:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle"/>
         </member>
-        <member name="M:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzleSuccessful.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Analytics.Step,Sudoku.Concepts.CellMap@,System.Double)">
             <summary>
             Initializes a <see cref="T:Sudoku.Generating.JustOneCell.JustOneCellPuzzleSuccessful"/> instance.
             </summary>

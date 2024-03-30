@@ -15,6 +15,8 @@ public sealed class PhasedJustOneCellPuzzleSuccessful : PhasedJustOneCellPuzzle
 		scoped ref readonly Grid baseGrid,
 		Cell cell,
 		Digit digit,
-		Step step
-	) : base(cell, digit, step, in baseGrid) => (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
+		Step step,
+		scoped ref readonly CellMap interferingCells,
+		double interferingRatio
+	) : base(cell, digit, step, in baseGrid, in interferingCells, interferingRatio) => (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
 }

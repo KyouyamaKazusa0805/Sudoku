@@ -7,16 +7,19 @@ namespace Sudoku.Generating.JustOneCell;
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="step"><inheritdoc/></param>
 /// <param name="baseGrid">Indicates the base grid.</param>
+/// <param name="interferingCells"><inheritdoc/></param>
+/// <param name="interferingRatio"><inheritdoc/></param>
 [GetHashCode]
 public abstract partial class PhasedJustOneCellPuzzle(
 	Cell cell,
 	Digit digit,
 	Step? step,
-	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly Grid baseGrid
-) : JustOneCellPuzzle(cell, digit, step)
+	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly Grid baseGrid,
+	scoped ref readonly CellMap interferingCells,
+	double interferingRatio
+) : JustOneCellPuzzle(cell, digit, step, in interferingCells, interferingRatio)
 {
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
-		=> other is PhasedJustOneCellPuzzle comparer
-		&& (FailedReason, Puzzle, Cell, Digit, Step, BaseGrid) == (comparer.FailedReason, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step, comparer.BaseGrid);
+		=> other is PhasedJustOneCellPuzzle comparer && base.Equals(other) && BaseGrid == comparer.BaseGrid;
 }

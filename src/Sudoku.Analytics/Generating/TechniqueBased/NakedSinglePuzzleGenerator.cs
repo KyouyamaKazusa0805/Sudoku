@@ -63,7 +63,9 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 					7 => SingleSubtype.NakedSingle7,
 					8 => SingleSubtype.NakedSingle8
 				}
-			)
+			),
+			in interferingCells,
+			InterferingPercentage
 		);
 	}
 
@@ -116,7 +118,15 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 						// Append interfering digits.
 						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
 
-						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
+						return new PhasedJustOneCellPuzzleSuccessful(
+							extractedGrid.FixedGrid,
+							in currentGrid,
+							cell,
+							digit,
+							step,
+							in interferingCells,
+							InterferingPercentage
+						);
 					}
 				}
 

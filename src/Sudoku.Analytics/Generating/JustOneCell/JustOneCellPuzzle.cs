@@ -15,11 +15,15 @@ namespace Sudoku.Generating.JustOneCell;
 /// in order to avoid the potential bug on displaying details.
 /// </para>
 /// </param>
+/// <param name="interferingCells">Indicates the interfering digits.</param>
+/// <param name="interferingRatio">Indicates the interfering ratio.</param>
 [GetHashCode]
 public abstract partial class JustOneCellPuzzle(
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter, HashCodeMember] Step? step
+	[PrimaryConstructorParameter, HashCodeMember] Step? step,
+	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly CellMap interferingCells,
+	[PrimaryConstructorParameter, HashCodeMember] double interferingRatio
 ) : PuzzleBase
 {
 	/// <inheritdoc/>
@@ -30,5 +34,7 @@ public abstract partial class JustOneCellPuzzle(
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] PuzzleBase? other)
 		=> other is JustOneCellPuzzle comparer
-		&& (FailedReason, Puzzle, Cell, Digit, Step) == (comparer.FailedReason, comparer.Puzzle, comparer.Cell, comparer.Digit, comparer.Step);
+		&& (FailedReason, Puzzle, Cell, Digit) == (comparer.FailedReason, comparer.Puzzle, comparer.Cell, comparer.Digit)
+		&& (InterferingCells, InterferingRatio) == (comparer.InterferingCells, comparer.InterferingRatio)
+		&& Step == comparer.Step;
 }

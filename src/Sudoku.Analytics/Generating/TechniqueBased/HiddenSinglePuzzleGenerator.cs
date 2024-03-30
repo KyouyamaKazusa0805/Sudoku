@@ -124,7 +124,9 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					in puzzle,
 					targetCell,
 					targetDigit,
-					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype)
+					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype),
+					in interferingCells,
+					InterferingPercentage
 				);
 			}
 
@@ -309,7 +311,9 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					in puzzle,
 					targetCell,
 					targetDigit,
-					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype)
+					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype),
+					in interferingCells,
+					InterferingPercentage
 				);
 			}
 
@@ -455,7 +459,15 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 						// Append interfering digits.
 						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
 
-						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
+						return new PhasedJustOneCellPuzzleSuccessful(
+							extractedGrid.FixedGrid,
+							in currentGrid,
+							cell,
+							digit,
+							step,
+							in interferingCells,
+							InterferingPercentage
+						);
 					}
 				}
 

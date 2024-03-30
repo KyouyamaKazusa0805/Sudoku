@@ -11,6 +11,6 @@ public sealed class PhasedJustOneCellPuzzleFailed : PhasedJustOneCellPuzzle
 	/// </summary>
 	/// <param name="reason">The failed reason.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PhasedJustOneCellPuzzleFailed(GeneratingFailedReason reason) : base(-1, -1, null, in Grid.Undefined)
+	public PhasedJustOneCellPuzzleFailed(GeneratingFailedReason reason) : base(-1, -1, null, in Grid.Undefined, [], default)
 		=> (Puzzle, FailedReason) = (Grid.Undefined, reason);
 }
