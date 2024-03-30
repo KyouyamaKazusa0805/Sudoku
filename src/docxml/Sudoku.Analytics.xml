@@ -20066,7 +20066,7 @@ if (student is (name: var name, age: >= 18))
             Represents a list of methods that operates with single techniques, in order to get crosshatching information.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Crosshatching.GetCrosshatchingInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.Crosshatching.GetInfo(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get a pair of <see cref="T:Sudoku.Concepts.CellMap"/> instances indicating the crosshatching information for the specified house,
             with the specified digit in the specified grid.

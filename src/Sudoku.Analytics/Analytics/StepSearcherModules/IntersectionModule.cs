@@ -20,7 +20,7 @@ internal static class IntersectionModule
 		scoped ref readonly CellMap cells
 	)
 	{
-		var info = Crosshatching.GetCrosshatchingInfo(in grid, digit, house, in cells);
+		var info = Crosshatching.GetInfo(in grid, digit, house, in cells);
 		if (info is not var (combination, emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered))
 		{
 			return [];

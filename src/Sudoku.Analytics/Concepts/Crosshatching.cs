@@ -14,7 +14,7 @@ public static class Crosshatching
 	/// <param name="house">The house to be checked.</param>
 	/// <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
 	/// <returns>The result pair.</returns>
-	public static CrosshatchingInfo? GetCrosshatchingInfo(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
+	public static CrosshatchingInfo? GetInfo(scoped ref readonly Grid grid, Digit digit, House house, scoped ref readonly CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
 		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, (CellMap)[], (CellMap)[]);
