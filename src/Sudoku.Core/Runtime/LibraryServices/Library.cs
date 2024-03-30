@@ -1,5 +1,7 @@
 namespace Sudoku.Runtime.LibraryServices;
 
+using unsafe GridRandomizedSufflerFuncPtr = delegate*<Random, ref Grid, void>;
+
 /// <summary>
 /// Represents an entry that plays with a puzzle library file.
 /// </summary>

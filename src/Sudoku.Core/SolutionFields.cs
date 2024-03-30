@@ -8,7 +8,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates the number of each cell's peer cells. The value is a constant.
 	/// </summary>
-	public const int NumberOfPeersForEachCell = 20;
+	public const Cell NumberOfPeersForEachCell = 20;
 
 	/// <summary>
 	/// Indicates the invalid fallback value
@@ -39,6 +39,7 @@ public static class SolutionFields
 	/// <seealso cref="TrailingZeroCount(long)"/>
 	/// <seealso cref="TrailingZeroCount(ulong)"/>
 	public const int TrailingZeroCountFallbackLong = 64;
+
 
 	/// <summary>
 	/// Indicates the digits used. The value can be also used for ordered houses by rows.
@@ -108,7 +109,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates the chute house triplets.
 	/// </summary>
-	public static readonly ChuteHouseTriplet[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
+	public static readonly (House A, House B, House C)[] ChuteHouses = [(9, 10, 11), (12, 13, 14), (15, 16, 17), (18, 19, 20), (21, 22, 23), (24, 25, 26)];
 
 	/// <summary>
 	/// Indicates the possible house types to be iterated.

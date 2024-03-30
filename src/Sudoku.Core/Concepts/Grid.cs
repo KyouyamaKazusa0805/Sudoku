@@ -28,6 +28,12 @@
 
 namespace Sudoku.Concepts;
 
+using unsafe CellMapPredicateFuncPtr = delegate*<ref readonly Grid, Cell, Digit, bool>;
+using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
+using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
+using unsafe RefreshingCandidatesHandlerFuncPtr = delegate*<ref Grid, void>;
+using unsafe ValueChangedHandlerFuncPtr = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
+
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
