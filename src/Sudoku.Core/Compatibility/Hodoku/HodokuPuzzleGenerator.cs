@@ -118,7 +118,7 @@ public ref partial struct HodokuPuzzleGenerator
 	private void GenerateInitPos(int cluesCount, SymmetricType symmetricType, CancellationToken cancellationToken = default)
 	{
 		// We start with the full board.
-		(var used, var usedCount, _newValidSudoku, var remainingClues) = ((CellMap)[], 81, _newFullSudoku, 81);
+		(_newValidSudoku, var (used, usedCount, remainingClues)) = (_newFullSudoku, ((CellMap)[], 81, 81));
 		var candidateCells = new List<Cell>(8);
 
 		// Do until we have only 17 clues left or until all cells have been tried.
@@ -215,7 +215,7 @@ public ref partial struct HodokuPuzzleGenerator
 		}
 
 		// First set a new empty Sudoku.
-		(_stack[0].SudokuGrid, var level, _stack[0].Cell) = (Grid.Empty, 0, -1);
+		(_stack[0].SudokuGrid, _stack[0].Cell, var level) = (Grid.Empty, -1, 0);
 		while (true)
 		{
 			// Get the next unsolved cell according to _generateIndices.
