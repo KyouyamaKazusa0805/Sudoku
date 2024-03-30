@@ -45,34 +45,20 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		}
 
 		// Clear the target cell with the value set -1.
-		int targetCell, targetDigit;
-		switch (Alignment)
+		var (targetCell, targetDigit) = (Alignment, selectedHouse) switch
 		{
-			case ConlusionCellAlignment.NotLimited or ConlusionCellAlignment.CenterHouse:
-			case ConlusionCellAlignment.CenterBlock when selectedHouse == 4:
-			{
-				var missingPos = Rng.Next(0, 9);
-				targetCell = HousesCells[selectedHouse][missingPos];
-				targetDigit = DigitSeed[missingPos];
-				break;
-			}
-			case ConlusionCellAlignment.CenterBlock:
-			{
-				var availableCells = HousesMap[selectedHouse] & HousesMap[4];
-				targetCell = availableCells[Rng.Next(0, availableCells.Count)];
-				targetDigit = puzzle.GetDigit(targetCell);
-				break;
-			}
-			case ConlusionCellAlignment.CenterCell:
-			{
-				targetCell = 40;
-				targetDigit = puzzle.GetDigit(targetCell);
-				break;
-			}
-			default:
-			{
-				return new JustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
-			}
+			(ConlusionCellAlignment.NotLimited or ConlusionCellAlignment.CenterHouse, _) when Rng.Next(0, 9) is var missingPos
+				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
+			(ConlusionCellAlignment.CenterBlock, 4) when Rng.Next(0, 9) is var missingPos
+				=> (HousesCells[selectedHouse][missingPos], DigitSeed[missingPos]),
+			(ConlusionCellAlignment.CenterBlock, _) when (HousesMap[selectedHouse] & HousesMap[4]) is var a && a[Rng.Next(0, a.Count)] is var t
+				=> (t, puzzle.GetDigit(t)),
+			(ConlusionCellAlignment.CenterCell, _) => (40, puzzle.GetDigit(40)),
+			_ => (-1, -1)
+		};
+		if ((targetCell, targetDigit) == (-1, -1))
+		{
+			return new JustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
 
 		puzzle.SetDigit(targetCell, -1);
