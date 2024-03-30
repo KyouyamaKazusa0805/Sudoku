@@ -21420,22 +21420,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForBlock(System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
-            <summary>
-            Generate for block.
-            </summary>
-            <param name="house">The target house.</param>
-            <param name="subtype">The selected subtype.</param>
-            <returns>The final result generated.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.HiddenSinglePuzzleGenerator.GenerateForLine(System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
-            <summary>
-            Generate for line.
-            </summary>
-            <param name="house">The target house.</param>
-            <param name="subtype">The selected subtype.</param>
-            <returns>The final result generated.</returns>
-        </member>
         <member name="T:Sudoku.Generating.TechniqueBased.NakedSinglePuzzleGenerator">
             <summary>
             Represents a puzzle generator that can create puzzles using naked singles.
@@ -21484,6 +21468,21 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
             <seealso cref="T:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle"/>
         </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.AppendInterferingDigitsBaseGrid(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Append interfering digits from the puzzle unfixed. The grid is generated in method
+            <see cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="puzzle">An unfixed puzzle to be operated.</param>
+            <param name="baseGrid">The solution to be referenced.</param>
+            <param name="targetCell">The target cell to avoid.</param>
+            <param name="interferingCells">The cells that are filled with interfering digits.</param>
+            <returns>
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+            </returns>
+            <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)"/>
+            <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
+        </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Sudoku#Generating#IGenerator{Sudoku#Generating#JustOneCell#PhasedJustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -21529,13 +21528,23 @@ if (student is (name: var name, age: >= 18))
             Represents a seed array for digits that can be used in core methods.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Solver">
+            <summary>
+            Represents the solver.
+            </summary>
+        </member>
         <member name="P:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.InterferingPercentage">
             <summary>
-            Indicates the percentage of interfering digits to be inserted into a just-one-cell puzzle, interfering the puzzle and user.
+            Indicates the percentage of interfering digits that can be inserted into a just-one-cell puzzle,
+            in order to interfere the user to find the answer of the puzzle.
             </summary>
             <remarks>
             <para>
-            The value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
+            Although the value is of type <see cref="T:System.Double"/>, only 2 digits after decimal point is used,
+            i.e. the percision of this value is 0.01.
+            </para>
+            <para>
+            In addition, the value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
             The value is 0 by default.
             </para>
             <para>This property will be used in method <see cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/> only.</para>
@@ -21586,6 +21595,33 @@ if (student is (name: var name, age: >= 18))
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>A type that encapsulates the result detail.</returns>
         </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.AppendInterferingDigitsNoBaseGrid(Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Append interfering digits from the puzzle unfixed. The grid is generated in method <see cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>.
+            </summary>
+            <param name="puzzle">An unfixed puzzle to be operated.</param>
+            <param name="targetCell">The target cell to avoid.</param>
+            <param name="interferingCells">The cells that are filled with interfering digits.</param>
+            <returns>
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+            </returns>
+            <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
+            <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.AppendInterferingDigitsCore(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Append interfering digits from the puzzle unfixed.
+            </summary>
+            <param name="puzzle">An unfixed puzzle to be operated.</param>
+            <param name="solution">Indicates the solution grid to the <paramref name="puzzle"/>.</param>
+            <param name="targetCell">The target cell to avoid.</param>
+            <param name="interferingCells">The cells that are filled with interfering digits.</param>
+            <returns>
+            A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+            </returns>
+            <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
+            <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
+        </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IPuzzleGenerator#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -21601,6 +21637,15 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="values">The values to be shuffled.</param>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GetGivensCount(System.Int32,System.Double,System.Int32@)">
+            <summary>
+            Calculates the number of givens in fact.
+            </summary>
+            <param name="currentGivensCount">The number of givens currently in puzzle.</param>
+            <param name="ratio">The ratio. Pass <see cref="P:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.InterferingPercentage"/> to this parameter.</param>
+            <param name="interferingDigitsCount">The final number of interfering digits.</param>
+            <returns>The result numnber of given cells.</returns>
         </member>
         <member name="T:Sudoku.Linq.AnalyzerResultEnumerable">
             <summary>

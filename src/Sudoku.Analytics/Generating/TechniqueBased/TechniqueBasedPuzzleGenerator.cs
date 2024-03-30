@@ -24,13 +24,23 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// </summary>
 	private protected static readonly Digit[] DigitSeed = Enumerable.Range(0, 9).ToArray();
 
+	/// <summary>
+	/// Represents the solver.
+	/// </summary>
+	private protected static readonly BitwiseSolver Solver = new();
+
 
 	/// <summary>
-	/// Indicates the percentage of interfering digits to be inserted into a just-one-cell puzzle, interfering the puzzle and user.
+	/// Indicates the percentage of interfering digits that can be inserted into a just-one-cell puzzle,
+	/// in order to interfere the user to find the answer of the puzzle.
 	/// </summary>
 	/// <remarks>
 	/// <para>
-	/// The value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
+	/// Although the value is of type <see cref="double"/>, only 2 digits after decimal point is used,
+	/// i.e. the percision of this value is 0.01.
+	/// </para>
+	/// <para>
+	/// In addition, the value must be greater than 0. The greater the value will be, the more interfering digits will be produced.
 	/// The value is 0 by default.
 	/// </para>
 	/// <para>This property will be used in method <see cref="GenerateJustOneCell"/> only.</para>
@@ -85,6 +95,81 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	public virtual FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
 		=> new FullPuzzleFailed(GeneratingFailedReason.Unnecessary);
 
+	/// <summary>
+	/// Append interfering digits from the puzzle unfixed. The grid is generated in method <see cref="GenerateJustOneCell"/>.
+	/// </summary>
+	/// <param name="puzzle">An unfixed puzzle to be operated.</param>
+	/// <param name="targetCell">The target cell to avoid.</param>
+	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
+	/// <returns>
+	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+	/// </returns>
+	/// <seealso cref="GenerateJustOneCell"/>
+	/// <seealso cref="GeneratingFailedReason"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected unsafe GeneratingFailedReason AppendInterferingDigitsNoBaseGrid(scoped ref Grid puzzle, Cell targetCell, out CellMap interferingCells)
+	{
+		// Try to get an answer of the puzzle.
+		// I know the puzzle currently has multiple solutions, but we should fix one solution,
+		// in order to fill digits.
+		// Please note that the puzzle is not fixed now. We should find a solution using such modifiable digits.
+		var solutionBuffer = stackalloc char[82];
+		Solver.Solve(puzzle.ToString("!"), solutionBuffer, 1);
+		var solution = Grid.Parse(new ReadOnlySpan<char>(solutionBuffer, 82));
+		return AppendInterferingDigitsCore(ref puzzle, in solution, targetCell, out interferingCells);
+	}
+
+	/// <summary>
+	/// Append interfering digits from the puzzle unfixed.
+	/// </summary>
+	/// <param name="puzzle">An unfixed puzzle to be operated.</param>
+	/// <param name="solution">Indicates the solution grid to the <paramref name="puzzle"/>.</param>
+	/// <param name="targetCell">The target cell to avoid.</param>
+	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
+	/// <returns>
+	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+	/// </returns>
+	/// <seealso cref="GenerateJustOneCell"/>
+	/// <seealso cref="GeneratingFailedReason"/>
+	protected GeneratingFailedReason AppendInterferingDigitsCore(
+		scoped ref Grid puzzle,
+		scoped ref readonly Grid solution,
+		Cell targetCell,
+		out CellMap interferingCells
+	)
+	{
+		interferingCells = [];
+		if (!InterferingPercentage.NearlyEquals(0, 1E-2F))
+		{
+			// Shuffle cell indices.
+			ShuffleSequence(CellSeed);
+
+			// Add interfering digits.
+			var givensCount = puzzle.ModifiablesCount;
+			var factGivensCount = GetGivensCount(givensCount, InterferingPercentage, out var interferingDigitsCount);
+			if (factGivensCount >= 81)
+			{
+				return GeneratingFailedReason.InvalidData;
+			}
+
+			for (var i = 0; i < interferingDigitsCount; i++)
+			{
+				var interferingCell = CellSeed[i];
+				if (puzzle.GetState(interferingCell) == CellState.Modifiable || interferingCell == targetCell)
+				{
+					// Skips the cell that is already given, or is the conclusion cell.
+					continue;
+				}
+
+				// Set the value onto the puzzle.
+				interferingCells.Add(interferingCell);
+				puzzle.SetDigit(interferingCell, solution.GetDigit(interferingCell));
+			}
+		}
+
+		return GeneratingFailedReason.None;
+	}
+
 	/// <inheritdoc/>
 	Grid IPuzzleGenerator.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 		=> GenerateUnique(cancellationToken) is { Success: true, Puzzle: var result } ? result : Grid.Undefined;
@@ -109,5 +194,20 @@ public abstract class TechniqueBasedPuzzleGenerator :
 		{
 			Rng.Shuffle(values);
 		}
+	}
+
+	/// <summary>
+	/// Calculates the number of givens in fact.
+	/// </summary>
+	/// <param name="currentGivensCount">The number of givens currently in puzzle.</param>
+	/// <param name="ratio">The ratio. Pass <see cref="InterferingPercentage"/> to this parameter.</param>
+	/// <param name="interferingDigitsCount">The final number of interfering digits.</param>
+	/// <returns>The result numnber of given cells.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private protected static Cell GetGivensCount(Cell currentGivensCount, double ratio, out Cell interferingDigitsCount)
+	{
+		var result = (Cell)Math.Round(currentGivensCount * (1 + ratio));
+		interferingDigitsCount = result - currentGivensCount;
+		return result;
 	}
 }

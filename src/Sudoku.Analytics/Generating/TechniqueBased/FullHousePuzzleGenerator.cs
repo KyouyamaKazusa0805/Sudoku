@@ -61,7 +61,12 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			return new JustOneCellPuzzleFailed(GeneratingFailedReason.InvalidData);
 		}
 
+		// Leave the target cell to be empty.
 		puzzle.SetDigit(targetCell, -1);
+
+		// Append interfering digits if worth.
+		AppendInterferingDigitsNoBaseGrid(ref puzzle, targetCell, out var interferingCells);
+
 		return new JustOneCellPuzzleSuccessful(
 			puzzle.FixedGrid,
 			targetCell,
@@ -85,7 +90,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		}
 
 
-		static PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
+		PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
 		{
 			while (true)
 			{
@@ -113,6 +118,9 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 								extractedGrid.SetDigit(c, -1);
 							}
 						}
+
+						// Append interfering digits.
+						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
 
 						// Found. Now return the value.
 						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);

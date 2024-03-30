@@ -39,6 +39,23 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <seealso cref="PhasedJustOneCellPuzzle"/>
 	public abstract PhasedJustOneCellPuzzle GenerateJustOneCellPhased(SingleSubtype subtype = SingleSubtype.None, CancellationToken cancellationToken = default);
 
+	/// <summary>
+	/// Append interfering digits from the puzzle unfixed. The grid is generated in method
+	/// <see cref="GenerateJustOneCellPhased(SingleSubtype, CancellationToken)"/>.
+	/// </summary>
+	/// <param name="puzzle">An unfixed puzzle to be operated.</param>
+	/// <param name="baseGrid">The solution to be referenced.</param>
+	/// <param name="targetCell">The target cell to avoid.</param>
+	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
+	/// <returns>
+	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
+	/// </returns>
+	/// <seealso cref="GenerateJustOneCellPhased(SingleSubtype, CancellationToken)"/>
+	/// <seealso cref="GeneratingFailedReason"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	protected GeneratingFailedReason AppendInterferingDigitsBaseGrid(scoped ref Grid puzzle, scoped ref readonly Grid baseGrid, Cell targetCell, out CellMap interferingCells)
+		=> AppendInterferingDigitsCore(ref puzzle, baseGrid.FixedGrid.SolutionGrid, targetCell, out interferingCells);
+
 	/// <inheritdoc/>
 	PhasedJustOneCellPuzzle IGenerator<PhasedJustOneCellPuzzle>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)
 		=> GenerateJustOneCellPhased(cancellationToken: cancellationToken);

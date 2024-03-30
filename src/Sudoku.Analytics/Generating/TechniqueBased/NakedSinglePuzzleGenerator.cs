@@ -32,15 +32,17 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		{
 			var digit = DigitSeed[i++];
 			puzzle.SetDigit(cell, digit);
-			puzzle.SetState(cell, CellState.Given);
 
 			digitsMask &= (Mask)~(1 << digit);
 		}
 
+		// Append interfering digits.
+		AppendInterferingDigitsNoBaseGrid(ref puzzle, targetCell, out var interferingCells);
+
 		var targetDigit = Log2((uint)digitsMask);
 		var blockCellsCount = (HousesMap[targetCell.ToHouseIndex(HouseType.Block)] - puzzle.EmptyCells).Count;
 		return new JustOneCellPuzzleSuccessful(
-			in puzzle,
+			puzzle.FixedGrid,
 			targetCell,
 			targetDigit,
 			new NakedSingleStep(
@@ -80,7 +82,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		}
 
 
-		static PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
+		PhasedJustOneCellPuzzle g(SingleSubtype subtype, CancellationToken cancellationToken)
 		{
 			while (true)
 			{
@@ -110,6 +112,9 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 								extractedGrid.SetDigit(c, -1);
 							}
 						}
+
+						// Append interfering digits.
+						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
 
 						return new PhasedJustOneCellPuzzleSuccessful(extractedGrid.FixedGrid, in currentGrid, cell, digit, step);
 					}

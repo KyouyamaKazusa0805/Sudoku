@@ -45,6 +45,7 @@ global using Sudoku.Rendering.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.CompilerServices;
 global using Sudoku.Runtime.MaskServices;
+global using Sudoku.Solving;
 global using Sudoku.Strategying.Constraints;
 global using Sudoku.Text;
 global using Sudoku.Text.Converters;
