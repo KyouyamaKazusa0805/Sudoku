@@ -1,7 +1,7 @@
 namespace System.Text.Json;
 
 /// <summary>
-/// Represents a JSON converter that serializes and deserialize a <see cref="Range"/> object.
+/// Represents a JSON converter that serializes and deserializes a <see cref="Range"/> object.
 /// </summary>
 /// <seealso cref="Range"/>
 public sealed class RangeConverter : JsonConverter<Range>

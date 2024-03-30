@@ -1095,6 +1095,21 @@
             </list>
             </summary>
         </member>
+        <member name="T:System.Text.Json.CultureInfoConverter">
+            <summary>
+            Represents a JSON convetrer that serializes and deserializes a <see cref="T:System.Globalization.CultureInfo"/> object.
+            </summary>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
+        </member>
+        <member name="P:System.Text.Json.CultureInfoConverter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.CultureInfoConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.CultureInfoConverter.Write(System.Text.Json.Utf8JsonWriter,System.Globalization.CultureInfo,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:System.Text.Json.PascalCaseJsonNamingPolicy">
             <summary>
             Defines the pascal casing JSON naming policy.
@@ -1115,7 +1130,7 @@
         </member>
         <member name="T:System.Text.Json.RangeConverter">
             <summary>
-            Represents a JSON converter that serializes and deserialize a <see cref="T:System.Range"/> object.
+            Represents a JSON converter that serializes and deserializes a <see cref="T:System.Range"/> object.
             </summary>
             <seealso cref="T:System.Range"/>
         </member>
