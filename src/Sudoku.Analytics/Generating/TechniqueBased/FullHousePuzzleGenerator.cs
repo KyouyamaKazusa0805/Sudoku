@@ -48,22 +48,22 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		int targetCell, targetDigit;
 		switch (Alignment)
 		{
-			case GridAlignment.NotLimited or GridAlignment.CenterHouses:
-			case GridAlignment.CenterBlock when selectedHouse == 4:
+			case ConlusionCellAlignment.NotLimited or ConlusionCellAlignment.CenterHouse:
+			case ConlusionCellAlignment.CenterBlock when selectedHouse == 4:
 			{
 				var missingPos = Rng.Next(0, 9);
 				targetCell = HousesCells[selectedHouse][missingPos];
 				targetDigit = DigitSeed[missingPos];
 				break;
 			}
-			case GridAlignment.CenterBlock:
+			case ConlusionCellAlignment.CenterBlock:
 			{
 				var availableCells = HousesMap[selectedHouse] & HousesMap[4];
 				targetCell = availableCells[Rng.Next(0, availableCells.Count)];
 				targetDigit = puzzle.GetDigit(targetCell);
 				break;
 			}
-			case GridAlignment.CenterCell:
+			case ConlusionCellAlignment.CenterCell:
 			{
 				targetCell = 40;
 				targetDigit = puzzle.GetDigit(targetCell);

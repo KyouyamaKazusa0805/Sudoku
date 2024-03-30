@@ -21210,30 +21210,29 @@ if (student is (name: var name, age: >= 18))
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
         </member>
-        <member name="T:Sudoku.Generating.GridAlignment">
+        <member name="T:Sudoku.Generating.ConlusionCellAlignment">
             <summary>
             Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridAlignment.NotLimited">
+        <member name="F:Sudoku.Generating.ConlusionCellAlignment.NotLimited">
             <summary>
-            Indicates the rule is not limited.
+            Indicates conclusion cell can be everywhere.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridAlignment.CenterHouses">
+        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterHouse">
             <summary>
-            Indicates the rule is limited in row 5, column 5 and block 5. However, the conclusion can be outside the block 5
-            to display other positions like some cells adjacent to grid borders.
+            Indicates conclusion cell can only be inside row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridAlignment.CenterBlock">
+        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterBlock">
             <summary>
-            Indicates the rule is limited in only block 5. No matter what technique used, the conclusion must be inside the block 5.
+            Indicates conclusion cell can only be inside block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridAlignment.CenterCell">
+        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterCell">
             <summary>
-            Indicates the conclusion can only be placed in <c>r5c5</c>.
+            Indicates the conclusion cell must be <c>r5c5</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Generating.JustOneCellPuzzle">
@@ -21479,7 +21478,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Alignment">
-            <inheritdoc cref="T:Sudoku.Generating.GridAlignment"/>
+            <inheritdoc cref="T:Sudoku.Generating.ConlusionCellAlignment"/>
         </member>
         <member name="P:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.SupportedTypes">
             <inheritdoc/>
@@ -21500,7 +21499,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <returns>The block position.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.GridAlignment)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.ConlusionCellAlignment)">
             <summary>
             Randomly select a house, obeying the specified grid alignment rule.
             </summary>

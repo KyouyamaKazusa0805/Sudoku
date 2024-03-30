@@ -90,7 +90,7 @@ public sealed partial class SingleCountingPracticingPage : Page
 			{
 				case GeneratingMode.House5 or GeneratingMode.FullHouse:
 				{
-					var targetAlignment = mode == GeneratingMode.House5 ? GridAlignment.CenterHouses : GridAlignment.NotLimited;
+					var targetAlignment = mode == GeneratingMode.House5 ? ConlusionCellAlignment.CenterHouse : ConlusionCellAlignment.NotLimited;
 					if (h(new FullHousePuzzleGenerator { Alignment = targetAlignment }, out var p, out targetCandidate))
 					{
 						return p;

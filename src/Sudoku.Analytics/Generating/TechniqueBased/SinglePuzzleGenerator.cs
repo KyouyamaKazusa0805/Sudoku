@@ -30,8 +30,8 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// </summary>
 	public bool HasInterfererDigits { get; set; }
 
-	/// <inheritdoc cref="GridAlignment"/>
-	public GridAlignment Alignment { get; set; }
+	/// <inheritdoc cref="ConlusionCellAlignment"/>
+	public ConlusionCellAlignment Alignment { get; set; }
 
 	/// <inheritdoc/>
 	public override SudokuType SupportedTypes => SudokuType.JustOneCell;
@@ -72,12 +72,12 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// </summary>
 	/// <param name="alignment">Indicates the grid alignment value to be used.</param>
 	/// <returns>The house index.</returns>
-	private protected static House RandomlySelectHouse(GridAlignment alignment)
+	private protected static House RandomlySelectHouse(ConlusionCellAlignment alignment)
 		=> alignment switch
 		{
-			GridAlignment.NotLimited => Rng.Next(0, 27),
-			GridAlignment.CenterHouses => 9 * Rng.Next(0, 3) + 4,
-			GridAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
+			ConlusionCellAlignment.NotLimited => Rng.Next(0, 27),
+			ConlusionCellAlignment.CenterHouse => 9 * Rng.Next(0, 3) + 4,
+			ConlusionCellAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
 			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]
 		};
 
