@@ -5,9 +5,9 @@ namespace Sudoku.Generating.TechniqueBased;
 /// </summary>
 public abstract class TechniqueBasedPuzzleGenerator :
 	ICultureFormattable,
-	IPuzzleGenerator,
 	IGenerator<FullPuzzle>,
-	IGenerator<JustOneCellPuzzle>
+	IGenerator<JustOneCellPuzzle>,
+	IPuzzleGenerator
 {
 	/// <summary>
 	/// Represents a seed array for cells that can be used in core methods.
