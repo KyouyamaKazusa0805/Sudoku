@@ -108,6 +108,10 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			roundsCount = -1;
 			break;
 		}
+		if (roundsCount == -1)
+		{
+			return false;
+		}
 
 		return Operator.GetOperator<int>()(roundsCount, Rounds);
 	}
