@@ -36,7 +36,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(BottleneckSteps))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -236,6 +236,65 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <seealso cref="IsSolved"/>
 	/// <seealso cref="Puzzle"/>
 	public Step? WrongStep => (UnhandledException as WrongStepException)?.WrongStep;
+
+	/// <summary>
+	/// Indicates the bottleneck steps.
+	/// </summary>
+	/// <remarks>
+	/// <para>
+	/// The bottleneck steps will be considered as "hardest" ones,
+	/// checking their difficulty rating (i.e. property <see cref="Step.Difficulty"/>) and difficulty level
+	/// (i.e. <see cref="Step.DifficultyLevel"/>).
+	/// </para>
+	/// <para>
+	/// The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
+	/// they all will be considered as bottleneck steps.
+	/// </para>
+	/// </remarks>
+	/// <seealso cref="Step.Difficulty"/>
+	/// <seealso cref="Step.DifficultyLevel"/>
+	public Step[]? BottleneckSteps
+	{
+		get
+		{
+			return this switch
+			{
+				{ IsSolved: true, DifficultyLevel: var difficultyLevel } => difficultyLevel switch
+				{
+					DifficultyLevel.Easy => bottleneckEasy(Steps),
+					_ => bottleneckNotEasy(Steps)
+				},
+				_ => null
+			};
+
+
+			static Step[] bottleneckEasy(Step[] steps)
+			{
+				var maxStep = default(Step);
+				foreach (var step in steps)
+				{
+					// If the puzzle only contains hidden single and full house, we will consider this puzzle has no bottleneck.
+					// Otherwise, the hardest technique used is the bottleneck.
+					if (step.Difficulty >= (maxStep?.Difficulty ?? 0))
+					{
+						//
+					}
+				}
+
+				throw new NotImplementedException();
+			}
+
+			static Step[] bottleneckNotEasy(Step[] steps)
+			{
+				foreach (var step in steps)
+				{
+					//
+				}
+
+				throw new NotImplementedException();
+			}
+		}
+	}
 
 	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.

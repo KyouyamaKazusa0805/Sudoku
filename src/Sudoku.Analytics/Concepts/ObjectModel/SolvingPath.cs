@@ -32,43 +32,6 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	public ReadOnlySpan<Step> Steps => steps;
 
 	/// <summary>
-	/// Gets the bottleneck during the whole grid solving.
-	/// Returns <see langword="null"/> if the property <see cref="Steps"/> is invalid (i.e. puzzle isn't solved).
-	/// </summary>
-	/// <seealso cref="Steps"/>
-	public Step? Bottleneck
-	{
-		get
-		{
-			if (!IsSolved)
-			{
-				return null;
-			}
-
-			switch (Steps)
-			{
-				case [var firstStep, .. var lastSteps]:
-				{
-					foreach (var step in lastSteps.EnumerateReversely())
-					{
-						if (step is not SingleStep)
-						{
-							return step;
-						}
-					}
-
-					// If code goes to here, all steps are more difficult than single techniques. Get the first one.
-					return firstStep;
-				}
-				default:
-				{
-					return null;
-				}
-			}
-		}
-	}
-
-	/// <summary>
 	/// Indicates the pearl step.
 	/// </summary>
 	public Step? PearlStep
