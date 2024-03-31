@@ -2963,7 +2963,7 @@
     <value>唯一余数</value>
   </data>
   <data name="CountBetweenConstraint" xml:space="preserve">
-    <value>单元格数量：{0}须介于 {1} 和 {2} 之间，{3}</value>
+    <value>单元格数量：{0}需介于 {1} 和 {2} 之间，{3}</value>
   </data>
   <data name="GivenCell" xml:space="preserve">
     <value>提示数数量</value>
@@ -3044,6 +3044,9 @@
   </data>
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
     <value>最高难度技巧：</value>
+  </data>
+  <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
   </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
@@ -3126,7 +3129,10 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
+    <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
+  </data>
+  <data name="BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>卡点技巧：卡点必须是“{0}”里的其中一个</value>
   </data>
 </root>

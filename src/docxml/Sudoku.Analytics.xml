@@ -22373,6 +22373,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to both side open.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.BottleneckStepRatingConstraint">
+            <summary>
+              Looks up a localized string similar to Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.BottleneckTechniqueConstraint">
+            <summary>
+              Looks up a localized string similar to Bottleneck technique: Bottleneck must be any one of technique set {0}..
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.BowmanBingo">
             <summary>
               Looks up a localized string similar to Bowman Bingo.
@@ -26917,6 +26927,72 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.op_Subtraction(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">
+            <summary>
+            Represents a constraint that checks for difficulty rating of each step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.AllowDuplicate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Minimum">
+            <summary>
+            Indicates the minimal value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Maximum">
+            <summary>
+            Indicates the maximum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint">
+            <summary>
+            Represents a constraint that determines whether bottleneck step represents the specified technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.AllowDuplicate">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques selected.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
             <summary>

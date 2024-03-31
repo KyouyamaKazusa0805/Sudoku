@@ -745,6 +745,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}.
+        /// </summary>
+        public static string BottleneckStepRatingConstraint {
+            get {
+                return ResourceManager.GetString("BottleneckStepRatingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck technique: Bottleneck must be any one of technique set {0}..
+        /// </summary>
+        public static string BottleneckTechniqueConstraint {
+            get {
+                return ResourceManager.GetString("BottleneckTechniqueConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Bowman Bingo.
         /// </summary>
         public static string BowmanBingo {

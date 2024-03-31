@@ -2937,4 +2937,10 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_TechniqueIsNotImplemented" xml:space="preserve">
     <value>The current technique is not implemented.</value>
   </data>
+  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
+    <value>Bottleneck rating: rating of bottleneck step should be between {0} and {1}, {2}</value>
+  </data>
+  <data name="BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>Bottleneck technique: Bottleneck must be any one of technique set {0}.</value>
+  </data>
 </root>
