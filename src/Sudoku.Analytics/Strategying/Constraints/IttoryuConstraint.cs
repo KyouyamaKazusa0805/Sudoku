@@ -76,7 +76,8 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,
-				Steps: { Length: var stepsCount } steps
+				Steps: { Length: var stepsCount } steps,
+				SteppingGrids: var stepGrids
 			})
 		{
 			return false;
@@ -92,15 +93,23 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		var roundsCount = 1;
 		for (var i = 0; i < stepsCount - 1; i++)
 		{
-			var a = ((SingleStep)steps[i]).Digit;
-			var b = ((SingleStep)steps[i + 1]).Digit;
-			if ((a, b) is (8, 0))
+			var previousDigit = ((SingleStep)steps[i]).Digit;
+			var currentDigit = ((SingleStep)steps[i + 1]).Digit;
+			if ((previousDigit, currentDigit) is (8, 0))
 			{
 				roundsCount++;
 				continue;
 			}
 
-			if (b - a is 0 or 1)
+			if (currentDigit - previousDigit is 0 or 1)
+			{
+				continue;
+			}
+
+			// Check whether the current digit is already completed.
+			// If the digit is already completed, we should consider this case as "consecutive" also.
+			scoped ref readonly var currentGrid = ref stepGrids[i + 1];
+			if (currentGrid.ValuesMap[previousDigit].Count == 9)
 			{
 				continue;
 			}
