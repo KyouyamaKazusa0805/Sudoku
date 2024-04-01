@@ -100,8 +100,8 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is
 					{
 						IsSolved: true,
-						SteppingGrids: var interimGrids,
-						Steps: var interimSteps
+						InterimGrids: var interimGrids,
+						InterimSteps: var interimSteps
 					})
 				{
 					foreach (var (currentGrid, step) in StepMarshal.Combine(interimGrids, interimSteps))
@@ -180,7 +180,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			// Fix the grid and check validity.
 			grid.Fix();
 			if (grid.IsValid
-				&& Analyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, Steps: var steps }
+				&& Analyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, InterimSteps: var steps }
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{
 				// Check validity of the puzzle.

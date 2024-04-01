@@ -415,7 +415,7 @@
             Indicates the index of the step.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.StepGrid">
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.InterimGrid">
             <summary>
             Indicates the step grid used.
             </summary>
@@ -425,7 +425,7 @@
             Indicates the kinds of items which the step tooltip will be displayed.
             </summary>
         </member>
-        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.Step">
+        <member name="P:SudokuStudio.BindableSource.SolvingPathStepBindableSource.InterimStep">
             <summary>
             Indicates the step details.
             </summary>

@@ -76,8 +76,8 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			{
 				IsSolved: true,
 				DifficultyLevel: DifficultyLevel.Easy,
-				Steps: { Length: var stepsCount } steps,
-				SteppingGrids: var stepGrids
+				InterimSteps: { Length: var stepsCount } steps,
+				InterimGrids: var stepGrids
 			})
 		{
 			return false;

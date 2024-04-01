@@ -89,7 +89,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 				step.ToSimpleString(App.CurrentCulture),
 				step,
 				null,
-				AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, Step = step })
+				AnalyzeConversion.GetInlinesOfTooltip(new() { DisplayItems = displayItems, InterimStep = step })
 			);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

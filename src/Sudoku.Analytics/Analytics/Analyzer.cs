@@ -468,8 +468,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			{
 				FailedReason = FailedReason.PuzzleIsTooHard,
 				ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
-				Steps = [.. collectedSteps],
-				SteppingGrids = [.. stepGrids]
+				InterimSteps = [.. collectedSteps],
+				InterimGrids = [.. stepGrids]
 			};
 
 		ReportStateAndTryNextStep:
@@ -550,8 +550,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 							IsSolved = true,
 							Solution = playground,
 							ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
-							Steps = [.. steps],
-							SteppingGrids = [.. steppingGrids]
+							InterimSteps = [.. steps],
+							InterimGrids = [.. steppingGrids]
 						};
 						return true;
 					}

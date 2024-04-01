@@ -39,12 +39,12 @@
 											Grid.Column="1" Grid.RowSpan="2" Width="32" Height="32" Margin="12,0,0,0"
 											HorizontalAlignment="Center" VerticalAlignment="Center"
 											Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColorFromCode(Step.Code)}" />
+											Fill="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColorFromCode(InterimStep.Code)}" />
 										<TextBlock
 											Grid.Column="1" Grid.RowSpan="2" HorizontalAlignment="Center" VerticalAlignment="Center"
 											Margin="12,0,0,0" Visibility="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingVisibility(x:True)}"
-											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(Step)}"
-											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColorFromCode(Step.Code)}" />
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText(InterimStep)}"
+											Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColorFromCode(InterimStep.Code)}" />
 
 										<!--HoDoKu rating-->
 										<TextBlock
@@ -58,7 +58,7 @@
 											HorizontalTextAlignment="Center"
 											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_HodokuRatingText(ShowHodokuDifficulty)}"
 											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_HodokuRating(ShowHodokuDifficulty)}"
-											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_Hodoku(Step)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_Hodoku(InterimStep)}"
 											Foreground="{ThemeResource SolvingStepItemForeground}" />
 
 										<!--SE rating-->
@@ -74,7 +74,7 @@
 											HorizontalTextAlignment="Center"
 											Width="{x:Bind cvt:AnalyzeConversion.GetWidth_SudokuExplainerText(ShowSudokuExplainerDifficulty)}"
 											Margin="{x:Bind cvt:AnalyzeConversion.GetMargin_SudokuExplainerRating(ShowSudokuExplainerDifficulty)}"
-											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_SudokuExplainer(Step)}"
+											Text="{x:Bind cvt:AnalyzeConversion.GetDifficultyRatingText_SudokuExplainer(InterimStep)}"
 											Foreground="{ThemeResource SolvingStepItemForeground}" />
 
 										<!--Name-->
@@ -82,20 +82,21 @@
 											Grid.Row="0" Grid.Column="4" Grid.ColumnSpan="2" Margin="12,0,0,0"
 											Orientation="Horizontal" Spacing="6">
 											<TextBlock
-												Style="{StaticResource BaseTextBlockStyle}" Text="{x:Bind cvt:AnalyzeConversion.GetName(Step)}"
+												Style="{StaticResource BaseTextBlockStyle}"
+												Text="{x:Bind cvt:AnalyzeConversion.GetName(InterimStep)}"
 												HorizontalAlignment="Left" VerticalAlignment="Center"
 												Foreground="{ThemeResource SolvingStepItemForeground}" />
 											<TextBlock
 												FontSize="11" Style="{StaticResource BodyTextBlockStyle}"
 												Visibility="{x:Bind cvt:AnalyzeConversion.GetEnglishNameTextBlockVisibility()}"
-												Text="{x:Bind Step.EnglishName}" HorizontalAlignment="Left" VerticalAlignment="Center"
+												Text="{x:Bind InterimStep.EnglishName}" HorizontalAlignment="Left" VerticalAlignment="Center"
 												Foreground="{ThemeResource SolvingStepItemForeground}" />
 										</StackPanel>
 
 										<!--Conclusions-->
 										<TextBlock
 											Grid.Row="1" Grid.Column="4" Grid.ColumnSpan="2" Style="{StaticResource BodyTextBlockStyle}"
-											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(Step)}"
+											Margin="12,0,0,0" Text="{x:Bind cvt:AnalyzeConversion.GetEliminationString(InterimStep)}"
 											Foreground="{ThemeResource SolvingStepItemForeground}" />
 									</Grid>
 								</ListViewItem>

@@ -431,11 +431,11 @@
             </summary>
             <remarks>
             When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
-            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>.
+            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>.
             However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.PearlDifficulty">
             <summary>
@@ -478,24 +478,25 @@
         <member name="P:Sudoku.Analytics.AnalyzerResult.ElapsedTime">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids">
+        <member name="P:Sudoku.Analytics.AnalyzerResult.InterimGrids">
             <summary>
             Indicates a list, whose element is the intermediate grid for each step.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.GridsSpan">
             <summary>
             Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instances,
-            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>.
+            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.StepsSpan">
             <summary>
-            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Step"/> instances, whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>.
+            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Step"/> instances,
+            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.WrongStep">
             <summary>
@@ -560,11 +561,11 @@
             Indicates the diamond step.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
+        <member name="P:Sudoku.Analytics.AnalyzerResult.InterimSteps">
             <summary>
             Indicates all solving steps that the solver has recorded.
             </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.TechniquesUsed">
             <summary>

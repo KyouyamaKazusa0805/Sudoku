@@ -364,7 +364,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			static (scoped ref Grid grid, Analyzer analyzer) =>
 			{
 				var analyzerResult = analyzer.Analyze(in grid);
-				if (analyzerResult is not { IsSolved: true, SteppingGrids: var interimGrids, Steps: var interimSteps })
+				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;
 				}
@@ -432,7 +432,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			static (scoped ref Grid grid, Analyzer analyzer) =>
 			{
 				var analyzerResult = analyzer.Analyze(in grid);
-				if (analyzerResult is not { IsSolved: true, SteppingGrids: var interimGrids, Steps: var interimSteps })
+				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;
 				}

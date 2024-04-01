@@ -33,7 +33,7 @@ internal sealed partial class SummaryViewBindableSource(
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		return analyzerResult switch
 		{
-			{ IsSolved: true, Steps: var steps } => [
+			{ IsSolved: true, InterimSteps: var steps } => [
 				..
 				from step in steps
 				orderby step.DifficultyLevel, step.Code

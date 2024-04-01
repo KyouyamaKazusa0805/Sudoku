@@ -89,7 +89,7 @@ internal static class AnalyzeConversion
 			{
 				Index: var index,
 				DisplayItems: var displayKind,
-				Step:
+				InterimStep:
 				{
 					Code: var technique,
 					BaseDifficulty: var baseDifficulty,

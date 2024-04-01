@@ -38,7 +38,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
+	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids), nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -116,19 +116,19 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="MaximumRatingValueTheory"/>
-	public unsafe decimal MaxDifficulty => EvaluateRatingUnsafe(Steps, &MaxUnsafe, MaximumRatingValueTheory);
+	public unsafe decimal MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &MaxUnsafe, MaximumRatingValueTheory);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
 	/// </summary>
 	/// <remarks>
 	/// When the puzzle is solved by <see cref="Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
-	/// If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="Steps"/>.
+	/// If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="InterimSteps"/>.
 	/// However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => EvaluateRatingUnsafe(Steps, &SumUnsafe, MinimumRatingValue);
+	/// <seealso cref="InterimSteps"/>
+	public unsafe decimal TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &SumUnsafe, MinimumRatingValue);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -170,7 +170,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			var maxLevel = DifficultyLevel.Unknown;
 			if (IsSolved)
 			{
-				foreach (var step in Steps)
+				foreach (var step in InterimSteps)
 				{
 					if (step.DifficultyLevel > maxLevel)
 					{
@@ -192,21 +192,22 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates a list, whose element is the intermediate grid for each step.
 	/// </summary>
-	/// <seealso cref="Steps"/>
-	public Grid[]? SteppingGrids { get; init; }
+	/// <seealso cref="InterimSteps"/>
+	public Grid[]? InterimGrids { get; init; }
 
 	/// <summary>
 	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> instances,
-	/// whose internal values come from <see cref="SteppingGrids"/>.
+	/// whose internal values come from <see cref="InterimGrids"/>.
 	/// </summary>
-	/// <seealso cref="SteppingGrids"/>
-	public ReadOnlySpan<Grid> GridsSpan => SteppingGrids;
+	/// <seealso cref="InterimGrids"/>
+	public ReadOnlySpan<Grid> GridsSpan => InterimGrids;
 
 	/// <summary>
-	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Step"/> instances, whose internal values come from <see cref="Steps"/>.
+	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Step"/> instances,
+	/// whose internal values come from <see cref="InterimSteps"/>.
 	/// </summary>
-	/// <seealso cref="Steps"/>
-	public ReadOnlySpan<Step> StepsSpan => Steps;
+	/// <seealso cref="InterimSteps"/>
+	public ReadOnlySpan<Step> StepsSpan => InterimSteps;
 
 	/// <summary>
 	/// <para>
@@ -267,8 +268,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			{
 				{ IsSolved: true, DifficultyLevel: var difficultyLevel } => difficultyLevel switch
 				{
-					DifficultyLevel.Easy => bottleneckEasy(Steps),
-					_ => bottleneckNotEasy(Steps)
+					DifficultyLevel.Easy => bottleneckEasy(InterimSteps),
+					_ => bottleneckNotEasy(InterimSteps)
 				},
 				_ => null
 			};
@@ -311,12 +312,12 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				return null;
 			}
 
-			for (var i = 0; i < Steps.Length; i++)
+			for (var i = 0; i < InterimSteps.Length; i++)
 			{
-				if (Steps[i] is SingleStep)
+				if (InterimSteps[i] is SingleStep)
 				{
 					static decimal keySelector((Step, decimal Difficulty) pair) => pair.Difficulty;
-					return i < 1 ? Steps[0] : (from step in Steps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
+					return i < 1 ? InterimSteps[0] : (from step in InterimSteps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
 				}
 			}
 
@@ -345,7 +346,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			if (StepsSpan.AllAre<Step, SingleStep>())
 			{
 				// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
-				foreach (var step in Steps)
+				foreach (var step in InterimSteps)
 				{
 					if (step is not HiddenSingleStep { House: < 9 })
 					{
@@ -356,7 +357,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			else
 			{
 				// Otherwise, an deletion step should be chosen.
-				foreach (var step in Steps)
+				foreach (var step in InterimSteps)
 				{
 					if (step is not SingleStep)
 					{
@@ -372,8 +373,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.
 	/// </summary>
-	/// <seealso cref="SteppingGrids"/>
-	public Step[]? Steps { get; init; }
+	/// <seealso cref="InterimGrids"/>
+	public Step[]? InterimSteps { get; init; }
 
 	/// <summary>
 	/// Indicates the techniques used during the solving operation.
@@ -446,7 +447,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				Puzzle: var puzzle,
 				Solution: var solution,
 				ElapsedTime: var elapsed,
-				Steps: { Length: var stepsCount } steps
+				InterimSteps: { Length: var stepsCount } steps
 			})
 		{
 			throw new();
@@ -600,7 +601,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 		(int, Step)? getBottleneck()
 		{
-			if (this is not { IsSolved: true, Steps: { Length: var stepsCount } steps })
+			if (this is not { IsSolved: true, InterimSteps: { Length: var stepsCount } steps })
 			{
 				return null;
 			}

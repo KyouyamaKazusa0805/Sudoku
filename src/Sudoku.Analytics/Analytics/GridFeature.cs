@@ -20,7 +20,7 @@ public readonly ref partial struct GridFeature(
 		var analyzer = Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
-		if (analyzer.Analyze(in Grid) is not { IsSolved: true, Steps: var steps })
+		if (analyzer.Analyze(in Grid) is not { IsSolved: true, InterimSteps: var steps })
 		{
 			return false;
 		}

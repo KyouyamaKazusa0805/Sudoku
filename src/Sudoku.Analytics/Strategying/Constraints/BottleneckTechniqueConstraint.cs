@@ -23,7 +23,7 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		var maxStep = context.AnalyzerResult.Steps!.MaxBy(static step => step.Difficulty);
+		var maxStep = context.AnalyzerResult.InterimSteps!.MaxBy(static step => step.Difficulty);
 		return maxStep is not null && Techniques.Contains(maxStep.Code);
 	}
 

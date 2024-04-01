@@ -13,7 +13,7 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 	/// <returns>An instance of the current type.</returns>
 	public static SolvingPathStepCollection Create(AnalyzerResult analyzerResult, StepTooltipDisplayItems displayItems)
 	{
-		if (analyzerResult is not { IsSolved: true, Steps: var steps, SteppingGrids: var grids })
+		if (analyzerResult is not { IsSolved: true, InterimSteps: var steps, InterimGrids: var grids })
 		{
 			return [];
 		}
@@ -29,8 +29,8 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 				new()
 				{
 					Index = i,
-					StepGrid = interimGrid,
-					Step = interimStep,
+					InterimGrid = interimGrid,
+					InterimStep = interimStep,
 					DisplayItems = displayItems,
 					ShowHodokuDifficulty = showHodoku,
 					ShowSudokuExplainerDifficulty = showSudokuExplainer

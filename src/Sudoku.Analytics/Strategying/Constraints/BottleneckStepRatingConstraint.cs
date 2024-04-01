@@ -35,7 +35,7 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		var maxStep = context.AnalyzerResult.Steps!.MaxBy(static step => step.Difficulty);
+		var maxStep = context.AnalyzerResult.InterimSteps!.MaxBy(static step => step.Difficulty);
 		return maxStep is not null && b(maxStep.Difficulty, BetweenRule, Minimum, Maximum);
 
 

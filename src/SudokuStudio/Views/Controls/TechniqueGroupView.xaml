@@ -33,7 +33,7 @@
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:SolvingPathStepBindableSource">
 				<ListViewItem
-					Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(Step.DifficultyLevel)}"
+					Tag="{x:Bind}" Background="{x:Bind cvt:DifficultyLevelConversion.GetBackgroundColor(InterimStep.DifficultyLevel)}"
 					Tapped="ListViewItem_Tapped" RightTapped="ListViewItem_RightTapped">
 					<ToolTipService.ToolTip>
 						<TextBlock
@@ -42,8 +42,9 @@
 					</ToolTipService.ToolTip>
 
 					<TextBlock
-						Text="{x:Bind cvt:AnalyzeConversion.GetSimpleString(Step)}" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-						Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(Step.DifficultyLevel)}" />
+						Text="{x:Bind cvt:AnalyzeConversion.GetSimpleString(InterimStep)}"
+						HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+						Foreground="{x:Bind cvt:DifficultyLevelConversion.GetForegroundColor(InterimStep.DifficultyLevel)}" />
 				</ListViewItem>
 			</DataTemplate>
 		</ListView.ItemTemplate>

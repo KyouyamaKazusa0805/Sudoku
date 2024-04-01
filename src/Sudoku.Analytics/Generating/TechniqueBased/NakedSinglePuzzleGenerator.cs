@@ -97,8 +97,8 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is
 					{
 						IsSolved: true,
-						SteppingGrids: var interimGrids,
-						Steps: var interimSteps
+						InterimGrids: var interimGrids,
+						InterimSteps: var interimSteps
 					})
 				{
 					foreach (var (currentGrid, step) in StepMarshal.Combine(interimGrids, interimSteps))

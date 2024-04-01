@@ -30,7 +30,7 @@ public sealed partial class TechniqueGroupView : UserControl
 
 	private void ListViewItem_Tapped(object sender, TappedRoutedEventArgs e)
 	{
-		if (sender is ListViewItem { Tag: SolvingPathStepBindableSource { Step: var step } })
+		if (sender is ListViewItem { Tag: SolvingPathStepBindableSource { InterimStep: var step } })
 		{
 			StepChosen?.Invoke(this, new(step));
 		}
@@ -38,7 +38,7 @@ public sealed partial class TechniqueGroupView : UserControl
 
 	private void ListViewItem_RightTapped(object sender, RightTappedRoutedEventArgs e)
 	{
-		if (sender is ListViewItem { Tag: SolvingPathStepBindableSource { Step: var step } })
+		if (sender is ListViewItem { Tag: SolvingPathStepBindableSource { InterimStep: var step } })
 		{
 			StepApplied?.Invoke(this, new(step));
 		}
