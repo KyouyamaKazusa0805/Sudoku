@@ -13,7 +13,7 @@ public readonly ref partial struct SolvingPath(Grid[] steppingGrids, Step[] step
 	/// <summary>
 	/// Indicates whether the puzzle has been solved.
 	/// </summary>
-	[MemberNotNullWhen(true, nameof(PearlStep), nameof(DiamondStep), nameof(Steps), nameof(SteppingGrids))]
+	[MemberNotNullWhen(true, nameof(PearlStep), nameof(DiamondStep))]
 	public bool IsSolved { get; } = true;
 
 	/// <summary>
