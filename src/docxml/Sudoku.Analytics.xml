@@ -20888,65 +20888,23 @@ result ^= expression;
             <summary>
             Represents an element that is the unit data structure of a <see cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>.
             </summary>
-            <param name="steppingGrid">Indicates the stepping grid.</param>
-            <param name="step">Indicates the current step.</param>
+            <param name="SteppingGrid">Indicates the stepping grid.</param>
+            <param name="Step">Indicates the current step.</param>
             <seealso cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.SolvingPathElement.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
             <summary>
             Represents an element that is the unit data structure of a <see cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>.
             </summary>
-            <param name="steppingGrid">Indicates the stepping grid.</param>
-            <param name="step">Indicates the current step.</param>
+            <param name="SteppingGrid">Indicates the stepping grid.</param>
+            <param name="Step">Indicates the current step.</param>
             <seealso cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPathElement.Deconstruct(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
         <member name="P:Sudoku.Concepts.ObjectModel.SolvingPathElement.SteppingGrid">
-            <summary>
-            The generated property declaration for parameter <c>steppingGrid</c>.
-            </summary>
+            <summary>Indicates the stepping grid.</summary>
         </member>
         <member name="P:Sudoku.Concepts.ObjectModel.SolvingPathElement.Step">
-            <summary>
-            The generated property declaration for parameter <c>step</c>.
-            </summary>
+            <summary>Indicates the current step.</summary>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
