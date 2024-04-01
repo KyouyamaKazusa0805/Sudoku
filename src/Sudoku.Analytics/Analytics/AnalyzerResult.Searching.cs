@@ -9,7 +9,8 @@ public partial record AnalyzerResult
 
 
 	/// <summary>
-	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+	/// Gets the found <see cref="Step"/> instance whose corresponding candidates are same
+	/// with the specified argument <paramref name="grid"/>.
 	/// </summary>
 	/// <param name="grid">The grid to be matched.</param>
 	/// <returns>The found <see cref="Step"/> instance.</returns>

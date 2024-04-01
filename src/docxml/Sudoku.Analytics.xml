@@ -700,7 +700,8 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Concepts.Grid@)">
             <summary>
-            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same
+            with the specified argument <paramref name="grid"/>.
             </summary>
             <param name="grid">The grid to be matched.</param>
             <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
