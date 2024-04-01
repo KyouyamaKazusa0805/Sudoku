@@ -11,33 +11,28 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 	/// <param name="analyzerResult">A <see cref="AnalyzerResult"/> instance.</param>
 	/// <param name="displayItems">Indicates all displaying values.</param>
 	/// <returns>An instance of the current type.</returns>
-	public static SolvingPathStepCollection Create(AnalyzerResult analyzerResult, StepTooltipDisplayItems displayItems)
+	public static IEnumerable<SolvingPathStepBindableSource> Create(AnalyzerResult analyzerResult, StepTooltipDisplayItems displayItems)
 	{
 		if (analyzerResult is not { IsSolved: true, InterimSteps: var steps, InterimGrids: var grids })
 		{
-			return [];
+			yield break;
 		}
 
 		var showHodoku = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForHodoku;
 		var showSudokuExplainer = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForSudokuExplainer;
-		var result = new List<SolvingPathStepBindableSource>();
-		scoped var path = StepMarshal.Combine(grids, steps);
+		var path = StepMarshal.Combine(grids, steps).ToArray();
 		for (var i = 0; i < path.Length; i++)
 		{
 			var (interimGrid, interimStep) = path[i];
-			result.Add(
-				new()
-				{
-					Index = i,
-					InterimGrid = interimGrid,
-					InterimStep = interimStep,
-					DisplayItems = displayItems,
-					ShowHodokuDifficulty = showHodoku,
-					ShowSudokuExplainerDifficulty = showSudokuExplainer
-				}
-			);
+			yield return new()
+			{
+				Index = i,
+				InterimGrid = interimGrid,
+				InterimStep = interimStep,
+				DisplayItems = displayItems,
+				ShowHodokuDifficulty = showHodoku,
+				ShowSudokuExplainerDifficulty = showSudokuExplainer
+			};
 		}
-
-		return [.. result];
 	}
 }

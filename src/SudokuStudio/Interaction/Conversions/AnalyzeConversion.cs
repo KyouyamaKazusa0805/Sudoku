@@ -75,7 +75,11 @@ internal static class AnalyzeConversion
 		=> itemsSource is null || itemsSource.None() ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
-		=> itemsSource switch { SolvingPathStepCollection and not [] => Visibility.Visible, _ => Visibility.Collapsed };
+		=> itemsSource switch
+		{
+			ObservableCollection<SolvingPathStepBindableSource> => Visibility.Visible,
+			_ => Visibility.Collapsed
+		};
 
 	public static Visibility GetViewPipsPagerVisibility(IRenderable? renderable)
 		=> renderable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };

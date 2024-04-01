@@ -21,9 +21,19 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 	{
 		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView }, { NewValue: var value and (null or AnalyzerResult) }))
 		{
-			pathListView.ItemsSource = value is AnalyzerResult analyzerResult
-				? SolvingPathStepCollection.Create(analyzerResult, ((App)Application.Current).Preference.UIPreferences.StepDisplayItems)
-				: null;
+			if (value is not AnalyzerResult analyzerResult)
+			{
+				pathListView.ItemsSource = null;
+				return;
+			}
+
+			var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
+			var collection = new ObservableCollection<SolvingPathStepBindableSource>();
+			pathListView.ItemsSource = collection;
+			foreach (var item in SolvingPathStepCollection.Create(analyzerResult, displayItems))
+			{
+				collection.Add(item);
+			}
 		}
 	}
 
@@ -36,7 +46,6 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 		}
 
 		BasePage.SudokuPane.Puzzle = stepGrid;
-
 		BasePage.CurrentViewIndex = -1;
 		BasePage.VisualUnit = step;
 	}
