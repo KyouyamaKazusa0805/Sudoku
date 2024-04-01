@@ -275,23 +275,20 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				{
 					// If the puzzle only contains hidden single and full house, we will consider this puzzle has no bottleneck.
 					// Otherwise, the hardest technique used is the bottleneck.
-					if (step.Difficulty >= (maxStep?.Difficulty ?? 0))
+					if (step.Difficulty >= (maxStep?.Difficulty ?? 0) && step is not (FullHouseStep or HiddenSingleStep))
 					{
-						//
+						maxStep = step;
 					}
 				}
 
-				throw new NotImplementedException();
+				// Checks whether 'maxStep' is null or not. If not null, a step that is neither full house nor hidden single.
+				return maxStep is not null ? Array.FindAll(steps, s => s.Code == maxStep.Code) : [];
 			}
 
 			static Step[] bottleneckNotEasy(Step[] steps)
 			{
-				foreach (var step in steps)
-				{
-					//
-				}
-
-				throw new NotImplementedException();
+				var maxStep = steps.MaxBy(static step => step.Difficulty * 1000 + (int)step.Code);
+				return maxStep is not null ? Array.FindAll(steps, s => s.Code == maxStep.Code && s.Difficulty == maxStep.Difficulty) : [];
 			}
 		}
 	}
