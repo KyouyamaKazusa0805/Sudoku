@@ -294,8 +294,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 			static Step[] bottleneckNotEasy(Step[] steps)
 			{
-				var maxStep = steps.MaxBy(static step => step.Difficulty * 1000 + (int)step.Code);
-				return maxStep is not null ? Array.FindAll(steps, s => s.Code == maxStep.Code && s.Difficulty == maxStep.Difficulty) : [];
+				var maxStep = steps.MaxBy(static step => step.Difficulty);
+				return maxStep is not null ? Array.FindAll(steps, s => s.Difficulty == maxStep.Difficulty) : [];
 			}
 		}
 	}
