@@ -129,8 +129,8 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Sort and remove duplicate instances if worth.
-		var resultList = Step.RemoveDuplicateItems(list).ToList();
-		Step.SortItems(resultList);
+		var resultList = StepMarshal.RemoveDuplicateItems(list).ToList();
+		StepMarshal.SortItems(resultList);
 
 		if (context.OnlyFindOne)
 		{

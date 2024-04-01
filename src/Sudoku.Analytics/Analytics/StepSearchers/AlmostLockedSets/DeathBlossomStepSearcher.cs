@@ -363,18 +363,18 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 			if (accumulatorHouse.Count != 0)
 			{
-				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorHouse));
+				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorHouse));
 			}
 
 			if (accumulatorRectangle.Count != 0)
 			{
-				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorRectangle));
+				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorRectangle));
 			}
 
 			if (accumulatorNTimesAls.Count != 0)
 			{
-				Step.SortItems(accumulatorNTimesAls);
-				context.Accumulator.AddRange(Step.RemoveDuplicateItems(accumulatorNTimesAls));
+				StepMarshal.SortItems(accumulatorNTimesAls);
+				context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(accumulatorNTimesAls));
 			}
 		}
 

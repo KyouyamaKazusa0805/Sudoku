@@ -23,7 +23,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 			return null;
 		}
 
-		Step.SortItems(result);
+		StepMarshal.SortItems(result);
 
 		if (context.OnlyFindOne)
 		{

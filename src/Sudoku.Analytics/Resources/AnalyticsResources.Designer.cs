@@ -1366,6 +1366,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The length of arguments &apos;{0}&apos; and &apos;{1}&apos; must be same..
+        /// </summary>
+        public static string ErrorInfo_LengthMustBeSame {
+            get {
+                return ResourceManager.GetString("ErrorInfo_LengthMustBeSame", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The property value &apos;Collector.DifficultyLevelMode&apos; is undefined..
         /// </summary>
         public static string ErrorInfo_ModeIsUndefined {

@@ -484,14 +484,18 @@
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.SolvingPath">
+        <member name="P:Sudoku.Analytics.AnalyzerResult.GridsSpan">
             <summary>
-            <para>Indicates a list of pairs of information about each step.</para>
-            <para>
-            If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
-            the return value of the property will be always <see langword="null"/>.
-            </para>
+            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instances,
+            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>.
             </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.StepsSpan">
+            <summary>
+            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Step"/> instances, whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Steps"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.WrongStep">
             <summary>
@@ -546,11 +550,26 @@
             <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
             <seealso cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlStep">
+            <summary>
+            Indicates the pearl step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondStep">
+            <summary>
+            Indicates the diamond step.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
             <summary>
             Indicates all solving steps that the solver has recorded.
             </summary>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.SteppingGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.TechniquesUsed">
+            <summary>
+            Indicates the techniques used during the solving operation.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
             <summary>
@@ -571,6 +590,14 @@
             This is by design: We only check for grids between two <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instances,
             because the target value will be same if the base grid are same.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the analyzer result instance contains any step with specified technique.
+            </summary>
+            <param name="technique">The technique you want to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerResult.GetHashCode">
             <inheritdoc/>
@@ -664,6 +691,64 @@
             <summary>
             Indicates the analysis result will show elapsed time on solving the puzzle.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Span">
+            <summary>
+            A span of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid to be matched.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> property returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.String)">
+            <summary>
+            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
+            </summary>
+            <param name="techniqueName">Technique name.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+            </summary>
+            <param name="difficultyRating">The specified difficulty rating value.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> returns <see langword="false"/>),
+            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+            only depends on property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
+            </summary>
+            <param name="code">The specified technique code.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.DifficultyLevel)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+            </summary>
+            <param name="difficultyLevel">The specified difficulty level.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="T:Sudoku.Analytics.Helper">
             <summary>
@@ -5771,23 +5856,6 @@
             <param name="culture">The culture information.</param>
             <returns>The string value.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Step.SortItems``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Sorts <typeparamref name="TStep"/> instances from the list collection.
-            </summary>
-            <typeparam name="TStep">The type of each step.</typeparam>
-            <param name="accumulator">The accumulator instance.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.RemoveDuplicateItems``1(System.Collections.Generic.List{``0})">
-            <summary>
-            Compares <typeparamref name="TStep"/> instances from the list collection,
-            removing duplicate items by using <see cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/> to as equality comparison rules.
-            </summary>
-            <typeparam name="TStep">The type of each step.</typeparam>
-            <param name="accumulator">The accumulator instance.</param>
-            <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
-            <seealso cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/>
-        </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
             The generated property declaration for parameter <c>conclusions</c>.
@@ -5826,6 +5894,41 @@
         </member>
         <member name="M:Sudoku.Analytics.Step.op_LessThanOrEqual(Sudoku.Analytics.Step,Sudoku.Analytics.Step)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.StepMarshal">
+            <summary>
+            Represents a list of methods operating with <see cref="T:Sudoku.Analytics.Step"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepMarshal.SortItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Sorts <typeparamref name="TStep"/> instances from the list collection.
+            </summary>
+            <typeparam name="TStep">The type of each step.</typeparam>
+            <param name="accumulator">The accumulator instance.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.StepMarshal.RemoveDuplicateItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Compares <typeparamref name="TStep"/> instances from the list collection,
+            removing duplicate items by using <see cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/> to as equality comparison rules.
+            </summary>
+            <typeparam name="TStep">The type of each step.</typeparam>
+            <param name="accumulator">The accumulator instance.</param>
+            <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
+            <seealso cref="M:Sudoku.Analytics.Step.Equals(Sudoku.Analytics.Step)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepMarshal.Combine(System.ReadOnlySpan{Sudoku.Concepts.Grid},System.ReadOnlySpan{Sudoku.Analytics.Step})">
+            <summary>
+            Zips the collection, pairing each step and corresponding grid into a <see cref="T:System.ValueTuple`2"/>,
+            and return the collection of pairs.
+            </summary>
+            <param name="interimGrids">The grids corresponded.</param>
+            <param name="interimSteps">The steps.</param>
+            <returns>The zipped collection.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the length of arguments <paramref name="interimGrids"/> and <paramref name="interimSteps"/> aren't same.
+            </exception>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcher">
             <summary>
@@ -20710,202 +20813,6 @@ result ^= expression;
         <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.SolvingPath">
-            <summary>
-            Represents a solving path.
-            </summary>
-            <param name="steppingGrids">The stepping grids.</param>
-            <param name="steps">The steps.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.#ctor(Sudoku.Concepts.Grid[],Sudoku.Analytics.Step[])">
-            <summary>
-            Represents a solving path.
-            </summary>
-            <param name="steppingGrids">The stepping grids.</param>
-            <param name="steps">The steps.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved">
-            <summary>
-            Indicates whether the puzzle has been solved.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Length">
-            <summary>
-            Indicates the number of elements stored in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.SteppingGrids">
-            <summary>
-            Indicates the stepping grids.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Steps">
-            <summary>
-            Indicates the steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.PearlStep">
-            <summary>
-            Indicates the pearl step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.DiamondStep">
-            <summary>
-            Indicates the diamond step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Pairs">
-            <summary>
-            Indicates the internal pairs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(System.Int32)">
-            <summary>
-            Try to fetch the pair of stepping grid and step at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The reference to the pair of stepping grid and step.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same with the specified argument <paramref name="grid"/>.
-            </summary>
-            <param name="grid">The grid to be matched.</param>
-            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/> property returns <see langword="false"/>).
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(System.String)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
-            </summary>
-            <param name="techniqueName">Technique name.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(System.Decimal)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
-            </summary>
-            <param name="difficultyRating">The specified difficulty rating value.</param>
-            <returns>
-            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/> returns <see langword="false"/>),
-            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
-            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
-            only depends on property <see cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
-            </summary>
-            <param name="code">The specified technique code.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(System.Decimal)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(Sudoku.Analytics.DifficultyLevel)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
-            </summary>
-            <param name="difficultyLevel">The specified difficulty level.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.Item(System.Decimal)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.IsSolved"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Determine whether the analyzer result instance contains any step with specified technique.
-            </summary>
-            <param name="technique">The technique you want to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.SteppingGridAt(System.Int32)">
-            <summary>
-            Try to fetch the stepping grid at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The reference to the stepping grid at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.GetEnumerator">
-            <summary>
-            Gets an enumerator instance to iterate on each pair of stepping grids and actual step.
-            </summary>
-            <returns>An enumerator instance that iterates on each pair of stepping grid and actual step.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.EnumerateSteppingGrids">
-            <summary>
-            Try to enumerate all steps.
-            </summary>
-            <returns>An enumerator instance that iterates on each stepping grid.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.EnumerateSteps">
-            <summary>
-            Try to enumerate all steps.
-            </summary>
-            <returns>An enumerator instance that iterates on each steps.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.ToArray">
-            <summary>
-            Converts the current list into an array.
-            </summary>
-            <returns>An array of pairs of stepping grid and step.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.StepAt(System.Int32)">
-            <summary>
-            Try to fetch the step at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The step at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.op_BitwiseAnd(Sudoku.Concepts.ObjectModel.SolvingPath,Sudoku.Analytics.Categorization.TechniqueSet)">
-            <summary>
-            Intersects the used techniques and the specified technique set, and returns the found techniques in the specified path.
-            </summary>
-            <param name="path">The solving path instance.</param>
-            <param name="techniques">The techniques to be searched.</param>
-            <returns>
-            A new <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance representing the found techniques used in the path, and exists in the specified technique set.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPath.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.SolvingPathElement">
-            <summary>
-            Represents an element that is the unit data structure of a <see cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>.
-            </summary>
-            <param name="SteppingGrid">Indicates the stepping grid.</param>
-            <param name="Step">Indicates the current step.</param>
-            <seealso cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.SolvingPathElement.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
-            <summary>
-            Represents an element that is the unit data structure of a <see cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>.
-            </summary>
-            <param name="SteppingGrid">Indicates the stepping grid.</param>
-            <param name="Step">Indicates the current step.</param>
-            <seealso cref="T:Sudoku.Concepts.ObjectModel.SolvingPath"/>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPathElement.SteppingGrid">
-            <summary>Indicates the stepping grid.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPathElement.Step">
-            <summary>Indicates the current step.</summary>
-        </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
             Defines a multiple forcing chains.
@@ -22680,6 +22587,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_GridMustBeSolved">
             <summary>
               Looks up a localized string similar to The puzzle must have been solved before you consume this member..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_LengthMustBeSame">
+            <summary>
+              Looks up a localized string similar to The length of arguments &apos;{0}&apos; and &apos;{1}&apos; must be same..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ModeIsUndefined">

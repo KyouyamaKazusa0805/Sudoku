@@ -93,7 +93,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 			}
 		}
 
-		var accumulator = Step.RemoveDuplicateItems(tempList).ToList();
+		var accumulator = StepMarshal.RemoveDuplicateItems(tempList).ToList();
 		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
 		if (context.OnlyFindOne)
 		{

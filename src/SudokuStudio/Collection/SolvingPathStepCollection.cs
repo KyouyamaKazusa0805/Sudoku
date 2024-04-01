@@ -13,19 +13,29 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 	/// <returns>An instance of the current type.</returns>
 	public static SolvingPathStepCollection Create(AnalyzerResult analyzerResult, StepTooltipDisplayItems displayItems)
 	{
-		if (analyzerResult is not { IsSolved: true, SolvingPath: { Length: var pathStepsCount } steps })
+		if (analyzerResult is not { IsSolved: true, Steps: var steps, SteppingGrids: var grids })
 		{
 			return [];
 		}
 
 		var showHodoku = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForHodoku;
 		var showSudokuExplainer = ((App)Application.Current).Preference.AnalysisPreferences.DisplayDifficultyRatingForSudokuExplainer;
-
 		var result = new List<SolvingPathStepBindableSource>();
-		for (var i = 0; i < pathStepsCount; i++)
+		scoped var path = StepMarshal.Combine(grids, steps);
+		for (var i = 0; i < path.Length; i++)
 		{
-			var (sGrid, s) = steps[i];
-			result.Add(new() { Index = i, StepGrid = sGrid, Step = s, DisplayItems = displayItems, ShowHodokuDifficulty = showHodoku, ShowSudokuExplainerDifficulty = showSudokuExplainer });
+			var (interimGrid, interimStep) = path[i];
+			result.Add(
+				new()
+				{
+					Index = i,
+					StepGrid = interimGrid,
+					Step = interimStep,
+					DisplayItems = displayItems,
+					ShowHodokuDifficulty = showHodoku,
+					ShowSudokuExplainerDifficulty = showSudokuExplainer
+				}
+			);
 		}
 
 		return [.. result];

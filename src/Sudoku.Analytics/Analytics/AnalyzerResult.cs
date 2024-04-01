@@ -38,7 +38,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 
 	/// <inheritdoc/>
-	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(BottleneckSteps))]
+	[MemberNotNullWhen(true, nameof(Steps), nameof(SteppingGrids), nameof(BottleneckSteps), nameof(PearlStep), nameof(DiamondStep))]
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
@@ -68,7 +68,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	public bool? IsPearl
 		=> this switch
 		{
-			{ IsSolved: true, SolvingPath.PearlStep: { Difficulty: var ep } step } => ep == MaxDifficulty && step is not SingleStep,
+			{ IsSolved: true, PearlStep: { Difficulty: var ep } step } => ep == MaxDifficulty && step is not SingleStep,
 			_ => null
 		};
 
@@ -100,7 +100,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	public bool? IsDiamond
 		=> this switch
 		{
-			{ IsSolved: true, SolvingPath.PearlStep: { Difficulty: var ep } pStep, SolvingPath.DiamondStep: { Difficulty: var ed } dStep }
+			{ IsSolved: true, PearlStep: { Difficulty: var ep } pStep, DiamondStep: { Difficulty: var ed } dStep }
 				=> ed == MaxDifficulty && ep == ed && (pStep, dStep) is (not SingleStep, not SingleStep),
 			_ => null
 		};
@@ -138,7 +138,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	public decimal? PearlDifficulty => SolvingPath.PearlStep?.Difficulty;
+	public decimal? PearlDifficulty => PearlStep?.Difficulty;
 
 	/// <summary>
 	/// <para>
@@ -150,7 +150,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </summary>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	public decimal? DiamondDifficulty => SolvingPath.DiamondStep?.Difficulty;
+	public decimal? DiamondDifficulty => DiamondStep?.Difficulty;
 
 	/// <summary>
 	/// Indicates why the solving operation is failed.
@@ -196,13 +196,17 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	public Grid[]? SteppingGrids { get; init; }
 
 	/// <summary>
-	/// <para>Indicates a list of pairs of information about each step.</para>
-	/// <para>
-	/// If the puzzle cannot be solved due to some reason (invalid puzzle, unhandled exception, etc.),
-	/// the return value of the property will be always <see langword="null"/>.
-	/// </para>
+	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Grid"/> instances,
+	/// whose internal values come from <see cref="SteppingGrids"/>.
 	/// </summary>
-	public SolvingPath SolvingPath => IsSolved ? new(SteppingGrids, Steps) : default;
+	/// <seealso cref="SteppingGrids"/>
+	public ReadOnlySpan<Grid> GridsSpan => SteppingGrids;
+
+	/// <summary>
+	/// Returns a <see cref="ReadOnlySpan{T}"/> of <see cref="Step"/> instances, whose internal values come from <see cref="Steps"/>.
+	/// </summary>
+	/// <seealso cref="Steps"/>
+	public ReadOnlySpan<Step> StepsSpan => Steps;
 
 	/// <summary>
 	/// <para>
@@ -296,10 +300,85 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	}
 
 	/// <summary>
+	/// Indicates the pearl step.
+	/// </summary>
+	public Step? PearlStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			for (var i = 0; i < Steps.Length; i++)
+			{
+				if (Steps[i] is SingleStep)
+				{
+					static decimal keySelector((Step, decimal Difficulty) pair) => pair.Difficulty;
+					return i < 1 ? Steps[0] : (from step in Steps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
+				}
+			}
+
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridInvalid"));
+		}
+	}
+
+	/// <summary>
+	/// Indicates the diamond step.
+	/// </summary>
+	public Step? DiamondStep
+	{
+		get
+		{
+			if (!IsSolved)
+			{
+				return null;
+			}
+
+			if (StepsSpan.All(static (scoped ref readonly Step step) => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
+			{
+				// No diamond step exist in all steps are hidden singles in block.
+				return null;
+			}
+
+			if (StepsSpan.AllAre<Step, SingleStep>())
+			{
+				// If a puzzle can be solved using only singles, just check for the first step not hidden single in block.
+				foreach (var step in Steps)
+				{
+					if (step is not HiddenSingleStep { House: < 9 })
+					{
+						return step;
+					}
+				}
+			}
+			else
+			{
+				// Otherwise, an deletion step should be chosen.
+				foreach (var step in Steps)
+				{
+					if (step is not SingleStep)
+					{
+						return step;
+					}
+				}
+			}
+
+			return null;
+		}
+	}
+
+	/// <summary>
 	/// Indicates all solving steps that the solver has recorded.
 	/// </summary>
 	/// <seealso cref="SteppingGrids"/>
 	public Step[]? Steps { get; init; }
+
+	/// <summary>
+	/// Indicates the techniques used during the solving operation.
+	/// </summary>
+	public TechniqueSet TechniquesUsed => [.. from step in StepsSpan select step.Code];
 
 	/// <summary>
 	/// <inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.UnhandledException" path="/summary"/>
@@ -322,6 +401,15 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] AnalyzerResult? other) => other is not null && Puzzle == other.Puzzle;
+
+	/// <summary>
+	/// Determine whether the analyzer result instance contains any step with specified technique.
+	/// </summary>
+	/// <param name="technique">The technique you want to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool HasTechnique(Technique technique) => TechniquesUsed.Contains(technique);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -536,15 +624,15 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Step>.Enumerator GetEnumerator() => SolvingPath.Steps.GetEnumerator();
+	public ReadOnlySpan<Step>.Enumerator GetEnumerator() => StepsSpan.GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => SolvingPath.Steps.ToArray().GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => StepsSpan.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)SolvingPath.Steps.ToArray()).GetEnumerator();
+	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)StepsSpan.ToArray()).GetEnumerator();
 }
 
 /// <summary>

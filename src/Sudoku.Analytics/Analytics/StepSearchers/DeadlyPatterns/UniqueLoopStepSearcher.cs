@@ -92,8 +92,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
-		Step.SortItems(resultList);
+		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
+		StepMarshal.SortItems(resultList);
 
 		if (onlyFindOne)
 		{

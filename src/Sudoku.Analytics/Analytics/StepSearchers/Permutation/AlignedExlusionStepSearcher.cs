@@ -306,7 +306,7 @@ public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 
 		if (tempAccumulator.Count != 0 && !context.OnlyFindOne)
 		{
-			context.Accumulator.AddRange(Step.RemoveDuplicateItems(tempAccumulator));
+			context.Accumulator.AddRange(StepMarshal.RemoveDuplicateItems(tempAccumulator));
 		}
 
 		return null;

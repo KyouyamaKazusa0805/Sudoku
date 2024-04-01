@@ -86,7 +86,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 			return null;
 		}
 
-		Step.SortItems(result);
+		StepMarshal.SortItems(result);
 
 		if (context.OnlyFindOne)
 		{

@@ -83,8 +83,8 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
-		Step.SortItems(resultList);
+		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
+		StepMarshal.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
 			return resultList.First();

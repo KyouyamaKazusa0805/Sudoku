@@ -426,9 +426,14 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 			while (true)
 			{
 				var puzzle = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
-				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is { IsSolved: true, SolvingPath: var path })
+				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is
+					{
+						IsSolved: true,
+						SteppingGrids: var interimGrids,
+						Steps: var interimSteps
+					})
 				{
-					foreach (var (currentGrid, step) in path)
+					foreach (var (currentGrid, step) in StepMarshal.Combine(interimGrids, interimSteps))
 					{
 						if (step is not HiddenSingleStep { Cell: var cell, Digit: var digit, House: var house, Subtype: var currentSubtype })
 						{

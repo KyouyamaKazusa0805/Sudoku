@@ -259,34 +259,4 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(CultureInfo? culture = null) => $"{GetName(culture ?? ResultCurrentCulture)} => {ConclusionText}";
-
-
-	/// <summary>
-	/// Sorts <typeparamref name="TStep"/> instances from the list collection.
-	/// </summary>
-	/// <typeparam name="TStep">The type of each step.</typeparam>
-	/// <param name="accumulator">The accumulator instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step
-		=> accumulator.Sort(ValueComparison.Create<TStep>(static (l, r) => l.CompareTo(r)));
-
-#pragma warning disable format
-	/// <summary>
-	/// Compares <typeparamref name="TStep"/> instances from the list collection,
-	/// removing duplicate items by using <see cref="Equals(Step?)"/> to as equality comparison rules.
-	/// </summary>
-	/// <typeparam name="TStep">The type of each step.</typeparam>
-	/// <param name="accumulator">The accumulator instance.</param>
-	/// <returns>The final collection of <typeparamref name="TStep"/> instances.</returns>
-	/// <seealso cref="Equals(Step?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static IEnumerable<TStep> RemoveDuplicateItems<TStep>(List<TStep> accumulator) where TStep : Step
-		=> accumulator switch
-		{
-			[] => [],
-			[var firstElement] => [firstElement],
-			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TStep>(accumulator, ValueComparison.Create<TStep>(static (x, y) => x == y, static v => v.GetHashCode()))
-		};
-#pragma warning restore format
 }

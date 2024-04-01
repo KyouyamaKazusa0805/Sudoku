@@ -90,8 +90,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			return null;
 		}
 
-		var resultList = Step.RemoveDuplicateItems(resultAccumulator).ToList();
-		Step.SortItems(resultList);
+		var resultList = StepMarshal.RemoveDuplicateItems(resultAccumulator).ToList();
+		StepMarshal.SortItems(resultList);
 		if (context.OnlyFindOne)
 		{
 			return resultList[0];
