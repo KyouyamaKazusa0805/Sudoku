@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics;
 
+using static Helper;
+
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
@@ -114,7 +116,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="MaximumRatingValueTheory"/>
-	public unsafe decimal MaxDifficulty => Helper.EvaluateRatingUnsafe(Steps, &Helper.MaxUnsafe, MaximumRatingValueTheory);
+	public unsafe decimal MaxDifficulty => EvaluateRatingUnsafe(Steps, &MaxUnsafe, MaximumRatingValueTheory);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -126,7 +128,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="Steps"/>
-	public unsafe decimal TotalDifficulty => Helper.EvaluateRatingUnsafe(Steps, &Helper.SumUnsafe, MinimumRatingValue);
+	public unsafe decimal TotalDifficulty => EvaluateRatingUnsafe(Steps, &SumUnsafe, MinimumRatingValue);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
