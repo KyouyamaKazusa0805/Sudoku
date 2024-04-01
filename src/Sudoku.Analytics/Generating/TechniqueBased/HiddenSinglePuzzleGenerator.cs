@@ -440,7 +440,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 							continue;
 						}
 
-						if (Crosshatching.GetInfo(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
+						if (Crosshatching.TryCreate(in currentGrid, digit, house, [cell]) is not var (baseCells, _, _))
 						{
 							continue;
 						}
