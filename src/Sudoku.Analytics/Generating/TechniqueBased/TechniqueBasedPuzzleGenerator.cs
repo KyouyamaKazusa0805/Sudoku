@@ -113,9 +113,16 @@ public abstract class TechniqueBasedPuzzleGenerator :
 		// I know the puzzle currently has multiple solutions, but we should fix one solution,
 		// in order to fill digits.
 		// Please note that the puzzle is not fixed now. We should find a solution using such modifiable digits.
-		var solutionBuffer = stackalloc char[82];
-		Solver.Solve(puzzle.ToString("!"), solutionBuffer, 1);
-		var solution = Grid.Parse(new ReadOnlySpan<char>(solutionBuffer, 82));
+		const int length = 82;
+		var solutionBuffer = stackalloc char[length];
+		new BitwiseSolver().Solve(puzzle.ToString("!"), solutionBuffer, 1);
+		var solution = Grid.Parse(new ReadOnlySpan<char>(solutionBuffer, length));
+		if (solution.IsUndefined)
+		{
+			interferingCells = [];
+			return GeneratingFailedReason.InvalidData;
+		}
+
 		return AppendInterferingDigitsCore(ref puzzle, in solution, targetCell, out interferingCells);
 	}
 

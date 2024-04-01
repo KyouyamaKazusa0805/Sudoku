@@ -21,23 +21,28 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 			_ => 40
 		};
 		var peerCells = PeersMap[targetCell].ToArray()[..];
-		ShuffleSequence(peerCells);
-		ShuffleSequence(DigitSeed);
 
-		// Update values and create a grid.
-		var puzzle = Grid.Empty;
-		var i = 0;
-		var digitsMask = Grid.MaxCandidatesMask;
-		foreach (var cell in peerCells[..8])
+		// Generate extra digits.
+		// Different with other techniques, naked single can be failed to be generated - it'll produce a puzzle that has no solution.
+		// We should check for this. If so, we should generate puzzle again.
+		Grid puzzle;
+		Mask digitsMask;
+		CellMap interferingCells;
+		do
 		{
-			var digit = DigitSeed[i++];
-			puzzle.SetDigit(cell, digit);
+			ShuffleSequence(peerCells);
+			ShuffleSequence(DigitSeed);
 
-			digitsMask &= (Mask)~(1 << digit);
-		}
+			// Update values and create a grid.
+			(puzzle, digitsMask, var i) = (Grid.Empty, Grid.MaxCandidatesMask, 0);
+			foreach (var cell in peerCells[..8])
+			{
+				var digit = DigitSeed[i++];
+				puzzle.SetDigit(cell, digit);
 
-		// Append interfering digits.
-		AppendInterferingDigitsNoBaseGrid(ref puzzle, targetCell, out var interferingCells);
+				digitsMask &= (Mask)~(1 << digit);
+			}
+		} while (AppendInterferingDigitsNoBaseGrid(ref puzzle, targetCell, out interferingCells) == GeneratingFailedReason.InvalidData);
 
 		var targetDigit = Log2((uint)digitsMask);
 		var blockCellsCount = (HousesMap[targetCell.ToHouseIndex(HouseType.Block)] - puzzle.EmptyCells).Count;

@@ -528,6 +528,24 @@
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.BottleneckSteps">
+            <summary>
+            Indicates the bottleneck steps.
+            </summary>
+            <remarks>
+            <para>
+            The bottleneck steps will be considered as "hardest" ones,
+            checking their difficulty rating (i.e. property <see cref="P:Sudoku.Analytics.Step.Difficulty"/>) and difficulty level
+            (i.e. <see cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>).
+            </para>
+            <para>
+            The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
+            they all will be considered as bottleneck steps.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
+            <seealso cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>
+        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.Steps">
             <summary>
             Indicates all solving steps that the solver has recorded.
@@ -20730,13 +20748,6 @@ result ^= expression;
             <summary>
             Indicates the steps.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.Bottleneck">
-            <summary>
-            Gets the bottleneck during the whole grid solving.
-            Returns <see langword="null"/> if the property <see cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.Steps"/> is invalid (i.e. puzzle isn't solved).
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.ObjectModel.SolvingPath.Steps"/>
         </member>
         <member name="P:Sudoku.Concepts.ObjectModel.SolvingPath.PearlStep">
             <summary>
