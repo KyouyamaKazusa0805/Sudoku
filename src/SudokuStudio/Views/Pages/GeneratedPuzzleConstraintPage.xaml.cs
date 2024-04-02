@@ -626,11 +626,21 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			Margin = new(-56, 0, 0, 0)
 		};
 		techniqueControl.SelectedTechniquesChanged += (_, e) =>
+#pragma warning disable format   
 		{
 			var techniques = e.TechniqueSet;
 			constraint.Techniques = techniques;
-			displayerControl.Text = getTechniqueString(techniques);
+			displayerControl.Text = techniques switch
+			{
+				[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
+				[var technique] => technique.GetName(App.CurrentCulture),
+				_ => string.Join(
+					ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
+					[.. from technique in techniques select technique.GetName(App.CurrentCulture)]
+				)
+			};
 		};
+#pragma warning restore format
 
 		// Fixes #558:
 		// 'SettingsExpander' always requires 'SettingsCard' as the children control for 'SettingsExpander.Items' property.
@@ -648,18 +658,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
-
-
-		static string getTechniqueString(TechniqueSet techniques)
-			=> techniques.Count switch
-			{
-				0 => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
-				1 => techniques[0].GetName(App.CurrentCulture),
-				_ => string.Join(
-					ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
-					[.. from technique in techniques select technique.GetName(App.CurrentCulture)]
-				)
-			};
 	}
 
 	private SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint)
