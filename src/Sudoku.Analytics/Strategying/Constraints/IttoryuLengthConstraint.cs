@@ -45,6 +45,9 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 		=> string.Format(ResourceDictionary.Get("IttoryuLengthConstraint", culture), Operator.GetOperatorString(), Length);
 
 	/// <inheritdoc/>
+	public override IttoryuLengthConstraint Clone() => new() { IsNegated = IsNegated, Length = Length, Operator = Operator };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })

@@ -46,6 +46,10 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 		);
 
 	/// <inheritdoc/>
+	public override EliminationCountConstraint Clone()
+		=> new() { IsNegated = IsNegated, LimitCount = LimitCount, Operator = Operator, Technique = Technique };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var @operator = Operator.GetOperator<int>();

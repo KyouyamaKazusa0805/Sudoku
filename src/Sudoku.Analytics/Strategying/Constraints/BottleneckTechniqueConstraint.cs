@@ -26,6 +26,9 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 		=> string.Format(ResourceDictionary.Get("BottleneckTechniqueConstraint", culture), Techniques.ToString(culture));
 
 	/// <inheritdoc/>
+	public override BottleneckTechniqueConstraint Clone() => new() { IsNegated = IsNegated, Techniques = Techniques[..] };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 		=> !(Techniques & [.. from step in context.AnalyzerResult.BottleneckSteps select step.Code]);
 }

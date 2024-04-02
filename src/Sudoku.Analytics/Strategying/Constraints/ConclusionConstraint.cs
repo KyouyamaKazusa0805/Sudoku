@@ -36,6 +36,10 @@ public sealed partial class ConclusionConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override ConclusionConstraint Clone()
+		=> new() { IsNegated = IsNegated, Conclusion = Conclusion, ShouldAppear = ShouldAppear };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var appeared = false;

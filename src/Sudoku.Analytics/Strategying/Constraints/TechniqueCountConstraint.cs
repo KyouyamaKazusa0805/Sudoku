@@ -49,6 +49,10 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 		);
 
 	/// <inheritdoc/>
+	public override TechniqueCountConstraint Clone()
+		=> new() { IsNegated = IsNegated, LimitCount = LimitCount, Operator = Operator, Technique = Technique };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var times = 0;

@@ -517,7 +517,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator -(TechniqueSet left, Technique right)
 	{
-		var result = new TechniqueSet(left);
+		var result = left[..];
 		result.Remove(right);
 		return result;
 	}
@@ -530,7 +530,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator ~(TechniqueSet value)
 	{
-		var result = new TechniqueSet(value);
+		var result = value[..];
 		result._techniqueBits.Not();
 		return result;
 	}
@@ -539,7 +539,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator &(TechniqueSet left, TechniqueSet right)
 	{
-		var result = new TechniqueSet(left);
+		var result = left[..];
 		result._techniqueBits.And(right._techniqueBits);
 		return result;
 	}
@@ -548,7 +548,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator |(TechniqueSet left, TechniqueSet right)
 	{
-		var result = new TechniqueSet(left);
+		var result = left[..];
 		result._techniqueBits.Or(right._techniqueBits);
 		return result;
 	}
@@ -557,7 +557,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator ^(TechniqueSet left, TechniqueSet right)
 	{
-		var result = new TechniqueSet(left);
+		var result = left[..];
 		result._techniqueBits.Xor(right._techniqueBits);
 		return result;
 	}

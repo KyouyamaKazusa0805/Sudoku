@@ -29,6 +29,9 @@ public sealed partial class TechniqueConstraint : Constraint
 		=> string.Format(ResourceDictionary.Get("TechniqueConstraint", culture), Techniques.ToString(culture));
 
 	/// <inheritdoc/>
+	public override TechniqueConstraint Clone() => new() { IsNegated = IsNegated, Techniques = Techniques[..] };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		// Special case: If a user doesn't select any technique, we should consider this case as "always true".

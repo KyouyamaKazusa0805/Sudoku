@@ -46,6 +46,12 @@ public abstract partial class Constraint : ICultureFormattable, IEquatable<Const
 	public abstract string ToString(CultureInfo? culture = null);
 
 	/// <summary>
+	/// Creates a new instance that contains same data with the current instance.
+	/// </summary>
+	/// <returns>A new instance that contains same data with the current instance.</returns>
+	public abstract Constraint Clone();
+
+	/// <summary>
 	/// Indicates the checking <see cref="Expression{TDelegate}"/> instance of the constraint.
 	/// </summary>
 	/// <remarks>

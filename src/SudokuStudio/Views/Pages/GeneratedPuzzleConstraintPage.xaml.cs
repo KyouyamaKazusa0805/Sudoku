@@ -109,7 +109,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
 					Margin = new(6),
-					VerticalAlignment = VerticalAlignment.Center
+					VerticalAlignment = VerticalAlignment.Center,
+					IsChecked = instance.IsNegated
 				};
 				GridLayout.SetColumn(negatingButton, 2);
 				grid.Children.Add(negatingButton);
@@ -1022,7 +1023,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	{
 		if (sender is MenuFlyoutItem { Tag: Constraint constraint })
 		{
-			AddControl(constraint, true);
+			AddControl(constraint.Clone(), true);
 		}
 	}
 
@@ -1032,8 +1033,9 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			if (element is MenuFlyoutItem { Tag: Constraint constraint })
 			{
-				var allowsMultiple = constraint.GetType().GetCustomAttribute<ConstraintOptionsAttribute>()?.AllowsMultiple ?? false;
-				element.IsEnabled = allowsMultiple || !ConstraintsEntry.Exists(c => c.GetType() == constraint.GetType());
+				var type = constraint.GetType();
+				var allowsMultiple = type.GetCustomAttribute<ConstraintOptionsAttribute>()?.AllowsMultiple ?? false;
+				element.IsEnabled = allowsMultiple || !ConstraintsEntry.Exists(c => c.GetType() == type);
 			}
 		}
 	}

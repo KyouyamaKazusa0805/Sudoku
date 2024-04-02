@@ -37,6 +37,10 @@ public sealed partial class PrimarySingleConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override PrimarySingleConstraint Clone()
+		=> new() { IsNegated = IsNegated, AllowsHiddenSingleInLines = AllowsHiddenSingleInLines, Primary = Primary };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		scoped var feature = new GridFeature(context.Grid);

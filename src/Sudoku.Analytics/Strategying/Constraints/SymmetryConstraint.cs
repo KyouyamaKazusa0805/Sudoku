@@ -48,5 +48,8 @@ public sealed partial class SymmetryConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override SymmetryConstraint Clone() => new() { IsNegated = IsNegated, SymmetricTypes = SymmetricTypes };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context) => (SymmetricTypes & context.Grid.Symmetry) != 0;
 }

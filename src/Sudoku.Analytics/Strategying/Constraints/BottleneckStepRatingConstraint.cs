@@ -50,6 +50,10 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override BottleneckStepRatingConstraint Clone()
+		=> new() { BetweenRule = BetweenRule, IsNegated = IsNegated, Minimum = Minimum, Maximum = Maximum };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		return context.AnalyzerResult.BottleneckSteps is [{ Difficulty: var d }] && b(d, BetweenRule, Minimum, Maximum);

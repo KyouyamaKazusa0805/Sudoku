@@ -29,5 +29,8 @@ public sealed partial class MinimalConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override MinimalConstraint Clone() => new() { IsNegated = IsNegated, ShouldBeMinimal = ShouldBeMinimal };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context) => context.Grid.IsMinimal == ShouldBeMinimal;
 }

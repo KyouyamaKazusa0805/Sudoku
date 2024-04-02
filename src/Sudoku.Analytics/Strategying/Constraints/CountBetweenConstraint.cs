@@ -55,6 +55,10 @@ public sealed partial class CountBetweenConstraint : Constraint
 		);
 
 	/// <inheritdoc/>
+	public override CountBetweenConstraint Clone()
+		=> new() { IsNegated = IsNegated, BetweenRule = BetweenRule, CellState = CellState, Range = Range };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 		=> context.Grid is var grid
 		&& CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount } is var factCount

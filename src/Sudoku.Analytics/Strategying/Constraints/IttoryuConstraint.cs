@@ -63,6 +63,10 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		=> string.Format(ResourceDictionary.Get("IttoryuConstraint", culture), Operator.GetOperatorString(), Rounds);
 
 	/// <inheritdoc/>
+	public override IttoryuConstraint Clone()
+		=> new() { IsNegated = IsNegated, Operator = Operator, LimitedSingle = LimitedSingle, Rounds = Rounds };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })

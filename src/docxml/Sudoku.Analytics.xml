@@ -26679,6 +26679,12 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraint.Clone">
+            <summary>
+            Creates a new instance that contains same data with the current instance.
+            </summary>
+            <returns>A new instance that contains same data with the current instance.</returns>
+        </member>
         <member name="M:Sudoku.Strategying.Constraint.CreateCheckingQueryExpression">
             <summary>
             Indicates the checking <see cref="T:System.Linq.Expressions.Expression`1"/> instance of the constraint.
@@ -26852,6 +26858,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -26875,6 +26884,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -26905,6 +26917,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -26945,6 +26960,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -26963,6 +26981,9 @@ result ^= expression;
             <summary>
             Represents a constraint that checks for diamond property.
             </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.DifficultyLevelConstraint">
             <summary>
@@ -26991,6 +27012,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -27028,6 +27052,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -27077,6 +27104,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -27119,6 +27149,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -27144,6 +27177,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -27162,6 +27198,9 @@ result ^= expression;
             <summary>
             Represents a constraint that checks for pearl property.
             </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.Clone">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint">
             <summary>
@@ -27219,6 +27258,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -27288,6 +27330,9 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Clone">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
@@ -27313,6 +27358,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -27351,6 +27399,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Clone">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">

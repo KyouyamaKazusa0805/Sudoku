@@ -78,6 +78,10 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 		);
 
 	/// <inheritdoc/>
+	public override DifficultyLevelConstraint Clone()
+		=> new() { IsNegated = IsNegated, DifficultyLevel = DifficultyLevel, Operator = Operator };
+
+	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
 		=> (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
 }
