@@ -199,13 +199,9 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			{
 				SymmetryConstraint.InvalidSymmetricType => [],
 				SymmetryConstraint.AllSymmetricTypes => Enum.GetValues<SymmetricType>(),
-				var symmetricTypes => symmetricTypes.GetAllFlags()
+				var symmetricTypes and not 0 => symmetricTypes.GetAllFlags(),
+				_ => [SymmetricType.None]
 			};
-			if (symmetries.Length == 0)
-			{
-				// Temporary solution: Auto-cancel the generating operation.
-				return Grid.Undefined;
-			}
 
 			var chosenGivensCountSeed = chosenGivensCount is [var (br, (start, end))] ? b(br, start, end) : (-1, -1);
 			var givensCount = chosenGivensCountSeed is (var s and not -1, var e and not -1) ? rs.Next(s, e + 1) : -1;
