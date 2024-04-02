@@ -58,6 +58,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// Indicates whether the constraint control is created, and also appended into property <see cref="ConstraintsEntry"/>.
 	/// </param>
 	/// <seealso cref="ConstraintsEntry"/>
+	[SuppressMessage("Style", "IDE0039:Use local function", Justification = "<Pending>")]
 	private void AddControl(Constraint constraint, bool createNew)
 	{
 		(
@@ -110,15 +111,18 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Margin = new(6),
 					VerticalAlignment = VerticalAlignment.Center
 				};
-				negatingButton.Checked += (_, _) => instance.IsNegated = true;
-				negatingButton.Unchecked += (_, _) => instance.IsNegated = false;
 				GridLayout.SetColumn(negatingButton, 2);
 				grid.Children.Add(negatingButton);
 
-				if (!(instance.GetMetadata()?.AllowsNegation ?? false))
+				RoutedEventHandler setNegated = (_, _) => instance.IsNegated = true;
+				RoutedEventHandler unsetNegated = (_, _) => instance.IsNegated = false;
+				var disableControl = static void (ToggleButton negatingButton) => negatingButton.IsEnabled = false;
+				var setHandlers = (ToggleButton negatingButton) =>
 				{
-					negatingButton.IsEnabled = false;
-				}
+					negatingButton.Checked += setNegated;
+					negatingButton.Unchecked += unsetNegated;
+				};
+				(instance.GetMetadata()?.AllowsNegation ?? false ? setHandlers : disableControl)(negatingButton);
 
 				var deleteButton = new Button
 				{
@@ -128,7 +132,13 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					Margin = new(6),
 					VerticalAlignment = VerticalAlignment.Center
 				};
-				deleteButton.Click += (_, _) => { _controls.Remove(grid); ConstraintsEntry.Remove((Constraint)control.Tag!); };
+				deleteButton.Click += (_, _) =>
+				{
+					_controls.Remove(grid);
+					ConstraintsEntry.Remove((Constraint)control.Tag!);
+					negatingButton.Checked -= setNegated;
+					negatingButton.Unchecked -= unsetNegated;
+				};
 				GridLayout.SetColumn(deleteButton, 3);
 				grid.Children.Add(deleteButton);
 
