@@ -47,15 +47,33 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
-	Technique.JuniorExocet, Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirrorConjugatePair, Technique.JuniorExocetAdjacentTarget,
+	// Junior Exocets
+	Technique.JuniorExocet,
+	Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirrorConjugatePair, Technique.JuniorExocetAdjacentTarget,
 	Technique.JuniorExocetIncompatiblePair, Technique.JuniorExocetTargetPair, Technique.JuniorExocetGeneralizedFish,
-	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember, Technique.SeniorExocet, Technique.SeniorExocetMirrorConjugatePair,
-	Technique.SeniorExocetLockedMember, Technique.SeniorExocetTrueBase, Technique.WeakExocet, Technique.WeakExocetAdjacentTarget,
-	Technique.WeakExocetSlash, Technique.WeakExocetBzRectangle, Technique.LameWeakExocet, Technique.DoubleExocet,
-	Technique.DoubleExocetGeneralizedFish, Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet,
-	Technique.MutantSeniorExocet, Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember,
-	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember, Technique.AdvancedFrankenSeniorExocet,
-	Technique.AdvancedMutantSeniorExocet, Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget,
+	Technique.JuniorExocetMirrorAlmostHiddenSet, Technique.JuniorExocetLockedMember,
+
+	// Senior Exocets
+	Technique.SeniorExocet,
+	Technique.SeniorExocetMirrorConjugatePair, Technique.SeniorExocetLockedMember, Technique.SeniorExocetTrueBase,
+
+	// Weak Exocets
+	Technique.WeakExocet, Technique.WeakExocetAdjacentTarget, Technique.WeakExocetSlash, Technique.WeakExocetBzRectangle,
+	Technique.LameWeakExocet,
+
+	// Double Exocets
+	Technique.DoubleExocet, Technique.DoubleExocetGeneralizedFish,
+
+	// Complex Exocets
+	Technique.FrankenJuniorExocet, Technique.FrankenSeniorExocet, Technique.MutantJuniorExocet, Technique.MutantSeniorExocet,
+	Technique.FrankenJuniorExocetLockedMember, Technique.MutantJuniorExocetLockedMember,
+	Technique.FrankenSeniorExocetLockedMember, Technique.MutantSeniorExocetLockedMember,
+	Technique.FrankenJuniorExocetAdjacentTarget, Technique.MutantJuniorExocetAdjacentTarget,
+
+	// Advanced Exocets
+	Technique.AdvancedFrankenSeniorExocet, Technique.AdvancedMutantSeniorExocet,
+
+	// Miscellaneous
 	Technique.PatternLockedQuadruple)]
 [StepSearcherRuntimeName("StepSearcherName_ExocetStepSearcher")]
 public sealed partial class ExocetStepSearcher : StepSearcher
