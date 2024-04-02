@@ -26579,6 +26579,16 @@ result ^= expression;
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
+        <member name="T:Sudoku.Strategying.AllowsMultipleAttribute">
+            <summary>
+            Represents an attribute type that determines whether the constraint type supports multiple usages.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.AllowsNegationAttribute">
+            <summary>
+            Represents an attribute type that determines whether the constraint type supports negation.
+            </summary>
+        </member>
         <member name="T:Sudoku.Strategying.BetweenRule">
             <summary>
             Represents a between rule.
@@ -26666,16 +26676,6 @@ result ^= expression;
             Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraint.AllowDuplicate">
-            <summary>
-            Indicates whether the constraint can duplicate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraint.AllowNegation">
-            <summary>
-            Indicates whether the constraint can be used as negated one.
-            </summary>
-        </member>
         <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <summary>
             Determine whether the specified grid is passed the constraint.
@@ -26722,6 +26722,11 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Strategying.Constraint.op_Inequality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintAttribute">
+            <summary>
+            Represents an attribute type that describes a constraint usage.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.ConstraintCheckingContext">
             <summary>
@@ -26875,9 +26880,6 @@ result ^= expression;
             <summary>
             Represents a conclusion constraint.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ShouldAppear">
             <summary>
@@ -27292,9 +27294,6 @@ result ^= expression;
             </summary>
             <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.AllowNegation">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
             <summary>
             Indicates the techniques must appear.
@@ -27320,9 +27319,6 @@ result ^= expression;
             Represents a rule that checks whether the specified analyzer result after analyzed by a grid
             contains the specified techniques.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
             <inheritdoc/>

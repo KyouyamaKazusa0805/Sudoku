@@ -1005,11 +1005,10 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	{
 		foreach (var element in MenuFlyout.Items)
 		{
-			if (element is MenuFlyoutItem { Tag: Constraint { AllowDuplicate: var allowDuplicate } constraint })
+			if (element is MenuFlyoutItem { Tag: Constraint constraint })
 			{
-				element.Visibility = !allowDuplicate && ConstraintsEntry.Exists(c => c.GetType() == constraint.GetType())
-					? Visibility.Collapsed
-					: Visibility.Visible;
+				var allowsMultiple = constraint.GetType().IsDefined(typeof(AllowsMultipleAttribute));
+				element.IsEnabled = allowsMultiple || !ConstraintsEntry.Exists(c => c.GetType() == constraint.GetType());
 			}
 		}
 	}

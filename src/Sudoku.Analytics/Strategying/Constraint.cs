@@ -29,17 +29,6 @@ public abstract partial class Constraint :
 	IEqualityOperators<Constraint, Constraint, bool>
 {
 	/// <summary>
-	/// Indicates whether the constraint can duplicate.
-	/// </summary>
-	public virtual bool AllowDuplicate => false;
-
-	/// <summary>
-	/// Indicates whether the constraint can be used as negated one.
-	/// </summary>
-	public virtual bool AllowNegation => false;
-
-
-	/// <summary>
 	/// Determine whether the specified grid is passed the constraint.
 	/// </summary>
 	/// <param name="context">Indicates the context used.</param>

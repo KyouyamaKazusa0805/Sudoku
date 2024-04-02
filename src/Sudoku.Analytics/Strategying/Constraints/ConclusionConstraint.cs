@@ -3,13 +3,11 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a conclusion constraint.
 /// </summary>
+[AllowsMultiple]
 [GetHashCode]
 [ToString]
 public sealed partial class ConclusionConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => true;
-
 	/// <summary>
 	/// Indicates whether the conclusion should be appeared.
 	/// </summary>
