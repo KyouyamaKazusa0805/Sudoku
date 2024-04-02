@@ -9,6 +9,9 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class TechniqueConstraint : Constraint
 {
+	/// <inheritdoc/>
+	public override bool AllowNegation => true;
+
 	/// <summary>
 	/// Indicates the techniques must appear.
 	/// </summary>
@@ -23,7 +26,7 @@ public sealed partial class TechniqueConstraint : Constraint
 	public override bool Check(ConstraintCheckingContext context)
 	{
 		// Special case: If a user doesn't select any technique, we should consider this case as "always true".
-		if (Techniques.Count == 0)
+		if (!Techniques)
 		{
 			return true;
 		}

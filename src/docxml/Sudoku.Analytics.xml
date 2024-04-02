@@ -27292,6 +27292,9 @@ result ^= expression;
             </summary>
             <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
         </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.AllowNegation">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
             <summary>
             Indicates the techniques must appear.

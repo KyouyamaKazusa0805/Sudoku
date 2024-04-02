@@ -63,6 +63,10 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		(
 			constraint switch
 			{
+#if false
+				BottleneckStepRatingConstraint instance => () => callback(),
+				BottleneckTechniqueConstraint instance => () => callback(),
+#endif
 				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
 				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
 				ConclusionConstraint instance => () => callback(Create_Conclusion, instance),
@@ -653,7 +657,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				1 => techniques[0].GetName(App.CurrentCulture),
 				_ => string.Join(
 					ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
-					from technique in techniques select technique.GetName(App.CurrentCulture)
+					[.. from technique in techniques select technique.GetName(App.CurrentCulture)]
 				)
 			};
 	}
