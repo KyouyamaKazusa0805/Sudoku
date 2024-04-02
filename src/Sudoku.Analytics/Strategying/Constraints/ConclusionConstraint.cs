@@ -39,7 +39,8 @@ public sealed partial class ConclusionConstraint : Constraint
 			}
 		}
 
-		return !(ShouldAppear ^ appeared);
+		var result = !(ShouldAppear ^ appeared);
+		return IsNegated ? !result : result;
 	}
 
 	/// <inheritdoc/>

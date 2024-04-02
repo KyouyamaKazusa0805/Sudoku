@@ -32,12 +32,13 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	public override bool Check(ConstraintCheckingContext context)
 	{
 		scoped var feature = new GridFeature(context.Grid);
-		return Primary switch
+		var result = Primary switch
 		{
 			SingleTechnique.FullHouse => feature.CanOnlyUseFullHouse(),
 			SingleTechnique.HiddenSingle => feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines),
 			SingleTechnique.NakedSingle => feature.CanOnlyUseNakedSingle()
 		};
+		return IsNegated ? !result : result;
 	}
 
 	/// <inheritdoc/>

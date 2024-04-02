@@ -44,13 +44,15 @@ public sealed partial class CountBetweenConstraint : Constraint
 		var grid = context.Grid;
 		var factCount = CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount };
 		_ = Range is { Start.Value: var min, End.Value: var max };
-		return BetweenRule switch
+		var result = BetweenRule switch
 		{
 			BetweenRule.BothOpen => factCount > min && factCount < max,
 			BetweenRule.LeftOpen => factCount >= min && factCount <= max,
 			BetweenRule.RightOpen => factCount >= min && factCount < max,
 			BetweenRule.BothClosed => factCount >= min && factCount <= max
 		};
+
+		return IsNegated ? !result : result;
 	}
 
 	/// <inheritdoc/>

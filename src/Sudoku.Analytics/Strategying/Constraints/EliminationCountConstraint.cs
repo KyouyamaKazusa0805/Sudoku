@@ -34,16 +34,23 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		var @operator = Operator.GetOperator<int>();
-		foreach (var step in context.AnalyzerResult)
-		{
-			if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
-			{
-				return true;
-			}
-		}
+		var result = getResult(context);
+		return IsNegated ? !result : result;
 
-		return false;
+
+		bool getResult(ConstraintCheckingContext context)
+		{
+			var @operator = Operator.GetOperator<int>();
+			foreach (var step in context.AnalyzerResult)
+			{
+				if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 
 	/// <inheritdoc/>

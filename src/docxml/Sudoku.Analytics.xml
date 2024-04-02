@@ -26666,6 +26666,11 @@ result ^= expression;
             Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
             </summary>
         </member>
+        <member name="P:Sudoku.Strategying.Constraint.IsNegated">
+            <summary>
+            Indicates whether the constraint should be negated.
+            </summary>
+        </member>
         <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
             <summary>
             Determine whether the specified grid is passed the constraint.
@@ -26809,11 +26814,6 @@ result ^= expression;
         <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsMultiple">
             <summary>
             Indicates whether the constraint can support multiple items defined.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsNegation">
-            <summary>
-            Indicates whether the constraint can support negation.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">

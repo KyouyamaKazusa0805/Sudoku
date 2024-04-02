@@ -67,7 +67,10 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
-		=> (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
+	{
+		var result = (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
+		return IsNegated ? !result : result;
+	}
 
 	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)

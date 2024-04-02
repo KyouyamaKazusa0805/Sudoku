@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// this constraint only controls the appearing techniques, rather than the number of times appeared.
 /// </summary>
 /// <seealso cref="TechniqueCountConstraint"/>
-[ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
+[ConstraintOptions(AllowsMultiple = true)]
 [GetHashCode]
 [ToString]
 public sealed partial class TechniqueConstraint : Constraint
@@ -23,21 +23,28 @@ public sealed partial class TechniqueConstraint : Constraint
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		// Special case: If a user doesn't select any technique, we should consider this case as "always true".
-		if (!Techniques)
-		{
-			return true;
-		}
+		var result = checkInternal(context);
+		return IsNegated ? !result : result;
 
-		foreach (var step in context.AnalyzerResult)
+
+		bool checkInternal(ConstraintCheckingContext context)
 		{
-			if (Techniques.Contains(step.Code))
+			// Special case: If a user doesn't select any technique, we should consider this case as "always true".
+			if (!Techniques)
 			{
 				return true;
 			}
-		}
 
-		return false;
+			foreach (var step in context.AnalyzerResult)
+			{
+				if (Techniques.Contains(step.Code))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 
 	/// <inheritdoc/>

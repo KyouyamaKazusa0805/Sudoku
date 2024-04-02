@@ -43,13 +43,20 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
-		{
-			return false;
-		}
+		var result = checkInternal(context);
+		return IsNegated ? !result : result;
 
-		var factLength = Finder.FindPath(context.Grid).Digits.Length;
-		return Operator.GetOperator<int>()(factLength, Length);
+
+		bool checkInternal(ConstraintCheckingContext context)
+		{
+			if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
+			{
+				return false;
+			}
+
+			var factLength = Finder.FindPath(context.Grid).Digits.Length;
+			return Operator.GetOperator<int>()(factLength, Length);
+		}
 	}
 
 	/// <inheritdoc/>

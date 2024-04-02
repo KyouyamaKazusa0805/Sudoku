@@ -27,7 +27,8 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	{
 		var isPearl = context.AnalyzerResult.IsPearl;
 		var isDiamond = context.AnalyzerResult.IsDiamond;
-		return !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
+		var result = !(ShouldBePearlOrDiamond ^ ((CheckPearl ? isPearl : isDiamond) ?? false));
+		return IsNegated ? !result : result;
 	}
 
 	/// <inheritdoc/>

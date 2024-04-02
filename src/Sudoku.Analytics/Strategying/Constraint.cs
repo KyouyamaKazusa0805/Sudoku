@@ -29,6 +29,12 @@ public abstract partial class Constraint :
 	IEqualityOperators<Constraint, Constraint, bool>
 {
 	/// <summary>
+	/// Indicates whether the constraint should be negated.
+	/// </summary>
+	public bool IsNegated { get; set; }
+
+
+	/// <summary>
 	/// Determine whether the specified grid is passed the constraint.
 	/// </summary>
 	/// <param name="context">Indicates the context used.</param>

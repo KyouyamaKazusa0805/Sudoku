@@ -32,7 +32,8 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 	/// <inheritdoc/>
 	public override bool Check(ConstraintCheckingContext context)
 	{
-		return context.AnalyzerResult.BottleneckSteps is [{ Difficulty: var d }] && b(d, BetweenRule, Minimum, Maximum);
+		var result = context.AnalyzerResult.BottleneckSteps is [{ Difficulty: var d }] && b(d, BetweenRule, Minimum, Maximum);
+		return IsNegated ? !result : result;
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
