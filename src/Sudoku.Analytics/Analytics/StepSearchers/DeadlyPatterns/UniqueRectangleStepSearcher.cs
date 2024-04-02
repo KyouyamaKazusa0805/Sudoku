@@ -3300,9 +3300,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								continue;
 							}
 
-							var currentBlockMap = selectedCellsInBlock;
-							var elimMapBlock = (CellMap)[];
-							var elimMapLine = (CellMap)[];
+							var (currentBlockMap, elimMapBlock, elimMapLine) = (selectedCellsInBlock, (CellMap)[], (CellMap)[]);
 
 							// Get the links of the block.
 							var blockMask = grid[in selectedCellsInBlock];
