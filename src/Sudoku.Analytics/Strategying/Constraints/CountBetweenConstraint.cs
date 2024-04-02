@@ -7,9 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class CountBetweenConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the range of the numbers set.
 	/// </summary>

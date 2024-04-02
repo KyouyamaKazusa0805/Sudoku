@@ -8,9 +8,6 @@ namespace Sudoku.Strategying.Constraints;
 public sealed partial class EliminationCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
-	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public int LimitCount { get; set; }

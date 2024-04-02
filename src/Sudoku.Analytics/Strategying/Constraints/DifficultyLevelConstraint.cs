@@ -1,5 +1,3 @@
-using Sudoku.Analytics.Metadata;
-
 namespace Sudoku.Strategying.Constraints;
 
 /// <summary>
@@ -14,9 +12,6 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 	/// </summary>
 	public const DifficultyLevel AllValidDifficultyLevelFlags = (DifficultyLevel)0b0001_1111;
 
-
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
 
 	/// <summary>
 	/// Indicates the difficulty level.

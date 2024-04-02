@@ -23,9 +23,6 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 
 
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the rounds used.
 	/// </summary>

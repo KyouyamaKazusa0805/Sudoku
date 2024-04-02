@@ -7,9 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class MinimalConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates whether the puzzle shsould be minimal.
 	/// </summary>

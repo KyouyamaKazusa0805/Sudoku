@@ -19,9 +19,6 @@ public sealed partial class SymmetryConstraint : Constraint
 	public const SymmetricType AllSymmetricTypes = (SymmetricType)255;
 
 
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the supported symmetry types to be used.
 	/// </summary>

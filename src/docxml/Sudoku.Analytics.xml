@@ -26671,7 +26671,24 @@ result ^= expression;
             Indicates whether the constraint can duplicate.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraint.CheckingQueryExpression">
+        <member name="P:Sudoku.Strategying.Constraint.AllowNegation">
+            <summary>
+            Indicates whether the constraint can be used as negated one.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.CreateCheckingQueryExpression">
             <summary>
             Indicates the checking <see cref="T:System.Linq.Expressions.Expression`1"/> instance of the constraint.
             </summary>
@@ -26690,18 +26707,6 @@ result ^= expression;
             <seealso cref="T:System.Linq.Expressions.Expression`1"/>
             <seealso cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/>
             <seealso cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <summary>
-            Determine whether the specified grid is passed the constraint.
-            </summary>
-            <param name="context">Indicates the context used.</param>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -26811,9 +26816,6 @@ result ^= expression;
             Represents a constraint that checks for difficulty rating of each step.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Minimum">
             <summary>
             Indicates the minimal value.
@@ -26848,9 +26850,6 @@ result ^= expression;
             <summary>
             Represents a constraint that determines whether bottleneck step represents the specified technique.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Techniques">
             <summary>
@@ -26910,9 +26909,6 @@ result ^= expression;
             Represents a count between constraint.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.Range">
             <summary>
             Indicates the range of the numbers set.
@@ -26966,9 +26962,6 @@ result ^= expression;
             Indicates all valid difficulty level flags.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.DifficultyLevel">
             <summary>
             Indicates the difficulty level.
@@ -27001,9 +26994,6 @@ result ^= expression;
             <summary>
             Represents an elimination count constraint.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.LimitCount">
             <inheritdoc/>
@@ -27046,9 +27036,6 @@ result ^= expression;
             <summary>
             Indicates the step searcher used.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
             <summary>
@@ -27097,9 +27084,6 @@ result ^= expression;
             Indicates the disordered ittoryu finder.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
             <summary>
             Indicates the length.
@@ -27136,9 +27120,6 @@ result ^= expression;
             <summary>
             Represents minimal constraint.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.ShouldBeMinimal">
             <summary>
@@ -27187,9 +27168,6 @@ result ^= expression;
             Indicates whether the puzzle should be pearl or diamond.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdocs/>
         </member>
@@ -27214,9 +27192,6 @@ result ^= expression;
             <summary>
             Represents a primary single constraint.
             </summary>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInLines">
             <summary>
@@ -27290,9 +27265,6 @@ result ^= expression;
             Indicates all possible symmetric types are included.
             </summary>
         </member>
-        <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.AllowDuplicate">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.SymmetricTypes">
             <summary>
             Indicates the supported symmetry types to be used.
@@ -27319,9 +27291,6 @@ result ^= expression;
             this constraint only controls the appearing techniques, rather than the number of times appeared.
             </summary>
             <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
-        </member>
-        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.AllowDuplicate">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
             <summary>

@@ -16,9 +16,6 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 	[StringMember]
 	public bool ShouldBePearlOrDiamond { get; set; }
 
-	/// <inheritdoc/>
-	public sealed override bool AllowDuplicate => false;
-
 
 	/// <inheritdocs/>
 	public sealed override bool Equals([NotNullWhen(true)] Constraint? other)

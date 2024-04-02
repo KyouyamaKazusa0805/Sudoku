@@ -13,9 +13,6 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 	private static readonly DisorderedIttoryuFinder Finder = new();
 
 
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the length.
 	/// </summary>

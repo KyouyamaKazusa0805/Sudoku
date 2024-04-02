@@ -9,9 +9,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class TechniqueConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the techniques must appear.
 	/// </summary>

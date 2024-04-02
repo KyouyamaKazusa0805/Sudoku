@@ -4,6 +4,8 @@ namespace Sudoku.Strategying;
 /// Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
 /// </summary>
 [JsonPolymorphic(TypeDiscriminatorPropertyName = "$typeid", UnknownDerivedTypeHandling = JsonUnknownDerivedTypeHandling.FailSerialization)]
+[JsonDerivedType(typeof(BottleneckStepRatingConstraint), nameof(BottleneckStepRatingConstraint))]
+[JsonDerivedType(typeof(BottleneckTechniqueConstraint), nameof(BottleneckTechniqueConstraint))]
 [JsonDerivedType(typeof(ConclusionConstraint), nameof(ConclusionConstraint))]
 [JsonDerivedType(typeof(CountBetweenConstraint), nameof(CountBetweenConstraint))]
 [JsonDerivedType(typeof(DiamondConstraint), nameof(DiamondConstraint))]
@@ -29,7 +31,25 @@ public abstract partial class Constraint :
 	/// <summary>
 	/// Indicates whether the constraint can duplicate.
 	/// </summary>
-	public abstract bool AllowDuplicate { get; }
+	public virtual bool AllowDuplicate => false;
+
+	/// <summary>
+	/// Indicates whether the constraint can be used as negated one.
+	/// </summary>
+	public virtual bool AllowNegation => false;
+
+
+	/// <summary>
+	/// Determine whether the specified grid is passed the constraint.
+	/// </summary>
+	/// <param name="context">Indicates the context used.</param>
+	public abstract bool Check(ConstraintCheckingContext context);
+
+	/// <inheritdoc/>
+	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
+
+	/// <inheritdoc/>
+	public abstract string ToString(CultureInfo? culture = null);
 
 	/// <summary>
 	/// Indicates the checking <see cref="Expression{TDelegate}"/> instance of the constraint.
@@ -49,19 +69,6 @@ public abstract partial class Constraint :
 	/// <seealso cref="Expression{TDelegate}"/>
 	/// <seealso cref="Expression.OrElse(Expression, Expression)"/>
 	/// <seealso cref="ConstraintCheckingContext"/>
-	internal Expression<Func<Constraint, ConstraintCheckingContext, bool>> CheckingQueryExpression
+	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CreateCheckingQueryExpression()
 		=> static (constraint, context) => constraint.Check(context);
-
-
-	/// <summary>
-	/// Determine whether the specified grid is passed the constraint.
-	/// </summary>
-	/// <param name="context">Indicates the context used.</param>
-	public abstract bool Check(ConstraintCheckingContext context);
-
-	/// <inheritdoc/>
-	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
-
-	/// <inheritdoc/>
-	public abstract string ToString(CultureInfo? culture = null);
 }

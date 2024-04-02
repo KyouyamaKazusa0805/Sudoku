@@ -7,9 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class PrimarySingleConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates whether the constraint allows hidden singles on rows or columns.
 	/// </summary>

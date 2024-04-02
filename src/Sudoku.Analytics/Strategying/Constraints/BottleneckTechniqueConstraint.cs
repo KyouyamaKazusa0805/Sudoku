@@ -7,9 +7,6 @@ namespace Sudoku.Strategying.Constraints;
 [ToString]
 public sealed partial class BottleneckTechniqueConstraint : Constraint
 {
-	/// <inheritdoc/>
-	public override bool AllowDuplicate => false;
-
 	/// <summary>
 	/// Indicates the techniques selected.
 	/// </summary>
