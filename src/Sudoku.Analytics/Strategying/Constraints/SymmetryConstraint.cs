@@ -34,13 +34,6 @@ public sealed partial class SymmetryConstraint : Constraint
 		=> other is SymmetryConstraint comparer && SymmetricTypes == comparer.SymmetricTypes;
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = (SymmetricTypes & context.Grid.Symmetry) != 0;
-		return IsNegated ? !result : result;
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("SymmetryConstraint", culture),
@@ -53,4 +46,7 @@ public sealed partial class SymmetryConstraint : Constraint
 				)
 			}
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context) => (SymmetricTypes & context.Grid.Symmetry) != 0;
 }

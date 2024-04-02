@@ -7261,6 +7261,11 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Modifiables count is between.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_NegatingLogic">
+            <summary>
+              Looks up a localized string similar to Negate.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_NoTechniquesSelected">
             <summary>
               Looks up a localized string similar to No techniques selected.

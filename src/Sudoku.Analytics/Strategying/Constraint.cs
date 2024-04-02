@@ -23,10 +23,7 @@ namespace Sudoku.Strategying;
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
-public abstract partial class Constraint :
-	ICultureFormattable,
-	IEquatable<Constraint>,
-	IEqualityOperators<Constraint, Constraint, bool>
+public abstract partial class Constraint : ICultureFormattable, IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
 {
 	/// <summary>
 	/// Indicates whether the constraint should be negated.
@@ -38,7 +35,9 @@ public abstract partial class Constraint :
 	/// Determine whether the specified grid is passed the constraint.
 	/// </summary>
 	/// <param name="context">Indicates the context used.</param>
-	public abstract bool Check(ConstraintCheckingContext context);
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Check(ConstraintCheckingContext context) => CheckCore(context) is var result && (IsNegated ? !result : result);
 
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
@@ -64,6 +63,17 @@ public abstract partial class Constraint :
 	/// <seealso cref="Expression{TDelegate}"/>
 	/// <seealso cref="Expression.OrElse(Expression, Expression)"/>
 	/// <seealso cref="ConstraintCheckingContext"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CreateCheckingQueryExpression()
-		=> static (constraint, context) => constraint.Check(context);
+		=> static (constraint, context) => constraint.CheckCore(context);
+
+	/// <summary>
+	/// Try to get the internal metadata.
+	/// </summary>
+	/// <returns>The options metadata configured.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConstraintOptionsAttribute? GetMetadata() => GetType().GetCustomAttribute<ConstraintOptionsAttribute>();
+
+	/// <inheritdoc cref="Check(ConstraintCheckingContext)"/>
+	protected abstract bool CheckCore(ConstraintCheckingContext context);
 }

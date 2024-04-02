@@ -24,7 +24,19 @@ public sealed partial class ConclusionConstraint : Constraint
 
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
+	public override bool Equals([NotNullWhen(true)] Constraint? other)
+		=> other is ConclusionConstraint comparer && (Conclusion, ShouldAppear) == (comparer.Conclusion, comparer.ShouldAppear);
+
+	/// <inheritdoc/>
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("ConclusionConstraint", culture),
+			Conclusion.ToString(culture),
+			ShouldAppear ? string.Empty : ResourceDictionary.Get("NoString", culture)
+		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var appeared = false;
 		foreach (var step in context.AnalyzerResult)
@@ -39,19 +51,6 @@ public sealed partial class ConclusionConstraint : Constraint
 			}
 		}
 
-		var result = !(ShouldAppear ^ appeared);
-		return IsNegated ? !result : result;
+		return !(ShouldAppear ^ appeared);
 	}
-
-	/// <inheritdoc/>
-	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is ConclusionConstraint comparer && (Conclusion, ShouldAppear) == (comparer.Conclusion, comparer.ShouldAppear);
-
-	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
-			ResourceDictionary.Get("ConclusionConstraint", culture),
-			Conclusion.ToString(culture),
-			ShouldAppear ? string.Empty : ResourceDictionary.Get("NoString", culture)
-		);
 }

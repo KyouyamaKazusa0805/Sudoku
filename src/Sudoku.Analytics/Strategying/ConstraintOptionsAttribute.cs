@@ -10,4 +10,9 @@ public sealed class ConstraintOptionsAttribute : Attribute
 	/// Indicates whether the constraint can support multiple items defined.
 	/// </summary>
 	public bool AllowsMultiple { get; init; }
+
+	/// <summary>
+	/// Indicates whether the constraint can be negated by user.
+	/// </summary>
+	public bool AllowsNegation { get; init; }
 }

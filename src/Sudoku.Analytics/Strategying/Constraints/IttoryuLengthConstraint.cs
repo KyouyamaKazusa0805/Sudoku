@@ -41,25 +41,18 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 		=> other is IttoryuLengthConstraint comparer && (Length, Operator) == (comparer.Length, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = checkInternal(context);
-		return IsNegated ? !result : result;
-
-
-		bool checkInternal(ConstraintCheckingContext context)
-		{
-			if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
-			{
-				return false;
-			}
-
-			var factLength = Finder.FindPath(context.Grid).Digits.Length;
-			return Operator.GetOperator<int>()(factLength, Length);
-		}
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(ResourceDictionary.Get("IttoryuLengthConstraint", culture), Operator.GetOperatorString(), Length);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+	{
+		if (context.AnalyzerResult is not { IsSolved: true, DifficultyLevel: DifficultyLevel.Easy })
+		{
+			return false;
+		}
+
+		var factLength = Finder.FindPath(context.Grid).Digits.Length;
+		return Operator.GetOperator<int>()(factLength, Length);
+	}
 }

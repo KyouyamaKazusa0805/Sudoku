@@ -39,23 +39,6 @@ public sealed partial class CountBetweenConstraint : Constraint
 		&& Range.Equals(comparer.Range) && (CellState, BetweenRule) == (comparer.CellState, comparer.BetweenRule);
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var grid = context.Grid;
-		var factCount = CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount };
-		_ = Range is { Start.Value: var min, End.Value: var max };
-		var result = BetweenRule switch
-		{
-			BetweenRule.BothOpen => factCount > min && factCount < max,
-			BetweenRule.LeftOpen => factCount >= min && factCount <= max,
-			BetweenRule.RightOpen => factCount >= min && factCount < max,
-			BetweenRule.BothClosed => factCount >= min && factCount <= max
-		};
-
-		return IsNegated ? !result : result;
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("CountBetweenConstraint", culture),
@@ -70,4 +53,17 @@ public sealed partial class CountBetweenConstraint : Constraint
 				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
 			}
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+		=> context.Grid is var grid
+		&& CellState switch { CellState.Empty => grid.EmptiesCount, _ => grid.GivensCount } is var factCount
+		&& Range is { Start.Value: var min, End.Value: var max }
+		&& BetweenRule switch
+		{
+			BetweenRule.BothOpen => factCount > min && factCount < max,
+			BetweenRule.LeftOpen => factCount >= min && factCount <= max,
+			BetweenRule.RightOpen => factCount >= min && factCount < max,
+			BetweenRule.BothClosed => factCount >= min && factCount <= max
+		};
 }

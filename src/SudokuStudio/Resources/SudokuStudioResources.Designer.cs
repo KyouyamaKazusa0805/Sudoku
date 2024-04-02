@@ -2482,6 +2482,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Negate.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_NegatingLogic {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_NegatingLogic", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No techniques selected.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_NoTechniquesSelected {

@@ -32,28 +32,6 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = getResult(context);
-		return IsNegated ? !result : result;
-
-
-		bool getResult(ConstraintCheckingContext context)
-		{
-			var @operator = Operator.GetOperator<int>();
-			foreach (var step in context.AnalyzerResult)
-			{
-				if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is EliminationCountConstraint comparer && (LimitCount, Operator) == (comparer.LimitCount, comparer.Operator);
 
@@ -66,4 +44,19 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture),
 			Technique.GetName(culture)
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+	{
+		var @operator = Operator.GetOperator<int>();
+		foreach (var step in context.AnalyzerResult)
+		{
+			if (step.Code == Technique && @operator(LimitCount, step.Conclusions.Length))
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 }

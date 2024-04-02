@@ -13,39 +13,6 @@ public readonly ref partial struct GridFeature(
 )
 {
 	/// <summary>
-	/// Indicates whether the current grid is an ittoryu puzzle, solved in only one round.
-	/// </summary>
-	public bool IsIttoryu()
-	{
-		var analyzer = Analyzers.Default
-			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true, UseIttoryuMode = true })
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
-		if (analyzer.Analyze(in Grid) is not { IsSolved: true, InterimSteps: var steps })
-		{
-			return false;
-		}
-
-		for (var i = 0; i < steps.Length - 1; i++)
-		{
-			var a = ((SingleStep)steps[i]).Digit;
-			var b = ((SingleStep)steps[i + 1]).Digit;
-			if ((a, b) is (8, 0))
-			{
-				return false;
-			}
-
-			if (b - a is 0 or 1)
-			{
-				continue;
-			}
-
-			return false;
-		}
-
-		return true;
-	}
-
-	/// <summary>
 	/// Indicates whether the puzzle can be filled via only full house.
 	/// </summary>
 	public readonly bool CanOnlyUseFullHouse()

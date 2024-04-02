@@ -22,16 +22,12 @@ public sealed partial class MinimalConstraint : Constraint
 		=> other is MinimalConstraint comparer && ShouldBeMinimal == comparer.ShouldBeMinimal;
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = context.Grid.IsMinimal == ShouldBeMinimal;
-		return IsNegated ? !result : result;
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("MinimalConstraint", culture),
 			ShouldBeMinimal ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context) => context.Grid.IsMinimal == ShouldBeMinimal;
 }

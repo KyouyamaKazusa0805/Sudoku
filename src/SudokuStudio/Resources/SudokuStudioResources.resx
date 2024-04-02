@@ -2432,4 +2432,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_PrimaryFullHouse" xml:space="preserve">
     <value>Full House</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_NegatingLogic" xml:space="preserve">
+    <value>Negate</value>
+  </data>
 </root>

@@ -40,7 +40,16 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
+	public override string ToString(CultureInfo? culture = null)
+		=> string.Format(
+			ResourceDictionary.Get("TechniqueCountConstraint", culture),
+			Technique.GetName(culture),
+			Operator.GetOperatorString(),
+			LimitCount
+		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
 	{
 		var times = 0;
 		foreach (var step in context.AnalyzerResult)
@@ -51,16 +60,6 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 			}
 		}
 
-		var result = Operator.GetOperator<int>()(times, LimitCount);
-		return IsNegated ? !result : result;
+		return Operator.GetOperator<int>()(times, LimitCount);
 	}
-
-	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
-			ResourceDictionary.Get("TechniqueCountConstraint", culture),
-			Technique.GetName(culture),
-			Operator.GetOperatorString(),
-			LimitCount
-		);
 }

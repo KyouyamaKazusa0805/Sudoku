@@ -66,13 +66,6 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 		=> other is DifficultyLevelConstraint comparer && (DifficultyLevel, Operator) == (comparer.DifficultyLevel, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
-		return IsNegated ? !result : result;
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("DifficultyLevelConstraint", culture),
@@ -83,4 +76,8 @@ public sealed partial class DifficultyLevelConstraint : Constraint, IComparisonO
 				from value in ValidDifficultyLevels.GetAllFlags() select value.GetName(culture)
 			)
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+		=> (ValidDifficultyLevels & context.AnalyzerResult.DifficultyLevel) != 0;
 }

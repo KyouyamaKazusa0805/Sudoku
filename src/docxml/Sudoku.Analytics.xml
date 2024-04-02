@@ -4902,11 +4902,6 @@
             <param name="grid">Indicates the grid used.</param>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Analytics.GridFeature.IsIttoryu">
-            <summary>
-            Indicates whether the current grid is an ittoryu puzzle, solved in only one round.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseFullHouse">
             <summary>
             Indicates whether the puzzle can be filled via only full house.
@@ -26676,6 +26671,7 @@ result ^= expression;
             Determine whether the specified grid is passed the constraint.
             </summary>
             <param name="context">Indicates the context used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
@@ -26702,6 +26698,15 @@ result ^= expression;
             <seealso cref="T:System.Linq.Expressions.Expression`1"/>
             <seealso cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/>
             <seealso cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.GetMetadata">
+            <summary>
+            Try to get the internal metadata.
+            </summary>
+            <returns>The options metadata configured.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -26816,6 +26821,11 @@ result ^= expression;
             Indicates whether the constraint can support multiple items defined.
             </summary>
         </member>
+        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsNegation">
+            <summary>
+            Indicates whether the constraint can be negated by user.
+            </summary>
+        </member>
         <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">
             <summary>
             Represents a constraint that checks for difficulty rating of each step.
@@ -26836,13 +26846,13 @@ result ^= expression;
             Indicates the between rule.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.GetHashCode">
@@ -26861,13 +26871,13 @@ result ^= expression;
             Indicates the techniques selected.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.GetHashCode">
@@ -26891,13 +26901,13 @@ result ^= expression;
             Indicates the conclusion.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
@@ -26932,10 +26942,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.GetHashCode">
@@ -26980,10 +26990,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.GetHashCode">
@@ -27014,13 +27024,13 @@ result ^= expression;
         <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.GetHashCode">
@@ -27064,10 +27074,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
@@ -27106,10 +27116,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.GetHashCode">
@@ -27131,10 +27141,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.GetHashCode">
@@ -27173,10 +27183,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdocs/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">
@@ -27208,10 +27218,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.GetHashCode">
@@ -27275,10 +27285,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.GetHashCode">
@@ -27299,13 +27309,13 @@ result ^= expression;
             Indicates the techniques must appear.
             </summary>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
@@ -27340,10 +27350,10 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">

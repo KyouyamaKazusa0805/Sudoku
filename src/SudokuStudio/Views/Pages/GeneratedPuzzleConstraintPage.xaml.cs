@@ -97,9 +97,29 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					{
 						new() { Width = new(1, GridUnitType.Star) },
 						new() { Width = new(20) },
+						new() { Width = new(1, GridUnitType.Auto) },
 						new() { Width = new(1, GridUnitType.Auto) }
 					}
 				};
+				GridLayout.SetColumn(control, 0);
+				grid.Children.Add(control);
+
+				var negatingButton = new ToggleButton
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
+					Margin = new(6),
+					VerticalAlignment = VerticalAlignment.Center
+				};
+				negatingButton.Checked += (_, _) => instance.IsNegated = true;
+				negatingButton.Unchecked += (_, _) => instance.IsNegated = false;
+				GridLayout.SetColumn(negatingButton, 2);
+				grid.Children.Add(negatingButton);
+
+				if (!(instance.GetMetadata()?.AllowsNegation ?? false))
+				{
+					negatingButton.IsEnabled = false;
+				}
+
 				var deleteButton = new Button
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Delete", App.CurrentCulture),
@@ -109,9 +129,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 					VerticalAlignment = VerticalAlignment.Center
 				};
 				deleteButton.Click += (_, _) => { _controls.Remove(grid); ConstraintsEntry.Remove((Constraint)control.Tag!); };
-				GridLayout.SetColumn(control, 0);
-				GridLayout.SetColumn(deleteButton, 2);
-				grid.Children.Add(control);
+				GridLayout.SetColumn(deleteButton, 3);
 				grid.Children.Add(deleteButton);
 
 				_controls.Add(grid);

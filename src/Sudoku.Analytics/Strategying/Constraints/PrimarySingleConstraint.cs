@@ -29,23 +29,22 @@ public sealed partial class PrimarySingleConstraint : Constraint
 		=> other is PrimarySingleConstraint comparer && Primary == comparer.Primary;
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		scoped var feature = new GridFeature(context.Grid);
-		var result = Primary switch
-		{
-			SingleTechnique.FullHouse => feature.CanOnlyUseFullHouse(),
-			SingleTechnique.HiddenSingle => feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines),
-			SingleTechnique.NakedSingle => feature.CanOnlyUseNakedSingle()
-		};
-		return IsNegated ? !result : result;
-	}
-
-	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("PrimarySingleConstraint", culture),
 			Primary.GetName(culture),
 			AllowsHiddenSingleInLines ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+	{
+		scoped var feature = new GridFeature(context.Grid);
+		return Primary switch
+		{
+			SingleTechnique.FullHouse => feature.CanOnlyUseFullHouse(),
+			SingleTechnique.HiddenSingle => feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines),
+			SingleTechnique.NakedSingle => feature.CanOnlyUseNakedSingle()
+		};
+	}
 }

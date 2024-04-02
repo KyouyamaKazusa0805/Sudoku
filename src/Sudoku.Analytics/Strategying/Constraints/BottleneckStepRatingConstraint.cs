@@ -30,24 +30,6 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 
 
 	/// <inheritdoc/>
-	public override bool Check(ConstraintCheckingContext context)
-	{
-		var result = context.AnalyzerResult.BottleneckSteps is [{ Difficulty: var d }] && b(d, BetweenRule, Minimum, Maximum);
-		return IsNegated ? !result : result;
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool b(decimal v, BetweenRule rule, decimal min, decimal max)
-			=> rule switch
-			{
-				BetweenRule.BothOpen => v > min && v < max,
-				BetweenRule.LeftOpen => v > min && v <= max,
-				BetweenRule.RightOpen => v >= min && v < max,
-				BetweenRule.BothClosed => v >= min && v <= max
-			};
-	}
-
-	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
 		=> other is BottleneckStepRatingConstraint comparer
 		&& (Minimum, Maximum, BetweenRule) == (comparer.Minimum, comparer.Maximum, comparer.BetweenRule);
@@ -66,4 +48,21 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
 			}
 		);
+
+	/// <inheritdoc/>
+	protected override bool CheckCore(ConstraintCheckingContext context)
+	{
+		return context.AnalyzerResult.BottleneckSteps is [{ Difficulty: var d }] && b(d, BetweenRule, Minimum, Maximum);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool b(decimal v, BetweenRule rule, decimal min, decimal max)
+			=> rule switch
+			{
+				BetweenRule.BothOpen => v > min && v < max,
+				BetweenRule.LeftOpen => v > min && v <= max,
+				BetweenRule.RightOpen => v >= min && v < max,
+				BetweenRule.BothClosed => v >= min && v <= max
+			};
+	}
 }

@@ -2432,4 +2432,7 @@
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_NegatingLogic" xml:space="preserve">
+    <value>取反</value>
+  </data>
 </root>
