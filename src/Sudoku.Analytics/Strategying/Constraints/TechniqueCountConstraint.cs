@@ -4,7 +4,7 @@ namespace Sudoku.Strategying.Constraints;
 /// Represents a rule that checks whether the specified analyzer result after analyzed by a grid
 /// contains the specified techniques.
 /// </summary>
-[AllowsMultiple]
+[ConstraintOptions(AllowsMultiple = true)]
 [GetHashCode]
 [ToString]
 public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>

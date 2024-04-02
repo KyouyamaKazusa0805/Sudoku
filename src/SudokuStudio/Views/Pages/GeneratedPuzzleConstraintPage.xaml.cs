@@ -1007,7 +1007,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{
 			if (element is MenuFlyoutItem { Tag: Constraint constraint })
 			{
-				var allowsMultiple = constraint.GetType().IsDefined(typeof(AllowsMultipleAttribute));
+				var allowsMultiple = constraint.GetType().GetCustomAttribute<ConstraintOptionsAttribute>()?.AllowsMultiple ?? false;
 				element.IsEnabled = allowsMultiple || !ConstraintsEntry.Exists(c => c.GetType() == constraint.GetType());
 			}
 		}

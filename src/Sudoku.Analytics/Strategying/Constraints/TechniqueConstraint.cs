@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// this constraint only controls the appearing techniques, rather than the number of times appeared.
 /// </summary>
 /// <seealso cref="TechniqueCountConstraint"/>
-[AllowsNegation]
+[ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
 [GetHashCode]
 [ToString]
 public sealed partial class TechniqueConstraint : Constraint

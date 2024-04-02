@@ -26579,16 +26579,6 @@ result ^= expression;
               Looks up a localized string similar to Y-Chain.
             </summary>
         </member>
-        <member name="T:Sudoku.Strategying.AllowsMultipleAttribute">
-            <summary>
-            Represents an attribute type that determines whether the constraint type supports multiple usages.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Strategying.AllowsNegationAttribute">
-            <summary>
-            Represents an attribute type that determines whether the constraint type supports negation.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.BetweenRule">
             <summary>
             Represents a between rule.
@@ -26723,11 +26713,6 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraint.op_Inequality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Strategying.ConstraintAttribute">
-            <summary>
-            Represents an attribute type that describes a constraint usage.
-            </summary>
-        </member>
         <member name="T:Sudoku.Strategying.ConstraintCheckingContext">
             <summary>
             Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
@@ -26815,6 +26800,21 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.op_Subtraction(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintOptionsAttribute">
+            <summary>
+            Represents an attribute type that describes a constraint usage.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsMultiple">
+            <summary>
+            Indicates whether the constraint can support multiple items defined.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsNegation">
+            <summary>
+            Indicates whether the constraint can support negation.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">
             <summary>

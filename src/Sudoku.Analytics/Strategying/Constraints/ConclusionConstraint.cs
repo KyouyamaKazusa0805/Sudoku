@@ -3,7 +3,7 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a conclusion constraint.
 /// </summary>
-[AllowsMultiple]
+[ConstraintOptions(AllowsMultiple = true)]
 [GetHashCode]
 [ToString]
 public sealed partial class ConclusionConstraint : Constraint
