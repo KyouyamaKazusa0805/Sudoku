@@ -26,11 +26,9 @@ public static class CellMapEnumerable
 	/// <returns>The first found cell.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(
-		this scoped ref readonly CellMap @this,
-		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator> match
-	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+	public static Cell First(this scoped ref readonly CellMap @this, scoped ref readonly Grid grid, CellMapPredicate match)
+		=> @this.FirstOrNull(in grid, match)
+		?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.
@@ -58,11 +56,7 @@ public static class CellMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found cell.</returns>
-	public static Cell? FirstOrNull(
-		this scoped ref readonly CellMap @this,
-		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator> match
-	)
+	public static Cell? FirstOrNull(this scoped ref readonly CellMap @this, scoped ref readonly Grid grid, CellMapPredicate match)
 	{
 		foreach (var cell in @this.Offsets)
 		{

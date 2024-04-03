@@ -26,11 +26,9 @@ public static class CandidateMapEnumerable
 	/// <returns>The first found candidate.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Candidate First(
-		this scoped ref readonly CandidateMap @this,
-		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CandidateMap, Candidate, CandidateMap.Enumerator> match
-	) => @this.FirstOrNull(in grid, match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+	public static Candidate First(this scoped ref readonly CandidateMap @this, scoped ref readonly Grid grid, CandidateMapPredicate match)
+		=> @this.FirstOrNull(in grid, match)
+		?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
@@ -58,11 +56,7 @@ public static class CandidateMapEnumerable
 	/// <param name="grid">The grid to be used.</param>
 	/// <param name="match">The condition to be used.</param>
 	/// <returns>The first found candidate.</returns>
-	public static Candidate? FirstOrNull(
-		this scoped ref readonly CandidateMap @this,
-		scoped ref readonly Grid grid,
-		BitStatusMapPredicate<CandidateMap, Candidate, CandidateMap.Enumerator> match
-	)
+	public static Candidate? FirstOrNull(this scoped ref readonly CandidateMap @this, scoped ref readonly Grid grid, CandidateMapPredicate match)
 	{
 		foreach (var candidate in @this.Offsets)
 		{
