@@ -6016,6 +6016,9 @@
             <seealso cref="T:Sudoku.Analytics.Step"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.System#IMetadataObject{Sudoku#Analytics#Metadata#StepSearcherMetadataInfo}#GetMetadata">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Priority">
             <summary>
             The generated property declaration for parameter <c>priority</c>.
@@ -26695,10 +26698,7 @@ result ^= expression;
             <seealso cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.GetMetadata">
-            <summary>
-            Try to get the internal metadata.
-            </summary>
-            <returns>The options metadata configured.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>

@@ -23,7 +23,11 @@ namespace Sudoku.Strategying;
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
-public abstract partial class Constraint : ICultureFormattable, IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
+public abstract partial class Constraint :
+	ICultureFormattable,
+	IEquatable<Constraint>,
+	IEqualityOperators<Constraint, Constraint, bool>,
+	IMetadataObject<ConstraintOptionsAttribute?>
 {
 	/// <summary>
 	/// Indicates whether the constraint should be negated.
@@ -73,10 +77,7 @@ public abstract partial class Constraint : ICultureFormattable, IEquatable<Const
 	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CreateCheckingQueryExpression()
 		=> static (constraint, context) => constraint.CheckCore(context);
 
-	/// <summary>
-	/// Try to get the internal metadata.
-	/// </summary>
-	/// <returns>The options metadata configured.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConstraintOptionsAttribute? GetMetadata() => GetType().GetCustomAttribute<ConstraintOptionsAttribute>();
 

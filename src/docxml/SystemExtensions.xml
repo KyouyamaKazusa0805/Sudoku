@@ -2057,6 +2057,18 @@
             <param name="right">The right-side value.</param>
             <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
         </member>
+        <member name="T:System.IMetadataObject`1">
+            <summary>
+            Defines a metadata object.
+            </summary>
+            <typeparam name="T">The type of metadata.</typeparam>
+        </member>
+        <member name="M:System.IMetadataObject`1.GetMetadata">
+            <summary>
+            Try to fetch metadata of the object.
+            </summary>
+            <returns>The metadata returned.</returns>
+        </member>
         <member name="T:System.Numerics.Int32Enumerator">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
