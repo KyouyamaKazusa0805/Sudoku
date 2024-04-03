@@ -327,8 +327,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <param name="housesMask">The mask that holds a list of houses being iterated.</param>
 	/// <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
 	/// <param name="size">
-	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
-	/// because I don't know. :(
+	/// The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined.
+	/// I don't know. :(
 	/// </param>
 	/// <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
 	/// <returns>A valid <see cref="ExocetStep"/> instance calculated and found.</returns>
@@ -2644,15 +2644,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					? (targetCell1, targetCell2)
 					: (targetCell2, targetCell1);
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
+#pragma warning disable format
 				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 				{
-				[] when mirrorCellsThisTarget is [var a, var b]
-					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+					[] when mirrorCellsThisTarget is [var a, var b]
+						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 					[var a] when mirrorCellsThisTarget - a is [var b]
-							=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-							[var a, var b]
-							=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+					[var a, var b]
+						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 				};
+#pragma warning restore format
 				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
 				{
 					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
@@ -3174,15 +3176,17 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var (thisTargetCell, theOtherTargetCell) in ((groupsOfTargetCells[0][0], groupsOfTargetCells[1][0]), (groupsOfTargetCells[1][0], groupsOfTargetCells[0][0])))
 		{
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
+#pragma warning disable format
 			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
 			{
-			[] when mirrorCellsThisTarget is [var a, var b]
-				=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
 				[var a] when mirrorCellsThisTarget - a is [var b]
-						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-						[var a, var b]
-						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+					=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[var a, var b]
+					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
 			};
+#pragma warning restore format
 			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
 			{
 				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
@@ -3620,36 +3624,68 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var lockedDigitElimTimes = 0;
 		foreach (var lockedDigit in baseCellsDigitsMask)
 		{
-			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock))
+			if (lockedMembers[lockedDigit] is not var (lockedMemberMap, lockedBlock))
 			{
-				var (thisTargetCell, theOtherTargetCell) = HousesMap[lockedBlock].Contains(targetCell1)
-					? (targetCell1, targetCell2)
-					: (targetCell2, targetCell1);
-				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
-				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
-				{
-					[] when mirrorCellsThisTarget is [var a, var b]
-						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-					[var a] when mirrorCellsThisTarget - a is [var b]
-						=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
-					[var a, var b]
-						=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
-				};
-				foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
-				{
-					conclusions.Add(new(Elimination, theOtherTargetCell, digit));
-				}
-
-				candidateOffsets.AddRange(
-					from cell in lockedMemberMap
-					select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
-				);
-				houseOffsets.Add(new(ColorIdentifier.Auxiliary1, lockedBlock));
-
-				lockedDigitsMask |= (Mask)(1 << lockedDigit);
-				inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
-				lockedDigitElimTimes++;
+				continue;
 			}
+
+			var (thisTargetCell, theOtherTargetCell) = HousesMap[lockedBlock].Contains(targetCell1)
+				? (targetCell1, targetCell2)
+				: (targetCell2, targetCell1);
+
+			// Check whether the target cell is lying in two cross-line cells houses, and lying in the block for the locked member.
+			// If so, we should treat this as an invalid case.
+			// This is because the intersection cell (this target cell) will be counted twice instead of once.
+			// This will fixes issue #603 and #605:
+			//
+			//   * https://github.com/SunnieShine/Sudoku/issues/603
+			//   * https://github.com/SunnieShine/Sudoku/issues/605
+			//
+			// This rule is just like an endo-fin. 
+			//
+			// Example:
+			//
+			//   +71..+8...4..27..83.+3+85..6+19+7+1.8.+625+7+35+2.13+7.+8..37+85..1..+7.5.836.2+5.6..+7+48+86..7....:
+			//     214 425 426 175 975
+			var endofinTargetCounter = 0;
+			foreach (var house in housesMask | extraHousesMask)
+			{
+				if (HousesMap[house].Contains(targetCell1))
+				{
+					endofinTargetCounter++;
+				}
+			}
+			if (endofinTargetCounter >= 2)
+			{
+				continue;
+			}
+
+			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
+#pragma warning disable format
+			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
+			{
+				[] when mirrorCellsThisTarget is [var a, var b]
+					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[var a] when mirrorCellsThisTarget - a is [var b]
+					=> (Mask)(((Mask)(1 << grid.GetDigit(a)) | grid.GetCandidates(b)) & baseCellsDigitsMask),
+				[var a, var b]
+					=> (Mask)((1 << grid.GetDigit(a) | 1 << grid.GetDigit(b)) & baseCellsDigitsMask)
+			};
+#pragma warning restore format
+			foreach (var digit in (Mask)(grid.GetCandidates(theOtherTargetCell) & (Mask)~finalDigitsMask))
+			{
+				conclusions.Add(new(Elimination, theOtherTargetCell, digit));
+			}
+
+			candidateOffsets.AddRange(
+				from cell in lockedMemberMap
+				select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+			);
+			houseOffsets.Add(new(ColorIdentifier.Auxiliary1, lockedBlock));
+
+			lockedDigitsMask |= (Mask)(1 << lockedDigit);
+			inferredLastTargetDigitsMask |= (Mask)(grid.GetCandidates(theOtherTargetCell) & finalDigitsMask);
+			lockedDigitElimTimes++;
 		}
 
 		if (lockedDigitElimTimes == 2)
@@ -3770,38 +3806,67 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//   they are possible candidates in the other side of target cell. Other digits can be removed.
 		foreach (var lockedDigit in baseCellsDigitsMask)
 		{
-			if (lockedMembers[lockedDigit] is var (lockedMemberMap, lockedBlock) && HousesMap[lockedBlock].Contains(targetCell))
+			if (lockedMembers[lockedDigit] is not var (lockedMemberMap, lockedBlock) || !HousesMap[lockedBlock].Contains(targetCell))
 			{
-				foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
-				{
-					conclusions.Add(new(Elimination, endoTargetCell, digit));
-				}
-				foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
-				{
-					conclusions.Add(new(Elimination, targetCell, digit));
-				}
-
-				// Cannibalism rule:
-				// If the maximum appearing times of the digit is less than the minimum possible limit,
-				// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
-				// We can safely remove it from base cells.
-				if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell) < size)
-				{
-					foreach (var cell in baseCells + endoTargetCell + targetCell & CandidatesMap[lockedDigit])
-					{
-						conclusions.Add(new(Elimination, cell, lockedDigit));
-					}
-				}
-
-				candidateOffsets.AddRange(
-					from cell in lockedMemberMap
-					select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
-				);
-				houseOffsets.Add(new(ColorIdentifier.Auxiliary1, lockedBlock));
-
-				lockedDigitsMask |= (Mask)(1 << lockedDigit);
-				inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
+				continue;
 			}
+
+			// Check whether the target cell is lying in two cross-line cells houses, and lying in the block for the locked member.
+			// If so, we should treat this as an invalid case.
+			// This is because the intersection cell (this target cell) will be counted twice instead of once.
+			// This will fixes issue #603 and #605:
+			//
+			//   * https://github.com/SunnieShine/Sudoku/issues/603
+			//   * https://github.com/SunnieShine/Sudoku/issues/605
+			//
+			// This rule is just like an endo-fin. 
+			//
+			// Example:
+			//
+			//   +71..+8...4..27..83.+3+85..6+19+7+1.8.+625+7+35+2.13+7.+8..37+85..1..+7.5.836.2+5.6..+7+48+86..7....:
+			//     214 425 426 175 975
+			var endofinTargetCounter = 0;
+			foreach (var house in housesMask | extraHousesMask)
+			{
+				if (HousesMap[house].Contains(targetCell))
+				{
+					endofinTargetCounter++;
+				}
+			}
+			if (endofinTargetCounter >= 2)
+			{
+				continue;
+			}
+
+			foreach (var digit in (Mask)(grid.GetCandidates(endoTargetCell) & ~(baseCellsDigitsMask & ~(1 << lockedDigit))))
+			{
+				conclusions.Add(new(Elimination, endoTargetCell, digit));
+			}
+			foreach (var digit in (Mask)(grid.GetCandidates(targetCell) & ~baseCellsDigitsMask))
+			{
+				conclusions.Add(new(Elimination, targetCell, digit));
+			}
+
+			// Cannibalism rule:
+			// If the maximum appearing times of the digit is less than the minimum possible limit,
+			// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
+			// We can safely remove it from base cells.
+			if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell - endoTargetCell) < size)
+			{
+				foreach (var cell in baseCells + endoTargetCell + targetCell & CandidatesMap[lockedDigit])
+				{
+					conclusions.Add(new(Elimination, cell, lockedDigit));
+				}
+			}
+
+			candidateOffsets.AddRange(
+				from cell in lockedMemberMap
+				select new CandidateViewNode(ColorIdentifier.Auxiliary1, cell * 9 + lockedDigit)
+			);
+			houseOffsets.Add(new(ColorIdentifier.Auxiliary1, lockedBlock));
+
+			lockedDigitsMask |= (Mask)(1 << lockedDigit);
+			inferredLastTargetDigitsMask |= (Mask)((grid.GetCandidates(endoTargetCell) | grid.GetCandidates(targetCell)) & baseCellsDigitsMask);
 		}
 		if (conclusions.Count == 0)
 		{

@@ -9184,8 +9184,8 @@ if (student is (name: var name, age: >= 18))
             <param name="housesMask">The mask that holds a list of houses being iterated.</param>
             <param name="isRow">Indicates whether the exocet pattern is row-ish. The direction is same as cross-line cells.</param>
             <param name="size">
-            The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined
-            because I don't know. :(
+            The size of houses used in the cross-line cells. The value can be 3 or 4; higher-sized cases cannot be determined.
+            I don't know. :(
             </param>
             <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
             <returns>A valid <see cref="T:Sudoku.Analytics.Steps.ExocetStep"/> instance calculated and found.</returns>
