@@ -216,14 +216,49 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)
 	{
-#if false
-		if (constraint is not { IsNegated: var isNegated, Techniques: var techniques })
+		if (constraint is not { Techniques: var techniques })
 		{
 			return null;
 		}
-#else
-		return null;
-#endif
+
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = techniques.GetTechniqueString()
+		};
+
+		//
+		// technique view
+		//
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Multiple,
+			SelectedTechniques = techniques,
+			Margin = new(-56, 0, 0, 0)
+		};
+		techniqueControl.SelectedTechniquesChanged += (_, e) => displayerControl.Text = (constraint.Techniques = e.TechniqueSet).GetTechniqueString();
+
+		// Fixes #558: 'SettingsExpander' always requires 'SettingsCard' as the children control
+		// for 'SettingsExpander.Items' property. See https://github.com/SunnieShine/Sudoku/issues/558
+		// Reference link: https://github.com/CommunityToolkit/Windows/issues/302#issuecomment-1857686711
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckTechnique", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { displayerControl }
+			},
+			Tag = constraint
+		};
 	}
 
 	private SettingsCard? Create_DifficultyLevel(DifficultyLevelConstraint constraint)
@@ -689,7 +724,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			MaxWidth = 400,
 			TextWrapping = TextWrapping.WrapWholeWords,
 			VerticalAlignment = VerticalAlignment.Center,
-			Text = getTechniqueString(techniques)
+			Text = techniques.GetTechniqueString()
 		};
 
 		//
@@ -701,11 +736,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			SelectedTechniques = techniques,
 			Margin = new(-56, 0, 0, 0)
 		};
-		techniqueControl.SelectedTechniquesChanged += (_, e) => displayerControl.Text = getTechniqueString(constraint.Techniques = e.TechniqueSet);
+		techniqueControl.SelectedTechniquesChanged += (_, e) => displayerControl.Text = (constraint.Techniques = e.TechniqueSet).GetTechniqueString();
 
-		// Fixes #558: 'SettingsExpander' always requires 'SettingsCard' as the children control
-		// for 'SettingsExpander.Items' property. See https://github.com/SunnieShine/Sudoku/issues/558
-		// Reference link: https://github.com/CommunityToolkit/Windows/issues/302#issuecomment-1857686711
 		return new()
 		{
 			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Technique", App.CurrentCulture),
@@ -719,20 +751,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
-
-
-#pragma warning disable format
-		static string getTechniqueString(TechniqueSet techniques)
-			=> techniques switch
-			{
-				[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
-				[var technique] => technique.GetName(App.CurrentCulture),
-				_ => string.Join(
-					ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
-					[.. from technique in techniques select technique.GetName(App.CurrentCulture)]
-				)
-			};
-#pragma warning restore format
 	}
 
 	private SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint)
@@ -1127,4 +1145,26 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			}
 		}
 	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+#pragma warning disable format
+	/// <summary>
+	/// Try to fetch the string representation of the techniques chosen in UI.
+	/// </summary>
+	/// <param name="this">The techniques chosen.</param>
+	/// <returns>The string representation.</returns>
+	public static string GetTechniqueString(this TechniqueSet @this)
+		=> @this switch
+		{
+			[] => ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NoTechniquesSelected", App.CurrentCulture),
+			[var technique] => technique.GetName(App.CurrentCulture),
+			_ => string.Join(
+				ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
+				[.. from technique in @this select technique.GetName(App.CurrentCulture)]
+			)
+		};
+#pragma warning restore format
 }

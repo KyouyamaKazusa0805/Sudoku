@@ -7196,6 +7196,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to and.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckTechnique">
+            <summary>
+              Looks up a localized string similar to Bottleneck technique used.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint">
+            <summary>
+              Looks up a localized string similar to Bottleneck technique constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseBetweenRule">
             <summary>
               Looks up a localized string similar to Between rule.
@@ -14250,6 +14260,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Extensions.GetTechniqueString(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Try to fetch the string representation of the techniques chosen in UI.
+            </summary>
+            <param name="this">The techniques chosen.</param>
+            <returns>The string representation.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.LibraryPage">
             <summary>

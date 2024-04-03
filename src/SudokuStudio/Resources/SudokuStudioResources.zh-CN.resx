@@ -2447,4 +2447,10 @@
   <data name="GeneratedPuzzleConstraintPage_BottleneckRatingConstraint" xml:space="preserve">
     <value>卡点难度约束</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckTechnique" xml:space="preserve">
+    <value>卡点技巧</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>卡点技巧约束</value>
+  </data>
 </root>

@@ -2284,6 +2284,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottleneck technique used.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckTechnique {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckTechnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck technique constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Between rule.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_ChooseBetweenRule {
