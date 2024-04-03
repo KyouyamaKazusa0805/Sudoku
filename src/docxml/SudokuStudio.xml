@@ -3337,6 +3337,33 @@ if (student is (name: var name, age: >= 18))
             </list>
             </returns>
         </member>
+        <member name="M:SudokuStudio.Interaction.Conversions.AnalyzeConversion.GetScaleUnit(System.Decimal)">
+            <summary>
+            Try to get the scale unit via the decimal value.
+            </summary>
+            <param name="scaling">The scaling value.</param>
+            <returns>
+            The format string. The value will be:
+            <list type="table">
+            <listheader>
+            <term>The number of digits after period token '<c>.</c>'</term>
+            <description>Result format string</description>
+            </listheader>
+            <item>
+            <term>2</term>
+            <description>"<c>0.00</c>"</description>
+            </item>
+            <item>
+            <term>1</term>
+            <description>"<c>0.0</c>"</description>
+            </item>
+            <item>
+            <term>0 or others</term>
+            <description>"<c>0</c>"</description>
+            </item>
+            </list>
+            </returns>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about backdrop.
@@ -4990,6 +5017,12 @@ if (student is (name: var name, age: >= 18))
         <member name="M:SudokuStudio.Markup.ConclusionExtension.ProvideValue">
             <inheritdoc/>
         </member>
+        <member name="T:SudokuStudio.Markup.DecimalExtension">
+            <summary>
+            Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:System.Decimal"/>
+            or throwing exceptions when the code is invalid.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Markup.DifficultyLevelExtension">
             <summary>
             Represents difficulty level markup extension.
@@ -5060,12 +5093,24 @@ if (student is (name: var name, age: >= 18))
             or throwing exceptions when the code is invalid.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Markup.Int32Extension.Value">
+        <member name="T:SudokuStudio.Markup.NumberExtension`1">
+            <summary>
+            Defines a markup extension that can parse a <see cref="T:System.String"/> value, converting it into a valid <see cref="T:System.Int32"/>
+            or throwing exceptions when the code is invalid.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+        </member>
+        <member name="P:SudokuStudio.Markup.NumberExtension`1.ParseString">
+            <summary>
+            Indicates the parsed string.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Markup.NumberExtension`1.Value">
             <summary>
             Indicates the target value input.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Markup.Int32Extension.ProvideValue">
+        <member name="M:SudokuStudio.Markup.NumberExtension`1.ProvideValue">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Markup.RangeExtension">
@@ -7129,6 +7174,26 @@ if (student is (name: var name, age: >= 18))
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BothOpen">
             <summary>
               Looks up a localized string similar to , both side excluded.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckRating">
+            <summary>
+              Looks up a localized string similar to Bottleneck rating.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckRatingConstraint">
+            <summary>
+              Looks up a localized string similar to Bottleneck rating constraint.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1">
+            <summary>
+              Looks up a localized string similar to Bottleneck step rating should be between.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2">
+            <summary>
+              Looks up a localized string similar to and.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_ChooseBetweenRule">
@@ -14151,6 +14216,14 @@ if (student is (name: var name, age: >= 18))
             <param name="limitCount">The limit count.</param>
             <param name="constraint">The constraint.</param>
             <returns>An <see cref="T:SudokuStudio.Views.Controls.IntegerBox"/> instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.BetweenRuleControl``1(``0,Sudoku.Strategying.BetweenRule)">
+            <summary>
+            Creates a between rule control.
+            </summary>
+            <param name="constraint">Indicates the constraint.</param>
+            <param name="rule">Indicates the rule.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.EnumBinder``3(``0,``2,System.Action{``2})">
             <summary>

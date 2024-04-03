@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class BottleneckStepRatingConstraint : Constraint
+public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetweenRuleConstraint
 {
 	/// <summary>
 	/// Indicates the minimal value.
@@ -21,9 +21,7 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint
 	[StringMember]
 	public decimal Maximum { get; set; }
 
-	/// <summary>
-	/// Indicates the between rule.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public BetweenRule BetweenRule { get; set; }

@@ -152,32 +152,66 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? Create_BottleneckStepRating(BottleneckStepRatingConstraint constraint)
 	{
-#if false
-		if (constraint is not { Minimum: var min, Maximum: var max, BetweenRule: var betweenRule })
+		if (constraint is not { Minimum: var min, Maximum: var max, BetweenRule: var rule })
 		{
 			return null;
 		}
 
 		var scale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
-		var scaleInteger = AnalyzeConversion.GetFormatOfDifficulty(scale);
+		var scaleInteger = AnalyzeConversion.GetScaleUnit(scale);
 		var r = Application.Current.Resources;
+		var maximum = (double)((int)r["MaximumRatingValue"]! * (double)r["MaximumRatingScaleValue"]!);
 
 		//
-		// Ratting minimum control
+		// Rating control
 		//
-		var ratingMinControl = new NumberBox
+		var ratingMinControl = new NumberBox { Width = 200, Minimum = 0, Maximum = maximum, Value = (double)min };
+		var ratingMaxControl = new NumberBox { Width = 200, Minimum = 0, Maximum = maximum, Value = (double)max };
+		ratingMinControl.ValueChanged += (_, _) =>
 		{
-			Width = 200,
-			Minimum = 0,
-			Maximum = (double)((int)r["MaximumRatingValue"] * (double)r["MaximumRatingScaleValue"]!),
-			SmallChange = 1,
-			LargeChange = 100,
-			Value = (double)min
+			constraint.Minimum = f(ratingMinControl.Value, scaleInteger);
+			ratingMaxControl.Minimum = ratingMinControl.Value;
 		};
-		ratingMinControl.ValueChanged += (_, _) => constraint.Minimum = (decimal)Math.Round(ratingMinControl.Value, scal_);
-#else
-		return null;
-#endif
+		ratingMaxControl.ValueChanged += (_, _) =>
+		{
+			constraint.Maximum = f(ratingMaxControl.Value, scaleInteger);
+			ratingMinControl.Maximum = ratingMaxControl.Value;
+		};
+
+		//
+		// Text blocks
+		//
+		var textBlock1 = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+		var textBlock2 = new TextBlock
+		{
+			Text = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2", App.CurrentCulture),
+			VerticalAlignment = VerticalAlignment.Center
+		};
+
+		//
+		// Between rule
+		//
+		var betweenRuleControl = BetweenRuleControl(constraint, rule);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BottleneckRating", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { textBlock1, ratingMinControl, textBlock2, ratingMaxControl, betweenRuleControl }
+			},
+			Tag = constraint
+		};
+
+
+		static decimal f(double value, int scaleInteger) => (decimal)(scaleInteger == -1 ? value : Round(value, scaleInteger));
 	}
 
 	private SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)
@@ -511,34 +545,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		//
 		// between rule selector
 		//
-		var betweenRuleControl = new ComboBox
-		{
-			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseBetweenRule", App.CurrentCulture),
-			Items =
-			{
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothOpen", App.CurrentCulture),
-					Tag = BetweenRule.BothOpen
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyLeftOpen", App.CurrentCulture),
-					Tag = BetweenRule.LeftOpen
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyRightOpen", App.CurrentCulture),
-					Tag = BetweenRule.RightOpen
-				},
-				new ComboBoxItem
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothClosed", App.CurrentCulture),
-					Tag = BetweenRule.BothClosed
-				}
-			}
-		};
-		EnumBinder<ComboBox, ComboBoxItem, BetweenRule>(betweenRuleControl, rule, value => constraint.BetweenRule = value);
+		var betweenRuleControl = BetweenRuleControl(constraint, rule);
 
 		return new()
 		{
@@ -995,6 +1002,47 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		};
 		limitCountControl.ValueChanged += (_, _) => constraint.LimitCount = limitCountControl.Value;
 		return limitCountControl;
+	}
+
+	/// <summary>
+	/// Creates a between rule control.
+	/// </summary>
+	/// <param name="constraint">Indicates the constraint.</param>
+	/// <param name="rule">Indicates the rule.</param>
+	/// <returns>A <see cref="ComboBox"/> result.</returns>
+	private static ComboBox BetweenRuleControl<TConstraint>(TConstraint constraint, BetweenRule rule)
+		where TConstraint : Constraint, IBetweenRuleConstraint
+	{
+		var betweenRuleControl = new ComboBox
+		{
+			PlaceholderText = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_ChooseBetweenRule", App.CurrentCulture),
+			Items =
+			{
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothOpen", App.CurrentCulture),
+					Tag = BetweenRule.BothOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyLeftOpen", App.CurrentCulture),
+					Tag = BetweenRule.LeftOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_OnlyRightOpen", App.CurrentCulture),
+					Tag = BetweenRule.RightOpen
+				},
+				new ComboBoxItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_BothClosed", App.CurrentCulture),
+					Tag = BetweenRule.BothClosed
+				}
+			}
+		};
+
+		EnumBinder<ComboBox, ComboBoxItem, BetweenRule>(betweenRuleControl, rule, value => constraint.BetweenRule = value);
+		return betweenRuleControl;
 	}
 
 	/// <summary>

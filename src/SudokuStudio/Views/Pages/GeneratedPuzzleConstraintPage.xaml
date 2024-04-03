@@ -62,6 +62,13 @@
 								<con:ConclusionConstraint Conclusion="{m:Conclusion Text='r5c5 = 5'}" ShouldAppear="True" />
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_BottleneckRatingConstraint}" Click="MenuFlyoutItem_Click">
+							<MenuFlyoutItem.Tag>
+								<con:BottleneckStepRatingConstraint
+									Minimum="{m:Decimal ParseString='2.0'}" Maximum="{m:Decimal ParseString='4.0'}"
+									BetweenRule="BothClosed" />
+							</MenuFlyoutItem.Tag>
+						</MenuFlyoutItem>
 						<MenuFlyoutSeparator />
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_PearlConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>

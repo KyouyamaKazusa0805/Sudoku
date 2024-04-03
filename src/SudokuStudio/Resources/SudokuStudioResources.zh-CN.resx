@@ -2429,10 +2429,22 @@
   <data name="GeneratedPuzzleConstraintPage_PrimaryFullHouse" xml:space="preserve">
     <value>同区九缺一</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_NegatingLogic" xml:space="preserve">
+    <value>取反</value>
+  </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
-  <data name="GeneratedPuzzleConstraintPage_NegatingLogic" xml:space="preserve">
-    <value>取反</value>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckRating" xml:space="preserve">
+    <value>卡点难度分</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1" xml:space="preserve">
+    <value>卡点难度分需介于</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2" xml:space="preserve">
+    <value>和</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckRatingConstraint" xml:space="preserve">
+    <value>卡点难度约束</value>
   </data>
 </root>

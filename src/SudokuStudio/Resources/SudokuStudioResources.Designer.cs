@@ -2248,6 +2248,42 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Bottleneck rating.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckRating {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckRating", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck rating constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckRatingConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckRatingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Bottleneck step rating should be between.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1 {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to and.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2 {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Between rule.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_ChooseBetweenRule {

@@ -2435,4 +2435,16 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_NegatingLogic" xml:space="preserve">
     <value>Negate</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckRating" xml:space="preserve">
+    <value>Bottleneck rating</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart1" xml:space="preserve">
+    <value>Bottleneck step rating should be between</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckStepConstraintPart2" xml:space="preserve">
+    <value>and</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_BottleneckRatingConstraint" xml:space="preserve">
+    <value>Bottleneck rating constraint</value>
+  </data>
 </root>

@@ -5,7 +5,7 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 [GetHashCode]
 [ToString]
-public sealed partial class CountBetweenConstraint : Constraint
+public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
 {
 	/// <summary>
 	/// Indicates the range of the numbers set.
@@ -25,9 +25,7 @@ public sealed partial class CountBetweenConstraint : Constraint
 	[StringMember]
 	public CellState CellState { get; set; }
 
-	/// <summary>
-	/// Indicates the between rule.
-	/// </summary>
+	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
 	public BetweenRule BetweenRule { get; set; }

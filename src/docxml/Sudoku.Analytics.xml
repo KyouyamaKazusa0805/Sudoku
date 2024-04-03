@@ -26837,9 +26837,7 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.BetweenRule">
-            <summary>
-            Indicates the between rule.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
@@ -26939,9 +26937,7 @@ result ^= expression;
             <seealso cref="F:Sudoku.Concepts.CellState.Empty"/>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.BetweenRule">
-            <summary>
-            Indicates the between rule.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
@@ -27260,6 +27256,16 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.IBetweenRuleConstraint">
+            <summary>
+            Represents a constraint that contains between rule property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IBetweenRuleConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.IComparisonOperatorConstraint">
             <summary>
