@@ -106,31 +106,31 @@
 						<CheckBox
 							Content="{m:R Key=SettingsPage_IttoryuTechnique_FullHouse}" IsEnabled="False"
 							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
-				Converter={StaticResource IttoryuConverter},ConverterParameter='FullHouse'}" />
+								Converter={StaticResource IttoryuConverter},ConverterParameter='FullHouse'}" />
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleBlock}"
 							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
-				Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleBlock'}" />
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleBlock'}" />
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleRow}"
 							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
-				Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleRow'}" />
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleRow'}" />
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=SettingsPage_IttoryuTechnique_HiddenSingleColumn}"
 							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
-				Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleColumn'}" />
+								Converter={StaticResource IttoryuConverter},ConverterParameter='HiddenSingleColumn'}" />
 					</w:SettingsCard>
 					<w:SettingsCard ContentAlignment="Left">
 						<CheckBox
 							Content="{m:R Key=SettingsPage_IttoryuTechnique_NakedSingle}"
 							IsChecked="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques,Mode=TwoWay,
-				Converter={StaticResource IttoryuConverter},ConverterParameter='NakedSingle'}" />
+								Converter={StaticResource IttoryuConverter},ConverterParameter='NakedSingle'}" />
 					</w:SettingsCard>
 				</w:SettingsExpander.Items>
 			</w:SettingsExpander>
