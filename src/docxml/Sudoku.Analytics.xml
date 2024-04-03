@@ -4888,50 +4888,6 @@
             Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.GridFeature">
-            <summary>
-            Represents extension methods on checking <see cref="T:Sudoku.Concepts.Grid"/> instances, determining features based on analytics.
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents extension methods on checking <see cref="T:Sudoku.Concepts.Grid"/> instances, determining features based on analytics.
-            </summary>
-            <param name="grid">Indicates the grid used.</param>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseFullHouse">
-            <summary>
-            Indicates whether the puzzle can be filled via only full house.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseHiddenSingle(System.Boolean)">
-            <summary>
-            Indicates whether the puzzle can be filled, via only hidden singles and last digits.
-            </summary>
-            <param name="allowsLine">Indicates whether the method allows using crosshatching in rows or columns.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.CanOnlyUseNakedSingle">
-            <summary>
-            Indicates whether the puzzle can be filled, via only naked singles and full houses.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.GridFeature.Grid">
-            <summary>
-            The generated field declaration for parameter <c>grid</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.GridFeature.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
@@ -21063,6 +21019,36 @@ result ^= expression;
             <param name="cancellationToken">The cancellation token to cancel the operation.</param>
             <returns>All true candidates.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.GridExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
+            <summary>
+            Checks whether the puzzle can be solved using only full house and hidden single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="allowHiddenSingleInLine">
+            A <see cref="T:System.Boolean"/> value indicating whether hidden single includes line types.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the puzzle can be solved using only naked single.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

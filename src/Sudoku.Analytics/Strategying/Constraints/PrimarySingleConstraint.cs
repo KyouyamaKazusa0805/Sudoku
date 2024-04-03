@@ -42,13 +42,10 @@ public sealed partial class PrimarySingleConstraint : Constraint
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-	{
-		scoped var feature = new GridFeature(context.Grid);
-		return Primary switch
+		=> Primary switch
 		{
-			SingleTechnique.FullHouse => feature.CanOnlyUseFullHouse(),
-			SingleTechnique.HiddenSingle => feature.CanOnlyUseHiddenSingle(AllowsHiddenSingleInLines),
-			SingleTechnique.NakedSingle => feature.CanOnlyUseNakedSingle()
+			SingleTechnique.FullHouse => context.Grid.CanPrimaryFullHouse(),
+			SingleTechnique.HiddenSingle => context.Grid.CanPrimaryHiddenSingle(AllowsHiddenSingleInLines),
+			SingleTechnique.NakedSingle => context.Grid.CanPrimaryNakedSingle()
 		};
-	}
 }
