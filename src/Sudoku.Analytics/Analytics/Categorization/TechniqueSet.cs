@@ -6,11 +6,14 @@ namespace Sudoku.Analytics.Categorization;
 /// <remarks>
 /// This type uses a <see cref="BitArray"/> to construct the data structure. Because <see cref="BitArray"/> is a reference type,
 /// we cannot directly copy a <see cref="TechniqueSet"/> value. If you want to clone a <see cref="TechniqueSet"/>,
-/// please use copy constructor <see cref="TechniqueSet(TechniqueSet)"/>.
+/// please use <c>[..]</c> syntax:
+/// <code><![CDATA[
+/// var techniques = TechniqueSets.All;
+/// var another = techniques[..]; // Copy all elements.
+/// ]]></code>
 /// </remarks>
 /// <seealso cref="Technique"/>
 /// <seealso cref="BitArray"/>
-/// <seealso cref="TechniqueSet(TechniqueSet)"/>
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
 [Equals]
