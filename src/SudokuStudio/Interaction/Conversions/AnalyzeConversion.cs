@@ -260,7 +260,7 @@ internal static class AnalyzeConversion
 	/// </item>
 	/// </list>
 	/// </returns>
-	private static string GetFormatOfDifficulty(decimal scaling)
+	public static string GetFormatOfDifficulty(decimal scaling)
 	{
 		// A little trick is to get the length of the string, and remove the digits before period.
 		// E.g.

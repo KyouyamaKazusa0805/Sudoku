@@ -3,6 +3,7 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a constraint that determines whether bottleneck step represents the specified technique.
 /// </summary>
+[ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
 [GetHashCode]
 [ToString]
 public sealed partial class BottleneckTechniqueConstraint : Constraint

@@ -64,23 +64,21 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		(
 			constraint switch
 			{
-#if false
-				BottleneckStepRatingConstraint instance => () => callback(),
-				BottleneckTechniqueConstraint instance => () => callback(),
-#endif
-				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
-				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
+				BottleneckStepRatingConstraint instance => () => callback(Create_BottleneckStepRating, instance),
+				BottleneckTechniqueConstraint instance => () => callback(Create_BottleneckTechnique, instance),
 				ConclusionConstraint instance => () => callback(Create_Conclusion, instance),
 				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
-				TechniqueConstraint instance => () => callback(Create_Technique, instance),
-				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
-				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
-				PrimarySingleConstraint instance => () => callback(Create_PrimarySingle, instance),
-				MinimalConstraint instance => () => callback(Create_Minimal, instance),
-				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
+				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
 				IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
 				IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
+				MinimalConstraint instance => () => callback(Create_Minimal, instance),
+				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
+				PrimarySingleConstraint instance => () => callback(Create_PrimarySingle, instance),
+				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
+				TechniqueConstraint instance => () => callback(Create_Technique, instance),
+				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
 				_ => default(Action)
 			}
 		)?.Invoke();
@@ -150,6 +148,48 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				}
 			}
 		}
+	}
+
+	private SettingsCard? Create_BottleneckStepRating(BottleneckStepRatingConstraint constraint)
+	{
+#if false
+		if (constraint is not { Minimum: var min, Maximum: var max, BetweenRule: var betweenRule })
+		{
+			return null;
+		}
+
+		var scale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
+		var scaleInteger = AnalyzeConversion.GetFormatOfDifficulty(scale);
+		var r = Application.Current.Resources;
+
+		//
+		// Ratting minimum control
+		//
+		var ratingMinControl = new NumberBox
+		{
+			Width = 200,
+			Minimum = 0,
+			Maximum = (double)((int)r["MaximumRatingValue"] * (double)r["MaximumRatingScaleValue"]!),
+			SmallChange = 1,
+			LargeChange = 100,
+			Value = (double)min
+		};
+		ratingMinControl.ValueChanged += (_, _) => constraint.Minimum = (decimal)Math.Round(ratingMinControl.Value, scal_);
+#else
+		return null;
+#endif
+	}
+
+	private SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)
+	{
+#if false
+		if (constraint is not { IsNegated: var isNegated, Techniques: var techniques })
+		{
+			return null;
+		}
+#else
+		return null;
+#endif
 	}
 
 	private SettingsCard? Create_DifficultyLevel(DifficultyLevelConstraint constraint)

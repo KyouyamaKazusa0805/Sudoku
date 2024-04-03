@@ -4,9 +4,10 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:categorization="using:Sudoku.Analytics.Categorization"
 	xmlns:con="using:Sudoku.Strategying.Constraints"
 	xmlns:m="using:SudokuStudio.Markup"
-	xmlns:p="using:SudokuStudio.Views.Pages" xmlns:categorization="using:Sudoku.Analytics.Categorization"
+	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:GeneratedPuzzleConstraintPage}">
 	<Grid RowDefinitions="*,Auto">
 		<ScrollViewer Grid.Row="0">
