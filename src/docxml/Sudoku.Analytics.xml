@@ -6216,6 +6216,15 @@
             Represents single module.
             </summary>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
+            <summary>
+            Gets the lasting value of the naked single in the target direction.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
@@ -18076,8 +18085,9 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
+            <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
             <summary>
             Provides with a step that is a <b>Naked Single</b> technique.
             </summary>
@@ -18087,12 +18097,18 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
+            <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting">
+            <summary>
+            The generated property declaration for parameter <c>lasting</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>

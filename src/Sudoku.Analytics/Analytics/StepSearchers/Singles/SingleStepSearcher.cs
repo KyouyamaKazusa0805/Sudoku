@@ -176,7 +176,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					context.PredefinedOptions,
 					cell,
 					digit,
-					subtype
+					subtype,
+					SingleModule.GetNakedSingleLasting(in grid, cell, out _)
 				);
 				if (context.OnlyFindOne)
 				{
@@ -393,7 +394,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				cell,
 				digit,
-				GetNakedSingleSubtype(in grid, cell)
+				GetNakedSingleSubtype(in grid, cell),
+				SingleModule.GetNakedSingleLasting(in grid, cell, out _)
 			);
 			if (context.OnlyFindOne)
 			{

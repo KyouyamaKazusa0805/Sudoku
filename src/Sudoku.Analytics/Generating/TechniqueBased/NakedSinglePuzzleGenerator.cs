@@ -67,7 +67,8 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 					6 => SingleSubtype.NakedSingle6,
 					7 => SingleSubtype.NakedSingle7,
 					8 => SingleSubtype.NakedSingle8
-				}
+				},
+				SingleModule.GetNakedSingleLasting(in puzzle, targetCell, out _)
 			),
 			in interferingCells,
 			InterferingPercentage

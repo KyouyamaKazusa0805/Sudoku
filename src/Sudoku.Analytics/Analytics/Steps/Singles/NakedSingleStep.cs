@@ -9,13 +9,15 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="subtype"><inheritdoc/></param>
+/// <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
 public sealed partial class NakedSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
 	Cell cell,
 	Digit digit,
-	SingleSubtype subtype
+	SingleSubtype subtype,
+	[PrimaryConstructorParameter] int lasting
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <inheritdoc/>
