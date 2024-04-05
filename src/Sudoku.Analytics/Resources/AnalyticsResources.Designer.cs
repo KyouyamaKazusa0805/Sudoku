@@ -2905,6 +2905,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lasting: a {0} must hold a lasting of {1} {2} empty cells.
+        /// </summary>
+        public static string LastingConstraint {
+            get {
+                return ResourceManager.GetString("LastingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Last Resort.
         /// </summary>
         public static string LastResort {

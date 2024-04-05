@@ -3048,6 +3048,12 @@
   <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
     <value />
   </data>
+  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
+    <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
+  </data>
+  <data name="BottleneckTechniqueConstraint" xml:space="preserve">
+    <value>卡点技巧：卡点必须是“{0}”里的其中一个</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3129,10 +3135,7 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="BottleneckStepRatingConstraint" xml:space="preserve">
-    <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
-  </data>
-  <data name="BottleneckTechniqueConstraint" xml:space="preserve">
-    <value>卡点技巧：卡点必须是“{0}”里的其中一个</value>
+  <data name="LastingConstraint" xml:space="preserve">
+    <value>余数：一个{0}必须有{1} {2}个空格</value>
   </data>
 </root>

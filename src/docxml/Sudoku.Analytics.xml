@@ -21547,6 +21547,22 @@ result ^= expression;
             </summary>
             <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
         </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.All(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <summary>
+            Determines whether all <see cref="T:Sudoku.Analytics.Step"/> instances satisfy the specified condition.
+            </summary>
+            <param name="this">The instance to be checked.</param>
+            <param name="predicate">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Any(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <summary>
+            Determines whether at least one <see cref="T:Sudoku.Analytics.Step"/> instance satisfies the specified condition.
+            </summary>
+            <param name="this">The instance to be checked.</param>
+            <param name="predicate">The match method.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Cast``1(Sudoku.Analytics.AnalyzerResult)">
             <summary>
             Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> instances.
@@ -23447,6 +23463,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.LastDigit">
             <summary>
               Looks up a localized string similar to Last Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.LastingConstraint">
+            <summary>
+              Looks up a localized string similar to Lasting: a {0} must hold a lasting of {1} {2} empty cells.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.LastResort">
@@ -27160,6 +27181,41 @@ result ^= expression;
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.LastingConstraint">
+            <summary>
+            Represents a lasting constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#Constraints#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Strategying.Constraints.MinimalConstraint">
