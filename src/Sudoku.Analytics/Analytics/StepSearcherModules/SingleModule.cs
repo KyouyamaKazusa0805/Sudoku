@@ -6,13 +6,33 @@ namespace Sudoku.Analytics.StepSearcherModules;
 internal static class SingleModule
 {
 	/// <summary>
+	/// Gets the lasting value of the full house in the target house.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <param name="house">The house.</param>
+	/// <returns>The lasting value.</returns>
+	public static int GetLasting(scoped ref readonly Grid grid, Cell cell, House house)
+	{
+		var result = 0;
+		foreach (var c in HousesMap[house])
+		{
+			if (grid.GetState(c) == CellState.Empty)
+			{
+				result++;
+			}
+		}
+		return result;
+	}
+
+	/// <summary>
 	/// Gets the lasting value of the naked single in the target direction.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="house">The house.</param>
 	/// <returns>The lasting value.</returns>
-	public static int GetNakedSingleLasting(scoped ref readonly Grid grid, Cell cell, out House house)
+	public static int GetLastingAllHouses(scoped ref readonly Grid grid, Cell cell, out House house)
 	{
 		var (resultCount, resultHouse) = (9, 0);
 		foreach (var houseType in HouseTypes)

@@ -9,5 +9,13 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="house"><inheritdoc/></param>
-public sealed class LastDigitStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options, Cell cell, Digit digit, House house) :
-	HiddenSingleStep(conclusions, views, options, cell, digit, house, true, SingleSubtype.LastDigit);
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
+public sealed class LastDigitStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	House house,
+	int lasting
+) : HiddenSingleStep(conclusions, views, options, cell, digit, house, true, lasting, SingleSubtype.LastDigit);

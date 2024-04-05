@@ -113,12 +113,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 			RoutedEventHandler setNegated = (_, _) => constraint.IsNegated = true;
 			RoutedEventHandler unsetNegated = (_, _) => constraint.IsNegated = false;
-			var disableControl = static void (ToggleButton negatingButton) => negatingButton.IsEnabled = false;
-			var setHandlers = (ToggleButton negatingButton) =>
-			{
-				negatingButton.Checked += setNegated;
-				negatingButton.Unchecked += unsetNegated;
-			};
+			Action<ToggleButton> disableControl = static negatingButton => negatingButton.IsEnabled = false;
+			Action<ToggleButton> setHandlers = button => { button.Checked += setNegated; button.Unchecked += unsetNegated; };
 			(constraint.GetMetadata()?.AllowsNegation ?? false ? setHandlers : disableControl)(negatingButton);
 
 			var deleteButton = new Button
@@ -441,18 +437,45 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 
 	private SettingsCard? Create_Lasting(LastingConstraint constraint)
 	{
-		if (constraint is not { LimitCount: var limitCount, Operator: var @operator })
+		if (constraint is not { LimitCount: var limitCount, Technique: var technique, Operator: var @operator })
 		{
 			return null;
 		}
 
 		//
-		// Operator
+		// operator
 		//
 		var operatorControl = ComparisonOperatorControl(@operator, constraint);
 
 		//
-		// Limit count
+		// technique selector
+		//
+		var techniqueSelectorControl = new Segmented
+		{
+			Style = (Style)Application.Current.Resources["ButtonSegmentedStyle"]!,
+			Items =
+			{
+				new SegmentedItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
+					Tag = SingleTechnique.FullHouse
+				},
+				new SegmentedItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
+					Tag = SingleTechnique.HiddenSingle
+				},
+				new SegmentedItem
+				{
+					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
+					Tag = SingleTechnique.NakedSingle
+				}
+			}
+		};
+		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(techniqueSelectorControl, constraint.Technique, value => constraint.Technique = value);
+
+		//
+		// limit count
 		//
 		var limitCountControl = LimitCountControl(limitCount, constraint);
 
@@ -464,7 +487,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				Orientation = Orientation.Horizontal,
 				Spacing = DefaultSpacing,
-				Children = { operatorControl, limitCountControl }
+				Children = { techniqueSelectorControl, operatorControl, limitCountControl }
 			},
 			Tag = constraint
 		};

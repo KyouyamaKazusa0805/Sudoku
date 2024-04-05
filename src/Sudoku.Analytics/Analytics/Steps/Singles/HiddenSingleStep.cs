@@ -13,6 +13,7 @@ namespace Sudoku.Analytics.Steps;
 /// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
 /// If the technique is not a Last Digit, the value must be <see langword="false"/>.
 /// </param>
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
 /// <param name="subtype"><inheritdoc/></param>
 public partial class HiddenSingleStep(
 	Conclusion[] conclusions,
@@ -22,8 +23,9 @@ public partial class HiddenSingleStep(
 	Digit digit,
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
+	[PrimaryConstructorParameter] int lasting,
 	SingleSubtype subtype
-) : SingleStep(conclusions, views, options, cell, digit, subtype)
+) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty

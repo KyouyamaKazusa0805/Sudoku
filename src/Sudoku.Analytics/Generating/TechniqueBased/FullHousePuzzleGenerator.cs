@@ -71,7 +71,15 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			puzzle.FixedGrid,
 			targetCell,
 			targetDigit,
-			new FullHouseStep(null!, null, null!, selectedHouse, targetCell, targetDigit),
+			new FullHouseStep(
+				null!,
+				null,
+				null!,
+				selectedHouse,
+				targetCell,
+				targetDigit,
+				SingleModule.GetLasting(in puzzle, targetCell, selectedHouse)
+			),
 			in interferingCells,
 			InterferingPercentage
 		);

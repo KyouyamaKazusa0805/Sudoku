@@ -4191,6 +4191,17 @@
             <param name="this">The subtype.</param>
             <returns>The related technique instance.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.SingleSubtype,System.Boolean)">
+            <summary>
+            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> field.
+            </summary>
+            <param name="this">The subtype.</param>
+            <param name="subtleValue">
+            A <see cref="T:System.Boolean"/> indicating whether the return value should subtle the handling on return field.
+            </param>
+            <returns>The single technique returned.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueSubtypeExtensions.GetAttribute(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Gets the attribute.
@@ -6216,7 +6227,16 @@
             Represents single module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLasting(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Gets the lasting value of the full house in the target house.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <param name="house">The house.</param>
+            <returns>The lasting value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetLastingAllHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32@)">
             <summary>
             Gets the lasting value of the naked single in the target direction.
             </summary>
@@ -17979,8 +17999,9 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Full House</b> technique.
             </summary>
@@ -17990,6 +18011,7 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -18000,6 +18022,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Lasting">
+            <summary>
+            The generated property declaration for parameter <c>lasting</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
@@ -18016,9 +18043,10 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Provides with a step that is a <b>Hidden Single</b> technique.
             </summary>
@@ -18032,6 +18060,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
@@ -18053,6 +18082,11 @@ if (student is (name: var name, age: >= 18))
             The generated property declaration for parameter <c>enableAndIsLastDigit</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting">
+            <summary>
+            The generated property declaration for parameter <c>lasting</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
             <summary>
             Provides with a step that is a <b>Last Digit</b> technique.
@@ -18063,8 +18097,9 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="house"><inheritdoc/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Last Digit</b> technique.
             </summary>
@@ -18074,6 +18109,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="house"><inheritdoc/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>
@@ -18085,7 +18121,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
             <summary>
@@ -18097,7 +18133,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -19172,6 +19208,12 @@ if (student is (name: var name, age: >= 18))
             The mask that holds a list of extra houses used.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Traits.IDirectTrait`1">
+            <summary>
+            Represents a direct trait.
+            </summary>
+            <typeparam name="TBase">The type of the base value.</typeparam>
+        </member>
         <member name="T:Sudoku.Analytics.Traits.IDoubleExocet">
             <summary>
             The base overrides for double exocet steps.
@@ -19196,6 +19238,23 @@ if (student is (name: var name, age: >= 18))
             <summary>
             A list of cells as the other pair of target cells.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ILastingTrait">
+            <summary>
+            Represents lasting trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting">
+            <summary>
+            Indicates the lasting of the single. The value describes the number of empty cells appeared in a house
+            containing the target conclusion from the single step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.IStepTrait">
+            <summary>
+            Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>
@@ -27190,6 +27249,11 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.LimitCount">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
         </member>
         <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Operator">
             <inheritdoc/>

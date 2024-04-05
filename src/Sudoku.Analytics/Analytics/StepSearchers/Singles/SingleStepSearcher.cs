@@ -119,7 +119,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					context.PredefinedOptions,
 					house,
 					resultCell,
-					digit
+					digit,
+					SingleModule.GetLasting(in grid, resultCell, house)
 				);
 
 				if (context.OnlyFindOne)
@@ -177,7 +178,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					cell,
 					digit,
 					subtype,
-					SingleModule.GetNakedSingleLasting(in grid, cell, out _)
+					SingleModule.GetLastingAllHouses(in grid, cell, out _)
 				);
 				if (context.OnlyFindOne)
 				{
@@ -284,7 +285,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				house,
 				resultCell,
-				digit
+				digit,
+				SingleModule.GetLasting(in grid, resultCell, house)
 			);
 			if (context.OnlyFindOne)
 			{
@@ -395,7 +397,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				cell,
 				digit,
 				GetNakedSingleSubtype(in grid, cell),
-				SingleModule.GetNakedSingleLasting(in grid, cell, out _)
+				SingleModule.GetLastingAllHouses(in grid, cell, out _)
 			);
 			if (context.OnlyFindOne)
 			{
@@ -475,9 +477,18 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		return (enableAndIsLastDigit, house) switch
 		{
 			(true, >= 9) => null,
-			(true, _) => new LastDigitStep([new(Assignment, resultCell, digit)], [[.. cellOffsets]], context.PredefinedOptions, resultCell, digit, house),
-			_ when SingleModule.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) is var cellOffsets2
-				=> SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
+			(true, _) => new LastDigitStep(
+				[new(Assignment, resultCell, digit)],
+				[[.. cellOffsets]],
+				context.PredefinedOptions,
+				resultCell,
+				digit,
+				house,
+				SingleModule.GetLastingAllHouses(in grid, resultCell, out _)
+			),
+			_ => SingleModule.GetHiddenSingleExcluders(in grid, digit, house, resultCell, out var chosenCells) switch
+			{
+				var cellOffsets2 => SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
 				{
 					var subtype when subtype.IsUnnecessary() => null,
 					var subtype => new HiddenSingleStep(
@@ -488,9 +499,11 @@ public sealed partial class SingleStepSearcher : StepSearcher
 						digit,
 						house,
 						enableAndIsLastDigit,
+						SingleModule.GetLasting(in grid, resultCell, house),
 						subtype
 					)
 				}
+			}
 		};
 	}
 }

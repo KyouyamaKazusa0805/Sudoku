@@ -124,7 +124,17 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					in puzzle,
 					targetCell,
 					targetDigit,
-					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype),
+					new HiddenSingleStep(
+						null!,
+						null,
+						null!,
+						targetCell,
+						targetDigit,
+						house,
+						false,
+						SingleModule.GetLasting(in puzzle, targetCell, house),
+						subtype
+					),
 					in interferingCells,
 					InterferingPercentage
 				);
@@ -311,7 +321,17 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					in puzzle,
 					targetCell,
 					targetDigit,
-					new HiddenSingleStep(null!, null, null!, targetCell, targetDigit, house, false, subtype),
+					new HiddenSingleStep(
+						null!,
+						null,
+						null!,
+						targetCell,
+						targetDigit,
+						house,
+						false,
+						SingleModule.GetLasting(in puzzle, targetCell, house),
+						subtype
+					),
 					in interferingCells,
 					InterferingPercentage
 				);

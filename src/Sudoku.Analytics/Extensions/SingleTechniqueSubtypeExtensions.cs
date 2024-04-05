@@ -62,6 +62,36 @@ public static class SingleTechniqueSubtypeExtensions
 	public static Technique GetRelatedTechnique(this SingleSubtype @this) => @this.GetAttribute().RelatedTechnique;
 
 	/// <summary>
+	/// Try to get related <see cref="SingleTechnique"/> field.
+	/// </summary>
+	/// <param name="this">The subtype.</param>
+	/// <param name="subtleValue">
+	/// A <see cref="bool"/> indicating whether the return value should subtle the handling on return field.
+	/// </param>
+	/// <returns>The single technique returned.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static SingleTechnique GetSingleTechnique(this SingleSubtype @this, bool subtleValue = false)
+	{
+		const string block = "Block", row = "Row", column = "Column";
+		return Enum.IsDefined(@this) && @this != SingleSubtype.None
+			? @this.ToString() is var s && s.StartsWith(nameof(Technique.FullHouse))
+				? SingleTechnique.FullHouse
+				: s == nameof(Technique.LastDigit)
+					? subtleValue ? SingleTechnique.LastDigit : SingleTechnique.HiddenSingle
+					: s.StartsWith(block) || s.StartsWith(row) || s.StartsWith(column)
+						? subtleValue
+							? s.StartsWith(block)
+								? SingleTechnique.HiddenSingleBlock
+								: s.StartsWith(row)
+									? SingleTechnique.HiddenSingleRow
+									: SingleTechnique.HiddenSingleColumn
+							: SingleTechnique.HiddenSingle
+						: SingleTechnique.NakedSingle
+			: throw new ArgumentOutOfRangeException(nameof(@this));
+	}
+
+	/// <summary>
 	/// Gets the attribute.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

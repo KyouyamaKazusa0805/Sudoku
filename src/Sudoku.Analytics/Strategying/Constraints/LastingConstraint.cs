@@ -12,6 +12,13 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	[StringMember]
 	public int LimitCount { get; set; }
 
+	/// <summary>
+	/// Indicates the technique used.
+	/// </summary>
+	[HashCodeMember]
+	[StringMember]
+	public SingleTechnique Technique { get; set; }
+
 	/// <inheritdoc/>
 	[HashCodeMember]
 	[StringMember]
@@ -26,21 +33,32 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] Constraint? other)
-		=> other is LastingConstraint comparer && (LimitCount, Operator) == (comparer.LimitCount, comparer.Operator);
+		=> other is LastingConstraint comparer
+		&& (LimitCount, Technique, Operator) == (comparer.LimitCount, comparer.Technique, comparer.Operator);
 
 	/// <inheritdoc/>
 	public override string ToString(CultureInfo? culture = null)
 		=> string.Format(
 			ResourceDictionary.Get("LastingConstraint", culture),
-			Technique.NakedSingle.GetName(culture),
+			Technique.GetName(culture),
 			Operator.GetOperatorString(),
 			LimitCount.ToString()
 		);
 
 	/// <inheritdoc/>
-	public override LastingConstraint Clone() => new() { LimitCount = LimitCount, Operator = Operator, IsNegated = IsNegated };
+	public override LastingConstraint Clone()
+		=> new() { LimitCount = LimitCount, Technique = Technique, Operator = Operator, IsNegated = IsNegated };
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)
-		=> context.AnalyzerResult.Any(s => s is NakedSingleStep { Lasting: var l } && Operator.GetOperator<int>()(LimitCount, l));
+	{
+		return context.AnalyzerResult.Any(predicate);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		bool predicate(Step s)
+			=> s is SingleStep { Subtype: var st } and ILastingTrait { Lasting: var l }
+			&& st.GetSingleTechnique() == Technique
+			&& Operator.GetOperator<int>()(LimitCount, l);
+	}
 }

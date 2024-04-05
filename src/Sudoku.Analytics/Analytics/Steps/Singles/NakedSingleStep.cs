@@ -9,7 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc/></param>
 /// <param name="digit"><inheritdoc/></param>
 /// <param name="subtype"><inheritdoc/></param>
-/// <param name="lasting">Indicates the target cell in a house that holds the minimal number of empty cells.</param>
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
 public sealed partial class NakedSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -18,7 +18,7 @@ public sealed partial class NakedSingleStep(
 	Digit digit,
 	SingleSubtype subtype,
 	[PrimaryConstructorParameter] int lasting
-) : SingleStep(conclusions, views, options, cell, digit, subtype)
+) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;
