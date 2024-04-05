@@ -31,7 +31,7 @@ public static class StepMarshal
 			[] => [],
 			[var firstElement] => [firstElement],
 			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TStep>(accumulator, ValueComparison.Create<TStep>(static (x, y) => x == y, static v => v.GetHashCode()))
+			_ => new HashSet<TStep>(accumulator, ValueComparison.CreateByEqualityOperator<Step>())
 		};
 #pragma warning restore format
 

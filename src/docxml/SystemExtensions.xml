@@ -5062,6 +5062,9 @@ fixed (short* ptr = instance)
             <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
             <seealso cref="T:System.Collections.Generic.IComparer`1"/>
         </member>
+        <member name="M:System.ValueComparison.CreateByEqualityOperator``1">
+            <inheritdoc cref="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+        </member>
         <member name="M:System.ValueComparison.Create``1(System.Func{``0,``0,System.Boolean},System.GetHashCodeFunc{``0})">
             <inheritdoc cref="M:System.ValueComparison.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
         </member>

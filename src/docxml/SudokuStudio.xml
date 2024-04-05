@@ -14168,6 +14168,11 @@ if (student is (name: var name, age: >= 18))
             Indicates the default margin.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ControlCreatorFactory">
+            <summary>
+            Indicates a dictionary type that can create controls, distincted by its real type.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage._controls">
             <summary>
             Indicates the internal controls.

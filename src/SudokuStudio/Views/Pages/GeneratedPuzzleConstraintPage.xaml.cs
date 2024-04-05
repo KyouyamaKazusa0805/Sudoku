@@ -1,5 +1,7 @@
 namespace SudokuStudio.Views.Pages;
 
+using ConstraintControlCreator = Func<GeneratedPuzzleConstraintPage, Constraint, Control?>;
+
 /// <summary>
 /// Represents generated puzzle constraint page.
 /// </summary>
@@ -14,6 +16,29 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// Indicates the default margin.
 	/// </summary>
 	private static readonly Thickness DefaultMargin = new(0, 6, 0, 6);
+
+	/// <summary>
+	/// Indicates a dictionary type that can create controls, distincted by its real type.
+	/// </summary>
+	private static readonly Dictionary<Type, ConstraintControlCreator> ControlCreatorFactory = new(ValueComparison.Create<Type>(static (a, b) => a == b, static v => v.GetHashCode()))
+	{
+		{ typeof(BottleneckStepRatingConstraint), static (@this, s) => @this.Create_BottleneckStepRating((BottleneckStepRatingConstraint) s) },
+		{ typeof(BottleneckTechniqueConstraint), static (@this, s) => @this.Create_BottleneckTechnique((BottleneckTechniqueConstraint) s) },
+		{ typeof(ConclusionConstraint), static (@this, s) => @this.Create_Conclusion((ConclusionConstraint)s) },
+		{ typeof(CountBetweenConstraint), static (@this, s) => @this.Create_CountBetween((CountBetweenConstraint)s) },
+		{ typeof(DiamondConstraint), static (@this, s) => @this.Create_PearlOrDiamond((DiamondConstraint)s) },
+		{ typeof(DifficultyLevelConstraint), static (@this, s) => @this.Create_DifficultyLevel((DifficultyLevelConstraint)s) },
+		{ typeof(EliminationCountConstraint), static (@this, s) => @this.Create_EliminationCount((EliminationCountConstraint)s) },
+		{ typeof(IttoryuConstraint), static (@this, s) => @this.Create_Ittoryu((IttoryuConstraint)s) },
+		{ typeof(IttoryuLengthConstraint), static (@this, s) => @this.Create_IttoryuLength((IttoryuLengthConstraint)s) },
+		{ typeof(LastingConstraint), static (@this, s) => @this.Create_Lasting((LastingConstraint)s) },
+		{ typeof(MinimalConstraint), static (@this, s) => @this.Create_Minimal((MinimalConstraint)s) },
+		{ typeof(PearlConstraint), static (@this, s) => @this.Create_PearlOrDiamond((PearlConstraint)s) },
+		{ typeof(PrimarySingleConstraint), static (@this, s) => @this.Create_PrimarySingle((PrimarySingleConstraint)s) },
+		{ typeof(SymmetryConstraint), static (@this, s) => @this.Create_Symmetry((SymmetryConstraint)s) },
+		{ typeof(TechniqueConstraint), static (@this, s) => @this.Create_Technique((TechniqueConstraint)s) },
+		{ typeof(TechniqueCountConstraint), static (@this, s) => @this.Create_TechniqueCount((TechniqueCountConstraint)s) }
+	};
 
 
 	/// <summary>
@@ -61,92 +86,63 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	[SuppressMessage("Style", "IDE0039:Use local function", Justification = "<Pending>")]
 	private void AddControl(Constraint constraint, bool createNew)
 	{
-		(
-			constraint switch
-			{
-				BottleneckStepRatingConstraint instance => () => callback(Create_BottleneckStepRating, instance),
-				BottleneckTechniqueConstraint instance => () => callback(Create_BottleneckTechnique, instance),
-				ConclusionConstraint instance => () => callback(Create_Conclusion, instance),
-				CountBetweenConstraint instance => () => callback(Create_CountBetween, instance),
-				DiamondConstraint instance => () => callback(Create_PearlOrDiamond, instance),
-				DifficultyLevelConstraint instance => () => callback(Create_DifficultyLevel, instance),
-				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
-				IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
-				IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
-				LastingConstraint instance => () => callback(Create_Lasting, instance),
-				MinimalConstraint instance => () => callback(Create_Minimal, instance),
-				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
-				PrimarySingleConstraint instance => () => callback(Create_PrimarySingle, instance),
-				SymmetryConstraint instance => () => callback(Create_Symmetry, instance),
-				TechniqueConstraint instance => () => callback(Create_Technique, instance),
-				TechniqueCountConstraint instance => () => callback(Create_TechniqueCount, instance),
-				_ => default(Action)
-			}
-		)?.Invoke();
-
-
-		void callback<TConstraint, TControl>(Func<TConstraint, TControl?> method, TConstraint instance)
-			where TConstraint : Constraint
-			where TControl : Control
+		if (ControlCreatorFactory[constraint.GetType()](this, constraint) is { } control)
 		{
-			if (method(instance) is { } control)
+			var grid = new GridLayout
 			{
-				var grid = new GridLayout
+				ColumnDefinitions =
 				{
-					ColumnDefinitions =
-					{
-						new() { Width = new(1, GridUnitType.Star) },
-						new() { Width = new(20) },
-						new() { Width = new(1, GridUnitType.Auto) },
-						new() { Width = new(1, GridUnitType.Auto) }
-					}
-				};
-				GridLayout.SetColumn(control, 0);
-				grid.Children.Add(control);
-
-				var negatingButton = new ToggleButton
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
-					Margin = new(6),
-					VerticalAlignment = VerticalAlignment.Center,
-					IsChecked = instance.IsNegated
-				};
-				GridLayout.SetColumn(negatingButton, 2);
-				grid.Children.Add(negatingButton);
-
-				RoutedEventHandler setNegated = (_, _) => instance.IsNegated = true;
-				RoutedEventHandler unsetNegated = (_, _) => instance.IsNegated = false;
-				var disableControl = static void (ToggleButton negatingButton) => negatingButton.IsEnabled = false;
-				var setHandlers = (ToggleButton negatingButton) =>
-				{
-					negatingButton.Checked += setNegated;
-					negatingButton.Unchecked += unsetNegated;
-				};
-				(instance.GetMetadata()?.AllowsNegation ?? false ? setHandlers : disableControl)(negatingButton);
-
-				var deleteButton = new Button
-				{
-					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Delete", App.CurrentCulture),
-					Foreground = new SolidColorBrush(Colors.White),
-					Background = new SolidColorBrush(Colors.Red),
-					Margin = new(6),
-					VerticalAlignment = VerticalAlignment.Center
-				};
-				deleteButton.Click += (_, _) =>
-				{
-					_controls.Remove(grid);
-					ConstraintsEntry.Remove((Constraint)control.Tag!);
-					negatingButton.Checked -= setNegated;
-					negatingButton.Unchecked -= unsetNegated;
-				};
-				GridLayout.SetColumn(deleteButton, 3);
-				grid.Children.Add(deleteButton);
-
-				_controls.Add(grid);
-				if (createNew)
-				{
-					ConstraintsEntry.Add(constraint);
+					new() { Width = new(1, GridUnitType.Star) },
+					new() { Width = new(20) },
+					new() { Width = new(1, GridUnitType.Auto) },
+					new() { Width = new(1, GridUnitType.Auto) }
 				}
+			};
+			GridLayout.SetColumn(control, 0);
+			grid.Children.Add(control);
+
+			var negatingButton = new ToggleButton
+			{
+				Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_NegatingLogic", App.CurrentCulture),
+				Margin = new(6),
+				VerticalAlignment = VerticalAlignment.Center,
+				IsChecked = constraint.IsNegated
+			};
+			GridLayout.SetColumn(negatingButton, 2);
+			grid.Children.Add(negatingButton);
+
+			RoutedEventHandler setNegated = (_, _) => constraint.IsNegated = true;
+			RoutedEventHandler unsetNegated = (_, _) => constraint.IsNegated = false;
+			var disableControl = static void (ToggleButton negatingButton) => negatingButton.IsEnabled = false;
+			var setHandlers = (ToggleButton negatingButton) =>
+			{
+				negatingButton.Checked += setNegated;
+				negatingButton.Unchecked += unsetNegated;
+			};
+			(constraint.GetMetadata()?.AllowsNegation ?? false ? setHandlers : disableControl)(negatingButton);
+
+			var deleteButton = new Button
+			{
+				Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Delete", App.CurrentCulture),
+				Foreground = new SolidColorBrush(Colors.White),
+				Background = new SolidColorBrush(Colors.Red),
+				Margin = new(6),
+				VerticalAlignment = VerticalAlignment.Center
+			};
+			deleteButton.Click += (_, _) =>
+			{
+				_controls.Remove(grid);
+				ConstraintsEntry.Remove((Constraint)control.Tag!);
+				negatingButton.Checked -= setNegated;
+				negatingButton.Unchecked -= unsetNegated;
+			};
+			GridLayout.SetColumn(deleteButton, 3);
+			grid.Children.Add(deleteButton);
+
+			_controls.Add(grid);
+			if (createNew)
+			{
+				ConstraintsEntry.Add(constraint);
 			}
 		}
 	}

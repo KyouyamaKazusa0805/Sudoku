@@ -9,6 +9,11 @@ public static class ValueComparison
 {
 	/// <inheritdoc cref="Create{T}(EqualsHandler{T}, GetHashCodeHandler{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static IEqualityComparer<T> CreateByEqualityOperator<T>() where T : IEqualityOperators<T, T, bool>
+		=> Create<T>(static (a, b) => a == b, static v => v.GetHashCode());
+
+	/// <inheritdoc cref="Create{T}(EqualsHandler{T}, GetHashCodeHandler{T})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equals, GetHashCodeFunc<T> getHashCode)
 		=> Create(
 			(scoped ref readonly T left, scoped ref readonly T right) => equals(left, right),
