@@ -171,7 +171,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			}
 
 			Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
-				=> new HodokuPuzzleGenerator().Generate(givens, symmetry, ct);
+				=> new Generator().Generate(givens, symmetry, ct);
 		}
 
 		Grid coreHandler(

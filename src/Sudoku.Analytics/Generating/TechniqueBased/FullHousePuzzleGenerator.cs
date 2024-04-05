@@ -104,7 +104,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		{
 			while (true)
 			{
-				var puzzle = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
+				var puzzle = new Generator().Generate(cancellationToken: cancellationToken);
 				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is
 					{
 						IsSolved: true,
@@ -166,7 +166,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 		for (var i = 1; ; i++)
 		{
 			// Try generating a solution.
-			var grid = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
+			var grid = new Generator().Generate(cancellationToken: cancellationToken);
 			if (grid.IsUndefined)
 			{
 				return new FullPuzzleFailed(GeneratingFailedReason.Canceled);

@@ -648,49 +648,49 @@ if (student is (name: var name, age: >= 18))
             Throws when the argument <paramref name="this"/> is not defined in enumeration type.
             </exception>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator">
+        <member name="T:Sudoku.Compatibility.Hodoku.Generator">
             <summary>
             Represents a puzzle generator, implemented by HoDoKu.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.AutoClues">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator.AutoClues">
             <summary>
             Indicates the auto clues count.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._generateIndices">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._generateIndices">
             <summary>
             The order in which cells are set when generating a full grid.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._rng">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._rng">
             <summary>
             A random generator for creating new puzzles.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._solver">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._solver">
             <summary>
             Indicates the internal fast solver.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._stack">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._stack">
             <summary>
             The recursion stack.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._newFullSudoku">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._newFullSudoku">
             <summary>
             The final grid to be used.
             </summary>
         </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._newValidSudoku">
+        <member name="F:Sudoku.Compatibility.Hodoku.Generator._newValidSudoku">
             <summary>
             The final grid to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.#ctor">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.#ctor">
             <summary>
-            Creates a new instance of <see cref="T:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator" />.
+            Creates a new instance of <see cref="T:Sudoku.Compatibility.Hodoku.Generator" />.
             </summary>
             <remarks>
             <target name="constructor">
@@ -702,7 +702,7 @@ if (student is (name: var name, age: >= 18))
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Try to generate a puzzle.
             </summary>
@@ -722,26 +722,26 @@ if (student is (name: var name, age: >= 18))
             or the argument <paramref name="cluesCount"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
-            Takes a full sudoku from <see cref="F:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            Takes a full sudoku from <see cref="F:Sudoku.Compatibility.Hodoku.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <inheritdoc cref="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Compatibility.Hodoku.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.GenerateForFullGrid">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GenerateForFullGrid">
             <summary>
             Generate a solution grid.
             </summary>
             <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.Equals(System.Object)">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.GetHashCode">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.HodokuPuzzleGenerator.ToString">
+        <member name="M:Sudoku.Compatibility.Hodoku.Generator.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.RecursionStackEntry">

@@ -19,7 +19,7 @@ namespace Sudoku.Compatibility.Hodoku;
 [Equals]
 [GetHashCode]
 [ToString]
-public ref partial struct HodokuPuzzleGenerator
+public ref partial struct Generator
 {
 	/// <summary>
 	/// Indicates the auto clues count.
@@ -54,7 +54,7 @@ public ref partial struct HodokuPuzzleGenerator
 
 
 	/// <summary>
-	/// Creates a new instance of <see cref="HodokuPuzzleGenerator"/>.
+	/// Creates a new instance of <see cref="Generator"/>.
 	/// </summary>
 	/// <remarks>
 	/// <include
@@ -62,7 +62,7 @@ public ref partial struct HodokuPuzzleGenerator
 	///     path='g/csharp9/feature[@name="parameterless-struct-constructor"]/target[@name="constructor"]' />
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public HodokuPuzzleGenerator()
+	public Generator()
 	{
 		_generateIndices = new int[81];
 		_stack = new RecursionStackEntry[82];

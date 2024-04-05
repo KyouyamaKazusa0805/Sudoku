@@ -94,7 +94,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		{
 			while (true)
 			{
-				var puzzle = new HodokuPuzzleGenerator().Generate(cancellationToken: cancellationToken);
+				var puzzle = new Generator().Generate(cancellationToken: cancellationToken);
 				if (SingleAnalyzer.Analyze(in puzzle, cancellationToken: cancellationToken) is
 					{
 						IsSolved: true,
