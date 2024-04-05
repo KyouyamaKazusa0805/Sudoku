@@ -73,6 +73,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				EliminationCountConstraint instance => () => callback(Create_EliminationCount, instance),
 				IttoryuConstraint instance => () => callback(Create_Ittoryu, instance),
 				IttoryuLengthConstraint instance => () => callback(Create_IttoryuLength, instance),
+				LastingConstraint instance => () => callback(Create_Lasting, instance),
 				MinimalConstraint instance => () => callback(Create_Minimal, instance),
 				PearlConstraint instance => () => callback(Create_PearlOrDiamond, instance),
 				PrimarySingleConstraint instance => () => callback(Create_PrimarySingle, instance),
@@ -440,6 +441,37 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			=> constraint.Conclusion = new(constraint.Conclusion.ConclusionType, candidatePicker.SelectedCandidate);
 
 		void appearControlCallback(DependencyObject d, DependencyProperty _) => constraint.ShouldAppear = ((ToggleSwitch)d).IsOn;
+	}
+
+	private SettingsCard? Create_Lasting(LastingConstraint constraint)
+	{
+		if (constraint is not { LimitCount: var limitCount, Operator: var @operator })
+		{
+			return null;
+		}
+
+		//
+		// Operator
+		//
+		var operatorControl = ComparisonOperatorControl(@operator, constraint);
+
+		//
+		// Limit count
+		//
+		var limitCountControl = LimitCountControl(limitCount, constraint);
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_Lasting", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { operatorControl, limitCountControl }
+			},
+			Tag = constraint
+		};
 	}
 
 	private SettingsCard? Create_Minimal(MinimalConstraint constraint)

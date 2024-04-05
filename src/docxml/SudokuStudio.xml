@@ -7321,6 +7321,16 @@ if (student is (name: var name, age: >= 18))
               Looks up a localized string similar to Ittoryu length constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Lasting">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_LastingConstraint">
+            <summary>
+              Looks up a localized string similar to Lasting constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_Minimal">
             <summary>
               Looks up a localized string similar to Should be minimal.

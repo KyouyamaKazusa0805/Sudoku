@@ -2453,4 +2453,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_BottleneckTechniqueConstraint" xml:space="preserve">
     <value>Bottleneck technique constraint</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_Lasting" xml:space="preserve">
+    <value>Lasting</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_LastingConstraint" xml:space="preserve">
+    <value>Lasting constraint</value>
+  </data>
 </root>

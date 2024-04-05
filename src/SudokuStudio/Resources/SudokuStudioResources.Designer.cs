@@ -2509,6 +2509,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Lasting.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_Lasting {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_Lasting", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Lasting constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_LastingConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_LastingConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Should be minimal.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_Minimal {
