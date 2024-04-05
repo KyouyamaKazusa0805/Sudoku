@@ -3342,27 +3342,7 @@ if (student is (name: var name, age: >= 18))
             Try to get the scale unit via the decimal value.
             </summary>
             <param name="scaling">The scaling value.</param>
-            <returns>
-            The format string. The value will be:
-            <list type="table">
-            <listheader>
-            <term>The number of digits after period token '<c>.</c>'</term>
-            <description>Result format string</description>
-            </listheader>
-            <item>
-            <term>2</term>
-            <description>"<c>0.00</c>"</description>
-            </item>
-            <item>
-            <term>1</term>
-            <description>"<c>0.0</c>"</description>
-            </item>
-            <item>
-            <term>0 or others</term>
-            <description>"<c>0</c>"</description>
-            </item>
-            </list>
-            </returns>
+            <returns>The scale unit value.</returns>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>

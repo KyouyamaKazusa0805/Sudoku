@@ -267,27 +267,7 @@ internal static class AnalyzeConversion
 	/// Try to get the scale unit via the decimal value.
 	/// </summary>
 	/// <param name="scaling">The scaling value.</param>
-	/// <returns>
-	/// The format string. The value will be:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>The number of digits after period token '<c>.</c>'</term>
-	/// <description>Result format string</description>
-	/// </listheader>
-	/// <item>
-	/// <term>2</term>
-	/// <description>"<c>0.00</c>"</description>
-	/// </item>
-	/// <item>
-	/// <term>1</term>
-	/// <description>"<c>0.0</c>"</description>
-	/// </item>
-	/// <item>
-	/// <term>0 or others</term>
-	/// <description>"<c>0</c>"</description>
-	/// </item>
-	/// </list>
-	/// </returns>
+	/// <returns>The scale unit value.</returns>
 	public static int GetScaleUnit(decimal scaling)
 	{
 		// A little trick is to get the length of the string, and remove the digits before period.
