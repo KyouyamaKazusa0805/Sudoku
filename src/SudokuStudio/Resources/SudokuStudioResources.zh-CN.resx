@@ -2451,7 +2451,7 @@
     <value>卡点技巧约束</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_Lasting" xml:space="preserve">
-    <value>余数</value>
+    <value>直观剩余数</value>
   </data>
   <data name="GeneratedPuzzleConstraintPage_LastingConstraint" xml:space="preserve">
     <value>直观剩余数约束</value>
