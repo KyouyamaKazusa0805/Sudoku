@@ -111,10 +111,13 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			GridLayout.SetColumn(negatingButton, 2);
 			grid.Children.Add(negatingButton);
 
-			RoutedEventHandler setNegated = (_, _) => constraint.IsNegated = true;
-			RoutedEventHandler unsetNegated = (_, _) => constraint.IsNegated = false;
-			Action<ToggleButton> disableControl = static negatingButton => negatingButton.IsEnabled = false;
-			Action<ToggleButton> setHandlers = button => { button.Checked += setNegated; button.Unchecked += unsetNegated; };
+			RoutedEventHandler
+				setNegated = (_, _) => constraint.IsNegated = true,
+				unsetNegated = (_, _) => constraint.IsNegated = false;
+			Action<ToggleButton>
+				disableControl = static negatingButton => negatingButton.IsEnabled = false,
+				setHandlers = button => { button.Checked += setNegated; button.Unchecked += unsetNegated; };
+
 			(constraint.GetMetadata()?.AllowsNegation ?? false ? setHandlers : disableControl)(negatingButton);
 
 			var deleteButton = new Button
