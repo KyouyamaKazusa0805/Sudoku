@@ -4902,6 +4902,42 @@
             Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="T">The type of the step searcher.</typeparam>
+            <param name="level">
+            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
+            The value can be 0, 1, 2, 3 and 4.
+            </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.#ctor(System.Int32)">
+            <summary>
+            Defines an attribute that can be applied to the solving assembly,
+            to tell the source generator that the searcher option instance will be generated in the specified type.
+            </summary>
+            <typeparam name="T">The type of the step searcher.</typeparam>
+            <param name="level">
+            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
+            The value can be 0, 1, 2, 3 and 4.
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.Areas">
+            <summary>
+            Indicates the area that the step searcher can be used and available.
+            </summary>
+            <remarks>
+            The default value of this property is both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/>
+            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1.Level">
+            <summary>
+            The generated property declaration for parameter <c>level</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
@@ -5173,42 +5209,6 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.NameKey">
             <summary>
             The generated property declaration for parameter <c>nameKey</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
-            <summary>
-            Defines an attribute that can be applied to the solving assembly,
-            to tell the source generator that the searcher option instance will be generated in the specified type.
-            </summary>
-            <typeparam name="T">The type of the step searcher.</typeparam>
-            <param name="level">
-            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
-            The value can be 0, 1, 2, 3 and 4.
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.#ctor(System.Int32)">
-            <summary>
-            Defines an attribute that can be applied to the solving assembly,
-            to tell the source generator that the searcher option instance will be generated in the specified type.
-            </summary>
-            <typeparam name="T">The type of the step searcher.</typeparam>
-            <param name="level">
-            Indicates the step searcher level. The higher the value be, the higher difficulty of the step the step searcher will search for.
-            The value can be 0, 1, 2, 3 and 4.
-            </param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Areas">
-            <summary>
-            Indicates the area that the step searcher can be used and available.
-            </summary>
-            <remarks>
-            The default value of this property is both <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Searching"/>
-            and <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting"/>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1.Level">
-            <summary>
-            The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo">

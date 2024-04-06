@@ -11,7 +11,7 @@ internal static class StepSearcherDefaultImportingHandler
 
 	private const string StepSearcherRunningAreaTypeName = "Sudoku.Analytics.Metadata.StepSearcherRunningArea";
 
-	private const string StepSearcherImportAttributeName = "global::Sudoku.Analytics.Metadata.StepSearcherImportAttribute<>";
+	private const string BuiltInStepSearcherAttributeName = "global::Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute<>";
 
 	private const string StepSearcherSourceGenerationAttributeName = "Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute";
 
@@ -73,7 +73,7 @@ internal static class StepSearcherDefaultImportingHandler
 
 			// Checks whether the type is valid.
 			var unboundAttributeTypeSymbol = attributeClassSymbol.ConstructUnboundGenericType();
-			if (unboundAttributeTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) != StepSearcherImportAttributeName)
+			if (unboundAttributeTypeSymbol.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat) != BuiltInStepSearcherAttributeName)
 			{
 				continue;
 			}
