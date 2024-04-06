@@ -5153,6 +5153,11 @@
             Indicates what difficulty levels the current step searcher can produce.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedSudokuTypes">
+            <summary>
+            Indicates the supported sudoku types.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques">
             <summary>
             <inheritdoc cref="T:Sudoku.Analytics.Metadata.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
@@ -5175,14 +5180,6 @@
             <summary>
             Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.
             </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.Standard">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> is only enabled for standard sudoku puzzles, which means other variants are disallowed
-            using this <see cref="T:Sudoku.Analytics.StepSearcher"/> instance. For example, <see cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
-            can only be used for searching in a standard sudoku, sukakus are disabled.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher"/>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity">
             <summary>
@@ -5322,9 +5319,9 @@
             Determines whether we can toggle availability of the step searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsNotSupportedForSukaku">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportsSukaku">
             <summary>
-            Determines whether the current step searcher is not supported for sukaku solving mode.
+            Determines whether the current step searcher supports sukaku solving.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredSlow">

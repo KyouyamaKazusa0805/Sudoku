@@ -35,9 +35,9 @@ public sealed partial class StepSearcherMetadataInfo(
 	public bool IsReadOnly => _stepSearcherAttribute.IsReadOnly;
 
 	/// <summary>
-	/// Determines whether the current step searcher is not supported for sukaku solving mode.
+	/// Determines whether the current step searcher supports sukaku solving.
 	/// </summary>
-	public bool IsNotSupportedForSukaku => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.Standard);
+	public bool SupportsSukaku => _stepSearcherAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled

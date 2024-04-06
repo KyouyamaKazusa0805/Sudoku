@@ -10,8 +10,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Unique Loop Type 4</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.UniqueLoopType1, Technique.UniqueLoopType2, Technique.UniqueLoopType3, Technique.UniqueLoopType4)]
-[StepSearcherFlags(StepSearcherFlags.Standard | StepSearcherFlags.TimeComplexity)]
+[StepSearcher(
+	Technique.UniqueLoopType1, Technique.UniqueLoopType2, Technique.UniqueLoopType3, Technique.UniqueLoopType4,
+	SupportedSudokuTypes = SudokuType.Standard)]
+[StepSearcherFlags(StepSearcherFlags.TimeComplexity)]
 [StepSearcherRuntimeName("StepSearcherName_UniqueLoopStepSearcher")]
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {

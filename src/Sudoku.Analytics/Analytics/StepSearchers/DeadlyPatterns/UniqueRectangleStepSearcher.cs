@@ -82,8 +82,8 @@ namespace Sudoku.Analytics.StepSearchers;
 
 	// Miscellaneous
 	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
-	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X)]
-[StepSearcherFlags(StepSearcherFlags.Standard)]
+	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
+	SupportedSudokuTypes = SudokuType.Standard)]
 [StepSearcherRuntimeName("StepSearcherName_UniqueRectangleStepSearcher")]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {

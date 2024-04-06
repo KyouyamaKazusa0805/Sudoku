@@ -107,7 +107,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 				switch (searcher)
 				{
 					case { RunningArea: var runningArea } when !runningArea.HasFlag(StepSearcherRunningArea.Collecting):
-					case { Metadata.IsNotSupportedForSukaku: true } when sukaku:
+					case { Metadata.SupportsSukaku: false } when sukaku:
 					{
 						goto ReportProgress;
 					}

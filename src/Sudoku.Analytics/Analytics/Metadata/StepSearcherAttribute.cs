@@ -64,6 +64,11 @@ public sealed class StepSearcherAttribute(params Technique[] supportedTechniques
 		=> (from technique in SupportedTechniques select technique.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);
 
 	/// <summary>
+	/// Indicates the supported sudoku types.
+	/// </summary>
+	public SudokuType SupportedSudokuTypes { get; init; } = SudokuType.Standard | SudokuType.Sukaku | SudokuType.JustOneCell;
+
+	/// <summary>
 	/// <inheritdoc cref="StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
 	/// </summary>
 	public TechniqueSet SupportedTechniques { get; } = [.. supportedTechniques];

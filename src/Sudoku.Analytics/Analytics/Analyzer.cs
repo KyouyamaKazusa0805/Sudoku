@@ -204,7 +204,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			{
 				switch (isSukaku, searcher, this)
 				{
-					case (true, { Metadata.IsNotSupportedForSukaku: true }, _):
+					case (true, { Metadata.SupportsSukaku: false }, _):
 					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
 					case (_, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
 					case (_, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
