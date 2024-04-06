@@ -14300,7 +14300,7 @@ if (student is (name: var name, age: >= 18))
             The navigation page for main window.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage._navigatingData">
+        <member name="F:SudokuStudio.Views.Pages.MainNavigationPage.NavigatingArray">
             <summary>
             The navigating data. This dictionary stores the routing data that can be used and controlled
             by control <see cref="F:SudokuStudio.Views.Pages.MainNavigationPage.NavigationViewFrame"/>.
@@ -14323,10 +14323,17 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pageType">The page type.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeField">
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.SetMemoryWidth">
             <summary>
-            Initializes fields.
+            Sets memory width.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.HandleNavigation(System.Func{Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Type,System.Boolean},System.Action{Microsoft.UI.Xaml.Controls.NavigationViewItemBase,System.Type})">
+            <summary>
+            Handle navigation.
+            </summary>
+            <param name="pageTypeChecker">The method that checks whether the <see cref="T:System.Type"/> instance is matched.</param>
+            <param name="action">The action to handle navigation.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.MainNavigationPage.InitializeComponent">
             <summary>

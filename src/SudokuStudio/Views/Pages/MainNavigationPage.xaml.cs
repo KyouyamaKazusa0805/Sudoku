@@ -10,7 +10,16 @@ internal sealed partial class MainNavigationPage : Page
 	/// by control <see cref="NavigationViewFrame"/>.
 	/// </summary>
 	/// <seealso cref="NavigationViewFrame"/>
-	private List<(Func<NavigationViewItemBase, bool>, Type)> _navigatingData;
+	private static readonly (Func<MainNavigationPage, NavigationViewItemBase>, Type)[] NavigatingArray = [
+		(static @this => @this.AnalyzePageItem, typeof(AnalyzePage)),
+		(static @this => @this.ConstraintPageItem, typeof(GeneratedPuzzleConstraintPage)),
+		(static @this => @this.TechniqueDataPageItem, typeof(TechniqueInfoModifierPage)),
+		(static @this => @this.AboutPageItem, typeof(AboutPage)),
+		(static @this => @this.SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
+		(static @this => @this.LibraryPageItem, typeof(LibraryPage)),
+		(static @this => @this.HotkeyCheatTablePageItem, typeof(HotkeyCheatTablePage)),
+		(static @this => @this.TechniqueGalleryPageItem, typeof(TechniqueGalleryPage))
+	];
 
 
 	/// <summary>
@@ -19,7 +28,8 @@ internal sealed partial class MainNavigationPage : Page
 	public MainNavigationPage()
 	{
 		InitializeComponent();
-		InitializeField();
+
+		SetMemoryWidth();
 	}
 
 
@@ -40,44 +50,37 @@ internal sealed partial class MainNavigationPage : Page
 	}
 
 	/// <summary>
-	/// Initializes fields.
+	/// Sets memory width.
 	/// </summary>
-	[MemberNotNull(nameof(_navigatingData))]
-	private void InitializeField()
-	{
-		_navigatingData = [
-			(container => container == AnalyzePageItem, typeof(AnalyzePage)),
-			(container => container == ConstraintPageItem, typeof(GeneratedPuzzleConstraintPage)),
-			(container => container == TechniqueDataPageItem, typeof(TechniqueInfoModifierPage)),
-			(container => container == AboutPageItem, typeof(AboutPage)),
-			(container => container == SingleCountingPageItem, typeof(SingleCountingPracticingPage)),
-			(container => container == LibraryPageItem, typeof(LibraryPage)),
-			(container => container == HotkeyCheatTablePageItem, typeof(HotkeyCheatTablePage)),
-			(container => container == TechniqueGalleryPageItem, typeof(TechniqueGalleryPage))
-		];
+	private void SetMemoryWidth()
+		=> MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
 
-		MainNavigationView.OpenPaneLength = (double)((App)Application.Current).Preference.UIPreferences.MainNavigationPageOpenPaneLength;
+	/// <summary>
+	/// Handle navigation.
+	/// </summary>
+	/// <param name="pageTypeChecker">The method that checks whether the <see cref="Type"/> instance is matched.</param>
+	/// <param name="action">The action to handle navigation.</param>
+	private void HandleNavigation(Func<NavigationViewItemBase, Type, bool> pageTypeChecker, Action<NavigationViewItemBase, Type> action)
+	{
+		foreach (var (match, pageType) in NavigatingArray)
+		{
+			if (pageTypeChecker(match(this), pageType))
+			{
+				action(match(this), pageType);
+				return;
+			}
+		}
 	}
+
 
 	private void NavigationView_Loaded(object sender, RoutedEventArgs e) => AnalyzePageItem.IsSelected = true;
 
+	[SuppressMessage("Style", "IDE0039:Use local function", Justification = "<Pending>")]
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 	{
-		if (args.IsSettingsSelected)
-		{
-			ParentWindow.NavigateToPage<SettingsPage>();
-		}
-		else
-		{
-			foreach (var (match, pageType) in _navigatingData)
-			{
-				if (match(args.SelectedItemContainer))
-				{
-					ParentWindow.NavigateToPage(pageType);
-					return;
-				}
-			}
-		}
+		var a = ParentWindow.NavigateToPage<SettingsPage>;
+		var b = () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p));
+		(args.IsSettingsSelected ? a : b)();
 	}
 
 	private void MainNavigationView_BackRequested(NavigationView sender, NavigationViewBackRequestedEventArgs args)
@@ -86,6 +89,8 @@ internal sealed partial class MainNavigationPage : Page
 		{
 			NavigationViewFrame.GoBack();
 			SetFrameDisplayTitle(lastPageType);
+
+			HandleNavigation((_, p) => p == lastPageType, static (c, _) => c.IsSelected = true);
 		}
 	}
 }
