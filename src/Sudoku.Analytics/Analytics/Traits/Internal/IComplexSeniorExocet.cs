@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Analytics.Traits.Internal;
 
 /// <summary>
 /// The base overrides for complex senior exocet steps.
 /// </summary>
-public interface IComplexSeniorExocet
+internal interface IComplexSeniorExocet
 {
 	/// <summary>
 	/// The mask that holds a list of cross-line houses used.

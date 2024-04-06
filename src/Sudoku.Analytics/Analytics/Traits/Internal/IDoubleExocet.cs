@@ -1,9 +1,9 @@
-namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Analytics.Traits.Internal;
 
 /// <summary>
 /// The base overrides for double exocet steps.
 /// </summary>
-public interface IDoubleExocet
+internal interface IDoubleExocet
 {
 	/// <summary>
 	/// A list of cells as the base cells.

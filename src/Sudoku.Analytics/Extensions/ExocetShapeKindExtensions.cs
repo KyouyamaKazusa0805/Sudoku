@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Analytics.Traits.Internal;
 
 /// <summary>
 /// Provides with extension methods around enumeration type <see cref="ExocetShapeKind"/>.
