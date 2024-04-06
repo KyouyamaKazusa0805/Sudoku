@@ -60,6 +60,11 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	public bool IsReadOnly { get; init; }
 
 	/// <summary>
+	/// Indicates the runtime options that controls extra behaviors.
+	/// </summary>
+	public StepSearcherRuntimeFlags RuntimeFlags { get; init; }
+
+	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
 	public DifficultyLevel DifficultyLevels => (from t in SupportedTechniques select t.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);

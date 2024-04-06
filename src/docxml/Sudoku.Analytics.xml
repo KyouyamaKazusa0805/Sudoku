@@ -143,21 +143,21 @@
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreSlowAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.TimeComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.IgnoreHighAllocationAlgorithms">
             <summary>
-            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.SpaceComplexity"/>.
+            Indicates whether the solver will ignore slow step searchers being configured <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.SpaceComplexity"/>.
             </summary>
             <remarks>
             The default value is <see langword="false"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.CurrentCulture">
             <inheritdoc/>
@@ -5150,6 +5150,11 @@
             Indicates whether the option is read-only that cannot be modified in UI.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags">
+            <summary>
+            Indicates the runtime options that controls extra behaviors.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.DifficultyLevels">
             <summary>
             Indicates what difficulty levels the current step searcher can produce.
@@ -5168,87 +5173,6 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.NameKey">
             <summary>
             The generated property declaration for parameter <c>nameKey</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherFlags">
-            <summary>
-            Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
-            in searching or gathering operation. Fields in this type can be used
-            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags"/> property assigning.
-            </summary>
-            <remarks><i>
-            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
-            <see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>.<see langword="operator"/> | to combine multiple fields.
-            </i></remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.Default">
-            <summary>
-            Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity">
-            <summary>
-            Indicates a <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high time complexity,
-            meaning it will be disabled if a user want to disable high time-complexity algorithms.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.SpaceComplexity">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high space complexity,
-            meaning it will be disabled if a user want to disable high space-complexity algorithms.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.DirectTechniquesOnly">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce direct techniques,
-            which won't be used in indirect views, i.e. all candidates are shown.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherFlags.IndirectTechniquesOnly">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce indirect techniques,
-            which won't be used in direct views, i.e. all candidates aren't shown.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute">
-            <summary>
-            <para>
-            Represents an attribute type that contains condition flags,
-            describing the condition cases that the step searcher can run on.
-            </para>
-            <para>
-            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
-            whether a candidate is having been removed before.
-            </para>
-            </summary>
-            <param name="flags">
-            Indicates the flags to be set. You can use <see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>.<see langword="operator"/>
-            |(<see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>, <see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>) to merge multiple flags.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.#ctor(Sudoku.Analytics.Metadata.StepSearcherFlags)">
-            <summary>
-            <para>
-            Represents an attribute type that contains condition flags,
-            describing the condition cases that the step searcher can run on.
-            </para>
-            <para>
-            For example, Deadly Patterns are unavailable for Sukaku puzzles because we cannot determine
-            whether a candidate is having been removed before.
-            </para>
-            </summary>
-            <param name="flags">
-            Indicates the flags to be set. You can use <see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>.<see langword="operator"/>
-            |(<see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>, <see cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>) to merge multiple flags.
-            </param>
-            <seealso cref="T:Sudoku.Analytics.Metadata.StepSearcherFlags"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute.Flags">
-            <summary>
-            The generated property declaration for parameter <c>flags</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherImportAttribute`1">
@@ -5292,17 +5216,15 @@
             Represents the metadata implementation details for a <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="stepSearcher">The step searcher instance.</param>
-            <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
-            <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
+            <param name="backAttribute">The bound step searcher attribute.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.#ctor(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.Metadata.StepSearcherAttribute,Sudoku.Analytics.Metadata.StepSearcherFlagsAttribute)">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.#ctor(Sudoku.Analytics.StepSearcher,Sudoku.Analytics.Metadata.StepSearcherAttribute)">
             <summary>
             Represents the metadata implementation details for a <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
             <param name="stepSearcher">The step searcher instance.</param>
-            <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
-            <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
+            <param name="backAttribute">The bound step searcher attribute.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsSplit">
@@ -5334,16 +5256,16 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredSlow">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.TimeComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.TimeComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.TimeComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredHighAllocation">
             <summary>
             Determines whether the current step searcher is disabled
-            by option <see cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.SpaceComplexity"/> being configured.
+            by option <see cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.SpaceComplexity"/> being configured.
             </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherFlags.SpaceComplexity"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.SpaceComplexity"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsOnlyRunForDirectViews">
             <summary>
@@ -5370,26 +5292,14 @@
             <param name="culture">The culture information.</param>
             <returns>The name.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetFor(Sudoku.Analytics.StepSearcher)">
-            <summary>
-            Fetch the the implementation details for the specified <see cref="T:Sudoku.Analytics.StepSearcher"/> instance.
-            </summary>
-            <param name="stepSearcher">The step searcher instance.</param>
-            <returns>The final result.</returns>
-        </member>
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcher">
             <summary>
             The generated field declaration for parameter <c>stepSearcher</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcherAttribute">
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._backAttribute">
             <summary>
-            The generated field declaration for parameter <c>stepSearcherAttribute</c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcherFlagsAttribute">
-            <summary>
-            The generated field declaration for parameter <c>stepSearcherFlagsAttribute</c>.
+            The generated field declaration for parameter <c>backAttribute</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRunningArea">
@@ -5410,6 +5320,48 @@
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting">
             <summary>
             Indicates the mode is collecting.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags">
+            <summary>
+            Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
+            in searching or gathering operation. Fields in this type can be used
+            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags"/> property assigning.
+            </summary>
+            <remarks><i>
+            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
+            <see cref="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags"/>.<see langword="operator"/> | to combine multiple fields.
+            </i></remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.Default">
+            <summary>
+            Indicates the step searcher can be called anywhere as long it is enabled. This is also the default value of this enumeration type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.TimeComplexity">
+            <summary>
+            Indicates a <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high time complexity,
+            meaning it will be disabled if a user want to disable high time-complexity algorithms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.SpaceComplexity">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will produce high space complexity,
+            meaning it will be disabled if a user want to disable high space-complexity algorithms.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.DirectTechniquesOnly">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce direct techniques,
+            which won't be used in indirect views, i.e. all candidates are shown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.IndirectTechniquesOnly">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Analytics.StepSearcher"/> will only produce indirect techniques,
+            which won't be used in direct views, i.e. all candidates aren't shown.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute">

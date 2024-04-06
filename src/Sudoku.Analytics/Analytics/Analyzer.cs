@@ -36,21 +36,21 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 	public bool IsFullApplying { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherFlags.TimeComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherRuntimeFlags.TimeComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="StepSearcherFlags.TimeComplexity"/>
+	/// <seealso cref="StepSearcherRuntimeFlags.TimeComplexity"/>
 	public bool IgnoreSlowAlgorithms { get; set; }
 
 	/// <summary>
-	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherFlags.SpaceComplexity"/>.
+	/// Indicates whether the solver will ignore slow step searchers being configured <see cref="StepSearcherRuntimeFlags.SpaceComplexity"/>.
 	/// </summary>
 	/// <remarks>
 	/// The default value is <see langword="false"/>.
 	/// </remarks>
-	/// <seealso cref="StepSearcherFlags.SpaceComplexity"/>
+	/// <seealso cref="StepSearcherRuntimeFlags.SpaceComplexity"/>
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>

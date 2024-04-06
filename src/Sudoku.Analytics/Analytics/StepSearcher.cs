@@ -40,7 +40,7 @@ public abstract partial class StepSearcher(
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
 	/// </summary>
-	public StepSearcherMetadataInfo Metadata => StepSearcherMetadataInfo.GetFor(this);
+	public StepSearcherMetadataInfo Metadata => new(this, GetType().GetCustomAttribute<StepSearcherAttribute>()!);
 
 	/// <summary>
 	/// Indicates the final priority value ID of the step searcher. This property is used as comparison.

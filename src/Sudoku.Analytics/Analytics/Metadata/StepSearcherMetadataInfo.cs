@@ -4,13 +4,11 @@ namespace Sudoku.Analytics.Metadata;
 /// Represents the metadata implementation details for a <see cref="StepSearcher"/>.
 /// </summary>
 /// <param name="stepSearcher">The step searcher instance.</param>
-/// <param name="stepSearcherAttribute">The bound step searcher attribute.</param>
-/// <param name="stepSearcherFlagsAttribute">The bound step searcher flags attribute.</param>
+/// <param name="backAttribute">The bound step searcher attribute.</param>
 /// <seealso cref="StepSearcher"/>
 public sealed partial class StepSearcherMetadataInfo(
 	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcher stepSearcher,
-	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcherAttribute stepSearcherAttribute,
-	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcherFlagsAttribute? stepSearcherFlagsAttribute
+	[PrimaryConstructorParameter(MemberKinds.Field)] StepSearcherAttribute backAttribute
 )
 {
 	/// <summary>
@@ -22,54 +20,57 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
 	/// </summary>
-	public bool IsPure => _stepSearcherAttribute.IsPure;
+	public bool IsPure => _backAttribute.IsPure;
 
 	/// <summary>
 	/// Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
 	/// </summary>
-	public bool IsFixed => _stepSearcherAttribute.IsFixed;
+	public bool IsFixed => _backAttribute.IsFixed;
 
 	/// <summary>
 	/// Determines whether we can toggle availability of the step searcher.
 	/// </summary>
-	public bool IsReadOnly => _stepSearcherAttribute.IsReadOnly;
+	public bool IsReadOnly => _backAttribute.IsReadOnly;
 
 	/// <summary>
 	/// Determines whether the current step searcher supports sukaku solving.
 	/// </summary>
-	public bool SupportsSukaku => _stepSearcherAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
+	public bool SupportsSukaku => _backAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="StepSearcherFlags.TimeComplexity"/> being configured.
+	/// by option <see cref="StepSearcherRuntimeFlags.TimeComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="StepSearcherFlags.TimeComplexity"/>
-	public bool IsConfiguredSlow => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.TimeComplexity);
+	/// <seealso cref="StepSearcherRuntimeFlags.TimeComplexity"/>
+	public bool IsConfiguredSlow => _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.TimeComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled
-	/// by option <see cref="StepSearcherFlags.SpaceComplexity"/> being configured.
+	/// by option <see cref="StepSearcherRuntimeFlags.SpaceComplexity"/> being configured.
 	/// </summary>
-	/// <seealso cref="StepSearcherFlags.SpaceComplexity"/>
-	public bool IsConfiguredHighAllocation => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.SpaceComplexity);
+	/// <seealso cref="StepSearcherRuntimeFlags.SpaceComplexity"/>
+	public bool IsConfiguredHighAllocation
+		=> _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.SpaceComplexity);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for direct view.
 	/// </summary>
-	public bool IsOnlyRunForDirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.DirectTechniquesOnly);
+	public bool IsOnlyRunForDirectViews
+		=> _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.DirectTechniquesOnly);
 
 	/// <summary>
 	/// Determines whether the current step searcher is only run for indirect view.
 	/// </summary>
-	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.IndirectTechniquesOnly);
+	public bool IsOnlyRunForIndirectViews
+		=> _backAttribute.RuntimeFlags is { } cases && cases.HasFlag(StepSearcherRuntimeFlags.IndirectTechniquesOnly);
 
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
-	public DifficultyLevel[] DifficultyLevelRange => _stepSearcherAttribute.DifficultyLevels.GetAllFlags();
+	public DifficultyLevel[] DifficultyLevelRange => _backAttribute.DifficultyLevels.GetAllFlags();
 
 	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
-	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
+	public TechniqueSet SupportedTechniques => _backAttribute.SupportedTechniques;
 
 
 	/// <summary>
@@ -88,17 +89,4 @@ public sealed partial class StepSearcherMetadataInfo(
 					: typeName
 			}
 		};
-
-	/// <summary>
-	/// Fetch the the implementation details for the specified <see cref="StepSearcher"/> instance.
-	/// </summary>
-	/// <param name="stepSearcher">The step searcher instance.</param>
-	/// <returns>The final result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static StepSearcherMetadataInfo GetFor(StepSearcher stepSearcher)
-		=> new(
-			stepSearcher,
-			stepSearcher.GetType().GetCustomAttribute<StepSearcherAttribute>()!,
-			stepSearcher.GetType().GetCustomAttribute<StepSearcherFlagsAttribute>()
-		);
 }

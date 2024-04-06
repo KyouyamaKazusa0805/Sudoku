@@ -37,8 +37,9 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.NakedTripleNakedSingle, Technique.NakedTriplePlusNakedSingle, Technique.HiddenTripleNakedSingle,
 	Technique.LockedTripleNakedSingle, Technique.LockedHiddenTripleNakedSingle,
 	Technique.NakedQuadrupleNakedSingle, Technique.NakedQuadruplePlusNakedSingle, Technique.HiddenQuadrupleNakedSingle,
-	IsPure = true, IsReadOnly = true)]
-[StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
+	IsPure = true,
+	IsReadOnly = true,
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
 public sealed partial class DirectSubsetStepSearcher : StepSearcher
 {
 	/// <summary>

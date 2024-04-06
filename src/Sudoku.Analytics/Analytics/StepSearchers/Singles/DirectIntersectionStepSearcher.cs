@@ -32,8 +32,9 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.PointingCrosshatchingColumn, Technique.PointingNakedSingle,
 	Technique.ClaimingFullHouse, Technique.ClaimingCrosshatchingBlock, Technique.ClaimingCrosshatchingRow,
 	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
-	IsPure = true, IsReadOnly = true)]
-[StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
+	IsPure = true,
+	IsReadOnly = true,
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {
 	/// <summary>
