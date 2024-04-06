@@ -35,6 +35,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_NormalFishStepSearcher",
 	Technique.XWing, Technique.Swordfish, Technique.Jellyfish,
 	Technique.Squirmbag, Technique.Whale, Technique.Leviathan,
 	Technique.FinnedXWing, Technique.FinnedSwordfish, Technique.FinnedJellyfish,
@@ -45,7 +46,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseFinnedSquirmbag, Technique.SiameseFinnedWhale, Technique.SiameseFinnedLeviathan,
 	Technique.SiameseSashimiXWing, Technique.SiameseSashimiSwordfish, Technique.SiameseSashimiJellyfish,
 	Technique.SiameseSashimiSquirmbag, Technique.SiameseSashimiWhale, Technique.SiameseSashimiLeviathan)]
-[StepSearcherRuntimeName("StepSearcherName_NormalFishStepSearcher")]
 public sealed partial class NormalFishStepSearcher : StepSearcher
 {
 	/// <summary>

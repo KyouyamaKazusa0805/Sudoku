@@ -9,8 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Cannibalistic Sue de Coq</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.SueDeCoq, Technique.SueDeCoqIsolated, Technique.SueDeCoqCannibalism)]
-[StepSearcherRuntimeName("StepSearcherName_SueDeCoqStepSearcher")]
+[StepSearcher("StepSearcherName_SueDeCoqStepSearcher", Technique.SueDeCoq, Technique.SueDeCoqIsolated, Technique.SueDeCoqCannibalism)]
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

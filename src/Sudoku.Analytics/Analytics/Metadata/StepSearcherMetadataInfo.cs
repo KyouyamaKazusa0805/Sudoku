@@ -63,13 +63,13 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// </summary>
 	public bool IsOnlyRunForIndirectViews => _stepSearcherFlagsAttribute?.Flags is { } cases && cases.HasFlag(StepSearcherFlags.IndirectTechniquesOnly);
 
-	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
-	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
-
 	/// <summary>
 	/// Indicates the <see cref="DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
 	/// </summary>
 	public DifficultyLevel[] DifficultyLevelRange => _stepSearcherAttribute.DifficultyLevels.GetAllFlags();
+
+	/// <inheritdoc cref="StepSearcherAttribute.SupportedTechniques"/>
+	public TechniqueSet SupportedTechniques => _stepSearcherAttribute.SupportedTechniques;
 
 
 	/// <summary>
@@ -80,9 +80,9 @@ public sealed partial class StepSearcherMetadataInfo(
 	public string GetName(CultureInfo? culture)
 		=> _stepSearcher.GetType() switch
 		{
-			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherRuntimeNameAttribute>() switch
+			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
 			{
-				{ } p when p.GetFactName(culture) is { } factName => factName,
+				{ NameKey: { } r } => ResourceDictionary.Get(r, culture),
 				_ => ResourceDictionary.TryGet($"StepSearcherName_{typeName}", out var resource, culture ?? CultureInfo.CurrentUICulture)
 					? resource
 					: typeName

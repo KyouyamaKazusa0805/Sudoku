@@ -13,9 +13,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_DeathBlossomStepSearcher",
 	Technique.DeathBlossom, Technique.HouseDeathBlossom, Technique.RectangleDeathBlossom,
 	Technique.NTimesAlmostLockedSetDeathBlossom)]
-[StepSearcherRuntimeName("StepSearcherName_DeathBlossomStepSearcher")]
 public sealed partial class DeathBlossomStepSearcher : StepSearcher
 {
 	/// <summary>

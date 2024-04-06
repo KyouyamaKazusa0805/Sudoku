@@ -11,10 +11,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_AlignedExclusionStepSearcher",
 	Technique.AlignedPairExclusion, Technique.AlignedTripleExclusion,
 	Technique.AlignedQuadrupleExclusion, Technique.AlignedQuintupleExclusion)]
 [StepSearcherFlags(StepSearcherFlags.TimeComplexity)]
-[StepSearcherRuntimeName("StepSearcherName_AlignedExclusionStepSearcher")]
 public sealed partial class AlignedExclusionStepSearcher : StepSearcher
 {
 	/// <summary>

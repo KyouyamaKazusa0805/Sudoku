@@ -17,9 +17,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </para>
 /// <para><i>A Remote Pair is a XY-Chain that only uses two digits.</i></para>
 /// </summary>
-[StepSearcher(Technique.BivalueOddagonType2, Technique.BivalueOddagonType3)]
+[StepSearcher("StepSearcherName_BivalueOddagonStepSearcher", Technique.BivalueOddagonType2, Technique.BivalueOddagonType3)]
 [StepSearcherFlags(StepSearcherFlags.TimeComplexity)]
-[StepSearcherRuntimeName("StepSearcherName_BivalueOddagonStepSearcher")]
 public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 {
 	/// <summary>

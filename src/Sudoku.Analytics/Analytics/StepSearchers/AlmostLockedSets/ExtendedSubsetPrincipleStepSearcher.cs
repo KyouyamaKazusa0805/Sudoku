@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Extended Subset Principle</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.ExtendedSubsetPrinciple)]
-[StepSearcherRuntimeName("StepSearcherName_ExtendedSubsetPrincipleStepSearcher")]
+[StepSearcher("StepSearcherName_ExtendedSubsetPrincipleStepSearcher", Technique.ExtendedSubsetPrinciple)]
 public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

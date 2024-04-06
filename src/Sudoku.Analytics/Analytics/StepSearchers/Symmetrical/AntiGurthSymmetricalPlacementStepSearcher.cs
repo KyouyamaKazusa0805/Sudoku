@@ -10,8 +10,10 @@ using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref 
 /// <item>Anti- Gurth's Symmetrical Placement</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement, IsPure = true)]
-[StepSearcherRuntimeName("StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher")]
+[StepSearcher(
+	"StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher",
+	Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement,
+	IsPure = true)]
 public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>

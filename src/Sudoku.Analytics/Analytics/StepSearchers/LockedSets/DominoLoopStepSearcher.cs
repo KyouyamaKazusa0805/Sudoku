@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Domino Loop</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.DominoLoop)]
-[StepSearcherRuntimeName("StepSearcherName_DominoLoopStepSearcher")]
+[StepSearcher("StepSearcherName_DominoLoopStepSearcher", Technique.DominoLoop)]
 public sealed partial class DominoLoopStepSearcher : StepSearcher
 {
 	/// <summary>

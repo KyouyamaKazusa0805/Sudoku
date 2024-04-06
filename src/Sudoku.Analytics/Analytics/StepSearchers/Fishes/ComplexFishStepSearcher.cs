@@ -21,6 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_ComplexFishStepSearcher",
 	Technique.FrankenXWing, Technique.FrankenSwordfish, Technique.FrankenJellyfish,
 	Technique.FrankenSquirmbag, Technique.FrankenWhale, Technique.FrankenLeviathan,
 	Technique.MutantXWing, Technique.MutantSwordfish, Technique.MutantJellyfish,
@@ -42,7 +43,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.SiameseSashimiMutantXWing, Technique.SiameseSashimiMutantSwordfish, Technique.SiameseSashimiMutantJellyfish,
 	Technique.SiameseSashimiMutantSquirmbag, Technique.SiameseSashimiMutantWhale, Technique.SiameseSashimiMutantLeviathan)]
 [StepSearcherFlags(StepSearcherFlags.TimeComplexity)]
-[StepSearcherRuntimeName("StepSearcherName_ComplexFishStepSearcher")]
 public sealed partial class ComplexFishStepSearcher : StepSearcher
 {
 	/// <summary>

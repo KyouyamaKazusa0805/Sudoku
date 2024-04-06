@@ -47,6 +47,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_ExocetStepSearcher",
+
 	// Junior Exocets
 	Technique.JuniorExocet,
 	Technique.JuniorExocetConjugatePair, Technique.JuniorExocetMirrorConjugatePair, Technique.JuniorExocetAdjacentTarget,
@@ -75,7 +77,6 @@ namespace Sudoku.Analytics.StepSearchers;
 
 	// Miscellaneous
 	Technique.PatternLockedQuadruple)]
-[StepSearcherRuntimeName("StepSearcherName_ExocetStepSearcher")]
 public sealed partial class ExocetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

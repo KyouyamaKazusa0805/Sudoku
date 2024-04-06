@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Empty Rectangle</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.EmptyRectangle)]
-[StepSearcherRuntimeName("StepSearcherName_EmptyRectangleStepSearcher")]
+[StepSearcher("StepSearcherName_EmptyRectangleStepSearcher", Technique.EmptyRectangle)]
 public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

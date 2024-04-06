@@ -9,8 +9,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped Turbot Fish</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.GroupedSkyscraper, Technique.GroupedTwoStringKite, Technique.GroupedTurbotFish, OnlyUsesCachedFields = true)]
-[StepSearcherRuntimeName("StepSearcherName_GroupedTwoStrongLinksStepSearcher")]
+[StepSearcher(
+	"StepSearcherName_GroupedTwoStrongLinksStepSearcher",
+	Technique.GroupedSkyscraper, Technique.GroupedTwoStringKite, Technique.GroupedTurbotFish,
+	OnlyUsesCachedFields = true)]
 public sealed partial class GroupedTwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Bowman's Bingo</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.BowmanBingo)]
-[StepSearcherRuntimeName("StepSearcherName_BowmanBingoStepSearcher")]
+[StepSearcher("StepSearcherName_BowmanBingoStepSearcher", Technique.BowmanBingo)]
 public sealed partial class BowmanBingoStepSearcher : StepSearcher
 {
 	/// <summary>

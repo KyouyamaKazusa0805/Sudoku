@@ -24,10 +24,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_QiuDeadlyPatternStepSearcher",
 	Technique.QiuDeadlyPatternType1, Technique.QiuDeadlyPatternType2, Technique.QiuDeadlyPatternType3, Technique.QiuDeadlyPatternType4,
 	Technique.LockedQiuDeadlyPattern, Technique.QiuDeadlyPatternExternalType1, Technique.QiuDeadlyPatternExternalType2,
 	SupportedSudokuTypes = SudokuType.Standard)]
-[StepSearcherRuntimeName("StepSearcherName_QiuDeadlyPatternStepSearcher")]
 public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 {
 	/// <summary>

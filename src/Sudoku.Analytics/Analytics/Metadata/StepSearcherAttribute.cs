@@ -3,10 +3,12 @@ namespace Sudoku.Analytics.Metadata;
 /// <summary>
 /// Indicates a type marked this attribute is a runnable <see cref="StepSearcher"/>.
 /// </summary>
+/// <param name="nameKey">Indicates the key in resource dictionary.</param>
 /// <param name="supportedTechniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed class StepSearcherAttribute(params Technique[] supportedTechniques) : Attribute
+public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] supportedTechniques) :
+	Attribute
 {
 	/// <summary>
 	/// Indicates the searching logic only uses cached fields in type <see cref="CachedFields"/>,
@@ -60,8 +62,7 @@ public sealed class StepSearcherAttribute(params Technique[] supportedTechniques
 	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
-	public DifficultyLevel DifficultyLevels
-		=> (from technique in SupportedTechniques select technique.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);
+	public DifficultyLevel DifficultyLevels => (from t in SupportedTechniques select t.GetDifficultyLevel()).Aggregate(CommonMethods.EnumFlagMerger);
 
 	/// <summary>
 	/// Indicates the supported sudoku types.

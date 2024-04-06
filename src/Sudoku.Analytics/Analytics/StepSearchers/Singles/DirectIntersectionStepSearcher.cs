@@ -27,13 +27,13 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_DirectIntersectionStepSearcher",
 	Technique.PointingFullHouse, Technique.PointingCrosshatchingBlock, Technique.PointingCrosshatchingRow,
 	Technique.PointingCrosshatchingColumn, Technique.PointingNakedSingle,
 	Technique.ClaimingFullHouse, Technique.ClaimingCrosshatchingBlock, Technique.ClaimingCrosshatchingRow,
 	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
 	IsPure = true, IsReadOnly = true)]
 [StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
-[StepSearcherRuntimeName("StepSearcherName_DirectIntersectionStepSearcher")]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {
 	/// <summary>

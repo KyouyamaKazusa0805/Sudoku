@@ -11,10 +11,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_ExtendedRectangleStepSearcher",
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2,
 	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
 	SupportedSudokuTypes = SudokuType.Standard)]
-[StepSearcherRuntimeName("StepSearcherName_ExtendedRectangleStepSearcher")]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_XyzRingStepSearcher",
 	Technique.XyzLoop, Technique.XyzNiceLoop, Technique.GroupedXyzLoop, Technique.GroupedXyzNiceLoop,
 	Technique.SiameseXyzLoop, Technique.SiameseXyzNiceLoop, Technique.SiameseGroupedXyzLoop, Technique.SiameseGroupedXyzNiceLoop)]
-[StepSearcherRuntimeName("StepSearcherName_XyzRingStepSearcher")]
 public sealed partial class XyzRingStepSearcher : StepSearcher
 {
 	/// <summary>

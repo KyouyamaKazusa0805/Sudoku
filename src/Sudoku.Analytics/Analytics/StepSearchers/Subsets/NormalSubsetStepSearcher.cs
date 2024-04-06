@@ -30,9 +30,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_NormalSubsetStepSearcher",
 	Technique.HiddenPair, Technique.HiddenTriple, Technique.HiddenQuadruple,
 	Technique.NakedPair, Technique.NakedTriple, Technique.NakedQuadruple)]
-[StepSearcherRuntimeName("StepSearcherName_NormalSubsetStepSearcher")]
 public sealed partial class NormalSubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

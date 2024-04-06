@@ -5089,13 +5089,15 @@
             <summary>
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
+            <param name="nameKey">Indicates the key in resource dictionary.</param>
             <param name="supportedTechniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(Sudoku.Analytics.Categorization.Technique[])">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherAttribute.#ctor(System.String,Sudoku.Analytics.Categorization.Technique[])">
             <summary>
             Indicates a type marked this attribute is a runnable <see cref="T:Sudoku.Analytics.StepSearcher"/>.
             </summary>
+            <param name="nameKey">Indicates the key in resource dictionary.</param>
             <param name="supportedTechniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
@@ -5161,6 +5163,11 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques">
             <summary>
             <inheritdoc cref="T:Sudoku.Analytics.Metadata.StepSearcherAttribute" path="/param[@name='supportedTechniques']"/>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.NameKey">
+            <summary>
+            The generated property declaration for parameter <c>nameKey</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherFlags">
@@ -5348,13 +5355,13 @@
             Determines whether the current step searcher is only run for indirect view.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
-        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.DifficultyLevelRange">
             <summary>
             Indicates the <see cref="T:Sudoku.Analytics.DifficultyLevel"/>s whose corresponding step can be produced by the current step searcher instance.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportedTechniques">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
         </member>
         <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetName(System.Globalization.CultureInfo)">
             <summary>
@@ -5403,30 +5410,6 @@
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.Collecting">
             <summary>
             Indicates the mode is collecting.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute">
-            <summary>
-            Represents the runtime step searcher name to be used and displayed in UI.
-            </summary>
-            <param name="resourceKey">The resource key to fetch the target name.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.#ctor(System.String)">
-            <summary>
-            Represents the runtime step searcher name to be used and displayed in UI.
-            </summary>
-            <param name="resourceKey">The resource key to fetch the target name.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.GetFactName(System.Globalization.CultureInfo)">
-            <summary>
-            Indicates the internal name of the resource. If the configured resource key cannot find corresponding resource,
-            <see langword="null"/> will be returned.
-            </summary>
-            <param name="culture">The culture information.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherRuntimeNameAttribute.ResourceKey">
-            <summary>
-            The generated property declaration for parameter <c>resourceKey</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherSourceGenerationAttribute">

@@ -9,8 +9,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 /// <seealso href="http://sudopedia.enjoysudoku.com/Uniqueness_Clue_Cover.html">Uniqueness Clue Cover</seealso>
 /// <seealso href="http://forum.enjoysudoku.com/uniqueness-clue-cover-t40814.html#p342974">Serg's Descrpition to UCC</seealso>
-[StepSearcher(Technique.UniquenessClueCover)]
-[StepSearcherRuntimeName("StepSearcherName_UniquenessClueCoverStepSearcher")]
+[StepSearcher("StepSearcherName_UniquenessClueCoverStepSearcher", Technique.UniquenessClueCover)]
 public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Almost Locked Sets W-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.AlmostLockedSetsWWing)]
-[StepSearcherRuntimeName("StepSearcherName_AlmostLockedSetsWWingStepSearcher")]
+[StepSearcher("StepSearcherName_AlmostLockedSetsWWingStepSearcher", Technique.AlmostLockedSetsWWing)]
 public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -25,13 +24,11 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 		{
 			var als1 = alses[i];
 			var map1 = als1.Cells;
-			var house1 = als1.House;
 			var mask1 = als1.DigitsMask;
 			for (var j = i + 1; j < length; j++)
 			{
 				var als2 = alses[j];
 				var map2 = als2.Cells;
-				var house2 = als2.House;
 				var mask2 = als2.DigitsMask;
 
 				// Now we have got two ALSes to check.

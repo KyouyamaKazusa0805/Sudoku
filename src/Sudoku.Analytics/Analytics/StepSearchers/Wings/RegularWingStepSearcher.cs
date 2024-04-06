@@ -15,11 +15,11 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_RegularWingStepSearcher",
 	Technique.XyWing, Technique.XyzWing, Technique.WxyzWing, Technique.VwxyzWing,
 	Technique.UvwxyzWing, Technique.TuvwxyzWing, Technique.StuvwxyzWing, Technique.RstuvwxyzWing,
 	Technique.IncompleteWxyzWing, Technique.IncompleteVwxyzWing, Technique.IncompleteUvwxyzWing,
 	Technique.IncompleteTuvwxyzWing, Technique.IncompleteStuvwxyzWing, Technique.IncompleteRstuvwxyzWing)]
-[StepSearcherRuntimeName("StepSearcherName_RegularWingStepSearcher")]
 public sealed partial class RegularWingStepSearcher : StepSearcher
 {
 	/// <summary>

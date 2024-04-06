@@ -8,8 +8,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Claiming</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.Pointing, Technique.Claiming)]
-[StepSearcherRuntimeName("StepSearcherName_LockedCandidatesStepSearcher")]
+[StepSearcher("StepSearcherName_LockedCandidatesStepSearcher", Technique.Pointing, Technique.Claiming)]
 public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

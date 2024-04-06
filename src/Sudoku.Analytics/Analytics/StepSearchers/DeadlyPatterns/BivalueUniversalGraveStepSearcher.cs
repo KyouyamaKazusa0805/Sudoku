@@ -24,10 +24,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_BivalueUniversalGraveStepSearcher",
 	Technique.BivalueUniversalGraveType1, Technique.BivalueUniversalGraveType2, Technique.BivalueUniversalGraveType3,
 	Technique.BivalueUniversalGraveType4, Technique.BivalueUniversalGraveXzRule, Technique.BivalueUniversalGraveXyWing,
 	Technique.BivalueUniversalGravePlusN, Technique.BivalueUniversalGravePlusNForcingChains, Technique.BivalueUniversalGraveFalseCandidateType)]
-[StepSearcherRuntimeName("StepSearcherName_BivalueUniversalGraveStepSearcher")]
 public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>

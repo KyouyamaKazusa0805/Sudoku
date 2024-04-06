@@ -23,6 +23,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_MultipleChainingStepSearcher",
 	Technique.CellForcingChains, Technique.RegionForcingChains, Technique.NishioForcingChains,
 	Technique.DynamicCellForcingChains, Technique.DynamicRegionForcingChains,
 	Technique.DynamicContradictionForcingChains, Technique.DynamicDoubleForcingChains)]
@@ -30,7 +31,6 @@ namespace Sudoku.Analytics.StepSearchers;
 [SplitStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SplitStepSearcher(1, nameof(AllowMultiple), true)]
 [SplitStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
-[StepSearcherRuntimeName("StepSearcherName_MultipleChainingStepSearcher")]
 public partial class MultipleChainingStepSearcher : StepSearcher
 {
 	/// <summary>

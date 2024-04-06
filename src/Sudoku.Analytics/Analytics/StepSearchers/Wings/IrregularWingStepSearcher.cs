@@ -43,9 +43,9 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_IrregularWingStepSearcher",
 	Technique.WWing, Technique.GroupedWWing, Technique.MultiBranchWWing, Technique.MWing, Technique.GroupedMWing,
 	Technique.SWing, Technique.GroupedSWing, Technique.LWing, Technique.GroupedLWing, Technique.HWing, Technique.GroupedHWing)]
-[StepSearcherRuntimeName("StepSearcherName_IrregularWingStepSearcher")]
 public sealed partial class IrregularWingStepSearcher : StepSearcher
 {
 	/// <summary>

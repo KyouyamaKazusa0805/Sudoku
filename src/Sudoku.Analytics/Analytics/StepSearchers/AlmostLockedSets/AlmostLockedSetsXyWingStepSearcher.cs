@@ -7,8 +7,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Almost Locked Sets XY-Wing</item>
 /// </list>
 /// </summary>
-[StepSearcher(Technique.AlmostLockedSetsXyWing)]
-[StepSearcherRuntimeName("StepSearcherName_AlmostLockedSetsXyWingStepSearcher")]
+[StepSearcher("StepSearcherName_AlmostLockedSetsXyWingStepSearcher", Technique.AlmostLockedSetsXyWing)]
 public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -88,7 +87,6 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 					_ => (als11, als21, als12)
 				};
 
-				var (aHouse, bHouse, cHouse) = (a.House, b.House, c.House);
 				var (aMask, bMask) = (a.DigitsMask, b.DigitsMask);
 				var (aMap, bMap, cMap) = (a.Cells, b.Cells, c.Cells);
 				var map = aMap | bMap;

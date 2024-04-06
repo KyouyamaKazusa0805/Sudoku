@@ -29,10 +29,10 @@ using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref Ana
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_SingleStepSearcher",
 	Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn, Technique.LastDigit,
 	Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn, Technique.NakedSingle,
 	IsPure = true, IsFixed = true, IsReadOnly = true)]
-[StepSearcherRuntimeName("StepSearcherName_SingleStepSearcher")]
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>

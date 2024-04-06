@@ -11,6 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_DirectSubsetStepSearcher",
 	Technique.NakedPairFullHouse, Technique.NakedPairPlusFullHouse, Technique.HiddenPairFullHouse,
 	Technique.LockedPairFullHouse, Technique.LockedHiddenPairFullHouse,
 	Technique.NakedTripleFullHouse, Technique.NakedTriplePlusFullHouse, Technique.HiddenTripleFullHouse,
@@ -38,7 +39,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.NakedQuadrupleNakedSingle, Technique.NakedQuadruplePlusNakedSingle, Technique.HiddenQuadrupleNakedSingle,
 	IsPure = true, IsReadOnly = true)]
 [StepSearcherFlags(StepSearcherFlags.DirectTechniquesOnly)]
-[StepSearcherRuntimeName("StepSearcherName_DirectSubsetStepSearcher")]
 public sealed partial class DirectSubsetStepSearcher : StepSearcher
 {
 	/// <summary>

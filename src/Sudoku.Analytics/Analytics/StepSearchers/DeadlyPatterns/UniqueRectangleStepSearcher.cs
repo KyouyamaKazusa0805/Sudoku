@@ -49,6 +49,8 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </list>
 /// </summary>
 [StepSearcher(
+	"StepSearcherName_UniqueRectangleStepSearcher",
+
 	// Basic types (Avoidable rectangle lacks type 4 and 6)
 	Technique.UniqueRectangleType1, Technique.UniqueRectangleType2, Technique.UniqueRectangleType3, Technique.UniqueRectangleType4,
 	Technique.UniqueRectangleType5, Technique.UniqueRectangleType6, Technique.HiddenUniqueRectangle,
@@ -84,7 +86,6 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
 	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 	SupportedSudokuTypes = SudokuType.Standard)]
-[StepSearcherRuntimeName("StepSearcherName_UniqueRectangleStepSearcher")]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>
