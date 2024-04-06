@@ -233,13 +233,13 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						select new CellViewNode(ColorIdentifier.Elimination, house2CellExcluded),
 						..
 						from cell in (HousesMap[(cell1.AsCellMap() + pivot).SharedLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(cell, (Utf8Char)'y', currentDigitsMask),
+						select new BabaGroupViewNode(cell, 'y', currentDigitsMask),
 						..
 						from cell in (HousesMap[(cell2.AsCellMap() + pivot).SharedLine] & HousesMap[pivotCellBlock] & EmptyCells) - pivot
-						select new BabaGroupViewNode(cell, (Utf8Char)'x', currentDigitsMask),
-						new BabaGroupViewNode(pivot, (Utf8Char)'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
-						new BabaGroupViewNode(cell1, (Utf8Char)'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
-						new BabaGroupViewNode(cell2, (Utf8Char)'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
+						select new BabaGroupViewNode(cell, 'x', currentDigitsMask),
+						new BabaGroupViewNode(pivot, 'z', (Mask)(grid.GetCandidates(pivot) & currentDigitsMask)),
+						new BabaGroupViewNode(cell1, 'x', (Mask)(grid.GetCandidates(cell1) & currentDigitsMask)),
+						new BabaGroupViewNode(cell2, 'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 					]
 				],
 				context.PredefinedOptions,

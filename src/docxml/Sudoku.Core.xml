@@ -2936,9 +2936,6 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.TryParse(System.Utf8String,Sudoku.Concepts.Grid@)">
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.String,Sudoku.Concepts.Grid@)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.TryParseExact``1(System.String,``0,Sudoku.Concepts.Grid@)">
             <summary>
             Try to parse the specified <see cref="T:System.String"/> text and convert into a <see cref="T:Sudoku.Concepts.Grid"/> instance,
@@ -5922,7 +5919,7 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates a mask that hold digits used.</param>
             <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Utf8Char,System.Int16)">
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Char,System.Int16)">
             <summary>
             Defines a view node that highlights for a Baba group.
             </summary>
@@ -5931,11 +5928,11 @@ if (student is (name: var name, age: >= 18))
             <param name="digitsMask">Indicates a mask that hold digits used.</param>
             <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(System.Int32,System.Utf8Char,System.Int16)">
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(System.Int32,System.Char,System.Int16)">
             <summary>
             Initializes a <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/> instance via the specified values.
             </summary>
-            <inheritdoc cref="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Utf8Char,System.Int16)"/>
+            <inheritdoc cref="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.#ctor(Sudoku.Rendering.ColorIdentifier,System.Int32,System.Char,System.Int16)"/>
         </member>
         <member name="P:Sudoku.Rendering.Nodes.BabaGroupViewNode.CellString">
             <summary>
@@ -5947,7 +5944,7 @@ if (student is (name: var name, age: >= 18))
             Indicates the digits mask string.
             </summary>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,System.Int32@,System.Utf8Char@)">
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,System.Int32@,System.Char@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
@@ -5985,7 +5982,7 @@ if (student is (name: var name, age: >= 18))
 				</remarks>
 			</target>
         </member>
-        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,System.Int32@,System.Int16@,System.Utf8Char@)">
+        <member name="M:Sudoku.Rendering.Nodes.BabaGroupViewNode.Deconstruct(Sudoku.Rendering.ColorIdentifier@,System.Int32@,System.Int16@,System.Char@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use

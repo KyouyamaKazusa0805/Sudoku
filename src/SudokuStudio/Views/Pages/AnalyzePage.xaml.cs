@@ -844,7 +844,7 @@ public sealed partial class AnalyzePage : Page
 				else
 				{
 					var id = index != -1 ? (ColorIdentifier)index : new ColorColorIdentifier(0, 255, 255, 255);
-					v.Add(new BabaGroupViewNode(id, cell, (Utf8Char)character, Grid.MaxCandidatesMask));
+					v.Add(new BabaGroupViewNode(id, cell, (char)character, Grid.MaxCandidatesMask));
 				}
 
 				UpdateViewUnit();

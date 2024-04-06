@@ -3654,7 +3654,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 
 					// Add into the list.
-					var extraDigitId = (Utf8Char)(char)(extraDigit + '1');
+					var extraDigitId = (char)(extraDigit + '1');
 					var extraDigitMask = (Mask)(1 << extraDigit);
 					accumulator.Add(
 						new UniqueRectangleWithBabaGroupingStep(
@@ -3668,10 +3668,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								[
 									.. candidateOffsets2,
-									new BabaGroupViewNode(bivalueCellToCheck, (byte)'y', _xOr_yMask),
-									new BabaGroupViewNode(targetCell, (byte)'x', _xOr_yMask),
+									new BabaGroupViewNode(bivalueCellToCheck, 'y', _xOr_yMask),
+									new BabaGroupViewNode(targetCell, 'x', _xOr_yMask),
 									new BabaGroupViewNode(urCellInSameBlock, extraDigitId, extraDigitMask),
-									new BabaGroupViewNode(anotherCell, (byte)'x', _xOr_yMask),
+									new BabaGroupViewNode(anotherCell, 'x', _xOr_yMask),
 									new BabaGroupViewNode(resultCell, extraDigitId, extraDigitMask)
 								]
 							],
@@ -3759,7 +3759,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					}
 
 					// Add into the list.
-					var extraDigitId2 = (Utf8Char)(char)(extraDigit + '1');
+					var extraDigitId2 = (char)(extraDigit + '1');
 					var extraDigitMask2 = (Mask)(1 << extraDigit);
 					accumulator.Add(
 						new UniqueRectangleWithBabaGroupingStep(
@@ -3774,10 +3774,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								[
 									.. candidateOffsets2,
-									new BabaGroupViewNode(bivalueCellToCheck, (Utf8Char)'y', _xOr_yMask2),
-									new BabaGroupViewNode(targetCell, (Utf8Char)'x', _xOr_yMask2),
+									new BabaGroupViewNode(bivalueCellToCheck, 'y', _xOr_yMask2),
+									new BabaGroupViewNode(targetCell, 'x', _xOr_yMask2),
 									new BabaGroupViewNode(urCellInSameBlock, extraDigitId2, extraDigitMask2),
-									new BabaGroupViewNode(anotherCell, (Utf8Char)'x', _xOr_yMask2),
+									new BabaGroupViewNode(anotherCell, 'x', _xOr_yMask2),
 									new BabaGroupViewNode(resultCell, extraDigitId2, extraDigitMask2)
 								]
 							],

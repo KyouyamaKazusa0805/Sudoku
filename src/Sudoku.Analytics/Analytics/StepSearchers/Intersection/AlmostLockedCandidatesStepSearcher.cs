@@ -225,13 +225,13 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			}
 
 			var babaGroupingNodes = new List<BabaGroupViewNode>(alsCells.Count + ahsCells.Count);
-			var character = (Utf8Char)'a';
+			var character = 'a';
 			foreach (var cell in alsCells)
 			{
 				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
 			}
 
-			character = (Utf8Char)'a';
+			character = 'a';
 			foreach (var cell in ahsCells)
 			{
 				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, character++, grid.GetCandidates(cell)));
@@ -239,7 +239,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 			foreach (var cell in c & EmptyCells)
 			{
-				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, (Utf8Char)(char)('a' - 1 + size), grid.GetCandidates(cell)));
+				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, (char)('a' - 1 + size), grid.GetCandidates(cell)));
 			}
 
 			scoped var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);

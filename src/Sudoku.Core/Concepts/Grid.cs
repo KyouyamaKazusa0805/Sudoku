@@ -1684,21 +1684,6 @@ public partial struct Grid :
 		}
 	}
 
-	/// <inheritdoc cref="TryParse(string, out Grid)"/>
-	public static bool TryParse(Utf8String str, out Grid result)
-	{
-		try
-		{
-			result = Parse(str);
-			return !result.IsUndefined;
-		}
-		catch (FormatException)
-		{
-			result = Undefined;
-			return false;
-		}
-	}
-
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> text and convert into a <see cref="Grid"/> instance,
 	/// using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.

@@ -13,16 +13,16 @@ namespace Sudoku.Rendering.Nodes;
 public sealed partial class BabaGroupViewNode(
 	ColorIdentifier identifier,
 	[PrimaryConstructorParameter, HashCodeMember] Cell cell,
-	[PrimaryConstructorParameter, StringMember] Utf8Char unknownValueChar,
+	[PrimaryConstructorParameter, StringMember] char unknownValueChar,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : BasicViewNode(identifier)
 {
 	/// <summary>
 	/// Initializes a <see cref="BabaGroupViewNode"/> instance via the specified values.
 	/// </summary>
-	/// <inheritdoc cref="BabaGroupViewNode(ColorIdentifier, Cell, Utf8Char, Mask)"/>
+	/// <inheritdoc cref="BabaGroupViewNode(ColorIdentifier, Cell, char, Mask)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public BabaGroupViewNode(Cell cell, Utf8Char unknownValueChar, Mask digitsMask) :
+	public BabaGroupViewNode(Cell cell, char unknownValueChar, Mask digitsMask) :
 		this(ColorIdentifier.Normal, cell, unknownValueChar, digitsMask)
 	{
 	}
@@ -43,12 +43,12 @@ public sealed partial class BabaGroupViewNode(
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ColorIdentifier identifier, out Cell cell, out Utf8Char unknownValueChar)
+	public void Deconstruct(out ColorIdentifier identifier, out Cell cell, out char unknownValueChar)
 		=> (identifier, cell, unknownValueChar) = (Identifier, Cell, UnknownValueChar);
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Deconstruct(out ColorIdentifier identifier, out Cell cell, out Mask digitsMask, out Utf8Char unknownValueChar)
+	public void Deconstruct(out ColorIdentifier identifier, out Cell cell, out Mask digitsMask, out char unknownValueChar)
 		=> ((identifier, cell, unknownValueChar), digitsMask) = (this, DigitsMask);
 
 	/// <inheritdoc/>

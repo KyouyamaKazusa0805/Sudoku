@@ -158,17 +158,17 @@ public unsafe struct MinLexCandidate
 		GridPattern.FromStringUnsafe(source, pPair);
 		scoped var minTopRowScores = (ReadOnlySpan<int>)[pPair[0].BestTopRowScore, pPair[1].BestTopRowScore];
 		var minTopRowScore = Math.Min(minTopRowScores[0], minTopRowScores[1]);
-		var resultBuffer = stackalloc byte[82];
-		resultBuffer[0] = (byte)(minTopRowScore >> 8 & 1);
-		resultBuffer[1] = (byte)(minTopRowScore >> 7 & 1);
-		resultBuffer[2] = (byte)(minTopRowScore >> 6 & 1);
-		resultBuffer[3] = (byte)(minTopRowScore >> 5 & 1);
-		resultBuffer[4] = (byte)(minTopRowScore >> 4 & 1);
-		resultBuffer[5] = (byte)(minTopRowScore >> 3 & 1);
-		resultBuffer[6] = (byte)(minTopRowScore >> 2 & 1);
-		resultBuffer[7] = (byte)(minTopRowScore >> 1 & 1);
-		resultBuffer[8] = (byte)(minTopRowScore & 1);
-		resultBuffer[81] = 0;
+		var resultBuffer = stackalloc char[82];
+		resultBuffer[0] = (char)(minTopRowScore >> 8 & 1);
+		resultBuffer[1] = (char)(minTopRowScore >> 7 & 1);
+		resultBuffer[2] = (char)(minTopRowScore >> 6 & 1);
+		resultBuffer[3] = (char)(minTopRowScore >> 5 & 1);
+		resultBuffer[4] = (char)(minTopRowScore >> 4 & 1);
+		resultBuffer[5] = (char)(minTopRowScore >> 3 & 1);
+		resultBuffer[6] = (char)(minTopRowScore >> 2 & 1);
+		resultBuffer[7] = (char)(minTopRowScore >> 1 & 1);
+		resultBuffer[8] = (char)(minTopRowScore & 1);
+		resultBuffer[81] = '\0';
 		foreach (var nowTransposed in (false, true))
 		{
 			if (minTopRowScores[nowTransposed ? 1 : 0] > minTopRowScore)
@@ -265,15 +265,15 @@ public unsafe struct MinLexCandidate
 			nCurCandidates = nNextCandidates;
 			nNextCandidates = 0;
 
-			resultBuffer[9 * toRow] = (byte)(bestTriplets0 >> 2 & 1);
-			resultBuffer[9 * toRow + 1] = (byte)(bestTriplets0 >> 1 & 1);
-			resultBuffer[9 * toRow + 2] = (byte)(bestTriplets0 & 1);
-			resultBuffer[9 * toRow + 3] = (byte)(bestTriplets1 >> 2 & 1);
-			resultBuffer[9 * toRow + 4] = (byte)(bestTriplets1 >> 1 & 1);
-			resultBuffer[9 * toRow + 5] = (byte)(bestTriplets1 & 1);
-			resultBuffer[9 * toRow + 6] = (byte)(bestTriplets2 >> 2 & 1);
-			resultBuffer[9 * toRow + 7] = (byte)(bestTriplets2 >> 1 & 1);
-			resultBuffer[9 * toRow + 8] = (byte)(bestTriplets2 & 1);
+			resultBuffer[9 * toRow] = (char)(bestTriplets0 >> 2 & 1);
+			resultBuffer[9 * toRow + 1] = (char)(bestTriplets0 >> 1 & 1);
+			resultBuffer[9 * toRow + 2] = (char)(bestTriplets0 & 1);
+			resultBuffer[9 * toRow + 3] = (char)(bestTriplets1 >> 2 & 1);
+			resultBuffer[9 * toRow + 4] = (char)(bestTriplets1 >> 1 & 1);
+			resultBuffer[9 * toRow + 5] = (char)(bestTriplets1 & 1);
+			resultBuffer[9 * toRow + 6] = (char)(bestTriplets2 >> 2 & 1);
+			resultBuffer[9 * toRow + 7] = (char)(bestTriplets2 >> 1 & 1);
+			resultBuffer[9 * toRow + 8] = (char)(bestTriplets2 & 1);
 		}
 
 		var minLex = stackalloc int[81];
@@ -283,15 +283,15 @@ public unsafe struct MinLexCandidate
 			{
 				if (resultBuffer[i] == 0)
 				{
-					resultBuffer[i] = 46;
+					resultBuffer[i] = (char)('0' - 2);
 				}
 				else
 				{
-					resultBuffer[i] += 48;
+					resultBuffer[i] += '0';
 				}
 			}
 
-			result = ((Utf8String)new ReadOnlySpan<byte>(resultBuffer, 81)).ToString();
+			result = new ReadOnlySpan<char>(resultBuffer, 81).ToString();
 			return;
 		}
 
@@ -369,9 +369,9 @@ public unsafe struct MinLexCandidate
 
 		for (var i = 0; i < 81; i++)
 		{
-			resultBuffer[i] = (byte)(minLex[i] == 0 ? 46 : minLex[i] + 48);
+			resultBuffer[i] = (char)(minLex[i] == 0 ? '0' - 2 : minLex[i] + '0');
 		}
 
-		result = ((Utf8String)new ReadOnlySpan<byte>(resultBuffer, 81)).ToString();
+		result = new ReadOnlySpan<char>(resultBuffer, 81).ToString();
 	}
 }
