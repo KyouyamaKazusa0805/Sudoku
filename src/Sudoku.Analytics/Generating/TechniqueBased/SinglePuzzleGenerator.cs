@@ -103,12 +103,13 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <returns>The subtype selected.</returns>
 	private protected static SingleSubtype RandomlySelectSubtype(House house, Func<SingleSubtype, bool> match)
 	{
-		var range = Enum.GetValues<SingleSubtype>()[house switch { < 9 => 4..13, < 18 => 14..28, _ => 29..43 }];
+		var prefixMustBe = house switch { < 9 => "BlockHiddenSingle", < 18 => "RowHiddenSingle", _ => "ColumnHiddenSingle" };
+		var range = Enum.GetValues<SingleSubtype>();
 		SingleSubtype subtype;
 		do
 		{
 			subtype = range[Rng.Next(0, range.Length)];
-		} while (!match(subtype));
+		} while (!match(subtype) || subtype is SingleSubtype.None or SingleSubtype.Unknown || !subtype.ToString().StartsWith(prefixMustBe) || subtype.IsUnnecessary());
 		return subtype;
 	}
 }

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Categorization;
 /// Provides with extension methods on <see cref="SingleSubtype"/>.
 /// </summary>
 /// <seealso cref="SingleSubtype"/>
-public static class SingleTechniqueSubtypeExtensions
+public static class SingleSubtypeExtensions
 {
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
