@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Traits;
+namespace Sudoku.Traits;
 
 /// <summary>
 /// Represents a trait from a <see cref="Step"/>.

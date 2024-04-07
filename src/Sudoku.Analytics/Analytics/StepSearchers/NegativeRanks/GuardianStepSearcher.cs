@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using unsafe CollectorPredicateFuncPtr = delegate*<ref readonly CellMap, bool>;
+
 /// <summary>
 /// Provides with a <b>Guardian</b> step searcher.
 /// The step searcher will include the following techniques:

@@ -17936,7 +17936,7 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -17948,7 +17948,7 @@ if (student is (name: var name, age: >= 18))
             <param name="house">The house to be displayed.</param>
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -17980,7 +17980,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
@@ -17997,7 +17997,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
             If the technique is not a Last Digit, the value must be <see langword="false"/>.
             </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <param name="subtype"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
@@ -18034,7 +18034,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="house"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -18046,7 +18046,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="house"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>
@@ -18058,7 +18058,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
             <summary>
@@ -18070,7 +18070,7 @@ if (student is (name: var name, age: >= 18))
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -19116,91 +19116,6 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the mutant fish.
             </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.IDirectTrait`1">
-            <summary>
-            Represents a direct trait.
-            </summary>
-            <typeparam name="TBase">The type of the base value.</typeparam>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ILastingTrait">
-            <summary>
-            Represents lasting trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ILastingTrait.Lasting">
-            <summary>
-            Indicates the lasting of the single. The value describes the number of empty cells appeared in a house
-            containing the target conclusion from the single step.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.Internal.IComplexSeniorExocet">
-            <summary>
-            The base overrides for complex senior exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IComplexSeniorExocet.CrosslineHousesMask">
-            <summary>
-            The mask that holds a list of cross-line houses used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IComplexSeniorExocet.ExtraHousesMask">
-            <summary>
-            The mask that holds a list of extra houses used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.Internal.IDoubleExocet">
-            <summary>
-            The base overrides for double exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IDoubleExocet.BaseCells">
-            <summary>
-            A list of cells as the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IDoubleExocet.TargetCells">
-            <summary>
-            A list of cells as the target cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IDoubleExocet.BaseCellsTheOther">
-            <summary>
-            A list of cells as the other pair of base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.Internal.IDoubleExocet.TargetCellsTheOther">
-            <summary>
-            A list of cells as the other pair of target cells.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.Internal.ExocetShapeKindExtensions">
-            <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Traits.Internal.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Analytics.Traits.Internal.IComplexSeniorExocet)">
-            <summary>
-            Try to get shape kind via the houses.
-            </summary>
-            <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.ISizeTrait">
-            <summary>
-            Represents a size trait.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Traits.ISizeTrait.Size">
-            <summary>
-            Indicates the size of the pattern.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.Traits.IStepTrait">
-            <summary>
-            Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>
@@ -21076,6 +20991,91 @@ result ^= expression;
             </summary>
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Traits.Internal.ExocetShapeKindExtensions">
+            <summary>
+            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Traits.Internal.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Traits.Internal.IComplexSeniorExocet)">
+            <summary>
+            Try to get shape kind via the houses.
+            </summary>
+            <param name="this">The houses provider.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Traits.Internal.IComplexSeniorExocet">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IComplexSeniorExocet.CrosslineHousesMask">
+            <summary>
+            The mask that holds a list of cross-line houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IComplexSeniorExocet.ExtraHousesMask">
+            <summary>
+            The mask that holds a list of extra houses used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Traits.Internal.IDoubleExocet">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IDoubleExocet.BaseCells">
+            <summary>
+            A list of cells as the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IDoubleExocet.TargetCells">
+            <summary>
+            A list of cells as the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IDoubleExocet.BaseCellsTheOther">
+            <summary>
+            A list of cells as the other pair of base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.Internal.IDoubleExocet.TargetCellsTheOther">
+            <summary>
+            A list of cells as the other pair of target cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Traits.IDirectTrait`1">
+            <summary>
+            Represents a direct trait.
+            </summary>
+            <typeparam name="TBase">The type of the base value.</typeparam>
+        </member>
+        <member name="T:Sudoku.Traits.ILastingTrait">
+            <summary>
+            Represents lasting trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.ILastingTrait.Lasting">
+            <summary>
+            Indicates the lasting of the single. The value describes the number of empty cells appeared in a house
+            containing the target conclusion from the single step.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Traits.ISizeTrait">
+            <summary>
+            Represents a size trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.ISizeTrait.Size">
+            <summary>
+            Indicates the size of the pattern.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Traits.IStepTrait">
+            <summary>
+            Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
             <summary>

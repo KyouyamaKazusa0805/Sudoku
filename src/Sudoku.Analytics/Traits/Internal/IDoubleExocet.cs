@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Traits.Internal;
+namespace Sudoku.Traits.Internal;
 
 /// <summary>
 /// The base overrides for double exocet steps.

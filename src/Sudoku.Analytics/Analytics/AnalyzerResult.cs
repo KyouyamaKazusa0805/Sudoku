@@ -1,6 +1,7 @@
 namespace Sudoku.Analytics;
 
 using static Helper;
+using unsafe StepRatingEvaluatorFuncPtr = delegate*<Step[], delegate*<Step, decimal>, decimal>;
 
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
