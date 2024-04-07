@@ -2964,4 +2964,7 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_ScaleValueCannotBeNegative" xml:space="preserve">
     <value>Scale value cannot be negative.</value>
   </data>
+  <data name="ErrorInfo_TechiqueIsNotSupported" xml:space="preserve">
+    <value>The specified technique is not supported.</value>
+  </data>
 </root>

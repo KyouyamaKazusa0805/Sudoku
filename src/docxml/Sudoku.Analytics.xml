@@ -17720,11 +17720,6 @@ if (student is (name: var name, age: >= 18))
             </para>
             </param>
         </member>
-        <member name="F:Sudoku.Analytics.Steps.ComplexSingleStep.TechniqueNotSupportedMessage">
-            <summary>
-            Indicates "Technique not supported" message.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.PrefixNameLength">
             <summary>
             Indicates the prefix name of the technique.
@@ -17781,11 +17776,6 @@ if (student is (name: var name, age: >= 18))
             <param name="subtype"><inheritdoc/></param>
             <param name="basedOn"><inheritdoc/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.DirectIntersectionStep.NotSupportedMessage">
-            <summary>
-            Indicates the "Not supported" message.
-            </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
             <inheritdoc/>
@@ -22927,6 +22917,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SudokuExplainerAttributeInvalidRating">
             <summary>
               Looks up a localized string similar to Cannot call setter &apos;Rating.set&apos; because the property &apos;Rating&apos; has an invalid value that cannot return with only one value..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_TechiqueIsNotSupported">
+            <summary>
+              Looks up a localized string similar to The specified technique is not supported..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_TechniqueIsNotImplemented">

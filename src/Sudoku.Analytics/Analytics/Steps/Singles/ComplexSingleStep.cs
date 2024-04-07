@@ -43,12 +43,6 @@ public abstract partial class ComplexSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit, subtype)
 {
 	/// <summary>
-	/// Indicates "Technique not supported" message.
-	/// </summary>
-	protected const string TechniqueNotSupportedMessage = "The specified technique is not supported.";
-
-
-	/// <summary>
 	/// Indicates the prefix name of the technique.
 	/// </summary>
 	protected abstract int PrefixNameLength { get; }

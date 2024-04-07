@@ -39,12 +39,6 @@ public sealed partial class DirectIntersectionStep(
 	[[isPointing ? Technique.Pointing : Technique.Claiming]]
 )
 {
-	/// <summary>
-	/// Indicates the "Not supported" message.
-	/// </summary>
-	private const string NotSupportedMessage = "This technique usage doesn't use this property.";
-
-
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
 		=> BasedOn switch
@@ -57,7 +51,7 @@ public sealed partial class DirectIntersectionStep(
 			Technique.HiddenSingleRow or Technique.HiddenSingleColumn => 2.3M,
 #endif
 			Technique.NakedSingle => 2.3M,
-			_ => throw new NotSupportedException(TechniqueNotSupportedMessage)
+			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("TechiqueIsNotSupported"))
 		} + .2M;
 
 	/// <inheritdoc/>
@@ -74,14 +68,14 @@ public sealed partial class DirectIntersectionStep(
 	protected override string PrefixName
 	{
 		[DoesNotReturn]
-		get => throw new NotSupportedException(NotSupportedMessage);
+		get => throw new NotSupportedException();
 	}
 
 	/// <inheritdoc/>
 	protected override int PrefixNameLength
 	{
 		[DoesNotReturn]
-		get => throw new NotImplementedException(NotSupportedMessage);
+		get => throw new NotImplementedException();
 	}
 
 	private string CellsStr => Options.Converter.CellConverter(IntersectionCells);

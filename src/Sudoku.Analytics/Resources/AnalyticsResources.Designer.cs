@@ -1447,6 +1447,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified technique is not supported..
+        /// </summary>
+        public static string ErrorInfo_TechiqueIsNotSupported {
+            get {
+                return ResourceManager.GetString("ErrorInfo_TechiqueIsNotSupported", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The current technique is not implemented..
         /// </summary>
         public static string ErrorInfo_TechniqueIsNotImplemented {
