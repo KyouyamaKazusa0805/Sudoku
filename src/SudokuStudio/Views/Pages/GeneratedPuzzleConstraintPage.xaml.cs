@@ -461,21 +461,21 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
-					Tag = SingleTechnique.FullHouse
+					Tag = SingleTechniqueFlag.FullHouse
 				},
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
-					Tag = SingleTechnique.HiddenSingle
+					Tag = SingleTechniqueFlag.HiddenSingle
 				},
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
-					Tag = SingleTechnique.NakedSingle
+					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
 		};
-		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(techniqueSelectorControl, constraint.Technique, value => constraint.Technique = value);
+		EnumBinder<Segmented, SegmentedItem, SingleTechniqueFlag>(techniqueSelectorControl, constraint.Technique, value => constraint.Technique = value);
 
 		//
 		// limit count
@@ -686,27 +686,27 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			{
 				new SegmentedItem
 				{
-					Content = SingleTechnique.HiddenSingleBlock.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.HiddenSingleBlock
+					Content = SingleTechniqueFlag.HiddenSingleBlock.GetName(App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleBlock
 				},
 				new SegmentedItem
 				{
-					Content = SingleTechnique.HiddenSingleRow.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.HiddenSingleRow
+					Content = SingleTechniqueFlag.HiddenSingleRow.GetName(App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleRow
 				},
 				new SegmentedItem
 				{
-					Content = SingleTechnique.HiddenSingleColumn.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.HiddenSingleColumn
+					Content = SingleTechniqueFlag.HiddenSingleColumn.GetName(App.CurrentCulture),
+					Tag = SingleTechniqueFlag.HiddenSingleColumn
 				},
 				new SegmentedItem
 				{
-					Content = SingleTechnique.NakedSingle.GetName(App.CurrentCulture),
-					Tag = SingleTechnique.NakedSingle
+					Content = SingleTechniqueFlag.NakedSingle.GetName(App.CurrentCulture),
+					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
 		};
-		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(singleControl, limitedSingle, value => constraint.LimitedSingle = value);
+		EnumBinder<Segmented, SegmentedItem, SingleTechniqueFlag>(singleControl, limitedSingle, value => constraint.LimitedSingle = value);
 
 		//
 		// operator selector
@@ -958,21 +958,21 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryFullHouse", App.CurrentCulture),
-					Tag = SingleTechnique.FullHouse
+					Tag = SingleTechniqueFlag.FullHouse
 				},
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryHiddenSingle", App.CurrentCulture),
-					Tag = SingleTechnique.HiddenSingle
+					Tag = SingleTechniqueFlag.HiddenSingle
 				},
 				new SegmentedItem
 				{
 					Content = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_PrimaryNakedSingle", App.CurrentCulture),
-					Tag = SingleTechnique.NakedSingle
+					Tag = SingleTechniqueFlag.NakedSingle
 				}
 			}
 		};
-		EnumBinder<Segmented, SegmentedItem, SingleTechnique>(techniqueSelectorControl, constraint.Primary, value => constraint.Primary = value);
+		EnumBinder<Segmented, SegmentedItem, SingleTechniqueFlag>(techniqueSelectorControl, constraint.Primary, value => constraint.Primary = value);
 
 		//
 		// allow line control
@@ -984,7 +984,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		);
 		techniqueSelectorControl.SelectionChanged += (sender, _) => allowsLineControl.IsEnabled = sender is Segmented
 		{
-			SelectedItem: SegmentedItem { Tag: SingleTechnique.HiddenSingle }
+			SelectedItem: SegmentedItem { Tag: SingleTechniqueFlag.HiddenSingle }
 		};
 
 		return new()

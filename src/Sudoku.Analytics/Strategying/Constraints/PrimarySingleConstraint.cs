@@ -18,7 +18,7 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	/// Indicates which technique a user likes to finish a grid.
 	/// </summary>
 	[HashCodeMember]
-	public SingleTechnique Primary { get; set; }
+	public SingleTechniqueFlag Primary { get; set; }
 
 	[StringMember(nameof(Primary))]
 	private string SinglePreferString => Primary.GetName();
@@ -44,8 +44,8 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	protected override bool CheckCore(ConstraintCheckingContext context)
 		=> Primary switch
 		{
-			SingleTechnique.FullHouse => context.Grid.CanPrimaryFullHouse(),
-			SingleTechnique.HiddenSingle => context.Grid.CanPrimaryHiddenSingle(AllowsHiddenSingleInLines),
-			SingleTechnique.NakedSingle => context.Grid.CanPrimaryNakedSingle()
+			SingleTechniqueFlag.FullHouse => context.Grid.CanPrimaryFullHouse(),
+			SingleTechniqueFlag.HiddenSingle => context.Grid.CanPrimaryHiddenSingle(AllowsHiddenSingleInLines),
+			SingleTechniqueFlag.NakedSingle => context.Grid.CanPrimaryNakedSingle()
 		};
 }

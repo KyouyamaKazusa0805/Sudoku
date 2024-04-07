@@ -17,7 +17,7 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public SingleTechnique Technique { get; set; }
+	public SingleTechniqueFlag Technique { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]

@@ -35,7 +35,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public SingleTechnique LimitedSingle { get; set; }
+	public SingleTechniqueFlag LimitedSingle { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
@@ -88,7 +88,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 			return false;
 		}
 
-		var maximum = new SortedSet<SingleTechnique>(from step in steps select step.Code.GetSingleTechnique()).Max;
+		var maximum = new SortedSet<SingleTechniqueFlag>(from step in steps select step.Code.GetSingleTechnique()).Max;
 		if (maximum > LimitedSingle)
 		{
 			// The puzzle will use advanced techniques.

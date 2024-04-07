@@ -15,7 +15,7 @@ public static class GridExtensions
 	public static bool CanPrimaryFullHouse(this scoped ref readonly Grid @this)
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.FullHouse })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
 			.Analyze(in @this)
 			.IsSolved;
 
@@ -32,7 +32,7 @@ public static class GridExtensions
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.HiddenSingle, AllowsHiddenSingleInLines = allowHiddenSingleInLine })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.HiddenSingle, AllowsHiddenSingleInLines = allowHiddenSingleInLine })
 			.Analyze(in @this)
 			.IsSolved;
 
@@ -46,7 +46,7 @@ public static class GridExtensions
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechnique.NakedSingle })
+			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.NakedSingle })
 			.Analyze(in @this)
 			.IsSolved;
 }

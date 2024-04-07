@@ -240,24 +240,24 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 							{
 								switch (limited, code, allowLine)
 								{
-									case (SingleTechnique.FullHouse, not Technique.FullHouse, _):
+									case (SingleTechniqueFlag.FullHouse, not Technique.FullHouse, _):
 									{
 										break;
 									}
 									case (_, Technique.FullHouse, _):
 									case (
-										SingleTechnique.HiddenSingle,
+										SingleTechniqueFlag.HiddenSingle,
 										Technique.LastDigit or Technique.CrosshatchingBlock or Technique.HiddenSingleBlock,
 										false
 									):
 									case (
-										SingleTechnique.HiddenSingle,
+										SingleTechniqueFlag.HiddenSingle,
 										Technique.LastDigit
 											or >= Technique.HiddenSingleBlock and <= Technique.HiddenSingleColumn
 											or >= Technique.CrosshatchingBlock and <= Technique.CrosshatchingColumn,
 										true
 									):
-									case (SingleTechnique.NakedSingle, Technique.NakedSingle, _):
+									case (SingleTechniqueFlag.NakedSingle, Technique.NakedSingle, _):
 									{
 										chosenSteps.Add(s);
 										break;

@@ -1178,47 +1178,47 @@
             Indicates the unknown technique.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechnique">
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag">
             <summary>
             Represents a single technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.None">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None">
             <summary>
             Represents none of technique used.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.FullHouse">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.FullHouse">
             <summary>
             Represents full house.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.LastDigit">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.LastDigit">
             <summary>
             Represents last digit.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingle">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle">
             <summary>
             Represents hidden single.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleBlock">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleBlock">
             <summary>
             Represents hidden single in block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleRow">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleRow">
             <summary>
             Represents hidden single in row.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingleColumn">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleColumn">
             <summary>
             Represents hidden single in column.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleTechnique.NakedSingle">
+        <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle">
             <summary>
             Represents naked single.
             </summary>
@@ -4178,7 +4178,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.SingleSubtype,System.Boolean)">
             <summary>
-            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> field.
+            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> field.
             </summary>
             <param name="this">The subtype.</param>
             <param name="subtleValue">
@@ -4192,17 +4192,17 @@
             Gets the attribute.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueExtensions">
+        <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechnique,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechniqueFlag,System.Globalization.CultureInfo)">
             <summary>
-            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>.
+            Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
             </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> instance.</param>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> instance.</param>
             <param name="culture">The culture information.</param>
             <returns>The name of the current technique.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the target technique is out of range.</exception>
@@ -4389,10 +4389,10 @@
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.Technique)">
             <summary>
-            Try to get the corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> for the specified single <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
+            Try to get the corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> for the specified single <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>The corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/> instance.</returns>
+            <returns>The corresponding <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> instance.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the technique is not single.</exception>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetFeature(Sudoku.Analytics.Categorization.Technique)">
@@ -4812,16 +4812,16 @@
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.LimitedSingle">
             <summary>
-            Indicates the preferred single technique. If the value is not (<see cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>)0,
+            Indicates the preferred single technique. If the value is not (<see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>)0,
             the analyzer will ignore the other single technique not related to this field.
             </summary>
             <remarks>
-            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechnique.HiddenSingle"/>,
+            For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
             the analyzer will automatically ignore naked single steps to analyze the grid.
             If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> with
             <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechnique"/>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.Default">

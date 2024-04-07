@@ -144,7 +144,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		Grid taskEntry()
 		{
-			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechnique.FullHouse }];
+			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
 			var hasSymmetryConstraint = constraints.OfType<SymmetryConstraint>() is not [];
 			var a = handlerFullHouse;
 			var b = handlerDefault;

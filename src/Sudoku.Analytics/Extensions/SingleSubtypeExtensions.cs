@@ -15,7 +15,9 @@ public static class SingleSubtypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsUnnecessary(this SingleSubtype @this)
 		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
-		or SingleSubtype.NakedSingle8;
+		or SingleSubtype.NakedSingle8
+		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
+		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220;
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.
@@ -62,7 +64,7 @@ public static class SingleSubtypeExtensions
 	public static Technique GetRelatedTechnique(this SingleSubtype @this) => @this.GetAttribute().RelatedTechnique;
 
 	/// <summary>
-	/// Try to get related <see cref="SingleTechnique"/> field.
+	/// Try to get related <see cref="SingleTechniqueFlag"/> field.
 	/// </summary>
 	/// <param name="this">The subtype.</param>
 	/// <param name="subtleValue">
@@ -71,23 +73,23 @@ public static class SingleSubtypeExtensions
 	/// <returns>The single technique returned.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SingleTechnique GetSingleTechnique(this SingleSubtype @this, bool subtleValue = false)
+	public static SingleTechniqueFlag GetSingleTechnique(this SingleSubtype @this, bool subtleValue = false)
 	{
 		const string block = "Block", row = "Row", column = "Column";
 		return Enum.IsDefined(@this) && @this != SingleSubtype.None
 			? @this.ToString() is var s && s.StartsWith(nameof(Technique.FullHouse))
-				? SingleTechnique.FullHouse
+				? SingleTechniqueFlag.FullHouse
 				: s == nameof(Technique.LastDigit)
-					? subtleValue ? SingleTechnique.LastDigit : SingleTechnique.HiddenSingle
+					? subtleValue ? SingleTechniqueFlag.LastDigit : SingleTechniqueFlag.HiddenSingle
 					: s.StartsWith(block) || s.StartsWith(row) || s.StartsWith(column)
 						? subtleValue
 							? s.StartsWith(block)
-								? SingleTechnique.HiddenSingleBlock
+								? SingleTechniqueFlag.HiddenSingleBlock
 								: s.StartsWith(row)
-									? SingleTechnique.HiddenSingleRow
-									: SingleTechnique.HiddenSingleColumn
-							: SingleTechnique.HiddenSingle
-						: SingleTechnique.NakedSingle
+									? SingleTechniqueFlag.HiddenSingleRow
+									: SingleTechniqueFlag.HiddenSingleColumn
+							: SingleTechniqueFlag.HiddenSingle
+						: SingleTechniqueFlag.NakedSingle
 			: throw new ArgumentOutOfRangeException(nameof(@this));
 	}
 

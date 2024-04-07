@@ -259,21 +259,21 @@ public static class TechniqueExtensions
 	}
 
 	/// <summary>
-	/// Try to get the corresponding <see cref="SingleTechnique"/> for the specified single <see cref="Technique"/>.
+	/// Try to get the corresponding <see cref="SingleTechniqueFlag"/> for the specified single <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>The corresponding <see cref="SingleTechnique"/> instance.</returns>
+	/// <returns>The corresponding <see cref="SingleTechniqueFlag"/> instance.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the technique is not single.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static SingleTechnique GetSingleTechnique(this Technique @this)
+	public static SingleTechniqueFlag GetSingleTechnique(this Technique @this)
 		=> @this switch
 		{
-			Technique.FullHouse => SingleTechnique.FullHouse,
-			Technique.LastDigit => SingleTechnique.LastDigit,
-			Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => SingleTechnique.HiddenSingleBlock,
-			Technique.CrosshatchingRow or Technique.HiddenSingleRow => SingleTechnique.HiddenSingleRow,
-			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => SingleTechnique.HiddenSingleColumn,
-			Technique.NakedSingle => SingleTechnique.NakedSingle,
+			Technique.FullHouse => SingleTechniqueFlag.FullHouse,
+			Technique.LastDigit => SingleTechniqueFlag.LastDigit,
+			Technique.CrosshatchingBlock or Technique.HiddenSingleBlock => SingleTechniqueFlag.HiddenSingleBlock,
+			Technique.CrosshatchingRow or Technique.HiddenSingleRow => SingleTechniqueFlag.HiddenSingleRow,
+			Technique.CrosshatchingColumn or Technique.HiddenSingleColumn => SingleTechniqueFlag.HiddenSingleColumn,
+			Technique.NakedSingle => SingleTechniqueFlag.NakedSingle,
 			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgumentMustBeSingle"))
 		};
 
