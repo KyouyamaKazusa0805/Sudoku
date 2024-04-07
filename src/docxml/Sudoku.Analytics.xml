@@ -21852,26 +21852,42 @@ result ^= expression;
             instances with different types.
             </summary>
         </member>
+        <member name="P:Sudoku.Measuring.Factor.FormulaString">
+            <summary>
+            Represents the string representation of formula.
+            </summary>
+            <remarks>
+            The text can contain placeholders such like <c>{0}</c>, <c>{1}</c>, <c>{2}</c> and so on. The values will be replaced
+            with the fact parameter name from property <see cref="P:Sudoku.Measuring.Factor.Parameters"/> in runtime.
+            </remarks>
+            <seealso cref="P:Sudoku.Measuring.Factor.Parameters"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Parameters">
+            <summary>
+            Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that binds with a real instance property
+            inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
+            with the current factor and can be calculated its rating.
+            </summary>
+            <seealso cref="T:System.Reflection.PropertyInfo"/>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+        </member>
         <member name="P:Sudoku.Measuring.Factor.Formula">
             <summary>
             Provides with a formula that calculates for the result, unscaled.
             </summary>
-            <remarks>
-            <para>
-            Please note that the return type of this property is <see cref="T:System.Linq.Expressions.Expression`1"/>,
-            meaning it is built via LINQ querying mechanism called
-            "<see href="https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/">Expression Trees</see>",
-            allowing building C# expressions dynamically.
-            </para>
-            <para>
-            The rule for constructing the property value is simple: just use lambda expressions. By creating a lambda expression,
-            you can assign the property with the target value, with default scale value 1. For example:
-            <code><![CDATA[
-            public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize);
-            ]]></code>
-            </para>
-            </remarks>
-            <seealso cref="T:System.Linq.Expressions.Expression`1"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ScaleUnitLength">
+            <summary>
+            Try to get the scale unit length from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
+            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ScaleUnitFormatString">
+            <summary>
+            Try to get the scale unit from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
         </member>
         <member name="M:Sudoku.Measuring.Factor.GetName(System.Globalization.CultureInfo)">
             <summary>
@@ -21885,6 +21901,15 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Measuring.Factor.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.ToString(Sudoku.Analytics.Step,System.Globalization.CultureInfo)">
+            <summary>
+            Calculates the rating from the specified <see cref="T:Sudoku.Analytics.Step"/> instance, and return the string representation
+            of the rating text.
+            </summary>
+            <param name="step">The step to be calculated.</param>
+            <param name="culture">The culture to be used.</param>
+            <returns>The string representation of final rating text.</returns>
         </member>
         <member name="T:Sudoku.Measuring.FactorCollection">
             <summary>
@@ -21994,127 +22019,84 @@ result ^= expression;
             Represents a factor that describes which locked case a hidden subset is.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
-            <param name="isLocked">Indicates whether the hidden subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
-            <param name="isLocked">Indicates whether the hidden subset is locked.</param>
         </member>
-        <member name="F:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.SizeValueArray">
-            <summary>
-            Indicates the size value array.
-            </summary>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Parameters">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Size">
-            <summary>
-            The generated property declaration for parameter <c>size</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.IsLocked">
-            <summary>
-            The generated property declaration for parameter <c>isLocked</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor">
             <summary>
             Represents the size factor used in hidden subsets.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents the size factor used in hidden subsets.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
         </member>
-        <member name="F:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.SizeValueArray">
-            <summary>
-            Indicates the size value array to be used.
-            </summary>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Parameters">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Size">
-            <summary>
-            The generated property declaration for parameter <c>size</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a naked subset is.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
-            <param name="isLocked">Indicates whether the naked subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents a factor that describes which locked case a naked subset is.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
-            <param name="isLocked">Indicates whether the naked subset is locked.</param>
         </member>
-        <member name="F:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.SizeValueArrayWhenTrue">
-            <summary>
-            Indicates the size value array used when <see cref="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked"/> is <see langword="true"/>.
-            </summary>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.FormulaString">
+            <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.SizeValueWhenFalse">
-            <summary>
-            Indicates the size value used when <see cref="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked"/> is <see langword="false"/>.
-            </summary>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Parameters">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Size">
-            <summary>
-            The generated property declaration for parameter <c>size</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked">
-            <summary>
-            The generated property declaration for parameter <c>isLocked</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetSizeFactor">
             <summary>
             Represents the size factor used in naked subsets.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents the size factor used in naked subsets.
             </summary>
             <param name="options"><inheritdoc/></param>
-            <param name="size"><inheritdoc/></param>
         </member>
-        <member name="F:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.SizeValueArray">
-            <summary>
-            Indicates the size value array to be used.
-            </summary>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Parameters">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Size">
-            <summary>
-            The generated property declaration for parameter <c>size</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">
             <summary>
@@ -22925,6 +22907,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_SashimiPropertyInvalid">
             <summary>
               Looks up a localized string similar to Sashimi property is invalid..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_ScaleValueCannotBeNegative">
+            <summary>
+              Looks up a localized string similar to Scale value cannot be negative..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_StepContainsNoConclusions">

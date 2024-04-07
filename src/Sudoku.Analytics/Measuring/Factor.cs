@@ -15,28 +15,55 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>
 	/// instances with different types.
 	/// </summary>
-	public virtual string DistinctKey => GetType().Name;
+	public string DistinctKey => GetType().Name;
+
+	/// <summary>
+	/// Represents the string representation of formula.
+	/// </summary>
+	/// <remarks>
+	/// The text can contain placeholders such like <c>{0}</c>, <c>{1}</c>, <c>{2}</c> and so on. The values will be replaced
+	/// with the fact parameter name from property <see cref="Parameters"/> in runtime.
+	/// </remarks>
+	/// <seealso cref="Parameters"/>
+	[StringSyntax(StringSyntaxAttribute.CompositeFormat)]
+	public abstract string FormulaString { get; }
+
+	/// <summary>
+	/// Indicates a <see cref="PropertyInfo"/> instance that binds with a real instance property
+	/// inside a <see cref="Step"/> instance, representing the target step type is compatible
+	/// with the current factor and can be calculated its rating.
+	/// </summary>
+	/// <seealso cref="PropertyInfo"/>
+	/// <seealso cref="Step"/>
+	public abstract PropertyInfo[] Parameters { get; }
 
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.
 	/// </summary>
-	/// <remarks>
-	/// <para>
-	/// Please note that the return type of this property is <see cref="Expression{TDelegate}"/>,
-	/// meaning it is built via LINQ querying mechanism called
-	/// "<see href="https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/">Expression Trees</see>",
-	/// allowing building C# expressions dynamically.
-	/// </para>
-	/// <para>
-	/// The rule for constructing the property value is simple: just use lambda expressions. By creating a lambda expression,
-	/// you can assign the property with the target value, with default scale value 1. For example:
-	/// <code><![CDATA[
-	/// public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize);
-	/// ]]></code>
-	/// </para>
-	/// </remarks>
-	/// <seealso cref="Expression{TDelegate}"/>
-	public abstract Expression<Func<decimal>> Formula { get; }
+	public abstract Func<Step, int?> Formula { get; }
+
+	/// <summary>
+	/// Try to get the scale unit length from the <see cref="Scale"/> value.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the scale value is negative.</exception>
+	/// <seealso cref="Scale"/>
+	protected int ScaleUnitLength
+		=> Scale switch
+		{
+			< 0 => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ScaleValueCannotBeNegative")),
+			0 => 0, // Special case: return 0 if scale is 0.
+			_ when Scale.ToString() is var str && str.IndexOf('.') is var posOfPeriod => posOfPeriod switch
+			{
+				-1 => 0, // This is an integer (no period token is found). Return 0.
+				_ => str.Length - posOfPeriod - 1
+			}
+		};
+
+	/// <summary>
+	/// Try to get the scale unit from the <see cref="Scale"/> value.
+	/// </summary>
+	/// <seealso cref="Scale"/>
+	protected string? ScaleUnitFormatString => ScaleUnitLength == 0 ? null : $"#.{new('0', ScaleUnitLength)}";
 
 
 	/// <summary>
@@ -44,7 +71,7 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	/// </summary>
 	/// <param name="culture">The culture.</param>
 	/// <returns>The name of the factor.</returns>
-	public virtual string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{DistinctKey}", culture);
+	public string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{DistinctKey}", culture);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -52,5 +79,20 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => $"{GetName(culture)}: {Formula}";
+	public string ToString(CultureInfo? culture = null) => $"{GetName(culture)}:{Environment.NewLine}{FormulaString}";
+
+	/// <summary>
+	/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
+	/// of the rating text.
+	/// </summary>
+	/// <param name="step">The step to be calculated.</param>
+	/// <param name="culture">The culture to be used.</param>
+	/// <returns>The string representation of final rating text.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(Step step, CultureInfo? culture = null)
+		=> Formula(step) switch
+		{
+			{ } result => $"{GetName(culture)}: {(result * Scale).ToString(ScaleUnitFormatString)}",
+			_ => string.Empty // Failed to calculate because the invalid step data.
+		};
 }

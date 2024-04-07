@@ -4,20 +4,35 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes which locked case a hidden subset is.
 /// </summary>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="size"><inheritdoc/></param>
-/// <param name="isLocked">Indicates whether the hidden subset is locked.</param>
-public sealed partial class HiddenSubsetIsLockedFactor(
-	StepSearcherOptions options,
-	[PrimaryConstructorParameter] int size,
-	[PrimaryConstructorParameter] bool isLocked
-) : Factor(options), ISizeTrait
+public sealed class HiddenSubsetIsLockedFactor(StepSearcherOptions options) : Factor(options)
 {
-	/// <summary>
-	/// Indicates the size value array.
-	/// </summary>
-	private static readonly int[] SizeValueArray = [0, 0, -12, -13];
-
+	/// <inheritdoc/>
+	public override string FormulaString
+		=> """
+		({0}, {1}) switch
+		{
+			(true, 2) => -12,
+			(true, 3) => -13,
+			_ => 0
+		}
+		""";
 
 	/// <inheritdoc/>
-	public override Expression<Func<decimal>> Formula => () => IsLocked ? SizeValueArray[Size] : 0;
+	public override PropertyInfo[] Parameters
+		=> [
+			typeof(HiddenSubsetStep).GetProperty(nameof(HiddenSubsetStep.IsLocked))!,
+			typeof(HiddenSubsetStep).GetProperty(nameof(HiddenSubsetStep.Size))!
+		];
+
+	/// <inheritdoc/>
+	public override Func<Step, int?> Formula
+		=> static step => step switch
+		{
+			HiddenSubsetStep { IsLocked: var isLocked, Size: var size } => isLocked switch
+			{
+				true => size switch { 2 => -12, 3 => -13 },
+				_ => 0
+			},
+			_ => null
+		};
 }

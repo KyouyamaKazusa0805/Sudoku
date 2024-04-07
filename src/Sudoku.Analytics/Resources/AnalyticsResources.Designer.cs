@@ -1411,6 +1411,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Scale value cannot be negative..
+        /// </summary>
+        public static string ErrorInfo_ScaleValueCannotBeNegative {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ScaleValueCannotBeNegative", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The step doesn&apos;t contain any conclusions, which is disallowed in API. Please report the message to the author..
         /// </summary>
         public static string ErrorInfo_StepContainsNoConclusions {

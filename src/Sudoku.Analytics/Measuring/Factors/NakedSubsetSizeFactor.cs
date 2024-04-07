@@ -4,17 +4,27 @@ namespace Sudoku.Measuring.Factors;
 /// Represents the size factor used in naked subsets.
 /// </summary>
 /// <param name="options"><inheritdoc/></param>
-/// <param name="size"><inheritdoc/></param>
-public sealed partial class NakedSubsetSizeFactor(StepSearcherOptions options, [PrimaryConstructorParameter] int size) :
-	Factor(options),
-	ISizeTrait
+public sealed class NakedSubsetSizeFactor(StepSearcherOptions options) : Factor(options)
 {
-	/// <summary>
-	/// Indicates the size value array to be used.
-	/// </summary>
-	private static readonly int[] SizeValueArray = [0, 0, 0, 6, 20];
-
+	/// <inheritdoc/>
+	public override string FormulaString
+		=> """
+		{0} switch
+		{
+			2 => 0,
+			3 => 6,
+			4 => 20
+		}
+		""";
 
 	/// <inheritdoc/>
-	public override Expression<Func<decimal>> Formula => () => SizeValueArray[Size];
+	public override PropertyInfo[] Parameters => [typeof(NakedSubsetStep).GetProperty(nameof(NakedSubsetStep.Size))!];
+
+	/// <inheritdoc/>
+	public override Func<Step, int?> Formula
+		=> static step => step switch
+		{
+			NakedSubsetStep { Size: var size } => size switch { 2 => 0, 3 => 6, 4 => 20 },
+			_ => null
+		};
 }

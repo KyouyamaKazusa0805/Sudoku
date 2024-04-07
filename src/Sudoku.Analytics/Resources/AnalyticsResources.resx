@@ -2961,4 +2961,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
     <value>Size in hidden subset</value>
   </data>
+  <data name="ErrorInfo_ScaleValueCannotBeNegative" xml:space="preserve">
+    <value>Scale value cannot be negative.</value>
+  </data>
 </root>
