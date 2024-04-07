@@ -10,12 +10,12 @@ public sealed class NakedSubsetIsLockedFactor(StepSearcherOptions options) : Fac
 	public override string FormulaString
 		=> """
 		({0}, {1}) switch
-		{
+		{{
 			(true, 2) => -10,
 			(true, 3) => -11,
 			(false, _) => 1,
 			_ => 0
-		}
+		}}
 		""";
 
 	/// <inheritdoc/>

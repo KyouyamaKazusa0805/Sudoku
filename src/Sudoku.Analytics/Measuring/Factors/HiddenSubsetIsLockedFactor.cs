@@ -10,11 +10,11 @@ public sealed class HiddenSubsetIsLockedFactor(StepSearcherOptions options) : Fa
 	public override string FormulaString
 		=> """
 		({0}, {1}) switch
-		{
+		{{
 			(true, 2) => -12,
 			(true, 3) => -13,
 			_ => 0
-		}
+		}}
 		""";
 
 	/// <inheritdoc/>

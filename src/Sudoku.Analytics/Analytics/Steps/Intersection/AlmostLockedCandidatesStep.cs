@@ -48,6 +48,10 @@ public sealed partial class AlmostLockedCandidatesStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr]), new(ChineseLanguage, [DigitsStr, BaseCellsStr, TargetCellsStr])];
 
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new AlmostLockedCandidatesSizeFactor(Options), new AlmostLockedCandidatesValueCellExistenceFactor(Options)];
+
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
 	private string BaseCellsStr => Options.Converter.CellConverter(BaseCells);

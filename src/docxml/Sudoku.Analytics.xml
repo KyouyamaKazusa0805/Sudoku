@@ -16601,6 +16601,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Factors">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask">
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.
@@ -22003,6 +22006,52 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
+            <summary>
+            Represents a factor that measures size property for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures size property for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Parameters">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor">
+            <summary>
+            Represents a factor that measures value cell existence for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures value cell existence for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Parameters">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
             <summary>

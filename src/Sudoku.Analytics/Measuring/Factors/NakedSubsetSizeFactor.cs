@@ -10,11 +10,11 @@ public sealed class NakedSubsetSizeFactor(StepSearcherOptions options) : Factor(
 	public override string FormulaString
 		=> """
 		{0} switch
-		{
+		{{
 			2 => 0,
 			3 => 6,
 			4 => 20
-		}
+		}}
 		""";
 
 	/// <inheritdoc/>
