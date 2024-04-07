@@ -3,12 +3,13 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
 /// </summary>
-public abstract class Factor : ICultureFormattable
+/// <param name="options">Indiates the options instance to be used for passing diffculty rating scale value.</param>
+public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 {
 	/// <summary>
 	/// Indicates the scale value to be set. The value will be used by scaling formula. By default, the value will be 0.1.
 	/// </summary>
-	public decimal Scale { get; protected internal set; } = .1M;
+	public decimal Scale { get; } = options.DifficultyRatingScale;
 
 	/// <summary>
 	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>

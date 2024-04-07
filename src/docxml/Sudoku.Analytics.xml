@@ -21833,6 +21833,13 @@ result ^= expression;
             <summary>
             Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
             </summary>
+            <param name="options">Indiates the options instance to be used for passing diffculty rating scale value.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
+            </summary>
+            <param name="options">Indiates the options instance to be used for passing diffculty rating scale value.</param>
         </member>
         <member name="P:Sudoku.Measuring.Factor.Scale">
             <summary>
@@ -21900,11 +21907,6 @@ result ^= expression;
             Initializes a <see cref="T:Sudoku.Measuring.FactorCollection"/> instance via initial elements.
             </summary>
             <param name="factors">The factors.</param>
-        </member>
-        <member name="P:Sudoku.Measuring.FactorCollection.Scale">
-            <summary>
-            Indicates the scale value of the factor.
-            </summary>
         </member>
         <member name="P:Sudoku.Measuring.FactorCollection.Length">
             <summary>
@@ -21987,23 +21989,19 @@ result ^= expression;
         <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:Sudoku.Measuring.FactorCollection._scale">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Measuring.FactorCollection.Scale"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Measuring.FactorCollection.Scale"/>
-        </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
             <param name="isLocked">Indicates whether the hidden subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.#ctor(System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Boolean)">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
             <param name="isLocked">Indicates whether the hidden subset is locked.</param>
         </member>
@@ -22029,12 +22027,14 @@ result ^= expression;
             <summary>
             Represents the size factor used in hidden subsets.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.#ctor(System.Int32)">
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
             <summary>
             Represents the size factor used in hidden subsets.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
         </member>
         <member name="F:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.SizeValueArray">
@@ -22054,13 +22054,15 @@ result ^= expression;
             <summary>
             Represents a factor that describes which locked case a naked subset is.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
             <param name="isLocked">Indicates whether the naked subset is locked.</param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.#ctor(System.Int32,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Nullable{System.Boolean})">
             <summary>
             Represents a factor that describes which locked case a naked subset is.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
             <param name="isLocked">Indicates whether the naked subset is locked.</param>
         </member>
@@ -22091,12 +22093,14 @@ result ^= expression;
             <summary>
             Represents the size factor used in naked subsets.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.#ctor(System.Int32)">
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
             <summary>
             Represents the size factor used in naked subsets.
             </summary>
+            <param name="options"><inheritdoc/></param>
             <param name="size"><inheritdoc/></param>
         </member>
         <member name="F:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.SizeValueArray">

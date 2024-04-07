@@ -28,23 +28,6 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 
 
 	/// <summary>
-	/// Indicates the scale value of the factor.
-	/// </summary>
-	[ImplicitField]
-	public decimal Scale
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _scale;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_scale = value;
-			ForEach(factor => factor.Scale = value);
-		}
-	}
-
-	/// <summary>
 	/// Indicates the length of elements stored in this collection.
 	/// </summary>
 	public int Length

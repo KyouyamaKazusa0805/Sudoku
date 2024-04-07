@@ -3,12 +3,14 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes which locked case a naked subset is.
 /// </summary>
+/// <param name="options"><inheritdoc/></param>
 /// <param name="size"><inheritdoc/></param>
 /// <param name="isLocked">Indicates whether the naked subset is locked.</param>
 public sealed partial class NakedSubsetIsLockedFactor(
+	StepSearcherOptions options,
 	[PrimaryConstructorParameter] int size,
 	[PrimaryConstructorParameter] bool? isLocked
-) : Factor, ISizeTrait
+) : Factor(options), ISizeTrait
 {
 	/// <summary>
 	/// Indicates the size value array used when <see cref="IsLocked"/> is <see langword="true"/>.
