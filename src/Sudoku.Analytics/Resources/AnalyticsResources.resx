@@ -2949,4 +2949,16 @@ Error grid: '{0:#}'</value>
   <data name="LastingConstraint" xml:space="preserve">
     <value>Lasting: a {0} must hold a lasting of {1} {2} empty cells</value>
   </data>
+  <data name="Factor_HiddenSubsetIsLockedFactor" xml:space="preserve">
+    <value>Locked type in hidden subset</value>
+  </data>
+  <data name="Factor_NakedSubsetIsLockedFactor" xml:space="preserve">
+    <value>Locked type in naked subset</value>
+  </data>
+  <data name="Factor_NakedSubsetSizeFactor" xml:space="preserve">
+    <value>Size in naked subset</value>
+  </data>
+  <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
+    <value>Size in hidden subset</value>
+  </data>
 </root>

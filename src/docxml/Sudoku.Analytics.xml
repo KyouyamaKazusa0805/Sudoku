@@ -21842,9 +21842,15 @@ result ^= expression;
             Indicates the scale value to be set. The value will be used by scaling formula. By default, the value will be 0.1.
             </summary>
         </member>
+        <member name="P:Sudoku.Measuring.Factor.DistinctKey">
+            <summary>
+            Indicates the name of the factor that can be used by telling with multple <see cref="T:Sudoku.Measuring.Factor"/>
+            instances with different types.
+            </summary>
+        </member>
         <member name="P:Sudoku.Measuring.Factor.Formula">
             <summary>
-            Provides with a formula that calculates for the result.
+            Provides with a formula that calculates for the result, unscaled.
             </summary>
             <remarks>
             <para>
@@ -21855,9 +21861,9 @@ result ^= expression;
             </para>
             <para>
             The rule for constructing the property value is simple: just use lambda expressions. By creating a lambda expression,
-            you can assign the property with the target value. For example:
+            you can assign the property with the target value, with default scale value 1. For example:
             <code><![CDATA[
-            public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize) * Scale;
+            public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize);
             ]]></code>
             </para>
             </remarks>
@@ -22012,9 +22018,6 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.GetName(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.IsLocked">
             <summary>
             The generated property declaration for parameter <c>isLocked</c>.
@@ -22038,9 +22041,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.GetName(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Size">
@@ -22075,9 +22075,6 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.GetName(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked">
             <summary>
             The generated property declaration for parameter <c>isLocked</c>.
@@ -22101,9 +22098,6 @@ result ^= expression;
             </summary>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.GetName(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Size">
@@ -23192,6 +23186,26 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_WingSize">
             <summary>
               Looks up a localized string similar to Wing branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetIsLockedFactor">
+            <summary>
+              Looks up a localized string similar to Locked type in hidden subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size in hidden subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetIsLockedFactor">
+            <summary>
+              Looks up a localized string similar to Locked type in naked subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size in naked subset.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">

@@ -1,4 +1,4 @@
-﻿namespace Sudoku.Measuring.Factors;
+namespace Sudoku.Measuring.Factors;
 
 /// <summary>
 /// Represents the size factor used in naked subsets.
@@ -13,9 +13,5 @@ public sealed partial class NakedSubsetSizeFactor([PrimaryConstructorParameter] 
 
 
 	/// <inheritdoc/>
-	public override Expression<Func<decimal>> Formula => () => SizeValueArray[Size] * Scale;
-
-
-	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture = null) => throw new NotImplementedException();
+	public override Expression<Func<decimal>> Formula => () => SizeValueArray[Size];
 }

@@ -11,7 +11,13 @@ public abstract class Factor : ICultureFormattable
 	public decimal Scale { get; protected internal set; } = .1M;
 
 	/// <summary>
-	/// Provides with a formula that calculates for the result.
+	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>
+	/// instances with different types.
+	/// </summary>
+	public virtual string DistinctKey => GetType().Name;
+
+	/// <summary>
+	/// Provides with a formula that calculates for the result, unscaled.
 	/// </summary>
 	/// <remarks>
 	/// <para>
@@ -22,9 +28,9 @@ public abstract class Factor : ICultureFormattable
 	/// </para>
 	/// <para>
 	/// The rule for constructing the property value is simple: just use lambda expressions. By creating a lambda expression,
-	/// you can assign the property with the target value. For example:
+	/// you can assign the property with the target value, with default scale value 1. For example:
 	/// <code><![CDATA[
-	/// public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize) * Scale;
+	/// public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize);
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
@@ -37,7 +43,7 @@ public abstract class Factor : ICultureFormattable
 	/// </summary>
 	/// <param name="culture">The culture.</param>
 	/// <returns>The name of the factor.</returns>
-	public abstract string GetName(CultureInfo? culture = null);
+	public virtual string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{DistinctKey}", culture);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

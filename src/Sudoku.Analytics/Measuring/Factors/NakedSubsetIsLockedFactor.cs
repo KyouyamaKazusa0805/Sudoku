@@ -20,13 +20,5 @@ public sealed partial class NakedSubsetIsLockedFactor(int size, [PrimaryConstruc
 
 	/// <inheritdoc/>
 	public override Expression<Func<decimal>> Formula
-		=> () => (
-			IsLocked == new bool?(true)
-				? SizeValueArrayWhenTrue[Size]
-				: IsLocked == new bool?(false) ? SizeValueWhenFalse : 0
-		) * Scale;
-
-
-	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture = null) => throw new NotImplementedException();
+		=> () => IsLocked == true ? SizeValueArrayWhenTrue[Size] : IsLocked == false ? SizeValueWhenFalse : 0;
 }

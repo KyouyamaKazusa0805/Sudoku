@@ -14,9 +14,5 @@ public sealed partial class HiddenSubsetIsLockedFactor(int size, [PrimaryConstru
 
 
 	/// <inheritdoc/>
-	public override Expression<Func<decimal>> Formula => () => (IsLocked ? SizeValueArray[Size] : 0) * Scale;
-
-
-	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture = null) => throw new NotImplementedException();
+	public override Expression<Func<decimal>> Formula => () => IsLocked ? SizeValueArray[Size] : 0;
 }

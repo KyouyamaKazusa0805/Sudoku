@@ -1870,6 +1870,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked type in hidden subset.
+        /// </summary>
+        public static string Factor_HiddenSubsetIsLockedFactor {
+            get {
+                return ResourceManager.GetString("Factor_HiddenSubsetIsLockedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size in hidden subset.
+        /// </summary>
+        public static string Factor_HiddenSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_HiddenSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Locked type in naked subset.
+        /// </summary>
+        public static string Factor_NakedSubsetIsLockedFactor {
+            get {
+                return ResourceManager.GetString("Factor_NakedSubsetIsLockedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size in naked subset.
+        /// </summary>
+        public static string Factor_NakedSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_NakedSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to false.
         /// </summary>
         public static string FalseKeyword {
