@@ -33,7 +33,7 @@ internal static class AnalyzeConversion
 			{ } integerValue => integerValue / pref.RatingScale,
 			_ => step.Difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue / pref.RatingScale
 		};
-		return resultDifficulty.ToString(GetFormatOfDifficulty(resultDifficulty));
+		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(resultDifficulty));
 	}
 
 	public static string GetDifficultyRatingText_Hodoku(Step step)
@@ -162,7 +162,7 @@ internal static class AnalyzeConversion
 
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = difficultyValue.ToString(GetFormatOfDifficulty(difficultyValue)) });
+			result.Add(new Run { Text = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(difficultyValue)) });
 		}
 
 		if (displayKind.HasFlag(StepTooltipDisplayItems.ExtraDifficultyCases))
@@ -181,7 +181,7 @@ internal static class AnalyzeConversion
 						{ } integerValue => integerValue,
 						_ => baseDifficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue
 					} / pref.RatingScale;
-					var baseDifficultyString = baseDifficultyValue.ToString(GetFormatOfDifficulty(baseDifficultyValue));
+					var baseDifficultyString = baseDifficultyValue.ToString(FactorMarshal.GetScaleFormatString(baseDifficultyValue));
 
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
@@ -225,7 +225,7 @@ internal static class AnalyzeConversion
 				var factor = factors[i];
 				var extraDifficultyName = factor.ToString(App.CurrentCulture);
 				var difficultyValue = factor.Formula(step)!.Value * scale;
-				var difficultyValueString = difficultyValue.ToString(factor.ScaleUnitFormatString);
+				var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(factor.Scale));
 				yield return new Run { Text = $"{extraDifficultyName}{colon}+{difficultyValueString}" };
 
 				if (i != factors.Length - 1)
@@ -234,53 +234,5 @@ internal static class AnalyzeConversion
 				}
 			}
 		}
-	}
-
-	/// <summary>
-	/// Try to get the format string via the decimal value.
-	/// </summary>
-	/// <param name="scaling">The scaling value.</param>
-	/// <returns>
-	/// The format string. The value will be:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>The number of digits after period token '<c>.</c>'</term>
-	/// <description>Result format string</description>
-	/// </listheader>
-	/// <item>
-	/// <term>2</term>
-	/// <description>"<c>0.00</c>"</description>
-	/// </item>
-	/// <item>
-	/// <term>1</term>
-	/// <description>"<c>0.0</c>"</description>
-	/// </item>
-	/// <item>
-	/// <term>0 or others</term>
-	/// <description>"<c>0</c>"</description>
-	/// </item>
-	/// </list>
-	/// </returns>
-	public static string GetFormatOfDifficulty(decimal scaling)
-		=> GetScaleUnit(scaling) switch { -1 or 0 => "0", 1 => "0.0", 2 => "0.00", _ => "0.00" };
-
-	/// <summary>
-	/// Try to get the scale unit via the decimal value.
-	/// </summary>
-	/// <param name="scaling">The scaling value.</param>
-	/// <returns>The scale unit value.</returns>
-	public static int GetScaleUnit(decimal scaling)
-	{
-		// A little trick is to get the length of the string, and remove the digits before period.
-		// E.g.
-		//    4.321 is of length 5 ('4', '.', '3', '2' and '1')
-		//             ↓
-		//      Index of '.' = 1
-		//             ↓
-		//   Result = 5 - 1 - 1 = 3
-		var s = scaling.ToString();
-		var length = s.Length;
-		var pos = s.IndexOf('.'); // 'pos' can be -1.
-		return pos == -1 ? -1 : length - pos - 1;
 	}
 }
