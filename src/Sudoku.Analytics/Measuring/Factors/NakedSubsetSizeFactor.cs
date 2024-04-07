@@ -18,7 +18,10 @@ public sealed class NakedSubsetSizeFactor(StepSearcherOptions options) : Factor(
 		""";
 
 	/// <inheritdoc/>
-	public override PropertyInfo[] Parameters => [typeof(NakedSubsetStep).GetProperty(nameof(NakedSubsetStep.Size))!];
+	public override string[] ParameterNames => [nameof(NakedSubsetStep.Size)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(NakedSubsetStep);
 
 	/// <inheritdoc/>
 	public override Func<Step, int?> Formula

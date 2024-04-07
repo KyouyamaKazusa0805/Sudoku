@@ -21855,14 +21855,24 @@ result ^= expression;
             </remarks>
             <seealso cref="P:Sudoku.Measuring.Factor.Parameters"/>
         </member>
-        <member name="P:Sudoku.Measuring.Factor.Parameters">
+        <member name="P:Sudoku.Measuring.Factor.ParameterNames">
             <summary>
-            Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that binds with a real instance property
-            inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
+            Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
+            stored inside a <see cref="T:Sudoku.Analytics.Step"/> instance, representing the target step type is compatible
             with the current factor and can be calculated its rating.
             </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ReflectedStepType">
+            <summary>
+            Indicates the relied <see cref="T:System.Type"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Parameters">
+            <summary>
+            Indicates a <see cref="T:System.Reflection.PropertyInfo"/> instance that creates from property <see cref="P:Sudoku.Measuring.Factor.ParameterNames"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Measuring.Factor.ParameterNames"/>
             <seealso cref="T:System.Reflection.PropertyInfo"/>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
         </member>
         <member name="P:Sudoku.Measuring.Factor.Formula">
             <summary>
@@ -22024,7 +22034,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Formula">
@@ -22047,7 +22060,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
@@ -22068,7 +22084,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
@@ -22089,7 +22108,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
@@ -22110,7 +22132,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
@@ -22131,7 +22156,10 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.FormulaString">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Parameters">
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.ReflectedStepType">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">

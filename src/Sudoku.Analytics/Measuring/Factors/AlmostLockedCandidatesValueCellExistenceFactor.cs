@@ -19,11 +19,11 @@ public sealed class AlmostLockedCandidatesValueCellExistenceFactor(StepSearcherO
 		""";
 
 	/// <inheritdoc/>
-	public override PropertyInfo[] Parameters
-		=> [
-			typeof(AlmostLockedCandidatesStep).GetProperty(nameof(AlmostLockedCandidatesStep.HasValueCell))!,
-			typeof(AlmostLockedCandidatesStep).GetProperty(nameof(AlmostLockedCandidatesStep.Size))!
-		];
+	public override string[] ParameterNames
+		=> [nameof(AlmostLockedCandidatesStep.HasValueCell), nameof(AlmostLockedCandidatesStep.Size)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(AlmostLockedCandidatesStep);
 
 	/// <inheritdoc/>
 	public override Func<Step, int?> Formula

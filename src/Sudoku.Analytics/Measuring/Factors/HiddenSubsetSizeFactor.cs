@@ -18,7 +18,10 @@ public sealed class HiddenSubsetSizeFactor(StepSearcherOptions options) : Factor
 		""";
 
 	/// <inheritdoc/>
-	public override PropertyInfo[] Parameters => [typeof(HiddenSubsetStep).GetProperty(nameof(HiddenSubsetStep.Size))!];
+	public override string[] ParameterNames => [nameof(HiddenSubsetStep.Size)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(HiddenSubsetStep);
 
 	/// <inheritdoc/>
 	public override Func<Step, int?> Formula

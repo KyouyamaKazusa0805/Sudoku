@@ -19,11 +19,10 @@ public sealed class NakedSubsetIsLockedFactor(StepSearcherOptions options) : Fac
 		""";
 
 	/// <inheritdoc/>
-	public override PropertyInfo[] Parameters
-		=> [
-			typeof(NakedSubsetStep).GetProperty(nameof(NakedSubsetStep.IsLocked))!,
-			typeof(NakedSubsetStep).GetProperty(nameof(NakedSubsetStep.Size))!
-		];
+	public override string[] ParameterNames => [nameof(NakedSubsetStep.IsLocked), nameof(NakedSubsetStep.Size)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(NakedSubsetStep);
 
 	/// <inheritdoc/>
 	public override Func<Step, int?> Formula

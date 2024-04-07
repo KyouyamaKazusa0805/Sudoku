@@ -29,13 +29,23 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	public abstract string FormulaString { get; }
 
 	/// <summary>
-	/// Indicates a <see cref="PropertyInfo"/> instance that binds with a real instance property
-	/// inside a <see cref="Step"/> instance, representing the target step type is compatible
+	/// Indicates a list of <see cref="string"/> instances that binds with real instance properties
+	/// stored inside a <see cref="Step"/> instance, representing the target step type is compatible
 	/// with the current factor and can be calculated its rating.
 	/// </summary>
+	public abstract string[] ParameterNames { get; }
+
+	/// <summary>
+	/// Indicates the relied <see cref="Type"/> instance.
+	/// </summary>
+	public abstract Type ReflectedStepType { get; }
+
+	/// <summary>
+	/// Indicates a <see cref="PropertyInfo"/> instance that creates from property <see cref="ParameterNames"/>.
+	/// </summary>
+	/// <seealso cref="ParameterNames"/>
 	/// <seealso cref="PropertyInfo"/>
-	/// <seealso cref="Step"/>
-	public abstract PropertyInfo[] Parameters { get; }
+	public PropertyInfo[] Parameters => from parameterName in ParameterNames select ReflectedStepType.GetProperty(parameterName)!;
 
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.

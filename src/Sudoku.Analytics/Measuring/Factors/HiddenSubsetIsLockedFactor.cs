@@ -18,11 +18,10 @@ public sealed class HiddenSubsetIsLockedFactor(StepSearcherOptions options) : Fa
 		""";
 
 	/// <inheritdoc/>
-	public override PropertyInfo[] Parameters
-		=> [
-			typeof(HiddenSubsetStep).GetProperty(nameof(HiddenSubsetStep.IsLocked))!,
-			typeof(HiddenSubsetStep).GetProperty(nameof(HiddenSubsetStep.Size))!
-		];
+	public override string[] ParameterNames => [nameof(HiddenSubsetStep.IsLocked), nameof(HiddenSubsetStep.Size)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(HiddenSubsetStep);
 
 	/// <inheritdoc/>
 	public override Func<Step, int?> Formula
