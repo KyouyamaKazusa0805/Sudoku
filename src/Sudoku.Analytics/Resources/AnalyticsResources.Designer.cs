@@ -1888,6 +1888,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size in almost locked candidates.
+        /// </summary>
+        public static string Factor_AlmostLockedCandidatesSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_AlmostLockedCandidatesSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Value cell existence in almost locked candidates.
+        /// </summary>
+        public static string Factor_AlmostLockedCandidatesValueCellExistenceFactor {
+            get {
+                return ResourceManager.GetString("Factor_AlmostLockedCandidatesValueCellExistenceFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in hidden subset.
         /// </summary>
         public static string Factor_HiddenSubsetIsLockedFactor {

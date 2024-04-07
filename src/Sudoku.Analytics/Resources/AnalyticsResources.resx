@@ -2967,4 +2967,10 @@ Error grid: '{0:#}'</value>
   <data name="ErrorInfo_TechiqueIsNotSupported" xml:space="preserve">
     <value>The specified technique is not supported.</value>
   </data>
+  <data name="Factor_AlmostLockedCandidatesSizeFactor" xml:space="preserve">
+    <value>Size in almost locked candidates</value>
+  </data>
+  <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
+    <value>Value cell existence in almost locked candidates</value>
+  </data>
 </root>

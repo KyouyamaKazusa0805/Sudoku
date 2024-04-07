@@ -47,13 +47,6 @@ public sealed partial class HiddenSubsetStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
-			new(ExtraDifficultyFactorNames.Locked, IsLocked switch { true => Size switch { 2 => -1.2M, 3 => -1.3M }, _ => 0 })
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [DigitStr, HouseStr])];
 

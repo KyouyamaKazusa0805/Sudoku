@@ -16595,9 +16595,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -18167,9 +18164,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -18238,9 +18232,6 @@ if (student is (name: var name, age: >= 18))
             </param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolationParts">
@@ -23239,6 +23230,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ExtraDifficultyFactorNames_WingSize">
             <summary>
               Looks up a localized string similar to Wing branches.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_AlmostLockedCandidatesSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size in almost locked candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_AlmostLockedCandidatesValueCellExistenceFactor">
+            <summary>
+              Looks up a localized string similar to Value cell existence in almost locked candidates.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetIsLockedFactor">

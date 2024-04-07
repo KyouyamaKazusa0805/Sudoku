@@ -3150,4 +3150,16 @@
   <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
     <value>隐性数组的规格</value>
   </data>
+  <data name="ErrorInfo_ScaleValueCannotBeNegative" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ErrorInfo_TechiqueIsNotSupported" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Factor_AlmostLockedCandidatesSizeFactor" xml:space="preserve">
+    <value>欠一数组的规格</value>
+  </data>
+  <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
+    <value>欠一数组是否使用明数</value>
+  </data>
 </root>
