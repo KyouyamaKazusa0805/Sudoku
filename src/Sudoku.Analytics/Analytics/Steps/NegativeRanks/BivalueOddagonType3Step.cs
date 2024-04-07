@@ -26,14 +26,14 @@ public sealed partial class BivalueOddagonType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, (ExtraCells.Count >> 1) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [LoopStr, Digit1Str, Digit2Str, DigitsStr, ExtraCellsStr]),
 			new(ChineseLanguage, [Digit1Str, Digit2Str, LoopStr, ExtraCellsStr, DigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor(Options)];
 
 	private string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 

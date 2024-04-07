@@ -17176,7 +17176,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.Equals(Sudoku.Analytics.Step)">
@@ -17267,10 +17267,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueOddagonType3Step.ExtraCells">
@@ -22064,6 +22064,58 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor">
+            <summary>
+            Represents a factor that measures length of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures length of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor">
+            <summary>
+            Represents a factor that measures subset size of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures subset size of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
