@@ -57,6 +57,9 @@ public sealed partial class HiddenSubsetStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [DigitStr, HouseStr])];
 
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new HiddenSubsetSizeFactor(Size), new HiddenSubsetIsLockedFactor(Size, IsLocked)];
+
 	private string DigitStr => Options.Converter.DigitConverter(DigitsMask);
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);

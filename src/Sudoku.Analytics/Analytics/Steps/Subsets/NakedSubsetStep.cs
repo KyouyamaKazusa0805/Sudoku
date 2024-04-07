@@ -61,6 +61,9 @@ public sealed partial class NakedSubsetStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, HouseStr]), new(ChineseLanguage, [DigitsStr, HouseStr, SubsetName])];
 
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new NakedSubsetSizeFactor(Size), new NakedSubsetIsLockedFactor(Size, IsLocked)];
+
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);

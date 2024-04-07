@@ -186,6 +186,11 @@ public abstract partial class Step(
 	public virtual ExtraDifficultyFactor[]? ExtraDifficultyFactors => null;
 
 	/// <summary>
+	/// Represents a collection of factors that describes the difficulty rating on extra values.
+	/// </summary>
+	public virtual FactorCollection Factors => [];
+
+	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	[HashCodeMember]

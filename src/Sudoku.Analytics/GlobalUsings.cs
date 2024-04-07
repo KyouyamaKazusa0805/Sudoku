@@ -39,6 +39,7 @@ global using Sudoku.Generating.JustOneCell;
 global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
+global using Sudoku.Measuring.Factors;
 global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Resources;

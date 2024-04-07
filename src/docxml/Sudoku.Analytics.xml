@@ -4848,6 +4848,11 @@
             Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyScale">
+            <summary>
+            Indicates the difficulty rating scale.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
             <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
         </member>
@@ -4859,6 +4864,7 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyScale"/>: 0.1</item>
             </list>
             </remarks>
         </member>
@@ -5691,6 +5697,11 @@
             <summary>
             <para>Indicates the extra difficulty factors of the technique step.</para>
             <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.Factors">
+            <summary>
+            Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
@@ -18175,6 +18186,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.Factors">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
             <summary>
             The generated property declaration for parameter <c>isLocked</c>.
@@ -18243,6 +18257,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
@@ -21813,6 +21830,302 @@ result ^= expression;
         <member name="F:Sudoku.Measuring.ExtraDifficultyFactorNames.MissingStabilityBalancer">
             <summary>
             Indicates the kind is the stability balancer is missing. This field is only used for lame weak exocets.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Factor">
+            <summary>
+            Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Scale">
+            <summary>
+            Indicates the scale value to be set. The value will be used by scaling formula. By default, the value will be 0.1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.Formula">
+            <summary>
+            Provides with a formula that calculates for the result.
+            </summary>
+            <remarks>
+            <para>
+            Please note that the return type of this property is <see cref="T:System.Linq.Expressions.Expression`1"/>,
+            meaning it is built via LINQ querying mechanism called
+            "<see href="https://learn.microsoft.com/en-us/dotnet/csharp/advanced-topics/expression-trees/">Expression Trees</see>",
+            allowing building C# expressions dynamically.
+            </para>
+            <para>
+            The rule for constructing the property value is simple: just use lambda expressions. By creating a lambda expression,
+            you can assign the property with the target value. For example:
+            <code><![CDATA[
+            public override Expression<Func<decimal>> Formula => () => A002024(SubsetSize) * Scale;
+            ]]></code>
+            </para>
+            </remarks>
+            <seealso cref="T:System.Linq.Expressions.Expression`1"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.GetName(System.Globalization.CultureInfo)">
+            <summary>
+            Try to fetch the name stored in resource dictionary.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The name of the factor.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factor.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorCollection">
+            <summary>
+            Represents a read-only collection of <see cref="T:Sudoku.Measuring.Factor"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorCollection.Empty">
+            <summary>
+            Represents the empty instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorCollection._factors">
+            <summary>
+            Indicates the factors.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.#ctor(System.ReadOnlyMemory{Sudoku.Measuring.Factor})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Measuring.FactorCollection"/> instance via initial elements.
+            </summary>
+            <param name="factors">The factors.</param>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.Scale">
+            <summary>
+            Indicates the scale value of the factor.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.Length">
+            <summary>
+            Indicates the length of elements stored in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.System#Collections#Generic#IReadOnlyCollection{Sudoku#Measuring#Factor}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Measuring.Factor"/> instance at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.FirstOrDefault(System.Func{Sudoku.Measuring.Factor,System.Boolean})">
+            <summary>
+            Checks for all elements in this collection, finding for the first element satisfying the specified condition;
+            return <see langword="null"/> if no such elements in this colletion.
+            </summary>
+            <param name="match">The condition to be checked.</param>
+            <returns>The first found <see cref="T:Sudoku.Measuring.Factor"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.ForEach(System.Action{Sudoku.Measuring.Factor})">
+            <summary>
+            Iterates on each element, executing the specified action.
+            </summary>
+            <param name="action">The action to be executed and applied to each element.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection via the specified index as the start, and the number of elements to be sliced.
+            </summary>
+            <param name="start">The index of the start element.</param>
+            <param name="length">The number of elements to be sliced.</param>
+            <returns>A <see cref="T:Sudoku.Measuring.FactorCollection"/> instance sliced.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.System#Collections#Generic#IEnumerable{Sudoku#Measuring#Factor}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Create(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Measuring.FactorCollection"/> instance.
+            </summary>
+            <param name="factors">The factors to be used as initial values.</param>
+            <returns>A <see cref="T:Sudoku.Measuring.FactorCollection"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorCollection.Enumerator">
+            <summary>
+            The back enumerator of this type.
+            </summary>
+            <param name="factors">Indicates the back factors to be iterated.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.#ctor(System.ReadOnlySpan{Sudoku.Measuring.Factor})">
+            <summary>
+            The back enumerator of this type.
+            </summary>
+            <param name="factors">Indicates the back factors to be iterated.</param>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorCollection.Enumerator._factors">
+            <summary>
+            Indicates the field of factors.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorCollection.Enumerator._index">
+            <summary>
+            Indicates the currently-iterated index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorCollection.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:Sudoku.Measuring.FactorCollection._scale">
+            <summary>
+            Indicates the backing field of property <see cref="P:Sudoku.Measuring.FactorCollection.Scale"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Measuring.FactorCollection.Scale"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
+            <summary>
+            Represents a factor that describes which locked case a hidden subset is.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+            <param name="isLocked">Indicates whether the hidden subset is locked.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Represents a factor that describes which locked case a hidden subset is.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+            <param name="isLocked">Indicates whether the hidden subset is locked.</param>
+        </member>
+        <member name="F:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.SizeValueArray">
+            <summary>
+            Indicates the size value array.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.IsLocked">
+            <summary>
+            The generated property declaration for parameter <c>isLocked</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor">
+            <summary>
+            Represents the size factor used in hidden subsets.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.#ctor(System.Int32)">
+            <summary>
+            Represents the size factor used in hidden subsets.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+        </member>
+        <member name="F:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.SizeValueArray">
+            <summary>
+            Indicates the size value array to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Size">
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
+            <summary>
+            Represents a factor that describes which locked case a naked subset is.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+            <param name="isLocked">Indicates whether the naked subset is locked.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.#ctor(System.Int32,System.Nullable{System.Boolean})">
+            <summary>
+            Represents a factor that describes which locked case a naked subset is.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+            <param name="isLocked">Indicates whether the naked subset is locked.</param>
+        </member>
+        <member name="F:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.SizeValueArrayWhenTrue">
+            <summary>
+            Indicates the size value array used when <see cref="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked"/> is <see langword="true"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.SizeValueWhenFalse">
+            <summary>
+            Indicates the size value used when <see cref="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked"/> is <see langword="false"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked">
+            <summary>
+            The generated property declaration for parameter <c>isLocked</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.NakedSubsetSizeFactor">
+            <summary>
+            Represents the size factor used in naked subsets.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.#ctor(System.Int32)">
+            <summary>
+            Represents the size factor used in naked subsets.
+            </summary>
+            <param name="size"><inheritdoc/></param>
+        </member>
+        <member name="F:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.SizeValueArray">
+            <summary>
+            Indicates the size value array to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Size">
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.SubsetFactor">
+            <summary>
+            Represents a factor that describes for a subset.
+            </summary>
+            <param name="size">Indicates the size of the subset.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.SubsetFactor.#ctor(System.Int32)">
+            <summary>
+            Represents a factor that describes for a subset.
+            </summary>
+            <param name="size">Indicates the size of the subset.</param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SubsetFactor.Size">
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">
