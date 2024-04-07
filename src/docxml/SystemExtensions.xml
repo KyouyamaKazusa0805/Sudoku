@@ -2504,14 +2504,24 @@
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
-            <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
-            <param name="func">
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})" path="/param[@name='func']"/>
-            </param>
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
+            <summary>
+            Applies an accumulator function over a sequence.
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <param name="this">An array of elements to be aggregated over.</param>
+            <param name="func">The function that aggregates the values.</param>
+            <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``2(``0[],``1,System.Func{``1,``0,``1})">
-            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})"/>
+            <summary>
+            Applies an accumulator function over a sequence. The initial value can be set in this method.
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <typeparam name="TAccumulate">The type of the accumulated values.</typeparam>
+            <param name="this">An array of elements to be aggregated over.</param>
+            <param name="seed">The initial value.</param>
+            <param name="func">The function that aggregates the values.</param>
+            <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.SortBy``2(``0[],System.Func{``0,``1})">
             <summary>

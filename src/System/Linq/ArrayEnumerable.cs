@@ -254,11 +254,13 @@ public static class ArrayEnumerable
 		return result;
 	}
 
-	/// <param name="this">An array of <typeparamref name="TSource"/> elementsto aggregate over.</param>
-	/// <param name="func">
-	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})" path="/param[@name='func']"/>
-	/// </param>
-	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
+	/// <summary>
+	/// Applies an accumulator function over a sequence.
+	/// </summary>
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <param name="this">An array of elements to be aggregated over.</param>
+	/// <param name="func">The function that aggregates the values.</param>
+	/// <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
 	public static TSource? Aggregate<TSource>(this TSource[] @this, Func<TSource?, TSource?, TSource> func)
 	{
 		var result = default(TSource);
@@ -270,7 +272,15 @@ public static class ArrayEnumerable
 		return result;
 	}
 
-	/// <inheritdoc cref="Enumerable.Aggregate{TSource, TAccumulate}(IEnumerable{TSource}, TAccumulate, Func{TAccumulate, TSource, TAccumulate})"/>
+	/// <summary>
+	/// Applies an accumulator function over a sequence. The initial value can be set in this method.
+	/// </summary>
+	/// <typeparam name="TSource">The type of each element.</typeparam>
+	/// <typeparam name="TAccumulate">The type of the accumulated values.</typeparam>
+	/// <param name="this">An array of elements to be aggregated over.</param>
+	/// <param name="seed">The initial value.</param>
+	/// <param name="func">The function that aggregates the values.</param>
+	/// <returns>An element accumulated, of type <typeparamref name="TSource"/>.</returns>
 	public static TAccumulate Aggregate<TSource, TAccumulate>(this TSource[] @this, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> func)
 	{
 		var result = seed;
