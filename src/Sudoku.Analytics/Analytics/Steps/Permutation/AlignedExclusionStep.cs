@@ -14,7 +14,7 @@ public sealed partial class AlignedExclusionStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
-) : PermutationStep(conclusions, views, options)
+) : PermutationStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
@@ -27,9 +27,7 @@ public sealed partial class AlignedExclusionStep(
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
 		};
 
-	/// <summary>
-	/// Indicates the size of the permutation.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => Cells.Count;
 
 	/// <inheritdoc/>

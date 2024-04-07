@@ -18,7 +18,7 @@ public sealed partial class RegularWingStep(
 	[PrimaryConstructorParameter] int pivotCandidatesCount,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap petals
-) : WingStep(conclusions, views, options)
+) : WingStep(conclusions, views, options), ISizeTrait
 {
 	/// <summary>
 	/// Indicates whether the pattern is incomplete.
@@ -28,11 +28,9 @@ public sealed partial class RegularWingStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.2M;
 
-	/// <summary>
-	/// Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
-	/// </summary>
+	/// <inheritdoc/>
 	/// <remarks>
-	/// All names are:
+	/// The size indicates the number of candidates that the pivot cell holds. All names are:
 	/// <list type="table">
 	/// <item>
 	/// <term>3</term>

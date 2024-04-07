@@ -16590,9 +16590,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Size">
-            <summary>
-            Indicates the number of digits used.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Code">
             <inheritdoc/>
@@ -17507,9 +17505,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Size">
-            <summary>
-            Indicates the size of the permutation.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlignedExclusionStep.Code">
             <inheritdoc/>
@@ -17880,9 +17876,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Size">
-            <summary>
-            Indicate the number of cells used in the subset pattern.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -18293,10 +18287,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
-            <summary>
-            Indicates the number of cells used.
-            Due to the technique logic, you can also treat the result value of this property as the number of digits used.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
             <summary>
@@ -18641,9 +18632,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Size">
-            <summary>
-            Indicates the number of branches of the technique.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.BaseDifficulty">
             <inheritdoc/>
@@ -18771,11 +18760,9 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Size">
-            <summary>
-            Indicates the size of the wing. The size indicates the number of candidates that the pivot cell holds.
-            </summary>
+            <inheritdoc/>
             <remarks>
-            All names are:
+            The size indicates the number of candidates that the pivot cell holds. All names are:
             <list type="table">
             <item>
             <term>3</term>
@@ -19198,6 +19185,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The houses provider.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Traits.ISizeTrait">
+            <summary>
+            Represents a size trait.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Traits.ISizeTrait.Size">
+            <summary>
+            Indicates the size of the pattern.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Traits.IStepTrait">
             <summary>
@@ -22018,6 +22015,11 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Size">
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.IsLocked">
             <summary>
             The generated property declaration for parameter <c>isLocked</c>.
@@ -22075,6 +22077,11 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Size">
+            <summary>
+            The generated property declaration for parameter <c>size</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.IsLocked">
             <summary>
             The generated property declaration for parameter <c>isLocked</c>.
@@ -22101,23 +22108,6 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Size">
-            <summary>
-            The generated property declaration for parameter <c>size</c>.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Measuring.Factors.SubsetFactor">
-            <summary>
-            Represents a factor that describes for a subset.
-            </summary>
-            <param name="size">Indicates the size of the subset.</param>
-        </member>
-        <member name="M:Sudoku.Measuring.Factors.SubsetFactor.#ctor(System.Int32)">
-            <summary>
-            Represents a factor that describes for a subset.
-            </summary>
-            <param name="size">Indicates the size of the subset.</param>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.SubsetFactor.Size">
             <summary>
             The generated property declaration for parameter <c>size</c>.
             </summary>

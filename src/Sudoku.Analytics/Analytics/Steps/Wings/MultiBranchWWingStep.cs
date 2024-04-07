@@ -16,7 +16,7 @@ public sealed partial class MultiBranchWWingStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap leaves,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap root,
 	[PrimaryConstructorParameter] House house
-) : IrregularWingStep(conclusions, views, options)
+) : IrregularWingStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	public override bool IsGrouped => false;
@@ -24,9 +24,7 @@ public sealed partial class MultiBranchWWingStep(
 	/// <inheritdoc/>
 	public override bool IsSymmetricPattern => false;
 
-	/// <summary>
-	/// Indicates the number of branches of the technique.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => Leaves.Count;
 
 	/// <inheritdoc/>

@@ -16,14 +16,11 @@ public abstract partial class SubsetStep(
 	[PrimaryConstructorParameter] House house,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : Step(conclusions, views, options)
+) : Step(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 3.0M;
 
-	/// <summary>
-	/// Indicates the number of cells used.
-	/// Due to the technique logic, you can also treat the result value of this property as the number of digits used.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
 }

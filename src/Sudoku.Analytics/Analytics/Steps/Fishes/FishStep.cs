@@ -41,7 +41,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : Step(conclusions, views, options), ICoordinateObject<FishStep>
+) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISizeTrait
 {
 	/// <inheritdoc/>
 	/// <remarks>

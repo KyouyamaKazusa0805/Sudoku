@@ -18,14 +18,12 @@ public sealed partial class AlmostLockedCandidatesStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCells,
 	[PrimaryConstructorParameter] bool hasValueCell
-) : IntersectionStep(conclusions, views, options)
+) : IntersectionStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 4.5M;
 
-	/// <summary>
-	/// Indicates the number of digits used.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);
 
 	/// <inheritdoc/>

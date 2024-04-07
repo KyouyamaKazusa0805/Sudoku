@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents the size factor used in hidden subsets.
 /// </summary>
 /// <param name="size"><inheritdoc/></param>
-public sealed partial class HiddenSubsetSizeFactor([PrimaryConstructorParameter] int size) : SubsetFactor(size)
+public sealed partial class HiddenSubsetSizeFactor([PrimaryConstructorParameter] int size) : Factor, ISizeTrait
 {
 	/// <summary>
 	/// Indicates the size value array to be used.

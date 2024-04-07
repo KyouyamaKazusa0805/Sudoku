@@ -30,16 +30,7 @@ public sealed partial class DirectSubsetStep(
 	SingleSubtype subtype,
 	Technique basedOn,
 	[PrimaryConstructorParameter] Technique subsetTechnique
-) : ComplexSingleStep(
-	conclusions,
-	views,
-	options,
-	cell,
-	digit,
-	subtype,
-	basedOn,
-	[[subsetTechnique]]
-)
+) : ComplexSingleStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]), ISizeTrait
 {
 	/// <summary>
 	/// Indicates whether the used subset is a naked subset.
@@ -64,9 +55,7 @@ public sealed partial class DirectSubsetStep(
 			_ => null
 		};
 
-	/// <summary>
-	/// Indicate the number of cells used in the subset pattern.
-	/// </summary>
+	/// <inheritdoc/>
 	public int Size => SubsetCells.Count;
 
 	/// <inheritdoc/>

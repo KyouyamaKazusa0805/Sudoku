@@ -5,7 +5,10 @@ namespace Sudoku.Measuring.Factors;
 /// </summary>
 /// <param name="size"><inheritdoc/></param>
 /// <param name="isLocked">Indicates whether the naked subset is locked.</param>
-public sealed partial class NakedSubsetIsLockedFactor(int size, [PrimaryConstructorParameter] bool? isLocked) : SubsetFactor(size)
+public sealed partial class NakedSubsetIsLockedFactor(
+	[PrimaryConstructorParameter] int size,
+	[PrimaryConstructorParameter] bool? isLocked
+) : Factor, ISizeTrait
 {
 	/// <summary>
 	/// Indicates the size value array used when <see cref="IsLocked"/> is <see langword="true"/>.
