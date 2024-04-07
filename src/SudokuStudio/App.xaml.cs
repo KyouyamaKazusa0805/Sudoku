@@ -329,6 +329,7 @@ public partial class App : Application
 	{
 		var uiPref = ((App)Current).Preference.UIPreferences;
 		var analysisPref = ((App)Current).Preference.AnalysisPreferences;
+		var scale = ((App)Current).Preference.TechniqueInfoPreferences.RatingScale;
 		return StepSearcherOptions.Default with
 		{
 			Converter = Converter = uiPref.ConceptNotationBasedKind switch
@@ -361,7 +362,8 @@ public partial class App : Application
 				)
 			},
 			IsDirectMode = !uiPref.DisplayCandidates,
-			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes
+			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes,
+			DifficultyRatingScale = scale
 		};
 	}
 }

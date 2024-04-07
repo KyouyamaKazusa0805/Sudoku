@@ -24,7 +24,7 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// <summary>
 	/// Indicates the difficulty rating scale.
 	/// </summary>
-	public decimal DifficultyScale { get; init; } = .1M;
+	public decimal DifficultyRatingScale { get; init; } = .1M;
 
 	/// <inheritdoc cref="CoordinateConverter"/>
 	public CoordinateConverter Converter { get; init; } = GlobalizedConverter.InvariantCultureConverter;
@@ -37,7 +37,7 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	/// <item><see cref="Converter"/>: <see cref="RxCyConverter"/></item>
 	/// <item><see cref="DistinctDirectMode"/>: <see langword="false"/></item>
 	/// <item><see cref="IsDirectMode"/>: <see langword="false"/></item>
-	/// <item><see cref="DifficultyScale"/>: 0.1</item>
+	/// <item><see cref="DifficultyRatingScale"/>: 0.1</item>
 	/// </list>
 	/// </remarks>
 	public static StepSearcherOptions Default => new();

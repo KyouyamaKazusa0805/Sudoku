@@ -4848,7 +4848,7 @@
             Indicates whether the current solver uses direct mode to solve a puzzle, which means the UI will display the grid without any candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyScale">
+        <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyRatingScale">
             <summary>
             Indicates the difficulty rating scale.
             </summary>
@@ -4864,7 +4864,7 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyScale"/>: 0.1</item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyRatingScale"/>: 0.1</item>
             </list>
             </remarks>
         </member>
