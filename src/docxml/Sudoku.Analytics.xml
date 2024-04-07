@@ -21830,6 +21830,13 @@ result ^= expression;
             Indicates the scale value to be set. The value will be used by scaling formula. By default, the value will be 0.1.
             </summary>
         </member>
+        <member name="P:Sudoku.Measuring.Factor.ScaleUnitLength">
+            <summary>
+            Try to get the scale unit length from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
+            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
+        </member>
         <member name="P:Sudoku.Measuring.Factor.DistinctKey">
             <summary>
             Indicates the name of the factor that can be used by telling with multple <see cref="T:Sudoku.Measuring.Factor"/>
@@ -21845,6 +21852,12 @@ result ^= expression;
             with the fact parameter name from property <see cref="P:Sudoku.Measuring.Factor.Parameters"/> in runtime.
             </remarks>
             <seealso cref="P:Sudoku.Measuring.Factor.Parameters"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factor.ScaleUnitFormatString">
+            <summary>
+            Try to get the scale unit from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
         </member>
         <member name="P:Sudoku.Measuring.Factor.ParameterNames">
             <summary>
@@ -21869,19 +21882,6 @@ result ^= expression;
             <summary>
             Provides with a formula that calculates for the result, unscaled.
             </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ScaleUnitLength">
-            <summary>
-            Try to get the scale unit length from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
-            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factor.ScaleUnitFormatString">
-            <summary>
-            Try to get the scale unit from the <see cref="P:Sudoku.Measuring.Factor.Scale"/> value.
-            </summary>
-            <seealso cref="P:Sudoku.Measuring.Factor.Scale"/>
         </member>
         <member name="M:Sudoku.Measuring.Factor.GetName(System.Globalization.CultureInfo)">
             <summary>

@@ -12,6 +12,23 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	public decimal Scale { get; } = options.DifficultyRatingScale;
 
 	/// <summary>
+	/// Try to get the scale unit length from the <see cref="Scale"/> value.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the scale value is negative.</exception>
+	/// <seealso cref="Scale"/>
+	public int ScaleUnitLength
+		=> Scale switch
+		{
+			< 0 => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ScaleValueCannotBeNegative")),
+			0 => 0, // Special case: return 0 if scale is 0.
+			_ when Scale.ToString() is var str && str.IndexOf('.') is var posOfPeriod => posOfPeriod switch
+			{
+				-1 => 0, // This is an integer (no period token is found). Return 0.
+				_ => str.Length - posOfPeriod - 1
+			}
+		};
+
+	/// <summary>
 	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>
 	/// instances with different types.
 	/// </summary>
@@ -27,6 +44,12 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	/// <seealso cref="Parameters"/>
 	[StringSyntax(StringSyntaxAttribute.CompositeFormat)]
 	public abstract string FormulaString { get; }
+
+	/// <summary>
+	/// Try to get the scale unit from the <see cref="Scale"/> value.
+	/// </summary>
+	/// <seealso cref="Scale"/>
+	public string? ScaleUnitFormatString => ScaleUnitLength == 0 ? null : $"#.{new('0', ScaleUnitLength)}";
 
 	/// <summary>
 	/// Indicates a list of <see cref="string"/> instances that binds with real instance properties
@@ -51,29 +74,6 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	/// Provides with a formula that calculates for the result, unscaled.
 	/// </summary>
 	public abstract Func<Step, int?> Formula { get; }
-
-	/// <summary>
-	/// Try to get the scale unit length from the <see cref="Scale"/> value.
-	/// </summary>
-	/// <exception cref="InvalidOperationException">Throws when the scale value is negative.</exception>
-	/// <seealso cref="Scale"/>
-	protected int ScaleUnitLength
-		=> Scale switch
-		{
-			< 0 => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ScaleValueCannotBeNegative")),
-			0 => 0, // Special case: return 0 if scale is 0.
-			_ when Scale.ToString() is var str && str.IndexOf('.') is var posOfPeriod => posOfPeriod switch
-			{
-				-1 => 0, // This is an integer (no period token is found). Return 0.
-				_ => str.Length - posOfPeriod - 1
-			}
-		};
-
-	/// <summary>
-	/// Try to get the scale unit from the <see cref="Scale"/> value.
-	/// </summary>
-	/// <seealso cref="Scale"/>
-	protected string? ScaleUnitFormatString => ScaleUnitLength == 0 ? null : $"#.{new('0', ScaleUnitLength)}";
 
 
 	/// <summary>

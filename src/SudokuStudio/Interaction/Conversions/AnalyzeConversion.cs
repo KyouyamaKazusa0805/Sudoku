@@ -98,7 +98,8 @@ internal static class AnalyzeConversion
 					Code: var technique,
 					BaseDifficulty: var baseDifficulty,
 					Difficulty: var difficulty,
-					ExtraDifficultyFactors: var cases
+					Factors: var factors,
+					Options.DifficultyRatingScale: var scale
 				} step
 			})
 		{
@@ -171,7 +172,7 @@ internal static class AnalyzeConversion
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_ExtraDifficultyCase", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 
-			switch (cases)
+			switch (factors)
 			{
 				case { Length: not 0 }:
 				{
@@ -184,7 +185,7 @@ internal static class AnalyzeConversion
 
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
-					result.AddRange(appendExtraDifficultyFactors(cases, pref.RatingScale));
+					result.AddRange(appendExtraDifficultyFactors(factors));
 					break;
 				}
 				default:
@@ -207,30 +208,30 @@ internal static class AnalyzeConversion
 		return result;
 
 
-		static IEnumerable<Inline> appendExtraDifficultyFactors(ExtraDifficultyFactor[] factors, decimal ratingScale)
-		{
-			var colon = ResourceDictionary.Get("_Token_Colon", App.CurrentCulture);
-			for (var i = 0; i < factors.Length; i++)
-			{
-				var factor = factors[i];
-				var extraDifficultyName = factor.ToString(App.CurrentCulture);
-				var difficultyValue = factor.Value * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue / ratingScale;
-				var difficultyValueString = difficultyValue.ToString(GetFormatOfDifficulty(difficultyValue));
-				yield return new Run { Text = $"{extraDifficultyName}{colon}+{difficultyValueString}" };
-
-				if (i != factors.Length - 1)
-				{
-					yield return new LineBreak();
-				}
-			}
-		}
-
 		void appendEmptyLinesIfNeed()
 		{
 			if (result.Count != 0)
 			{
 				result.Add(new LineBreak());
 				result.Add(new LineBreak());
+			}
+		}
+
+		IEnumerable<Inline> appendExtraDifficultyFactors(FactorCollection factors)
+		{
+			var colon = ResourceDictionary.Get("_Token_Colon", App.CurrentCulture);
+			for (var i = 0; i < factors.Length; i++)
+			{
+				var factor = factors[i];
+				var extraDifficultyName = factor.ToString(App.CurrentCulture);
+				var difficultyValue = factor.Formula(step)!.Value * scale;
+				var difficultyValueString = difficultyValue.ToString(factor.ScaleUnitFormatString);
+				yield return new Run { Text = $"{extraDifficultyName}{colon}+{difficultyValueString}" };
+
+				if (i != factors.Length - 1)
+				{
+					yield return new LineBreak();
+				}
 			}
 		}
 	}
