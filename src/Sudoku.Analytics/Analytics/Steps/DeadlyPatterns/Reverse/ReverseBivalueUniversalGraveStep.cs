@@ -37,16 +37,15 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (short)(Type - 1);
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Length, A002024(CompletePattern.Count) * .1M)];
+	public sealed override Technique Code => Technique.ReverseBivalueUniversalGraveType1 + (Type - 1);
 
 	/// <summary>
 	/// Indicates the last cells used that are not empty.
 	/// </summary>
 	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new ReverseBivalueUniversalGraveSizeFactor(Options)];
 
 	private protected string Cell1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 

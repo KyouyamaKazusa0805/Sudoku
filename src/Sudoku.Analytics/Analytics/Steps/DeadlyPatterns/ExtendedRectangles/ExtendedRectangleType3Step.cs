@@ -20,14 +20,10 @@ public sealed partial class ExtendedRectangleType3Step(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] House house
-) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask)
+) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3Step<ExtendedRectangleType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [.. base.ExtraDifficultyFactors, new(ExtraDifficultyFactorNames.ExtraDigit, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -35,6 +31,15 @@ public sealed partial class ExtendedRectangleType3Step(
 			new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr, HouseStr]),
 			new(ChineseLanguage, [DigitsStr, CellsStr, HouseStr, ExtraCellsStr, ExtraDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<ExtendedRectangleType3Step>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<ExtendedRectangleType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

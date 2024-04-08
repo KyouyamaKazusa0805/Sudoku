@@ -18,14 +18,10 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isNaked
-) : BivalueUniversalGraveStep(conclusions, views, options)
+) : BivalueUniversalGraveStep(conclusions, views, options), IPatternType3Step<BivalueUniversalGraveType3Step>
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, Size * .1M), new(ExtraDifficultyFactorNames.Hidden, IsNaked ? 0 : .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -33,6 +29,19 @@ public sealed partial class BivalueUniversalGraveType3Step(
 			new(EnglishLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, ExtraDigitsStr, CellsStr]),
 			new(ChineseLanguage, [TrueCandidatesStr, SubsetTypeStr, SizeStr, CellsStr, ExtraDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new BivalueUniversalGraveSubsetSizeFactor(Options), new BivalueUniversalGraveSubsetIsHiddenFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<BivalueUniversalGraveType3Step>.IsHidden => !IsNaked;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<BivalueUniversalGraveType3Step>.SubsetSize => Size;
+
+	/// <inheritdoc/>
+	CellMap IPatternType3Step<BivalueUniversalGraveType3Step>.SubsetCells => Cells;
 
 	/// <summary>
 	/// Indicates the size of the subset.

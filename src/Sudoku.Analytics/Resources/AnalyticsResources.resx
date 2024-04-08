@@ -3042,4 +3042,52 @@ Error grid: '{0:#}'</value>
   <data name="Factor_SueDeCoqIsolatedFactor" xml:space="preserve">
     <value>Isolated digits in Sue de Coq</value>
   </data>
+  <data name="Factor_BivalueUniversalGraveSubsetIsHiddenFactor" xml:space="preserve">
+    <value>Subset in Bi-value universal grave is hidden</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size of bi-value universal grave</value>
+  </data>
+  <data name="Factor_BorescoperDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size of Borescoper's deadly pattern</value>
+  </data>
+  <data name="Factor_BowmanBingoLengthFactor" xml:space="preserve">
+    <value>Length of Bowman's bingo</value>
+  </data>
+  <data name="Factor_DirectSubsetIsLockedFactor" xml:space="preserve">
+    <value>Subset in direct subset is locked</value>
+  </data>
+  <data name="Factor_DirectSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in direct subset</value>
+  </data>
+  <data name="Factor_ExtendedRectangleSizeFactor" xml:space="preserve">
+    <value>Size of extended rectangle</value>
+  </data>
+  <data name="Factor_ExtendedRectangleSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in extended rectangle</value>
+  </data>
+  <data name="Factor_QiuDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in Qiu's deadly pattern</value>
+  </data>
+  <data name="Factor_ReverseBivalueUniversalGraveSizeFactor" xml:space="preserve">
+    <value>Size of reverse bi-value universal grave</value>
+  </data>
+  <data name="Factor_UniqueLoopLengthFactor" xml:space="preserve">
+    <value>Length of unique loop</value>
+  </data>
+  <data name="Factor_UniqueLoopSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in unique loop</value>
+  </data>
+  <data name="Factor_UniqueMatrixSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in unique matrix</value>
+  </data>
+  <data name="Factor_UniquenessClueCoverExtraCellsFactor" xml:space="preserve">
+    <value>The number of extra cells used in uniqueness clue cover</value>
+  </data>
+  <data name="Factor_UniqueRectangleSubsetIsHiddenFactor" xml:space="preserve">
+    <value>Subset in unique rectangle is hidden</value>
+  </data>
+  <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in unique rectangle</value>
+  </data>
 </root>

@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -18,14 +19,10 @@ public sealed partial class UniqueMatrixType3Step(
 	Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask
-) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
+) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask), IPatternType3Step<UniqueMatrixType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -33,6 +30,15 @@ public sealed partial class UniqueMatrixType3Step(
 			new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitStr, ExtraCellsStr, SubsetName]),
 			new(ChineseLanguage, [ExtraDigitStr, ExtraCellsStr, SubsetName, DigitsStr, CellsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new UniqueMatrixSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<UniqueMatrixType3Step>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<UniqueMatrixType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string ExtraCellsStr => Options.Converter.CellConverter(SubsetCells);
 

@@ -30,31 +30,42 @@ public sealed partial class UniqueRectangleType3Step(
 	bool isAvoidable,
 	int absoluteOffset,
 	[PrimaryConstructorParameter] bool isNaked = true
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	isAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
-	digit1,
-	digit2,
-	in cells,
-	isAvoidable,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		isAvoidable ? Technique.AvoidableRectangleType3 : Technique.UniqueRectangleType3,
+		digit1,
+		digit2,
+		in cells,
+		isAvoidable,
+		absoluteOffset
+	),
+	IPatternType3Step<UniqueRectangleType3Step>
 {
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Hidden, IsNaked ? 0 : .1M),
-			new(ExtraDifficultyFactorNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)
-		];
-
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeyword, CellsStr, HouseStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsMask, OnlyKeywordZhCn, HouseStr, CellsStr, AppearLimitKeyword])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new UniqueRectangleSubsetIsHiddenFactor(Options), new UniqueRectangleSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<UniqueRectangleType3Step>.IsHidden => !IsNaked;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<UniqueRectangleType3Step>.SubsetSize => PopCount((uint)ExtraDigitsMask);
+
+	/// <inheritdoc/>
+	Mask IPatternType3Step<UniqueRectangleType3Step>.SubsetDigitsMask => ExtraDigitsMask;
+
+	/// <inheritdoc/>
+	CellMap IPatternType3Step<UniqueRectangleType3Step>.SubsetCells => ExtraCells;
 
 	private string SubsetDigitsMask => Options.Converter.DigitConverter(ExtraDigitsMask);
 

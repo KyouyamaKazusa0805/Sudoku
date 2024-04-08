@@ -18,17 +18,16 @@ public sealed partial class BowmanBingoStep(
 	public override decimal BaseDifficulty => 8.0M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Length, DifficultyMeasuring.GetLengthDifficulty(ContradictionLinks.Length))];
-
-	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
 
-	private unsafe string ContradictionSeriesStr
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new BowmanBingoLengthFactor(Options)];
+
+	private string ContradictionSeriesStr
 	{
 		get
 		{

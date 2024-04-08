@@ -28,14 +28,14 @@ public sealed partial class UniquenessClueCoverStep(
 	public override Technique Code => Technique.UniquenessClueCover;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, A004526(ExtraCells.Count) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [ChuteString, ChuteCellsString]),
 			new(ChineseLanguage, [ChuteString, ChuteCellsString]),
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new UniquenessClueCoverExtraCellsFactor(Options)];
 
 	private string ChuteString => Options.Converter.ChuteConverter([Chutes[ChuteIndex]]);
 

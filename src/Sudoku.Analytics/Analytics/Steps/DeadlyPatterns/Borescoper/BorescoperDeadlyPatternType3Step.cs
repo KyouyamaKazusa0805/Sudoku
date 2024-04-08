@@ -18,13 +18,12 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 	Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask
-) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
+) :
+	BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask),
+	IPatternType3Step<BorescoperDeadlyPatternType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, SubsetCells.Count * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -32,6 +31,15 @@ public sealed partial class BorescoperDeadlyPatternType3Step(
 			new(EnglishLanguage, [DigitsStr, CellsStr, ExtraDigitsStr, ExtraCellsStr]),
 			new(ChineseLanguage, [DigitsStr, CellsStr, ExtraCellsStr, ExtraDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new BorescoperDeadlyPatternSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<BorescoperDeadlyPatternType3Step>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<BorescoperDeadlyPatternType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

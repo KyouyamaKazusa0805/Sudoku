@@ -12453,10 +12453,19 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#BivalueUniversalGraveType3Step}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Size">
@@ -12712,10 +12721,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#BorescoperDeadlyPatternType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.SubsetCells">
@@ -12802,10 +12817,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniquenessClueCoverStep.ExtraCells">
@@ -12878,7 +12893,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Cells">
@@ -12982,10 +12997,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#ExtendedRectangleType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.SubsetCells">
@@ -13077,7 +13098,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.Equals(Sudoku.Analytics.Step)">
@@ -13207,10 +13228,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueLoopType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueLoopType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopType3Step.SubsetCells">
@@ -13403,10 +13430,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueMatrixType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixType3Step.SubsetCells">
@@ -13822,10 +13855,16 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Type">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#QiuDeadlyPatternType3Step}#SubsetSize">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.SubsetCells">
@@ -14684,10 +14723,22 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetDigitsMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Sudoku#Traits#IPatternType3Step{Sudoku#Analytics#Steps#UniqueRectangleType3Step}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.ExtraCells">
@@ -15005,13 +15056,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.PatternNonEmptyCells">
             <summary>
             Indicates the last cells used that are not empty.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Factors">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Equals(Sudoku.Analytics.Step)">
             <inheritdoc/>
@@ -16747,13 +16798,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BowmanBingoStep.ContradictionLinks">
@@ -17864,10 +17915,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixNameLength">
@@ -21047,6 +21098,32 @@ result ^= expression;
             containing the target conclusion from the single step.
             </summary>
         </member>
+        <member name="T:Sudoku.Traits.IPatternType3Step`1">
+            <summary>
+            Represents a step of type <typeparamref name="TSelf"/>, presenting the third subtype.
+            </summary>
+            <typeparam name="TSelf">The type of the step applied.</typeparam>
+        </member>
+        <member name="P:Sudoku.Traits.IPatternType3Step`1.IsHidden">
+            <summary>
+            Indicates whether the subset is hidden.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.IPatternType3Step`1.SubsetSize">
+            <summary>
+            Indicates the size of the subset. The value may not be equal to the length of <see cref="P:Sudoku.Traits.IPatternType3Step`1.SubsetCells"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.IPatternType3Step`1.SubsetDigitsMask">
+            <summary>
+            Indicates the digits mask including all digits appeared in the subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.IPatternType3Step`1.SubsetCells">
+            <summary>
+            Indicates the subset cells.
+            </summary>
+        </member>
         <member name="T:Sudoku.Traits.ISizeTrait">
             <summary>
             Represents a size trait.
@@ -22068,6 +22145,58 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1">
+            <summary>
+            Represents a factor that describes whether the subset appeared in step is hidden subset.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the subset appeared in step is hidden subset.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetIsHiddenFactor`1.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1">
+            <summary>
+            Represents a subset size factor. This factor will be applied to type 3 in deadly patterns.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a subset size factor. This factor will be applied to type 3 in deadly patterns.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostSubsetSizeFactor`1.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BasicChainLengthFactor">
             <summary>
             Represents a factor that describes the length of a chain.
@@ -22150,6 +22279,34 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor">
+            <summary>
+            Represents a factor that describes whether the subset appeare in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/> is hidden.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the subset appeare in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/> is hidden.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
             <summary>
             Represents a factor that describes the length property of <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>.
@@ -22174,6 +22331,46 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BowmanBingoLengthFactor">
+            <summary>
+            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BowmanBingoStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
@@ -22311,6 +22508,98 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.Formula">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor">
+            <summary>
+            Represents a factor that describes whether the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/> is locked.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/> is locked.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.DirectSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor">
+            <summary>
+            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor">
             <summary>
@@ -22595,6 +22884,20 @@ result ^= expression;
         <member name="M:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor">
             <summary>
             Represents a factor that describes the factor 
@@ -22677,6 +22980,32 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the pattern for <see cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the pattern for <see cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor">
             <summary>
             Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
@@ -22728,6 +23057,114 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.Formula">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueLoopLengthFactor">
+            <summary>
+            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the length of <see cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the subset size appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the subset size appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueMatrixType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor">
+            <summary>
+            Represents a factor that describes the extra cells used in <see cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the extra cells used in <see cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor">
+            <summary>
+            Represents a factor that describes whether a subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/> is hidden.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether a subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/> is hidden.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">
             <summary>
@@ -23835,9 +24272,29 @@ result ^= expression;
               Looks up a localized string similar to Size of subset in bi-value oddagon.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueUniversalGraveSubsetIsHiddenFactor">
+            <summary>
+              Looks up a localized string similar to Subset in Bi-value universal grave is hidden.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueUniversalGraveSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size of bi-value universal grave.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopLengthFactor">
             <summary>
               Looks up a localized string similar to Length of blossom loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BorescoperDeadlyPatternSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size of Borescoper&apos;s deadly pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BowmanBingoLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of Bowman&apos;s bingo.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishCannibalismFactor">
@@ -23858,6 +24315,26 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishSizeFactor">
             <summary>
               Looks up a localized string similar to Size of complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_DirectSubsetIsLockedFactor">
+            <summary>
+              Looks up a localized string similar to Subset in direct subset is locked.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_DirectSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in direct subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedRectangleSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of extended rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedRectangleSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in extended rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedSubsetPrincipleSizeFactor">
@@ -23920,6 +24397,11 @@ result ^= expression;
               Looks up a localized string similar to The number of petals in death blossom (A^nLS type).
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_QiuDeadlyPatternSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in Qiu&apos;s deadly pattern.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleDeathBlossomIsAvoidableFactor">
             <summary>
               Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
@@ -23940,6 +24422,11 @@ result ^= expression;
               Looks up a localized string similar to Size of regular wing.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ReverseBivalueUniversalGraveSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of reverse bi-value universal grave.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqCannibalismFactor">
             <summary>
               Looks up a localized string similar to Cannibalism in Sue de Coq.
@@ -23948,6 +24435,36 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqIsolatedFactor">
             <summary>
               Looks up a localized string similar to Isolated digits in Sue de Coq.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueLoopLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of unique loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueLoopSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in unique loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueMatrixSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in unique matrix.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniquenessClueCoverExtraCellsFactor">
+            <summary>
+              Looks up a localized string similar to The number of extra cells used in uniqueness clue cover.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleSubsetIsHiddenFactor">
+            <summary>
+              Looks up a localized string similar to Subset in unique rectangle is hidden.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Subset size in unique rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">

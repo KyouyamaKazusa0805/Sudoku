@@ -36,8 +36,7 @@ public sealed partial class DirectSubsetStep(
 	/// Indicates whether the used subset is a naked subset.
 	/// </summary>
 	public bool IsNaked
-		=> SubsetTechnique
-		is Technique.NakedPair or Technique.NakedPairPlus or Technique.LockedPair
+		=> SubsetTechnique is Technique.NakedPair or Technique.NakedPairPlus or Technique.LockedPair
 		or Technique.NakedTriple or Technique.NakedTriplePlus or Technique.LockedTriple
 		or Technique.NakedQuadruple or Technique.NakedQuadruplePlus;
 
@@ -65,23 +64,14 @@ public sealed partial class DirectSubsetStep(
 	public override Technique Code => BasedOn.ComplexSingleUsing(SubsetTechnique);
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M }),
-			new(
-				ExtraDifficultyFactorNames.Locked,
-				IsNaked
-					? IsLocked switch { true => Size switch { 2 => -1.0M, 3 => -1.1M }, false => .1M, _ => 0 }
-					: IsLocked switch { true => Size switch { 2 => -1.2M, 3 => -1.3M }, _ => 0 }
-			)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr]),
 			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr, DigitsStr, SubsetNameStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new DirectSubsetSizeFactor(Options), new DirectSubsetIsLockedFactor(Options)];
 
 	/// <inheritdoc/>
 	protected override int PrefixNameLength

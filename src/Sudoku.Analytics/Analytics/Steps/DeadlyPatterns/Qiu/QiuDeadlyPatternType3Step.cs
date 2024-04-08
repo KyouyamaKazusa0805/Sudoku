@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -24,14 +25,12 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] bool isNaked
-) : QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
+) :
+	QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2),
+	IPatternType3Step<QiuDeadlyPatternType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, PopCount((uint)SubsetDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -39,6 +38,15 @@ public sealed partial class QiuDeadlyPatternType3Step(
 			new(EnglishLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName]),
 			new(ChineseLanguage, [PatternStr, DigitsStr, CellsStr, SubsetName])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new QiuDeadlyPatternSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3Step<QiuDeadlyPatternType3Step>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3Step<QiuDeadlyPatternType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

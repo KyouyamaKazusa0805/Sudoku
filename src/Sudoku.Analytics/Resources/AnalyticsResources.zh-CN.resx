@@ -3039,14 +3039,8 @@
     <value>&lt;未选择任何对称性&gt;</value>
   </data>
   <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ErrorInfo_ArgumentMustBeSingle" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
     <value>最高难度技巧：</value>
-  </data>
-  <data name="ErrorInfo_TechniqueIsNotImplemented" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="BottleneckStepRatingConstraint" xml:space="preserve">
     <value>卡点难度分：卡点难度都需介于 {0} 和 {1} 之间，{2}</value>
@@ -3068,12 +3062,6 @@
   </data>
   <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
     <value>隐性数组的规格</value>
-  </data>
-  <data name="ErrorInfo_ScaleValueCannotBeNegative" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
-  <data name="ErrorInfo_TechiqueIsNotSupported" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
   </data>
   <data name="Factor_AlmostLockedCandidatesSizeFactor" xml:space="preserve">
     <value>欠一数组的规格</value>
@@ -3230,5 +3218,53 @@
   </data>
   <data name="Factor_SueDeCoqIsolatedFactor" xml:space="preserve">
     <value>融合待定数组的孤立数字</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveSubsetIsHiddenFactor" xml:space="preserve">
+    <value>全双值格致死解法里的数组是否是隐性数组</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveSubsetSizeFactor" xml:space="preserve">
+    <value>全双值格致死解法里的数组规格</value>
+  </data>
+  <data name="Factor_BorescoperDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>探长致命结构里的数组规格</value>
+  </data>
+  <data name="Factor_BowmanBingoLengthFactor" xml:space="preserve">
+    <value>试数的长度</value>
+  </data>
+  <data name="Factor_DirectSubsetIsLockedFactor" xml:space="preserve">
+    <value>直观数组是否为死锁</value>
+  </data>
+  <data name="Factor_DirectSubsetSizeFactor" xml:space="preserve">
+    <value>直观数组的规格</value>
+  </data>
+  <data name="Factor_ExtendedRectangleSizeFactor" xml:space="preserve">
+    <value>拓展矩形的规格</value>
+  </data>
+  <data name="Factor_ExtendedRectangleSubsetSizeFactor" xml:space="preserve">
+    <value>拓展矩形里的数组规格</value>
+  </data>
+  <data name="Factor_QiuDeadlyPatternSubsetSizeFactor" xml:space="preserve">
+    <value>淑芬致命结构里的数组规格</value>
+  </data>
+  <data name="Factor_ReverseBivalueUniversalGraveSizeFactor" xml:space="preserve">
+    <value>反双数致命结构的规格</value>
+  </data>
+  <data name="Factor_UniqueLoopLengthFactor" xml:space="preserve">
+    <value>唯一环的长度</value>
+  </data>
+  <data name="Factor_UniqueLoopSubsetSizeFactor" xml:space="preserve">
+    <value>唯一环里的数组规格</value>
+  </data>
+  <data name="Factor_UniqueMatrixSubsetSizeFactor" xml:space="preserve">
+    <value>唯一矩阵里的数组规格</value>
+  </data>
+  <data name="Factor_UniquenessClueCoverExtraCellsFactor" xml:space="preserve">
+    <value>唯一性提示数覆盖里的额外单元格数量</value>
+  </data>
+  <data name="Factor_UniqueRectangleSubsetIsHiddenFactor" xml:space="preserve">
+    <value>唯一矩形里的数组是否为隐性数组</value>
+  </data>
+  <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
+    <value>唯一矩形里的数组规格</value>
   </data>
 </root>

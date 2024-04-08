@@ -1942,11 +1942,47 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subset in Bi-value universal grave is hidden.
+        /// </summary>
+        public static string Factor_BivalueUniversalGraveSubsetIsHiddenFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueUniversalGraveSubsetIsHiddenFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size of bi-value universal grave.
+        /// </summary>
+        public static string Factor_BivalueUniversalGraveSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueUniversalGraveSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length of blossom loop.
         /// </summary>
         public static string Factor_BlossomLoopLengthFactor {
             get {
                 return ResourceManager.GetString("Factor_BlossomLoopLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size of Borescoper&apos;s deadly pattern.
+        /// </summary>
+        public static string Factor_BorescoperDeadlyPatternSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_BorescoperDeadlyPatternSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of Bowman&apos;s bingo.
+        /// </summary>
+        public static string Factor_BowmanBingoLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_BowmanBingoLengthFactor", resourceCulture);
             }
         }
         
@@ -1983,6 +2019,42 @@ namespace Sudoku.Resources {
         public static string Factor_ComplexFishSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_ComplexFishSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset in direct subset is locked.
+        /// </summary>
+        public static string Factor_DirectSubsetIsLockedFactor {
+            get {
+                return ResourceManager.GetString("Factor_DirectSubsetIsLockedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in direct subset.
+        /// </summary>
+        public static string Factor_DirectSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_DirectSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of extended rectangle.
+        /// </summary>
+        public static string Factor_ExtendedRectangleSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExtendedRectangleSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in extended rectangle.
+        /// </summary>
+        public static string Factor_ExtendedRectangleSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExtendedRectangleSubsetSizeFactor", resourceCulture);
             }
         }
         
@@ -2095,6 +2167,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Subset size in Qiu&apos;s deadly pattern.
+        /// </summary>
+        public static string Factor_QiuDeadlyPatternSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_QiuDeadlyPatternSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
         /// </summary>
         public static string Factor_RectangleDeathBlossomIsAvoidableFactor {
@@ -2131,6 +2212,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size of reverse bi-value universal grave.
+        /// </summary>
+        public static string Factor_ReverseBivalueUniversalGraveSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ReverseBivalueUniversalGraveSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannibalism in Sue de Coq.
         /// </summary>
         public static string Factor_SueDeCoqCannibalismFactor {
@@ -2145,6 +2235,60 @@ namespace Sudoku.Resources {
         public static string Factor_SueDeCoqIsolatedFactor {
             get {
                 return ResourceManager.GetString("Factor_SueDeCoqIsolatedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of unique loop.
+        /// </summary>
+        public static string Factor_UniqueLoopLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueLoopLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in unique loop.
+        /// </summary>
+        public static string Factor_UniqueLoopSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueLoopSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in unique matrix.
+        /// </summary>
+        public static string Factor_UniqueMatrixSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueMatrixSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of extra cells used in uniqueness clue cover.
+        /// </summary>
+        public static string Factor_UniquenessClueCoverExtraCellsFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniquenessClueCoverExtraCellsFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset in unique rectangle is hidden.
+        /// </summary>
+        public static string Factor_UniqueRectangleSubsetIsHiddenFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleSubsetIsHiddenFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in unique rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleSubsetSizeFactor", resourceCulture);
             }
         }
         
