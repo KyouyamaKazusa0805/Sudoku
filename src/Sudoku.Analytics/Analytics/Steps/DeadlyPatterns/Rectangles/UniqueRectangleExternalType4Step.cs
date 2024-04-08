@@ -26,27 +26,22 @@ public sealed partial class UniqueRectangleExternalType4Step(
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	isAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
-	digit1,
-	digit2,
-	in cells,
-	isAvoidable,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		isAvoidable ? Technique.AvoidableRectangleExternalType4 : Technique.UniqueRectangleExternalType4,
+		digit1,
+		digit2,
+		in cells,
+		isAvoidable,
+		absoluteOffset
+	),
+	IIncompleteTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
-		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -54,6 +49,10 @@ public sealed partial class UniqueRectangleExternalType4Step(
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjugatePairStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new RectangleIsAvoidableFactor(Options), new UniqueRectangleExternalType4IsIncompleteFactor(Options)];
 
 	private string ConjugatePairStr => Options.Converter.ConjugateConverter([ConjugatePair]);
 }

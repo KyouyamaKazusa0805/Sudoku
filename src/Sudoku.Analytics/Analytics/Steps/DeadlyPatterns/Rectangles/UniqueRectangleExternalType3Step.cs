@@ -28,28 +28,23 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	isAvoidable ? Technique.AvoidableRectangleExternalType3 : Technique.UniqueRectangleExternalType3,
-	digit1,
-	digit2,
-	in cells,
-	false,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		isAvoidable ? Technique.AvoidableRectangleExternalType3 : Technique.UniqueRectangleExternalType3,
+		digit1,
+		digit2,
+		in cells,
+		false,
+		absoluteOffset
+	),
+	IIncompleteTrait,
+	IPatternType3StepTrait<UniqueRectangleExternalType3Step>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, PopCount((uint)SubsetDigitsMask) * .1M),
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
-		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -57,6 +52,20 @@ public sealed partial class UniqueRectangleExternalType3Step(
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, SubsetCellsStr, SubsetDigitsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, SubsetDigitsStr, SubsetCellsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new RectangleIsAvoidableFactor(Options),
+			new UniqueRectangleExternalSubsetSizeFactor(Options),
+			new UniqueRectangleExternalType3IsIncompleteFactor(Options)
+		];
+
+	/// <inheritdoc/>
+	bool IPatternType3StepTrait<UniqueRectangleExternalType3Step>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3StepTrait<UniqueRectangleExternalType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string SubsetDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

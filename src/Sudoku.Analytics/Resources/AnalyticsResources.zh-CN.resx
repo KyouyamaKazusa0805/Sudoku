@@ -3038,7 +3038,6 @@
   <data name="SymmetryConstraint_NoSymmetrySelected" xml:space="preserve">
     <value>&lt;未选择任何对称性&gt;</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="GeneratedPuzzleConstraintPage_HighestSingleTechnique" xml:space="preserve">
     <value>最高难度技巧：</value>
   </data>
@@ -3266,5 +3265,26 @@
   </data>
   <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
     <value>唯一矩形里的数组规格</value>
+  </data>
+  <data name="Factor_MultisectorLockedSetsSizeFactor" xml:space="preserve">
+    <value>网的规格</value>
+  </data>
+  <data name="Factor_RectangleIsAvoidableFactor" xml:space="preserve">
+    <value>矩形是否为可规避矩形</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalGuardianFactor" xml:space="preserve">
+    <value>唯一矩形的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalSubsetSizeFactor" xml:space="preserve">
+    <value>唯一矩形里的数组规格</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType3IsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType4IsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
   </data>
 </root>

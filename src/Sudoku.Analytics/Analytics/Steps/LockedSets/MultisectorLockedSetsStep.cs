@@ -25,11 +25,11 @@ public sealed partial class MultisectorLockedSetsStep(
 	public override Technique Code => Technique.MultisectorLockedSets;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Size, A002024(Cells.Count) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CellsCountStr, CellsStr]), new(ChineseLanguage, [CellsCountStr, CellsStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new MultisectorLockedSetsSizeFactor(Options)];
 
 	private string CellsCountStr => Cells.Count.ToString();
 

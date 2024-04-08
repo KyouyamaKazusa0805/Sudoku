@@ -3090,4 +3090,25 @@ Error grid: '{0:#}'</value>
   <data name="Factor_UniqueRectangleSubsetSizeFactor" xml:space="preserve">
     <value>Subset size in unique rectangle</value>
   </data>
+  <data name="Factor_MultisectorLockedSetsSizeFactor" xml:space="preserve">
+    <value>Size of multi-sector locked set</value>
+  </data>
+  <data name="Factor_RectangleIsAvoidableFactor" xml:space="preserve">
+    <value>Rectangle is avoidable</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalGuardianFactor" xml:space="preserve">
+    <value>Guardians in unique rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalSubsetSizeFactor" xml:space="preserve">
+    <value>Subset size in unique rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType3IsIncompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType4IsIncompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
 </root>

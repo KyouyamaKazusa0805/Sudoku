@@ -26,37 +26,39 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	(isAvoidable, guardianCells.Count == 1) switch
-	{
-		(true, true) => Technique.AvoidableRectangleExternalType1,
-		(true, false) => Technique.AvoidableRectangleExternalType2,
-		(false, true) => Technique.UniqueRectangleExternalType1,
-		_ => Technique.UniqueRectangleExternalType2
-	},
-	digit1,
-	digit2,
-	in cells,
-	false,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		(isAvoidable, guardianCells.Count == 1) switch
+		{
+			(true, true) => Technique.AvoidableRectangleExternalType1,
+			(true, false) => Technique.AvoidableRectangleExternalType2,
+			(false, true) => Technique.UniqueRectangleExternalType1,
+			_ => Technique.UniqueRectangleExternalType2
+		},
+		digit1,
+		digit2,
+		in cells,
+		false,
+		absoluteOffset
+	),
+	IIncompleteTrait
 {
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
-		];
-
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianDigitStr, GuardianCellsStr])
+		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new UniqueRectangleExternalGuardianFactor(Options),
+			new RectangleIsAvoidableFactor(Options),
+			new UniqueRectangleExternalType1Or2IsIncompleteFactor(Options)
 		];
 
 	private string GuardianDigitStr => Options.Converter.DigitConverter((Mask)(1 << GuardianDigit));

@@ -2122,6 +2122,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size of multi-sector locked set.
+        /// </summary>
+        public static string Factor_MultisectorLockedSetsSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_MultisectorLockedSetsSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in naked subset.
         /// </summary>
         public static string Factor_NakedSubsetIsLockedFactor {
@@ -2190,6 +2199,15 @@ namespace Sudoku.Resources {
         public static string Factor_RectangleDeathBlossomPetalsCountFactor {
             get {
                 return ResourceManager.GetString("Factor_RectangleDeathBlossomPetalsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is avoidable.
+        /// </summary>
+        public static string Factor_RectangleIsAvoidableFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleIsAvoidableFactor", resourceCulture);
             }
         }
         
@@ -2271,6 +2289,51 @@ namespace Sudoku.Resources {
         public static string Factor_UniquenessClueCoverExtraCellsFactor {
             get {
                 return ResourceManager.GetString("Factor_UniquenessClueCoverExtraCellsFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardians in unique rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalGuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalGuardianFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset size in unique rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalType3IsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalType3IsIncompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalType4IsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalType4IsIncompleteFactor", resourceCulture);
             }
         }
         
