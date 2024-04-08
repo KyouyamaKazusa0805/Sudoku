@@ -1951,11 +1951,56 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cannibalism in complex fish.
+        /// </summary>
+        public static string Factor_ComplexFishCannibalismFactor {
+            get {
+                return ResourceManager.GetString("Factor_ComplexFishCannibalismFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi in complex fish.
+        /// </summary>
+        public static string Factor_ComplexFishIsSashimiFactor {
+            get {
+                return ResourceManager.GetString("Factor_ComplexFishIsSashimiFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Shape of complex fish.
+        /// </summary>
+        public static string Factor_ComplexFishShapeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ComplexFishShapeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of complex fish.
+        /// </summary>
+        public static string Factor_ComplexFishSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ComplexFishSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of extended subset principle.
         /// </summary>
         public static string Factor_ExtendedSubsetPrincipleSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_ExtendedSubsetPrincipleSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardian.
+        /// </summary>
+        public static string Factor_GuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_GuardianFactor", resourceCulture);
             }
         }
         
@@ -1987,6 +2032,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Irregular wing is grouped.
+        /// </summary>
+        public static string Factor_IrregularWingIsGroupedFactor {
+            get {
+                return ResourceManager.GetString("Factor_IrregularWingIsGroupedFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of branches in W-Wing.
+        /// </summary>
+        public static string Factor_MultiBranchWWingBranchesCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_MultiBranchWWingBranchesCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in naked subset.
         /// </summary>
         public static string Factor_NakedSubsetIsLockedFactor {
@@ -2001,6 +2064,24 @@ namespace Sudoku.Resources {
         public static string Factor_NakedSubsetSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_NakedSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sashimi in normal fish.
+        /// </summary>
+        public static string Factor_NormalFishIsSashimiFactor {
+            get {
+                return ResourceManager.GetString("Factor_NormalFishIsSashimiFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of normal fish.
+        /// </summary>
+        public static string Factor_NormalFishSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_NormalFishSizeFactor", resourceCulture);
             }
         }
         
@@ -2028,6 +2109,42 @@ namespace Sudoku.Resources {
         public static string Factor_RectangleDeathBlossomPetalsCountFactor {
             get {
                 return ResourceManager.GetString("Factor_RectangleDeathBlossomPetalsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Incompleteness of regular wing.
+        /// </summary>
+        public static string Factor_RegularWingIncompletenessFactor {
+            get {
+                return ResourceManager.GetString("Factor_RegularWingIncompletenessFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of regular wing.
+        /// </summary>
+        public static string Factor_RegularWingSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_RegularWingSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cannibalism in Sue de Coq.
+        /// </summary>
+        public static string Factor_SueDeCoqCannibalismFactor {
+            get {
+                return ResourceManager.GetString("Factor_SueDeCoqCannibalismFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Isolated digits in Sue de Coq.
+        /// </summary>
+        public static string Factor_SueDeCoqIsolatedFactor {
+            get {
+                return ResourceManager.GetString("Factor_SueDeCoqIsolatedFactor", resourceCulture);
             }
         }
         

@@ -3003,4 +3003,43 @@ Error grid: '{0:#}'</value>
   <data name="Factor_RectangleDeathBlossomPetalsCountFactor" xml:space="preserve">
     <value>The number of petals in death blossom (rectangle type)</value>
   </data>
+  <data name="Factor_ComplexFishCannibalismFactor" xml:space="preserve">
+    <value>Cannibalism in complex fish</value>
+  </data>
+  <data name="Factor_ComplexFishIsSashimiFactor" xml:space="preserve">
+    <value>Sashimi in complex fish</value>
+  </data>
+  <data name="Factor_ComplexFishShapeFactor" xml:space="preserve">
+    <value>Shape of complex fish</value>
+  </data>
+  <data name="Factor_ComplexFishSizeFactor" xml:space="preserve">
+    <value>Size of complex fish</value>
+  </data>
+  <data name="Factor_GuardianFactor" xml:space="preserve">
+    <value>Guardian</value>
+  </data>
+  <data name="Factor_IrregularWingIsGroupedFactor" xml:space="preserve">
+    <value>Irregular wing is grouped</value>
+  </data>
+  <data name="Factor_MultiBranchWWingBranchesCountFactor" xml:space="preserve">
+    <value>The number of branches in W-Wing</value>
+  </data>
+  <data name="Factor_NormalFishIsSashimiFactor" xml:space="preserve">
+    <value>Sashimi in normal fish</value>
+  </data>
+  <data name="Factor_NormalFishSizeFactor" xml:space="preserve">
+    <value>Size of normal fish</value>
+  </data>
+  <data name="Factor_RegularWingIncompletenessFactor" xml:space="preserve">
+    <value>Incompleteness of regular wing</value>
+  </data>
+  <data name="Factor_RegularWingSizeFactor" xml:space="preserve">
+    <value>Size of regular wing</value>
+  </data>
+  <data name="Factor_SueDeCoqCannibalismFactor" xml:space="preserve">
+    <value>Cannibalism in Sue de Coq</value>
+  </data>
+  <data name="Factor_SueDeCoqIsolatedFactor" xml:space="preserve">
+    <value>Isolated digits in Sue de Coq</value>
+  </data>
 </root>

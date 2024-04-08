@@ -47,18 +47,14 @@ public sealed partial class SueDeCoqStep(
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Isolated, IsolatedDigitsMask != 0 ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Cannibalism, IsCannibalistic ? .2M : 0)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr]),
 			new(ChineseLanguage, [IntersectionCellsStr, IntersectionDigitsStr, BlockCellsStr, BlockDigitsStr, LineCellsStr, LineDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new SueDeCoqIsolatedFactor(Options), new SueDeCoqCannibalismFactor(Options)];
 
 	private string IntersectionCellsStr => Options.Converter.CellConverter(IntersectionCells);
 

@@ -25,15 +25,14 @@ public sealed partial class GuardianStep(
 	public override Technique Code => Technique.BrokenWing;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, A004526(LoopCells.Count + A004526(Guardians.Count)) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr]),
 			new(ChineseLanguage, [CellsStr, GuardianSingularOrPlural, GuardianStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new GuardianFactor(Options)];
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 

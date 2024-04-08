@@ -16350,10 +16350,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.ComplexFishStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.Equals(Sudoku.Analytics.Step)">
@@ -16538,13 +16538,13 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalFishStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NormalFishStep.InternalName">
@@ -17077,10 +17077,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SueDeCoqStep.Block">
@@ -17428,10 +17428,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.GuardianStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.GuardianStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.GuardianStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.GuardianStep.Equals(Sudoku.Analytics.Step)">
@@ -18497,7 +18497,7 @@ if (student is (name: var name, age: >= 18))
             Indicates whether the pattern is grouped.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.IrregularWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LWingStep">
@@ -18614,10 +18614,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Leaves">
@@ -18772,10 +18772,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.RegularWingStep.Pivot">
@@ -22176,6 +22176,110 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
+            <summary>
+            Represents a factor that describes whether the <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is cannibalism.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is cannibalism.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor">
+            <summary>
+            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is a Sashimi fish.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is a Sashimi fish.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ComplexFishShapeFactor">
+            <summary>
+            Represents a factor that describes the shape of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ComplexFishShapeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the shape of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ComplexFishSizeFactor">
+            <summary>
+            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ComplexFishSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3">
             <summary>
             Represents a factor that measures the number of petals appeared in a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/>.
@@ -22234,6 +22338,32 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.GuardianFactor">
+            <summary>
+            Represents a factor that describes the guardian in <see cref="T:Sudoku.Analytics.Steps.GuardianStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.GuardianStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.GuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the guardian in <see cref="T:Sudoku.Analytics.Steps.GuardianStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.GuardianStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
@@ -22288,6 +22418,32 @@ result ^= expression;
         <member name="M:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor">
+            <summary>
+            Represents a factor that describes whether an <see cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/> is grouped.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether an <see cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/> is grouped.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.IrregularWingStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.LengthFactor">
             <summary>
             Represents the factor that describes the length of a pattern.
@@ -22306,6 +22462,32 @@ result ^= expression;
             </summary>
             <param name="length">The length of the pattern.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor">
+            <summary>
+            Represents a factor that describes the number of branches appeared in a <see cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the number of branches appeared in a <see cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.Formula">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
             <summary>
@@ -22355,6 +22537,58 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor">
+            <summary>
+            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/> is a Sashimi fish.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/> is a Sashimi fish.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.NormalFishSizeFactor">
+            <summary>
+            Represents a factor that describes the size of a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NormalFishSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
             <inheritdoc/>
         </member>
@@ -22389,6 +22623,110 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor">
+            <summary>
+            Represents a factor that describes incompleteness of <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes incompleteness of <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RegularWingSizeFactor">
+            <summary>
+            Represents a factor that describes the size of regular wing comes from <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RegularWingSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of regular wing comes from <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor">
+            <summary>
+            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor">
+            <summary>
+            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">
@@ -23502,9 +23840,34 @@ result ^= expression;
               Looks up a localized string similar to Length of blossom loop.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishCannibalismFactor">
+            <summary>
+              Looks up a localized string similar to Cannibalism in complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishIsSashimiFactor">
+            <summary>
+              Looks up a localized string similar to Sashimi in complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishShapeFactor">
+            <summary>
+              Looks up a localized string similar to Shape of complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of complex fish.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedSubsetPrincipleSizeFactor">
             <summary>
               Looks up a localized string similar to Size of extended subset principle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_GuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardian.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetIsLockedFactor">
@@ -23522,6 +23885,16 @@ result ^= expression;
               Looks up a localized string similar to The number of petals in death blossom (house type).
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_IrregularWingIsGroupedFactor">
+            <summary>
+              Looks up a localized string similar to Irregular wing is grouped.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_MultiBranchWWingBranchesCountFactor">
+            <summary>
+              Looks up a localized string similar to The number of branches in W-Wing.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetIsLockedFactor">
             <summary>
               Looks up a localized string similar to Locked type in naked subset.
@@ -23530,6 +23903,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetSizeFactor">
             <summary>
               Looks up a localized string similar to Size in naked subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NormalFishIsSashimiFactor">
+            <summary>
+              Looks up a localized string similar to Sashimi in normal fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NormalFishSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of normal fish.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
@@ -23545,6 +23928,26 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleDeathBlossomPetalsCountFactor">
             <summary>
               Looks up a localized string similar to The number of petals in death blossom (rectangle type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RegularWingIncompletenessFactor">
+            <summary>
+              Looks up a localized string similar to Incompleteness of regular wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RegularWingSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of regular wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqCannibalismFactor">
+            <summary>
+              Looks up a localized string similar to Cannibalism in Sue de Coq.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_SueDeCoqIsolatedFactor">
+            <summary>
+              Looks up a localized string similar to Isolated digits in Sue de Coq.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">

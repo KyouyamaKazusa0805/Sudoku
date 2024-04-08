@@ -34,12 +34,11 @@ public sealed partial class MultiBranchWWingStep(
 	public override Technique Code => Technique.MultiBranchWWing;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .3M, 4 => .6M, 5 => 1.0M, _ => 1.4M })];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [LeavesStr, RootStr, HouseStr]), new(ChineseLanguage, [RootStr, HouseStr, LeavesStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new MultiBranchWWingBranchesCountFactor(Options)];
 
 	private string LeavesStr => Options.Converter.CellConverter(Leaves);
 

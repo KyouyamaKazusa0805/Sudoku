@@ -80,30 +80,17 @@ public sealed partial class ComplexFishStep(
 	}
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => .6M, 4 => 2.0M, 5 => 3.3M, 6 => 4.5M, 7 => 5.6M, _ => 6.6M }),
-			new(
-				ExtraDifficultyFactorNames.Sashimi,
-				IsSashimi switch
-				{
-					false => Size switch { 2 or 3 or 4 => .2M, 5 or 6 or 7 => .3M, _ => .4M },
-					true => Size switch { 2 or 3 => .3M, 4 or 5 => .4M, 6 => .5M, 7 => .6M, _ => .7M },
-					_ => 0
-				}
-			),
-			new(
-				ExtraDifficultyFactorNames.FishShape,
-				IsFranken
-					? Size switch { 2 => 0, 3 or 4 => 1.1M, 5 or 6 or 7 => 1.2M, _ => 1.3M }
-					: Size switch { 2 => 0, 3 or 4 => 1.4M, 5 or 6 => 1.6M, 7 => 1.7M, _ => 2.0M }
-			),
-			new(ExtraDifficultyFactorNames.Cannibalism, IsCannibalism ? .3M : 0)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new ComplexFishSizeFactor(Options),
+			new ComplexFishIsSashimiFactor(Options),
+			new ComplexFishShapeFactor(Options),
+			new ComplexFishCannibalismFactor(Options)
+		];
 
 
 	/// <inheritdoc/>

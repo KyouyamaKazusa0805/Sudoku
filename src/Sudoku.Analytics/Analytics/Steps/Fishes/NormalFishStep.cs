@@ -28,13 +28,6 @@ public sealed partial class NormalFishStep(
 	public override decimal BaseDifficulty => 3.2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, Size switch { 2 => 0, 3 => 0.6M, 4 => 2.0M }),
-			new(ExtraDifficultyFactorNames.Sashimi, IsSashimi switch { true => Size switch { 2 or 3 => .3M, 4 => .4M }, false => .2M, _ => 0 })
-		];
-
-	/// <inheritdoc/>
 	public override Technique Code
 	{
 		get
@@ -56,6 +49,9 @@ public sealed partial class NormalFishStep(
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new NormalFishSizeFactor(Options), new NormalFishIsSashimiFactor(Options)];
 
 	/// <summary>
 	/// Indicates the internal name.

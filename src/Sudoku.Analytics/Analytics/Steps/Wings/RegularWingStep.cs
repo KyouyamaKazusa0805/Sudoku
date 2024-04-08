@@ -68,21 +68,11 @@ public sealed partial class RegularWingStep(
 	public override Technique Code => TechniqueMarshal.MakeRegularWingTechniqueCode(TechniqueMarshal.GetRegularWingEnglishName(Size, IsIncomplete));
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(
-				ExtraDifficultyFactorNames.WingSize,
-				Size switch { 3 => 0, 4 => .2M, 5 => .4M, 6 => .7M, 7 => 1.0M, 8 => 1.3M, 9 => 1.6M, _ => 2.0M }
-			),
-			new(
-				ExtraDifficultyFactorNames.Incompleteness,
-				(Code, IsIncomplete) switch { (Technique.XyWing, _) => 0, (Technique.XyzWing, _) => .2M, (_, true) => .1M, _ => 0 }
-			)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new RegularWingSizeFactor(Options), new RegularWingIncompletenessFactor(Options)];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

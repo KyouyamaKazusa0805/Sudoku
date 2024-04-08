@@ -3192,4 +3192,43 @@
   <data name="Factor_RectangleDeathBlossomPetalsCountFactor" xml:space="preserve">
     <value>死亡绽放（矩形类型）的花瓣数</value>
   </data>
+  <data name="Factor_ComplexFishCannibalismFactor" xml:space="preserve">
+    <value>复杂鱼的自噬</value>
+  </data>
+  <data name="Factor_ComplexFishIsSashimiFactor" xml:space="preserve">
+    <value>复杂鱼的退化</value>
+  </data>
+  <data name="Factor_ComplexFishShapeFactor" xml:space="preserve">
+    <value>复杂鱼的形状</value>
+  </data>
+  <data name="Factor_ComplexFishSizeFactor" xml:space="preserve">
+    <value>复杂鱼的规格</value>
+  </data>
+  <data name="Factor_GuardianFactor" xml:space="preserve">
+    <value>守护者</value>
+  </data>
+  <data name="Factor_IrregularWingIsGroupedFactor" xml:space="preserve">
+    <value>不规则 wing 带区块情况</value>
+  </data>
+  <data name="Factor_MultiBranchWWingBranchesCountFactor" xml:space="preserve">
+    <value>W-Wing 的分支数</value>
+  </data>
+  <data name="Factor_NormalFishIsSashimiFactor" xml:space="preserve">
+    <value>普通鱼的退化</value>
+  </data>
+  <data name="Factor_NormalFishSizeFactor" xml:space="preserve">
+    <value>普通鱼的规格</value>
+  </data>
+  <data name="Factor_RegularWingIncompletenessFactor" xml:space="preserve">
+    <value>规则 wing 的残缺</value>
+  </data>
+  <data name="Factor_RegularWingSizeFactor" xml:space="preserve">
+    <value>规则 wing 的分支数</value>
+  </data>
+  <data name="Factor_SueDeCoqCannibalismFactor" xml:space="preserve">
+    <value>融合待定数组的自噬</value>
+  </data>
+  <data name="Factor_SueDeCoqIsolatedFactor" xml:space="preserve">
+    <value>融合待定数组的孤立数字</value>
+  </data>
 </root>
