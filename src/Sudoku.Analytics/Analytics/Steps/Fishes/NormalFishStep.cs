@@ -57,18 +57,19 @@ public sealed partial class NormalFishStep(
 	/// Indicates the internal name.
 	/// </summary>
 	private string InternalName
-		=> $"{(IsSiamese, IsSashimi) switch
+	{
+		get
 		{
-			(true, true) => "Siamese Sashimi ",
-			(true, false) => "Siamese Finned ",
-			(_, true) => "Sashimi ",
-			(_, false) => "Finned ",
-			(false, null) => string.Empty,
-			_ => throw new InvalidOperationException($"Siamese fish requires a non-null value for property '{nameof(IsSashimi)}'.")
-		}}{Size switch
-		{
-			2 => "X-Wing",
-			3 => "Swordfish",
-			4 => "Jellyfish"
-		}}";
+			var prefix = (IsSiamese, IsSashimi) switch
+			{
+				(true, true) => "Siamese Sashimi ",
+				(true, false) => "Siamese Finned ",
+				(_, true) => "Sashimi ",
+				(_, false) => "Finned ",
+				(false, null) => string.Empty,
+				_ => throw new InvalidOperationException($"Siamese fish requires a non-null value for property '{nameof(IsSashimi)}'.")
+			};
+			return $"{prefix}{TechniqueMarshal.GetFishEnglishName(Size)}";
+		}
+	}
 }
