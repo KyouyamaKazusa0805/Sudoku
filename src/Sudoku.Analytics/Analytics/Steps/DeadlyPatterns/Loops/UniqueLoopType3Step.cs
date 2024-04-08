@@ -22,7 +22,7 @@ public sealed partial class UniqueLoopType3Step(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	Cell[] loopPath
-) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath), IPatternType3Step<UniqueLoopType3Step>
+) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath), IPatternType3StepTrait<UniqueLoopType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -38,10 +38,10 @@ public sealed partial class UniqueLoopType3Step(
 	public override FactorCollection Factors => [.. base.Factors, new UniqueLoopSubsetSizeFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<UniqueLoopType3Step>.IsHidden => false;
+	bool IPatternType3StepTrait<UniqueLoopType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<UniqueLoopType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<UniqueLoopType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string SubsetCellsStr => Options.Converter.CellConverter(SubsetCells);
 

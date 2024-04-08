@@ -49,7 +49,6 @@ global using Sudoku.Text;
 global using Sudoku.Text.Converters;
 global using Sudoku.Text.Parsers;
 global using Sudoku.Traits;
-global using Sudoku.Traits.Internal;
 global using static System.Algorithm.Sequences;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.CachedFields;

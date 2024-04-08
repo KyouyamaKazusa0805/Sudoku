@@ -6,13 +6,13 @@ namespace Sudoku.Measuring.Factors;
 /// <typeparam name="TStep">The type of the step.</typeparam>
 /// <param name="options"><inheritdoc/></param>
 public abstract class AlmostSubsetSizeFactor<TStep>(StepSearcherOptions options) : Factor(options)
-	where TStep : Step, IPatternType3Step<TStep>
+	where TStep : Step, IPatternType3StepTrait<TStep>
 {
 	/// <inheritdoc/>
 	public sealed override string FormulaString => "{0}";
 
 	/// <inheritdoc/>
-	public sealed override string[] ParameterNames => [nameof(IPatternType3Step<TStep>.SubsetSize)];
+	public sealed override string[] ParameterNames => [nameof(IPatternType3StepTrait<TStep>.SubsetSize)];
 
 	/// <inheritdoc/>
 	public sealed override Type ReflectedStepType => typeof(TStep);

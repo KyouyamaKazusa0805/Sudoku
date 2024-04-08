@@ -27,7 +27,7 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	[PrimaryConstructorParameter] bool isNaked
 ) :
 	QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2),
-	IPatternType3Step<QiuDeadlyPatternType3Step>
+	IPatternType3StepTrait<QiuDeadlyPatternType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -43,10 +43,10 @@ public sealed partial class QiuDeadlyPatternType3Step(
 	public override FactorCollection Factors => [new QiuDeadlyPatternSubsetSizeFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<QiuDeadlyPatternType3Step>.IsHidden => false;
+	bool IPatternType3StepTrait<QiuDeadlyPatternType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<QiuDeadlyPatternType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<QiuDeadlyPatternType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

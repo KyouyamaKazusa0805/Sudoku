@@ -42,7 +42,7 @@ public sealed partial class UniqueRectangleType3Step(
 		isAvoidable,
 		absoluteOffset
 	),
-	IPatternType3Step<UniqueRectangleType3Step>
+	IPatternType3StepTrait<UniqueRectangleType3Step>
 {
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -56,16 +56,16 @@ public sealed partial class UniqueRectangleType3Step(
 		=> [new UniqueRectangleSubsetIsHiddenFactor(Options), new UniqueRectangleSubsetSizeFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<UniqueRectangleType3Step>.IsHidden => !IsNaked;
+	bool IPatternType3StepTrait<UniqueRectangleType3Step>.IsHidden => !IsNaked;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<UniqueRectangleType3Step>.SubsetSize => PopCount((uint)ExtraDigitsMask);
+	int IPatternType3StepTrait<UniqueRectangleType3Step>.SubsetSize => PopCount((uint)ExtraDigitsMask);
 
 	/// <inheritdoc/>
-	Mask IPatternType3Step<UniqueRectangleType3Step>.SubsetDigitsMask => ExtraDigitsMask;
+	Mask IPatternType3StepTrait<UniqueRectangleType3Step>.SubsetDigitsMask => ExtraDigitsMask;
 
 	/// <inheritdoc/>
-	CellMap IPatternType3Step<UniqueRectangleType3Step>.SubsetCells => ExtraCells;
+	CellMap IPatternType3StepTrait<UniqueRectangleType3Step>.SubsetCells => ExtraCells;
 
 	private string SubsetDigitsMask => Options.Converter.DigitConverter(ExtraDigitsMask);
 

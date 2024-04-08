@@ -1,4 +1,4 @@
-namespace Sudoku.Traits.Internal;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// The base overrides for complex senior exocet steps.

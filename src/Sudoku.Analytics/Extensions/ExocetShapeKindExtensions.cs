@@ -1,4 +1,4 @@
-namespace Sudoku.Traits.Internal;
+namespace Sudoku.Concepts.ObjectModel;
 
 /// <summary>
 /// Provides with extension methods around enumeration type <see cref="ExocetShapeKind"/>.

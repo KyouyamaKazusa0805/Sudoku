@@ -19,7 +19,7 @@ public sealed partial class UniqueMatrixType3Step(
 	Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask
-) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask), IPatternType3Step<UniqueMatrixType3Step>
+) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<UniqueMatrixType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -35,10 +35,10 @@ public sealed partial class UniqueMatrixType3Step(
 	public override FactorCollection Factors => [new UniqueMatrixSubsetSizeFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<UniqueMatrixType3Step>.IsHidden => false;
+	bool IPatternType3StepTrait<UniqueMatrixType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<UniqueMatrixType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<UniqueMatrixType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string ExtraCellsStr => Options.Converter.CellConverter(SubsetCells);
 

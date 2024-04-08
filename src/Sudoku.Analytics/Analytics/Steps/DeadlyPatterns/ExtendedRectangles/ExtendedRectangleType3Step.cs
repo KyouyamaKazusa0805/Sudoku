@@ -20,7 +20,7 @@ public sealed partial class ExtendedRectangleType3Step(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] House house
-) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3Step<ExtendedRectangleType3Step>
+) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<ExtendedRectangleType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -36,10 +36,10 @@ public sealed partial class ExtendedRectangleType3Step(
 	public override FactorCollection Factors => [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<ExtendedRectangleType3Step>.IsHidden => false;
+	bool IPatternType3StepTrait<ExtendedRectangleType3Step>.IsHidden => false;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<ExtendedRectangleType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
+	int IPatternType3StepTrait<ExtendedRectangleType3Step>.SubsetSize => PopCount((uint)SubsetDigitsMask);
 
 	private string ExtraDigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 

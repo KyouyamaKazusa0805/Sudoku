@@ -18,7 +18,7 @@ public sealed partial class BivalueUniversalGraveType3Step(
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] bool isNaked
-) : BivalueUniversalGraveStep(conclusions, views, options), IPatternType3Step<BivalueUniversalGraveType3Step>
+) : BivalueUniversalGraveStep(conclusions, views, options), IPatternType3StepTrait<BivalueUniversalGraveType3Step>
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;
@@ -35,13 +35,13 @@ public sealed partial class BivalueUniversalGraveType3Step(
 		=> [new BivalueUniversalGraveSubsetSizeFactor(Options), new BivalueUniversalGraveSubsetIsHiddenFactor(Options)];
 
 	/// <inheritdoc/>
-	bool IPatternType3Step<BivalueUniversalGraveType3Step>.IsHidden => !IsNaked;
+	bool IPatternType3StepTrait<BivalueUniversalGraveType3Step>.IsHidden => !IsNaked;
 
 	/// <inheritdoc/>
-	int IPatternType3Step<BivalueUniversalGraveType3Step>.SubsetSize => Size;
+	int IPatternType3StepTrait<BivalueUniversalGraveType3Step>.SubsetSize => Size;
 
 	/// <inheritdoc/>
-	CellMap IPatternType3Step<BivalueUniversalGraveType3Step>.SubsetCells => Cells;
+	CellMap IPatternType3StepTrait<BivalueUniversalGraveType3Step>.SubsetCells => Cells;
 
 	/// <summary>
 	/// Indicates the size of the subset.
