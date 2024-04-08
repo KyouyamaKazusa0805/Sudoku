@@ -2973,4 +2973,34 @@ Error grid: '{0:#}'</value>
   <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
     <value>Value cell existence in almost locked candidates</value>
   </data>
+  <data name="Factor_BasicChainLengthFactor" xml:space="preserve">
+    <value>Length in chains</value>
+  </data>
+  <data name="Factor_BasicDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>The number of petals in death blossom</value>
+  </data>
+  <data name="Factor_BivalueOddagonLengthFactor" xml:space="preserve">
+    <value>Length in bi-value oddagon</value>
+  </data>
+  <data name="Factor_BivalueOddagonSubsetSizeFactor" xml:space="preserve">
+    <value>Size of subset in bi-value oddagon</value>
+  </data>
+  <data name="Factor_BlossomLoopLengthFactor" xml:space="preserve">
+    <value>Length of blossom loop</value>
+  </data>
+  <data name="Factor_ExtendedSubsetPrincipleSizeFactor" xml:space="preserve">
+    <value>Size of extended subset principle</value>
+  </data>
+  <data name="Factor_HouseDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>The number of petals in death blossom (house type)</value>
+  </data>
+  <data name="Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>The number of petals in death blossom (A^nLS type)</value>
+  </data>
+  <data name="Factor_RectangleDeathBlossomIsAvoidableFactor" xml:space="preserve">
+    <value>Death blossom (rectangle type) uses avoidable rectangle</value>
+  </data>
+  <data name="Factor_RectangleDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>The number of petals in death blossom (rectangle type)</value>
+  </data>
 </root>

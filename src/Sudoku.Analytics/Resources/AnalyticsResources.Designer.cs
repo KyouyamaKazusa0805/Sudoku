@@ -1906,6 +1906,60 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length in chains.
+        /// </summary>
+        public static string Factor_BasicChainLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_BasicChainLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of petals in death blossom.
+        /// </summary>
+        public static string Factor_BasicDeathBlossomPetalsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_BasicDeathBlossomPetalsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length in bi-value oddagon.
+        /// </summary>
+        public static string Factor_BivalueOddagonLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueOddagonLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of subset in bi-value oddagon.
+        /// </summary>
+        public static string Factor_BivalueOddagonSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueOddagonSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Length of blossom loop.
+        /// </summary>
+        public static string Factor_BlossomLoopLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_BlossomLoopLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Size of extended subset principle.
+        /// </summary>
+        public static string Factor_ExtendedSubsetPrincipleSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExtendedSubsetPrincipleSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in hidden subset.
         /// </summary>
         public static string Factor_HiddenSubsetIsLockedFactor {
@@ -1924,6 +1978,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The number of petals in death blossom (house type).
+        /// </summary>
+        public static string Factor_HouseDeathBlossomPetalsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_HouseDeathBlossomPetalsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Locked type in naked subset.
         /// </summary>
         public static string Factor_NakedSubsetIsLockedFactor {
@@ -1938,6 +2001,33 @@ namespace Sudoku.Resources {
         public static string Factor_NakedSubsetSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_NakedSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of petals in death blossom (A^nLS type).
+        /// </summary>
+        public static string Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
+        /// </summary>
+        public static string Factor_RectangleDeathBlossomIsAvoidableFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleDeathBlossomIsAvoidableFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The number of petals in death blossom (rectangle type).
+        /// </summary>
+        public static string Factor_RectangleDeathBlossomPetalsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleDeathBlossomPetalsCountFactor", resourceCulture);
             }
         }
         

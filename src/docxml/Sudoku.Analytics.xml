@@ -23477,6 +23477,36 @@ result ^= expression;
               Looks up a localized string similar to Value cell existence in almost locked candidates.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BasicChainLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length in chains.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BasicDeathBlossomPetalsCountFactor">
+            <summary>
+              Looks up a localized string similar to The number of petals in death blossom.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueOddagonLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length in bi-value oddagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueOddagonSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of subset in bi-value oddagon.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length of blossom loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedSubsetPrincipleSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of extended subset principle.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HiddenSubsetIsLockedFactor">
             <summary>
               Looks up a localized string similar to Locked type in hidden subset.
@@ -23487,6 +23517,11 @@ result ^= expression;
               Looks up a localized string similar to Size in hidden subset.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_HouseDeathBlossomPetalsCountFactor">
+            <summary>
+              Looks up a localized string similar to The number of petals in death blossom (house type).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetIsLockedFactor">
             <summary>
               Looks up a localized string similar to Locked type in naked subset.
@@ -23495,6 +23530,21 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NakedSubsetSizeFactor">
             <summary>
               Looks up a localized string similar to Size in naked subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
+            <summary>
+              Looks up a localized string similar to The number of petals in death blossom (A^nLS type).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleDeathBlossomIsAvoidableFactor">
+            <summary>
+              Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleDeathBlossomPetalsCountFactor">
+            <summary>
+              Looks up a localized string similar to The number of petals in death blossom (rectangle type).
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">

@@ -3057,6 +3057,30 @@
   <data name="LastingConstraint" xml:space="preserve">
     <value>余数：一个{0}必须有{1} {2}个空格</value>
   </data>
+  <data name="Factor_HiddenSubsetIsLockedFactor" xml:space="preserve">
+    <value>隐性数组的死锁</value>
+  </data>
+  <data name="Factor_NakedSubsetIsLockedFactor" xml:space="preserve">
+    <value>显性数组的死锁</value>
+  </data>
+  <data name="Factor_NakedSubsetSizeFactor" xml:space="preserve">
+    <value>显性数组的规格</value>
+  </data>
+  <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
+    <value>隐性数组的规格</value>
+  </data>
+  <data name="ErrorInfo_ScaleValueCannotBeNegative" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="ErrorInfo_TechiqueIsNotSupported" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Factor_AlmostLockedCandidatesSizeFactor" xml:space="preserve">
+    <value>欠一数组的规格</value>
+  </data>
+  <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
+    <value>欠一数组是否使用明数</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3138,28 +3162,34 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="Factor_HiddenSubsetIsLockedFactor" xml:space="preserve">
-    <value>隐性数组的死锁</value>
+  <data name="Factor_BasicChainLengthFactor" xml:space="preserve">
+    <value>链的长度</value>
   </data>
-  <data name="Factor_NakedSubsetIsLockedFactor" xml:space="preserve">
-    <value>显性数组的死锁</value>
+  <data name="Factor_BasicDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>死亡绽放的花瓣数</value>
   </data>
-  <data name="Factor_NakedSubsetSizeFactor" xml:space="preserve">
-    <value>显性数组的规格</value>
+  <data name="Factor_BivalueOddagonLengthFactor" xml:space="preserve">
+    <value>死环的长度</value>
   </data>
-  <data name="Factor_HiddenSubsetSizeFactor" xml:space="preserve">
-    <value>隐性数组的规格</value>
+  <data name="Factor_BivalueOddagonSubsetSizeFactor" xml:space="preserve">
+    <value>死环的数组规格</value>
   </data>
-  <data name="ErrorInfo_ScaleValueCannotBeNegative" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Factor_BlossomLoopLengthFactor" xml:space="preserve">
+    <value>绽放环的长度</value>
   </data>
-  <data name="ErrorInfo_TechiqueIsNotSupported" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Factor_ExtendedSubsetPrincipleSizeFactor" xml:space="preserve">
+    <value>伪数组的规格</value>
   </data>
-  <data name="Factor_AlmostLockedCandidatesSizeFactor" xml:space="preserve">
-    <value>欠一数组的规格</value>
+  <data name="Factor_HouseDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>死亡绽放（区域类型）的花瓣数</value>
   </data>
-  <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
-    <value>欠一数组是否使用明数</value>
+  <data name="Factor_NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>死亡绽放（待定数组类型）的花瓣数</value>
+  </data>
+  <data name="Factor_RectangleDeathBlossomIsAvoidableFactor" xml:space="preserve">
+    <value>死亡绽放（矩形类型）的矩形是否是可规避矩形</value>
+  </data>
+  <data name="Factor_RectangleDeathBlossomPetalsCountFactor" xml:space="preserve">
+    <value>死亡绽放（矩形类型）的花瓣数</value>
   </data>
 </root>
