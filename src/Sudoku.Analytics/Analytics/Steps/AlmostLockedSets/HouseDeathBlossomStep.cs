@@ -18,7 +18,7 @@ public sealed partial class HouseDeathBlossomStep(
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] HouseBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options)
+) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<HouseBlossomBranchCollection, House>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
@@ -31,8 +31,7 @@ public sealed partial class HouseDeathBlossomStep(
 		=> [new(EnglishLanguage, [HouseStr, BranchesStr]), new(ChineseLanguage, [HouseStr, BranchesStr])];
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Petals, A002024(Branches.Count) * .1M)];
+	public override FactorCollection Factors => [new HouseDeathBlossomPetalsCountFactor(Options)];
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 

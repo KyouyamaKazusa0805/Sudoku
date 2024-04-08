@@ -16,7 +16,7 @@ public sealed partial class DeathBlossomStep(
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] NormalBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options)
+) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<NormalBlossomBranchCollection, Digit>
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DeathBlossom;
@@ -26,8 +26,7 @@ public sealed partial class DeathBlossomStep(
 		=> [new(EnglishLanguage, [PivotStr, BranchesStr]), new(ChineseLanguage, [PivotStr, BranchesStr])];
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Petals, A002024(Branches.Count) * .1M)];
+	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor(Options)];
 
 	private string PivotStr => Options.Converter.CellConverter([Pivot]);
 

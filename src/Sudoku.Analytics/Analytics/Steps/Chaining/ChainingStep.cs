@@ -65,7 +65,7 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Length, LengthDifficulty)];
+	public sealed override FactorCollection Factors => [new BasicChainLengthFactor(Options)];
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.
@@ -127,11 +127,6 @@ public abstract partial class ChainingStep(
 			RegionForcingChainsStep { Chains.Potentials: [var branchedStart, ..] } => branchedStart,
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
-
-	/// <summary>
-	/// Indicates the difficulty rating of the current step, which binds with length factor.
-	/// </summary>
-	private decimal LengthDifficulty => DifficultyMeasuring.GetLengthDifficulty(Complexity - 2);
 
 	/// <summary>
 	/// Indicates the complexity of the chain. The complexity value generally indicates the total length of all branches in a chain.

@@ -36,16 +36,11 @@ public sealed partial class BlossomLoopStep(
 	public override Technique Code => Technique.BlossomLoop;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Length, LengthDifficulty)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
-	/// <summary>
-	/// Indicates the total length difficulty.
-	/// </summary>
-	private decimal LengthDifficulty => DifficultyMeasuring.GetLengthDifficulty(Chains.Potentials.Sum(ChainingStep.AncestorsCountOf));
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new BlossomLoopLengthFactor(Options)];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

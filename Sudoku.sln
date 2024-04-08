@@ -438,8 +438,8 @@ Global
 		{AB156C6F-56B1-4DF4-B69B-5C24BB6C75D0} = {46337DBB-9B25-4B23-B7A8-1873A1522B04}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		RESX_ShowErrorsInErrorList = False
-		RESX_Rules = {"EnabledRules":["StringFormat"]}
 		SolutionGuid = {E2B6A644-F820-4AB3-8508-C3C59838C955}
+		RESX_Rules = {"EnabledRules":["StringFormat"]}
+		RESX_ShowErrorsInErrorList = False
 	EndGlobalSection
 EndGlobal

@@ -11334,7 +11334,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DeathBlossomStep.Pivot">
@@ -11440,10 +11440,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.Cells">
@@ -11494,7 +11494,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -11553,7 +11553,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -11615,7 +11615,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Factors">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.Equals(Sudoku.Analytics.Step)">
@@ -11792,16 +11792,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.LengthDifficulty">
-            <summary>
-            Indicates the total length difficulty.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.BlossomLoopStep.Factors">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.CreateViews">
             <summary>
@@ -11938,7 +11933,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ChainingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.SortKey">
@@ -11964,11 +11959,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.Result">
             <summary>
             Indicates the result node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ChainingStep.LengthDifficulty">
-            <summary>
-            Indicates the difficulty rating of the current step, which binds with length factor.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.FlatComplexity">
@@ -20456,6 +20446,18 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2">
+            <summary>
+            Represents the basic data for a death blossom.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2.Branches">
+            <summary>
+            Indicates the branches used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.NodeList">
             <summary>
             Defines a list of <see cref="T:Sudoku.Concepts.ChainNode"/> using doubly linked list as the backing algorithm.
@@ -22066,6 +22068,36 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.BasicChainLengthFactor">
+            <summary>
+            Represents a factor that describes the length of a chain.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BasicChainLengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the length of a chain.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor">
             <summary>
             Represents a factor that measures length of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
@@ -22118,6 +22150,90 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
+            <summary>
+            Represents a factor that describes the length property of <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the length property of <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3">
+            <summary>
+            Represents a factor that measures the number of petals appeared in a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/>.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="TCollection">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures the number of petals appeared in a <see cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/>.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <typeparam name="TCollection">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.DeathBlossomStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DeathBlossomPetalsCountFactor`3.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor">
+            <summary>
+            Represents a factor that measures the size of the pattern appeared in a <see cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that measures the size of the pattern appeared in a <see cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
@@ -22166,6 +22282,31 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.LengthFactor">
+            <summary>
+            Represents the factor that describes the length of a pattern.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.LengthFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents the factor that describes the length of a pattern.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.LengthFactor.GetLengthDifficulty(System.Int32)">
+            <summary>
+            Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
+            </summary>
+            <param name="length">The length of the pattern.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a naked subset is.
@@ -22212,6 +22353,42 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor">
+            <summary>
+            Represents a factor that describes the factor 
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the factor 
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">

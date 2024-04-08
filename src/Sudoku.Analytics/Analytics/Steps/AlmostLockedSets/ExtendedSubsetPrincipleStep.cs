@@ -25,12 +25,11 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	public override Technique Code => Technique.ExtendedSubsetPrinciple;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, Cells.Count switch { 3 or 4 => 0, 5 or 6 or 7 => .2M, 8 or 9 => .4M })];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [EspDigitStr, CellsStr]), new(ChineseLanguage, [EspDigitStr, CellsStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new ExtendedSubsetPrincipleSizeFactor(Options)];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 

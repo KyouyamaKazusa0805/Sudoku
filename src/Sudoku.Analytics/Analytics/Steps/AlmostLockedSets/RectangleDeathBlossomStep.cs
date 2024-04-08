@@ -18,7 +18,7 @@ public sealed partial class RectangleDeathBlossomStep(
 	[PrimaryConstructorParameter] bool isAvoidable,
 	[PrimaryConstructorParameter] RectangleBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options)
+) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<RectangleBlossomBranchCollection, Candidate>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
@@ -31,11 +31,8 @@ public sealed partial class RectangleDeathBlossomStep(
 		=> [new(EnglishLanguage, [PatternStr, BranchesStr]), new(ChineseLanguage, [PatternStr, BranchesStr])];
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Avoidable, .1M),
-			new(ExtraDifficultyFactorNames.Petals, A002024(Branches.Count) * .1M)
-		];
+	public override FactorCollection Factors
+		=> [new RectangleDeathBlossomPetalsCountFactor(Options), new RectangleDeathBlossomIsAvoidableFactor(Options)];
 
 	private string PatternStr => Options.Converter.CellConverter(Pattern);
 
