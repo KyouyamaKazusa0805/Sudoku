@@ -28,11 +28,7 @@ internal static class AnalyzeConversion
 	public static string GetDifficultyRatingText(Step step)
 	{
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
-		var resultDifficulty = pref.GetRating(step.Code) switch
-		{
-			{ } integerValue => integerValue / pref.RatingScale,
-			_ => step.Difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue / pref.RatingScale
-		};
+		var resultDifficulty = pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(resultDifficulty));
 	}
 

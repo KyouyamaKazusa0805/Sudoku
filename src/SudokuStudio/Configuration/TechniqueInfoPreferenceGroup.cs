@@ -8,7 +8,7 @@ namespace SudokuStudio.Configuration;
 public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 {
 	[Default]
-	internal static readonly decimal RatingScaleDefaultValue = 10M;
+	private static readonly decimal RatingScaleDefaultValue = 10M;
 
 	[Default]
 	private static readonly Dictionary<Technique, TechniqueData> CustomizedTechniqueDataDefaultValue = [];

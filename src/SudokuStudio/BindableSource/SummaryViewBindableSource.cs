@@ -61,9 +61,7 @@ internal sealed partial class SummaryViewBindableSource(
 		static decimal r(Step step)
 		{
 			var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
-			return pref.GetRating(step.Code) is { } integerValue
-				? integerValue / pref.RatingScale
-				: step.Difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue / pref.RatingScale;
+			return pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		}
 	}
 }
