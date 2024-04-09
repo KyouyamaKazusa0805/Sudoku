@@ -22,33 +22,26 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap guardianCells,
 	[PrimaryConstructorParameter] bool isIncomplete,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	Technique.UniqueRectangleExternalTurbotFish,
-	digit1,
-	digit2,
-	in cells,
-	false,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(conclusions, views, options, Technique.UniqueRectangleExternalTurbotFish, digit1, digit2, in cells, false, absoluteOffset),
+	IIncompleteTrait,
+	IGuardianTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
-		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr])
+		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new UniqueRectangleExternalTurbotFishGuardianFactor(Options),
+			new UniqueRectangleExternalTurbotFishIsIncompleteFactor(Options)
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

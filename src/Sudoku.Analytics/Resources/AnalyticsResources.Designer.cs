@@ -1960,6 +1960,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of true candidates appeared in bi-value universal grave.
+        /// </summary>
+        public static string Factor_BivalueUniversalGraveTrueCandidateFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueUniversalGraveTrueCandidateFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Length of blossom loop.
         /// </summary>
         public static string Factor_BlossomLoopLengthFactor {
@@ -2185,6 +2194,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of conjugate pairs appeared in rectangle.
+        /// </summary>
+        public static string Factor_RectangleConjugatePairsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleConjugatePairsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
         /// </summary>
         public static string Factor_RectangleDeathBlossomIsAvoidableFactor {
@@ -2208,6 +2226,24 @@ namespace Sudoku.Resources {
         public static string Factor_RectangleIsAvoidableFactor {
             get {
                 return ResourceManager.GetString("Factor_RectangleIsAvoidableFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq in rectangle is cannibalism.
+        /// </summary>
+        public static string Factor_RectangleSueDeCoqCannibalismFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleSueDeCoqCannibalismFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Sue de Coq appeared in rectangle contains isolated digits.
+        /// </summary>
+        public static string Factor_RectangleSueDeCoqIsolatedFactor {
+            get {
+                return ResourceManager.GetString("Factor_RectangleSueDeCoqIsolatedFactor", resourceCulture);
             }
         }
         
@@ -2293,6 +2329,33 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Burred subset size in unique rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleBurredSubsetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleBurredSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardians in rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Guardians in unique rectangle.
         /// </summary>
         public static string Factor_UniqueRectangleExternalGuardianFactor {
@@ -2307,6 +2370,33 @@ namespace Sudoku.Resources {
         public static string Factor_UniqueRectangleExternalSubsetSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_UniqueRectangleExternalSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardians in rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalTurbotFishGuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalTurbotFishGuardianFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardians in rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalType1Or2GuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalType1Or2GuardianFactor", resourceCulture);
             }
         }
         
@@ -2338,6 +2428,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Guardians in rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalWWingGuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalWWingGuardianFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalWWingIsCompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalWWingIsCompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Guardians in rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalXyWingGuardianFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalXyWingGuardianFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rectangle is incomplete.
+        /// </summary>
+        public static string Factor_UniqueRectangleExternalXyWingIsCompleteFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleExternalXyWingIsCompleteFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subset in unique rectangle is hidden.
         /// </summary>
         public static string Factor_UniqueRectangleSubsetIsHiddenFactor {
@@ -2352,6 +2478,15 @@ namespace Sudoku.Resources {
         public static string Factor_UniqueRectangleSubsetSizeFactor {
             get {
                 return ResourceManager.GetString("Factor_UniqueRectangleSubsetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Wing size in unique rectangle.
+        /// </summary>
+        public static string Factor_UniqueRectangleWingSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_UniqueRectangleWingSizeFactor", resourceCulture);
             }
         }
         

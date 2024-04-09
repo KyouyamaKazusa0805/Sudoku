@@ -12410,10 +12410,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.ExtraDigit">
@@ -12515,10 +12515,10 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">Indicates the cells used.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.FormatInterpolationParts">
@@ -14117,10 +14117,22 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetSize">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetDigitsMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#UniqueRectangleBurredSubsetStep}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.ExtraCells">
@@ -14173,10 +14185,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.GuardianCells">
@@ -14225,10 +14237,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.GuardianCells">
@@ -14454,10 +14466,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.GuardianCells">
@@ -14510,10 +14522,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.GuardianCells">
@@ -14844,10 +14856,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.ConjugatePairs">
@@ -14908,10 +14920,10 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block">
@@ -14998,10 +15010,10 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.FormatInterpolationParts">
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.Branches">
@@ -22261,6 +22273,30 @@ result ^= expression;
             <param name="options"><inheritdoc/></param>
             <seealso cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor">
+            <summary>
+            Represents a factor that describes the true candidates in bi-value universal grave.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the true candidates in bi-value universal grave.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveTrueCandidateFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
             <summary>
             Represents a factor that describes the length property of <see cref="T:Sudoku.Analytics.Steps.BlossomLoopStep"/>.
@@ -22878,6 +22914,30 @@ result ^= expression;
             <param name="options"><inheritdoc/></param>
             <seealso cref="T:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step"/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor">
+            <summary>
+            Represents a factor that describes the number of conjugate pairs (strong links) appeared in a rectangle.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the number of conjugate pairs (strong links) appeared in a rectangle.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor">
             <summary>
             Represents a factor that describes the factor 
@@ -22906,6 +22966,32 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1">
+            <summary>
+            Represents a factor that describes the number of guardians appeared in external unique rectangle types.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the number of guardians appeared in external unique rectangle types.
+            </summary>
+            <typeparam name="TStep">The type of the step.</typeparam>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleExternalGuardianFactor`1.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor">
@@ -22956,6 +23042,58 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RectangleIsIncompleteFactor`1.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor">
+            <summary>
+            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor">
+            <summary>
+            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.Formula">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor">
@@ -23168,29 +23306,45 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.Formula">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor">
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor">
             <summary>
-            Represents a factor that describes the number of guardians appeared in external unique rectangle types.
+            Represents a type that describes the size of subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a type that describes the size of subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor">
+            <summary>
+            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor">
+            <summary>
+            Represents a factor that describes whether a rectangle is incomplete.
             </summary>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
-            Represents a factor that describes the number of guardians appeared in external unique rectangle types.
+            Represents a factor that describes whether a rectangle is incomplete.
             </summary>
             <param name="options"><inheritdoc/></param>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor.FormulaString">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor.ParameterNames">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor.ReflectedStepType">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalGuardianFactor.Formula">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor">
             <summary>
@@ -23205,6 +23359,46 @@ result ^= expression;
             </summary>
             <param name="options"><inheritdoc/></param>
             <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor">
+            <summary>
+            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step"/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor">
             <summary>
@@ -23242,6 +23436,58 @@ result ^= expression;
             </summary>
             <param name="options"><inheritdoc/></param>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes whether the rectangle is incomplete.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor">
             <summary>
             Represents a factor that describes whether a subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/> is hidden.
@@ -23269,6 +23515,32 @@ result ^= expression;
             </summary>
             <param name="options"><inheritdoc/></param>
             <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor">
+            <summary>
+            Represents a factor that describes the size of the wing appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of the wing appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.Formula">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.IRatingDataProvider">
             <summary>
@@ -24386,6 +24658,11 @@ result ^= expression;
               Looks up a localized string similar to Subset size of bi-value universal grave.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BivalueUniversalGraveTrueCandidateFactor">
+            <summary>
+              Looks up a localized string similar to Number of true candidates appeared in bi-value universal grave.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BlossomLoopLengthFactor">
             <summary>
               Looks up a localized string similar to Length of blossom loop.
@@ -24511,6 +24788,11 @@ result ^= expression;
               Looks up a localized string similar to Subset size in Qiu&apos;s deadly pattern.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleConjugatePairsCountFactor">
+            <summary>
+              Looks up a localized string similar to Number of conjugate pairs appeared in rectangle.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleDeathBlossomIsAvoidableFactor">
             <summary>
               Looks up a localized string similar to Death blossom (rectangle type) uses avoidable rectangle.
@@ -24524,6 +24806,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleIsAvoidableFactor">
             <summary>
               Looks up a localized string similar to Rectangle is avoidable.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleSueDeCoqCannibalismFactor">
+            <summary>
+              Looks up a localized string similar to Sue de Coq in rectangle is cannibalism.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RectangleSueDeCoqIsolatedFactor">
+            <summary>
+              Looks up a localized string similar to Sue de Coq appeared in rectangle contains isolated digits.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_RegularWingIncompletenessFactor">
@@ -24571,6 +24863,21 @@ result ^= expression;
               Looks up a localized string similar to The number of extra cells used in uniqueness clue cover.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleBurredSubsetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Burred subset size in unique rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardians in rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor">
+            <summary>
+              Looks up a localized string similar to Rectangle is incomplete.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalGuardianFactor">
             <summary>
               Looks up a localized string similar to Guardians in unique rectangle.
@@ -24579,6 +24886,21 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalSubsetSizeFactor">
             <summary>
               Looks up a localized string similar to Subset size in unique rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalTurbotFishGuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardians in rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor">
+            <summary>
+              Looks up a localized string similar to Rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalType1Or2GuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardians in rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor">
@@ -24596,6 +24918,26 @@ result ^= expression;
               Looks up a localized string similar to Rectangle is incomplete.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalWWingGuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardians in rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalWWingIsCompleteFactor">
+            <summary>
+              Looks up a localized string similar to Rectangle is incomplete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalXyWingGuardianFactor">
+            <summary>
+              Looks up a localized string similar to Guardians in rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleExternalXyWingIsCompleteFactor">
+            <summary>
+              Looks up a localized string similar to Rectangle is incomplete.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleSubsetIsHiddenFactor">
             <summary>
               Looks up a localized string similar to Subset in unique rectangle is hidden.
@@ -24604,6 +24946,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleSubsetSizeFactor">
             <summary>
               Looks up a localized string similar to Subset size in unique rectangle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_UniqueRectangleWingSizeFactor">
+            <summary>
+              Looks up a localized string similar to Wing size in unique rectangle.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.FalseKeyword">
@@ -29302,6 +29649,16 @@ result ^= expression;
             Represents a direct trait.
             </summary>
             <typeparam name="TBase">The type of the base value.</typeparam>
+        </member>
+        <member name="T:Sudoku.Traits.IGuardianTrait">
+            <summary>
+            Represents a trait that describes the guardians.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.IGuardianTrait.GuardianCells">
+            <summary>
+            Indicates the guardians used.
+            </summary>
         </member>
         <member name="T:Sudoku.Traits.IIncompleteTrait">
             <summary>

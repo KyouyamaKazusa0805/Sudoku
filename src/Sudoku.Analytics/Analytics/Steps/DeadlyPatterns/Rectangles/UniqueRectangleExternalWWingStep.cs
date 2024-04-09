@@ -26,34 +26,37 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	isAvoidable ? Technique.AvoidableRectangleExternalWWing : Technique.UniqueRectangleExternalWWing,
-	digit1,
-	digit2,
-	in cells,
-	isAvoidable,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		isAvoidable ? Technique.AvoidableRectangleExternalWWing : Technique.UniqueRectangleExternalWWing,
+		digit1,
+		digit2,
+		in cells,
+		isAvoidable,
+		absoluteOffset
+	),
+	IGuardianTrait,
+	IIncompleteTrait
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Guardian, A004526(GuardianCells.Count) * .1M),
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Incompleteness, IsIncomplete ? .1M : 0)
-		];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, GuardianCellsStr, CellPairStr])
+		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new UniqueRectangleExternalWWingGuardianFactor(Options),
+			new RectangleIsAvoidableFactor(Options),
+			new UniqueRectangleExternalWWingIsCompleteFactor(Options)
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

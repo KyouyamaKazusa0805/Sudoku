@@ -3111,4 +3111,49 @@ Error grid: '{0:#}'</value>
   <data name="Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor" xml:space="preserve">
     <value>Rectangle is incomplete</value>
   </data>
+  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" xml:space="preserve">
+    <value>Number of true candidates appeared in bi-value universal grave</value>
+  </data>
+  <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
+    <value>Number of conjugate pairs appeared in rectangle</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqCannibalismFactor" xml:space="preserve">
+    <value>Sue de Coq in rectangle is cannibalism</value>
+  </data>
+  <data name="Factor_UniqueRectangleBurredSubsetSizeFactor" xml:space="preserve">
+    <value>Burred subset size in unique rectangle</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqIsolatedFactor" xml:space="preserve">
+    <value>Sue de Coq appeared in rectangle contains isolated digits</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor" xml:space="preserve">
+    <value>Guardians in rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishGuardianFactor" xml:space="preserve">
+    <value>Guardians in rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType1Or2GuardianFactor" xml:space="preserve">
+    <value>Guardians in rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingGuardianFactor" xml:space="preserve">
+    <value>Guardians in rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingIsCompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingGuardianFactor" xml:space="preserve">
+    <value>Guardians in rectangle</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingIsCompleteFactor" xml:space="preserve">
+    <value>Rectangle is incomplete</value>
+  </data>
+  <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
+    <value>Wing size in unique rectangle</value>
+  </data>
 </root>

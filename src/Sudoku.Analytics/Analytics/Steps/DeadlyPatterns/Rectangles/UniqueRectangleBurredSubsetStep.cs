@@ -24,24 +24,22 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	[PrimaryConstructorParameter] scoped ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Cell subsetIncludedCorner,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
-) : UniqueRectangleBurredStep(
-	conclusions,
-	views,
-	options,
-	Technique.UniqueRectangleBurredSubset,
-	digit1,
-	digit2,
-	in cells,
-	false,
-	absoluteOffset
-)
+) :
+	UniqueRectangleBurredStep(
+		conclusions,
+		views,
+		options,
+		Technique.UniqueRectangleBurredSubset,
+		digit1,
+		digit2,
+		in cells,
+		false,
+		absoluteOffset
+	),
+	IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty - .1M;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, PopCount((uint)ExtraDigitsMask) * .1M)];
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -49,6 +47,21 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 			new(EnglishLanguage, [CellsStr, DigitsStr, ExtraCellsStr, ExtraDigitsStr]),
 			new(ChineseLanguage, [CellsStr, DigitsStr, ExtraCellsStr, ExtraDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new UniqueRectangleBurredSubsetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.IsHidden => false;
+
+	/// <inheritdoc/>
+	int IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize => PopCount((uint)ExtraDigitsMask);
+
+	/// <inheritdoc/>
+	Mask IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetDigitsMask => ExtraDigitsMask;
+
+	/// <inheritdoc/>
+	CellMap IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetCells => ExtraCells;
 
 	private string ExtraCellsStr => Options.Converter.CellConverter(ExtraCells + SubsetIncludedCorner);
 

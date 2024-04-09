@@ -44,7 +44,8 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 		false,
 		absoluteOffset
 	),
-	IIncompleteTrait
+	IIncompleteTrait,
+	IGuardianTrait
 {
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -56,7 +57,7 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalGuardianFactor(Options),
+			new UniqueRectangleExternalType1Or2GuardianFactor(Options),
 			new RectangleIsAvoidableFactor(Options),
 			new UniqueRectangleExternalType1Or2IsIncompleteFactor(Options)
 		];

@@ -20,11 +20,11 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	public override Technique Code => Technique.BivalueUniversalGraveType2;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ExtraDigit, A002024(Cells.Count) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [ExtraDigitStr, CellsStr]), new(ChineseLanguage, [CellsStr, ExtraDigitStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new BivalueUniversalGraveTrueCandidateFactor(Options)];
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 

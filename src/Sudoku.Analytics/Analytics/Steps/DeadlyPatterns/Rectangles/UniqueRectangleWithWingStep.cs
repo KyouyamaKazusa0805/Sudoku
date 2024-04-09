@@ -31,26 +31,15 @@ public sealed partial class UniqueRectangleWithWingStep(
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0),
-			new(
-				ExtraDifficultyFactorNames.WingSize,
-				Code switch
-				{
-					Technique.UniqueRectangleXyWing or Technique.AvoidableRectangleXyWing => .2M,
-					Technique.UniqueRectangleXyzWing or Technique.AvoidableRectangleXyzWing => .3M,
-					Technique.UniqueRectangleWxyzWing or Technique.AvoidableRectangleWxyzWing => .5M
-				}
-			)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, BranchesStr, SubsetDigitsStr])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [new RectangleIsAvoidableFactor(Options), new UniqueRectangleWingSizeFactor(Options)];
 
 	private string BranchesStr => Options.Converter.CellConverter(Branches);
 

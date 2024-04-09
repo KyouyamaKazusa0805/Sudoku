@@ -30,18 +30,15 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	public sealed override decimal BaseDifficulty => base.BaseDifficulty - .1M;
 
 	/// <inheritdoc/>
-	public sealed override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.ConjugatePair, ConjugatePairs.Length * .2M),
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .2M : 0)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConjPairsStr])
 		];
+
+	/// <inheritdoc/>
+	public sealed override FactorCollection Factors
+		=> [new RectangleConjugatePairsCountFactor(Options), new RectangleIsAvoidableFactor(Options)];
 
 	private string ConjPairsStr => Options.Converter.ConjugateConverter(ConjugatePairs);
 

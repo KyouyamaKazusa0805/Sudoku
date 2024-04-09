@@ -58,19 +58,18 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.Size, (LineCells | BlockCells).Count * .1M),
-			new(ExtraDifficultyFactorNames.Isolated, !IsCannibalistic && IsolatedDigitsMask != 0 ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Cannibalism, IsCannibalistic ? .1M : 0),
-			new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0)
-		];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, MergedCellsStr, SueDeCoqDigitsMask])
+		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors
+		=> [
+			new RectangleSueDeCoqIsolatedFactor(Options),
+			new RectangleSueDeCoqCannibalismFactor(Options),
+			new RectangleIsAvoidableFactor(Options)
 		];
 
 	private string MergedCellsStr => Options.Converter.CellConverter(LineCells | BlockCells);

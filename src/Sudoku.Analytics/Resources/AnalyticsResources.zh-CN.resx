@@ -3068,87 +3068,6 @@
   <data name="Factor_AlmostLockedCandidatesValueCellExistenceFactor" xml:space="preserve">
     <value>欠一数组是否使用明数</value>
   </data>
-  <data name="Appear" xml:space="preserve">
-    <value>出现</value>
-  </data>
-  <data name="Only" xml:space="preserve">
-    <value>只</value>
-  </data>
-  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
-    <value>X 致命逻辑</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
-    <value>差一数对</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
-    <value>差一四数组;差一四链数</value>
-  </data>
-  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
-    <value>差一三数组;差一三链数</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
-    <value>全双值坟墓</value>
-  </data>
-  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
-    <value>唯余;唯一余数</value>
-  </data>
-  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
-    <value>数对占位</value>
-  </data>
-  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
-    <value>隐性四链数;四数组占位</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
-    <value>隐性唯一</value>
-  </data>
-  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
-    <value>隐性三链数;三数组占位</value>
-  </data>
-  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
-    <value>排除</value>
-  </data>
-  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
-    <value>数对唯余</value>
-  </data>
-  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
-    <value>区块数对</value>
-  </data>
-  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
-    <value>唯余;喂鱼</value>
-  </data>
-  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
-    <value>双强链</value>
-  </data>
-  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
-    <value>双强链</value>
-  </data>
-  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
-    <value>双强链</value>
-  </data>
-  <data name="TechniqueAlias_XChain" xml:space="preserve">
-    <value>单数链;单链</value>
-  </data>
-  <data name="TechniqueAlias_XWing" xml:space="preserve">
-    <value>矩形删减法;四角对角线法则</value>
-  </data>
-  <data name="TechniqueAlias_XyChain" xml:space="preserve">
-    <value>双数链</value>
-  </data>
   <data name="Factor_BasicChainLengthFactor" xml:space="preserve">
     <value>链的长度</value>
   </data>
@@ -3286,5 +3205,132 @@
   </data>
   <data name="Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor" xml:space="preserve">
     <value>矩形是否残缺</value>
+  </data>
+  <data name="Appear" xml:space="preserve">
+    <value>出现</value>
+  </data>
+  <data name="Only" xml:space="preserve">
+    <value>只</value>
+  </data>
+  <data name="ExtraDifficultyFactorNames_BiBiPattern" xml:space="preserve">
+    <value>X 致命逻辑</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedPair" xml:space="preserve">
+    <value>差一数对</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedQuadruple" xml:space="preserve">
+    <value>差一四数组;差一四链数</value>
+  </data>
+  <data name="TechniqueAlias_AlmostLockedTriple" xml:space="preserve">
+    <value>差一三数组;差一三链数</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType1" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType2" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType3" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_BivalueUniversalGraveType4" xml:space="preserve">
+    <value>全双值坟墓</value>
+  </data>
+  <data name="TechniqueAlias_FullHouse" xml:space="preserve">
+    <value>唯余;唯一余数</value>
+  </data>
+  <data name="TechniqueAlias_HiddenPair" xml:space="preserve">
+    <value>数对占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenQuadruple" xml:space="preserve">
+    <value>隐性四链数;四数组占位</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleBlock" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleColumn" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenSingleRow" xml:space="preserve">
+    <value>隐性唯一</value>
+  </data>
+  <data name="TechniqueAlias_HiddenTriple" xml:space="preserve">
+    <value>隐性三链数;三数组占位</value>
+  </data>
+  <data name="TechniqueAlias_LastDigit" xml:space="preserve">
+    <value>排除</value>
+  </data>
+  <data name="TechniqueAlias_NakedPair" xml:space="preserve">
+    <value>数对唯余</value>
+  </data>
+  <data name="TechniqueAlias_NakedPairPlus" xml:space="preserve">
+    <value>区块数对</value>
+  </data>
+  <data name="TechniqueAlias_NakedSingle" xml:space="preserve">
+    <value>唯余;喂鱼</value>
+  </data>
+  <data name="TechniqueAlias_Skyscraper" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_TurbotFish" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_TwoStringKite" xml:space="preserve">
+    <value>双强链</value>
+  </data>
+  <data name="TechniqueAlias_XChain" xml:space="preserve">
+    <value>单数链;单链</value>
+  </data>
+  <data name="TechniqueAlias_XWing" xml:space="preserve">
+    <value>矩形删减法;四角对角线法则</value>
+  </data>
+  <data name="TechniqueAlias_XyChain" xml:space="preserve">
+    <value>双数链</value>
+  </data>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" type="System.Resources.ResXNullRef, System.Windows.Forms">
+    <value />
+  </data>
+  <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
+    <value>矩形之中的强链数量</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqCannibalismFactor" xml:space="preserve">
+    <value>矩形里的融合待定数组是否自噬</value>
+  </data>
+  <data name="Factor_UniqueRectangleBurredSubsetSizeFactor" xml:space="preserve">
+    <value>矩形里的毛刺数组规格</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqIsolatedFactor" xml:space="preserve">
+    <value>矩形里的融合待定数组是否包含孤立数字</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType1Or2GuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingIsCompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingIsCompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
+    <value>矩形里的 wing 规格</value>
   </data>
 </root>
