@@ -6879,7 +6879,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_TechniqueDifficultyRating">
             <summary>
-              Looks up a localized string similar to Difficulty Rating (≥ 1.0 and ≤ 12.0):.
+              Looks up a localized string similar to Difficulty Rating:.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_TechniqueIndex">

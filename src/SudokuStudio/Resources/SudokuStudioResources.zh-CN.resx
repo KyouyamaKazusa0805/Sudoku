@@ -610,7 +610,7 @@
     <value>数量</value>
   </data>
   <data name="AnalyzePage_TechniqueDifficultyRating" xml:space="preserve">
-    <value>难度系数（≥ 1.0 并且 ≤ 12.0）：</value>
+    <value>难度系数：</value>
   </data>
   <data name="AnalyzePage_TechniqueIndex" xml:space="preserve">
     <value>第几步：</value>

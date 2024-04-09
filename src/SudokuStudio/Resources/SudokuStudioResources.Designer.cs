@@ -1807,7 +1807,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Difficulty Rating (≥ 1.0 and ≤ 12.0):.
+        ///   Looks up a localized string similar to Difficulty Rating:.
         /// </summary>
         internal static string AnalyzePage_TechniqueDifficultyRating {
             get {

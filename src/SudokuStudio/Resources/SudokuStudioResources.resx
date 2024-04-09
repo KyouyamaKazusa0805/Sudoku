@@ -610,7 +610,7 @@
     <value>Count</value>
   </data>
   <data name="AnalyzePage_TechniqueDifficultyRating" xml:space="preserve">
-    <value>Difficulty Rating (≥ 1.0 and ≤ 12.0):</value>
+    <value>Difficulty Rating:</value>
   </data>
   <data name="AnalyzePage_TechniqueIndex" xml:space="preserve">
     <value>Index of Path:</value>
