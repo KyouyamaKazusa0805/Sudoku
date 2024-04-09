@@ -29,7 +29,7 @@ internal static class AnalyzeConversion
 	{
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		var resultDifficulty = pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
-		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(resultDifficulty));
+		return resultDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
 	}
 
 	public static string GetDifficultyRatingText_Hodoku(Step step)
@@ -150,7 +150,7 @@ internal static class AnalyzeConversion
 			appendEmptyLinesIfNeed();
 
 			var difficultyValue = pref.GetRating(technique) switch { { } v => v, _ => difficulty } / pref.RatingScale;
-			var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(difficultyValue));
+			var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
 			result.Add(new Run { Text = difficultyValueString });
@@ -168,7 +168,7 @@ internal static class AnalyzeConversion
 				case { Length: not 0 }:
 				{
 					var baseDifficulty = pref.GetRating(technique) switch { { } v => v, _ => @base } / pref.RatingScale;
-					var baseDifficultyString = baseDifficulty.ToString(FactorMarshal.GetScaleFormatString(baseDifficulty));
+					var baseDifficultyString = baseDifficulty.ToString(FactorMarshal.GetScaleFormatString(1 / pref.RatingScale));
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(factors));
@@ -207,7 +207,7 @@ internal static class AnalyzeConversion
 		{
 			for (var i = 0; i < factors.Length; i++)
 			{
-				yield return new Run { Text = $"{factors[i].ToString(step, App.CurrentCulture)}" };
+				yield return new Run { Text = $"{factors[i].ToString(step, pref.RatingScale, App.CurrentCulture)}" };
 
 				if (i != factors.Length - 1)
 				{
@@ -215,5 +215,30 @@ internal static class AnalyzeConversion
 				}
 			}
 		}
+	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
+	/// of the rating text.
+	/// </summary>
+	/// <param name="this">The current instance.</param>
+	/// <param name="step">The step to be calculated.</param>
+	/// <param name="scale">The scale value to be used.</param>
+	/// <param name="culture">The culture to be used.</param>
+	/// <returns>The string representation of final rating text.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ToString(this Factor @this, Step step, decimal scale, CultureInfo? culture = null)
+	{
+		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
+		return @this.Formula(step) switch
+		{
+			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value
+				=> $"{@this.GetName(culture)}{colonCharacter}{value}",
+			_ => string.Empty
+		};
 	}
 }

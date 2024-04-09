@@ -21703,15 +21703,6 @@ result ^= expression;
         <member name="M:Sudoku.Measuring.Factor.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Measuring.Factor.ToString(Sudoku.Analytics.Step,System.Globalization.CultureInfo)">
-            <summary>
-            Calculates the rating from the specified <see cref="T:Sudoku.Analytics.Step"/> instance, and return the string representation
-            of the rating text.
-            </summary>
-            <param name="step">The step to be calculated.</param>
-            <param name="culture">The culture to be used.</param>
-            <returns>The string representation of final rating text.</returns>
-        </member>
         <member name="T:Sudoku.Measuring.FactorCollection">
             <summary>
             Represents a read-only collection of <see cref="T:Sudoku.Measuring.Factor"/> instances.
@@ -23403,21 +23394,6 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.Formula">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Measuring.IRatingDataProvider">
-            <summary>
-            Represents a rating data provider.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.IRatingDataProvider.FactorName">
-            <summary>
-            Indicates the factor name that describes the difficulty of this factor.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Measuring.IRatingDataProvider.Value">
-            <summary>
-            Indicates the factor value that describes how difficult the factor is.
-            </summary>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">

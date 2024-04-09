@@ -28,5 +28,5 @@ public static class FactorMarshal
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetScaleFormatString(decimal scale)
-		=> GetScaleUnitLength(scale) is var p and not 0 ? $"#.{new('0', p)}" : null;
+		=> GetScaleUnitLength(scale) is var p and not 0 ? $"0.{new('0', p)}" : null;
 }

@@ -68,24 +68,4 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
 		return $"{GetName(culture)}{colonCharacter}{Environment.NewLine}{FormulaString}";
 	}
-
-	/// <summary>
-	/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
-	/// of the rating text.
-	/// </summary>
-	/// <param name="step">The step to be calculated.</param>
-	/// <param name="culture">The culture to be used.</param>
-	/// <returns>The string representation of final rating text.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(Step step, CultureInfo? culture = null)
-	{
-		var scale = step.Options.DifficultyRatingScale;
-		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
-		return Formula(step) switch
-		{
-			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(scale)) is var value
-				=> $"{GetName(culture)}{colonCharacter}{value}",
-			_ => string.Empty
-		};
-	}
 }

@@ -3310,6 +3310,24 @@ if (student is (name: var name, age: >= 18))
             Provides with conversion methods used by XAML designer, about analyze tab pages.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Interaction.Conversions.Extensions.ToString(Sudoku.Measuring.Factor,Sudoku.Analytics.Step,System.Decimal,System.Globalization.CultureInfo)">
+            <summary>
+            Calculates the rating from the specified <see cref="T:Sudoku.Analytics.Step"/> instance, and return the string representation
+            of the rating text.
+            </summary>
+            <param name="this">The current instance.</param>
+            <param name="step">The step to be calculated.</param>
+            <param name="scale">The scale value to be used.</param>
+            <param name="culture">The culture to be used.</param>
+            <returns>The string representation of final rating text.</returns>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.BackdropConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about backdrop.

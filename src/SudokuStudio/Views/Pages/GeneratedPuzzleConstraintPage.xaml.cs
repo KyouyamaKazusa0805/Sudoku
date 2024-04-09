@@ -154,7 +154,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 
 		var scale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
-		var scaleInteger = FactorMarshal.GetScaleUnitLength(scale);
+		var scaleInteger = FactorMarshal.GetScaleUnitLength(1 / scale);
 		var r = Application.Current.Resources;
 		var maximum = (double)((int)r["MaximumRatingValue"]! * (double)r["MaximumRatingScaleValue"]!);
 
