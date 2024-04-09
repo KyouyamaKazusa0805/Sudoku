@@ -1942,6 +1942,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Number of true candidates.
+        /// </summary>
+        public static string Factor_BivalueUniversalGraveMultipleTrueCandidateFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueUniversalGraveMultipleTrueCandidateFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subset in Bi-value universal grave is hidden.
         /// </summary>
         public static string Factor_BivalueUniversalGraveSubsetIsHiddenFactor {
@@ -1960,11 +1969,20 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Number of true candidates appeared in bi-value universal grave.
+        ///   Looks up a localized string similar to Number of true candidates.
         /// </summary>
         public static string Factor_BivalueUniversalGraveTrueCandidateFactor {
             get {
                 return ResourceManager.GetString("Factor_BivalueUniversalGraveTrueCandidateFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of true candidates.
+        /// </summary>
+        public static string Factor_BivalueUniversalGraveType2TrueCandidateFactor {
+            get {
+                return ResourceManager.GetString("Factor_BivalueUniversalGraveType2TrueCandidateFactor", resourceCulture);
             }
         }
         

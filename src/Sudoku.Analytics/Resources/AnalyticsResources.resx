@@ -3112,7 +3112,7 @@ Error grid: '{0:#}'</value>
     <value>Rectangle is incomplete</value>
   </data>
   <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" xml:space="preserve">
-    <value>Number of true candidates appeared in bi-value universal grave</value>
+    <value>Number of true candidates</value>
   </data>
   <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
     <value>Number of conjugate pairs appeared in rectangle</value>
@@ -3161,5 +3161,11 @@ Error grid: '{0:#}'</value>
   </data>
   <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
     <value>Number of conjugate pairs used in exocet</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
+    <value>Number of true candidates</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
+    <value>Number of true candidates</value>
   </data>
 </root>

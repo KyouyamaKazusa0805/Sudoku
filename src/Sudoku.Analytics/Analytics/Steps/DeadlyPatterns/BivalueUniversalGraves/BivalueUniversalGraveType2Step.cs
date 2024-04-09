@@ -14,7 +14,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter(GeneratedMemberName = "ExtraDigit")] Digit digit,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells
-) : BivalueUniversalGraveStep(conclusions, views, options)
+) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType2;
@@ -24,7 +24,10 @@ public sealed partial class BivalueUniversalGraveType2Step(
 		=> [new(EnglishLanguage, [ExtraDigitStr, CellsStr]), new(ChineseLanguage, [CellsStr, ExtraDigitStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueUniversalGraveTrueCandidateFactor(Options)];
+	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor(Options)];
+
+	/// <inheritdoc/>
+	CandidateMap ITrueCandidatesTrait.TrueCandidates => Cells * ExtraDigit;
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 

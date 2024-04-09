@@ -12,7 +12,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CandidateMap trueCandidates
-) : BivalueUniversalGraveStep(conclusions, views, options)
+) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
 {
 	/// <summary>
 	/// <inheritdoc cref="Step.EnglishName" path="/summary"/>
@@ -26,12 +26,11 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors
-		=> [new(ExtraDifficultyFactorNames.Size, A002024(TrueCandidates.Count) * .1M)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor(Options)];
 
 	private string CandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 

@@ -3338,4 +3338,10 @@
   <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
     <value>飞鱼导弹里的强链使用次数</value>
   </data>
+  <data name="Factor_BivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
+  </data>
 </root>

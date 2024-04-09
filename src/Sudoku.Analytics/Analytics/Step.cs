@@ -75,19 +75,18 @@ public abstract partial class Step(
 	/// <remarks>
 	/// Generally this property holds the default and basic difficulty of the step.
 	/// If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-	/// as elementary and default rating value; other factors will be given in the other property <see cref="ExtraDifficultyFactors"/>.
+	/// as elementary and default rating value; other factors will be given in the other property <see cref="Factors"/>.
 	/// </remarks>
-	/// <seealso cref="ExtraDifficultyFactors"/>
+	/// <seealso cref="Factors"/>
 	public abstract decimal BaseDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-	/// <see cref="BaseDifficulty"/> and <see cref="ExtraDifficultyFactors"/>. For property <see cref="ExtraDifficultyFactors"/>,
-	/// the result is to sum all values up of inner property <see cref="ExtraDifficultyFactor.Value"/>.
+	/// <see cref="BaseDifficulty"/> and <see cref="Factors"/>.
 	/// </summary>
 	/// <seealso cref="BaseDifficulty"/>
-	/// <seealso cref="ExtraDifficultyFactors"/>
-	/// <seealso cref="ExtraDifficultyFactor"/>
+	/// <seealso cref="Factors"/>
+	/// <seealso cref="Factor"/>
 	public decimal Difficulty => BaseDifficulty + Factors.Sum(this);
 
 	/// <summary>
@@ -178,12 +177,6 @@ public abstract partial class Step(
 	/// <seealso cref="Format"/>
 	/// <seealso cref="FormatInterpolation"/>
 	public virtual FormatInterpolation[]? FormatInterpolationParts => null;
-
-	/// <summary>
-	/// <para>Indicates the extra difficulty factors of the technique step.</para>
-	/// <para>If the step does not contain such cases, this property will keep <see langword="null"/> value.</para>
-	/// </summary>
-	public virtual ExtraDifficultyFactor[]? ExtraDifficultyFactors => null;
 
 	/// <summary>
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
