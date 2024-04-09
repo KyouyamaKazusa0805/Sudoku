@@ -3168,4 +3168,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
     <value>Number of true candidates</value>
   </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>: </value>
+  </data>
 </root>

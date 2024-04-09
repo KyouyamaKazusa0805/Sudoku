@@ -3344,4 +3344,7 @@
   <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
     <value>全双值格致死解法里的真数数量</value>
   </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>：</value>
+  </data>
 </root>

@@ -1,3 +1,5 @@
+#pragma warning disable CS9113
+
 namespace Sudoku.Measuring;
 
 /// <summary>
@@ -6,11 +8,6 @@ namespace Sudoku.Measuring;
 /// <param name="options">Indiates the options instance to be used for passing diffculty rating scale value.</param>
 public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 {
-	/// <summary>
-	/// Indicates the scale value to be set. The value will be used by scaling formula. By default, the value will be 0.1.
-	/// </summary>
-	public decimal Scale { get; } = options.DifficultyRatingScale;
-
 	/// <summary>
 	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>
 	/// instances with different types.
@@ -66,7 +63,11 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => $"{GetName(culture)}:{Environment.NewLine}{FormulaString}";
+	public string ToString(CultureInfo? culture = null)
+	{
+		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
+		return $"{GetName(culture)}{colonCharacter}{Environment.NewLine}{FormulaString}";
+	}
 
 	/// <summary>
 	/// Calculates the rating from the specified <see cref="Step"/> instance, and return the string representation
@@ -77,9 +78,14 @@ public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
 	/// <returns>The string representation of final rating text.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(Step step, CultureInfo? culture = null)
-		=> Formula(step) switch
+	{
+		var scale = step.Options.DifficultyRatingScale;
+		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
+		return Formula(step) switch
 		{
-			{ } result => $"{GetName(culture)}: {(result * Scale).ToString(FactorMarshal.GetScaleFormatString(Scale))}",
-			_ => string.Empty // Failed to calculate because the invalid step data.
+			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(scale)) is var value
+				=> $"{GetName(culture)}{colonCharacter}{value}",
+			_ => string.Empty
 		};
+	}
 }

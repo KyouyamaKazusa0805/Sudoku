@@ -61,6 +61,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to : .
+        /// </summary>
+        public static string _Token_Colon {
+            get {
+                return ResourceManager.GetString("_Token_Colon", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to , .
         /// </summary>
         public static string _Token_Comma {

@@ -98,8 +98,7 @@ internal static class AnalyzeConversion
 					Code: var technique,
 					BaseDifficulty: var baseDifficulty,
 					Difficulty: var difficulty,
-					Factors: var factors,
-					Options.DifficultyRatingScale: var scale
+					Factors: var factors
 				} step
 			})
 		{
@@ -219,14 +218,9 @@ internal static class AnalyzeConversion
 
 		IEnumerable<Inline> appendExtraDifficultyFactors(FactorCollection factors)
 		{
-			var colon = ResourceDictionary.Get("_Token_Colon", App.CurrentCulture);
 			for (var i = 0; i < factors.Length; i++)
 			{
-				var factor = factors[i];
-				var extraDifficultyName = factor.ToString(App.CurrentCulture);
-				var difficultyValue = factor.Formula(step)!.Value * scale;
-				var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(factor.Scale));
-				yield return new Run { Text = $"{extraDifficultyName}{colon}+{difficultyValueString}" };
+				yield return new Run { Text = $"{factors[i].ToString(step, App.CurrentCulture)}" };
 
 				if (i != factors.Length - 1)
 				{

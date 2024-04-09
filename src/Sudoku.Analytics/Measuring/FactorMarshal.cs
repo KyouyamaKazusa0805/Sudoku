@@ -7,10 +7,9 @@ namespace Sudoku.Measuring;
 public static class FactorMarshal
 {
 	/// <summary>
-	/// Try to get the scale unit length from the <see cref="Factor.Scale"/> value.
+	/// Try to get the scale unit length from the scale value.
 	/// </summary>
 	/// <exception cref="InvalidOperationException">Throws when the scale value is negative.</exception>
-	/// <seealso cref="Factor.Scale"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int GetScaleUnitLength(decimal scale)
 		=> scale switch
@@ -25,9 +24,8 @@ public static class FactorMarshal
 		};
 
 	/// <summary>
-	/// Try to get the scale unit from the <see cref="Factor.Scale"/> value.
+	/// Try to get the scale unit from the scale value.
 	/// </summary>
-	/// <seealso cref="Factor.Scale"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? GetScaleFormatString(decimal scale)
 		=> GetScaleUnitLength(scale) is var p and not 0 ? $"#.{new('0', p)}" : null;
