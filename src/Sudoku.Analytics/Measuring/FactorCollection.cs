@@ -87,12 +87,12 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// </summary>
 	/// <param name="step">The step.</param>
 	/// <returns>The sum value.</returns>
-	public int Sum(Step step)
+	public decimal Sum(Step step)
 	{
-		var result = 0;
+		var result = 0M;
 		foreach (var element in this)
 		{
-			result += element.Formula(step) ?? 0;
+			result += (element.Formula(step) ?? 0) / step.Options.DifficultyRatingScale;
 		}
 		return result;
 	}

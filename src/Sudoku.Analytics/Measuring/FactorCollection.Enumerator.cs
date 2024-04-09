@@ -29,6 +29,6 @@ public partial class FactorCollection
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public bool MoveNext() => ++_index > _factors.Length;
+		public bool MoveNext() => ++_index < _factors.Length;
 	}
 }
