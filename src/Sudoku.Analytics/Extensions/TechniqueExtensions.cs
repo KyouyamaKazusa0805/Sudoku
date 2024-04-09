@@ -167,15 +167,6 @@ public static class TechniqueExtensions
 			: null;
 
 	/// <summary>
-	/// Try to get all possible configured extra difficulty factors used in this project.
-	/// </summary>
-	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>All configured extra difficulty factors.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[]? GetExtraDifficultyFactors(this Technique @this)
-		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.ExtraFactors;
-
-	/// <summary>
 	/// Combine the technique with indirect technique, to produce a new <see cref="Technique"/> field, describing the complex single usage.
 	/// For example, <see cref="Technique.CrosshatchingBlock"/> combining with <see cref="Technique.HiddenPair"/>
 	/// will produce <see cref="Technique.HiddenPairCrosshatchingBlock"/>.

@@ -57,12 +57,6 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	public string[]? Links { get; init; }
 
 	/// <summary>
-	/// Indicates the extra difficulty factors.
-	/// </summary>
-	[DisallowNull]
-	public string[]? ExtraFactors { get; init; }
-
-	/// <summary>
 	/// Indicates the containing techniuqe group that the current technique belongs to.
 	/// </summary>
 	public TechniqueGroup ContainingGroup { get; init; }
