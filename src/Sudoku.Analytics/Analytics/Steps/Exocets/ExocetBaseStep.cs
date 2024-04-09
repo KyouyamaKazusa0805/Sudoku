@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -31,11 +32,11 @@ public sealed partial class ExocetBaseStep(
 	public override Technique Code
 		=> (Delta, ConjugatePairs) switch
 		{
-			( < 0, _) => Technique.SeniorExocet,
+			(< 0, _) => Technique.SeniorExocet,
 			(_, []) => Technique.JuniorExocet,
 			_ => Technique.JuniorExocetConjugatePair
 		};
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[]? ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.ConjugatePair, ConjugatePairs.Length * .1M)];
+	public override FactorCollection Factors => [new ExocetConjugatePairsCountFactor(Options)];
 }

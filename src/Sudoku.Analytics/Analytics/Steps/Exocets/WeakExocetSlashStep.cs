@@ -25,11 +25,8 @@ public sealed partial class WeakExocetSlashStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .8M;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.WeakExocetSlash;
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.SlashElimination, .5M)];
 }

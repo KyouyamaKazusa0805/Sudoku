@@ -25,8 +25,8 @@ public sealed partial class DoubleExocetGeneralizedFishStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocet
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.DoubleExocetGeneralizedFish;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.GeneralizedFish, .2M)];
+	public override Technique Code => Technique.DoubleExocetGeneralizedFish;
 }

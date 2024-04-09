@@ -34,8 +34,8 @@ public sealed partial class JuniorExocetAdjacentTargetStep(
 )
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.JuniorExocetAdjacentTarget;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Mirror, .1M)];
+	public override Technique Code => Technique.JuniorExocetAdjacentTarget;
 }

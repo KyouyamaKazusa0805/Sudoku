@@ -30,7 +30,7 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> base.BaseDifficulty + this.GetShapeKind() switch
+		=> base.BaseDifficulty + .1M + this.GetShapeKind() switch
 		{
 			ExocetShapeKind.Franken => .4M,
 			ExocetShapeKind.Mutant => .6M
@@ -43,7 +43,4 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 			ExocetShapeKind.Franken => Technique.FrankenJuniorExocetAdjacentTarget,
 			ExocetShapeKind.Mutant => Technique.MutantJuniorExocetAdjacentTarget
 		};
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Mirror, .1M)];
 }

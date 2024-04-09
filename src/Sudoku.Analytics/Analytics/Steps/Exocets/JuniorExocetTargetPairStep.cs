@@ -23,8 +23,8 @@ public sealed partial class JuniorExocetTargetPairStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.JuniorExocetTargetPair;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.TargetPair, .2M)];
+	public override Technique Code => Technique.JuniorExocetTargetPair;
 }

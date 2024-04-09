@@ -2050,6 +2050,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Size of almost hidden subset in exocet.
+        /// </summary>
+        public static string Factor_ExocetAlmostHiddenSetSizeFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExocetAlmostHiddenSetSizeFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Number of conjugate pairs used in exocet.
+        /// </summary>
+        public static string Factor_ExocetConjugatePairsCountFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExocetConjugatePairsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Size of extended rectangle.
         /// </summary>
         public static string Factor_ExtendedRectangleSizeFactor {

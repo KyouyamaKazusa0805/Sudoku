@@ -30,7 +30,7 @@ public sealed partial class ComplexExocetLockedMemberStep(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> base.BaseDifficulty + this.GetShapeKind() switch
+		=> base.BaseDifficulty + .2M + this.GetShapeKind() switch
 		{
 			ExocetShapeKind.Franken => .4M,
 			ExocetShapeKind.Mutant => .6M,
@@ -46,7 +46,4 @@ public sealed partial class ComplexExocetLockedMemberStep(
 			([], ExocetShapeKind.Mutant) => Technique.MutantJuniorExocetLockedMember,
 			(_, ExocetShapeKind.Mutant) => Technique.MutantSeniorExocetLockedMember
 		};
-
-	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.LockedMember, .2M)];
 }

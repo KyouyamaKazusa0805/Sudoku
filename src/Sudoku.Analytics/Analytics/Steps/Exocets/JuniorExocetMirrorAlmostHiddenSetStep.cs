@@ -22,15 +22,30 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	scoped ref readonly CellMap crosslineCells,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
+) :
+	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells),
+	IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>
 {
+	/// <inheritdoc/>
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
+
+	/// <summary>
+	/// Indicates the subset size.
+	/// </summary>
+	public int SubsetSize => PopCount((uint)ExtraDigitsMask);
+
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocetMirrorAlmostHiddenSet;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[]? ExtraDifficultyFactors
-		=> [
-			new(ExtraDifficultyFactorNames.AlmostHiddenSet, .2M),
-			new(ExtraDifficultyFactorNames.Size, A002024(PopCount((uint)ExtraDigitsMask)) * .1M)
-		];
+	public override FactorCollection Factors => [new ExocetAlmostHiddenSetSizeFactor(Options)];
+
+	/// <inheritdoc/>
+	bool IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>.IsHidden => true;
+
+	/// <inheritdoc/>
+	Mask IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>.SubsetDigitsMask => ExtraDigitsMask;
+
+	/// <inheritdoc/>
+	CellMap IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>.SubsetCells => ExtraCells;
 }

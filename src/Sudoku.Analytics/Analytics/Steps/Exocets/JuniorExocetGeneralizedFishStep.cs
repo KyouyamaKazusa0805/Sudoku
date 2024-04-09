@@ -23,8 +23,8 @@ public sealed partial class JuniorExocetGeneralizedFishStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.JuniorExocetGeneralizedFish;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.GeneralizedFish, .3M)];
+	public override Technique Code => Technique.JuniorExocetGeneralizedFish;
 }

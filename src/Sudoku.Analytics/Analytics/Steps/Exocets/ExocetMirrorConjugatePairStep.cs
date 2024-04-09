@@ -22,20 +22,11 @@ public sealed partial class ExocetMirrorConjugatePairStep(
 	scoped ref readonly CellMap endoTargetCells,
 	scoped ref readonly CellMap crosslineCells,
 	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
-) : ExocetStep(
-	conclusions,
-	views,
-	options,
-	digitsMask,
-	in baseCells,
-	in targetCells,
-	in endoTargetCells,
-	in crosslineCells
-)
+) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Delta < 0 ? Technique.SeniorExocetMirrorConjugatePair : Technique.JuniorExocetMirrorConjugatePair;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Mirror, .1M)];
+	public override Technique Code => Delta < 0 ? Technique.SeniorExocetMirrorConjugatePair : Technique.JuniorExocetMirrorConjugatePair;
 }

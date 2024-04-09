@@ -3156,4 +3156,10 @@ Error grid: '{0:#}'</value>
   <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
     <value>Wing size in unique rectangle</value>
   </data>
+  <data name="Factor_ExocetAlmostHiddenSetSizeFactor" xml:space="preserve">
+    <value>Size of almost hidden subset in exocet</value>
+  </data>
+  <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
+    <value>Number of conjugate pairs used in exocet</value>
+  </data>
 </root>

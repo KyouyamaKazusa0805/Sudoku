@@ -25,8 +25,8 @@ public sealed partial class SeniorExocetTrueBaseStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override Technique Code => Technique.SeniorExocetTrueBase;
+	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
 
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.TrueBase, .2M)];
+	public override Technique Code => Technique.SeniorExocetTrueBase;
 }

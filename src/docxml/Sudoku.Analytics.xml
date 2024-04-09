@@ -15400,9 +15400,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.CrosslineHousesMask">
             <summary>
             The generated property declaration for parameter <c>crosslineHousesMask</c>.
@@ -15447,9 +15444,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.CrosslineHousesMask">
@@ -15501,9 +15495,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.CrosslineHousesMask">
@@ -15590,10 +15581,10 @@ if (student is (name: var name, age: >= 18))
             <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
             <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.BaseCellsTheOther">
@@ -15640,7 +15631,7 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.Factors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetBaseStep.ConjugatePairs">
@@ -15676,10 +15667,10 @@ if (student is (name: var name, age: >= 18))
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetLockedMemberStep.LockedMemberDigitsMask">
@@ -15715,10 +15706,10 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.ConjugatePairs">
@@ -15836,10 +15827,10 @@ if (student is (name: var name, age: >= 18))
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.SingleMirrors">
@@ -15873,10 +15864,10 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.TargetPairMask">
@@ -15910,10 +15901,10 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.IncompatibleCandidates">
@@ -15949,10 +15940,27 @@ if (student is (name: var name, age: >= 18))
             <param name="extraCells">Indicates the cells that provides with the AHS rule.</param>
             <param name="extraDigitsMask">Indicates the mask that holds the digits used by the AHS.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.SubsetSize">
+            <summary>
+            Indicates the subset size.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#IsHidden">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetDigitsMask">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.Sudoku#Traits#IPatternType3StepTrait{Sudoku#Analytics#Steps#JuniorExocetMirrorAlmostHiddenSetStep}#SubsetCells">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.ExtraCells">
@@ -15989,10 +15997,10 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.Code">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep">
@@ -16021,10 +16029,10 @@ if (student is (name: var name, age: >= 18))
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.TargetPairMask">
@@ -16060,10 +16068,10 @@ if (student is (name: var name, age: >= 18))
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.Code">
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.BaseDifficulty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.ExtraDifficultyFactors">
+        <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.TrueBaseDigit">
@@ -16103,9 +16111,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.StabilityBalancer">
@@ -16152,9 +16157,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.StabilityBalancer">
             <summary>
             The generated property declaration for parameter <c>stabilityBalancer</c>.
@@ -16199,9 +16201,6 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.Code">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.ExtraDifficultyFactors">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetSlashStep.StabilityBalancer">
             <summary>
             The generated property declaration for parameter <c>stabilityBalancer</c>.
@@ -16244,9 +16243,6 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.Code">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.ExtraDifficultyFactors">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.WeakExocetStep.StabilityBalancer">
@@ -22551,6 +22547,58 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor">
+            <summary>
+            Represents a factor that describes the size of almost hidden set appeared in <see cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the size of almost hidden set appeared in <see cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor">
+            <summary>
+            Represents a factor that describes the number of conjugate pairs appeared in <see cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>
+        </member>
+        <member name="M:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.#ctor(Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a factor that describes the number of conjugate pairs appeared in <see cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>.
+            </summary>
+            <param name="options"><inheritdoc/></param>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor">
             <summary>
             Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
@@ -24706,6 +24754,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_DirectSubsetSizeFactor">
             <summary>
               Looks up a localized string similar to Subset size in direct subset.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExocetAlmostHiddenSetSizeFactor">
+            <summary>
+              Looks up a localized string similar to Size of almost hidden subset in exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExocetConjugatePairsCountFactor">
+            <summary>
+              Looks up a localized string similar to Number of conjugate pairs used in exocet.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedRectangleSizeFactor">

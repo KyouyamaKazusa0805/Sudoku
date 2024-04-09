@@ -3287,9 +3287,8 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
+  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
   </data>
   <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
     <value>矩形之中的强链数量</value>
@@ -3332,5 +3331,11 @@
   </data>
   <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
     <value>矩形里的 wing 规格</value>
+  </data>
+  <data name="Factor_ExocetAlmostHiddenSetSizeFactor" xml:space="preserve">
+    <value>飞鱼导弹里的待定隐性数组规格</value>
+  </data>
+  <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
+    <value>飞鱼导弹里的强链使用次数</value>
   </data>
 </root>
