@@ -34,7 +34,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor(Options)];
+	public override FactorCollection Factors => [new NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor()];
 
 	private string FreedomDegreeStr => FreedomDegree.ToString();
 

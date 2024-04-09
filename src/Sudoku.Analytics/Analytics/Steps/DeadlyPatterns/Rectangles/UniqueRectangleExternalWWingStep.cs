@@ -54,9 +54,9 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalWWingGuardianFactor(Options),
-			new RectangleIsAvoidableFactor(Options),
-			new UniqueRectangleExternalWWingIsCompleteFactor(Options)
+			new UniqueRectangleExternalWWingGuardianFactor(),
+			new RectangleIsAvoidableFactor(),
+			new UniqueRectangleExternalWWingIsCompleteFactor()
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

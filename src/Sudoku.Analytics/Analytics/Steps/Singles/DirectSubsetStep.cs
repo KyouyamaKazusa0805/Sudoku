@@ -71,7 +71,7 @@ public sealed partial class DirectSubsetStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new DirectSubsetSizeFactor(Options), new DirectSubsetIsLockedFactor(Options)];
+	public override FactorCollection Factors => [new DirectSubsetSizeFactor(), new DirectSubsetIsLockedFactor()];
 
 	/// <inheritdoc/>
 	protected override int PrefixNameLength

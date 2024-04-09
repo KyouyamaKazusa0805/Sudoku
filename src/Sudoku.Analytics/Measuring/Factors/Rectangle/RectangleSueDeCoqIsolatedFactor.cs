@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the isolated rule of <see cref="UniqueRectangleWithSueDeCoqStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="UniqueRectangleWithSueDeCoqStep"/>
-public sealed class RectangleSueDeCoqIsolatedFactor(StepSearcherOptions options) : Factor(options)
+public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "!{0} && {1} != 0 ? 1 : 0";

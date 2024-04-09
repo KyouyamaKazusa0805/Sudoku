@@ -38,5 +38,5 @@ public sealed partial class ExocetBaseStep(
 		};
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExocetConjugatePairsCountFactor(Options)];
+	public override FactorCollection Factors => [new ExocetConjugatePairsCountFactor()];
 }

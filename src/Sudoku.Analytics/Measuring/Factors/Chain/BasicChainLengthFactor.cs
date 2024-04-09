@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the length of a chain.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public sealed class BasicChainLengthFactor(StepSearcherOptions options) : LengthFactor(options)
+public sealed class BasicChainLengthFactor : LengthFactor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "LengthDifficulty({0} - 2)";

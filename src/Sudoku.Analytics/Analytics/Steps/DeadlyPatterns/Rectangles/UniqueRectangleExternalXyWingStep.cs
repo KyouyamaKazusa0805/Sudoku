@@ -54,9 +54,9 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalXyWingGuardianFactor(Options),
-			new RectangleIsAvoidableFactor(Options),
-			new UniqueRectangleExternalXyWingIsCompleteFactor(Options)
+			new UniqueRectangleExternalXyWingGuardianFactor(),
+			new RectangleIsAvoidableFactor(),
+			new UniqueRectangleExternalXyWingIsCompleteFactor()
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the length of <see cref="UniqueLoopStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="UniqueLoopStep"/>
-public sealed class UniqueLoopLengthFactor(StepSearcherOptions options) : Factor(options)
+public sealed class UniqueLoopLengthFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A004526({0}.Count) - 3";

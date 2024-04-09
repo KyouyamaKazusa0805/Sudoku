@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes whether the subset appeared in <see cref="DirectSubsetStep"/> is locked.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="DirectSubsetStep"/>
-public sealed class DirectSubsetIsLockedFactor(StepSearcherOptions options) : Factor(options)
+public sealed class DirectSubsetIsLockedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

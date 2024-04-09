@@ -54,7 +54,7 @@ public sealed partial class SueDeCoqStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new SueDeCoqIsolatedFactor(Options), new SueDeCoqCannibalismFactor(Options)];
+	public override FactorCollection Factors => [new SueDeCoqIsolatedFactor(), new SueDeCoqCannibalismFactor()];
 
 	private string IntersectionCellsStr => Options.Converter.CellConverter(IntersectionCells);
 

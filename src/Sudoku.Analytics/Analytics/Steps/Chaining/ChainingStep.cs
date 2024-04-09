@@ -65,7 +65,7 @@ public abstract partial class ChainingStep(
 		};
 
 	/// <inheritdoc/>
-	public sealed override FactorCollection Factors => [new BasicChainLengthFactor(Options)];
+	public sealed override FactorCollection Factors => [new BasicChainLengthFactor()];
 
 	/// <summary>
 	/// Indicates an <see cref="int"/> value indicating the ordering priority of the chain. Greater is heavier.

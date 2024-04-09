@@ -24,7 +24,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 		=> [new(EnglishLanguage, [ExtraDigitStr, CellsStr]), new(ChineseLanguage, [CellsStr, ExtraDigitStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor(Options)];
+	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];
 
 	/// <inheritdoc/>
 	CandidateMap ITrueCandidatesTrait.TrueCandidates => Cells * ExtraDigit;

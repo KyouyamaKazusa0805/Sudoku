@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that measures length of <see cref="BivalueOddagonStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="BivalueOddagonStep"/>
-public sealed class BivalueOddagonLengthFactor(StepSearcherOptions options) : Factor(options)
+public sealed class BivalueOddagonLengthFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0}.Count / 2";

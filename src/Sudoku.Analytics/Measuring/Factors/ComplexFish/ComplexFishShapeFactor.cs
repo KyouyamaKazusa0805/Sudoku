@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the shape of <see cref="ComplexFishStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="ComplexFishStep"/>
-public sealed class ComplexFishShapeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class ComplexFishShapeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

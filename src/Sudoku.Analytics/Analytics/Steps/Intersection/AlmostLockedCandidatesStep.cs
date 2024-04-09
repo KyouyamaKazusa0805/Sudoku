@@ -43,7 +43,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors
-		=> [new AlmostLockedCandidatesSizeFactor(Options), new AlmostLockedCandidatesValueCellExistenceFactor(Options)];
+		=> [new AlmostLockedCandidatesSizeFactor(), new AlmostLockedCandidatesValueCellExistenceFactor()];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the number of branches appeared in a <see cref="MultiBranchWWingStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="MultiBranchWWingStep"/>
-public sealed class MultiBranchWWingBranchesCountFactor(StepSearcherOptions options) : Factor(options)
+public sealed class MultiBranchWWingBranchesCountFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0} == 3 ? 3 : 0";

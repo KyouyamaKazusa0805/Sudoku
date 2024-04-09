@@ -25,7 +25,7 @@ public sealed partial class BowmanBingoStep(
 		=> [new(EnglishLanguage, [ContradictionSeriesStr]), new(ChineseLanguage, [ContradictionSeriesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BowmanBingoLengthFactor(Options)];
+	public override FactorCollection Factors => [new BowmanBingoLengthFactor()];
 
 	private string ContradictionSeriesStr
 	{

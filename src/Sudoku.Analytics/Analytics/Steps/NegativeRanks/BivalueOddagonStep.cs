@@ -30,7 +30,7 @@ public abstract partial class BivalueOddagonStep(
 	public sealed override Technique Code => Enum.Parse<Technique>($"BivalueOddagonType{Type}");
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueOddagonLengthFactor(Options)];
+	public override FactorCollection Factors => [new BivalueOddagonLengthFactor()];
 
 	private protected string LoopStr => Options.Converter.CellConverter(LoopCells);
 

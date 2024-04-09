@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes whether a <see cref="NormalFishStep"/> is a Sashimi fish.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="NormalFishStep"/>
-public sealed class NormalFishIsSashimiFactor(StepSearcherOptions options) : Factor(options)
+public sealed class NormalFishIsSashimiFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

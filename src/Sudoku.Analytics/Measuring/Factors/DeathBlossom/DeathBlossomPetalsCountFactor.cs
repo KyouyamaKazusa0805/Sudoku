@@ -6,9 +6,8 @@ namespace Sudoku.Measuring.Factors;
 /// <typeparam name="TStep">The type of the step.</typeparam>
 /// <typeparam name="TCollection">The type of itself.</typeparam>
 /// <typeparam name="TKey">The type of the distinction key.</typeparam>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="DeathBlossomStep"/>
-public abstract class DeathBlossomPetalsCountFactor<TStep, TCollection, TKey>(StepSearcherOptions options) : Factor(options)
+public abstract class DeathBlossomPetalsCountFactor<TStep, TCollection, TKey> : Factor
 	where TStep : DeathBlossomBaseStep, IDeathBlossomCollection<TCollection, TKey>
 	where TCollection :
 		DeathBlossomBranchCollection<TCollection, TKey>,

@@ -4,8 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes whether a rectangle is incomplete.
 /// </summary>
 /// <typeparam name="TStep">The type of the step.</typeparam>
-/// <param name="options"><inheritdoc/></param>
-public abstract class RectangleIsIncompleteFactor<TStep>(StepSearcherOptions options) : Factor(options)
+public abstract class RectangleIsIncompleteFactor<TStep> : Factor
 	where TStep : UniqueRectangleStep, IIncompleteTrait
 {
 	/// <inheritdoc/>

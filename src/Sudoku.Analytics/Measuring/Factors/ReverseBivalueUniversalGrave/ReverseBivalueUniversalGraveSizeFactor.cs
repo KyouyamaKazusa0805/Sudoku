@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the size of the pattern for <see cref="ReverseBivalueUniversalGraveStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="ReverseBivalueUniversalGraveStep"/>
-public sealed class ReverseBivalueUniversalGraveSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class ReverseBivalueUniversalGraveSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A002024({0}.Count)";

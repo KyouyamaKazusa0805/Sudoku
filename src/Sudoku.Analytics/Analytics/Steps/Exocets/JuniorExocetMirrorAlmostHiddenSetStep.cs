@@ -38,7 +38,7 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	public override Technique Code => Technique.JuniorExocetMirrorAlmostHiddenSet;
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExocetAlmostHiddenSetSizeFactor(Options)];
+	public override FactorCollection Factors => [new ExocetAlmostHiddenSetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>.IsHidden => true;

@@ -29,7 +29,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 		=> [new(EnglishLanguage, [EspDigitStr, CellsStr]), new(ChineseLanguage, [EspDigitStr, CellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExtendedSubsetPrincipleSizeFactor(Options)];
+	public override FactorCollection Factors => [new ExtendedSubsetPrincipleSizeFactor()];
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 

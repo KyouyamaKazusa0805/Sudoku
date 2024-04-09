@@ -38,7 +38,7 @@ public partial class UniqueRectangleWithConjugatePairStep(
 
 	/// <inheritdoc/>
 	public sealed override FactorCollection Factors
-		=> [new RectangleConjugatePairsCountFactor(Options), new RectangleIsAvoidableFactor(Options)];
+		=> [new RectangleConjugatePairsCountFactor(), new RectangleIsAvoidableFactor()];
 
 	private string ConjPairsStr => Options.Converter.ConjugateConverter(ConjugatePairs);
 

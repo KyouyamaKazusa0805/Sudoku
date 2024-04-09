@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes incompleteness of <see cref="RegularWingStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="RegularWingStep"/>
-public sealed class RegularWingIncompletenessFactor(StepSearcherOptions options) : Factor(options)
+public sealed class RegularWingIncompletenessFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

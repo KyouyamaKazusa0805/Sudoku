@@ -1,5 +1,5 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <inheritdoc/>
-public sealed class HouseDeathBlossomPetalsCountFactor(StepSearcherOptions options) :
-	DeathBlossomPetalsCountFactor<HouseDeathBlossomStep, HouseBlossomBranchCollection, House>(options);
+public sealed class HouseDeathBlossomPetalsCountFactor :
+	DeathBlossomPetalsCountFactor<HouseDeathBlossomStep, HouseBlossomBranchCollection, House>;

@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the extra cells used in <see cref="UniquenessClueCoverStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="UniquenessClueCoverStep"/>
-public sealed class UniquenessClueCoverExtraCellsFactor(StepSearcherOptions options) : Factor(options)
+public sealed class UniquenessClueCoverExtraCellsFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A004526({0}.Count)";

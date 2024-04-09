@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the number of conjugate pairs (strong links) appeared in a rectangle.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public sealed class RectangleConjugatePairsCountFactor(StepSearcherOptions options) : Factor(options)
+public sealed class RectangleConjugatePairsCountFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0}.Length * 2";

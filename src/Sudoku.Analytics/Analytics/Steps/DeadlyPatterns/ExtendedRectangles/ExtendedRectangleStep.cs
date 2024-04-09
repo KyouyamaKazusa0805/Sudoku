@@ -31,7 +31,7 @@ public abstract partial class ExtendedRectangleStep(
 	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ExtendedRectangleSizeFactor(Options)];
+	public override FactorCollection Factors => [new ExtendedRectangleSizeFactor()];
 
 	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

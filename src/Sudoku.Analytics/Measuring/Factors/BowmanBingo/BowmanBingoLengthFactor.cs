@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the length of <see cref="BowmanBingoStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="BowmanBingoStep"/>
-public sealed class BowmanBingoLengthFactor(StepSearcherOptions options) : LengthFactor(options)
+public sealed class BowmanBingoLengthFactor : LengthFactor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "LengthDifficulty({0}.Length)";

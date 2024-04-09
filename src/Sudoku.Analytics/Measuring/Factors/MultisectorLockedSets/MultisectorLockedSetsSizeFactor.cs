@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the size of the pattern from <see cref="MultisectorLockedSetsStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="MultisectorLockedSetsStep"/>
-public sealed class MultisectorLockedSetsSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class MultisectorLockedSetsSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A002024({0}.Count)";

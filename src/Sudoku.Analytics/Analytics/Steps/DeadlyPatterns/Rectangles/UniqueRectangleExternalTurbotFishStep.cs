@@ -40,8 +40,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalTurbotFishGuardianFactor(Options),
-			new UniqueRectangleExternalTurbotFishIsIncompleteFactor(Options)
+			new UniqueRectangleExternalTurbotFishGuardianFactor(),
+			new UniqueRectangleExternalTurbotFishIsIncompleteFactor()
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

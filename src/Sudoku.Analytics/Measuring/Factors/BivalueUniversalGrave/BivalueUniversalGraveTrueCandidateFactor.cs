@@ -4,8 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the true candidates in bi-value universal grave.
 /// </summary>
 /// <typeparam name="TStep">The type of the step.</typeparam>
-/// <param name="options"><inheritdoc/></param>
-public abstract class BivalueUniversalGraveTrueCandidateFactor<TStep>(StepSearcherOptions options) : Factor(options)
+public abstract class BivalueUniversalGraveTrueCandidateFactor<TStep> : Factor
 	where TStep : Step, ITrueCandidatesTrait
 {
 	/// <inheritdoc/>

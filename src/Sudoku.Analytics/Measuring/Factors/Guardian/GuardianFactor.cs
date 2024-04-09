@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the guardian in <see cref="GuardianStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="GuardianStep"/>
-public sealed class GuardianFactor(StepSearcherOptions options) : Factor(options)
+public sealed class GuardianFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A004526({0} + A004526({1}))";

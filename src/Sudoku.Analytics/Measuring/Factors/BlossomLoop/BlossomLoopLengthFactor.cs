@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the length property of <see cref="BlossomLoopStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="BlossomLoopStep"/>
-public sealed class BlossomLoopLengthFactor(StepSearcherOptions options) : LengthFactor(options)
+public sealed class BlossomLoopLengthFactor : LengthFactor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "LengthDifficulty({0}.Potentials.Sum(AncestorsCount))";

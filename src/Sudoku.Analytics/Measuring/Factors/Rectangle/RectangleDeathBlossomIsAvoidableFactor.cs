@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the factor 
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public sealed class RectangleDeathBlossomIsAvoidableFactor(StepSearcherOptions options) : Factor(options)
+public sealed class RectangleDeathBlossomIsAvoidableFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0} ? 1 : 0";

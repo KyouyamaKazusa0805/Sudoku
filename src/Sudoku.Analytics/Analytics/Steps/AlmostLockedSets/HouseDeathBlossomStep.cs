@@ -31,7 +31,7 @@ public sealed partial class HouseDeathBlossomStep(
 		=> [new(EnglishLanguage, [HouseStr, BranchesStr]), new(ChineseLanguage, [HouseStr, BranchesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new HouseDeathBlossomPetalsCountFactor(Options)];
+	public override FactorCollection Factors => [new HouseDeathBlossomPetalsCountFactor()];
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << House);
 

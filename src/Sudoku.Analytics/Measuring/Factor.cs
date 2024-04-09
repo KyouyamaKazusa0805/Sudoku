@@ -1,12 +1,9 @@
-#pragma warning disable CS9113
-
 namespace Sudoku.Measuring;
 
 /// <summary>
 /// Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
 /// </summary>
-/// <param name="options">Indiates the options instance to be used for passing diffculty rating scale value.</param>
-public abstract class Factor(StepSearcherOptions options) : ICultureFormattable
+public abstract class Factor : ICultureFormattable
 {
 	/// <summary>
 	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>

@@ -49,7 +49,7 @@ public sealed partial class UniqueRectangleWithWWingStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new RectangleIsAvoidableFactor(Options)];
+	public override FactorCollection Factors => [new RectangleIsAvoidableFactor()];
 
 	private string ConnectorsString => Options.Converter.CellConverter(Connectors);
 

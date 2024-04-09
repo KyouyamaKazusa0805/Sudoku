@@ -33,7 +33,7 @@ public sealed partial class ExtendedRectangleType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(Options)];
+	public override FactorCollection Factors => [.. base.Factors, new ExtendedRectangleSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<ExtendedRectangleType3Step>.IsHidden => false;

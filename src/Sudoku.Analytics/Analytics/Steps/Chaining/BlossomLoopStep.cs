@@ -40,7 +40,7 @@ public sealed partial class BlossomLoopStep(
 		=> [new(EnglishLanguage, [DigitStr, HouseStr]), new(ChineseLanguage, [HouseStr, DigitStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BlossomLoopLengthFactor(Options)];
+	public override FactorCollection Factors => [new BlossomLoopLengthFactor()];
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

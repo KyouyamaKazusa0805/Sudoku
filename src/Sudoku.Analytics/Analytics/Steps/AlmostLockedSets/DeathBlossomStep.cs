@@ -26,7 +26,7 @@ public sealed partial class DeathBlossomStep(
 		=> [new(EnglishLanguage, [PivotStr, BranchesStr]), new(ChineseLanguage, [PivotStr, BranchesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor(Options)];
+	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor()];
 
 	private string PivotStr => Options.Converter.CellConverter([Pivot]);
 

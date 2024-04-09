@@ -51,7 +51,7 @@ public sealed partial class NormalFishStep(
 		=> [new(EnglishLanguage, [InternalNotation]), new(ChineseLanguage, [InternalNotation])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new NormalFishSizeFactor(Options), new NormalFishIsSashimiFactor(Options)];
+	public override FactorCollection Factors => [new NormalFishSizeFactor(), new NormalFishIsSashimiFactor()];
 
 	/// <summary>
 	/// Indicates the internal name.

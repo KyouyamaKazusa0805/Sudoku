@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the size of a <see cref="NormalFishStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="NormalFishStep"/>
-public sealed class NormalFishSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class NormalFishSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

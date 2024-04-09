@@ -67,9 +67,9 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new RectangleSueDeCoqIsolatedFactor(Options),
-			new RectangleSueDeCoqCannibalismFactor(Options),
-			new RectangleIsAvoidableFactor(Options)
+			new RectangleSueDeCoqIsolatedFactor(),
+			new RectangleSueDeCoqCannibalismFactor(),
+			new RectangleIsAvoidableFactor()
 		];
 
 	private string MergedCellsStr => Options.Converter.CellConverter(LineCells | BlockCells);

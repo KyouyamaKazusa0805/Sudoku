@@ -86,10 +86,10 @@ public sealed partial class ComplexFishStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new ComplexFishSizeFactor(Options),
-			new ComplexFishIsSashimiFactor(Options),
-			new ComplexFishShapeFactor(Options),
-			new ComplexFishCannibalismFactor(Options)
+			new ComplexFishSizeFactor(),
+			new ComplexFishIsSashimiFactor(),
+			new ComplexFishShapeFactor(),
+			new ComplexFishCannibalismFactor()
 		];
 
 

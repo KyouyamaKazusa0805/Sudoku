@@ -4,8 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the number of guardians appeared in external unique rectangle types.
 /// </summary>
 /// <typeparam name="TStep">The type of the step.</typeparam>
-/// <param name="options"><inheritdoc/></param>
-public abstract class RectangleExternalGuardianFactor<TStep>(StepSearcherOptions options) : Factor(options)
+public abstract class RectangleExternalGuardianFactor<TStep> : Factor
 	where TStep : Step, IGuardianTrait
 {
 	/// <inheritdoc/>

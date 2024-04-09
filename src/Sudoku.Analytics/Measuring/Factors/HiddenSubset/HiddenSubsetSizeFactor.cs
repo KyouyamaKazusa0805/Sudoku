@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents the size factor used in hidden subsets.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public sealed class HiddenSubsetSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class HiddenSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

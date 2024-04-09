@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes cannibalism rule of <see cref="SueDeCoqStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="SueDeCoqStep"/>
-public sealed class SueDeCoqCannibalismFactor(StepSearcherOptions options) : Factor(options)
+public sealed class SueDeCoqCannibalismFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0} ? 1 : 0";

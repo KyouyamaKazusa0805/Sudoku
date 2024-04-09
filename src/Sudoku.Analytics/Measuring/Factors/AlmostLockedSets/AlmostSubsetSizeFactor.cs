@@ -4,8 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a subset size factor. This factor will be applied to type 3 in deadly patterns.
 /// </summary>
 /// <typeparam name="TStep">The type of the step.</typeparam>
-/// <param name="options"><inheritdoc/></param>
-public abstract class AlmostSubsetSizeFactor<TStep>(StepSearcherOptions options) : Factor(options)
+public abstract class AlmostSubsetSizeFactor<TStep> : Factor
 	where TStep : Step, IPatternType3StepTrait<TStep>
 {
 	/// <inheritdoc/>

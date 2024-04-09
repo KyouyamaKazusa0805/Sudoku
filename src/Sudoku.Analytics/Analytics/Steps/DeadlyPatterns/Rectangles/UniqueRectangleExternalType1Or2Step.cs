@@ -57,9 +57,9 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalType1Or2GuardianFactor(Options),
-			new RectangleIsAvoidableFactor(Options),
-			new UniqueRectangleExternalType1Or2IsIncompleteFactor(Options)
+			new UniqueRectangleExternalType1Or2GuardianFactor(),
+			new RectangleIsAvoidableFactor(),
+			new UniqueRectangleExternalType1Or2IsIncompleteFactor()
 		];
 
 	private string GuardianDigitStr => Options.Converter.DigitConverter((Mask)(1 << GuardianDigit));

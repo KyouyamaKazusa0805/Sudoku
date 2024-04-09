@@ -32,7 +32,7 @@ public sealed partial class UniqueMatrixType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new UniqueMatrixSubsetSizeFactor(Options)];
+	public override FactorCollection Factors => [new UniqueMatrixSubsetSizeFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<UniqueMatrixType3Step>.IsHidden => false;

@@ -32,7 +32,7 @@ public sealed partial class GuardianStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new GuardianFactor(Options)];
+	public override FactorCollection Factors => [new GuardianFactor()];
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 

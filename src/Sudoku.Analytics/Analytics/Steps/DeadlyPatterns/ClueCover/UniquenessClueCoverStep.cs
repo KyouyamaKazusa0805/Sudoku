@@ -35,7 +35,7 @@ public sealed partial class UniquenessClueCoverStep(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new UniquenessClueCoverExtraCellsFactor(Options)];
+	public override FactorCollection Factors => [new UniquenessClueCoverExtraCellsFactor()];
 
 	private string ChuteString => Options.Converter.ChuteConverter([Chutes[ChuteIndex]]);
 

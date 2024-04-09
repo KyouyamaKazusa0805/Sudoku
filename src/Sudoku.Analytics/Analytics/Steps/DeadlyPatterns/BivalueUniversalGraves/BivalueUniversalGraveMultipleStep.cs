@@ -30,7 +30,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 		=> [new(EnglishLanguage, [CandidatesStr]), new(ChineseLanguage, [CandidatesStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor(Options)];
+	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor()];
 
 	private string CandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 

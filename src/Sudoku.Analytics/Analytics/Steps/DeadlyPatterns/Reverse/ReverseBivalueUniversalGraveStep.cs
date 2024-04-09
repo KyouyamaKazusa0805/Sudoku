@@ -45,7 +45,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new ReverseBivalueUniversalGraveSizeFactor(Options)];
+	public override FactorCollection Factors => [new ReverseBivalueUniversalGraveSizeFactor()];
 
 	private protected string Cell1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 

@@ -54,9 +54,9 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors
 		=> [
-			new UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor(Options),
-			new RectangleIsAvoidableFactor(Options),
-			new UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor(Options)
+			new UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor(),
+			new RectangleIsAvoidableFactor(),
+			new UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor()
 		];
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

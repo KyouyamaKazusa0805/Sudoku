@@ -3,9 +3,8 @@
 /// <summary>
 /// Represents a factor that measures subset size of <see cref="BivalueOddagonStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="BivalueOddagonStep"/>
-public sealed class BivalueOddagonSubsetSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class BivalueOddagonSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0}.Count / 2";

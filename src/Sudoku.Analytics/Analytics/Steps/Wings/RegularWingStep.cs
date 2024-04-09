@@ -72,7 +72,7 @@ public sealed partial class RegularWingStep(
 		=> [new(EnglishLanguage, [DigitsStr, PivotCellStr, CellsStr]), new(ChineseLanguage, [DigitsStr, PivotCellStr, CellsStr])];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [new RegularWingSizeFactor(Options), new RegularWingIncompletenessFactor(Options)];
+	public override FactorCollection Factors => [new RegularWingSizeFactor(), new RegularWingIncompletenessFactor()];
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

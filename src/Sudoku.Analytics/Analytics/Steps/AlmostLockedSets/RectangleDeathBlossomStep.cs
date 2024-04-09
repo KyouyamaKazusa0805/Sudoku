@@ -32,7 +32,7 @@ public sealed partial class RectangleDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors
-		=> [new RectangleDeathBlossomPetalsCountFactor(Options), new RectangleDeathBlossomIsAvoidableFactor(Options)];
+		=> [new RectangleDeathBlossomPetalsCountFactor(), new RectangleDeathBlossomIsAvoidableFactor()];
 
 	private string PatternStr => Options.Converter.CellConverter(Pattern);
 

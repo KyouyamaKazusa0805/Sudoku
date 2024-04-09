@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes whether the <see cref="ComplexFishStep"/> is cannibalism.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="ComplexFishStep"/>
-public sealed class ComplexFishCannibalismFactor(StepSearcherOptions options) : Factor(options)
+public sealed class ComplexFishCannibalismFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "{0} ? 3 : 0";

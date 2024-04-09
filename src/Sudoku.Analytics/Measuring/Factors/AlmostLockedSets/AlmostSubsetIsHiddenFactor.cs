@@ -4,8 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes whether the subset appeared in step is hidden subset.
 /// </summary>
 /// <typeparam name="TStep">The type of the step.</typeparam>
-/// <param name="options"><inheritdoc/></param>
-public abstract class AlmostSubsetIsHiddenFactor<TStep>(StepSearcherOptions options) : Factor(options)
+public abstract class AlmostSubsetIsHiddenFactor<TStep> : Factor
 	where TStep : Step, IPatternType3StepTrait<TStep>
 {
 	/// <inheritdoc/>

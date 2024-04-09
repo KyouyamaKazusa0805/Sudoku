@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents the factor that describes the length of a pattern.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public abstract class LengthFactor(StepSearcherOptions options) : Factor(options)
+public abstract class LengthFactor : Factor
 {
 	/// <summary>
 	/// Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.

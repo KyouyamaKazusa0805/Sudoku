@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the size of <see cref="ExtendedRectangleStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="ExtendedRectangleStep"/>
-public sealed class ExtendedRectangleSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class ExtendedRectangleSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString => "A004526({0}.Count) - 2";

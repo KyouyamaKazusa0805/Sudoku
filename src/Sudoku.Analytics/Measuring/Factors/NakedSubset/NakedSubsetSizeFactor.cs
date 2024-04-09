@@ -3,8 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents the size factor used in naked subsets.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
-public sealed class NakedSubsetSizeFactor(StepSearcherOptions options) : Factor(options)
+public sealed class NakedSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString

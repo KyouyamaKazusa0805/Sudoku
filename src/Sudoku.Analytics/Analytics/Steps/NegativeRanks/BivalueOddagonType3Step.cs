@@ -33,7 +33,7 @@ public sealed partial class BivalueOddagonType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor(Options)];
+	public override FactorCollection Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor()];
 
 	private string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 

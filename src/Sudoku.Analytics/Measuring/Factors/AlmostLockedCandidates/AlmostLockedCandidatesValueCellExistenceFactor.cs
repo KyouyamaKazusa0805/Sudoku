@@ -3,9 +3,8 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that measures value cell existence for <see cref="AlmostLockedCandidatesStep"/>.
 /// </summary>
-/// <param name="options"><inheritdoc/></param>
 /// <seealso cref="AlmostLockedCandidatesStep"/>
-public sealed class AlmostLockedCandidatesValueCellExistenceFactor(StepSearcherOptions options) : Factor(options)
+public sealed class AlmostLockedCandidatesValueCellExistenceFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string FormulaString
