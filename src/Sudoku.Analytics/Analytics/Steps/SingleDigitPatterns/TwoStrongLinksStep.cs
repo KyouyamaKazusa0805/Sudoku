@@ -24,12 +24,12 @@ public sealed partial class TwoStrongLinksStep(
 	public override decimal BaseDifficulty
 		=> Code switch
 		{
-			Technique.TurbotFish => 4.2M,
-			Technique.Skyscraper => 4.0M,
-			Technique.TwoStringKite => 4.1M,
-			Technique.GroupedTurbotFish => 4.4M,
-			Technique.GroupedSkyscraper => 4.2M,
-			Technique.GroupedTwoStringKite => 4.3M
+			Technique.TurbotFish => 42,
+			Technique.Skyscraper => 40,
+			Technique.TwoStringKite => 41,
+			Technique.GroupedTurbotFish => 44,
+			Technique.GroupedSkyscraper => 42,
+			Technique.GroupedTwoStringKite => 43
 		};
 
 	/// <inheritdoc/>

@@ -30,7 +30,7 @@ public sealed class JuniorExocetMirrorSyncStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocetMirrorSync;

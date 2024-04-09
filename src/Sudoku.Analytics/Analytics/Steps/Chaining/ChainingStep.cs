@@ -28,14 +28,14 @@ public abstract partial class ChainingStep(
 	public sealed override decimal BaseDifficulty
 		=> this switch
 		{
-			{ DynamicNestingLevel: var l and >= 2 } => 9.5M + .5M * (l - 2),
-			{ DynamicNestingLevel: var l and > 0 } => 8.5M + .5M * l,
-			{ IsNishio: true } => 7.5M,
-			{ IsDynamic: true } => 8.5M,
-			{ IsMultiple: true } => 8.0M,
-			(BidirectionalCycleStep or ForcingChainStep) and { IsX: true, IsY: true } => 5.0M,
-			ForcingChainStep => 4.6M,
-			BidirectionalCycleStep => 4.5M,
+			{ DynamicNestingLevel: var l and >= 2 } => 95 + 5 * (l - 2),
+			{ DynamicNestingLevel: var l and > 0 } => 85 + 5 * l,
+			{ IsNishio: true } => 75,
+			{ IsDynamic: true } => 85,
+			{ IsMultiple: true } => 80,
+			(BidirectionalCycleStep or ForcingChainStep) and { IsX: true, IsY: true } => 50,
+			ForcingChainStep => 46,
+			BidirectionalCycleStep => 45,
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("ChainMemberNotOverridden"))
 		};
 

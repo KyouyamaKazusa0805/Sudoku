@@ -19,7 +19,7 @@ public sealed partial class BivalueUniversalGraveType4Step(
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType4;

@@ -29,7 +29,7 @@ public partial class HiddenSingleStep(
 {
 	/// <inheritdoc/>
 	public sealed override decimal BaseDifficulty
-		=> EnableAndIsLastDigit ? 1.1M : House < 9 ? Options.IsDirectMode ? 1.2M : 1.9M : Options.IsDirectMode ? 1.5M : 2.3M;
+		=> EnableAndIsLastDigit ? 11 : House < 9 ? Options.IsDirectMode ? 12 : 19 : Options.IsDirectMode ? 15 : 23;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code

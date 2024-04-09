@@ -25,7 +25,7 @@ public sealed partial class WeakExocetStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
 	public override Technique Code => StabilityBalancer != -1 ? Technique.WeakExocet : Technique.LameWeakExocet;

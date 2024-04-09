@@ -25,7 +25,7 @@ public sealed partial class WeakExocetAdjacentTargetStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 4;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.WeakExocetAdjacentTarget;

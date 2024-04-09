@@ -42,7 +42,7 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 	IIncompleteTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

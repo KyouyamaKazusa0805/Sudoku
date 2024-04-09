@@ -20,7 +20,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	public override bool OnlyUseBivalueCells => false;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 5.3M;
+	public override decimal BaseDifficulty => 53;
 
 	/// <summary>
 	/// Indicates the type of the technique.

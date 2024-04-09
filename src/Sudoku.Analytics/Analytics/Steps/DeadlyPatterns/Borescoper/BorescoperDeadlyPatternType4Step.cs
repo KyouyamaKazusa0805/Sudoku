@@ -21,7 +21,7 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 ) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override int Type => 4;

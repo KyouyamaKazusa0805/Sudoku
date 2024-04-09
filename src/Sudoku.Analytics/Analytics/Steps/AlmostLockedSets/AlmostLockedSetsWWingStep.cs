@@ -23,7 +23,7 @@ public sealed partial class AlmostLockedSetsWWingStep(
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 6.2M;
+	public override decimal BaseDifficulty => 62;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.AlmostLockedSetsWWing;

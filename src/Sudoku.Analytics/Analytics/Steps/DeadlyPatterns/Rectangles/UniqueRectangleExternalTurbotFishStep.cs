@@ -28,7 +28,7 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 	IGuardianTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

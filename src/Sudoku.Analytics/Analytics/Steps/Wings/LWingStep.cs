@@ -33,7 +33,7 @@ public sealed partial class LWingStep(
 	public override bool IsSymmetricPattern => true;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.8M;
+	public override decimal BaseDifficulty => 48;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedLWing : Technique.LWing;

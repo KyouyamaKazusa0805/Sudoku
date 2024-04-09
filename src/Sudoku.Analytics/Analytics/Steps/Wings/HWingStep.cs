@@ -31,7 +31,7 @@ public sealed partial class HWingStep(
 	public override bool IsGrouped => StrongLink.Count > 2;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.7M;
+	public override decimal BaseDifficulty => 47;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedHWing : Technique.HWing;

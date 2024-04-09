@@ -21,7 +21,7 @@ public sealed partial class NakedSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => Options.IsDirectMode ? 2.3M : 1.0M;
+	public override decimal BaseDifficulty => Options.IsDirectMode ? 23 : 10;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.NakedSingle;

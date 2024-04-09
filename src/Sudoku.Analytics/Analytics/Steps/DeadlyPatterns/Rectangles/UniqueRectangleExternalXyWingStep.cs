@@ -42,7 +42,7 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	IIncompleteTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

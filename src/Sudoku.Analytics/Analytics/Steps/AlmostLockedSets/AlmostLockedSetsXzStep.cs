@@ -30,7 +30,7 @@ public sealed partial class AlmostLockedSetsXzStep(
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => IsDoublyLinked is true ? 5.7M : 5.5M;
+	public override decimal BaseDifficulty => IsDoublyLinked is true ? 57 : 55;
 
 	/// <inheritdoc/>
 	public override TechniqueFormat Format => "AlmostLockedSetsXzRule";

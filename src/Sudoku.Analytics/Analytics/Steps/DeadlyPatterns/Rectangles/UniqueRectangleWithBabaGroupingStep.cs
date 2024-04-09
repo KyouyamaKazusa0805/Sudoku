@@ -35,7 +35,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 4;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

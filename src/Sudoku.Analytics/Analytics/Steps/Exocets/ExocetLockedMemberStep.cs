@@ -25,7 +25,7 @@ public sealed partial class ExocetLockedMemberStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override Technique Code => Delta < 0 ? Technique.SeniorExocetLockedMember : Technique.JuniorExocetLockedMember;

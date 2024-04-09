@@ -21,7 +21,7 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 ) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.NTimesAlmostLockedSetDeathBlossom;

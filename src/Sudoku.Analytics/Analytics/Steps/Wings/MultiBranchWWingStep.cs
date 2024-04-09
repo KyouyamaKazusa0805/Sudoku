@@ -28,7 +28,7 @@ public sealed partial class MultiBranchWWingStep(
 	public int Size => Leaves.Count;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.4M;
+	public override decimal BaseDifficulty => 44;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultiBranchWWing;

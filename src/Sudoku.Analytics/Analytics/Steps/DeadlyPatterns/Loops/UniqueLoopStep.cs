@@ -24,7 +24,7 @@ public abstract partial class UniqueLoopStep(
 	public override bool OnlyUseBivalueCells => true;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.5M;
+	public override decimal BaseDifficulty => 45;
 
 	/// <summary>
 	/// Indicates the type.

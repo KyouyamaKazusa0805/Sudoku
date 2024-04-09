@@ -26,7 +26,7 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

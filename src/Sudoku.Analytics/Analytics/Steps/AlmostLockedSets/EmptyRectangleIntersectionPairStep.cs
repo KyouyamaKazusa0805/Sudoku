@@ -23,7 +23,7 @@ public sealed partial class EmptyRectangleIntersectionPairStep(
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 6.0M;
+	public override decimal BaseDifficulty => 60;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangleIntersectionPair;

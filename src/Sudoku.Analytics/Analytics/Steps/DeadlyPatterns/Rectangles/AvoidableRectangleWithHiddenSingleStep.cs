@@ -37,7 +37,7 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .2M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

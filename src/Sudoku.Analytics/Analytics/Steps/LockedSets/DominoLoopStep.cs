@@ -15,7 +15,7 @@ public sealed partial class DominoLoopStep(
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 9.6M;
+	public override decimal BaseDifficulty => 96;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DominoLoop;

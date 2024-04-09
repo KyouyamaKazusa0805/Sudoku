@@ -20,10 +20,10 @@ public sealed partial class AlignedExclusionStep(
 	public override decimal BaseDifficulty
 		=> Size switch
 		{
-			2 => 6.2M,
-			3 => 7.5M,
-			4 => 8.1M,
-			5 => 8.4M,
+			2 => 62,
+			3 => 75,
+			4 => 81,
+			5 => 84,
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetSizeExceeds"))
 		};
 

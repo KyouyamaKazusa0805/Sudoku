@@ -30,7 +30,7 @@ public abstract partial class QiuDeadlyPatternStep(
 	public override bool OnlyUseBivalueCells => false;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 5.8M;
+	public override decimal BaseDifficulty => 58;
 
 	/// <summary>
 	/// Indicates the type of the current technique.

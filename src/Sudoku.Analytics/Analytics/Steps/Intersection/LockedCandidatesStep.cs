@@ -19,7 +19,7 @@ public sealed partial class LockedCandidatesStep(
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => BaseSet < 9 ? 2.6M : 2.8M;
+	public override decimal BaseDifficulty => BaseSet < 9 ? 26 : 28;
 
 	/// <inheritdoc/>
 	public override Technique Code => BaseSet < 9 ? Technique.Pointing : Technique.Claiming;

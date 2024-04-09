@@ -20,7 +20,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	public override string EnglishName => $"{base.EnglishName[..^4]} + {TrueCandidates.Count}";
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGravePlusN;

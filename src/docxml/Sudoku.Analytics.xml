@@ -419,7 +419,7 @@
             <remarks>
             When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>,
             the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
-            or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>,
+            or else the puzzle is solved by other solvers, this value will be always <c>200</c>,
             equal to <see cref="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory"/>.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
@@ -4857,7 +4857,7 @@
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyRatingScale"/>: 0.1</item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DifficultyRatingScale"/>: 10</item>
             </list>
             </remarks>
         </member>
@@ -21637,18 +21637,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Where(Sudoku.Analytics.Categorization.TechniqueSet,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
-        </member>
-        <member name="T:Sudoku.Measuring.DifficultyMeasuring">
-            <summary>
-            Represents a factory type that stores a list of commonly-used difficulty-measuring formulas and its corresponding rule name.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.DifficultyMeasuring.GetLengthDifficulty(System.Int32)">
-            <summary>
-            Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
-            </summary>
-            <param name="length">The length of the pattern.</param>
-            <returns>The result.</returns>
         </member>
         <member name="T:Sudoku.Measuring.Factor">
             <summary>

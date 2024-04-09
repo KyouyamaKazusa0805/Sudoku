@@ -13,7 +13,7 @@ public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]
 	public sealed override bool OnlyUseBivalueCells => true;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 5.6M;
+	public override decimal BaseDifficulty => 56;
 
 	/// <inheritdoc/>
 	public abstract override Technique Code { get; }

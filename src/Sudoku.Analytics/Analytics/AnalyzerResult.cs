@@ -15,12 +15,12 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates the maximum rating value in theory.
 	/// </summary>
-	public const decimal MaximumRatingValueTheory = 20.0M;
+	public const decimal MaximumRatingValueTheory = 200;
 
 	/// <summary>
 	/// Indicates the maximum rating value in fact.
 	/// </summary>
-	public const decimal MaximumRatingValueFact = 12.0M;
+	public const decimal MaximumRatingValueFact = 120;
 
 	/// <summary>
 	/// Indicates the minimum rating value.
@@ -112,7 +112,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <remarks>
 	/// When the puzzle is solved by <see cref="Analyzer"/>,
 	/// the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
-	/// or else the puzzle is solved by other solvers, this value will be always <c>20.0M</c>,
+	/// or else the puzzle is solved by other solvers, this value will be always <c>200</c>,
 	/// equal to <see cref="MaximumRatingValueTheory"/>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
@@ -317,7 +317,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			{
 				if (InterimSteps[i] is SingleStep)
 				{
-					static decimal keySelector((Step, decimal Difficulty) pair) => pair.Difficulty;
+					static int keySelector((Step, int Difficulty) pair) => pair.Difficulty;
 					return i < 1 ? InterimSteps[0] : (from step in InterimSteps[..i] select (Step: step, step.Difficulty)).MaxBy(keySelector).Step;
 				}
 			}

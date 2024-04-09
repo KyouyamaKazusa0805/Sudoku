@@ -30,10 +30,10 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 {
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty
-		=> base.BaseDifficulty + .1M + this.GetShapeKind() switch
+		=> base.BaseDifficulty + 1 + this.GetShapeKind() switch
 		{
-			ExocetShapeKind.Franken => .4M,
-			ExocetShapeKind.Mutant => .6M
+			ExocetShapeKind.Franken => 4,
+			ExocetShapeKind.Mutant => 6
 		};
 
 	/// <inheritdoc/>

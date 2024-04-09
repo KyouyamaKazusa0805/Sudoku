@@ -21,7 +21,7 @@ public sealed partial class LawOfLeftoverStep(
 ) : IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 2.0M;
+	public override decimal BaseDifficulty => 20;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.LawOfLeftover;

@@ -20,7 +20,7 @@ public abstract partial class ExtendedRectangleStep(
 	public override bool OnlyUseBivalueCells => false;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.5M;
+	public override decimal BaseDifficulty => 45;
 
 	/// <summary>
 	/// Indicates the type of the step. The value must be between 1 and 4.

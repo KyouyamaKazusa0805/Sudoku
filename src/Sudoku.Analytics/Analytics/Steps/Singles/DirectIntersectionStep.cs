@@ -43,16 +43,16 @@ public sealed partial class DirectIntersectionStep(
 	public override decimal BaseDifficulty
 		=> BasedOn switch
 		{
-			Technique.FullHouse => 1.0M,
-			Technique.CrosshatchingBlock => 1.2M,
-			Technique.CrosshatchingRow or Technique.CrosshatchingColumn => 1.5M,
+			Technique.FullHouse => 10,
+			Technique.CrosshatchingBlock => 12,
+			Technique.CrosshatchingRow or Technique.CrosshatchingColumn => 15,
 #if false
-			Technique.HiddenSingleBlock => 1.9M,
-			Technique.HiddenSingleRow or Technique.HiddenSingleColumn => 2.3M,
+			Technique.HiddenSingleBlock => 19,
+			Technique.HiddenSingleRow or Technique.HiddenSingleColumn => 23,
 #endif
-			Technique.NakedSingle => 2.3M,
+			Technique.NakedSingle => 23,
 			_ => throw new NotSupportedException(ResourceDictionary.ExceptionMessage("TechiqueIsNotSupported"))
-		} + .2M;
+		} + 2;
 
 	/// <inheritdoc/>
 	public override Technique Code => BasedOn.ComplexSingleUsing(IsPointing ? Technique.Pointing : Technique.Claiming);

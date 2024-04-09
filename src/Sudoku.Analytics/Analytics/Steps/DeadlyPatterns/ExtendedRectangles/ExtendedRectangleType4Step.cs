@@ -22,7 +22,7 @@ public sealed partial class ExtendedRectangleType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

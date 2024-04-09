@@ -38,7 +38,7 @@ public abstract partial class UniqueRectangleStep(
 	public override bool OnlyUseBivalueCells => true;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.5M;
+	public override decimal BaseDifficulty => 45;
 
 	private protected string DigitsStr => Options.Converter.DigitConverter((Mask)(1 << Digit1 | 1 << Digit2));
 

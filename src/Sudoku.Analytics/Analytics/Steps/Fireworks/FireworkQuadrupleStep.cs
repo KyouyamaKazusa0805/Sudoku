@@ -17,7 +17,7 @@ public sealed partial class FireworkQuadrupleStep(
 ) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .4M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 4;
 
 	/// <inheritdoc/>
 	public override int Size => 4;

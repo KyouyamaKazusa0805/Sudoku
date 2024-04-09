@@ -25,7 +25,7 @@ public sealed partial class ExocetMirrorConjugatePairStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Delta < 0 ? Technique.SeniorExocetMirrorConjugatePair : Technique.JuniorExocetMirrorConjugatePair;

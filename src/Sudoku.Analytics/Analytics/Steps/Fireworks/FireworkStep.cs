@@ -10,7 +10,7 @@ public abstract class FireworkStep(Conclusion[] conclusions, View[]? views, Step
 	IntersectionStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 5.9M;
+	public override decimal BaseDifficulty => 59;
 
 	/// <inheritdoc/>
 	public abstract int Size { get; }

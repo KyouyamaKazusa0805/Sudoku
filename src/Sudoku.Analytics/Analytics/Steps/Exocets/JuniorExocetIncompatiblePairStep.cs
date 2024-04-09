@@ -23,7 +23,7 @@ public sealed partial class JuniorExocetIncompatiblePairStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .3M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocetIncompatiblePair;

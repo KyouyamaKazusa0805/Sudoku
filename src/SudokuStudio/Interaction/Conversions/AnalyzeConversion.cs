@@ -96,7 +96,7 @@ internal static class AnalyzeConversion
 				InterimStep:
 				{
 					Code: var technique,
-					BaseDifficulty: var baseDifficulty,
+					BaseDifficulty: var @base,
 					Difficulty: var difficulty,
 					Factors: var factors
 				} step
@@ -153,15 +153,11 @@ internal static class AnalyzeConversion
 		{
 			appendEmptyLinesIfNeed();
 
-			var difficultyValue = pref.GetRating(technique) switch
-			{
-				{ } integerValue => integerValue,
-				_ => difficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue
-			} / pref.RatingScale;
-
+			var difficultyValue = pref.GetRating(technique) switch { { } v => v, _ => difficulty } / pref.RatingScale;
+			var difficultyValueString = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(difficultyValue));
 			result.Add(new Run { Text = ResourceDictionary.Get("AnalyzePage_TechniqueDifficultyRating", App.CurrentCulture) }.SingletonSpan<Bold>());
 			result.Add(new LineBreak());
-			result.Add(new Run { Text = difficultyValue.ToString(FactorMarshal.GetScaleFormatString(difficultyValue)) });
+			result.Add(new Run { Text = difficultyValueString });
 		}
 
 		if (displayKind.HasFlag(StepTooltipDisplayItems.ExtraDifficultyCases))
@@ -175,13 +171,8 @@ internal static class AnalyzeConversion
 			{
 				case { Length: not 0 }:
 				{
-					var baseDifficultyValue = pref.GetRating(technique) switch
-					{
-						{ } integerValue => integerValue,
-						_ => baseDifficulty * TechniqueInfoPreferenceGroup.RatingScaleDefaultValue
-					} / pref.RatingScale;
-					var baseDifficultyString = baseDifficultyValue.ToString(FactorMarshal.GetScaleFormatString(baseDifficultyValue));
-
+					var baseDifficulty = pref.GetRating(technique) switch { { } v => v, _ => @base } / pref.RatingScale;
+					var baseDifficultyString = baseDifficulty.ToString(FactorMarshal.GetScaleFormatString(baseDifficulty));
 					result.Add(new Run { Text = $"{ResourceDictionary.Get("AnalyzePage_BaseDifficulty", App.CurrentCulture)}{baseDifficultyString}" });
 					result.Add(new LineBreak());
 					result.AddRange(appendExtraDifficultyFactors(factors));

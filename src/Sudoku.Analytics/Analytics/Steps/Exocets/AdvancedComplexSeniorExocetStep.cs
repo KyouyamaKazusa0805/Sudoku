@@ -34,8 +34,8 @@ public sealed partial class AdvancedComplexSeniorExocetStep(
 	public override decimal BaseDifficulty
 		=> base.BaseDifficulty + this.GetShapeKind() switch
 		{
-			ExocetShapeKind.Franken => .4M,
-			ExocetShapeKind.Mutant => .7M,
+			ExocetShapeKind.Franken => 4,
+			ExocetShapeKind.Mutant => 7,
 			ExocetShapeKind.Basic => 0
 		};
 

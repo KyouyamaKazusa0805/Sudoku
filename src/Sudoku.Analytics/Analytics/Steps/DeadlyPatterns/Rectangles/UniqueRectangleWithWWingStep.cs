@@ -25,9 +25,9 @@ public sealed partial class UniqueRectangleWithWWingStep(
 	Digit digit2,
 	scoped ref readonly CellMap cells,
 	bool isAvoidable,
-	[Data] Digit wDigit,
-	[Data] scoped ref readonly CellMap connectors,
-	[Data] scoped ref readonly CellMap endCells,
+	[PrimaryConstructorParameter] Digit wDigit,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap connectors,
+	[PrimaryConstructorParameter] scoped ref readonly CellMap endCells,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,
@@ -42,14 +42,14 @@ public sealed partial class UniqueRectangleWithWWingStep(
 )
 {
 	/// <inheritdoc/>
-	public override ExtraDifficultyFactor[] ExtraDifficultyFactors => [new(ExtraDifficultyFactorNames.Avoidable, IsAvoidable ? .1M : 0)];
-
-	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, ConnectorsString, EndCellsString, WDigitsString]),
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, ConnectorsString, EndCellsString, WDigitsString])
 		];
+
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new RectangleIsAvoidableFactor(Options)];
 
 	private string ConnectorsString => Options.Converter.CellConverter(Connectors);
 

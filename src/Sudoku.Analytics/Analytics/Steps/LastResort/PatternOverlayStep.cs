@@ -14,7 +14,7 @@ public sealed class PatternOverlayStep(Conclusion[] conclusions, StepSearcherOpt
 	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 8.5M;
+	public override decimal BaseDifficulty => 85;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.PatternOverlay;

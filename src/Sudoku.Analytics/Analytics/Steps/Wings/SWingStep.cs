@@ -33,7 +33,7 @@ public sealed partial class SWingStep(
 	public override bool IsGrouped => XNode1.Count != 1 || XNode2.Count != 1 || YNode1.Count != 1 || YNode2.Count != 1;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 4.7M;
+	public override decimal BaseDifficulty => 47;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

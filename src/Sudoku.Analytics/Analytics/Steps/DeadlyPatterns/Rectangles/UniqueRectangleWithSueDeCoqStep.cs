@@ -55,7 +55,7 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .5M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 5;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

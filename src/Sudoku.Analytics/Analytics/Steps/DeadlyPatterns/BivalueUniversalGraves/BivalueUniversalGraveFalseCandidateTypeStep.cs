@@ -15,7 +15,7 @@ public sealed partial class BivalueUniversalGraveFalseCandidateTypeStep(
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + .1M;
+	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveFalseCandidateType;
