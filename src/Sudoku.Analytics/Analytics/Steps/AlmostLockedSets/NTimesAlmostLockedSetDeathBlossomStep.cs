@@ -45,7 +45,13 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	private string BranchesStr
 		=> string.Join(
 			ResourceDictionary.Get("Comma", ResultCurrentCulture),
-			[.. from branch in Branches select $"{Options.Converter.CandidateConverter(branch.Key)} - {branch.AlsPattern}"]
+			[
+				..
+				from branch in Branches
+				let p = Options.Converter.CandidateConverter(branch.Key)
+				let q = branch.AlsPattern.ToString(Options.Converter)
+				select $"{p} - {q}"
+			]
 		);
 
 
