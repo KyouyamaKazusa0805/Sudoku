@@ -362,8 +362,7 @@ public partial class App : Application
 				)
 			},
 			IsDirectMode = !uiPref.DisplayCandidates,
-			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes,
-			DifficultyRatingScale = scale
+			DistinctDirectMode = analysisPref.DistinctDirectAndIndirectModes
 		};
 	}
 }
