@@ -82,6 +82,21 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 		}
 	}
 
+	/// <summary>
+	/// Calculates sum of difficulty of the current step.
+	/// </summary>
+	/// <param name="step">The step.</param>
+	/// <returns>The sum value.</returns>
+	public int Sum(Step step)
+	{
+		var result = 0;
+		foreach (var element in this)
+		{
+			result += element.Formula(step) ?? 0;
+		}
+		return result;
+	}
+
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(_factors.Span);

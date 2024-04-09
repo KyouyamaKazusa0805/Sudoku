@@ -88,7 +88,7 @@ public abstract partial class Step(
 	/// <seealso cref="BaseDifficulty"/>
 	/// <seealso cref="ExtraDifficultyFactors"/>
 	/// <seealso cref="ExtraDifficultyFactor"/>
-	public decimal Difficulty => BaseDifficulty + ExtraDifficultyFactors.SumNullable(static @case => @case.Value, 0);
+	public decimal Difficulty => BaseDifficulty + Factors.Sum(this);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).

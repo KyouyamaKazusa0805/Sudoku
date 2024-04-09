@@ -21969,6 +21969,13 @@ result ^= expression;
             </summary>
             <param name="action">The action to be executed and applied to each element.</param>
         </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Sum(Sudoku.Analytics.Step)">
+            <summary>
+            Calculates sum of difficulty of the current step.
+            </summary>
+            <param name="step">The step.</param>
+            <returns>The sum value.</returns>
+        </member>
         <member name="M:Sudoku.Measuring.FactorCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
