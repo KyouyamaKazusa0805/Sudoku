@@ -11,6 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
 /// <param name="subsetDigitsMask">Indicates the subset digits used.</param>
 /// <param name="house">Indicates the house that subset formed.</param>
+/// <param name="isCannibalism">Indicates whether the pattern is cannibalism.</param>
 public sealed partial class ExtendedRectangleType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
@@ -19,11 +20,15 @@ public sealed partial class ExtendedRectangleType3Step(
 	Mask digitsMask,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] House house
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] bool isCannibalism
 ) : ExtendedRectangleStep(conclusions, views, options, in cells, digitsMask), IPatternType3StepTrait<ExtendedRectangleType3Step>
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
+
+	/// <inheritdoc/>
+	public override Technique Code => IsCannibalism ? Technique.ExtendedRectangleType3 : Technique.ExtendedRectangleType3Cannibalism;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
@@ -33,7 +38,8 @@ public sealed partial class ExtendedRectangleType3Step(
 		];
 
 	/// <inheritdoc/>
-	public override FactorCollection Factors => [.. base.Factors, new ExtendedRectangleSubsetSizeFactor()];
+	public override FactorCollection Factors
+		=> [.. base.Factors, new ExtendedRectangleSubsetSizeFactor(), new ExtendedRectangleCannibalismFactor()];
 
 	/// <inheritdoc/>
 	bool IPatternType3StepTrait<ExtendedRectangleType3Step>.IsHidden => false;

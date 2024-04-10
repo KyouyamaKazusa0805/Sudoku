@@ -2688,6 +2688,11 @@
             Indicates extended rectangle type 3.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType3Cannibalism">
+            <summary>
+            Indicates extended rectangle type 3 (cannibalism).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.ExtendedRectangleType4">
             <summary>
             Indicates extended rectangle type 4.
@@ -7429,7 +7434,7 @@ if (student is (name: var name, age: >= 18))
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
-            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="patternCells">The map of all cells used.</param>
             <param name="extraCells">The extra cells map.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
@@ -7443,7 +7448,7 @@ if (student is (name: var name, age: >= 18))
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
-            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="patternCells">The map of all cells used.</param>
             <param name="extraCells">The extra cells map.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigit">The extra digit.</param>
@@ -7457,10 +7462,10 @@ if (student is (name: var name, age: >= 18))
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
-            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="patternCells">The map of all cells used.</param>
             <param name="normalDigits">The normal digits mask.</param>
             <param name="extraDigits">The extra digits mask.</param>
-            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="extraCells">The map of extra cells.</param>
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
@@ -7471,9 +7476,9 @@ if (student is (name: var name, age: >= 18))
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
-            <param name="allCellsMap">The map of all cells used.</param>
+            <param name="patternCells">The map of all cells used.</param>
             <param name="normalDigits">The normal digits mask.</param>
-            <param name="extraCellsMap">The map of extra cells.</param>
+            <param name="extraCells">The map of extra cells.</param>
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
@@ -13014,8 +13019,9 @@ if (student is (name: var name, age: >= 18))
             <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
             <param name="subsetDigitsMask">Indicates the subset digits used.</param>
             <param name="house">Indicates the house that subset formed.</param>
+            <param name="isCannibalism">Indicates whether the pattern is cannibalism.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -13027,8 +13033,12 @@ if (student is (name: var name, age: >= 18))
             <param name="subsetCells">Indicates the extra cells used that can form the subset.</param>
             <param name="subsetDigitsMask">Indicates the subset digits used.</param>
             <param name="house">Indicates the house that subset formed.</param>
+            <param name="isCannibalism">Indicates whether the pattern is cannibalism.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Type">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.Code">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.FormatInterpolationParts">
@@ -13056,6 +13066,11 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.House">
             <summary>
             The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.IsCannibalism">
+            <summary>
+            The generated property declaration for parameter <c>isCannibalism</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ExtendedRectangleType4Step">
@@ -22328,6 +22343,24 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor">
+            <summary>
+            Represents a factor that describes cannibalism rule of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.ExtendedRectangleType3Step"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor">
             <summary>
             Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
@@ -23831,6 +23864,11 @@ result ^= expression;
               Looks up a localized string similar to Extended Rectangle Type 3.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ExtendedRectangleType3Cannibalism">
+            <summary>
+              Looks up a localized string similar to Extended Rectangle Type 3 (Cannibalism).
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ExtendedRectangleType4">
             <summary>
               Looks up a localized string similar to Extended Rectangle Type 4.
@@ -24094,6 +24132,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExocetConjugatePairsCountFactor">
             <summary>
               Looks up a localized string similar to Number of conjugate pairs used in exocet.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedRectangleCannibalismFactor">
+            <summary>
+              Looks up a localized string similar to Subset in extended rectangle is cannibalism.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ExtendedRectangleSizeFactor">

@@ -4108,6 +4108,17 @@ public enum Technique
 	ExtendedRectangleType3,
 
 	/// <summary>
+	/// Indicates extended rectangle type 3 (cannibalism).
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 4.5,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ExtendedRectangle,
+		PrimaryStepType = typeof(ExtendedRectangleType3Step),
+		StepSearcherType = typeof(ExtendedRectangleStepSearcher))]
+	ExtendedRectangleType3Cannibalism,
+
+	/// <summary>
 	/// Indicates extended rectangle type 4.
 	/// </summary>
 #if COMPATIBLE_ORIGINAL_TECHNIQUE_RULES

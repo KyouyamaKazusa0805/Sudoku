@@ -26,7 +26,7 @@ public abstract partial class ExtendedRectangleStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public sealed override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
+	public override Technique Code => Enum.Parse<Technique>($"ExtendedRectangleType{Type}");
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ExtendedRectangleSizeFactor()];

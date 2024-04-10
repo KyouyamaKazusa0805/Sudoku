@@ -3206,6 +3206,66 @@
   <data name="Factor_UniqueRectangleExternalType1Or2IsIncompleteFactor" xml:space="preserve">
     <value>矩形是否残缺</value>
   </data>
+  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
+  </data>
+  <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
+    <value>矩形之中的强链数量</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqCannibalismFactor" xml:space="preserve">
+    <value>矩形里的融合待定数组是否自噬</value>
+  </data>
+  <data name="Factor_UniqueRectangleBurredSubsetSizeFactor" xml:space="preserve">
+    <value>矩形里的毛刺数组规格</value>
+  </data>
+  <data name="Factor_RectangleSueDeCoqIsolatedFactor" xml:space="preserve">
+    <value>矩形里的融合待定数组是否包含孤立数字</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalType1Or2GuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalWWingIsCompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingGuardianFactor" xml:space="preserve">
+    <value>矩形里的守护者</value>
+  </data>
+  <data name="Factor_UniqueRectangleExternalXyWingIsCompleteFactor" xml:space="preserve">
+    <value>矩形是否残缺</value>
+  </data>
+  <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
+    <value>矩形里的 wing 规格</value>
+  </data>
+  <data name="Factor_ExocetAlmostHiddenSetSizeFactor" xml:space="preserve">
+    <value>飞鱼导弹里的待定隐性数组规格</value>
+  </data>
+  <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
+    <value>飞鱼导弹里的强链使用次数</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
+  </data>
+  <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
+    <value>全双值格致死解法里的真数数量</value>
+  </data>
+  <data name="_Token_Colon" xml:space="preserve">
+    <value>：</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3287,64 +3347,11 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="Factor_BivalueUniversalGraveTrueCandidateFactor" xml:space="preserve">
-    <value>全双值格致死解法里的真数数量</value>
+  <data name="ExtendedRectangleType3Cannibalism" xml:space="preserve">
+    <value>拓展矩形类型 3・自噬</value>
+    <comment>Technique Name</comment>
   </data>
-  <data name="Factor_RectangleConjugatePairsCountFactor" xml:space="preserve">
-    <value>矩形之中的强链数量</value>
-  </data>
-  <data name="Factor_RectangleSueDeCoqCannibalismFactor" xml:space="preserve">
-    <value>矩形里的融合待定数组是否自噬</value>
-  </data>
-  <data name="Factor_UniqueRectangleBurredSubsetSizeFactor" xml:space="preserve">
-    <value>矩形里的毛刺数组规格</value>
-  </data>
-  <data name="Factor_RectangleSueDeCoqIsolatedFactor" xml:space="preserve">
-    <value>矩形里的融合待定数组是否包含孤立数字</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor" xml:space="preserve">
-    <value>矩形里的守护者</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor" xml:space="preserve">
-    <value>矩形是否残缺</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalTurbotFishGuardianFactor" xml:space="preserve">
-    <value>矩形里的守护者</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalTurbotFishIsIncompleteFactor" xml:space="preserve">
-    <value>矩形是否残缺</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalType1Or2GuardianFactor" xml:space="preserve">
-    <value>矩形里的守护者</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalWWingGuardianFactor" xml:space="preserve">
-    <value>矩形里的守护者</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalWWingIsCompleteFactor" xml:space="preserve">
-    <value>矩形是否残缺</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalXyWingGuardianFactor" xml:space="preserve">
-    <value>矩形里的守护者</value>
-  </data>
-  <data name="Factor_UniqueRectangleExternalXyWingIsCompleteFactor" xml:space="preserve">
-    <value>矩形是否残缺</value>
-  </data>
-  <data name="Factor_UniqueRectangleWingSizeFactor" xml:space="preserve">
-    <value>矩形里的 wing 规格</value>
-  </data>
-  <data name="Factor_ExocetAlmostHiddenSetSizeFactor" xml:space="preserve">
-    <value>飞鱼导弹里的待定隐性数组规格</value>
-  </data>
-  <data name="Factor_ExocetConjugatePairsCountFactor" xml:space="preserve">
-    <value>飞鱼导弹里的强链使用次数</value>
-  </data>
-  <data name="Factor_BivalueUniversalGraveType2TrueCandidateFactor" xml:space="preserve">
-    <value>全双值格致死解法里的真数数量</value>
-  </data>
-  <data name="Factor_BivalueUniversalGraveMultipleTrueCandidateFactor" xml:space="preserve">
-    <value>全双值格致死解法里的真数数量</value>
-  </data>
-  <data name="_Token_Colon" xml:space="preserve">
-    <value>：</value>
+  <data name="Factor_ExtendedRectangleCannibalismFactor" xml:space="preserve">
+    <value>拓展矩形里的数组是否自噬</value>
   </data>
 </root>

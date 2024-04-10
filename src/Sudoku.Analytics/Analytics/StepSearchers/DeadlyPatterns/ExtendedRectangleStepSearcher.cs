@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using RawPatternDataItem = (CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size);
+using RawPatternDataItem = (CellMap PatternCells, (Cell Left, Cell Right)[] PairCells, int Size);
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.
@@ -153,9 +153,11 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		foreach (var (allCellsMap, pairs, size) in RawPatternData)
+		for (var i = 0; i < 4155; i++)
 		{
-			if ((EmptyCells & allCellsMap) != allCellsMap)
+			var (patternCells, pairs, size) = RawPatternData[i];
+
+			if ((EmptyCells & patternCells) != patternCells)
 			{
 				continue;
 			}
@@ -215,7 +217,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			{
 				// Possible type 1 or 2 found. Now check extra cells.
 				var extraDigit = TrailingZeroCount(extraDigits);
-				var extraCellsMap = allCellsMap & CandidatesMap[extraDigit];
+				var extraCellsMap = patternCells & CandidatesMap[extraDigit];
 				if (!extraCellsMap)
 				{
 					continue;
@@ -223,13 +225,13 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				if (extraCellsMap.Count == 1)
 				{
-					if (CheckType1(accumulator, in grid, ref context, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
+					if (CheckType1(accumulator, in grid, ref context, in patternCells, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step1)
 					{
 						return step1;
 					}
 				}
 
-				if (CheckType2(accumulator, in grid, ref context, in allCellsMap, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
+				if (CheckType2(accumulator, in grid, ref context, in patternCells, in extraCellsMap, normalDigits, extraDigit, onlyFindOne) is { } step2)
 				{
 					return step2;
 				}
@@ -237,7 +239,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			else
 			{
 				var extraCellsMap = (CellMap)[];
-				foreach (var cell in allCellsMap)
+				foreach (var cell in patternCells)
 				{
 					foreach (var digit in extraDigits)
 					{
@@ -254,12 +256,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (CheckType3Naked(accumulator, in grid, ref context, in allCellsMap, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
+				if (CheckType3Naked(accumulator, in grid, ref context, in patternCells, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
 				{
 					return step3;
 				}
 
-				if (CheckType14(accumulator, in grid, ref context, in allCellsMap, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
+				if (CheckType14(accumulator, in grid, ref context, in patternCells, normalDigits, in extraCellsMap, onlyFindOne) is { } step14)
 				{
 					return step14;
 				}
@@ -275,7 +277,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	/// <param name="allCellsMap">The map of all cells used.</param>
+	/// <param name="patternCells">The map of all cells used.</param>
 	/// <param name="extraCells">The extra cells map.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigit">The extra digit.</param>
@@ -285,7 +287,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap patternCells,
 		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
@@ -293,7 +295,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	)
 	{
 		var (conclusions, candidateOffsets) = (new List<Conclusion>(), new List<CandidateViewNode>());
-		foreach (var cell in allCellsMap)
+		foreach (var cell in patternCells)
 		{
 			if (cell == extraCells[0])
 			{
@@ -323,7 +325,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[.. conclusions],
 			[[.. candidateOffsets]],
 			context.PredefinedOptions,
-			in allCellsMap,
+			in patternCells,
 			normalDigits
 		);
 		if (onlyFindOne)
@@ -343,7 +345,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	/// <param name="allCellsMap">The map of all cells used.</param>
+	/// <param name="patternCells">The map of all cells used.</param>
 	/// <param name="extraCells">The extra cells map.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigit">The extra digit.</param>
@@ -353,7 +355,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap patternCells,
 		scoped ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
@@ -366,7 +368,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		}
 
 		var candidateOffsets = new List<CandidateViewNode>();
-		foreach (var cell in allCellsMap)
+		foreach (var cell in patternCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
@@ -378,7 +380,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
 			context.PredefinedOptions,
-			in allCellsMap,
+			in patternCells,
 			normalDigits,
 			extraDigit
 		);
@@ -399,105 +401,202 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	/// <param name="allCellsMap">The map of all cells used.</param>
+	/// <param name="patternCells">The map of all cells used.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
 	/// <param name="extraDigits">The extra digits mask.</param>
-	/// <param name="extraCellsMap">The map of extra cells.</param>
+	/// <param name="extraCells">The map of extra cells.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap patternCells,
 		Mask normalDigits,
 		Mask extraDigits,
-		scoped ref readonly CellMap extraCellsMap,
+		scoped ref readonly CellMap extraCells,
 		bool onlyFindOne
 	)
 	{
-		foreach (var houseIndex in extraCellsMap.SharedHouses)
+		// Iterate on each case of cannibalism.
+		// For cannibalism example:
+		//
+		//   03010000+210005000900400800+1+3+1502080+6+460+8+100+2320036001070+100006009+3001200002070+108
+		//     :611 913 517 418 428 631 537 338 467 569 576 477 577 588 596 996 498 598
+		//
+		foreach (var isCannibalism in (false, true))
 		{
-			var otherCells = (HousesMap[houseIndex] & EmptyCells) - allCellsMap;
-			for (var size = 1; size < otherCells.Count; size++)
+			// Iterate on each shared house.
+			foreach (var house in extraCells.SharedHouses)
 			{
-				foreach (ref readonly var cells in otherCells.GetSubsets(size))
+				// For cannibalism mode, check whether the side is the in the direction of the pattern lying.
+				var patternCellsCoveredInThisHouse = HousesMap[house] & patternCells;
+				if (isCannibalism && patternCellsCoveredInThisHouse.Count <= 2)
 				{
-					var mask = grid[in cells];
-					if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
-					{
-						continue;
-					}
+					continue;
+				}
 
-					var elimMap = (HousesMap[houseIndex] & EmptyCells) - allCellsMap - cells;
-					if (!elimMap)
-					{
-						continue;
-					}
+				// Find all possible cells that are out of relation with the extended rectangle pattern.
+				var otherCells = (HousesMap[house] & EmptyCells) - patternCells;
 
-					var conclusions = new List<Conclusion>();
-					foreach (var digit in mask)
+				// Iterate on size of the pattern.
+				// Please note that the cannibalism mode may use all empty cells recorded in variable 'otherCells'.
+				for (var size = 1; size < (isCannibalism ? otherCells.Count + 1 : otherCells.Count); size++)
+				{
+					// Iterate on each combination of the pattern.
+					foreach (ref readonly var cells in otherCells.GetSubsets(size))
 					{
-						foreach (var cell in elimMap & CandidatesMap[digit])
+						var mask = grid[in cells];
+						if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)
 						{
-							conclusions.Add(new(Elimination, cell, digit));
+							// The extra cells must contain all possible digits appeared in extended rectangle pattern.
+							continue;
 						}
-					}
-					if (conclusions.Count == 0)
-					{
-						continue;
-					}
 
-					var candidateOffsets = new List<CandidateViewNode>();
-					foreach (var cell in allCellsMap - extraCellsMap)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
+						if (!isCannibalism) // Non-cannibalism check.
 						{
-							candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
-						}
-					}
-					foreach (var cell in extraCellsMap)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
-						{
-							candidateOffsets.Add(
-								new(
-									(mask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-									cell * 9 + digit
-								)
+							// Now a step is formed. Check for elimination.
+							var elimMap = (HousesMap[house] & EmptyCells) - patternCells - cells;
+							if (!elimMap)
+							{
+								continue;
+							}
+
+							var conclusions = new List<Conclusion>();
+							foreach (var digit in mask)
+							{
+								foreach (var cell in elimMap & CandidatesMap[digit])
+								{
+									conclusions.Add(new(Elimination, cell, digit));
+								}
+							}
+							if (conclusions.Count == 0)
+							{
+								continue;
+							}
+
+							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
+
+							var step = new ExtendedRectangleType3Step(
+								[.. conclusions],
+								[[.. candidateOffsets, new HouseViewNode(0, house)]],
+								context.PredefinedOptions,
+								in patternCells,
+								normalDigits,
+								in cells,
+								mask,
+								house,
+								false
 							);
+							if (onlyFindOne)
+							{
+								return step;
+							}
+
+							accumulator.Add(step);
 						}
-					}
-					foreach (var cell in cells)
-					{
-						foreach (var digit in grid.GetCandidates(cell))
+						else // Cannibalism check.
 						{
-							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+							// Because we cannot fill with any digits elsewhere the empty cells in the house,
+							// the intersection digit must be appeared in 'otherCells' instead of the extended rectangle pattern.
+							// Therefore, the pattern forms as a cannibalism.
+							//
+							// We should check whether the size of the pattern. The extra digits appeared in the pattern
+							// must cover (n - 1) cells, where 'n' is the length of the cells covered in this shared house.
+							var digitsToCheck = (Mask)(mask & (Mask)~normalDigits);
+							var finalCellsContainingExtraDigits = patternCellsCoveredInThisHouse;
+							foreach (var cell in patternCellsCoveredInThisHouse)
+							{
+								if ((grid.GetCandidates(cell) & digitsToCheck) == 0)
+								{
+									// No extra cells found.
+									finalCellsContainingExtraDigits.Remove(cell);
+								}
+							}
+							if (finalCellsContainingExtraDigits.Count != patternCellsCoveredInThisHouse.Count - 1)
+							{
+								continue;
+							}
+
+							var intersectedDigitsMask = (Mask)(mask & normalDigits);
+							if (!IsPow2(intersectedDigitsMask))
+							{
+								continue;
+							}
+
+							// This digit will be cannibalism. Checks for elimination.
+							var intersectedDigit = Log2((uint)intersectedDigitsMask);
+							var elimMap = patternCellsCoveredInThisHouse & CandidatesMap[intersectedDigit];
+							if (!elimMap)
+							{
+								continue;
+							}
+
+							g(in patternCells, in cells, in extraCells, in grid, mask, out var candidateOffsets);
+
+							var step = new ExtendedRectangleType3Step(
+								[.. from cell in elimMap select new Conclusion(Elimination, cell * 9 + intersectedDigit)],
+								[[.. candidateOffsets, new HouseViewNode(0, house)]],
+								context.PredefinedOptions,
+								in patternCells,
+								normalDigits,
+								in cells,
+								mask,
+								house,
+								false
+							);
+							if (onlyFindOne)
+							{
+								return step;
+							}
+
+							accumulator.Add(step);
 						}
 					}
-
-					var step = new ExtendedRectangleType3Step(
-						[.. conclusions],
-						[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
-						context.PredefinedOptions,
-						in allCellsMap,
-						normalDigits,
-						in cells,
-						mask,
-						houseIndex
-					);
-
-					if (onlyFindOne)
-					{
-						return step;
-					}
-
-					accumulator.Add(step);
 				}
 			}
 		}
 
 		return null;
+
+
+		static void g(
+			scoped ref readonly CellMap patternCells,
+			scoped ref readonly CellMap cells,
+			scoped ref readonly CellMap extraCells,
+			scoped ref readonly Grid grid,
+			Mask mask,
+			out List<CandidateViewNode> candidateOffsets
+		)
+		{
+			candidateOffsets = [];
+			foreach (var cell in patternCells - extraCells)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
+				}
+			}
+			foreach (var cell in extraCells)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add(
+						new(
+							(mask >> digit & 1) != 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+							cell * 9 + digit
+						)
+					);
+				}
+			}
+			foreach (var cell in cells)
+			{
+				foreach (var digit in grid.GetCandidates(cell))
+				{
+					candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + digit));
+				}
+			}
+		}
 	}
 
 	/// <summary>
@@ -506,22 +605,22 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
-	/// <param name="allCellsMap">The map of all cells used.</param>
+	/// <param name="patternCells">The map of all cells used.</param>
 	/// <param name="normalDigits">The normal digits mask.</param>
-	/// <param name="extraCellsMap">The map of extra cells.</param>
+	/// <param name="extraCells">The map of extra cells.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
 		List<Step> accumulator,
 		scoped ref readonly Grid grid,
 		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap allCellsMap,
+		scoped ref readonly CellMap patternCells,
 		Mask normalDigits,
-		scoped ref readonly CellMap extraCellsMap,
+		scoped ref readonly CellMap extraCells,
 		bool onlyFindOne
 	)
 	{
-		switch (extraCellsMap)
+		switch (extraCells)
 		{
 			case [var extraCell]:
 			{
@@ -543,7 +642,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				// Gather all highlight candidates.
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in allCellsMap)
+				foreach (var cell in patternCells)
 				{
 					if (cell == extraCell)
 					{
@@ -560,7 +659,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					[.. conclusions],
 					[[.. candidateOffsets]],
 					context.PredefinedOptions,
-					in allCellsMap,
+					in patternCells,
 					normalDigits
 				);
 				if (onlyFindOne)
@@ -585,10 +684,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 				foreach (var conjugateDigit in conjugateMask)
 				{
-					foreach (var houseIndex in extraCellsMap.SharedHouses)
+					foreach (var houseIndex in extraCells.SharedHouses)
 					{
-						var map = HousesMap[houseIndex] & extraCellsMap;
-						if (map != extraCellsMap || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))
+						var map = HousesMap[houseIndex] & extraCells;
+						if (map != extraCells || map != (CandidatesMap[conjugateDigit] & HousesMap[houseIndex]))
 						{
 							continue;
 						}
@@ -597,7 +696,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						var conclusions = new List<Conclusion>();
 						foreach (var digit in elimDigits)
 						{
-							foreach (var cell in extraCellsMap & CandidatesMap[digit])
+							foreach (var cell in extraCells & CandidatesMap[digit])
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -608,14 +707,14 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (var cell in allCellsMap - extraCellsMap)
+						foreach (var cell in patternCells - extraCells)
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{
 								candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 							}
 						}
-						foreach (var cell in extraCellsMap)
+						foreach (var cell in extraCells)
 						{
 							candidateOffsets.Add(new(ColorIdentifier.Auxiliary1, cell * 9 + conjugateDigit));
 						}
@@ -624,11 +723,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
 							context.PredefinedOptions,
-							in allCellsMap,
+							in patternCells,
 							normalDigits,
-							new(in extraCellsMap, conjugateDigit)
+							new(in extraCells, conjugateDigit)
 						);
-
 						if (onlyFindOne)
 						{
 							return step;

@@ -1618,6 +1618,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Extended Rectangle Type 3 (Cannibalism).
+        /// </summary>
+        public static string ExtendedRectangleType3Cannibalism {
+            get {
+                return ResourceManager.GetString("ExtendedRectangleType3Cannibalism", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Extended Rectangle Type 4.
         /// </summary>
         public static string ExtendedRectangleType4 {
@@ -2091,6 +2100,15 @@ namespace Sudoku.Resources {
         public static string Factor_ExocetConjugatePairsCountFactor {
             get {
                 return ResourceManager.GetString("Factor_ExocetConjugatePairsCountFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset in extended rectangle is cannibalism.
+        /// </summary>
+        public static string Factor_ExtendedRectangleCannibalismFactor {
+            get {
+                return ResourceManager.GetString("Factor_ExtendedRectangleCannibalismFactor", resourceCulture);
             }
         }
         
