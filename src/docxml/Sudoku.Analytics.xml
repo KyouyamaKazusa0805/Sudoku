@@ -4931,20 +4931,6 @@
             The generated property declaration for parameter <c>level</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Metadata.DifficultyLevelExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Metadata.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.Globalization.CultureInfo)">
-            <summary>
-            Gets the name of the current value, with specified culture.
-            </summary>
-            <param name="this">The value.</param>
-            <param name="culture">The culture.</param>
-            <returns>The string value.</returns>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.FailedReason">
             <summary>
             Defines a reason why the puzzle is failed to be analyzed.
@@ -19155,6 +19141,20 @@ if (student is (name: var name, age: >= 18))
             <summary>
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.DifficultyLevelExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
+        </member>
+        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.Globalization.CultureInfo)">
+            <summary>
+            Gets the name of the current value, with specified culture.
+            </summary>
+            <param name="this">The value.</param>
+            <param name="culture">The culture.</param>
+            <returns>The string value.</returns>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
             <summary>

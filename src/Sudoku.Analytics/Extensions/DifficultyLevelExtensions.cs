@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics.Metadata;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Provides with extension methods on <see cref="DifficultyLevel"/>.

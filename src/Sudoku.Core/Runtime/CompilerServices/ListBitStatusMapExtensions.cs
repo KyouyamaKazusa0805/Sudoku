@@ -53,7 +53,7 @@ public static class ListBitStatusMapExtensions
 	}
 
 	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
-	public static void AddRangeRef(this List<CellMap> @this, scoped ReadOnlySpan<CellMap> collection)
+	public static void AddRangeRef(this List<CellMap> @this, params ReadOnlySpan<CellMap> collection)
 	{
 		foreach (ref readonly var cells in collection)
 		{
@@ -62,7 +62,7 @@ public static class ListBitStatusMapExtensions
 	}
 
 	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
-	public static void AddRangeRef(this List<CandidateMap> @this, scoped ReadOnlySpan<CandidateMap> collection)
+	public static void AddRangeRef(this List<CandidateMap> @this, params ReadOnlySpan<CandidateMap> collection)
 	{
 		foreach (ref readonly var cells in collection)
 		{
