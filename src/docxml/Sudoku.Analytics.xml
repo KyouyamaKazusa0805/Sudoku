@@ -7466,9 +7466,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
-            Check type 4 and a part of type 1 that the method
-            <see cref="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType1(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)"/>
-            cannot be found.
+            Check type 4 and some type 1 patterns cannot be found.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>

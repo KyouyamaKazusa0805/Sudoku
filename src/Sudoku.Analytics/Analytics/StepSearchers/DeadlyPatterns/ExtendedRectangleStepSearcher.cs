@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using RawPatternDataItem = (CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size);
+
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.
 /// The step searcher will include the following techniques:
@@ -38,7 +40,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	private static readonly (CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size)[] RawPatternData;
+	private static readonly RawPatternDataItem[] RawPatternData;
 
 	/// <summary>
 	/// Indicates all possible combinations of houses.
@@ -499,9 +501,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Check type 4 and a part of type 1 that the method
-	/// <see cref="CheckType1(List{Step}, ref readonly Grid, ref AnalysisContext, ref readonly CellMap, ref readonly CellMap, Mask, Digit, bool)"/>
-	/// cannot be found.
+	/// Check type 4 and some type 1 patterns cannot be found.
 	/// </summary>
 	/// <param name="accumulator">The technique accumulator.</param>
 	/// <param name="grid">The grid.</param>
