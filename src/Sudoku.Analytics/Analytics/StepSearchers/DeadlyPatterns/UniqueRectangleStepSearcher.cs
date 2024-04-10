@@ -2838,7 +2838,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
-		var otherDigitsMask = (Mask)((otherCell1Mask | otherCell2Mask) & ~comparer);
+		var otherDigitsMask = (Mask)((Mask)(otherCell1Mask | otherCell2Mask) & (Mask)~comparer);
 
 		// Merge incomplete and complete wing logic into one loop.
 		// Here we don't know what digit will be selected as a pivot, so we should iterate all digits.
