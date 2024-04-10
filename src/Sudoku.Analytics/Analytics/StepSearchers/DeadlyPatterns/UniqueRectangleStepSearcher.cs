@@ -2670,7 +2670,12 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		foreach (var house in (corner1.AsCellMap() + corner2).SharedHouses)
 		{
 			var extraCells = (HousesMap[house] & EmptyCells) - corner1 - corner2;
-			for (var size = 2; size <= extraCells.Count - 1; size++)
+
+			// Here 'size' can be started at 1.
+			// Example: 
+			//   .....+6..9.369+4..5..5.27..6..48..3.....5..7......89+4+5.6+5....+2.47.67+4.+982+52.+4+7.56..
+			//     :112 812 114 115 815 217 317 318 131 252 155 359 162
+			for (var size = 1; size <= extraCells.Count - 1; size++)
 			{
 				foreach (var (thisCorner, elimCorner) in ((corner1, corner2), (corner2, corner1)))
 				{
