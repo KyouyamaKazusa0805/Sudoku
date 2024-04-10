@@ -12300,6 +12300,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.Code">
             <inheritdoc/>
         </member>
@@ -12328,6 +12331,9 @@ if (student is (name: var name, age: >= 18))
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
             <param name="trueCandidates">Indicates the true candidates.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.EnglishName">
             <summary>
@@ -12373,6 +12379,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.OnlyUseBivalueCells">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -12394,6 +12403,9 @@ if (student is (name: var name, age: >= 18))
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.Code">
             <inheritdoc/>
@@ -12417,6 +12429,9 @@ if (student is (name: var name, age: >= 18))
             <param name="options"><inheritdoc/></param>
             <param name="digit">Indicates the extra digit.</param>
             <param name="cells">Indicates the cells used.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.Code">
             <inheritdoc/>
@@ -12463,6 +12478,9 @@ if (student is (name: var name, age: >= 18))
             <param name="subsetDigitsMask">Indicates the mask of subset digits.</param>
             <param name="cells">Indicates the subset cells used.</param>
             <param name="isNaked">Indicates whether the subset is naked.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.Code">
             <inheritdoc/>
@@ -12529,6 +12547,9 @@ if (student is (name: var name, age: >= 18))
             <param name="cells">Indicates the cells used.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -12576,6 +12597,9 @@ if (student is (name: var name, age: >= 18))
             <param name="xzCell">Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.</param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.Code">
@@ -12626,9 +12650,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Type">
-            <summary>
-            Indicates the type of the technique.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.Format">
             <inheritdoc/>
@@ -12900,9 +12922,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Type">
-            <summary>
-            Indicates the type of the step. The value must be between 1 and 4.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ExtendedRectangleStep.Code">
             <inheritdoc/>
@@ -13105,9 +13125,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Type">
-            <summary>
-            Indicates the type.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueLoopStep.Code">
             <inheritdoc/>
@@ -13331,9 +13349,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Type">
-            <summary>
-            Indicates the type of the current technique step.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueMatrixStep.Code">
             <inheritdoc/>
@@ -13669,6 +13685,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.BaseDifficulty">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.Code">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -13720,9 +13739,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Type">
-            <summary>
-            Indicates the type of the current technique.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.Code">
             <inheritdoc/>
@@ -14608,6 +14625,9 @@ if (student is (name: var name, age: >= 18))
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.OnlyUseBivalueCells">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleStep.BaseDifficulty">
             <inheritdoc/>
         </member>
@@ -14673,6 +14693,9 @@ if (student is (name: var name, age: >= 18))
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.Type">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType1Step.FormatInterpolationParts">
             <inheritdoc/>
         </member>
@@ -14707,6 +14730,9 @@ if (student is (name: var name, age: >= 18))
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.FormatInterpolationParts">
@@ -14754,6 +14780,9 @@ if (student is (name: var name, age: >= 18))
             <param name="isNaked">
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.Type">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleType3Step.FormatInterpolationParts">
             <inheritdoc/>
@@ -14868,6 +14897,9 @@ if (student is (name: var name, age: >= 18))
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.Type">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.FormatInterpolationParts">
@@ -15081,9 +15113,7 @@ if (student is (name: var name, age: >= 18))
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Type">
-            <summary>
-            Indicates the type of the technique.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.Code">
             <inheritdoc/>
@@ -28992,6 +29022,16 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Text.TechniqueFormat.op_Inequality(Sudoku.Text.TechniqueFormat,Sudoku.Text.TechniqueFormat)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Traits.IDeadlyPatternTypeTrait">
+            <summary>
+            Represents a trait that describes the subtype used in a deadly pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Traits.IDeadlyPatternTypeTrait.Type">
+            <summary>
+            Indicates the subtype used in the pattern.
+            </summary>
         </member>
         <member name="T:Sudoku.Traits.IDirectTrait`1">
             <summary>

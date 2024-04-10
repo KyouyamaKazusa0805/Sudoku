@@ -25,7 +25,7 @@ public sealed partial class QiuDeadlyPatternExternalType2Step(
 ) : QiuDeadlyPatternExternalTypeStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
-	public override int Type => 2;
+	public override int Type => 5;
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + 1;

@@ -6,12 +6,12 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
 /// <param name="options"><inheritdoc/></param>
-public sealed partial class BivalueUniversalGraveType1Step(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options
-) : BivalueUniversalGraveStep(conclusions, views, options)
+public sealed partial class BivalueUniversalGraveType1Step(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) :
+	BivalueUniversalGraveStep(conclusions, views, options)
 {
+	/// <inheritdoc/>
+	public override int Type => 1;
+
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType1;
 }

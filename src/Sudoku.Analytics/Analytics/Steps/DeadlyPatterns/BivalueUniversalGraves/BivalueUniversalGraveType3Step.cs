@@ -21,6 +21,9 @@ public sealed partial class BivalueUniversalGraveType3Step(
 ) : BivalueUniversalGraveStep(conclusions, views, options), IPatternType3StepTrait<BivalueUniversalGraveType3Step>
 {
 	/// <inheritdoc/>
+	public override int Type => 3;
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType3;
 
 	/// <inheritdoc/>

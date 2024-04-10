@@ -22,6 +22,9 @@ public sealed partial class BivalueUniversalGraveXzStep(
 	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
+	public override int Type => 5;
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveXzRule;
 
 	/// <inheritdoc/>

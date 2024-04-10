@@ -30,6 +30,10 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	public sealed override decimal BaseDifficulty => base.BaseDifficulty - 1;
 
 	/// <inheritdoc/>
+	public override int Type
+		=> Code switch { Technique.UniqueRectangleType4 => 4, Technique.UniqueRectangleType6 => 6, _ => base.Type };
+
+	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [
 			new(EnglishLanguage, [D1Str, D2Str, CellsStr, Prefix, Suffix, ConjPairsStr]),

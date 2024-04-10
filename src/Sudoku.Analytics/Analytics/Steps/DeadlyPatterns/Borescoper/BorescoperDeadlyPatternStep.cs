@@ -14,7 +14,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -22,9 +22,7 @@ public abstract partial class BorescoperDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 53;
 
-	/// <summary>
-	/// Indicates the type of the technique.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>

@@ -14,6 +14,9 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	[PrimaryConstructorParameter] scoped ref readonly CandidateMap trueCandidates
 ) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
 {
+	/// <inheritdoc/>
+	public override int Type => 5;
+
 	/// <summary>
 	/// <inheritdoc cref="Step.EnglishName" path="/summary"/>
 	/// </summary>

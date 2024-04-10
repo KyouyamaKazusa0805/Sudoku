@@ -14,7 +14,7 @@ public abstract partial class ExtendedRectangleStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -22,9 +22,7 @@ public abstract partial class ExtendedRectangleStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 45;
 
-	/// <summary>
-	/// Indicates the type of the step. The value must be between 1 and 4.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>

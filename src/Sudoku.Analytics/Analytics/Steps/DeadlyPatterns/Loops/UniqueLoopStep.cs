@@ -18,7 +18,7 @@ public abstract partial class UniqueLoopStep(
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] loopPath
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;
@@ -26,9 +26,7 @@ public abstract partial class UniqueLoopStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 45;
 
-	/// <summary>
-	/// Indicates the type.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>

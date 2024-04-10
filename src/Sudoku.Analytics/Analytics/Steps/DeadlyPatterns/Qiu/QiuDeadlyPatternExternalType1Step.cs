@@ -25,7 +25,7 @@ public sealed partial class QiuDeadlyPatternExternalType1Step(
 ) : QiuDeadlyPatternExternalTypeStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
-	public override int Type => 1;
+	public override int Type => 5;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

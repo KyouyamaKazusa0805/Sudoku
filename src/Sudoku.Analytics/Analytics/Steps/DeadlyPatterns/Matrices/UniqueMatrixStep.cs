@@ -14,7 +14,7 @@ public abstract partial class UniqueMatrixStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public sealed override bool OnlyUseBivalueCells => true;
@@ -22,9 +22,7 @@ public abstract partial class UniqueMatrixStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 53;
 
-	/// <summary>
-	/// Indicates the type of the current technique step.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>

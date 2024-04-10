@@ -24,7 +24,7 @@ public abstract partial class QiuDeadlyPatternStep(
 	[PrimaryConstructorParameter] HouseMask houses,
 	[PrimaryConstructorParameter] Cell? corner1,
 	[PrimaryConstructorParameter] Cell? corner2
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -32,13 +32,11 @@ public abstract partial class QiuDeadlyPatternStep(
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => 58;
 
-	/// <summary>
-	/// Indicates the type of the current technique.
-	/// </summary>
+	/// <inheritdoc/>
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public override Technique Code => Type == 5 ? Technique.LockedQiuDeadlyPattern : Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
+	public override Technique Code => Enum.Parse<Technique>($"QiuDeadlyPatternType{Type}");
 
 	private protected string PatternStr => Options.Converter.CellConverter(Pattern);
 

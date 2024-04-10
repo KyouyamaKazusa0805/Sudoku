@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -27,6 +28,9 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 
 	/// <inheritdoc/>
 	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+
+	/// <inheritdoc/>
+	public override Technique Code => Technique.LockedQiuDeadlyPattern;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

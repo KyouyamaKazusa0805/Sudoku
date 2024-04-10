@@ -17,6 +17,9 @@ public sealed partial class BivalueUniversalGraveType2Step(
 ) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
 {
 	/// <inheritdoc/>
+	public override int Type => 2;
+
+	/// <inheritdoc/>
 	public override Technique Code => Technique.BivalueUniversalGraveType2;
 
 	/// <inheritdoc/>
