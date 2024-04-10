@@ -7455,7 +7455,7 @@ if (student is (name: var name, age: >= 18))
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
             <returns>The first found step if worth.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType3Naked(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean)">
             <summary>
             Check type 3.
             </summary>
@@ -7467,6 +7467,7 @@ if (student is (name: var name, age: >= 18))
             <param name="extraDigits">The extra digits mask.</param>
             <param name="extraCells">The map of extra cells.</param>
             <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+            <param name="isFatType">Indicates whether the type is fat type.</param>
             <returns>The first found step if worth.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher.CheckType14(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">

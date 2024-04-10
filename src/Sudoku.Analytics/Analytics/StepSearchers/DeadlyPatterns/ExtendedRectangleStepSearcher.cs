@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using RawPatternDataItem = (CellMap PatternCells, (Cell Left, Cell Right)[] PairCells, int Size);
+using RawPatternDataItem = (bool IsFat, CellMap PatternCells, (Cell Left, Cell Right)[] PairCells, int Size);
 
 /// <summary>
 /// Provides with an <b>Extended Rectangle</b> step searcher.
@@ -85,7 +85,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static ExtendedRectangleStepSearcher()
 	{
-		var result = new List<(CellMap Cells, (Cell Left, Cell Right)[] PairCells, int Size)>();
+		var result = new List<RawPatternDataItem>();
 
 		// Initializes fit types.
 		for (var j = 0; j < 3; j++)
@@ -98,7 +98,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 9;
 				var c13 = c11 + 18;
 				var c23 = c21 + 18;
-				result.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add((false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 		for (var j = 0; j < 3; j++)
@@ -111,7 +111,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var c22 = c21 + 1;
 				var c13 = c11 + 2;
 				var c23 = c21 + 2;
-				result.Add(([c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
+				result.Add((false, [c11, c12, c13, c21, c22, c23], [(c11, c21), (c12, c22), (c13, c23)], 3));
 			}
 		}
 
@@ -138,7 +138,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						pairs.Add((cell1, cell2));
 					}
 
-					result.Add((map, [.. pairs], size));
+					result.Add((true, map, [.. pairs], size));
 				}
 			}
 		}
@@ -153,10 +153,8 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
-		for (var i = 0; i < 4155; i++)
+		foreach (var (isFatType, patternCells, pairs, size) in RawPatternData)
 		{
-			var (patternCells, pairs, size) = RawPatternData[i];
-
 			if ((EmptyCells & patternCells) != patternCells)
 			{
 				continue;
@@ -256,7 +254,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (CheckType3Naked(accumulator, in grid, ref context, in patternCells, normalDigits, extraDigits, in extraCellsMap, onlyFindOne) is { } step3)
+				if (CheckType3Naked(
+					accumulator, in grid, ref context, in patternCells, normalDigits,
+					extraDigits, in extraCellsMap, isFatType, onlyFindOne
+				) is { } step3)
 				{
 					return step3;
 				}
@@ -406,6 +407,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <param name="extraDigits">The extra digits mask.</param>
 	/// <param name="extraCells">The map of extra cells.</param>
 	/// <param name="onlyFindOne">Indicates whether the searcher only searches for one step.</param>
+	/// <param name="isFatType">Indicates whether the type is fat type.</param>
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
@@ -415,6 +417,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		Mask normalDigits,
 		Mask extraDigits,
 		scoped ref readonly CellMap extraCells,
+		bool isFatType,
 		bool onlyFindOne
 	)
 	{
@@ -495,7 +498,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 							accumulator.Add(step);
 						}
-						else // Cannibalism check.
+						else if (isFatType) // Cannibalism check.
 						{
 							// Because we cannot fill with any digits elsewhere the empty cells in the house,
 							// the intersection digit must be appeared in 'otherCells' instead of the extended rectangle pattern.
