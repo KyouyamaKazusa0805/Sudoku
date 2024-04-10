@@ -34,7 +34,7 @@ public sealed partial class JuniorExocetAdjacentTargetStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
+	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.JuniorExocetAdjacentTarget;

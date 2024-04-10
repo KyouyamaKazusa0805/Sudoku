@@ -26,7 +26,7 @@ public partial class GurthSymmetricalPlacementStep(
 ) : SymmetryStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> SymmetricType switch
 		{
 			SymmetricType.Central => 70,

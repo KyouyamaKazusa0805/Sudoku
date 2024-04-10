@@ -22,7 +22,7 @@ public sealed partial class UniquenessClueCoverStep(
 	public override bool OnlyUseBivalueCells => false;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 65;
+	public override int BaseDifficulty => 65;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.UniquenessClueCover;

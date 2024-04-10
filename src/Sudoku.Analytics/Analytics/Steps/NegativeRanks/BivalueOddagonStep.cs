@@ -24,7 +24,7 @@ public abstract partial class BivalueOddagonStep(
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 63;
+	public override int BaseDifficulty => 63;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"BivalueOddagonType{Type}");

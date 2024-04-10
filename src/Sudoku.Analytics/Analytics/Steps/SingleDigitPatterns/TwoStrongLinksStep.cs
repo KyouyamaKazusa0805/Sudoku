@@ -21,7 +21,7 @@ public sealed partial class TwoStrongLinksStep(
 ) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> Code switch
 		{
 			Technique.TurbotFish => 42,

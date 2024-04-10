@@ -21,7 +21,7 @@ public sealed partial class HouseDeathBlossomStep(
 ) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<HouseBlossomBranchCollection, House>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
+	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.HouseDeathBlossom;

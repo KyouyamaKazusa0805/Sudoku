@@ -58,7 +58,7 @@ public sealed partial class DirectSubsetStep(
 	public int Size => SubsetCells.Count;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => IsNaked ? 33 : 37;
+	public override int BaseDifficulty => IsNaked ? 33 : 37;
 
 	/// <inheritdoc/>
 	public override Technique Code => BasedOn.ComplexSingleUsing(SubsetTechnique);

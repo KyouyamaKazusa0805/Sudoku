@@ -19,7 +19,7 @@ public sealed partial class BivalueUniversalGraveXzStep(
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override int Type => 5;

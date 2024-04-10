@@ -26,7 +26,7 @@ public sealed partial class RegularWingStep(
 	public bool IsIncomplete => Size == PivotCandidatesCount + 1;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 42;
+	public override int BaseDifficulty => 42;
 
 	/// <inheritdoc/>
 	/// <remarks>

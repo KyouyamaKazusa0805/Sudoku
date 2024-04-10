@@ -19,7 +19,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 ) : AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 55;
+	public override int BaseDifficulty => 55;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.ExtendedSubsetPrinciple;

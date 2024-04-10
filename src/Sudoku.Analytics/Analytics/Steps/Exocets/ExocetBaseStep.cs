@@ -26,7 +26,7 @@ public sealed partial class ExocetBaseStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + (Code == Technique.SeniorExocet ? 2 : 0);
+	public override int BaseDifficulty => base.BaseDifficulty + (Code == Technique.SeniorExocet ? 2 : 0);
 
 	/// <inheritdoc/>
 	public override Technique Code

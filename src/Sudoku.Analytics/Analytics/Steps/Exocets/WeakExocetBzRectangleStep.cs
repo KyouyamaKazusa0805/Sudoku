@@ -25,7 +25,7 @@ public sealed partial class WeakExocetBzRectangleStep(
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 7;
+	public override int BaseDifficulty => base.BaseDifficulty + 7;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.WeakExocetBzRectangle;

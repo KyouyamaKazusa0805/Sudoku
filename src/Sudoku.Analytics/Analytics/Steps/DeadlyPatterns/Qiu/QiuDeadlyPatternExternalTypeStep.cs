@@ -21,7 +21,7 @@ public abstract class QiuDeadlyPatternExternalTypeStep(
 ) : QiuDeadlyPatternStep(conclusions, views, options, is2LinesWith2Cells, houses, corner1, corner2)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public sealed override Technique Code => Enum.Parse<Technique>($"QiuDeadlyPatternExternalType{Type}");

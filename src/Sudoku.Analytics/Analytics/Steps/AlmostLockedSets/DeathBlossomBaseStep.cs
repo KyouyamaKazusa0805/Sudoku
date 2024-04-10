@@ -10,5 +10,5 @@ public abstract class DeathBlossomBaseStep(Conclusion[] conclusions, View[]? vie
 	AlmostLockedSetsStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 82;
+	public override int BaseDifficulty => 82;
 }

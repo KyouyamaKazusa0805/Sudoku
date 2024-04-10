@@ -19,7 +19,7 @@ public sealed partial class GuardianStep(
 ) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 55;
+	public override int BaseDifficulty => 55;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BrokenWing;

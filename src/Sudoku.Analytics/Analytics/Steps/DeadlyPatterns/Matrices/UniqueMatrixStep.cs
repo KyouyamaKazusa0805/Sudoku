@@ -20,7 +20,7 @@ public abstract partial class UniqueMatrixStep(
 	public sealed override bool OnlyUseBivalueCells => true;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 53;
+	public override int BaseDifficulty => 53;
 
 	/// <inheritdoc/>
 	public abstract int Type { get; }

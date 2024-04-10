@@ -17,7 +17,7 @@ public abstract class BivalueUniversalGraveStep(Conclusion[] conclusions, View[]
 	public abstract int Type { get; }
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 56;
+	public override int BaseDifficulty => 56;
 
 	/// <inheritdoc/>
 	public abstract override Technique Code { get; }

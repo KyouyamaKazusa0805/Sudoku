@@ -51,5 +51,5 @@ public abstract partial class ExocetStep(
 	public int Delta => TargetCells.Count - BaseCells.Count;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => Delta switch { -2 or -1 => 96, 0 => 94, 1 or 2 => 95 };
+	public override int BaseDifficulty => Delta switch { -2 or -1 => 96, 0 => 94, 1 or 2 => 95 };
 }

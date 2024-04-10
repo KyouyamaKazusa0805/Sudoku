@@ -17,7 +17,7 @@ public sealed partial class FireworkTripleStep(
 ) : FireworkStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
+	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override int Size => 3;

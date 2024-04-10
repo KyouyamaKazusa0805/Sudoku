@@ -26,7 +26,7 @@ public sealed class AntiGurthSymmetricalPlacementStep(
 ) : GurthSymmetricalPlacementStep(conclusions, views, options, symmetricType, mapping)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
+	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.AntiGurthSymmetricalPlacement;

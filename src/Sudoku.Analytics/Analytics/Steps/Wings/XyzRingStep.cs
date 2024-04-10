@@ -29,7 +29,7 @@ public sealed partial class XyzRingStep(
 ) : WingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => IsNice ? 50 : 52;
+	public override int BaseDifficulty => IsNice ? 50 : 52;
 
 	/// <inheritdoc/>
 	public override Technique Code

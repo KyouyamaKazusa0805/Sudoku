@@ -42,7 +42,7 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 	IGuardianTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
+	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

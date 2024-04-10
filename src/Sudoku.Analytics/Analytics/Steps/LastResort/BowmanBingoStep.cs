@@ -15,7 +15,7 @@ public sealed partial class BowmanBingoStep(
 ) : LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 80;
+	public override int BaseDifficulty => 80;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BowmanBingo;

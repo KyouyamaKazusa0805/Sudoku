@@ -28,7 +28,7 @@ public partial class HiddenSingleStep(
 ) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
-	public sealed override decimal BaseDifficulty
+	public sealed override int BaseDifficulty
 		=> EnableAndIsLastDigit ? 11 : House < 9 ? Options.IsDirectMode ? 12 : 19 : Options.IsDirectMode ? 15 : 23;
 
 	/// <inheritdoc/>

@@ -25,7 +25,7 @@ public sealed partial class SueDeCoq3DimensionStep(
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 55;
+	public override int BaseDifficulty => 55;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.SueDeCoq3Dimension;

@@ -44,7 +44,7 @@ public sealed partial class UniqueRectangleExternalType3Step(
 	IPatternType3StepTrait<UniqueRectangleExternalType3Step>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 1;
+	public override int BaseDifficulty => base.BaseDifficulty + 1;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

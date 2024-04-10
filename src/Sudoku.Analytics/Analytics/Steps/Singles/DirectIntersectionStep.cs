@@ -40,7 +40,7 @@ public sealed partial class DirectIntersectionStep(
 )
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> BasedOn switch
 		{
 			Technique.FullHouse => 10,

@@ -39,7 +39,7 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty - 1;
+	public override int BaseDifficulty => base.BaseDifficulty - 1;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

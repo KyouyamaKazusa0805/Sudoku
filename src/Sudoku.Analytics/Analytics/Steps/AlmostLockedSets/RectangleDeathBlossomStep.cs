@@ -21,7 +21,7 @@ public sealed partial class RectangleDeathBlossomStep(
 ) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<RectangleBlossomBranchCollection, Candidate>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 3;
+	public override int BaseDifficulty => base.BaseDifficulty + 3;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.RectangleDeathBlossom;

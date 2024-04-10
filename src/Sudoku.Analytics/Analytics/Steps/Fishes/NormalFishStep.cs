@@ -25,7 +25,7 @@ public sealed partial class NormalFishStep(
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, in fins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 32;
+	public override int BaseDifficulty => 32;
 
 	/// <inheritdoc/>
 	public override Technique Code

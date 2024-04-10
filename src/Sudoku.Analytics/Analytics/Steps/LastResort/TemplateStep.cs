@@ -20,7 +20,7 @@ public sealed partial class TemplateStep(
 	public Digit Digit => Conclusions[0].Digit;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 90;
+	public override int BaseDifficulty => 90;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsTemplateDeletion ? Technique.TemplateDelete : Technique.TemplateSet;

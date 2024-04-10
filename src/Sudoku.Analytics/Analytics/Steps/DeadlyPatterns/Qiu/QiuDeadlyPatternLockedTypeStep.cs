@@ -27,7 +27,7 @@ public sealed partial class QiuDeadlyPatternLockedTypeStep(
 	public override int Type => 5;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.LockedQiuDeadlyPattern;

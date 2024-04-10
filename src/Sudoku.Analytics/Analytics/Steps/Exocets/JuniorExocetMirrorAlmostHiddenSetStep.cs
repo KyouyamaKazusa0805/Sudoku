@@ -27,7 +27,7 @@ public sealed partial class JuniorExocetMirrorAlmostHiddenSetStep(
 	IPatternType3StepTrait<JuniorExocetMirrorAlmostHiddenSetStep>
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <summary>
 	/// Indicates the subset size.

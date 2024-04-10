@@ -31,7 +31,7 @@ public sealed partial class AdvancedComplexSeniorExocetStep(
 	IComplexSeniorExocet
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> base.BaseDifficulty + this.GetShapeKind() switch
 		{
 			ExocetShapeKind.Franken => 4,

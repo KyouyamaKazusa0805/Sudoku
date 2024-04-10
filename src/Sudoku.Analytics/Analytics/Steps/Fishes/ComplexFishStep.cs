@@ -38,7 +38,7 @@ public sealed partial class ComplexFishStep(
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, exofins | endofins, isSashimi, isSiamese)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 32;
+	public override int BaseDifficulty => 32;
 
 	/// <inheritdoc/>
 	public override Technique Code

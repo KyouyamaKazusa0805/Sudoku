@@ -31,7 +31,7 @@ public sealed partial class UniqueRectangle2DOr3XStep(
 ) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

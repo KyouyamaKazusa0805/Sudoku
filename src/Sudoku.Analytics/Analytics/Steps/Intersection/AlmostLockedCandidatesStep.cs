@@ -21,7 +21,7 @@ public sealed partial class AlmostLockedCandidatesStep(
 ) : IntersectionStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 45;
+	public override int BaseDifficulty => 45;
 
 	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);

@@ -26,7 +26,7 @@ public sealed partial class UniqueMatrixType4Step(
 	public override int Type => 4;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 2;
+	public override int BaseDifficulty => base.BaseDifficulty + 2;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts

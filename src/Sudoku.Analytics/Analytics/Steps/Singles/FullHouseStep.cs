@@ -30,7 +30,7 @@ public sealed partial class FullHouseStep(
 	ILastingTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 10;
+	public override int BaseDifficulty => 10;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.FullHouse;

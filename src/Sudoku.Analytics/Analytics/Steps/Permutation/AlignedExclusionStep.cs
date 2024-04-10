@@ -17,7 +17,7 @@ public sealed partial class AlignedExclusionStep(
 ) : PermutationStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> Size switch
 		{
 			2 => 62,

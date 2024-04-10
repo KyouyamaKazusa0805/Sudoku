@@ -20,7 +20,7 @@ public abstract partial class ExtendedRectangleStep(
 	public override bool OnlyUseBivalueCells => false;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 45;
+	public override int BaseDifficulty => 45;
 
 	/// <inheritdoc/>
 	public abstract int Type { get; }

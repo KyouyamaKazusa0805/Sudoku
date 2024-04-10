@@ -19,7 +19,7 @@ public sealed partial class MultisectorLockedSetsStep(
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 94;
+	public override int BaseDifficulty => 94;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.MultisectorLockedSets;

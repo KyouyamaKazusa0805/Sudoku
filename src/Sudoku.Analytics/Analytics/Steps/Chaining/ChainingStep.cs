@@ -25,7 +25,7 @@ public abstract partial class ChainingStep(
 ) : Step(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public sealed override decimal BaseDifficulty
+	public sealed override int BaseDifficulty
 		=> this switch
 		{
 			{ DynamicNestingLevel: var l and >= 2 } => 95 + 5 * (l - 2),

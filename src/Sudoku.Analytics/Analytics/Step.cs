@@ -78,7 +78,7 @@ public abstract partial class Step(
 	/// as elementary and default rating value; other factors will be given in the other property <see cref="Factors"/>.
 	/// </remarks>
 	/// <seealso cref="Factors"/>
-	public abstract decimal BaseDifficulty { get; }
+	public abstract int BaseDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
@@ -87,7 +87,7 @@ public abstract partial class Step(
 	/// <seealso cref="BaseDifficulty"/>
 	/// <seealso cref="Factors"/>
 	/// <seealso cref="Factor"/>
-	public int Difficulty => (int)BaseDifficulty + Factors.Sum(this);
+	public int Difficulty => BaseDifficulty + Factors.Sum(this);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).

@@ -19,7 +19,7 @@ public abstract partial class ChromaticPatternStep(
 ) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 65;
+	public override int BaseDifficulty => 65;
 
 	private protected string BlocksStr
 		=> Options.Converter.HouseConverter(Blocks.Aggregate(CommonMethods.BitMerger));

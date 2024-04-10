@@ -25,7 +25,7 @@ public sealed partial class WWingStep(
 	public override bool IsGrouped => Bridge.Count >= 3;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 44;
+	public override int BaseDifficulty => 44;
 
 	/// <inheritdoc/>
 	public override Technique Code => IsGrouped ? Technique.GroupedWWing : Technique.WWing;

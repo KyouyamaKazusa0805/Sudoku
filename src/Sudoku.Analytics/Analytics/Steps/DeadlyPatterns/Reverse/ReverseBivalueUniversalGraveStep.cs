@@ -29,7 +29,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	public bool IsRectangle => CompletePattern.Count == 4;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 60;
+	public override int BaseDifficulty => 60;
 
 	/// <inheritdoc/>
 	public abstract int Type { get; }

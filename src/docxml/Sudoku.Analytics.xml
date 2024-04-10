@@ -21852,6 +21852,15 @@ result ^= expression;
             <param name="step">The step.</param>
             <returns>The sum value.</returns>
         </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.Sum``1(Sudoku.Analytics.Step,System.Func{System.Int32,``0})">
+            <summary>
+            Calculates sum of difficulty of the current step, using the specified value converter.
+            </summary>
+            <typeparam name="T">The type of the value converter.</typeparam>
+            <param name="step">The step.</param>
+            <param name="valueConverter">The value converter to be used.</param>
+            <returns>The sum value of type <typeparamref name="T"/>.</returns>
+        </member>
         <member name="M:Sudoku.Measuring.FactorCollection.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>

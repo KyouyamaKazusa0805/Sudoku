@@ -15,17 +15,17 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates the maximum rating value in theory.
 	/// </summary>
-	public const decimal MaximumRatingValueTheory = 200;
+	public const int MaximumRatingValueTheory = 200;
 
 	/// <summary>
 	/// Indicates the maximum rating value in fact.
 	/// </summary>
-	public const decimal MaximumRatingValueFact = 120;
+	public const int MaximumRatingValueFact = 120;
 
 	/// <summary>
 	/// Indicates the minimum rating value.
 	/// </summary>
-	public const decimal MinimumRatingValue = 0;
+	public const int MinimumRatingValue = 0;
 
 	/// <summary>
 	/// Indicates the default options.

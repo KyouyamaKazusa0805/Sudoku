@@ -29,7 +29,7 @@ public sealed partial class ComplexJuniorExocetAdjacentTargetStep(
 	IComplexSeniorExocet
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty
+	public override int BaseDifficulty
 		=> base.BaseDifficulty + 1 + this.GetShapeKind() switch
 		{
 			ExocetShapeKind.Franken => 4,

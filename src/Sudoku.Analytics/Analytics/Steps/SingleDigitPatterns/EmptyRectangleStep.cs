@@ -19,7 +19,7 @@ public sealed partial class EmptyRectangleStep(
 ) : SingleDigitPatternStep(conclusions, views, options, digit)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 46;
+	public override int BaseDifficulty => 46;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.EmptyRectangle;

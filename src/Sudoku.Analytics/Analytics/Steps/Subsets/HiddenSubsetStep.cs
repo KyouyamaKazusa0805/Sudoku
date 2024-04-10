@@ -33,7 +33,7 @@ public sealed partial class HiddenSubsetStep(
 ) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => base.BaseDifficulty + 4;
+	public override int BaseDifficulty => base.BaseDifficulty + 4;
 
 	/// <inheritdoc/>
 	public override Technique Code

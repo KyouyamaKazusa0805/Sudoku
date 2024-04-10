@@ -19,7 +19,7 @@ public abstract partial class SubsetStep(
 ) : Step(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 30;
+	public override int BaseDifficulty => 30;
 
 	/// <inheritdoc/>
 	public int Size => PopCount((uint)DigitsMask);

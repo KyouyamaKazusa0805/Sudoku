@@ -29,7 +29,7 @@ public sealed partial class MWingStep(
 	public override bool IsGrouped => Node1.Count != 1 || Node2.Count != 1;
 
 	/// <inheritdoc/>
-	public override decimal BaseDifficulty => 45;
+	public override int BaseDifficulty => 45;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
