@@ -634,9 +634,17 @@
         </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult.FormattingOptions">
             <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult" /> instance.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult" />
         </member>
         <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.None">
             <summary>
@@ -3434,6 +3442,14 @@
             <summary>
             Defines a feature flag.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueFeatures.None">
             <summary>
@@ -4859,6 +4875,14 @@
             <summary>
             Provides a difficulty kind for a puzzle.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.DifficultyLevel.Unknown">
             <summary>
@@ -5053,6 +5077,14 @@
             <summary>
             Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.PencilmarkVisibility.Direct">
             <summary>
@@ -5285,6 +5317,14 @@
             <summary>
             Represents a mode that describes an area where a step searcher can be invoked.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherRunningArea.None">
             <summary>
@@ -5303,16 +5343,20 @@
         </member>
         <member name="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags">
             <summary>
-            Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher"/> is partially allowed
+            Represents a list of cases that describes some cases that <see cref="T:Sudoku.Analytics.StepSearcher" /> is partially allowed
             in searching or gathering operation. Fields in this type can be used
-            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags"/> property assigning.
+            by <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags" /> property assigning.
             </summary>
-            <remarks><i>
-            This type is marked <see cref="T:System.FlagsAttribute"/>, which means you can use
-            <see cref="T:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags"/>.<see langword="operator"/> | to combine multiple fields.
-            </i></remarks>
-            <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags"/>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <seealso cref="T:Sudoku.Analytics.StepSearcher" />
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags" />
         </member>
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherRuntimeFlags.Default">
             <summary>
@@ -5456,6 +5500,14 @@
             <summary>
             Represents a special flag describing how special the current technique is.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.TechniqueMetadataSpecialFlags.None">
             <summary>
@@ -7256,14 +7308,14 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -7272,7 +7324,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -19057,6 +19109,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates a shape modifier that is used for a complex fish pattern.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Basic">
             <summary>
@@ -19077,6 +19137,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates a fin modifier that is used for a complex fish pattern.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Steps.FishFinKind.Normal">
             <summary>
@@ -19104,6 +19172,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates a shape modifier that is used for a complex fish pattern.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:Sudoku.Analytics.Steps.FishShapeKind.Basic">
             <summary>
@@ -19697,14 +19773,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -19713,7 +19789,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -19735,14 +19811,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -19751,7 +19827,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -19773,14 +19849,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -19789,7 +19865,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -20006,14 +20082,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -20022,7 +20098,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -20044,14 +20120,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -20060,7 +20136,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -20317,14 +20393,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -20333,7 +20409,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -20651,7 +20727,7 @@ if (student is (name: var name, age: >= 18))
 				</i>
 			</b>
 			<code>
-<![CDATA[
+				<![CDATA[
 result &= expression;
 result |= expression;
 result ^= expression;
@@ -20679,7 +20755,7 @@ result ^= expression;
 				</i>
 			</b>
 			<code>
-<![CDATA[
+				<![CDATA[
 result &= expression;
 result |= expression;
 result ^= expression;
@@ -20707,7 +20783,7 @@ result ^= expression;
 				</i>
 			</b>
 			<code>
-<![CDATA[
+				<![CDATA[
 result &= expression;
 result |= expression;
 result ^= expression;

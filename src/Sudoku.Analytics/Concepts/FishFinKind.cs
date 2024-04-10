@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Steps;
 /// <summary>
 /// Indicates a fin modifier that is used for a complex fish pattern.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 internal enum FishFinKind
 {

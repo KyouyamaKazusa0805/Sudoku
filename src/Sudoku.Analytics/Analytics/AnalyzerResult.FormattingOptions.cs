@@ -5,6 +5,7 @@ public partial record AnalyzerResult
 	/// <summary>
 	/// Indicates the formatting options of <see cref="AnalyzerResult"/> instance.
 	/// </summary>
+	/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 	/// <seealso cref="AnalyzerResult"/>
 	[Flags]
 	public enum FormattingOptions

@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Categorization;
 /// <summary>
 /// Defines a feature flag.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum TechniqueFeatures
 {

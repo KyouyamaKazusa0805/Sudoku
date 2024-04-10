@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <summary>
 /// Represents a mode that describes an area where a step searcher can be invoked.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum StepSearcherRunningArea
 {

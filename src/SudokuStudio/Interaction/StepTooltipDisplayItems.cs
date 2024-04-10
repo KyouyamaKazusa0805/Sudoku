@@ -3,6 +3,7 @@ namespace SudokuStudio.Interaction;
 /// <summary>
 /// Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="Step"/>.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 /// <seealso cref="Step"/>
 [Flags]
 public enum StepTooltipDisplayItems

@@ -3105,14 +3105,14 @@
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -3121,7 +3121,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -3143,14 +3143,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -3159,7 +3159,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -4399,9 +4399,17 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Interaction.StepTooltipDisplayItems">
             <summary>
-            Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="T:Sudoku.Analytics.Step"/>.
+            Defines a display item that will be displayed on tooltip to describe a data unit of a <see cref="T:Sudoku.Analytics.Step" />.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <seealso cref="T:Sudoku.Analytics.Step" />
         </member>
         <member name="F:SudokuStudio.Interaction.StepTooltipDisplayItems.None">
             <summary>
@@ -4447,6 +4455,14 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Represents a format flag.
             </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
         </member>
         <member name="F:SudokuStudio.Interaction.SudokuFormatFlags.None">
             <summary>
@@ -15391,14 +15407,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -15407,7 +15423,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -15429,14 +15445,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -15445,7 +15461,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -15499,14 +15515,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -15515,7 +15531,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -15551,14 +15567,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -15567,7 +15583,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -15662,14 +15678,14 @@ if (student is (name: var name, age: >= 18))
 						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class" />, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -15678,7 +15694,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);

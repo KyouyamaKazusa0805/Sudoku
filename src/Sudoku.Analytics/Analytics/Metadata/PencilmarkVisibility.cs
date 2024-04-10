@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <summary>
 /// Represents a mode that describes the puzzle can be solved with what kind of pencilmark-displaying rule applied.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum PencilmarkVisibility
 {

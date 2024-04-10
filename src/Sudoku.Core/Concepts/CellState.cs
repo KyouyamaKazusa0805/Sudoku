@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a cell state.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum CellState : byte
 {

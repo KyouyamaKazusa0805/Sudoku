@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.Metadata;
 /// <summary>
 /// Represents a special flag describing how special the current technique is.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum TechniqueMetadataSpecialFlags
 {

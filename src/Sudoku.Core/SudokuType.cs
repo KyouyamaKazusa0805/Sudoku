@@ -3,6 +3,7 @@ namespace Sudoku;
 /// <summary>
 /// Represents a type of sudoku puzzle.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum SudokuType
 {

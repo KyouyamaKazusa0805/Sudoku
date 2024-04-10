@@ -3,6 +3,7 @@ namespace Sudoku;
 /// <summary>
 /// Represents a symmetric type that can describe which one a pattern or a puzzle uses.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum SymmetricType
 {

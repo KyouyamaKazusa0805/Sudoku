@@ -32,6 +32,16 @@ Then you can reference the doc here.
 		</summary>
 	</static-constructor>
 
+	<!-- Flags attribute usage -->
+	<flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="global::System.FlagsAttribute"/>, which means you can use
+				<see langword="operator"/> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute>
+
 	<!-- Developer notes -->
 	<developer-notes>
 		<para>
@@ -55,7 +65,7 @@ Then you can reference the doc here.
 				</i>
 			</b>
 			<code>
-<![CDATA[
+				<![CDATA[
 result &= expression;
 result |= expression;
 result ^= expression;
@@ -120,14 +130,14 @@ result ^= expression;
 						For example, if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
 						in a <see langword="static class"/>, without any return value:
 						<code>
-<![CDATA[
+							<![CDATA[
 public static void Deconstruct(out string name, out int age)
     => (name, age) = (Name, Age);
 ]]>
 						</code>
 						The following code will be legal.
 						<code>
-<![CDATA[
+							<![CDATA[
 (string name, int age) = student; // Explicitly-typed variables
 var (name, age) = student; // Implicitly-typed variables
 ]]>
@@ -136,7 +146,7 @@ var (name, age) = student; // Implicitly-typed variables
 					<para>
 						Deconstruction methods also allow you using deconstruction patterns, like this:
 						<code>
-<![CDATA[
+							<![CDATA[
 if (student is (name: var name, age: >= 18))
 {
     Console.WriteLine(name);
@@ -161,7 +171,7 @@ if (student is (name: var name, age: >= 18))
 					<see langword="ref"/> or <see langword="ref readonly"/>. For example, if we hold a fixed buffer
 					of element type:
 					<code>
-<![CDATA[
+						<![CDATA[
 class ExampleType
 {
     private fixed short _maskList[100];
@@ -173,7 +183,7 @@ class ExampleType
 					We can use <see langword="fixed"/> statement to define a variable of type <see langword="short"/>*
 					as the left-value.
 					<code>
-<![CDATA[
+						<![CDATA[
 var instance = new ExampleType();
 fixed (short* ptr = instance)
 {

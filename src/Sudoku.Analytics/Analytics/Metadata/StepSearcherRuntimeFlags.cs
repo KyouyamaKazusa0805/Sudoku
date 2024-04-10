@@ -5,10 +5,7 @@ namespace Sudoku.Analytics.Metadata;
 /// in searching or gathering operation. Fields in this type can be used
 /// by <see cref="StepSearcherAttribute.RuntimeFlags"/> property assigning.
 /// </summary>
-/// <remarks><i>
-/// This type is marked <see cref="FlagsAttribute"/>, which means you can use
-/// <see cref="StepSearcherRuntimeFlags"/>.<see langword="operator"/> | to combine multiple fields.
-/// </i></remarks>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="StepSearcherAttribute.RuntimeFlags"/>
 [Flags]

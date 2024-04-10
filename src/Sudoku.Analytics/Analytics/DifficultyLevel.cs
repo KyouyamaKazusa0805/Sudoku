@@ -3,6 +3,7 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Provides a difficulty kind for a puzzle.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 public enum DifficultyLevel
 {

@@ -3,6 +3,7 @@ namespace SudokuStudio.Interaction;
 /// <summary>
 /// Represents a format flag.
 /// </summary>
+/// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
 internal enum SudokuFormatFlags
 {
