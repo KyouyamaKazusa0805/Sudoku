@@ -60,6 +60,11 @@ public static unsafe class SymmetricalPlacing
 		out Mask selfPairedDigitsMask
 	)
 	{
+		if (grid.PuzzleType == SudokuType.Sukaku)
+		{
+			goto FastFail;
+		}
+
 		foreach (var functionPointer in Checkers)
 		{
 #pragma warning disable CS9088
@@ -70,6 +75,7 @@ public static unsafe class SymmetricalPlacing
 #pragma warning restore CS9088
 		}
 
+	FastFail:
 		symmetricType = SymmetricType.None;
 		mappingDigits = null;
 		selfPairedDigitsMask = 0;

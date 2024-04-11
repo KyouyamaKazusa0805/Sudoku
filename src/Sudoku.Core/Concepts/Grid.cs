@@ -526,7 +526,7 @@ public partial struct Grid :
 #if SYNC_ROOT_VIA_THREAD_LOCAL
 				.Value!
 #endif
-					.SolveString(ToString("!0"), out _, 2);
+					.SolveString(ToString(), out _, 2);
 			}
 
 			return count switch { 0 => Uniqueness.Bad, 1 => Uniqueness.Unique, _ => Uniqueness.Multiple };
@@ -922,77 +922,6 @@ public partial struct Grid :
 			}
 		}
 
-		return false;
-	}
-
-	/// <summary>
-	/// <para>
-	/// Determines whether the current grid is valid, checking on both normal and sukaku cases
-	/// and returning a <see cref="bool"/>? value indicating whether the current sudoku grid is valid
-	/// only on sukaku case.
-	/// </para>
-	/// <para>
-	/// For more information, please see the introduction about the parameter
-	/// <paramref name="sukaku"/>.
-	/// </para>
-	/// </summary>
-	/// <param name="solutionIfValid">
-	/// The solution if the puzzle is valid; otherwise, <see cref="Undefined"/>.
-	/// </param>
-	/// <param name="sukaku">Indicates whether the current mode is sukaku mode.<list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The puzzle is a sukaku puzzle.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The puzzle is a normal sudoku puzzle.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The puzzle is invalid.</description>
-	/// </item>
-	/// </list>
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <seealso cref="Undefined"/>
-#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-	[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
-#else
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-#endif
-	public readonly bool ExactlyValidate(out Grid solutionIfValid, [NotNullWhen(true)] out bool? sukaku)
-	{
-		Unsafe.SkipInit(out solutionIfValid);
-
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-		lock (PuzzleSolvingSynchronizer)
-#endif
-		{
-			if (Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-				.Value!
-#endif
-				.CheckValidity(ToString(), out var solution))
-			{
-				solutionIfValid = Parse(solution);
-				sukaku = false;
-				return true;
-			}
-
-			if (Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-				.Value!
-#endif
-				.CheckValidity(ToString("~"), out solution))
-			{
-				solutionIfValid = Parse(solution);
-				sukaku = true;
-				return true;
-			}
-		}
-
-		sukaku = null;
 		return false;
 	}
 
@@ -1630,41 +1559,39 @@ public partial struct Grid :
 	{
 		var containsMultilineLimits = str.Contains("-+-");
 		var containsTab = str.Contains('\t');
+		var grid = Undefined;
 		switch (str.Length, containsMultilineLimits, containsTab)
 		{
-			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } grid:
+			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g:
 			{
-				return grid;
+				grid = g;
+				break;
 			}
 			case (_, true, _):
 			{
 				foreach (var parser in Parsers[..3])
 				{
-					if (parser.Parser(str) is { IsUndefined: false } grid)
+					if (parser.Parser(str) is { IsUndefined: false } g)
 					{
-						return grid;
+						grid = g;
 					}
 				}
 
 				break;
 			}
-			case (_, _, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } grid:
+			case (_, _, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g:
 			{
-				return grid;
+				grid = g;
+				break;
 			}
 			default:
 			{
 				for (var trial = 0; trial < Parsers.Length; trial++)
 				{
 					var currentParser = Parsers[trial];
-					if (currentParser.Parser(str) is { IsUndefined: false } grid)
+					if (currentParser.Parser(str) is { IsUndefined: false } g)
 					{
-						if (currentParser is SukakuGridParser)
-						{
-							grid[0] |= SukakuHeader;
-						}
-
-						return grid;
+						grid = g;
 					}
 				}
 
@@ -1672,7 +1599,41 @@ public partial struct Grid :
 			}
 		}
 
-		return Undefined;
+		if (grid.IsUndefined)
+		{
+			return Undefined;
+		}
+
+		if (isSukakuMaskPattern(in grid))
+		{
+			grid[0] |= SukakuHeader;
+		}
+
+		return grid;
+
+
+#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
+#endif
+		static bool isSukakuMaskPattern(scoped ref readonly Grid @this)
+		{
+			var str = @this.ToString("~");
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
+			lock (PuzzleSolvingSynchronizer)
+#endif
+			{
+				if (Solver
+#if SYNC_ROOT_VIA_THREAD_LOCAL
+					.Value!
+#endif
+					.CheckValidity(str, out var solution))
+				{
+					return true;
+				}
+			}
+
+			return false;
+		}
 	}
 
 	/// <summary>

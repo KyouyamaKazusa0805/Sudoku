@@ -376,7 +376,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	{
 		ClearStack();
 
-		var puzzleStr = grid.ToString("0");
+		var puzzleStr = grid.ToString();
 		var solutionStr = stackalloc char[BufferLength];
 		long solutions;
 		fixed (char* pPuzzleStr = puzzleStr)

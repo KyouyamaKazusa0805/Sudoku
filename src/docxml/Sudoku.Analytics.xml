@@ -20,13 +20,14 @@
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
+            <param name="isSukaku">Indicates whether the puzzle type is Sukaku.</param>
             <param name="predefinedOptions">
             Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
             The value can be <see langword="null"/> if the target step searcher doesn't use this property.
             </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
@@ -42,6 +43,7 @@
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
             <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
+            <param name="isSukaku">Indicates whether the puzzle type is Sukaku.</param>
             <param name="predefinedOptions">
             Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
             The value can be <see langword="null"/> if the target step searcher doesn't use this property.
@@ -103,6 +105,11 @@
         <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
             <summary>
             The generated property declaration for parameter <c>onlyFindOne</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.IsSukaku">
+            <summary>
+            The generated property declaration for parameter <c>isSukaku</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.PredefinedOptions">

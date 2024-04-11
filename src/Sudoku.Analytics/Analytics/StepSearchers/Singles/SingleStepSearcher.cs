@@ -166,7 +166,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary())
+				if (GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary() && !context.IsSukaku)
 				{
 					continue;
 				}
@@ -490,7 +490,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			{
 				var cellOffsets2 => SingleModule.GetHiddenSingleSubtype(in grid, resultCell, house, in chosenCells) switch
 				{
-					var subtype when subtype.IsUnnecessary() => null,
+					var subtype when subtype.IsUnnecessary() && !context.IsSukaku => null,
 					var subtype => new HiddenSingleStep(
 						[new(Assignment, resultCell, digit)],
 						[[.. cellOffsets2, new HouseViewNode(ColorIdentifier.Normal, house)]],

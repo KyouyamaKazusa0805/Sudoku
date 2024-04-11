@@ -99,7 +99,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 		}
 
 		var result = new AnalyzerResult(in puzzle) { IsSolved = false };
-		if (puzzle.ExactlyValidate(out var solution, out var sukaku) && sukaku is { } isSukaku)
+		var isSukaku = puzzle.PuzzleType == SudokuType.Sukaku;
+		var solution = puzzle.SolutionGrid;
+		if (!solution.IsUndefined)
 		{
 			// Firstly, we should check whether the puzzle is a GSP.
 			puzzle.InferSymmetricalPlacement(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
@@ -170,6 +172,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 #else
 				!IsFullApplying && !RandomizedChoosing,
 #endif
+				isSukaku,
 				Options
 			);
 

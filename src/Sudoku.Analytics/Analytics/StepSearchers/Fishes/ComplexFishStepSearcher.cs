@@ -487,7 +487,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		scoped var context2 = new AnalysisContext(tempList, in playground, in Grid.NullRef, false, context.PredefinedOptions);
+		scoped var context2 = new AnalysisContext(tempList, in playground, in Grid.NullRef, false, context.IsSukaku, context.PredefinedOptions);
 		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];
