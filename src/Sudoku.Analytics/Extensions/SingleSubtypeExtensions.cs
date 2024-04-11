@@ -1,3 +1,5 @@
+#define ENHANCED_UNNECESSARY_SUBTYPES
+
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
@@ -16,8 +18,11 @@ public static class SingleSubtypeExtensions
 	public static bool IsUnnecessary(this SingleSubtype @this)
 		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
 		or SingleSubtype.NakedSingle8
+#if ENHANCED_UNNECESSARY_SUBTYPES
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
-		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220;
+		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220
+#endif
+		;
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.
