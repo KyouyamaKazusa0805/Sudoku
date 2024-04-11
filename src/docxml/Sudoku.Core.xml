@@ -2059,6 +2059,11 @@ if (student is (name: var name, age: >= 18))
 	</large-structure></para>
             </remarks>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
+            <summary>
+            Indicates ths header bits describing the sudoku type is a Sukaku.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -2689,6 +2694,9 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ToArray">
             <summary>
             Serializes this instance to an array, where all digit value will be stored.
@@ -3061,9 +3069,6 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Equality(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

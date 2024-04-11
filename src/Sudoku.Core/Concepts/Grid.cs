@@ -47,7 +47,6 @@ using unsafe ValueChangedHandlerFuncPtr = delegate*<ref Grid, Cell, Mask, Mask, 
 [DebuggerStepThrough]
 [LargeStructure]
 [Equals]
-[ToString]
 [EqualityOperators]
 public partial struct Grid :
 	IEnumerable<Digit>,
@@ -65,6 +64,11 @@ public partial struct Grid :
 	ISimpleParsable<Grid>,
 	ITokenizable<Grid>
 {
+	/// <summary>
+	/// Indicates ths header bits describing the sudoku type is a Sukaku.
+	/// </summary>
+	public const Mask SukakuHeader = unchecked((Mask)0b1001_000_000_000_000);
+
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 	/// </summary>
@@ -533,7 +537,8 @@ public partial struct Grid :
 	/// Indicates the type of the puzzle.
 	/// </summary>
 	/// <remarks><b><i>This property is not implemented now. I'll modify the logic in the future.</i></b></remarks>
-	public readonly SudokuType PuzzleType => SudokuType.Standard;
+	public readonly SudokuType PuzzleType
+		=> (this[0] >> 12 << 12) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -1106,6 +1111,10 @@ public partial struct Grid :
 	public override readonly int GetHashCode()
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
+	/// <inheritdoc cref="object.ToString"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default);
+
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
 	/// </summary>
@@ -1647,8 +1656,14 @@ public partial struct Grid :
 			{
 				for (var trial = 0; trial < Parsers.Length; trial++)
 				{
-					if (Parsers[trial].Parser(str) is { IsUndefined: false } grid)
+					var currentParser = Parsers[trial];
+					if (currentParser.Parser(str) is { IsUndefined: false } grid)
 					{
+						if (currentParser is SukakuGridParser)
+						{
+							grid[0] |= SukakuHeader;
+						}
+
 						return grid;
 					}
 				}
@@ -1684,9 +1699,19 @@ public partial struct Grid :
 	/// <exception cref="FormatException">Throws when the target grid parser instance cannot parse it.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid ParseExact<T>(string str, T parser) where T : IConceptParser<Grid>
-		=> parser.Parser(str) is { IsUndefined: false } result
-			? result
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+	{
+		if (parser.Parser(str) is { IsUndefined: false } result)
+		{
+			if (parser is SukakuGridParser)
+			{
+				result[0] |= SukakuHeader;
+			}
+
+			return result;
+		}
+
+		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+	}
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out Grid result)
@@ -1717,7 +1742,7 @@ public partial struct Grid :
 	{
 		try
 		{
-			result = parser.Parser(str);
+			result = ParseExact(str, parser);
 			return true;
 		}
 		catch (FormatException)
