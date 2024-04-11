@@ -2295,6 +2295,12 @@ if (student is (name: var name, age: >= 18))
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.PuzzleType">
+            <summary>
+            Indicates the type of the puzzle.
+            </summary>
+            <remarks><b><i>This property is not implemented now. I'll modify the logic in the future.</i></b></remarks>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
             Gets a cell list that only contains the given cells.
