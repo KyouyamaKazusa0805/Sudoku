@@ -2288,6 +2288,13 @@ if (student is (name: var name, age: >= 18))
             Try to get the symmetry of the puzzle.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Uniqueness">
+            <summary>
+            Checks the uniqueness of the current sudoku puzzle.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
             Gets a cell list that only contains the given cells.
@@ -2567,13 +2574,6 @@ if (student is (name: var name, age: >= 18))
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.CheckUniqueness">
-            <summary>
-            Checks the uniqueness of the current sudoku puzzle.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ExactlyValidate(Sudoku.Concepts.Grid@,System.Nullable{System.Boolean}@)">
             <summary>
@@ -8379,39 +8379,6 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
-        <member name="T:Sudoku.SolutionUniqueness">
-            <summary>
-            Represents a flag describing the number of solutions to a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.SolutionUniqueness.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionUniqueness.Invalid">
-            <summary>
-            Indicates the puzzle has no valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionUniqueness.Unique">
-            <summary>
-            Indicates the puzzle has a unique solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SolutionUniqueness.Multiple">
-            <summary>
-            Indicates the puzzle has multiple solutions.
-            </summary>
-        </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
@@ -11469,6 +11436,39 @@ if (student is (name: var name, age: >= 18))
         <member name="F:Sudoku.TransformType.RotateCounterclockwise">
             <summary>
             Indicates the transform type is to ratate counter-clockwise.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Uniqueness">
+            <summary>
+            Represents a flag describing the number of solutions to a puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Uniqueness.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Uniqueness.Bad">
+            <summary>
+            Indicates the puzzle has no valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Uniqueness.Unique">
+            <summary>
+            Indicates the puzzle has a unique solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Uniqueness.Multiple">
+            <summary>
+            Indicates the puzzle has multiple solutions.
             </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.AuthorPattern_0">

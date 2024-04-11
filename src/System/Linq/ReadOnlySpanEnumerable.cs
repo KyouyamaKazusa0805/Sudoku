@@ -6,6 +6,25 @@ namespace System.Linq;
 /// <seealso cref="ReadOnlySpan{T}"/>
 public static class ReadOnlySpanEnumerable
 {
+	/// <summary>
+	/// Try to get the minimal value appeared in the collection.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <returns>The minimal value.</returns>
+	public static T Min<T>(this scoped ReadOnlySpan<T> @this) where T : INumber<T>, IMinMaxValue<T>
+	{
+		var result = T.MaxValue;
+		foreach (var element in @this)
+		{
+			if (element <= result)
+			{
+				result = element;
+			}
+		}
+		return result;
+	}
+
 	/// <inheritdoc cref="MinBy{TSource, TKey}(ReadOnlySpan{TSource}, FuncRefReadOnly{TSource, TKey})"/>
 	public static TKey Min<TSource, TKey>(this scoped ReadOnlySpan<TSource> @this, FuncRefReadOnly<TSource, TKey> keySelector)
 		where TKey : IMinMaxValue<TKey>?, IComparisonOperators<TKey, TKey, bool>?
@@ -43,6 +62,25 @@ public static class ReadOnlySpanEnumerable
 			}
 		}
 
+		return result;
+	}
+
+	/// <summary>
+	/// Try to get the minimal value appeared in the collection.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <param name="this">The collection.</param>
+	/// <returns>The minimal value.</returns>
+	public static T Max<T>(this scoped ReadOnlySpan<T> @this) where T : INumber<T>, IMinMaxValue<T>
+	{
+		var result = T.MaxValue;
+		foreach (var element in @this)
+		{
+			if (element >= result)
+			{
+				result = element;
+			}
+		}
 		return result;
 	}
 

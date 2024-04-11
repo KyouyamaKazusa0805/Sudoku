@@ -2662,6 +2662,14 @@
             </summary>
             <seealso cref="T:System.ReadOnlySpan`1"/>
         </member>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Min``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Try to get the minimal value appeared in the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The minimal value.</returns>
+        </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.MinBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>
         </member>
@@ -2674,6 +2682,14 @@
             <param name="this">A sequence of values to determine the minimum value of.</param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the minimum key in the sequence.</returns>
+        </member>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.Max``1(System.ReadOnlySpan{``0})">
+            <summary>
+            Try to get the minimal value appeared in the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The minimal value.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.MaxBy``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})"/>

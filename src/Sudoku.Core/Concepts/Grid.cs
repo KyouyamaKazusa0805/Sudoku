@@ -324,27 +324,7 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates whether the puzzle has a unique solution.
 	/// </summary>
-	public readonly bool IsValid
-	{
-#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
-		get => Solver.CheckValidity(ToString());
-#elif SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-		get
-		{
-			lock (PuzzleSolvingSynchronizer)
-			{
-				return Solver.CheckValidity(ToString("!0"));
-			}
-		}
-#elif SYNC_ROOT_VIA_THREAD_LOCAL
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.Value!.CheckValidity(ToString("!0"));
-#else
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Solver.CheckValidity(ToString("!0"));
-#endif
-	}
+	public readonly bool IsValid => IsSolved || Uniqueness == Uniqueness.Unique;
 
 	/// <summary>
 	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
@@ -515,6 +495,39 @@ public partial struct Grid :
 	/// Try to get the symmetry of the puzzle.
 	/// </summary>
 	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
+
+	/// <summary>
+	/// Checks the uniqueness of the current sudoku puzzle.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+	public readonly Uniqueness Uniqueness
+	{
+#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
+		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
+#endif
+		get
+		{
+			if (IsSolved)
+			{
+				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
+			}
+
+			long count;
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
+			lock (PuzzleSolvingSynchronizer)
+#endif
+			{
+				count = Solver
+#if SYNC_ROOT_VIA_THREAD_LOCAL
+				.Value!
+#endif
+					.SolveString(ToString("!0"), out _, 2);
+			}
+
+			return count switch { 0 => Uniqueness.Bad, 1 => Uniqueness.Unique, _ => Uniqueness.Multiple };
+		}
+	}
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -899,33 +912,6 @@ public partial struct Grid :
 		}
 
 		return false;
-	}
-
-	/// <summary>
-	/// Checks the uniqueness of the current sudoku puzzle.
-	/// </summary>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public readonly SolutionUniqueness CheckUniqueness()
-	{
-		if (IsSolved)
-		{
-			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
-		}
-
-		long solutionsCount;
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-		lock (PuzzleSolvingSynchronizer)
-#endif
-		{
-			solutionsCount = Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-				.Value!
-#endif
-				.SolveString(ToString(), out _, 2);
-		}
-
-		return solutionsCount switch { 0 => SolutionUniqueness.Invalid, 1 => SolutionUniqueness.Unique, _ => SolutionUniqueness.Multiple };
 	}
 
 	/// <summary>

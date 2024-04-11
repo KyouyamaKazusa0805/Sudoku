@@ -5,7 +5,7 @@ namespace Sudoku;
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-public enum SolutionUniqueness
+public enum Uniqueness
 {
 	/// <summary>
 	/// The placeholder of this type.
@@ -15,7 +15,7 @@ public enum SolutionUniqueness
 	/// <summary>
 	/// Indicates the puzzle has no valid solution.
 	/// </summary>
-	Invalid = 1 << 0,
+	Bad = 1 << 0,
 
 	/// <summary>
 	/// Indicates the puzzle has a unique solution.
