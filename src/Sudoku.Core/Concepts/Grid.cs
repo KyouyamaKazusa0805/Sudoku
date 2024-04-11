@@ -530,6 +530,12 @@ public partial struct Grid :
 	}
 
 	/// <summary>
+	/// Indicates the type of the puzzle.
+	/// </summary>
+	/// <remarks><b><i>This property is not implemented now. I'll modify the logic in the future.</i></b></remarks>
+	public readonly SudokuType PuzzleType => SudokuType.Standard;
+
+	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
 	public readonly unsafe CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);
