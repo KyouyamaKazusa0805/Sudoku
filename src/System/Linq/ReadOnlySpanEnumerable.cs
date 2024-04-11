@@ -73,7 +73,7 @@ public static class ReadOnlySpanEnumerable
 	/// <returns>The minimal value.</returns>
 	public static T Max<T>(this scoped ReadOnlySpan<T> @this) where T : INumber<T>, IMinMaxValue<T>
 	{
-		var result = T.MaxValue;
+		var result = T.MinValue;
 		foreach (var element in @this)
 		{
 			if (element >= result)
