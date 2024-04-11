@@ -50,7 +50,7 @@ internal static class SudokuGridConversion
 		var hasNoGivenCells = grid.GivensCount == 0;
 		var str = hasNoGivenCells ? grid.ToString($"!{character}") : grid.ToString();
 		return ResourceDictionary.Get(
-			Solver.Value!.Solve(str, null, 2) switch
+			Solver.Value!.SolveString(str, null, 2) switch
 			{
 				0 => "AnalyzePage_PuzzleHasNoSolution",
 				1 => hasNoGivenCells ? "AnalyzePage_PuzzleHasUniqueSolutionButUnfixed" : "AnalyzePage_PuzzleHasUniqueSolution",

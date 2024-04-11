@@ -396,17 +396,14 @@ public sealed unsafe class BitwiseSolver : ISolver
 	}
 
 	/// <summary>
-	/// The inner solver.
+	/// Solves the puzzle represented as a string value.
 	/// </summary>
-	/// <param name="puzzle">The pointer to the puzzle.</param>
-	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-	/// <param name="limit">The limit.</param>
-	/// <returns>The number of all solutions.</returns>
-	/// <exception cref="ArgumentNullException">
-	/// Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
-	/// </exception>
+	/// <param name="puzzle">The puzzle represented as a string.</param>
+	/// <param name="solution">The solution.</param>
+	/// <param name="limit">The limit of solutions to be checked.</param>
+	/// <returns>A <see cref="long"/> value indicating the number of solutions.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(char* puzzle, char* solution, int limit)
+	public long SolveString(char* puzzle, char* solution, int limit)
 	{
 		ArgumentNullException.ThrowIfNull(puzzle);
 
@@ -421,15 +418,9 @@ public sealed unsafe class BitwiseSolver : ISolver
 		return solutionsCount;
 	}
 
-	/// <summary>
-	/// The inner solver.
-	/// </summary>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-	/// <param name="limit">The limit.</param>
-	/// <returns>The number of all solutions.</returns>
+	/// <inheritdoc cref="SolveString(char*, char*, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(string puzzle, char* solution, int limit)
+	public long SolveString(string puzzle, char* solution, int limit)
 	{
 		ClearStack();
 
@@ -445,17 +436,9 @@ public sealed unsafe class BitwiseSolver : ISolver
 		}
 	}
 
-	/// <summary>
-	/// The inner solver.
-	/// </summary>
-	/// <param name="puzzle">The puzzle.</param>
-	/// <param name="solution">
-	/// The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
-	/// </param>
-	/// <param name="limit">The limit.</param>
-	/// <returns>The number of all solutions.</returns>
+	/// <inheritdoc cref="SolveString(char*, char*, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public long Solve(string puzzle, out string solution, int limit)
+	public long SolveString(string puzzle, out string solution, int limit)
 	{
 		ClearStack();
 

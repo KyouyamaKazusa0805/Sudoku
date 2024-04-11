@@ -115,7 +115,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 		// Please note that the puzzle is not fixed now. We should find a solution using such modifiable digits.
 		const int length = 82;
 		var solutionBuffer = stackalloc char[length];
-		new BitwiseSolver().Solve(puzzle.ToString("!"), solutionBuffer, 1);
+		new BitwiseSolver().SolveString(puzzle.ToString("!"), solutionBuffer, 1);
 		var solution = Grid.Parse(new ReadOnlySpan<char>(solutionBuffer, length));
 		if (solution.IsUndefined)
 		{

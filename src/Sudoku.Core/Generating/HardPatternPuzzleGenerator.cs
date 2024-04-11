@@ -118,7 +118,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 					pPuzzle[cell] = (char)(_rng.Next(1, 9) + '0');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
-		} while (_solver.Solve(pPuzzle, pSolution, 2) == 0);
+		} while (_solver.SolveString(pPuzzle, pSolution, 2) == 0);
 	}
 
 	/// <summary>

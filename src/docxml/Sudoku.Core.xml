@@ -2568,6 +2568,13 @@ if (student is (name: var name, age: >= 18))
             <param name="digit">The digit.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.CheckUniqueness">
+            <summary>
+            Checks the uniqueness of the current sudoku puzzle.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ExactlyValidate(Sudoku.Concepts.Grid@,System.Nullable{System.Boolean}@)">
             <summary>
             <para>
@@ -8372,6 +8379,39 @@ if (student is (name: var name, age: >= 18))
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:Sudoku.SolutionUniqueness">
+            <summary>
+            Represents a flag describing the number of solutions to a puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.SolutionUniqueness.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionUniqueness.Invalid">
+            <summary>
+            Indicates the puzzle has no valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionUniqueness.Unique">
+            <summary>
+            Indicates the puzzle has a unique solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SolutionUniqueness.Multiple">
+            <summary>
+            Indicates the puzzle has multiple solutions.
+            </summary>
+        </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
@@ -8490,37 +8530,20 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Solving.BitwiseSolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.Char*,System.Char*,System.Int32)">
+        <member name="M:Sudoku.Solving.BitwiseSolver.SolveString(System.Char*,System.Char*,System.Int32)">
             <summary>
-            The inner solver.
+            Solves the puzzle represented as a string value.
             </summary>
-            <param name="puzzle">The pointer to the puzzle.</param>
-            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="puzzle"/> is <see langword="null"/>.
-            </exception>
+            <param name="puzzle">The puzzle represented as a string.</param>
+            <param name="solution">The solution.</param>
+            <param name="limit">The limit of solutions to be checked.</param>
+            <returns>A <see cref="T:System.Int64"/> value indicating the number of solutions.</returns>
         </member>
-        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.Char*,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">The solution. <see langword="null"/> if you don't want to use the value.</param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SolveString(System.String,System.Char*,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.SolveString(System.Char*,System.Char*,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Solving.BitwiseSolver.Solve(System.String,System.String@,System.Int32)">
-            <summary>
-            The inner solver.
-            </summary>
-            <param name="puzzle">The puzzle.</param>
-            <param name="solution">
-            The solution. The value keeps <see langword="null"/> if you doesn't want to use this result.
-            </param>
-            <param name="limit">The limit.</param>
-            <returns>The number of all solutions.</returns>
+        <member name="M:Sudoku.Solving.BitwiseSolver.SolveString(System.String,System.String@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Solving.BitwiseSolver.SolveString(System.Char*,System.Char*,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Solving.BitwiseSolver.CheckValidity(System.Char*)">
             <summary>

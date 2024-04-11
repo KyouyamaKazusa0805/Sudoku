@@ -902,6 +902,33 @@ public partial struct Grid :
 	}
 
 	/// <summary>
+	/// Checks the uniqueness of the current sudoku puzzle.
+	/// </summary>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+	public readonly SolutionUniqueness CheckUniqueness()
+	{
+		if (IsSolved)
+		{
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
+		}
+
+		long solutionsCount;
+#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
+		lock (PuzzleSolvingSynchronizer)
+#endif
+		{
+			solutionsCount = Solver
+#if SYNC_ROOT_VIA_THREAD_LOCAL
+				.Value!
+#endif
+				.SolveString(ToString(), out _, 2);
+		}
+
+		return solutionsCount switch { 0 => SolutionUniqueness.Invalid, 1 => SolutionUniqueness.Unique, _ => SolutionUniqueness.Multiple };
+	}
+
+	/// <summary>
 	/// <para>
 	/// Determines whether the current grid is valid, checking on both normal and sukaku cases
 	/// and returning a <see cref="bool"/>? value indicating whether the current sudoku grid is valid
