@@ -124,7 +124,7 @@
         <member name="M:Sudoku.Drawing.SudokuPainter.WithFooterText(System.String,Sudoku.Drawing.TextRendering.TextAlignmentType)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Analytics.Conclusion})">
+        <member name="M:Sudoku.Drawing.SudokuPainter.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Conclusion})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Drawing.SudokuPainter.WithNodes(System.Collections.Generic.IEnumerable{Sudoku.Rendering.ViewNode})">
@@ -250,14 +250,14 @@
             <returns>The target painter.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="alignment"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Analytics.Conclusion[])">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(Sudoku.Concepts.Conclusion[])">
             <summary>
             Sets the conclusions used for rendering.
             </summary>
             <param name="conclusions">The conclusions.</param>
             <returns>The target painter.</returns>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Analytics.Conclusion})">
+        <member name="M:Sudoku.Drawing.ISudokuPainterFactory.WithConclusions(System.Collections.Immutable.ImmutableArray{Sudoku.Concepts.Conclusion})">
             <summary>
             Sets the conclusions used for rendering.
             </summary>

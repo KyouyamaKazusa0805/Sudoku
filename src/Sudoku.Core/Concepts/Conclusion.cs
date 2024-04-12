@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Defines a type that can describe a candidate is the correct or wrong digit.

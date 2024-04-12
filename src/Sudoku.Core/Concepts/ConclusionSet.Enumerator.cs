@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Concepts;
 
 public partial class ConclusionSet
 {

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of conclusions. The collection only allows adding conclusions.

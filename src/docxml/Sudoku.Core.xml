@@ -28,479 +28,6 @@
         <member name="P:Sudoku.Analytics.AnalyzerProgress.Percent">
             <summary>The percent value.</summary>
         </member>
-        <member name="T:Sudoku.Analytics.Conclusion">
-            <summary>
-            Defines a type that can describe a candidate is the correct or wrong digit.
-            </summary>
-            <param name="mask">
-            The field uses the mask table of length 81 to indicate the state and all possible candidates
-            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
-            <code>
-            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-            |-----------------------|---|---------------------------------------|
-            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-            '-----------------------|---|---------------------------------------'
-                                     \_/ \_____________________________________/
-                                     (2)                   (1)
-            </code>
-            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-            <see cref="P:Sudoku.Analytics.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
-            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
-            </param>
-            <remarks>
-            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
-            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.#ctor(System.Int16)">
-            <summary>
-            Defines a type that can describe a candidate is the correct or wrong digit.
-            </summary>
-            <param name="mask">
-            The field uses the mask table of length 81 to indicate the state and all possible candidates
-            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
-            <code>
-            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
-            |-----------------------|---|---------------------------------------|
-            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
-            '-----------------------|---|---------------------------------------'
-                                     \_/ \_____________________________________/
-                                     (2)                   (1)
-            </code>
-            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
-            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
-            <see cref="P:Sudoku.Analytics.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
-            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
-            </param>
-            <remarks>
-            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
-            (i.e. holds the value <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> as the type), the instance will be greater;
-            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
-            </remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Conclusion.Parsers">
-            <summary>
-            The internal parsers.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.#ctor(Sudoku.Analytics.ConclusionType,System.Int32)">
-            <summary>
-            Initializes an instance with a conclusion type and a candidate offset.
-            </summary>
-            <param name="type">The conclusion type.</param>
-            <param name="candidate">The candidate offset.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.#ctor(Sudoku.Analytics.ConclusionType,System.Int32,System.Int32)">
-            <summary>
-            Initializes the <see cref="T:Sudoku.Analytics.Conclusion"/> instance via the specified cell, digit and the conclusion type.
-            </summary>
-            <param name="type">The conclusion type.</param>
-            <param name="cell">The cell.</param>
-            <param name="digit">The digit.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.Conclusion.Cell">
-            <summary>
-            Indicates the cell the current instance uses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Conclusion.Digit">
-            <summary>
-            Indicates the digit the current instance uses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Conclusion.Candidate">
-            <summary>
-            Indicates the candidate the current instance uses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Conclusion.ConclusionType">
-            <summary>
-            Indicates the conclusion type of the current instance.
-            If the type is <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
-            otherwise, a candidate will be removed.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.Deconstruct(Sudoku.Analytics.ConclusionType@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.Deconstruct(Sudoku.Analytics.ConclusionType@,System.Int32@,System.Int32@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
-				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
-			</target>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.Equals(Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.CompareTo(Sudoku.Analytics.Conclusion)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ToString(Sudoku.Text.Converters.CoordinateConverter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
-            <summary>
-            Try to get a new <see cref="T:Sudoku.Analytics.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
-            </summary>
-            <param name="symmetricType">The symmetric type to be checked.</param>
-            <param name="mappingDigit">The other mapping digit.</param>
-            <returns>The other symmetric <see cref="T:Sudoku.Analytics.Conclusion"/> value.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="symmetricType"/> contains multiple (greater than 2) cells
-            symmetric with the current cell and digit.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.TryParse(System.String,Sudoku.Analytics.Conclusion@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_OnesComplement(Sudoku.Analytics.Conclusion)">
-            <summary>
-            Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/>,
-            or from <see cref="F:Sudoku.Analytics.ConclusionType.Elimination"/> to <see cref="F:Sudoku.Analytics.ConclusionType.Assignment"/>.
-            </summary>
-            <param name="self">The current conclusion instance to be negated.</param>
-            <returns>The negation.</returns>
-        </member>
-        <member name="F:Sudoku.Analytics.Conclusion._mask">
-            <summary>
-            The generated field declaration for parameter <c>mask</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_Equality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Conclusion.op_Inequality(Sudoku.Analytics.Conclusion,Sudoku.Analytics.Conclusion)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.ConclusionSet">
-            <summary>
-            Represents a list of conclusions. The collection only allows adding conclusions.
-            </summary>
-            <remarks>
-            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Analytics.Conclusion"/> instances.
-            Because the type contains a reference-typed field, the type is also a reference type.
-            </remarks>
-            <seealso cref="T:System.Collections.BitArray"/>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.#ctor">
-            <summary>
-            Represents a list of conclusions. The collection only allows adding conclusions.
-            </summary>
-            <remarks>
-            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Analytics.Conclusion"/> instances.
-            Because the type contains a reference-typed field, the type is also a reference type.
-            </remarks>
-            <seealso cref="T:System.Collections.BitArray"/>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet.BitsCount">
-            <summary>
-            The total length of bits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet.HalfBitsCount">
-            <summary>
-            The maximum number of candidates can exist in a grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet.PrimeNumbers">
-            <summary>
-            The prime numbers below 100.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet._bitArray">
-            <summary>
-            The internal bit array.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet._conclusionsEntry">
-            <summary>
-            The entry point that can visit conclusions.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.#ctor(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance via the specified conclusions.
-            </summary>
-            <param name="conclusions">The conclusions to be added.</param>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.ContainsAssignment">
-            <summary>
-            Indicates whether the collection contains any assignment conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.ContainsElimination">
-            <summary>
-            Indicates whether the collection contains any elimination conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.Count">
-            <summary>
-            Indicates the number of bit array elements.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.Empty">
-            <summary>
-            An empty instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.Item(System.Int32)">
-            <summary>
-            Try to get n-th element stored in the collection.
-            </summary>
-            <param name="index">The desired index to be checked.</param>
-            <returns>The found <see cref="T:Sudoku.Analytics.Conclusion"/> instance at the specified index.</returns>
-            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Add(System.Int32)">
-            <summary>
-            Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
-            </summary>
-            <param name="index">
-            <para>The global index (between 0 and 1458) to be added.</para>
-            <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Add(Sudoku.Analytics.Conclusion)">
-            <summary>
-            Add a new conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion to be added.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.AddRange(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
-            <summary>
-            Add a list of conclusions into the collection.
-            </summary>
-            <param name="conclusions">The conclusions to be added.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Equals(Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Contains(Sudoku.Analytics.Conclusion)">
-            <summary>
-            Indicates whether the collection contains the specified conclusion.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ContainsCell(System.Int32)">
-            <summary>
-            Indicates whether the collection contains the specified cell.
-            </summary>
-            <param name="cell">The cell to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ToString(Sudoku.Text.Converters.CoordinateConverter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ToArray">
-            <summary>
-            Try to get the conclusions.
-            </summary>
-            <returns>The conclusions.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.GetEnumerator">
-            <summary>
-            Try to get an enumerator type that iterates on each conclusion.
-            </summary>
-            <returns>An enumerator type that iterates on each conclusion.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the collection, from the specified start index and the number of the elements.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="length">The number of elements you want to get.</param>
-            <returns>The result <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Conclusion}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.TryParse(System.String,Sudoku.Analytics.ConclusionSet@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Parse(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_LogicalNot(Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_True(Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_False(Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_OnesComplement(Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_BitwiseAnd(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_BitwiseOr(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_ExclusiveOr(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_Implicit(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})~Sudoku.Analytics.ConclusionSet">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Conclusion"/> instances to <see cref="T:Sudoku.Analytics.ConclusionSet"/>.
-            </summary>
-            <param name="conclusions">Conclusions to be added.</param>
-        </member>
-        <member name="T:Sudoku.Analytics.ConclusionSet.Enumerator">
-            <summary>
-            The internal enumerator instance.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Enumerator.#ctor(Sudoku.Analytics.ConclusionSet)">
-            <summary>
-            The internal enumerator instance.
-            </summary>
-            <param name="collection">The collection.</param>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionSet.Enumerator._enumerator">
-            <summary>
-            The conclusions to be iterated.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.ConclusionSet.Enumerator.Current">
-            <summary>
-            Indicates the current iterated element.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Enumerator.MoveNext">
-            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_Equality(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.ConclusionSet.op_Inequality(Sudoku.Analytics.ConclusionSet,Sudoku.Analytics.ConclusionSet)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Analytics.ConclusionType">
-            <summary>
-            Provides a conclusion type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionType.Assignment">
-            <summary>
-            Indicates the conclusion is a value filling into a cell.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.ConclusionType.Elimination">
-            <summary>
-            Indicates the conclusion is a candidate being remove from a cell.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.IAnalyzer`2">
             <summary>
             Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -621,24 +148,24 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Analytics.ConclusionExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Analytics.Conclusion[])">
+        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Concepts.Conclusion[])">
             <summary>
-            Converts the <see cref="T:Sudoku.Analytics.Conclusion"/> array into a <see cref="T:Sudoku.Analytics.ConclusionSet"/> instance.
+            Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
             </summary>
             <param name="this">The conclusion array.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.ConclusionSet"/> result.</returns>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.ConclusionTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.ConclusionType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.ConclusionType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.ConclusionType"/>
+            <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Analytics.ConclusionType)">
+        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Concepts.ConclusionType)">
             <summary>
             Gets the notation of the conclusion type.
             </summary>
@@ -1882,6 +1409,479 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Concepts.Chute.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Conclusion">
+            <summary>
+            Defines a type that can describe a candidate is the correct or wrong digit.
+            </summary>
+            <param name="mask">
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
+            <code>
+            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-----------------------|---|---------------------------------------|
+            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-----------------------|---|---------------------------------------'
+                                     \_/ \_____________________________________/
+                                     (2)                   (1)
+            </code>
+            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
+            <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
+            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
+            </param>
+            <remarks>
+            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.#ctor(System.Int16)">
+            <summary>
+            Defines a type that can describe a candidate is the correct or wrong digit.
+            </summary>
+            <param name="mask">
+            The field uses the mask table of length 81 to indicate the state and all possible candidates
+            holding for each cell. Each mask uses a <see cref="T:System.Int16"/> value, but only uses 11 of 16 bits.
+            <code>
+            | 16  15  14  13  12  11  10| 9   8   7   6   5   4   3   2   1   0 |
+            |-----------------------|---|---------------------------------------|
+            |   |   |   |   |   |   | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 | 0 | 1 |
+            '-----------------------|---|---------------------------------------'
+                                     \_/ \_____________________________________/
+                                     (2)                   (1)
+            </code>
+            Where (1) is for candidate offset value (from 0 to 728), and (2) is for the conclusion type (assignment or elimination).
+            Please note that the part (2) only use one bit because the target value can only be assignment (0) or elimination (1), but the real type
+            <see cref="P:Sudoku.Concepts.Conclusion.ConclusionType"/> uses <see cref="T:System.Byte"/> as its underlying numeric type because C# cannot set "A bit"
+            to be the underlying type. The narrowest type is <see cref="T:System.Byte"/>.
+            </param>
+            <remarks>
+            Two <see cref="T:System.Int16"/> values can be compared with each other. If one of those two is an elimination
+            (i.e. holds the value <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/> as the type), the instance will be greater;
+            if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.Conclusion.Parsers">
+            <summary>
+            The internal parsers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32)">
+            <summary>
+            Initializes an instance with a conclusion type and a candidate offset.
+            </summary>
+            <param name="type">The conclusion type.</param>
+            <param name="candidate">The candidate offset.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32,System.Int32)">
+            <summary>
+            Initializes the <see cref="T:Sudoku.Concepts.Conclusion"/> instance via the specified cell, digit and the conclusion type.
+            </summary>
+            <param name="type">The conclusion type.</param>
+            <param name="cell">The cell.</param>
+            <param name="digit">The digit.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Conclusion.Cell">
+            <summary>
+            Indicates the cell the current instance uses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conclusion.Digit">
+            <summary>
+            Indicates the digit the current instance uses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conclusion.Candidate">
+            <summary>
+            Indicates the candidate the current instance uses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conclusion.ConclusionType">
+            <summary>
+            Indicates the conclusion type of the current instance.
+            If the type is <see cref="F:Sudoku.Concepts.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
+            otherwise, a candidate will be removed.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+							<![CDATA[
+public static void Deconstruct(out string name, out int age)
+    => (name, age) = (Name, Age);
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+							<![CDATA[
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+							<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax to define your own deconstruction logic.
+				</summary>
+				<remarks>
+					<para>
+						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
+						in a <see langword="static class" />, without any return value:
+						<code>
+							<![CDATA[
+public static void Deconstruct(out string name, out int age)
+    => (name, age) = (Name, Age);
+]]>
+						</code>
+						The following code will be legal.
+						<code>
+							<![CDATA[
+(string name, int age) = student; // Explicitly-typed variables
+var (name, age) = student; // Implicitly-typed variables
+]]>
+						</code>
+					</para>
+					<para>
+						Deconstruction methods also allow you using deconstruction patterns, like this:
+						<code>
+							<![CDATA[
+if (student is (name: var name, age: >= 18))
+{
+    Console.WriteLine(name);
+}
+]]>
+						</code>
+					</para>
+				</remarks>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Equals(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.CompareTo(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
+            <summary>
+            Try to get a new <see cref="T:Sudoku.Concepts.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
+            </summary>
+            <param name="symmetricType">The symmetric type to be checked.</param>
+            <param name="mappingDigit">The other mapping digit.</param>
+            <returns>The other symmetric <see cref="T:Sudoku.Concepts.Conclusion"/> value.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> contains multiple (greater than 2) cells
+            symmetric with the current cell and digit.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.TryParse(System.String,Sudoku.Concepts.Conclusion@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.op_OnesComplement(Sudoku.Concepts.Conclusion)">
+            <summary>
+            Negates the current conclusion instance, changing the conclusion type from <see cref="F:Sudoku.Concepts.ConclusionType.Assignment"/> to <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/>,
+            or from <see cref="F:Sudoku.Concepts.ConclusionType.Elimination"/> to <see cref="F:Sudoku.Concepts.ConclusionType.Assignment"/>.
+            </summary>
+            <param name="self">The current conclusion instance to be negated.</param>
+            <returns>The negation.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.Conclusion._mask">
+            <summary>
+            The generated field declaration for parameter <c>mask</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.op_Equality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.op_Inequality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionSet">
+            <summary>
+            Represents a list of conclusions. The collection only allows adding conclusions.
+            </summary>
+            <remarks>
+            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.
+            Because the type contains a reference-typed field, the type is also a reference type.
+            </remarks>
+            <seealso cref="T:System.Collections.BitArray"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.#ctor">
+            <summary>
+            Represents a list of conclusions. The collection only allows adding conclusions.
+            </summary>
+            <remarks>
+            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.
+            Because the type contains a reference-typed field, the type is also a reference type.
+            </remarks>
+            <seealso cref="T:System.Collections.BitArray"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.BitsCount">
+            <summary>
+            The total length of bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.HalfBitsCount">
+            <summary>
+            The maximum number of candidates can exist in a grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.PrimeNumbers">
+            <summary>
+            The prime numbers below 100.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet._bitArray">
+            <summary>
+            The internal bit array.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet._conclusionsEntry">
+            <summary>
+            The entry point that can visit conclusions.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.#ctor(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance via the specified conclusions.
+            </summary>
+            <param name="conclusions">The conclusions to be added.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.ContainsAssignment">
+            <summary>
+            Indicates whether the collection contains any assignment conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.ContainsElimination">
+            <summary>
+            Indicates whether the collection contains any elimination conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Count">
+            <summary>
+            Indicates the number of bit array elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Empty">
+            <summary>
+            An empty instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Item(System.Int32)">
+            <summary>
+            Try to get n-th element stored in the collection.
+            </summary>
+            <param name="index">The desired index to be checked.</param>
+            <returns>The found <see cref="T:Sudoku.Concepts.Conclusion"/> instance at the specified index.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Add(System.Int32)">
+            <summary>
+            Add a new conclusion, represented as a global index (between 0 and 1458), into the collection.
+            </summary>
+            <param name="index">
+            <para>The global index (between 0 and 1458) to be added.</para>
+            <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Add(Sudoku.Concepts.Conclusion)">
+            <summary>
+            Add a new conclusion into the collection.
+            </summary>
+            <param name="conclusion">The conclusion to be added.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.AddRange(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <summary>
+            Add a list of conclusions into the collection.
+            </summary>
+            <param name="conclusions">The conclusions to be added.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Equals(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Contains(Sudoku.Concepts.Conclusion)">
+            <summary>
+            Indicates whether the collection contains the specified conclusion.
+            </summary>
+            <param name="conclusion">The conclusion.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ContainsCell(System.Int32)">
+            <summary>
+            Indicates whether the collection contains the specified cell.
+            </summary>
+            <param name="cell">The cell to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
+            <summary>
+            Try to get the conclusions.
+            </summary>
+            <returns>The conclusions.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">
+            <summary>
+            Try to get an enumerator type that iterates on each conclusion.
+            </summary>
+            <returns>An enumerator type that iterates on each conclusion.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection, from the specified start index and the number of the elements.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The number of elements you want to get.</param>
+            <returns>The result <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Conclusion}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.TryParse(System.String,Sudoku.Concepts.ConclusionSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ParseExact(System.String,Sudoku.Text.Parsers.CoordinateParser)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_True(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_False(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_OnesComplement(Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_BitwiseAnd(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_BitwiseOr(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_ExclusiveOr(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_Implicit(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})~Sudoku.Concepts.ConclusionSet">
+            <summary>
+            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Conclusion"/> instances to <see cref="T:Sudoku.Concepts.ConclusionSet"/>.
+            </summary>
+            <param name="conclusions">Conclusions to be added.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionSet.Enumerator">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.#ctor(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            The internal enumerator instance.
+            </summary>
+            <param name="collection">The collection.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionSet.Enumerator._enumerator">
+            <summary>
+            The conclusions to be iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.Enumerator.Current">
+            <summary>
+            Indicates the current iterated element.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_Equality(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.op_Inequality(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ConclusionType">
+            <summary>
+            Provides a conclusion type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionType.Assignment">
+            <summary>
+            Indicates the conclusion is a value filling into a cell.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ConclusionType.Elimination">
+            <summary>
+            Indicates the conclusion is a candidate being remove from a cell.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Conjugate">
             <summary>
             Represents a <see href="http://sudopedia.enjoysudoku.com/Conjugate_pair.html">conjugate pair</see>.
@@ -2765,7 +2765,7 @@ if (student is (name: var name, age: >= 18))
             To unfix the current grid (all given values will be changed to modifiable ones).
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Analytics.Conclusion)">
+        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Concepts.Conclusion)">
             <summary>
             Try to apply the specified conclusion.
             </summary>
@@ -2773,11 +2773,11 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Rendering.IRenderable)">
             <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})" path="/summary"/>
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})" path="/summary"/>
             </summary>
             <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Analytics.Conclusion})">
+        <member name="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
             Try to apply the specified array of conclusions.
             </summary>
@@ -5158,16 +5158,16 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Linq.ConclusionsEnumerable">
             <summary>
-            Provides with a list of LINQ methods used by <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            Provides with a list of LINQ methods used by <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Linq.ConclusionsEnumerable.Select(System.ReadOnlySpan{Sudoku.Analytics.Conclusion},System.Func{Sudoku.Analytics.Conclusion,System.Int32})">
+        <member name="M:Sudoku.Linq.ConclusionsEnumerable.Select(System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.Func{Sudoku.Concepts.Conclusion,System.Int32})">
             <summary>
-            Projects a list of <see cref="T:Sudoku.Analytics.Conclusion"/> instances, converted each instances into a <see cref="T:System.Int32"/> value,
+            Projects a list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances, converted each instances into a <see cref="T:System.Int32"/> value,
             and merge them into a <see cref="T:Sudoku.Concepts.CellMap"/> and return it.
             </summary>
-            <param name="this">A list of <see cref="T:Sudoku.Analytics.Conclusion"/> instances.</param>
+            <param name="this">A list of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</param>
             <param name="selector">The selector to project the values.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> result.</returns>
         </member>
@@ -9188,7 +9188,7 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Text.Converters.ConclusionNotationConverter">
             <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Analytics.Conclusion"/> instance.
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conclusion"/> instance.
             </summary>
             <param name="conclusions">A list of conjugate pairs.</param>
             <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
@@ -10454,9 +10454,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="P:Sudoku.Text.Parsers.CoordinateParser.ConclusionParser">
             <summary>
-            The parser method that can creates a <see cref="T:Sudoku.Analytics.Conclusion"/> list via the specified text to be parsed.
+            The parser method that can creates a <see cref="T:Sudoku.Concepts.Conclusion"/> list via the specified text to be parsed.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="P:Sudoku.Text.Parsers.CoordinateParser.DigitParser">
             <summary>
@@ -11327,9 +11327,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:Sudoku.Text.Serialization.Specialized.ConclusionConverter">
             <summary>
-            Represents a JSON converter for type <see cref="T:Sudoku.Analytics.Conclusion"/>.
+            Represents a JSON converter for type <see cref="T:Sudoku.Concepts.Conclusion"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="P:Sudoku.Text.Serialization.Specialized.ConclusionConverter.HandleNull">
             <inheritdoc/>
@@ -11337,7 +11337,7 @@ if (student is (name: var name, age: >= 18))
         <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Analytics.Conclusion,System.Text.Json.JsonSerializerOptions)">
+        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Serialization.Specialized.GridConverter">

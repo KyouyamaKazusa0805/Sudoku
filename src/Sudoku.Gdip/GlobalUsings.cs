@@ -23,4 +23,4 @@ global using Sudoku.Rendering;
 global using Sudoku.Rendering.Nodes;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.MaskServices;
-global using static Sudoku.Analytics.ConclusionType;
+global using static Sudoku.Concepts.ConclusionType;

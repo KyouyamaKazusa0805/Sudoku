@@ -672,7 +672,7 @@
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View)">
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View)">
             <summary>
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance via the specified values.
             </summary>
@@ -2892,7 +2892,7 @@
             <param name="Views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
             <seealso cref="T:Sudoku.Rendering.IRenderable"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.UserDefinedRenderable.#ctor(Sudoku.Analytics.Conclusion[],Sudoku.Rendering.View[])">
+        <member name="M:SudokuStudio.Configuration.UserDefinedRenderable.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[])">
             <summary>
             Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Rendering.IRenderable"/> members.
             </summary>
@@ -4985,9 +4985,9 @@ if (student is (name: var name, age: >= 18))
         </member>
         <member name="T:SudokuStudio.Markup.ConclusionExtension">
             <summary>
-            Represents a markup extension used by creating <see cref="T:Sudoku.Analytics.Conclusion"/> instances.
+            Represents a markup extension used by creating <see cref="T:Sudoku.Concepts.Conclusion"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.Conclusion"/>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="P:SudokuStudio.Markup.ConclusionExtension.Text">
             <summary>
@@ -5544,7 +5544,7 @@ if (student is (name: var name, age: >= 18))
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
             </summary>
@@ -5561,62 +5561,62 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="cellNode">The node to be displayed.</param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="candidateNode">
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
             <param name="overlapped">
-            Indicates the collection that returns a possible <see cref="T:Sudoku.Analytics.Conclusion"/> value indicating
+            Indicates the collection that returns a possible <see cref="T:Sudoku.Concepts.Conclusion"/> value indicating
             what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
             </param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
         </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNodeCore(Sudoku.Rendering.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Rendering.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
-            The core method called by <see cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>.
+            The core method called by <see cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>.
             </summary>
             <param name="id">The color identifier.</param>
             <param name="color">The color to be used on rendering.</param>
             <param name="candidate">The candidate to be rendered.</param>
             <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
             <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
             <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
-            <seealso cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Analytics.Conclusion[],System.Nullable{Sudoku.Analytics.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>
+            <seealso cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>
         </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.HouseViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="houseNode">
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
             </param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Rendering.Nodes.HouseViewNode.House"/>.
@@ -5628,13 +5628,13 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="chuteNode">
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
             </param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <exception cref="T:System.ArgumentException">
             Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Rendering.Nodes.ChuteViewNode.ChuteIndex"/>.
@@ -5646,29 +5646,29 @@ if (student is (name: var name, age: >= 18))
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="babaGroupNode">
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
             </param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Rendering.Nodes.LinkViewNode},Sudoku.Analytics.Conclusion[],SudokuStudio.Rendering.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Rendering.Nodes.LinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s.
             </summary>
             <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
             </param>
             <param name="linkNodes">
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
             </param>
             <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
             <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Analytics.Conclusion,System.Collections.Generic.List{Sudoku.Analytics.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <remarks>
             This method is special: We should handle all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s together.
@@ -5700,7 +5700,7 @@ if (student is (name: var name, age: >= 18))
             <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
             <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Analytics.Conclusion[])">
+        <member name="M:SudokuStudio.Rendering.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Concepts.Conclusion[])">
             <summary>
             Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
             </summary>
@@ -5765,7 +5765,7 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The collection.</param>
         </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.ConflictWith(Sudoku.Analytics.Conclusion[],System.Int32,System.Nullable{Sudoku.Analytics.Conclusion}@)">
+        <member name="M:SudokuStudio.Rendering.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
             <summary>
             <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
             <para>This method is used for checking cannibalism.</para>

@@ -52,7 +52,7 @@ global using Sudoku.Traits;
 global using static System.Algorithm.Sequences;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Analytics.CachedFields;
-global using static Sudoku.Analytics.ConclusionType;
+global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.Rendering.RenderingMode;
 global using static Sudoku.SolutionFields;
