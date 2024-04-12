@@ -21,6 +21,7 @@ public static class SingleSubtypeExtensions
 #if ENHANCED_UNNECESSARY_SUBTYPES
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
 		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220
+		or SingleSubtype.RowHiddenSingle104 or SingleSubtype.ColumnHiddenSingle140
 #endif
 		;
 
