@@ -755,7 +755,7 @@ public partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
-	static Grid IMinMaxValue<Grid>.MinValue => (Grid)"123456789456789123789123456214365897365897214897214365531642978642978531978531642";
+	static Grid IMinMaxValue<Grid>.MinValue => Parse("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
@@ -764,7 +764,7 @@ public partial struct Grid :
 	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
-	static Grid IMinMaxValue<Grid>.MaxValue => (Grid)"987654321654321987321987654896745213745213896213896745579468132468132579132579468";
+	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 #endif
 
 	/// <summary>
@@ -779,9 +779,9 @@ public partial struct Grid :
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public Mask this[scoped ref readonly CellMap cells]
+	public readonly Mask this[scoped ref readonly CellMap cells]
 	{
-		readonly get
+		get
 		{
 			var result = (Mask)0;
 			foreach (var cell in cells)
@@ -790,15 +790,6 @@ public partial struct Grid :
 			}
 
 			return (Mask)(result & MaxCandidatesMask);
-		}
-
-		[SuppressMessage("Style", "IDE0251:Make member 'readonly'", Justification = "<Pending>")]
-		set
-		{
-			foreach (var cell in cells)
-			{
-				this[cell] = value;
-			}
 		}
 	}
 
@@ -2134,28 +2125,4 @@ public partial struct Grid :
 
 		return result;
 	}
-
-	/// <summary>
-	/// Implicit cast from <see cref="string"/> code to its equivalent <see cref="Grid"/> instance representation.
-	/// </summary>
-	/// <param name="gridCode">The grid code.</param>
-	/// <remarks>
-	/// <para>
-	/// This explicit operator has same meaning for method <see cref="Parse(string)"/>. You can also use
-	/// <see cref="Parse(string)"/> to get the same result as this operator.
-	/// </para>
-	/// <para>
-	/// If the argument being passed is <see langword="null"/>, this operator will return <see cref="Undefined"/>
-	/// as the final result, whose behavior is the only one that is different with method <see cref="Parse(string)"/>.
-	/// That method will throw a <see cref="FormatException"/> instance to report the invalid argument being passed.
-	/// </para>
-	/// </remarks>
-	/// <exception cref="FormatException">
-	/// See exception thrown cases for method <see cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>.
-	/// </exception>
-	/// <seealso cref="Undefined"/>
-	/// <seealso cref="Parse(string)"/>
-	/// <seealso cref="ISimpleParsable{TSimpleParseable}.Parse(string)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator Grid([ConstantExpected] string? gridCode) => gridCode is null ? Undefined : Parse(gridCode);
 }

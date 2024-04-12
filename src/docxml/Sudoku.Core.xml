@@ -3037,29 +3037,6 @@ if (student is (name: var name, age: >= 18))
             Throws when at least one element in the mask array is greater than 0b100__111_111_111 (i.e. 2559) or less than 0.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.String)~Sudoku.Concepts.Grid">
-            <summary>
-            Implicit cast from <see cref="T:System.String"/> code to its equivalent <see cref="T:Sudoku.Concepts.Grid"/> instance representation.
-            </summary>
-            <param name="gridCode">The grid code.</param>
-            <remarks>
-            <para>
-            This explicit operator has same meaning for method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>. You can also use
-            <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/> to get the same result as this operator.
-            </para>
-            <para>
-            If the argument being passed is <see langword="null"/>, this operator will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            as the final result, whose behavior is the only one that is different with method <see cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>.
-            That method will throw a <see cref="T:System.FormatException"/> instance to report the invalid argument being passed.
-            </para>
-            </remarks>
-            <exception cref="T:System.FormatException">
-            See exception thrown cases for method <see cref="M:System.ISimpleParsable`1.Parse(System.String)"/>.
-            </exception>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-            <seealso cref="M:Sudoku.Concepts.Grid.Parse(System.String)"/>
-            <seealso cref="M:System.ISimpleParsable`1.Parse(System.String)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
