@@ -57,6 +57,5 @@ global using static Sudoku.Concepts.Intersection;
 global using static Sudoku.Rendering.RenderingMode;
 global using static Sudoku.SolutionFields;
 global using static Sudoku.Text.Languages;
-global using IrregularWingStrongLinkEntry = System.Collections.Generic.Dictionary<(int /*House*/ House, int /*Digit*/ Digit), System.Collections.Generic.List<Sudoku.Concepts.StrongLinkInfo>>;
 global using TargetCandidatesGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CandidateMap, int /*Candidate*/, Sudoku.Concepts.CandidateMap.Enumerator, int /*Cell*/>;
 global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CellMap, int /*Cell*/, Sudoku.Concepts.CellMap.Enumerator, int /*House*/>;

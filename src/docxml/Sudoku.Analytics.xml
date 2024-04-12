@@ -20465,6 +20465,18 @@
             A list of cells as the other pair of target cells.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.IrregularWingStrongLinkEntry">
+            <summary>
+            Represents an aliased type for <see cref="T:System.Collections.Generic.Dictionary`2"/> on irregular wing checking.
+            </summary>
+            <param name="capacity">Indicates the capacity to be initialized.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.IrregularWingStrongLinkEntry.#ctor(System.Int32)">
+            <summary>
+            Represents an aliased type for <see cref="T:System.Collections.Generic.Dictionary`2"/> on irregular wing checking.
+            </summary>
+            <param name="capacity">Indicates the capacity to be initialized.</param>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.NodeList">
             <summary>
             Defines a list of <see cref="T:Sudoku.Concepts.ChainNode"/> using doubly linked list as the backing algorithm.
