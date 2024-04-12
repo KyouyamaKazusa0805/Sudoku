@@ -7006,6 +7006,11 @@
               Looks up a localized string similar to Select Mode: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_GridMustBeSolvedOrNotBad">
+            <summary>
+              Looks up a localized string similar to The puzzle must be solved or contain at least one valid solution..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_CommaSeparated">
             <summary>
               Looks up a localized string similar to Comma-separated values format.

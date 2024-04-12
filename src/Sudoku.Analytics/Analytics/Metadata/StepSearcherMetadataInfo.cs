@@ -38,6 +38,11 @@ public sealed partial class StepSearcherMetadataInfo(
 	public bool SupportsSukaku => _backAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
 
 	/// <summary>
+	/// Determines whether the current step searcher supports for analyzing puzzles having multiple solutions.
+	/// </summary>
+	public bool SupportsMultiple => _backAttribute.SupportMultiple;
+
+	/// <summary>
 	/// Determines whether the current step searcher is disabled
 	/// by option <see cref="StepSearcherRuntimeFlags.TimeComplexity"/> being configured.
 	/// </summary>

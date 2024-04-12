@@ -33,28 +33,9 @@ internal sealed partial class SummaryViewBindableSource(
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		return analyzerResult switch
 		{
-			{ IsSolved: true, InterimSteps: var steps } => [
-				..
-				from step in steps
-				orderby step.DifficultyLevel, step.Code
-				group step by step.GetName(App.CurrentCulture) into stepGroup
-				let stepGroupArray = (Step[])[.. stepGroup]
-				let difficultyLevels =
-					from step in stepGroupArray
-					let code = step.Code
-					group step by pref.GetDifficultyLevelOrDefault(code) into stepGroupedByDifficultyLevel
-					select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
-					orderby targetDifficultyLevel
-					select targetDifficultyLevel
-				select new SummaryViewBindableSource(
-					stepGroup.Key,
-					difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
-					stepGroupArray.Sum(r),
-					stepGroupArray.Max(r),
-					stepGroupArray.Length
-				)
-			],
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrUnique"))
+			{ IsSolved: true, InterimSteps: var steps } => [.. g(steps, pref)],
+			{ IsSolved: false, FailedReason: FailedReason.AnalyzerGiveUp, InterimSteps: { } steps } => [.. g(steps, pref)],
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMustBeSolvedOrNotBad"))
 		};
 
 
@@ -63,5 +44,26 @@ internal sealed partial class SummaryViewBindableSource(
 			var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 			return pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		}
+
+		static IEnumerable<SummaryViewBindableSource> g(Step[] steps, TechniqueInfoPreferenceGroup pref)
+			=>
+			from step in steps
+			orderby step.DifficultyLevel, step.Code
+			group step by step.GetName(App.CurrentCulture) into stepGroup
+			let stepGroupArray = (Step[])[.. stepGroup]
+			let difficultyLevels =
+				from step in stepGroupArray
+				let code = step.Code
+				group step by pref.GetDifficultyLevelOrDefault(code) into stepGroupedByDifficultyLevel
+				select stepGroupedByDifficultyLevel.Key into targetDifficultyLevel
+				orderby targetDifficultyLevel
+				select targetDifficultyLevel
+			select new SummaryViewBindableSource(
+				stepGroup.Key,
+				difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
+				stepGroupArray.Sum(r),
+				stepGroupArray.Max(r),
+				stepGroupArray.Length
+			);
 	}
 }

@@ -60,6 +60,12 @@ public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] 
 	public bool IsReadOnly { get; init; }
 
 	/// <summary>
+	/// Indicates whether the step searcher can be invoked by puzzles containing multiple solutions.
+	/// By default the value is <see langword="true"/>.
+	/// </summary>
+	public bool SupportMultiple { get; init; } = true;
+
+	/// <summary>
 	/// Indicates the runtime options that controls extra behaviors.
 	/// </summary>
 	public StepSearcherRuntimeFlags RuntimeFlags { get; init; }

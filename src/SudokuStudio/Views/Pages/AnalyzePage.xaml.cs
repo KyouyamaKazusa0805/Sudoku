@@ -394,12 +394,12 @@ public sealed partial class AnalyzePage : Page
 						switch (SudokuFileHandler.Read(filePath))
 						{
 							case [
-								{
-									BaseGrid: var g,
-									GridString: var gridStr,
-									ShowCandidates: var showCandidates,
-									RenderableData: var nullableRenderableData
-								}
+							{
+								BaseGrid: var g,
+								GridString: var gridStr,
+								ShowCandidates: var showCandidates,
+								RenderableData: var nullableRenderableData
+							}
 							]:
 							{
 								SudokuPane.Puzzle = gridStr is not null && Grid.TryParse(gridStr, out var g2) ? g2 : g;
@@ -1018,7 +1018,7 @@ public sealed partial class AnalyzePage : Page
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = SudokuPane.Puzzle;
-		if (!puzzle.IsValid)
+		if (puzzle.Uniqueness == Uniqueness.Bad)
 		{
 			return;
 		}
@@ -1056,7 +1056,7 @@ public sealed partial class AnalyzePage : Page
 				}
 			}))
 			{
-				case { IsSolved: true } analyzerResult:
+				case var analyzerResult and ({ IsSolved: true } or { IsSolved: false, FailedReason: FailedReason.AnalyzerGiveUp }):
 				{
 					UpdateAnalysisResult(analyzerResult);
 					AnalysisResultCache = analyzerResult;

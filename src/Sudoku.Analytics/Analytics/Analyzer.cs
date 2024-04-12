@@ -99,20 +99,20 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 		}
 
 		var result = new AnalyzerResult(in puzzle) { IsSolved = false };
-		var isSukaku = puzzle.PuzzleType == SudokuType.Sukaku;
 		var solution = puzzle.SolutionGrid;
-		if (!solution.IsUndefined)
+		if (puzzle.Uniqueness != Uniqueness.Bad)
 		{
-			// Firstly, we should check whether the puzzle is a GSP.
-			// This method doesn't check for Sukaku puzzles.
+			// We should check whether the puzzle is a GSP firstly.
+			// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.
 			puzzle.InferSymmetricalPlacement(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
 
 			try
 			{
+				// Here 'puzzle' may contains multiple solutions, so 'solution' may equal to 'Grid.Undefined'.
+				// We will defer the checking inside this method stackframe.
 				return analyzeInternal(
 					in puzzle,
 					in solution,
-					isSukaku,
 					result,
 					symmetricType,
 					mappingDigits,
@@ -125,25 +125,29 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			{
 				return ex switch
 				{
-					RuntimeAnalyticsException e => e switch
-					{
-						WrongStepException => result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
-						PuzzleInvalidException => result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
-					},
+					RuntimeAnalyticsException e
+						=> e switch
+						{
+							WrongStepException
+								=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
+							PuzzleInvalidException
+								=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
+						},
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
-					NotImplementedException or NotSupportedException => result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
-					_ => result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
+					NotImplementedException or NotSupportedException
+						=> result with { IsSolved = false, FailedReason = FailedReason.NotImplemented },
+					_
+						=> result with { IsSolved = false, FailedReason = FailedReason.ExceptionThrown, UnhandledException = ex }
 				};
 			}
 		}
-		return result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid };
+		return result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
 
 
 		AnalyzerResult analyzeInternal(
 			scoped ref readonly Grid puzzle,
 			scoped ref readonly Grid solution,
-			bool isSukaku,
 			AnalyzerResult resultBase,
 			SymmetricType symmetricType,
 			scoped ReadOnlySpan<Digit?> mappingDigits,
@@ -173,7 +177,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 #else
 				!IsFullApplying && !RandomizedChoosing,
 #endif
-				isSukaku,
+				puzzle.PuzzleType == SudokuType.Sukaku,
 				Options
 			);
 
@@ -206,14 +210,15 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			string progressedStepSearcherName;
 			foreach (var searcher in stepSearchers)
 			{
-				switch (isSukaku, searcher, this)
+				switch (playground, solution, searcher, this)
 				{
-					case (true, { Metadata.SupportsSukaku: false }, _):
-					case (_, { RunningArea: StepSearcherRunningArea.None }, _):
-					case (_, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
-					case (_, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
-					case (_, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
-					case (_, { Metadata.IsOnlyRunForIndirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: true } }):
+					case ({ PuzzleType: SudokuType.Sukaku }, _, { Metadata.SupportsSukaku: false }, _):
+					case (_, _, { RunningArea: StepSearcherRunningArea.None }, _):
+					case (_, _, { Metadata.IsConfiguredSlow: true }, { IgnoreSlowAlgorithms: true }):
+					case (_, _, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
+					case (_, _, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
+					case (_, _, { Metadata.IsOnlyRunForIndirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: true } }):
+					case (_, { IsUndefined: true }, { Metadata.SupportsMultiple: false }, _):
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".
@@ -222,10 +227,11 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						// 4. If the searcher is configured as high-allocation.
 						// 5. If the searcher is only run for direct view, and the current is indirect view.
 						// 6. If the searcher is only run for indirect view, and the current is direct view.
+						// 7. If the searcher doesn't support for analyzing puzzles with multiple solutions, but we enable it.
 						continue;
 					}
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-					case (_, SingleStepSearcher, { ConditionalOptions: { AllowsHiddenSingleInLines: var allowLine, LimitedSingle: var limited and not 0 } }):
+					case (_, _, SingleStepSearcher, { ConditionalOptions: { AllowsHiddenSingleInLines: var allowLine, LimitedSingle: var limited and not 0 } }):
 					{
 						accumulator!.Clear();
 
@@ -310,7 +316,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						goto MakeProgress;
 					}
 #endif
-					case (_, BruteForceStepSearcher, { RandomizedChoosing: true }):
+					case (_, _, BruteForceStepSearcher, { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();
 
@@ -337,7 +343,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						goto MakeProgress;
 					}
 #if REMOVE_DUPLICATED_STEPS_IN_SINGLES_IF_RANDOM_ENABLED
-					case (_, SingleStepSearcher, { RandomizedChoosing: true }):
+					case (_, _, SingleStepSearcher, { RandomizedChoosing: true }):
 					{
 						// Randomly select a step won't take any effects on single steps.
 						accumulator!.Clear();
@@ -382,7 +388,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						break;
 					}
 #endif
-					case (_, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
+					case (_, _, not BruteForceStepSearcher, { IsFullApplying: true } or { RandomizedChoosing: true }):
 					{
 						accumulator!.Clear();
 
@@ -470,7 +476,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			// All solver can't finish the puzzle... :(
 			return resultBase with
 			{
-				FailedReason = FailedReason.PuzzleIsTooHard,
+				FailedReason = FailedReason.AnalyzerGiveUp,
 				ElapsedTime = Stopwatch.GetElapsedTime(timestampOriginal),
 				InterimSteps = [.. collectedSteps],
 				InterimGrids = [.. stepGrids]
@@ -483,6 +489,12 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 			static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
 			{
+				if (solution.IsUndefined)
+				{
+					// This will be triggered when the puzzle has multiple solutions.
+					return true;
+				}
+
 				foreach (var (t, c, d) in step.Conclusions)
 				{
 					var digit = solution.GetDigit(c);

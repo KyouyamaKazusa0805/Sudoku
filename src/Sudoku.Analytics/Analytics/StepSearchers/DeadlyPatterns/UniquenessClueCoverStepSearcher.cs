@@ -12,7 +12,8 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_UniquenessClueCoverStepSearcher",
 	Technique.UniquenessClueCover,
-	SupportedSudokuTypes = SudokuType.Standard)]
+	SupportedSudokuTypes = SudokuType.Standard,
+	SupportMultiple = false)]
 public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

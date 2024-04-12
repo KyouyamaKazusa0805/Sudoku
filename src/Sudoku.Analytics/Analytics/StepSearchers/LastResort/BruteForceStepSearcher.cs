@@ -7,7 +7,12 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Brute Force</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_BruteForceStepSearcher", Technique.BruteForce, IsPure = true, IsFixed = true)]
+[StepSearcher(
+	"StepSearcherName_BruteForceStepSearcher",
+	Technique.BruteForce,
+	IsPure = true,
+	IsFixed = true,
+	SupportMultiple = false)]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -14,7 +14,8 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_UniqueLoopStepSearcher",
 	Technique.UniqueLoopType1, Technique.UniqueLoopType2, Technique.UniqueLoopType3, Technique.UniqueLoopType4,
 	SupportedSudokuTypes = SudokuType.Standard,
-	RuntimeFlags = StepSearcherRuntimeFlags.TimeComplexity)]
+	RuntimeFlags = StepSearcherRuntimeFlags.TimeComplexity,
+	SupportMultiple = false)]
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

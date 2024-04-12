@@ -2459,4 +2459,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_LastingConstraint" xml:space="preserve">
     <value>Lasting constraint</value>
   </data>
+  <data name="ErrorInfo_GridMustBeSolvedOrNotBad" xml:space="preserve">
+    <value>The puzzle must be solved or contain at least one valid solution.</value>
+  </data>
 </root>

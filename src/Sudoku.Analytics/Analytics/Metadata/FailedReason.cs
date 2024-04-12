@@ -58,11 +58,7 @@ public enum FailedReason
 	WrongStep,
 
 	/// <summary>
-	/// Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+	/// Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
 	/// </summary>
-	/// <remarks><i>
-	/// This option becomes deprecated at present because we has already implemented a step searcher
-	/// that always produces a valid step, guaranteeing that the solver will never give up at all time.
-	/// </i></remarks>
-	PuzzleIsTooHard
+	AnalyzerGiveUp
 }

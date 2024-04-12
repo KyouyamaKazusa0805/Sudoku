@@ -2086,6 +2086,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle must be solved or contain at least one valid solution..
+        /// </summary>
+        internal static string ErrorInfo_GridMustBeSolvedOrNotBad {
+            get {
+                return ResourceManager.GetString("ErrorInfo_GridMustBeSolvedOrNotBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Comma-separated values format.
         /// </summary>
         internal static string FileExtension_CommaSeparated {

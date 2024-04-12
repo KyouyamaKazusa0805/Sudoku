@@ -5024,14 +5024,10 @@
             Indicates the failed reason is that the solver has found a wrong step that cause the grid become invalid.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Metadata.FailedReason.PuzzleIsTooHard">
+        <member name="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp">
             <summary>
-            Indicates the failed reason is that the puzzle is too hard to solve. The solver gave up.
+            Indicates the failed reason is that the puzzle is too hard to solve, i.e. the analyzer has already given up.
             </summary>
-            <remarks><i>
-            This option becomes deprecated at present because we has already implemented a step searcher
-            that always produces a valid step, guaranteeing that the solver will never give up at all time.
-            </i></remarks>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.MissingDifficultyLevelException">
             <summary>
@@ -5209,6 +5205,12 @@
             Indicates whether the option is read-only that cannot be modified in UI.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportMultiple">
+            <summary>
+            Indicates whether the step searcher can be invoked by puzzles containing multiple solutions.
+            By default the value is <see langword="true"/>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.RuntimeFlags">
             <summary>
             Indicates the runtime options that controls extra behaviors.
@@ -5274,6 +5276,11 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportsSukaku">
             <summary>
             Determines whether the current step searcher supports sukaku solving.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportsMultiple">
+            <summary>
+            Determines whether the current step searcher supports for analyzing puzzles having multiple solutions.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredSlow">
