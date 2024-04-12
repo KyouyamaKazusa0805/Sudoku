@@ -7313,38 +7313,8 @@
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ExtendedRectangleStepSearcher">
@@ -19817,114 +19787,24 @@ if (student is (name: var name, age: >= 18))
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[]@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(Sudoku.Concepts.AlmostLockedSet)">
@@ -20126,76 +20006,16 @@ if (student is (name: var name, age: >= 18))
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.ChainNode.Deconstruct(System.Byte@,System.Byte@,System.Boolean@)">
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.ChainNode.Equals(Sudoku.Concepts.ChainNode)">
@@ -20437,38 +20257,8 @@ if (student is (name: var name, age: >= 18))
             <target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static" /> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class" />, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
         </member>
         <member name="M:Sudoku.Concepts.PathNode.ToString">

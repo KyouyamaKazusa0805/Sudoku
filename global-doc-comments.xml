@@ -123,38 +123,8 @@ result ^= expression;
 			<target name="method">
 				<summary>
 					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax to define your own deconstruction logic.
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
-				<remarks>
-					<para>
-						For example, if you have defined a <see langword="static"/> deconstruction method <c>Deconstruct</c>
-						in a <see langword="static class"/>, without any return value:
-						<code>
-							<![CDATA[
-public static void Deconstruct(out string name, out int age)
-    => (name, age) = (Name, Age);
-]]>
-						</code>
-						The following code will be legal.
-						<code>
-							<![CDATA[
-(string name, int age) = student; // Explicitly-typed variables
-var (name, age) = student; // Implicitly-typed variables
-]]>
-						</code>
-					</para>
-					<para>
-						Deconstruction methods also allow you using deconstruction patterns, like this:
-						<code>
-							<![CDATA[
-if (student is (name: var name, age: >= 18))
-{
-    Console.WriteLine(name);
-}
-]]>
-						</code>
-					</para>
-				</remarks>
 			</target>
 		</feature>
 		<feature name="custom-fixed">
