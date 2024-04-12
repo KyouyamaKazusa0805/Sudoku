@@ -1292,7 +1292,6 @@ public partial struct Grid :
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
 		mask = (Mask)((int)state << CellCandidatesCount | mask & MaxCandidatesMask);
-
 		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
@@ -1307,7 +1306,6 @@ public partial struct Grid :
 		scoped ref var newMask = ref this[cell];
 		var originalMask = newMask;
 		newMask = mask;
-
 		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, originalMask, newMask, -1);
 	}
 
@@ -1476,7 +1474,13 @@ public partial struct Grid :
 	/// Appends for Sukaku puzzle header.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void AppendSukakuHeader() => this[0] |= SukakuHeader;
+	private void AddSukakuHeader() => this[0] |= SukakuHeader;
+
+	/// <summary>
+	/// Removes for Sukaku puzzle header.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void RemoveSukakuHeader() => this[0] &= ~SukakuHeader;
 
 
 	/// <summary>
@@ -1539,18 +1543,37 @@ public partial struct Grid :
 			{
 				var result = Undefined;
 				var uniformValue = rawMaskValues[0];
+				var containsNonemptyCell = false;
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
 					result[cell] = uniformValue;
+					if (MaskOperations.MaskToCellState(uniformValue) != CellState.Empty)
+					{
+						containsNonemptyCell = true;
+					}
+				}
+				if (!containsNonemptyCell)
+				{
+					result.AddSukakuHeader();
 				}
 				return result;
 			}
 			case CellsCount:
 			{
 				var result = Undefined;
+				var containsNonemptyCell = false;
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
-					result[cell] = rawMaskValues[cell];
+					var value = rawMaskValues[cell];
+					result[cell] = value;
+					if (MaskOperations.MaskToCellState(value) != CellState.Empty)
+					{
+						containsNonemptyCell = true;
+					}
+				}
+				if (!containsNonemptyCell)
+				{
+					result.AddSukakuHeader();
 				}
 				return result;
 			}
@@ -1577,12 +1600,17 @@ public partial struct Grid :
 		var containsMultilineLimits = str.Contains("-+-");
 		var containsTab = str.Contains('\t');
 		var grid = Undefined;
+
+		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
 		switch (str.Length, containsMultilineLimits, containsTab)
 		{
-			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g:
+			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g1:
 			{
-				grid = g;
-				break;
+				return g1;
+			}
+			case (_, false, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g2:
+			{
+				return g2;
 			}
 			case (_, true, _):
 			{
@@ -1593,12 +1621,6 @@ public partial struct Grid :
 						grid = g;
 					}
 				}
-
-				break;
-			}
-			case (_, _, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g:
-			{
-				grid = g;
 				break;
 			}
 			default:
@@ -1608,22 +1630,50 @@ public partial struct Grid :
 					var currentParser = Parsers[trial];
 					if (currentParser.Parser(str) is { IsUndefined: false } g)
 					{
+						if (currentParser is SusserGridParser)
+						{
+							return grid;
+						}
+
 						grid = g;
 					}
 				}
-
 				break;
 			}
 		}
 
+		// Return 'Undefined' if failed to generate puzzle.
 		if (grid.IsUndefined)
 		{
 			return Undefined;
 		}
 
+		// Here need an extra check. Sukaku puzzles can be output as a normal pencil-mark grid format.
+		// We should check whether the puzzle is a Sukaku in fact or not.
+		// This is a bug fix for type 'PencilmarkingGridParser', which cannot determine whether a puzzle is a Sukaku.
+		//
+		// The details on checking is to treat this as a normal grid, check whether the puzzle has a unique solution or not:
+		//
+		//   1) If the grid contains a unique solution without treating it as a Sukaku, check for 2); otherwise, not Sukaku.
+		//   2) Check whether the grid contains at most 16 given cells. If not, not Sukaku.
+		//   3) Both conditions 1) and 2) are passed, the grid should be treated as a Sukaku.
+		if (!(grid << "0").IsValid && grid.GivensCount < 17)
+		{
+			// Reduce given cells to empty cells back because it is a Sukaku.
+			foreach (ref var mask in grid)
+			{
+				if (MaskOperations.MaskToCellState(mask) != CellState.Empty)
+				{
+					mask = (Mask)((Mask)CellState.Empty << CellCandidatesCount | mask & MaxCandidatesMask);
+				}
+			}
+		}
+
+		// After the Sukaku check, check whether the puzzle has no non-empty cells (i.e. all cells are empty).
+		// If so, we should treat this as a Sukaku grid. Append header bits.
 		if (grid is { IsEmpty: false, EmptiesCount: 81 })
 		{
-			grid.AppendSukakuHeader();
+			grid.AddSukakuHeader();
 		}
 
 		return grid;
@@ -1658,7 +1708,7 @@ public partial struct Grid :
 		{
 			if (parser is SukakuGridParser)
 			{
-				result.AppendSukakuHeader();
+				result.AddSukakuHeader();
 			}
 
 			return result;
@@ -1974,18 +2024,40 @@ public partial struct Grid :
 	/// <seealso cref="ValueChanged"/>
 	private static void OnValueChanged(scoped ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
-		if (setValue != -1)
+		if (setValue == -1)
 		{
-			foreach (var peerCell in PeersMap[cell])
-			{
-				if (@this.GetState(peerCell) == CellState.Empty)
-				{
-					// You can't do this because of being invoked recursively.
-					//@this.SetCandidateIsOn(peerCell, setValue, false);
+			// This method will do nothing if 'setValue' is -1.
+			return;
+		}
 
-					@this[peerCell] &= (Mask)~(1 << setValue);
-				}
+		foreach (var peerCell in PeersMap[cell])
+		{
+			if (@this.GetState(peerCell) == CellState.Empty)
+			{
+				// You can't do this because of being invoked recursively.
+				//@this.SetCandidateIsOn(peerCell, setValue, false);
+
+				@this[peerCell] &= (Mask)~(1 << setValue);
 			}
+		}
+
+		// Checks for Sukaku header mask dynamically.
+		var containsNonemptyCells = false;
+		for (var c = 0; c < 81; c++)
+		{
+			if (@this.GetState(c) != CellState.Empty)
+			{
+				containsNonemptyCells = true;
+				break;
+			}
+		}
+		if (containsNonemptyCells)
+		{
+			@this.RemoveSukakuHeader();
+		}
+		else
+		{
+			@this.AddSukakuHeader();
 		}
 	}
 
@@ -2014,6 +2086,18 @@ public partial struct Grid :
 			}
 		}
 	}
+
+
+	/// <summary>
+	/// Reinterpret the current sudoku grid via the specified format.
+	/// This operator is equivalent to expression
+	/// <c><see cref="Grid"/>.Parse(<paramref name="currentGrid"/>.ToString(<paramref name="format"/>))</c>.
+	/// </summary>
+	/// <param name="currentGrid">The current sudoku grid.</param>
+	/// <param name="format">The format used.</param>
+	/// <returns>The target grid.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid operator <<(scoped in Grid currentGrid, string format) => Parse(currentGrid.ToString(format));
 
 
 	/// <summary>

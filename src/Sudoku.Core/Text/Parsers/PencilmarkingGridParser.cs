@@ -108,6 +108,9 @@ public sealed partial record PencilmarkingGridParser : IConceptParser<Grid>
 
 					if ((mask & mask - 1) == 0)
 					{
+						// Compatibility:
+						// If the cell has only one candidate left, we should treat this as given also.
+						// This may ignore Sukaku checking, which causes a bug in logic.
 						result.SetDigit(cell, TrailingZeroCount(mask));
 						result.SetState(cell, CellState.Given);
 					}

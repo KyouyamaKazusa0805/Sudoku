@@ -2865,9 +2865,14 @@ if (student is (name: var name, age: >= 18))
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.AppendSukakuHeader">
+        <member name="M:Sudoku.Concepts.Grid.AddSukakuHeader">
             <summary>
             Appends for Sukaku puzzle header.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.RemoveSukakuHeader">
+            <summary>
+            Removes for Sukaku puzzle header.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.String)">
@@ -3004,6 +3009,16 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="this">The grid itself.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,System.String)">
+            <summary>
+            Reinterpret the current sudoku grid via the specified format.
+            This operator is equivalent to expression
+            <c><see cref="T:Sudoku.Concepts.Grid"/>.Parse(<paramref name="currentGrid"/>.ToString(<paramref name="format"/>))</c>.
+            </summary>
+            <param name="currentGrid">The current sudoku grid.</param>
+            <param name="format">The format used.</param>
+            <returns>The target grid.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>

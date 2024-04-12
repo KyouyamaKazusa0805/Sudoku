@@ -174,7 +174,6 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 					return false;
 				}
 
-				scoped var resultSpan = (stackalloc char[81]);
 				var lines = original.Split(',');
 				if (lines.Length != 9)
 				{
@@ -183,6 +182,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 				}
 
 				// Check per line, and expand it.
+				scoped var resultSpan = (stackalloc char[81]);
 				var placeholder = original.Contains('0') ? '0' : '.';
 				for (var i = 0; i < 9; i++)
 				{
