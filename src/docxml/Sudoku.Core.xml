@@ -7798,6 +7798,48 @@
             </i></b></para>
             </remarks>
         </member>
+        <member name="T:Sudoku.Solving.BitwiseSolver.BitwiseSolverState">
+            <summary>
+            Represents a data structure, used by type <see cref="T:Sudoku.Solving.BitwiseSolver" />, describing state for a current grid using binary values.
+            </summary>
+            <remarks>
+            <large-structure>
+		<b>
+			<i>
+				This is a large structure, which means it may cost more time to copy instance than normal structures.
+				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
+				to tell runtime that it should be copied by its reference instead of internal value.
+			</i>
+		</b>
+	</large-structure>
+            </remarks>
+            <seealso cref="T:Sudoku.Solving.BitwiseSolver" />
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitwiseSolverState.Bands">
+            <summary>
+            Pencil marks in bands by digit.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitwiseSolverState.PrevBands">
+            <summary>
+            Value of bands last time it was calculated.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitwiseSolverState.UnsolvedCells">
+            <summary>
+            Bit vector of unsolved cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitwiseSolverState.UnsolvedRows">
+            <summary>
+            Bit vector of unsolved rows - three bits per band.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Solving.BitwiseSolver.BitwiseSolverState.Pairs">
+            <summary>
+            Bit vector of cells with exactly two pencil marks.
+            </summary>
+        </member>
         <member name="F:Sudoku.Solving.BitwiseSolver.BufferLength">
             <summary>
             The buffer length of a solution puzzle.
@@ -8012,48 +8054,6 @@
             <see cref="T:System.Char"/>[], they ends with the terminator symbol <c>'\0'</c>.
             However, C# not.
             </remarks>
-        </member>
-        <member name="T:Sudoku.Solving.BitwiseSolverState">
-            <summary>
-            Represents a data structure, used by type <see cref="T:Sudoku.Solving.BitwiseSolver" />, describing state for a current grid using binary values.
-            </summary>
-            <remarks>
-            <large-structure>
-		<b>
-			<i>
-				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped ref readonly" /> to modify the type, as parameter or local variable modifiers,
-				to tell runtime that it should be copied by its reference instead of internal value.
-			</i>
-		</b>
-	</large-structure>
-            </remarks>
-            <seealso cref="T:Sudoku.Solving.BitwiseSolver" />
-        </member>
-        <member name="F:Sudoku.Solving.BitwiseSolverState.Bands">
-            <summary>
-            Pencil marks in bands by digit.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BitwiseSolverState.PrevBands">
-            <summary>
-            Value of bands last time it was calculated.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BitwiseSolverState.UnsolvedCells">
-            <summary>
-            Bit vector of unsolved cells.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BitwiseSolverState.UnsolvedRows">
-            <summary>
-            Bit vector of unsolved rows - three bits per band.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Solving.BitwiseSolverState.Pairs">
-            <summary>
-            Bit vector of cells with exactly two pencil marks.
-            </summary>
         </member>
         <member name="T:Sudoku.Solving.ColumnNode">
             <summary>
