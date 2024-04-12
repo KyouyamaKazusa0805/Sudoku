@@ -640,7 +640,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 /// <summary>
 /// The helper type.
 /// </summary>
-file static class Helper
+file static unsafe class Helper
 {
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
@@ -652,14 +652,14 @@ file static class Helper
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	public static unsafe decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluatorFuncPtr executor, decimal d)
+	public static decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluatorFuncPtr executor, decimal d)
 	{
 		static decimal f(Step step) => step.Difficulty;
 		return steps is null ? d : executor(steps, &f);
 	}
 
 	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
-	public static unsafe decimal MaxUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
+	public static decimal MaxUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
 	{
 		var result = decimal.MinValue;
 		foreach (var element in collection)
@@ -675,7 +675,7 @@ file static class Helper
 	}
 
 	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
-	public static unsafe decimal SumUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
+	public static decimal SumUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
 	{
 		var result = 0M;
 		foreach (var element in collection)
