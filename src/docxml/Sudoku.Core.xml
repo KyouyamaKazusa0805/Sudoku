@@ -2270,6 +2270,7 @@ if (student is (name: var name, age: >= 18))
             106500970000907108400008520945000380672839410000406000009600002860000751051780039
             ]]></code>
             </remarks>
+            <exception cref="T:System.NotSupportedException">Throws when the puzzle type is Sukaku.</exception>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyHouses">
             <summary>
@@ -2304,7 +2305,12 @@ if (student is (name: var name, age: >= 18))
             <summary>
             Indicates the type of the puzzle.
             </summary>
-            <remarks><b><i>This property is not implemented now. I'll modify the logic in the future.</i></b></remarks>
+            <remarks>
+            Although the property type supports for other values, this property can only return a value
+            either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>.
+            </remarks>
+            <seealso cref="F:Sudoku.SudokuType.Standard"/>
+            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
@@ -2858,6 +2864,11 @@ if (student is (name: var name, age: >= 18))
             </summary>
             <param name="pattern">The pattern.</param>
             <returns>The result grid.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.AppendSukakuHeader">
+            <summary>
+            Appends for Sukaku puzzle header.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.String)">
             <summary>

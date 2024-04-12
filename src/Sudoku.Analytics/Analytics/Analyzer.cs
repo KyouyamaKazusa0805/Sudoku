@@ -104,6 +104,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 		if (!solution.IsUndefined)
 		{
 			// Firstly, we should check whether the puzzle is a GSP.
+			// This method doesn't check for Sukaku puzzles.
 			puzzle.InferSymmetricalPlacement(out var symmetricType, out var mappingDigits, out var selfPairedDigitsMask);
 
 			try

@@ -53,6 +53,10 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="mappingDigits">The mapping digits returned.</param>
 	/// <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
+	/// <remarks><i>
+	/// Today this method doesn't check for Sukakus because such puzzles may not contain any givens,
+	/// escaping the checking for symmetric placing rule.
+	/// </i></remarks>
 	public static bool InferSymmetricalPlacement(
 		this scoped ref readonly Grid grid,
 		out SymmetricType symmetricType,

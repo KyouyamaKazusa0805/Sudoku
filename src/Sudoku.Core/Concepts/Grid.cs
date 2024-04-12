@@ -408,10 +408,16 @@ public partial struct Grid :
 	/// 106500970000907108400008520945000380672839410000406000009600002860000751051780039
 	/// ]]></code>
 	/// </remarks>
+	/// <exception cref="NotSupportedException">Throws when the puzzle type is Sukaku.</exception>
 	public readonly string Token
 	{
 		get
 		{
+			if (PuzzleType == SudokuType.Sukaku)
+			{
+				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("NotSupportedForSukakuPuzzles"));
+			}
+
 			var convertedString = ToString("0");
 			var values = from str in convertedString.CutOfLength(9) select int.Parse(str);
 			var sb = new StringBuilder(54);
@@ -536,7 +542,12 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates the type of the puzzle.
 	/// </summary>
-	/// <remarks><b><i>This property is not implemented now. I'll modify the logic in the future.</i></b></remarks>
+	/// <remarks>
+	/// Although the property type supports for other values, this property can only return a value
+	/// either <see cref="SudokuType.Standard"/> or <see cref="SudokuType.Sukaku"/>.
+	/// </remarks>
+	/// <seealso cref="SudokuType.Standard"/>
+	/// <seealso cref="SudokuType.Sukaku"/>
 	public readonly SudokuType PuzzleType
 		=> (this[0] >> 12 << 12) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
@@ -1461,6 +1472,12 @@ public partial struct Grid :
 		return result;
 	}
 
+	/// <summary>
+	/// Appends for Sukaku puzzle header.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private void AppendSukakuHeader() => this[0] |= SukakuHeader;
+
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
@@ -1604,36 +1621,12 @@ public partial struct Grid :
 			return Undefined;
 		}
 
-		if (isSukakuMaskPattern(in grid))
+		if (grid is { IsEmpty: false, EmptiesCount: 81 })
 		{
-			grid[0] |= SukakuHeader;
+			grid.AppendSukakuHeader();
 		}
 
 		return grid;
-
-
-#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
-#endif
-		static bool isSukakuMaskPattern(scoped ref readonly Grid @this)
-		{
-			var str = @this.ToString("~");
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-			lock (PuzzleSolvingSynchronizer)
-#endif
-			{
-				if (Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-					.Value!
-#endif
-					.CheckValidity(str, out var solution))
-				{
-					return true;
-				}
-			}
-
-			return false;
-		}
 	}
 
 	/// <summary>
@@ -1665,7 +1658,7 @@ public partial struct Grid :
 		{
 			if (parser is SukakuGridParser)
 			{
-				result[0] |= SukakuHeader;
+				result.AppendSukakuHeader();
 			}
 
 			return result;
