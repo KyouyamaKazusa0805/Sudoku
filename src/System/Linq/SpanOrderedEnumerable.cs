@@ -156,7 +156,18 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<T> Slice(int start, int length) => Span.Slice(start, length);
+
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Span<T>.Enumerator GetEnumerator() => Span.GetEnumerator();
+
+	/// <summary>
+	/// Sorts the span and return the array representation.
+	/// </summary>
+	/// <returns>The array of values sorted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public T[] ToArray() => Span.ToArray();
 }

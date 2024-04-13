@@ -51,16 +51,9 @@ public static class CollectorFactory
 	/// <param name="this">The collector instance.</param>
 	/// <param name="stepSearchers">The step searchers.</param>
 	/// <returns>The reference same as <see cref="Collector"/>.</returns>
-	public static Collector WithStepSearchers(this Collector @this, StepSearcher[] stepSearchers)
+	public static Collector WithStepSearchers(this Collector @this, params StepSearcher[] stepSearchers)
 	{
 		@this.StepSearchers = stepSearchers;
-		return @this;
-	}
-
-	/// <inheritdoc cref="WithStepSearchers(Collector, StepSearcher[])"/>
-	public static Collector WithStepSearchers(this Collector @this, IEnumerable<StepSearcher> stepSearchers)
-	{
-		@this.StepSearchers = [.. stepSearchers];
 		return @this;
 	}
 

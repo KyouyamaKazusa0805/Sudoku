@@ -4622,9 +4622,6 @@
             <param name="stepSearchers">The step searchers.</param>
             <returns>The reference same as <see cref="T:Sudoku.Analytics.Collector"/>.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,System.Collections.Generic.IEnumerable{Sudoku.Analytics.StepSearcher})">
-            <inheritdoc cref="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])"/>
-        </member>
         <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearcherSetters``1(Sudoku.Analytics.Collector,System.Action{``0})">
             <summary>
             Try to set property with the specified value for the <typeparamref name="TStepSearcher"/> type.

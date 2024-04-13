@@ -2991,8 +2991,17 @@
         <member name="M:System.Linq.SpanOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
+        </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.ToArray">
+            <summary>
+            Sorts the span and return the array representation.
+            </summary>
+            <returns>The array of values sorted.</returns>
         </member>
         <member name="F:System.Linq.SpanOrderedEnumerable`1._values">
             <summary>
