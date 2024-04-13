@@ -135,7 +135,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 						}
 
 						// Append interfering digits.
-						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
+						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, in HousesMap[house], out var interferingCells);
 
 						// Found. Now return the value.
 						return new PhasedJustOneCellPuzzleSuccessful(

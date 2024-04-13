@@ -123,7 +123,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 			return GeneratingFailedReason.InvalidData;
 		}
 
-		return AppendInterferingDigitsCore(ref puzzle, in solution, targetCell, out interferingCells);
+		return AppendInterferingDigitsCore(ref puzzle, in solution, targetCell, [], out interferingCells);
 	}
 
 	/// <summary>
@@ -133,6 +133,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <param name="solution">Indicates the solution grid to the <paramref name="puzzle"/>.</param>
 	/// <param name="targetCell">The target cell to avoid.</param>
 	/// <param name="interferingCells">The cells that are filled with interfering digits.</param>
+	/// <param name="excludedCells">Indicates the excluded cells.</param>
 	/// <returns>
 	/// A <see cref="GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
 	/// </returns>
@@ -142,6 +143,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 		scoped ref Grid puzzle,
 		scoped ref readonly Grid solution,
 		Cell targetCell,
+		scoped ref readonly CellMap excludedCells,
 		out CellMap interferingCells
 	)
 	{
@@ -159,10 +161,17 @@ public abstract class TechniqueBasedPuzzleGenerator :
 				return GeneratingFailedReason.InvalidData;
 			}
 
-			for (var i = 0; i < interferingDigitsCount; i++)
+			for (var (i, p) = (0, 0); i < interferingDigitsCount; p++)
 			{
+				if (p >= 81)
+				{
+					break;
+				}
+
 				var interferingCell = CellSeed[i];
-				if (puzzle.GetState(interferingCell) == CellState.Modifiable || interferingCell == targetCell)
+				if (puzzle.GetState(interferingCell) == CellState.Modifiable
+					|| excludedCells.Contains(targetCell)
+					|| interferingCell == targetCell)
 				{
 					// Skips the cell that is already given, or is the conclusion cell.
 					continue;
@@ -171,6 +180,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 				// Set the value onto the puzzle.
 				interferingCells.Add(interferingCell);
 				puzzle.SetDigit(interferingCell, solution.GetDigit(interferingCell));
+				i++;
 			}
 		}
 

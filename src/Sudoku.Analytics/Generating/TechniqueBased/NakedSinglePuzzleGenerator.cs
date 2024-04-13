@@ -127,7 +127,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 						}
 
 						// Append interfering digits.
-						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
+						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, in excluderCells, out var interferingCells);
 
 						return new PhasedJustOneCellPuzzleSuccessful(
 							extractedGrid.FixedGrid,

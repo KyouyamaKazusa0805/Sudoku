@@ -482,7 +482,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 						}
 
 						// Append interfering digits.
-						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, out var interferingCells);
+						AppendInterferingDigitsBaseGrid(ref extractedGrid, in currentGrid, cell, in baseCells, out var interferingCells);
 
 						return new PhasedJustOneCellPuzzleSuccessful(
 							extractedGrid.FixedGrid,

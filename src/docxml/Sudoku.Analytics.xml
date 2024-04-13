@@ -21303,7 +21303,7 @@ result ^= expression;
             <returns>A <see cref="T:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle"/> instance to describe the result.</returns>
             <seealso cref="T:Sudoku.Generating.JustOneCell.PhasedJustOneCellPuzzle"/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.AppendInterferingDigitsBaseGrid(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.AppendInterferingDigitsBaseGrid(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Append interfering digits from the puzzle unfixed. The grid is generated in method
             <see cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)"/>.
@@ -21311,6 +21311,7 @@ result ^= expression;
             <param name="puzzle">An unfixed puzzle to be operated.</param>
             <param name="baseGrid">The solution to be referenced.</param>
             <param name="targetCell">The target cell to avoid.</param>
+            <param name="excludedCells">Indicates excluded cells.</param>
             <param name="interferingCells">The cells that are filled with interfering digits.</param>
             <returns>
             A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
@@ -21443,7 +21444,7 @@ result ^= expression;
             <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.AppendInterferingDigitsCore(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.AppendInterferingDigitsCore(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Append interfering digits from the puzzle unfixed.
             </summary>
@@ -21451,6 +21452,7 @@ result ^= expression;
             <param name="solution">Indicates the solution grid to the <paramref name="puzzle"/>.</param>
             <param name="targetCell">The target cell to avoid.</param>
             <param name="interferingCells">The cells that are filled with interfering digits.</param>
+            <param name="excludedCells">Indicates the excluded cells.</param>
             <returns>
             A <see cref="T:Sudoku.Generating.GeneratingFailedReason"/> instance desribing the reason why this method failed to operate.
             </returns>
