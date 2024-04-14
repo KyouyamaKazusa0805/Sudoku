@@ -490,7 +490,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								in cells,
 								mask,
 								house,
-								false
+								isCannibalism
 							);
 							if (onlyFindOne)
 							{
@@ -547,7 +547,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								in cells,
 								mask,
 								house,
-								false
+								isCannibalism
 							);
 							if (onlyFindOne)
 							{
