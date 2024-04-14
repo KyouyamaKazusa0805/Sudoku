@@ -9887,6 +9887,25 @@
 		</summary>
 	</static-constructor>
         </member>
+        <member name="T:SudokuStudio.Storage.CommonSerializerOptions">
+            <summary>
+            Provides a list of <see cref="T:System.Text.Json.JsonSerializerOptions"/> instances that is used on default cases.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonSerializerOptions.PascalCasing">
+            <summary>
+            Creates a default option instance with:
+            <list type="bullet">
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
+            <item>
+            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
+            </item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.ReadCommentHandling"/> is <see cref="F:System.Text.Json.JsonCommentHandling.Skip"/></item>
+            <item><see cref="P:System.Text.Json.JsonSerializerOptions.UnmappedMemberHandling"/> is <see cref="F:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow"/></item>
+            </list>
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Storage.FileExtensions">
             <summary>
             Provides a list of file extensions of bound file types used by this project.

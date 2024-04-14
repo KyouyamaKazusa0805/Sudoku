@@ -1076,25 +1076,6 @@
             <param name="array">The array.</param>
             <param name="options">The options.</param>
         </member>
-        <member name="T:System.Text.Json.CommonSerializerOptions">
-            <summary>
-            Provides a list of <see cref="T:System.Text.Json.JsonSerializerOptions"/> instances that is used on default cases.
-            </summary>
-        </member>
-        <member name="F:System.Text.Json.CommonSerializerOptions.PascalCasing">
-            <summary>
-            Creates a default option instance with:
-            <list type="bullet">
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.WriteIndented"/> is <see langword="true"/></item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.IgnoreReadOnlyProperties"/> is <see langword="true"/></item>
-            <item>
-            <see cref="P:System.Text.Json.JsonSerializerOptions.Encoder"/> is <see cref="P:System.Text.Encodings.Web.JavaScriptEncoder.UnsafeRelaxedJsonEscaping"/>
-            </item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.ReadCommentHandling"/> is <see cref="F:System.Text.Json.JsonCommentHandling.Skip"/></item>
-            <item><see cref="P:System.Text.Json.JsonSerializerOptions.UnmappedMemberHandling"/> is <see cref="F:System.Text.Json.Serialization.JsonUnmappedMemberHandling.Disallow"/></item>
-            </list>
-            </summary>
-        </member>
         <member name="T:System.Text.Json.CultureInfoConverter">
             <summary>
             Represents a JSON convetrer that serializes and deserializes a <see cref="T:System.Globalization.CultureInfo"/> object.

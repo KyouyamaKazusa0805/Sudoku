@@ -1,4 +1,4 @@
-namespace System.Text.Json;
+namespace SudokuStudio.Storage;
 
 /// <summary>
 /// Provides a list of <see cref="JsonSerializerOptions"/> instances that is used on default cases.
