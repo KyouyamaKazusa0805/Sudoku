@@ -4,7 +4,7 @@ namespace Sudoku.Traits;
 /// Represents a step of type <typeparamref name="TSelf"/>, presenting the third subtype.
 /// </summary>
 /// <typeparam name="TSelf">The type of the step applied.</typeparam>
-public interface IPatternType3StepTrait<TSelf> : IStepTrait where TSelf : Step, IPatternType3StepTrait<TSelf>
+public interface IPatternType3StepTrait<TSelf> : ITrait where TSelf : Step, IPatternType3StepTrait<TSelf>
 {
 	/// <summary>
 	/// Indicates whether the subset is hidden.

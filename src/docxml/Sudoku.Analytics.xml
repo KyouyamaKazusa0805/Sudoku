@@ -29040,7 +29040,7 @@ result ^= expression;
             Indicates the size of the pattern.
             </summary>
         </member>
-        <member name="T:Sudoku.Traits.IStepTrait">
+        <member name="T:Sudoku.Traits.ITrait">
             <summary>
             Represents a trait from a <see cref="T:Sudoku.Analytics.Step"/>.
             </summary>

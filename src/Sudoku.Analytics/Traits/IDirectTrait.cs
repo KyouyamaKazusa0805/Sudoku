@@ -4,4 +4,4 @@ namespace Sudoku.Traits;
 /// Represents a direct trait.
 /// </summary>
 /// <typeparam name="TBase">The type of the base value.</typeparam>
-public interface IDirectTrait<TBase> : IStepTrait;
+public interface IDirectTrait<TBase> : ITrait;

@@ -4,4 +4,4 @@ namespace Sudoku.Traits;
 /// Represents a trait from a <see cref="Step"/>.
 /// </summary>
 /// <seealso cref="Step"/>
-public interface IStepTrait;
+public interface ITrait;
