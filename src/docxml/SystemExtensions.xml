@@ -1123,34 +1123,7 @@
             <param name="startIndex">The start index.</param>
             <returns>The reference of the current instance.</returns>
         </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendValue``1(System.Text.StringBuilder,``0)">
-            <summary>
-            Appends the value into the builder.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="value">The value to be added.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendValueRef``1(System.Text.StringBuilder,``0@)">
-            <summary>
-            Appends the value into the builder.
-            </summary>
-            <typeparam name="T">The type of the instance.</typeparam>
-            <param name="this">The instance.</param>
-            <param name="value">The value to be added.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.ReadOnlySpan{``0})">
-            <summary>
-            Appends a list of elements of type <typeparamref name="T"/> into the <see cref="T:System.Text.StringBuilder"/> instance.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The <see cref="T:System.Text.StringBuilder"/> instance.</param>
-            <param name="elements">The elements to be appended.</param>
-            <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.ReadOnlySpan{``0},System.Func{``0,System.String},System.Func{System.Text.StringBuilder,System.String,System.Text.StringBuilder})">
+        <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Func{``0,System.String},System.Func{System.Text.StringBuilder,System.String,System.Text.StringBuilder},System.ReadOnlySpan{``0})">
             <summary>
             Appends a list of elements of type <typeparamref name="T"/> into the <see cref="T:System.Text.StringBuilder"/> instance,
             using the specified converter to convert each element into <see cref="T:System.String"/> value.
@@ -1167,25 +1140,6 @@
             </code>
             </param>
             <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="M:System.Text.StringBuilderExtensions.AppendRangeWithSeparator``1(System.Text.StringBuilder,``0@,System.Int32,,System.String)">
-            <summary>
-            Appends a list of elements of type <typeparamref name="T"/>, specified as the reference to the first element in the collection,
-            into the <see cref="T:System.Text.StringBuilder"/> instance, using the specified converter to convert each element into <see cref="T:System.String"/> value.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The <see cref="T:System.Text.StringBuilder"/> instance.</param>
-            <param name="collectionRef">The reference to the first element in the collection.</param>
-            <param name="collectionLength">The length of the collection.</param>
-            <param name="stringConverter">The converter method.</param>
-            <param name="separator">The separator character.</param>
-            <returns>The reference of the current instance.</returns>
-            <exception cref="T:System.ArgumentNullRefException">
-            Throws when the argument <paramref name="collectionRef"/> is <see langword="ref null"/>.
-            </exception>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="stringConverter"/> is <see langword="null"/>.
-            </exception>
         </member>
         <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
             <summary>

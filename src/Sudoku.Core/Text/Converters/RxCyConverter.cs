@@ -57,7 +57,7 @@ public sealed record RxCyConverter(
 					sbRow.Append(MakeLettersUpperCase ? 'R' : 'r');
 					sbRow.Append(row + 1);
 					sbRow.Append(MakeLettersUpperCase ? 'C' : 'c');
-					sbRow.AppendRange(dic[row].AsReadOnlySpan(), d => DigitConverter((Mask)(1 << d)));
+					sbRow.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[row].AsReadOnlySpan());
 					sbRow.Append(DefaultSeparator);
 				}
 				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
@@ -79,7 +79,7 @@ public sealed record RxCyConverter(
 				foreach (var column in dic.Keys)
 				{
 					sbColumn.Append(MakeLettersUpperCase ? 'R' : 'r');
-					sbColumn.AppendRange(dic[column].AsReadOnlySpan(), d => DigitConverter((Mask)(1 << d)));
+					sbColumn.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[column].AsReadOnlySpan());
 					sbColumn.Append(MakeLettersUpperCase ? 'C' : 'c');
 					sbColumn.Append(column + 1);
 					sbColumn.Append(DefaultSeparator);
@@ -166,7 +166,7 @@ public sealed record RxCyConverter(
 				foreach (var (houseType, h) in from kvp in dic orderby kvp.Key.GetProgramOrder() select kvp)
 				{
 					sb.Append(houseType.GetLabel());
-					sb.AppendRange(from house in h select house % 9 + 1);
+					sb.AppendRange(static integer => integer.ToString(), elements: from house in h select house % 9 + 1);
 				}
 
 				return sb.ToString();
@@ -215,7 +215,7 @@ public sealed record RxCyConverter(
 					var op = typeGroup.Key.GetNotation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
-						sb.AppendValueRef((CellMap)([.. from conclusion in digitGroup select conclusion.Cell]));
+						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));
 						sb.Append(op);
 						sb.Append(digitGroup.Key + 1);
 						sb.Append(DefaultSeparator);

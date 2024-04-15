@@ -19,7 +19,12 @@ public sealed record MaskGridConverter(string Separator = ", ") : IConceptConver
 	/// <inheritdoc/>
 	public unsafe FuncRefReadOnly<Grid, string> Converter
 		=> (scoped ref readonly Grid grid) =>
-			new StringBuilder(400)
-				.AppendRangeWithSeparator(in grid[0], 81, &CommonMethods.ToStringConverter, Separator)
-				.ToString();
+		{
+			var sb = new StringBuilder(400);
+			foreach (var mask in grid)
+			{
+				sb.Append(mask).Append(Separator);
+			}
+			return sb.RemoveFrom(^Separator.Length).ToString();
+		};
 }

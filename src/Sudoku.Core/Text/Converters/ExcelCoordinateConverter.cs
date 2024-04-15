@@ -50,7 +50,10 @@ public sealed record ExcelCoordinateConverter(
 				}
 				foreach (var row in dic.Keys)
 				{
-					sbRow.AppendRange(dic[row].AsReadOnlySpan(), column => ((MakeLettersUpperCase ? 'A' : 'a') + column).ToString());
+					sbRow.AppendRange(
+						column => ((MakeLettersUpperCase ? 'A' : 'a') + column).ToString(),
+						elements: dic[row].AsReadOnlySpan()
+					);
 					sbRow.Append(row + 1);
 					sbRow.Append(DefaultSeparator);
 				}
@@ -73,7 +76,7 @@ public sealed record ExcelCoordinateConverter(
 				foreach (var column in dic.Keys)
 				{
 					sbColumn.Append((char)((MakeLettersUpperCase ? 'A' : 'a') + column));
-					sbColumn.AppendRange(dic[column].AsReadOnlySpan(), static row => (row + 1).ToString());
+					sbColumn.AppendRange(static row => (row + 1).ToString(), elements: dic[column].AsReadOnlySpan());
 					sbColumn.Append(DefaultSeparator);
 				}
 				return sbColumn.RemoveFrom(^DefaultSeparator.Length).ToString();

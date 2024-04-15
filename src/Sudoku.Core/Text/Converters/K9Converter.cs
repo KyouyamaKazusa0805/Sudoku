@@ -66,7 +66,7 @@ public sealed record K9Converter(
 							? MakeLettersUpperCase ? char.ToUpper(FinalRowLetter) : char.ToLower(FinalRowLetter)
 							: (char)((MakeLettersUpperCase ? 'A' : 'a') + row)
 					);
-					sbRow.AppendRange(dic[row].AsReadOnlySpan(), d => DigitConverter((Mask)(1 << d)));
+					sbRow.AppendRange(d => DigitConverter((Mask)(1 << d)), elements: dic[row].AsReadOnlySpan());
 					sbRow.Append(DefaultSeparator);
 				}
 				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();

@@ -509,7 +509,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					}
 
 					sb.Append(' ');
-					sb.AppendValue(bInfo);
+					sb.Append(bInfo.ToString());
 					sb.AppendLine();
 				}
 
