@@ -42,5 +42,5 @@ public sealed partial class HWingStep(
 
 	private string StrongLinkStr => $"{Options.Converter.CellConverter(StrongLink)}({DigitX + 1})";
 
-	private string CellsStr => Options.Converter.CellConverter([Cell1, Cell2]);
+	private string CellsStr => Options.Converter.CellConverter(Cell1, Cell2);
 }

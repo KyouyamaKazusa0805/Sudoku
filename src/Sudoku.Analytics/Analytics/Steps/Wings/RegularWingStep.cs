@@ -76,7 +76,7 @@ public sealed partial class RegularWingStep(
 
 	private string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 
-	private string PivotCellStr => Options.Converter.CellConverter([Pivot]);
+	private string PivotCellStr => Options.Converter.CellConverter(Pivot);
 
 	private string CellsStr => Options.Converter.CellConverter(Petals);
 }

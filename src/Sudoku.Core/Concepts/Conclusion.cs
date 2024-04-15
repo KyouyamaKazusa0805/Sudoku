@@ -132,7 +132,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter([this]);
+	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter(this);
 
 	/// <summary>
 	/// Try to get a new <see cref="Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.

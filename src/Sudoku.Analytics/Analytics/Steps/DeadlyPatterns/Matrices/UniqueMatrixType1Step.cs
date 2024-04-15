@@ -25,5 +25,5 @@ public sealed partial class UniqueMatrixType1Step(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [DigitsStr, CellsStr, CandidateStr]), new(ChineseLanguage, [CandidateStr, CellsStr, DigitsStr])];
 
-	private string CandidateStr => Options.Converter.CandidateConverter([Candidate]);
+	private string CandidateStr => Options.Converter.CandidateConverter(Candidate);
 }

@@ -5,4 +5,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="chutes">A list of chutes.</param>
 /// <returns>An equivalent <see cref="string"/> value to the specified argument <paramref name="chutes"/>.</returns>
-public delegate string ChuteNotationConverter(scoped ReadOnlySpan<Chute> chutes);
+public delegate string ChuteNotationConverter(params ReadOnlySpan<Chute> chutes);

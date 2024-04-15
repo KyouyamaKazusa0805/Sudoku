@@ -84,13 +84,13 @@ public abstract partial class FishStep(
 				var coverSets = c.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] } => $" difficultySelector{c.CellConverter(in f)} ",
-					ComplexFishStep { Exofins: var f and not [] } => $" difficultySelector{c.CellConverter(in f)} ",
+					NormalFishStep { Fins: var f and not [] } => $" f{c.CellConverter(f)} ",
+					ComplexFishStep { Exofins: var f and not [] } => $" f{c.CellConverter(f)} ",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					ComplexFishStep { Endofins: var e and not [] } => $"ef{c.CellConverter(in e)}",
+					ComplexFishStep { Endofins: var e and not [] } => $"ef{c.CellConverter(e)}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))} {baseSets}\{coverSets}{exofins}{endofins}";
@@ -104,13 +104,13 @@ public abstract partial class FishStep(
 				var coverSets = c.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in f))}",
-					ComplexFishStep { Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in f))}",
+					NormalFishStep { Fins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
+					ComplexFishStep { Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
 					_ => string.Empty
 				};
 				var endofins = this switch
 				{
-					ComplexFishStep { Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(in e))}",
+					ComplexFishStep { Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(e))}",
 					_ => string.Empty
 				};
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";

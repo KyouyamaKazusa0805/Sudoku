@@ -5,4 +5,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="cells">A list of cells.</param>
 /// <returns>An equivalent <see cref="string"/> value to the specified argument <paramref name="cells"/>.</returns>
-public delegate string CellNotationConverter(scoped ref readonly CellMap cells);
+public delegate string CellNotationConverter(params CellMap cells);

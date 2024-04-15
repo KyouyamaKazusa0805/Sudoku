@@ -29,12 +29,12 @@ public sealed record RxCyConverter(
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
-		=> (scoped ref readonly CellMap cells) =>
+		=> cells =>
 		{
 			return cells switch
 			{
-			[] => string.Empty,
-			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[] => string.Empty,
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -90,7 +90,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override CandidateNotationConverter CandidateConverter
-		=> (scoped ref readonly CandidateMap candidates) =>
+		=> candidates =>
 		{
 			if (!candidates)
 			{
@@ -104,20 +104,15 @@ public sealed record RxCyConverter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = (CellMap)[];
-				foreach (var candidate in digitGroup)
-				{
-					cells.Add(candidate / 9);
-				}
-
+				var cells = (CellMap)([.. from candidate in digitGroup select candidate / 9]);
 				if (MakeDigitBeforeCell)
 				{
 					sb.Append(digitGroup.Key + 1);
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 				}
 				else
 				{
-					sb.Append(CellConverter(in cells));
+					sb.Append(CellConverter(cells));
 					sb.Append('(');
 					sb.Append(digitGroup.Key + 1);
 					sb.Append(')');
@@ -191,12 +186,12 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override ConclusionNotationConverter ConclusionConverter
-		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
+		=> conclusions =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -267,7 +262,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override ChuteNotationConverter ChuteConverter
-		=> (scoped ReadOnlySpan<Chute> chutes) =>
+		=> chutes =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
 			foreach (var (index, _, isRow, _) in chutes)
@@ -303,7 +298,7 @@ public sealed record RxCyConverter(
 
 	/// <inheritdoc/>
 	public override ConjugateNotationConverter ConjugateConverter
-		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
+		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)
 			{
@@ -313,8 +308,8 @@ public sealed record RxCyConverter(
 			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter([conjugatePair.From]);
-				var toCellString = CellConverter([conjugatePair.To]);
+				var fromCellString = CellConverter(conjugatePair.From);
+				var toCellString = CellConverter(conjugatePair.To);
 				sb.Append(
 					MakeDigitBeforeCell
 						? $"{DigitConverter((Mask)(1 << conjugatePair.Digit))}{fromCellString} == {toCellString}"

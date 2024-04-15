@@ -5,4 +5,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="candidates">A list of candidates.</param>
 /// <returns>An equivalent <see cref="string"/> value to the specified argument <paramref name="candidates"/>.</returns>
-public delegate string CandidateNotationConverter(scoped ref readonly CandidateMap candidates);
+public delegate string CandidateNotationConverter(params CandidateMap candidates);

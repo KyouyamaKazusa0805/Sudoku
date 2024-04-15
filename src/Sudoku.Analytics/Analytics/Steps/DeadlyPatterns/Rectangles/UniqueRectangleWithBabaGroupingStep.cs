@@ -44,7 +44,7 @@ public sealed partial class UniqueRectangleWithBabaGroupingStep(
 			new(ChineseLanguage, [D1Str, D2Str, CellsStr, TargetCellStr, DigitsStr, ExtraDigitStr])
 		];
 
-	private string TargetCellStr => Options.Converter.CellConverter([TargetCell]);
+	private string TargetCellStr => Options.Converter.CellConverter(TargetCell);
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 }

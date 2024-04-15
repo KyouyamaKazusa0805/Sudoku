@@ -34,9 +34,9 @@ public sealed partial class WWingStep(
 	public override FormatInterpolation[] FormatInterpolationParts
 		=> [new(EnglishLanguage, [StartCellStr, EndCellStr, BridgeStr]), new(ChineseLanguage, [StartCellStr, EndCellStr, BridgeStr])];
 
-	private string StartCellStr => Options.Converter.CellConverter([StartCell]);
+	private string StartCellStr => Options.Converter.CellConverter(StartCell);
 
-	private string EndCellStr => Options.Converter.CellConverter([EndCell]);
+	private string EndCellStr => Options.Converter.CellConverter(EndCell);
 
 	private string BridgeStr => Options.Converter.CellConverter(Bridge);
 }

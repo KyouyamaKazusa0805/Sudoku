@@ -11,10 +11,10 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
-		=> (scoped ref readonly CellMap cells) => cells switch
+		=> cells => cells switch
 		{
-		[] => string.Empty,
-		[var p] => string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
+			[] => string.Empty,
+			[var p] => string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
 			_ => string.Format(
 				ResourceDictionary.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(DefaultSeparator, [.. from cell in cells select string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)])
@@ -23,12 +23,12 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override CandidateNotationConverter CandidateConverter
-		=> (scoped ref readonly CandidateMap candidates) =>
+		=> candidates =>
 		{
 			var snippets = new List<string>();
 			foreach (var candidate in candidates)
 			{
-				var cellString = CellConverter([candidate / 9]);
+				var cellString = CellConverter(candidate / 9);
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
 				snippets.Add(string.Format(ResourceDictionary.Get("CandidateLabel", TargetCurrentCulture), cellString, digitString));
 			}
@@ -90,12 +90,12 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override ConclusionNotationConverter ConclusionConverter
-		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
+		=> conclusions =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -178,7 +178,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override ChuteNotationConverter ChuteConverter
-		=> (scoped ReadOnlySpan<Chute> chutes) =>
+		=> chutes =>
 		{
 			var snippets = new List<string>(6);
 			foreach (var (index, _, isRow, _) in chutes)
@@ -191,7 +191,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 	/// <inheritdoc/>
 	public override ConjugateNotationConverter ConjugateConverter
-		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
+		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)
 			{
@@ -201,8 +201,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			var snippets = new List<string>();
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter([conjugatePair.From]);
-				var toCellString = CellConverter([conjugatePair.To]);
+				var fromCellString = CellConverter(conjugatePair.From);
+				var toCellString = CellConverter(conjugatePair.To);
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
 				snippets.Add(string.Format(ResourceDictionary.Get("ConjugatePairWith", TargetCurrentCulture), fromCellString, toCellString, digitString));
 			}

@@ -28,7 +28,7 @@ public sealed partial class DeathBlossomStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor()];
 
-	private string PivotStr => Options.Converter.CellConverter([Pivot]);
+	private string PivotStr => Options.Converter.CellConverter(Pivot);
 
 	private string BranchesStr
 		=> string.Join(

@@ -666,7 +666,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(in this);
+	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

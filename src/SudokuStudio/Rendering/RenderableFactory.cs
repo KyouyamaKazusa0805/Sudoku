@@ -378,7 +378,7 @@ internal static class RenderableFactory
 				var control = new Border
 				{
 					BorderThickness = new(0),
-					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}",
+					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(cell)}{id.GetIdentifierSuffix()}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
 					CornerRadius = new(6),
@@ -433,7 +433,7 @@ internal static class RenderableFactory
 				{
 					var result = instanceCreator();
 					result.BorderThickness = new(0);
-					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter([cell])}{id.GetIdentifierSuffix()}";
+					result.Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(cell)}{id.GetIdentifierSuffix()}";
 					result.Background = new SolidColorBrush(IdentifierConversion.GetColor(id));
 					result.Opacity = 0;
 					result.Margin = result switch { Star or Triangle or Diamond => new(3, 0, 0, 0), _ => new(6) };
@@ -542,7 +542,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.CircleHollow, _) or (true, false, _, _, AssignmentDisplay.CircleHollow) => new Ellipse
@@ -553,7 +553,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(true, true, _, EliminationDisplay.Cross or EliminationDisplay.Slash or EliminationDisplay.Backslash, _) => new Cross
@@ -564,7 +564,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Background = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{conclusionTagStr}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplay.Cross or EliminationDisplay.Slash
 					? Visibility.Visible
@@ -580,7 +580,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.CircleHollow, _, _) => new Ellipse
@@ -591,7 +591,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareHollow, _, _) => new Rectangle
@@ -602,7 +602,7 @@ internal static class RenderableFactory
 				VerticalAlignment = VerticalAlignment.Center,
 				Stroke = new SolidColorBrush(color),
 				StrokeThickness = (width + height) / 2 * 3 / 20,
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1
 			},
 			(_, _, CandidateViewNodeDisplay.SquareSolid, _, _) => new Rectangle
@@ -612,7 +612,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 			},
 			(_, _, CandidateViewNodeDisplay.RoundedRectangleHollow, _, _) => new Rectangle
@@ -622,7 +622,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -634,7 +634,7 @@ internal static class RenderableFactory
 				HorizontalAlignment = HorizontalAlignment.Center,
 				VerticalAlignment = VerticalAlignment.Center,
 				Fill = new SolidColorBrush(color),
-				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter([candidate])}{id.GetIdentifierSuffix()}",
+				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
 				RadiusX = width / 3,
 				RadiusY = height / 3
@@ -796,7 +796,7 @@ internal static class RenderableFactory
 		var control = new Border
 		{
 			BorderThickness = new(0),
-			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter([cell])}, {@char}{id.GetIdentifierSuffix()}",
+			Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(BabaGroupViewNode)][0]} {new RxCyConverter().CellConverter(cell)}, {@char}{id.GetIdentifierSuffix()}",
 			Opacity = sudokuPane.EnableAnimationFeedback ? 0 : (double)sudokuPane.HighlightBackgroundOpacity,
 			Child = new TextBlock
 			{

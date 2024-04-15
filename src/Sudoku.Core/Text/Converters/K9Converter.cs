@@ -28,7 +28,7 @@ public sealed record K9Converter(
 {
 	/// <inheritdoc/>
 	public override CellNotationConverter CellConverter
-		=> (scoped ref readonly CellMap cells) =>
+		=> cells =>
 		{
 			switch (cells)
 			{
@@ -104,7 +104,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override CandidateNotationConverter CandidateConverter
-		=> (scoped ref readonly CandidateMap candidates) =>
+		=> candidates =>
 		{
 			var sb = new StringBuilder(50);
 			foreach (var digitGroup in
@@ -113,16 +113,9 @@ public sealed record K9Converter(
 				orderby digitGroups.Key
 				select digitGroups)
 			{
-				var cells = (CellMap)[];
-				foreach (var candidate in digitGroup)
-				{
-					cells.Add(candidate / 9);
-				}
-
-				sb.Append(CellConverter(in cells));
+				sb.Append(CellConverter([.. from candidate in digitGroup select candidate / 9]));
 				sb.Append('.');
 				sb.Append(digitGroup.Key + 1);
-
 				sb.Append(DefaultSeparator);
 			}
 			return sb.RemoveFrom(^DefaultSeparator.Length).ToString();
@@ -191,12 +184,12 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override ConclusionNotationConverter ConclusionConverter
-		=> (scoped ReadOnlySpan<Conclusion> conclusions) =>
+		=> conclusions =>
 		{
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -299,7 +292,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override ChuteNotationConverter ChuteConverter
-		=> (scoped ReadOnlySpan<Chute> chutes) =>
+		=> chutes =>
 		{
 			var megalines = new Dictionary<bool, byte>(2);
 			foreach (var (index, _, isRow, _) in chutes)
@@ -335,7 +328,7 @@ public sealed record K9Converter(
 
 	/// <inheritdoc/>
 	public override ConjugateNotationConverter ConjugateConverter
-		=> (scoped ReadOnlySpan<Conjugate> conjugatePairs) =>
+		=> conjugatePairs =>
 		{
 			if (conjugatePairs.Length == 0)
 			{
@@ -345,8 +338,8 @@ public sealed record K9Converter(
 			var sb = new StringBuilder(20);
 			foreach (var conjugatePair in conjugatePairs)
 			{
-				var fromCellString = CellConverter([conjugatePair.From]);
-				var toCellString = CellConverter([conjugatePair.To]);
+				var fromCellString = CellConverter(conjugatePair.From);
+				var toCellString = CellConverter(conjugatePair.To);
 				sb.Append($"{fromCellString} == {toCellString}.{DigitConverter((Mask)(1 << conjugatePair.Digit))}");
 				sb.Append(DefaultSeparator);
 			}

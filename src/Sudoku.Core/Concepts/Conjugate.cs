@@ -91,7 +91,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter([this]);
+	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

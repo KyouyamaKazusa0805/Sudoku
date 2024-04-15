@@ -81,7 +81,7 @@ public partial struct CandidateMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch { { _count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter([a])], _ => f(Offsets) };
+			return this switch { { _count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter(a)], _ => f(Offsets) };
 
 
 			static string[] f(Candidate[] offsets)
@@ -102,7 +102,7 @@ public partial struct CandidateMap :
 
 					list.Add(
 						sb
-							.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(in cells))
+							.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(cells))
 							.Append($"({digitGroup.Key + 1})")
 							.ToString()
 					);
@@ -353,7 +353,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CoordinateConverter converter) => converter.CandidateConverter(in this);
+	public readonly string ToString(CoordinateConverter converter) => converter.CandidateConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

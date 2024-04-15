@@ -5,4 +5,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="conclusions">A list of conjugate pairs.</param>
 /// <returns>An equivalent <see cref="string"/> value to the specified argument <paramref name="conclusions"/>.</returns>
-public delegate string ConclusionNotationConverter(scoped ReadOnlySpan<Conclusion> conclusions);
+public delegate string ConclusionNotationConverter(params ReadOnlySpan<Conclusion> conclusions);

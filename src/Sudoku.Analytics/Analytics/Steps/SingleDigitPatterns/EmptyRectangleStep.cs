@@ -32,5 +32,5 @@ public sealed partial class EmptyRectangleStep(
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << Block);
 
-	private string ConjStr => Options.Converter.ConjugateConverter([ConjugatePair]);
+	private string ConjStr => Options.Converter.ConjugateConverter(ConjugatePair);
 }

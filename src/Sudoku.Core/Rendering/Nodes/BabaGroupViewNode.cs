@@ -32,7 +32,7 @@ public sealed partial class BabaGroupViewNode(
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => GlobalizedConverter.InvariantCultureConverter.CellConverter([Cell]);
+	private string CellString => GlobalizedConverter.InvariantCultureConverter.CellConverter(Cell);
 
 	/// <summary>
 	/// Indicates the digits mask string.

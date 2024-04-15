@@ -230,6 +230,6 @@ file sealed record PathNode(scoped ref readonly Grid Grid, House House, Candidat
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(CoordinateConverter converter)
 		=> House != -1
-			? $"Full House / Hidden Single: {converter.CandidateConverter([Candidate])} in house {converter.HouseConverter(1 << House)}"
-			: $"Naked Single: {converter.CandidateConverter([Candidate])}";
+			? $"Full House / Hidden Single: {converter.CandidateConverter(Candidate)} in house {converter.HouseConverter(1 << House)}"
+			: $"Naked Single: {converter.CandidateConverter(Candidate)}";
 }

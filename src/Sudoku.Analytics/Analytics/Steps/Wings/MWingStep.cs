@@ -45,7 +45,7 @@ public sealed partial class MWingStep(
 
 	private string Node2Str => Options.Converter.CellConverter(Node2);
 
-	private string Cell1Str => Options.Converter.CellConverter([WeakXyCell]);
+	private string Cell1Str => Options.Converter.CellConverter(WeakXyCell);
 
-	private string Cell2Str => Options.Converter.CellConverter([StrongXyCell]);
+	private string Cell2Str => Options.Converter.CellConverter(StrongXyCell);
 }
