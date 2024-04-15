@@ -178,21 +178,6 @@ public static class ArrayEnumerable
 	/// <typeparam name="TResult">The type of the return value.</typeparam>
 	/// <param name="source">Indicates the source values.</param>
 	/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
-	/// <param name="defaultValue">Indicates the result value.</param>
-	/// <returns>The result value.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TResult SumNullable<T, TResult>(this T[]? source, Func<T, TResult> selector, TResult defaultValue)
-		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
-		=> source is null ? defaultValue : source.Sum(selector);
-
-	/// <summary>
-	/// Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
-	/// on each element of the input sequence.
-	/// </summary>
-	/// <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
-	/// <typeparam name="TResult">The type of the return value.</typeparam>
-	/// <param name="source">Indicates the source values.</param>
-	/// <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
 	/// <returns>The result value.</returns>
 	public static TResult Sum<T, TResult>(this T[] source, Func<T, TResult> selector)
 		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
@@ -202,7 +187,18 @@ public static class ArrayEnumerable
 		{
 			result += selector(element);
 		}
+		return result;
+	}
 
+	/// <inheritdoc cref="Sum{T, TResult}(T[], Func{T, TResult})"/>
+	public static unsafe TResult SumUnsafe<T, TResult>(this T[] source, delegate*<T, TResult> selector)
+		where TResult : IAdditionOperators<TResult, TResult, TResult>, IAdditiveIdentity<TResult, TResult>
+	{
+		var result = TResult.AdditiveIdentity;
+		foreach (var element in source)
+		{
+			result += selector(element);
+		}
 		return result;
 	}
 
@@ -220,13 +216,28 @@ public static class ArrayEnumerable
 		var result = TInterim.MaxValue;
 		foreach (var element in @this)
 		{
-			var projectedElement = selector(element);
-			if (projectedElement <= result)
+			var elementCasted = selector(element);
+			if (elementCasted <= result)
 			{
-				result = projectedElement;
+				result = elementCasted;
 			}
 		}
+		return result;
+	}
 
+	/// <inheritdoc cref="Min{T, TInterim}(T[], Func{T, TInterim})"/>
+	public static unsafe TInterim MinUnsafe<T, TInterim>(this T[] @this, delegate*<T, TInterim> selector)
+		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
+	{
+		var result = TInterim.MaxValue;
+		foreach (var element in @this)
+		{
+			var elementCasted = selector(element);
+			if (elementCasted <= result)
+			{
+				result = elementCasted;
+			}
+		}
 		return result;
 	}
 
@@ -244,13 +255,28 @@ public static class ArrayEnumerable
 		var result = TInterim.MinValue;
 		foreach (var element in @this)
 		{
-			var projectedElement = selector(element);
-			if (projectedElement >= result)
+			var elementCasted = selector(element);
+			if (elementCasted >= result)
 			{
-				result = projectedElement;
+				result = elementCasted;
 			}
 		}
+		return result;
+	}
 
+	/// <inheritdoc cref="Max{T, TInterim}(T[], Func{T, TInterim})"/>
+	public static unsafe TInterim MaxUnsafe<T, TInterim>(this T[] @this, delegate*<T, TInterim> selector)
+		where TInterim : IMinMaxValue<TInterim>, IComparisonOperators<TInterim, TInterim, bool>
+	{
+		var result = TInterim.MinValue;
+		foreach (var element in @this)
+		{
+			var elementCasted = selector(element);
+			if (elementCasted >= result)
+			{
+				result = elementCasted;
+			}
+		}
 		return result;
 	}
 

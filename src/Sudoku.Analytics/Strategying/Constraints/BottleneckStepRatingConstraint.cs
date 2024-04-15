@@ -12,14 +12,14 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public decimal Minimum { get; set; }
+	public int Minimum { get; set; }
 
 	/// <summary>
 	/// Indicates the maximum value.
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public decimal Maximum { get; set; }
+	public int Maximum { get; set; }
 
 	/// <inheritdoc/>
 	[HashCodeMember]
@@ -58,7 +58,7 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static bool b(decimal v, BetweenRule rule, decimal min, decimal max)
+		static bool b(int v, BetweenRule rule, int min, int max)
 			=> rule switch
 			{
 				BetweenRule.BothOpen => v > min && v < max,

@@ -2441,18 +2441,6 @@
             An array of <typeparamref name="T"/> instances that contains elements from the input sequence that satisfy the condition.
             </returns>
         </member>
-        <member name="M:System.Linq.ArrayEnumerable.SumNullable``2(``0[],System.Func{``0,``1},``1)">
-            <summary>
-            Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
-            on each element of the input sequence.
-            </summary>
-            <typeparam name="T">The type of element of <paramref name="source"/>.</typeparam>
-            <typeparam name="TResult">The type of the return value.</typeparam>
-            <param name="source">Indicates the source values.</param>
-            <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
-            <param name="defaultValue">Indicates the result value.</param>
-            <returns>The result value.</returns>
-        </member>
         <member name="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})">
             <summary>
             Computes the sum of the sequence of <typeparamref name="TResult"/> values that are obtained by invoking a transform function
@@ -2464,6 +2452,9 @@
             <param name="selector">The method that projects the value into an instance of type <typeparamref name="TResult"/>.</param>
             <returns>The result value.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.SumUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Sum``2(``0[],System.Func{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})">
             <summary>
             Invokes a transform function on each element of a sequence and returns the minimum <typeparamref name="TInterim"/> value.
@@ -2474,6 +2465,9 @@
             <param name="selector">A transform function to apply to each element.</param>
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the minimum value in the sequence.</returns>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.MinUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Min``2(``0[],System.Func{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})">
             <summary>
             Invokes a transform function on each element of a sequence and returns the maximum <typeparamref name="TInterim"/> value.
@@ -2483,6 +2477,9 @@
             <param name="this">A sequence of values to determine the maximum value of.</param>
             <param name="selector">A transform function to apply to each element.</param>
             <returns>The value of type <typeparamref name="TInterim"/> that corresponds to the maximum value in the sequence.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.MaxUnsafe``2(``0[],)">
+            <inheritdoc cref="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})"/>
         </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
             <summary>

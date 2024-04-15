@@ -639,6 +639,18 @@
         <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalyzerResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="steps">The steps to be calculated.</param>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="N:Sudoku.Analytics.Steps"/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalyzerResult.FormattingOptions">
             <summary>
             Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult" /> instance.
@@ -734,7 +746,7 @@
             <param name="techniqueName">Technique name.</param>
             <returns>The first found step.</returns>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)">
+        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)">
             <summary>
             Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
             </summary>
@@ -753,7 +765,7 @@
             </summary>
             <param name="code">The specified technique code.</param>
             <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)" path="/returns"/>
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
@@ -763,32 +775,9 @@
             </summary>
             <param name="difficultyLevel">The specified difficulty level.</param>
             <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Decimal)" path="/returns"/>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)" path="/returns"/>
             </returns>
             <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="T:Sudoku.Analytics.Helper">
-            <summary>
-            The helper type.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Helper.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Decimal)">
-            <summary>
-            The inner executor to get the difficulty value (total, average).
-            </summary>
-            <param name="steps">The steps to be calculated.</param>
-            <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="N:Sudoku.Analytics.Steps"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Helper.MaxUnsafe``1(``0[],)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Max(System.Collections.Generic.IEnumerable{System.Decimal})"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Helper.SumUnsafe``1(``0[],)">
-            <inheritdoc cref="M:System.Linq.Enumerable.Sum``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Decimal})"/>
         </member>
         <member name="T:Sudoku.Analytics.Analyzers">
             <summary>
@@ -21837,23 +21826,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="T:Sudoku.Measuring.FactorMarshal">
-            <summary>
-            Represents some methods operating with <see cref="T:Sudoku.Measuring.Factor"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Measuring.Factor"/>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleUnitLength(System.Decimal)">
-            <summary>
-            Try to get the scale unit length from the scale value.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleFormatString(System.Decimal)">
-            <summary>
-            Try to get the scale unit from the scale value.
-            </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
             <summary>

@@ -154,23 +154,22 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		}
 
 		var scale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
-		var scaleInteger = FactorMarshal.GetScaleUnitLength(1 / scale);
 		var r = Application.Current.Resources;
-		var maximum = (double)((int)r["MaximumRatingValue"]! * (double)r["MaximumRatingScaleValue"]!);
+		var maximum = (int)r["MaximumRatingValue"]!;
 
 		//
 		// Rating control
 		//
-		var ratingMinControl = new NumberBox { Width = 200, Minimum = 0, Maximum = maximum, Value = (double)min };
-		var ratingMaxControl = new NumberBox { Width = 200, Minimum = 0, Maximum = maximum, Value = (double)max };
+		var ratingMinControl = new IntegerBox { Width = 200, Minimum = 0, Maximum = maximum, Value = min };
+		var ratingMaxControl = new IntegerBox { Width = 200, Minimum = 0, Maximum = maximum, Value = max };
 		ratingMinControl.ValueChanged += (_, _) =>
 		{
-			constraint.Minimum = f(ratingMinControl.Value, scaleInteger);
+			constraint.Minimum = ratingMinControl.Value;
 			ratingMaxControl.Minimum = ratingMinControl.Value;
 		};
 		ratingMaxControl.ValueChanged += (_, _) =>
 		{
-			constraint.Maximum = f(ratingMaxControl.Value, scaleInteger);
+			constraint.Maximum = ratingMinControl.Value;
 			ratingMinControl.Maximum = ratingMaxControl.Value;
 		};
 
@@ -205,9 +204,6 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 			},
 			Tag = constraint
 		};
-
-
-		static decimal f(double value, int scaleInteger) => (decimal)(scaleInteger == -1 ? value : Round(value, scaleInteger));
 	}
 
 	private SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint)

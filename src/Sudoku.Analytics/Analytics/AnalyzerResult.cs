@@ -1,8 +1,5 @@
 namespace Sudoku.Analytics;
 
-using static Helper;
-using unsafe StepRatingEvaluatorFuncPtr = delegate*<Step[], delegate*<Step, decimal>, decimal>;
-
 /// <summary>
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
@@ -117,7 +114,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="MaximumRatingValueTheory"/>
-	public unsafe decimal MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &MaxUnsafe, MaximumRatingValueTheory);
+	public unsafe int MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.MaxUnsafe, MaximumRatingValueTheory);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -129,7 +126,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="InterimSteps"/>
-	public unsafe decimal TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &SumUnsafe, MinimumRatingValue);
+	public unsafe int TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.SumUnsafe, MinimumRatingValue);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -139,7 +136,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	public decimal? PearlDifficulty => PearlStep?.Difficulty;
+	public int? PearlDifficulty => PearlStep?.Difficulty;
 
 	/// <summary>
 	/// <para>
@@ -151,7 +148,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// </summary>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-	public decimal? DiamondDifficulty => DiamondStep?.Difficulty;
+	public int? DiamondDifficulty => DiamondStep?.Difficulty;
 
 	/// <summary>
 	/// Indicates why the solving operation is failed.
@@ -483,7 +480,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 					var infoStr = options.HasFlag(FormattingOptions.ShowSimple) ? info.ToSimpleString(culture) : info.ToString(culture);
 					var showDiff = options.HasFlag(FormattingOptions.ShowDifficulty);
 
-					var d = $"({info.Difficulty,5:0.0}";
+					var d = $"({info.Difficulty,5}";
 					var s = $"{i + 1,4}";
 					var labelInfo = (options.HasFlag(FormattingOptions.ShowStepLabel), showDiff) switch
 					{
@@ -537,8 +534,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 			{
 				if (options.HasFlag(FormattingOptions.ShowStepDetail))
 				{
-					var currentTotal = 0M;
-					var currentMinimum = decimal.MaxValue;
+					var currentTotal = 0;
+					var currentMinimum = int.MaxValue;
 					foreach (var solvingStep in solvingStepsGroup)
 					{
 						var difficulty = solvingStep.Difficulty;
@@ -546,7 +543,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 						currentMinimum = Math.Min(currentMinimum, difficulty);
 					}
 
-					sb.Append($"{currentMinimum,6:0.0}, {currentTotal,6:0.0}) ");
+					sb.Append($"{currentMinimum,6}, {currentTotal,6}) ");
 				}
 
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
@@ -565,7 +562,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 
 		// Print detail data.
 		sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleRating", culture));
-		sb.AppendLine($"{max:0.0}/{pearl ?? MaximumRatingValueTheory:0.0}/{diamond ?? MaximumRatingValueTheory:0.0}");
+		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
 		if (!solution.IsUndefined && options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
@@ -635,13 +632,8 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)StepsSpan.ToArray()).GetEnumerator();
-}
 
-/// <summary>
-/// The helper type.
-/// </summary>
-file static unsafe class Helper
-{
+
 	/// <summary>
 	/// The inner executor to get the difficulty value (total, average).
 	/// </summary>
@@ -652,37 +644,12 @@ file static unsafe class Helper
 	/// </param>
 	/// <returns>The result.</returns>
 	/// <seealso cref="Steps"/>
-	public static decimal EvaluateRatingUnsafe(Step[]? steps, StepRatingEvaluatorFuncPtr executor, decimal d)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private static unsafe int EvaluateRatingUnsafe(Step[]? steps, delegate*<Step[], delegate*<Step, int>, int> executor, int d)
 	{
-		static decimal f(Step step) => step.Difficulty;
-		return steps is null ? d : executor(steps, &f);
-	}
+		return steps is null ? d : executor(steps, &difficultySelector);
 
-	/// <inheritdoc cref="Enumerable.Max(IEnumerable{decimal})"/>
-	public static decimal MaxUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
-	{
-		var result = decimal.MinValue;
-		foreach (var element in collection)
-		{
-			var converted = selector(element);
-			if (converted >= result)
-			{
-				result = converted;
-			}
-		}
 
-		return result;
-	}
-
-	/// <inheritdoc cref="Enumerable.Sum{TSource}(IEnumerable{TSource}, Func{TSource, decimal})"/>
-	public static decimal SumUnsafe<T>(T[] collection, delegate*<T, decimal> selector)
-	{
-		var result = 0M;
-		foreach (var element in collection)
-		{
-			result += selector(element);
-		}
-
-		return result;
+		static int difficultySelector(Step step) => step.Difficulty;
 	}
 }

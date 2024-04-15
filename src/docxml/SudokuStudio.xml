@@ -15519,6 +15519,23 @@
 				</summary>
 			</target>
         </member>
+        <member name="T:Sudoku.Measuring.FactorMarshal">
+            <summary>
+            Represents some methods operating with <see cref="T:Sudoku.Measuring.Factor"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleUnitLength(System.Decimal)">
+            <summary>
+            Try to get the scale unit length from the scale value.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the scale value is negative.</exception>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorMarshal.GetScaleFormatString(System.Decimal)">
+            <summary>
+            Try to get the scale unit from the scale value.
+            </summary>
+        </member>
         <member name="T:Program">
             <summary>
             Represents a type that encapsulates the entry point.

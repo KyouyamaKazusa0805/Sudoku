@@ -59,19 +59,19 @@ public partial record AnalyzerResult
 			{
 				var (_, step) = pair;
 				var name = step.GetName();
-				if (nameEquality(name))
+				if (n(name))
 				{
 					return pair;
 				}
 
 				var aliases = step.Code.GetAliasedNames();
-				if (aliases is not null && Array.Exists(aliases, nameEquality))
+				if (aliases is not null && Array.Exists(aliases, n))
 				{
 					return pair;
 				}
 
 				var abbr = step.Code.GetAbbreviation();
-				if (abbr is not null && nameEquality(abbr))
+				if (abbr is not null && n(abbr))
 				{
 					return pair;
 				}
@@ -79,7 +79,8 @@ public partial record AnalyzerResult
 			return null;
 
 
-			bool nameEquality(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			bool n(string name) => name == techniqueName || name.Contains(techniqueName, StringComparison.OrdinalIgnoreCase);
 		}
 	}
 
@@ -94,7 +95,7 @@ public partial record AnalyzerResult
 	/// only depends on property <see cref="IsSolved"/>.
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public ReadOnlySpan<Step> this[decimal difficultyRating]
+	public ReadOnlySpan<Step> this[int difficultyRating]
 		=> StepsSpan.FindAll((scoped ref readonly Step step) => step.Difficulty == difficultyRating);
 
 	/// <summary>
@@ -102,7 +103,7 @@ public partial record AnalyzerResult
 	/// </summary>
 	/// <param name="code">The specified technique code.</param>
 	/// <returns>
-	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// <inheritdoc cref="this[int]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[Technique code] => StepsSpan.FindAll((scoped ref readonly Step step) => step.Code == code);
@@ -112,7 +113,7 @@ public partial record AnalyzerResult
 	/// </summary>
 	/// <param name="difficultyLevel">The specified difficulty level.</param>
 	/// <returns>
-	/// <inheritdoc cref="this[decimal]" path="/returns"/>
+	/// <inheritdoc cref="this[int]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]

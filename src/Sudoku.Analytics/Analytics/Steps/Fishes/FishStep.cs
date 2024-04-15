@@ -84,8 +84,8 @@ public abstract partial class FishStep(
 				var coverSets = c.HouseConverter(CoverSetsMask);
 				var exofins = this switch
 				{
-					NormalFishStep { Fins: var f and not [] } => $" f{c.CellConverter(in f)} ",
-					ComplexFishStep { Exofins: var f and not [] } => $" f{c.CellConverter(in f)} ",
+					NormalFishStep { Fins: var f and not [] } => $" difficultySelector{c.CellConverter(in f)} ",
+					ComplexFishStep { Exofins: var f and not [] } => $" difficultySelector{c.CellConverter(in f)} ",
 					_ => string.Empty
 				};
 				var endofins = this switch

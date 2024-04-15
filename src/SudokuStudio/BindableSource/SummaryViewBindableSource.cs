@@ -28,7 +28,7 @@ internal sealed partial class SummaryViewBindableSource(
 	/// </param>
 	/// <returns>The result list of <see cref="SummaryViewBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
+	public static unsafe ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
 	{
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
 		return analyzerResult switch
@@ -61,8 +61,8 @@ internal sealed partial class SummaryViewBindableSource(
 			select new SummaryViewBindableSource(
 				stepGroup.Key,
 				difficultyLevels.Aggregate(CommonMethods.EnumFlagMerger),
-				stepGroupArray.Sum(r),
-				stepGroupArray.Max(r),
+				stepGroupArray.SumUnsafe(&r),
+				stepGroupArray.MaxUnsafe(&r),
 				stepGroupArray.Length
 			);
 	}
