@@ -195,13 +195,11 @@ public sealed record K9Converter(
 		{
 			return conclusions switch
 			{
-			[] => string.Empty,
-			[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+				[] => string.Empty,
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
-
-			static int cmp(scoped ref readonly Conclusion left, scoped ref readonly Conclusion right) => left.CompareTo(right);
 
 			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
 			{
@@ -213,13 +211,13 @@ public sealed record K9Converter(
 				);
 
 				var sb = new StringBuilder(50);
-				conclusions.SortUnsafe(&cmp);
 
+				Array.Sort(conclusions, static (left, right) => left.CompareTo(right));
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.HasOnlyOneElement();
 				foreach (var typeGroup in selection)
 				{
-					var op = typeGroup.Key.Notation();
+					var op = typeGroup.Key.GetNotation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb.Append(CellConverter([.. from conclusion in digitGroup select conclusion.Cell]));

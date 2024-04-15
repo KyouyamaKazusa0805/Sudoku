@@ -165,7 +165,7 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.ConclusionType"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.Notation(Sudoku.Concepts.ConclusionType)">
+        <member name="M:Sudoku.Analytics.ConclusionTypeExtensions.GetNotation(Sudoku.Concepts.ConclusionType)">
             <summary>
             Gets the notation of the conclusion type.
             </summary>

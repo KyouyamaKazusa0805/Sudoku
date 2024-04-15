@@ -33,8 +33,8 @@ public sealed record RxCyConverter(
 		{
 			return cells switch
 			{
-				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+			[] => string.Empty,
+			[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -196,12 +196,10 @@ public sealed record RxCyConverter(
 			return conclusions switch
 			{
 				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter([c])}{t.Notation()}{DigitConverter((Mask)(1 << d))}",
+				[(var t, var c, var d)] => $"{CellConverter([c])}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
-
-			static int cmp(scoped ref readonly Conclusion left, scoped ref readonly Conclusion right) => left.CompareTo(right);
 
 			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
 			{
@@ -213,13 +211,13 @@ public sealed record RxCyConverter(
 				);
 
 				var sb = new StringBuilder(50);
-				conclusions.SortUnsafe(&cmp);
 
+				Array.Sort(conclusions);
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
 				var hasOnlyOneType = selection.HasOnlyOneElement();
 				foreach (var typeGroup in selection)
 				{
-					var op = typeGroup.Key.Notation();
+					var op = typeGroup.Key.GetNotation();
 					foreach (var digitGroup in from conclusion in typeGroup group conclusion by conclusion.Digit)
 					{
 						sb.AppendValueRef((CellMap)([.. from conclusion in digitGroup select conclusion.Cell]));

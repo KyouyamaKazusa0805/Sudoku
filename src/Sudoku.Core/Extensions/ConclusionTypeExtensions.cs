@@ -15,7 +15,7 @@ public static class ConclusionTypeExtensions
 	/// Throws when the argument <paramref name="this"/> is not defined in enumeration type.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Notation(this ConclusionType @this)
+	public static string GetNotation(this ConclusionType @this)
 		=> @this switch
 		{
 			Assignment => " = ",
