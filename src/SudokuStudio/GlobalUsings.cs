@@ -58,6 +58,7 @@ global using Sudoku.Compatibility.Hodoku;
 global using Sudoku.Compatibility.SudokuExplainer;
 global using Sudoku.Concepts;
 global using Sudoku.Generating;
+global using Sudoku.Generating.JustOneCell;
 global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;

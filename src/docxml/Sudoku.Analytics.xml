@@ -21103,27 +21103,27 @@ result ^= expression;
             <param name="step">The step instance.</param>
             <returns>Argument <paramref name="this"/>.</returns>
         </member>
-        <member name="T:Sudoku.Generating.ConlusionCellAlignment">
+        <member name="T:Sudoku.Generating.JustOneCell.ConlusionCellAlignment">
             <summary>
             Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.ConlusionCellAlignment.NotLimited">
+        <member name="F:Sudoku.Generating.JustOneCell.ConlusionCellAlignment.NotLimited">
             <summary>
             Indicates conclusion cell can be everywhere.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterHouse">
+        <member name="F:Sudoku.Generating.JustOneCell.ConlusionCellAlignment.CenterHouse">
             <summary>
             Indicates conclusion cell can only be inside row 5, column 5 and block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterBlock">
+        <member name="F:Sudoku.Generating.JustOneCell.ConlusionCellAlignment.CenterBlock">
             <summary>
             Indicates conclusion cell can only be inside block 5.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.ConlusionCellAlignment.CenterCell">
+        <member name="F:Sudoku.Generating.JustOneCell.ConlusionCellAlignment.CenterCell">
             <summary>
             Indicates the conclusion cell must be <c>r5c5</c>.
             </summary>
@@ -21405,7 +21405,7 @@ result ^= expression;
             <param name="cell">The cell.</param>
             <returns>The block position.</returns>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.ConlusionCellAlignment)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.RandomlySelectHouse(Sudoku.Generating.JustOneCell.ConlusionCellAlignment)">
             <summary>
             Randomly select a house, obeying the specified grid alignment rule.
             </summary>
