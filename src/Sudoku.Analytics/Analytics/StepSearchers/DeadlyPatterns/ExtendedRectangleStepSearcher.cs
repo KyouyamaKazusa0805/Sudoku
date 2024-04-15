@@ -15,7 +15,7 @@ using RawPatternDataItem = (bool IsFat, CellMap PatternCells, (Cell Left, Cell R
 [StepSearcher(
 	"StepSearcherName_ExtendedRectangleStepSearcher",
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2,
-	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType4,
+	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType3Cannibalism, Technique.ExtendedRectangleType4,
 	SupportedSudokuTypes = SudokuType.Standard,
 	SupportMultiple = false)]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
@@ -490,7 +490,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								in cells,
 								mask,
 								house,
-								false
+								isCannibalism
 							);
 							if (onlyFindOne)
 							{
@@ -547,7 +547,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 								in cells,
 								mask,
 								house,
-								false
+								isCannibalism
 							);
 							if (onlyFindOne)
 							{

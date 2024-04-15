@@ -1623,7 +1623,7 @@ public partial struct Grid :
 					{
 						if (currentParser is SusserGridParser)
 						{
-							return grid;
+							return g;
 						}
 
 						grid = g;

@@ -28,7 +28,7 @@ public sealed partial class ExtendedRectangleType3Step(
 	public override int Type => 3;
 
 	/// <inheritdoc/>
-	public override Technique Code => IsCannibalism ? Technique.ExtendedRectangleType3 : Technique.ExtendedRectangleType3Cannibalism;
+	public override Technique Code => IsCannibalism ? Technique.ExtendedRectangleType3Cannibalism : Technique.ExtendedRectangleType3;
 
 	/// <inheritdoc/>
 	public override FormatInterpolation[] FormatInterpolationParts
