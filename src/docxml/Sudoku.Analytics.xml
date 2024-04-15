@@ -1143,49 +1143,139 @@
             Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle0">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock0">
             <summary>
-            Indicates the subtype is Naked Single, with no values in the target block.
+            Indicates the subtype is naked single with no values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle1">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock1">
             <summary>
-            Indicates the subtype is Naked Single, with 1 value in the target block.
+            Indicates the subtype is naked single with 1 value in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle2">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock2">
             <summary>
-            Indicates the subtype is Naked Single, with 2 values in the target block.
+            Indicates the subtype is naked single with 2 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle3">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock3">
             <summary>
-            Indicates the subtype is Naked Single, with 3 values in the target block.
+            Indicates the subtype is naked single with 3 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle4">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock4">
             <summary>
-            Indicates the subtype is Naked Single, with 4 values in the target block.
+            Indicates the subtype is naked single with 4 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle5">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock5">
             <summary>
-            Indicates the subtype is Naked Single, with 5 values in the target block.
+            Indicates the subtype is naked single with 5 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle6">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock6">
             <summary>
-            Indicates the subtype is Naked Single, with 6 values in the target block.
+            Indicates the subtype is naked single with 6 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle7">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock7">
             <summary>
-            Indicates the subtype is Naked Single, with 7 values in the target block.
+            Indicates the subtype is naked single with 7 values in target block.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingle8">
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleBlock8">
             <summary>
-            Indicates the subtype is Naked Single, with 8 values in the target block.
+            Indicates the subtype is naked single with 8 values in target block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow0">
+            <summary>
+            Indicates the subtype is naked single with 0 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow1">
+            <summary>
+            Indicates the subtype is naked single with 1 value in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow2">
+            <summary>
+            Indicates the subtype is naked single with 2 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow3">
+            <summary>
+            Indicates the subtype is naked single with 3 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow4">
+            <summary>
+            Indicates the subtype is naked single with 4 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow5">
+            <summary>
+            Indicates the subtype is naked single with 5 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow6">
+            <summary>
+            Indicates the subtype is naked single with 6 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow7">
+            <summary>
+            Indicates the subtype is naked single with 7 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleRow8">
+            <summary>
+            Indicates the subtype is naked single with 8 values in target row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn0">
+            <summary>
+            Indicates the subtype is naked single with 0 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn1">
+            <summary>
+            Indicates the subtype is naked single with 1 value in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn2">
+            <summary>
+            Indicates the subtype is naked single with 2 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn3">
+            <summary>
+            Indicates the subtype is naked single with 3 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn4">
+            <summary>
+            Indicates the subtype is naked single with 4 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn5">
+            <summary>
+            Indicates the subtype is naked single with 5 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn6">
+            <summary>
+            Indicates the subtype is naked single with 6 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn7">
+            <summary>
+            Indicates the subtype is naked single with 7 values in target column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.NakedSingleColumn8">
+            <summary>
+            Indicates the subtype is naked single with 8 values in target column.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.Unknown">
@@ -6238,6 +6328,14 @@
             <param name="chosenCells">The chosen cells.</param>
             <returns>The subtype of the hidden single.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
+            <summary>
+            Get subtype of the naked single.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="cell">The cell.</param>
+            <returns>The subtype of the naked single.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluderCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
             Get all <see cref="T:System.Int32"/>s that represents as excluders.
@@ -10639,14 +10737,6 @@
             </summary>
             <param name="context"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/param[@name='context']"/></param>
             <returns><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" path="/returns"/></returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.GetNakedSingleSubtype(Sudoku.Concepts.Grid@,System.Int32)">
-            <summary>
-            Get subtype of the naked single.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="cell">The cell.</param>
-            <returns>The subtype of the naked single.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.SingleStepSearcher.CheckFullHouse(Sudoku.Analytics.StepSearchers.SingleStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@)">
             <summary>

@@ -129,6 +129,37 @@ internal static class SingleModule
 	}
 
 	/// <summary>
+	/// Get subtype of the naked single.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The subtype of the naked single.</returns>
+	public static SingleSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
+	{
+		var (valuesCountInBlock, valuesCountInRow, valuesCountInColumn) = (0, 0, 0);
+		foreach (var houseType in HouseTypes)
+		{
+			foreach (var c in HousesMap[cell.ToHouseIndex(houseType)])
+			{
+				if (grid.GetState(c) != CellState.Empty)
+				{
+					(
+						houseType == HouseType.Block
+							? ref valuesCountInBlock
+							: ref houseType == HouseType.Row ? ref valuesCountInRow : ref valuesCountInColumn
+					)++;
+				}
+			}
+		}
+		var maxValue = MathExtensions.Max(valuesCountInBlock, valuesCountInRow, valuesCountInColumn);
+		return Enum.Parse<SingleSubtype>(
+			maxValue == valuesCountInBlock
+				? $"NakedSingleBlock{maxValue}"
+				: maxValue == valuesCountInRow ? $"NakedSingleRow{maxValue}" : $"NakedSingleColumn{maxValue}"
+		);
+	}
+
+	/// <summary>
 	/// Get all <see cref="Cell"/>s that represents as excluders.
 	/// </summary>
 	/// <param name="grid">The grid.</param>

@@ -269,58 +269,166 @@ public enum SingleSubtype
 	ColumnHiddenSingle220 = 618,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with no values in the target block.
+	/// Indicates the subtype is naked single with no values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS0", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle0 = 632,
+	[TechniqueMetadata(Abbreviation = "NS10", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock0 = 701,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 1 value in the target block.
+	/// Indicates the subtype is naked single with 1 value in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS1", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle1 = 631,
+	[TechniqueMetadata(Abbreviation = "NS11", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock1 = 702,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 2 values in the target block.
+	/// Indicates the subtype is naked single with 2 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS2", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle2 = 624,
+	[TechniqueMetadata(Abbreviation = "NS12", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock2 = 703,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 3 values in the target block.
+	/// Indicates the subtype is naked single with 3 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS3", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle3 = 619,
+	[TechniqueMetadata(Abbreviation = "NS13", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock3 = 704,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 4 values in the target block.
+	/// Indicates the subtype is naked single with 4 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS4", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle4 = 605,
+	[TechniqueMetadata(Abbreviation = "NS14", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock4 = 705,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 5 values in the target block.
+	/// Indicates the subtype is naked single with 5 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS5", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle5 = 602,
+	[TechniqueMetadata(Abbreviation = "NS15", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock5 = 706,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 6 values in the target block.
+	/// Indicates the subtype is naked single with 6 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS6", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle6 = 505,
+	[TechniqueMetadata(Abbreviation = "NS16", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock6 = 707,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 7 values in the target block.
+	/// Indicates the subtype is naked single with 7 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS7", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle7 = 504,
+	[TechniqueMetadata(Abbreviation = "NS17", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock7 = 504,
 
 	/// <summary>
-	/// Indicates the subtype is Naked Single, with 8 values in the target block.
+	/// Indicates the subtype is naked single with 8 values in target block.
 	/// </summary>
-	[TechniqueMetadata(Abbreviation = "NS8", RelatedTechnique = Technique.NakedSingle)]
-	NakedSingle8 = 1004,
+	[TechniqueMetadata(Abbreviation = "NS18", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleBlock8 = 1004,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 0 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS20", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow0 = 708,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 1 value in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS21", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow1 = 709,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 2 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS22", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow2 = 710,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 3 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS23", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow3 = 711,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 4 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS24", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow4 = 712,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 5 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS25", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow5 = 713,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 6 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS26", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow6 = 714,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 7 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS27", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow7 = 505,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 8 values in target row.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS28", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleRow8 = 1005,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 0 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS30", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn0 = 715,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 1 value in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS31", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn1 = 716,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 2 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS32", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn2 = 717,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 3 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS33", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn3 = 718,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 4 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS34", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn4 = 719,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 5 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS35", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn5 = 720,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 6 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS36", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn6 = 721,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 7 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS37", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn7 = 506,
+
+	/// <summary>
+	/// Indicates the subtype is naked single with 8 values in target column.
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "NS38", RelatedTechnique = Technique.NakedSingle)]
+	NakedSingleColumn8 = 1006,
 
 	/// <summary>
 	/// Indicates the unknown technique.

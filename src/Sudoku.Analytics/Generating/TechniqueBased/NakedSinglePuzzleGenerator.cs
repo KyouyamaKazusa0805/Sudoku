@@ -45,7 +45,6 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 		} while (AppendInterferingDigitsNoBaseGrid(ref puzzle, targetCell, out interferingCells) == GeneratingFailedReason.InvalidData);
 
 		var targetDigit = Log2((uint)digitsMask);
-		var blockCellsCount = (HousesMap[targetCell.ToHouseIndex(HouseType.Block)] - puzzle.EmptyCells).Count;
 		return new JustOneCellPuzzleSuccessful(
 			puzzle.FixedGrid,
 			targetCell,
@@ -56,18 +55,7 @@ public sealed class NakedSinglePuzzleGenerator : SinglePuzzleGenerator<NakedSing
 				null!,
 				targetCell,
 				targetDigit,
-				blockCellsCount switch
-				{
-					0 => SingleSubtype.NakedSingle0,
-					1 => SingleSubtype.NakedSingle1,
-					2 => SingleSubtype.NakedSingle2,
-					3 => SingleSubtype.NakedSingle3,
-					4 => SingleSubtype.NakedSingle4,
-					5 => SingleSubtype.NakedSingle5,
-					6 => SingleSubtype.NakedSingle6,
-					7 => SingleSubtype.NakedSingle7,
-					8 => SingleSubtype.NakedSingle8
-				},
+				SingleModule.GetNakedSingleSubtype(in puzzle, targetCell),
 				SingleModule.GetLastingAllHouses(in puzzle, targetCell, out _)
 			),
 			in interferingCells,

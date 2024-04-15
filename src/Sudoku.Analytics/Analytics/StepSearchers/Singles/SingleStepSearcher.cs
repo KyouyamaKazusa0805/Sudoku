@@ -166,7 +166,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary() && !context.IsSukaku)
+				if (SingleModule.GetNakedSingleSubtype(in grid, cell) is var subtype && subtype.IsUnnecessary() && !context.IsSukaku)
 				{
 					continue;
 				}
@@ -222,36 +222,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		return null;
 	}
 
-
-	/// <summary>
-	/// Get subtype of the naked single.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="cell">The cell.</param>
-	/// <returns>The subtype of the naked single.</returns>
-	private static SingleSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
-	{
-		var valuesCountInBlock = 0;
-		foreach (var c in HousesMap[cell.ToHouseIndex(HouseType.Block)])
-		{
-			if (grid.GetState(c) != CellState.Empty)
-			{
-				valuesCountInBlock++;
-			}
-		}
-		return valuesCountInBlock switch
-		{
-			0 => SingleSubtype.NakedSingle0,
-			1 => SingleSubtype.NakedSingle1,
-			2 => SingleSubtype.NakedSingle2,
-			3 => SingleSubtype.NakedSingle3,
-			4 => SingleSubtype.NakedSingle4,
-			5 => SingleSubtype.NakedSingle5,
-			6 => SingleSubtype.NakedSingle6,
-			7 => SingleSubtype.NakedSingle7,
-			_ => SingleSubtype.NakedSingle8
-		};
-	}
 
 	/// <summary>
 	/// Check for full houses.
@@ -396,7 +366,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				context.PredefinedOptions,
 				cell,
 				digit,
-				GetNakedSingleSubtype(in grid, cell),
+				SingleModule.GetNakedSingleSubtype(in grid, cell),
 				SingleModule.GetLastingAllHouses(in grid, cell, out _)
 			);
 			if (context.OnlyFindOne)

@@ -571,7 +571,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
+				SingleModule.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);
@@ -832,7 +832,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				subsetHouse,
 				[cell],
 				eliminatedDigitsMask,
-				SingleSubtype.NakedSingle0 + (HousesMap[cell.ToHouseIndex(HouseType.Block)] - emptyCells).Count,
+				SingleModule.GetNakedSingleSubtype(in grid, cell),
 				Technique.NakedSingle,
 				subsetTechnique
 			);

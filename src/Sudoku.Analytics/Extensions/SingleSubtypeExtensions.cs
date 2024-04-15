@@ -17,11 +17,10 @@ public static class SingleSubtypeExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsUnnecessary(this SingleSubtype @this)
 		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
-		or SingleSubtype.NakedSingle8
+		or SingleSubtype.NakedSingleBlock8 or SingleSubtype.NakedSingleRow8 or SingleSubtype.NakedSingleColumn8
 #if ENHANCED_UNNECESSARY_SUBTYPES
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
 		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220
-		or SingleSubtype.RowHiddenSingle104 or SingleSubtype.ColumnHiddenSingle140
 #endif
 		;
 
