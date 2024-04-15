@@ -4391,7 +4391,7 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDefaultRating(Sudoku.Analytics.Categorization.Technique,System.Decimal@)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetDefaultRating(Sudoku.Analytics.Categorization.Technique,System.Int32@)">
             <summary>
             Try to get the base difficulty value for the specified technique.
             </summary>

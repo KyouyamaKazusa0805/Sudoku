@@ -27,7 +27,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		static TechniqueData dataCreator(Technique technique, int value)
 		{
 			technique.GetDefaultRating(out var directRating);
-			return new(value, (int)(directRating * RatingScaleDefaultValue), technique.GetDifficultyLevel());
+			return new(value, directRating, technique.GetDifficultyLevel());
 		}
 
 		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { Rating = value };
@@ -44,7 +44,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 
 
 		static TechniqueData dataCreator(Technique technique, int value)
-			=> new((int)(technique.GetDefaultRating(out _) * RatingScaleDefaultValue), value, technique.GetDifficultyLevel());
+			=> new(technique.GetDefaultRating(out _), value, technique.GetDifficultyLevel());
 
 		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { DirectRating = value };
 	}
@@ -62,7 +62,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		static TechniqueData dataCreator(Technique technique, DifficultyLevel value)
 		{
 			var rating = technique.GetDefaultRating(out var directRating);
-			return new((int)(rating * RatingScaleDefaultValue), (int)(directRating * RatingScaleDefaultValue), value);
+			return new(rating, directRating, value);
 		}
 
 		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, DifficultyLevel value) => data with { Level = value };
@@ -105,9 +105,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	/// <param name="technique">The technique.</param>
 	/// <returns>The rating value.</returns>
 	public int GetRatingOrDefault(Technique technique)
-		=> CustomizedTechniqueData.TryGetValue(technique, out var pair)
-			? pair.Rating
-			: (int)(technique.GetDefaultRating(out _) * RatingScaleDefaultValue);
+		=> CustomizedTechniqueData.TryGetValue(technique, out var pair) ? pair.Rating : technique.GetDefaultRating(out _);
 
 	/// <inheritdoc cref="GetDifficultyLevelOrDefault(Technique)"/>
 	public DifficultyLevel? GetDifficultyLevel(Technique technique)

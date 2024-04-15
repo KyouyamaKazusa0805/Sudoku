@@ -10,7 +10,7 @@ namespace Sudoku.Analytics.Metadata;
 /// </para>
 /// </shared-comments>
 [AttributeUsage(AttributeTargets.Field, Inherited = false)]
-public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double, DifficultyLevel>
+public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, DifficultyLevel>
 {
 	/// <summary>
 	/// Indicates the customized tag to be used. The value may be used in reflection to define your customized data
@@ -35,7 +35,7 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<double
 	/// <summary>
 	/// Indicates the rating value defined in direct mode.
 	/// </summary>
-	public double DirectRating { get; init; }
+	public int DirectRating { get; init; }
 
 	/// <summary>
 	/// Indicates the resource key that can fetch the corresponding resource string.
