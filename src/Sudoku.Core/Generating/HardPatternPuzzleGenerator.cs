@@ -75,13 +75,14 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 					return grid;
 				}
 
+				// Report if failed to generate.
+				progress?.Report(new(++progressTimes));
+
+				cancellationToken.ThrowIfCancellationRequested();
+
+				// Re-create pattern.
 				RecreatePattern(holeCells);
 			}
-
-			progressTimes += 1000;
-			progress?.Report(new(progressTimes));
-
-			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 
