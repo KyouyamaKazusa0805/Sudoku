@@ -4353,15 +4353,20 @@
             Indicates the swapping factor.
             </summary>
         </member>
+        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._randomShared">
+            <summary>
+            Indicates the shared <see cref="T:System.Random"/> instance.
+            </summary>
+        </member>
         <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._solver">
             <summary>
             Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
             of a puzzle being generated.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.HardPatternPuzzleGenerator._rng">
+        <member name="P:Sudoku.Generating.HardPatternPuzzleGenerator.Rng">
             <summary>
-            Indicates the random number generator.
+            Indicates the backing random.
             </summary>
         </member>
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
@@ -4395,6 +4400,20 @@
             <param name="ptrGrid">The pointer that points to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Generating.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Generating.Extensions.NextDigit(System.Random)">
+            <summary>
+            Gets the next digit.
+            </summary>
+            <param name="this">The random instance.</param>
+            <returns>The next digit.</returns>
         </member>
         <member name="T:Sudoku.Generating.IGenerator`1">
             <summary>

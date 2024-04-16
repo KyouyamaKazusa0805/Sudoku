@@ -18,68 +18,70 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 
 
 	/// <summary>
+	/// Indicates the shared <see cref="Random"/> instance.
+	/// </summary>
+	private static Random? _randomShared;
+
+
+	/// <summary>
 	/// Indicates the inner solver that can fast solve a sudoku puzzle, to check the validity
 	/// of a puzzle being generated.
 	/// </summary>
 	private readonly BitwiseSolver _solver = new();
 
+
 	/// <summary>
-	/// Indicates the random number generator.
+	/// Indicates the backing random.
 	/// </summary>
-	private readonly Random _rng = new();
+	private static Random Rng => _randomShared ??= Random.Shared;
 
 
 	/// <inheritdoc/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
-		var puzzle = stackalloc char[81];
-		var solution = stackalloc char[81];
-		var holeCells = stackalloc Cell[81];
-		var progressTimes = 0;
-		while (true)
+		var puzzle = stackalloc char[82];
+		var solution = stackalloc char[82];
+		var holeCells = stackalloc Cell[82];
+		(puzzle[81], solution[81], holeCells[81], var progressTimes) = ('\0', '\0', '\0', 0);
+		fixed (char* emptyCharPtr = Grid.EmptyString)
 		{
-			Unsafe.CopyBlock(
-				ref Ref.AsByteRef(ref puzzle[0]),
-				in Ref.AsReadOnlyByteRef(in Grid.EmptyString.Ref()),
-				sizeof(char) * 81
-			);
-			Unsafe.CopyBlock(
-				ref Ref.AsByteRef(ref solution[0]),
-				in Ref.AsReadOnlyByteRef(in Grid.EmptyString.Ref()),
-				sizeof(char) * 81
-			);
-
-			GenerateAnswerGrid(puzzle, solution);
-
-			Unsafe.InitBlock(holeCells, 0, 81 * sizeof(Cell));
-			CreatePattern(holeCells);
-			for (var trial = 0; trial < 1000; trial++)
+			while (true)
 			{
-				for (var cell = 0; cell < 81; cell++)
-				{
-					var p = holeCells[cell];
-					var temp = solution[p];
-					solution[p] = '0';
+				Unsafe.CopyBlock(puzzle, emptyCharPtr, sizeof(char) * 81);
+				Unsafe.CopyBlock(solution, emptyCharPtr, sizeof(char) * 81);
 
-					if (!_solver.CheckValidity(solution))
+				GenerateAnswerGrid(puzzle, solution);
+
+				Unsafe.InitBlock(holeCells, 0, 81 * sizeof(Cell));
+				CreatePattern(holeCells);
+				for (var trial = 0; trial < 1000; trial++)
+				{
+					for (var cell = 0; cell < 81; cell++)
 					{
-						// Reset the value.
-						solution[p] = temp;
+						var p = holeCells[cell];
+						var temp = solution[p];
+						solution[p] = '0';
+
+						if (!_solver.CheckValidity(solution))
+						{
+							// Reset the value.
+							solution[p] = temp;
+						}
 					}
+
+					if (_solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
+					{
+						return grid;
+					}
+
+					RecreatePattern(holeCells);
 				}
 
-				if (_solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
-				{
-					return grid;
-				}
+				progressTimes += 1000;
+				progress?.Report(new(progressTimes));
 
-				RecreatePattern(holeCells);
+				cancellationToken.ThrowIfCancellationRequested();
 			}
-
-			progressTimes += 1000;
-			progress?.Report(new(progressTimes));
-
-			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 
@@ -104,7 +106,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 			{
 				while (true)
 				{
-					if (map.Add(_rng.Next(81)))
+					if (map.Add(Rng.Next(81)))
 					{
 						break;
 					}
@@ -115,7 +117,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(_rng.Next(1, 9) + '0');
+					pPuzzle[cell] = (char)(Rng.NextDigit() + '1');
 				} while (CheckDuplicate(pPuzzle, cell));
 			}
 		} while (_solver.SolveString(pPuzzle, pSolution, 2) == 0);
@@ -129,7 +131,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 	{
 		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
-			var n = (int)(_rng.NextDouble() * 6);
+			var n = (int)(Rng.NextDouble() * 6);
 			for (var j = 0; j < 3; j++)
 			{
 				for (var k = 0; k < 3; k++)
@@ -154,7 +156,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				Ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * _rng.NextDouble())]);
+				Ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble())]);
 			}
 		}
 	}
@@ -179,4 +181,16 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 
 		return false;
 	}
+}
+
+/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
+file static class Extensions
+{
+	/// <summary>
+	/// Gets the next digit.
+	/// </summary>
+	/// <param name="this">The random instance.</param>
+	/// <returns>The next digit.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Digit NextDigit(this Random @this) => @this.Next(0, 9);
 }
