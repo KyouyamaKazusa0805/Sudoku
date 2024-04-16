@@ -549,7 +549,7 @@ public partial struct Grid :
 	/// <seealso cref="SudokuType.Standard"/>
 	/// <seealso cref="SudokuType.Sukaku"/>
 	public readonly SudokuType PuzzleType
-		=> (this[0] >> 12 << 12) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
+		=> (this[0] >> 12) switch { SukakuHeader << 12 => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
