@@ -1004,7 +1004,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 				}
 			}
 
-			var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, digit);
+			scoped var conclusions = from cell in elimMap select new Conclusion(Elimination, cell, digit);
 			if (!AllowIncompleteUniqueRectangles && (candidateOffsets.Count, conclusions.Length) != (6, 2))
 			{
 				return;
