@@ -4372,32 +4372,32 @@
         <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Char*,System.Char*)">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.GenerateAnswerGrid(System.Span{System.Char},System.Span{System.Char})">
             <summary>
             Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
             </summary>
-            <param name="pPuzzle">The pointer that points to the puzzle.</param>
-            <param name="pSolution">
+            <param name="puzzleString">The pointer that points to the puzzle.</param>
+            <param name="solutionString">
             The pointer that points to the solution. The result value will be changed here.
             </param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CreatePattern(System.Span{System.Int32})">
             <summary>
             Creates a start pattern based on a base pattern.
             </summary>
             <param name="pattern">The base pattern.</param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Int32*)">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.RecreatePattern(System.Span{System.Int32})">
             <summary>
             To re-create the pattern.
             </summary>
             <param name="pattern">The pointer that points to an array of the pattern values.</param>
         </member>
-        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Char*,System.Int32)">
+        <member name="M:Sudoku.Generating.HardPatternPuzzleGenerator.CheckDuplicate(System.Span{System.Char},System.Int32)">
             <summary>
             Check whether the digit in its peer cells has duplicate ones.
             </summary>
-            <param name="ptrGrid">The pointer that points to a grid.</param>
+            <param name="gridString">The pointer that points to a grid.</param>
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
@@ -4407,6 +4407,13 @@
 					Provides with file-local extension methods.
 				</summary>
 			</target>
+        </member>
+        <member name="M:Sudoku.Generating.Extensions.ToPointer(System.Char@)">
+            <summary>
+            Cast the reference to pointer.
+            </summary>
+            <param name="this">The reference to be casted.</param>
+            <returns>The pointer.</returns>
         </member>
         <member name="M:Sudoku.Generating.Extensions.NextDigit(System.Random)">
             <summary>

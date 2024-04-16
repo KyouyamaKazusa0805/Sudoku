@@ -4,7 +4,7 @@ namespace Sudoku.Generating;
 /// Defines a puzzle generator that makes the given pattern as a hard one.
 /// A <b>hard pattern</b> doesn't mean the puzzle will be hard or fiendish.
 /// </summary>
-public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
+public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 {
 	/// <summary>
 	/// Indicates the block factor.
@@ -37,68 +37,68 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 
 
 	/// <inheritdoc/>
-	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
+	public unsafe Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
-		var puzzle = stackalloc char[82];
-		var solution = stackalloc char[82];
-		var holeCells = stackalloc Cell[82];
-		(puzzle[81], solution[81], holeCells[81], var progressTimes) = ('\0', '\0', '\0', 0);
-		fixed (char* emptyCharPtr = Grid.EmptyString)
+		scoped var puzzleString = (stackalloc char[82]);
+		scoped var solutionString = (stackalloc char[82]);
+		scoped var holeCells = (stackalloc Cell[82]);
+		(puzzleString[^1], solutionString[^1], holeCells[^1], var progressTimes) = ('\0', '\0', '\0', 0);
+
+		scoped ref readonly var charRef = ref Grid.EmptyString.Ref();
+		while (true)
 		{
-			while (true)
+			Unsafe.CopyBlock(ref Ref.AsByteRef(ref puzzleString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref Ref.AsByteRef(ref solutionString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
+
+			GenerateAnswerGrid(puzzleString, solutionString);
+
+			holeCells.Clear();
+			CreatePattern(holeCells);
+
+			for (var trial = 0; trial < 1000; trial++)
 			{
-				Unsafe.CopyBlock(puzzle, emptyCharPtr, sizeof(char) * 81);
-				Unsafe.CopyBlock(solution, emptyCharPtr, sizeof(char) * 81);
-
-				GenerateAnswerGrid(puzzle, solution);
-
-				Unsafe.InitBlock(holeCells, 0, 81 * sizeof(Cell));
-				CreatePattern(holeCells);
-				for (var trial = 0; trial < 1000; trial++)
+				for (var cell = 0; cell < 81; cell++)
 				{
-					for (var cell = 0; cell < 81; cell++)
+					var p = holeCells[cell];
+					var temp = solutionString[p];
+					solutionString[p] = '0';
+
+					if (!_solver.CheckValidity(solutionString[0].ToPointer()))
 					{
-						var p = holeCells[cell];
-						var temp = solution[p];
-						solution[p] = '0';
-
-						if (!_solver.CheckValidity(solution))
-						{
-							// Reset the value.
-							solution[p] = temp;
-						}
+						// Reset the value.
+						solutionString[p] = temp;
 					}
-
-					if (_solver.CheckValidity(solution) && Grid.Parse(new string(solution)) is var grid)
-					{
-						return grid;
-					}
-
-					RecreatePattern(holeCells);
 				}
 
-				progressTimes += 1000;
-				progress?.Report(new(progressTimes));
+				if (_solver.CheckValidity(solutionString[0].ToPointer()) && Grid.Parse(new string(solutionString)) is var grid)
+				{
+					return grid;
+				}
 
-				cancellationToken.ThrowIfCancellationRequested();
+				RecreatePattern(holeCells);
 			}
+
+			progressTimes += 1000;
+			progress?.Report(new(progressTimes));
+
+			cancellationToken.ThrowIfCancellationRequested();
 		}
 	}
 
 	/// <summary>
 	/// Generates the answer sudoku grid via the specified puzzle and the solution variable pointer.
 	/// </summary>
-	/// <param name="pPuzzle">The pointer that points to the puzzle.</param>
-	/// <param name="pSolution">
+	/// <param name="puzzleString">The pointer that points to the puzzle.</param>
+	/// <param name="solutionString">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private void GenerateAnswerGrid(char* pPuzzle, char* pSolution)
+	private unsafe void GenerateAnswerGrid(scoped Span<char> puzzleString, scoped Span<char> solutionString)
 	{
 		do
 		{
 			for (var i = 0; i < 81; i++)
 			{
-				pPuzzle[i] = '0';
+				puzzleString[i] = '0';
 			}
 
 			var map = (CellMap)[];
@@ -117,17 +117,17 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 			{
 				do
 				{
-					pPuzzle[cell] = (char)(Rng.NextDigit() + '1');
-				} while (CheckDuplicate(pPuzzle, cell));
+					puzzleString[cell] = (char)(Rng.NextDigit() + '1');
+				} while (CheckDuplicate(puzzleString, cell));
 			}
-		} while (_solver.SolveString(pPuzzle, pSolution, 2) == 0);
+		} while (_solver.SolveString(puzzleString[0].ToPointer(), solutionString[0].ToPointer(), 2) == 0);
 	}
 
 	/// <summary>
 	/// Creates a start pattern based on a base pattern.
 	/// </summary>
 	/// <param name="pattern">The base pattern.</param>
-	private void CreatePattern(Cell* pattern)
+	private void CreatePattern(scoped Span<Cell> pattern)
 	{
 		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
@@ -148,7 +148,7 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// To re-create the pattern.
 	/// </summary>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
-	private void RecreatePattern(Cell* pattern)
+	private void RecreatePattern(scoped Span<Cell> pattern)
 	{
 		scoped var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
 		for (var index = 0; index < 4; index++)
@@ -165,15 +165,15 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <summary>
 	/// Check whether the digit in its peer cells has duplicate ones.
 	/// </summary>
-	/// <param name="ptrGrid">The pointer that points to a grid.</param>
+	/// <param name="gridString">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(char* ptrGrid, Cell cell)
+	private static bool CheckDuplicate(scoped Span<char> gridString, Cell cell)
 	{
-		var value = ptrGrid[cell];
+		var value = gridString[cell];
 		foreach (var c in PeersMap[cell])
 		{
-			if (value != '0' && ptrGrid[c] == value)
+			if (value != '0' && gridString[c] == value)
 			{
 				return true;
 			}
@@ -186,6 +186,14 @@ public sealed unsafe class HardPatternPuzzleGenerator : IGenerator<Grid>
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
+	/// <summary>
+	/// Cast the reference to pointer.
+	/// </summary>
+	/// <param name="this">The reference to be casted.</param>
+	/// <returns>The pointer.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe char* ToPointer(this ref char @this) => (char*)Unsafe.AsPointer(ref @this);
+
 	/// <summary>
 	/// Gets the next digit.
 	/// </summary>
