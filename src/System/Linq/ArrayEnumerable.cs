@@ -318,17 +318,6 @@ public static class ArrayEnumerable
 		return result;
 	}
 
-	/// <summary>
-	/// Sort the specified array using the specified key selector.
-	/// </summary>
-	/// <typeparam name="T">The type of each element in the array.</typeparam>
-	/// <typeparam name="TKey">The type of the selected key to be compared.</typeparam>
-	/// <param name="this">The array.</param>
-	/// <param name="keySelector">The function that fetches for a key to be compared.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void SortBy<T, TKey>(this T[] @this, Func<T, TKey> keySelector) where TKey : IComparable<TKey>
-		=> Array.Sort(@this, (a, b) => keySelector(a).CompareTo(keySelector(b)));
-
 	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
 	public static (TFirst Left, TSecond Right)[] Zip<TFirst, TSecond>(this TFirst[] first, TSecond[] second)
 	{

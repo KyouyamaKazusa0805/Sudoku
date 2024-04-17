@@ -19965,11 +19965,6 @@
             Defines a backdoor searcher.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Backdoor.SstsChecker">
-            <summary>
-            The checker.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.Backdoor.GetBackdoors(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get all possible backdoors.

@@ -97,7 +97,7 @@ public static class StepSearcherPool
 				var (i, stepSearcherArray) = (0, new StepSearcher[length]);
 
 				// If the step searcher is marked 'SeparatedAttribute', we should sort them via priority at first.
-				splitAttributes.SortBy(static s => s.Priority);
+				Array.Sort(splitAttributes, static (a, b) => Math.Sign(a.Priority - b.Priority));
 
 				// Then assign property values via reflection.
 				foreach (var a in splitAttributes)
