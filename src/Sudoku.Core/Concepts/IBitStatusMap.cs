@@ -97,7 +97,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offsets">Offsets to be added.</param>
 	/// <returns>The number of offsets succeeded to be added.</returns>
-	public abstract int AddRange(scoped ReadOnlySpan<TElement> offsets);
+	public abstract int AddRange(params ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Removes the specified offset from the current collection.
@@ -110,7 +110,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offsets">Offsets to be removed.</param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
-	public abstract int RemoveRange(scoped ReadOnlySpan<TElement> offsets);
+	public abstract int RemoveRange(params ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
 	/// Clear all bits.

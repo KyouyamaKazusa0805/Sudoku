@@ -506,7 +506,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public int AddRange(scoped ReadOnlySpan<Candidate> offsets)
+	public int AddRange(params ReadOnlySpan<Candidate> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)
@@ -537,7 +537,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public int RemoveRange(scoped ReadOnlySpan<Candidate> offsets)
+	public int RemoveRange(params ReadOnlySpan<Candidate> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)
