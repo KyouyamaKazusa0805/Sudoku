@@ -302,24 +302,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract TEnumerator GetEnumerator();
 
-	/// <inheritdoc cref="RandomSelect(int, Random)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual TSelf RandomSelect(int count) => RandomSelect(count, Random.Shared);
-
-	/// <summary>
-	/// Randomly select the specified number of elements in the current collection.
-	/// </summary>
-	/// <param name="count">The desired number of elements.</param>
-	/// <param name="random">The random number generator instance.</param>
-	/// <returns>The desired number of elements, as a <typeparamref name="TSelf"/> result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual TSelf RandomSelect(int count, Random random)
-	{
-		var result = Offsets[..];
-		random.Shuffle(result);
-		return [.. result[..count]];
-	}
-
 	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
 	[ExplicitInterfaceImpl(typeof(ISet<>))]
 	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]

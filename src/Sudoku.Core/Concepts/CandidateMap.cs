@@ -491,15 +491,6 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CandidateMap RandomSelect(int count)
-	{
-		var result = Offsets[..];
-		Random.Shared.Shuffle(result);
-		return [.. result[..count]];
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Candidate offset)
 	{
 		scoped ref var v = ref _bits[offset >> 6];

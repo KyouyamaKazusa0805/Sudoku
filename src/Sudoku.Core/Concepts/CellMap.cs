@@ -690,15 +690,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly CellMap RandomSelect(int count)
-	{
-		var result = Offsets[..];
-		Random.Shared.Shuffle(result);
-		return [.. result[..count]];
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly unsafe ReadOnlySpan<CellMap> GetSubsets(int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > _count)
