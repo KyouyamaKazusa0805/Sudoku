@@ -1993,6 +1993,11 @@
             Indicates ths header bits describing the sudoku type is a Sukaku.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.HeaderShift">
+            <summary>
+            Indicates the shifting bits count for header bits.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.CellsCount">
             <summary>
             Indicates the number of cells of a sudoku grid.
@@ -2740,6 +2745,9 @@
             </para>
             </param>
             <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
+            <remarks><b><i>
+            This creation ignores header bits. Please don't use this method in the puzzle creation.
+            </i></b></remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
             <summary>

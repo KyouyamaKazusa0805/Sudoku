@@ -100,7 +100,12 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates ths header bits describing the sudoku type is a Sukaku.
 	/// </summary>
-	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << 12;
+	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
+
+	/// <summary>
+	/// Indicates the shifting bits count for header bits.
+	/// </summary>
+	internal const int HeaderShift = CellCandidatesCount + 3;
 
 	/// <summary>
 	/// Indicates the number of cells of a sudoku grid.
@@ -1429,7 +1434,7 @@ public partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] >> 12 << 12);
+	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] >> HeaderShift << HeaderShift);
 
 	/// <summary>
 	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
@@ -1438,7 +1443,7 @@ public partial struct Grid :
 	/// <param name="cell">The cell.</param>
 	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> 12);
+	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> HeaderShift);
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
@@ -1518,7 +1523,7 @@ public partial struct Grid :
 	/// Removes for Sukaku puzzle header.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RemoveSukakuHeader() => this[0] &= (1 << 12) - 1;
+	private void RemoveSukakuHeader() => this[0] &= (1 << HeaderShift) - 1;
 
 
 	/// <summary>
@@ -1568,8 +1573,10 @@ public partial struct Grid :
 	/// </para>
 	/// </param>
 	/// <returns>A <see cref="Grid"/> result.</returns>
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
+	/// <remarks><b><i>
+	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
+	/// </i></b></remarks>
+	private static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
 	{
 		switch (rawMaskValues.Length)
 		{
@@ -1581,37 +1588,18 @@ public partial struct Grid :
 			{
 				var result = Undefined;
 				var uniformValue = rawMaskValues[0];
-				var containsNonemptyCell = false;
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
 					result[cell] = uniformValue;
-					if (MaskOperations.MaskToCellState(uniformValue) != CellState.Empty)
-					{
-						containsNonemptyCell = true;
-					}
-				}
-				if (!containsNonemptyCell)
-				{
-					result.AddSukakuHeader();
 				}
 				return result;
 			}
 			case CellsCount:
 			{
 				var result = Undefined;
-				var containsNonemptyCell = false;
 				for (var cell = 0; cell < CellsCount; cell++)
 				{
-					var value = rawMaskValues[cell];
-					result[cell] = value;
-					if (MaskOperations.MaskToCellState(value) != CellState.Empty)
-					{
-						containsNonemptyCell = true;
-					}
-				}
-				if (!containsNonemptyCell)
-				{
-					result.AddSukakuHeader();
+					result[cell] = rawMaskValues[cell];
 				}
 				return result;
 			}
