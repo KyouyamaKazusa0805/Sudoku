@@ -262,7 +262,7 @@ public static partial class StringExtensions
 		{
 			@"\d" => &char.IsDigit,
 			@"\t" => &isTab,
-			@"\w" => (CharCheckerFuncPtr)(&isLetterDigitOrUnderscore),
+			@"\w" => (delegate*<char, bool>)(&isLetterDigitOrUnderscore),
 			_ => throw InvalidOperation
 		};
 
