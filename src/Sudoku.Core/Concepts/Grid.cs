@@ -33,6 +33,7 @@ using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
 using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
 using unsafe RefreshingCandidatesHandlerFuncPtr = delegate*<ref Grid, void>;
 using unsafe ValueChangedHandlerFuncPtr = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
+using unsafe ValueEventHandler = void*;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -122,12 +123,12 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
 	/// </summary>
-	public static readonly unsafe void* ValueChanged = (ValueChangedHandlerFuncPtr)(&OnValueChanged);
+	public static readonly unsafe ValueEventHandler ValueChanged = (ValueChangedHandlerFuncPtr)(&OnValueChanged);
 
 	/// <summary>
 	/// Indicates the event triggered when should re-compute candidates.
 	/// </summary>
-	public static readonly unsafe void* RefreshingCandidates = (RefreshingCandidatesHandlerFuncPtr)(&OnRefreshingCandidates);
+	public static readonly unsafe ValueEventHandler RefreshingCandidates = (RefreshingCandidatesHandlerFuncPtr)(&OnRefreshingCandidates);
 
 	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
