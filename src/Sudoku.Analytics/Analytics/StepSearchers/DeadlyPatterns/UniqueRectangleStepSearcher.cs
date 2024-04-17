@@ -135,20 +135,34 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var sortedList = StepMarshal.RemoveDuplicateItems(list).ToList();
 		StepMarshal.SortItems(sortedList);
 
-		// Sukaku checking: The pattern can be used if and only if
-		// the cells from the pattern at least contains 2 digits for each cell at the initial grid state.
+		// Sukaku extra checking:
+		// The pattern can be used if and only if the UR/AR cells can be form a complete pattern
+		// at puzzle's initial state, meaning no digits can be missing.
+		// For example:
+		//
+		//   ab | ab
+		//   ab | ab
+		//
+		// This UR/AR pattern won't be formed, until the pattern at initial grid state forms without any missing candidates.
+		// If not, digits appeared in this pattern cannot be swapped in all possible cases,
+		// which cannot guarantee whether the deadly pattern at current state will be formed or not.
+		// By using the same rule, we can also check for other possible deadly patterns such as unique loops
+		// and Borescoper's deadly patterns.
 		var tempList = context.IsSukaku ? new List<UniqueRectangleStep>(sortedList.Count) : sortedList;
 		if (context.IsSukaku)
 		{
 			scoped ref readonly var initialGrid = ref context.InitialGrid;
 			foreach (var element in sortedList)
 			{
+				var comparer = MaskOperations.Create(element.Digit1, element.Digit2);
+
 				var isValid = true;
-				foreach (var cell in element!.Cells)
+				foreach (var cell in element.Cells)
 				{
 					var digitsMask = initialGrid.GetCandidates(cell);
-					if (IsPow2(digitsMask))
+					if ((digitsMask & comparer) != comparer)
 					{
+						// Invalid because at least one digit used in UR disappeared from the UR cell.
 						isValid = false;
 						break;
 					}

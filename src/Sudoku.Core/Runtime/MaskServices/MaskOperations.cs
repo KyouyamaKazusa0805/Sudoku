@@ -10,7 +10,7 @@ public static class MaskOperations
 	/// </summary>
 	/// <param name="digits">The digits.</param>
 	/// <returns>A <see cref="Mask"/> instance.</returns>
-	public static Mask Create(scoped ReadOnlySpan<Digit> digits)
+	public static Mask Create(params ReadOnlySpan<Digit> digits)
 	{
 		var result = (Mask)0;
 		foreach (var digit in digits)
