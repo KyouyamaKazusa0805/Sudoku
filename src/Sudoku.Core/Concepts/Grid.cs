@@ -1675,7 +1675,7 @@ public partial struct Grid :
 			}
 		}
 
-		// Return 'Undefined' if failed to generate puzzle.
+		// Return 'Undefined' if failed to parse grid text string.
 		if (grid.IsUndefined)
 		{
 			return Undefined;
