@@ -1261,15 +1261,6 @@
             The <see cref="T:System.ActionRefReadOnly`1"/> delegate to perform on each element of the <see cref="T:System.ReadOnlySpan`1"/>.
             </param>
         </member>
-        <member name="M:System.ReadOnlySpanExtensions.RandomSelectOne``1(System.ReadOnlySpan{``0},System.Random)">
-            <summary>
-            Select an element from the specified list of elements.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="random">The randomizer.</param>
-            <returns>The chosen element.</returns>
-        </member>
         <member name="M:System.ReadOnlySpanExtensions.EnumerateReversely``1(System.ReadOnlySpan{``0})">
             <summary>
             Iterates on each element, in reverse order.

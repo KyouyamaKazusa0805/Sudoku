@@ -86,7 +86,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.UniqueRectangle2D, Technique.UniqueRectangle3X,
 	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 
-	SupportedSudokuTypes = SudokuType.Standard,
+	SupportedSudokuTypes = SudokuType.Standard | SudokuType.Sukaku,
 	SupportMultiple = false)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
@@ -132,16 +132,51 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		}
 
 		// Sort and remove duplicate instances if worth.
-		var resultList = StepMarshal.RemoveDuplicateItems(list).ToList();
-		StepMarshal.SortItems(resultList);
+		var sortedList = StepMarshal.RemoveDuplicateItems(list).ToList();
+		StepMarshal.SortItems(sortedList);
 
-		if (context.OnlyFindOne)
+		// Sukaku checking: The pattern can be used if and only if
+		// the cells from the pattern at least contains 2 digits for each cell at the initial grid state.
+		var tempList = context.IsSukaku ? new List<UniqueRectangleStep>(sortedList.Count) : sortedList;
+		if (context.IsSukaku)
 		{
-			return resultList[0];
+			scoped ref readonly var initialGrid = ref context.InitialGrid;
+			foreach (var element in sortedList)
+			{
+				var isValid = true;
+				foreach (var cell in element!.Cells)
+				{
+					var digitsMask = initialGrid.GetCandidates(cell);
+					if (IsPow2(digitsMask))
+					{
+						isValid = false;
+						break;
+					}
+				}
+				if (isValid)
+				{
+					if (context.OnlyFindOne)
+					{
+						return element;
+					}
+
+					tempList.Add(element);
+				}
+			}
+
+			if (context.OnlyFindOne)
+			{
+				return tempList is [var firstStep, ..] ? firstStep : null;
+			}
 		}
 
-		context.Accumulator.AddRange(resultList);
-		return null;
+		if (!context.OnlyFindOne)
+		{
+			context.Accumulator.AddRange(tempList);
+			return null;
+		}
+
+		return tempList[0];
 	}
 
 	/// <summary>
@@ -3592,6 +3627,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
+					var _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
 					if (grid.GetCandidates(urCellInSameBlock) != abcMask)
 					{
 						goto SubType2;
@@ -3612,7 +3648,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						goto SubType2;
 					}
 
-					// Gather views.
+					// Collect for view nodes.
 					var candidateOffsets = (List<CandidateViewNode>)[new(ColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)];
 					var candidateOffsets2 = (List<CandidateViewNode>)[
 						new(ColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
@@ -3655,7 +3691,6 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							candidateOffsets.Add(new(ColorIdentifier.Normal, anotherCell * 9 + digit));
 						}
 					}
-					var _xOr_yMask = grid.GetCandidates(bivalueCellToCheck);
 					foreach (var digit in _xOr_yMask)
 					{
 						candidateOffsets.Add(new(ColorIdentifier.Auxiliary2, bivalueCellToCheck * 9 + digit));
@@ -3703,7 +3738,23 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Gather conclusions.
+					// This type also requires both diagonal cells should be contain digits x, y and the conjugate pair digit.
+					var _xOr_yOrExtraDigitMask = (Mask)(_xOr_yMask | (Mask)(1 << extraDigit));
+					var bothDiagonalCellsContain_xOr_yOrExtraDigit = true;
+					foreach (var cell in targetCell.AsCellMap() + GetDiagonalCell(urCells, targetCell))
+					{
+						if ((grid.GetCandidates(cell) & _xOr_yOrExtraDigitMask) != _xOr_yOrExtraDigitMask)
+						{
+							bothDiagonalCellsContain_xOr_yOrExtraDigit = false;
+							break;
+						}
+					}
+					if (!bothDiagonalCellsContain_xOr_yOrExtraDigit)
+					{
+						continue;
+					}
+
+					// Collect conclusions.
 					var conclusionsAnotherSubType = new List<Conclusion>();
 					foreach (var digit in grid.GetCandidates(targetCell))
 					{
@@ -3717,12 +3768,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					// Gather views.
-					candidateOffsets = [new(ColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)];
-					candidateOffsets2 = [
-						new(ColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit),
-						new(ColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit)
-					];
+					// Collect for view nodes.
+					candidateOffsets = [];
+					candidateOffsets2 = [new CandidateViewNode(ColorIdentifier.Auxiliary1, resultCell * 9 + extraDigit)];
 					if (CandidatesMap[d1].Contains(resultCell))
 					{
 						candidateOffsets.Add(new(ColorIdentifier.Normal, resultCell * 9 + d1));
@@ -3775,6 +3823,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							[
 								[
 									new CellViewNode(ColorIdentifier.Normal, targetCell),
+									..
+									from digit in grid.GetCandidates(targetCell)
+									let id = extraDigit == digit ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal
+									select new CandidateViewNode(id, targetCell * 9 + digit),
 									.. candidateOffsets,
 									new HouseViewNode(ColorIdentifier.Normal, block),
 									new HouseViewNode(ColorIdentifier.Auxiliary1, line),
@@ -3782,6 +3834,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 								],
 								[
 									.. candidateOffsets2,
+									new CandidateViewNode(ColorIdentifier.Auxiliary1, targetCell * 9 + extraDigit),
 									new BabaGroupViewNode(bivalueCellToCheck, 'y', _xOr_yMask2),
 									new BabaGroupViewNode(targetCell, 'x', _xOr_yMask2),
 									new BabaGroupViewNode(urCellInSameBlock, extraDigitId2, extraDigitMask2),

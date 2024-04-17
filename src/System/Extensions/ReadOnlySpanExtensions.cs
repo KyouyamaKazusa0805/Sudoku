@@ -38,17 +38,6 @@ public static class ReadOnlySpanExtensions
 	}
 
 	/// <summary>
-	/// Select an element from the specified list of elements.
-	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The collection.</param>
-	/// <param name="random">The randomizer.</param>
-	/// <returns>The chosen element.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T RandomSelectOne<T>(this ReadOnlySpan<T> @this, Random? random = null)
-		=> ref @this[(random ?? Random.Shared).Next(0, @this.Length)];
-
-	/// <summary>
 	/// Iterates on each element, in reverse order.
 	/// </summary>
 	/// <typeparam name="T">The type of each element in the sequence.</typeparam>

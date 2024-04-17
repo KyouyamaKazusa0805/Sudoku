@@ -48,9 +48,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 		=> str =>
 		{
 			var match = (ShortenSusserFormat ? GridShortenedSusserPattern() : GridSusserPattern()).Match(str).Value;
-
-			if (!ShortenSusserFormat && match is not { Length: <= 405 }
-				|| ShortenSusserFormat && (match is not { Length: <= 81 } || !expandCode(match, out match)))
+			if (ShortenSusserFormat && (match is not { Length: <= 81 } || !expandCode(match, out match)))
 			{
 				return Grid.Undefined;
 			}

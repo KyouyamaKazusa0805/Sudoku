@@ -550,7 +550,7 @@ public partial struct Grid :
 	/// <seealso cref="SudokuType.Standard"/>
 	/// <seealso cref="SudokuType.Sukaku"/>
 	public readonly SudokuType PuzzleType
-		=> (this[0] >> 12) switch { SukakuHeader << 12 => SudokuType.Sukaku, _ => SudokuType.Standard };
+		=> (this[0] >> 12) switch { SukakuHeader >> 12 => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -1622,11 +1622,6 @@ public partial struct Grid :
 					var currentParser = Parsers[trial];
 					if (currentParser.Parser(str) is { IsUndefined: false } g)
 					{
-						if (currentParser is SusserGridParser)
-						{
-							return g;
-						}
-
 						grid = g;
 					}
 				}
@@ -1643,13 +1638,9 @@ public partial struct Grid :
 		// Here need an extra check. Sukaku puzzles can be output as a normal pencil-mark grid format.
 		// We should check whether the puzzle is a Sukaku in fact or not.
 		// This is a bug fix for type 'PencilmarkingGridParser', which cannot determine whether a puzzle is a Sukaku.
-		//
-		// The details on checking is to treat this as a normal grid, check whether the puzzle has a unique solution or not:
-		//
-		//   1) If the grid contains a unique solution without treating it as a Sukaku, check for 2); otherwise, not Sukaku.
-		//   2) Check whether the grid contains at most 16 given cells. If not, not Sukaku.
-		//   3) Both conditions 1) and 2) are passed, the grid should be treated as a Sukaku.
-		if (!(grid << "0").IsValid && grid.GivensCount < 17)
+		// I define that a Sukaku must contain 0 given cells, meaning all values should be candidates or modifiable values.
+		// If so, we should treat it as a Sukaku instead of a standard sudoku puzzle.
+		if (grid.GivensCount < 17)
 		{
 			// Reduce given cells to empty cells back because it is a Sukaku.
 			foreach (ref var mask in grid)
@@ -1659,12 +1650,7 @@ public partial struct Grid :
 					mask = (Mask)((Mask)CellState.Empty << CellCandidatesCount | mask & MaxCandidatesMask);
 				}
 			}
-		}
 
-		// After the Sukaku check, check whether the puzzle has no non-empty cells (i.e. all cells are empty).
-		// If so, we should treat this as a Sukaku grid. Append header bits.
-		if (grid is { IsEmpty: false, EmptiesCount: 81 })
-		{
 			grid.AddSukakuHeader();
 		}
 
