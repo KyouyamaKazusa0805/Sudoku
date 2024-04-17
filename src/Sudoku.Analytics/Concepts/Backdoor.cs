@@ -6,12 +6,6 @@ namespace Sudoku.Concepts;
 public static class Backdoor
 {
 	/// <summary>
-	/// The checker.
-	/// </summary>
-	private static readonly Analyzer SstsChecker = Analyzers.SstsOnly;
-
-
-	/// <summary>
 	/// Try to get all possible backdoors.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
@@ -20,7 +14,8 @@ public static class Backdoor
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<Conclusion> GetBackdoors(scoped ref readonly Grid grid)
 	{
-		return (grid, SstsChecker.Analyze(in grid)) switch
+		var sstsChecker = Analyzers.SstsOnly;
+		return (grid, sstsChecker.Analyze(in grid)) switch
 		{
 			({ IsValid: false } or { IsSolved: true }, _)
 				=> throw new ArgumentException(ResourceDictionary.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
@@ -34,7 +29,7 @@ public static class Backdoor
 		};
 
 
-		static ReadOnlySpan<Conclusion> g(scoped ref readonly Grid grid)
+		ReadOnlySpan<Conclusion> g(scoped ref readonly Grid grid)
 		{
 			var (assignment, elimination, solution) = (new List<Conclusion>(81), new List<Conclusion>(729), grid.SolutionGrid);
 			foreach (var cell in grid.EmptyCells)
@@ -43,7 +38,7 @@ public static class Backdoor
 				var case1Playground = grid;
 				case1Playground.SetDigit(cell, solution.GetDigit(cell));
 
-				if (SstsChecker.Analyze(in case1Playground).IsSolved)
+				if (sstsChecker.Analyze(in case1Playground).IsSolved)
 				{
 					assignment.Add(new(Assignment, cell, solution.GetDigit(cell)));
 
@@ -53,7 +48,7 @@ public static class Backdoor
 						var case2Playground = grid;
 						case2Playground.SetExistence(cell, digit, false);
 
-						if (SstsChecker.Analyze(in case2Playground).IsSolved)
+						if (sstsChecker.Analyze(in case2Playground).IsSolved)
 						{
 							elimination.Add(new(Elimination, cell, digit));
 						}
