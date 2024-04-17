@@ -1180,6 +1180,12 @@ public partial struct Grid :
 	/// </summary>
 	public void Reset()
 	{
+		if (PuzzleType != SudokuType.Standard)
+		{
+			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
+			return;
+		}
+
 		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
@@ -1196,6 +1202,12 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void ResetCandidates()
 	{
+		if (PuzzleType != SudokuType.Standard)
+		{
+			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
+			return;
+		}
+
 		if (ToString("#") is var p && p.IndexOf(':') is var colonTokenPos and not -1)
 		{
 			this = Parse(p[..colonTokenPos]);
@@ -1207,6 +1219,12 @@ public partial struct Grid :
 	/// </summary>
 	public void Fix()
 	{
+		if (PuzzleType != SudokuType.Standard)
+		{
+			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
+			return;
+		}
+
 		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Modifiable)
@@ -1221,6 +1239,12 @@ public partial struct Grid :
 	/// </summary>
 	public void Unfix()
 	{
+		if (PuzzleType != SudokuType.Standard)
+		{
+			// Don't handle if the puzzle type is not a valid standard sudoku puzzle.
+			return;
+		}
+
 		for (var i = 0; i < CellsCount; i++)
 		{
 			if (GetState(i) == CellState.Given)
@@ -1470,6 +1494,11 @@ public partial struct Grid :
 	/// <returns>The result grid.</returns>
 	private readonly Grid Preserve(scoped ref readonly CellMap pattern)
 	{
+		if (PuzzleType != SudokuType.Standard)
+		{
+			return this;
+		}
+
 		var result = this;
 		foreach (var cell in ~pattern)
 		{
