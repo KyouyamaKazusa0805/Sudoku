@@ -66,11 +66,6 @@ public partial struct Grid :
 	ITokenizable<Grid>
 {
 	/// <summary>
-	/// Indicates ths header bits describing the sudoku type is a Sukaku.
-	/// </summary>
-	public const Mask SukakuHeader = unchecked((Mask)0b1001_000_000_000_000);
-
-	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
 	/// </summary>
 	public const Mask DefaultMask = EmptyMask | MaxCandidatesMask;
@@ -101,6 +96,11 @@ public partial struct Grid :
 	/// </summary>
 	public const string EmptyString = "000000000000000000000000000000000000000000000000000000000000000000000000000000000";
 #endif
+
+	/// <summary>
+	/// Indicates ths header bits describing the sudoku type is a Sukaku.
+	/// </summary>
+	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << 12;
 
 	/// <summary>
 	/// Indicates the number of cells of a sudoku grid.
@@ -549,8 +549,7 @@ public partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="SudokuType.Standard"/>
 	/// <seealso cref="SudokuType.Sukaku"/>
-	public readonly SudokuType PuzzleType
-		=> (this[0] >> 12) switch { SukakuHeader >> 12 => SudokuType.Sukaku, _ => SudokuType.Standard };
+	public readonly SudokuType PuzzleType => GetHeaderBits(0) switch { SukakuHeader => SudokuType.Sukaku, _ => SudokuType.Standard };
 
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
@@ -1283,7 +1282,7 @@ public partial struct Grid :
 	{
 		scoped ref var mask = ref this[cell];
 		var copied = mask;
-		mask = (Mask)((int)state << CellCandidatesCount | mask & MaxCandidatesMask);
+		mask = (Mask)((Mask)(GetHeaderBits(cell) | (Mask)((int)state << CellCandidatesCount)) | (Mask)(mask & MaxCandidatesMask));
 		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, mask, -1);
 	}
 
@@ -1340,7 +1339,7 @@ public partial struct Grid :
 			{
 				// If 'value' is -1, we should reset the grid.
 				// Note that reset candidates may not trigger the event.
-				this[cell] = DefaultMask;
+				this[cell] = (Mask)(GetHeaderBits(cell) | DefaultMask);
 
 				((RefreshingCandidatesHandlerFuncPtr)RefreshingCandidates)(ref this);
 
@@ -1352,7 +1351,7 @@ public partial struct Grid :
 				var copied = result;
 
 				// Set cell state to 'CellState.Modifiable'.
-				result = (Mask)(ModifiableMask | 1 << digit);
+				result = (Mask)(GetHeaderBits(cell) | ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
 				((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, result, digit);
@@ -1398,6 +1397,24 @@ public partial struct Grid :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
+
+	/// <summary>
+	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// and the argument <paramref name="cell"/> is 0.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>, left-shifted.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private readonly Mask GetHeaderBits(Cell cell) => (Mask)(this[cell] >> 12 << 12);
+
+	/// <summary>
+	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+	/// and the argument <paramref name="cell"/> is 0.
+	/// </summary>
+	/// <param name="cell">The cell.</param>
+	/// <returns>The header 4 bits, represented as a <see cref="Mask"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	private readonly Mask GetHeaderBitsUnshifted(Cell cell) => (Mask)(this[cell] >> 12);
 
 	/// <summary>
 	/// Called by properties <see cref="EmptyCells"/> and <see cref="BivalueCells"/>.
@@ -1472,7 +1489,7 @@ public partial struct Grid :
 	/// Removes for Sukaku puzzle header.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void RemoveSukakuHeader() => this[0] &= ~SukakuHeader;
+	private void RemoveSukakuHeader() => this[0] &= (1 << 12) - 1;
 
 
 	/// <summary>
@@ -2012,30 +2029,8 @@ public partial struct Grid :
 		{
 			if (@this.GetState(peerCell) == CellState.Empty)
 			{
-				// You can't do this because of being invoked recursively.
-				//@this.SetCandidateIsOn(peerCell, setValue, false);
-
 				@this[peerCell] &= (Mask)~(1 << setValue);
 			}
-		}
-
-		// Checks for Sukaku header mask dynamically.
-		var containsNonemptyCells = false;
-		for (var c = 0; c < 81; c++)
-		{
-			if (@this.GetState(c) != CellState.Empty)
-			{
-				containsNonemptyCells = true;
-				break;
-			}
-		}
-		if (containsNonemptyCells)
-		{
-			@this.RemoveSukakuHeader();
-		}
-		else
-		{
-			@this.AddSukakuHeader();
 		}
 	}
 
@@ -2046,36 +2041,24 @@ public partial struct Grid :
 	/// <seealso cref="RefreshingCandidates"/>
 	private static void OnRefreshingCandidates(scoped ref Grid @this)
 	{
-		for (var i = 0; i < CellsCount; i++)
+		for (var cell = 0; cell < CellsCount; cell++)
 		{
-			if (@this.GetState(i) == CellState.Empty)
+			if (@this.GetState(cell) == CellState.Empty)
 			{
 				// Remove all appeared digits.
 				var mask = MaxCandidatesMask;
-				foreach (var cell in PeersMap[i])
+				foreach (var currentCell in PeersMap[cell])
 				{
-					if (@this.GetDigit(cell) is var digit and not -1)
+					if (@this.GetDigit(currentCell) is var digit and not -1)
 					{
 						mask &= (Mask)~(1 << digit);
 					}
 				}
 
-				@this[i] = (Mask)(EmptyMask | mask);
+				@this[cell] = (Mask)((Mask)(@this.GetHeaderBits(cell) | EmptyMask) | mask);
 			}
 		}
 	}
-
-
-	/// <summary>
-	/// Reinterpret the current sudoku grid via the specified format.
-	/// This operator is equivalent to expression
-	/// <c><see cref="Grid"/>.Parse(<paramref name="currentGrid"/>.ToString(<paramref name="format"/>))</c>.
-	/// </summary>
-	/// <param name="currentGrid">The current sudoku grid.</param>
-	/// <param name="format">The format used.</param>
-	/// <returns>The target grid.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid operator <<(scoped in Grid currentGrid, string format) => Parse(currentGrid.ToString(format));
 
 
 	/// <summary>

@@ -1963,11 +1963,6 @@
 	</large-structure></para>
             </remarks>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
-            <summary>
-            Indicates ths header bits describing the sudoku type is a Sukaku.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultMask">
             <summary>
             Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1991,6 +1986,11 @@
         <member name="F:Sudoku.Concepts.Grid.GivenMask">
             <summary>
             Indicates the given mask.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
+            <summary>
+            Indicates ths header bits describing the sudoku type is a Sukaku.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Grid.CellsCount">
@@ -2653,6 +2653,22 @@
         <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
+            <summary>
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            and the argument <paramref name="cell"/> is 0.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The header 4 bits, represented as a <see cref="T:System.Int16"/>, left-shifted.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)">
+            <summary>
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            and the argument <paramref name="cell"/> is 0.
+            </summary>
+            <param name="cell">The cell.</param>
+            <returns>The header 4 bits, represented as a <see cref="T:System.Int16"/>.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetMap()">
             <summary>
             Called by properties <see cref="P:Sudoku.Concepts.Grid.EmptyCells"/> and <see cref="P:Sudoku.Concepts.Grid.BivalueCells"/>.
@@ -2823,16 +2839,6 @@
             </summary>
             <param name="this">The grid itself.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.op_LeftShift(Sudoku.Concepts.Grid@,System.String)">
-            <summary>
-            Reinterpret the current sudoku grid via the specified format.
-            This operator is equivalent to expression
-            <c><see cref="T:Sudoku.Concepts.Grid"/>.Parse(<paramref name="currentGrid"/>.ToString(<paramref name="format"/>))</c>.
-            </summary>
-            <param name="currentGrid">The current sudoku grid.</param>
-            <param name="format">The format used.</param>
-            <returns>The target grid.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
@@ -7625,6 +7631,13 @@
             </summary>
             <param name="digitMask">The digit mask.</param>
             <returns>The digits returned.</returns>
+        </member>
+        <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToSudokuType(System.Int16)">
+            <summary>
+            To get the sudoku type for the specified cell mask inside a <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <param name="mask">The cell mask.</param>
+            <returns>The sudoku type configured.</returns>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.MaskToCellState(System.Int16)">
             <summary>

@@ -53,6 +53,15 @@ public static class MaskOperations
 	}
 
 	/// <summary>
+	/// To get the sudoku type for the specified cell mask inside a <see cref="Grid"/>.
+	/// </summary>
+	/// <param name="mask">The cell mask.</param>
+	/// <returns>The sudoku type configured.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static SudokuType MaskToSudokuType(Mask mask)
+		=> (mask >> 12 << 12) switch { 0 => SudokuType.Standard, var resultMask => (SudokuType)resultMask };
+
+	/// <summary>
 	/// To get the cell state for a mask value. The mask is an inner representation to describe a cell's state.
 	/// For more information please visit the details of the design for type <see cref="Grid"/>.
 	/// </summary>
