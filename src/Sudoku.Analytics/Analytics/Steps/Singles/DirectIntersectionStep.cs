@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -28,7 +29,7 @@ public sealed partial class DirectIntersectionStep(
 	SingleSubtype subtype,
 	Technique basedOn,
 	[PrimaryConstructorParameter] bool isPointing
-) : ComplexSingleStep(
+) : ComplexSingleBaseStep(
 	conclusions,
 	views,
 	options,
@@ -63,20 +64,6 @@ public sealed partial class DirectIntersectionStep(
 			new(EnglishLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr]),
 			new(ChineseLanguage, [CellsStr, HouseStr, InterimCellStr, InterimDigitStr, TechniqueNameStr])
 		];
-
-	/// <inheritdoc/>
-	protected override string PrefixName
-	{
-		[DoesNotReturn]
-		get => throw new NotSupportedException();
-	}
-
-	/// <inheritdoc/>
-	protected override int PrefixNameLength
-	{
-		[DoesNotReturn]
-		get => throw new NotImplementedException();
-	}
 
 	private string CellsStr => Options.Converter.CellConverter(IntersectionCells);
 

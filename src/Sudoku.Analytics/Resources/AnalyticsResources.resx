@@ -3177,4 +3177,22 @@ Error grid: '{0:#}'</value>
   <data name="Factor_ExtendedRectangleCannibalismFactor" xml:space="preserve">
     <value>Subset in extended rectangle is cannibalism</value>
   </data>
+  <data name="StepSearcherName_ComplexSingleStepSearcher" xml:space="preserve">
+    <value>Complex Single</value>
+  </data>
+  <data name="ComplexFullHouse" xml:space="preserve">
+    <value>Complex Full House</value>
+  </data>
+  <data name="ComplexCrosshatchingBlock" xml:space="preserve">
+    <value>Complex Crosshatching in Block</value>
+  </data>
+  <data name="ComplexCrosshatchingRow" xml:space="preserve">
+    <value>Complex Crosshatching in Row</value>
+  </data>
+  <data name="ComplexCrosshatchingColumn" xml:space="preserve">
+    <value>Complex Crosshatching in Column</value>
+  </data>
+  <data name="ComplexNakedSingle" xml:space="preserve">
+    <value>Complex Naked Single</value>
+  </data>
 </root>

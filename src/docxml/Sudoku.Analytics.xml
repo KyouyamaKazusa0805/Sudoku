@@ -1751,6 +1751,31 @@
             Indicates full house, with hidden quadruple.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexFullHouse">
+            <summary>
+            Indicates complex full house.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexCrosshatchingBlock">
+            <summary>
+            Indicates complex crosshatching in block.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexCrosshatchingRow">
+            <summary>
+            Indicates complex crosshatching in row.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexCrosshatchingColumn">
+            <summary>
+            Indicates complex crosshatching in column.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.ComplexNakedSingle">
+            <summary>
+            Indicates complex naked single.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.Pointing">
             <summary>
             Indicates pointing.
@@ -10424,6 +10449,45 @@
         <member name="M:Sudoku.Analytics.StepSearchers.TwoStrongLinksStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher">
+            <summary>
+            Provides with a <b>Complex Single</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Complex Full House</item>
+            <item>Complex Hidden Single</item>
+            <item>Complex Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.IntersectionSearcher">
+            <summary>
+            Indicates the searcher for intersection.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.SubsetSearcher">
+            <summary>
+            Indicates the searcher for subset.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.LockedCandidatesSearcher">
+            <summary>
+            Indicates the searcher for locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.LockedSubsetSearcher">
+            <summary>
+            Indicates the searcher for locked subsets.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NormalSubsetSearcher">
+            <summary>
+            Indicates the searcher for normal subsets.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher">
             <summary>
             Provides with a <b>Direct Intersection</b> step searcher.
@@ -17814,7 +17878,7 @@
             The generated property declaration for parameter <c>isGrouped</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
+        <member name="T:Sudoku.Analytics.Steps.ComplexSingleBaseStep">
             <summary>
             Provides with a step that is a <b>Complex Single</b> technique.
             </summary>
@@ -17846,6 +17910,62 @@
             </list>
             </para>
             </param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+            <summary>
+            Provides with a step that is a <b>Complex Single</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="basedOn">Indicates the single technique that is based on.</param>
+            <param name="indirectTechniques">
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
+            describing the detail usage on the complex combination of indirect technique usages. For example:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
+            </param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn">
+            <summary>
+            The generated property declaration for parameter <c>basedOn</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques">
+            <summary>
+            The generated property declaration for parameter <c>indirectTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
+            <summary>
+            Provides with a step that is a <b>Complex Single</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="cell"><inheritdoc/></param>
+            <param name="digit"><inheritdoc/></param>
+            <param name="subtype"><inheritdoc/></param>
+            <param name="basedOn"><inheritdoc/></param>
+            <param name="indirectTechniques"><inheritdoc/></param>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
@@ -17857,51 +17977,14 @@
             <param name="cell"><inheritdoc/></param>
             <param name="digit"><inheritdoc/></param>
             <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn">Indicates the single technique that is based on.</param>
-            <param name="indirectTechniques">
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
-            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
-            </param>
+            <param name="basedOn"><inheritdoc/></param>
+            <param name="indirectTechniques"><inheritdoc/></param>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.PrefixNameLength">
-            <summary>
-            Indicates the prefix name of the technique.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BaseDifficulty">
+            <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.PrefixName">
-            <summary>
-            Indicates the prefix name replaced.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
-            <inheritdoc cref="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BasedOn">
-            <summary>
-            The generated property declaration for parameter <c>basedOn</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.IndirectTechniques">
-            <summary>
-            The generated property declaration for parameter <c>indirectTechniques</c>.
-            </summary>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Code">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
             <summary>
@@ -17944,12 +18027,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.FormatInterpolationParts">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixName">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.PrefixNameLength">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionCells">
@@ -18038,12 +18115,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Factors">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixNameLength">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.PrefixName">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetCells">
@@ -23386,6 +23457,31 @@ result ^= expression;
               Looks up a localized string similar to , .
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexCrosshatchingBlock">
+            <summary>
+              Looks up a localized string similar to Complex Crosshatching in Block.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexCrosshatchingColumn">
+            <summary>
+              Looks up a localized string similar to Complex Crosshatching in Column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexCrosshatchingRow">
+            <summary>
+              Looks up a localized string similar to Complex Crosshatching in Row.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexFullHouse">
+            <summary>
+              Looks up a localized string similar to Complex Full House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ComplexNakedSingle">
+            <summary>
+              Looks up a localized string similar to Complex Naked Single.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ConclusionConstraint">
             <summary>
               Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
@@ -25917,6 +26013,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ComplexFishStepSearcher">
             <summary>
               Looks up a localized string similar to Complex Fishes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ComplexSingleStepSearcher">
+            <summary>
+              Looks up a localized string similar to Complex Single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_DeathBlossomStepSearcher">

@@ -32,7 +32,9 @@ using unsafe SingleModuleSearcherFuncPtr = delegate*<SingleStepSearcher, ref Ana
 	"StepSearcherName_SingleStepSearcher",
 	Technique.CrosshatchingBlock, Technique.CrosshatchingRow, Technique.CrosshatchingColumn, Technique.LastDigit,
 	Technique.FullHouse, Technique.HiddenSingleBlock, Technique.HiddenSingleRow, Technique.HiddenSingleColumn, Technique.NakedSingle,
-	IsCachingSafe = true, IsOrderingFixed = true, IsAvailabilityReadOnly = true)]
+	IsCachingSafe = true,
+	IsOrderingFixed = true,
+	IsAvailabilityReadOnly = true)]
 public sealed partial class SingleStepSearcher : StepSearcher
 {
 	/// <summary>

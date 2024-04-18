@@ -34,6 +34,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.ClaimingCrosshatchingColumn, Technique.ClaimingNakedSingle,
 	IsCachingSafe = true,
 	IsAvailabilityReadOnly = true,
+	IsOrderingFixed = true,
 	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
 public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 {

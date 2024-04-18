@@ -1142,6 +1142,71 @@ public enum Technique
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Features = TechniqueFeatures.DirectTechniques)]
 	HiddenQuadrupleNakedSingle,
+
+	/// <summary>
+	/// Indicates complex full house.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 15,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ComplexSingle,
+		PrimaryStepType = typeof(ComplexSingleStep),
+		StepSearcherType = typeof(ComplexSingleStepSearcher),
+		PencilmarkVisibility = PencilmarkVisibility.Direct,
+		Features = TechniqueFeatures.DirectTechniques)]
+	ComplexFullHouse,
+
+	/// <summary>
+	/// Indicates complex crosshatching in block.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 17,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ComplexSingle,
+		PrimaryStepType = typeof(ComplexSingleStep),
+		StepSearcherType = typeof(ComplexSingleStepSearcher),
+		PencilmarkVisibility = PencilmarkVisibility.Direct,
+		Features = TechniqueFeatures.DirectTechniques)]
+	ComplexCrosshatchingBlock,
+
+	/// <summary>
+	/// Indicates complex crosshatching in row.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 20,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ComplexSingle,
+		PrimaryStepType = typeof(ComplexSingleStep),
+		StepSearcherType = typeof(ComplexSingleStepSearcher),
+		PencilmarkVisibility = PencilmarkVisibility.Direct,
+		Features = TechniqueFeatures.DirectTechniques)]
+	ComplexCrosshatchingRow,
+
+	/// <summary>
+	/// Indicates complex crosshatching in column.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 20,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ComplexSingle,
+		PrimaryStepType = typeof(ComplexSingleStep),
+		StepSearcherType = typeof(ComplexSingleStepSearcher),
+		PencilmarkVisibility = PencilmarkVisibility.Direct,
+		Features = TechniqueFeatures.DirectTechniques)]
+	ComplexCrosshatchingColumn,
+
+	/// <summary>
+	/// Indicates complex naked single.
+	/// </summary>
+	[TechniqueMetadata(
+		Rating = 28,
+		DifficultyLevel = DifficultyLevel.Hard,
+		ContainingGroup = TechniqueGroup.ComplexSingle,
+		PrimaryStepType = typeof(ComplexSingleStep),
+		StepSearcherType = typeof(ComplexSingleStepSearcher),
+		PencilmarkVisibility = PencilmarkVisibility.Direct,
+		Features = TechniqueFeatures.DirectTechniques)]
+	ComplexNakedSingle,
 	#endregion
 
 	//

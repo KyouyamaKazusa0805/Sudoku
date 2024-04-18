@@ -3266,6 +3266,13 @@
   <data name="_Token_Colon" xml:space="preserve">
     <value>：</value>
   </data>
+  <data name="ExtendedRectangleType3Cannibalism" xml:space="preserve">
+    <value>拓展矩形类型 3・自噬</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="Factor_ExtendedRectangleCannibalismFactor" xml:space="preserve">
+    <value>拓展矩形里的数组是否自噬</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3347,11 +3354,22 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="ExtendedRectangleType3Cannibalism" xml:space="preserve">
-    <value>拓展矩形类型 3・自噬</value>
-    <comment>Technique Name</comment>
+  <data name="StepSearcherName_ComplexSingleStepSearcher" xml:space="preserve">
+    <value>复杂出数</value>
   </data>
-  <data name="Factor_ExtendedRectangleCannibalismFactor" xml:space="preserve">
-    <value>拓展矩形里的数组是否自噬</value>
+  <data name="ComplexFullHouse" xml:space="preserve">
+    <value>复杂同区九缺一</value>
+  </data>
+  <data name="ComplexCrosshatchingBlock" xml:space="preserve">
+    <value>复杂宫排除</value>
+  </data>
+  <data name="ComplexCrosshatchingRow" xml:space="preserve">
+    <value>复杂行排除</value>
+  </data>
+  <data name="ComplexCrosshatchingColumn" xml:space="preserve">
+    <value>复杂列排除</value>
+  </data>
+  <data name="ComplexNakedSingle" xml:space="preserve">
+    <value>复杂唯一余数</value>
   </data>
 </root>

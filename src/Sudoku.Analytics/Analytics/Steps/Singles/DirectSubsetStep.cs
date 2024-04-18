@@ -30,7 +30,7 @@ public sealed partial class DirectSubsetStep(
 	SingleSubtype subtype,
 	Technique basedOn,
 	[PrimaryConstructorParameter] Technique subsetTechnique
-) : ComplexSingleStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]), ISizeTrait
+) : ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]), ISizeTrait
 {
 	/// <summary>
 	/// Indicates whether the used subset is a naked subset.
@@ -72,20 +72,6 @@ public sealed partial class DirectSubsetStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new DirectSubsetSizeFactor(), new DirectSubsetIsLockedFactor()];
-
-	/// <inheritdoc/>
-	protected override int PrefixNameLength
-	{
-		[DoesNotReturn]
-		get => throw new NotImplementedException();
-	}
-
-	/// <inheritdoc/>
-	protected override string PrefixName
-	{
-		[DoesNotReturn]
-		get => throw new NotImplementedException();
-	}
 
 	private string CellsStr => Options.Converter.CellConverter(SubsetCells);
 

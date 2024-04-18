@@ -52,6 +52,7 @@ using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, re
 
 	IsCachingSafe = true,
 	IsAvailabilityReadOnly = true,
+	IsOrderingFixed = true,
 	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
 public sealed partial class DirectSubsetStepSearcher : StepSearcher
 {

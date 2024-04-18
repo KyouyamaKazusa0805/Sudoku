@@ -1006,6 +1006,51 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex Crosshatching in Block.
+        /// </summary>
+        public static string ComplexCrosshatchingBlock {
+            get {
+                return ResourceManager.GetString("ComplexCrosshatchingBlock", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Crosshatching in Column.
+        /// </summary>
+        public static string ComplexCrosshatchingColumn {
+            get {
+                return ResourceManager.GetString("ComplexCrosshatchingColumn", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Crosshatching in Row.
+        /// </summary>
+        public static string ComplexCrosshatchingRow {
+            get {
+                return ResourceManager.GetString("ComplexCrosshatchingRow", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Full House.
+        /// </summary>
+        public static string ComplexFullHouse {
+            get {
+                return ResourceManager.GetString("ComplexFullHouse", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Naked Single.
+        /// </summary>
+        public static string ComplexNakedSingle {
+            get {
+                return ResourceManager.GetString("ComplexNakedSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
         /// </summary>
         public static string ConclusionConstraint {
@@ -5559,6 +5604,15 @@ namespace Sudoku.Resources {
         public static string StepSearcherName_ComplexFishStepSearcher {
             get {
                 return ResourceManager.GetString("StepSearcherName_ComplexFishStepSearcher", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Complex Single.
+        /// </summary>
+        public static string StepSearcherName_ComplexSingleStepSearcher {
+            get {
+                return ResourceManager.GetString("StepSearcherName_ComplexSingleStepSearcher", resourceCulture);
             }
         }
         
