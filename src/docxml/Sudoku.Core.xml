@@ -175,129 +175,6 @@
             Throws when the argument <paramref name="this"/> is not defined in enumeration type.
             </exception>
         </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.Generator">
-            <summary>
-            Represents a puzzle generator, implemented by HoDoKu.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator.AutoClues">
-            <summary>
-            Indicates the auto clues count.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._generateIndices">
-            <summary>
-            The order in which cells are set when generating a full grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._rng">
-            <summary>
-            A random generator for creating new puzzles.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._solver">
-            <summary>
-            Indicates the internal fast solver.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._stack">
-            <summary>
-            The recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._newFullSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.Generator._newValidSudoku">
-            <summary>
-            The final grid to be used.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.#ctor">
-            <summary>
-            Creates a new instance of <see cref="T:Sudoku.Compatibility.Hodoku.Generator" />.
-            </summary>
-            <remarks>
-            <target name="constructor">
-				<i>
-					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
-					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
-					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
-				</i>
-			</target>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle.
-            </summary>
-            <param name="cluesCount">
-            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
-            <para>
-            Please note that the target puzzle may not contain the same number of givens as this value.
-            If the number of givens from a puzzle is below this value but it also has a unique solution,
-            this puzzle will be still treated as valid one.
-            </para>
-            </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The result grid.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
-            or the argument <paramref name="cluesCount"/> is invalid.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
-            <summary>
-            Takes a full sudoku from <see cref="F:Sudoku.Compatibility.Hodoku.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
-            If a deletion produces a grid with more than one solution it is of course undone.
-            </summary>
-            <inheritdoc cref="M:Sudoku.Compatibility.Hodoku.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GenerateForFullGrid">
-            <summary>
-            Generate a solution grid.
-            </summary>
-            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Compatibility.Hodoku.Generator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Compatibility.Hodoku.RecursionStackEntry">
-            <summary>
-            One entry in recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Candidates">
-            <summary>
-            The candidates for cells <see cref="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Cell"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Cell"/>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Cell">
-            <summary>
-            The index of the cell that's being tried.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.CandidateIndex">
-            <summary>
-            The index of the last tried candidate in <see cref="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Candidates"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.Candidates"/>
-        </member>
-        <member name="F:Sudoku.Compatibility.Hodoku.RecursionStackEntry.SudokuGrid">
-            <summary>
-            The current state of the sudoku.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.BitStatusMapPredicate`3">
             <summary>
             Represents a method that checks for an offset of type <typeparamref name="TElement"/>
@@ -4292,6 +4169,102 @@
             Indicates the generation operation is unncessary; nearly all puzzles contain such feature.
             </summary>
         </member>
+        <member name="T:Sudoku.Generating.Generator">
+            <summary>
+            Represents a puzzle generator, implemented by HoDoKu.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator.AutoClues">
+            <summary>
+            Indicates the auto clues count.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._generateIndices">
+            <summary>
+            The order in which cells are set when generating a full grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._rng">
+            <summary>
+            A random generator for creating new puzzles.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._solver">
+            <summary>
+            Indicates the internal fast solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._stack">
+            <summary>
+            The recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._newFullSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.Generator._newValidSudoku">
+            <summary>
+            The final grid to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.#ctor">
+            <summary>
+            Creates a new instance of <see cref="T:Sudoku.Generating.Generator" />.
+            </summary>
+            <remarks>
+            <target name="constructor">
+				<i>
+					The feature "Custom parameterless struct constructor" makes the parameterless struct constructor
+					different with <c>default(T)</c>. If you has defined a parameterless struct constructor,
+					<c>new T()</c> is no longer with the same meaning as <c>default(T)</c>.
+				</i>
+			</target>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Try to generate a puzzle.
+            </summary>
+            <param name="cluesCount">
+            <para>Indicates the number of clues the generator supports for <b>approximately</b>.</para>
+            <para>
+            Please note that the target puzzle may not contain the same number of givens as this value.
+            If the number of givens from a puzzle is below this value but it also has a unique solution,
+            this puzzle will be still treated as valid one.
+            </para>
+            </param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result grid.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="symmetricType"/> holds multiple flags,
+            or the argument <paramref name="cluesCount"/> is invalid.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+            <summary>
+            Takes a full sudoku from <see cref="F:Sudoku.Generating.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
+            If a deletion produces a grid with more than one solution it is of course undone.
+            </summary>
+            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GenerateForFullGrid">
+            <summary>
+            Generate a solution grid.
+            </summary>
+            <returns>A <see cref="T:System.Boolean"/> value indicating whether the generation operation is succeeded.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Generating.Generator.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Generating.GeneratorProgress">
             <summary>
             Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
@@ -4614,6 +4587,33 @@
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Generating.RecursionStackEntry">
+            <summary>
+            One entry in recursion stack.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.Candidates">
+            <summary>
+            The candidates for cells <see cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.Cell">
+            <summary>
+            The index of the cell that's being tried.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.CandidateIndex">
+            <summary>
+            The index of the last tried candidate in <see cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>
+        </member>
+        <member name="F:Sudoku.Generating.RecursionStackEntry.SudokuGrid">
+            <summary>
+            The current state of the sudoku.
+            </summary>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
