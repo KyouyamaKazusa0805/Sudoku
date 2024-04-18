@@ -161,26 +161,17 @@ public abstract class TechniqueBasedPuzzleGenerator :
 				return GeneratingFailedReason.InvalidData;
 			}
 
-			for (var (i, p) = (0, 0); i < interferingDigitsCount; p++)
+			for (var i = 0; i < interferingDigitsCount; i++)
 			{
-				if (p >= 81)
-				{
-					break;
-				}
-
 				var interferingCell = CellSeed[i];
-				if (puzzle.GetState(interferingCell) == CellState.Modifiable
-					|| excludedCells.Contains(targetCell)
-					|| interferingCell == targetCell)
+				if (puzzle.GetState(interferingCell) != CellState.Modifiable
+					&& !excludedCells.Contains(interferingCell)
+					&& interferingCell != targetCell)
 				{
-					// Skips the cell that is already given, or is the conclusion cell.
-					continue;
+					// Set the value onto the puzzle.
+					interferingCells.Add(interferingCell);
+					puzzle.SetDigit(interferingCell, solution.GetDigit(interferingCell));
 				}
-
-				// Set the value onto the puzzle.
-				interferingCells.Add(interferingCell);
-				puzzle.SetDigit(interferingCell, solution.GetDigit(interferingCell));
-				i++;
 			}
 		}
 
