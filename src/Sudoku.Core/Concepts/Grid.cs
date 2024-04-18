@@ -1751,10 +1751,8 @@ public partial struct Grid :
 			{
 				result.AddSukakuHeader();
 			}
-
 			return result;
 		}
-
 		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
 	}
 
@@ -2100,7 +2098,6 @@ public partial struct Grid :
 						mask &= (Mask)~(1 << digit);
 					}
 				}
-
 				@this[cell] = (Mask)((Mask)(@this.GetHeaderBits(cell) | EmptyMask) | mask);
 			}
 		}
