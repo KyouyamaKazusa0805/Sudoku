@@ -1,12 +1,13 @@
 namespace Sudoku.Analytics.StepSearcherModules;
 
-using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref AnalysisContext, ref readonly Grid, int, bool, Step?>;
+using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref AnalysisContext, ref readonly Grid, ref readonly CellMap, ReadOnlySpan<CellMap>, int, bool, Step?>;
 
 /// <summary>
 /// Represents a subset module.
 /// </summary>
 internal static class SubsetModule
 {
+#pragma warning disable CS9080
 	/// <summary>
 	/// The internal method to create subset steps.
 	/// </summary>
@@ -18,12 +19,15 @@ internal static class SubsetModule
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
+
 		scoped ref readonly var grid = ref context.Grid;
+		var emptyCellsForGrid = grid.EmptyCells;
+		scoped var candidatesMapForGrid = grid.CandidatesMap;
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
 			for (var i = 0; i < 2; i++)
 			{
-				if (searchers[i](ref context, in grid, size, searchingForLocked) is { } step)
+				if (searchers[i](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, size, searchingForLocked) is { } step)
 				{
 					return step;
 				}
@@ -32,6 +36,7 @@ internal static class SubsetModule
 
 		return null;
 	}
+#pragma warning restore CS9080
 
 	/// <summary>
 	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
@@ -74,6 +79,8 @@ internal static class SubsetModule
 	private static HiddenSubsetStep? HiddenSubset(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap emptyCellsForGrid,
+		scoped ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
 	)
@@ -81,7 +88,7 @@ internal static class SubsetModule
 		for (var house = 0; house < 27; house++)
 		{
 			scoped ref readonly var currentHouseCells = ref HousesMap[house];
-			var traversingMap = currentHouseCells & EmptyCells;
+			var traversingMap = currentHouseCells & emptyCellsForGrid;
 			var mask = grid[in traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
 			{
@@ -90,7 +97,7 @@ internal static class SubsetModule
 				{
 					tempMask &= (Mask)~(1 << digit);
 					digitsMask |= (Mask)(1 << digit);
-					cells |= currentHouseCells & CandidatesMap[digit];
+					cells |= currentHouseCells & candidatesMapForGrid[digit];
 				}
 				if (cells.Count != size)
 				{
@@ -101,7 +108,7 @@ internal static class SubsetModule
 				var conclusions = new List<Conclusion>();
 				foreach (var digit in tempMask)
 				{
-					foreach (var cell in cells & CandidatesMap[digit])
+					foreach (var cell in cells & candidatesMapForGrid[digit])
 					{
 						conclusions.Add(new(Elimination, cell, digit));
 					}
@@ -115,7 +122,7 @@ internal static class SubsetModule
 				var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
 				foreach (var digit in digits)
 				{
-					foreach (var cell in cells & CandidatesMap[digit])
+					foreach (var cell in cells & candidatesMapForGrid[digit])
 					{
 						candidateOffsets.Add(new(ColorIdentifier.Normal, cell * 9 + digit));
 					}
@@ -132,7 +139,7 @@ internal static class SubsetModule
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
 						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
-						foreach (var cell in (HousesMap[eliminatingHouse] & EmptyCells) - cells)
+						foreach (var cell in (HousesMap[eliminatingHouse] & emptyCellsForGrid) - cells)
 						{
 							foreach (var digit in digitsMask)
 							{
@@ -161,7 +168,6 @@ internal static class SubsetModule
 						digitsMask,
 						isLocked && containsExtraEliminations
 					);
-
 					if (context.OnlyFindOne)
 					{
 						return step;
@@ -181,19 +187,21 @@ internal static class SubsetModule
 	private static NakedSubsetStep? NakedSubset(
 		scoped ref AnalysisContext context,
 		scoped ref readonly Grid grid,
+		scoped ref readonly CellMap emptyCellsForGrid,
+		scoped ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
 	)
 	{
 		for (var house = 0; house < 27; house++)
 		{
-			if ((HousesMap[house] & EmptyCells) is not { Count: >= 2 } currentEmptyMap)
+			if ((HousesMap[house] & emptyCellsForGrid) is not { Count: >= 2 } currentEmptyMap)
 			{
 				continue;
 			}
 
 			// Remove cells that only contain 1 candidate (Naked Singles).
-			foreach (var cell in HousesMap[house] & EmptyCells)
+			foreach (var cell in HousesMap[house] & emptyCellsForGrid)
 			{
 				if (IsPow2(grid.GetCandidates(cell)))
 				{
@@ -214,7 +222,7 @@ internal static class SubsetModule
 				var (lockedDigitsMask, conclusions) = ((Mask)0, new List<Conclusion>(18));
 				foreach (var digit in digitsMask)
 				{
-					var map = cells % CandidatesMap[digit];
+					var map = cells % candidatesMapForGrid[digit];
 					lockedDigitsMask |= (Mask)(map.InOneHouse(out _) ? 0 : 1 << digit);
 
 					conclusions.AddRange(from cell in map select new Conclusion(Elimination, cell, digit));
@@ -252,7 +260,6 @@ internal static class SubsetModule
 					digitsMask,
 					isLocked
 				);
-
 				if (context.OnlyFindOne)
 				{
 					return step;

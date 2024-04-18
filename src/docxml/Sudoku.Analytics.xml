@@ -6376,12 +6376,12 @@
             <param name="cells">The cells.</param>
             <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
             <summary>
             Search for hidden subsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.NakedSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
             <summary>
             Search for naked subsets.
             </summary>
