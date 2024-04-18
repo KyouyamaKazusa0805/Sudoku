@@ -1623,47 +1623,15 @@ public partial struct Grid :
 	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)"/>
 	public static Grid Parse(string str)
 	{
-		var containsMultilineLimits = str.Contains("-+-");
-		var containsTab = str.Contains('\t');
-		var grid = Undefined;
-
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
-		switch (str.Length, containsMultilineLimits, containsTab)
+		var grid = Undefined;
+		switch (str.Length, str.Contains("-+-"), str.Contains('\t'))
 		{
-			case (729, _, _) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g1:
-			{
-				return g1;
-			}
-			case (_, false, true) when new ExcelGridParser().Parser(str) is { IsUndefined: false } g2:
-			{
-				return g2;
-			}
-			case (_, true, _):
-			{
-				foreach (var parser in Parsers[..3])
-				{
-					if (parser.Parser(str) is { IsUndefined: false } g)
-					{
-						grid = g;
-					}
-				}
-				break;
-			}
-			default:
-			{
-				for (var trial = 0; trial < Parsers.Length; trial++)
-				{
-					var currentParser = Parsers[trial];
-					if (currentParser.Parser(str) is { IsUndefined: false } g)
-					{
-						grid = g;
-					}
-				}
-				break;
-			}
+			case (729, _, _) when parseAsSukaku(str, out var g): return g;
+			case (_, false, true) when parseAsExcel(str, out var g): return g;
+			case (_, true, _) when parseMultipleLines(str, out var g): grid = g; break;
+			case var _ when parseAll(str, out var g): grid = g; break;
 		}
-
-		// Return 'Undefined' if failed to parse grid text string.
 		if (grid.IsUndefined)
 		{
 			return Undefined;
@@ -1676,7 +1644,14 @@ public partial struct Grid :
 		// If so, we should treat it as a Sukaku instead of a standard sudoku puzzle.
 		if (grid.GivensCount < 17)
 		{
-			// Reduce given cells to empty cells back because it is a Sukaku.
+			reduceGivenCells(ref grid);
+			grid.AddSukakuHeader();
+		}
+		return grid;
+
+
+		static void reduceGivenCells(scoped ref Grid grid)
+		{
 			foreach (ref var mask in grid)
 			{
 				if (MaskOperations.MaskToCellState(mask) != CellState.Empty)
@@ -1684,11 +1659,65 @@ public partial struct Grid :
 					mask = (Mask)((Mask)CellState.Empty << CellCandidatesCount | mask & MaxCandidatesMask);
 				}
 			}
-
-			grid.AddSukakuHeader();
 		}
 
-		return grid;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool parseAsSukaku(string str, out Grid result)
+		{
+			if (new SukakuGridParser().Parser(str) is { IsUndefined: false } g)
+			{
+				g.AddSukakuHeader();
+				result = g;
+				return true;
+			}
+
+			result = Undefined;
+			return false;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static bool parseAsExcel(string str, out Grid result)
+		{
+			if (new ExcelGridParser().Parser(str) is { IsUndefined: false } g)
+			{
+				result = g;
+				return true;
+			}
+
+			result = Undefined;
+			return false;
+		}
+
+		static bool parseMultipleLines(string str, out Grid result)
+		{
+			foreach (var parser in Parsers[..3])
+			{
+				if (parser.Parser(str) is { IsUndefined: false } g)
+				{
+					result = g;
+					return true;
+				}
+			}
+
+			result = Undefined;
+			return false;
+		}
+
+		static bool parseAll(string str, out Grid result)
+		{
+			for (var trial = 0; trial < Parsers.Length; trial++)
+			{
+				var currentParser = Parsers[trial];
+				if (currentParser.Parser(str) is { IsUndefined: false } g)
+				{
+					result = g;
+					return true;
+				}
+			}
+
+			result = Undefined;
+			return false;
+		}
 	}
 
 	/// <summary>
