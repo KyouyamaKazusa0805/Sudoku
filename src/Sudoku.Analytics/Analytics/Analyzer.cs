@@ -218,7 +218,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 					case (_, _, { Metadata.IsConfiguredHighAllocation: true }, { IgnoreHighAllocationAlgorithms: true }):
 					case (_, _, { Metadata.IsOnlyRunForDirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: false } }):
 					case (_, _, { Metadata.IsOnlyRunForIndirectViews: true }, { Options: { DistinctDirectMode: true, IsDirectMode: true } }):
-					case (_, { IsUndefined: true }, { Metadata.SupportsMultiple: false }, _):
+					case (_, { IsUndefined: true }, { Metadata.SupportAnalyzingMultipleSolutionsPuzzle: false }, _):
 					{
 						// Skips on those two cases:
 						// 1. Sukaku puzzles can't use techniques that is marked as "not supported for sukaku".

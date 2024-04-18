@@ -10,9 +10,9 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_BruteForceStepSearcher",
 	Technique.BruteForce,
-	IsPure = true,
-	IsFixed = true,
-	SupportMultiple = false)]
+	IsCachingSafe = true,
+	IsOrderingFixed = true,
+	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class BruteForceStepSearcher : StepSearcher
 {
 	/// <summary>

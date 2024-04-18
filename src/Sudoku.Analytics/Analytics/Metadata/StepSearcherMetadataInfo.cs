@@ -17,30 +17,22 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// </summary>
 	public bool IsSplit => _stepSearcher.GetType().GetCustomAttribute<SplitStepSearcherAttribute>() is not null;
 
-	/// <summary>
-	/// Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
-	/// </summary>
-	public bool IsPure => _backAttribute.IsPure;
+	/// <inheritdoc cref="StepSearcherAttribute.IsCachingSafe"/>
+	public bool IsCachingSafe => _backAttribute.IsCachingSafe;
 
-	/// <summary>
-	/// Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
-	/// </summary>
-	public bool IsFixed => _backAttribute.IsFixed;
+	/// <inheritdoc cref="StepSearcherAttribute.IsOrderingFixed"/>
+	public bool IsOrderingFixed => _backAttribute.IsOrderingFixed;
 
-	/// <summary>
-	/// Determines whether we can toggle availability of the step searcher.
-	/// </summary>
-	public bool IsReadOnly => _backAttribute.IsReadOnly;
+	/// <inheritdoc cref="StepSearcherAttribute.IsAvailabilityReadOnly"/>
+	public bool IsReadOnly => _backAttribute.IsAvailabilityReadOnly;
 
 	/// <summary>
 	/// Determines whether the current step searcher supports sukaku solving.
 	/// </summary>
 	public bool SupportsSukaku => _backAttribute.SupportedSudokuTypes.HasFlag(SudokuType.Sukaku);
 
-	/// <summary>
-	/// Determines whether the current step searcher supports for analyzing puzzles having multiple solutions.
-	/// </summary>
-	public bool SupportsMultiple => _backAttribute.SupportMultiple;
+	/// <inheritdoc cref="StepSearcherAttribute.SupportAnalyzingMultipleSolutionsPuzzle"/>
+	public bool SupportAnalyzingMultipleSolutionsPuzzle => _backAttribute.SupportAnalyzingMultipleSolutionsPuzzle;
 
 	/// <summary>
 	/// Determines whether the current step searcher is disabled

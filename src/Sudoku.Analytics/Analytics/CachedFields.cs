@@ -34,10 +34,10 @@ public static class CachedFields
 	/// </summary>
 	/// <remarks>
 	/// This map <b>should</b> be used after <see cref="Initialize(ref readonly Grid, ref readonly Grid)"/> called, and you<b>'d better</b>
-	/// not use this field on instances which are set <see langword="true"/> for property <see cref="StepSearcherAttribute.IsPure"/>.
+	/// not use this field on instances which are set <see langword="true"/> for property <see cref="StepSearcherAttribute.IsCachingSafe"/>.
 	/// </remarks>
 	/// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
-	/// <seealso cref="StepSearcherAttribute.IsPure"/>
+	/// <seealso cref="StepSearcherAttribute.IsCachingSafe"/>
 	internal static CellMap EmptyCells;
 
 	/// <summary>

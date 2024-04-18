@@ -13,7 +13,7 @@ using unsafe AnitGurthSymmetricalPlacementModuleSearcherFuncPtr = delegate*<ref 
 [StepSearcher(
 	"StepSearcherName_AntiGurthSymmetricalPlacementStepSearcher",
 	Technique.ExtendedGurthSymmetricalPlacement, Technique.AntiGurthSymmetricalPlacement,
-	IsPure = true)]
+	IsCachingSafe = true)]
 public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSearcher
 {
 	/// <summary>

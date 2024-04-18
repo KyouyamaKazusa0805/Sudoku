@@ -17,7 +17,7 @@ using RawPatternDataItem = (bool IsFat, CellMap PatternCells, (Cell Left, Cell R
 	Technique.ExtendedRectangleType1, Technique.ExtendedRectangleType2,
 	Technique.ExtendedRectangleType3, Technique.ExtendedRectangleType3Cannibalism, Technique.ExtendedRectangleType4,
 	SupportedSudokuTypes = SudokuType.Standard,
-	SupportMultiple = false)]
+	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

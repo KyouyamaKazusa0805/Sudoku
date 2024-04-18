@@ -7,63 +7,56 @@ namespace Sudoku.Analytics.Metadata;
 /// <param name="supportedTechniques">All supported techniques.</param>
 /// <seealso cref="StepSearcher"/>
 [AttributeUsage(AttributeTargets.Class, Inherited = false)]
-public sealed partial class StepSearcherAttribute([PrimaryConstructorParameter] string nameKey, params Technique[] supportedTechniques) :
-	Attribute
+public sealed partial class StepSearcherAttribute(
+	[PrimaryConstructorParameter] string nameKey,
+	params Technique[] supportedTechniques
+) : Attribute
 {
 	/// <summary>
-	/// Indicates the searching logic only uses cached fields in type <see cref="CachedFields"/>,
-	/// which means it can conclude result without using field <see cref="AnalysisContext.Grid"/>.
-	/// </summary>
-	/// <seealso cref="CachedFields"/>
-	/// <seealso cref="AnalysisContext"/>
-	public bool OnlyUsesCachedFields { get; init; }
-
-	/// <summary>
-	/// Indicates the technique searcher can or can't be used in some scenarios
-	/// where they aren't in traversing mode to call core collecting method <c>Collect</c> in <see cref="StepSearcher"/>
-	/// for <see cref="StepSearcher"/> instances one by one.
-	/// </summary>
-	/// <!--
-	/// <remarks>
 	/// <para>
-	/// All disallowed fields are:
-	/// <list type="bullet">
-	/// <item><see cref="DigitsMap"/></item>
-	/// <item><see cref="ValuesMap"/></item>
-	/// <item><see cref="CandidatesMap"/></item>
-	/// <item><see cref="BivalueCells"/></item>
-	/// <item><see cref="EmptyCells"/></item>
-	/// </list>
-	/// The disallowed method is:
-	/// <list type="bullet">
-	/// <item><see cref="Initialize(in Grid, in Grid)"/></item>
-	/// </list>
+	/// Indicates the technique searcher doesn't use any cached fields in implementation, i.e. caching-free or caching-safe.
 	/// </para>
 	/// <para>
-	/// Those fields or methods can optimize the performance to analyze a sudoku grid, but
-	/// sometimes they may cause a potential bug that is hard to find and fix. The attribute
-	/// is created and used for solving the problem.
+	/// This property can be used by checking free-caching rules, in order to inline-declaring data members,
+	/// storing inside another step searcher type, or creating a temporary logic to call this searcher.
 	/// </para>
-	/// </remarks>
-	/// -->
-	/// <seealso cref="CachedFields"/>
-	public bool IsPure { get; init; }
+	/// </summary>
+	public bool IsCachingSafe { get; init; }
 
 	/// <summary>
-	/// Indicates whether the option is fixed in the sorting that can't be modified in UI.
+	/// <para>
+	/// Indicates the technique searcher always uses cached fields in implementation, i.e. caching-unsafe.
+	/// </para>
+	/// <para>
+	/// As a property reversed from <see cref="IsCachingSafe"/>, this property tags for a step searcher not using
+	/// <see cref="AnalysisContext.Grid"/>. If a step searcher type always use caching fields without any doubt,
+	/// this property should be set with <see langword="true"/>.
+	/// </para>
+	/// <para><i>
+	/// This property won't be used in API, but it may be used in future versions.
+	/// </i></para>
 	/// </summary>
-	public bool IsFixed { get; init; }
+	/// <seealso cref="IsCachingSafe"/>
+	/// <seealso cref="AnalysisContext.Grid"/>
+	public bool IsCachingUnsafe { get; init; }
 
 	/// <summary>
-	/// Indicates whether the option is read-only that cannot be modified in UI.
+	/// Indicates whether the option is read-only that cannot be modified in UI,
+	/// meaning a user cannot modify the ordering of this step searcher.
 	/// </summary>
-	public bool IsReadOnly { get; init; }
+	public bool IsOrderingFixed { get; init; }
+
+	/// <summary>
+	/// Indicates whether the option is read-only that cannot be modified in UI,
+	/// meaning a user cannot disable the current step searcher.
+	/// </summary>
+	public bool IsAvailabilityReadOnly { get; init; }
 
 	/// <summary>
 	/// Indicates whether the step searcher can be invoked by puzzles containing multiple solutions.
 	/// By default the value is <see langword="true"/>.
 	/// </summary>
-	public bool SupportMultiple { get; init; } = true;
+	public bool SupportAnalyzingMultipleSolutionsPuzzle { get; init; } = true;
 
 	/// <summary>
 	/// Indicates the runtime options that controls extra behaviors.

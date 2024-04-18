@@ -12,7 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher(
 	"StepSearcherName_TwoStrongLinksStepSearcher",
 	Technique.Skyscraper, Technique.TwoStringKite, Technique.TurbotFish,
-	OnlyUsesCachedFields = true)]
+	IsCachingUnsafe = true)]
 public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

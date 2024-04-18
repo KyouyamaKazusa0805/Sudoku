@@ -11,7 +11,7 @@ public sealed partial class StepSearcherInfo : DependencyObject
 	/// <summary>
 	/// Indicates whether the technique option is not fixed and can be used for drag-and-drop operation.
 	/// </summary>
-	public bool CanDrag => !CreateStepSearchers()[0].Metadata.IsFixed;
+	public bool CanDrag => !CreateStepSearchers()[0].Metadata.IsOrderingFixed;
 
 	/// <summary>
 	/// Indicates whether the technique option is not read-only and can be used for toggle operation.

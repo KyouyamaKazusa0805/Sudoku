@@ -855,10 +855,10 @@
             </summary>
             <remarks>
             This map <b>should</b> be used after <see cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/> called, and you<b>'d better</b>
-            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure"/>.
+            not use this field on instances which are set <see langword="true"/> for property <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>.
             </remarks>
             <seealso cref="M:Sudoku.Analytics.CachedFields.Initialize(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)"/>
-            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure"/>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
         </member>
         <member name="F:Sudoku.Analytics.CachedFields.BivalueCells">
             <summary>
@@ -5232,56 +5232,47 @@
             <param name="supportedTechniques">All supported techniques.</param>
             <seealso cref="T:Sudoku.Analytics.StepSearcher"/>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.OnlyUsesCachedFields">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe">
             <summary>
-            Indicates the searching logic only uses cached fields in type <see cref="T:Sudoku.Analytics.CachedFields"/>,
-            which means it can conclude result without using field <see cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
-            <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsPure">
-            <summary>
-            Indicates the technique searcher can or can't be used in some scenarios
-            where they aren't in traversing mode to call core collecting method <c>Collect</c> in <see cref="T:Sudoku.Analytics.StepSearcher"/>
-            for <see cref="T:Sudoku.Analytics.StepSearcher"/> instances one by one.
-            </summary>
-            <!--
-            <remarks>
             <para>
-            All disallowed fields are:
-            <list type="bullet">
-            <item><see cref="DigitsMap"/></item>
-            <item><see cref="ValuesMap"/></item>
-            <item><see cref="CandidatesMap"/></item>
-            <item><see cref="BivalueCells"/></item>
-            <item><see cref="EmptyCells"/></item>
-            </list>
-            The disallowed method is:
-            <list type="bullet">
-            <item><see cref="Initialize(in Grid, in Grid)"/></item>
-            </list>
+            Indicates the technique searcher doesn't use any cached fields in implementation, i.e. caching-free or caching-safe.
             </para>
             <para>
-            Those fields or methods can optimize the performance to analyze a sudoku grid, but
-            sometimes they may cause a potential bug that is hard to find and fix. The attribute
-            is created and used for solving the problem.
+            This property can be used by checking free-caching rules, in order to inline-declaring data members,
+            storing inside another step searcher type, or creating a temporary logic to call this searcher.
             </para>
-            </remarks>
-            -->
-            <seealso cref="T:Sudoku.Analytics.CachedFields"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsFixed">
-            <summary>
-            Indicates whether the option is fixed in the sorting that can't be modified in UI.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsReadOnly">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingUnsafe">
             <summary>
-            Indicates whether the option is read-only that cannot be modified in UI.
+            <para>
+            Indicates the technique searcher always uses cached fields in implementation, i.e. caching-unsafe.
+            </para>
+            <para>
+            As a property reversed from <see cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>, this property tags for a step searcher not using
+            <see cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>. If a step searcher type always use caching fields without any doubt,
+            this property should be set with <see langword="true"/>.
+            </para>
+            <para><i>
+            This property won't be used in API, but it may be used in future versions.
+            </i></para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
+            <seealso cref="F:Sudoku.Analytics.AnalysisContext.Grid"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsOrderingFixed">
+            <summary>
+            Indicates whether the option is read-only that cannot be modified in UI,
+            meaning a user cannot modify the ordering of this step searcher.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportMultiple">
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsAvailabilityReadOnly">
+            <summary>
+            Indicates whether the option is read-only that cannot be modified in UI,
+            meaning a user cannot disable the current step searcher.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportAnalyzingMultipleSolutionsPuzzle">
             <summary>
             Indicates whether the step searcher can be invoked by puzzles containing multiple solutions.
             By default the value is <see langword="true"/>.
@@ -5334,30 +5325,22 @@
             meaning it can be created as multiple instances in a same step searchers collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsPure">
-            <summary>
-            Determines whether the current step searcher is a pure one, which means it doesn't use cached fields.
-            </summary>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsCachingSafe">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsCachingSafe"/>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsFixed">
-            <summary>
-            Determines whether we can adjust the ordering of the current step searcher as a customized configuration option before solving a puzzle.
-            </summary>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsOrderingFixed">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsOrderingFixed"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsReadOnly">
-            <summary>
-            Determines whether we can toggle availability of the step searcher.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.IsAvailabilityReadOnly"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportsSukaku">
             <summary>
             Determines whether the current step searcher supports sukaku solving.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportsMultiple">
-            <summary>
-            Determines whether the current step searcher supports for analyzing puzzles having multiple solutions.
-            </summary>
+        <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportAnalyzingMultipleSolutionsPuzzle">
+            <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportAnalyzingMultipleSolutionsPuzzle"/>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.IsConfiguredSlow">
             <summary>

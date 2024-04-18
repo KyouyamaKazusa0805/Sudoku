@@ -87,7 +87,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AvoidableRectangle2D, Technique.AvoidableRectangle3X,
 
 	SupportedSudokuTypes = SudokuType.Standard | SudokuType.Sukaku,
-	SupportMultiple = false)]
+	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 {
 	/// <summary>

@@ -36,7 +36,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.BivalueUniversalGraveFalseCandidateType,
 
 	SupportedSudokuTypes = SudokuType.Standard,
-	SupportMultiple = false)]
+	SupportAnalyzingMultipleSolutionsPuzzle = false)]
 public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 {
 	/// <summary>
