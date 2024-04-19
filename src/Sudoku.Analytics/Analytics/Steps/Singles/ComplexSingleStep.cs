@@ -54,15 +54,13 @@ public sealed partial class ComplexSingleStep(
 			return 1;
 		}
 
-		var countThis = IndirectTechniques.Length;
-		var countOther = comparer.IndirectTechniques.Length;
+		var (countThis, countOther) = (IndirectTechniques.Length, comparer.IndirectTechniques.Length);
 		if (countThis != countOther)
 		{
 			return countThis > countOther ? 1 : -1;
 		}
 
-		var sortKeyThis = 0;
-		var sortKeyOther = 0;
+		var (sortKeyThis, sortKeyOther) = (0, 0);
 		for (var i = 0; i < IndirectTechniques.Length; i++)
 		{
 			sortKeyThis += getSortKey(IndirectTechniques[i][0]);
