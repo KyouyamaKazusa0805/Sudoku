@@ -92,9 +92,39 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
 			foreach (var indirectStep in indirectFoundSteps)
 			{
-				if (interimSteps.Exists(step => step.ConclusionText == indirectStep.ConclusionText))
+				// Check whether the step is valid.
+				// A step will be valid if:
+				//   1) The step has new conclusions that recorded steps don't have.
+				//   2) The step becomes valid if at least one record step indeed influences the current step.
+				var isValid = true;
+				foreach (var interimStep in interimSteps)
 				{
-					// Skips for recorded steps.
+					if (interimStep.ConclusionText == indirectStep.ConclusionText)
+					{
+						isValid = false;
+						break;
+					}
+
+					var (digitsMaskInterim, houseInterim) = interimStep switch
+					{
+						LockedCandidatesStep { Digit: var digit, BaseSet: var set } => ((Mask)(1 << digit), set),
+						NakedSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set),
+						HiddenSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set)
+					};
+					var (digitsMaskIndirect, houseIndirect) = indirectStep switch
+					{
+						LockedCandidatesStep { Digit: var digit, BaseSet: var set } => ((Mask)(1 << digit), set),
+						NakedSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set),
+						HiddenSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set)
+					};
+					if ((digitsMaskInterim & digitsMaskIndirect) != 0 && houseInterim == houseIndirect)
+					{
+						isValid = true;
+						break;
+					}
+				}
+				if (!isValid)
+				{
 					continue;
 				}
 
