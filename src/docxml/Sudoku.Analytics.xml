@@ -17986,6 +17986,9 @@
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Factors">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
@@ -22174,6 +22177,24 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ComplexSingleFactor">
+            <summary>
+            Represents a factor that describes the factor for <see cref="T:Sudoku.Analytics.Steps.ComplexSingleStep"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Steps.ComplexSingleStep"/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.FormulaString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor">
             <inheritdoc/>
         </member>
@@ -24073,6 +24094,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishSizeFactor">
             <summary>
               Looks up a localized string similar to Size of complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexSingleFactor">
+            <summary>
+              Looks up a localized string similar to Complex single.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_DirectSubsetIsLockedFactor">

@@ -45,6 +45,9 @@ public sealed partial class ComplexSingleStep(
 			Technique.NakedSingle => Technique.ComplexNakedSingle
 		};
 
+	/// <inheritdoc/>
+	public override FactorCollection Factors => [new ComplexSingleFactor()];
+
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)

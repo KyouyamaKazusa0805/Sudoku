@@ -3195,4 +3195,7 @@ Error grid: '{0:#}'</value>
   <data name="ComplexNakedSingle" xml:space="preserve">
     <value>Complex Naked Single</value>
   </data>
+  <data name="Factor_ComplexSingleFactor" xml:space="preserve">
+    <value>Complex single</value>
+  </data>
 </root>

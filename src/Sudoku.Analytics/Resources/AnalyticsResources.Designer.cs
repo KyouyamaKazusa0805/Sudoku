@@ -2113,6 +2113,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Complex single.
+        /// </summary>
+        public static string Factor_ComplexSingleFactor {
+            get {
+                return ResourceManager.GetString("Factor_ComplexSingleFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Subset in direct subset is locked.
         /// </summary>
         public static string Factor_DirectSubsetIsLockedFactor {
