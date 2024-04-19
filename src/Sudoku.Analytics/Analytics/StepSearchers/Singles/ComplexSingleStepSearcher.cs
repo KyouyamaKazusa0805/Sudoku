@@ -121,18 +121,30 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					// Good! We have already found a step available! Iterate on each step to create the result value.
 					foreach (ComplexSingleBaseStep directStep in directStepsFound)
 					{
+						var views = new View[interimSteps.Count + 1];
+						var tempConclusions = new List<Conclusion>();
+						var tempIndex = 0;
+						foreach (var interimStep in interimSteps)
+						{
+							tempConclusions.AddRange(interimStep.Conclusions.AsReadOnlySpan());
+							views[tempIndex++] = [
+								.. interimStep.Views![0],
+								..
+								from conclusion in tempConclusions
+								select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
+							];
+						}
+						views[tempIndex] = [
+							.. directStep.Views![0],
+							..
+							from conclusion in tempConclusions
+							select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
+						];
+
 						// Add step into accumulator or return step.
 						var step = new ComplexSingleStep(
 							directStep.Conclusions,
-							[
-								..
-								from interimStep in interimSteps
-								let interimConclusion =
-									from conclusion in interimStep.Conclusions
-									select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
-								select (View)([.. interimStep.Views![0], .. interimConclusion]),
-								.. directStep.Views
-							],
+							views,
 							context.PredefinedOptions,
 							directStep.Cell,
 							directStep.Digit,
