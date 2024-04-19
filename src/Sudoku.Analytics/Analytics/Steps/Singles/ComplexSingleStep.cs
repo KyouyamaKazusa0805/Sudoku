@@ -56,7 +56,7 @@ public sealed partial class ComplexSingleStep(
 
 		var countThis = IndirectTechniques.Length;
 		var countOther = comparer.IndirectTechniques.Length;
-		if (countThis == countOther)
+		if (countThis != countOther)
 		{
 			return countThis > countOther ? 1 : -1;
 		}
