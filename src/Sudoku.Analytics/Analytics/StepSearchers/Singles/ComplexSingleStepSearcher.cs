@@ -56,33 +56,19 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	private static readonly NormalSubsetStepSearcher NormalSubsetSearcher = new();
 
 
-	/// <summary>
-	/// Indicates the depth allowed in searching. The default value is 4.
-	/// </summary>
-	[SettingItemName(SettingItemNames.AllowedComplexSingleDepth)]
-	public int Depth { get; set; } = 2;
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		return dfs(ref context, in grid, Depth, []) is { } step ? step : null;
+		return dfs(ref context, in grid, []) is { } step ? step : null;
 
 
 		static ComplexSingleStep? dfs(
 			scoped ref AnalysisContext context,
 			scoped ref readonly Grid grid,
-			int depth,
 			LinkedList<Step> interimSteps
 		)
 		{
-			if (depth <= 0)
-			{
-				// Exit the recursion if 'depth' is 0 or negative.
-				return null;
-			}
-
 			// Collect all steps by using indirect techniques.
 			var indirectFoundSteps = new List<Step>();
 			scoped var tempContext = new AnalysisContext(
@@ -106,10 +92,14 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
 			foreach (var indirectStep in indirectFoundSteps)
 			{
+				if (interimSteps.Exists(step => step.ConclusionText == indirectStep.ConclusionText))
+				{
+					// Skips for recorded steps.
+					continue;
+				}
+
 				// Push.
 				interimSteps.AddLast(indirectStep);
-
-				// Apply the conclusion and check for the next step.
 				var playground = grid;
 				playground.Apply(indirectStep);
 
@@ -156,20 +146,21 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 						}
 
 						context.Accumulator.Add(step);
+						return null;
 					}
+				}
 
-					// Exit the recursion here.
-					return null;
+				// If code goes to here, the puzzle won't be solved with the current step.
+				// We should continue the searching from the current state.
+				// Use this puzzle to check for the next elimination step by recursion.
+				if (dfs(ref context, in playground, interimSteps) is { } finalStep)
+				{
+					return finalStep;
 				}
 
 				// Pop.
 				interimSteps.RemoveLast();
-
-				// If not, use this puzzle to check for the next elimination step by recursion.
-				if (dfs(ref context, in playground, depth - 1, interimSteps) is { } finalStep)
-				{
-					return finalStep;
-				}
+				playground = grid;
 			}
 
 			// None found. Return null.

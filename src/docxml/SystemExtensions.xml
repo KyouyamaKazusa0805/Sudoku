@@ -806,6 +806,21 @@
             <param name="this">The source collection.</param>
             <param name="elements">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.ICollection`1"/>.</param>
         </member>
+        <member name="T:System.Collections.Generic.LinkedListExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.LinkedListExtensions.Exists``1(System.Collections.Generic.LinkedList{``0},System.Func{``0,System.Boolean})">
+            <summary>
+            Checks whether the collection exists at least one element satisfying the specified condition.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
+            <param name="match">A method to be called.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:System.Collections.Generic.ListExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Collections.Generic.List`1"/>.

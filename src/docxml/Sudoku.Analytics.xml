@@ -4803,9 +4803,6 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AnalyzerUseIttoryuMode">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.SingleStepSearcher.UseIttoryuMode"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowedComplexSingleDepth">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Depth"/>
-        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowDirectPointing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectIntersectionStepSearcher.AllowDirectPointing"/>
         </member>
@@ -10486,11 +10483,6 @@
         <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NormalSubsetSearcher">
             <summary>
             Indicates the searcher for normal subsets.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Depth">
-            <summary>
-            Indicates the depth allowed in searching. The default value is 4.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
