@@ -17986,6 +17986,9 @@
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
             <summary>
             Provides with a step that is a <b>Direct Intersection</b> technique.

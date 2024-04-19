@@ -60,11 +60,28 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		return dfs(ref context, in grid, []) is { } step ? step : null;
+		var accumulator = new List<Step>();
+		if (dfs(ref context, accumulator, in grid, []) is { } step)
+		{
+			return step;
+		}
+
+		// Sort and remove duplicate instances if worth.
+		var sortedList = StepMarshal.RemoveDuplicateItems(accumulator).ToList();
+		StepMarshal.SortItems(sortedList);
+
+		if (context.OnlyFindOne)
+		{
+			return sortedList[0];
+		}
+
+		context.Accumulator.AddRange(sortedList);
+		return null;
 
 
 		static ComplexSingleStep? dfs(
 			scoped ref AnalysisContext context,
+			List<Step> accumulator,
 			scoped ref readonly Grid grid,
 			LinkedList<Step> interimSteps
 		)
@@ -187,7 +204,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 							return step;
 						}
 
-						context.Accumulator.Add(step);
+						accumulator.Add(step);
 						return null;
 					}
 				}
@@ -195,7 +212,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				// If code goes to here, the puzzle won't be solved with the current step.
 				// We should continue the searching from the current state.
 				// Use this puzzle to check for the next elimination step by recursion.
-				if (dfs(ref context, in playground, interimSteps) is { } finalStep)
+				if (dfs(ref context, accumulator, in playground, interimSteps) is { } finalStep)
 				{
 					return finalStep;
 				}

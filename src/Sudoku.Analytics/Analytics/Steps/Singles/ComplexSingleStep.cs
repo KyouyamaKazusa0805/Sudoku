@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -43,4 +44,46 @@ public sealed partial class ComplexSingleStep(
 			Technique.CrosshatchingColumn => Technique.ComplexCrosshatchingColumn,
 			Technique.NakedSingle => Technique.ComplexNakedSingle
 		};
+
+
+	/// <inheritdoc/>
+	public override int CompareTo(Step? other)
+	{
+		if (other is not ComplexSingleStep comparer)
+		{
+			return 1;
+		}
+
+		var countThis = IndirectTechniques.Length;
+		var countOther = comparer.IndirectTechniques.Length;
+		if (countThis == countOther)
+		{
+			return countThis > countOther ? 1 : -1;
+		}
+
+		var sortKeyThis = 0;
+		var sortKeyOther = 0;
+		for (var i = 0; i < IndirectTechniques.Length; i++)
+		{
+			sortKeyThis += getSortKey(IndirectTechniques[i][0]);
+			sortKeyOther += getSortKey(comparer.IndirectTechniques[i][0]);
+		}
+
+		return sortKeyThis.CompareTo(sortKeyOther);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static int getSortKey(Technique technique)
+			=> technique switch
+			{
+				Technique.Pointing => 1,
+				Technique.Claiming => 2,
+				Technique.LockedPair or Technique.LockedHiddenPair => 3,
+				Technique.LockedTriple or Technique.LockedHiddenTriple => 4,
+				Technique.NakedPair or Technique.HiddenPair or Technique.NakedPairPlus => 5,
+				Technique.NakedTriple or Technique.HiddenTriple or Technique.NakedTriplePlus => 6,
+				Technique.NakedQuadruple or Technique.HiddenQuadruple or Technique.NakedQuadruplePlus => 7,
+				_ => 10
+			};
+	}
 }
