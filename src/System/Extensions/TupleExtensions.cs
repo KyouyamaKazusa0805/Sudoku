@@ -19,7 +19,23 @@ public static class TupleExtensions
 		{
 			result[i++] = element;
 		}
+		return result;
+	}
 
+	/// <summary>
+	/// Converts the tuple elements into a valid span of elements of type <typeparamref name="T"/>.
+	/// </summary>
+	/// <typeparam name="T">The unified type for all elements.</typeparam>
+	/// <param name="this">The tuple instance.</param>
+	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
+	public static ReadOnlySpan<T> AsSpan<T>(this ITuple @this)
+	{
+		var result = new T[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			result[i++] = (T)element!;
+		}
 		return result;
 	}
 

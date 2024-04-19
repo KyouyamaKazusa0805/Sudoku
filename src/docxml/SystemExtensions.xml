@@ -1565,6 +1565,14 @@
             <param name="this">The instance.</param>
             <returns>The array of elements.</returns>
         </member>
+        <member name="M:System.Runtime.CompilerServices.TupleExtensions.AsSpan``1(System.Runtime.CompilerServices.ITuple)">
+            <summary>
+            Converts the tuple elements into a valid span of elements of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The unified type for all elements.</typeparam>
+            <param name="this">The tuple instance.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
         <member name="M:System.Runtime.CompilerServices.TupleExtensions.GetEnumerator(System.Runtime.CompilerServices.ITuple)">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
         </member>
@@ -2519,6 +2527,82 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumeration type is not marked <see cref="T:System.FlagsAttribute"/>.
             </exception>
+        </member>
+        <member name="T:System.Linq.LinkedListEnumerable">
+            <summary>
+            Represents LINQ methods used by <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.Select``2(System.Collections.Generic.LinkedList{``0},System.Func{``0,``1})">
+            <summary>
+            Projects each element into a new form.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TResult">The type of the transformed value.</typeparam>
+            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
+            <param name="selector">The function to transform items.</param>
+            <returns>The projected values.</returns>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.Select``2(System.Linq.LinkedListReversed{``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.LinkedListEnumerable.Select``2(System.Collections.Generic.LinkedList{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.LinkedListEnumerable.Reverse``1(System.Collections.Generic.LinkedList{``0})">
+            <summary>
+            Reverse the enumeration on <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">A <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</param>
+            <returns>The reversed enumerator-provider instance.</returns>
+        </member>
+        <member name="T:System.Linq.LinkedListReversed`1">
+            <summary>
+            Represent an enumerator type that reversely enumerates on each element in a <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="baseList">The base list.</param>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.#ctor(System.Collections.Generic.LinkedList{`0})">
+            <summary>
+            Represent an enumerator type that reversely enumerates on each element in a <see cref="T:System.Collections.Generic.LinkedList`1"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="baseList">The base list.</param>
+            <seealso cref="T:System.Collections.Generic.LinkedList`1"/>
+        </member>
+        <member name="P:System.Linq.LinkedListReversed`1.Count">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.Reverse">
+            <summary>
+            Reverses the enumeration on each element. The method will directly return the base <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.
+            </summary>
+            <returns>The <see cref="T:System.Collections.Generic.LinkedList`1"/> instance.</returns>
+        </member>
+        <member name="T:System.Linq.LinkedListReversed`1.Enumerator">
+            <summary>
+            Indicates the enumerator type of the <see cref="T:System.Linq.LinkedListReversed`1"/> instance.
+            </summary>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.Enumerator.#ctor(System.Collections.Generic.LinkedList{`0})">
+            <summary>
+            Indicates the enumerator type of the <see cref="T:System.Linq.LinkedListReversed`1"/> instance.
+            </summary>
+        </member>
+        <member name="F:System.Linq.LinkedListReversed`1.Enumerator._node">
+            <summary>
+            Indicates the last node.
+            </summary>
+        </member>
+        <member name="P:System.Linq.LinkedListReversed`1.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.Linq.LinkedListReversed`1.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="T:System.Linq.ListEnumerable">
             <summary>

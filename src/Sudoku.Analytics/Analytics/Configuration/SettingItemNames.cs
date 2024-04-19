@@ -22,6 +22,9 @@ public static class SettingItemNames
 	/// <inheritdoc cref="SingleStepSearcher.UseIttoryuMode"/>
 	public const string AnalyzerUseIttoryuMode = nameof(AnalyzerUseIttoryuMode);
 
+	/// <inheritdoc cref="ComplexSingleStepSearcher.Depth"/>
+	public const string AllowedComplexSingleDepth = nameof(AllowedComplexSingleDepth);
+
 	/// <inheritdoc cref="DirectIntersectionStepSearcher.AllowDirectPointing"/>
 	public const string AllowDirectPointing = nameof(AllowDirectPointing);
 

@@ -7,13 +7,13 @@ namespace System.Linq;
 public static class TupleEnumerable
 {
 	/// <inheritdoc cref="Enumerable.Cast{TResult}(IEnumerable)"/>
-	public static ReadOnlySpan<T?> Cast<T>(this ITuple @this)
+	public static ReadOnlySpan<T> Cast<T>(this ITuple @this)
 	{
-		var result = new T?[@this.Length];
+		var result = new T[@this.Length];
 		var i = 0;
 		foreach (var element in @this)
 		{
-			result[i++] = (T?)element;
+			result[i++] = (T)element!;
 		}
 
 		return result;
