@@ -96,9 +96,9 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				context.IsSukaku,
 				context.PredefinedOptions
 			);
-			LockedCandidatesSearcher.Collect(ref tempContext);
 			LockedSubsetSearcher.Collect(ref tempContext);
 			NormalSubsetSearcher.Collect(ref tempContext);
+			LockedCandidatesSearcher.Collect(ref tempContext);
 
 			if (indirectFoundSteps.Count == 0)
 			{
