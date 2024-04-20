@@ -27057,6 +27057,11 @@ result ^= expression;
               Looks up a localized string similar to {0}.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ComplexSingleStep">
+            <summary>
+              Looks up a localized string similar to Conclusion can only be found by using multiple locked candidates and subsets.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ContinuousNiceLoopStep">
             <summary>
               Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
@@ -27740,6 +27745,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_XyzRing">
             <summary>
               Looks up a localized string similar to XYZ-Ring.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueSetConstraint">
+            <summary>
+              Looks up a localized string similar to Technique sets: a puzzle can be solved by using only techniques {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TemplateDelete">

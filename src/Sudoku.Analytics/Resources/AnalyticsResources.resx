@@ -3204,10 +3204,6 @@ Error grid: '{0:#}'</value>
   <data name="Concept_Subset" xml:space="preserve">
     <value>Subset</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_Token_CenterDot" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
     <value>Conclusion can only be found by using multiple locked candidates and subsets</value>
   </data>

@@ -7417,6 +7417,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Conclusion can only be found by using multiple locked candidates and subsets.
+        /// </summary>
+        public static string TechniqueFormat_ComplexSingleStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_ComplexSingleStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to {Name}: Loop {ChainStr} =&gt; {ElimStr}.
         /// </summary>
         public static string TechniqueFormat_ContinuousNiceLoopStep {
@@ -8646,6 +8655,15 @@ namespace Sudoku.Resources {
         public static string TechniqueGroup_XyzRing {
             get {
                 return ResourceManager.GetString("TechniqueGroup_XyzRing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique sets: a puzzle can be solved by using only techniques {0}.
+        /// </summary>
+        public static string TechniqueSetConstraint {
+            get {
+                return ResourceManager.GetString("TechniqueSetConstraint", resourceCulture);
             }
         }
         
