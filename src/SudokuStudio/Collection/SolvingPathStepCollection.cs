@@ -16,7 +16,7 @@ public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSour
 		var (steps, grids) = analyzerResult switch
 		{
 			{ IsSolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
-			{ IsSolved: false, FailedReason: FailedReason.AnalyzerGiveUp, InterimSteps: { } s, InterimGrids: { } g } => (s, g),
+			{ IsPartiallySolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
 			_ => (null, null)
 		};
 		if ((steps, grids) is not (not null, not null))

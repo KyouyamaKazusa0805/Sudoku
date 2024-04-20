@@ -366,6 +366,16 @@
         <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalyzerResult.IsPartiallySolved">
+            <summary>
+            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>.
+            If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/> and <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
+            won't be <see langword="null"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
+        </member>
         <member name="P:Sudoku.Analytics.AnalyzerResult.IsPearl">
             <summary>
             Indicates whether the puzzle is a pearl puzzle, which means the first step must be an indirect technique usage.
@@ -10450,6 +10460,17 @@
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher">
+            <summary>
+            Provides with a <b>Complex Single</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Complex Full House</item>
+            <item>Complex Hidden Single</item>
+            <item>Complex Naked Single</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
             <summary>
             Provides with a <b>Complex Single</b> step searcher.
             The step searcher will include the following techniques:

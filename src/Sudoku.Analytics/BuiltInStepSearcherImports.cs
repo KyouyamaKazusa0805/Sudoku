@@ -1,7 +1,7 @@
 [assembly: BuiltInStepSearcher<SingleStepSearcher>(0)]
 [assembly: BuiltInStepSearcher<DirectIntersectionStepSearcher>(0)]
 [assembly: BuiltInStepSearcher<DirectSubsetStepSearcher>(0)]
-[assembly: BuiltInStepSearcher<ComplexSingleStepSearcher>(1)]
+//[assembly: BuiltInStepSearcher<ComplexSingleStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<LockedSubsetStepSearcher>(0)]
 [assembly: BuiltInStepSearcher<LockedCandidatesStepSearcher>(0)]
 [assembly: BuiltInStepSearcher<LawOfLeftoverStepSearcher>(0)]

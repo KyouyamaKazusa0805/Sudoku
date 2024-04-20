@@ -1056,7 +1056,7 @@ public sealed partial class AnalyzePage : Page
 				}
 			}))
 			{
-				case var analyzerResult and ({ IsSolved: true } or { IsSolved: false, FailedReason: FailedReason.AnalyzerGiveUp }):
+				case var analyzerResult and ({ IsSolved: true } or { IsPartiallySolved: true }):
 				{
 					UpdateAnalysisResult(analyzerResult);
 					AnalysisResultCache = analyzerResult;

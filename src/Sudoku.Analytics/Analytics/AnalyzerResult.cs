@@ -40,6 +40,17 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 	public required bool IsSolved { get; init; }
 
 	/// <summary>
+	/// Indicates whether the puzzle is solved, or failed by <see cref="FailedReason.AnalyzerGiveUp"/>.
+	/// If the property returns <see langword="true"/>, properties <see cref="InterimSteps"/> and <see cref="InterimGrids"/>
+	/// won't be <see langword="null"/>.
+	/// </summary>
+	/// <seealso cref="FailedReason.AnalyzerGiveUp"/>
+	/// <seealso cref="InterimSteps"/>
+	/// <seealso cref="InterimGrids"/>
+	[MemberNotNullWhen(true, nameof(InterimSteps), nameof(InterimGrids))]
+	public bool IsPartiallySolved => IsSolved || FailedReason == FailedReason.AnalyzerGiveUp;
+
+	/// <summary>
 	/// Indicates whether the puzzle is a pearl puzzle, which means the first step must be an indirect technique usage.
 	/// </summary>
 	/// <returns>
