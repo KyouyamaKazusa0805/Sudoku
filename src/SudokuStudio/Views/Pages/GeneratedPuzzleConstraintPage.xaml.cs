@@ -138,35 +138,20 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	}
 
 	private partial SettingsCard? Create_BottleneckStepRating(BottleneckStepRatingConstraint constraint);
-
 	private partial SettingsExpander? Create_BottleneckTechnique(BottleneckTechniqueConstraint constraint);
-
 	private partial SettingsCard? Create_DifficultyLevel(DifficultyLevelConstraint constraint);
-
 	private partial SettingsCard? Create_Symmetry(SymmetryConstraint constraint);
-
 	private partial SettingsCard? Create_Conclusion(ConclusionConstraint constraint);
-
 	private partial SettingsCard? Create_Lasting(LastingConstraint constraint);
-
 	private partial SettingsCard? Create_Minimal(MinimalConstraint constraint);
-
 	private partial SettingsCard? Create_PearlOrDiamond<TConstraint>(TConstraint constraint) where TConstraint : PearlOrDiamondConstraint;
-
 	private partial SettingsCard? Create_CountBetween(CountBetweenConstraint constraint);
-
 	private partial SettingsCard? Create_Ittoryu(IttoryuConstraint constraint);
-
 	private partial SettingsCard? Create_IttoryuLength(IttoryuLengthConstraint constraint);
-
 	private partial SettingsExpander? Create_Technique(TechniqueConstraint constraint);
-
 	private partial SettingsExpander? Create_TechniqueCount(TechniqueCountConstraint constraint);
-
 	private partial SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint);
-
 	private partial SettingsExpander? Create_EliminationCount(EliminationCountConstraint constraint);
-
 	private partial SettingsCard? Create_PrimarySingle(PrimarySingleConstraint constraint);
 
 

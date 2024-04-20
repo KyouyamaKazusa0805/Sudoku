@@ -8560,32 +8560,6 @@
             ]]></code>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check UR + 2D.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="corner1">The corner cell 1.</param>
-            <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The pattern:
-            <code><![CDATA[
-              ↓ corner1
-            (ab )  abx
-             aby  (ab )  xy  *
-                    ↑ corner2
-            ]]></code>
-            </remarks>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2B1SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Check UR + 2B/1SL.
@@ -8641,31 +8615,6 @@
              abx   (ab )
                      ↑ corner2
             ]]></code>
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Check UR + 3X.
-            </summary>
-            <param name="accumulator">The technique accumulator.</param>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="urCells">All UR cells.</param>
-            <param name="arMode">Indicates whether the current mode is AR mode.</param>
-            <param name="comparer">The mask comparer.</param>
-            <param name="d1">The digit 1 used in UR.</param>
-            <param name="d2">The digit 2 used in UR.</param>
-            <param name="cornerCell">The corner cell.</param>
-            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
-            <param name="index">The index.</param>
-            <remarks>
-            The pattern:
-            <code><![CDATA[
-             ↓ cornerCell
-            (ab )  abx
-             aby   abz   xy  *
-            ]]></code>
-            Note: <c>z</c> is <c>x</c> or <c>y</c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X2SL(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
@@ -8971,6 +8920,36 @@
              Where the digit <c>a</c> and <c>b</c> in the bottom-left cell <c>abcx</c> can be removed.
              </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check AR + Hidden single.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="corner1">The corner cell 1.</param>
+            <param name="corner2">The corner cell 2.</param>
+            <param name="otherCellsMap">
+            The map of other cells during the current UR searching.
+            </param>
+            <param name="index">The index.</param>
+            <remarks>
+            <para>The pattern:</para>
+            <para>
+            <code><![CDATA[
+            ↓corner1
+            a   | aby.  .
+            abx | a  .  b
+                | .  .  .
+                  ↑corner2(cell 'a')
+            ]]></code>
+            There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
+            </para>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckExternalType1Or2(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             <para>Check UR/AR + Guardian (i.e. UR External Type 2) and UR External Type 1.</para>
@@ -9070,34 +9049,55 @@
             <param name="index">The mask index.</param>
             <param name="arMode"></param>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckHiddenSingleAvoidable(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check2D(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
-            Check AR + Hidden single.
+            Check UR + 2D.
             </summary>
             <param name="accumulator">The technique accumulator.</param>
             <param name="grid">The grid.</param>
             <param name="context">The context.</param>
             <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
             <param name="d1">The digit 1 used in UR.</param>
             <param name="d2">The digit 2 used in UR.</param>
             <param name="corner1">The corner cell 1.</param>
             <param name="corner2">The corner cell 2.</param>
-            <param name="otherCellsMap">
-            The map of other cells during the current UR searching.
-            </param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
             <param name="index">The index.</param>
             <remarks>
-            <para>The pattern:</para>
-            <para>
+            The pattern:
             <code><![CDATA[
-            ↓corner1
-            a   | aby.  .
-            abx | a  .  b
-                | .  .  .
-                  ↑corner2(cell 'a')
+              ↓ corner1
+            (ab )  abx
+             aby  (ab )  xy  *
+                    ↑ corner2
             ]]></code>
-            There's only one cell can be filled with the digit 'b' besides the cell 'aby'.
-            </para>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.Check3X(System.Collections.Generic.List{Sudoku.Analytics.Steps.UniqueRectangleStep},Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Int32[],System.Boolean,System.Int16,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Check UR + 3X.
+            </summary>
+            <param name="accumulator">The technique accumulator.</param>
+            <param name="grid">The grid.</param>
+            <param name="context">The context.</param>
+            <param name="urCells">All UR cells.</param>
+            <param name="arMode">Indicates whether the current mode is AR mode.</param>
+            <param name="comparer">The mask comparer.</param>
+            <param name="d1">The digit 1 used in UR.</param>
+            <param name="d2">The digit 2 used in UR.</param>
+            <param name="cornerCell">The corner cell.</param>
+            <param name="otherCellsMap">The map of other cells during the current UR searching.</param>
+            <param name="index">The index.</param>
+            <remarks>
+            The pattern:
+            <code><![CDATA[
+             ↓ cornerCell
+            (ab )  abx
+             aby   abz   xy  *
+            ]]></code>
+            Note: <c>z</c> is <c>x</c> or <c>y</c>.
             </remarks>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.CheckPreconditions(Sudoku.Concepts.Grid@,System.Int32[],System.Boolean)">
