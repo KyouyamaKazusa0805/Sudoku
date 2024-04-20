@@ -14132,16 +14132,6 @@
             Represents generated puzzle constraint page.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultSpacing">
-            <summary>
-            Indicates the default spacing.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultMargin">
-            <summary>
-            Indicates the default margin.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ControlCreatorFactory">
             <summary>
             Indicates a dictionary type that can create controls, distincted by its real type.
@@ -14178,6 +14168,27 @@
             </param>
             <seealso cref="P:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ConstraintsEntry"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultSpacing">
+            <summary>
+            Indicates the default spacing.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.DefaultMargin">
+            <summary>
+            Indicates the default margin.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.EnumBinder``3(``0,``2,System.Action{``2})">
+            <summary>
+            The core method that binds a field of type <typeparamref name="TEnum"/> to a <typeparamref name="TControl"/> instance.
+            </summary>
+            <typeparam name="TItemControl">The type of the item control.</typeparam>
+            <typeparam name="TControl">The type of the control.</typeparam>
+            <typeparam name="TEnum">The type of the enumeration.</typeparam>
+            <param name="control">The control to be operated.</param>
+            <param name="valueToCompare">The value to compare.</param>
+            <param name="constraintCallback">The constraint callback method.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.ComparisonOperatorControl``1(Sudoku.Strategying.ComparisonOperator,``0)">
             <summary>
             Creates a <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> object for comparison operator displaying.
@@ -14203,17 +14214,6 @@
             <param name="constraint">Indicates the constraint.</param>
             <param name="rule">Indicates the rule.</param>
             <returns>A <see cref="T:Microsoft.UI.Xaml.Controls.ComboBox"/> result.</returns>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.EnumBinder``3(``0,``2,System.Action{``2})">
-            <summary>
-            The core method that binds a field of type <typeparamref name="TEnum"/> to a <typeparamref name="TControl"/> instance.
-            </summary>
-            <typeparam name="TItemControl">The type of the item control.</typeparam>
-            <typeparam name="TControl">The type of the control.</typeparam>
-            <typeparam name="TEnum">The type of the enumeration.</typeparam>
-            <param name="control">The control to be operated.</param>
-            <param name="valueToCompare">The value to compare.</param>
-            <param name="constraintCallback">The constraint callback method.</param>
         </member>
         <member name="M:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage.InitializeComponent">
             <summary>
