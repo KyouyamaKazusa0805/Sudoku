@@ -52,7 +52,7 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, D
 	/// <summary>
 	/// Indicates the reference links.
 	/// </summary>
-	[StringSyntax(StringSyntax.Uri)]
+	[StringSyntax(StringSyntaxAttribute.Uri)]
 	[DisallowNull]
 	public string[]? Links { get; init; }
 

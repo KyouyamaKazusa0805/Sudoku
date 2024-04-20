@@ -497,36 +497,6 @@
         <member name="M:System.ComplexValueTupleEnumerator`2.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:System.Diagnostics.CodeAnalysis.StringSyntax">
-            <summary>
-            Represents a list of <see cref="T:System.String"/> constants being used by <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>.
-            </summary>
-            <remarks>
-            In fact such fields are totally same as ones in attribute type <see cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>,
-            but I don't like to reference them using attribute full name.
-            </remarks>
-            <seealso cref="T:System.Diagnostics.CodeAnalysis.StringSyntaxAttribute"/>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.StringSyntax.Json">
-            <summary>
-            The syntax identifier for strings containing JavaScript Object Notation (JSON).
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.StringSyntax.Regex">
-            <summary>
-            The syntax identifier for strings containing regular expressions.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.StringSyntax.Uri">
-            <summary>
-            The syntax identifier for strings containing URIs.
-            </summary>
-        </member>
-        <member name="F:System.Diagnostics.CodeAnalysis.StringSyntax.Xml">
-            <summary>
-            The syntax identifier for strings containing XML.
-            </summary>
-        </member>
         <member name="T:System.EnumFlagsEnumerator`1">
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
