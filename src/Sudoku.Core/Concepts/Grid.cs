@@ -1293,7 +1293,7 @@ public partial struct Grid :
 	/// Try to apply the specified array of conclusions.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be applied.</param>
-	public void ApplyAll(scoped ReadOnlySpan<Conclusion> conclusions)
+	public void ApplyAll(params ReadOnlySpan<Conclusion> conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{
@@ -1371,7 +1371,6 @@ public partial struct Grid :
 				this[cell] = (Mask)(GetHeaderBits(cell) | DefaultMask);
 
 				((RefreshingCandidatesHandlerFuncPtr)RefreshingCandidates)(ref this);
-
 				break;
 			}
 			case >= 0 and < CellCandidatesCount:
@@ -1384,7 +1383,6 @@ public partial struct Grid :
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
 				((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, result, digit);
-
 				break;
 			}
 		}
