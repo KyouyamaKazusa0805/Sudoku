@@ -20,6 +20,7 @@ namespace Sudoku.Strategying;
 [JsonDerivedType(typeof(SymmetryConstraint), nameof(SymmetryConstraint))]
 [JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
+[JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
 [Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]

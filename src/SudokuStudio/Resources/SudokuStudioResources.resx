@@ -2462,4 +2462,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ErrorInfo_GridMustBeSolvedOrNotBad" xml:space="preserve">
     <value>The puzzle must be solved or contain at least one valid solution.</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueSet" xml:space="preserve">
+    <value>Technique set limit</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueSetConstraint" xml:space="preserve">
+    <value>Technique set constraint</value>
+  </data>
 </root>

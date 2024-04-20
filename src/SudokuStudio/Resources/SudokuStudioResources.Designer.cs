@@ -2752,6 +2752,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Technique set limit.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueSet {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique set constraint.
+        /// </summary>
+        internal static string GeneratedPuzzleConstraintPage_TechniqueSetConstraint {
+            get {
+                return ResourceManager.GetString("GeneratedPuzzleConstraintPage_TechniqueSetConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cancel.
         /// </summary>
         internal static string GeneratingStrategyPage_Cancel {

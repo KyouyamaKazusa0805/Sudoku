@@ -3387,4 +3387,7 @@
   <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
     <value>需要通过多个区块和数组才能得到结论</value>
   </data>
+  <data name="TechniqueSetConstraint" xml:space="preserve">
+    <value>技巧集：一个题可以只使用技巧{0}就可以完成题目</value>
+  </data>
 </root>

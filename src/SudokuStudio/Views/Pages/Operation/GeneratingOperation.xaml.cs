@@ -146,9 +146,10 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		{
 			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
 			var hasSymmetryConstraint = constraints.OfType<SymmetryConstraint>() is not [];
+			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
 			var a = handlerFullHouse;
 			var b = handlerDefault;
-			var handler = hasFullHouseConstraint && !hasSymmetryConstraint ? a : b;
+			var handler = hasFullHouseConstraint && !hasSymmetryConstraint || hasFullHouseConstraintInTechniqueSet ? a : b;
 			return coreHandler(constraints, handler, progressReporter, cts.Token, analyzer, ittoryuFinder);
 
 

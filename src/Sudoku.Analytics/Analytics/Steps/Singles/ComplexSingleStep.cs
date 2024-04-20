@@ -94,9 +94,7 @@ public sealed partial class ComplexSingleStep(
 		var (hasLockedCandidates, hasSubset) = (false, false);
 		foreach (var technique in IndirectTechniques)
 		{
-			var first = technique[0];
-			var group = first.GetGroup();
-			switch (group)
+			switch (technique[0].GetGroup())
 			{
 				case TechniqueGroup.LockedCandidates: { hasLockedCandidates = true; break; }
 				case TechniqueGroup.Subset: { hasSubset = true; break; }

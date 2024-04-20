@@ -42,6 +42,17 @@
 								</con:TechniqueConstraint>
 							</MenuFlyoutItem.Tag>
 						</MenuFlyoutItem>
+						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueSetConstraint}" Click="MenuFlyoutItem_Click">
+							<MenuFlyoutItem.Tag>
+								<con:TechniqueSetConstraint>
+									<con:TechniqueSetConstraint.Techniques>
+										<categorization:Technique>FullHouse</categorization:Technique>
+										<categorization:Technique>LastDigit</categorization:Technique>
+										<categorization:Technique>CrosshatchingBlock</categorization:Technique>
+									</con:TechniqueSetConstraint.Techniques>
+								</con:TechniqueSetConstraint>
+							</MenuFlyoutItem.Tag>
+						</MenuFlyoutItem>
 						<MenuFlyoutItem Text="{m:R Key=GeneratedPuzzleConstraintPage_TechniqueCountConstraint}" Click="MenuFlyoutItem_Click">
 							<MenuFlyoutItem.Tag>
 								<con:TechniqueCountConstraint Technique="NakedSingle" LimitCount="1" Operator="GreaterThanOrEqual" />

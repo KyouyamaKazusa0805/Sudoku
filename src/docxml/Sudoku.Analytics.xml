@@ -28984,6 +28984,34 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueSetConstraint">
+            <summary>
+            Represents a constraint that limits a puzzle that can only use such techniques to be finished.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Techniques">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Text.FormatInterpolation">
             <summary>
             Defines a type that represents the resource interpolated values used by <see cref="P:Sudoku.Analytics.Step.FormatInterpolationParts"/>.

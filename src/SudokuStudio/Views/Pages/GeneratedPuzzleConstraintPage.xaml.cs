@@ -37,7 +37,8 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 		{ typeof(PrimarySingleConstraint), static (@this, s) => @this.Create_PrimarySingle((PrimarySingleConstraint)s) },
 		{ typeof(SymmetryConstraint), static (@this, s) => @this.Create_Symmetry((SymmetryConstraint)s) },
 		{ typeof(TechniqueConstraint), static (@this, s) => @this.Create_Technique((TechniqueConstraint)s) },
-		{ typeof(TechniqueCountConstraint), static (@this, s) => @this.Create_TechniqueCount((TechniqueCountConstraint)s) }
+		{ typeof(TechniqueCountConstraint), static (@this, s) => @this.Create_TechniqueCount((TechniqueCountConstraint)s) },
+		{ typeof(TechniqueSetConstraint), static (@this, s) => @this.Create_TechniqueSet((TechniqueSetConstraint)s) }
 	};
 
 
@@ -857,6 +858,50 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 				Orientation = Orientation.Horizontal,
 				Spacing = DefaultSpacing,
 				Children = { displayerControl, operatorControl, appearingTimesControl }
+			},
+			Tag = constraint
+		};
+	}
+
+	private SettingsExpander? Create_TechniqueSet(TechniqueSetConstraint constraint)
+	{
+		if (constraint is not { Techniques: var techniques })
+		{
+			return null;
+		}
+
+		//
+		// chosen techniques displayer
+		//
+		var displayerControl = new TextBlock
+		{
+			MaxWidth = 400,
+			TextWrapping = TextWrapping.WrapWholeWords,
+			VerticalAlignment = VerticalAlignment.Center,
+			Text = techniques.GetTechniqueString()
+		};
+
+		//
+		// technique view
+		//
+		var techniqueControl = new TechniqueView
+		{
+			SelectionMode = TechniqueViewSelectionMode.Multiple,
+			SelectedTechniques = techniques,
+			Margin = new(-56, 0, 0, 0)
+		};
+		techniqueControl.SelectedTechniquesChanged += (_, e) => displayerControl.Text = (constraint.Techniques = e.TechniqueSet).GetTechniqueString();
+
+		return new()
+		{
+			Header = ResourceDictionary.Get("GeneratedPuzzleConstraintPage_TechniqueSet", App.CurrentCulture),
+			Margin = DefaultMargin,
+			Items = { new SettingsCard { Content = techniqueControl, ContentAlignment = ContentAlignment.Left } },
+			Content = new StackPanel
+			{
+				Orientation = Orientation.Horizontal,
+				Spacing = DefaultSpacing,
+				Children = { displayerControl }
 			},
 			Tag = constraint
 		};

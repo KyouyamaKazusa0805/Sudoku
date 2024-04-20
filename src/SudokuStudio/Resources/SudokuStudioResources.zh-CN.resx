@@ -2459,4 +2459,10 @@
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueSet" xml:space="preserve">
+    <value>技巧集限制</value>
+  </data>
+  <data name="GeneratedPuzzleConstraintPage_TechniqueSetConstraint" xml:space="preserve">
+    <value>技巧集约束</value>
+  </data>
 </root>

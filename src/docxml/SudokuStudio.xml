@@ -7376,6 +7376,16 @@
               Looks up a localized string similar to Technique appearing times constraint.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueSet">
+            <summary>
+              Looks up a localized string similar to Technique set limit.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_TechniqueSetConstraint">
+            <summary>
+              Looks up a localized string similar to Technique set constraint.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratingStrategyPage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
