@@ -10470,17 +10470,6 @@
             </list>
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.#ctor(System.Int32,System.Int32,Sudoku.Analytics.Metadata.StepSearcherRunningArea)">
-            <summary>
-            Provides with a <b>Complex Single</b> step searcher.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Complex Full House</item>
-            <item>Complex Hidden Single</item>
-            <item>Complex Naked Single</item>
-            </list>
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.IntersectionSearcher">
             <summary>
             Indicates the searcher for intersection.

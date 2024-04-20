@@ -1,4 +1,3 @@
-
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -17,7 +16,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	IsAvailabilityReadOnly = true,
 	IsOrderingFixed = true,
 	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
-public abstract class ComplexSingleStepSearcher(int _, int __, StepSearcherRunningArea ___) : StepSearcher(_, __, ___)
+public sealed partial class ComplexSingleStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the searcher for intersection.
