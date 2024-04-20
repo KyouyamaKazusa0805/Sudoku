@@ -3291,6 +3291,9 @@
   <data name="ComplexNakedSingle" xml:space="preserve">
     <value>复杂唯一余数</value>
   </data>
+  <data name="Factor_ComplexSingleFactor" xml:space="preserve">
+    <value>复杂出数</value>
+  </data>
   <data name="Appear" xml:space="preserve">
     <value>出现</value>
   </data>
@@ -3372,7 +3375,16 @@
   <data name="TechniqueAlias_XyChain" xml:space="preserve">
     <value>双数链</value>
   </data>
-  <data name="Factor_ComplexSingleFactor" xml:space="preserve">
-    <value>复杂出数</value>
+  <data name="Concept_LockedCandidates" xml:space="preserve">
+    <value>区块</value>
+  </data>
+  <data name="Concept_Subset" xml:space="preserve">
+    <value>数组</value>
+  </data>
+  <data name="_Token_CenterDot" xml:space="preserve">
+    <value>・</value>
+  </data>
+  <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
+    <value>需要通过多个区块和数组才能得到结论</value>
   </data>
 </root>

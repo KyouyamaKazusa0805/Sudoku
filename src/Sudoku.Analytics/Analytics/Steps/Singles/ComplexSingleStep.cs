@@ -87,4 +87,35 @@ public sealed partial class ComplexSingleStep(
 				_ => 10
 			};
 	}
+
+	/// <inheritdoc/>
+	public override string GetName(CultureInfo? culture = null)
+	{
+		var (hasLockedCandidates, hasSubset) = (false, false);
+		foreach (var technique in IndirectTechniques)
+		{
+			var first = technique[0];
+			var group = first.GetGroup();
+			switch (group)
+			{
+				case TechniqueGroup.LockedCandidates: { hasLockedCandidates = true; break; }
+				case TechniqueGroup.Subset: { hasSubset = true; break; }
+			}
+		}
+
+		var lockedCandidatesName = ResourceDictionary.Get("Concept_LockedCandidates", culture);
+		var subsetName = ResourceDictionary.Get("Concept_Subset", culture);
+		var basedOnName = BasedOn.GetName(culture);
+		var isChinese = culture?.Name is ['Z' or 'z', 'H' or 'h', ..];
+		var spacing = isChinese ? string.Empty : " ";
+		var prefix = (hasLockedCandidates, hasSubset) switch
+		{
+			(true, true) => $"{lockedCandidatesName}{spacing}{subsetName}",
+			(true, false) => $"{lockedCandidatesName}",
+			(false, true) => $"{subsetName}"
+		};
+		return isChinese
+			? $"{base.GetName(culture)}{ResourceDictionary.Get("_Token_CenterDot", culture)}{prefix}{basedOnName}"
+			: $"{base.GetName(culture)} ({prefix}{spacing}{basedOnName})";
+	}
 }

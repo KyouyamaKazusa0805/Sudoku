@@ -17992,6 +17992,9 @@
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
             <summary>
             Provides with a step that is a <b>Direct Intersection</b> technique.
@@ -23504,6 +23507,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ComplexNakedSingle">
             <summary>
               Looks up a localized string similar to Complex Naked Single.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Concept_LockedCandidates">
+            <summary>
+              Looks up a localized string similar to Locked Candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Concept_Subset">
+            <summary>
+              Looks up a localized string similar to Subset.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ConclusionConstraint">

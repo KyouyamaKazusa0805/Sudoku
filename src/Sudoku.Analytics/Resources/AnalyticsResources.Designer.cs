@@ -1051,6 +1051,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Locked Candidates.
+        /// </summary>
+        public static string Concept_LockedCandidates {
+            get {
+                return ResourceManager.GetString("Concept_LockedCandidates", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Subset.
+        /// </summary>
+        public static string Concept_Subset {
+            get {
+                return ResourceManager.GetString("Concept_Subset", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Conclusion count rule: conclusion {0} should {1}appear.
         /// </summary>
         public static string ConclusionConstraint {
