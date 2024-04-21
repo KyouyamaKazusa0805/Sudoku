@@ -91,7 +91,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 		if (context.OnlyFindOne)
 		{
-			return accumulator[0];
+			return accumulator is [var firstStep, ..] ? firstStep : null;
 		}
 
 		context.Accumulator.AddRange(accumulator);
@@ -130,11 +130,17 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// meaning we can found a step in both current state and one of its sub-grid state, which causes a redudant searching
 			// if we don't apply them at parent state.
 			// We should ignore them in child branches, guaranteeing such steps will be applied in the first meet.
-			foreach (var step in indirectFoundSteps[..])
+			//
+			// However, this limit will produce a potential bug - if two steps are not relative, the searcher will ignore them aggressively,
+			// but the final assignment will use both, which means we have removed a step that may be a key one.
+			if (indirectFoundSteps.Count != 0)
 			{
-				if (previousIndirectFoundSteps.Contains(step))
+				foreach (var step in indirectFoundSteps[..])
 				{
-					indirectFoundSteps.Remove(step);
+					if (previousIndirectFoundSteps.Contains(step))
+					{
+						indirectFoundSteps.Remove(step);
+					}
 				}
 			}
 			if (indirectFoundSteps.Count == 0)
@@ -149,34 +155,13 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
 			foreach (var indirectStep in indirectFoundSteps)
 			{
-				// Check whether the step is valid.
-				// A step will be valid if:
-				//   1) The step has new conclusions that recorded steps don't have.
-				//   2) The step becomes valid if at least one record step indeed influences the current step.
+				// A step will be valid if it has new conclusions that recorded steps don't have.
 				var isValid = true;
 				foreach (var interimStep in interimSteps)
 				{
 					if (interimStep.ConclusionText == indirectStep.ConclusionText)
 					{
 						isValid = false;
-						break;
-					}
-
-					var (digitsMaskInterim, houseInterim) = interimStep switch
-					{
-						LockedCandidatesStep { Digit: var digit, BaseSet: var set } => ((Mask)(1 << digit), set),
-						NakedSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set),
-						HiddenSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set)
-					};
-					var (digitsMaskIndirect, houseIndirect) = indirectStep switch
-					{
-						LockedCandidatesStep { Digit: var digit, BaseSet: var set } => ((Mask)(1 << digit), set),
-						NakedSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set),
-						HiddenSubsetStep { DigitsMask: var digitsMask, House: var set } => (digitsMask, set)
-					};
-					if ((digitsMaskInterim & digitsMaskIndirect) != 0 && houseInterim == houseIndirect)
-					{
-						isValid = true;
 						break;
 					}
 				}
