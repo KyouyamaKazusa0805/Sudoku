@@ -125,14 +125,20 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			_normalSubsetSearcher.Collect(ref tempContext);
 
 			// Remove possible steps that has already been recorded into previously found steps.
-			//
 			// During the searching, we may found a step that may be appeared in the previous grid state,
 			// meaning we can found a step in both current state and one of its sub-grid state, which causes a redudant searching
 			// if we don't apply them at parent state.
 			// We should ignore them in child branches, guaranteeing such steps will be applied in the first meet.
+			// However, this limit will produce a potential bug - if two steps are not relative,
+			// the searcher will ignore the second one aggressively, but the final assignment will use both,
+			// meaning we have removed a step that may be a key one. One example is this:
 			//
-			// However, this limit will produce a potential bug - if two steps are not relative, the searcher will ignore them aggressively,
-			// but the final assignment will use both, which means we have removed a step that may be a key one.
+			//     0002+471630+6+300+500041039+6+500001000+60568+97+51+234500+600900000063052000000+30+6326508000
+			//
+			// Here the puzzle will use two locked candidates of digit 4 and 9 in r9b9. But both of them can be found in the first step.
+			// If we use the first one (i.e. locked candidates of digit 4), the second one (i.e. locked candidates of digit 9) will be ignored
+			// and no longer in use.
+			// To fix the bug, we should apply both of steps in one same grid state.
 			if (indirectFoundSteps.Count != 0)
 			{
 				foreach (var step in indirectFoundSteps[..])
