@@ -2465,4 +2465,16 @@
   <data name="GeneratedPuzzleConstraintPage_TechniqueSetConstraint" xml:space="preserve">
     <value>技巧集约束</value>
   </data>
+  <data name="SettingsPage_HiddenSubsetMaxSizeInComplexSingle" xml:space="preserve">
+    <value>复杂出数里使用的隐性数组的最大规格</value>
+  </data>
+  <data name="SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription" xml:space="preserve">
+    <value>表示复杂出数技巧里可以出现的隐性数组的最大规格。最大值为 4，最小值为 2。</value>
+  </data>
+  <data name="SettingsPage_NakedSubsetMaxSizeInComplexSingle" xml:space="preserve">
+    <value>复杂出数里使用的显性数组的最大规格</value>
+  </data>
+  <data name="SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription" xml:space="preserve">
+    <value>表示复杂出数技巧里可以出现的显性数组的最大规格。最大值为 4，最小值为 2。</value>
+  </data>
 </root>

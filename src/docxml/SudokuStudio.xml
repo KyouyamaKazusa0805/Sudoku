@@ -1284,6 +1284,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSize"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.NakedSubsetMaxSizeInComplexSingleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.NakedSubsetMaxSizeInComplexSingle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.NakedSubsetMaxSizeInComplexSingle"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSubsetMaxSizeInComplexSingleProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSubsetMaxSizeInComplexSingle"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSubsetMaxSizeInComplexSingle"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing"/>.
@@ -1447,6 +1459,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectHiddenSubsetMaxSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.NakedSubsetMaxSizeInComplexSingle">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.HiddenSubsetMaxSizeInComplexSingle">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.MaxSizeOfRegularWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.RegularWingStepSearcher.MaxSearchingPivotsCount"/>
@@ -8778,6 +8796,16 @@
               Looks up a localized string similar to Search for Hidden Single in Block first.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_HiddenSubsetMaxSizeInComplexSingle">
+            <summary>
+              Looks up a localized string similar to Maximum size of hidden subsets in complex single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription">
+            <summary>
+              Looks up a localized string similar to Indicates the maximum size of hidden subset can be used in complex single. The maximum value is 4 and the minimal value is 2..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_HighlightBackgroundOpacityTitle">
             <summary>
               Looks up a localized string similar to Opacity of background-styled highlighted items.
@@ -8996,6 +9024,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_MWingPattern">
             <summary>
               Looks up a localized string similar to (x=y)-y=(y-x)=x.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_NakedSubsetMaxSizeInComplexSingle">
+            <summary>
+              Looks up a localized string similar to Maximum size of naked subsets in complex single.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription">
+            <summary>
+              Looks up a localized string similar to Indicates the maximum size of naked subset can be used in complex single. The maximum value is 4 and the minimal value is 2..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_NormalColor">
@@ -10264,6 +10302,16 @@
             Defines a attached property that binds with setter and getter methods <c>DirectHiddenSubsetMaxSize</c>.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingleProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>NakedSubsetMaxSizeInComplexSingle</c>.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingleProperty">
+            <summary>
+            Defines a attached property that binds with setter and getter methods <c>HiddenSubsetMaxSizeInComplexSingle</c>.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowIncompleteUniqueRectanglesProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>AllowIncompleteUniqueRectangles</c>.
@@ -10552,6 +10600,30 @@
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.DirectHiddenSubsetMaxSizeProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetNakedSubsetMaxSizeInComplexSingle(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingleProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetNakedSubsetMaxSizeInComplexSingle(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.NakedSubsetMaxSizeInComplexSingleProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetHiddenSubsetMaxSizeInComplexSingle(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingleProperty" />
+        </member>
+        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetHiddenSubsetMaxSizeInComplexSingle(Microsoft.UI.Xaml.DependencyObject)">
+            <summary>
+            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingleProperty"/> to get or set value.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.HiddenSubsetMaxSizeInComplexSingleProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowIncompleteUniqueRectangles(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
             <summary>

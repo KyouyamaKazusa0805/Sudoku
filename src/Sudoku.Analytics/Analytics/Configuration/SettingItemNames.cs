@@ -46,6 +46,12 @@ public static class SettingItemNames
 	/// <inheritdoc cref="DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
 	public const string DirectHiddenSubsetMaxSize = nameof(DirectHiddenSubsetMaxSize);
 
+	/// <inheritdoc cref="ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
+	public const string NakedSubsetMaxSizeInComplexSingle = nameof(NakedSubsetMaxSizeInComplexSingle);
+
+	/// <inheritdoc cref="ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
+	public const string HiddenSubsetMaxSizeInComplexSingle = nameof(HiddenSubsetMaxSizeInComplexSingle);
+
 	/// <inheritdoc cref="NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
 	public const string DisableFinnedOrSashimiXWing = nameof(DisableFinnedOrSashimiXWing);
 

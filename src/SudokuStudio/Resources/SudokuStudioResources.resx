@@ -2468,4 +2468,16 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="GeneratedPuzzleConstraintPage_TechniqueSetConstraint" xml:space="preserve">
     <value>Technique set constraint</value>
   </data>
+  <data name="SettingsPage_HiddenSubsetMaxSizeInComplexSingle" xml:space="preserve">
+    <value>Maximum size of hidden subsets in complex single</value>
+  </data>
+  <data name="SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription" xml:space="preserve">
+    <value>Indicates the maximum size of hidden subset can be used in complex single. The maximum value is 4 and the minimal value is 2.</value>
+  </data>
+  <data name="SettingsPage_NakedSubsetMaxSizeInComplexSingle" xml:space="preserve">
+    <value>Maximum size of naked subsets in complex single</value>
+  </data>
+  <data name="SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription" xml:space="preserve">
+    <value>Indicates the maximum size of naked subset can be used in complex single. The maximum value is 4 and the minimal value is 2.</value>
+  </data>
 </root>

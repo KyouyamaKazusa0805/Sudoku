@@ -92,6 +92,20 @@
 					Minimum="2" Maximum="4" LargeChange="2"
 					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DirectHiddenSubsetMaxSize,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingle}"
+				Description="{m:R Key=SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.NakedSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
+			</w:SettingsCard>
+			<w:SettingsCard
+				Header="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingle}"
+				Description="{m:R Key=SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription}">
+				<c:IntegerBox
+					Minimum="2" Maximum="4" LargeChange="2"
+					Value="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.HiddenSubsetMaxSizeInComplexSingle,Mode=TwoWay}" />
+			</w:SettingsCard>
 
 			<!--
 			SettingsPage_IttoryuSettingsGroup

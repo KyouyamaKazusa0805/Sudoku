@@ -21,6 +21,8 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(SettingItemNames.AllowDirectHiddenSubset, DefaultValue = true)]
 [AttachedProperty<int>(SettingItemNames.DirectNakedSubsetMaxSize, DefaultValue = 2)]
 [AttachedProperty<int>(SettingItemNames.DirectHiddenSubsetMaxSize, DefaultValue = 2)]
+[AttachedProperty<int>(SettingItemNames.NakedSubsetMaxSizeInComplexSingle, DefaultValue = 4)]
+[AttachedProperty<int>(SettingItemNames.HiddenSubsetMaxSizeInComplexSingle, DefaultValue = 4)]
 [AttachedProperty<bool>(SettingItemNames.AllowIncompleteUniqueRectangles, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.SearchForExtendedUniqueRectangles, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.SearchExtendedBivalueUniversalGraveTypes, DefaultValue = true)]
@@ -150,6 +152,22 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AnalyzerUseIttoryuModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<SingleStepSearcher>(d, s => s.UseIttoryuMode = (bool)e.NewValue);
+
+	[Callback]
+	private static void NakedSubsetMaxSizeInComplexSinglePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<ComplexSingleStepSearcher>(d, s => s.NakedSubsetMaxSize = (int)e.NewValue);
+
+	[Callback]
+	private static void DirectNakedSubsetMaxSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.DirectNakedSubsetMaxSize = (int)e.NewValue);
+
+	[Callback]
+	private static void DirectHiddenSubsetMaxSizePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<DirectSubsetStepSearcher>(d, s => s.DirectHiddenSubsetMaxSize = (int)e.NewValue);
+
+	[Callback]
+	private static void HiddenSubsetMaxSizeInComplexSinglePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<ComplexSingleStepSearcher>(d, s => s.HiddenSubsetMaxSize = (int)e.NewValue);
 
 	[Callback]
 	private static void AllowIncompleteUniqueRectanglesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

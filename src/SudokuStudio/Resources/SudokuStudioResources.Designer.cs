@@ -5274,6 +5274,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Maximum size of hidden subsets in complex single.
+        /// </summary>
+        internal static string SettingsPage_HiddenSubsetMaxSizeInComplexSingle {
+            get {
+                return ResourceManager.GetString("SettingsPage_HiddenSubsetMaxSizeInComplexSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates the maximum size of hidden subset can be used in complex single. The maximum value is 4 and the minimal value is 2..
+        /// </summary>
+        internal static string SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_HiddenSubsetMaxSizeInComplexSingleDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Opacity of background-styled highlighted items.
         /// </summary>
         internal static string SettingsPage_HighlightBackgroundOpacityTitle {
@@ -5666,6 +5684,24 @@ namespace SudokuStudio.Resources {
         internal static string SettingsPage_MWingPattern {
             get {
                 return ResourceManager.GetString("SettingsPage_MWingPattern", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Maximum size of naked subsets in complex single.
+        /// </summary>
+        internal static string SettingsPage_NakedSubsetMaxSizeInComplexSingle {
+            get {
+                return ResourceManager.GetString("SettingsPage_NakedSubsetMaxSizeInComplexSingle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Indicates the maximum size of naked subset can be used in complex single. The maximum value is 4 and the minimal value is 2..
+        /// </summary>
+        internal static string SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription {
+            get {
+                return ResourceManager.GetString("SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription", resourceCulture);
             }
         }
         

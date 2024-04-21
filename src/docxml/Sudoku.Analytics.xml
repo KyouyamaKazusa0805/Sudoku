@@ -4846,6 +4846,12 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DirectHiddenSubsetMaxSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.NakedSubsetMaxSizeInComplexSingle">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NakedSubsetMaxSize"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.HiddenSubsetMaxSizeInComplexSingle">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.HiddenSubsetMaxSize"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.DisableFinnedOrSashimiXWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalFishStepSearcher.DisableFinnedOrSashimiXWing"/>
         </member>
@@ -10502,6 +10508,16 @@
         <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_Subset">
             <summary>
             Indicates the searcher for normal subsets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NakedSubsetMaxSize">
+            <summary>
+            Indicates the maximum size of naked subsets. The maximum value is 4.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.HiddenSubsetMaxSize">
+            <summary>
+            Indicates the maximum size of hidden subsets. The maximum value is 4.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

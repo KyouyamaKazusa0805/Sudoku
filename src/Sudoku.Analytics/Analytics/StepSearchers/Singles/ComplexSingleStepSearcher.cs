@@ -54,6 +54,19 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	private readonly NormalSubsetStepSearcher _searcher_Subset = new();
 
 
+	/// <summary>
+	/// Indicates the maximum size of naked subsets. The maximum value is 4.
+	/// </summary>
+	[SettingItemName(SettingItemNames.NakedSubsetMaxSizeInComplexSingle)]
+	public int NakedSubsetMaxSize { get; set; } = 4;
+
+	/// <summary>
+	/// Indicates the maximum size of hidden subsets. The maximum value is 4.
+	/// </summary>
+	[SettingItemName(SettingItemNames.HiddenSubsetMaxSizeInComplexSingle)]
+	public int HiddenSubsetMaxSize { get; set; } = 4;
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
@@ -61,17 +74,52 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		var accumulator = new List<Step>();
 		entry(ref context, accumulator, in context.Grid);
 
+		// Remove steps that don't satisfy the size limit.
+		var stepsSatisfied = new List<Step>();
+		foreach (ComplexSingleStep step in accumulator)
+		{
+			var flag = true;
+			foreach (var technique in from techniquesGroup in step.IndirectTechniques from technique in techniquesGroup select technique)
+			{
+				if (technique.GetGroup() == TechniqueGroup.Subset)
+				{
+					var (size, isHidden) = technique switch
+					{
+						Technique.NakedPair or Technique.NakedPairPlus or Technique.LockedPair => (2, false),
+						Technique.HiddenPair or Technique.LockedHiddenPair => (2, true),
+						Technique.NakedTriple or Technique.NakedTriplePlus or Technique.LockedTriple => (3, false),
+						Technique.HiddenTriple or Technique.LockedHiddenTriple => (3, true),
+						Technique.NakedQuadruple or Technique.NakedQuadruplePlus => (4, false),
+						Technique.HiddenQuadruple => (4, true)
+					};
+					if (isHidden && size > HiddenSubsetMaxSize || !isHidden && size > NakedSubsetMaxSize)
+					{
+						flag = false;
+						break;
+					}
+				}
+			}
+			if (flag)
+			{
+				stepsSatisfied.Add(step);
+			}
+		}
+
 		// Sort instances if worth.
 		// We don't remove duplicate items because the searcher may not produce same steps,
 		// and the corresponding step type doesn't override method 'Equals'.
-		StepMarshal.SortItems(accumulator);
-
-		if (context.OnlyFindOne)
+		if (stepsSatisfied.Count == 0)
 		{
-			return accumulator is [var firstStep, ..] ? firstStep : null;
+			return null;
 		}
 
-		context.Accumulator.AddRange(accumulator);
+		StepMarshal.SortItems(stepsSatisfied);
+		if (context.OnlyFindOne)
+		{
+			return stepsSatisfied[0];
+		}
+
+		context.Accumulator.AddRange(stepsSatisfied);
 		return null;
 
 
