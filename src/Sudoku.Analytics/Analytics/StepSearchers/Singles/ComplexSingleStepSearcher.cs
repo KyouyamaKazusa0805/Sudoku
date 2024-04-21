@@ -54,39 +54,6 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	private readonly NormalSubsetStepSearcher _searcher_Subset = new();
 
 
-	/// <summary>
-	/// Indicates the max naked subset size to be searched.
-	/// </summary>
-	public int MaxNakedSubsetSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _searcher_Subset.MaxNakedSubsetSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_searcher_Subset.MaxNakedSubsetSize = value;
-			_searcher_DirectSubset.DirectNakedSubsetMaxSize = value;
-		}
-	}
-
-	/// <summary>
-	/// Indicates the max hidden subset size to be searched.
-	/// </summary>
-	public int MaxHiddenSubsetSize
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _searcher_Subset.MaxHiddenSubsetSize;
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		set
-		{
-			_searcher_Subset.MaxHiddenSubsetSize = value;
-			_searcher_DirectSubset.DirectHiddenSubsetMaxSize = value;
-		}
-	}
-
-
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{

@@ -17,5 +17,5 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class LockedSubsetStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context) => SubsetModule.CollectCore(true, ref context, 3, 3);
+	protected internal override Step? Collect(scoped ref AnalysisContext context) => SubsetModule.CollectCore(true, ref context);
 }
