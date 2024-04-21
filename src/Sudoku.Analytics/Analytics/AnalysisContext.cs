@@ -24,6 +24,9 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
 [LargeStructure]
+[Equals]
+[GetHashCode]
+[ToString]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
