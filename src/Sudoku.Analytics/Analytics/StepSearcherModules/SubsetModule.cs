@@ -13,24 +13,51 @@ internal static class SubsetModule
 	/// </summary>
 	/// <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
 	/// <param name="context">The context.</param>
+	/// <param name="maxNakedSize">Indicates the maximum size of naked subset that can be searched.</param>
+	/// <param name="maxHiddenSize">Indicates the maximum size of hidden subset that can be searched.</param>
 	/// <returns>The collected steps.</returns>
-	public static unsafe Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context)
+	public static unsafe Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context, int maxNakedSize, int maxHiddenSize)
 	{
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
 
 		scoped ref readonly var grid = ref context.Grid;
-		var emptyCellsForGrid = grid.EmptyCells;
 		scoped var candidatesMapForGrid = grid.CandidatesMap;
-		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
+		var sizeForComparingWithIndex0 = searchers == p ? maxHiddenSize : maxNakedSize;
+		var sizeForComparingWithIndex1 = searchers == p ? maxNakedSize : maxHiddenSize;
+		var emptyCellsForGrid = grid.EmptyCells;
+		if (sizeForComparingWithIndex0 >= 2
+			&& searchers[0](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 2, searchingForLocked) is { } step1)
 		{
-			for (var i = 0; i < 2; i++)
+			return step1;
+		}
+		if (sizeForComparingWithIndex1 >= 2
+			&& searchers[1](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 2, searchingForLocked) is { } step2)
+		{
+			return step2;
+		}
+		if (sizeForComparingWithIndex0 >= 3
+			&& searchers[0](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 3, searchingForLocked) is { } step3)
+		{
+			return step3;
+		}
+		if (sizeForComparingWithIndex1 >= 3
+			&& searchers[1](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 3, searchingForLocked) is { } step4)
+		{
+			return step4;
+		}
+		if (!searchingForLocked)
+		{
+			if (sizeForComparingWithIndex0 >= 4
+				&& searchers[0](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 4, searchingForLocked) is { } step5)
 			{
-				if (searchers[i](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, size, searchingForLocked) is { } step)
-				{
-					return step;
-				}
+				return step5;
+			}
+			if (sizeForComparingWithIndex1 >= 4
+				&& searchers[1](ref context, in grid, in emptyCellsForGrid, candidatesMapForGrid, 4, searchingForLocked) is { } step6)
+			{
+				return step6;
 			}
 		}
 

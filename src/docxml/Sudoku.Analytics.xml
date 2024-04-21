@@ -6368,12 +6368,14 @@
             Represents a subset module.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.AnalysisContext@)">
+        <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.CollectCore(System.Boolean,Sudoku.Analytics.AnalysisContext@,System.Int32,System.Int32)">
             <summary>
             The internal method to create subset steps.
             </summary>
             <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
             <param name="context">The context.</param>
+            <param name="maxNakedSize">Indicates the maximum size of naked subset that can be searched.</param>
+            <param name="maxHiddenSize">Indicates the maximum size of hidden subset that can be searched.</param>
             <returns>The collected steps.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
@@ -10470,30 +10472,36 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.IntersectionSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._intersectionSearcher">
             <summary>
             Indicates the searcher for intersection.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.SubsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._subsetSearcher">
             <summary>
             Indicates the searcher for subset.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.LockedCandidatesSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._lockedCandidatesSearcher">
             <summary>
             Indicates the searcher for locked candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.LockedSubsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._lockedSubsetSearcher">
             <summary>
             Indicates the searcher for locked subsets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.NormalSubsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._normalSubsetSearcher">
             <summary>
             Indicates the searcher for normal subsets.
             </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxNakedSubsetSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxNakedSubsetSize"/>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxHiddenSubsetSize">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxHiddenSubsetSize"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
@@ -10867,6 +10875,16 @@
             </list>
             </item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxNakedSubsetSize">
+            <summary>
+            Indicates the max naked subset size to be searched.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxHiddenSubsetSize">
+            <summary>
+            Indicates the max hidden subset size to be searched.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

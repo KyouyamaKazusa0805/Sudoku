@@ -21,7 +21,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the searcher for intersection.
 	/// </summary>
-	private static readonly DirectIntersectionStepSearcher IntersectionSearcher = new()
+	private readonly DirectIntersectionStepSearcher _intersectionSearcher = new()
 	{
 		AllowDirectPointing = true,
 		AllowDirectClaiming = true
@@ -30,56 +30,79 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the searcher for subset.
 	/// </summary>
-	private static readonly DirectSubsetStepSearcher SubsetSearcher = new()
+	private readonly DirectSubsetStepSearcher _subsetSearcher = new()
 	{
 		AllowDirectHiddenSubset = true,
 		AllowDirectLockedHiddenSubset = true,
 		AllowDirectLockedSubset = true,
-		AllowDirectNakedSubset = true,
-		DirectHiddenSubsetMaxSize = 4,
-		DirectNakedSubsetMaxSize = 4
+		AllowDirectNakedSubset = true
 	};
 
 	/// <summary>
 	/// Indicates the searcher for locked candidates.
 	/// </summary>
-	private static readonly LockedCandidatesStepSearcher LockedCandidatesSearcher = new();
+	private readonly LockedCandidatesStepSearcher _lockedCandidatesSearcher = new();
 
 	/// <summary>
 	/// Indicates the searcher for locked subsets.
 	/// </summary>
-	private static readonly LockedSubsetStepSearcher LockedSubsetSearcher = new();
+	private readonly LockedSubsetStepSearcher _lockedSubsetSearcher = new();
 
 	/// <summary>
 	/// Indicates the searcher for normal subsets.
 	/// </summary>
-	private static readonly NormalSubsetStepSearcher NormalSubsetSearcher = new();
+	private readonly NormalSubsetStepSearcher _normalSubsetSearcher = new();
+
+
+	/// <inheritdoc cref="NormalSubsetStepSearcher.MaxNakedSubsetSize"/>
+	public int MaxNakedSubsetSize
+	{
+		get => _normalSubsetSearcher.MaxNakedSubsetSize;
+
+		set
+		{
+			_normalSubsetSearcher.MaxNakedSubsetSize = value;
+			_subsetSearcher.DirectNakedSubsetMaxSize = value;
+		}
+	}
+
+	/// <inheritdoc cref="NormalSubsetStepSearcher.MaxHiddenSubsetSize"/>
+	public int MaxHiddenSubsetSize
+	{
+		get => _normalSubsetSearcher.MaxHiddenSubsetSize;
+
+		set
+		{
+			_normalSubsetSearcher.MaxHiddenSubsetSize = value;
+			_subsetSearcher.DirectHiddenSubsetMaxSize = value;
+		}
+	}
 
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		// Recursively searching for all possible steps.
 		var accumulator = new List<Step>();
-		if (dfs(ref context, accumulator, in grid, [], []) is { } step)
-		{
-			return step;
-		}
+		dfsEntry(ref context, accumulator, in context.Grid);
 
 		// Sort and remove duplicate instances if worth.
-		var sortedList = StepMarshal.RemoveDuplicateItems(accumulator).ToList();
-		StepMarshal.SortItems(sortedList);
+		StepMarshal.SortItems(accumulator);
 
 		if (context.OnlyFindOne)
 		{
-			return sortedList[0];
+			return accumulator[0];
 		}
 
-		context.Accumulator.AddRange(sortedList);
+		context.Accumulator.AddRange(accumulator);
 		return null;
 
 
-		static ComplexSingleStep? dfs(
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void dfsEntry(scoped ref AnalysisContext context, List<Step> accumulator, scoped ref readonly Grid grid)
+			=> dfs(ref context, accumulator, in grid, [], []);
+
+		void dfs(
 			scoped ref AnalysisContext context,
 			List<Step> accumulator,
 			scoped ref readonly Grid grid,
@@ -97,11 +120,16 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				context.IsSukaku,
 				context.PredefinedOptions
 			);
-			LockedCandidatesSearcher.Collect(ref tempContext);
-			LockedSubsetSearcher.Collect(ref tempContext);
-			NormalSubsetSearcher.Collect(ref tempContext);
+			_lockedSubsetSearcher.Collect(ref tempContext);
+			_lockedCandidatesSearcher.Collect(ref tempContext);
+			_normalSubsetSearcher.Collect(ref tempContext);
 
-			// Remove possible steps that has already been recorded into previosly found steps.
+			// Remove possible steps that has already been recorded into previously found steps.
+			//
+			// During the searching, we may found a step that may be appeared in the previous grid state,
+			// meaning we can found a step in both current state and one of its sub-grid state, which causes a redudant searching
+			// if we don't apply them at parent state.
+			// We should ignore them in child branches, guaranteeing such steps will be applied in the first meet.
 			foreach (var step in indirectFoundSteps[..])
 			{
 				if (previousIndirectFoundSteps.Contains(step))
@@ -112,7 +140,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			if (indirectFoundSteps.Count == 0)
 			{
 				// Nothing can be found.
-				return null;
+				return;
 			}
 
 			// Record all steps that may not duplicate.
@@ -172,8 +200,8 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					context.IsSukaku,
 					context.PredefinedOptions
 				);
-				IntersectionSearcher.Collect(ref nestedContext);
-				SubsetSearcher.Collect(ref nestedContext);
+				_intersectionSearcher.Collect(ref nestedContext);
+				_subsetSearcher.Collect(ref nestedContext);
 
 				if (directStepsFound.Count != 0)
 				{
@@ -201,41 +229,32 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 						];
 
 						// Add step into accumulator or return step.
-						var step = new ComplexSingleStep(
-							directStep.Conclusions,
-							views,
-							context.PredefinedOptions,
-							directStep.Cell,
-							directStep.Digit,
-							directStep.Subtype,
-							directStep.BasedOn,
-							[.. from interimStep in interimSteps select (Technique[])[interimStep.Code]]
+						accumulator.Add(
+							new ComplexSingleStep(
+								directStep.Conclusions,
+								views,
+								context.PredefinedOptions,
+								directStep.Cell,
+								directStep.Digit,
+								directStep.Subtype,
+								directStep.BasedOn,
+								[.. from interimStep in interimSteps select (Technique[])[interimStep.Code]]
+							)
 						);
-						if (context.OnlyFindOne)
-						{
-							return step;
-						}
-
-						accumulator.Add(step);
-						return null;
+						goto PopStep;
 					}
 				}
 
 				// If code goes to here, the puzzle won't be solved with the current step.
 				// We should continue the searching from the current state.
 				// Use this puzzle to check for the next elimination step by recursion.
-				if (dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps) is { } finalStep)
-				{
-					return finalStep;
-				}
+				dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps);
 
+			PopStep:
 				// Pop.
 				interimSteps.RemoveLast();
 				playground = grid;
 			}
-
-			// None found. Return null.
-			return null;
 		}
 	}
 }
