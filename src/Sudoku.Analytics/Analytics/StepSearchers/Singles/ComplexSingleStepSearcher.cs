@@ -36,8 +36,8 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		AllowDirectLockedHiddenSubset = true,
 		AllowDirectLockedSubset = true,
 		AllowDirectNakedSubset = true,
-		DirectHiddenSubsetMaxSize = 2,
-		DirectNakedSubsetMaxSize = 2
+		DirectHiddenSubsetMaxSize = 4,
+		DirectNakedSubsetMaxSize = 4
 	};
 
 	/// <summary>
@@ -61,7 +61,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	{
 		scoped ref readonly var grid = ref context.Grid;
 		var accumulator = new List<Step>();
-		if (dfs(ref context, accumulator, in grid, []) is { } step)
+		if (dfs(ref context, accumulator, in grid, [], []) is { } step)
 		{
 			return step;
 		}
@@ -83,7 +83,8 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			scoped ref AnalysisContext context,
 			List<Step> accumulator,
 			scoped ref readonly Grid grid,
-			LinkedList<Step> interimSteps
+			LinkedList<Step> interimSteps,
+			List<Step> previousIndirectFoundSteps
 		)
 		{
 			// Collect all steps by using indirect techniques.
@@ -96,15 +97,26 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				context.IsSukaku,
 				context.PredefinedOptions
 			);
+			LockedCandidatesSearcher.Collect(ref tempContext);
 			LockedSubsetSearcher.Collect(ref tempContext);
 			NormalSubsetSearcher.Collect(ref tempContext);
-			LockedCandidatesSearcher.Collect(ref tempContext);
 
+			// Remove possible steps that has already been recorded into previosly found steps.
+			foreach (var step in indirectFoundSteps[..])
+			{
+				if (previousIndirectFoundSteps.Contains(step))
+				{
+					indirectFoundSteps.Remove(step);
+				}
+			}
 			if (indirectFoundSteps.Count == 0)
 			{
 				// Nothing can be found.
 				return null;
 			}
+
+			// Record all steps that may not duplicate.
+			previousIndirectFoundSteps.AddRange(indirectFoundSteps);
 
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
 			foreach (var indirectStep in indirectFoundSteps)
@@ -212,7 +224,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				// If code goes to here, the puzzle won't be solved with the current step.
 				// We should continue the searching from the current state.
 				// Use this puzzle to check for the next elimination step by recursion.
-				if (dfs(ref context, accumulator, in playground, interimSteps) is { } finalStep)
+				if (dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps) is { } finalStep)
 				{
 					return finalStep;
 				}

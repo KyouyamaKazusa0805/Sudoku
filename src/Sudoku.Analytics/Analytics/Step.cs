@@ -187,7 +187,7 @@ public abstract partial class Step(
 	/// Indicates the string representation of the conclusions of the step.
 	/// </summary>
 	[HashCodeMember]
-	protected internal string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
+	internal string ConclusionText => Options.Converter.ConclusionConverter(Conclusions);
 
 	/// <summary>
 	/// Indicates the result culture.
