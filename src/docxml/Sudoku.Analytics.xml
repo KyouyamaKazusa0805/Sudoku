@@ -10472,36 +10472,40 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._intersectionSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_DirectLockedCandidates">
             <summary>
             Indicates the searcher for intersection.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._subsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_DirectSubset">
             <summary>
             Indicates the searcher for subset.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._lockedCandidatesSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_LockedCandidates">
             <summary>
             Indicates the searcher for locked candidates.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._lockedSubsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_LockedSubset">
             <summary>
             Indicates the searcher for locked subsets.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._normalSubsetSearcher">
+        <member name="F:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher._searcher_Subset">
             <summary>
             Indicates the searcher for normal subsets.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxNakedSubsetSize">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxNakedSubsetSize"/>
+            <summary>
+            Indicates the max naked subset size to be searched.
+            </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxHiddenSubsetSize">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxHiddenSubsetSize"/>
+            <summary>
+            Indicates the max hidden subset size to be searched.
+            </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
@@ -10878,14 +10882,10 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxNakedSubsetSize">
-            <summary>
-            Indicates the max naked subset size to be searched.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxNakedSubsetSize"/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.MaxHiddenSubsetSize">
-            <summary>
-            Indicates the max hidden subset size to be searched.
-            </summary>
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxHiddenSubsetSize"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>

@@ -21,7 +21,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the searcher for intersection.
 	/// </summary>
-	private readonly DirectIntersectionStepSearcher _intersectionSearcher = new()
+	private readonly DirectIntersectionStepSearcher _searcher_DirectLockedCandidates = new()
 	{
 		AllowDirectPointing = true,
 		AllowDirectClaiming = true
@@ -30,7 +30,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the searcher for subset.
 	/// </summary>
-	private readonly DirectSubsetStepSearcher _subsetSearcher = new()
+	private readonly DirectSubsetStepSearcher _searcher_DirectSubset = new()
 	{
 		AllowDirectHiddenSubset = true,
 		AllowDirectLockedHiddenSubset = true,
@@ -41,40 +41,48 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Indicates the searcher for locked candidates.
 	/// </summary>
-	private readonly LockedCandidatesStepSearcher _lockedCandidatesSearcher = new();
+	private readonly LockedCandidatesStepSearcher _searcher_LockedCandidates = new();
 
 	/// <summary>
 	/// Indicates the searcher for locked subsets.
 	/// </summary>
-	private readonly LockedSubsetStepSearcher _lockedSubsetSearcher = new();
+	private readonly LockedSubsetStepSearcher _searcher_LockedSubset = new();
 
 	/// <summary>
 	/// Indicates the searcher for normal subsets.
 	/// </summary>
-	private readonly NormalSubsetStepSearcher _normalSubsetSearcher = new();
+	private readonly NormalSubsetStepSearcher _searcher_Subset = new();
 
 
-	/// <inheritdoc cref="NormalSubsetStepSearcher.MaxNakedSubsetSize"/>
+	/// <summary>
+	/// Indicates the max naked subset size to be searched.
+	/// </summary>
 	public int MaxNakedSubsetSize
 	{
-		get => _normalSubsetSearcher.MaxNakedSubsetSize;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _searcher_Subset.MaxNakedSubsetSize;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_normalSubsetSearcher.MaxNakedSubsetSize = value;
-			_subsetSearcher.DirectNakedSubsetMaxSize = value;
+			_searcher_Subset.MaxNakedSubsetSize = value;
+			_searcher_DirectSubset.DirectNakedSubsetMaxSize = value;
 		}
 	}
 
-	/// <inheritdoc cref="NormalSubsetStepSearcher.MaxHiddenSubsetSize"/>
+	/// <summary>
+	/// Indicates the max hidden subset size to be searched.
+	/// </summary>
 	public int MaxHiddenSubsetSize
 	{
-		get => _normalSubsetSearcher.MaxHiddenSubsetSize;
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => _searcher_Subset.MaxHiddenSubsetSize;
 
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		set
 		{
-			_normalSubsetSearcher.MaxHiddenSubsetSize = value;
-			_subsetSearcher.DirectHiddenSubsetMaxSize = value;
+			_searcher_Subset.MaxHiddenSubsetSize = value;
+			_searcher_DirectSubset.DirectHiddenSubsetMaxSize = value;
 		}
 	}
 
@@ -84,9 +92,11 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	{
 		// Recursively searching for all possible steps.
 		var accumulator = new List<Step>();
-		dfsEntry(ref context, accumulator, in context.Grid);
+		entry(ref context, accumulator, in context.Grid);
 
-		// Sort and remove duplicate instances if worth.
+		// Sort instances if worth.
+		// We don't remove duplicate items because the searcher may not produce same steps,
+		// and the corresponding step type doesn't override method 'Equals'.
 		StepMarshal.SortItems(accumulator);
 
 		if (context.OnlyFindOne)
@@ -99,7 +109,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void dfsEntry(scoped ref AnalysisContext context, List<Step> accumulator, scoped ref readonly Grid grid)
+		void entry(scoped ref AnalysisContext context, List<Step> accumulator, scoped ref readonly Grid grid)
 			=> dfs(ref context, accumulator, in grid, [], []);
 
 		void dfs(
@@ -120,9 +130,9 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				context.IsSukaku,
 				context.PredefinedOptions
 			);
-			_lockedSubsetSearcher.Collect(ref tempContext);
-			_lockedCandidatesSearcher.Collect(ref tempContext);
-			_normalSubsetSearcher.Collect(ref tempContext);
+			_searcher_LockedSubset.Collect(ref tempContext);
+			_searcher_LockedCandidates.Collect(ref tempContext);
+			_searcher_Subset.Collect(ref tempContext);
 
 			// Remove possible steps that has already been recorded into previously found steps.
 			// During the searching, we may found a step that may be appeared in the previous grid state,
@@ -176,10 +186,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					continue;
 				}
 
-				// Push.
-				interimSteps.AddLast(indirectStep);
-				var playground = grid;
-				playground.Apply(indirectStep);
+				pushStep(out var playground, in grid, indirectStep, interimSteps);
 
 				// Check whether the puzzle can be solved via a direct single.
 				var directStepsFound = new List<Step>();
@@ -191,17 +198,15 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 					context.IsSukaku,
 					context.PredefinedOptions
 				);
-				_intersectionSearcher.Collect(ref nestedContext);
-				_subsetSearcher.Collect(ref nestedContext);
+				_searcher_DirectLockedCandidates.Collect(ref nestedContext);
+				_searcher_DirectSubset.Collect(ref nestedContext);
 
 				if (directStepsFound.Count != 0)
 				{
 					// Good! We have already found a step available! Iterate on each step to create the result value.
 					foreach (ComplexSingleBaseStep directStep in directStepsFound)
 					{
-						var views = new View[interimSteps.Count + 1];
-						var tempConclusions = new List<Conclusion>();
-						var tempIndex = 0;
+						var (views, tempConclusions, tempIndex) = (new View[interimSteps.Count + 1], new List<Conclusion>(), 0);
 						foreach (var interimStep in interimSteps)
 						{
 							tempConclusions.AddRange(interimStep.Conclusions.AsReadOnlySpan());
@@ -242,10 +247,23 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 				dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps);
 
 			PopStep:
-				// Pop.
-				interimSteps.RemoveLast();
-				playground = grid;
+				popStep(ref playground, in grid, interimSteps);
 			}
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void pushStep(out Grid playground, scoped ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
+		{
+			interimSteps.AddLast(indirectStep);
+			playground = baseGrid;
+			playground.Apply(indirectStep);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void popStep(scoped ref Grid playground, scoped ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
+		{
+			interimSteps.RemoveLast();
+			playground = baseGrid;
 		}
 	}
 }

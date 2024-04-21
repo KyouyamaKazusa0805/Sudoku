@@ -36,14 +36,10 @@ namespace Sudoku.Analytics.StepSearchers;
 	IsCachingSafe = true)]
 public sealed partial class NormalSubsetStepSearcher : StepSearcher
 {
-	/// <summary>
-	/// Indicates the max naked subset size to be searched.
-	/// </summary>
+	/// <inheritdoc cref="ComplexSingleStepSearcher.MaxNakedSubsetSize"/>
 	internal int MaxNakedSubsetSize { get; set; } = 4;
 
-	/// <summary>
-	/// Indicates the max hidden subset size to be searched.
-	/// </summary>
+	/// <inheritdoc cref="ComplexSingleStepSearcher.MaxHiddenSubsetSize"/>
 	internal int MaxHiddenSubsetSize { get; set; } = 4;
 
 
