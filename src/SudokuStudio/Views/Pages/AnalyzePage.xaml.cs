@@ -1154,7 +1154,7 @@ public sealed partial class AnalyzePage : Page
 			}
 		}
 
-		void openFlyout(scoped ref readonly Grid puzzle, Cell cell)
+		void openFlyout(ref readonly Grid puzzle, Cell cell)
 		{
 			var appBarButtons = MainMenuFlyout.SecondaryCommands.OfType<AppBarButton>();
 			switch (puzzle.GetState(cell))

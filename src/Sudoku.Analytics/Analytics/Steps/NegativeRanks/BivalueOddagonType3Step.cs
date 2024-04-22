@@ -15,10 +15,10 @@ public sealed partial class BivalueOddagonType3Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap loopCells,
+	ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap extraCells,
+	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
 ) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2)
 {

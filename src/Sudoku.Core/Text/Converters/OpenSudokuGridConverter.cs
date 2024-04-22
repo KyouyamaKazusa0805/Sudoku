@@ -28,7 +28,7 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 
 	/// <inheritdoc/>
 	public FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			// Calculates the length of the result string.
 			const int length = 1 + (81 * 3 - 1 << 1);
@@ -37,7 +37,7 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 			var result = new string(Terminator, length);
 
 			// Modify the string value via pointers.
-			scoped ref var pResult = ref result.MutableRef();
+			ref var pResult = ref result.MutableRef();
 
 			// Replace the base character with the separator.
 			for (var pos = 1; pos < length; pos += 2)

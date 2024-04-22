@@ -87,7 +87,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (AllowWWing && Collect_WWing(ref context) is { } w)
 		{
@@ -129,7 +129,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	///   435 935 567 175 185 192 193 993 195 495 995
 	/// ]]></code>
 	/// </example>
-	private WWingStep? Collect_WWing(scoped ref AnalysisContext context)
+	private WWingStep? Collect_WWing(ref AnalysisContext context)
 	{
 		// The grid with possible W-Wing pattern should contain at least two empty cells (start and end cell).
 		if (BivalueCells.Count < 2)
@@ -138,7 +138,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		}
 
 		// Iterate on each cells.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		for (var c1 = 0; c1 < 72; c1++)
 		{
 			if (!BivalueCells.Contains(c1))
@@ -148,7 +148,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 			}
 
 			// Iterate on each cells which are not peers in 'c1'.
-			scoped var digits = grid.GetCandidates(c1).GetAllSets();
+			var digits = grid.GetCandidates(c1).GetAllSets();
 			foreach (var c2 in BivalueCells - (PeersMap[c1] + c1))
 			{
 				if (c2 < c1)
@@ -265,10 +265,10 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	}
 
 	/// <inheritdoc cref="Collect(ref AnalysisContext)"/>
-	private MultiBranchWWingStep? Collect_MultiBranchWWing(scoped ref AnalysisContext context)
+	private MultiBranchWWingStep? Collect_MultiBranchWWing(ref AnalysisContext context)
 	{
 		// Iterates on each digit.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		for (var digit1 = 0; digit1 < 8; digit1++)
 		{
 			for (var digit2 = digit1 + 1; digit2 < 9; digit2++)
@@ -391,7 +391,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	///   417 419 157 883 785 891 893 795
 	/// ]]></code>
 	/// </example>
-	private MWingStep? Collect_MWing(scoped ref AnalysisContext context)
+	private MWingStep? Collect_MWing(ref AnalysisContext context)
 	{
 		foreach (var supportsGroupedNodes in (false, true))
 		{
@@ -403,7 +403,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		return null;
 
 
-		static MWingStep? collectCore(scoped ref AnalysisContext context, bool supportsGroupedNodes)
+		static MWingStep? collectCore(ref AnalysisContext context, bool supportsGroupedNodes)
 		{
 			// A grid must contain at least one bi-value cell.
 			if (!BivalueCells)
@@ -412,7 +412,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 			}
 
 			// Iterates on two houses, combining to the part 'y=(y-x)=x'.
-			scoped ref readonly var grid = ref context.Grid;
+			ref readonly var grid = ref context.Grid;
 			for (var h1 = 0; h1 < 27; h1++)
 			{
 				var digitsMask1 = grid[HousesMap[h1] & EmptyCells];
@@ -575,7 +575,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
 	/// if those two cells share a same house.
 	/// </remarks>
-	private SWingStep? Collect_SWing(scoped ref AnalysisContext context)
+	private SWingStep? Collect_SWing(ref AnalysisContext context)
 	{
 		if (!BivalueCells)
 		{
@@ -607,7 +607,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 			}
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var iterableDigitsMask = (Mask)0;
 		foreach (var digit in strongLinks.Keys)
 		{
@@ -632,8 +632,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 
 		static SWingStep? collectCore(
-			scoped ref AnalysisContext context,
-			scoped ref readonly Grid grid,
+			ref AnalysisContext context,
+			ref readonly Grid grid,
 			bool supportsGroupedNode,
 			Mask iterableDigitsMask,
 			Dictionary<Digit, List<StrongLinkInfo>> strongLinks
@@ -799,9 +799,9 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
 	/// if those two cells share a same house.
 	/// </remarks>
-	private LWingStep? Collect_LWing(scoped ref AnalysisContext context)
+	private LWingStep? Collect_LWing(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 
 		// Collect strong links.
 		var strongLinks = new IrregularWingStrongLinkEntry(243);
@@ -840,8 +840,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 
 		static LWingStep? collectCore(
-			scoped ref AnalysisContext context,
-			scoped ref readonly Grid grid,
+			ref AnalysisContext context,
+			ref readonly Grid grid,
 			IrregularWingStrongLinkEntry strongLinks,
 			bool supportsGroupedNode
 		)
@@ -1028,7 +1028,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// this pattern will be reduce to <c><![CDATA[(ALS:x=z)-z=z]]></c>.
 	/// </para>
 	/// </remarks>
-	private HWingStep? Collect_HWing(scoped ref AnalysisContext context)
+	private HWingStep? Collect_HWing(ref AnalysisContext context)
 	{
 		if (BivalueCells.Count < 2)
 		{
@@ -1036,7 +1036,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 
 		// Search for all possible ALSes appeared in the grid, and arrange them by grouping them by houses.
 		var alsLinks = new Dictionary<House, List<AlmostLockedSetLinkInfo>>(27);
@@ -1113,8 +1113,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 
 		static HWingStep? collectCore(
-			scoped ref AnalysisContext context,
-			scoped ref readonly Grid grid,
+			ref AnalysisContext context,
+			ref readonly Grid grid,
 			Dictionary<House, List<AlmostLockedSetLinkInfo>> alsLinks,
 			IrregularWingStrongLinkEntry strongLinks,
 			bool supportsGroupedNode
@@ -1247,5 +1247,5 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// <param name="CommonDigit">The common digit for those two digits.</param>
 	/// <param name="OtherDigitsMask">Indicates the other digits used.</param>
 	/// <param name="Cells">Indicates the two cells.</param>
-	private sealed record AlmostLockedSetLinkInfo(Digit CommonDigit, Mask OtherDigitsMask, scoped ref readonly CellMap Cells);
+	private sealed record AlmostLockedSetLinkInfo(Digit CommonDigit, Mask OtherDigitsMask, ref readonly CellMap Cells);
 }

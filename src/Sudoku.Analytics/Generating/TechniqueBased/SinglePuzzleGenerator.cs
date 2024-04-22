@@ -55,10 +55,10 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// <seealso cref="GeneratingFailedReason"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	protected GeneratingFailedReason AppendInterferingDigitsBaseGrid(
-		scoped ref Grid puzzle,
-		scoped ref readonly Grid baseGrid,
+		ref Grid puzzle,
+		ref readonly Grid baseGrid,
 		Cell targetCell,
-		scoped ref readonly CellMap excludedCells,
+		ref readonly CellMap excludedCells,
 		out CellMap interferingCells
 	) => AppendInterferingDigitsCore(ref puzzle, baseGrid.FixedGrid.SolutionGrid, targetCell, in excludedCells, out interferingCells);
 

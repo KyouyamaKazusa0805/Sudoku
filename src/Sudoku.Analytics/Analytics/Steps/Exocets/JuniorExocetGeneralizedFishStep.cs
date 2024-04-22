@@ -17,9 +17,9 @@ public sealed partial class JuniorExocetGeneralizedFishStep(
 	StepSearcherOptions options,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Mask targetPairMask,
-	scoped ref readonly CellMap baseCells,
-	scoped ref readonly CellMap targetCells,
-	scoped ref readonly CellMap crosslineCells
+	ref readonly CellMap baseCells,
+	ref readonly CellMap targetCells,
+	ref readonly CellMap crosslineCells
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>

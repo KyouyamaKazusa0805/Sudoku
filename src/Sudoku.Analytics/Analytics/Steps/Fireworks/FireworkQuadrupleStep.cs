@@ -12,7 +12,7 @@ public sealed partial class FireworkQuadrupleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : FireworkStep(conclusions, views, options)
 {

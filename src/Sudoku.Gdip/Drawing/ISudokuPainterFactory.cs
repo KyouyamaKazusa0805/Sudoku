@@ -25,7 +25,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="grid">The new grid.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter WithGrid(scoped ref readonly Grid grid);
+	public abstract ISudokuPainter WithGrid(ref readonly Grid grid);
 
 	/// <summary>
 	/// Sets the grid of the canvas, with the string representation.
@@ -148,7 +148,7 @@ public interface ISudokuPainterFactory
 	/// </summary>
 	/// <param name="nodes">Extra nodes.</param>
 	/// <returns>The target painter.</returns>
-	public abstract ISudokuPainter AddNodes(scoped ReadOnlySpan<ViewNode> nodes);
+	public abstract ISudokuPainter AddNodes(ReadOnlySpan<ViewNode> nodes);
 
 	/// <summary>
 	/// Remove nodes.

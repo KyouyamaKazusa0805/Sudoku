@@ -20,7 +20,7 @@ public sealed partial class UniqueRectangleType2Or5Step(
 	Digit digit1,
 	Digit digit2,
 	Technique code,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	bool isAvoidable,
 	[PrimaryConstructorParameter] Digit extraDigit,
 	int absoluteOffset

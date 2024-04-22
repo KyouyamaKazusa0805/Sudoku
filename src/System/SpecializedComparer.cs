@@ -37,7 +37,7 @@ public sealed class SpecializedComparer<T>(bool isUnsafe) : IComparer<T>
 
 
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
-	public unsafe int Compare(scoped ref readonly T left, scoped ref readonly T right)
+	public unsafe int Compare(ref readonly T left, ref readonly T right)
 		=> IsUnsafe ? _compareUnsafe(in left, in right) : _compare(in left, in right);
 
 	/// <inheritdoc/>

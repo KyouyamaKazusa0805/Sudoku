@@ -11,7 +11,7 @@ public sealed class CultureInfoConverter : JsonConverter<CultureInfo>
 
 
 	/// <inheritdoc/>
-	public override CultureInfo? Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CultureInfo? Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.GetString() switch { { } s => new(s), _ => null };
 
 	/// <inheritdoc/>

@@ -16,7 +16,7 @@ public abstract partial class UniqueLoopStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap loop,
+	[PrimaryConstructorParameter] ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] loopPath
 ) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {

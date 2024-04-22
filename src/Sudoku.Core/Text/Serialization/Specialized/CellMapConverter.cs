@@ -12,7 +12,7 @@ public sealed class CellMapConverter : JsonConverter<CellMap>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override CellMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 
 	/// <inheritdoc/>

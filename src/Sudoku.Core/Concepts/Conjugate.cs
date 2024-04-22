@@ -35,7 +35,7 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	/// <param name="map">The map.</param>
 	/// <param name="digit">The digit.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Conjugate(scoped ref readonly CellMap map, Digit digit) : this(map[0], map[1], digit)
+	public Conjugate(ref readonly CellMap map, Digit digit) : this(map[0], map[1], digit)
 	{
 	}
 

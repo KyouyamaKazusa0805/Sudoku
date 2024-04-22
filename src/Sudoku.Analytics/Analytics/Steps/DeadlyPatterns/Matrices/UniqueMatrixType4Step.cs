@@ -15,11 +15,11 @@ public sealed partial class UniqueMatrixType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap conjugateHouse
+	[PrimaryConstructorParameter] ref readonly CellMap conjugateHouse
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)
 {
 	/// <inheritdoc/>

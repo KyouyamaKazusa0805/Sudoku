@@ -257,9 +257,9 @@ internal static class ExplicitInterfaceImplHandler
 						(ScopedKind.None, RefKind.Ref) => "ref ",
 						//(ScopedKind.None, RefKind.RefReadOnly) => "ref readonly ",
 						(ScopedKind.None, RefKind.In or RefKind.RefReadOnlyParameter) => parameterIsInOperator ? "in " : "ref readonly ",
-						(_, RefKind.Ref) => "scoped ref ",
-						//(_, RefKind.RefReadOnly) => "scoped ref readonly ",
-						(_, RefKind.In or RefKind.RefReadOnlyParameter) => parameterIsInOperator ? "scoped in " : "scoped ref readonly ",
+						(_, RefKind.Ref) => "ref ",
+						//(_, RefKind.RefReadOnly) => "ref readonly ",
+						(_, RefKind.In or RefKind.RefReadOnlyParameter) => parameterIsInOperator ? "in " : "ref readonly ",
 						(_, RefKind.Out) => "out ",
 						_ => string.Empty
 					}

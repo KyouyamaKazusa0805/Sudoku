@@ -19,7 +19,7 @@ public static class DeadlyPattern
 	/// </b></remarks>
 	/// <seealso cref="Grid.ValueChanged"/>
 	/// <seealso cref="Grid.RefreshingCandidates"/>
-	public static bool IsDeadlyPattern(scoped ref readonly Grid grid)
+	public static bool IsDeadlyPattern(ref readonly Grid grid)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, false);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.EmptiesCount, 81);
@@ -83,7 +83,7 @@ public static class DeadlyPattern
 		return true;
 
 
-		static void dfs(scoped ref Grid grid, scoped ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
+		static void dfs(ref Grid grid, ref readonly CellMap cellsRange, List<Grid> solutions, Cell currentCell)
 		{
 			if (currentCell == 81)
 			{
@@ -114,7 +114,7 @@ public static class DeadlyPattern
 			}
 
 
-			static bool isValid(scoped ref readonly Grid grid, RowIndex r, ColumnIndex c)
+			static bool isValid(ref readonly Grid grid, RowIndex r, ColumnIndex c)
 			{
 				var number = grid.GetDigit(r * 9 + c);
 				for (var i = 0; i < 9; i++)

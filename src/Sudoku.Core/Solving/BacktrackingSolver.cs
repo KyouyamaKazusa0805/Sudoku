@@ -53,7 +53,7 @@ public sealed class BacktrackingSolver : ISolver
 	/// </item>
 	/// </list>
 	/// </returns>
-	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
+	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		var resultArray = default(Digit[]);
 		try
@@ -78,7 +78,7 @@ public sealed class BacktrackingSolver : ISolver
 		}
 
 
-		static void solve(scoped ref int solutionsCount, scoped ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
+		static void solve(ref int solutionsCount, ref Digit[]? result, Digit[] gridValues, int finishedCellsCount)
 		{
 			if (finishedCellsCount == 81)
 			{

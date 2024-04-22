@@ -53,7 +53,7 @@ public sealed partial class ConclusionSet() :
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConclusionSet(scoped ReadOnlySpan<Conclusion> conclusions) : this() => AddRange(conclusions);
+	public ConclusionSet(ReadOnlySpan<Conclusion> conclusions) : this() => AddRange(conclusions);
 
 
 	/// <summary>
@@ -149,7 +149,7 @@ public sealed partial class ConclusionSet() :
 	/// Add a list of conclusions into the collection.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be added.</param>
-	public void AddRange(scoped ReadOnlySpan<Conclusion> conclusions)
+	public void AddRange(ReadOnlySpan<Conclusion> conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{
@@ -379,5 +379,5 @@ public sealed partial class ConclusionSet() :
 	/// </summary>
 	/// <param name="conclusions">Conclusions to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator ConclusionSet(scoped ReadOnlySpan<Conclusion> conclusions) => [.. conclusions];
+	public static implicit operator ConclusionSet(ReadOnlySpan<Conclusion> conclusions) => [.. conclusions];
 }

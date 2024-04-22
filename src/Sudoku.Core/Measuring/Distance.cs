@@ -192,7 +192,7 @@ public readonly ref partial struct Distance(int p, int q)
 	/// <param name="cells">The <see cref="CellMap"/> instance storing two cells.</param>
 	/// <returns>The distance result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Distance GetDistance(scoped ref readonly CellMap cells)
+	public static Distance GetDistance(ref readonly CellMap cells)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(cells.Count, 2);
 		return GetDistance(cells[0], cells[1]);
@@ -235,7 +235,7 @@ public readonly ref partial struct Distance(int p, int q)
 	/// </summary>
 	/// <param name="base">The root value.</param>
 	/// <returns>The P value.</returns>
-	private static int SimplifyRootPart(scoped ref int @base)
+	private static int SimplifyRootPart(ref int @base)
 	{
 		var result = 1;
 		var temp = @base;

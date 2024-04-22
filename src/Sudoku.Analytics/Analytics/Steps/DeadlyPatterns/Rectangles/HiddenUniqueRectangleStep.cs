@@ -18,7 +18,7 @@ public sealed class HiddenUniqueRectangleStep(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	bool isAvoidable,
 	Conjugate[] conjugatePairs,
 	int absoluteOffset

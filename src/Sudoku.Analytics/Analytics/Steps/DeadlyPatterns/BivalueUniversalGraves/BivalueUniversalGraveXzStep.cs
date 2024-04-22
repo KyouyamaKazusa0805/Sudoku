@@ -14,7 +14,7 @@ public sealed partial class BivalueUniversalGraveXzStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Cell xzCell
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {

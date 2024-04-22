@@ -14,7 +14,7 @@ public sealed partial class BivalueOddagonType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap loopCells,
+	ref readonly CellMap loopCells,
 	Digit digit1,
 	Digit digit2,
 	[PrimaryConstructorParameter] Digit extraDigit

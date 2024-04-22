@@ -66,7 +66,7 @@ public ref partial struct Generator
 	{
 		_generateIndices = new int[81];
 		_stack = new RecursionStackEntry[82];
-		_stack.InitializeArray(static ([NotNull] scoped ref RecursionStackEntry? element) => element = new());
+		_stack.InitializeArray(static ([NotNull] ref RecursionStackEntry? element) => element = new());
 	}
 
 
@@ -100,7 +100,7 @@ public ref partial struct Generator
 
 			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 
-			scoped ref var p = ref _newValidSudoku;
+			ref var p = ref _newValidSudoku;
 			p.Fix();
 			return p;
 		}
@@ -275,7 +275,7 @@ public ref partial struct Generator
 				var nextCandidate = _stack[level].Candidates.SetAt(_stack[level].CandidateIndex++);
 
 				// Start with a fresh sudoku.
-				scoped ref var targetGrid = ref _stack[level].SudokuGrid;
+				ref var targetGrid = ref _stack[level].SudokuGrid;
 				targetGrid = _stack[level - 1].SudokuGrid;
 				targetGrid.SetDigit(_stack[level].Cell, nextCandidate);
 				if (!checkValidityOnDuplicate(in targetGrid, _stack[level].Cell))
@@ -298,7 +298,7 @@ public ref partial struct Generator
 		return false;
 
 
-		static bool checkValidityOnDuplicate(scoped ref readonly Grid grid, Cell cell)
+		static bool checkValidityOnDuplicate(ref readonly Grid grid, Cell cell)
 		{
 			foreach (var peer in PeersMap[cell])
 			{
@@ -312,7 +312,7 @@ public ref partial struct Generator
 			return true;
 		}
 
-		static bool fillFastForSingles(scoped ref Grid grid)
+		static bool fillFastForSingles(ref Grid grid)
 		{
 			var emptyCells = grid.EmptyCells;
 

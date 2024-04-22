@@ -66,9 +66,9 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 
 		// Gather the POM eliminations to get all possible fish eliminations.
 		var pomElims = GetPomEliminationsFirstly(in grid, ref context);
@@ -84,7 +84,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var tempList = new List<ComplexFishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
-			scoped ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
+			ref readonly var pomElimsOfThisDigit = ref pomElims[digit];
 
 			// Create a background thread to work on searching for fishes of this digit.
 			if (pomElimsOfThisDigit)
@@ -94,7 +94,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		}
 
 		var accumulator = StepMarshal.RemoveDuplicateItems(tempList).ToList();
-		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
+		var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator.ConvertAll(static p => (FishStep)p), in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator.FirstOrDefault() is { } normal ? normal : null;
@@ -126,9 +126,9 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="onlyFindOne">Indicates whether the method only find one possible step.</param>
 	private void Collect(
 		List<ComplexFishStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap pomElimsOfThisDigit,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CellMap pomElimsOfThisDigit,
 		Digit digit,
 		bool onlyFindOne
 	)
@@ -136,7 +136,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		const HouseType bothLines = (HouseType)3;
 
 		// Iterate on each size.
-		scoped var currentCoverSets = (stackalloc House[MaxSize]);
+		var currentCoverSets = (stackalloc House[MaxSize]);
 		for (var size = 2; size <= MaxSize; size++)
 		{
 			// Iterate on different cases on whether searcher finds mutant fishes.
@@ -151,7 +151,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 					var possibleMap = CandidatesMap[digit] - PeersMap[cell] - cell;
 
 					// Get the table of all possible houses that contains that digit.
-					scoped var baseTable = possibleMap.Houses.GetAllSets();
+					var baseTable = possibleMap.Houses.GetAllSets();
 
 					// If the 'table.Length' property is lower than '2 * size',
 					// we can't find any possible complex fish now. Just skip it.
@@ -243,7 +243,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 						}
 
 						// Now collect the cover sets into the cover table.
-						scoped var coverTable = z.GetAllSets();
+						var coverTable = z.GetAllSets();
 
 						// Iterate on each cover sets combination.
 						foreach (var coverSets in coverTable.GetSubsets(size - 1))
@@ -483,11 +483,11 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The dictionary that contains all eliminations grouped by digit used.</returns>
-	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	private static ReadOnlySpan<CellMap> GetPomEliminationsFirstly(ref readonly Grid grid, ref AnalysisContext context)
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		scoped var context2 = new AnalysisContext(in playground)
+		var context2 = new AnalysisContext(in playground)
 		{
 			Accumulator = tempList,
 			OnlyFindOne = false,
@@ -499,7 +499,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 		var result = new CellMap[9];
 		foreach (PatternOverlayStep step in tempList)
 		{
-			scoped ref var current = ref result[step.Digit];
+			ref var current = ref result[step.Digit];
 			current |= from conclusion in step.Conclusions.AsReadOnlySpan() select conclusion.Cell;
 		}
 		return result;

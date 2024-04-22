@@ -13,7 +13,7 @@ public sealed partial class BorescoperDeadlyPatternType2Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Digit extraDigit
 ) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)

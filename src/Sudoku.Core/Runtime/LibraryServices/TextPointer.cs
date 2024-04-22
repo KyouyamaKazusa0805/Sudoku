@@ -106,7 +106,7 @@ public sealed partial class TextPointer :
 					&& position - originalStartPosition is var delta and >= 0 and <= MaxLimitOfPuzzleLength)
 				{
 					_stream.Position = originalStartPosition;
-					scoped var span = (stackalloc char[(int)delta]);
+					var span = (stackalloc char[(int)delta]);
 					for (var i = 0; i < delta; i++)
 					{
 						span[i] = (char)_stream.ReadByte();
@@ -121,7 +121,7 @@ public sealed partial class TextPointer :
 				long g(long start)
 				{
 					_stream.Position = start;
-					scoped var playground = (stackalloc char[2]);
+					var playground = (stackalloc char[2]);
 					for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
 					{
 						(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
@@ -223,7 +223,7 @@ public sealed partial class TextPointer :
 					{
 						_stream.Position = originalStartPosition;
 
-						scoped var span = (stackalloc char[(int)delta]);
+						var span = (stackalloc char[(int)delta]);
 						for (var i = 0; i < delta; i++)
 						{
 							span[i] = (char)_stream.ReadByte();
@@ -247,7 +247,7 @@ public sealed partial class TextPointer :
 			long g(long start)
 			{
 				_stream.Position = start;
-				scoped var playground = (stackalloc char[2]);
+				var playground = (stackalloc char[2]);
 				for (var i = start; _stream.Position < _stream.Length && i < _stream.Length; i++, _stream.Position--)
 				{
 					(playground[0], playground[1]) = ((char)_stream.ReadByte(), (char)_stream.ReadByte());
@@ -296,7 +296,7 @@ public sealed partial class TextPointer :
 					{
 						_stream.Position = position;
 
-						scoped var span = (stackalloc char[(int)delta]);
+						var span = (stackalloc char[(int)delta]);
 						for (var i = 0; i < delta; i++)
 						{
 							span[i] = (char)_stream.ReadByte();
@@ -320,7 +320,7 @@ public sealed partial class TextPointer :
 			long g(long start)
 			{
 				_stream.Position = start - 3;
-				scoped var playground = (stackalloc char[2]);
+				var playground = (stackalloc char[2]);
 				var i = start - 3;
 				for (; _stream.Position >= 3 && i >= 3; i--, _stream.Position -= 3)
 				{

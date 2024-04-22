@@ -72,9 +72,9 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		foreach (var pattern in Patterns)
@@ -111,10 +111,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// </summary>
 	private UniqueMatrixType1Step? CheckType1(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
-		scoped ref readonly CellMap pattern,
+		ref readonly CellMap pattern,
 		Mask mask
 	)
 	{
@@ -174,8 +174,8 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	private UniqueMatrixType2Step? CheckType2(
 		List<Step> accumulator,
 		bool onlyFindOne,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap pattern,
+		ref AnalysisContext context,
+		ref readonly CellMap pattern,
 		Mask mask
 	)
 	{
@@ -230,10 +230,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// </summary>
 	private UniqueMatrixType3Step? CheckType3(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
-		scoped ref readonly CellMap pattern,
+		ref readonly CellMap pattern,
 		Mask mask
 	)
 	{
@@ -326,10 +326,10 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 	/// </summary>
 	private UniqueMatrixType4Step? CheckType4(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
-		scoped ref readonly CellMap pattern,
+		ref readonly CellMap pattern,
 		Mask mask
 	)
 	{

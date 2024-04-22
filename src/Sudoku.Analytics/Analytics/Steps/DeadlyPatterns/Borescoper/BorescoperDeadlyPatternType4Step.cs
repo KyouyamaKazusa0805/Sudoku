@@ -14,9 +14,9 @@ public sealed partial class BorescoperDeadlyPatternType4Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap conjugateHouse,
+	[PrimaryConstructorParameter] ref readonly CellMap conjugateHouse,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
 ) : BorescoperDeadlyPatternStep(conclusions, views, options, in cells, digitsMask)
 {

@@ -61,10 +61,10 @@ public ref partial struct GridBasedPuzzleGenerator([PrimaryConstructorParameter(
 
 		void getGrid(
 			BitwiseSolver solver,
-			scoped ref readonly Grid seed,
-			scoped ref Grid playground,
+			ref readonly Grid seed,
+			ref Grid playground,
 			Cell[] pattern,
-			scoped ref Grid resultGrid
+			ref Grid resultGrid
 		)
 		{
 			while (true)
@@ -181,7 +181,7 @@ public ref partial struct GridBasedPuzzleGenerator([PrimaryConstructorParameter(
 	/// Shuffle digits for 10 times.
 	/// </summary>
 	/// <param name="puzzle">The puzzle to be shuffle.</param>
-	private static void ShuffleDigitsFor10Times(scoped ref Grid puzzle)
+	private static void ShuffleDigitsFor10Times(ref Grid puzzle)
 	{
 		for (var times = 0; times < 10; times++)
 		{

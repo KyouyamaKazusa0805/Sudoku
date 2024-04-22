@@ -19,7 +19,7 @@ public sealed partial class NormalFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	scoped ref readonly CellMap fins,
+	ref readonly CellMap fins,
 	bool? isSashimi,
 	bool isSiamese = false
 ) : FishStep(conclusions, views, options, digit, baseSetsMask, coverSetsMask, in fins, isSashimi, isSiamese)
@@ -32,7 +32,7 @@ public sealed partial class NormalFishStep(
 	{
 		get
 		{
-			scoped var buffer = (stackalloc char[InternalName.Length]);
+			var buffer = (stackalloc char[InternalName.Length]);
 			var i = 0;
 			foreach (var ch in InternalName)
 			{

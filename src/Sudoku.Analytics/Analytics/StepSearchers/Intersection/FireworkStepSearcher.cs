@@ -101,9 +101,9 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	}
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		foreach (var pattern in Patterns)
@@ -152,10 +152,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkTripleStep? CheckTriple(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
-		scoped ref readonly Pattern pattern,
+		ref readonly Pattern pattern,
 		Mask digitsMask,
 		Cell pivot
 	)
@@ -263,10 +263,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	private FireworkQuadrupleStep? CheckQuadruple(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
-		scoped ref readonly Pattern pattern
+		ref readonly Pattern pattern
 	)
 	{
 		if (pattern is not { Map: [var c1, var c2, var c3, var c4] map })
@@ -282,7 +282,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 
 		foreach (var digits in digitsMask.GetAllSets().GetSubsets(4))
 		{
-			scoped var cases = (ReadOnlySpan<((Digit, Digit), (Digit, Digit))>)([
+			var cases = (ReadOnlySpan<((Digit, Digit), (Digit, Digit))>)([
 				((digits[0], digits[1]), (digits[2], digits[3])),
 				((digits[0], digits[2]), (digits[1], digits[3])),
 				((digits[0], digits[3]), (digits[1], digits[2])),
@@ -451,7 +451,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		Cell c1,
 		Cell c2,
 		Cell pivot,
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		out CellMap house1CellsExcluded,
 		out CellMap house2CellsExcluded
 	)
@@ -472,7 +472,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 		return finalMask;
 
 
-		static bool isFireworkFor(Digit digit, scoped ref readonly CellMap houseCellsExcluded, scoped ref readonly Grid grid)
+		static bool isFireworkFor(Digit digit, ref readonly CellMap houseCellsExcluded, ref readonly Grid grid)
 		{
 			foreach (var cell in houseCellsExcluded)
 			{
@@ -511,5 +511,5 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="Map">Indicates the full map of all cells used.</param>
 	/// <param name="Pivot">The pivot cell. This property can be <see langword="null"/> if four cells are used.</param>
-	private readonly record struct Pattern(scoped ref readonly CellMap Map, Cell? Pivot);
+	private readonly record struct Pattern(ref readonly CellMap Map, Cell? Pivot);
 }

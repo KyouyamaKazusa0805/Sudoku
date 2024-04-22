@@ -30,7 +30,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (BivalueCells.Count < 4)
 		{
@@ -41,7 +41,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var onlyFindOne = context.OnlyFindOne;
 		if (collect(in grid) is not { Count: not 0 } oddagonInfoList)
 		{
@@ -95,7 +95,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		return null;
 
 
-		static HashSet<BivalueOddagonInfo> collect(scoped ref readonly Grid grid)
+		static HashSet<BivalueOddagonInfo> collect(ref readonly Grid grid)
 		{
 			var (foundLoopsCount, result) = (-1, new HashSet<BivalueOddagonInfo>(MaximumCount));
 			for (var d1 = 0; d1 < 8; d1++)
@@ -127,15 +127,15 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 		}
 
 		static void dfs(
-			scoped ref readonly Grid grid,
+			ref readonly Grid grid,
 			Cell startCell,
 			Cell previousCell,
 			House previousHouse,
-			scoped ref readonly CellMap cellsContainingBothDigits,
-			scoped ref readonly CellMap loop,
-			scoped ref readonly CellMap extraCells,
+			ref readonly CellMap cellsContainingBothDigits,
+			ref readonly CellMap loop,
+			ref readonly CellMap extraCells,
 			HashSet<BivalueOddagonInfo> result,
-			scoped ref int loopsCount,
+			ref int loopsCount,
 			Mask comparer,
 			Mask extraDigitsMask
 		)
@@ -146,7 +146,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				return;
 			}
 
-			scoped var h = (stackalloc House[3]);
+			var h = (stackalloc House[3]);
 			foreach (var houseType in HouseTypes)
 			{
 				var nextHouse = previousCell.ToHouseIndex(houseType);
@@ -224,12 +224,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueOddagonType2Step? CheckType2(
 		List<BivalueOddagonStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne
 	)
@@ -281,12 +281,12 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueOddagonType3Step? CheckType3(
 		List<BivalueOddagonStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne
 	)
@@ -403,7 +403,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 /// <param name="LoopCells">Indicates the cells of the whole loop.</param>
 /// <param name="ExtraCells">Indicates the extra cells.</param>
 /// <param name="DigitsMask">Indicates the mask of digits that the loop used.</param>
-file sealed record BivalueOddagonInfo(scoped ref readonly CellMap LoopCells, scoped ref readonly CellMap ExtraCells, Mask DigitsMask)
+file sealed record BivalueOddagonInfo(ref readonly CellMap LoopCells, ref readonly CellMap ExtraCells, Mask DigitsMask)
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

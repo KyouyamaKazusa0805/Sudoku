@@ -623,7 +623,7 @@ public readonly partial struct Library(
 		return chosen;
 
 
-		unsafe void transformGrid(scoped ref Grid grid, TransformType transformTypes)
+		unsafe void transformGrid(ref Grid grid, TransformType transformTypes)
 		{
 			if (transformTypes == TransformType.None)
 			{
@@ -652,7 +652,7 @@ public readonly partial struct Library(
 			}
 
 
-			static void swapDigits(Random random, scoped ref Grid grid)
+			static void swapDigits(Random random, ref Grid grid)
 			{
 				for (var i = 0; i < 10; i++)
 				{
@@ -666,7 +666,7 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void swapRow(Random random, scoped ref Grid grid)
+			static void swapRow(Random random, ref Grid grid)
 			{
 				for (var i = 0; i < 10; i++)
 				{
@@ -681,7 +681,7 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void swapColumn(Random random, scoped ref Grid grid)
+			static void swapColumn(Random random, ref Grid grid)
 			{
 				for (var i = 0; i < 10; i++)
 				{
@@ -696,7 +696,7 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void swapBand(Random random, scoped ref Grid grid)
+			static void swapBand(Random random, ref Grid grid)
 			{
 				for (var i = 0; i < 2; i++)
 				{
@@ -710,7 +710,7 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void swapTower(Random random, scoped ref Grid grid)
+			static void swapTower(Random random, ref Grid grid)
 			{
 				for (var i = 0; i < 2; i++)
 				{
@@ -724,15 +724,15 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void mirrorLeftRight(Random _, scoped ref Grid grid) => grid.MirrorLeftRight();
+			static void mirrorLeftRight(Random _, ref Grid grid) => grid.MirrorLeftRight();
 
-			static void mirrorTopBottom(Random _, scoped ref Grid grid) => grid.MirrorTopBottom();
+			static void mirrorTopBottom(Random _, ref Grid grid) => grid.MirrorTopBottom();
 
-			static void mirrorDiagonal(Random _, scoped ref Grid grid) => grid.MirrorDiagonal();
+			static void mirrorDiagonal(Random _, ref Grid grid) => grid.MirrorDiagonal();
 
-			static void mirrorAntidiagonal(Random _, scoped ref Grid grid) => grid.MirrorAntidiagonal();
+			static void mirrorAntidiagonal(Random _, ref Grid grid) => grid.MirrorAntidiagonal();
 
-			static void rotateClockwise(Random random, scoped ref Grid grid)
+			static void rotateClockwise(Random random, ref Grid grid)
 			{
 				var times = random.Next(0, 4);
 				for (var i = 0; i < times; i++)
@@ -741,7 +741,7 @@ public readonly partial struct Library(
 				}
 			}
 
-			static void rotateCounterclockwise(Random random, scoped ref Grid grid)
+			static void rotateCounterclockwise(Random random, ref Grid grid)
 			{
 				var times = random.Next(0, 4);
 				for (var i = 0; i < times; i++)
@@ -868,7 +868,7 @@ public readonly partial struct Library(
 	/// Returns <c>grid.ToString("#")</c>.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static string GetSingleLineGridString(scoped ref readonly Grid grid) => grid.ToString("#");
+	private static string GetSingleLineGridString(ref readonly Grid grid) => grid.ToString("#");
 
 	[GeneratedRegex(@"author:\s*([\s\S]+)", RegexOptions.Compiled | RegexOptions.IgnoreCase, 5000)]
 	private static partial Regex AuthorPattern();

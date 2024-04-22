@@ -19,7 +19,7 @@ public sealed partial class AvoidableRectangleWithHiddenSingleStep(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Cell baseCell,
 	[PrimaryConstructorParameter] Cell targetCell,
 	[PrimaryConstructorParameter] House house,

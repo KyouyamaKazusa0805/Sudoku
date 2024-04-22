@@ -267,9 +267,9 @@ public static partial class StringExtensions
 		};
 
 		var length = @this.Length;
-		scoped var buffer = (stackalloc char[length]);
+		var buffer = (stackalloc char[length]);
 		var count = 0;
-		scoped ref var pointer = ref @this.MutableRef();
+		ref var pointer = ref @this.MutableRef();
 		for (var i = 0; i < length; i++, pointer = Unsafe.Add(ref pointer, 1))
 		{
 			if (predicate(pointer))

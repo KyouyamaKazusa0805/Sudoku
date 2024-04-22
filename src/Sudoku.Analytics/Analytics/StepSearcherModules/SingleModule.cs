@@ -12,7 +12,7 @@ internal static class SingleModule
 	/// <param name="cell">The cell.</param>
 	/// <param name="house">The house.</param>
 	/// <returns>The lasting value.</returns>
-	public static int GetLasting(scoped ref readonly Grid grid, Cell cell, House house)
+	public static int GetLasting(ref readonly Grid grid, Cell cell, House house)
 	{
 		var result = 0;
 		foreach (var c in HousesMap[house])
@@ -32,7 +32,7 @@ internal static class SingleModule
 	/// <param name="cell">The cell.</param>
 	/// <param name="house">The house.</param>
 	/// <returns>The lasting value.</returns>
-	public static int GetLastingAllHouses(scoped ref readonly Grid grid, Cell cell, out House house)
+	public static int GetLastingAllHouses(ref readonly Grid grid, Cell cell, out House house)
 	{
 		var (resultCount, resultHouse) = (9, 0);
 		foreach (var houseType in HouseTypes)
@@ -66,7 +66,7 @@ internal static class SingleModule
 	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	public static ReadOnlySpan<CellViewNode> GetHiddenSingleExcluders(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		Digit digit,
 		House house,
 		Cell cell,
@@ -98,13 +98,13 @@ internal static class SingleModule
 	/// <param name="chosenCells">The chosen cells.</param>
 	/// <returns>The subtype of the hidden single.</returns>
 	public static SingleSubtype GetHiddenSingleSubtype(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		Cell cell,
 		House house,
-		scoped ref readonly CellMap chosenCells
+		ref readonly CellMap chosenCells
 	)
 	{
-		scoped ref readonly var houseCells = ref HousesMap[house];
+		ref readonly var houseCells = ref HousesMap[house];
 		var (b, r, c) = (0, 0, 0);
 		foreach (var chosenCell in chosenCells)
 		{
@@ -134,7 +134,7 @@ internal static class SingleModule
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The subtype of the naked single.</returns>
-	public static SingleSubtype GetNakedSingleSubtype(scoped ref readonly Grid grid, Cell cell)
+	public static SingleSubtype GetNakedSingleSubtype(ref readonly Grid grid, Cell cell)
 	{
 		var (valuesCountInBlock, valuesCountInRow, valuesCountInColumn) = (0, 0, 0);
 		foreach (var houseType in HouseTypes)
@@ -167,7 +167,7 @@ internal static class SingleModule
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap GetNakedSingleExcluderCells(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var result, var i, excluderHouses) = ((CellMap)[], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
@@ -195,7 +195,7 @@ internal static class SingleModule
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	public static ReadOnlySpan<CellViewNode> GetNakedSingleExcluders(scoped ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	public static ReadOnlySpan<CellViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
 		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))

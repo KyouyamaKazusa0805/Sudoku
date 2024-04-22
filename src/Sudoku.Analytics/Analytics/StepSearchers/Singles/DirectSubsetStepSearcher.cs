@@ -96,15 +96,15 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 #pragma warning disable CS9080
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
 		var first = stackalloc DirectSubsetHandlerFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var second = stackalloc DirectSubsetHandlerFuncPtr[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.Options switch { { DistinctDirectMode: true, IsDirectMode: true } => first, _ => second };
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
-		scoped var candidatesMap = grid.CandidatesMap;
+		var candidatesMap = grid.CandidatesMap;
 		foreach (var searchingForLocked in (true, false))
 		{
 			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
@@ -129,12 +129,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// </summary>
 	private static DirectSubsetStep? HiddenSubset(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		int size,
 		bool searchingForLocked,
-		scoped ref readonly CellMap emptyCells,
-		scoped ReadOnlySpan<CellMap> candidatesMap
+		ref readonly CellMap emptyCells,
+		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
 		if (size > @this.DirectHiddenSubsetMaxSize)
@@ -144,7 +144,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 		for (var house = 0; house < 27; house++)
 		{
-			scoped ref readonly var currentHouseCells = ref HousesMap[house];
+			ref readonly var currentHouseCells = ref HousesMap[house];
 			var traversingMap = currentHouseCells & emptyCells;
 			var mask = grid[in traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
@@ -247,12 +247,12 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// </summary>
 	private static DirectSubsetStep? NakedSubset(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		int size,
 		bool searchingForLocked,
-		scoped ref readonly CellMap emptyCells,
-		scoped ReadOnlySpan<CellMap> candidatesMap
+		ref readonly CellMap emptyCells,
+		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
 		if (size > @this.DirectNakedSubsetMaxSize)
@@ -360,17 +360,17 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private static DirectSubsetStep? CheckHiddenSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
 		List<CellViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ref readonly CellMap emptyCells
+		ref readonly CellMap emptyCells
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -458,17 +458,17 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
 		List<CellViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ReadOnlySpan<CellMap> candidatesMap
+		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -546,17 +546,17 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
 		List<CellViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ref readonly CellMap emptyCells
+		ref readonly CellMap emptyCells
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -632,16 +632,16 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private static DirectSubsetStep? CheckNakedSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool? isLocked,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ref readonly CellMap emptyCells
+		ref readonly CellMap emptyCells
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -731,16 +731,16 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool? isLocked,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ReadOnlySpan<CellMap> candidatesMap
+		ReadOnlySpan<CellMap> candidatesMap
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -819,16 +819,16 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CandidateMap conclusions,
-		scoped ref readonly CellMap subsetCells,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CandidateMap conclusions,
+		ref readonly CellMap subsetCells,
 		Mask subsetDigitsMask,
 		House subsetHouse,
 		bool searchingForLocked,
 		bool? isLocked,
 		List<CandidateViewNode> candidateOffsets,
-		scoped ref readonly CellMap emptyCells
+		ref readonly CellMap emptyCells
 	)
 	{
 		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
@@ -896,7 +896,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <param name="subsetCells">The subset cells used.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Technique GetSubsetTechnique_Hidden(scoped ref readonly CellMap subsetCells)
+	private static Technique GetSubsetTechnique_Hidden(ref readonly CellMap subsetCells)
 		=> (subsetCells.IsInIntersection, subsetCells.Count) switch
 		{
 			(true, 2) => Technique.LockedHiddenPair,
@@ -913,7 +913,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <param name="isLocked">Indicates whether the subset is locked in logic.</param>
 	/// <returns>The final result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static Technique GetSubsetTechnique_Naked(scoped ref readonly CellMap subsetCells, bool? isLocked)
+	private static Technique GetSubsetTechnique_Naked(ref readonly CellMap subsetCells, bool? isLocked)
 		=> (isLocked, subsetCells.Count) switch
 		{
 			(true, 2) => Technique.LockedPair,

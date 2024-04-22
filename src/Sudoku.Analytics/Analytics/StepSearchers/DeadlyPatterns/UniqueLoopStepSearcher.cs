@@ -19,7 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class UniqueLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (BivalueCells.Count < 5)
 		{
@@ -28,7 +28,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 
 		// Now iterate on each bi-value cells as the start cell to get all possible unique loops,
 		// making it the start point to execute the recursion.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		var resultAccumulator = new List<UniqueLoopStep>();
@@ -122,11 +122,11 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType1Step? CheckType1(
 		List<UniqueLoopStep> accumulator,
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		bool onlyFindOne,
 		Cell[] path
 	)
@@ -189,12 +189,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType2Step? CheckType2(
 		List<UniqueLoopStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
@@ -260,12 +260,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType3Step? CheckType3(
 		List<UniqueLoopStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
@@ -483,12 +483,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <returns>The step is worth.</returns>
 	private UniqueLoopType4Step? CheckType4(
 		List<UniqueLoopStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
-		scoped ref readonly CellMap loop,
-		scoped ref readonly CellMap extraCellsMap,
+		ref readonly CellMap loop,
+		ref readonly CellMap extraCellsMap,
 		Mask comparer,
 		bool onlyFindOne,
 		Cell[] path
@@ -578,12 +578,12 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="allowedEx">Indicates how many cells the current loop can exist, with extra digits stored.</param>
 	/// <param name="lastHouseType">The last house type. This is a temporary variable.</param>
 	private static void CollectUniqueLoops(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		Cell cell,
 		Digit d1,
 		Digit d2,
 		List<Cell> loopPath,
-		scoped ref CellMap loopMap,
+		ref CellMap loopMap,
 		HashSet<Pattern> result,
 		Mask extraDigits = Grid.MaxCandidatesMask,
 		int allowedEx = 2,
@@ -721,7 +721,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// <param name="Loop">Indicates the cells used in this whole unique loop.</param>
 	/// <param name="Path">Indicates the detail path of the loop.</param>
 	/// <param name="DigitsMask">Indicates the digits used, represented as a mask of type <see cref="Mask"/>.</param>
-	private readonly record struct Pattern(scoped ref readonly CellMap Loop, Cell[] Path, Mask DigitsMask)
+	private readonly record struct Pattern(ref readonly CellMap Loop, Cell[] Path, Mask DigitsMask)
 	{
 		/// <inheritdoc/>
 		public override int GetHashCode() => Loop.GetHashCode();

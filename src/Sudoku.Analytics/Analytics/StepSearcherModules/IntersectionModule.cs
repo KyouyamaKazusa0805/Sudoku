@@ -14,10 +14,10 @@ internal static class IntersectionModule
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	public static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		Digit digit,
 		House house,
-		scoped ref readonly CellMap cells
+		ref readonly CellMap cells
 	)
 	{
 		var info = Crosshatching.TryCreate(in grid, digit, house, in cells);
@@ -52,11 +52,11 @@ internal static class IntersectionModule
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static bool IsLockedCandidates(
-		scoped ref readonly Grid grid,
-		scoped ref readonly CellMap a,
-		scoped ref readonly CellMap b,
-		scoped ref readonly CellMap c,
-		scoped ref readonly CellMap emptyCells,
+		ref readonly Grid grid,
+		ref readonly CellMap a,
+		ref readonly CellMap b,
+		ref readonly CellMap c,
+		ref readonly CellMap emptyCells,
 		out Mask digitsMask
 	)
 		=> (digitsMask = 0, emptyCells & c, (grid[in a], grid[in b], grid[in c])) is (_, not [], var (maskA, maskB, maskC))

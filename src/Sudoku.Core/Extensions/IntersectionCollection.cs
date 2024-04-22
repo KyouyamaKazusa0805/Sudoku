@@ -40,5 +40,5 @@ public sealed partial class IntersectionCollection([PrimaryConstructorParameter(
 	/// <returns>An <see cref="IntersectionCollection"/> result.</returns>
 	[DebuggerStepThrough]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static IntersectionCollection Create(scoped ReadOnlySpan<Intersection> values) => new([.. values]);
+	public static IntersectionCollection Create(ReadOnlySpan<Intersection> values) => new([.. values]);
 }

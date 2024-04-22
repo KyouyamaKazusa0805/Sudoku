@@ -17,8 +17,8 @@ public sealed partial class ChromaticPatternXzStep(
 	View[]? views,
 	StepSearcherOptions options,
 	House[] blocks,
-	scoped ref readonly CellMap pattern,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	ref readonly CellMap pattern,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Cell extraCell,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Mask extraDigitsMask

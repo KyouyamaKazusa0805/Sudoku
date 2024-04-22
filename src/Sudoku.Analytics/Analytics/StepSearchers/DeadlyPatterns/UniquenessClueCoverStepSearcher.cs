@@ -31,9 +31,9 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 	///   711 716 816 721 323 723 731 333 733 435 635 835 538 638 838 647 765 865 668 768
 	/// ]]></code>
 	/// </example>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		foreach (var (chuteIndex, chute, isRow, _) in Chutes)
 		{
 			if (chute - EmptyCells is not [var c1, var c2] valueCells)

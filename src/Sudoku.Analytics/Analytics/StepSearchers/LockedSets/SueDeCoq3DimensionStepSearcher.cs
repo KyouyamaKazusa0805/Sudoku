@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var rbList = new List<CellMap>(3);
 		var cbList = new List<CellMap>(3);
 		foreach (var pivot in EmptyCells)
@@ -224,7 +224,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void reinitializeList(List<CellMap> list, scoped ref readonly CellMap emptyMap)
+		static void reinitializeList(List<CellMap> list, ref readonly CellMap emptyMap)
 		{
 			list.Clear();
 			switch (emptyMap)

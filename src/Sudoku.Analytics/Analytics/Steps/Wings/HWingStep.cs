@@ -21,7 +21,7 @@ public sealed partial class HWingStep(
 	[PrimaryConstructorParameter] Digit digitX,
 	[PrimaryConstructorParameter] Digit digitY,
 	[PrimaryConstructorParameter] Digit digitZ,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap strongLink
+	[PrimaryConstructorParameter] ref readonly CellMap strongLink
 ) : IrregularWingStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

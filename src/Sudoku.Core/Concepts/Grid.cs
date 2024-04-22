@@ -240,7 +240,7 @@ public partial struct Grid :
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="firstElement"/> is <see langword="null"/> reference.
 	/// </exception>
-	private Grid(scoped ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
+	private Grid(ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
 		Ref.ThrowIfNullRef(in firstElement);
 
@@ -638,10 +638,10 @@ public partial struct Grid :
 		get
 		{
 			var conjugatePairs = new List<Conjugate>();
-			scoped var candidatesMap = CandidatesMap;
+			var candidatesMap = CandidatesMap;
 			for (var digit = 0; digit < CellCandidatesCount; digit++)
 			{
-				scoped ref readonly var cellsMap = ref candidatesMap[digit];
+				ref readonly var cellsMap = ref candidatesMap[digit];
 				foreach (var houseMap in HousesMap)
 				{
 					if ((houseMap & cellsMap) is { Count: 2 } temp)
@@ -729,7 +729,7 @@ public partial struct Grid :
 			}
 
 
-			static Grid unfix(scoped ref readonly Grid solution, scoped ref readonly CellMap pattern)
+			static Grid unfix(ref readonly Grid solution, ref readonly CellMap pattern)
 			{
 				var result = solution;
 				foreach (var cell in ~pattern)
@@ -784,7 +784,7 @@ public partial struct Grid :
 	/// </summary>
 	/// <param name="cells">The list of cells to gather the usages on all digits.</param>
 	/// <returns>A mask of type <see cref="Mask"/> that represents the usages of digits 1 to 9.</returns>
-	public readonly Mask this[scoped ref readonly CellMap cells]
+	public readonly Mask this[ref readonly CellMap cells]
 	{
 		get
 		{
@@ -807,7 +807,7 @@ public partial struct Grid :
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
 	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
-	public readonly Mask this[scoped ref readonly CellMap cells, bool withValueCells]
+	public readonly Mask this[ref readonly CellMap cells, bool withValueCells]
 	{
 		get
 		{
@@ -835,7 +835,7 @@ public partial struct Grid :
 	/// </param>
 	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public readonly unsafe Mask this[scoped ref readonly CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
+	public readonly unsafe Mask this[ref readonly CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
 	{
 		get
 		{
@@ -866,11 +866,11 @@ public partial struct Grid :
 			return result;
 
 
-			static void andNot(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result &= (Mask)~grid[cell];
+			static void andNot(ref Mask result, ref readonly Grid grid, Cell cell) => result &= (Mask)~grid[cell];
 
-			static void and(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result &= grid[cell];
+			static void and(ref Mask result, ref readonly Grid grid, Cell cell) => result &= grid[cell];
 
-			static void or(scoped ref Mask result, scoped ref readonly Grid grid, Cell cell) => result |= grid[cell];
+			static void or(ref Mask result, ref readonly Grid grid, Cell cell) => result |= grid[cell];
 		}
 	}
 
@@ -909,7 +909,7 @@ public partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public readonly bool Equals(scoped ref readonly Grid other)
+	public readonly bool Equals(ref readonly Grid other)
 		=> InternalEqualsByRef(in Ref.AsReadOnlyByteRef(in this[0]), in Ref.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount);
 
 	/// <summary>
@@ -1290,7 +1290,7 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe void SetState(Cell cell, CellState state)
 	{
-		scoped ref var mask = ref this[cell];
+		ref var mask = ref this[cell];
 		var copied = mask;
 		mask = (Mask)((Mask)(GetHeaderBits(cell) | (Mask)((int)state << CellCandidatesCount)) | (Mask)(mask & MaxCandidatesMask));
 		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, mask, -1);
@@ -1304,7 +1304,7 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public unsafe void SetMask(Cell cell, Mask mask)
 	{
-		scoped ref var newMask = ref this[cell];
+		ref var newMask = ref this[cell];
 		var originalMask = newMask;
 		newMask = mask;
 		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, originalMask, newMask, -1);
@@ -1356,7 +1356,7 @@ public partial struct Grid :
 			}
 			case >= 0 and < CellCandidatesCount:
 			{
-				scoped ref var result = ref this[cell];
+				ref var result = ref this[cell];
 				var copied = result;
 
 				// Set cell state to 'CellState.Modifiable'.
@@ -1458,7 +1458,7 @@ public partial struct Grid :
 		var result = new CellMap[CellCandidatesCount];
 		for (var digit = 0; digit < CellCandidatesCount; digit++)
 		{
-			scoped ref var map = ref result[digit];
+			ref var map = ref result[digit];
 			for (var cell = 0; cell < CellsCount; cell++)
 			{
 				if (predicate(in this, cell, digit))
@@ -1476,7 +1476,7 @@ public partial struct Grid :
 	/// </summary>
 	/// <param name="pattern">The pattern.</param>
 	/// <returns>The result grid.</returns>
-	private readonly Grid Preserve(scoped ref readonly CellMap pattern)
+	private readonly Grid Preserve(ref readonly CellMap pattern)
 	{
 		if (PuzzleType != SudokuType.Standard)
 		{
@@ -1555,7 +1555,7 @@ public partial struct Grid :
 	/// <remarks><b><i>
 	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
 	/// </i></b></remarks>
-	private static Grid Create(scoped ReadOnlySpan<Mask> rawMaskValues)
+	private static Grid Create(ReadOnlySpan<Mask> rawMaskValues)
 	{
 		switch (rawMaskValues.Length)
 		{
@@ -1596,7 +1596,7 @@ public partial struct Grid :
 	/// <param name="gridValues">The list of cell digits.</param>
 	/// <param name="creatingOption">The grid creating option.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Create(scoped ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
+	public static Grid Create(ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
 		=> new(in gridValues[0], creatingOption);
 
 	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)"/>
@@ -1629,7 +1629,7 @@ public partial struct Grid :
 		return grid;
 
 
-		static void reduceGivenCells(scoped ref Grid grid)
+		static void reduceGivenCells(ref Grid grid)
 		{
 			foreach (ref var mask in grid)
 			{
@@ -1710,7 +1710,7 @@ public partial struct Grid :
 	/// <returns>The result instance had converted.</returns>
 	/// <seealso cref="ParseExact{T}(string, T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(scoped ReadOnlySpan<char> str) => Parse(str.ToString());
+	public static Grid Parse(ReadOnlySpan<char> str) => Parse(str.ToString());
 
 	/// <summary>
 	/// Parses the specified <see cref="string"/> text and convert into a grid parser instance,
@@ -1804,7 +1804,7 @@ public partial struct Grid :
 	/// The .NET Foundation licenses this file to you under the MIT license.
 	/// https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
 	/// -->
-	private static unsafe bool InternalEqualsByRef(scoped ref readonly byte first, scoped ref readonly byte second, nuint length)
+	private static unsafe bool InternalEqualsByRef(ref readonly byte first, ref readonly byte second, nuint length)
 	{
 		var isTarget64Bits = sizeof(nint) == 8;
 		bool result;
@@ -2007,24 +2007,24 @@ public partial struct Grid :
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static ushort loadUshort(scoped ref readonly byte start) => Unsafe.ReadUnaligned<ushort>(in start);
+		static ushort loadUshort(ref readonly byte start) => Unsafe.ReadUnaligned<ushort>(in start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint loadUint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<uint>(in start);
+		static uint loadUint(ref readonly byte start) => Unsafe.ReadUnaligned<uint>(in start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static uint loadUint2(scoped ref readonly byte start, nuint offset)
+		static uint loadUint2(ref readonly byte start, nuint offset)
 			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint loadNuint(scoped ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
+		static nuint loadNuint(ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static nuint loadNuint2(scoped ref readonly byte start, nuint offset)
+		static nuint loadNuint2(ref readonly byte start, nuint offset)
 			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static Vector<byte> loadVector(scoped ref readonly byte start, nuint offset)
+		static Vector<byte> loadVector(ref readonly byte start, nuint offset)
 			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 	}
 
@@ -2040,7 +2040,7 @@ public partial struct Grid :
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
 	/// <seealso cref="ValueChanged"/>
-	private static void OnValueChanged(scoped ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
+	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue == -1)
 		{
@@ -2062,7 +2062,7 @@ public partial struct Grid :
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
 	/// <seealso cref="RefreshingCandidates"/>
-	private static void OnRefreshingCandidates(scoped ref Grid @this)
+	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var cell = 0; cell < CellsCount; cell++)
 		{

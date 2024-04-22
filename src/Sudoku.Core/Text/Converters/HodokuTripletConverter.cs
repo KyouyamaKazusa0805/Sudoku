@@ -7,12 +7,12 @@ public sealed record HodokuTripletConverter : IConceptConverter<CandidateMap>
 {
 	/// <inheritdoc/>
 	public FuncRefReadOnly<CandidateMap, string> Converter
-		=> static (scoped ref readonly CandidateMap candidates) =>
+		=> static (ref readonly CandidateMap candidates) =>
 		{
 			return candidates switch { [] => string.Empty, [var p] => $"{p % 9 + 1}{p / 9 / 9 + 1}{p / 9 % 9 + 1}", _ => f(in candidates) };
 
 
-			static string f(scoped ref readonly CandidateMap collection)
+			static string f(ref readonly CandidateMap collection)
 			{
 				var sb = new StringBuilder();
 				foreach (var candidate in collection)

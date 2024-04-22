@@ -14,8 +14,8 @@ public abstract partial class PhasedJustOneCellPuzzle(
 	Cell cell,
 	Digit digit,
 	Step? step,
-	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly Grid baseGrid,
-	scoped ref readonly CellMap interferingCells,
+	[PrimaryConstructorParameter, HashCodeMember] ref readonly Grid baseGrid,
+	ref readonly CellMap interferingCells,
 	double interferingRatio
 ) : JustOneCellPuzzle(cell, digit, step, in interferingCells, interferingRatio)
 {

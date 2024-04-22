@@ -79,7 +79,7 @@ result ^= expression;
 		<b>
 			<i>
 				This is a large structure, which means it may cost more time to copy instance than normal structures.
-				I strongly recommend you append <see langword="scoped ref readonly"/> to modify the type, as parameter or local variable modifiers,
+				I strongly recommend you append <see langword="ref readonly"/> to modify the type, as parameter or local variable modifiers,
 				to tell runtime that it should be copied by its reference instead of internal value.
 			</i>
 		</b>

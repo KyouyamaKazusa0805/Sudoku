@@ -5,4 +5,4 @@ namespace Sudoku.Text.Converters;
 /// </summary>
 /// <param name="Grid">The grid.</param>
 /// <returns>The equivalent <see cref="string"/> result.</returns>
-public delegate string GridNotationConverter(scoped ref readonly Grid Grid);
+public delegate string GridNotationConverter(ref readonly Grid Grid);

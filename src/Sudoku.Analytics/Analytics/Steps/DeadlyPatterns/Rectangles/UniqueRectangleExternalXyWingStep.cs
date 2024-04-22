@@ -20,9 +20,9 @@ public sealed partial class UniqueRectangleExternalXyWingStep(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap guardianCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cellPair,
+	ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap guardianCells,
+	[PrimaryConstructorParameter] ref readonly CellMap cellPair,
 	[PrimaryConstructorParameter] bool isIncomplete,
 	bool isAvoidable,
 	int absoluteOffset

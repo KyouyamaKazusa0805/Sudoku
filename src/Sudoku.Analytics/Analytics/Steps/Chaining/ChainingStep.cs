@@ -208,10 +208,10 @@ public abstract partial class ChainingStep(
 				};
 
 
-				static bool branchEquals(scoped ReadOnlySpan<ChainNode> a, scoped ReadOnlySpan<ChainNode> b)
+				static bool branchEquals(ReadOnlySpan<ChainNode> a, ReadOnlySpan<ChainNode> b)
 				{
-					scoped var i1 = a.GetEnumerator();
-					scoped var i2 = b.GetEnumerator();
+					var i1 = a.GetEnumerator();
+					var i2 = b.GetEnumerator();
 					while (i1.MoveNext() && i2.MoveNext())
 					{
 						if (!i1.Current.FullChainPotentials.SequenceEquals(i2.Current.FullChainPotentials))
@@ -295,7 +295,7 @@ public abstract partial class ChainingStep(
 	/// <param name="initialGrid">The initial grid.</param>
 	/// <param name="currentGrid">The current grid.</param>
 	/// <returns>All found potentials.</returns>
-	internal List<ChainNode> GetRuleParents(scoped ref readonly Grid initialGrid, scoped ref readonly Grid currentGrid)
+	internal List<ChainNode> GetRuleParents(ref readonly Grid initialGrid, ref readonly Grid currentGrid)
 	{
 		var result = new List<ChainNode>();
 
@@ -315,7 +315,7 @@ public abstract partial class ChainingStep(
 	/// </summary>
 	/// <param name="grid">The grid used.</param>
 	/// <returns>The values.</returns>
-	protected internal virtual View[] CreateViews(scoped ref readonly Grid grid)
+	protected internal virtual View[] CreateViews(ref readonly Grid grid)
 	{
 		var globalView = new View();
 		var result = new View[ViewsCount];
@@ -337,7 +337,7 @@ public abstract partial class ChainingStep(
 			}
 
 			var links = GetLinks(i);
-			scoped var listOfNodes = links.AsReadOnlySpan();
+			var listOfNodes = links.AsReadOnlySpan();
 			view.AddRange(listOfNodes);
 			globalView.AddRange(listOfNodes);
 
@@ -360,7 +360,7 @@ public abstract partial class ChainingStep(
 	/// <summary><b><i>
 	/// This method will be implemented later.
 	/// </i></b></summary>
-	protected void CollectRuleParents(scoped ref readonly Grid initialGrid, scoped ref readonly Grid currentGrid, List<ChainNode> result, ChainNode target)
+	protected void CollectRuleParents(ref readonly Grid initialGrid, ref readonly Grid currentGrid, List<ChainNode> result, ChainNode target)
 	{
 		return;
 	}
@@ -428,7 +428,7 @@ public abstract partial class ChainingStep(
 	/// <param name="grid">The grid as a candidate reference.</param>
 	/// <param name="viewIndex">The specified index of the view.</param>
 	/// <returns>All found candidates.</returns>
-	protected CandidateMap GetPartiallyOffPotentials(scoped ref readonly Grid grid, int viewIndex)
+	protected CandidateMap GetPartiallyOffPotentials(ref readonly Grid grid, int viewIndex)
 	{
 		var result = (CandidateMap)[];
 

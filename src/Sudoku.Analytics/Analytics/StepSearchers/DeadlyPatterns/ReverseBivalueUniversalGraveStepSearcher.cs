@@ -41,10 +41,10 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// Collect all possible digits can be used for the final construction of reverse BUGs.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		Mask digits;
 		if (AllowPartiallyUsedTypes)
 		{
@@ -86,7 +86,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 			for (var i = 0; i < globalMapUpperBound; i++)
 			{
-				scoped ref readonly var globalMap = ref GlobalMaps[i];
+				ref readonly var globalMap = ref GlobalMaps[i];
 				var baseValuesMap = ValuesMap[d1] | ValuesMap[d2];
 				if (baseValuesMap.Count >= 16)
 				{
@@ -193,12 +193,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType1Step? CheckType1(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped ref readonly CellMap completePattern,
-		scoped ref readonly CellMap cellsChosen
+		ref readonly CellMap completePattern,
+		ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var extraCell])
@@ -249,12 +249,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType2Step? CheckType2(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped ref readonly CellMap completePattern,
-		scoped ref readonly CellMap cellsChosen
+		ref readonly CellMap completePattern,
+		ref readonly CellMap cellsChosen
 	)
 	{
 		var lastDigitsMask = (Mask)(context.Grid[in cellsChosen] & ~comparer);
@@ -309,12 +309,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType3Step? CheckType3(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped ref readonly CellMap completePattern,
-		scoped ref readonly CellMap cellsChosen
+		ref readonly CellMap completePattern,
+		ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -327,7 +327,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var (digitsMask1, digitsMask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
 		var otherDigitsMask = (Mask)((digitsMask1 | digitsMask2) & ~comparer);
 		if (IsPow2(otherDigitsMask))
@@ -434,12 +434,12 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private ReverseBivalueUniversalGraveType4Step? CheckType4(
 		List<ReverseBivalueUniversalGraveStep> accumulator,
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		Digit d1,
 		Digit d2,
 		Mask comparer,
-		scoped ref readonly CellMap completePattern,
-		scoped ref readonly CellMap cellsChosen
+		ref readonly CellMap completePattern,
+		ref readonly CellMap cellsChosen
 	)
 	{
 		if (cellsChosen is not [var cell1, var cell2])
@@ -452,7 +452,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var cell1Digit = grid.GetCandidates(cell1) & comparer;
 		var cell2Digit = grid.GetCandidates(cell2) & comparer;
 		var mergedDigitMask = cell1Digit | cell2Digit;
@@ -566,7 +566,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <para><inheritdoc cref="UniqueLoopStepSearcher.IsValidLoop(List{Cell})" path="//remarks/para[2]"/></para>
 	/// </remarks>
 	/// <seealso cref="UniqueLoopStepSearcher.IsValidLoop(List{Cell})"/>
-	private static bool IsGeneralizedUniqueLoop(scoped ref readonly CellMap loop)
+	private static bool IsGeneralizedUniqueLoop(ref readonly CellMap loop)
 	{
 		// The length of the loop pattern must be at least 4, and an even.
 		_ = loop is { Count: var length, Houses: var houses, RowMask: var r, ColumnMask: var c, BlockMask: var b };

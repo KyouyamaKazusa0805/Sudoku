@@ -53,7 +53,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 
 	/// <inheritdoc/>
 	public unsafe FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			// Step 1: gets the candidates information grouped by columns.
 			var valuesByColumn = createTempDictionary();

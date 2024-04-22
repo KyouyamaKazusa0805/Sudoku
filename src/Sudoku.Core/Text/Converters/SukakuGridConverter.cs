@@ -53,7 +53,7 @@ public sealed partial record SukakuGridConverter(bool Multiline = false) : IConc
 
 	/// <inheritdoc/>
 	public FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			if (Multiline)
 			{
@@ -70,7 +70,7 @@ public sealed partial record SukakuGridConverter(bool Multiline = false) : IConc
 
 				// Now consider the alignment for each column of output text.
 				var sb = new StringBuilder();
-				scoped var span = (stackalloc int[9]);
+				var span = (stackalloc int[9]);
 				for (var column = 0; column < 9; column++)
 				{
 					var maxLength = 0;

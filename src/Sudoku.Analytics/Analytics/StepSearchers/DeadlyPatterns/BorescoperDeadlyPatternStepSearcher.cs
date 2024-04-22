@@ -62,14 +62,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		}
 
 
-		static void collectHeptagonPatterns(House block, int i, Cell[] quadruple, scoped ref int count)
+		static void collectHeptagonPatterns(House block, int i, Cell[] quadruple, ref int count)
 		{
 			if (quadruple is not [var q1, var q2, var q3, var q4])
 			{
 				return;
 			}
 
-			scoped var blockTriplets = (ReadOnlySpan<(Cell, Cell, Cell)>)[(q1, q2, q3), (q2, q1, q4), (q3, q1, q4), (q4, q2, q3)];
+			var blockTriplets = (ReadOnlySpan<(Cell, Cell, Cell)>)[(q1, q2, q3), (q2, q1, q4), (q3, q1, q4), (q4, q2, q3)];
 			for (var j = 0; j < 4; j++)
 			{
 				_ = blockTriplets[j] is (var t1, var t2, var t3) triplet;
@@ -96,7 +96,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					for (var i2 = 0; i2 < 6; i2++)
 					{
 						// Now check extra digits.
-						scoped var allCells = (ReadOnlySpan<Cell>)[.. triplet, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]];
+						var allCells = (ReadOnlySpan<Cell>)[.. triplet, pair1[i1, 0], pair1[i1, 1], pair2[i2, 0], pair2[i2, 1]];
 						var v = 0L;
 						for (var z = 0; z < allCells.Length; z++)
 						{
@@ -119,7 +119,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		static void collectOctagonPatterns(House block, int i, Cell[] quad, scoped ref int count)
+		static void collectOctagonPatterns(House block, int i, Cell[] quad, ref int count)
 		{
 			if (quad is not [var t1, var t2, var t3, _])
 			{
@@ -190,14 +190,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (EmptyCells.Count < 7)
 		{
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		for (var i = 0; i < (EmptyCells.Count == 7 ? 14580 : 11664); i++)
@@ -245,14 +245,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType1Step? CheckType1(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		scoped ref readonly CellMap map
+		ref readonly CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -314,14 +314,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType2Step? CheckType2(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		scoped ref readonly CellMap map
+		ref readonly CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -376,14 +376,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType3Step? CheckType3(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		scoped ref readonly CellMap map
+		ref readonly CellMap map
 	)
 	{
 		var orMask = (Mask)((Mask)(cornerMask1 | cornerMask2) | centerMask);
@@ -487,14 +487,14 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// </summary>
 	private BorescoperDeadlyPatternType4Step? CheckType4(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Pattern pattern,
 		bool findOnlyOne,
 		Mask cornerMask1,
 		Mask cornerMask2,
 		Mask centerMask,
-		scoped ref readonly CellMap map
+		ref readonly CellMap map
 	)
 	{
 		// The type 4 may be complex and terrible to process.

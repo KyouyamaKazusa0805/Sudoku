@@ -40,7 +40,7 @@ public sealed partial class GridClickedEventArgs([PrimaryConstructorParameter] M
 	{
 		var cell = candidate / 9;
 
-		scoped var result = (stackalloc House[3]);
+		var result = (stackalloc House[3]);
 		cell.CopyHouseInfo(ref result[0]);
 
 		return (result[0], result[1], result[2]);

@@ -107,7 +107,7 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <seealso cref="GenerateJustOneCell"/>
 	/// <seealso cref="GeneratingFailedReason"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	protected unsafe GeneratingFailedReason AppendInterferingDigitsNoBaseGrid(scoped ref Grid puzzle, Cell targetCell, out CellMap interferingCells)
+	protected unsafe GeneratingFailedReason AppendInterferingDigitsNoBaseGrid(ref Grid puzzle, Cell targetCell, out CellMap interferingCells)
 	{
 		// Try to get an answer of the puzzle.
 		// I know the puzzle currently has multiple solutions, but we should fix one solution,
@@ -140,10 +140,10 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <seealso cref="GenerateJustOneCell"/>
 	/// <seealso cref="GeneratingFailedReason"/>
 	protected GeneratingFailedReason AppendInterferingDigitsCore(
-		scoped ref Grid puzzle,
-		scoped ref readonly Grid solution,
+		ref Grid puzzle,
+		ref readonly Grid solution,
 		Cell targetCell,
-		scoped ref readonly CellMap excludedCells,
+		ref readonly CellMap excludedCells,
 		out CellMap interferingCells
 	)
 	{

@@ -32,7 +32,7 @@ public sealed class DancingLinksSolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
+	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 
@@ -233,7 +233,7 @@ file sealed class DancingLink(ColumnNode root)
 	/// </summary>
 	/// <param name="d">The matrix row instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void LinkRow(scoped ref MatrixRow d)
+	private void LinkRow(ref MatrixRow d)
 	{
 		d.Cell.Right = d.Column;
 		d.Cell.Left = d.Block;

@@ -15,5 +15,5 @@ public static class ChunkNodeBuilder
 	/// <param name="values">The values.</param>
 	/// <returns>A <see cref="ChunkNode{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ChunkNode<T> Create<T>(scoped ReadOnlySpan<T> values) => values.ToArray();
+	public static ChunkNode<T> Create<T>(ReadOnlySpan<T> values) => values.ToArray();
 }

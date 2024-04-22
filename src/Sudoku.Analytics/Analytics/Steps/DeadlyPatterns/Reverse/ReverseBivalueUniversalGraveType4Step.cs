@@ -17,9 +17,9 @@ public sealed partial class ReverseBivalueUniversalGraveType4Step(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap pattern,
-	scoped ref readonly CellMap emptyCells,
-	[PrimaryConstructorParameter] scoped ref readonly Conjugate conjugatePair
+	ref readonly CellMap pattern,
+	ref readonly CellMap emptyCells,
+	[PrimaryConstructorParameter] ref readonly Conjugate conjugatePair
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>

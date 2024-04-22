@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		for (var (i, length) = (0, BivalueCells.Count); i < length - 1; i++)
 		{
 			var c1 = BivalueCells[i];
@@ -49,7 +49,7 @@ public sealed partial class EmptyRectangleIntersectionPairStepSearcher : StepSea
 				foreach (var interCell in interMap)
 				{
 					var block = interCell.ToHouseIndex(HouseType.Block);
-					scoped ref readonly var houseMap = ref HousesMap[block];
+					ref readonly var houseMap = ref HousesMap[block];
 					var checkingMap = houseMap - unionMap & houseMap;
 					if (checkingMap & CandidatesMap[d1] || checkingMap & CandidatesMap[d2])
 					{

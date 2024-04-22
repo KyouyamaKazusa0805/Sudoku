@@ -13,8 +13,8 @@ public sealed partial class MultiBranchWWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap leaves,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap root,
+	[PrimaryConstructorParameter] ref readonly CellMap leaves,
+	[PrimaryConstructorParameter] ref readonly CellMap root,
 	[PrimaryConstructorParameter] House house
 ) : IrregularWingStep(conclusions, views, options), ISizeTrait
 {

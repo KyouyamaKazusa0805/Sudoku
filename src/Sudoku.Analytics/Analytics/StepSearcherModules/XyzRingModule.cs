@@ -11,10 +11,10 @@ internal static class XyzRingModule
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All Siamese steps of type <see cref="XyzRingStep"/>.</returns>
-	public static ReadOnlySpan<XyzRingStep> GetSiamese(List<XyzRingStep> accumulator, scoped ref readonly Grid grid)
+	public static ReadOnlySpan<XyzRingStep> GetSiamese(List<XyzRingStep> accumulator, ref readonly Grid grid)
 	{
 		var result = new List<XyzRingStep>();
-		scoped var stepsSpan = accumulator.AsReadOnlySpan();
+		var stepsSpan = accumulator.AsReadOnlySpan();
 		for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
 		{
 			var xyz1 = stepsSpan[index1];
@@ -30,7 +30,7 @@ internal static class XyzRingModule
 		return result.AsReadOnlySpan();
 
 
-		static bool check(scoped ref readonly Grid grid, XyzRingStep xyz1, XyzRingStep xyz2, [NotNullWhen(true)] out XyzRingStep? siameseStep)
+		static bool check(ref readonly Grid grid, XyzRingStep xyz1, XyzRingStep xyz2, [NotNullWhen(true)] out XyzRingStep? siameseStep)
 		{
 			if ((xyz1.Pivot, xyz1.LeafCell1, xyz1.LeafCell2) != (xyz2.Pivot, xyz2.LeafCell1, xyz2.LeafCell2))
 			{

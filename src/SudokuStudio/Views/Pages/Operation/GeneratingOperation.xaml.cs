@@ -136,7 +136,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 				_ => (start, end)
 			};
 
-		void h(scoped ref Grid grid, Analyzer analyzer)
+		void h(ref Grid grid, Analyzer analyzer)
 		{
 			gridStateChanger?.Invoke(ref grid, analyzer);
 			gridTextConsumer?.Invoke($"{grid:#}");
@@ -185,14 +185,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		)
 		{
 			var rs = Random.Shared;
-			scoped var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
-			scoped var chosenGivensCount =
+			var chosenSymmetries = from c in constraints.OfType<SymmetryConstraint>() select c.SymmetricTypes;
+			var chosenGivensCount =
 				from c in constraints.OfType<CountBetweenConstraint>()
 				let betweenRule = c.BetweenRule
 				let pair = (Start: c.Range.Start.Value, End: c.Range.End.Value)
 				let targetPair = c.CellState switch { CellState.Given => (pair.Start, pair.End), CellState.Empty => (81 - pair.End, 81 - pair.Start) }
 				select (betweenRule, targetPair);
-			scoped var chosenDifficultyLevels =
+			var chosenDifficultyLevels =
 				from c in constraints.OfType<DifficultyLevelConstraint>()
 				select c.ValidDifficultyLevels.GetAllFlags();
 			var ittoryu = constraints.OfType<IttoryuConstraint>() is [var ic] ? ic : null;
@@ -358,7 +358,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (scoped ref Grid grid, Analyzer analyzer) =>
+			static (ref Grid grid, Analyzer analyzer) =>
 			{
 				var analyzerResult = analyzer.Analyze(in grid);
 				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
@@ -426,7 +426,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 		await HandleGeneratingAsync<FilteredGeneratorProgress>(
 			false,
-			static (scoped ref Grid grid, Analyzer analyzer) =>
+			static (ref Grid grid, Analyzer analyzer) =>
 			{
 				var analyzerResult = analyzer.Analyze(in grid);
 				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })

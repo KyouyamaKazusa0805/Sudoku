@@ -75,11 +75,11 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal sealed override Step? Collect(scoped ref AnalysisContext context)
+	protected internal sealed override Step? Collect(ref AnalysisContext context)
 	{
 		// TODO: Implement an implications cache.
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var result = Collect(in grid, ref context);
 		if (result.Count == 0)
 		{
@@ -103,7 +103,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The hints found.</returns>
-	private List<ChainingStep> Collect(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	private List<ChainingStep> Collect(ref readonly Grid grid, ref AnalysisContext context)
 	{
 		var result = new List<ChainingStep>();
 
@@ -184,8 +184,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// </summary>
 	/// <returns>All found potentials off.</returns>
 	private List<ChainNode> GetAdvancedPotentials(
-		scoped ref readonly Grid grid,
-		scoped ref readonly Grid source,
+		ref readonly Grid grid,
+		ref readonly Grid source,
 		PotentialSet offPotentials
 	)
 	{
@@ -246,8 +246,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// <param name="doReduction"></param>
 	/// <param name="doContradiction"></param>
 	private void DoBinaryChaining(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode pOn,
 		ChainNode pOff,
 		List<ChainingStep> result,
@@ -328,8 +328,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	///     path="/param[@name='onToOff']"/>
 	/// </param>
 	private void DoHouseChaining(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		List<ChainingStep> result,
 		byte cell,
 		byte digit,
@@ -393,8 +393,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// Try to create a binary forcing chain hint on "on" state.
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOnStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -411,8 +411,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// Try to create a binary forcing chain hint on "off" state.
 	/// </summary>
 	private BinaryForcingChainsStep CreateChainingOffStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -429,8 +429,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// Try to create a cell forcing chain hint.
 	/// </summary>
 	private CellForcingChainsStep CreateCellForcingStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		byte srcCell,
 		ChainNode target,
 		ChainBranchCollection outcomes
@@ -458,8 +458,8 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	/// Try to create a region (house) forcing chain hint.
 	/// </summary>
 	private RegionForcingChainsStep CreateHouseForcingStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		byte digit,
 		ChainNode target,

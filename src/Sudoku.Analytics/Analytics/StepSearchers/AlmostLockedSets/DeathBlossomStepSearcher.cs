@@ -54,16 +54,16 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// ]]></code>
 	/// </para>
 	/// </remarks>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
-		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
-		scoped var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
-		scoped var usedIndex = (stackalloc int[729]);
-		scoped var finalCells = (stackalloc Cell[9]);
-		scoped var selectedCellDigitsMask = (stackalloc Mask[9]);
-		scoped var selectedAlsEntryCell = (stackalloc Cell[9]);
-		scoped var alsReferenceTable = (stackalloc Candidate[729]);
+		ref readonly var grid = ref context.Grid;
+		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+		var alsesUsed = (stackalloc CellMap[90]); // First 10 elements are not used.
+		var usedIndex = (stackalloc int[729]);
+		var finalCells = (stackalloc Cell[9]);
+		var selectedCellDigitsMask = (stackalloc Mask[9]);
+		var selectedAlsEntryCell = (stackalloc Cell[9]);
+		var alsReferenceTable = (stackalloc Candidate[729]);
 		alsReferenceTable.Fill(-1);
 		var accumulatorNormal = new List<DeathBlossomStep>();
 		var accumulatorHouse = new List<HouseDeathBlossomStep>();
@@ -385,11 +385,11 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// Create a <see cref="DeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
 	private DeathBlossomStep? CreateStep_NormalType(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		Cell pivot,
 		scoped Span<int> alsReferenceTable,
-		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSet> alses,
 		Mask[] playgroundCached,
 		List<DeathBlossomStep> accumulator
 	)
@@ -516,12 +516,12 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// Create a <see cref="HouseDeathBlossomStep"/> instance and add it into the accumulator.
 	/// </summary>
 	private HouseDeathBlossomStep? CreateStep_HouseType(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		House house,
 		Mask disappearedDigitsMask,
 		scoped Span<int> alsReferenceTable,
-		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSet> alses,
 		Mask[] playgroundCached,
 		List<HouseDeathBlossomStep> accumulator
 	)
@@ -650,13 +650,13 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// and add it into the accumulator if worth.
 	/// </summary>
 	private RectangleDeathBlossomStep? CreateStep_RectangleType(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		Mask urDigitsMask,
 		Mask mergedDigitsMask,
-		scoped ref readonly CellMap urCells,
+		ref readonly CellMap urCells,
 		scoped Span<int> alsReferenceTable,
-		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		ReadOnlySpan<AlmostLockedSet> alses,
 		Mask[] playgroundCached,
 		List<RectangleDeathBlossomStep> accumulator
 	)
@@ -781,9 +781,9 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 	/// and add it into the accumulator if worth.
 	/// </summary>
 	private NTimesAlmostLockedSetDeathBlossomStep? CreateStep_NTimesAlsType(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ReadOnlySpan<AlmostLockedSet> alses,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ReadOnlySpan<AlmostLockedSet> alses,
 		scoped Span<CellMap> alsesUsed,
 		scoped Span<Cell> usedIndex,
 		scoped Span<Cell> selectedAlsEntryCell,
@@ -809,7 +809,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			foreach (var digit in tCand)
 			{
 				var candidate = cell * 9 + digit;
-				scoped ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
+				ref var currentUsedIndex = ref usedIndex[alsReferenceTable[candidate]];
 				if (currentUsedIndex == 0)
 				{
 					currentUsedIndex = ++usedAlsesCount;

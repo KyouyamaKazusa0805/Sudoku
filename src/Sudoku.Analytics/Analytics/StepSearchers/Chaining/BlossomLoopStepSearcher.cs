@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class BlossomLoopStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var result = Collect(in grid, ref context);
 		if (result.Count == 0)
 		{
@@ -37,7 +37,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <param name="grid">The grid on which to search for hints.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The hints found.</returns>
-	private List<BlossomLoopStep> Collect(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+	private List<BlossomLoopStep> Collect(ref readonly Grid grid, ref AnalysisContext context)
 	{
 		var result = new List<BlossomLoopStep>();
 
@@ -84,8 +84,8 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// </remarks>
 	/// <seealso cref="MultipleChainingStepSearcher.DoHouseChaining(ref readonly Grid, ref AnalysisContext, List{ChainingStep}, byte, byte, NodeSet, NodeSet)"/>
 	private void DoHouseChaining(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		List<BlossomLoopStep> result,
 		byte baseCell,
 		byte baseDigit,
@@ -133,10 +133,10 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// </summary>
 	private void CheckForCellTargetType(
 		ChainBranchCollection posToOn,
-		scoped ref readonly CellMap potentialPositions,
+		ref readonly CellMap potentialPositions,
 		byte baseDigit,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		List<BlossomLoopStep> result
 	)
@@ -210,10 +210,10 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// </summary>
 	private void CheckForHouseTargetType(
 		ChainBranchCollection posToOn,
-		scoped ref readonly CellMap potentialPositions,
+		ref readonly CellMap potentialPositions,
 		byte baseDigit,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		List<BlossomLoopStep> result
 	)
@@ -290,7 +290,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <returns>A <see cref="bool"/> indicating that.</returns>
 	private bool IsOneToOneRelationBetweenStartAndEndNodes(
 		NodeList selectedPotentials,
-		scoped ref readonly CellMap potentialPositions,
+		ref readonly CellMap potentialPositions,
 		byte baseDigit,
 		[NotNullWhen(true)] out ChainNodeListWithHeadCandidate? projectedStartNodes
 	)
@@ -341,7 +341,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="baseDigit">The base digit.</param>
 	/// <returns>All possible eliminations. If none found, an empty list.</returns>
-	private List<Conclusion> CollectLoopEliminations(ChainNodeListWithHeadCandidate outcomes, scoped ref readonly Grid grid, byte baseDigit)
+	private List<Conclusion> CollectLoopEliminations(ChainNodeListWithHeadCandidate outcomes, ref readonly Grid grid, byte baseDigit)
 	{
 		var conclusions = new List<Conclusion>();
 		foreach (var (branch, headCandidate) in outcomes)
@@ -387,8 +387,8 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <param name="targetCell">Indicates the target cell which makes all branches end with.</param>
 	/// <param name="elimDigitsMask">Indicates mask of digits can be eliminated in target cell.</param>
 	private BlossomLoopStep? CreateStepCellType(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		byte digit,
 		ChainNodeListWithHeadCandidate outcomes,
@@ -433,12 +433,12 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 	/// <param name="elimCells">Indicates cells can be eliminated in the target house.</param>
 	/// <param name="targetDigit">Indicates the target digit.</param>
 	private BlossomLoopStep? CreateStepHouseType(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		byte digit,
 		ChainNodeListWithHeadCandidate outcomes,
-		scoped ref readonly CellMap elimCells,
+		ref readonly CellMap elimCells,
 		byte targetDigit
 	)
 	{

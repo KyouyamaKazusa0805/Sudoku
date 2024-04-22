@@ -18,8 +18,8 @@ public sealed partial class UniqueLoopType3Step(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap loop,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap subsetCells,
+	ref readonly CellMap loop,
+	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
 	[PrimaryConstructorParameter] Mask subsetDigitsMask,
 	Cell[] loopPath
 ) : UniqueLoopStep(conclusions, views, options, digit1, digit2, in loop, loopPath), IPatternType3StepTrait<UniqueLoopType3Step>

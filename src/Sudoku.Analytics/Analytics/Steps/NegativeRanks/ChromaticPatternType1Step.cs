@@ -15,7 +15,7 @@ public sealed partial class ChromaticPatternType1Step(
 	View[]? views,
 	StepSearcherOptions options,
 	House[] blocks,
-	scoped ref readonly CellMap pattern,
+	ref readonly CellMap pattern,
 	[PrimaryConstructorParameter] Cell extraCell,
 	Mask digitsMask
 ) : ChromaticPatternStep(conclusions, views, options, blocks, in pattern, digitsMask)

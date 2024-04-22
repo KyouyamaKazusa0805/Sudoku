@@ -66,14 +66,14 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override unsafe Step? Collect(scoped ref AnalysisContext context)
+	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
 		var r = stackalloc House*[9];
 		var c = stackalloc House*[9];
 		Unsafe.InitBlock(r, 0, (uint)sizeof(House*) * 9);
 		Unsafe.InitBlock(c, 0, (uint)sizeof(House*) * 9);
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = new List<FishStep>();
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -127,7 +127,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 		}
 
 		// For Siamese fish, we should manually deal with them.
-		scoped var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
+		var siameses = AllowSiamese ? FishModule.GetSiamese(accumulator, in grid) : [];
 		if (context.OnlyFindOne)
 		{
 			return siameses is [var siamese, ..] ? siamese : accumulator is [var normal, ..] ? normal : null;
@@ -164,8 +164,8 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <returns>The first found step.</returns>
 	private unsafe void Collect(
 		List<FishStep> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		int size,
 		House** r,
 		House** c,
@@ -293,7 +293,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 	/// <param name="fins">The cells of the fin in the current fish.</param>
 	/// <param name="searchRow">Indicates whether the current searcher searches row.</param>
 	/// <returns>The view.</returns>
-	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, scoped ref readonly CellMap fins, bool searchRow)
+	private static View GetDirectView(Digit digit, House[] baseSets, House[] coverSets, ref readonly CellMap fins, bool searchRow)
 	{
 		var cellOffsets = new List<CellViewNode>();
 		foreach (var baseSet in baseSets)

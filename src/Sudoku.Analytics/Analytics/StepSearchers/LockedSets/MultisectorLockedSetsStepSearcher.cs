@@ -71,14 +71,14 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped var linkForEachHouse = (stackalloc Mask[27]);
+		var linkForEachHouse = (stackalloc Mask[27]);
 		linkForEachHouse.Clear();
 
-		scoped var linkForEachDigit = (stackalloc CellMap[9]);
-		scoped var canL = (stackalloc CellMap[9]);
-		scoped ref readonly var grid = ref context.Grid;
+		var linkForEachDigit = (stackalloc CellMap[9]);
+		var canL = (stackalloc CellMap[9]);
+		ref readonly var grid = ref context.Grid;
 		foreach (var (pattern, rows, columns) in Patterns)
 		{
 			var map = EmptyCells & pattern;
@@ -91,7 +91,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 			var count = map.Count;
 			for (var digit = 0; digit < 9; digit++)
 			{
-				scoped ref var tempMap = ref linkForEachDigit[digit];
+				ref var tempMap = ref linkForEachDigit[digit];
 				tempMap = CandidatesMap[digit] & map;
 				n += MathExtensions.Min(PopCount((uint)tempMap.RowMask), PopCount((uint)tempMap.ColumnMask), PopCount((uint)tempMap.BlockMask));
 			}
@@ -221,5 +221,5 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 	}
 
 
-	private readonly record struct Pattern(scoped ref readonly CellMap Map, int RowCount, int ColumnCount);
+	private readonly record struct Pattern(ref readonly CellMap Map, int RowCount, int ColumnCount);
 }

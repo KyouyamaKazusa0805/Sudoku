@@ -20,7 +20,7 @@ public static class CellMarshal
 	/// Throws when the argument <paramref name="reference"/> references to <see langword="null"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void CopyHouseInfo(this Cell @this, scoped ref House reference)
+	public static void CopyHouseInfo(this Cell @this, ref House reference)
 	{
 		Ref.ThrowIfNullRef(in reference);
 

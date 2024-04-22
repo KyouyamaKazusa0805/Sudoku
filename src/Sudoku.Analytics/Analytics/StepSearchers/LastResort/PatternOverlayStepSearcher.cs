@@ -17,7 +17,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		var templates = GetInvalidPos(in context.Grid);
 		for (var digit = 0; digit < 9; digit++)
@@ -48,11 +48,11 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>The 9 maps for invalid positions of each digit.</returns>
-	private static CellMap[] GetInvalidPos(scoped ref readonly Grid grid)
+	private static CellMap[] GetInvalidPos(ref readonly Grid grid)
 	{
 		var result = new CellMap[9];
-		scoped var invalidPos = (stackalloc CellMap[9]);
-		scoped var mustPos = (stackalloc CellMap[9]);
+		var invalidPos = (stackalloc CellMap[9]);
+		var mustPos = (stackalloc CellMap[9]);
 
 		invalidPos.Clear();
 		mustPos.Clear();

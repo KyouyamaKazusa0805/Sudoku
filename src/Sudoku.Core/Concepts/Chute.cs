@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 /// <param name="Cells">The cells used.</param>
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
 /// <param name="HousesMask">Indicates the houses used.</param>
-public readonly record struct Chute(int Index, scoped ref readonly CellMap Cells, bool IsRow, HouseMask HousesMask) : ICoordinateObject<Chute>
+public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool IsRow, HouseMask HousesMask) : ICoordinateObject<Chute>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,7 +4,7 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
+public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 	IAnalyzerResult<Analyzer, AnalyzerResult>,
 	ICultureFormattable,
 	IEnumerable<Step>
@@ -346,7 +346,7 @@ public sealed partial record AnalyzerResult(scoped ref readonly Grid Puzzle) :
 				return null;
 			}
 
-			if (StepsSpan.All(static (scoped ref readonly Step step) => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
+			if (StepsSpan.All(static (ref readonly Step step) => step is FullHouseStep or HiddenSingleStep { House: < 9 }))
 			{
 				// No diamond step exist in all steps are hidden singles in block.
 				return null;

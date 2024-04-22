@@ -287,7 +287,7 @@ public partial class GridImageGenerator
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void rotate(PointF pt1, scoped ref PointF pt2, float angle)
+		static void rotate(PointF pt1, ref PointF pt2, float angle)
 		{
 			// Translate 'pt2' to (0, 0).
 			pt2.X -= pt1.X;
@@ -321,7 +321,7 @@ public partial class GridImageGenerator
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(scoped ref PointF pt1, scoped ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
+		static void cut(ref PointF pt1, ref PointF pt2, float cw, float ch, float pt1x, float pt1y, float pt2x, float pt2y)
 		{
 			var slope = MathF.Abs((pt2y - pt1y) / (pt2x - pt1x));
 			var x = cw / (float)MathF.Sqrt(1 + slope * slope);

@@ -113,7 +113,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 
 			// Check whether the current digit is already completed.
 			// If the digit is already completed, we should consider this case as "consecutive" also.
-			scoped ref readonly var currentGrid = ref stepGrids[i + 1];
+			ref readonly var currentGrid = ref stepGrids[i + 1];
 			if (currentGrid.ValuesMap[previousDigit].Count == 9)
 			{
 				continue;

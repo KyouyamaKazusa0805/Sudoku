@@ -63,7 +63,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 		=> UseIttoryuMode ? Collect_IttoryuMode(ref context) : Collect_NonIttoryuMode(ref context);
 
 	/// <summary>
@@ -71,9 +71,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? Collect_IttoryuMode(scoped ref AnalysisContext context)
+	private Step? Collect_IttoryuMode(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		for (var (i, digit) = (0, context.PreviousSetDigit); i < 9; i++, digit = (digit + 1) % 9)
 		{
 			if (!EnableFullHouse)
@@ -200,9 +200,9 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private unsafe Step? Collect_NonIttoryuMode(scoped ref AnalysisContext context)
+	private unsafe Step? Collect_NonIttoryuMode(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var isFullyMarkedMode = !context.Options.DistinctDirectMode || !context.Options.IsDirectMode;
 
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
@@ -228,7 +228,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for full houses.
 	/// </summary>
-	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static FullHouseStep? CheckFullHouse(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
 	{
 		for (var house = 0; house < 27; house++)
 		{
@@ -274,7 +274,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden singles.
 	/// </summary>
-	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static HiddenSingleStep? CheckHiddenSingle(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
 	{
 		if (@this.HiddenSinglesInBlockFirst)
 		{
@@ -346,7 +346,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked singles.
 	/// </summary>
-	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, scoped ref AnalysisContext context, scoped ref readonly Grid grid)
+	private static NakedSingleStep? CheckNakedSingle(SingleStepSearcher @this, ref AnalysisContext context, ref readonly Grid grid)
 	{
 		for (var cell = 0; cell < 81; cell++)
 		{
@@ -401,8 +401,8 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	/// </remarks>
 	private static HiddenSingleStep? CheckForHiddenSingleAndLastDigit(
 		SingleStepSearcher @this,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		Digit digit,
 		House house
 	)

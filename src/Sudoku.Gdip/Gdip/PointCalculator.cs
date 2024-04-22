@@ -158,7 +158,7 @@ public sealed class PointCalculator
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(scoped ref readonly CandidateMap map)
+	public PointF GetMouseCenter(ref readonly CandidateMap map)
 	{
 		switch (map)
 		{
@@ -186,7 +186,7 @@ public sealed class PointCalculator
 	/// <returns>The center mouse point.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(scoped ref readonly LockedTarget lockedTarget)
+	public PointF GetMouseCenter(ref readonly LockedTarget lockedTarget)
 	{
 		switch (lockedTarget)
 		{
@@ -215,7 +215,7 @@ public sealed class PointCalculator
 	/// <returns>The rectangle.</returns>
 	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public RectangleF GetMouseRectangle(scoped ref readonly CandidateMap map)
+	public RectangleF GetMouseRectangle(ref readonly CandidateMap map)
 	{
 		switch (map, CandidateSize)
 		{

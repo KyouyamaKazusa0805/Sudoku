@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// Must starts with an extended WXYZ-Wing (4 pattern cells and at least one elimination).
 		if (EmptyCells.Count < 5)
@@ -20,7 +20,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 		}
 
 		// A valid ESP must starts with a locked candidate, in order to make no duplicate.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var list = new List<CellMap>(7);
 		var results = new HashSet<CellMap>();
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)

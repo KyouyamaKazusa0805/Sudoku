@@ -18,7 +18,7 @@ public sealed record MaskGridConverter(string Separator = ", ") : IConceptConver
 {
 	/// <inheritdoc/>
 	public unsafe FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			var sb = new StringBuilder(400);
 			foreach (var mask in grid)

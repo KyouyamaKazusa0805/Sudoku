@@ -12,7 +12,7 @@ public static class Backdoor
 	/// <returns>A list of backdoors.</returns>
 	/// <exception cref="ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<Conclusion> GetBackdoors(scoped ref readonly Grid grid)
+	public static ReadOnlySpan<Conclusion> GetBackdoors(ref readonly Grid grid)
 	{
 		var sstsChecker = Analyzers.SstsOnly;
 		return (grid, sstsChecker.Analyze(in grid)) switch
@@ -29,7 +29,7 @@ public static class Backdoor
 		};
 
 
-		ReadOnlySpan<Conclusion> g(scoped ref readonly Grid grid)
+		ReadOnlySpan<Conclusion> g(ref readonly Grid grid)
 		{
 			var (assignment, elimination, solution) = (new List<Conclusion>(81), new List<Conclusion>(729), grid.SolutionGrid);
 			foreach (var cell in grid.EmptyCells)

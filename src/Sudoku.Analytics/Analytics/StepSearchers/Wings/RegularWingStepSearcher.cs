@@ -30,12 +30,12 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// Iterate on the size.
 		// Note that the greatest size is determined by two factors: the size that you specified
 		// and the number of bi-value cells in the grid.
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		for (var size = 3; size <= Math.Min(MaxSearchingPivotsCount, BivalueCells.Count); size++)
 		{
 			// Iterate on each pivot cell.

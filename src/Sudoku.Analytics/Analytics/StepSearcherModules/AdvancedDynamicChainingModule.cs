@@ -11,8 +11,8 @@ internal sealed class AdvancedDynamicChainingModule : ChainingModule
 		NodeList pendingOn,
 		NodeList pendingOff,
 		NodeSet toOff,
-		scoped ref readonly Grid grid,
-		scoped ref readonly Grid original
+		ref readonly Grid grid,
+		ref readonly Grid original
 	)
 	{
 		if (pendingOn.Count == 0 && pendingOff.Count == 0 && stepSearcher.DynamicNestingLevel > 0)
@@ -40,8 +40,8 @@ internal sealed class AdvancedDynamicChainingModule : ChainingModule
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private static NodeList GetAdvancedPotentials(
 		AdvancedMultipleChainingStepSearcher stepSearcher,
-		scoped ref readonly Grid grid,
-		scoped ref readonly Grid original,
+		ref readonly Grid grid,
+		ref readonly Grid original,
 		NodeSet offPotentials
 	)
 	{

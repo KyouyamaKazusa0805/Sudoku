@@ -15,5 +15,5 @@ public static class ReadOnlyChunksBuilder
 	/// <param name="values">The values.</param>
 	/// <returns>A <see cref="ReadOnlyChunk{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlyChunk<T> Create<T>(scoped ReadOnlySpan<T> values) => new([.. values]);
+	public static ReadOnlyChunk<T> Create<T>(ReadOnlySpan<T> values) => new([.. values]);
 }

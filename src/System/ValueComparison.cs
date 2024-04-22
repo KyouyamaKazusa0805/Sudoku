@@ -16,8 +16,8 @@ public static class ValueComparison
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equals, GetHashCodeFunc<T> getHashCode)
 		=> Create(
-			(scoped ref readonly T left, scoped ref readonly T right) => equals(left, right),
-			([DisallowNull] scoped ref readonly T obj) => getHashCode(obj)
+			(ref readonly T left, ref readonly T right) => equals(left, right),
+			([DisallowNull] ref readonly T obj) => getHashCode(obj)
 		);
 
 	/// <summary>
@@ -34,7 +34,7 @@ public static class ValueComparison
 	/// <inheritdoc cref="Create{T}(CompareHandler{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IComparer<T> Create<T>(Comparison<T> compare)
-		=> Create((scoped ref readonly T left, scoped ref readonly T right) => compare(left, right));
+		=> Create((ref readonly T left, ref readonly T right) => compare(left, right));
 
 	/// <summary>
 	/// Creates an <see cref="IComparer{T}"/> instance via specified method.
@@ -56,8 +56,8 @@ public static class ValueComparison
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe IEqualityComparer<T> CreateUnsafe<T>(delegate*<T*, T*, bool> equals, delegate*<T*, int> getHashCode)
 		=> Create(
-			(scoped ref readonly T left, scoped ref readonly T right) => { fixed (T* l = &left, r = &right) { return equals(l, r); } },
-			([DisallowNull] scoped ref readonly T obj) => { fixed (T* v = &obj) { return getHashCode(v); } }
+			(ref readonly T left, ref readonly T right) => { fixed (T* l = &left, r = &right) { return equals(l, r); } },
+			([DisallowNull] ref readonly T obj) => { fixed (T* v = &obj) { return getHashCode(v); } }
 		);
 
 	/// <inheritdoc cref="Create{T}(CompareHandler{T})"/>
@@ -68,5 +68,5 @@ public static class ValueComparison
 	/// <inheritdoc cref="Create{T}(CompareHandler{T})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe IComparer<T> CreateUnsafe<T>(delegate*<T*, T*, int> compare)
-		=> Create((scoped ref readonly T left, scoped ref readonly T right) => { fixed (T* l = &left, r = &right) { return compare(l, r); } });
+		=> Create((ref readonly T left, ref readonly T right) => { fixed (T* l = &left, r = &right) { return compare(l, r); } });
 }

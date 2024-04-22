@@ -16,7 +16,7 @@ public sealed class EnumerableQuerySolver : ISolver
 
 
 	/// <inheritdoc/>
-	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
+	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 		var (_, @return) = solve(grid.ToString()) switch

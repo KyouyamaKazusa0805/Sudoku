@@ -12,7 +12,7 @@ public static class Ref
 	/// <param name="left">The first element to be swapped.</param>
 	/// <param name="right">The second element to be swapped.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void Swap<T>(scoped ref T left, scoped ref T right)
+	public static void Swap<T>(ref T left, ref T right)
 	{
 		if (!MemoryLocationAreSame(in left, in right))
 		{
@@ -44,7 +44,7 @@ public static class Ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullReference<T>(scoped ref readonly T reference) => Unsafe.IsNullRef(in reference);
+	public static bool IsNullReference<T>(ref readonly T reference) => Unsafe.IsNullRef(in reference);
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -54,7 +54,7 @@ public static class Ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool MemoryLocationAreSame<T>(scoped ref readonly T left, scoped ref readonly T right) => Unsafe.AreSame(in left, in right);
+	public static bool MemoryLocationAreSame<T>(ref readonly T left, ref readonly T right) => Unsafe.AreSame(in left, in right);
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
@@ -86,7 +86,7 @@ public static class Ref
 	/// <exception cref="ArgumentNullRefException">
 	/// Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
 	/// </exception>
-	public static ReadOnlySpan<T> Slice<T>(scoped ref readonly T memorySpan, int start, int count)
+	public static ReadOnlySpan<T> Slice<T>(ref readonly T memorySpan, int start, int count)
 	{
 		ThrowIfNullRef(in memorySpan);
 
@@ -120,7 +120,7 @@ public static class Ref
 	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void ThrowIfNullRef<T>(
-		scoped ref readonly T reference,
+		ref readonly T reference,
 		[ConstantExpected, CallerArgumentExpression(nameof(reference))] string? paramName = null
 	)
 	{

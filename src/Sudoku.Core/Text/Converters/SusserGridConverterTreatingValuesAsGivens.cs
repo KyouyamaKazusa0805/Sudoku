@@ -23,5 +23,5 @@ public sealed record SusserGridConverterTreatingValuesAsGivens : SusserGridConve
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) => base.Converter(in grid).RemoveAll(ModifiablePrefix);
+		=> (ref readonly Grid grid) => base.Converter(in grid).RemoveAll(ModifiablePrefix);
 }

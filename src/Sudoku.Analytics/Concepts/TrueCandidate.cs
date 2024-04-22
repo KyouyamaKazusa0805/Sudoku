@@ -12,7 +12,7 @@ public static class TrueCandidate
 	/// <param name="cancellationToken">The cancellation token to cancel the operation.</param>
 	/// <returns>All true candidates.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
-	public static CandidateMap GetAllTrueCandidates(scoped ref readonly Grid grid, CancellationToken cancellationToken = default)
+	public static CandidateMap GetAllTrueCandidates(ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, true);
 
@@ -36,13 +36,13 @@ public static class TrueCandidate
 		}
 
 		// Store all bi-value cells and construct the relations.
-		scoped var peerHouses = (stackalloc House[3]);
+		var peerHouses = (stackalloc House[3]);
 		var stack = new CellMap[multivalueCellsCount + 1, 9];
 		foreach (var cell in grid.BivalueCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				scoped ref var map = ref stack[0, digit];
+				ref var map = ref stack[0, digit];
 				map.Add(cell);
 
 				cell.CopyHouseInfo(ref peerHouses[0]);
@@ -72,7 +72,7 @@ public static class TrueCandidate
 			mask = grid.GetCandidates(multivalueCells[i]);
 
 			// e.g. [[2, 4], [4, 6], [2, 6]] ([10, 40, 34])
-			scoped var pairList = MaskOperations.GetMaskSubsets(mask, 2);
+			var pairList = MaskOperations.GetMaskSubsets(mask, 2);
 
 			// e.g. pairs[i, ..] = [3, [2, 4], [4, 6], [2, 6]] ([3, 10, 40, 34])
 			pairs[i, 0] = (Mask)pairList.Length;
@@ -87,8 +87,8 @@ public static class TrueCandidate
 		// Now check the pattern.
 		// If the pattern is a valid BUG + n, the processing here will give you one plan of all possible
 		// combinations; otherwise, none will be found.
-		scoped var playground = (stackalloc House[3]);
-		scoped var chosen = (stackalloc Candidate[multivalueCellsCount + 1]);
+		var playground = (stackalloc House[3]);
+		var chosen = (stackalloc Candidate[multivalueCellsCount + 1]);
 		var currentIndex = 1;
 		var result = (CandidateMap)[];
 

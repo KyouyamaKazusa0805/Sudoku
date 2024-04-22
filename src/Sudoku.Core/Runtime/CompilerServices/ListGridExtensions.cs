@@ -13,10 +13,10 @@ public static class ListGridExtensions
 	/// <param name="this">The list.</param>
 	/// <param name="grid">The item to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AddRef(this List<Grid> @this, scoped ref readonly Grid grid)
+	public static void AddRef(this List<Grid> @this, ref readonly Grid grid)
 	{
 		GetVersion(@this)++;
-		scoped var array = @this.GetItems().AsSpan();
+		var array = @this.GetItems().AsSpan();
 		var size = GetSize(@this);
 		if ((uint)size < (uint)array.Length)
 		{
@@ -30,7 +30,7 @@ public static class ListGridExtensions
 	}
 
 	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
-	public static void AddRangeRef(this List<Grid> @this, scoped ReadOnlySpan<Grid> collection)
+	public static void AddRangeRef(this List<Grid> @this, ReadOnlySpan<Grid> collection)
 	{
 		foreach (ref readonly var grid in collection)
 		{
@@ -43,7 +43,7 @@ public static class ListGridExtensions
 	/// </summary>
 	/// <param name="this">The list.</param>
 	/// <param name="grid">The grid to be added.</param>
-	private static void AddWithResize(this List<Grid> @this, scoped ref readonly Grid grid)
+	private static void AddWithResize(this List<Grid> @this, ref readonly Grid grid)
 	{
 		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 

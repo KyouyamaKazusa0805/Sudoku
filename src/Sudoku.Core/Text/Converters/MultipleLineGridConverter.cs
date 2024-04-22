@@ -53,7 +53,7 @@ public sealed partial record MultipleLineGridConverter(bool SubtleGridLines = tr
 
 	/// <inheritdoc/>
 	public FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			var t = grid.ToString(TreatValueAsGiven ? $"{Placeholder}!" : Placeholder.ToString());
 			return new StringBuilder()

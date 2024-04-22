@@ -7,4 +7,4 @@ namespace Sudoku.Concepts;
 /// <param name="Start">The start node.</param>
 /// <param name="End">The end node.</param>
 /// <param name="SpannedHouses">The spanned houses.</param>
-internal sealed record StrongLinkInfo(House House, scoped ref readonly CellMap Start, scoped ref readonly CellMap End, HouseMask SpannedHouses);
+internal sealed record StrongLinkInfo(House House, ref readonly CellMap Start, ref readonly CellMap End, HouseMask SpannedHouses);

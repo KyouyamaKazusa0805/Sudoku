@@ -91,7 +91,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public AnalyzerResult Analyze(scoped ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalyzerResult Analyze(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -146,11 +146,11 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 
 		AnalyzerResult analyzeInternal(
-			scoped ref readonly Grid puzzle,
-			scoped ref readonly Grid solution,
+			ref readonly Grid puzzle,
+			ref readonly Grid solution,
 			AnalyzerResult resultBase,
 			SymmetricType symmetricType,
-			scoped ReadOnlySpan<Digit?> mappingDigits,
+			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
 			IProgress<AnalyzerProgress>? progress,
 			CancellationToken cancellationToken
@@ -167,7 +167,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 #endif
 				? []
 				: default(List<Step>);
-			scoped var context = new AnalysisContext(in playground, in puzzle)
+			var context = new AnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
 				IsSukaku = puzzle.PuzzleType == SudokuType.Sukaku,
@@ -485,7 +485,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			goto FindNextStep;
 
 
-			static bool verifyConclusionValidity(scoped ref readonly Grid solution, Step step)
+			static bool verifyConclusionValidity(ref readonly Grid solution, Step step)
 			{
 				if (solution.IsUndefined)
 				{
@@ -508,8 +508,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			static bool onCollectingSteps(
 				List<Step> steps,
 				Step step,
-				scoped ref readonly AnalysisContext context,
-				scoped ref Grid playground,
+				ref readonly AnalysisContext context,
+				ref Grid playground,
 				long timestampOriginal,
 				List<Grid> steppingGrids,
 				AnalyzerResult resultBase,
@@ -520,7 +520,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.
 				if (context is { GspPatternInferred: { } symmetricType } && step is not GurthSymmetricalPlacementStep)
 				{
-					scoped var mappingRelations = context.MappingRelations;
+					var mappingRelations = context.MappingRelations;
 					var originalConclusions = step.Conclusions;
 					var newConclusions = new List<Conclusion>();
 					foreach (var conclusion in originalConclusions)

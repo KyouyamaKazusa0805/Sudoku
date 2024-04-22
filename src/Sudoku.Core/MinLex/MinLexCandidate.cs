@@ -156,7 +156,7 @@ public unsafe struct MinLexCandidate
 		var candidates1 = stackalloc MinLexCandidate[CandListSize];
 		var pPair = stackalloc GridPattern[2];
 		GridPattern.FromStringUnsafe(source, pPair);
-		scoped var minTopRowScores = (ReadOnlySpan<int>)[pPair[0].BestTopRowScore, pPair[1].BestTopRowScore];
+		var minTopRowScores = (ReadOnlySpan<int>)[pPair[0].BestTopRowScore, pPair[1].BestTopRowScore];
 		var minTopRowScore = Math.Min(minTopRowScores[0], minTopRowScores[1]);
 		var resultBuffer = stackalloc char[82];
 		resultBuffer[0] = (char)(minTopRowScore >> 8 & 1);

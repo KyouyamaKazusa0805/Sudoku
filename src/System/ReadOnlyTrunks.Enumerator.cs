@@ -86,7 +86,7 @@ public partial struct ReadOnlyChunk<T>
 		CoreIteration:
 			if (_tempValue < _tempNodeArray!.Length)
 			{
-				scoped ref readonly var node = ref _tempNodeArray[_tempValue];
+				ref readonly var node = ref _tempNodeArray[_tempValue];
 				switch (node.Type)
 				{
 					case ChunkNodeType.Value:

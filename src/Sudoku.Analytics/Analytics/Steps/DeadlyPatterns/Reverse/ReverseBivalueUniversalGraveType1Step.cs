@@ -16,8 +16,8 @@ public sealed class ReverseBivalueUniversalGraveType1Step(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap pattern,
-	scoped ref readonly CellMap emptyCells
+	ref readonly CellMap pattern,
+	ref readonly CellMap emptyCells
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>

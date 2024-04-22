@@ -100,7 +100,7 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			};
 
 
-			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
+			unsafe string toString(ReadOnlySpan<Conclusion> c)
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(

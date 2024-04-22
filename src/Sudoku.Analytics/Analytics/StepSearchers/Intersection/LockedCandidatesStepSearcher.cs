@@ -45,11 +45,11 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 	/// all possible location where may form a locked candidates.
 	/// </para>
 	/// </remarks>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var emptyCellsForGrid = grid.EmptyCells;
-		scoped var candidatesMapForGrid = grid.CandidatesMap;
+		var candidatesMapForGrid = grid.CandidatesMap;
 		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
 		{
 			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, in emptyCellsForGrid, out var m))
@@ -60,7 +60,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 			// Now iterate on the mask to get all digits.
 			foreach (var digit in m)
 			{
-				scoped ref readonly var candidatesMap = ref candidatesMapForGrid[digit];
+				ref readonly var candidatesMap = ref candidatesMapForGrid[digit];
 
 				// Check whether the digit contains any eliminations.
 				var (housesMask, elimMap) = a & candidatesMap

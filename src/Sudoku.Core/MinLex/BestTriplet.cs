@@ -132,7 +132,7 @@ public struct BestTriplet
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
-	public static BestTriplet Create(scoped ReadOnlySpan<int> values)
+	public static BestTriplet Create(ReadOnlySpan<int> values)
 		=> values switch
 		{
 			[] => new(),

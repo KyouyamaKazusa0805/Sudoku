@@ -26,5 +26,5 @@ public sealed record HodokuLibraryGridConverter : SusserGridConverter
 
 	/// <inheritdoc/>
 	public override FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) => $"{FormatPrefix}{base.Converter(in grid)}{FormatSuffix}";
+		=> (ref readonly Grid grid) => $"{FormatPrefix}{base.Converter(in grid)}{FormatSuffix}";
 }

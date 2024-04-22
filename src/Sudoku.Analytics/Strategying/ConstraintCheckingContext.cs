@@ -6,4 +6,4 @@ namespace Sudoku.Strategying;
 /// <param name="Grid">Indicates the reference to the grid to be checked.</param>
 /// <param name="AnalyzerResult">Indicates the analyzer result.</param>
 /// <seealso cref="Constraint.Check(ConstraintCheckingContext)"/>
-public readonly record struct ConstraintCheckingContext(scoped ref readonly Grid Grid, AnalyzerResult AnalyzerResult);
+public readonly record struct ConstraintCheckingContext(ref readonly Grid Grid, AnalyzerResult AnalyzerResult);

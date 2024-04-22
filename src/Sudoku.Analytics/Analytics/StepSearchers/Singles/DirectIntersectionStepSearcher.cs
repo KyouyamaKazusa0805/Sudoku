@@ -57,11 +57,11 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// Please check documentation comments for <see cref="LockedCandidatesStepSearcher.Collect(ref AnalysisContext)"/>
 	/// to learn more information about this technique.
 	/// </remarks>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
-		scoped var candidatesMap = grid.CandidatesMap;
+		var candidatesMap = grid.CandidatesMap;
 		foreach (var ((bs, cs), (a, b, c, _)) in IntersectionMaps)
 		{
 			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, in emptyCells, out var m))
@@ -71,7 +71,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 
 			foreach (var digit in m)
 			{
-				scoped ref readonly var map = ref candidatesMap[digit];
+				ref readonly var map = ref candidatesMap[digit];
 
 				// Check whether the digit contains any eliminations.
 				var (housesMask, elimMap) = a & map ? ((Mask)(cs << 8 | bs), a & map) : ((Mask)(bs << 8 | cs), b & map);
@@ -126,13 +126,13 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckFullHouse(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,
-		scoped ref readonly CellMap intersection,
-		scoped ref readonly CellMap emptyCells,
-		scoped ref readonly CellMap elimMap,
+		ref readonly CellMap intersection,
+		ref readonly CellMap emptyCells,
+		ref readonly CellMap elimMap,
 		Digit digit
 	)
 	{
@@ -205,14 +205,14 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="digit">The digit that can be eliminated in locked candidates.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckHiddenSingle(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,
-		scoped ref readonly CellMap intersection,
-		scoped ref readonly CellMap elimMap,
-		scoped ReadOnlySpan<CellMap> candidatesMap,
-		scoped ref readonly CellMap emptyCells,
+		ref readonly CellMap intersection,
+		ref readonly CellMap elimMap,
+		ReadOnlySpan<CellMap> candidatesMap,
+		ref readonly CellMap emptyCells,
 		Digit digit
 	)
 	{
@@ -281,13 +281,13 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	/// <param name="emptyCells">Indicates the empty cells.</param>
 	/// <returns>The result step found.</returns>
 	private DirectIntersectionStep? CheckNakedSingle(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
 		House baseSet,
 		House coverSet,
-		scoped ref readonly CellMap intersection,
-		scoped ref readonly CellMap elimMap,
-		scoped ref readonly CellMap emptyCells,
+		ref readonly CellMap intersection,
+		ref readonly CellMap elimMap,
+		ref readonly CellMap emptyCells,
 		Digit digit
 	)
 	{

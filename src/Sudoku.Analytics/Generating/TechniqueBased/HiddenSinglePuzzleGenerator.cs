@@ -142,7 +142,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void adjustToBlock5(scoped ref House house, scoped ref Cell targetCell, scoped ref Grid puzzle)
+			static void adjustToBlock5(ref House house, ref Cell targetCell, ref Grid puzzle)
 			{
 				if (house == 4)
 				{
@@ -172,7 +172,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void adjustToCenterCell(scoped ref Cell targetCell, scoped ref Grid puzzle)
+			static void adjustToCenterCell(ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
 				if (targetCell.ToHouseIndex(HouseType.Block) == 4 && pos == 4)
@@ -339,7 +339,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void adjustToBlock5(House cellHouse, scoped ref House house, scoped ref Cell targetCell, scoped ref Grid puzzle)
+			static void adjustToBlock5(House cellHouse, ref House house, ref Cell targetCell, ref Grid puzzle)
 			{
 				if (cellHouse == 4)
 				{
@@ -382,7 +382,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 			}
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static void adjustToCenterCell(scoped ref House house, scoped ref Cell targetCell, scoped ref Grid puzzle)
+			static void adjustToCenterCell(ref House house, ref Cell targetCell, ref Grid puzzle)
 			{
 				var pos = BlockPositionOf(targetCell);
 				if (targetCell.ToHouseIndex(HouseType.Block) == 4 && pos == 4)

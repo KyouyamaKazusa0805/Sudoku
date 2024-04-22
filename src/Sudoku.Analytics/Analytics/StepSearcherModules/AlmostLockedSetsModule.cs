@@ -10,7 +10,7 @@ internal static class AlmostLockedSetsModule
 	/// </summary>
 	/// <param name="grid">The grid to be used.</param>
 	/// <returns>A list of ALSes.</returns>
-	public static ReadOnlySpan<AlmostLockedSet> CollectAlmostLockedSets(scoped ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostLockedSet> CollectAlmostLockedSets(ref readonly Grid grid)
 	{
 		// Get all bi-value-cell ALSes.
 		var result = new List<AlmostLockedSet>();

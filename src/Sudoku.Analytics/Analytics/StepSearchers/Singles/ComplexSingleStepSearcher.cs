@@ -68,7 +68,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// Recursively searching for all possible steps.
 		var accumulator = new List<ComplexSingleStep>();
@@ -96,7 +96,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void pushStep(out Grid playground, scoped ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
+		static void pushStep(out Grid playground, ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
 		{
 			interimSteps.AddLast(indirectStep);
 			playground = baseGrid;
@@ -104,23 +104,23 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void popStep(scoped ref Grid playground, scoped ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
+		static void popStep(ref Grid playground, ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
 		{
 			interimSteps.RemoveLast();
 			playground = baseGrid;
 		}
 
 		void dfs(
-			scoped ref AnalysisContext context,
+			ref AnalysisContext context,
 			List<ComplexSingleStep> accumulator,
-			scoped ref readonly Grid grid,
+			ref readonly Grid grid,
 			LinkedList<Step> interimSteps,
 			List<Step> previousIndirectFoundSteps
 		)
 		{
 			// Collect all steps by using indirect techniques.
 			var indirectFoundSteps = new List<Step>();
-			scoped var tempContext = new AnalysisContext(in grid)
+			var tempContext = new AnalysisContext(in grid)
 			{
 				Accumulator = indirectFoundSteps,
 				OnlyFindOne = false,
@@ -188,7 +188,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 				// Check whether the puzzle can be solved via a direct single.
 				var directStepsFound = new List<Step>();
-				scoped var nestedContext = new AnalysisContext(in playground)
+				var nestedContext = new AnalysisContext(in playground)
 				{
 					Accumulator = directStepsFound,
 					OnlyFindOne = false,

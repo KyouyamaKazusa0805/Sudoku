@@ -39,12 +39,12 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <inheritdoc/>
 	public unsafe Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
-		scoped var puzzleString = (stackalloc char[82]);
-		scoped var solutionString = (stackalloc char[82]);
-		scoped var holeCells = (stackalloc Cell[82]);
+		var puzzleString = (stackalloc char[82]);
+		var solutionString = (stackalloc char[82]);
+		var holeCells = (stackalloc Cell[82]);
 		(puzzleString[^1], solutionString[^1], holeCells[^1], var progressTimes) = ('\0', '\0', '\0', 0);
 
-		scoped ref readonly var charRef = ref Grid.EmptyString.Ref();
+		ref readonly var charRef = ref Grid.EmptyString.Ref();
 		while (true)
 		{
 			Unsafe.CopyBlock(ref Ref.AsByteRef(ref puzzleString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
@@ -93,7 +93,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="solutionString">
 	/// The pointer that points to the solution. The result value will be changed here.
 	/// </param>
-	private unsafe void GenerateAnswerGrid(scoped Span<char> puzzleString, scoped Span<char> solutionString)
+	private unsafe void GenerateAnswerGrid(Span<char> puzzleString, Span<char> solutionString)
 	{
 		do
 		{
@@ -128,7 +128,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// Creates a start pattern based on a base pattern.
 	/// </summary>
 	/// <param name="pattern">The base pattern.</param>
-	private void CreatePattern(scoped Span<Cell> pattern)
+	private void CreatePattern(Span<Cell> pattern)
 	{
 		for (var (i, a, b) = (0, 54, 0); i < 9; i++)
 		{
@@ -149,9 +149,9 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// To re-create the pattern.
 	/// </summary>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
-	private void RecreatePattern(scoped Span<Cell> pattern)
+	private void RecreatePattern(Span<Cell> pattern)
 	{
-		scoped var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
+		var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
 		for (var index = 0; index < 4; index++)
 		{
 			var (initial, boundary, delta) = target[index];
@@ -169,7 +169,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="gridString">The pointer that points to a grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	private static bool CheckDuplicate(scoped Span<char> gridString, Cell cell)
+	private static bool CheckDuplicate(Span<char> gridString, Cell cell)
 	{
 		var value = gridString[cell];
 		foreach (var c in PeersMap[cell])

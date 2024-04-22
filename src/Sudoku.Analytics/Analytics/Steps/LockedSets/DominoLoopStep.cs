@@ -11,7 +11,7 @@ public sealed partial class DominoLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells
+	[PrimaryConstructorParameter] ref readonly CellMap cells
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

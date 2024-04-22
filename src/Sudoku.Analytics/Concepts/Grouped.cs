@@ -14,7 +14,7 @@ public static class Grouped
 	/// <param name="spannedHousesList">The spanned houses.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsGroupedStrongLink(scoped ref readonly CellMap cells, Digit digit, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
+	public static bool IsGroupedStrongLink(ref readonly CellMap cells, Digit digit, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
 	{
 		// The link must be one of the cases in:
 		//

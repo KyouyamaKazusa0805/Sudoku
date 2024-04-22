@@ -17,7 +17,7 @@ namespace Sudoku.Linq;
 [LargeStructure]
 public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[PrimaryConstructorParameter] TKey key,
-	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly TMap values
+	[PrimaryConstructorParameter, HashCodeMember] ref readonly TMap values
 ) :
 	IEnumerable<TElement>,
 	IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>,
@@ -46,7 +46,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public bool Equals(scoped ref readonly BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
+	public bool Equals(ref readonly BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
 	/// Returns an enumerator that iterates through a collection.
@@ -61,7 +61,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	/// </summary>
 	/// <param name="groups">The groups.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
-	public static CellMap CreateMapByKeys(scoped ReadOnlySpan<BitStatusMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
+	public static CellMap CreateMapByKeys(ReadOnlySpan<BitStatusMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
 	{
 		var result = (CellMap)[];
 		foreach (ref readonly var group in groups)

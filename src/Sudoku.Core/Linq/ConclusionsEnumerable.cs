@@ -13,7 +13,7 @@ public static class ConclusionsEnumerable
 	/// <param name="this">A list of <see cref="Conclusion"/> instances.</param>
 	/// <param name="selector">The selector to project the values.</param>
 	/// <returns>A <see cref="CellMap"/> result.</returns>
-	public static CellMap Select(this scoped ReadOnlySpan<Conclusion> @this, Func<Conclusion, Cell> selector)
+	public static CellMap Select(this ReadOnlySpan<Conclusion> @this, Func<Conclusion, Cell> selector)
 	{
 		var result = (CellMap)[];
 		foreach (var element in @this)

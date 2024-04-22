@@ -12,7 +12,7 @@ public abstract partial class ExtendedRectangleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {

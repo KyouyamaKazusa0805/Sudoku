@@ -29,8 +29,8 @@ public sealed partial class ComplexFishStep(
 	Digit digit,
 	HouseMask baseSetsMask,
 	HouseMask coverSetsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap exofins,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap endofins,
+	[PrimaryConstructorParameter] ref readonly CellMap exofins,
+	[PrimaryConstructorParameter] ref readonly CellMap endofins,
 	[PrimaryConstructorParameter] bool isFranken,
 	bool? isSashimi,
 	[PrimaryConstructorParameter] bool isCannibalism,
@@ -46,8 +46,8 @@ public sealed partial class ComplexFishStep(
 		get
 		{
 			// Creates a buffer to store the characters that isn't a space or a bar.
-			scoped var name = internalName();
-			scoped var buffer = (stackalloc char[name.Length]);
+			var name = internalName();
+			var buffer = (stackalloc char[name.Length]);
 			var bufferLength = 0;
 			foreach (var ch in name)
 			{

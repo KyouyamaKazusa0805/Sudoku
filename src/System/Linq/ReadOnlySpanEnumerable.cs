@@ -482,7 +482,7 @@ public static class ReadOnlySpanEnumerable
 		return [.. result];
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, scoped ReadOnlySpan<T> @this, List<T[]> resultList)
+		static void g(int last, int count, int index, Span<int> tempArray, ReadOnlySpan<T> @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{

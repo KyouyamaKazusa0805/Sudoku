@@ -14,8 +14,8 @@ public sealed partial class BivalueUniversalGraveType4Step(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
-	[PrimaryConstructorParameter] scoped ref readonly Conjugate conjugatePair
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly Conjugate conjugatePair
 ) : BivalueUniversalGraveStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

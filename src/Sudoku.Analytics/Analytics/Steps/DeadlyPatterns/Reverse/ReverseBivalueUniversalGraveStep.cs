@@ -16,8 +16,8 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2,
-	[PrimaryConstructorParameter(GeneratedMemberName = "CompletePattern")] scoped ref readonly CellMap pattern,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap emptyCells
+	[PrimaryConstructorParameter(GeneratedMemberName = "CompletePattern")] ref readonly CellMap pattern,
+	[PrimaryConstructorParameter] ref readonly CellMap emptyCells
 ) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
 {
 	/// <inheritdoc/>

@@ -271,7 +271,7 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(scoped ref Candidate sequence, int length)
+	public readonly void CopyTo(ref Candidate sequence, int length)
 	{
 		if (length >= 729)
 		{
@@ -290,7 +290,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public readonly bool Equals(scoped ref readonly CandidateMap other) => _bits == other._bits;
+	public readonly bool Equals(ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
 	public readonly int IndexOf(Candidate offset)
@@ -493,7 +493,7 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Candidate offset)
 	{
-		scoped ref var v = ref _bits[offset >> 6];
+		ref var v = ref _bits[offset >> 6];
 		var older = Contains(offset);
 		v |= 1L << (offset & 63);
 		if (!older)
@@ -524,7 +524,7 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Candidate offset)
 	{
-		scoped ref var v = ref _bits[offset >> 6];
+		ref var v = ref _bits[offset >> 6];
 		var older = Contains(offset);
 		v &= ~(1L << (offset & 63));
 		if (older)
@@ -607,7 +607,7 @@ public partial struct CandidateMap :
 	/// <param name="candidates">The candidates.</param>
 	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static CandidateMap Create(scoped ReadOnlySpan<Candidate> candidates)
+	public static CandidateMap Create(ReadOnlySpan<Candidate> candidates)
 	{
 		if (candidates.IsEmpty)
 		{
@@ -668,19 +668,19 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(scoped in CandidateMap offsets) => offsets._count == 0;
+	public static bool operator !(in CandidateMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(scoped in CandidateMap value) => value._count != 0;
+	public static bool operator true(in CandidateMap value) => value._count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(scoped in CandidateMap value) => value._count == 0;
+	public static bool operator false(in CandidateMap value) => value._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator ~(scoped in CandidateMap offsets)
+	public static CandidateMap operator ~(in CandidateMap offsets)
 	{
 		var result = offsets;
 		result._bits[0] = ~result._bits[0];
@@ -702,7 +702,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
 	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
-	public static CellMap operator /(scoped in CandidateMap offsets, Digit digit)
+	public static CellMap operator /(in CandidateMap offsets, Digit digit)
 	{
 		var result = (CellMap)[];
 		foreach (var element in offsets)
@@ -717,7 +717,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap operator +(scoped in CandidateMap collection, Candidate offset)
+	public static CandidateMap operator +(in CandidateMap collection, Candidate offset)
 	{
 		var result = collection;
 		result.Add(offset);
@@ -726,7 +726,7 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc/>
-	public static CandidateMap operator -(scoped in CandidateMap collection, Candidate offset)
+	public static CandidateMap operator -(in CandidateMap collection, Candidate offset)
 	{
 		var result = collection;
 		result.Remove(offset);
@@ -736,7 +736,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator &(scoped in CandidateMap left, scoped in CandidateMap right)
+	public static CandidateMap operator &(in CandidateMap left, in CandidateMap right)
 	{
 		var finalCount = 0;
 		var result = left;
@@ -759,7 +759,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator |(scoped in CandidateMap left, scoped in CandidateMap right)
+	public static CandidateMap operator |(in CandidateMap left, in CandidateMap right)
 	{
 		var finalCount = 0;
 		var result = left;
@@ -782,7 +782,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator ^(scoped in CandidateMap left, scoped in CandidateMap right)
+	public static CandidateMap operator ^(in CandidateMap left, in CandidateMap right)
 	{
 		var finalCount = 0;
 		var result = left;
@@ -805,7 +805,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator -(scoped in CandidateMap left, scoped in CandidateMap right)
+	public static CandidateMap operator -(in CandidateMap left, in CandidateMap right)
 	{
 		var finalCount = 0;
 		var result = left;
@@ -833,7 +833,7 @@ public partial struct CandidateMap :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator %(scoped in CandidateMap @base, scoped in CandidateMap template)
+	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
@@ -853,5 +853,5 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CandidateMap(scoped ReadOnlySpan<Candidate> offsets) => [.. offsets];
+	public static explicit operator CandidateMap(ReadOnlySpan<Candidate> offsets) => [.. offsets];
 }

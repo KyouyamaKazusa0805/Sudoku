@@ -21,8 +21,8 @@ public sealed partial class ReverseBivalueUniversalGraveType3Step(
 	Digit digit2,
 	[PrimaryConstructorParameter] House subsetHouse,
 	[PrimaryConstructorParameter] Mask subsetMask,
-	scoped ref readonly CellMap pattern,
-	scoped ref readonly CellMap emptyCells
+	ref readonly CellMap pattern,
+	ref readonly CellMap emptyCells
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>

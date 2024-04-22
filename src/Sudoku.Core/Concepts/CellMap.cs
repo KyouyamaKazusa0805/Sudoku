@@ -504,7 +504,7 @@ public partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	public readonly void CopyTo(scoped ref Cell sequence, int length)
+	public readonly void CopyTo(ref Cell sequence, int length)
 	{
 		ArgumentNullException.ThrowIfNull(sequence);
 
@@ -599,7 +599,7 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public readonly bool Equals(scoped ref readonly CellMap other) => _low == other._low && _high == other._high;
+	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
 
 	/// <summary>
 	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
@@ -636,7 +636,7 @@ public partial struct CellMap :
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IComparable<>))]
-	public readonly int CompareTo(scoped ref readonly CellMap other)
+	public readonly int CompareTo(ref readonly CellMap other)
 	{
 		var b = new BitStatusCellMapConverter().Converter;
 		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
@@ -802,7 +802,7 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Add(Cell offset)
 	{
-		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(offset);
 		v |= 1L << offset % Shifting;
 		if (!older)
@@ -833,7 +833,7 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Remove(Cell offset)
 	{
-		scoped ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
+		ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
 		var older = Contains(offset);
 		v &= ~(1L << offset % Shifting);
 		if (older)
@@ -932,7 +932,7 @@ public partial struct CellMap :
 	/// <param name="cells">The cells.</param>
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	public static CellMap Create(scoped ReadOnlySpan<Cell> cells)
+	public static CellMap Create(ReadOnlySpan<Cell> cells)
 	{
 		if (cells.IsEmpty)
 		{
@@ -979,7 +979,7 @@ public partial struct CellMap :
 	/// <param name="llong">The <see cref="llong"/> integer.</param>
 	/// <returns>The result instance created.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap CreateByInt128(scoped ref readonly llong llong)
+	public static CellMap CreateByInt128(ref readonly llong llong)
 		=> CreateByBits((long)(ulong)(llong >> 64), (long)(ulong)(llong & ulong.MaxValue));
 
 	/// <inheritdoc/>
@@ -1028,24 +1028,24 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(scoped in CellMap offsets) => offsets._count == 0;
+	public static bool operator !(in CellMap offsets) => offsets._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(scoped in CellMap value) => value._count != 0;
+	public static bool operator true(in CellMap value) => value._count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(scoped in CellMap value) => value._count == 0;
+	public static bool operator false(in CellMap value) => value._count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator ~(scoped in CellMap offsets)
+	public static CellMap operator ~(in CellMap offsets)
 		=> CreateByBits(~offsets._high & 0xFF_FFFF_FFFFL, ~offsets._low & 0x1FF_FFFF_FFFFL);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator +(scoped in CellMap collection, Cell offset)
+	public static CellMap operator +(in CellMap collection, Cell offset)
 	{
 		var result = collection;
 		if (result.Contains(offset))
@@ -1060,7 +1060,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator -(scoped in CellMap collection, Cell offset)
+	public static CellMap operator -(in CellMap collection, Cell offset)
 	{
 		var result = collection;
 		if (!result.Contains(offset))
@@ -1075,21 +1075,21 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator -(scoped in CellMap left, scoped in CellMap right) => left & ~right;
+	public static CellMap operator -(in CellMap left, in CellMap right) => left & ~right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator &(scoped in CellMap left, scoped in CellMap right)
+	public static CellMap operator &(in CellMap left, in CellMap right)
 		=> CreateByBits(left._high & right._high, left._low & right._low);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator |(scoped in CellMap left, scoped in CellMap right)
+	public static CellMap operator |(in CellMap left, in CellMap right)
 		=> CreateByBits(left._high | right._high, left._low | right._low);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator ^(scoped in CellMap left, scoped in CellMap right)
+	public static CellMap operator ^(in CellMap left, in CellMap right)
 		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
 
 	/// <summary>
@@ -1120,7 +1120,7 @@ public partial struct CellMap :
 	/// </para>
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator %(scoped in CellMap @base, scoped in CellMap template) => (@base & template).PeerIntersection & template;
+	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
 
 	/// <summary>
 	/// Expands via the specified digit.
@@ -1129,7 +1129,7 @@ public partial struct CellMap :
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
 	[ExplicitInterfaceImpl(typeof(IMultiplyOperators<,,>))]
-	public static CandidateMap operator *(scoped in CellMap @base, Digit digit)
+	public static CandidateMap operator *(in CellMap @base, Digit digit)
 	{
 		var result = (CandidateMap)[];
 		foreach (var cell in @base.Offsets)
@@ -1147,7 +1147,7 @@ public partial struct CellMap :
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
 	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
-	public static Mask operator /(scoped in CellMap map, House houseIndex)
+	public static Mask operator /(in CellMap map, House houseIndex)
 	{
 		var (p, i) = ((Mask)0, 0);
 		foreach (var cell in HousesCells[houseIndex])
@@ -1177,7 +1177,7 @@ public partial struct CellMap :
 	/// </summary>
 	/// <param name="this">A <see cref="CellMap"/> instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static implicit operator llong(scoped in CellMap @this) => new((ulong)@this._high, (ulong)@this._low);
+	public static implicit operator llong(in CellMap @this) => new((ulong)@this._high, (ulong)@this._low);
 
 	/// <summary>
 	/// Implicit cast from a <see cref="llong"/> value into a <see cref="CellMap"/> instance.
@@ -1192,5 +1192,5 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(scoped ReadOnlySpan<Cell> offsets) => [.. offsets];
+	public static explicit operator CellMap(ReadOnlySpan<Cell> offsets) => [.. offsets];
 }

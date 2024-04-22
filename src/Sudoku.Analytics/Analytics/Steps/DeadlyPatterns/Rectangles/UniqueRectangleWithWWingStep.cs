@@ -23,11 +23,11 @@ public sealed partial class UniqueRectangleWithWWingStep(
 	Technique code,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	bool isAvoidable,
 	[PrimaryConstructorParameter] Digit wDigit,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap connectors,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap endCells,
+	[PrimaryConstructorParameter] ref readonly CellMap connectors,
+	[PrimaryConstructorParameter] ref readonly CellMap endCells,
 	int absoluteOffset
 ) : UniqueRectangleStep(
 	conclusions,

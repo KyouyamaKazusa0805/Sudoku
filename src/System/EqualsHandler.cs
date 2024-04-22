@@ -7,4 +7,4 @@ namespace System;
 /// <param name="left">The left value to be compared.</param>
 /// <param name="right">The right value to be compared.</param>
 /// <returns>A <see cref="bool"/> value indicating the result.</returns>
-public delegate bool EqualsHandler<T>(scoped ref readonly T left, scoped ref readonly T right);
+public delegate bool EqualsHandler<T>(ref readonly T left, ref readonly T right);

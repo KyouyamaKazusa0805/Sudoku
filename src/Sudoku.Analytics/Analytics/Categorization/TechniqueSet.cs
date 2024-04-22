@@ -572,7 +572,7 @@ public sealed partial class TechniqueSet :
 file sealed class Converter : JsonConverter<TechniqueSet>
 {
 	/// <inheritdoc/>
-	public override TechniqueSet Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override TechniqueSet Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		var (result, isInitialized) = (TechniqueSets.None, false);
 		while (reader.Read())

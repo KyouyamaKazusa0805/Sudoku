@@ -87,7 +87,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// due to not being aware of the uniqueness of the puzzle.
 	/// </para>
 	/// </returns>
-	public bool? Solve(scoped ref readonly Grid grid, out Grid result)
+	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
 		Unsafe.SkipInit(out result);
 
@@ -126,7 +126,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <typeparam name="T">The type of the element in the sequence.</typeparam>
 	/// <param name="sequence">The whole sequence.</param>
 	/// <returns>A <see cref="bool"/> value.</returns>
-	private bool AllNotNull<T>(scoped ReadOnlySpan<T> sequence)
+	private bool AllNotNull<T>(ReadOnlySpan<T> sequence)
 	{
 		foreach (var e in sequence)
 		{

@@ -18,9 +18,9 @@ public sealed record ExcelGridConverter : IConceptConverter<Grid>
 
 	/// <inheritdoc/>
 	public FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
-			scoped var span = grid.ToString(SusserGridConverter.Default with { Placeholder = Zero }).AsSpan();
+			var span = grid.ToString(SusserGridConverter.Default with { Placeholder = Zero }).AsSpan();
 			var sb = new StringBuilder(81 + 72 + 9);
 			for (var i = 0; i < 9; i++)
 			{

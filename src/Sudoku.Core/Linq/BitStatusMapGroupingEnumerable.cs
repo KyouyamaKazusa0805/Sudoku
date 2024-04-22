@@ -97,7 +97,7 @@ public static class BitStatusMapGroupingEnumerable
 	/// <param name="selector">The transform method to apply to each element.</param>
 	/// <returns>The result.</returns>
 	public static CellMap Select<TKey>(
-		this scoped ReadOnlySpan<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> @this,
+		this ReadOnlySpan<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>> @this,
 		Func<BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, TKey>, Cell> selector
 	) where TKey : notnull
 	{
@@ -120,7 +120,7 @@ public static class BitStatusMapGroupingEnumerable
 	/// <param name="selector">The transform method to apply to each element.</param>
 	/// <returns>The result.</returns>
 	public static CandidateMap Select<TKey>(
-		this scoped ReadOnlySpan<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> @this,
+		this ReadOnlySpan<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>> @this,
 		Func<BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, TKey>, Candidate> selector
 	) where TKey : notnull
 	{

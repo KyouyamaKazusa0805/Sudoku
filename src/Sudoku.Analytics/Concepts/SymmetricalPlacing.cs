@@ -27,7 +27,7 @@ public static unsafe class SymmetricalPlacing
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSymmetricalPlacement(
-		this scoped ref readonly Grid grid,
+		this ref readonly Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -58,7 +58,7 @@ public static unsafe class SymmetricalPlacing
 	/// escaping the checking for symmetric placing rule.
 	/// </i></remarks>
 	public static bool InferSymmetricalPlacement(
-		this scoped ref readonly Grid grid,
+		this ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -92,7 +92,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>The found step.</returns>
-	internal static GurthSymmetricalPlacementStep? GetStep(scoped ref readonly Grid grid, StepSearcherOptions options)
+	internal static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepSearcherOptions options)
 	{
 		if (CheckDiagonal(in grid, options) is { } diagonalTypeStep)
 		{
@@ -116,9 +116,9 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid as reference.</param>
 	/// <param name="cellOffsets">The target collection.</param>
 	/// <param name="mapping">The mapping relation.</param>
-	private static void GetHighlightCells(scoped ref readonly Grid grid, List<CellViewNode> cellOffsets, scoped ReadOnlySpan<Digit?> mapping)
+	private static void GetHighlightCells(ref readonly Grid grid, List<CellViewNode> cellOffsets, ReadOnlySpan<Digit?> mapping)
 	{
-		scoped var colorIndices = (stackalloc Digit[9]);
+		var colorIndices = (stackalloc Digit[9]);
 		for (var (digit, colorIndexCurrent, digitsMaskBucket) = (0, 0, (Mask)0); digit < 9; digit++)
 		{
 			if ((digitsMaskBucket >> digit & 1) != 0)
@@ -152,7 +152,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="symmetricType">The symmetric type.</param>
 	/// <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool CheckAxesOrCenterPointForSymmetry(scoped ref readonly Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
+	private static bool CheckAxesOrCenterPointForSymmetry(ref readonly Grid grid, SymmetricType symmetricType, Mask nonselfPairedDigitsMask)
 	{
 		foreach (var cell in symmetricType.GetCellsInSymmetryAxis())
 		{
@@ -196,7 +196,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is diagonal symmetrical placement.</returns>
 	private static bool Diagonal(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -299,7 +299,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is anti-diagonal symmetrical placement.</returns>
 	private static bool AntiDiagonal(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -402,7 +402,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the grid is central symmetrical placement.</returns>
 	private static bool Central(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -496,7 +496,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckDiagonal(scoped ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckDiagonal(ref readonly Grid grid, StepSearcherOptions options)
 	{
 		var diagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -576,7 +576,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(scoped ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckAntiDiagonal(ref readonly Grid grid, StepSearcherOptions options)
 	{
 		var antiDiagonalHasEmptyCell = false;
 		for (var i = 0; i < 9; i++)
@@ -656,7 +656,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
-	private static GurthSymmetricalPlacementStep? CheckCentral(scoped ref readonly Grid grid, StepSearcherOptions options)
+	private static GurthSymmetricalPlacementStep? CheckCentral(ref readonly Grid grid, StepSearcherOptions options)
 	{
 		if (!grid.IsSymmetricalPlacement(SymmetricType.Central, out var mapping, out var selfPairedDigitsMask))
 		{

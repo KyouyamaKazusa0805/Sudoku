@@ -24,7 +24,7 @@ internal static class FishModule
 	/// <inheritdoc cref="FishStep.IsSashimi" path="/remarks"/>
 	/// </para>
 	/// </returns>
-	public static bool? IsSashimi(House[] baseSets, scoped ref readonly CellMap fins, Digit digit)
+	public static bool? IsSashimi(House[] baseSets, ref readonly CellMap fins, Digit digit)
 	{
 		if (!fins)
 		{
@@ -84,10 +84,10 @@ internal static class FishModule
 	/// <param name="accumulator">The accumulator.</param>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All Siamese steps of type <see cref="FishStep"/>.</returns>
-	public static ReadOnlySpan<FishStep> GetSiamese(List<FishStep> accumulator, scoped ref readonly Grid grid)
+	public static ReadOnlySpan<FishStep> GetSiamese(List<FishStep> accumulator, ref readonly Grid grid)
 	{
 		var result = new List<FishStep>();
-		scoped var stepsSpan = accumulator.AsReadOnlySpan();
+		var stepsSpan = accumulator.AsReadOnlySpan();
 		for (var index1 = 0; index1 < accumulator.Count - 1; index1++)
 		{
 			var fish1 = stepsSpan[index1];
@@ -104,7 +104,7 @@ internal static class FishModule
 		return result.AsReadOnlySpan();
 
 
-		static bool check(scoped ref readonly Grid puzzle, FishStep fish1, FishStep fish2, [NotNullWhen(true)] out FishStep? siameseStep)
+		static bool check(ref readonly Grid puzzle, FishStep fish1, FishStep fish2, [NotNullWhen(true)] out FishStep? siameseStep)
 		{
 			if (fish1.BaseSetsMask != fish2.BaseSetsMask || fish1.Digit != fish2.Digit)
 			{

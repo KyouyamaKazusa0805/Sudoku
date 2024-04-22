@@ -843,7 +843,7 @@ internal static class RenderableFactory
 	/// </remarks>
 	private static void ForLinkNodes(
 		SudokuPane sudokuPane,
-		scoped ReadOnlySpan<LinkViewNode> linkNodes,
+		ReadOnlySpan<LinkViewNode> linkNodes,
 		Conclusion[] conclusions,
 		AnimatedResultCollection animatedResults
 	)
@@ -1110,7 +1110,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void rotate(Point pt1, scoped ref Point pt2, double angle)
+		static void rotate(Point pt1, ref Point pt2, double angle)
 		{
 			// Translate 'pt2' to (0, 0).
 			pt2.X -= pt1.X;
@@ -1138,7 +1138,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void cut(scoped ref Point pt1, scoped ref Point pt2, double cs)
+		static void cut(ref Point pt1, ref Point pt2, double cs)
 		{
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 			var slope = Abs((pt2y - pt1y) / (pt2x - pt1x));
@@ -1194,7 +1194,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void correctOffsetOfPoint(scoped ref Point point, double ow, double oh)
+		static void correctOffsetOfPoint(ref Point point, double ow, double oh)
 		{
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			point.X -= ow;
@@ -1202,7 +1202,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void correctOffsetOfDouble(scoped ref double value, double offset)
+		static void correctOffsetOfDouble(ref double value, double offset)
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			=> value -= offset;
 

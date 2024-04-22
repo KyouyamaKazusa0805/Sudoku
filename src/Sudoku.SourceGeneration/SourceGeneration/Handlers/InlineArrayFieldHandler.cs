@@ -80,7 +80,7 @@ internal static class InlineArrayFieldHandler
 						/// <inheritdoc/>
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public readonly bool Equals(scoped ref readonly __InternalBuffer other)
+						public readonly bool Equals(ref readonly __InternalBuffer other)
 						{
 							for (var i = 0; i < {{length}}; i++)
 							{
@@ -118,13 +118,13 @@ internal static class InlineArrayFieldHandler
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public static bool operator ==(scoped in __InternalBuffer left, scoped in __InternalBuffer right) => left.Equals({{inKeyword}}right);
+						public static bool operator ==(in __InternalBuffer left, in __InternalBuffer right) => left.Equals({{inKeyword}}right);
 
 						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(InlineArrayFieldHandler).FullName}}", "{{Value}}")]
-						public static bool operator !=(scoped in __InternalBuffer left, scoped in __InternalBuffer right) => !(left == right);
+						public static bool operator !=(in __InternalBuffer left, in __InternalBuffer right) => !(left == right);
 
 						/// <inheritdoc/>
 						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]

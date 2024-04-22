@@ -14,9 +14,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var result = getNonMultipleChains(in grid, ref context);
 		if (result.Count == 0)
 		{
@@ -35,7 +35,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		List<ChainingStep> getNonMultipleChains(scoped ref readonly Grid grid, scoped ref AnalysisContext context)
+		List<ChainingStep> getNonMultipleChains(ref readonly Grid grid, ref AnalysisContext context)
 		{
 			var result = Collect(in grid, ref context, true, false);
 			result.AddRange(Collect(in grid, ref context, false, true));
@@ -73,7 +73,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
 	/// <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
 	/// <returns>All possible found <see cref="ChainingStep"/>s.</returns>
-	private List<ChainingStep> Collect(scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool isX, bool isY)
+	private List<ChainingStep> Collect(ref readonly Grid grid, ref AnalysisContext context, bool isX, bool isY)
 	{
 		var result = new List<ChainingStep>();
 
@@ -102,8 +102,8 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// <param name="isX"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isX']"/></param>
 	/// <param name="isY"><inheritdoc cref="Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='isY']"/></param>
 	private void DoUnaryChaining(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode pOn,
 		List<ChainingStep> result,
 		bool isX,
@@ -165,7 +165,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// <para>By using <see cref="ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
 	/// </param>
 	/// <param name="source">The source node.</param>
-	private void DoCycles(scoped ref readonly Grid grid, NodeSet toOn, NodeSet toOff, bool isX, bool isY, NodeList cycles, ChainNode source)
+	private void DoCycles(ref readonly Grid grid, NodeSet toOn, NodeSet toOff, bool isX, bool isY, NodeList cycles, ChainNode source)
 	{
 		var pendingOn = new NodeList(toOn);
 		var pendingOff = new NodeList(toOff);
@@ -241,7 +241,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// <param name="source">
 	/// <inheritdoc cref="DoCycles(ref readonly Grid, NodeSet, NodeSet, bool, bool, NodeList, ChainNode)" path="/param[@name='source']"/>
 	/// </param>
-	private void DoForcingChains(scoped ref readonly Grid grid, NodeSet toOn, NodeSet toOff, bool isY, NodeList chains, ChainNode source)
+	private void DoForcingChains(ref readonly Grid grid, NodeSet toOn, NodeSet toOff, bool isY, NodeList chains, ChainNode source)
 	{
 		var pendingOn = new NodeList(toOn);
 		var pendingOff = new NodeList(toOff);
@@ -322,8 +322,8 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// A valid <see cref="BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
 	/// </returns>
 	private BidirectionalCycleStep? CreateCycleStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode dstOn,
 		bool isX,
 		bool isY
@@ -370,8 +370,8 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	/// Try to create an AIC hint.
 	/// </summary>
 	private ForcingChainStep CreateAicStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode target,
 		bool isX,
 		bool isY

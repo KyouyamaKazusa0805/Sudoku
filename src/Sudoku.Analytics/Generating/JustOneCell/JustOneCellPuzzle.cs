@@ -22,7 +22,7 @@ public abstract partial class JustOneCellPuzzle(
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] Step? step,
-	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly CellMap interferingCells,
+	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap interferingCells,
 	[PrimaryConstructorParameter, HashCodeMember] double interferingRatio
 ) : PuzzleBase
 {

@@ -30,7 +30,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 			return new(value, directRating, technique.GetDifficultyLevel());
 		}
 
-		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { Rating = value };
+		static TechniqueData dataModifier(ref readonly TechniqueData data, int value) => data with { Rating = value };
 	}
 
 	/// <summary>
@@ -46,7 +46,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		static TechniqueData dataCreator(Technique technique, int value)
 			=> new(technique.GetDefaultRating(out _), value, technique.GetDifficultyLevel());
 
-		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, int value) => data with { DirectRating = value };
+		static TechniqueData dataModifier(ref readonly TechniqueData data, int value) => data with { DirectRating = value };
 	}
 
 	/// <summary>
@@ -65,7 +65,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 			return new(rating, directRating, value);
 		}
 
-		static TechniqueData dataModifier(scoped ref readonly TechniqueData data, DifficultyLevel value) => data with { Level = value };
+		static TechniqueData dataModifier(ref readonly TechniqueData data, DifficultyLevel value) => data with { Level = value };
 	}
 
 
@@ -84,16 +84,16 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 		delegate*<ref readonly TechniqueData, T, TechniqueData> dataModifier
 	)
 	{
-		scoped ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
+		ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
 		var isNullRef = Ref.IsNullReference(in data);
 		var a = valueUpdaterWhenNullRef;
 		var b = valueUpdaterWhenNotNullRef;
 		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(in data, value));
 
 
-		void valueUpdaterWhenNullRef(scoped ref TechniqueData data, TechniqueData newData) => CustomizedTechniqueData.Add(technique, newData);
+		void valueUpdaterWhenNullRef(ref TechniqueData data, TechniqueData newData) => CustomizedTechniqueData.Add(technique, newData);
 
-		void valueUpdaterWhenNotNullRef(scoped ref TechniqueData data, TechniqueData newData) => data = newData;
+		void valueUpdaterWhenNotNullRef(ref TechniqueData data, TechniqueData newData) => data = newData;
 	}
 
 	/// <inheritdoc cref="GetRatingOrDefault(Technique)"/>

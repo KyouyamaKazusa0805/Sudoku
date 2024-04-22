@@ -149,9 +149,9 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		foreach (var (isFatType, patternCells, pairs, size) in RawPatternData)
@@ -287,10 +287,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType1Step? CheckType1(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap patternCells,
-		scoped ref readonly CellMap extraCells,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CellMap patternCells,
+		ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -355,10 +355,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType2Step? CheckType2(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap patternCells,
-		scoped ref readonly CellMap extraCells,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CellMap patternCells,
+		ref readonly CellMap extraCells,
 		Mask normalDigits,
 		Digit extraDigit,
 		bool onlyFindOne
@@ -412,12 +412,12 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private ExtendedRectangleType3Step? CheckType3Naked(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap patternCells,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CellMap patternCells,
 		Mask normalDigits,
 		Mask extraDigits,
-		scoped ref readonly CellMap extraCells,
+		ref readonly CellMap extraCells,
 		bool isFatType,
 		bool onlyFindOne
 	)
@@ -565,10 +565,10 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 
 
 		static void g(
-			scoped ref readonly CellMap patternCells,
-			scoped ref readonly CellMap cells,
-			scoped ref readonly CellMap extraCells,
-			scoped ref readonly Grid grid,
+			ref readonly CellMap patternCells,
+			ref readonly CellMap cells,
+			ref readonly CellMap extraCells,
+			ref readonly Grid grid,
 			Mask mask,
 			out List<CandidateViewNode> candidateOffsets
 		)
@@ -616,11 +616,11 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 	/// <returns>The first found step if worth.</returns>
 	private Step? CheckType14(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CellMap patternCells,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CellMap patternCells,
 		Mask normalDigits,
-		scoped ref readonly CellMap extraCells,
+		ref readonly CellMap extraCells,
 		bool onlyFindOne
 	)
 	{

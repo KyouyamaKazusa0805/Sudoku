@@ -90,8 +90,8 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOnStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -109,8 +109,8 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private BinaryForcingChainsStep CreateChainingOffStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		ChainNode dstOn,
 		ChainNode dstOff,
 		ChainNode src,
@@ -128,8 +128,8 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private CellForcingChainsStep CreateCellForcingStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		byte srcCell,
 		ChainNode target,
 		ChainBranchCollection outcomes
@@ -158,8 +158,8 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	/// </summary>
 	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private RegionForcingChainsStep CreateHouseForcingStep(
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
 		House houseIndex,
 		byte digit,
 		ChainNode target,

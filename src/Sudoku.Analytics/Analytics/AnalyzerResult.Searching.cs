@@ -20,7 +20,7 @@ public partial record AnalyzerResult
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the specified puzzle cannot correspond to a paired <see cref="Step"/> instance.
 	/// </exception>
-	public Step this[scoped ref readonly Grid grid]
+	public Step this[ref readonly Grid grid]
 	{
 		get
 		{
@@ -96,7 +96,7 @@ public partial record AnalyzerResult
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[int difficultyRating]
-		=> StepsSpan.FindAll((scoped ref readonly Step step) => step.Difficulty == difficultyRating);
+		=> StepsSpan.FindAll((ref readonly Step step) => step.Difficulty == difficultyRating);
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that matches the specified technique.
@@ -106,7 +106,7 @@ public partial record AnalyzerResult
 	/// <inheritdoc cref="this[int]" path="/returns"/>
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
-	public ReadOnlySpan<Step> this[Technique code] => StepsSpan.FindAll((scoped ref readonly Step step) => step.Code == code);
+	public ReadOnlySpan<Step> this[Technique code] => StepsSpan.FindAll((ref readonly Step step) => step.Code == code);
 
 	/// <summary>
 	/// Gets a list of <see cref="Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
@@ -117,5 +117,5 @@ public partial record AnalyzerResult
 	/// </returns>
 	/// <seealso cref="IsSolved"/>
 	public ReadOnlySpan<Step> this[DifficultyLevel difficultyLevel]
-		=> StepsSpan.FindAll((scoped ref readonly Step step) => step.DifficultyLevel == difficultyLevel);
+		=> StepsSpan.FindAll((ref readonly Step step) => step.DifficultyLevel == difficultyLevel);
 }

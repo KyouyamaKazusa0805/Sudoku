@@ -18,8 +18,8 @@ public sealed partial class ReverseBivalueUniversalGraveType2Step(
 	Digit digit1,
 	Digit digit2,
 	[PrimaryConstructorParameter] Digit extraDigit,
-	scoped ref readonly CellMap pattern,
-	scoped ref readonly CellMap emptyCells
+	ref readonly CellMap pattern,
+	ref readonly CellMap emptyCells
 ) : ReverseBivalueUniversalGraveStep(conclusions, views, options, digit1, digit2, in pattern, in emptyCells)
 {
 	/// <inheritdoc/>

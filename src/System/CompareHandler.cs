@@ -7,4 +7,4 @@ namespace System;
 /// <param name="left">The left value to be compared.</param>
 /// <param name="right">The right value to be compared.</param>
 /// <returns>An <see cref="int"/> value indicating the result.</returns>
-public delegate int CompareHandler<T>(scoped ref readonly T left, scoped ref readonly T right);
+public delegate int CompareHandler<T>(ref readonly T left, ref readonly T right);

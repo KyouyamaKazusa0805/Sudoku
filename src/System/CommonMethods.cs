@@ -45,7 +45,7 @@ public static class CommonMethods
 
 	/// <inheritdoc cref="True{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool True<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !!value;
+	public static bool True<T>(ref readonly T value) where T : ILogicalOperators<T> => !!value;
 
 	/// <summary>
 	/// Makes the variable <paramref name="value"/> be an equivalent <see cref="bool"/> value, and negate it.
@@ -61,7 +61,7 @@ public static class CommonMethods
 
 	/// <inheritdoc cref="False{T}(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool False<T>(scoped ref readonly T value) where T : ILogicalOperators<T> => !value;
+	public static bool False<T>(ref readonly T value) where T : ILogicalOperators<T> => !value;
 
 	/// <summary>
 	/// Provides with the default way to convert the specified instance of type <see cref="short"/>
@@ -75,7 +75,7 @@ public static class CommonMethods
 	/// as the <c>ToString</c> method result.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull
+	public static string ToStringConverter<T>(ref readonly T @this) where T : notnull
 		=> @this.ToString() ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull"));
 
 	/// <summary>

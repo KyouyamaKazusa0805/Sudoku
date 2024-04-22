@@ -14,8 +14,8 @@ public sealed partial class GuardianStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap loopCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap guardians
+	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
+	[PrimaryConstructorParameter] ref readonly CellMap guardians
 ) : NegativeRankStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

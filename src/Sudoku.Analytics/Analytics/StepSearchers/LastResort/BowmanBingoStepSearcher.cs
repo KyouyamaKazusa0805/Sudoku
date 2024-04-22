@@ -31,10 +31,10 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		var tempAccumulator = new List<BowmanBingoStep>();
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var accumulator = context.Accumulator!;
 		var onlyFindOne = context.OnlyFindOne;
 		var tempGrid = grid;
@@ -99,14 +99,14 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
 	private BowmanBingoStep? Collect(
 		List<BowmanBingoStep> result,
-		scoped ref Grid grid,
-		scoped ref AnalysisContext context,
+		ref Grid grid,
+		ref AnalysisContext context,
 		bool onlyFindOne,
 		Candidate startCand,
 		int length
 	)
 	{
-		scoped var context2 = new AnalysisContext(in grid)
+		var context2 = new AnalysisContext(in grid)
 		{
 			OnlyFindOne = true,
 			IsSukaku = context.IsSukaku,
@@ -190,7 +190,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result.</returns>
-	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(scoped ref readonly Grid grid, Cell cell, Digit digit)
+	private static (List<Candidate> CandidateList, Mask Mask) RecordUndoInfo(ref readonly Grid grid, Cell cell, Digit digit)
 	{
 		var list = new List<Candidate>();
 		foreach (var c in PeersMap[cell] & CandidatesMap[digit])
@@ -208,7 +208,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="list">The list.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="mask">The mask.</param>
-	private static void UndoGrid(scoped ref Grid grid, List<Candidate> list, Cell cell, Mask mask)
+	private static void UndoGrid(ref Grid grid, List<Candidate> list, Cell cell, Mask mask)
 	{
 		foreach (var candidate in list)
 		{
@@ -225,7 +225,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <returns>The result.</returns>
-	private static bool IsValidGrid(scoped ref readonly Grid grid, Cell cell)
+	private static bool IsValidGrid(ref readonly Grid grid, Cell cell)
 	{
 		var result = true;
 		foreach (var peerCell in PeersMap[cell])

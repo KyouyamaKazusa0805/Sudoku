@@ -19,9 +19,9 @@ public sealed partial class UniqueRectangleBurredSubsetStep(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	int absoluteOffset,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap extraCells,
+	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Cell subsetIncludedCorner,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
 ) :

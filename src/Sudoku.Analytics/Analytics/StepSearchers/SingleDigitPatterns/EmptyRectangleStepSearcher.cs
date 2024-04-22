@@ -27,7 +27,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -115,7 +115,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 	/// both arguments <paramref name="row"/> and <paramref name="column"/> can be used;
 	/// otherwise, both arguments should be discards.
 	/// </returns>
-	private static bool IsEmptyRectangle(scoped ref readonly CellMap cells, House block, out House row, out House column)
+	private static bool IsEmptyRectangle(ref readonly CellMap cells, House block, out House row, out House column)
 	{
 		var (r, c) = (block / 3 * 3 + 9, block % 3 * 3 + 18);
 		for (var (i, count) = (r, 0); i < r + 3; i++)

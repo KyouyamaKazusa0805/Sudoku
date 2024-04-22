@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="Base">Indicates the base that describes the block and line index.</param>
 /// <param name="Result">Indicates the result values.</param>
-public readonly record struct Intersection(scoped ref readonly IntersectionBase Base, scoped ref readonly IntersectionResult Result)
+public readonly record struct Intersection(ref readonly IntersectionBase Base, ref readonly IntersectionResult Result)
 {
 	/// <summary>
 	/// Indicates the mini-lines to be iterated, grouped by chute index.
@@ -48,7 +48,7 @@ public readonly record struct Intersection(scoped ref readonly IntersectionBase 
 		MinilinesGroupedByChuteIndex = new CellMap[6][];
 		for (var i = 0; i < 6; i++)
 		{
-			scoped ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
+			ref var currentMinilineGroup = ref MinilinesGroupedByChuteIndex[i];
 			currentMinilineGroup = [[], [], [], [], [], [], [], [], []];
 
 			var ((_, _, _, chuteHouses), isRow, tempIndex) = (Chutes[i], i is 0 or 1 or 2, 0);
@@ -56,7 +56,7 @@ public readonly record struct Intersection(scoped ref readonly IntersectionBase 
 			{
 				for (var (houseCell, j) = (HouseFirst[chuteHouse], 0); j < 3; houseCell += isRow ? 3 : 27, j++)
 				{
-					scoped ref var current = ref currentMinilineGroup[tempIndex++];
+					ref var current = ref currentMinilineGroup[tempIndex++];
 					current.Add(houseCell);
 					current.Add(houseCell + (isRow ? 1 : 9));
 					current.Add(houseCell + (isRow ? 2 : 18));
@@ -70,8 +70,8 @@ public readonly record struct Intersection(scoped ref readonly IntersectionBase 
 			for (var j = (byte)0; j < 3; j++)
 			{
 				var cs = bs < 18 ? Digits[(bs - 9) / 3 * 3 + j] : HousesOrderedByColumn[(bs - 18) / 3 * 3 + j];
-				scoped ref readonly var bm = ref HousesMap[bs];
-				scoped ref readonly var cm = ref HousesMap[cs];
+				ref readonly var bm = ref HousesMap[bs];
+				ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
 				dic.Add(new(bs, (byte)cs), new(bm - i, cm - i, in i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}

@@ -22,16 +22,16 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// Check POM eliminations first.
-		scoped ref readonly var grid = ref context.Grid;
-		scoped var eliminationMaps = (stackalloc CellMap[9]);
+		ref readonly var grid = ref context.Grid;
+		var eliminationMaps = (stackalloc CellMap[9]);
 		eliminationMaps.Fill((CellMap)[]);
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		scoped var pomContext = new AnalysisContext(in playground)
+		var pomContext = new AnalysisContext(in playground)
 		{
 			Accumulator = pomSteps,
 			OnlyFindOne = false,
@@ -42,7 +42,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
 		{
-			scoped ref var currentMap = ref eliminationMaps[step.Digit];
+			ref var currentMap = ref eliminationMaps[step.Digit];
 			foreach (var conclusion in step.Conclusions)
 			{
 				currentMap.Add(conclusion.Cell);
@@ -120,7 +120,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// </returns>
 	private static unsafe Pattern[] CollectGuardianLoops(Digit digit)
 	{
-		static bool predicate(scoped ref readonly CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
+		static bool predicate(ref readonly CellMap loop) => loop.Count is var l && (l & 1) != 0 && l >= 5;
 		var result = new List<Pattern>();
 		foreach (var cell in CandidatesMap[digit])
 		{
@@ -134,8 +134,8 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 			Cell startCell,
 			Cell lastCell,
 			House lastHouse,
-			scoped ref readonly CellMap currentLoop,
-			scoped ref readonly CellMap currentGuardians,
+			ref readonly CellMap currentLoop,
+			ref readonly CellMap currentGuardians,
 			Digit digit,
 			CollectorPredicateFuncPtr condition,
 			List<Pattern> result
@@ -210,5 +210,5 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 	/// <param name="LoopCells">Indicates the cells used in this whole guardian loop.</param>
 	/// <param name="Guardians">Indicates the extra cells that is used as guardians.</param>
 	/// <param name="Digit">Indicates the digit used.</param>
-	private readonly record struct Pattern(scoped ref readonly CellMap LoopCells, scoped ref readonly CellMap Guardians, Digit Digit);
+	private readonly record struct Pattern(ref readonly CellMap LoopCells, ref readonly CellMap Guardians, Digit Digit);
 }

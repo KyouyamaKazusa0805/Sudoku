@@ -14,7 +14,7 @@ public abstract partial class SubsetStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
 ) : Step(conclusions, views, options), ISizeTrait
 {

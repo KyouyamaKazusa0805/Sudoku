@@ -31,7 +31,7 @@ public sealed partial class NakedSubsetStep(
 	View[]? views,
 	StepSearcherOptions options,
 	House house,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] bool? isLocked
 ) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)

@@ -74,7 +74,7 @@ public static class Combinatorial
 		return [.. result];
 
 
-		static void g(int last, int count, int index, scoped Span<int> tempArray, T[] @this, List<T[]> resultList)
+		static void g(int last, int count, int index, Span<int> tempArray, T[] @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
@@ -120,7 +120,7 @@ public static class Combinatorial
 	{
 		var length = @this.Length;
 		var resultCount = 1;
-		scoped var tempArray = (stackalloc int[length]);
+		var tempArray = (stackalloc int[length]);
 		for (var i = 0; i < length; i++)
 		{
 			tempArray[i] = -1;
@@ -135,7 +135,7 @@ public static class Combinatorial
 				m++;
 			}
 
-			scoped ref var value = ref tempArray[m];
+			ref var value = ref tempArray[m];
 			value++;
 			if (value > @this[m].Length - 1)
 			{

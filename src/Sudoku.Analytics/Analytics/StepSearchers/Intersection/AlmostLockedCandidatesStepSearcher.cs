@@ -40,7 +40,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		foreach (var checkValueCells in (false, true))
 		{
@@ -109,17 +109,17 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 	/// </para>
 	/// </remarks>
 	private static AlmostLockedCandidatesStep? Collect(
-		scoped ref AnalysisContext context,
+		ref AnalysisContext context,
 		int size,
 		House baseSet,
 		House coverSet,
-		scoped ref readonly CellMap a,
-		scoped ref readonly CellMap b,
-		scoped ref readonly CellMap c,
+		ref readonly CellMap a,
+		ref readonly CellMap b,
+		ref readonly CellMap c,
 		bool checkValueCells
 	)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 
 		// Iterate on each cell combination.
 		foreach (ref readonly var alsCells in (checkValueCells ? a : a & EmptyCells).GetSubsets(size - 1))
@@ -242,7 +242,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				babaGroupingNodes.Add(new(ColorIdentifier.Normal, cell, (char)('a' - 1 + size), grid.GetCandidates(cell)));
 			}
 
-			scoped var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);
+			var valueCellNodes = from cell in valueCells select new CellViewNode(ColorIdentifier.Normal, cell);
 			var step = new AlmostLockedCandidatesStep(
 				[.. conclusions],
 				[

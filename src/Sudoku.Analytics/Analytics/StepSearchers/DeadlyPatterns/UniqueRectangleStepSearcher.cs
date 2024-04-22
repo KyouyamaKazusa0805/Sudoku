@@ -115,9 +115,9 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 
 		// Iterate on mode (whether use AR or UR mode to search).
 		var list = new List<UniqueRectangleStep>();
@@ -149,7 +149,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 		var tempList = context.IsSukaku ? new List<UniqueRectangleStep>(sortedList.Count) : sortedList;
 		if (context.IsSukaku)
 		{
-			scoped ref readonly var initialGrid = ref context.InitialGrid;
+			ref readonly var initialGrid = ref context.InitialGrid;
 			foreach (var element in sortedList)
 			{
 				var comparer = MaskOperations.Create(element.Digit1, element.Digit2);
@@ -200,10 +200,10 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	/// <inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/>
 	/// </param>
 	/// <param name="arMode">Indicates whether the current mode is searching for ARs.</param>
-	private void Collect(List<UniqueRectangleStep> collected, scoped ref readonly Grid grid, scoped ref AnalysisContext context, bool arMode)
+	private void Collect(List<UniqueRectangleStep> collected, ref readonly Grid grid, ref AnalysisContext context, bool arMode)
 	{
 		// Search for ALSes. This result will be used by UR External ALS-XZ structures.
-		scoped var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
+		var alses = AlmostLockedSetsModule.CollectAlmostLockedSets(in grid);
 
 		// Iterate on each possible UR pattern.
 		for (var index = 0; index < UniqueRectangleModule.PossiblePatterns.Length; index++)
@@ -220,7 +220,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			var mask = grid[(CellMap)urCells];
 
 			// Iterate on each possible digit combination.
-			scoped var allDigitsInThem = mask.GetAllSets();
+			var allDigitsInThem = mask.GetAllSets();
 			for (var (i, length) = (0, allDigitsInThem.Length); i < length - 1; i++)
 			{
 				var d1 = allDigitsInThem[i];
@@ -366,52 +366,52 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 	//
 	// Basic Types
 	//
-	private partial void CheckType1(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType2(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType3(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType4(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType5(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckType6(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckHidden(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType1(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType2(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType3(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType4(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType5(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckType6(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckHidden(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
 
 	//
 	// Strong Link Types
 	//
-	private partial void Check2B1SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check2D1SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3X2SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3N2SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3U2SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3E2SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4X3SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check4C3SL(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
+	private partial void Check2B1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check2D1SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check3X2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check3N2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check3U2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check3E2SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check4X3SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check4C3SL(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 
 	//
 	// Pattern-Based Types
 	//
-	private partial void CheckBurredSubset(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckRegularWing(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned);
+	private partial void CheckBurredSubset(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckRegularWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index, bool areCornerCellsAligned);
 #if UNIQUE_RECTANGLE_W_WING
-	private partial void CheckWWing(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 #endif
-	private partial void CheckSueDeCoq(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void CheckBabaGroupingUnique(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
-	private partial void CheckHiddenSingleAvoidable(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckSueDeCoq(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void CheckBabaGroupingUnique(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	private partial void CheckHiddenSingleAvoidable(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
 
 	//
 	// External Types
 	//
-	private partial void CheckExternalType1Or2(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalType3(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalType4(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalTurbotFish(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
-	private partial void CheckExternalWWing(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
-	private partial void CheckExternalXyWing(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
-	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType1Or2(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType3(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalType4(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalTurbotFish(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	private partial void CheckExternalWWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index);
+	private partial void CheckExternalXyWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
+	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode);
 
 	//
 	// Miscellaneous
 	//
-	private partial void Check2D(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, scoped ref readonly CellMap otherCellsMap, int index);
-	private partial void Check3X(List<UniqueRectangleStep> accumulator, scoped ref readonly Grid grid, scoped ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, scoped ref readonly CellMap otherCellsMap, int index);
+	private partial void Check2D(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell corner1, Cell corner2, ref readonly CellMap otherCellsMap, int index);
+	private partial void Check3X(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index);
 }

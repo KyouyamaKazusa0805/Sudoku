@@ -147,5 +147,5 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// <returns>A <see cref="FactorCollection"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FactorCollection Create(scoped ReadOnlySpan<Factor> factors) => factors.IsEmpty ? Empty : new(factors.ToArray());
+	public static FactorCollection Create(ReadOnlySpan<Factor> factors) => factors.IsEmpty ? Empty : new(factors.ToArray());
 }

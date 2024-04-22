@@ -17,7 +17,7 @@ public sealed partial class UniqueRectangleType1Step(
 	StepSearcherOptions options,
 	Digit digit1,
 	Digit digit2,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	bool isAvoidable,
 	int absoluteOffset
 ) : UniqueRectangleStep(

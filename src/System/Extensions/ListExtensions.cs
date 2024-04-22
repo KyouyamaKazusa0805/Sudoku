@@ -35,8 +35,8 @@ public static class ListExtensions
 			return false;
 		}
 
-		scoped var leftSpan = @this.AsReadOnlySpan();
-		scoped var rightSpan = other.AsReadOnlySpan();
+		var leftSpan = @this.AsReadOnlySpan();
+		var rightSpan = other.AsReadOnlySpan();
 		for (var i = 0; i < @this.Count; i++)
 		{
 			if (!leftSpan[i].Equals(rightSpan[i]))

@@ -15,7 +15,7 @@ public static class Ittoryu
 	/// </param>
 	/// <exception cref="ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
 	/// <seealso cref="DisorderedIttoryuFinder"/>
-	public static void MakeIttoryu(this scoped ref Grid @this, DisorderedIttoryuDigitPath ittoryuPath)
+	public static void MakeIttoryu(this ref Grid @this, DisorderedIttoryuDigitPath ittoryuPath)
 	{
 		if (ittoryuPath.Digits is not { Length: >= 2 })
 		{
@@ -30,10 +30,10 @@ public static class Ittoryu
 
 		// Try to replace digits.
 		var result = Grid.Empty;
-		scoped var valuesMap = @this.ValuesMap;
+		var valuesMap = @this.ValuesMap;
 		for (var digit = 0; digit < ittoryuPath.Digits.Length; digit++)
 		{
-			scoped ref readonly var valueMap = ref valuesMap[ittoryuPath.Digits[digit]];
+			ref readonly var valueMap = ref valuesMap[ittoryuPath.Digits[digit]];
 			foreach (var cell in valueMap)
 			{
 				result.SetDigit(cell, digit);
@@ -59,7 +59,7 @@ public static class Ittoryu
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
+	public static bool IsIttoryu(this ref readonly Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 		=> @this.IsIttoryu(TechniqueSets.IttoryuTechniques, out path);
 
 	/// <summary>
@@ -84,7 +84,7 @@ public static class Ittoryu
 	/// <param name="path">The first found ittoryu path.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsIttoryu(this scoped ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
+	public static bool IsIttoryu(this ref readonly Grid @this, TechniqueSet techniques, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
 	{
 		var pathFinder = new DisorderedIttoryuFinder(techniques);
 		var foundPath = pathFinder.FindPath(in @this);

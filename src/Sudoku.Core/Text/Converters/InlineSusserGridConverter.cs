@@ -66,7 +66,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 
 	/// <inheritdoc/>
 	public FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			var sb = new StringBuilder(162);
 			var originalGrid = Grid.Parse((SusserGridConverter.Default with { WithCandidates = false }).Converter(in grid));
@@ -110,7 +110,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 			return sb.ToString();
 
 
-			static CandidateMap negateElims(scoped ref readonly Grid grid, scoped ref readonly CandidateMap eliminatedCandidates)
+			static CandidateMap negateElims(ref readonly Grid grid, ref readonly CandidateMap eliminatedCandidates)
 			{
 				var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
 				var result = (CandidateMap)[];

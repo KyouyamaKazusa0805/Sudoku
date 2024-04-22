@@ -93,7 +93,6 @@ internal static class EqualityOperatorsHandler
 			},
 			_ => throw new InvalidOperationException("Invalid state.")
 		};
-		var scopedKeywordString = isRefStruct ? "scoped " : string.Empty;
 		var attributesMarked = behavior switch
 		{
 			Behavior.StaticAbstract => "\r\n\t\t",
@@ -147,14 +146,14 @@ internal static class EqualityOperatorsHandler
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator ==({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator ==({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator !=({{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator !=({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 				""",
 			Behavior.WithScopedIn or Behavior.WithScopedInButDeprecated
@@ -163,14 +162,14 @@ internal static class EqualityOperatorsHandler
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator ==(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator ==(in {{fullTypeNameString}}{{nullabilityToken}} left, in {{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i1}};
 
 						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
 						{{attributesMarked}}
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(EqualityOperatorsHandler).FullName}}", "{{Value}}")]
-						public static bool operator !=(scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} left, scoped in {{scopedKeywordString}}{{fullTypeNameString}}{{nullabilityToken}} right)
+						public static bool operator !=(in {{fullTypeNameString}}{{nullabilityToken}} left, in {{fullTypeNameString}}{{nullabilityToken}} right)
 							=> {{i2}};
 
 						{{explicitImplementation}}

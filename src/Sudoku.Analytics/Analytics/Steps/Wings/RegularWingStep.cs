@@ -17,7 +17,7 @@ public sealed partial class RegularWingStep(
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] int pivotCandidatesCount,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap petals
+	[PrimaryConstructorParameter] ref readonly CellMap petals
 ) : WingStep(conclusions, views, options), ISizeTrait
 {
 	/// <summary>

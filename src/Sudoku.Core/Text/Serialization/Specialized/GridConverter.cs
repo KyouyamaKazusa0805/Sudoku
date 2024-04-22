@@ -11,7 +11,7 @@ public sealed class GridConverter : JsonConverter<Grid>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override Grid Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
 
 	/// <inheritdoc/>

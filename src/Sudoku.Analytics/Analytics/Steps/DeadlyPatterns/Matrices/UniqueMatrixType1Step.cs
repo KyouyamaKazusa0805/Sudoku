@@ -13,7 +13,7 @@ public sealed partial class UniqueMatrixType1Step(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	scoped ref readonly CellMap cells,
+	ref readonly CellMap cells,
 	Mask digitsMask,
 	[PrimaryConstructorParameter] Candidate candidate
 ) : UniqueMatrixStep(conclusions, views, options, in cells, digitsMask)

@@ -41,7 +41,7 @@ public readonly partial struct LockedTarget(
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public bool Equals(scoped ref readonly LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
+	public bool Equals(ref readonly LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

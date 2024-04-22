@@ -16,10 +16,10 @@ public sealed partial class JuniorExocetIncompatiblePairStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CandidateMap incompatibleCandidates,
-	scoped ref readonly CellMap baseCells,
-	scoped ref readonly CellMap targetCells,
-	scoped ref readonly CellMap crosslineCells
+	[PrimaryConstructorParameter] ref readonly CandidateMap incompatibleCandidates,
+	ref readonly CellMap baseCells,
+	ref readonly CellMap targetCells,
+	ref readonly CellMap crosslineCells
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells)
 {
 	/// <inheritdoc/>

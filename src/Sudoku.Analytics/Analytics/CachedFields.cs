@@ -87,7 +87,7 @@ public static class CachedFields
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static void Initialize(scoped ref readonly Grid g, scoped ref readonly Grid s)
+	internal static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;

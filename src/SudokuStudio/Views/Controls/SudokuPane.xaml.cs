@@ -428,7 +428,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Try to update grid state.
 	/// </summary>
 	/// <param name="newGrid">The new grid to be used for assigning to the target.</param>
-	public void UpdateGrid(scoped ref readonly Grid newGrid) => SetPuzzleInternal(in newGrid, PuzzleUpdatingMethod.Programmatic);
+	public void UpdateGrid(ref readonly Grid newGrid) => SetPuzzleInternal(in newGrid, PuzzleUpdatingMethod.Programmatic);
 
 	/// <summary>
 	/// <para>Triggers <see cref="GridUpdated"/> event.</para>
@@ -457,7 +457,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates whether undoing and redoing stacks should be cleared. The default value is <see langword="false"/>.
 	/// </param>
 	/// <seealso cref="SudokuPaneCell"/>
-	internal void SetPuzzleInternal(scoped ref readonly Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
+	internal void SetPuzzleInternal(ref readonly Grid value, PuzzleUpdatingMethod method, bool clearStack = false)
 		=> SetPuzzleCore(in value, new(method, clearStack, false));
 
 	/// <summary>
@@ -598,7 +598,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <seealso cref="_children"/>
-	private void UpdateCellData(scoped ref readonly Grid grid)
+	private void UpdateCellData(ref readonly Grid grid)
 	{
 		for (var i = 0; i < 81; i++)
 		{
@@ -616,7 +616,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// <inheritdoc cref="SetPuzzleInternal(ref readonly Grid, PuzzleUpdatingMethod, bool)" path="/param[@name='value']"/>
 	/// </param>
 	/// <param name="data">The details of updating.</param>
-	private void SetPuzzleCore(scoped ref readonly Grid value, GridUpdatingDetails data)
+	private void SetPuzzleCore(ref readonly Grid value, GridUpdatingDetails data)
 	{
 		var (method, clearStack, whileUndoingOrRedoing) = data;
 
@@ -672,7 +672,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		// Triggers the event.
 		PropertyChanged?.Invoke(this, new(nameof(Puzzle)));
 
-		scoped var houses = housesToBeCompleted.GetAllSets();
+		var houses = housesToBeCompleted.GetAllSets();
 		for (var i = 0; i < houses.Length; i++)
 		{
 			HouseCompleted?.Invoke(this, new(lastCells[i], houses[i], method));

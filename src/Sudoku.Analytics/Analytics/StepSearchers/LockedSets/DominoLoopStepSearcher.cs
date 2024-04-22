@@ -22,7 +22,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 		// Initialize for SK-loop table.
 		SkLoopTable = new Cell[729][];
 
-		scoped var s = (stackalloc int[4]);
+		var s = (stackalloc int[4]);
 		for (var (a, n) = (9, 0); a < 18; a++)
 		{
 			for (var b = 9; b < 18; b++)
@@ -83,12 +83,12 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped var pairs = (stackalloc Mask[8]);
-		scoped var tempLink = (stackalloc Mask[8]);
-		scoped var linkHouse = (stackalloc House[8]);
-		scoped ref readonly var grid = ref context.Grid;
+		var pairs = (stackalloc Mask[8]);
+		var tempLink = (stackalloc Mask[8]);
+		var linkHouse = (stackalloc House[8]);
+		ref readonly var grid = ref context.Grid;
 		foreach (var cells in SkLoopTable)
 		{
 			// Initialize the elements.
@@ -137,7 +137,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 			}
 
 			// Check all combinations.
-			scoped var masks = MaskOperations.GetMaskSubsets(candidateMask);
+			var masks = MaskOperations.GetMaskSubsets(candidateMask);
 			for (var j = masks.Length - 1; j >= 0; j--)
 			{
 				var mask = masks[j];

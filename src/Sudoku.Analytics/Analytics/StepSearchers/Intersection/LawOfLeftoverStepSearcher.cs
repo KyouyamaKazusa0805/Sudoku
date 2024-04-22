@@ -11,9 +11,9 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		foreach (var ((line, block), (a, b, c, _)) in IntersectionMaps)
 		{
 			// Try to check for value cells from two different sets.

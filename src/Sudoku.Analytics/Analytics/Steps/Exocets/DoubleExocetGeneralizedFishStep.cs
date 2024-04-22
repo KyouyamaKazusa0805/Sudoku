@@ -17,11 +17,11 @@ public sealed partial class DoubleExocetGeneralizedFishStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	scoped ref readonly CellMap baseCells,
-	scoped ref readonly CellMap targetCells,
-	scoped ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCellsTheOther,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCellsTheOther
+	ref readonly CellMap baseCells,
+	ref readonly CellMap targetCells,
+	ref readonly CellMap crosslineCells,
+	[PrimaryConstructorParameter] ref readonly CellMap baseCellsTheOther,
+	[PrimaryConstructorParameter] ref readonly CellMap targetCellsTheOther
 ) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, [], in crosslineCells), IDoubleExocet
 {
 	/// <inheritdoc/>

@@ -26,7 +26,7 @@ public static class LinkedListEnumerable
 	}
 
 	/// <inheritdoc cref="Select{T, TResult}(LinkedList{T}, Func{T, TResult})"/>
-	public static ReadOnlySpan<TResult> Select<T, TResult>(this scoped LinkedListReversed<T> @this, Func<T, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this LinkedListReversed<T> @this, Func<T, TResult> selector)
 	{
 		var result = new TResult[@this.Count];
 		var i = 0;

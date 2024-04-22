@@ -46,7 +46,7 @@ public sealed record K9Converter(
 			}
 
 
-			string r(scoped ref readonly CellMap cells)
+			string r(ref readonly CellMap cells)
 			{
 				var sbRow = new StringBuilder(18);
 				var dic = new Dictionary<Cell, List<ColumnIndex>>(9);
@@ -72,7 +72,7 @@ public sealed record K9Converter(
 				return sbRow.RemoveFrom(^DefaultSeparator.Length).ToString();
 			}
 
-			string c(scoped ref readonly CellMap cells)
+			string c(ref readonly CellMap cells)
 			{
 				var dic = new Dictionary<Digit, List<RowIndex>>(9);
 				var sbColumn = new StringBuilder(18);
@@ -194,7 +194,7 @@ public sealed record K9Converter(
 			};
 
 
-			unsafe string toString(scoped ReadOnlySpan<Conclusion> c)
+			unsafe string toString(ReadOnlySpan<Conclusion> c)
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(

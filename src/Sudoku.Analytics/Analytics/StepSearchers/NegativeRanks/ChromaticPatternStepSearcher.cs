@@ -111,7 +111,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (EmptyCells.Count < 12)
 		{
@@ -134,7 +134,7 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		foreach (var blocks in satisfiedBlocksMask.GetAllSets().GetSubsets(4))
 		{
 			var blocksMask = MaskOperations.Create(blocks);
@@ -212,9 +212,9 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternType1Step? CheckType1(scoped ref AnalysisContext context, scoped ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternType1Step? CheckType1(ref AnalysisContext context, ref readonly CellMap pattern, House[] blocks)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		foreach (var extraCell in pattern)
 		{
 			var otherCells = pattern - extraCell;
@@ -271,9 +271,9 @@ public sealed partial class ChromaticPatternStepSearcher : StepSearcher
 	/// </item>
 	/// </list>
 	/// </summary>
-	private ChromaticPatternXzStep? CheckXz(scoped ref AnalysisContext context, scoped ref readonly CellMap pattern, House[] blocks)
+	private ChromaticPatternXzStep? CheckXz(ref AnalysisContext context, ref readonly CellMap pattern, House[] blocks)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var allDigitsMask = grid[in pattern];
 		if (PopCount((uint)allDigitsMask) != 5)
 		{

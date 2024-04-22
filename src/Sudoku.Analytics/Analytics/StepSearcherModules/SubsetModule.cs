@@ -14,15 +14,15 @@ internal static class SubsetModule
 	/// <param name="searchingForLocked">Indicates whether the module only searches for locked subsets.</param>
 	/// <param name="context">The context.</param>
 	/// <returns>The collected steps.</returns>
-	public static unsafe Step? CollectCore(bool searchingForLocked, scoped ref AnalysisContext context)
+	public static unsafe Step? CollectCore(bool searchingForLocked, ref AnalysisContext context)
 	{
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
 		var searchers = context.Options is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var emptyCellsForGrid = grid.EmptyCells;
-		scoped var candidatesMapForGrid = grid.CandidatesMap;
+		var candidatesMapForGrid = grid.CandidatesMap;
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
 			for (var i = 0; i < 2; i++)
@@ -47,10 +47,10 @@ internal static class SubsetModule
 	/// <param name="cells">The cells.</param>
 	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
 	public static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		Digit digit,
 		House house,
-		scoped ref readonly CellMap cells
+		ref readonly CellMap cells
 	)
 	{
 		var info = Crosshatching.TryCreate(in grid, digit, house, in cells);
@@ -77,17 +77,17 @@ internal static class SubsetModule
 	/// Search for hidden subsets.
 	/// </summary>
 	private static HiddenSubsetStep? HiddenSubset(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CellMap emptyCellsForGrid,
-		scoped ReadOnlySpan<CellMap> candidatesMapForGrid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CellMap emptyCellsForGrid,
+		ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
 	)
 	{
 		for (var house = 0; house < 27; house++)
 		{
-			scoped ref readonly var currentHouseCells = ref HousesMap[house];
+			ref readonly var currentHouseCells = ref HousesMap[house];
 			var traversingMap = currentHouseCells & emptyCellsForGrid;
 			var mask = grid[in traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
@@ -185,10 +185,10 @@ internal static class SubsetModule
 	/// Search for naked subsets.
 	/// </summary>
 	private static NakedSubsetStep? NakedSubset(
-		scoped ref AnalysisContext context,
-		scoped ref readonly Grid grid,
-		scoped ref readonly CellMap emptyCellsForGrid,
-		scoped ReadOnlySpan<CellMap> candidatesMapForGrid,
+		ref AnalysisContext context,
+		ref readonly Grid grid,
+		ref readonly CellMap emptyCellsForGrid,
+		ReadOnlySpan<CellMap> candidatesMapForGrid,
 		int size,
 		bool searchingForLocked
 	)

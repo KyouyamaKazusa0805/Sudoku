@@ -132,7 +132,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the capacity isn't enough to store all values.
 	/// </exception>
-	public abstract void CopyTo(scoped ref TElement sequence, int length);
+	public abstract void CopyTo(ref TElement sequence, int length);
 
 	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
 	[ExplicitInterfaceImpl(typeof(ICollection<>))]
@@ -188,7 +188,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public abstract bool Equals(scoped ref readonly TSelf other);
+	public abstract bool Equals(ref readonly TSelf other);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.
@@ -423,7 +423,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
 	/// </remarks>
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static abstract bool operator !(scoped in TSelf offsets);
+	public static abstract bool operator !(in TSelf offsets);
 
 	/// <summary>
 	/// Reverse state for all offsets, which means all <see langword="true"/> bits
@@ -433,7 +433,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="offsets">The instance to negate.</param>
 	/// <returns>The negative result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
-	public static abstract TSelf operator ~(scoped in TSelf offsets);
+	public static abstract TSelf operator ~(in TSelf offsets);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
@@ -442,7 +442,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static virtual bool operator true(scoped in TSelf cells) => cells.Count != 0;
+	public static virtual bool operator true(in TSelf cells) => cells.Count != 0;
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
@@ -451,7 +451,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static virtual bool operator false(scoped in TSelf cells) => cells.Count == 0;
+	public static virtual bool operator false(in TSelf cells) => cells.Count == 0;
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -460,7 +460,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be added.</param>
 	/// <returns>The result collection.</returns>
-	public static abstract TSelf operator +(scoped in TSelf collection, TElement offset);
+	public static abstract TSelf operator +(in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
@@ -469,7 +469,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="collection">The collection.</param>
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
-	public static abstract TSelf operator -(scoped in TSelf collection, TElement offset);
+	public static abstract TSelf operator -(in TSelf collection, TElement offset);
 
 	/// <summary>
 	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
@@ -478,7 +478,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	public static virtual TSelf operator -(scoped in TSelf left, scoped in TSelf right) => left & ~right;
+	public static virtual TSelf operator -(in TSelf left, in TSelf right) => left & ~right;
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
@@ -488,7 +488,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static abstract TSelf operator &(scoped in TSelf left, scoped in TSelf right);
+	public static abstract TSelf operator &(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
@@ -499,7 +499,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static abstract TSelf operator |(scoped in TSelf left, scoped in TSelf right);
+	public static abstract TSelf operator |(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
@@ -509,7 +509,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The result.</returns>
 	[ExplicitInterfaceImpl(typeof(IBitwiseOperators<,,>))]
 	[ExplicitInterfaceImpl(typeof(ILogicalOperators<>))]
-	public static abstract TSelf operator ^(scoped in TSelf left, scoped in TSelf right);
+	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -545,5 +545,5 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(scoped ReadOnlySpan<TElement> offsets) => [.. offsets];
+	public static virtual explicit operator TSelf(ReadOnlySpan<TElement> offsets) => [.. offsets];
 }

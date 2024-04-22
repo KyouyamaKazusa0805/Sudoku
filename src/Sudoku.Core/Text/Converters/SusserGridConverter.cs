@@ -117,7 +117,7 @@ public partial record SusserGridConverter(
 
 	/// <inheritdoc/>
 	public virtual FuncRefReadOnly<Grid, string> Converter
-		=> (scoped ref readonly Grid grid) =>
+		=> (ref readonly Grid grid) =>
 		{
 			var sb = new StringBuilder(162);
 			var originalGrid = this switch
@@ -192,7 +192,7 @@ public partial record SusserGridConverter(
 				: $"{@base}{(string.IsNullOrEmpty(elimsStr) ? string.Empty : $"{PreeliminationPrefix}{elimsStr}")}";
 
 
-			static CandidateMap negateElims(scoped ref readonly Grid grid, scoped ref readonly CandidateMap eliminatedCandidates)
+			static CandidateMap negateElims(ref readonly Grid grid, ref readonly CandidateMap eliminatedCandidates)
 			{
 				var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
 				var result = (CandidateMap)[];
@@ -214,7 +214,7 @@ public partial record SusserGridConverter(
 			{
 				// lang = regex
 				var placeholderPattern = placeholder == Dot ? """\.+""" : """0+""";
-				scoped var resultSpan = (stackalloc char[81]);
+				var resultSpan = (stackalloc char[81]);
 				var spanIndex = 0;
 				for (var i = 0; i < 9; i++)
 				{

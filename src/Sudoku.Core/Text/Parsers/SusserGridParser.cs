@@ -149,7 +149,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 					var distribution = candidates.CellDistribution;
 					for (var cell = 0; cell < 81; cell++)
 					{
-						scoped ref var mask = ref result[cell];
+						ref var mask = ref result[cell];
 						if (MaskOperations.MaskToCellState(mask) == CellState.Empty)
 						{
 							mask = distribution.TryGetValue(cell, out var digitsMask)
@@ -180,7 +180,7 @@ public sealed partial record SusserGridParser(bool ShortenSusserFormat = false, 
 				}
 
 				// Check per line, and expand it.
-				scoped var resultSpan = (stackalloc char[81]);
+				var resultSpan = (stackalloc char[81]);
 				var placeholder = original.Contains('0') ? '0' : '.';
 				for (var i = 0; i < 9; i++)
 				{

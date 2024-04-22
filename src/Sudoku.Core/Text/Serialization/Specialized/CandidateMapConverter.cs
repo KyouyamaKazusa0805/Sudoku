@@ -12,7 +12,7 @@ public sealed class CandidateMapConverter : JsonConverter<CandidateMap>
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override CandidateMap Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
 
 	/// <inheritdoc/>

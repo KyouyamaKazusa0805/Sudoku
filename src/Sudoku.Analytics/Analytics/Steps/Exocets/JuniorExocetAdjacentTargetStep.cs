@@ -17,11 +17,11 @@ public sealed partial class JuniorExocetAdjacentTargetStep(
 	View[]? views,
 	StepSearcherOptions options,
 	Mask digitsMask,
-	scoped ref readonly CellMap baseCells,
-	scoped ref readonly CellMap targetCells,
-	scoped ref readonly CellMap endoTargetCells,
-	scoped ref readonly CellMap crosslineCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap singleMirrors
+	ref readonly CellMap baseCells,
+	ref readonly CellMap targetCells,
+	ref readonly CellMap endoTargetCells,
+	ref readonly CellMap crosslineCells,
+	[PrimaryConstructorParameter] ref readonly CellMap singleMirrors
 ) : ExocetStep(
 	conclusions,
 	views,

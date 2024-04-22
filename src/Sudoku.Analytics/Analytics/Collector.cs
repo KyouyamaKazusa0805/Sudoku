@@ -55,7 +55,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
 	public ReadOnlySpan<Step> Collect(
-		scoped ref readonly Grid puzzle,
+		ref readonly Grid puzzle,
 		IProgress<AnalyzerProgress>? progress = null,
 		CancellationToken cancellationToken = default
 	)
@@ -87,7 +87,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		ReadOnlySpan<Step> searchInternal(
 			bool isSukaku,
 			IProgress<AnalyzerProgress>? progress,
-			scoped ref readonly Grid puzzle,
+			ref readonly Grid puzzle,
 			CancellationToken cancellationToken
 		)
 		{
@@ -100,7 +100,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 			Initialize(in playground, playground.SolutionGrid);
 
 			var accumulator = new List<Step>();
-			scoped var context = new AnalysisContext(in playground, in puzzle)
+			var context = new AnalysisContext(in playground, in puzzle)
 			{
 				Accumulator = accumulator,
 				OnlyFindOne = false,

@@ -45,7 +45,7 @@ public static class StepMarshal
 	/// <exception cref="InvalidOperationException">
 	/// Throws when the length of arguments <paramref name="interimGrids"/> and <paramref name="interimSteps"/> aren't same.
 	/// </exception>
-	public static ReadOnlySpan<(Grid CurrentGrid, Step CurrentStep)> Combine(scoped ReadOnlySpan<Grid> interimGrids, scoped ReadOnlySpan<Step> interimSteps)
+	public static ReadOnlySpan<(Grid CurrentGrid, Step CurrentStep)> Combine(ReadOnlySpan<Grid> interimGrids, ReadOnlySpan<Step> interimSteps)
 	{
 		if (interimGrids.Length != interimSteps.Length)
 		{

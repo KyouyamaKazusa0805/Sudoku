@@ -18,7 +18,7 @@ internal class ChainingModule
 	/// <param name="p">The potential that is assumed to be "on"</param>
 	/// <param name="isY">Indicates whether the same-cell strong links are enabled.</param>
 	/// <returns>The set of potentials that must be "off".</returns>
-	public static NodeSet GetOnToOff(scoped ref readonly Grid grid, ChainNode p, bool isY)
+	public static NodeSet GetOnToOff(ref readonly Grid grid, ChainNode p, bool isY)
 	{
 		var result = new NodeSet();
 		var cell = p.Cell;
@@ -67,9 +67,9 @@ internal class ChainingModule
 	/// <param name="allowDynamic">Indicates whether the dynamic chaining rules are enabled.</param>
 	/// <returns>The set of potentials that must be "off".</returns>
 	public static NodeSet GetOffToOn(
-		scoped ref readonly Grid grid,
+		ref readonly Grid grid,
 		ChainNode p,
-		scoped in Grid? source,
+		in Grid? source,
 		NodeSet offPotentials,
 		bool isX,
 		bool isY,
@@ -99,7 +99,7 @@ internal class ChainingModule
 		if (isX)
 		{
 			// Second rule: if there is only two positions for this potential, the other one gets on.
-			scoped ref readonly var candMaps = ref allowDynamic ? ref grid.CandidatesMap[digit] : ref CandidatesMap[digit];
+			ref readonly var candMaps = ref allowDynamic ? ref grid.CandidatesMap[digit] : ref CandidatesMap[digit];
 			foreach (var houseType in HouseTypes)
 			{
 				var houseIndex = cell.ToHouseIndex(houseType);
@@ -119,7 +119,7 @@ internal class ChainingModule
 		return result;
 
 
-		static void addHiddenParentsOfCell(scoped ref ChainNode p, scoped ref readonly Grid current, scoped ref readonly Grid original, NodeSet offPotentials)
+		static void addHiddenParentsOfCell(ref ChainNode p, ref readonly Grid current, ref readonly Grid original, NodeSet offPotentials)
 		{
 			var cell = p.Cell;
 			for (byte digit = 0; digit < 9; digit++)
@@ -138,9 +138,9 @@ internal class ChainingModule
 		}
 
 		static void addHiddenParentsOfHouse(
-			scoped ref ChainNode p,
-			scoped ref readonly Grid current,
-			scoped ref readonly Grid original,
+			ref ChainNode p,
+			ref readonly Grid current,
+			ref readonly Grid original,
 			HouseType currentHouseType,
 			NodeSet offPotentials
 		)
@@ -161,7 +161,7 @@ internal class ChainingModule
 			}
 
 
-			static Mask g(scoped ref readonly Grid grid, House houseIndex, Digit digit)
+			static Mask g(ref readonly Grid grid, House houseIndex, Digit digit)
 			{
 				var result = (Mask)0;
 				for (var i = 0; i < 9; i++)
@@ -191,7 +191,7 @@ internal class ChainingModule
 	public static (ChainNode On, ChainNode Off)? DoChaining<T>(T stepSearcher, Grid grid, NodeSet toOn, NodeSet toOff, bool allowNishio, bool allowDynamic)
 		where T : StepSearcher
 	{
-		scoped ref readonly var originalGrid = ref grid;
+		ref readonly var originalGrid = ref grid;
 		var (pendingOn, pendingOff) = (new NodeList(toOn), new NodeList(toOff));
 		while (pendingOn.Count > 0 || pendingOff.Count > 0)
 		{
@@ -262,8 +262,8 @@ internal class ChainingModule
 		NodeList pendingOn,
 		NodeList pendingOff,
 		NodeSet toOff,
-		scoped ref readonly Grid grid,
-		scoped ref readonly Grid original
+		ref readonly Grid grid,
+		ref readonly Grid original
 	) where T : StepSearcher
 	{
 		return;

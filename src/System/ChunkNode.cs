@@ -125,7 +125,7 @@ public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>
 	/// <param name="other">The other value to be compared.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool ReferenceEquals(scoped ref readonly ChunkNode<T> other)
+	public bool ReferenceEquals(ref readonly ChunkNode<T> other)
 	{
 		if (Type != other.Type)
 		{
@@ -184,7 +184,7 @@ public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>
 	/// <param name="value">The value.</param>
 	/// <exception cref="InvalidCastException">Throws when the value is not an array.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator T[](scoped in ChunkNode<T> value)
+	public static explicit operator T[](in ChunkNode<T> value)
 		=> value.Type == ChunkNodeType.Array ? (T[])value.ValueRef! : throw new InvalidCastException();
 
 	/// <summary>
@@ -193,7 +193,7 @@ public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>
 	/// <param name="value">The value.</param>
 	/// <exception cref="InvalidCastException">Throws when the value is not a list.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator List<T>(scoped in ChunkNode<T> value)
+	public static explicit operator List<T>(in ChunkNode<T> value)
 		=> value.Type == ChunkNodeType.Array ? (List<T>)value.ValueRef! : throw new InvalidCastException();
 
 	/// <summary>

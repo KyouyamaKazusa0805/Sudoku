@@ -74,7 +74,7 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[DebuggerStepThrough]
-	public static DisorderedIttoryuDigitPath Create(scoped ReadOnlySpan<Digit> digits) => new([.. digits]);
+	public static DisorderedIttoryuDigitPath Create(ReadOnlySpan<Digit> digits) => new([.. digits]);
 
 
 	/// <summary>

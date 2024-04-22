@@ -29,9 +29,9 @@ public sealed partial class SueDeCoqStep(
 	[PrimaryConstructorParameter] Mask intersectionMask,
 	[PrimaryConstructorParameter] bool isCannibalistic,
 	[PrimaryConstructorParameter] Mask isolatedDigitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap blockCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap lineCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap intersectionCells
+	[PrimaryConstructorParameter] ref readonly CellMap blockCells,
+	[PrimaryConstructorParameter] ref readonly CellMap lineCells,
+	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells
 ) : LockedSetStep(conclusions, views, options)
 {
 	/// <inheritdoc/>

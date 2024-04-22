@@ -10,4 +10,4 @@ namespace Sudoku.Concepts;
 /// Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
 /// </param>
 /// <seealso cref="IntersectionMaps"/>
-public readonly record struct IntersectionResult(scoped ref readonly CellMap LineMap, scoped ref readonly CellMap BlockMap, scoped ref readonly CellMap IntersectionMap, byte[] OtherBlocks);
+public readonly record struct IntersectionResult(ref readonly CellMap LineMap, ref readonly CellMap BlockMap, ref readonly CellMap IntersectionMap, byte[] OtherBlocks);

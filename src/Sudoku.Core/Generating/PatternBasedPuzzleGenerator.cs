@@ -62,8 +62,8 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 		void getGrid(
 			BitwiseSolver solver,
 			Cell[] patternCellsSorted,
-			scoped ref Grid playground,
-			scoped ref Grid resultGrid,
+			ref Grid playground,
+			ref Grid resultGrid,
 			int currentIndex
 		)
 		{
@@ -85,7 +85,7 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 			}
 
 			var cell = patternCellsSorted[currentIndex];
-			scoped var digits = playground.GetCandidates(cell).GetAllSets();
+			var digits = playground.GetCandidates(cell).GetAllSets();
 			var indexArray = Digits[..digits.Length];
 			Random.Shared.Shuffle(indexArray);
 			foreach (var randomizedIndex in indexArray)

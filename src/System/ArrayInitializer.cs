@@ -6,4 +6,4 @@ namespace System;
 /// </summary>
 /// <typeparam name="T">The type of the element.</typeparam>
 /// <param name="value">The value to be initialized.</param>
-public delegate void ArrayInitializer<T>([NotNull] scoped ref T? value);
+public delegate void ArrayInitializer<T>([NotNull] ref T? value);

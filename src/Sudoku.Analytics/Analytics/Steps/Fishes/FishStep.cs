@@ -38,7 +38,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] HouseMask baseSetsMask,
 	[PrimaryConstructorParameter] HouseMask coverSetsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap fins,
+	[PrimaryConstructorParameter] ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
 ) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISizeTrait

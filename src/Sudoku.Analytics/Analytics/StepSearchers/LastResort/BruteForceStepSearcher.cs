@@ -36,14 +36,14 @@ public sealed partial class BruteForceStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		if (Solution.IsUndefined)
 		{
 			goto ReturnNull;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		foreach (var offset in BruteForceTryAndErrorOrder)
 		{
 			if (grid.GetState(offset) == CellState.Empty)

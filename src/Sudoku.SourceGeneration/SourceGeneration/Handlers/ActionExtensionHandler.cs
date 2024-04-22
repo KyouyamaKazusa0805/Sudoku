@@ -9,10 +9,10 @@ internal static class ActionExtensionHandler
 		{
 			var values = Enumerable.Range(1, i).ToArray();
 			var typeParameters = i == 1 ? "T" : string.Join(", ", from value in values select $"T{value}");
-			var parameters = i == 1 ? "scoped ref T arg" : string.Join(", ", from value in values select $"scoped ref T{value} arg{value}");
+			var parameters = i == 1 ? "ref T arg" : string.Join(", ", from value in values select $"ref T{value} arg{value}");
 			var parametersReadOnly = i == 1
-				? "scoped ref readonly T arg"
-				: string.Join(", ", from value in values select $"scoped ref readonly T{value} arg{value}");
+				? "ref readonly T arg"
+				: string.Join(", ", from value in values select $"ref readonly T{value} arg{value}");
 
 			code.Add(
 				$$"""

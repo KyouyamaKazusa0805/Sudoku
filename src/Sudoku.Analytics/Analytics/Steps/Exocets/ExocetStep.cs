@@ -16,10 +16,10 @@ public abstract partial class ExocetStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap baseCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap targetCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap endoTargetCells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap crosslineCells
+	[PrimaryConstructorParameter] ref readonly CellMap baseCells,
+	[PrimaryConstructorParameter] ref readonly CellMap targetCells,
+	[PrimaryConstructorParameter] ref readonly CellMap endoTargetCells,
+	[PrimaryConstructorParameter] ref readonly CellMap crosslineCells
 ) : Step(conclusions, views, options)
 {
 	/// <summary>

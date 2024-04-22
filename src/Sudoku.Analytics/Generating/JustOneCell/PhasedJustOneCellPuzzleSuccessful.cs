@@ -11,12 +11,12 @@ public sealed class PhasedJustOneCellPuzzleSuccessful : PhasedJustOneCellPuzzle
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public PhasedJustOneCellPuzzleSuccessful(
-		scoped ref readonly Grid puzzle,
-		scoped ref readonly Grid baseGrid,
+		ref readonly Grid puzzle,
+		ref readonly Grid baseGrid,
 		Cell cell,
 		Digit digit,
 		Step step,
-		scoped ref readonly CellMap interferingCells,
+		ref readonly CellMap interferingCells,
 		double interferingRatio
 	) : base(cell, digit, step, in baseGrid, in interferingCells, interferingRatio) => (Puzzle, FailedReason) = (puzzle, GeneratingFailedReason.None);
 }

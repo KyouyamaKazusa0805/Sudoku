@@ -15,8 +15,8 @@ public sealed partial class MWingStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap node1,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap node2,
+	[PrimaryConstructorParameter] ref readonly CellMap node1,
+	[PrimaryConstructorParameter] ref readonly CellMap node2,
 	[PrimaryConstructorParameter] Cell strongXyCell,
 	[PrimaryConstructorParameter] Cell weakXyCell,
 	[PrimaryConstructorParameter] Mask digitsMask

@@ -111,7 +111,7 @@ public abstract partial class StepSearcher(
 	/// </returns>
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
-	protected internal abstract Step? Collect(scoped ref AnalysisContext context);
+	protected internal abstract Step? Collect(ref AnalysisContext context);
 
 	/// <inheritdoc/>
 	StepSearcherMetadataInfo IMetadataObject<StepSearcherMetadataInfo>.GetMetadata() => Metadata;

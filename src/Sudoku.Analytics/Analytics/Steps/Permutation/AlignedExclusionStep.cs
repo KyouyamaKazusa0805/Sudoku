@@ -12,7 +12,7 @@ public sealed partial class AlignedExclusionStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] (Digit[], Cell)[] lockedCombinations
 ) : PermutationStep(conclusions, views, options), ISizeTrait
 {

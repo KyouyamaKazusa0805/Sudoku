@@ -7,7 +7,7 @@ namespace System.Text.Json;
 public sealed class RangeConverter : JsonConverter<Range>
 {
 	/// <inheritdoc/>
-	public override Range Read(scoped ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+	public override Range Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
 	{
 		if (reader.GetString() is not string s || !s.Contains(".."))
 		{

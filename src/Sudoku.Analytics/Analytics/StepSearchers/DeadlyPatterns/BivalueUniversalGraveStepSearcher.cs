@@ -48,9 +48,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 
 
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var emptyCellsCount = EmptyCells.Count;
 		var candidatesCount = 0;
 		foreach (var cell in EmptyCells)
@@ -81,9 +81,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private Step? CheckForTrueCandidateTypes(scoped ref AnalysisContext context)
+	private Step? CheckForTrueCandidateTypes(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		switch (TrueCandidate.GetAllTrueCandidates(in grid))
 		{
 			case []:
@@ -147,7 +147,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		return null;
 
 
-		static bool checkForSingleDigit(scoped ref readonly CandidateMap trueCandidates)
+		static bool checkForSingleDigit(ref readonly CandidateMap trueCandidates)
 		{
 			var i = 0;
 			Unsafe.SkipInit(out Digit comparer);
@@ -174,9 +174,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	/// <param name="context"><inheritdoc cref="Collect(ref AnalysisContext)" path="/param[@name='context']"/></param>
 	/// <returns><inheritdoc cref="Collect(ref AnalysisContext)" path="/returns"/></returns>
-	private BivalueUniversalGraveFalseCandidateTypeStep? CheckForFalseCandidateTypes(scoped ref AnalysisContext context)
+	private BivalueUniversalGraveFalseCandidateTypeStep? CheckForFalseCandidateTypes(ref AnalysisContext context)
 	{
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var multivalueCells = EmptyCells - BivalueCells;
 		if ((multivalueCells.PeerIntersection & EmptyCells) is not (var falseCandidatePossibleCells and not []))
 		{
@@ -216,7 +216,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		return null;
 
 
-		static bool formsDeadlyPattern(scoped ref readonly Grid grid)
+		static bool formsDeadlyPattern(ref readonly Grid grid)
 		{
 			_ = grid is { BivalueCells: var bivalueCells, EmptyCells: var emptyCells, CandidatesMap: var candidatesMap };
 			if (bivalueCells != emptyCells)
@@ -224,7 +224,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				return false;
 			}
 
-			scoped var housesCount = (stackalloc int[3]);
+			var housesCount = (stackalloc int[3]);
 			foreach (var cell in emptyCells)
 			{
 				foreach (var digit in grid.GetCandidates(cell))
@@ -251,12 +251,12 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueUniversalGraveType2Step? CheckType2(
 		List<Step> accumulator,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CandidateMap trueCandidates,
+		ref AnalysisContext context,
+		ref readonly CandidateMap trueCandidates,
 		bool onlyFindOne
 	)
 	{
-		scoped var cells = (stackalloc Cell[trueCandidates.Count]);
+		var cells = (stackalloc Cell[trueCandidates.Count]);
 		var i = 0;
 		foreach (var candidate in trueCandidates)
 		{
@@ -298,9 +298,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueUniversalGraveType3Step? CheckType3Naked(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CandidateMap trueCandidates,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CandidateMap trueCandidates,
 		bool onlyFindOne
 	)
 	{
@@ -399,13 +399,13 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueUniversalGraveType4Step? CheckType4(
 		List<Step> accumulator,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CandidateMap trueCandidates,
+		ref AnalysisContext context,
+		ref readonly CandidateMap trueCandidates,
 		bool onlyFindOne
 	)
 	{
 		// Conjugate pairs should lie in two cells.
-		scoped var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
+		var candsGroupByCell = from candidate in trueCandidates group candidate by candidate / 9;
 		if (candsGroupByCell.Length != 2)
 		{
 			return null;
@@ -521,8 +521,8 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueUniversalGraveMultipleStep? CheckMultiple(
 		List<Step> accumulator,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CandidateMap trueCandidates,
+		ref AnalysisContext context,
+		ref readonly CandidateMap trueCandidates,
 		bool onlyFindOne
 	)
 	{
@@ -573,9 +573,9 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	/// </summary>
 	private BivalueUniversalGraveXzStep? CheckXz(
 		List<Step> accumulator,
-		scoped ref readonly Grid grid,
-		scoped ref AnalysisContext context,
-		scoped ref readonly CandidateMap trueCandidates,
+		ref readonly Grid grid,
+		ref AnalysisContext context,
+		ref readonly CandidateMap trueCandidates,
 		bool onlyFindOne
 	)
 	{

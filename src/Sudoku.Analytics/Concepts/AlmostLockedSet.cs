@@ -21,8 +21,8 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public sealed partial class AlmostLockedSet(
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
-	[PrimaryConstructorParameter, HashCodeMember] scoped ref readonly CellMap cells,
-	[PrimaryConstructorParameter] scoped ref readonly CellMap possibleEliminationMap,
+	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
+	[PrimaryConstructorParameter] ref readonly CellMap possibleEliminationMap,
 	[PrimaryConstructorParameter] CellMap[] eliminationMap
 ) :
 	IComparable<AlmostLockedSet>,
@@ -69,7 +69,7 @@ public sealed partial class AlmostLockedSet(
 	{
 		get
 		{
-			scoped var digits = DigitsMask.GetAllSets();
+			var digits = DigitsMask.GetAllSets();
 			var result = new Mask[StrongRelationsCount[digits.Length - 1]];
 			for (var (i, x, l) = (0, 0, digits.Length); i < l - 1; i++)
 			{
@@ -144,7 +144,7 @@ public sealed partial class AlmostLockedSet(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <returns>All possible found <see cref="AlmostLockedSet"/> instances.</returns>
-	public static ReadOnlySpan<AlmostLockedSet> Collect(scoped ref readonly Grid grid)
+	public static ReadOnlySpan<AlmostLockedSet> Collect(ref readonly Grid grid)
 	{
 		_ = grid is { EmptyCells: var emptyMap, BivalueCells: var bivalueMap, CandidatesMap: var candidatesMap };
 

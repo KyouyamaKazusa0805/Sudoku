@@ -33,7 +33,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 	/// <returns>
 	/// The target digit path. If none found, a longest path will be returned.
 	/// </returns>
-	public DisorderedIttoryuDigitPath FindPath(scoped ref readonly Grid grid)
+	public DisorderedIttoryuDigitPath FindPath(ref readonly Grid grid)
 	{
 		var digitsStack = new Stack<Digit>();
 		try
@@ -55,7 +55,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			Grid grid,
 			Digit digit,
 			Stack<Digit> digitsStack,
-			scoped ReadOnlySpan<PathNode> foundNodes,
+			ReadOnlySpan<PathNode> foundNodes,
 			Mask finishedDigits,
 			bool skipApplying = false
 		)
@@ -131,7 +131,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 
-		void fullHouses(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void fullHouses(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.FullHouse))
 			{
@@ -148,9 +148,9 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 
-		void hiddenSingles(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void hiddenSingles(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
-			scoped var candidatesMap = grid.CandidatesMap;
+			var candidatesMap = grid.CandidatesMap;
 			for (var house = 0; house < 27; house++)
 			{
 				var houseCode = house.ToHouseType() switch
@@ -171,7 +171,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 			}
 		}
 
-		void nakedSingles(scoped ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
+		void nakedSingles(ref readonly Grid grid, List<PathNode> foundNodes, Digit digit)
 		{
 			if (!SupportedTechniques.Contains(Technique.NakedSingle))
 			{
@@ -200,7 +200,7 @@ file sealed class AlreadyFinishedException : Exception;
 /// <param name="Grid">Indicates the currently-used grid.</param>
 /// <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
 /// <param name="Candidate">Indicates the target candidate.</param>
-file sealed record PathNode(scoped ref readonly Grid Grid, House House, Candidate Candidate) : ICultureFormattable
+file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candidate) : ICultureFormattable
 {
 	/// <summary>
 	/// Indicates the target digit.

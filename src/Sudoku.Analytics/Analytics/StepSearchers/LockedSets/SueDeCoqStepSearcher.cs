@@ -13,7 +13,7 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class SueDeCoqStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
-	protected internal override Step? Collect(scoped ref AnalysisContext context)
+	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		// A valid SdC needs at least 4 cells like:
 		//
@@ -24,7 +24,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 			return null;
 		}
 
-		scoped ref readonly var grid = ref context.Grid;
+		ref readonly var grid = ref context.Grid;
 		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
 		{
