@@ -72,63 +72,43 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	{
 		// Recursively searching for all possible steps.
 		var accumulator = new List<ComplexSingleStep>();
-		entry(ref context, accumulator, in context.Grid);
+		dfs(ref context, accumulator, in context.Grid, [], []);
 
 		// Remove steps that don't satisfy the size limit.
-		var stepsSatisfied = new List<Step>();
-		foreach (var step in accumulator)
-		{
-			var flag = true;
-			foreach (var technique in
-				from techniquesGroup in step.IndirectTechniques
-				from technique in techniquesGroup
-				select technique)
-			{
-				if (technique.GetGroup() == TechniqueGroup.Subset)
-				{
-					var (size, isHidden) = technique switch
-					{
-						Technique.NakedPair or Technique.NakedPairPlus or Technique.LockedPair => (2, false),
-						Technique.HiddenPair or Technique.LockedHiddenPair => (2, true),
-						Technique.NakedTriple or Technique.NakedTriplePlus or Technique.LockedTriple => (3, false),
-						Technique.HiddenTriple or Technique.LockedHiddenTriple => (3, true),
-						Technique.NakedQuadruple or Technique.NakedQuadruplePlus => (4, false),
-						Technique.HiddenQuadruple => (4, true)
-					};
-					if (isHidden && size > HiddenSubsetMaxSize || !isHidden && size > NakedSubsetMaxSize)
-					{
-						flag = false;
-						break;
-					}
-				}
-			}
-			if (flag)
-			{
-				stepsSatisfied.Add(step);
-			}
-		}
+		var stepsFiltered = filterStepsBySize(accumulator);
 
 		// Sort instances if worth.
 		// We don't remove duplicate items because the searcher may not produce same steps,
 		// and the corresponding step type doesn't override method 'Equals'.
-		if (stepsSatisfied.Count == 0)
+		if (stepsFiltered.Count == 0)
 		{
 			return null;
 		}
 
-		StepMarshal.SortItems(stepsSatisfied);
+		StepMarshal.SortItems(stepsFiltered);
 		if (context.OnlyFindOne)
 		{
-			return stepsSatisfied[0];
+			return stepsFiltered[0];
 		}
 
-		context.Accumulator.AddRange(stepsSatisfied);
+		context.Accumulator.AddRange(stepsFiltered);
 		return null;
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void entry(scoped ref AnalysisContext context, List<ComplexSingleStep> accumulator, scoped ref readonly Grid grid)
-			=> dfs(ref context, accumulator, in grid, [], []);
+		static void pushStep(out Grid playground, scoped ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
+		{
+			interimSteps.AddLast(indirectStep);
+			playground = baseGrid;
+			playground.Apply(indirectStep);
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static void popStep(scoped ref Grid playground, scoped ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
+		{
+			interimSteps.RemoveLast();
+			playground = baseGrid;
+		}
 
 		void dfs(
 			scoped ref AnalysisContext context,
@@ -268,19 +248,42 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			}
 		}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void pushStep(out Grid playground, scoped ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
+		List<Step> filterStepsBySize(List<ComplexSingleStep> accumulator)
 		{
-			interimSteps.AddLast(indirectStep);
-			playground = baseGrid;
-			playground.Apply(indirectStep);
-		}
+			var stepsSatisfied = new List<Step>();
+			foreach (var step in accumulator)
+			{
+				var flag = true;
+				foreach (var technique in
+					from techniquesGroup in step.IndirectTechniques
+					from technique in techniquesGroup
+					select technique)
+				{
+					if (technique.GetGroup() == TechniqueGroup.Subset)
+					{
+						var (size, isHidden) = technique switch
+						{
+							Technique.NakedPair or Technique.NakedPairPlus or Technique.LockedPair => (2, false),
+							Technique.HiddenPair or Technique.LockedHiddenPair => (2, true),
+							Technique.NakedTriple or Technique.NakedTriplePlus or Technique.LockedTriple => (3, false),
+							Technique.HiddenTriple or Technique.LockedHiddenTriple => (3, true),
+							Technique.NakedQuadruple or Technique.NakedQuadruplePlus => (4, false),
+							Technique.HiddenQuadruple => (4, true)
+						};
+						if (isHidden && size > HiddenSubsetMaxSize || !isHidden && size > NakedSubsetMaxSize)
+						{
+							flag = false;
+							break;
+						}
+					}
+				}
+				if (flag)
+				{
+					stepsSatisfied.Add(step);
+				}
+			}
 
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void popStep(scoped ref Grid playground, scoped ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
-		{
-			interimSteps.RemoveLast();
-			playground = baseGrid;
+			return stepsSatisfied;
 		}
 	}
 }
