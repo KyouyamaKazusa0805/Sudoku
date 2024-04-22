@@ -100,9 +100,7 @@ public ref partial struct Generator
 
 			GenerateInitPos(cluesCount, symmetricType, cancellationToken);
 
-			ref var p = ref _newValidSudoku;
-			p.Fix();
-			return p;
+			return _newValidSudoku.FixedGrid;
 		}
 		catch (OperationCanceledException)
 		{
