@@ -195,7 +195,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 															new HouseViewNode(ColorIdentifier.Auxiliary3, b)
 														]
 													],
-													context.PredefinedOptions,
+													context.Options,
 													rowMask,
 													columnMask,
 													blockMask,

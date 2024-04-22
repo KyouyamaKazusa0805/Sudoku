@@ -430,7 +430,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					new CellViewNode(ColorIdentifier.Normal, corner[1])
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			true,
 			1 << l1 | 1 << l2,
 			corner[0],
@@ -516,7 +516,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					new CellViewNode(ColorIdentifier.Normal, corner[1])
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			true,
 			1 << l1 | 1 << l2,
 			corner[0],
@@ -645,7 +645,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 							new CellViewNode(ColorIdentifier.Normal, corner[1])
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					true,
 					1 << l1 | 1 << l2,
 					corner[0],
@@ -738,7 +738,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 								new CellViewNode(ColorIdentifier.Normal, corner[1])
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						true,
 						1 << l1 | 1 << l2,
 						corner[0],
@@ -851,7 +851,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					new CellViewNode(ColorIdentifier.Normal, corner[1])
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			true,
 			1 << l1 | 1 << l2,
 			corner[0],
@@ -934,7 +934,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					new CellViewNode(ColorIdentifier.Normal, corner[1])
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			true,
 			1 << l1 | 1 << l2,
 			corner[0],
@@ -1045,7 +1045,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					new CellViewNode(ColorIdentifier.Normal, corner[1])
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			true,
 			1 << l1 | 1 << l2,
 			corner[0],

@@ -96,7 +96,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var step = new BivalueUniversalGraveType1Step(
 					[new(Assignment, trueCandidate)],
 					[[new CandidateViewNode(ColorIdentifier.Normal, trueCandidate)]],
-					context.PredefinedOptions
+					context.Options
 				);
 				if (context.OnlyFindOne)
 				{
@@ -201,7 +201,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 				var step = new BivalueUniversalGraveFalseCandidateTypeStep(
 					[new(Elimination, cell, digit)],
 					[[.. from multiValueCell in multivalueCells select new CellViewNode(ColorIdentifier.Normal, multiValueCell)]],
-					context.PredefinedOptions,
+					context.Options,
 					cell * 9 + digit
 				);
 				if (context.OnlyFindOne)
@@ -279,7 +279,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var step = new BivalueUniversalGraveType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
-			context.PredefinedOptions,
+			context.Options,
 			digit,
 			in cellsMap
 		);
@@ -375,7 +375,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 					var step = new BivalueUniversalGraveType3Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-						context.PredefinedOptions,
+						context.Options,
 						in trueCandidates,
 						digitsMask,
 						in cells,
@@ -499,7 +499,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 							new HouseViewNode(ColorIdentifier.Normal, house)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					MaskOperations.Create(digits),
 					[.. cells],
 					new(c1, c2, conjugatePairDigit)
@@ -555,7 +555,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		var step = new BivalueUniversalGraveMultipleStep(
 			[.. conclusions],
 			[[.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)]],
-			context.PredefinedOptions,
+			context.Options,
 			in trueCandidates
 		);
 		if (onlyFindOne)
@@ -618,7 +618,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 						.. from candidate in trueCandidates select new CandidateViewNode(ColorIdentifier.Normal, candidate)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				mask,
 				[c1, c2],
 				cell

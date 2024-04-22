@@ -271,7 +271,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 								],
 								GetDirectView(digit, bs, cs, in fins, searchRow)
 							],
-							context.PredefinedOptions,
+							context.Options,
 							digit,
 							HouseMaskOperations.Create(bs),
 							HouseMaskOperations.Create(cs),

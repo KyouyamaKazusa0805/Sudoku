@@ -182,7 +182,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						var step = new AlmostLockedSetsXyWingStep(
 							[.. conclusions],
 							[[.. cellOffsets, .. candidateOffsets]],
-							context.PredefinedOptions,
+							context.Options,
 							a,
 							b,
 							c,

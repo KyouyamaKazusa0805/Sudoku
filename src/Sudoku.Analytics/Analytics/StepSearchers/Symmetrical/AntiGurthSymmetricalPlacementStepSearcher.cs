@@ -212,7 +212,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			SymmetricType.Diagonal,
 			[.. mapping]
 		);
@@ -344,7 +344,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			SymmetricType.AntiDiagonal,
 			[.. mapping]
 		);
@@ -446,7 +446,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			SymmetricType.XAxis,
 			[.. mapping]
 		);
@@ -548,7 +548,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			SymmetricType.YAxis,
 			[.. mapping]
 		);
@@ -666,7 +666,7 @@ public sealed partial class AntiGurthSymmetricalPlacementStepSearcher : StepSear
 		return new(
 			[new(Elimination, elimCell, elimDigit)],
 			[[.. cellOffsets, .. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			SymmetricType.Central,
 			[.. mapping]
 		);

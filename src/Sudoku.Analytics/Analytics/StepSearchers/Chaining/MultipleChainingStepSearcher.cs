@@ -403,7 +403,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	)
 	{
 		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio);
+		var result = new BinaryForcingChainsStep(conclusion, context.Options, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -421,7 +421,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 	)
 	{
 		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio);
+		var result = new BinaryForcingChainsStep(conclusion, context.Options, src, dstOn, dstOff, isAbsurd, AllowNishio);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -450,7 +450,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 			}
 		}
 
-		var result = new CellForcingChainsStep(conclusion, context.PredefinedOptions, srcCell, chains, AllowDynamic);
+		var result = new CellForcingChainsStep(conclusion, context.Options, srcCell, chains, AllowDynamic);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -477,7 +477,7 @@ public partial class MultipleChainingStepSearcher : StepSearcher
 			chains.Add(tempCell, outcomes[tempCell][target]);
 		}
 
-		var result = new RegionForcingChainsStep(conclusions, context.PredefinedOptions, houseIndex, digit, chains, AllowDynamic);
+		var result = new RegionForcingChainsStep(conclusions, context.Options, houseIndex, digit, chains, AllowDynamic);
 		return new(result, result.CreateViews(in grid));
 	}
 }

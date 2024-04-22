@@ -100,7 +100,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	)
 	{
 		var conclusion = (Conclusion[])[new(Assignment, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, context.Options, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -119,7 +119,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 	)
 	{
 		var conclusion = (Conclusion[])[new(Elimination, target.Candidate)];
-		var result = new BinaryForcingChainsStep(conclusion, context.PredefinedOptions, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
+		var result = new BinaryForcingChainsStep(conclusion, context.Options, src, dstOn, dstOff, isAbsurd, AllowNishio, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -149,7 +149,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 			}
 		}
 
-		var result = new CellForcingChainsStep(conclusion, context.PredefinedOptions, srcCell, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new CellForcingChainsStep(conclusion, context.Options, srcCell, chains, AllowDynamic, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -177,7 +177,7 @@ public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChain
 			chains.Add(tempCell, outcomes[tempCell][target]);
 		}
 
-		var result = new RegionForcingChainsStep(conclusions, context.PredefinedOptions, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
+		var result = new RegionForcingChainsStep(conclusions, context.Options, houseIndex, digit, chains, AllowDynamic, DynamicNestingLevel);
 		return new(result, result.CreateViews(in grid));
 	}
 }

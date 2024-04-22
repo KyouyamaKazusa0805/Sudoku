@@ -18,11 +18,11 @@ internal static class SubsetModule
 	{
 		var p = stackalloc SubsetModuleSearcherFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var q = stackalloc SubsetModuleSearcherFuncPtr[] { &NakedSubset, &HiddenSubset };
-		var searchers = context.PredefinedOptions is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
+		var searchers = context.Options is { DistinctDirectMode: true, IsDirectMode: true } ? p : q;
 
 		scoped ref readonly var grid = ref context.Grid;
-		scoped var candidatesMapForGrid = grid.CandidatesMap;
 		var emptyCellsForGrid = grid.EmptyCells;
+		scoped var candidatesMapForGrid = grid.CandidatesMap;
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
 			for (var i = 0; i < 2; i++)
@@ -33,6 +33,7 @@ internal static class SubsetModule
 				}
 			}
 		}
+
 		return null;
 	}
 #pragma warning restore CS9080
@@ -161,7 +162,7 @@ internal static class SubsetModule
 					var step = new HiddenSubsetStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house), .. cellOffsets]],
-						context.PredefinedOptions,
+						context.Options,
 						house,
 						in cells,
 						digitsMask,
@@ -253,7 +254,7 @@ internal static class SubsetModule
 				var step = new NakedSubsetStep(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-					context.PredefinedOptions,
+					context.Options,
 					house,
 					in cells,
 					digitsMask,

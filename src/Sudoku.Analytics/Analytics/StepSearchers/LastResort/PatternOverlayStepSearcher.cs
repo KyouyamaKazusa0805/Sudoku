@@ -29,7 +29,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 
 			var step = new PatternOverlayStep(
 				[.. from cell in template select new Conclusion(Elimination, cell, digit)],
-				context.PredefinedOptions
+				context.Options
 			);
 			if (context.OnlyFindOne)
 			{

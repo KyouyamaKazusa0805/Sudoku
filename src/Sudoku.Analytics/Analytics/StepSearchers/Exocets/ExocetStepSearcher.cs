@@ -1659,7 +1659,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -1878,7 +1878,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -1997,7 +1997,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -2200,7 +2200,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in incompatibleCandidates,
 			in baseCells,
@@ -2318,7 +2318,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			inferredTargetPairMask,
 			in baseCells,
@@ -2411,7 +2411,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			inferredTargetPairMask,
 			in baseCells,
@@ -2543,7 +2543,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 									]
 								],
-								context.PredefinedOptions,
+								context.Options,
 								baseCellsDigitsMask,
 								in baseCells,
 								in targetCells,
@@ -2716,7 +2716,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			lockedDigitsMask,
 			in baseCells,
@@ -2795,7 +2795,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -2939,7 +2939,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			trueBaseDigit,
 			in baseCells,
@@ -3057,7 +3057,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			lockedDigitsMask,
 			in baseCells,
@@ -3134,7 +3134,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			valueDigitCell,
 			missingValueCell,
@@ -3222,7 +3222,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			valueDigitCell,
 			missingValueCell,
@@ -3325,7 +3325,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			valueDigitCell,
 			missingValueCell,
@@ -3406,7 +3406,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			valueDigitCell,
 			missingValueCell,
@@ -3477,7 +3477,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -3566,7 +3566,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -3732,7 +3732,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -3900,7 +3900,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			[targetCell],
@@ -4035,7 +4035,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			[targetCell],
@@ -4124,7 +4124,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -4210,7 +4210,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			[targetCell],
@@ -4292,7 +4292,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			[targetCell],
@@ -4417,7 +4417,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,
@@ -4541,7 +4541,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					//.. from house in housesMask select new HouseViewNode(ColorIdentifier.Auxiliary2, house)
 				]
 			],
-			context.PredefinedOptions,
+			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
 			in targetCells,

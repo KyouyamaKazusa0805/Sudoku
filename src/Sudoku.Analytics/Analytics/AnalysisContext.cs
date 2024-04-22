@@ -3,23 +3,8 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Defines a context that is used by step searchers to check the details of the solving and analysis information.
 /// </summary>
-/// <param name="accumulator">
-/// <para>The accumulator to store each step.</para>
-/// <para>
-/// If <see cref="OnlyFindOne"/> is set to <see langword="true"/>,
-/// this argument will become useless because we only finding one step is okay,
-/// so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-/// Therefore, this argument can be <see langword="null"/> in this case.
-/// </para>
-/// </param>
 /// <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
 /// <param name="initialGrid">Indicates the initial grid.</param>
-/// <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
-/// <param name="isSukaku">Indicates whether the puzzle type is Sukaku.</param>
-/// <param name="predefinedOptions">
-/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
-/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
-/// </param>
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
@@ -30,14 +15,31 @@ namespace Sudoku.Analytics;
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
-	[PrimaryConstructorParameter(SetterExpression = "internal set")] List<Step>? accumulator,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")] ref readonly Grid grid,
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "InitialGrid")] ref readonly Grid initialGrid,
-	[PrimaryConstructorParameter(MembersNotNull = "false: Accumulator")] bool onlyFindOne,
-	[PrimaryConstructorParameter] bool isSukaku,
-	[PrimaryConstructorParameter] StepSearcherOptions predefinedOptions
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")]
+	ref readonly Grid grid,
+
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "InitialGrid")]
+	ref readonly Grid initialGrid
 )
 {
+	/// <summary>
+	/// Indicates whether the puzzle type is Sukaku.
+	/// </summary>
+	public required bool IsSukaku { get; init; }
+
+	/// <summary>
+	/// Indicates whether the solver only find one possible step and exit the searcher.
+	/// </summary>
+	/// <remarks>
+	/// If this property returns <see langword="true"/>, property <see cref="Accumulator"/>
+	/// will become useless because we only finding one step is okay,
+	/// so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+	/// Therefore, property <see cref="Accumulator"/> can be <see langword="null"/> in this case.
+	/// </remarks>
+	/// <seealso cref="Accumulator"/>
+	[MemberNotNullWhen(false, nameof(Accumulator))]
+	public required bool OnlyFindOne { get; init; }
+
 	/// <summary>
 	/// Indicates whether a puzzle satisfies a Gurth's Symmetrical Placement (GSP) pattern.
 	/// If satisfying, what kind of symmetry the pattern will be.
@@ -75,4 +77,15 @@ public ref partial struct AnalysisContext(
 	/// </b></remarks>
 	/// <seealso cref="GspPatternInferred"/>
 	public ReadOnlySpan<Digit?> MappingRelations { get; internal set; }
+
+	/// <summary>
+	/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
+	/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
+	/// </summary>
+	public required StepSearcherOptions Options { get; init; }
+
+	/// <summary>
+	/// Indicates the accumulator to store each step while searching.
+	/// </summary>
+	public List<Step>? Accumulator { get; internal set; }
 }

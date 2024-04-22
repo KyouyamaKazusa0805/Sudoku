@@ -102,7 +102,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 								new HouseViewNode(ColorIdentifier.Auxiliary1, sameHouse)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						digit,
 						h1,
 						h2,

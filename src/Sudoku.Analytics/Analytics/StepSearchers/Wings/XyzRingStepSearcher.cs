@@ -252,7 +252,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 											select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + intersectedDigit),
 										]
 									],
-									context.PredefinedOptions,
+									context.Options,
 									intersectedDigit,
 									pivot,
 									leafCell1,

@@ -160,26 +160,24 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			var totalCandidatesCount = playground.CandidatesCount;
 			var (collectedSteps, stepGrids, stepSearchers) = (new List<Step>(DefaultStepsCapacity), new List<Grid>(DefaultStepsCapacity), ResultStepSearchers);
 			var timestampOriginal = Stopwatch.GetTimestamp();
-			var accumulator =
+			var accumulator = IsFullApplying
+				|| RandomizedChoosing
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-				IsFullApplying || RandomizedChoosing || ConditionalOptions?.LimitedSingle is not (null or 0)
-#else
-				IsFullApplying || RandomizedChoosing
+				|| ConditionalOptions?.LimitedSingle is not (null or 0)
 #endif
 				? []
 				: default(List<Step>);
-			scoped var context = new AnalysisContext(
-				accumulator,
-				in playground,
-				in puzzle,
+			scoped var context = new AnalysisContext(in playground, in puzzle)
+			{
+				Accumulator = accumulator,
+				IsSukaku = puzzle.PuzzleType == SudokuType.Sukaku,
+				Options = Options,
+				OnlyFindOne = !IsFullApplying
+					&& !RandomizedChoosing
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
-				!IsFullApplying && !RandomizedChoosing && ConditionalOptions?.LimitedSingle is null or 0,
-#else
-				!IsFullApplying && !RandomizedChoosing,
+					&& ConditionalOptions?.LimitedSingle is null or 0
 #endif
-				puzzle.PuzzleType == SudokuType.Sukaku,
-				Options
-			);
+			};
 
 			// Determine whether the grid is a GSP pattern. If so, check for eliminations.
 			if ((symmetricType, selfPairedDigitsMask) is (not SymmetricType.None, not 0) && !mappingDigits.IsEmpty)

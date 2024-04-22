@@ -164,7 +164,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				lastCell,
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
@@ -241,7 +241,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				lastCell,
 				digit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
@@ -312,7 +312,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				lastCell,
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,

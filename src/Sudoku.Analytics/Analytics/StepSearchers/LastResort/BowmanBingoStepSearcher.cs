@@ -66,7 +66,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 						new BowmanBingoStep(
 							[new(Elimination, startCandidate)],
 							[[.. candidateOffsets, .. GetLinks()]],
-							context.PredefinedOptions,
+							context.Options,
 							[.. _tempConclusions]
 						)
 					);
@@ -106,7 +106,12 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		int length
 	)
 	{
-		scoped var context2 = new AnalysisContext(null, in grid, in Grid.NullRef, true, context.IsSukaku, context.PredefinedOptions);
+		scoped var context2 = new AnalysisContext(in grid, in Grid.NullRef)
+		{
+			OnlyFindOne = true,
+			IsSukaku = context.IsSukaku,
+			Options = context.Options
+		};
 		if (length == 0 || SinglesSearcher.Collect(ref context2) is not SingleStep { Conclusions: [{ Cell: var c, Digit: var d } conclusion, ..] })
 		{
 			// Two cases we don't need to go on.
@@ -141,7 +146,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 			var step = new BowmanBingoStep(
 				[new(Elimination, startCand)],
 				[[.. candidateOffsets, .. GetLinks()]],
-				context.PredefinedOptions,
+				context.Options,
 				[.. _tempConclusions]
 			);
 			if (onlyFindOne)

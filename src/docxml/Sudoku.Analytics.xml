@@ -8,47 +8,34 @@
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
-            <param name="accumulator">
-            <para>The accumulator to store each step.</para>
-            <para>
-            If <see cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
-            this argument will become useless because we only finding one step is okay,
-            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-            Therefore, this argument can be <see langword="null"/> in this case.
-            </para>
-            </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
-            <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
-            <param name="isSukaku">Indicates whether the puzzle type is Sukaku.</param>
-            <param name="predefinedOptions">
-            Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            The value can be <see langword="null"/> if the target step searcher doesn't use this property.
-            </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(System.Collections.Generic.List{Sudoku.Analytics.Step},Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Boolean,System.Boolean,Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
             </summary>
-            <param name="accumulator">
-            <para>The accumulator to store each step.</para>
-            <para>
-            If <see cref="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne"/> is set to <see langword="true"/>,
-            this argument will become useless because we only finding one step is okay,
-            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
-            Therefore, this argument can be <see langword="null"/> in this case.
-            </para>
-            </param>
             <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
             <param name="initialGrid">Indicates the initial grid.</param>
-            <param name="onlyFindOne">Indicates whether the solver only find one possible step and exit the searcher.</param>
-            <param name="isSukaku">Indicates whether the puzzle type is Sukaku.</param>
-            <param name="predefinedOptions">
-            Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            The value can be <see langword="null"/> if the target step searcher doesn't use this property.
-            </param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.IsSukaku">
+            <summary>
+            Indicates whether the puzzle type is Sukaku.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
+            <summary>
+            Indicates whether the solver only find one possible step and exit the searcher.
+            </summary>
+            <remarks>
+            If this property returns <see langword="true"/>, property <see cref="P:Sudoku.Analytics.AnalysisContext.Accumulator"/>
+            will become useless because we only finding one step is okay,
+            so we may not use the accumulator to store all possible steps, in order to optimize the performance.
+            Therefore, property <see cref="P:Sudoku.Analytics.AnalysisContext.Accumulator"/> can be <see langword="null"/> in this case.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.AnalysisContext.Accumulator"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.GspPatternInferred">
             <summary>
@@ -87,6 +74,17 @@
             </b></remarks>
             <seealso cref="P:Sudoku.Analytics.AnalysisContext.GspPatternInferred"/>
         </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.Options">
+            <summary>
+            Indicates the pre-defined options set by user in type <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            The value can be <see langword="null"/> if the target step searcher doesn't use this property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisContext.Accumulator">
+            <summary>
+            Indicates the accumulator to store each step while searching.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.AnalysisContext.Grid">
             <summary>
             The generated field declaration for parameter <c>grid</c>.
@@ -95,26 +93,6 @@
         <member name="F:Sudoku.Analytics.AnalysisContext.InitialGrid">
             <summary>
             The generated field declaration for parameter <c>initialGrid</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.Accumulator">
-            <summary>
-            The generated property declaration for parameter <c>accumulator</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.OnlyFindOne">
-            <summary>
-            The generated property declaration for parameter <c>onlyFindOne</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.IsSukaku">
-            <summary>
-            The generated property declaration for parameter <c>isSukaku</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalysisContext.PredefinedOptions">
-            <summary>
-            The generated property declaration for parameter <c>predefinedOptions</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisContext.Equals(System.Object)">

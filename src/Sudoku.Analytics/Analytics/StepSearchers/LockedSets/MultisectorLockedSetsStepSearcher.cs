@@ -203,7 +203,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 				var step = new MultisectorLockedSetsStep(
 					[.. conclusions],
 					[[.. candidateOffsets]],
-					context.PredefinedOptions,
+					context.Options,
 					in map,
 					rows,
 					columns

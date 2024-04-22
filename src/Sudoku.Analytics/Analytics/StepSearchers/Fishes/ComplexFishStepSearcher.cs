@@ -453,7 +453,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 												.. houseOffsets
 											]
 										],
-										context.PredefinedOptions,
+										context.Options,
 										digit,
 										baseSetsMask,
 										coverSetsMask,
@@ -487,7 +487,13 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		scoped var context2 = new AnalysisContext(tempList, in playground, in Grid.NullRef, false, context.IsSukaku, context.PredefinedOptions);
+		scoped var context2 = new AnalysisContext(in playground, in Grid.NullRef)
+		{
+			Accumulator = tempList,
+			OnlyFindOne = false,
+			IsSukaku = context.IsSukaku,
+			Options = context.Options
+		};
 		ElimsSearcher.Collect(ref context2);
 
 		var result = new CellMap[9];

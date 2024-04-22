@@ -83,7 +83,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 							.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, realBaseSet, in intersection)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					digit,
 					realBaseSet,
 					realCoverSet

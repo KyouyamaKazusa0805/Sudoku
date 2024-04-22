@@ -293,7 +293,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var step = new BorescoperDeadlyPatternType1Step(
 				[.. from digit in elimMask select new Conclusion(Elimination, elimCell, digit)],
 				[[.. candidateOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				in map,
 				tempMask
 			);
@@ -354,7 +354,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var step = new BorescoperDeadlyPatternType2Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, otherDigit)],
 				[[.. candidateOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				in map,
 				tempMask,
 				otherDigit
@@ -462,7 +462,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 						var step = new BorescoperDeadlyPatternType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
-							context.PredefinedOptions,
+							context.Options,
 							in map,
 							tempMask,
 							in combination,
@@ -592,7 +592,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 					var step = new BorescoperDeadlyPatternType4Step(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
-						context.PredefinedOptions,
+						context.Options,
 						in map,
 						otherMask,
 						in currentMap,

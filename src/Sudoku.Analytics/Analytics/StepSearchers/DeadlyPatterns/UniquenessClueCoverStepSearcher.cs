@@ -84,7 +84,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 						new CellViewNode(ColorIdentifier.Normal, c2)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				[c1, c2],
 				(Mask)(1 << c1Digit | 1 << c2Digit),
 				chuteIndex

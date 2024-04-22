@@ -118,7 +118,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var step = new FullHouseStep(
 					[new(Assignment, resultCell, digit)],
 					[[new HouseViewNode(ColorIdentifier.Normal, house)]],
-					context.PredefinedOptions,
+					context.Options,
 					house,
 					resultCell,
 					digit,
@@ -176,7 +176,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				var step = new NakedSingleStep(
 					[new(Assignment, cell, digit)],
 					[[.. SingleModule.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
-					context.PredefinedOptions,
+					context.Options,
 					cell,
 					digit,
 					subtype,
@@ -203,7 +203,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 	private unsafe Step? Collect_NonIttoryuMode(scoped ref AnalysisContext context)
 	{
 		scoped ref readonly var grid = ref context.Grid;
-		var isFullyMarkedMode = !context.PredefinedOptions.DistinctDirectMode || !context.PredefinedOptions.IsDirectMode;
+		var isFullyMarkedMode = !context.Options.DistinctDirectMode || !context.Options.IsDirectMode;
 
 		// Please note that, by default we should start with hidden singles. However, if a user has set the option
 		// that a step searcher should distinct with direct mode and in-direct mode (i.e. all candidates are displayed),
@@ -254,7 +254,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var step = new FullHouseStep(
 				[new(Assignment, resultCell, digit)],
 				[[new HouseViewNode(ColorIdentifier.Normal, house)]],
-				context.PredefinedOptions,
+				context.Options,
 				house,
 				resultCell,
 				digit,
@@ -365,7 +365,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			var step = new NakedSingleStep(
 				[new(Assignment, cell, digit)],
 				[[.. SingleModule.GetNakedSingleExcluders(in grid, cell, digit, out _)]],
-				context.PredefinedOptions,
+				context.Options,
 				cell,
 				digit,
 				SingleModule.GetNakedSingleSubtype(in grid, cell),
@@ -452,7 +452,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 			(true, _) => new LastDigitStep(
 				[new(Assignment, resultCell, digit)],
 				[[.. cellOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				resultCell,
 				digit,
 				house,
@@ -466,7 +466,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 					var subtype => new HiddenSingleStep(
 						[new(Assignment, resultCell, digit)],
 						[[.. cellOffsets2, new HouseViewNode(ColorIdentifier.Normal, house)]],
-						context.PredefinedOptions,
+						context.Options,
 						resultCell,
 						digit,
 						house,

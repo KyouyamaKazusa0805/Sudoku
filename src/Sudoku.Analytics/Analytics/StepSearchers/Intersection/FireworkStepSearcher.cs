@@ -243,7 +243,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						new BabaGroupViewNode(cell2, 'y', (Mask)(grid.GetCandidates(cell2) & currentDigitsMask))
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				pattern.Map,
 				currentDigitsMask
 			);
@@ -411,7 +411,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 					var step = new FireworkQuadrupleStep(
 						[.. conclusions],
 						[[.. candidateOffsets], [.. cellOffsets1, .. candidateOffsetsView2], [.. cellOffsets2, .. candidateOffsetsView3]],
-						context.PredefinedOptions,
+						context.Options,
 						in map,
 						fourDigitsMask
 					);

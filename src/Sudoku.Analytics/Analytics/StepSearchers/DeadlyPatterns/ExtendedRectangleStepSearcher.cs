@@ -326,7 +326,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		var step = new ExtendedRectangleType1Step(
 			[.. conclusions],
 			[[.. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			in patternCells,
 			normalDigits
 		);
@@ -381,7 +381,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		var step = new ExtendedRectangleType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			in patternCells,
 			normalDigits,
 			extraDigit
@@ -484,7 +484,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							var step = new ExtendedRectangleType3Step(
 								[.. conclusions],
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
-								context.PredefinedOptions,
+								context.Options,
 								in patternCells,
 								normalDigits,
 								in cells,
@@ -541,7 +541,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 							var step = new ExtendedRectangleType3Step(
 								[.. from cell in elimMap select new Conclusion(Elimination, cell * 9 + intersectedDigit)],
 								[[.. candidateOffsets, new HouseViewNode(0, house)]],
-								context.PredefinedOptions,
+								context.Options,
 								in patternCells,
 								normalDigits,
 								in cells,
@@ -662,7 +662,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				var step = new ExtendedRectangleType1Step(
 					[.. conclusions],
 					[[.. candidateOffsets]],
-					context.PredefinedOptions,
+					context.Options,
 					in patternCells,
 					normalDigits
 				);
@@ -726,7 +726,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						var step = new ExtendedRectangleType4Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(0, houseIndex)]],
-							context.PredefinedOptions,
+							context.Options,
 							in patternCells,
 							normalDigits,
 							new(in extraCells, conjugateDigit)

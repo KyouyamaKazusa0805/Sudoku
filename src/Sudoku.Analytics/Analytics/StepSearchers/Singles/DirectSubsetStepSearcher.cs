@@ -100,7 +100,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	{
 		var first = stackalloc DirectSubsetHandlerFuncPtr[] { &HiddenSubset, &NakedSubset };
 		var second = stackalloc DirectSubsetHandlerFuncPtr[] { &NakedSubset, &HiddenSubset };
-		var searchers = context.PredefinedOptions switch { { DistinctDirectMode: true, IsDirectMode: true } => first, _ => second };
+		var searchers = context.Options switch { { DistinctDirectMode: true, IsDirectMode: true } => first, _ => second };
 
 		scoped ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
@@ -423,7 +423,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					cell,
 					lastDigit,
 					in subsetCells,
@@ -511,7 +511,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					lastCell,
 					digit,
 					in subsetCells,
@@ -592,7 +592,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						new CellViewNode(ColorIdentifier.Auxiliary3, cell)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				cell,
 				lastDigit,
 				in subsetCells,
@@ -696,7 +696,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					cell,
 					lastDigit,
 					in subsetCells,
@@ -784,7 +784,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					lastCell,
 					digit,
 					in subsetCells,
@@ -866,7 +866,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				cell,
 				lastDigit,
 				in subsetCells,

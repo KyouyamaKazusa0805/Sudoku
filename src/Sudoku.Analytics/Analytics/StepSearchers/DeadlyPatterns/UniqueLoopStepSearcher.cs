@@ -156,7 +156,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		var step = new UniqueLoopType1Step(
 			[.. conclusions],
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
-			context.PredefinedOptions,
+			context.Options,
 			d1,
 			d2,
 			in loop,
@@ -225,7 +225,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		var step = new UniqueLoopType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. candidateOffsets, .. GetLoopLinks(path)]],
-			context.PredefinedOptions,
+			context.Options,
 			d1,
 			d2,
 			in loop,
@@ -366,7 +366,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 						var step = new UniqueLoopType3Step(
 							[.. conclusions],
 							[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							in loop,
@@ -447,7 +447,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				var step = new UniqueLoopType3Step(
 					[.. conclusions],
 					[[.. candidateOffsets, .. GetLoopLinks(path)]],
-					context.PredefinedOptions,
+					context.Options,
 					d1,
 					d2,
 					in loop,
@@ -541,7 +541,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				var step = new UniqueLoopType4Step(
 					[.. conclusions],
 					[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex), .. GetLoopLinks(path)]],
-					context.PredefinedOptions,
+					context.Options,
 					d1,
 					d2,
 					in loop,

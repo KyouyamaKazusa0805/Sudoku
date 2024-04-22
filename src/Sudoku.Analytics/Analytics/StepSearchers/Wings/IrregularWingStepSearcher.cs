@@ -245,7 +245,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 									new HouseViewNode(ColorIdentifier.Normal, house)
 								]
 							],
-							context.PredefinedOptions,
+							context.Options,
 							c1,
 							c2,
 							in bridge
@@ -358,7 +358,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 								var step = new MultiBranchWWingStep(
 									[.. conclusions],
 									[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Auxiliary1, house)]],
-									context.PredefinedOptions,
+									context.Options,
 									in cells,
 									in emptyCellsInThisHouse,
 									emptyCellsInThisHouse.SharedLine
@@ -538,7 +538,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 																		.. h1 == h2 ? [] : (ViewNode[])[new HouseViewNode(ColorIdentifier.Normal, h2)],
 																	]
 																],
-																context.PredefinedOptions,
+																context.Options,
 																in node,
 																in theOtherNode,
 																strongXyCell,
@@ -766,7 +766,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 												new CellViewNode(ColorIdentifier.Normal, midCell)
 											]
 										],
-										context.PredefinedOptions,
+										context.Options,
 										in xNode1,
 										in xNode2,
 										in yNode1,
@@ -987,7 +987,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 														new HouseViewNode(ColorIdentifier.Normal, coveredHouse)
 													]
 												],
-												context.PredefinedOptions,
+												context.Options,
 												in elimSide1,
 												in elimSide2,
 												digitX,
@@ -1214,7 +1214,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 													new HouseViewNode(ColorIdentifier.Normal, xyCellHouse)
 												]
 											],
-											context.PredefinedOptions,
+											context.Options,
 											xyCell,
 											yzCell,
 											digitX,

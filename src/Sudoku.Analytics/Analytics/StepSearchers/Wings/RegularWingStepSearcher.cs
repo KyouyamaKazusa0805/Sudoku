@@ -140,7 +140,7 @@ public sealed partial class RegularWingStepSearcher : StepSearcher
 					var step = new RegularWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 						[[.. candidateOffsets]],
-						context.PredefinedOptions,
+						context.Options,
 						pivot,
 						PopCount((uint)mask),
 						union,

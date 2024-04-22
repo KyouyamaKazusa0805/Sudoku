@@ -221,7 +221,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var step = new ReverseBivalueUniversalGraveType1Step(
 			[new(Elimination, extraCell, TrailingZeroCount(elimDigitsMask))],
 			[[.. cellOffsets]],
-			context.PredefinedOptions,
+			context.Options,
 			d1,
 			d2,
 			in completePattern,
@@ -279,7 +279,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var step = new ReverseBivalueUniversalGraveType2Step(
 			[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 			[[.. cellOffsets, .. from cell in cellsChosen select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + extraDigit)]],
-			context.PredefinedOptions,
+			context.Options,
 			d1,
 			d2,
 			extraDigit,
@@ -401,7 +401,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				var step = new ReverseBivalueUniversalGraveType3Step(
 					[.. conclusions],
 					[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-					context.PredefinedOptions,
+					context.Options,
 					d1,
 					d2,
 					house,
@@ -505,7 +505,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 						new LinkViewNode(ColorIdentifier.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				d1,
 				d2,
 				in completePattern,

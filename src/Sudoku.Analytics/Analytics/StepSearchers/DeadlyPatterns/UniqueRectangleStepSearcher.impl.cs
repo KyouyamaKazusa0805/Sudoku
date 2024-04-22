@@ -75,7 +75,7 @@ public partial class UniqueRectangleStepSearcher
 			new UniqueRectangleType1Step(
 				[.. conclusions],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. arMode ? [] : candidateOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				d1,
 				d2,
 				[.. urCells],
@@ -166,7 +166,7 @@ public partial class UniqueRectangleStepSearcher
 			new UniqueRectangleType2Or5Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				d1,
 				d2,
 				(arMode, isType5) switch
@@ -308,7 +308,7 @@ public partial class UniqueRectangleStepSearcher
 						new UniqueRectangleType3Step(
 							[.. conclusions],
 							[[.. arMode ? cellOffsets : [], .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							[.. urCells],
@@ -417,7 +417,7 @@ public partial class UniqueRectangleStepSearcher
 					new UniqueRectangleWithConjugatePairStep(
 						[.. conclusions],
 						[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, houseIndex)]],
-						context.PredefinedOptions,
+						context.Options,
 						Technique.UniqueRectangleType4,
 						d1,
 						d2,
@@ -513,7 +513,7 @@ public partial class UniqueRectangleStepSearcher
 			new UniqueRectangleType2Or5Step(
 				[.. from cell in elimMap select new Conclusion(Elimination, cell, extraDigit)],
 				[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-				context.PredefinedOptions,
+				context.Options,
 				d1,
 				d2,
 				arMode ? Technique.AvoidableRectangleType5 : Technique.UniqueRectangleType5,
@@ -633,7 +633,7 @@ public partial class UniqueRectangleStepSearcher
 							new HouseViewNode(ColorIdentifier.Normal, house2)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					Technique.UniqueRectangleType6,
 					d1,
 					d2,
@@ -755,7 +755,7 @@ public partial class UniqueRectangleStepSearcher
 							new HouseViewNode(ColorIdentifier.Normal, c)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					d1,
 					d2,
 					[.. urCells],
@@ -871,7 +871,7 @@ public partial class UniqueRectangleStepSearcher
 				new UniqueRectangle2DOr3XStep(
 					[.. conclusions],
 					[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-					context.PredefinedOptions,
+					context.Options,
 					arMode ? Technique.AvoidableRectangle2D : Technique.UniqueRectangle2D,
 					d1,
 					d2,
@@ -1035,7 +1035,7 @@ public partial class UniqueRectangleStepSearcher
 										new HouseViewNode(ColorIdentifier.Normal, house)
 									]
 								],
-								context.PredefinedOptions,
+								context.Options,
 								Technique.UniqueRectangle2B1,
 								d1,
 								d2,
@@ -1201,7 +1201,7 @@ public partial class UniqueRectangleStepSearcher
 										new HouseViewNode(ColorIdentifier.Normal, house)
 									]
 								],
-								context.PredefinedOptions,
+								context.Options,
 								Technique.UniqueRectangle2D1,
 								d1,
 								d2,
@@ -1329,7 +1329,7 @@ public partial class UniqueRectangleStepSearcher
 				new UniqueRectangle2DOr3XStep(
 					[.. conclusions],
 					[[.. arMode ? GetHighlightCells(urCells) : [], .. candidateOffsets]],
-					context.PredefinedOptions,
+					context.Options,
 					arMode ? Technique.AvoidableRectangle3X : Technique.UniqueRectangle3X,
 					d1,
 					d2,
@@ -1445,7 +1445,7 @@ public partial class UniqueRectangleStepSearcher
 							new HouseViewNode(ColorIdentifier.Auxiliary1, map2.SharedLine)
 						]
 					],
-					context.PredefinedOptions,
+					context.Options,
 					Technique.UniqueRectangle3X2,
 					d1,
 					d2,
@@ -1564,7 +1564,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						Technique.UniqueRectangle3N2,
 						d1,
 						d2,
@@ -1678,7 +1678,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						Technique.UniqueRectangle3U2,
 						d1,
 						d2,
@@ -1792,7 +1792,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[1].Line)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						Technique.UniqueRectangle3E2,
 						d1,
 						d2,
@@ -1919,7 +1919,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Normal, conjugatePairs[2].Line)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						Technique.UniqueRectangle4X3,
 						d1,
 						d2,
@@ -2063,7 +2063,7 @@ public partial class UniqueRectangleStepSearcher
 									new HouseViewNode(ColorIdentifier.Auxiliary1, conjugatePairs[2].Line)
 								]
 							],
-							context.PredefinedOptions,
+							context.Options,
 							Technique.UniqueRectangle4C3,
 							d1,
 							d2,
@@ -2217,7 +2217,7 @@ public partial class UniqueRectangleStepSearcher
 							new UniqueRectangleBurredSubsetStep(
 								[new(Elimination, elimCorner, elimDigit)],
 								[[.. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, house)]],
-								context.PredefinedOptions,
+								context.Options,
 								d1,
 								d2,
 								(CellMap)urCells,
@@ -2421,7 +2421,7 @@ public partial class UniqueRectangleStepSearcher
 					new UniqueRectangleWithWingStep(
 						[.. from cell in elimMap select new Conclusion(Elimination, cell, finalPivotDigit)],
 						[[.. candidateOffsets, .. cellOffsets]],
-						context.PredefinedOptions,
+						context.Options,
 						(arMode, pivotDigit, combination.Count) switch
 						{
 							(false, -1, 2) => Technique.UniqueRectangleXyWing,
@@ -2890,7 +2890,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Auxiliary2, line)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						digit1,
 						digit2,
 						[.. urCells],
@@ -3097,7 +3097,7 @@ public partial class UniqueRectangleStepSearcher
 									new BabaGroupViewNode(resultCell, extraDigitId, extraDigitMask)
 								]
 							],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							[.. urCells],
@@ -3221,7 +3221,7 @@ public partial class UniqueRectangleStepSearcher
 									new BabaGroupViewNode(resultCell, extraDigitId2, extraDigitMask2)
 								]
 							],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							[.. urCells],
@@ -3337,7 +3337,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Normal, houseCombination[1])
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						d1,
 						d2,
 						[.. urCells],
@@ -3505,7 +3505,7 @@ public partial class UniqueRectangleStepSearcher
 											new HouseViewNode(ColorIdentifier.Auxiliary2, houseCombination[1])
 										]
 									],
-									context.PredefinedOptions,
+									context.Options,
 									d1,
 									d2,
 									in cells,
@@ -3672,7 +3672,7 @@ public partial class UniqueRectangleStepSearcher
 										new HouseViewNode(ColorIdentifier.Auxiliary2, houseCombination[1])
 									]
 								],
-								context.PredefinedOptions,
+								context.Options,
 								d1,
 								d2,
 								in cells,
@@ -3845,7 +3845,7 @@ public partial class UniqueRectangleStepSearcher
 											new HouseViewNode(ColorIdentifier.Normal, houses[1])
 										]
 									],
-									context.PredefinedOptions,
+									context.Options,
 									d1,
 									d2,
 									in cells,
@@ -4056,7 +4056,7 @@ public partial class UniqueRectangleStepSearcher
 											new HouseViewNode(ColorIdentifier.Auxiliary1, weakLinkHouses[1])
 										]
 									],
-									context.PredefinedOptions,
+									context.Options,
 									d1,
 									d2,
 									in cells,
@@ -4257,7 +4257,7 @@ public partial class UniqueRectangleStepSearcher
 						new UniqueRectangleExternalXyWingStep(
 							[new(Elimination, cell1, elimDigit)],
 							[[.. cellOffsets, .. candidateOffsets]],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							in cells,
@@ -4385,7 +4385,7 @@ public partial class UniqueRectangleStepSearcher
 								new HouseViewNode(ColorIdentifier.Normal, houseCombination[1])
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						d1,
 						d2,
 						in cells,
@@ -4549,7 +4549,7 @@ public partial class UniqueRectangleStepSearcher
 						new UniqueRectangleExternalAlmostLockedSetsXzStep(
 							[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 							[[.. candidateOffsets, .. cellOffsets, new HouseViewNode(ColorIdentifier.Normal, guardianCoveredHouse)]],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							in cells,
@@ -4658,7 +4658,7 @@ public partial class UniqueRectangleStepSearcher
 						new AvoidableRectangleWithHiddenSingleStep(
 							[new(Elimination, baseCell, otherDigit)],
 							[[.. cellOffsets, .. candidateOffsets, new HouseViewNode(ColorIdentifier.Normal, sameHouse)]],
-							context.PredefinedOptions,
+							context.Options,
 							d1,
 							d2,
 							[.. urCells],

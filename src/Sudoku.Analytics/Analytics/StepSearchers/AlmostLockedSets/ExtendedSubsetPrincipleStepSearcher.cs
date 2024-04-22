@@ -100,7 +100,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 									var step = new ExtendedSubsetPrincipleStep(
 										[.. from cell in elimMap select new Conclusion(Elimination, cell, zDigit)],
 										[[.. candidateOffsets]],
-										context.PredefinedOptions,
+										context.Options,
 										in pattern,
 										(Mask)(blockMask | lineMask),
 										zDigit

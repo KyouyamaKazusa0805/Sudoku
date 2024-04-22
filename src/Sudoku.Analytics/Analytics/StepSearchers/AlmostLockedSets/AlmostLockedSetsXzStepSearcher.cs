@@ -234,7 +234,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 				var step = new AlmostLockedSetsXzStep(
 					[.. conclusions],
 					[[.. cellOffsets, .. candidateOffsets]],
-					context.PredefinedOptions,
+					context.Options,
 					als1,
 					als2,
 					rccMask,

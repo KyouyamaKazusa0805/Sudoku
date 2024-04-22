@@ -362,7 +362,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 			return null;
 		}
 
-		var result = new BidirectionalCycleStep([.. conclusions], context.PredefinedOptions, dstOn, isX, isY);
+		var result = new BidirectionalCycleStep([.. conclusions], context.Options, dstOn, isX, isY);
 		return new(result, result.CreateViews(in grid));
 	}
 
@@ -378,7 +378,7 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 	)
 	{
 		var (candidate, isOn) = target;
-		var result = new ForcingChainStep([new(isOn ? Assignment : Elimination, candidate)], context.PredefinedOptions, target, isX, isY);
+		var result = new ForcingChainStep([new(isOn ? Assignment : Elimination, candidate)], context.Options, target, isX, isY);
 		return new(result, result.CreateViews(in grid));
 	}
 }

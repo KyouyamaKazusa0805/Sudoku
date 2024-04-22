@@ -166,7 +166,7 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 										.. candidateOffsets
 									]
 								],
-								context.PredefinedOptions,
+								context.Options,
 								als1,
 								als2,
 								conjugatePair,

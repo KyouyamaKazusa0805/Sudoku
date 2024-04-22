@@ -31,7 +31,13 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		scoped var pomContext = new AnalysisContext(pomSteps, in playground, in Grid.NullRef, false, context.IsSukaku, context.PredefinedOptions);
+		scoped var pomContext = new AnalysisContext(in playground, in Grid.NullRef)
+		{
+			Accumulator = pomSteps,
+			OnlyFindOne = false,
+			IsSukaku = context.IsSukaku,
+			Options = context.Options
+		};
 		ElimsSearcher.Collect(ref pomContext);
 
 		foreach (var step in pomSteps.Cast<PatternOverlayStep>())
@@ -79,7 +85,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 								.. from c in guardians select new CandidateViewNode(ColorIdentifier.Auxiliary1, c * 9 + digit)
 							]
 						],
-						context.PredefinedOptions,
+						context.Options,
 						digit,
 						in loop,
 						in guardians

@@ -498,7 +498,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var step = new DeathBlossomStep(
 			[.. conclusions],
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-			context.PredefinedOptions,
+			context.Options,
 			pivot,
 			branches,
 			validZ
@@ -627,7 +627,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 			var step = new HouseDeathBlossomStep(
 				[.. conclusions],
 				[[.. cellOffsets, .. candidateOffsets, houseOffset], .. detailViews],
-				context.PredefinedOptions,
+				context.Options,
 				house,
 				disappearedDigit,
 				branches,
@@ -760,7 +760,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var step = new RectangleDeathBlossomStep(
 			[.. conclusions],
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-			context.PredefinedOptions,
+			context.Options,
 			in urCells,
 			!!(urCells - EmptyCells),
 			branches,
@@ -941,7 +941,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 		var step = new NTimesAlmostLockedSetDeathBlossomStep(
 			[.. conclusions],
 			[[.. cellOffsets, .. candidateOffsets], .. detailViews],
-			context.PredefinedOptions,
+			context.Options,
 			nTimesAlsDigitsMask,
 			in nTimesAlsCells,
 			branches,

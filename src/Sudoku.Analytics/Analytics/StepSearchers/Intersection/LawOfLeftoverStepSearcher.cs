@@ -93,7 +93,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 						select new CellViewNode(ColorIdentifier.Auxiliary3, cell) { RenderingMode = BothDirectAndPencilmark }
 					]
 				],
-				context.PredefinedOptions,
+				context.Options,
 				line,
 				block,
 				in a,
