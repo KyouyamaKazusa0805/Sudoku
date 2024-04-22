@@ -33,18 +33,6 @@ internal static class PrimaryConstructorMemberHandler
 						var docComments = getDocComments(comment);
 						var parameterTypeName = getParameterType(parameterType, nullableAnnotation);
 						var assigning = getAssigningExpression(refModifiers, parameterName);
-						var pragmaWarningDisable = assigning.StartsWith("ref")
-							? """
-							#pragma warning disable CS9094
-									
-							"""
-							: "\t\t";
-						var pragmaWarningRestor = assigning.StartsWith("ref")
-							? """
-
-							#pragma warning restore CS9094
-							"""
-							: string.Empty;
 						fieldDeclarations.Add(
 							$"""
 							/// <summary>
@@ -52,7 +40,7 @@ internal static class PrimaryConstructorMemberHandler
 									/// </summary>
 									[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{typeof(PrimaryConstructorMemberHandler).FullName}", "{Value}")]
 									[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
-							{pragmaWarningDisable}{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};{pragmaWarningRestor}
+									{accessibilityModifiers}{readonlyModifier}{refModifiers}{parameterTypeName}{targetMemberName} = {assigning};
 							"""
 						);
 
