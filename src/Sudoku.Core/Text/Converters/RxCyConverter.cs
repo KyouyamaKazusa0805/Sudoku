@@ -246,17 +246,23 @@ public sealed record RxCyConverter(
 		=> intersections => DefaultSeparator switch
 		{
 			null or [] => string.Concat(
-				from intersection in intersections
-				let baseSet = intersection.Base.Line
-				let coverSet = intersection.Base.Block
-				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				[
+					..
+					from intersection in intersections
+					let baseSet = intersection.Base.Line
+					let coverSet = intersection.Base.Block
+					select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				]
 			),
 			_ => string.Join(
 				DefaultSeparator,
-				from intersection in intersections
-				let baseSet = intersection.Base.Line
-				let coverSet = intersection.Base.Block
-				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				[
+					..
+					from intersection in intersections
+					let baseSet = intersection.Base.Line
+					let coverSet = intersection.Base.Block
+					select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				]
 			)
 		};
 

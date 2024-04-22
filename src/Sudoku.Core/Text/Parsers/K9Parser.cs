@@ -32,7 +32,7 @@ public sealed partial record K9Parser : CoordinateParser
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, IntersectionCollection> IntersectionParser => OnIntersectionParsing;
+	public override Func<string, Intersection[]> IntersectionParser => OnIntersectionParsing;
 
 
 	private static CellMap OnCellParsing(string str)
@@ -167,7 +167,7 @@ public sealed partial record K9Parser : CoordinateParser
 	private static HouseMask OnHouseParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
 
 	[DoesNotReturn]
-	private static IntersectionCollection OnIntersectionParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
+	private static Intersection[] OnIntersectionParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
 
 	[DoesNotReturn]
 	private static Chute[] OnChuteParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);

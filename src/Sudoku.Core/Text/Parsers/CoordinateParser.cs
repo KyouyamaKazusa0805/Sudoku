@@ -49,7 +49,7 @@ public abstract record CoordinateParser : GenericConceptParser
 	/// </summary>
 	/// <seealso cref="IntersectionBase"/>
 	/// <seealso cref="IntersectionResult"/>
-	public abstract Func<string, IntersectionCollection> IntersectionParser { get; }
+	public abstract Func<string, Intersection[]> IntersectionParser { get; }
 
 	/// <summary>
 	/// The parser method that can creates a <see cref="Chute"/> list via the specified text to be parsed.
