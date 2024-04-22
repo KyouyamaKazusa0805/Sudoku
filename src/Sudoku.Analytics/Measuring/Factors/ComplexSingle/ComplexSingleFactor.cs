@@ -39,7 +39,7 @@ public sealed class ComplexSingleFactor : Factor
 						max = directRatingValue;
 					}
 				}
-				return max + LengthFactor.GetLengthDifficulty(result);
+				return (max >> 1) + LengthFactor.GetLengthDifficulty(result);
 			}
 		}
 	}
