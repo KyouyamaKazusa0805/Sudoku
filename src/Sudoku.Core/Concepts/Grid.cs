@@ -786,7 +786,6 @@ public partial struct Grid :
 			{
 				result |= this[cell];
 			}
-
 			return (Mask)(result & MaxCandidatesMask);
 		}
 	}
@@ -812,7 +811,6 @@ public partial struct Grid :
 					result |= this[cell];
 				}
 			}
-
 			return (Mask)(result & MaxCandidatesMask);
 		}
 	}
@@ -839,7 +837,6 @@ public partial struct Grid :
 				GridMaskMergingMethod.Or => (Mask)0,
 				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
 			};
-
 			var mergingFunctionPtr = mergingMethod switch
 			{
 				GridMaskMergingMethod.AndNot => &andNot,
@@ -847,7 +844,6 @@ public partial struct Grid :
 				GridMaskMergingMethod.Or => &or,
 				_ => default(MaskMergingFuncPtr)
 			};
-
 			foreach (var cell in cells)
 			{
 				if (!withValueCells && GetState(cell) == CellState.Empty || withValueCells)
@@ -855,7 +851,6 @@ public partial struct Grid :
 					mergingFunctionPtr(ref result, in this, cell);
 				}
 			}
-
 			return result;
 
 
