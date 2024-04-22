@@ -71,15 +71,18 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	protected internal override Step? Collect(scoped ref AnalysisContext context)
 	{
 		// Recursively searching for all possible steps.
-		var accumulator = new List<Step>();
+		var accumulator = new List<ComplexSingleStep>();
 		entry(ref context, accumulator, in context.Grid);
 
 		// Remove steps that don't satisfy the size limit.
 		var stepsSatisfied = new List<Step>();
-		foreach (ComplexSingleStep step in accumulator)
+		foreach (var step in accumulator)
 		{
 			var flag = true;
-			foreach (var technique in from techniquesGroup in step.IndirectTechniques from technique in techniquesGroup select technique)
+			foreach (var technique in
+				from techniquesGroup in step.IndirectTechniques
+				from technique in techniquesGroup
+				select technique)
 			{
 				if (technique.GetGroup() == TechniqueGroup.Subset)
 				{
@@ -124,12 +127,12 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		void entry(scoped ref AnalysisContext context, List<Step> accumulator, scoped ref readonly Grid grid)
+		void entry(scoped ref AnalysisContext context, List<ComplexSingleStep> accumulator, scoped ref readonly Grid grid)
 			=> dfs(ref context, accumulator, in grid, [], []);
 
 		void dfs(
 			scoped ref AnalysisContext context,
-			List<Step> accumulator,
+			List<ComplexSingleStep> accumulator,
 			scoped ref readonly Grid grid,
 			LinkedList<Step> interimSteps,
 			List<Step> previousIndirectFoundSteps
@@ -160,9 +163,10 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			//
 			//     0002+471630+6+300+500041039+6+500001000+60568+97+51+234500+600900000063052000000+30+6326508000
 			//
-			// Here the puzzle will use two locked candidates of digit 4 and 9 in r9b9. But both of them can be found in the first step.
-			// If we use the first one (i.e. locked candidates of digit 4), the second one (i.e. locked candidates of digit 9) will be ignored
-			// and no longer in use.
+			// Here the puzzle will use two locked candidates of digit 4 and 9 in r9b9. But both of them can be found
+			// in the first step.
+			// If we use the first one (i.e. locked candidates of digit 4), the second one (i.e. locked candidates of digit 9)
+			// will be ignored and no longer in use.
 			// To fix the bug, we should apply both of steps in one same grid state.
 			if (indirectFoundSteps.Count != 0)
 			{
@@ -241,7 +245,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 						// Add step into accumulator or return step.
 						accumulator.Add(
-							new ComplexSingleStep(
+							new(
 								directStep.Conclusions,
 								views,
 								context.PredefinedOptions,
