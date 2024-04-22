@@ -45,7 +45,15 @@ public sealed partial class ComplexSingleStep(
 		};
 
 	/// <inheritdoc/>
+	public override FormatInterpolation[] FormatInterpolationParts
+		=> [new(EnglishLanguage, [TechniqueNotationEnUs]), new(ChineseLanguage, [TechniqueNotationZhCn])];
+
+	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ComplexSingleFactor()];
+
+	private string TechniqueNotationEnUs => string.Join(" -> ", from t in IndirectTechniques select t[0].GetName(EnglishCulture));
+
+	private string TechniqueNotationZhCn => string.Join(" -> ", from t in IndirectTechniques select t[0].GetName(ChineseCulture));
 
 
 	/// <inheritdoc/>

@@ -18005,6 +18005,9 @@
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.Factors">
             <inheritdoc/>
         </member>
@@ -27068,7 +27071,7 @@ result ^= expression;
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ComplexSingleStep">
             <summary>
-              Looks up a localized string similar to Conclusion can only be found by using multiple locked candidates and subsets.
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_ContinuousNiceLoopStep">

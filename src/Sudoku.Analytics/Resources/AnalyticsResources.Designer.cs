@@ -7417,7 +7417,7 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Conclusion can only be found by using multiple locked candidates and subsets.
+        ///   Looks up a localized string similar to {0}.
         /// </summary>
         public static string TechniqueFormat_ComplexSingleStep {
             get {

@@ -3205,7 +3205,7 @@ Error grid: '{0:#}'</value>
     <value>Subset</value>
   </data>
   <data name="TechniqueFormat_ComplexSingleStep" xml:space="preserve">
-    <value>Conclusion can only be found by using multiple locked candidates and subsets</value>
+    <value>{0}</value>
   </data>
   <data name="TechniqueSetConstraint" xml:space="preserve">
     <value>Technique sets: a puzzle can be solved by using only techniques {0}</value>
