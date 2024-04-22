@@ -237,7 +237,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 										directStep switch
 										{
 											DirectIntersectionStep { IsPointing: var isPointing }
-												=> isPointing ? Technique.Pointing :  Technique.Claiming,
+												=> isPointing ? Technique.Pointing : Technique.Claiming,
 											DirectSubsetStep { SubsetTechnique: var technique } => technique
 										}
 									]

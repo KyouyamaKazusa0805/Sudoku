@@ -21147,6 +21147,13 @@ result ^= expression;
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+            <summary>
+            Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
+            </summary>
+            <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
+            <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
+        </member>
         <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
             <summary>
             Checks whether the puzzle can be solved using only full house.

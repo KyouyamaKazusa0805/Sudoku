@@ -2467,18 +2467,6 @@
             </summary>
             <param name="conclusion">The conclusion to be applied.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Apply(Sudoku.Rendering.IRenderable)">
-            <summary>
-            <inheritdoc cref="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})" path="/summary"/>
-            </summary>
-            <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.ApplyAll(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
-            <summary>
-            Try to apply the specified array of conclusions.
-            </summary>
-            <param name="conclusions">The conclusions to be applied.</param>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.SetState(System.Int32,Sudoku.Concepts.CellState)">
             <summary>
             Set the specified cell to the specified state.

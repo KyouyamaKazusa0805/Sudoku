@@ -1283,25 +1283,6 @@ public partial struct Grid :
 	}
 
 	/// <summary>
-	/// <inheritdoc cref="ApplyAll(ReadOnlySpan{Conclusion})" path="/summary"/>
-	/// </summary>
-	/// <param name="renderable">The renderable instance providing with conclusions to be applied.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Apply(IRenderable renderable) => ApplyAll(renderable.Conclusions);
-
-	/// <summary>
-	/// Try to apply the specified array of conclusions.
-	/// </summary>
-	/// <param name="conclusions">The conclusions to be applied.</param>
-	public void ApplyAll(params ReadOnlySpan<Conclusion> conclusions)
-	{
-		foreach (var conclusion in conclusions)
-		{
-			Apply(conclusion);
-		}
-	}
-
-	/// <summary>
 	/// Set the specified cell to the specified state.
 	/// </summary>
 	/// <param name="cell">The cell.</param>
