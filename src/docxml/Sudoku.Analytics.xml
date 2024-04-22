@@ -20,6 +20,12 @@
             <param name="initialGrid">Indicates the initial grid.</param>
             <seealso cref="T:Sudoku.Analytics.Analyzer"/>
         </member>
+        <member name="M:Sudoku.Analytics.AnalysisContext.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Analytics.AnalysisContext"/> instance via the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+        </member>
         <member name="P:Sudoku.Analytics.AnalysisContext.IsSukaku">
             <summary>
             Indicates whether the puzzle type is Sukaku.

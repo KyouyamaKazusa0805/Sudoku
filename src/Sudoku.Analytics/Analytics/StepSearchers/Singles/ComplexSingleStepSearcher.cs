@@ -140,7 +140,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 		{
 			// Collect all steps by using indirect techniques.
 			var indirectFoundSteps = new List<Step>();
-			scoped var tempContext = new AnalysisContext(in grid, in Grid.NullRef)
+			scoped var tempContext = new AnalysisContext(in grid)
 			{
 				Accumulator = indirectFoundSteps,
 				OnlyFindOne = false,
@@ -208,7 +208,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 				// Check whether the puzzle can be solved via a direct single.
 				var directStepsFound = new List<Step>();
-				scoped var nestedContext = new AnalysisContext(in playground, in Grid.NullRef)
+				scoped var nestedContext = new AnalysisContext(in playground)
 				{
 					Accumulator = directStepsFound,
 					OnlyFindOne = false,

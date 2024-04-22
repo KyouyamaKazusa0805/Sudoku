@@ -487,7 +487,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 	{
 		var tempList = new List<Step>();
 		var playground = grid;
-		scoped var context2 = new AnalysisContext(in playground, in Grid.NullRef)
+		scoped var context2 = new AnalysisContext(in playground)
 		{
 			Accumulator = tempList,
 			OnlyFindOne = false,

@@ -31,7 +31,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 
 		var pomSteps = new List<Step>();
 		var playground = grid;
-		scoped var pomContext = new AnalysisContext(in playground, in Grid.NullRef)
+		scoped var pomContext = new AnalysisContext(in playground)
 		{
 			Accumulator = pomSteps,
 			OnlyFindOne = false,

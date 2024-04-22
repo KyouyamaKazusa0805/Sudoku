@@ -23,6 +23,16 @@ public ref partial struct AnalysisContext(
 )
 {
 	/// <summary>
+	/// Initializes an <see cref="AnalysisContext"/> instance via the specified grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public AnalysisContext(ref readonly Grid grid) : this(in grid, in Grid.NullRef)
+	{
+	}
+
+
+	/// <summary>
 	/// Indicates whether the puzzle type is Sukaku.
 	/// </summary>
 	public required bool IsSukaku { get; init; }

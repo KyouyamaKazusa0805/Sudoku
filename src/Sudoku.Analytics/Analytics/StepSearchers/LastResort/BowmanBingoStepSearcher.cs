@@ -106,7 +106,7 @@ public sealed partial class BowmanBingoStepSearcher : StepSearcher
 		int length
 	)
 	{
-		scoped var context2 = new AnalysisContext(in grid, in Grid.NullRef)
+		scoped var context2 = new AnalysisContext(in grid)
 		{
 			OnlyFindOne = true,
 			IsSukaku = context.IsSukaku,
