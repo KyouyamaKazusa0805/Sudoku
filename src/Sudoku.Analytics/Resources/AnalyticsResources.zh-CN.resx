@@ -2330,9 +2330,6 @@
   <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
     <value>唯一矩形</value>
   </data>
-  <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
-    <value>唯一矩形拓展</value>
-  </data>
   <data name="TechniqueGroup_RegularWing" xml:space="preserve">
     <value>规则 Wing</value>
   </data>

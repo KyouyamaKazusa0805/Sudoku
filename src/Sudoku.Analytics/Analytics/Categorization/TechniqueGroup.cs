@@ -111,12 +111,6 @@ public enum TechniqueGroup
 	UniqueRectangle,
 
 	/// <summary>
-	/// Indicates the unique rectangle plus (UR+) technique.
-	/// </summary>
-	[TechniqueMetadata(Abbreviation = "UR+")]
-	UniqueRectanglePlus,
-
-	/// <summary>
 	/// Indicates the avoidable rectangle (AR) technique.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "AR")]

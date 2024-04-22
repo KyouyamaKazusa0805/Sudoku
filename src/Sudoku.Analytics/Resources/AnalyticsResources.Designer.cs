@@ -8641,15 +8641,6 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Unique Rectangle (+).
-        /// </summary>
-        public static string TechniqueGroup_UniqueRectanglePlus {
-            get {
-                return ResourceManager.GetString("TechniqueGroup_UniqueRectanglePlus", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to XYZ-Ring.
         /// </summary>
         public static string TechniqueGroup_XyzRing {

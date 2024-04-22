@@ -2283,9 +2283,6 @@
   <data name="TechniqueGroup_UniqueRectangle" xml:space="preserve">
     <value>Unique Rectangle</value>
   </data>
-  <data name="TechniqueGroup_UniqueRectanglePlus" xml:space="preserve">
-    <value>Unique Rectangle (+)</value>
-  </data>
   <data name="TechniqueGroup_RegularWing" xml:space="preserve">
     <value>Regular Wing</value>
   </data>

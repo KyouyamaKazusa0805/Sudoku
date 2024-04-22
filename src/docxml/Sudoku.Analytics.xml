@@ -3700,11 +3700,6 @@
             Indicates the unique rectangle (UR) technique.
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.UniqueRectanglePlus">
-            <summary>
-            Indicates the unique rectangle plus (UR+) technique.
-            </summary>
-        </member>
         <member name="F:Sudoku.Analytics.Categorization.TechniqueGroup.AvoidableRectangle">
             <summary>
             Indicates the avoidable rectangle (AR) technique.
@@ -27754,11 +27749,6 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_UniqueRectangle">
             <summary>
               Looks up a localized string similar to Unique Rectangle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_UniqueRectanglePlus">
-            <summary>
-              Looks up a localized string similar to Unique Rectangle (+).
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueGroup_XyzRing">
