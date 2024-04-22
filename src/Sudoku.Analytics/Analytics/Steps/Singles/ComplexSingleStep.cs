@@ -31,7 +31,7 @@ public sealed partial class ComplexSingleStep(
 			Technique.CrosshatchingRow => 15,
 			Technique.CrosshatchingColumn => 15,
 			Technique.NakedSingle => 23
-		} + 5;
+		};
 
 	/// <inheritdoc/>
 	public override Technique Code

@@ -29,14 +29,17 @@ public sealed class ComplexSingleFactor : Factor
 
 			static int d(Technique[] techniques)
 			{
-				var (result, ratingScale) = (0D, 1D);
+				var (result, max) = (0, 0);
 				foreach (var technique in techniques)
 				{
 					technique.GetDefaultRating(out var directRatingValue);
-					result += directRatingValue / ratingScale;
-					ratingScale *= 3;
+					result += directRatingValue;
+					if (directRatingValue >= max)
+					{
+						max = directRatingValue;
+					}
 				}
-				return (int)result;
+				return max + LengthFactor.GetLengthDifficulty(result);
 			}
 		}
 	}

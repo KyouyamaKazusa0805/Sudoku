@@ -10,7 +10,7 @@ public abstract class LengthFactor : Factor
 	/// </summary>
 	/// <param name="length">The length of the pattern.</param>
 	/// <returns>The result.</returns>
-	protected static int GetLengthDifficulty(int length)
+	protected internal static int GetLengthDifficulty(int length)
 	{
 		var result = 0;
 		for (var (isOdd, ceil) = (false, 4); length > ceil; isOdd = !isOdd)
