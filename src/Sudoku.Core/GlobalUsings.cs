@@ -1,5 +1,4 @@
 global using System;
-global using System.Algorithm;
 global using System.Collections;
 global using System.Collections.Frozen;
 global using System.Collections.Generic;
@@ -36,7 +35,7 @@ global using Sudoku.Text;
 global using Sudoku.Text.Converters;
 global using Sudoku.Text.Parsers;
 global using Sudoku.Text.Serialization.Specialized;
-global using static System.Algorithm.Combinatorial;
+global using static System.Combinatorial;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;

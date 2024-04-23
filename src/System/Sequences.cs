@@ -1,4 +1,4 @@
-namespace System.Algorithm;
+namespace System;
 
 /// <summary>
 /// Defines some sequences that has been recorded in the

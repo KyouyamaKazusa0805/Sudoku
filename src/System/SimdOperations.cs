@@ -1,4 +1,4 @@
-namespace System.Algorithm;
+namespace System;
 
 /// <summary>
 /// Encapsulates a list of methods to handle with bits, using SIMD.
