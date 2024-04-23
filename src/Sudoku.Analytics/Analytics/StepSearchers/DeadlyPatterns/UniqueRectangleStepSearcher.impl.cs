@@ -1,5 +1,3 @@
-#pragma warning disable IDE0051
-
 namespace Sudoku.Analytics.StepSearchers;
 
 public partial class UniqueRectangleStepSearcher

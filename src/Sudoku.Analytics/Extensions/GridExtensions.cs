@@ -25,7 +25,7 @@ public static class GridExtensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryFullHouse(this ref readonly Grid @this)
+	public static bool CanPrimaryFullHouse(this in Grid @this)
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
@@ -41,7 +41,7 @@ public static class GridExtensions
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryHiddenSingle(this ref readonly Grid @this, bool allowHiddenSingleInLine)
+	public static bool CanPrimaryHiddenSingle(this in Grid @this, bool allowHiddenSingleInLine)
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
@@ -55,7 +55,7 @@ public static class GridExtensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryNakedSingle(this ref readonly Grid @this)
+	public static bool CanPrimaryNakedSingle(this in Grid @this)
 		=> Analyzers.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })

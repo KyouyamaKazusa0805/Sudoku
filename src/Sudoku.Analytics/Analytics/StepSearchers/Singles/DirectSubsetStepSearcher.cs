@@ -94,7 +94,6 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	public int DirectHiddenSubsetMaxSize { get; set; } = 2;
 
 
-#pragma warning disable CS9080
 	/// <inheritdoc/>
 	protected internal override unsafe Step? Collect(ref AnalysisContext context)
 	{
@@ -121,7 +120,6 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		}
 		return null;
 	}
-#pragma warning restore CS9080
 
 
 	/// <summary>

@@ -27,7 +27,7 @@ public static unsafe class SymmetricalPlacing
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsSymmetricalPlacement(
-		this ref readonly Grid grid,
+		this in Grid grid,
 		SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -39,10 +39,7 @@ public static unsafe class SymmetricalPlacing
 		}
 
 		var index = symmetricType switch { SymmetricType.Diagonal => 0, SymmetricType.AntiDiagonal => 1, _ => 2 };
-
-#pragma warning disable CS9088
 		return Checkers[index](in grid, out _, out mappingDigits, out selfPairedDigitsMask);
-#pragma warning restore CS9088
 	}
 
 	/// <summary>
@@ -58,7 +55,7 @@ public static unsafe class SymmetricalPlacing
 	/// escaping the checking for symmetric placing rule.
 	/// </i></remarks>
 	public static bool InferSymmetricalPlacement(
-		this ref readonly Grid grid,
+		this in Grid grid,
 		out SymmetricType symmetricType,
 		out ReadOnlySpan<Digit?> mappingDigits,
 		out Mask selfPairedDigitsMask
@@ -71,12 +68,10 @@ public static unsafe class SymmetricalPlacing
 
 		foreach (var functionPointer in Checkers)
 		{
-#pragma warning disable CS9088
 			if (functionPointer(in grid, out symmetricType, out mappingDigits, out selfPairedDigitsMask))
 			{
 				return true;
 			}
-#pragma warning restore CS9088
 		}
 
 	FastFail:

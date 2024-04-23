@@ -7,7 +7,6 @@ using unsafe SubsetModuleSearcherFuncPtr = delegate*<ref AnalysisContext, ref re
 /// </summary>
 internal static class SubsetModule
 {
-#pragma warning disable CS9080
 	/// <summary>
 	/// The internal method to create subset steps.
 	/// </summary>
@@ -36,7 +35,6 @@ internal static class SubsetModule
 
 		return null;
 	}
-#pragma warning restore CS9080
 
 	/// <summary>
 	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
