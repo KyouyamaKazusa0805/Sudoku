@@ -1,32 +1,18 @@
 namespace Sudoku.MinLex;
 
 /// <summary>
-/// Represents a finder object that checks for a sudoku grid, calculating for the minimal lexicographical-ordered value for that grid.
+/// Represents a finder type.
 /// </summary>
-/// <remarks>
-/// This object can be used for checking for duplicate for grids. If two grids are considered to be equivalent,
-/// two grids will contain a same minimal lexicographic value.
-/// </remarks>
 public static class MinLexFinder
 {
-	/// <inheritdoc cref="Find(ref readonly Grid, bool)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string Find(string gridString, bool findForPattern = false)
-	{
-		MinLexCandidate.PatCanon(gridString, out var result, findForPattern);
-		return result;
-	}
-
 	/// <summary>
-	/// Find for the minimal lexicographic result for a grid.
+	/// 
 	/// </summary>
-	/// <param name="grid">The specified grid.</param>
-	/// <param name="findForPattern">Indicates whether the grid only searches for its minimal pattern.</param>
-	/// <returns>The minimal result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Find(ref readonly Grid grid, bool findForPattern = false)
-	{
-		MinLexCandidate.PatCanon(grid.ToString(), out var result, findForPattern);
-		return Grid.Parse(result);
-	}
+	/// <param name="source"></param>
+	/// <param name="result"></param>
+	[DllImport("Sudoku.MinLex.dll", EntryPoint = "find_minlex", CallingConvention = CallingConvention.Cdecl)]
+	[SuppressMessage("Interoperability", "SYSLIB1054:Use 'LibraryImportAttribute' instead of 'DllImportAttribute' to generate P/Invoke marshalling code at compile time", Justification = "<Pending>")]
+	[SuppressMessage("Interoperability", "CA1401:P/Invokes should not be visible", Justification = "<Pending>")]
+	[SuppressMessage("Globalization", "CA2101:Specify marshaling for P/Invoke string arguments", Justification = "<Pending>")]
+	public static unsafe extern void Find(char* source, char* result);
 }

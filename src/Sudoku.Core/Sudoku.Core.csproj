@@ -26,4 +26,10 @@
 		</EmbeddedResource>
 	</ItemGroup>
 
+	<ItemGroup>
+		<None Update="Sudoku.MinLex.dll">
+			<CopyToOutputDirectory>Always</CopyToOutputDirectory>
+		</None>
+	</ItemGroup>
+
 </Project>
