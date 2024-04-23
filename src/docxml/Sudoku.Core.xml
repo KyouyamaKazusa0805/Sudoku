@@ -393,18 +393,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Clear">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -885,18 +873,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#ExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#IntersectWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{System.Int32})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#UnionWith(System.Collections.Generic.IEnumerable{System.Int32})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
@@ -3155,18 +3131,6 @@
             </summary>
             <param name="action">The visitor that handles for each element in this collection.</param>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.ExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.ExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IntersectWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IntersectWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SymmetricExceptWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.UnionWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.UnionWith(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Contains(`1)">
             <summary>
             Determine whether the map contains the specified offset.
@@ -3273,28 +3237,58 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsProperSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSubsetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.IsSupersetOf(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.Overlaps(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.Overlaps(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.SetEquals(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc cref="M:System.Collections.Generic.ISet`1.SetEquals(System.Collections.Generic.IEnumerable{`0})"/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Add(`1)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Add(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#ExceptWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IntersectWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#UnionWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
@@ -3442,58 +3436,10 @@
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#CopyTo(`1[],System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#ExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IntersectWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#UnionWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Contains(`1)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#IEquatable{TSelf}#Equals(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_LogicalNot(`0)">

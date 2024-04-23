@@ -647,7 +647,6 @@ public partial struct CellMap :
 				return index;
 			}
 		}
-
 		return -1;
 	}
 
@@ -858,36 +857,6 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = default;
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CellMap, Cell, Enumerator>.ExceptWith(IEnumerable<Cell> other)
-	{
-		foreach (var element in other)
-		{
-			Remove(element);
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell, Enumerator>.IntersectWith(IEnumerable<Cell> other) => this &= [.. other];
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CellMap, Cell, Enumerator>.SymmetricExceptWith(IEnumerable<Cell> other)
-	{
-		var left = this;
-		foreach (var element in other)
-		{
-			left.Remove(element);
-		}
-
-		var right = [.. other] - this;
-		this = left | right;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CellMap, Cell, Enumerator>.UnionWith(IEnumerable<Cell> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>

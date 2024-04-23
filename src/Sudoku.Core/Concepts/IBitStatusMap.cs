@@ -144,22 +144,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="action">The visitor that handles for each element in this collection.</param>
 	public abstract void ForEach(Action<TElement> action);
 
-	/// <inheritdoc cref="ISet{T}.ExceptWith(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	public new abstract void ExceptWith(IEnumerable<TElement> other);
-
-	/// <inheritdoc cref="ISet{T}.IntersectWith(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	public new abstract void IntersectWith(IEnumerable<TElement> other);
-
-	/// <inheritdoc cref="ISet{T}.SymmetricExceptWith(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	public new abstract void SymmetricExceptWith(IEnumerable<TElement> other);
-
-	/// <inheritdoc cref="ISet{T}.UnionWith(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	public new abstract void UnionWith(IEnumerable<TElement> other);
-
 	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
@@ -173,18 +157,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offset">The desired offset.</param>
 	/// <returns>The index of the offset.</returns>
-	public virtual int IndexOf(TElement offset)
-	{
-		for (var index = 0; index < Count; index++)
-		{
-			if (this[index] == offset)
-			{
-				return index;
-			}
-		}
-
-		return -1;
-	}
+	public abstract int IndexOf(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
@@ -247,8 +220,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>All subsets of the current instance.</returns>
 	/// <seealso cref="Count"/>
 	/// <seealso cref="GetSubsetsAllBelow(int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual ReadOnlySpan<TSelf> GetSubsetsAll() => GetSubsetsAllBelow(Count);
+	public abstract ReadOnlySpan<TSelf> GetSubsetsAll();
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -272,29 +244,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </item>
 	/// </list>
 	/// </returns>
-	public virtual ReadOnlySpan<TSelf> GetSubsetsAllBelow(int limitSubsetSize)
-	{
-		if (limitSubsetSize == 0 || Count == 0)
-		{
-			return [];
-		}
-
-		var (n, desiredSize) = (Count, 0);
-		var length = Math.Min(n, limitSubsetSize);
-		for (var i = 1; i <= length; i++)
-		{
-			var target = PascalTriangle[n - 1][i - 1];
-			desiredSize += target;
-		}
-
-		var result = new List<TSelf>(desiredSize);
-		for (var i = 1; i <= length; i++)
-		{
-			result.AddRange(GetSubsets(i));
-		}
-
-		return result.AsReadOnlySpan();
-	}
+	public abstract ReadOnlySpan<TSelf> GetSubsetsAllBelow(int limitSubsetSize);
 
 	/// <summary>
 	/// Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
@@ -302,10 +252,14 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The enumerator instance.</returns>
 	public new abstract TEnumerator GetEnumerator();
 
-	/// <inheritdoc cref="ISet{T}.IsProperSubsetOf(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool IsProperSubsetOf(IEnumerable<TElement> other)
+	/// <inheritdoc/>
+	void ICollection<TElement>.Add(TElement item) => Add(item);
+
+	/// <inheritdoc/>
+	bool ISet<TElement>.Add(TElement item) => Add(item);
+
+	/// <inheritdoc/>
+	bool ISet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = (TSelf)[];
 		foreach (var element in other)
@@ -316,75 +270,121 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 		return (TSelf)this != otherCells && (otherCells & (TSelf)this) == (TSelf)this;
 	}
 
-	/// <inheritdoc cref="ISet{T}.IsProperSupersetOf(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool IsProperSupersetOf(IEnumerable<TElement> other)
+	/// <inheritdoc/>
+	bool ISet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
 		}
-
 		return (TSelf)this != otherCells && ((TSelf)this & otherCells) == otherCells;
 	}
 
-	/// <inheritdoc cref="ISet{T}.IsSubsetOf(IEnumerable{T})"/>
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool IsSubsetOf(IEnumerable<TElement> other)
+	/// <inheritdoc/>
+	bool ISet<TElement>.IsSubsetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
 		}
-
 		return (otherCells & (TSelf)this) == (TSelf)this;
 	}
 
-	/// <inheritdoc cref="ISet{T}.IsSupersetOf(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool IsSupersetOf(IEnumerable<TElement> other)
+	/// <inheritdoc/>
+	bool ISet<TElement>.IsSupersetOf(IEnumerable<TElement> other)
 	{
 		var otherCells = (TSelf)[];
 		foreach (var element in other)
 		{
 			otherCells.Add(element);
 		}
-
 		return ((TSelf)this & otherCells) == otherCells;
 	}
 
-	/// <inheritdoc cref="ISet{T}.Overlaps(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & [.. other]);
-
-	/// <inheritdoc cref="ISet{T}.SetEquals(IEnumerable{T})"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(ISet<>))]
-	[ExplicitInterfaceImpl(typeof(IReadOnlySet<>))]
-	public new sealed bool SetEquals(IEnumerable<TElement> other) => (TSelf)this == [.. other];
+	/// <inheritdoc/>
+	bool ISet<TElement>.Overlaps(IEnumerable<TElement> other) => !!((TSelf)this & [.. other]);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<TElement>.Add(TElement item) => Add(item);
+	bool ISet<TElement>.SetEquals(IEnumerable<TElement> other) => (TSelf)this == [.. other];
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<TElement>.Add(TElement item) => Add(item);
+	void ISet<TElement>.ExceptWith(IEnumerable<TElement> other)
+	{
+		foreach (var element in other)
+		{
+			Remove(element);
+		}
+	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	void ISet<TElement>.IntersectWith(IEnumerable<TElement> other)
+	{
+		var result = (TSelf)this;
+		foreach (var element in other)
+		{
+			if (Contains(element))
+			{
+				result.Add(element);
+			}
+		}
+
+		Clear();
+		foreach (var element in result)
+		{
+			Add(element);
+		}
+	}
+
+	/// <inheritdoc/>
+	void ISet<TElement>.SymmetricExceptWith(IEnumerable<TElement> other)
+	{
+		var left = this;
+		foreach (var element in other)
+		{
+			left.Remove(element);
+		}
+
+		var right = [.. other] - (TSelf)this;
+		Clear();
+		foreach (var element in (TSelf)left | right)
+		{
+			Add(element);
+		}
+	}
+
+	/// <inheritdoc/>
+	void ISet<TElement>.UnionWith(IEnumerable<TElement> other)
+	{
+		foreach (var element in other)
+		{
+			Add(element);
+		}
+	}
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.Overlaps(IEnumerable<TElement> other) => ((ISet<TElement>)this).Overlaps(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.SetEquals(IEnumerable<TElement> other) => ((ISet<TElement>)this).SetEquals(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.IsProperSubsetOf(IEnumerable<TElement> other) => ((ISet<TElement>)this).IsProperSubsetOf(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.IsProperSupersetOf(IEnumerable<TElement> other) => ((ISet<TElement>)this).IsProperSupersetOf(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.IsSubsetOf(IEnumerable<TElement> other) => ((ISet<TElement>)this).IsSubsetOf(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<TElement>.IsSupersetOf(IEnumerable<TElement> other) => ((ISet<TElement>)this).IsSupersetOf(other);
+
+	/// <inheritdoc/>
 	bool ICollection<TElement>.Remove(TElement item) => Remove(item);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();
 
 	/// <inheritdoc/>
@@ -403,7 +403,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static TSelf IParsable<TSelf>.Parse(string s, IFormatProvider? provider) => TSelf.Parse(s);
 
 

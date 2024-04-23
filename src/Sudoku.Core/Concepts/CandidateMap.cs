@@ -297,7 +297,6 @@ public partial struct CandidateMap :
 				return index;
 			}
 		}
-
 		return -1;
 	}
 
@@ -549,36 +548,6 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = default;
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.ExceptWith(IEnumerable<Candidate> other)
-	{
-		foreach (var element in other)
-		{
-			Remove(element);
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.IntersectWith(IEnumerable<Candidate> other) => this &= [.. other];
-
-	/// <inheritdoc/>
-	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.SymmetricExceptWith(IEnumerable<Candidate> other)
-	{
-		var left = this;
-		foreach (var element in other)
-		{
-			left.Remove(element);
-		}
-
-		var right = [.. other] - this;
-		this = left | right;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void IBitStatusMap<CandidateMap, Candidate, Enumerator>.UnionWith(IEnumerable<Candidate> other) => this |= [.. other];
 
 
 	/// <inheritdoc/>
