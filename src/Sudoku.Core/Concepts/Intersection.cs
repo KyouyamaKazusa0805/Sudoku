@@ -77,11 +77,6 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 			}
 		}
 
-		IntersectionMaps = dic.ToFrozenDictionary(
-			ValueComparison.Create<IntersectionBase>(
-				static (x, y) => x == y,
-				static v => v.Line << 5 | v.Block
-			)
-		);
+		IntersectionMaps = dic.ToFrozenDictionary(ValueComparison.Create<IntersectionBase>(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
 	}
 }

@@ -264,10 +264,6 @@
   <data name="ErrorInfo_CannotAssignSuccessForFailureCases" xml:space="preserve">
     <value>Cannot assign success field to describe such failure.</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="ErrorInfo_CannotSolveAPuzzleAlreadySolved" type="System.Resources.ResXNullRef, System.Windows.Forms">
-    <value />
-  </data>
   <data name="ErrorInfo_NotSupportedForSukakuPuzzles" xml:space="preserve">
     <value>This function does not support for Sukaku puzzles.</value>
   </data>

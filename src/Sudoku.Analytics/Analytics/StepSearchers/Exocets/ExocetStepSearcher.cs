@@ -136,7 +136,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 							const int baseSize = 2;
 #endif
 							// Iterate on each empty cells, or a cell group whose length is equal to iteration variable 'baseCellsSize'.
-							foreach (ref readonly var minilineBaseCells in MinilinesGroupedByChuteIndex[i].AsReadOnlySpan())
+							foreach (ref readonly var minilineBaseCells in Intersection.MinilinesGroupedByChuteIndex[i].AsReadOnlySpan())
 							{
 								if ((minilineBaseCells & EmptyCells) is not (var baseEmptyCellsToBeIterated and not []))
 								{
@@ -1408,7 +1408,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		}
 
 		// Iterate on each intersection to get the other side of base cells.
-		foreach (ref readonly var intersection in MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
+		foreach (ref readonly var intersection in Intersection.MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
 		{
 			var theOtherBaseCells = intersection & lastCells;
 			if (theOtherBaseCells.Count != 2)
@@ -2813,7 +2813,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		void collectFor(List<Conclusion> conclusions, ref readonly Grid grid, Cell targetCell, Cell theOtherTargetCell)
 		{
 			Unsafe.SkipInit<CellMap>(out var miniline);
-			foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
+			foreach (var tempMiniline in Intersection.MinilinesGroupedByChuteIndex[chuteIndex])
 			{
 				if (tempMiniline.Contains(theOtherTargetCell))
 				{
@@ -4684,7 +4684,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	private static CellMap GetMirrorCells(Cell targetCell, int chuteIndex, out CellMap miniline)
 	{
 		Unsafe.SkipInit(out miniline);
-		foreach (ref readonly var temp in MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
+		foreach (ref readonly var temp in Intersection.MinilinesGroupedByChuteIndex[chuteIndex].AsReadOnlySpan())
 		{
 			if (temp.Contains(targetCell))
 			{

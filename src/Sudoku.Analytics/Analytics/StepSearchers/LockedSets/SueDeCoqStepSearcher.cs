@@ -28,7 +28,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 		var list = new List<CellMap>(4);
 		foreach (var cannibalMode in (false, true))
 		{
-			foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+			foreach (var ((baseSet, coverSet), (a, b, c, _)) in Intersection.IntersectionMaps)
 			{
 				var emptyCellsInInterMap = c & EmptyCells;
 				if (emptyCellsInInterMap.Count < 2)

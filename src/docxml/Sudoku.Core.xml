@@ -3643,7 +3643,8 @@
         </member>
         <member name="T:Sudoku.Concepts.IntersectionResult">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
+            especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -3655,7 +3656,8 @@
         </member>
         <member name="M:Sudoku.Concepts.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
-            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used, especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
+            Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
+            especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -6586,6 +6588,16 @@
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotExist">
             <summary>
               Looks up a localized string similar to The file does not exist..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_NotSupportedForSukakuPuzzles">
+            <summary>
+              Looks up a localized string similar to This function does not support for Sukaku puzzles..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PlaceholderMustBeZeroOrDot">
+            <summary>
+              Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_PointerCannotMove">

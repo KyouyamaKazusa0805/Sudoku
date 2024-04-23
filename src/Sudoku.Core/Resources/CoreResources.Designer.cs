@@ -322,6 +322,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This function does not support for Sukaku puzzles..
+        /// </summary>
+        internal static string ErrorInfo_NotSupportedForSukakuPuzzles {
+            get {
+                return ResourceManager.GetString("ErrorInfo_NotSupportedForSukakuPuzzles", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The placeholder character invalid; expected: &apos;0&apos; or &apos;.&apos;..
+        /// </summary>
+        internal static string ErrorInfo_PlaceholderMustBeZeroOrDot {
+            get {
+                return ResourceManager.GetString("ErrorInfo_PlaceholderMustBeZeroOrDot", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The pointer cannot move..
         /// </summary>
         internal static string ErrorInfo_PointerCannotMove {

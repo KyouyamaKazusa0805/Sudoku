@@ -50,7 +50,7 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var emptyCellsForGrid = grid.EmptyCells;
 		var candidatesMapForGrid = grid.CandidatesMap;
-		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+		foreach (var ((baseSet, coverSet), (a, b, c, _)) in Intersection.IntersectionMaps)
 		{
 			if (!IntersectionModule.IsLockedCandidates(in grid, in a, in b, in c, in emptyCellsForGrid, out var m))
 			{

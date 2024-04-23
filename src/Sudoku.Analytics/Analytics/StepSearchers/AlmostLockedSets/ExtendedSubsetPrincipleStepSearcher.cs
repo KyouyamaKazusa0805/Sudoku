@@ -23,7 +23,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var list = new List<CellMap>(7);
 		var results = new HashSet<CellMap>();
-		foreach (var ((baseSet, coverSet), (a, b, c, _)) in IntersectionMaps)
+		foreach (var ((baseSet, coverSet), (a, b, c, _)) in Intersection.IntersectionMaps)
 		{
 			var emptyCellsInInterMap = c & EmptyCells;
 

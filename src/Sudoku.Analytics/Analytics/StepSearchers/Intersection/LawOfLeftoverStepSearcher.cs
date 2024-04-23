@@ -14,7 +14,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		foreach (var ((line, block), (a, b, c, _)) in IntersectionMaps)
+		foreach (var ((line, block), (a, b, c, _)) in Intersection.IntersectionMaps)
 		{
 			// Try to check for value cells from two different sets.
 			var (lineSetDigitsMask, blockSetDigitsMask) = ((Mask)0, (Mask)0);

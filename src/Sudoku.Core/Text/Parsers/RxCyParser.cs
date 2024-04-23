@@ -271,7 +271,7 @@ public sealed partial record RxCyParser : CoordinateParser
 						(byte)(lineLabel is 'R' or 'r' ? line + 9 - '1' : line + 18 - '1'),
 						(byte)(block - '1')
 					);
-					result.Add(new(in @base, in IntersectionMaps[@base]));
+					result.Add(new(in @base, in Intersection.IntersectionMaps[@base]));
 				}
 			}
 		}
