@@ -150,7 +150,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		static bool checkForSingleDigit(ref readonly CandidateMap trueCandidates)
 		{
 			var i = 0;
-			Unsafe.SkipInit(out Digit comparer);
+			Unsafe.SkipInit<Digit>(out var comparer);
 			foreach (var trueCandidate in trueCandidates)
 			{
 				if (i++ == 0)

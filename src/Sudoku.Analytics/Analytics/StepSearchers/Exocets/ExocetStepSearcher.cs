@@ -2812,7 +2812,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		void collectFor(List<Conclusion> conclusions, ref readonly Grid grid, Cell targetCell, Cell theOtherTargetCell)
 		{
-			Unsafe.SkipInit(out CellMap miniline);
+			Unsafe.SkipInit<CellMap>(out var miniline);
 			foreach (var tempMiniline in MinilinesGroupedByChuteIndex[chuteIndex])
 			{
 				if (tempMiniline.Contains(theOtherTargetCell))
@@ -3263,7 +3263,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		Unsafe.SkipInit(out Chute sharedChute);
+		Unsafe.SkipInit<Chute>(out var sharedChute);
 		foreach (var chute in Chutes[isRow ? 3.. : ..3])
 		{
 			if (chute.Cells.Contains(valueDigitCell))

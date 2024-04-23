@@ -87,7 +87,7 @@ public partial struct CellMap :
 	public readonly bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _count <= 3 && PopCount((uint)SharedHouses) == 2;
+		get => Count <= 3 && PopCount((uint)SharedHouses) == 2;
 	}
 
 	/// <summary>
@@ -97,7 +97,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			switch (_count)
+			switch (Count)
 			{
 				case 0 or 1: { return false; }
 				case 2: { return InOneHouse(out _); }
@@ -118,12 +118,7 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public readonly int Count
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _count;
-	}
+	public int Count { get; private set; }
 
 	/// <inheritdoc/>
 	public readonly string Token
@@ -418,7 +413,7 @@ public partial struct CellMap :
 
 			long value;
 			int i, pos = 0;
-			var arr = new Cell[_count];
+			var arr = new Cell[Count];
 			if (_low != 0)
 			{
 				for (value = _low, i = 0; i < Shifting; i++, value >>= 1)
@@ -470,7 +465,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			if (!this || index >= _count)
+			if (!this || index >= Count)
 			{
 				return -1;
 			}
@@ -513,7 +508,7 @@ public partial struct CellMap :
 			return;
 		}
 
-		ArgumentOutOfRangeException.ThrowIfGreaterThan(_count, length);
+		ArgumentOutOfRangeException.ThrowIfGreaterThan(Count, length);
 
 		long value;
 		int i, pos = 0;
@@ -639,13 +634,13 @@ public partial struct CellMap :
 	public readonly int CompareTo(ref readonly CellMap other)
 	{
 		var b = new BitStatusCellMapConverter().Converter;
-		return _count > other._count ? 1 : _count < other._count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
 	}
 
 	/// <inheritdoc/>
 	public readonly int IndexOf(Cell offset)
 	{
-		for (var index = 0; index < _count; index++)
+		for (var index = 0; index < Count; index++)
 		{
 			if (this[index] == offset)
 			{
@@ -692,17 +687,17 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly unsafe ReadOnlySpan<CellMap> GetSubsets(int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize > _count)
+		if (subsetSize == 0 || subsetSize > Count)
 		{
 			return [];
 		}
 
-		if (subsetSize == _count)
+		if (subsetSize == Count)
 		{
 			return (CellMap[])[this];
 		}
 
-		var n = _count;
+		var n = Count;
 		var buffer = stackalloc int[subsetSize];
 		if (n <= 30 && subsetSize <= 30)
 		{
@@ -772,7 +767,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CellMap> GetSubsetsAll() => GetSubsetsAllBelow(_count);
+	public readonly ReadOnlySpan<CellMap> GetSubsetsAll() => GetSubsetsAllBelow(Count);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<CellMap> GetSubsetsAllBelow(int limitSubsetSize)
@@ -782,7 +777,7 @@ public partial struct CellMap :
 			return [];
 		}
 
-		var (n, desiredSize) = (_count, 0);
+		var (n, desiredSize) = (Count, 0);
 		var length = Math.Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
@@ -807,7 +802,7 @@ public partial struct CellMap :
 		v |= 1L << offset % Shifting;
 		if (!older)
 		{
-			_count++;
+			Count++;
 			return true;
 		}
 
@@ -838,7 +833,7 @@ public partial struct CellMap :
 		v &= ~(1L << offset % Shifting);
 		if (older)
 		{
-			_count--;
+			Count--;
 			return true;
 		}
 
@@ -956,9 +951,8 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap CreateByBits(long high, long low)
 	{
-		CellMap result;
-		(result._high, result._low, result._count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
-
+		Unsafe.SkipInit<CellMap>(out var result);
+		(result._high, result._low, result.Count) = (high, low, PopCount((ulong)high) + PopCount((ulong)low));
 		return result;
 	}
 
@@ -1028,15 +1022,15 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(in CellMap offsets) => offsets._count == 0;
+	public static bool operator !(in CellMap offsets) => offsets.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(in CellMap value) => value._count != 0;
+	public static bool operator true(in CellMap value) => value.Count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(in CellMap value) => value._count == 0;
+	public static bool operator false(in CellMap value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1054,7 +1048,7 @@ public partial struct CellMap :
 		}
 
 		(offset / Shifting == 0 ? ref result._low : ref result._high) |= 1L << offset % Shifting;
-		result._count++;
+		result.Count++;
 		return result;
 	}
 
@@ -1069,7 +1063,7 @@ public partial struct CellMap :
 		}
 
 		(offset / Shifting == 0 ? ref result._low : ref result._high) &= ~(1L << offset % Shifting);
-		result._count--;
+		result.Count--;
 		return result;
 	}
 

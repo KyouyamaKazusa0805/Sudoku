@@ -1123,12 +1123,6 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap._count">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Concepts.CellMap.Count"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
@@ -2193,6 +2187,11 @@
         <member name="P:Sudoku.Concepts.Grid.NullRef">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.Base32CharSpan">
+            <summary>
+            The character span that indicates all possible characters appeared in a number with base 32.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.System#Numerics#IMinMaxValue{Sudoku#Concepts#Grid}#MinValue">
             <summary>
             Indicates the minimum possible grid value that the current type can reach.
@@ -2210,11 +2209,6 @@
             This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Solving.BacktrackingSolver"/>.
             </remarks>
             <seealso cref="T:Sudoku.Solving.BacktrackingSolver"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Base32CharSpan">
-            <summary>
-            The character span that indicates all possible characters appeared in a number with base 32.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>

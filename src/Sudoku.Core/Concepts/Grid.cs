@@ -670,7 +670,6 @@ public partial struct Grid :
 		{
 			var result = this;
 			result.ResetCandidates();
-
 			return result;
 		}
 	}
@@ -685,7 +684,6 @@ public partial struct Grid :
 		{
 			var result = this;
 			result.Unfix();
-
 			return result;
 		}
 	}
@@ -700,7 +698,6 @@ public partial struct Grid :
 		{
 			var result = this;
 			result.Fix();
-
 			return result;
 		}
 	}
@@ -752,6 +749,11 @@ public partial struct Grid :
 	/// <inheritdoc/>
 	public static ref readonly Grid NullRef => ref Ref.MakeNullReference<Grid>();
 
+	/// <summary>
+	/// The character span that indicates all possible characters appeared in a number with base 32.
+	/// </summary>
+	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv".AsSpan();
+
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
@@ -771,11 +773,6 @@ public partial struct Grid :
 	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 #endif
-
-	/// <summary>
-	/// The character span that indicates all possible characters appeared in a number with base 32.
-	/// </summary>
-	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv".AsSpan();
 
 
 	/// <summary>
@@ -923,7 +920,6 @@ public partial struct Grid :
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -1060,7 +1056,6 @@ public partial struct Grid :
 			// -1..8 -> 0..9
 			result[i] = GetDigit(i) + 1;
 		}
-
 		return result;
 	}
 
@@ -1078,7 +1073,6 @@ public partial struct Grid :
 		{
 			result[cell] = (Mask)(this[cell] & MaxCandidatesMask);
 		}
-
 		return result;
 	}
 
@@ -1436,7 +1430,6 @@ public partial struct Grid :
 				result.Add(cell);
 			}
 		}
-
 		return result;
 	}
 
@@ -1462,7 +1455,6 @@ public partial struct Grid :
 				}
 			}
 		}
-
 		return result;
 	}
 
@@ -1483,7 +1475,6 @@ public partial struct Grid :
 		{
 			result.SetDigit(cell, -1);
 		}
-
 		return result;
 	}
 

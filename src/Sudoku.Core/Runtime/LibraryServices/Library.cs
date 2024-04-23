@@ -610,7 +610,7 @@ public readonly partial struct Library(
 
 		var rng = new Random();
 		var numberSeen = 0U;
-		Unsafe.SkipInit(out Grid chosen);
+		Unsafe.SkipInit<Grid>(out var chosen);
 		await foreach (var text in EnumerateTextAsync(cancellationToken))
 		{
 			if ((uint)rng.Next() % ++numberSeen == 0)
