@@ -59,7 +59,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 		init => _placeholder = value switch
 		{
 			Zero or Dot => value,
-			_ => throw new InvalidOperationException($"The placeholder character invalid; expected: '{Zero}' or '{Dot}'.")
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("PlaceholderMustBeZeroOrDot"))
 		};
 	}
 
