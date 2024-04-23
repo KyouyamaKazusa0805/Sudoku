@@ -67,12 +67,7 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	[ImplicitField(RequiredReadOnlyModifier = false)]
-	public readonly int Count
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _count;
-	}
+	public int Count { get; private set; }
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -81,7 +76,7 @@ public partial struct CandidateMap :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch { { _count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter(a)], _ => f(Offsets) };
+			return this switch { { Count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter(a)], _ => f(Offsets) };
 
 
 			static string[] f(Candidate[] offsets)
@@ -143,7 +138,7 @@ public partial struct CandidateMap :
 	{
 		get
 		{
-			if (_count == 0)
+			if (Count == 0)
 			{
 				// Empty list can't contain any peer intersections.
 				return [];
@@ -211,7 +206,7 @@ public partial struct CandidateMap :
 				return [];
 			}
 
-			var arr = new Candidate[_count];
+			var arr = new Candidate[Count];
 			var pos = 0;
 			for (var i = 0; i < 729; i++)
 			{
@@ -295,7 +290,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public readonly int IndexOf(Candidate offset)
 	{
-		for (var index = 0; index < _count; index++)
+		for (var index = 0; index < Count; index++)
 		{
 			if (this[index] == offset)
 			{
@@ -383,17 +378,17 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly unsafe ReadOnlySpan<CandidateMap> GetSubsets(int subsetSize)
 	{
-		if (subsetSize == 0 || subsetSize > _count)
+		if (subsetSize == 0 || subsetSize > Count)
 		{
 			return [];
 		}
 
-		if (subsetSize == _count)
+		if (subsetSize == Count)
 		{
 			return (CandidateMap[])[this];
 		}
 
-		var n = _count;
+		var n = Count;
 		var buffer = stackalloc int[subsetSize];
 		if (n <= 30 && subsetSize <= 30)
 		{
@@ -463,7 +458,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAll() => GetSubsetsAllBelow(_count);
+	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAll() => GetSubsetsAllBelow(Count);
 
 	/// <inheritdoc/>
 	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAllBelow(int limitSubsetSize)
@@ -473,7 +468,7 @@ public partial struct CandidateMap :
 			return [];
 		}
 
-		var (n, desiredSize) = (_count, 0);
+		var (n, desiredSize) = (Count, 0);
 		var length = Math.Min(n, limitSubsetSize);
 		for (var i = 1; i <= length; i++)
 		{
@@ -498,7 +493,7 @@ public partial struct CandidateMap :
 		v |= 1L << (offset & 63);
 		if (!older)
 		{
-			_count++;
+			Count++;
 			return true;
 		}
 
@@ -529,7 +524,7 @@ public partial struct CandidateMap :
 		v &= ~(1L << (offset & 63));
 		if (older)
 		{
-			_count--;
+			Count--;
 			return true;
 		}
 
@@ -668,15 +663,15 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator !(in CandidateMap offsets) => offsets._count == 0;
+	public static bool operator !(in CandidateMap offsets) => offsets.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator true(in CandidateMap value) => value._count != 0;
+	public static bool operator true(in CandidateMap value) => value.Count != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool operator false(in CandidateMap value) => value._count == 0;
+	public static bool operator false(in CandidateMap value) => value.Count == 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -696,7 +691,7 @@ public partial struct CandidateMap :
 		result._bits[10] = ~result._bits[10];
 		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
 
-		result._count = 729 - offsets._count;
+		result.Count = 729 - offsets.Count;
 		return result;
 	}
 
@@ -753,7 +748,7 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[10] &= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] &= right._bits[11]));
 
-		result._count = finalCount;
+		result.Count = finalCount;
 		return result;
 	}
 
@@ -776,7 +771,7 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[10] |= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] |= right._bits[11]));
 
-		result._count = finalCount;
+		result.Count = finalCount;
 		return result;
 	}
 
@@ -799,7 +794,7 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[10] ^= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] ^= right._bits[11]));
 
-		result._count = finalCount;
+		result.Count = finalCount;
 		return result;
 	}
 
@@ -822,7 +817,7 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[10] &= ~right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] &= ~right._bits[11]));
 
-		result._count = finalCount;
+		result.Count = finalCount;
 		return result;
 	}
 
@@ -850,6 +845,10 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CandidateMap(Candidate[] offsets) => [.. offsets];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static explicit operator CandidateMap(Span<Candidate> offsets) => [.. offsets];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

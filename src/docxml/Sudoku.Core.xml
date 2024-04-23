@@ -474,6 +474,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Span{System.Int32})~Sudoku.Concepts.CandidateMap">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
         </member>
@@ -568,12 +571,6 @@
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.__InternalBuffer.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap#__InternalBuffer,Sudoku#Concepts#CandidateMap#__InternalBuffer,System#Boolean}#op_Inequality(Sudoku.Concepts.CandidateMap.__InternalBuffer,Sudoku.Concepts.CandidateMap.__InternalBuffer)">
             <inheritdoc/>
-        </member>
-        <member name="F:Sudoku.Concepts.CandidateMap._count">
-            <summary>
-            Indicates the backing field of property <see cref="P:Sudoku.Concepts.CandidateMap.Count"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Concepts.CandidateMap.Count"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
@@ -1042,6 +1039,9 @@
             <param name="value">A <see cref="T:System.Int128"/> value.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Span{System.Int32})~Sudoku.Concepts.CellMap">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CellMap">
@@ -3421,6 +3421,12 @@
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1[])~`0">
             <summary>
             Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.Span{`1})~`0">
+            <summary>
+            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
             </summary>
             <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
         </member>

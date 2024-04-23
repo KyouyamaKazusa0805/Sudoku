@@ -545,5 +545,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static virtual explicit operator TSelf(Span<TElement> offsets) => [.. offsets];
+
+	/// <summary>
+	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+	/// </summary>
+	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static virtual explicit operator TSelf(ReadOnlySpan<TElement> offsets) => [.. offsets];
 }
