@@ -9,11 +9,6 @@ public static class Combinatorial
 	/// Indicates the <see href="https://en.wikipedia.org/wiki/Pascal%27s_triangle">Pascal's Triangle</see>
 	/// (in Chinese: Yang Hui's Triangle), i.e. the combinatorial numbers from <c>C(1, 1)</c> to <c>C(30, 30)</c>.
 	/// </summary>
-	/// <remarks>
-	/// Formula: <latex><![CDATA[
-	/// C(n,k) = \frac{n!}{k!(n-k)!}
-	/// ]]></latex>
-	/// </remarks>
 	public static readonly int[][] PascalTriangle = [
 		[1],
 		[2, 1],
