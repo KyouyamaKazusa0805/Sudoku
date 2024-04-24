@@ -83,11 +83,14 @@ internal unsafe struct GridPattern
 	/// Initializes for normal and transposed <see cref="GridPattern"/> instances from a string grid code.
 	/// </summary>
 	/// <param name="grid">Indicates the grid code to be used.</param>
-	/// <param name="normal">Indicates the normal instance.</param>
-	/// <param name="transposed">Indicates the transposed instance.</param>
+	/// <param name="resultPair">Indicates the 2 <see cref="GridPattern"/> instances for normal and transposed cases.</param>
 	/// <returns>An <see cref="int"/> value indicating the number of given cells.</returns>
-	public static int FromString(string grid, ref GridPattern normal, ref GridPattern transposed)
+	public static int FromString(string grid, out ReadOnlySpan<GridPattern> resultPair)
 	{
+		var pair = new GridPattern[2];
+		ref var normal = ref pair[0];
+		ref var transposed = ref pair[1];
+
 		var src = 0; // Pointer to a character in the given text.
 		var result = 0;
 		transposed.Rows[0] = 0;
@@ -124,6 +127,7 @@ internal unsafe struct GridPattern
 			normal.Rows[row] = r;
 		}
 
+		resultPair = pair;
 		return result;
 	}
 }

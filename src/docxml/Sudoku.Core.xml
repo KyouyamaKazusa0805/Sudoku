@@ -5322,13 +5322,12 @@
             <param name="p">The grid pattern instance.</param>
             <returns>The score value calculated.</returns>
         </member>
-        <member name="M:Sudoku.MinLex.GridPattern.FromString(System.String,Sudoku.MinLex.GridPattern@,Sudoku.MinLex.GridPattern@)">
+        <member name="M:Sudoku.MinLex.GridPattern.FromString(System.String,System.ReadOnlySpan{Sudoku.MinLex.GridPattern}@)">
             <summary>
             Initializes for normal and transposed <see cref="T:Sudoku.MinLex.GridPattern"/> instances from a string grid code.
             </summary>
             <param name="grid">Indicates the grid code to be used.</param>
-            <param name="normal">Indicates the normal instance.</param>
-            <param name="transposed">Indicates the transposed instance.</param>
+            <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.MinLex.GridPattern"/> instances for normal and transposed cases.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
         </member>
         <member name="T:Sudoku.MinLex.MinLexCandidate">
@@ -5378,7 +5377,7 @@
             Represents an empty <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance.
             </summary>
         </member>
-        <member name="M:Sudoku.MinLex.MinLexCandidate.ExpandStacks(System.Span{Sudoku.MinLex.GridPattern},System.Int32,System.Span{Sudoku.MinLex.MinLexCandidate},System.Int32@)">
+        <member name="M:Sudoku.MinLex.MinLexCandidate.ExpandStacks(System.ReadOnlySpan{Sudoku.MinLex.GridPattern},System.Int32,System.Span{Sudoku.MinLex.MinLexCandidate},System.Int32@)">
             <summary>
             To expand stacks.
             </summary>

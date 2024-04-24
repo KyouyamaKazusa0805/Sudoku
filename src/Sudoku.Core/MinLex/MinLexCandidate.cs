@@ -82,14 +82,15 @@ internal unsafe struct MinLexCandidate
 	/// <param name="topKey">Indicates the top key.</param>
 	/// <param name="results">Indicates the results.</param>
 	/// <param name="resultCount">The result count.</param>
-	public readonly void ExpandStacks(Span<GridPattern> pair, int topKey, Span<MinLexCandidate> results, ref int resultCount)
+	public readonly void ExpandStacks(ReadOnlySpan<GridPattern> pair, int topKey, Span<MinLexCandidate> results, ref int resultCount)
 	{
 		// For a top row, obtain stack and columns permutations.
 		ref readonly var gr = ref pair[IsTransposed];
 		var rowGivens = gr.Rows[MapRowsBackward[0]];
+		var toTriplets = (stackalloc int[3]);
 		for (var stackPerm = 0; stackPerm < 6; stackPerm++)
 		{
-			var toTriplets = new int[3];
+			toTriplets.Clear();
 			toTriplets[BestTripletPermutation.Perm[stackPerm, 0]] = (rowGivens >> 6) & 7;
 			toTriplets[BestTripletPermutation.Perm[stackPerm, 1]] = (rowGivens >> 3) & 7;
 			toTriplets[BestTripletPermutation.Perm[stackPerm, 2]] = rowGivens & 7;
@@ -112,15 +113,12 @@ internal unsafe struct MinLexCandidate
 			}
 
 			// This stack permutation results in minimal top row. Store the expanded candidate.
-			fixed (MinLexCandidate* pResults = results)
-			{
-				var res = &pResults[resultCount++];
-				*res = this;
-				res->StacksPermutation = (byte)stackPerm;
-				res->ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
-				res->ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
-				res->ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
-			}
+			ref var result = ref results[resultCount++];
+			result = this;
+			result.StacksPermutation = (byte)stackPerm;
+			result.ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
+			result.ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
+			result.ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
 		}
 	}
 
