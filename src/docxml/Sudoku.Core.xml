@@ -5404,11 +5404,11 @@
             Indicates the internal mappers.
             </summary>
         </member>
-        <member name="M:Sudoku.MinLex.MinLexFinder.FindMinLexForm(System.String)">
+        <member name="M:Sudoku.MinLex.MinLexFinder.Find(System.String)">
             <summary>
             Finds the minimal lexicographical form of the source grid code.
             </summary>
-            <param name="source">Indicates the source grid code.</param>
+            <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
         </member>
         <member name="T:Sudoku.MinLex.MinLexFinder.Mapper">
