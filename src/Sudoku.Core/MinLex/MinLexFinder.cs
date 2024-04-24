@@ -3,7 +3,7 @@ namespace Sudoku.MinLex;
 /// <summary>
 /// Represents a finder type.
 /// </summary>
-public sealed unsafe partial class MinLexFinder
+public sealed unsafe class MinLexFinder
 {
 	/// <summary>
 	/// Indicates the total number of candidate list, which means the worst case.

@@ -6,7 +6,7 @@ namespace Sudoku.MinLex;
 /// <param name="bestResult">Indicates the best result.</param>
 /// <param name="resultMask">Indicates the result mask.</param>
 /// <param name="resultNumberOfBits">Indicates the result number of bits.</param>
-internal partial struct BestTripletPermutation(
+public partial struct BestTripletPermutation(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)] int bestResult,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)] int resultMask,
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@", IsImplicitlyReadOnly = false)] int resultNumberOfBits

@@ -5342,6 +5342,21 @@
             <param name="resultPair">Indicates the 2 <see cref="T:Sudoku.MinLex.GridPattern"/> instances for normal and transposed cases.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
         </member>
+        <member name="T:Sudoku.MinLex.Mapper">
+            <summary>
+            Indicates a data structure that describes the cell and label handled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.Mapper.Cell">
+            <summary>
+            Indicates the cell <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.Mapper.Label">
+            <summary>
+            Indicates the label <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
         <member name="T:Sudoku.MinLex.MinLexCandidate">
             <summary>
             Indicates a node representing the min-lexicographical candidate.
@@ -5425,21 +5440,6 @@
             </summary>
             <param name="grid">Indicates the source grid.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
-        </member>
-        <member name="T:Sudoku.MinLex.MinLexFinder.Mapper">
-            <summary>
-            Indicates a data structure that describes the cell and label handled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.MinLex.MinLexFinder.Mapper.Cell">
-            <summary>
-            Indicates the cell <see cref="T:System.Byte"/> values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.MinLex.MinLexFinder.Mapper.Label">
-            <summary>
-            Indicates the label <see cref="T:System.Byte"/> values.
-            </summary>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">

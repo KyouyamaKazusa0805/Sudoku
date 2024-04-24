@@ -3,7 +3,7 @@ namespace Sudoku.MinLex;
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
-internal unsafe struct MinLexCandidate
+public unsafe struct MinLexCandidate
 {
 	/// <summary>
 	/// A flag field indicating whether the candidate is handled as transposed.
