@@ -268,6 +268,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
+        /// </summary>
+        internal static string ErrorInfo_MinLexShouldBeUniqueAndNotSukaku {
+            get {
+                return ResourceManager.GetString("ErrorInfo_MinLexShouldBeUniqueAndNotSukaku", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Multiple chute values found..
         /// </summary>
         internal static string ErrorInfo_MultipleChuteValuesFound {

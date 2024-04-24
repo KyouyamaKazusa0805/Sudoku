@@ -270,4 +270,7 @@
   <data name="ErrorInfo_PlaceholderMustBeZeroOrDot" xml:space="preserve">
     <value>The placeholder character invalid; expected: '0' or '.'.</value>
   </data>
+  <data name="ErrorInfo_MinLexShouldBeUniqueAndNotSukaku" xml:space="preserve">
+    <value>The puzzle should be standard sudoku puzzle, and contain a unique solution.</value>
+  </data>
 </root>

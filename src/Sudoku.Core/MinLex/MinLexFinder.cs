@@ -17,6 +17,10 @@ public sealed unsafe partial class MinLexFinder
 	private readonly List<Mapper> _mappers = [];
 
 
+	/// <inheritdoc cref="Find(string)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Grid Find(ref readonly Grid grid) => Grid.Parse(Find(grid.ToString("0")));
+
 	/// <summary>
 	/// Finds the minimal lexicographical form of the source grid code.
 	/// </summary>
@@ -287,7 +291,7 @@ public sealed unsafe partial class MinLexFinder
 		}
 		for (var cell = 0; cell < 81; cell++)
 		{
-			result[cell] = minLex[cell] != 0 ? (char)(minLex[cell] + '0') : '.';
+			result[cell] = minLex[cell] != 0 ? (char)(minLex[cell] + '0') : '0';
 		}
 
 		return result.ToString();

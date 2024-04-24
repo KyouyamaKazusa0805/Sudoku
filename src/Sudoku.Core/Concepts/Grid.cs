@@ -343,6 +343,16 @@ public partial struct Grid :
 	public readonly bool IsMinimal => CheckMinimal(out _);
 
 	/// <summary>
+	/// Indicates whether the current grid is the minimal lexicographical form, which means the corresponding string text code
+	/// is the minimum value in all equivalent transforming cases in lexicographical order.
+	/// </summary>
+	/// <exception cref="InvalidOperationException">Throws when the grid is a Sukaku, or the puzzle is not unique.</exception>
+	public readonly bool IsMinimalLexicographical
+		=> PuzzleType != SudokuType.Sukaku && Uniqueness == Uniqueness.Unique && ToString("0") is var s
+			? new MinLexFinder().Find(s) == s
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MinLexShouldBeUniqueAndNotSukaku"));
+
+	/// <summary>
 	/// Determines whether the current grid contains any missing candidates.
 	/// </summary>
 	public readonly bool ContainsAnyMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
@@ -741,6 +751,11 @@ public partial struct Grid :
 			}
 		}
 	}
+
+	/// <summary>
+	/// Indicates the minimal-lexicographical grid form.
+	/// </summary>
+	public readonly Grid MinLexGrid => new MinLexFinder().Find(in this);
 
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;

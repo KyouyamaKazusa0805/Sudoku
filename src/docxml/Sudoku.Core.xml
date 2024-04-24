@@ -1980,6 +1980,13 @@
             if arbitrary one given digit will be removed from the grid.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Grid.IsMinimalLexicographical">
+            <summary>
+            Indicates whether the current grid is the minimal lexicographical form, which means the corresponding string text code
+            is the minimum value in all equivalent transforming cases in lexicographical order.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the grid is a Sukaku, or the puzzle is not unique.</exception>
+        </member>
         <member name="P:Sudoku.Concepts.Grid.ContainsAnyMissingCandidates">
             <summary>
             Determines whether the current grid contains any missing candidates.
@@ -2156,6 +2163,11 @@
             this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.MinLexGrid">
+            <summary>
+            Indicates the minimal-lexicographical grid form.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
@@ -5404,6 +5416,9 @@
             Indicates the internal mappers.
             </summary>
         </member>
+        <member name="M:Sudoku.MinLex.MinLexFinder.Find(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.MinLex.MinLexFinder.Find(System.String)"/>
+        </member>
         <member name="M:Sudoku.MinLex.MinLexFinder.Find(System.String)">
             <summary>
             Finds the minimal lexicographical form of the source grid code.
@@ -6545,6 +6560,11 @@
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_LibraryShouldBeInitialized">
             <summary>
               Looks up a localized string similar to The library is not initialized. It must be initialized file, ensuring the file in local exists..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MinLexShouldBeUniqueAndNotSukaku">
+            <summary>
+              Looks up a localized string similar to The puzzle should be standard sudoku puzzle, and contain a unique solution..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_MultipleChuteValuesFound">
