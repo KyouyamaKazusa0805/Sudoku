@@ -91,22 +91,22 @@ public unsafe struct MinLexCandidate
 		for (var stackPerm = 0; stackPerm < 6; stackPerm++)
 		{
 			toTriplets.Clear();
-			toTriplets[BestTripletPermutation.Perm[stackPerm, 0]] = (rowGivens >> 6) & 7;
-			toTriplets[BestTripletPermutation.Perm[stackPerm, 1]] = (rowGivens >> 3) & 7;
-			toTriplets[BestTripletPermutation.Perm[stackPerm, 2]] = rowGivens & 7;
-			var bt0 = BestTripletPermutation.BestTripletPermutations[toTriplets[0], 63];
+			toTriplets[Perm[stackPerm][0]] = (rowGivens >> 6) & 7;
+			toTriplets[Perm[stackPerm][1]] = (rowGivens >> 3) & 7;
+			toTriplets[Perm[stackPerm][2]] = rowGivens & 7;
+			var bt0 = BestTripletPermutations[toTriplets[0]][63];
 			if (bt0.BestResult > ((topKey >> 6) & 7))
 			{
 				continue;
 			}
 
-			var bt1 = BestTripletPermutation.BestTripletPermutations[toTriplets[1], 63];
+			var bt1 = BestTripletPermutations[toTriplets[1]][63];
 			if (bt1.BestResult > ((topKey >> 3) & 7))
 			{
 				continue;
 			}
 
-			var bt2 = BestTripletPermutation.BestTripletPermutations[toTriplets[2], 63];
+			var bt2 = BestTripletPermutations[toTriplets[2]][63];
 			if (bt2.BestResult > (topKey & 7))
 			{
 				continue;

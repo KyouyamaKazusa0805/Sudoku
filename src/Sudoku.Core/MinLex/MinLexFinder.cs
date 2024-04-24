@@ -95,10 +95,10 @@ public sealed unsafe class MinLexFinder
 
 					var toTriplets = new int[3];
 					var rowGivens = pair[old.IsTransposed].Rows[fromRow]; // Stacks unmapped.
-					toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 0]] = rowGivens >> 6;
-					toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 1]] = (rowGivens >> 3) & 7;
-					toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 2]] = rowGivens & 7;
-					ref readonly var bt0 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[0], old.ColumnsPermutationMask[0]];
+					toTriplets[Perm[old.StacksPermutation][0]] = rowGivens >> 6;
+					toTriplets[Perm[old.StacksPermutation][1]] = (rowGivens >> 3) & 7;
+					toTriplets[Perm[old.StacksPermutation][2]] = rowGivens & 7;
+					ref readonly var bt0 = ref BestTripletPermutations[toTriplets[0]][old.ColumnsPermutationMask[0]];
 					if (bt0.BestResult > bestTriplets0)
 					{
 						continue;
@@ -111,7 +111,7 @@ public sealed unsafe class MinLexFinder
 						bestTriplets1 = 7;
 						bestTriplets2 = 7;
 					}
-					ref readonly var bt1 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[1], old.ColumnsPermutationMask[1]];
+					ref readonly var bt1 = ref BestTripletPermutations[toTriplets[1]][old.ColumnsPermutationMask[1]];
 					if (bt1.BestResult > bestTriplets1)
 					{
 						continue;
@@ -123,7 +123,7 @@ public sealed unsafe class MinLexFinder
 						bestTriplets1 = bt1.BestResult;
 						bestTriplets2 = 7;
 					}
-					ref readonly var bt2 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[2], old.ColumnsPermutationMask[2]];
+					ref readonly var bt2 = ref BestTripletPermutations[toTriplets[2]][old.ColumnsPermutationMask[2]];
 					if (bt2.BestResult > bestTriplets2)
 					{
 						continue;
@@ -184,9 +184,9 @@ public sealed unsafe class MinLexFinder
 		{
 			ref var target = ref Unsafe.Add(ref currentCandidates, currentCandidateIndex);
 			var toTriplets = new int[3];
-			toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 0]] = 0;
-			toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 1]] = 3;
-			toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 2]] = 6;
+			toTriplets[Perm[target.StacksPermutation][0]] = 0;
+			toTriplets[Perm[target.StacksPermutation][1]] = 3;
+			toTriplets[Perm[target.StacksPermutation][2]] = 6;
 			for (var colsPerm0 = 0; colsPerm0 < 6; colsPerm0++)
 			{
 				if (((target.ColumnsPermutationMask[0] >> colsPerm0) & 1) == 0)
@@ -195,9 +195,9 @@ public sealed unsafe class MinLexFinder
 				}
 
 				var toColsInStack = new int[9];
-				toColsInStack[BestTripletPermutation.Perm[colsPerm0, 0]] = toTriplets[0];
-				toColsInStack[BestTripletPermutation.Perm[colsPerm0, 1]] = toTriplets[0] + 1;
-				toColsInStack[BestTripletPermutation.Perm[colsPerm0, 2]] = toTriplets[0] + 2;
+				toColsInStack[Perm[colsPerm0][0]] = toTriplets[0];
+				toColsInStack[Perm[colsPerm0][1]] = toTriplets[0] + 1;
+				toColsInStack[Perm[colsPerm0][2]] = toTriplets[0] + 2;
 				for (var colsPerm1 = 0; colsPerm1 < 6; colsPerm1++)
 				{
 					if (((target.ColumnsPermutationMask[1] >> colsPerm1) & 1) == 0)
@@ -205,9 +205,9 @@ public sealed unsafe class MinLexFinder
 						continue;
 					}
 
-					toColsInStack[3 + BestTripletPermutation.Perm[colsPerm1, 0]] = toTriplets[1];
-					toColsInStack[3 + BestTripletPermutation.Perm[colsPerm1, 1]] = toTriplets[1] + 1;
-					toColsInStack[3 + BestTripletPermutation.Perm[colsPerm1, 2]] = toTriplets[1] + 2;
+					toColsInStack[3 + Perm[colsPerm1][0]] = toTriplets[1];
+					toColsInStack[3 + Perm[colsPerm1][1]] = toTriplets[1] + 1;
+					toColsInStack[3 + Perm[colsPerm1][2]] = toTriplets[1] + 2;
 					for (var colsPerm2 = 0; colsPerm2 < 6; colsPerm2++)
 					{
 						if (((target.ColumnsPermutationMask[2] >> colsPerm2) & 1) == 0)
@@ -215,9 +215,9 @@ public sealed unsafe class MinLexFinder
 							continue;
 						}
 
-						toColsInStack[6 + BestTripletPermutation.Perm[colsPerm2, 0]] = toTriplets[2];
-						toColsInStack[6 + BestTripletPermutation.Perm[colsPerm2, 1]] = toTriplets[2] + 1;
-						toColsInStack[6 + BestTripletPermutation.Perm[colsPerm2, 2]] = toTriplets[2] + 2;
+						toColsInStack[6 + Perm[colsPerm2][0]] = toTriplets[2];
+						toColsInStack[6 + Perm[colsPerm2][1]] = toTriplets[2] + 1;
+						toColsInStack[6 + Perm[colsPerm2][2]] = toTriplets[2] + 2;
 						var (labelPerm, nextFreeLabel, nSet) = (new int[10], 1, 0);
 						for (var toRow = 0; toRow < 9; toRow++)
 						{
