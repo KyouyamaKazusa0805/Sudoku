@@ -28,6 +28,7 @@
 
 namespace Sudoku.Concepts;
 
+using System.Diagnostics.CodeAnalysis;
 using unsafe CellMapPredicateFuncPtr = delegate*<ref readonly Grid, Cell, Digit, bool>;
 using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
 using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
@@ -60,9 +61,8 @@ public partial struct Grid :
 	IMinMaxValue<Grid>,
 #endif
 	INullRef<Grid>,
+	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
-	ISimpleFormattable,
-	ISimpleParsable<Grid>,
 	ITokenizable<Grid>
 {
 	/// <summary>
@@ -1600,7 +1600,7 @@ public partial struct Grid :
 	public static Grid Create(ReadOnlySpan<Digit> gridValues, GridCreatingOption creatingOption = 0)
 		=> new(in gridValues[0], creatingOption);
 
-	/// <inheritdoc cref="ISimpleParsable{TSelf}.Parse(string)"/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider)"/>
 	public static Grid Parse(string str)
 	{
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
@@ -1774,6 +1774,16 @@ public partial struct Grid :
 			return false;
 		}
 	}
+
+	/// <inheritdoc/>
+	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
+	{
+		result = Undefined;
+		return s is not null && TryParse(s, out result);
+	}
+
+	/// <inheritdoc/>
+	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 	/// <summary>
 	/// Get digit via token.

@@ -2161,51 +2161,6 @@
         <member name="M:System.ISimpleFormattable.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="T:System.ISimpleParsable`1">
-            <summary>
-            Defines an instance that allows the <see cref="T:System.String"/> value
-            to be parsed to the target type <typeparamref name="TSelf"/>.
-            </summary>
-            <remarks>
-            Different with type <see cref="T:System.IParsable`1"/>, this type is not necessary to convert
-            instances into <see cref="T:System.IFormatProvider"/>.
-            </remarks>
-            <typeparam name="TSelf">The type of the target result.</typeparam>
-            <seealso cref="T:System.IParsable`1"/>
-            <seealso cref="T:System.IFormatProvider"/>
-        </member>
-        <member name="M:System.ISimpleParsable`1.Parse(System.String)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="str"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:System.ISimpleParsable`1.TryParse(System.String,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:System.ISimpleParsable`1.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.ISimpleParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="T:System.Linq.ArrayEnumerable">
             <summary>
             Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.

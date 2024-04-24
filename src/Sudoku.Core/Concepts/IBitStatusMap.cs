@@ -21,8 +21,8 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
-	ISimpleParsable<TSelf>,
-	ISubtractionOperators<TSelf, TSelf, TSelf>
+	ISubtractionOperators<TSelf, TSelf, TSelf>,
+	ISudokuConcept<TSelf>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>

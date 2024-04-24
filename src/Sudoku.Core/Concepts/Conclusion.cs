@@ -34,8 +34,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	ICultureFormattable,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
-	ISimpleParsable<Conclusion>,
-	ICoordinateObject<Conclusion>
+	ISudokuConcept<Conclusion>
 {
 	/// <summary>
 	/// The internal parsers.
@@ -132,7 +131,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter(this);
+	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConclusionConverter(this);
 
 	/// <summary>
 	/// Try to get a new <see cref="Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
@@ -171,6 +170,21 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	}
 
 	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, out Conclusion result) where T : CoordinateParser
+	{
+		try
+		{
+			result = parser.ConclusionParser(str)[0];
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
 	public static Conclusion Parse(string str)
 	{
 		foreach (var parser in Parsers)
@@ -186,7 +200,7 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion ParseExact(string str, CoordinateParser parser)
+	public static Conclusion Parse<T>(string str, T parser) where T : CoordinateParser
 		=> parser.ConclusionParser(str) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));

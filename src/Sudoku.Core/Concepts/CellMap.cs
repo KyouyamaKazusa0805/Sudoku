@@ -19,11 +19,11 @@ public partial struct CellMap :
 	IAdditionOperators<CellMap, Cell, CellMap>,
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
-	ICoordinateObject<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
 	IDivisionOperators<CellMap, House, Mask>,
 	IMultiplyOperators<CellMap, Digit, CandidateMap>,
 	ISubtractionOperators<CellMap, Cell, CellMap>,
+	ISudokuConcept<CellMap>,
 	ITokenizable<CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
@@ -76,7 +76,7 @@ public partial struct CellMap :
 		this = [];
 		foreach (var segment in segments)
 		{
-			this |= ParseExact(segment, new RxCyParser());
+			this |= Parse(segment, new RxCyParser());
 		}
 	}
 
@@ -660,7 +660,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CoordinateConverter converter) => converter.CellConverter(this);
+	public readonly string ToString<T>(T converter) where T : CoordinateConverter => converter.CellConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -867,9 +867,24 @@ public partial struct CellMap :
 			result = Parse(str);
 			return true;
 		}
-		catch
+		catch (FormatException)
 		{
-			result = [];
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, out CellMap result) where T : CoordinateParser
+	{
+		try
+		{
+			result = parser.CellParser(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
 			return false;
 		}
 	}
@@ -965,7 +980,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap ParseExact(string str, CoordinateParser parser) => parser.CellParser(str);
+	public static CellMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CellParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)

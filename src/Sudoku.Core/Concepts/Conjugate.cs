@@ -15,7 +15,7 @@ namespace Sudoku.Concepts;
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] ConjugateMask mask) :
 	IEquatable<Conjugate>,
 	IEqualityOperators<Conjugate, Conjugate, bool>,
-	ICoordinateObject<Conjugate>
+	ISudokuConcept<Conjugate>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -91,11 +91,35 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.ConjugateConverter(this);
+	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConjugateConverter(this);
+
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conjugate ParseExact(string str, CoordinateParser parser)
+	public static bool TryParse(string str, out Conjugate result) => TryParse(str, new RxCyParser(), out result);
+
+	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, out Conjugate result) where T : CoordinateParser
+	{
+		try
+		{
+			result = parser.ConjuagteParser(str)[0];
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conjugate Parse(string str) => Parse(str, new RxCyParser());
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conjugate Parse<T>(string str, T parser) where T : CoordinateParser
 		=> parser.ConjuagteParser(str) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleConjugatePairValuesFound"));

@@ -17,10 +17,10 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
-	ICoordinateObject<CandidateMap>,
+	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>,
 	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
-	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
+	ISudokuConcept<CandidateMap>
 {
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
 	public static readonly CandidateMap MaxValue = ~default(CandidateMap);
@@ -39,7 +39,7 @@ public partial struct CandidateMap :
 		this = [];
 		foreach (var segment in segments)
 		{
-			this |= ParseExact(segment, new RxCyParser());
+			this |= Parse(segment, new RxCyParser());
 		}
 	}
 
@@ -347,7 +347,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CoordinateConverter converter) => converter.CandidateConverter(this);
+	public readonly string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -560,7 +560,22 @@ public partial struct CandidateMap :
 		}
 		catch (FormatException)
 		{
-			Unsafe.SkipInit(out result);
+			result = default;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, out CandidateMap result) where T : CoordinateParser
+	{
+		try
+		{
+			result = parser.CandidateParser(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = default;
 			return false;
 		}
 	}
@@ -606,7 +621,7 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap ParseExact(string str, CoordinateParser parser) => parser.CandidateParser(str);
+	public static CandidateMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CandidateParser(str);
 
 	/// <inheritdoc/>
 	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)

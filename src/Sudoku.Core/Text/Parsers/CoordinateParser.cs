@@ -2,9 +2,9 @@ namespace Sudoku.Text.Parsers;
 
 /// <summary>
 /// Represents for a parser instance that parses a <see cref="string"/> text,
-/// converting it into a valid <see cref="ICoordinateObject{TSelf}"/> instance.
+/// converting it into a valid <see cref="ISudokuConcept{TSelf}"/> instance.
 /// </summary>
-/// <seealso cref="ICoordinateObject{TSelf}"/>
+/// <seealso cref="ISudokuConcept{TSelf}"/>
 public abstract record CoordinateParser : GenericConceptParser
 {
 	/// <summary>

@@ -19,7 +19,11 @@ namespace Sudoku.Concepts;
 public readonly partial struct LockedTarget(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CellMap cells
-) : ICultureFormattable, IEquatable<LockedTarget>, IEqualityOperators<LockedTarget, LockedTarget, bool>
+) :
+	ICultureFormattable,
+	IEquatable<LockedTarget>,
+	IEqualityOperators<LockedTarget, LockedTarget, bool>,
+	ISudokuConceptConvertible<LockedTarget>
 {
 	/// <summary>
 	/// Indicates whether the number of cells is 1.
@@ -51,7 +55,7 @@ public readonly partial struct LockedTarget(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
 
-	/// <inheritdoc cref="ICoordinateObject{TSelf}.ToString(CoordinateConverter)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.CandidateConverter(Cells * Digit);
+	public string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(Cells * Digit);
 }

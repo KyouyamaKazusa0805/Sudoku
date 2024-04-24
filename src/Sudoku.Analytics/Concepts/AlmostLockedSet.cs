@@ -27,9 +27,9 @@ public sealed partial class AlmostLockedSet(
 ) :
 	IComparable<AlmostLockedSet>,
 	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
-	ICoordinateObject<AlmostLockedSet>,
 	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
+	ISudokuConcept<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -121,7 +121,7 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter)
+	public string ToString<T>(T converter) where T : CoordinateConverter
 	{
 		var digitsStr = converter.DigitConverter(DigitsMask);
 		var houseStr = converter.HouseConverter(1 << House);
@@ -131,13 +131,26 @@ public sealed partial class AlmostLockedSet(
 			: $"{digitsStr}/{cellsStr} {ResourceDictionary.Get("KeywordIn", converter.CurrentCulture ?? CultureInfo.CurrentUICulture)} {houseStr}";
 	}
 
+
 	/// <inheritdoc/>
-	public static AlmostLockedSet ParseExact(string str, CoordinateParser parser)
-		=> str.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
-			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
-				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
-				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(string str, [NotNullWhen(true)] out AlmostLockedSet? result)
+		=> TryParse(str, new RxCyParser(), out result);
+
+	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, [NotNullWhen(true)] out AlmostLockedSet? result) where T : CoordinateParser
+	{
+		try
+		{
+			result = Parse(str, parser);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = null;
+			return false;
+		}
+	}
 
 	/// <summary>
 	/// Collects all possible <see cref="AlmostLockedSet"/>s in the specified grid.
@@ -211,4 +224,16 @@ public sealed partial class AlmostLockedSet(
 
 		return result.AsReadOnlySpan();
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static AlmostLockedSet Parse(string str) => Parse(str, new RxCyParser());
+
+	/// <inheritdoc/>
+	public static AlmostLockedSet Parse<T>(string str, T parser) where T : CoordinateParser
+		=> str.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
+			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
+				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
+				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
+			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
 }

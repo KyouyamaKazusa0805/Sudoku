@@ -13,12 +13,11 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public sealed partial class ConclusionSet() :
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
-	ICoordinateObject<ConclusionSet>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
 	ILogicalOperators<ConclusionSet>,
-	ISimpleParsable<ConclusionSet>
+	ISudokuConcept<ConclusionSet>
 {
 	/// <summary>
 	/// The total length of bits.
@@ -232,7 +231,7 @@ public sealed partial class ConclusionSet() :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CoordinateConverter converter) => converter.ConclusionConverter([.. _conclusionsEntry]);
+	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConclusionConverter([.. _conclusionsEntry]);
 
 	/// <summary>
 	/// Try to get the conclusions.
@@ -281,12 +280,27 @@ public sealed partial class ConclusionSet() :
 	}
 
 	/// <inheritdoc/>
+	public static bool TryParse<T>(string str, T parser, [NotNullWhen(true)] out ConclusionSet? result) where T : CoordinateParser
+	{
+		try
+		{
+			result = parser.ConclusionParser(str);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = null;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ConclusionSet Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionSet ParseExact(string str, CoordinateParser parser) => [.. parser.ConclusionParser(str)];
+	public static ConclusionSet Parse<T>(string str, T parser) where T : CoordinateParser => [.. parser.ConclusionParser(str)];
 
 
 	/// <inheritdoc/>

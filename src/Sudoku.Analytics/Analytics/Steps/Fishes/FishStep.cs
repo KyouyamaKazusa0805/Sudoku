@@ -41,7 +41,10 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : Step(conclusions, views, options), ICoordinateObject<FishStep>, ISizeTrait
+) :
+	Step(conclusions, views, options),
+	ISizeTrait,
+	ISudokuConceptConvertible<FishStep>
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -73,7 +76,7 @@ public abstract partial class FishStep(
 		=> ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
 
 	/// <inheritdoc/>
-	public string ToString(CoordinateConverter converter)
+	public string ToString<T>(T converter) where T : CoordinateConverter
 	{
 		switch (converter)
 		{
@@ -117,10 +120,4 @@ public abstract partial class FishStep(
 			}
 		}
 	}
-
-
-	/// <inheritdoc/>
-	[DoesNotReturn]
-	static FishStep ICoordinateObject<FishStep>.ParseExact(string str, CoordinateParser parser)
-		=> throw new NotSupportedException(ResourceDictionary.ExceptionMessage("MemberNotSupported"));
 }
