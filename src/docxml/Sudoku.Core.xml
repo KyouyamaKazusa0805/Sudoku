@@ -5251,23 +5251,176 @@
         <member name="M:Sudoku.Measuring.Distance.op_LessThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.MinLex.BestTripletPermutation">
+            <summary>
+            Represents the permutation information for best triplet.
+            </summary>
+            <param name="bestResult">Indicates the best result.</param>
+            <param name="resultMask">Indicates the result mask.</param>
+            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
+        </member>
+        <member name="M:Sudoku.MinLex.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Represents the permutation information for best triplet.
+            </summary>
+            <param name="bestResult">Indicates the best result.</param>
+            <param name="resultMask">Indicates the result mask.</param>
+            <param name="resultNumberOfBits">Indicates the result number of bits.</param>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTripletPermutation.Perm">
+            <summary>
+            Indicates the permutation cases.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTripletPermutation.BestTripletPermutations">
+            <summary>
+            Indicates all best triplet permutations.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTripletPermutation.BestResult">
+            <summary>
+            The generated field declaration for parameter <c>bestResult</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTripletPermutation.ResultMask">
+            <summary>
+            The generated field declaration for parameter <c>resultMask</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.BestTripletPermutation.ResultNumberOfBits">
+            <summary>
+            The generated field declaration for parameter <c>resultNumberOfBits</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.MinLex.GridPattern">
+            <summary>
+            Represents a pattern for a sudoku grid.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.GridPattern.MinCanNineBits">
+            <summary>
+            A precomputed min-lex'ed recomposition of the bit triplets for a 9-bits input.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.GridPattern.Rows">
+            <summary>
+            Indicates the rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.GridPattern.Digits">
+            <summary>
+            Indicates the digit.
+            </summary>
+        </member>
         <member name="M:Sudoku.MinLex.GridPattern.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.MinLex.GridPattern.BestTopRowScore(Sudoku.MinLex.GridPattern@)">
+            <summary>
+            Try to calculate the best top row score from the specified <see cref="T:Sudoku.MinLex.GridPattern"/> instance.
+            </summary>
+            <param name="p">The grid pattern instance.</param>
+            <returns>The score value calculated.</returns>
+        </member>
+        <member name="M:Sudoku.MinLex.GridPattern.FromString(System.String,Sudoku.MinLex.GridPattern@,Sudoku.MinLex.GridPattern@)">
+            <summary>
+            Initializes for normal and transposed <see cref="T:Sudoku.MinLex.GridPattern"/> instances from a string grid code.
+            </summary>
+            <param name="grid">Indicates the grid code to be used.</param>
+            <param name="normal">Indicates the normal instance.</param>
+            <param name="transposed">Indicates the transposed instance.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
+        </member>
+        <member name="T:Sudoku.MinLex.Mapper">
+            <summary>
+            Indicates a data structure that describes the cell and label handled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.Mapper.Cell">
+            <summary>
+            Indicates the cell <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.Mapper.Label">
+            <summary>
+            Indicates the label <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="T:Sudoku.MinLex.MinLexCandidate">
+            <summary>
+            Indicates a node representing the min-lexicographical candidate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MinLex.MinLexCandidate.Empty">
+            <summary>
+            Represents an empty <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.isTransposed">
+            <summary>
+            A flag field indicating whether the candidate is handled as transposed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.mapRowsForward">
+            <summary>
+            Indicates the map bits on forward rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.mapRowsBackward">
+            <summary>
+            Indicates the map bits on backward rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.stacksPerm">
+            <summary>
+            Indicates the stack permutation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexCandidate.colsPermMask">
+            <summary>
+            Indicates mask bit values for column permutation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.#ctor(System.SByte,System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance via the specified flag for tranpose case and top row.
+            </summary>
+            <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
+            <param name="topRow">The top row used.</param>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.ExpandStacks(System.Span{Sudoku.MinLex.GridPattern},System.Int32,System.Span{Sudoku.MinLex.MinLexCandidate},System.Int32@)">
+            <summary>
+            To expand stacks.
+            </summary>
+            <param name="pair">A pair of <see cref="T:Sudoku.MinLex.GridPattern"/> instance.</param>
+            <param name="topKey">Indicates the top key.</param>
+            <param name="results">Indicates the results.</param>
+            <param name="resultCount">The result count.</param>
         </member>
         <member name="M:Sudoku.MinLex.MinLexCandidate.ToString">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.MinLex.MinLexFinder">
             <summary>
             Represents a finder type.
             </summary>
         </member>
-        <member name="M:Sudoku.MinLex.MinLexFinder.PatMinLex(System.String,System.String@)">
+        <member name="F:Sudoku.MinLex.MinLexFinder.CandidateListTotal">
             <summary>
-            
+            Indicates the total number of candidate list, which means the worst case.
             </summary>
-            <param name="source"></param>
-            <param name="result"></param>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexFinder._mappers">
+            <summary>
+            Indicates the internal mappers.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexFinder.FindMinLexForm(System.String)">
+            <summary>
+            Finds the minimal lexicographical form of the source grid code.
+            </summary>
+            <param name="source">Indicates the source grid code.</param>
+            <returns>The corresponding minimal lexicographical form of the grid.</returns>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
