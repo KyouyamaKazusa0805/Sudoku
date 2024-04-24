@@ -1,0 +1,99 @@
+namespace Sudoku.MinLex;
+
+internal unsafe struct GridPattern
+{
+	internal static readonly int[] MinCanNineBits = [
+		0, 1, 1, 3, 1, 3, 3, 7, 1, 9, 9, 11, 9, 11, 11, 15, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11,
+		27, 27, 31, 1, 9, 9, 11, 9, 11, 11, 15, 3, 11, 11, 27, 11, 27, 27, 31, 3, 11, 11, 27, 11, 27, 27,
+		31, 7, 15, 15, 31, 15, 31, 31, 63, 1, 9, 9, 11, 9, 11, 11, 15, 9, 73, 73, 75, 73, 75, 75, 79, 9,
+		73, 73, 75, 73, 75, 75, 79, 11, 75, 75, 91, 75, 91, 91, 95, 9, 73, 73, 75, 73, 75, 75, 79, 11, 75,
+		75, 91, 75, 91, 91, 95, 11, 75, 75, 91, 75, 91, 91, 95, 15, 79, 79, 95, 79, 95, 95, 127, 1, 9, 9,
+		11, 9, 11, 11, 15, 9, 73, 73, 75, 73, 75, 75, 79, 9, 73, 73, 75, 73, 75, 75, 79, 11, 75, 75, 91,
+		75, 91, 91, 95, 9, 73, 73, 75, 73, 75, 75, 79, 11, 75, 75, 91, 75, 91, 91, 95, 11, 75, 75, 91, 75,
+		91, 91, 95, 15, 79, 79, 95, 79, 95, 95, 127, 3, 11, 11, 27, 11, 27, 27, 31, 11, 75, 75, 91, 75, 91,
+		91, 95, 11, 75, 75, 91, 75, 91, 91, 95, 27, 91, 91, 219, 91, 219, 219, 223, 11, 75, 75, 91, 75, 91,
+		91, 95, 27, 91, 91, 219, 91, 219, 219, 223, 27, 91, 91, 219, 91, 219, 219, 223, 31, 95, 95, 223, 95,
+		223, 223, 255, 1, 9, 9, 11, 9, 11, 11, 15, 9, 73, 73, 75, 73, 75, 75, 79, 9, 73, 73, 75, 73, 75, 75,
+		79, 11, 75, 75, 91, 75, 91, 91, 95, 9, 73, 73, 75, 73, 75, 75, 79, 11, 75, 75, 91, 75, 91, 91, 95,
+		11, 75, 75, 91, 75, 91, 91, 95, 15, 79, 79, 95, 79, 95, 95, 127, 3, 11, 11, 27, 11, 27, 27, 31, 11,
+		75, 75, 91, 75, 91, 91, 95, 11, 75, 75, 91, 75, 91, 91, 95, 27, 91, 91, 219, 91, 219, 219, 223, 11,
+		75, 75, 91, 75, 91, 91, 95, 27, 91, 91, 219, 91, 219, 219, 223, 27, 91, 91, 219, 91, 219, 219, 223,
+		31, 95, 95, 223, 95, 223, 223, 255, 3, 11, 11, 27, 11, 27, 27, 31, 11, 75, 75, 91, 75, 91, 91, 95,
+		11, 75, 75, 91, 75, 91, 91, 95, 27, 91, 91, 219, 91, 219, 219, 223, 11, 75, 75, 91, 75, 91, 91, 95,
+		27, 91, 91, 219, 91, 219, 219, 223, 27, 91, 91, 219, 91, 219, 219, 223, 31, 95, 95, 223, 95, 223,
+		223, 255, 7, 15, 15, 31, 15, 31, 31, 63, 15, 79, 79, 95, 79, 95, 95, 127, 15, 79, 79, 95, 79, 95,
+		95, 127, 31, 95, 95, 223, 95, 223, 223, 255, 15, 79, 79, 95, 79, 95, 95, 127, 31, 95, 95, 223, 95,
+		223, 223, 255, 31, 95, 95, 223, 95, 223, 223, 255, 63, 127, 127, 255, 127, 255, 255, 511
+	]; //a precomputed minlexed recomposition of the bit triplets for a 9-bits input
+
+	public fixed int Rows[9];
+
+	public fixed int Digits[81];
+
+
+	/// <inheritdoc/>
+	public override readonly string ToString()
+	{
+		var sb = new StringBuilder();
+		for (var i = 0; i < 9; i++)
+		{
+			sb.Append(Rows[i]);
+			sb.Append(',');
+		}
+		sb.Append(",...");
+		return sb.ToString();
+	}
+
+	public static int BestTopRowScore(ref readonly GridPattern p)
+	{
+		//returns the smallest row after canonicalization of each row independently
+		int x;
+		var amin = MinCanNineBits[p.Rows[0]];
+		if (amin > (x = MinCanNineBits[p.Rows[1]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[2]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[3]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[4]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[5]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[6]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[7]])) { amin = x; }
+		if (amin > (x = MinCanNineBits[p.Rows[8]])) { amin = x; }
+		return amin;
+	}
+
+	public static int FromString(string txt, ref GridPattern normal, ref GridPattern transposed)
+	{
+		var src = 0; //pointer to a character in the given text
+		var nGivens = 0;
+		transposed.Rows[0] = 0;
+		transposed.Rows[1] = 0;
+		transposed.Rows[2] = 0;
+		transposed.Rows[3] = 0;
+		transposed.Rows[4] = 0;
+		transposed.Rows[5] = 0;
+		transposed.Rows[6] = 0;
+		transposed.Rows[7] = 0;
+		transposed.Rows[8] = 0;
+		for (var row = 0; row < 9; row++)
+		{
+			var r = 0;
+			for (var col = 0; col < 9; col++)
+			{
+				var c = txt[src]; //read the character src points to
+				if (c is >= '1' and <= '9')
+				{
+					nGivens++;
+					r |= 1 << (8 - col); //most significant bit is for c0, less significant for c8
+					transposed.Rows[col] |= 1 << (8 - row);
+					normal.Digits[row * 9 + col] = transposed.Digits[col * 9 + row] = c - '0';
+				}
+				else
+				{
+					normal.Digits[row * 9 + col] = transposed.Digits[col * 9 + row] = 0;
+				}
+				src++; //move to next char
+			}
+			normal.Rows[row] = r;
+		}
+		return nGivens;
+	}
+}

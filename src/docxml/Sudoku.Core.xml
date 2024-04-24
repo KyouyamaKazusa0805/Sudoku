@@ -5251,12 +5251,18 @@
         <member name="M:Sudoku.Measuring.Distance.op_LessThanOrEqual(Sudoku.Measuring.Distance,Sudoku.Measuring.Distance)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="M:Sudoku.MinLex.GridPattern.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.ToString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.MinLex.MinLexFinder">
             <summary>
             Represents a finder type.
             </summary>
         </member>
-        <member name="M:Sudoku.MinLex.MinLexFinder.Find(System.Char*,System.Char*)">
+        <member name="M:Sudoku.MinLex.MinLexFinder.PatMinLex(System.String,System.String@)">
             <summary>
             
             </summary>
