@@ -1879,7 +1879,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.TechniqueInfoPreferenceGroup.CustomizedTechniqueData">
             <summary>
-            Indicates the customized technique data.
+            Indicates the customized technique Data.
             </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.UIPreferenceGroup">
@@ -2510,12 +2510,12 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableDoubleTapFillingForSudokuPane">
             <summary>
-            Indicates whether sudoku pane in analysis page provides with a simpler way to fill with digits via double tapping.
+            Indicates whether sudoku pane in analysis page provides with a simpler way to fill with Digits via double tapping.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableRightTapRemovingForSudokuPane">
             <summary>
-            Indicates whether sudoku pane in analysis page provides with a simpler way to delete digits via right tapping.
+            Indicates whether sudoku pane in analysis page provides with a simpler way to delete Digits via right tapping.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EnableAnimationFeedback">
@@ -2546,7 +2546,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.MakeDigitBeforeCellInRxCyNotation">
             <summary>
-            Indicates whether UI makes digits displaying before cells.
+            Indicates whether UI makes Digits displaying before cells.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseNotationOnlyDisplayCapitalsInRxCyNotation">
@@ -2683,7 +2683,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.DigitsSeparatorInNotation">
             <summary>
-            Indicates the default digit separators for displaying digits.
+            Indicates the default digit separators for displaying Digits.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.FetchingPuzzleLibrary">
@@ -12253,7 +12253,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.UseDifferentColorToDisplayDeltaDigits">
             <summary>
-            Indicates whether the pane displays for delta digits using different colors.
+            Indicates whether the pane displays for delta Digits using different colors.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DisableFlyout">
@@ -12263,7 +12263,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PreventConflictingInput">
             <summary>
-            Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
+            Indicates whether the pane prevent the simple conflict, which means, if you input a digit that is conflict with the Digits in its containing houses, this pane will do nothing by this value being <see langword="true"/>. If not, the pane won't check for any conflict and always allow you inputting the digit regardless of possible conflict.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EnableUndoRedoStacking">
@@ -12308,17 +12308,17 @@
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFontScale">
             <summary>
-            Indicates the font scale of given digits. The value should generally be below 1.0.
+            Indicates the font scale of given Digits. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.ModifiableFontScale">
             <summary>
-            Indicates the font scale of modifiable digits. The value should generally be below 1.0.
+            Indicates the font scale of modifiable Digits. The value should generally be below 1.0.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.PencilmarkFontScale">
             <summary>
-            Indicates the font scale of pencilmark digits (candidates). The value should generally be below 1.0.
+            Indicates the font scale of pencilmark Digits (candidates). The value should generally be below 1.0.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BabaGroupLabelFontScale">
@@ -12411,7 +12411,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.DeltaCellColor">
             <summary>
-            Indicates the color that is used for displaying cell digits that are wrongly filled.
+            Indicates the color that is used for displaying cell Digits that are wrongly filled.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.BorderColor">
