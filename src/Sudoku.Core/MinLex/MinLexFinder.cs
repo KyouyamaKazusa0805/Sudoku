@@ -79,25 +79,25 @@ public sealed unsafe partial class MinLexFinder
 				var (bestTriplets0, bestTriplets1, bestTriplets2, rowInBand) = (7, 7, 7, toRow % 3);
 				for (var curCandidateIndex = 0; curCandidateIndex < nCurCandidates; curCandidateIndex++)
 				{
-					var old = &curCandidates[curCandidateIndex];
-					var (startRow, endRow) = rowInBand != 0 && old->MapRowsBackward[3 * (toRow / 3)] / 3 is var band
+					ref readonly var old = ref Unsafe.Add(ref *curCandidates, curCandidateIndex);
+					var (startRow, endRow) = rowInBand != 0 && old.MapRowsBackward[3 * (toRow / 3)] / 3 is var band
 						? (band * 3, (band + 1) * 3) // Combine with unmapped rows from the same band.
 						: (0, 9); // Try any unmapped row.
 
 					for (var fromRow = startRow; fromRow < endRow; fromRow++)
 					{
-						if (old->MapRowsForward[fromRow] >= 0)
+						if (old.MapRowsForward[fromRow] >= 0)
 						{
 							// Skip previously mapped rows.
 							continue;
 						}
 
 						var toTriplets = new int[3];
-						var rowGivens = pair[old->IsTransposed].Rows[fromRow]; // Stacks unmapped.
-						toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 0]] = rowGivens >> 6;
-						toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 1]] = (rowGivens >> 3) & 7;
-						toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 2]] = rowGivens & 7;
-						ref readonly var bt0 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[0], old->ColumnsPermutationMask[0]];
+						var rowGivens = pair[old.IsTransposed].Rows[fromRow]; // Stacks unmapped.
+						toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 0]] = rowGivens >> 6;
+						toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 1]] = (rowGivens >> 3) & 7;
+						toTriplets[BestTripletPermutation.Perm[old.StacksPermutation, 2]] = rowGivens & 7;
+						ref readonly var bt0 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[0], old.ColumnsPermutationMask[0]];
 						if (bt0.BestResult > bestTriplets0)
 						{
 							continue;
@@ -110,7 +110,7 @@ public sealed unsafe partial class MinLexFinder
 							bestTriplets1 = 7;
 							bestTriplets2 = 7;
 						}
-						ref readonly var bt1 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[1], old->ColumnsPermutationMask[1]];
+						ref readonly var bt1 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[1], old.ColumnsPermutationMask[1]];
 						if (bt1.BestResult > bestTriplets1)
 						{
 							continue;
@@ -122,7 +122,7 @@ public sealed unsafe partial class MinLexFinder
 							bestTriplets1 = bt1.BestResult;
 							bestTriplets2 = 7;
 						}
-						ref readonly var bt2 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[2], old->ColumnsPermutationMask[2]];
+						ref readonly var bt2 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[2], old.ColumnsPermutationMask[2]];
 						if (bt2.BestResult > bestTriplets2)
 						{
 							continue;
@@ -135,13 +135,13 @@ public sealed unsafe partial class MinLexFinder
 						}
 
 						// Tests passed, output the new candidate.
-						var next = &nextCandidates[nNextCandidates++];
-						*next = *old;
-						next->MapRowsForward[fromRow] = (sbyte)toRow;
-						next->MapRowsBackward[toRow] = (sbyte)fromRow;
-						next->ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
-						next->ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
-						next->ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
+						ref var next = ref Unsafe.Add(ref *nextCandidates, nNextCandidates++);
+						next = old;
+						next.MapRowsForward[fromRow] = (sbyte)toRow;
+						next.MapRowsBackward[toRow] = (sbyte)fromRow;
+						next.ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
+						next.ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
+						next.ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
 					}
 				}
 
@@ -153,18 +153,16 @@ public sealed unsafe partial class MinLexFinder
 				nNextCandidates = 0;
 
 				// Store the best result.
-				fixed (char* r = &result[9 * toRow])
-				{
-					r[0] = (char)((bestTriplets0 >> 2) & 1);
-					r[1] = (char)((bestTriplets0 >> 1) & 1);
-					r[2] = (char)((bestTriplets0) & 1);
-					r[3] = (char)((bestTriplets1 >> 2) & 1);
-					r[4] = (char)((bestTriplets1 >> 1) & 1);
-					r[5] = (char)((bestTriplets1) & 1);
-					r[6] = (char)((bestTriplets2 >> 2) & 1);
-					r[7] = (char)((bestTriplets2 >> 1) & 1);
-					r[8] = (char)((bestTriplets2) & 1);
-				}
+				ref var r = ref result[9 * toRow];
+				r = (char)((bestTriplets0 >> 2) & 1);
+				Unsafe.Add(ref r, 1) = (char)((bestTriplets0 >> 1) & 1);
+				Unsafe.Add(ref r, 2) = (char)((bestTriplets0) & 1);
+				Unsafe.Add(ref r, 3) = (char)((bestTriplets1 >> 2) & 1);
+				Unsafe.Add(ref r, 4) = (char)((bestTriplets1 >> 1) & 1);
+				Unsafe.Add(ref r, 5) = (char)((bestTriplets1) & 1);
+				Unsafe.Add(ref r, 6) = (char)((bestTriplets2 >> 2) & 1);
+				Unsafe.Add(ref r, 7) = (char)((bestTriplets2 >> 1) & 1);
+				Unsafe.Add(ref r, 8) = (char)((bestTriplets2) & 1);
 			}
 
 			if (nCurCandidates == 0)
