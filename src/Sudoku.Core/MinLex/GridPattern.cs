@@ -65,7 +65,7 @@ internal unsafe struct GridPattern
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int BestTopRowScore(ref readonly GridPattern p)
 	{
-		//returns the smallest row after canonicalization of each row independently
+		// Returns the smallest row after canonicalization of each row independently.
 		int x;
 		var amin = MinCanNineBits[p.Rows[0]];
 		if (amin > (x = MinCanNineBits[p.Rows[1]])) { amin = x; }

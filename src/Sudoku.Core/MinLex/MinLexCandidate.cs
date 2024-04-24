@@ -1,12 +1,56 @@
 namespace Sudoku.MinLex;
 
-using static BestTripletPermutation;
-
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
 internal unsafe struct MinLexCandidate
 {
+	/// <summary>
+	/// A flag field indicating whether the candidate is handled as transposed.
+	/// </summary>
+	public sbyte IsTransposed;
+
+	/// <summary>
+	/// Indicates the map bits on forward rows.
+	/// </summary>
+	public fixed sbyte MapRowsForward[9];
+
+	/// <summary>
+	/// Indicates the map bits on backward rows.
+	/// </summary>
+	public fixed sbyte MapRowsBackward[9];
+
+	/// <summary>
+	/// Indicates the stack permutation.
+	/// </summary>
+	public byte StacksPermutation;
+
+	/// <summary>
+	/// Indicates mask bit values for column permutation.
+	/// </summary>
+	public fixed byte ColumnsPermutationMask[3];
+
+
+	/// <summary>
+	/// Initializes a <see cref="MinLexCandidate"/> instance.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public MinLexCandidate() => this = Empty;
+
+	/// <summary>
+	/// Initializes a <see cref="MinLexCandidate"/> instance via the specified flag for tranpose case and top row.
+	/// </summary>
+	/// <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
+	/// <param name="topRow">The top row used.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public MinLexCandidate(sbyte transpose, int topRow) : this()
+	{
+		IsTransposed = transpose;
+		MapRowsForward[topRow] = 0;
+		MapRowsBackward[0] = (sbyte)topRow;
+	}
+
+
 	/// <summary>
 	/// Represents an empty <see cref="MinLexCandidate"/> instance.
 	/// </summary>
@@ -14,60 +58,20 @@ internal unsafe struct MinLexCandidate
 	{
 		get
 		{
-			var result = new MinLexCandidate { isTransposed = 0, stacksPerm = 63 };
+			var result = default(MinLexCandidate) with { IsTransposed = 0, StacksPermutation = 63 };
 			for (var i = 0; i < 9; i++)
 			{
-				result.mapRowsForward[i] = -1;
-				result.mapRowsBackward[i] = -1;
+				result.MapRowsForward[i] = -1;
+				result.MapRowsBackward[i] = -1;
 
 				if (i < 3)
 				{
-					result.colsPermMask[i] = 63;
+					result.ColumnsPermutationMask[i] = 63;
 				}
 			}
 
 			return result;
 		}
-	}
-
-
-	/// <summary>
-	/// A flag field indicating whether the candidate is handled as transposed.
-	/// </summary>
-	public sbyte isTransposed;
-
-	/// <summary>
-	/// Indicates the map bits on forward rows.
-	/// </summary>
-	public fixed sbyte mapRowsForward[9];
-
-	/// <summary>
-	/// Indicates the map bits on backward rows.
-	/// </summary>
-	public fixed sbyte mapRowsBackward[9];
-
-	/// <summary>
-	/// Indicates the stack permutation.
-	/// </summary>
-	public byte stacksPerm;
-
-	/// <summary>
-	/// Indicates mask bit values for column permutation.
-	/// </summary>
-	public fixed byte colsPermMask[3];
-
-
-	/// <summary>
-	/// Initializes a <see cref="MinLexCandidate"/> instance via the specified flag for tranpose case and top row.
-	/// </summary>
-	/// <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
-	/// <param name="topRow">The top row used.</param>
-	public MinLexCandidate(sbyte transpose, int topRow)
-	{
-		this = Empty;
-		isTransposed = transpose;
-		mapRowsForward[topRow] = 0;
-		mapRowsBackward[0] = (sbyte)topRow;
 	}
 
 
@@ -80,42 +84,42 @@ internal unsafe struct MinLexCandidate
 	/// <param name="resultCount">The result count.</param>
 	public readonly void ExpandStacks(Span<GridPattern> pair, int topKey, Span<MinLexCandidate> results, ref int resultCount)
 	{
-		//for a top row, obtain stack and cols permutations
-		ref readonly var gr = ref pair[isTransposed];
-		var rowGivens = gr.Rows[mapRowsBackward[0]];
+		// For a top row, obtain stack and columns permutations.
+		ref readonly var gr = ref pair[IsTransposed];
+		var rowGivens = gr.Rows[MapRowsBackward[0]];
 		for (var stackPerm = 0; stackPerm < 6; stackPerm++)
 		{
 			var toTriplets = new int[3];
-			toTriplets[Perm[stackPerm, 0]] = (rowGivens >> 6) & 7;
-			toTriplets[Perm[stackPerm, 1]] = (rowGivens >> 3) & 7;
-			toTriplets[Perm[stackPerm, 2]] = rowGivens & 7;
-			var bt0 = BestTripletPermutations[toTriplets[0], 63];
+			toTriplets[BestTripletPermutation.Perm[stackPerm, 0]] = (rowGivens >> 6) & 7;
+			toTriplets[BestTripletPermutation.Perm[stackPerm, 1]] = (rowGivens >> 3) & 7;
+			toTriplets[BestTripletPermutation.Perm[stackPerm, 2]] = rowGivens & 7;
+			var bt0 = BestTripletPermutation.BestTripletPermutations[toTriplets[0], 63];
 			if (bt0.BestResult > ((topKey >> 6) & 7))
 			{
 				continue;
 			}
 
-			var bt1 = BestTripletPermutations[toTriplets[1], 63];
+			var bt1 = BestTripletPermutation.BestTripletPermutations[toTriplets[1], 63];
 			if (bt1.BestResult > ((topKey >> 3) & 7))
 			{
 				continue;
 			}
 
-			var bt2 = BestTripletPermutations[toTriplets[2], 63];
+			var bt2 = BestTripletPermutation.BestTripletPermutations[toTriplets[2], 63];
 			if (bt2.BestResult > (topKey & 7))
 			{
 				continue;
 			}
 
-			//this stack permutation results in minimal top row. Store the expanded candidate.
+			// This stack permutation results in minimal top row. Store the expanded candidate.
 			fixed (MinLexCandidate* pResults = results)
 			{
 				var res = &pResults[resultCount++];
 				*res = this;
-				res->stacksPerm = (byte)stackPerm;
-				res->colsPermMask[0] = (byte)bt0.ResultMask;
-				res->colsPermMask[1] = (byte)bt1.ResultMask;
-				res->colsPermMask[2] = (byte)bt2.ResultMask;
+				res->StacksPermutation = (byte)stackPerm;
+				res->ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
+				res->ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
+				res->ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
 			}
 		}
 	}
@@ -124,12 +128,12 @@ internal unsafe struct MinLexCandidate
 	public override readonly string ToString()
 	{
 		var sb = new StringBuilder();
-		sb.Append(isTransposed);
+		sb.Append(IsTransposed);
 		sb.Append(',');
 		sb.Append('[');
 		for (var i = 0; i < 9; i++)
 		{
-			sb.Append(mapRowsForward[i]);
+			sb.Append(MapRowsForward[i]);
 			sb.Append(',');
 		}
 		sb.Append(']');
@@ -137,17 +141,17 @@ internal unsafe struct MinLexCandidate
 		sb.Append('[');
 		for (var i = 0; i < 9; i++)
 		{
-			sb.Append(mapRowsBackward[i]);
+			sb.Append(MapRowsBackward[i]);
 			sb.Append(',');
 		}
 		sb.Append(']');
 		sb.Append(',');
-		sb.Append(stacksPerm);
+		sb.Append(StacksPermutation);
 		sb.Append(',');
 		sb.Append('[');
 		for (var i = 0; i < 3; i++)
 		{
-			sb.Append(colsPermMask[i]);
+			sb.Append(ColumnsPermutationMask[i]);
 			sb.Append(',');
 		}
 		sb.Append(']');

@@ -3,7 +3,7 @@ namespace Sudoku.MinLex;
 /// <summary>
 /// Represents a finder type.
 /// </summary>
-public sealed unsafe class MinLexFinder
+public sealed unsafe partial class MinLexFinder
 {
 	/// <summary>
 	/// Indicates the total number of candidate list, which means the worst case.
@@ -91,24 +91,24 @@ public sealed unsafe class MinLexFinder
 					for (var curCandidateIndex = 0; curCandidateIndex < nCurCandidates; curCandidateIndex++)
 					{
 						var old = &curCandidates[curCandidateIndex];
-						var (startRow, endRow) = rowInBand != 0 && old->mapRowsBackward[3 * (toRow / 3)] / 3 is var band
+						var (startRow, endRow) = rowInBand != 0 && old->MapRowsBackward[3 * (toRow / 3)] / 3 is var band
 							? (band * 3, (band + 1) * 3) // Combine with unmapped rows from the same band.
 							: (0, 9); // Try any unmapped row.
 
 						for (var fromRow = startRow; fromRow < endRow; fromRow++)
 						{
-							if (old->mapRowsForward[fromRow] >= 0)
+							if (old->MapRowsForward[fromRow] >= 0)
 							{
 								// Skip previously mapped rows.
 								continue;
 							}
 
 							var toTriplets = new int[3];
-							var rowGivens = originalAndTransform[old->isTransposed].Rows[fromRow]; // Stacks unmapped.
-							toTriplets[BestTripletPermutation.Perm[old->stacksPerm, 0]] = rowGivens >> 6;
-							toTriplets[BestTripletPermutation.Perm[old->stacksPerm, 1]] = (rowGivens >> 3) & 7;
-							toTriplets[BestTripletPermutation.Perm[old->stacksPerm, 2]] = rowGivens & 7;
-							ref readonly var bt0 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[0], old->colsPermMask[0]];
+							var rowGivens = originalAndTransform[old->IsTransposed].Rows[fromRow]; // Stacks unmapped.
+							toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 0]] = rowGivens >> 6;
+							toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 1]] = (rowGivens >> 3) & 7;
+							toTriplets[BestTripletPermutation.Perm[old->StacksPermutation, 2]] = rowGivens & 7;
+							ref readonly var bt0 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[0], old->ColumnsPermutationMask[0]];
 							if (bt0.BestResult > bestTriplets0)
 							{
 								continue;
@@ -121,7 +121,7 @@ public sealed unsafe class MinLexFinder
 								bestTriplets1 = 7;
 								bestTriplets2 = 7;
 							}
-							ref readonly var bt1 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[1], old->colsPermMask[1]];
+							ref readonly var bt1 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[1], old->ColumnsPermutationMask[1]];
 							if (bt1.BestResult > bestTriplets1)
 							{
 								continue;
@@ -133,7 +133,7 @@ public sealed unsafe class MinLexFinder
 								bestTriplets1 = bt1.BestResult;
 								bestTriplets2 = 7;
 							}
-							ref readonly var bt2 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[2], old->colsPermMask[2]];
+							ref readonly var bt2 = ref BestTripletPermutation.BestTripletPermutations[toTriplets[2], old->ColumnsPermutationMask[2]];
 							if (bt2.BestResult > bestTriplets2)
 							{
 								continue;
@@ -148,11 +148,11 @@ public sealed unsafe class MinLexFinder
 							// Tests passed, output the new candidate.
 							var next = &nextCandidates[nNextCandidates++];
 							*next = *old;
-							next->mapRowsForward[fromRow] = (sbyte)toRow;
-							next->mapRowsBackward[toRow] = (sbyte)fromRow;
-							next->colsPermMask[0] = (byte)bt0.ResultMask;
-							next->colsPermMask[1] = (byte)bt1.ResultMask;
-							next->colsPermMask[2] = (byte)bt2.ResultMask;
+							next->MapRowsForward[fromRow] = (sbyte)toRow;
+							next->MapRowsBackward[toRow] = (sbyte)fromRow;
+							next->ColumnsPermutationMask[0] = (byte)bt0.ResultMask;
+							next->ColumnsPermutationMask[1] = (byte)bt1.ResultMask;
+							next->ColumnsPermutationMask[2] = (byte)bt2.ResultMask;
 						}
 					}
 
@@ -196,12 +196,12 @@ public sealed unsafe class MinLexFinder
 				{
 					ref var target = ref curCandidates[curCandidateIndex];
 					var toTriplets = new int[3];
-					toTriplets[BestTripletPermutation.Perm[target.stacksPerm, 0]] = 0;
-					toTriplets[BestTripletPermutation.Perm[target.stacksPerm, 1]] = 3;
-					toTriplets[BestTripletPermutation.Perm[target.stacksPerm, 2]] = 6;
+					toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 0]] = 0;
+					toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 1]] = 3;
+					toTriplets[BestTripletPermutation.Perm[target.StacksPermutation, 2]] = 6;
 					for (var colsPerm0 = 0; colsPerm0 < 6; colsPerm0++)
 					{
-						if (((target.colsPermMask[0] >> colsPerm0) & 1) == 0)
+						if (((target.ColumnsPermutationMask[0] >> colsPerm0) & 1) == 0)
 						{
 							continue;
 						}
@@ -212,7 +212,7 @@ public sealed unsafe class MinLexFinder
 						toColsInStack[BestTripletPermutation.Perm[colsPerm0, 2]] = toTriplets[0] + 2;
 						for (var colsPerm1 = 0; colsPerm1 < 6; colsPerm1++)
 						{
-							if (((target.colsPermMask[1] >> colsPerm1) & 1) == 0)
+							if (((target.ColumnsPermutationMask[1] >> colsPerm1) & 1) == 0)
 							{
 								continue;
 							}
@@ -222,7 +222,7 @@ public sealed unsafe class MinLexFinder
 							toColsInStack[3 + BestTripletPermutation.Perm[colsPerm1, 2]] = toTriplets[1] + 2;
 							for (var colsPerm2 = 0; colsPerm2 < 6; colsPerm2++)
 							{
-								if (((target.colsPermMask[2] >> colsPerm2) & 1) == 0)
+								if (((target.ColumnsPermutationMask[2] >> colsPerm2) & 1) == 0)
 								{
 									continue;
 								}
@@ -235,7 +235,7 @@ public sealed unsafe class MinLexFinder
 								var nSet = 0; // The number of givens with positions set.
 								for (var toRow = 0; toRow < 9; toRow++)
 								{
-									ref var rowGivens = ref originalAndTransform[target.isTransposed].Digits[target.mapRowsBackward[toRow] * 9];
+									ref var rowGivens = ref originalAndTransform[target.IsTransposed].Digits[target.MapRowsBackward[toRow] * 9];
 									for (var col = 0; col < 9; col++)
 									{
 										ref var fromDigit = ref Unsafe.Add(ref rowGivens, toColsInStack[col]);
@@ -275,9 +275,9 @@ public sealed unsafe class MinLexFinder
 											{
 												for (var c = 0; c < 9; c++)
 												{
-													var src = target.isTransposed != 0
-														? target.mapRowsBackward[r] + 9 * toColsInStack[c]
-														: target.mapRowsBackward[r] * 9 + toColsInStack[c];
+													var src = target.IsTransposed != 0
+														? target.MapRowsBackward[r] + 9 * toColsInStack[c]
+														: target.MapRowsBackward[r] * 9 + toColsInStack[c];
 
 													// Map all non-givens to 99, this masking irrelevant permutations.
 													map.Cell[src] = (byte)(minLex[r * 9 + c] != 0 ? r * 9 + c : 99);

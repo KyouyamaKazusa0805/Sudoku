@@ -5331,54 +5331,39 @@
             <param name="transposed">Indicates the transposed instance.</param>
             <returns>An <see cref="T:System.Int32"/> value indicating the number of given cells.</returns>
         </member>
-        <member name="T:Sudoku.MinLex.Mapper">
-            <summary>
-            Indicates a data structure that describes the cell and label handled.
-            </summary>
-        </member>
-        <member name="F:Sudoku.MinLex.Mapper.Cell">
-            <summary>
-            Indicates the cell <see cref="T:System.Byte"/> values.
-            </summary>
-        </member>
-        <member name="F:Sudoku.MinLex.Mapper.Label">
-            <summary>
-            Indicates the label <see cref="T:System.Byte"/> values.
-            </summary>
-        </member>
         <member name="T:Sudoku.MinLex.MinLexCandidate">
             <summary>
             Indicates a node representing the min-lexicographical candidate.
             </summary>
         </member>
-        <member name="P:Sudoku.MinLex.MinLexCandidate.Empty">
-            <summary>
-            Represents an empty <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance.
-            </summary>
-        </member>
-        <member name="F:Sudoku.MinLex.MinLexCandidate.isTransposed">
+        <member name="F:Sudoku.MinLex.MinLexCandidate.IsTransposed">
             <summary>
             A flag field indicating whether the candidate is handled as transposed.
             </summary>
         </member>
-        <member name="F:Sudoku.MinLex.MinLexCandidate.mapRowsForward">
+        <member name="F:Sudoku.MinLex.MinLexCandidate.MapRowsForward">
             <summary>
             Indicates the map bits on forward rows.
             </summary>
         </member>
-        <member name="F:Sudoku.MinLex.MinLexCandidate.mapRowsBackward">
+        <member name="F:Sudoku.MinLex.MinLexCandidate.MapRowsBackward">
             <summary>
             Indicates the map bits on backward rows.
             </summary>
         </member>
-        <member name="F:Sudoku.MinLex.MinLexCandidate.stacksPerm">
+        <member name="F:Sudoku.MinLex.MinLexCandidate.StacksPermutation">
             <summary>
             Indicates the stack permutation.
             </summary>
         </member>
-        <member name="F:Sudoku.MinLex.MinLexCandidate.colsPermMask">
+        <member name="F:Sudoku.MinLex.MinLexCandidate.ColumnsPermutationMask">
             <summary>
             Indicates mask bit values for column permutation.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.MinLexCandidate.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance.
             </summary>
         </member>
         <member name="M:Sudoku.MinLex.MinLexCandidate.#ctor(System.SByte,System.Int32)">
@@ -5387,6 +5372,11 @@
             </summary>
             <param name="transpose">The value for transpose flag. The value can only be 0 or 1.</param>
             <param name="topRow">The top row used.</param>
+        </member>
+        <member name="P:Sudoku.MinLex.MinLexCandidate.Empty">
+            <summary>
+            Represents an empty <see cref="T:Sudoku.MinLex.MinLexCandidate"/> instance.
+            </summary>
         </member>
         <member name="M:Sudoku.MinLex.MinLexCandidate.ExpandStacks(System.Span{Sudoku.MinLex.GridPattern},System.Int32,System.Span{Sudoku.MinLex.MinLexCandidate},System.Int32@)">
             <summary>
@@ -5421,6 +5411,21 @@
             </summary>
             <param name="source">Indicates the source grid code.</param>
             <returns>The corresponding minimal lexicographical form of the grid.</returns>
+        </member>
+        <member name="T:Sudoku.MinLex.MinLexFinder.Mapper">
+            <summary>
+            Indicates a data structure that describes the cell and label handled.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexFinder.Mapper.Cell">
+            <summary>
+            Indicates the cell <see cref="T:System.Byte"/> values.
+            </summary>
+        </member>
+        <member name="F:Sudoku.MinLex.MinLexFinder.Mapper.Label">
+            <summary>
+            Indicates the label <see cref="T:System.Byte"/> values.
+            </summary>
         </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
