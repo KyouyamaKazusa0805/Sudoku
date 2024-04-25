@@ -2409,7 +2409,7 @@
             </returns>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>

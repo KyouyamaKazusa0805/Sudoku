@@ -1,6 +1,5 @@
 #undef EMPTY_GRID_STRING_CONSTANT
 #define IMPL_INTERFACE_MIN_MAX_VALUE
-#define IMPL_INTERFACE_FORMATTABLE
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #undef SYNC_ROOT_VIA_THREAD_LOCAL
@@ -53,9 +52,7 @@ public partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
-#if IMPL_INTERFACE_FORMATTABLE
 	IFormattable,
-#endif
 #if IMPL_INTERFACE_MIN_MAX_VALUE
 	IMinMaxValue<Grid>,
 #endif
@@ -1101,9 +1098,13 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Mask GetCandidates(Cell cell) => (Mask)(this[cell] & MaxCandidatesMask);
 
+	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(string? format) => ToString(format, null);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format)
+	public readonly string ToString(string? format, IFormatProvider? formatProvider)
 		=> this switch
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
@@ -1111,21 +1112,6 @@ public partial struct Grid :
 			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)
 				?? throw new FormatException(ResourceDictionary.ExceptionMessage("FormatInvalid"))
 		};
-
-#if IMPL_INTERFACE_FORMATTABLE
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(string? format, IFormatProvider? formatProvider)
-		=> formatProvider switch
-		{
-			null => ToString(format),
-			_ => formatProvider.GetFormat(typeof(ICustomFormatter)) switch
-			{
-				ICustomFormatter formatter => formatter.Format(format, this, formatProvider),
-				_ => ToString(format)
-			}
-		};
-#endif
 
 	/// <summary>
 	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
