@@ -1789,6 +1789,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Not supported.
+        /// </summary>
+        internal static string AnalyzePage_SukakuIsNotSupportedForThisFunction {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SukakuIsNotSupportedForThisFunction", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This function is not supported for Sukaku puzzles..
+        /// </summary>
+        internal static string AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription {
+            get {
+                return ResourceManager.GetString("AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sure!.
         /// </summary>
         internal static string AnalyzePage_Sure {

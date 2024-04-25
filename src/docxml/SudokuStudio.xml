@@ -6870,6 +6870,16 @@
               Looks up a localized string similar to Sukaku format.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SukakuIsNotSupportedForThisFunction">
+            <summary>
+              Looks up a localized string similar to Not supported.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription">
+            <summary>
+              Looks up a localized string similar to This function is not supported for Sukaku puzzles..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_Sure">
             <summary>
               Looks up a localized string similar to Sure!.

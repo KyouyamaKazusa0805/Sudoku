@@ -15,6 +15,7 @@ public static class TrueCandidate
 	public static CandidateMap GetAllTrueCandidates(ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 
 		// Get the number of multi-value cells.
 		// If the number of that is greater than the specified number, here will return the default list directly.

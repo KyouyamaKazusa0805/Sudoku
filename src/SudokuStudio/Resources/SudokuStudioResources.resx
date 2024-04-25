@@ -2480,4 +2480,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="SettingsPage_NakedSubsetMaxSizeInComplexSingleDescription" xml:space="preserve">
     <value>Indicates the maximum size of naked subset can be used in complex single. The maximum value is 4 and the minimal value is 2.</value>
   </data>
+  <data name="AnalyzePage_SukakuIsNotSupportedForThisFunction" xml:space="preserve">
+    <value>Not supported</value>
+  </data>
+  <data name="AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription" xml:space="preserve">
+    <value>This function is not supported for Sukaku puzzles.</value>
+  </data>
 </root>

@@ -25,6 +25,13 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 			return;
 		}
 
+		if (puzzle.PuzzleType == SudokuType.Sukaku)
+		{
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = BackdoorButton;
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;
+			return;
+		}
+
 		var backdoors = await Task.Run(() =>
 		{
 			lock (AnalyzingRelatedSyncRoot)
@@ -49,6 +56,13 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
+			return;
+		}
+
+		if (puzzle.PuzzleType == SudokuType.Sukaku)
+		{
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = TrueCandidateButton;
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;
 			return;
 		}
 
@@ -77,8 +91,15 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 		var puzzle = BasePage.SudokuPane.Puzzle;
 		if (!puzzle.IsValid)
 		{
-			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
+			ErrorDialog_PuzzleIsInvalid.Target = DisorderedIttoryuButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
+			return;
+		}
+
+		if (puzzle.PuzzleType == SudokuType.Sukaku)
+		{
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.Target = DisorderedIttoryuButton;
+			ErrorDialog_SukakuIsNotSupportedForThisFunction.IsOpen = true;
 			return;
 		}
 

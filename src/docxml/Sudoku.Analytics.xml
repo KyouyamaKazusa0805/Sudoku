@@ -21764,6 +21764,25 @@ result ^= expression;
         <member name="M:Sudoku.Linq.TechniqueSetEnumerable.Where(Sudoku.Analytics.Categorization.TechniqueSet,System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Where``1(``0[],System.Func{``0,System.Boolean})"/>
         </member>
+        <member name="T:Sudoku.Measuring.AnalyzerResultMesurable">
+            <summary>
+            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            </summary>
+            <param name="analyzerResult">The instance.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="M:Sudoku.Measuring.AnalyzerResultMesurable.#ctor(Sudoku.Analytics.AnalyzerResult)">
+            <summary>
+            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            </summary>
+            <param name="analyzerResult">The instance.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+        </member>
+        <member name="P:Sudoku.Measuring.AnalyzerResultMesurable.DistanceAll">
+            <summary>
+            Indicates the distance values for all steps produced.
+            </summary>
+        </member>
         <member name="T:Sudoku.Measuring.Factor">
             <summary>
             Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.

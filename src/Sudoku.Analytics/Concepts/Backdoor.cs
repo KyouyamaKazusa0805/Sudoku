@@ -14,6 +14,8 @@ public static class Backdoor
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ReadOnlySpan<Conclusion> GetBackdoors(ref readonly Grid grid)
 	{
+		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
+
 		var sstsChecker = Analyzers.SstsOnly;
 		return (grid, sstsChecker.Analyze(in grid)) switch
 		{
