@@ -374,7 +374,7 @@ public static class ReadOnlySpanEnumerable
 				var tempValues = tempDictionary[key];
 				result.Add(
 					new(
-						(TSource*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0])),
+						(TSource*)Unsafe.AsPointer(ref R.AsMutableRef(in tempValues.AsReadOnlySpan()[0])),
 						tempValues.Count,
 						key
 					)

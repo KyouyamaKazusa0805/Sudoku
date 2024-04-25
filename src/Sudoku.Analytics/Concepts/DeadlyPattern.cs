@@ -13,12 +13,6 @@ public static class DeadlyPattern
 	/// <param name="grid">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
-	/// <remarks><b>
-	/// Please note that you should use inline array syntax like <c>grid[cellIndex]</c> to visit and update mask,
-	/// in order to avoid events <see cref="Grid.ValueChanged"/> and <see cref="Grid.RefreshingCandidates"/> being triggered.
-	/// </b></remarks>
-	/// <seealso cref="Grid.ValueChanged"/>
-	/// <seealso cref="Grid.RefreshingCandidates"/>
 	public static bool IsDeadlyPattern(ref readonly Grid grid)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, false);

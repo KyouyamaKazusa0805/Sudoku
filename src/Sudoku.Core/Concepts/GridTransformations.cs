@@ -75,7 +75,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Ref.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
+				R.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
 			}
 		}
 
@@ -97,7 +97,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Ref.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
+				R.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
 			}
 		}
 
@@ -119,7 +119,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Ref.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
+				R.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
 			}
 		}
 
@@ -153,7 +153,7 @@ public static unsafe class GridTransformations
 		{
 			for (var j = 0; j < 9; j++)
 			{
-				Ref.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
+				R.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
 			}
 		}
 
@@ -275,7 +275,7 @@ public static unsafe class GridTransformations
 
 		for (var i = 0; i < 9; i++)
 		{
-			Ref.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
+			R.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
 		}
 
 		return ref @this;
@@ -307,7 +307,7 @@ public static unsafe class GridTransformations
 		var chuteCells2 = Chutes[chuteIndex2].Cells;
 		for (var i = 0; i < 27; i++)
 		{
-			Ref.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
+			R.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
 		}
 
 		return ref @this;

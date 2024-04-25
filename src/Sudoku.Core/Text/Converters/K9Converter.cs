@@ -198,8 +198,8 @@ public sealed record K9Converter(
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(
-					ref Ref.AsByteRef(ref conclusions[0]),
-					in Ref.AsReadOnlyByteRef(in c[0]),
+					ref R.AsByteRef(ref conclusions[0]),
+					in R.AsReadOnlyByteRef(in c[0]),
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 

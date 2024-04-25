@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// Represents a set of methods to be used as method groups.
 /// </summary>
-public static class CommonMethods
+public static class M
 {
 	/// <summary>
 	/// Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.

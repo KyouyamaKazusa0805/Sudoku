@@ -47,8 +47,8 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 		ref readonly var charRef = ref Grid.EmptyString.Ref();
 		while (true)
 		{
-			Unsafe.CopyBlock(ref Ref.AsByteRef(ref puzzleString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
-			Unsafe.CopyBlock(ref Ref.AsByteRef(ref solutionString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref R.AsByteRef(ref puzzleString[0]), in R.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref R.AsByteRef(ref solutionString[0]), in R.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
 
 			GenerateAnswerGrid(puzzleString, solutionString);
 
@@ -157,7 +157,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				Ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble())]);
+				R.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble())]);
 			}
 		}
 	}

@@ -246,122 +246,6 @@
             24 cases.
             </returns>
         </member>
-        <member name="T:System.CommonMethods">
-            <summary>
-            Represents a set of methods to be used as method groups.
-            </summary>
-        </member>
-        <member name="M:System.CommonMethods.DoNothing">
-            <summary>
-            Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
-            </summary>
-        </member>
-        <member name="M:System.CommonMethods.True``1(``0)">
-            <summary>
-            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value to be checked.</param>
-            <returns>The logical conversion result.</returns>
-            <remarks>
-            This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="T:System.Boolean"/> value.
-            If the type <typeparamref name="T"/> has implemented <see cref="T:System.ILogicalOperators`1"/>, C# language will allow this type
-            using <see cref="T:System.Boolean"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
-            to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
-            to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
-            <code><![CDATA[
-            if (integer) // integer != 0 in C and op_True(integer) in C#
-            {
-                // ...
-            }
-            ]]></code>
-            The backing implementation is like the following code in C#:
-            <code><![CDATA[
-            struct Int32
-            {
-                public static bool operator true(int value) => value != 0;
-                public sttaic bool operator false(int value) => value == 0;
-            }
-            ]]></code>
-            </remarks>
-        </member>
-        <member name="M:System.CommonMethods.True``1(``0@)">
-            <inheritdoc cref="M:System.CommonMethods.True``1(``0)"/>
-        </member>
-        <member name="M:System.CommonMethods.False``1(``0)">
-            <summary>
-            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value to be checked.</param>
-            <returns>The logical conversion result.</returns>
-            <remarks>
-            <inheritdoc cref="M:System.CommonMethods.True``1(``0)" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="M:System.CommonMethods.False``1(``0@)">
-            <inheritdoc cref="M:System.CommonMethods.False``1(``0)"/>
-        </member>
-        <member name="M:System.CommonMethods.ToStringConverter``1(``0@)">
-            <summary>
-            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
-            into a <see cref="T:System.String"/> value.
-            </summary>
-            <typeparam name="T">The type of the argument.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The <see cref="T:System.String"/> value.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="this"/> return <see langword="null"/>
-            as the <c>ToString</c> method result.
-            </exception>
-        </member>
-        <member name="M:System.CommonMethods.BitMerger``1(``0,``0)">
-            <summary>
-            Merges two integers by bits. This method will be used by LINQ method
-            <see cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>.
-            </summary>
-            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
-            <param name="interim">The interim value.</param>
-            <param name="next">The next value to be merged by its bits.</param>
-            <returns>The final value merged.</returns>
-            <seealso cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
-        </member>
-        <member name="M:System.CommonMethods.EnumFlagMerger``1(``0,``0)">
-            <summary>
-            Merges two flags of type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <param name="left">The first instance to be merged.</param>
-            <param name="right">The second instance to be merged.</param>
-            <returns>A merged result.</returns>
-        </member>
-        <member name="M:System.CommonMethods.Self``1(``0)">
-            <summary>
-            Returns the argument <paramref name="value"/>.
-            </summary>
-            <typeparam name="T">The type of the argument.</typeparam>
-            <param name="value">The value.</param>
-            <returns>The value itself.</returns>
-        </member>
-        <member name="M:System.CommonMethods.YCombinator``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})">
-            <summary>
-            Represents Y-Combinator. This method can allow you create recursive lambdas.
-            </summary>
-            <typeparam name="T">The type of the argument to be passed.</typeparam>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="f">The recursion logic.</param>
-            <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
-            <remarks>
-            You can use this to create customized recursive lambda:
-            <code><![CDATA[
-            //                           T TResult
-            var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
-            //                          ~~~  ~~~
-            int result = factorial(5); // T -> TResult
-            Console.WriteLine(result);
-            ]]></code>
-            </remarks>
-        </member>
         <member name="T:System.CompareHandler`1">
             <summary>
             Represents a handler that checks the value comparison of two <typeparamref name="T"/> values.
@@ -2867,6 +2751,122 @@
         <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="T:System.M">
+            <summary>
+            Represents a set of methods to be used as method groups.
+            </summary>
+        </member>
+        <member name="M:System.M.DoNothing">
+            <summary>
+            Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
+            </summary>
+        </member>
+        <member name="M:System.M.True``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+            <remarks>
+            This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="T:System.Boolean"/> value.
+            If the type <typeparamref name="T"/> has implemented <see cref="T:System.ILogicalOperators`1"/>, C# language will allow this type
+            using <see cref="T:System.Boolean"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
+            to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
+            to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
+            <code><![CDATA[
+            if (integer) // integer != 0 in C and op_True(integer) in C#
+            {
+                // ...
+            }
+            ]]></code>
+            The backing implementation is like the following code in C#:
+            <code><![CDATA[
+            struct Int32
+            {
+                public static bool operator true(int value) => value != 0;
+                public sttaic bool operator false(int value) => value == 0;
+            }
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:System.M.True``1(``0@)">
+            <inheritdoc cref="M:System.M.True``1(``0)"/>
+        </member>
+        <member name="M:System.M.False``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+            <remarks>
+            <inheritdoc cref="M:System.M.True``1(``0)" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="M:System.M.False``1(``0@)">
+            <inheritdoc cref="M:System.M.False``1(``0)"/>
+        </member>
+        <member name="M:System.M.ToStringConverter``1(``0@)">
+            <summary>
+            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
+            into a <see cref="T:System.String"/> value.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The <see cref="T:System.String"/> value.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="this"/> return <see langword="null"/>
+            as the <c>ToString</c> method result.
+            </exception>
+        </member>
+        <member name="M:System.M.BitMerger``1(``0,``0)">
+            <summary>
+            Merges two integers by bits. This method will be used by LINQ method
+            <see cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>.
+            </summary>
+            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
+            <param name="interim">The interim value.</param>
+            <param name="next">The next value to be merged by its bits.</param>
+            <returns>The final value merged.</returns>
+            <seealso cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
+        </member>
+        <member name="M:System.M.EnumFlagMerger``1(``0,``0)">
+            <summary>
+            Merges two flags of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="left">The first instance to be merged.</param>
+            <param name="right">The second instance to be merged.</param>
+            <returns>A merged result.</returns>
+        </member>
+        <member name="M:System.M.Self``1(``0)">
+            <summary>
+            Returns the argument <paramref name="value"/>.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The value itself.</returns>
+        </member>
+        <member name="M:System.M.YCombinator``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})">
+            <summary>
+            Represents Y-Combinator. This method can allow you create recursive lambdas.
+            </summary>
+            <typeparam name="T">The type of the argument to be passed.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="f">The recursion logic.</param>
+            <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
+            <remarks>
+            You can use this to create customized recursive lambda:
+            <code><![CDATA[
+            //                           T TResult
+            var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
+            //                          ~~~  ~~~
+            int result = factorial(5); // T -> TResult
+            Console.WriteLine(result);
+            ]]></code>
+            </remarks>
+        </member>
         <member name="T:System.ModuleInitializer">
             <target name="type">
 				<summary>
@@ -2991,6 +2991,104 @@
         </member>
         <member name="M:System.PairEnumeratorCasted`3.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:System.R">
+            <summary>
+            Represents a list of methods that can check for the concept "References" defined in C#.
+            </summary>
+        </member>
+        <member name="M:System.R.Swap``1(``0@,``0@)">
+            <summary>
+            Swaps for two elements.
+            </summary>
+            <typeparam name="T">The type of both two arguments.</typeparam>
+            <param name="left">The first element to be swapped.</param>
+            <param name="right">The second element to be swapped.</param>
+        </member>
+        <member name="M:System.R.AsByteRef``1(``0@)">
+            <summary>
+            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
+            </summary>
+            <typeparam name="T">The base type that is converted from.</typeparam>
+            <param name="ref">
+            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
+            using <see langword="ref readonly"/> as a combined parameter modifier.
+            </param>
+        </member>
+        <member name="M:System.R.AsReadOnlyByteRef``1(``0@)">
+            <inheritdoc cref="M:System.R.AsByteRef``1(``0@)"/>
+        </member>
+        <member name="M:System.R.IsNullReference``1(``0@)">
+            <summary>
+            Determines whether the current reference points to <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the referenced element.</typeparam>
+            <param name="reference">The reference to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:System.R.MemoryLocationAreSame``1(``0@,``0@)">
+            <summary>
+            Check whether two references point to a same memory location.
+            </summary>
+            <typeparam name="T">The type of both two arguments.</typeparam>
+            <param name="left">The first element to be checked.</param>
+            <param name="right">The second element to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.R.MakeNullReference``1">
+            <summary>
+            Returns a reference that points to <see langword="null"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the element the reference points to if this reference were not <see langword="null"/>.
+            </typeparam>
+            <returns>A read-only reference that points to <see langword="null"/>.</returns>
+        </member>
+        <member name="M:System.R.AsMutableRef``1(``0@)">
+            <summary>
+            Re-interpret the read-only reference to non-read-only reference.
+            </summary>
+            <typeparam name="T">The type of the referenced item.</typeparam>
+            <param name="ref">The read-only reference.</param>
+            <returns>The non-read-only reference.</returns>
+        </member>
+        <member name="M:System.R.Slice``1(``0@,System.Int32,System.Int32)">
+            <summary>
+            Get the new array from the reference to the block memory start position, with the specified start index.
+            </summary>
+            <typeparam name="T">The type of the pointed element.</typeparam>
+            <param name="memorySpan">The reference to the block memory start position.</param>
+            <param name="start">The start index that you want to pick from.</param>
+            <param name="count">The length of the array that the reference points to.</param>
+            <returns>The array of elements.</returns>
+            <exception cref="T:System.ArgumentNullRefException">
+            Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
+            </exception>
+        </member>
+        <member name="M:System.R.ThrowIfNullRef``1(``0@,System.String)">
+            <summary>
+            Throws an <see cref="T:System.ArgumentNullRefException" /> if the argument points to <see langword="null" />.
+            </summary>
+            <typeparam name="T">The type of the referenced element.</typeparam>
+            <param name="reference">
+            <para>The reference to the target element, or maybe a <see langword="null" /> reference.</para>
+            <para><i>
+            Please note that the argument requires a <see langword="ref" /> modifier, but it does not modify the referenced value
+            of the argument. It is nearly equal to <see langword="in" /> modifier.
+            However, the method will invoke <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)" />,
+            where the only argument is passed by <see langword="ref" />.
+            Therefore, here the current method argument requires a modifier <see langword="ref" /> instead of <see langword="in" />.
+            </i></para>
+            </param>
+            <param name="paramName">
+            <para>The parameter name.</para>
+            <feature name="caller-argument-expression">
+			<para>
+				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
+			</para>
+		</feature>
+            </param>
+            <exception cref="T:System.ArgumentNullRefException">Throws if the argument is a <see langword="null" /> reference.</exception>
         </member>
         <member name="T:System.ReadOnlyChunksBuilder">
             <summary>
@@ -3161,104 +3259,6 @@
             <summary>
             The generated field declaration for parameter <c>chunks</c>.
             </summary>
-        </member>
-        <member name="T:System.Ref">
-            <summary>
-            Represents a list of methods that can check for the concept "References" defined in C#.
-            </summary>
-        </member>
-        <member name="M:System.Ref.Swap``1(``0@,``0@)">
-            <summary>
-            Swaps for two elements.
-            </summary>
-            <typeparam name="T">The type of both two arguments.</typeparam>
-            <param name="left">The first element to be swapped.</param>
-            <param name="right">The second element to be swapped.</param>
-        </member>
-        <member name="M:System.Ref.AsByteRef``1(``0@)">
-            <summary>
-            Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
-            </summary>
-            <typeparam name="T">The base type that is converted from.</typeparam>
-            <param name="ref">
-            The reference to the value. Generally speaking the value should be a <see langword="ref readonly"/> parameter, but C# disallows it,
-            using <see langword="ref readonly"/> as a combined parameter modifier.
-            </param>
-        </member>
-        <member name="M:System.Ref.AsReadOnlyByteRef``1(``0@)">
-            <inheritdoc cref="M:System.Ref.AsByteRef``1(``0@)"/>
-        </member>
-        <member name="M:System.Ref.IsNullReference``1(``0@)">
-            <summary>
-            Determines whether the current reference points to <see langword="null"/>.
-            </summary>
-            <typeparam name="T">The type of the referenced element.</typeparam>
-            <param name="reference">The reference to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Ref.MemoryLocationAreSame``1(``0@,``0@)">
-            <summary>
-            Check whether two references point to a same memory location.
-            </summary>
-            <typeparam name="T">The type of both two arguments.</typeparam>
-            <param name="left">The first element to be checked.</param>
-            <param name="right">The second element to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:System.Ref.MakeNullReference``1">
-            <summary>
-            Returns a reference that points to <see langword="null"/>.
-            </summary>
-            <typeparam name="T">
-            The type of the element the reference points to if this reference were not <see langword="null"/>.
-            </typeparam>
-            <returns>A read-only reference that points to <see langword="null"/>.</returns>
-        </member>
-        <member name="M:System.Ref.AsMutableRef``1(``0@)">
-            <summary>
-            Re-interpret the read-only reference to non-read-only reference.
-            </summary>
-            <typeparam name="T">The type of the referenced item.</typeparam>
-            <param name="ref">The read-only reference.</param>
-            <returns>The non-read-only reference.</returns>
-        </member>
-        <member name="M:System.Ref.Slice``1(``0@,System.Int32,System.Int32)">
-            <summary>
-            Get the new array from the reference to the block memory start position, with the specified start index.
-            </summary>
-            <typeparam name="T">The type of the pointed element.</typeparam>
-            <param name="memorySpan">The reference to the block memory start position.</param>
-            <param name="start">The start index that you want to pick from.</param>
-            <param name="count">The length of the array that the reference points to.</param>
-            <returns>The array of elements.</returns>
-            <exception cref="T:System.ArgumentNullRefException">
-            Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
-            </exception>
-        </member>
-        <member name="M:System.Ref.ThrowIfNullRef``1(``0@,System.String)">
-            <summary>
-            Throws an <see cref="T:System.ArgumentNullRefException" /> if the argument points to <see langword="null" />.
-            </summary>
-            <typeparam name="T">The type of the referenced element.</typeparam>
-            <param name="reference">
-            <para>The reference to the target element, or maybe a <see langword="null" /> reference.</para>
-            <para><i>
-            Please note that the argument requires a <see langword="ref" /> modifier, but it does not modify the referenced value
-            of the argument. It is nearly equal to <see langword="in" /> modifier.
-            However, the method will invoke <see cref="M:System.Runtime.CompilerServices.Unsafe.IsNullRef``1(``0@)" />,
-            where the only argument is passed by <see langword="ref" />.
-            Therefore, here the current method argument requires a modifier <see langword="ref" /> instead of <see langword="in" />.
-            </i></para>
-            </param>
-            <param name="paramName">
-            <para>The parameter name.</para>
-            <feature name="caller-argument-expression">
-			<para>
-				<b>The value of the argument will be automatically produced by the compiler and passed into here. You may not assign this argument.</b>
-			</para>
-		</feature>
-            </param>
-            <exception cref="T:System.ArgumentNullRefException">Throws if the argument is a <see langword="null" /> reference.</exception>
         </member>
         <member name="T:System.Resources.MissingResourceManagerException">
             <summary>

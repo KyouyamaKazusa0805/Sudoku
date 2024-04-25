@@ -85,7 +85,7 @@ public sealed partial class TechniqueInfoPreferenceGroup : PreferenceGroup
 	)
 	{
 		ref var data = ref CollectionsMarshal.GetValueRefOrNullRef(CustomizedTechniqueData, technique);
-		var isNullRef = Ref.IsNullReference(in data);
+		var isNullRef = R.IsNullReference(in data);
 		var a = valueUpdaterWhenNullRef;
 		var b = valueUpdaterWhenNotNullRef;
 		(isNullRef ? a : b)(ref data, isNullRef ? dataCreator(technique, value) : dataModifier(in data, value));

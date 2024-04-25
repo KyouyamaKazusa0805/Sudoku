@@ -3,7 +3,7 @@ namespace System;
 /// <summary>
 /// Represents a list of methods that can check for the concept "References" defined in C#.
 /// </summary>
-public static class Ref
+public static class R
 {
 	/// <summary>
 	/// Swaps for two elements.
