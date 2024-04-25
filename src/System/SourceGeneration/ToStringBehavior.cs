@@ -13,9 +13,9 @@ public enum ToStringBehavior
 
 	/// <summary>
 	/// Indicates the source generator will generate an expression
-	/// to call overload <see cref="ISimpleFormattable.ToString(string?)"/> method.
+	/// to call overload <see cref="IFormattable.ToString(string?, IFormatProvider?)"/> method.
 	/// </summary>
-	/// <seealso cref="ISimpleFormattable.ToString(string?)"/>
+	/// <seealso cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	CallOverload,
 
 	/// <summary>
