@@ -7,6 +7,17 @@ namespace System;
 public interface ILogicalOperators<TSelf> where TSelf : ILogicalOperators<TSelf>?
 {
 	/// <summary>
+	/// Make logical and for two <typeparamref name="TSelf"/> instances.
+	/// </summary>
+	public static sealed TSelf LogicalAnd(TSelf left, TSelf right) => left && right;
+
+	/// <summary>
+	/// Make logical or for two <typeparamref name="TSelf"/> instances.
+	/// </summary>
+	public static sealed TSelf LogicalOr(TSelf left, TSelf right) => left || right;
+
+
+	/// <summary>
 	/// Determine whether the specified object is determined <see langword="true"/>.
 	/// </summary>
 	/// <param name="value">The value to be determined.</param>
