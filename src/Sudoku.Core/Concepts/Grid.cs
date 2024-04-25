@@ -28,7 +28,6 @@
 
 namespace Sudoku.Concepts;
 
-using System.Diagnostics.CodeAnalysis;
 using unsafe CellMapPredicateFuncPtr = delegate*<ref readonly Grid, Cell, Digit, bool>;
 using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
 using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
