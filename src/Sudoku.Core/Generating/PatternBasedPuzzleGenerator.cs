@@ -3,21 +3,9 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a generator that is based on pattern.
 /// </summary>
-/// <param name="seedPattern"><inheritdoc cref="Pattern" path="/summary"/></param>
-[StructLayout(LayoutKind.Auto)]
-[LargeStructure]
-[Equals]
-[GetHashCode]
-[ToString]
-[method: DebuggerStepThrough]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParameter(MemberKinds.Field, RefKind = "ref readonly")] ref readonly CellMap seedPattern)
+/// <param name="seedPattern">Indicates the predefind pattern used.</param>
+public ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
 {
-	/// <summary>
-	/// The internal solver.
-	/// </summary>
-	private readonly BitwiseSolver _solver = new();
-
 	/// <summary>
 	/// Indicates the test grid.
 	/// </summary>
@@ -30,12 +18,6 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 
 
 	/// <summary>
-	/// Indicates the predefind pattern used.
-	/// </summary>
-	public readonly ref readonly CellMap Pattern => ref _seedPattern;
-
-
-	/// <summary>
 	/// Try to generate a puzzle using the specified pattern.
 	/// </summary>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
@@ -44,35 +26,28 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 	{
 		try
 		{
-			var patternCellsSorted = OrderPatternCellsViaConnectionDegrees();
-			_playground = Grid.Empty;
-			getGrid(_solver, patternCellsSorted, ref _playground, ref _resultGrid, 0);
-			return _resultGrid;
+			(_playground, _resultGrid, var patternCellsSorted) = (Grid.Empty, Grid.Undefined, OrderPatternCellsViaConnectionDegrees());
+			getGrid(patternCellsSorted, ref _playground, ref _resultGrid, 0);
 		}
 		catch (OperationCanceledException)
 		{
-			return Grid.Undefined;
 		}
 		catch
 		{
 			throw;
 		}
 
+		return _resultGrid.FixedGrid;
 
-		void getGrid(
-			BitwiseSolver solver,
-			Cell[] patternCellsSorted,
-			ref Grid playground,
-			ref Grid resultGrid,
-			int currentIndex
-		)
+
+		void getGrid(Cell[] patternCellsSorted, ref Grid playground, ref Grid resultGrid, int currentIndex)
 		{
 			if (currentIndex == patternCellsSorted.Length)
 			{
-				if (solver.CheckValidity(playground.ToString("!0")))
+				if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
 				{
-					resultGrid = playground;
-					throw new("Finished.");
+					resultGrid = result;
+					throw new OperationCanceledException("Finished.");
 				}
 
 				return;
@@ -90,12 +65,17 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 			Random.Shared.Shuffle(indexArray);
 			foreach (var randomizedIndex in indexArray)
 			{
-				playground.SetDigit(cell, -1);
-				playground.SetDigit(cell, digits[randomizedIndex]);
+				playground.ReplaceDigit(cell, digits[randomizedIndex]);
+
+				if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
+				{
+					playground.SetDigit(cell, -1);
+					continue;
+				}
 
 				cancellationToken.ThrowIfCancellationRequested();
 
-				getGrid(solver, patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
+				getGrid(patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
 			}
 
 			playground.SetDigit(cell, -1);
@@ -109,14 +89,14 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 	private readonly Cell[] OrderPatternCellsViaConnectionDegrees()
 	{
 		var isOrdered = (CellMap)[];
-		var result = new Cell[_seedPattern.Count];
-		for (var index = 0; index < _seedPattern.Count; index++)
+		var result = new Cell[seedPattern.Count];
+		for (var index = 0; index < seedPattern.Count; index++)
 		{
 			var maxRating = 0;
 			var best = -1;
 			for (var i = 0; i < 81; i++)
 			{
-				if (!_seedPattern.Contains(i) || isOrdered.Contains(i))
+				if (!seedPattern.Contains(i) || isOrdered.Contains(i))
 				{
 					continue;
 				}
@@ -124,7 +104,7 @@ public ref partial struct PatternBasedPuzzleGenerator([PrimaryConstructorParamet
 				var rating = 0;
 				for (var j = 0; j < 81; j++)
 				{
-					if (!_seedPattern.Contains(j) || i == j)
+					if (!seedPattern.Contains(j) || i == j)
 					{
 						continue;
 					}

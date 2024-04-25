@@ -4451,18 +4451,13 @@
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
+            <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.#ctor(Sudoku.Concepts.CellMap)">
             <summary>
             Represents a generator that is based on pattern.
             </summary>
-            <param name="seedPattern"><inheritdoc cref="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._solver">
-            <summary>
-            The internal solver.
-            </summary>
+            <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._playground">
             <summary>
@@ -4472,11 +4467,6 @@
         <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._resultGrid">
             <summary>
             Indicates the result grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Generating.PatternBasedPuzzleGenerator.Pattern">
-            <summary>
-            Indicates the predefind pattern used.
             </summary>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
@@ -4491,20 +4481,6 @@
             Order the pattern cells via connection complexity.
             </summary>
             <returns>The cells ordered.</returns>
-        </member>
-        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
-            <summary>
-            The generated field declaration for parameter <c>seedPattern</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.PuzzleBase">
             <summary>
