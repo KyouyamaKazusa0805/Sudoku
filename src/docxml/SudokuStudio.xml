@@ -5157,6 +5157,17 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:SudokuStudio.Program">
+            <summary>
+            Represents a type that encapsulates the entry point.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Program.Main(System.String[])">
+            <summary>
+            Indicates the entry point method.
+            </summary>
+            <param name="args">The command line arguments.</param>
+        </member>
         <member name="T:SudokuStudio.ProjectWideConstants">
             <summary>
             Represents a list of constant or <see langword="static readonly"/> fields used in the whole project.
@@ -15617,17 +15628,6 @@
             <summary>
             Try to get the scale unit from the scale value.
             </summary>
-        </member>
-        <member name="T:Program">
-            <summary>
-            Represents a type that encapsulates the entry point.
-            </summary>
-        </member>
-        <member name="M:Program.Main(System.String[])">
-            <summary>
-            Indicates the entry point method.
-            </summary>
-            <param name="args">The command line arguments.</param>
         </member>
     </members>
 </doc>

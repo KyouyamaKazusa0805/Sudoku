@@ -1,3 +1,5 @@
+namespace SudokuStudio;
+
 /// <summary>
 /// Represents a type that encapsulates the entry point.
 /// </summary>
