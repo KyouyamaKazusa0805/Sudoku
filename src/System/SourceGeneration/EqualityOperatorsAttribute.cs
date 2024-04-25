@@ -7,7 +7,7 @@ namespace System.SourceGeneration;
 [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct | AttributeTargets.Interface)]
 public sealed partial class EqualityOperatorsAttribute(
 	[PrimaryConstructorParameter] EqualityOperatorsBehavior behavior = EqualityOperatorsBehavior.Intelligent
-) : DuckTypingAttribute
+) : PatternOverriddenAttribute
 {
 	/// <summary>
 	/// Indicates an extra option to tell source generators which case of nullability should be preferred.
