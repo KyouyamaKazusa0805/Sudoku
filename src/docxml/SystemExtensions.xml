@@ -4388,11 +4388,6 @@
         <member name="M:System.Threading.Tasks.TimeSpanAwaiter.OnCompleted(System.Action)">
             <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.OnCompleted(System.Action)"/>
         </member>
-        <member name="F:System.Threading.Tasks.TimeSpanAwaiter._awaiter">
-            <summary>
-            The generated field declaration for parameter <c>awaiter</c>.
-            </summary>
-        </member>
         <member name="T:System.ValueComparison">
             <summary>
             Represents a list of methods that creates <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> and <see cref="T:System.Collections.Generic.IComparer`1"/> instances.

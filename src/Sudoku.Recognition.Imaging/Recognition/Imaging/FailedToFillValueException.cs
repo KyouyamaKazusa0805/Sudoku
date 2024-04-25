@@ -5,11 +5,11 @@ namespace Sudoku.Recognition.Imaging;
 /// </summary>
 /// <param name="cell">Indicates the wrong cell.</param>
 /// <param name="digit">Indicates the wrong digit.</param>
-public sealed partial class FailedToFillValueException([PrimaryConstructorParameter] Cell cell, [PrimaryConstructorParameter] Digit digit) : Exception
+public sealed class FailedToFillValueException(Cell cell, Digit digit) : Exception
 {
 	/// <inheritdoc/>
 	public override string Message
-		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), Cell.AsCellMap(), Digit + 1);
+		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), cell.AsCellMap(), digit + 1);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

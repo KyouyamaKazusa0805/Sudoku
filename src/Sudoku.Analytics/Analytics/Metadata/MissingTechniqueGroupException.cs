@@ -7,8 +7,8 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="Technique"/>
 /// <seealso cref="TechniqueGroup"/>
 /// <seealso cref="TechniqueMetadataAttribute"/>
-public sealed partial class MissingTechniqueGroupException([PrimaryConstructorParameter] string memberName) : Exception
+public sealed class MissingTechniqueGroupException(string memberName) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingTechniqueGroupException"), MemberName);
+	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingTechniqueGroupException"), memberName);
 }

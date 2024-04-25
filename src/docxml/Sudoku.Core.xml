@@ -5640,24 +5640,19 @@
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
             </summary>
-            <param name="a">Indicates the color alpha raw values to be assigned.</param>
-            <param name="r">Indicates the color red raw values to be assigned.</param>
-            <param name="g">Indicates the color green raw values to be assigned.</param>
-            <param name="b">Indicates the color blue raw values to be assigned.</param>
+            <param name="alpha">Indicates the color alpha raw values to be assigned.</param>
+            <param name="red">Indicates the color red raw values to be assigned.</param>
+            <param name="green">Indicates the color green raw values to be assigned.</param>
+            <param name="blue">Indicates the color blue raw values to be assigned.</param>
         </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.#ctor(System.Byte,System.Byte,System.Byte,System.Byte)">
             <summary>
             Defines a <see cref="T:Sudoku.Rendering.ColorIdentifier"/> derived type that uses color value (like type <c>System.Drawing.Color</c>) to distinct with colors.
             </summary>
-            <param name="a">Indicates the color alpha raw values to be assigned.</param>
-            <param name="r">Indicates the color red raw values to be assigned.</param>
-            <param name="g">Indicates the color green raw values to be assigned.</param>
-            <param name="b">Indicates the color blue raw values to be assigned.</param>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.RawValue">
-            <summary>
-            Indicates the raw value.
-            </summary>
+            <param name="alpha">Indicates the color alpha raw values to be assigned.</param>
+            <param name="red">Indicates the color red raw values to be assigned.</param>
+            <param name="green">Indicates the color green raw values to be assigned.</param>
+            <param name="blue">Indicates the color blue raw values to be assigned.</param>
         </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.Deconstruct(System.Byte@,System.Byte@,System.Byte@)">
             <target name="method">
@@ -5678,31 +5673,11 @@
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.Equals(Sudoku.Rendering.ColorIdentifier)">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.A">
-            <summary>
-            The generated property declaration for parameter <c>a</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.R">
-            <summary>
-            The generated property declaration for parameter <c>r</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.G">
-            <summary>
-            The generated property declaration for parameter <c>g</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Rendering.ColorColorIdentifier.B">
-            <summary>
-            The generated property declaration for parameter <c>b</c>.
-            </summary>
-        </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Rendering.ColorColorIdentifier.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Rendering.ColorIdentifier">
             <summary>
@@ -7488,16 +7463,6 @@
         </member>
         <member name="P:Sudoku.Runtime.LibraryServices.LibraryInitializedException.Message">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInitializedException.Directory">
-            <summary>
-            The generated property declaration for parameter <c>directory</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Runtime.LibraryServices.LibraryInitializedException.FileId">
-            <summary>
-            The generated property declaration for parameter <c>fileId</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Runtime.LibraryServices.TextPointer">
             <summary>

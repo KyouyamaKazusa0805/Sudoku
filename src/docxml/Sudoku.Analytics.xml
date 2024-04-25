@@ -5155,11 +5155,6 @@
         <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.MissingDifficultyLevelException.MemberName">
-            <summary>
-            The generated property declaration for parameter <c>memberName</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Metadata.MissingTechniqueGroupException">
             <summary>
             Reprsents an exception thrown when a field in <see cref="T:Sudoku.Analytics.Categorization.Technique"/> is missing for technique group attribute.
@@ -5180,11 +5175,6 @@
         </member>
         <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.Message">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.MissingTechniqueGroupException.MemberName">
-            <summary>
-            The generated property declaration for parameter <c>memberName</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.PencilmarkVisibility">
             <summary>

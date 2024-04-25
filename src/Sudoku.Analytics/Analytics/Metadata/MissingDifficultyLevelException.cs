@@ -7,8 +7,8 @@ namespace Sudoku.Analytics.Metadata;
 /// <seealso cref="Technique"/>
 /// <seealso cref="DifficultyLevel"/>
 /// <seealso cref="TechniqueMetadataAttribute"/>
-public sealed partial class MissingDifficultyLevelException([PrimaryConstructorParameter] string memberName) : Exception
+public sealed class MissingDifficultyLevelException(string memberName) : Exception
 {
 	/// <inheritdoc/>
-	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingDifficultyLevelException"), MemberName);
+	public override string Message => string.Format(ResourceDictionary.Get("Message_MissingDifficultyLevelException"), memberName);
 }

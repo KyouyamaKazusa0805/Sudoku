@@ -12,10 +12,7 @@ namespace Sudoku.Runtime.LibraryServices;
 /// </i></remarks>
 /// <seealso cref="Library.Initialize"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
-public sealed partial class LibraryInitializedException(
-	[PrimaryConstructorParameter] string directory,
-	[PrimaryConstructorParameter] string fileId
-) : Exception
+public sealed class LibraryInitializedException(string directory, string fileId) : Exception
 {
 	/// <summary>
 	/// Initializes a <see cref="LibraryInitializedException"/> instance via the specified directory and file ID.
@@ -27,6 +24,5 @@ public sealed partial class LibraryInitializedException(
 
 
 	/// <inheritdoc/>
-	public override string Message
-		=> string.Format(ResourceDictionary.Get("Message_LibraryInitializedException"), Directory, FileId);
+	public override string Message => string.Format(ResourceDictionary.Get("Message_LibraryInitializedException"), directory, fileId);
 }

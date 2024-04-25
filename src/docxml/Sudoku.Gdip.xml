@@ -950,21 +950,6 @@
         <member name="M:Sudoku.Gdip.TextRenderingData.Dispose">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Gdip.TextRenderingData.Font">
-            <summary>
-            The generated property declaration for parameter <c>font</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.TextRenderingData.ExtraHeight">
-            <summary>
-            The generated property declaration for parameter <c>extraHeight</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Gdip.TextRenderingData.StringFormat">
-            <summary>
-            The generated property declaration for parameter <c>stringFormat</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.ModuleInitializer">
             <target name="type">
 				<summary>
