@@ -6,24 +6,24 @@
     "add": {
       "fileToFile": {
         "add": {
-          "Int32Enumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "Int64Enumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "NativeIntegerEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "GenericNumberEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "MaskCombinationEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "ReverseEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "TupleEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "ValueTupleEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "ComplexValueTupleEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "ReadOnlyMemoryEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "EnumFlagsEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "PairEnumerator.cs": [ "ISpecializedEnumerator.cs" ],
-          "PairEnumeratorCasted.cs": [ "ISpecializedEnumerator.cs" ],
-          "ArrayInitializer.cs": [ "ISpecializedDelegate.cs" ],
-          "CompareHandler.cs": [ "ISpecializedDelegate.cs" ],
-          "EqualsHandler.cs": [ "ISpecializedDelegate.cs" ],
-          "GetHashCodeFunc.cs": [ "ISpecializedDelegate.cs" ],
-          "GetHashCodeHandler.cs": [ "ISpecializedDelegate.cs" ]
+          "Int32Enumerator.cs": [ "ISpecializedEnumerator" ],
+          "Int64Enumerator.cs": [ "ISpecializedEnumerator" ],
+          "NativeIntegerEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "GenericNumberEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "MaskCombinationEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "ReverseEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "TupleEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "ValueTupleEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "ComplexValueTupleEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "ReadOnlyMemoryEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "EnumFlagsEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "PairEnumerator.cs": [ "ISpecializedEnumerator" ],
+          "PairEnumeratorCasted.cs": [ "ISpecializedEnumerator" ],
+          "ArrayInitializer.cs": [ "ISpecializedDelegate" ],
+          "CompareHandler.cs": [ "ISpecializedDelegate" ],
+          "EqualsHandler.cs": [ "ISpecializedDelegate" ],
+          "GetHashCodeFunc.cs": [ "ISpecializedDelegate" ],
+          "GetHashCodeHandler.cs": [ "ISpecializedDelegate" ]
         }
       }
     }
