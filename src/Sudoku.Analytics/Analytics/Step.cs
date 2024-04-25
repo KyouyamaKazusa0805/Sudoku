@@ -240,7 +240,7 @@ public abstract partial class Step(
 	/// </summary>
 	/// <returns>The string instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => ToString(Options.Converter.CurrentCulture);
+	public sealed override string ToString() => ToString(ResultCurrentCulture);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -257,6 +257,52 @@ public abstract partial class Step(
 			var (_, formatArgs) => $"{GetName(culture)}{colonToken}{Format.ToString(culture, formatArgs)} => {ConclusionText}"
 		};
 	}
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(string? format) => ToString(format, null);
+
+	/// <inheritdoc/>
+	/// <remarks>
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Format</term>
+	/// <description>Description</description>
+	/// </listheader>
+	/// <item>
+	/// <term><see langword="null"/> or <c>"F"</c></term>
+	/// <description>The full text.</description>
+	/// </item>
+	/// <item>
+	/// <term>"N"</term>
+	/// <description>The name of the step.</description>
+	/// </item>
+	/// <item>
+	/// <term><c>"C"</c></term>
+	/// <description>The conclusion text of the step.</description>
+	/// </item>
+	/// <item>
+	/// <term><c>"NC"</c> or <c>"CN"</c></term>
+	/// <description>
+	/// No description returned; only contains name and conclusion, equivalent to <see cref="ToSimpleString(CultureInfo?)"/>.
+	/// </description>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	/// <seealso cref="ToSimpleString(CultureInfo?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(string? format, IFormatProvider? formatProvider)
+		=> formatProvider switch
+		{
+			CultureInfo cultureInfo => ToString(cultureInfo),
+			_ => format switch
+			{
+				null or "F" => ToString(ResultCurrentCulture),
+				"N" => GetName(ResultCurrentCulture),
+				"C" => Options.Converter.ConclusionConverter(Conclusions),
+				"NC" or "CN" => ToSimpleString(ResultCurrentCulture),
+			}
+		};
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.

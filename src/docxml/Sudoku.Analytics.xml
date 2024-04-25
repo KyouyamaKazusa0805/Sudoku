@@ -5879,6 +5879,39 @@
         <member name="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Step.ToString(System.String)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+            <remarks>
+            <list type="table">
+            <listheader>
+            <term>Format</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><see langword="null"/> or <c>"F"</c></term>
+            <description>The full text.</description>
+            </item>
+            <item>
+            <term>"N"</term>
+            <description>The name of the step.</description>
+            </item>
+            <item>
+            <term><c>"C"</c></term>
+            <description>The conclusion text of the step.</description>
+            </item>
+            <item>
+            <term><c>"NC"</c> or <c>"CN"</c></term>
+            <description>
+            No description returned; only contains name and conclusion, equivalent to <see cref="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)"/>.
+            </description>
+            </item>
+            </list>
+            </remarks>
+            <seealso cref="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)"/>
+        </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)">
             <summary>
             Gets the string representation for the current step, describing only its technique name and conclusions.
@@ -6050,7 +6083,7 @@
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+            <inheritdoc cref="T:Sudoku.Text.ICultureFormattable"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
@@ -28240,7 +28273,7 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+            <inheritdoc cref="T:Sudoku.Text.ICultureFormattable"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Clone">
             <summary>

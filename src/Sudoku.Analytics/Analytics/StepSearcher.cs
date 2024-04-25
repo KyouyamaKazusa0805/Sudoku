@@ -35,7 +35,7 @@ public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : ICultureFormattable, IMetadataObject<StepSearcherMetadataInfo>
+) : IMetadataObject<StepSearcherMetadataInfo>
 {
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
@@ -72,7 +72,7 @@ public abstract partial class StepSearcher(
 	private string Name => Metadata.GetName(null);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="ICultureFormattable"/>
 	public string ToString(CultureInfo? culture) => Metadata.GetName(culture);
 
 	/// <summary>

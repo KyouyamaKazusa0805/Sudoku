@@ -26,7 +26,6 @@ namespace Sudoku.Strategying;
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
 public abstract partial class Constraint :
-	ICultureFormattable,
 	IEquatable<Constraint>,
 	IEqualityOperators<Constraint, Constraint, bool>,
 	IMetadataObject<ConstraintOptionsAttribute?>
@@ -48,7 +47,7 @@ public abstract partial class Constraint :
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="ICultureFormattable"/>
 	public abstract string ToString(CultureInfo? culture = null);
 
 	/// <summary>

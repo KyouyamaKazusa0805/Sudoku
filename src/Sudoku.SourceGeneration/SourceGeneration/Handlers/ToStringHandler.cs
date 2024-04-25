@@ -33,8 +33,8 @@ internal static class ToStringHandler
 		var typeNameString = $"{typeName}{typeParametersString}";
 		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
 
-		const string simpleFormattableTypeName = "System.ISimpleFormattable";
-		if (compilation.GetTypeByMetadataName(simpleFormattableTypeName) is not { } simpleFormattableTypeSymbol)
+		const string formattableTypeName = "System.IFormattable";
+		if (compilation.GetTypeByMetadataName(formattableTypeName) is not { } formattableTypeSymbol)
 		{
 			return null;
 		}
@@ -112,7 +112,7 @@ internal static class ToStringHandler
 			var expression = behavior switch
 			{
 				Behavior.ReturnTypeName => fullTypeNameString,
-				Behavior.CallOverload => "ToString(default(string))",
+				Behavior.CallOverload => "ToString(default(string), default(global::System.IFormatProvider))",
 				Behavior.Specified => referencedMembers[0].Name,
 				Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 				Behavior.RecordLike
@@ -156,7 +156,7 @@ internal static class ToStringHandler
 
 
 		bool hasImpledFormattable(INamedTypeSymbol type)
-			=> type.AllInterfaces.Contains(simpleFormattableTypeSymbol, SymbolEqualityComparer.Default);
+			=> type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default);
 
 		bool stringMemberAttirbuteMatcher(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
