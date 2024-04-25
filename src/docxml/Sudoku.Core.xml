@@ -2010,13 +2010,6 @@
             if arbitrary one given digit will be removed from the grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.IsMinimalLexicographical">
-            <summary>
-            Indicates whether the current grid is the minimal lexicographical form, which means the corresponding string text code
-            is the minimum value in all equivalent transforming cases in lexicographical order.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the grid is a Sukaku, or the puzzle is not unique.</exception>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.ContainsAnyMissingCandidates">
             <summary>
             Determines whether the current grid contains any missing candidates.
@@ -2193,11 +2186,6 @@
             this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.MinLexGrid">
-            <summary>
-            Indicates the minimal-lexicographical grid form.
-            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
@@ -5429,6 +5417,24 @@
         <member name="F:Sudoku.MinLex.BestTripletPermutation.ResultNumberOfBits">
             <summary>
             The generated field declaration for parameter <c>resultNumberOfBits</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.MinLex.GridMinLexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, by checking min-lex-related properties.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MinLex.GridMinLexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks whether the current grid is the minimal lexicographical form, which means the corresponding string text code
+            is the minimum value in all equivalent transforming cases in lexicographical order.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.MinLex.GridMinLexExtensions.MinLexForm(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks the minimal-lexicographical grid form.
             </summary>
         </member>
         <member name="T:Sudoku.MinLex.GridPattern">
