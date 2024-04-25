@@ -113,7 +113,7 @@ public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPatter
 			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
 			{
 				playground.SetDigit(cell, -1);
-				continue;
+				return;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
