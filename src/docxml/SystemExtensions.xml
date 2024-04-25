@@ -1627,6 +1627,37 @@
             <param name="right">The right-side value.</param>
             <returns><inheritdoc cref="M:System.ILogicalOperators`1.op_BitwiseAnd(`0,`0)" path="/returns"/></returns>
         </member>
+        <member name="T:System.Numerics.Int128Enumerator">
+            <summary>
+            Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
+            </summary>
+            <param name="value">The value to be iterated.</param>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.#ctor(System.UInt128)">
+            <summary>
+            Represents an enumerator that iterates a <see cref="T:System.Int128"/> or <see cref="T:System.UInt128"/> value.
+            </summary>
+            <param name="value">The value to be iterated.</param>
+        </member>
+        <member name="P:System.Numerics.Int128Enumerator.PopulationCount">
+            <summary>
+            Indicates the population count of the value.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Int128Enumerator.Bits">
+            <summary>
+            Indicates the bits set.
+            </summary>
+        </member>
+        <member name="P:System.Numerics.Int128Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="P:System.Numerics.Int128Enumerator.Item(System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt32,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.Int128Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:System.Numerics.Int32Enumerator">
             <summary>
             Represents an enumerator that iterates an <see cref="T:System.Int32"/> or <see cref="T:System.UInt32"/> value.
@@ -1658,11 +1689,6 @@
         <member name="M:System.Numerics.Int32Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.Numerics.Int32Enumerator._value">
-            <summary>
-            The generated field declaration for parameter <c>value</c>.
-            </summary>
-        </member>
         <member name="T:System.Numerics.Int64Enumerator">
             <summary>
             Represents an enumerator that iterates a <see cref="T:System.Int64"/> or <see cref="T:System.UInt64"/> value.
@@ -1693,11 +1719,6 @@
         </member>
         <member name="M:System.Numerics.Int64Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="F:System.Numerics.Int64Enumerator._value">
-            <summary>
-            The generated field declaration for parameter <c>value</c>.
-            </summary>
         </member>
         <member name="T:System.Numerics.MaskCombinationEnumerator">
             <summary>
@@ -1775,11 +1796,6 @@
         <member name="M:System.Numerics.NativeIntegerEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:System.Numerics.NativeIntegerEnumerator._value">
-            <summary>
-            The generated field declaration for parameter <c>value</c>.
-            </summary>
-        </member>
         <member name="T:System.Numerics.BitOperationsExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Numerics.BitOperations"/>.
@@ -1814,10 +1830,19 @@
         <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.UInt64)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
         </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.Int128)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.UInt128)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
+        </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.IntPtr)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.UIntPtr)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetAllSets``1(``0)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetAllSets(System.SByte)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)">
@@ -1856,6 +1881,12 @@
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.UInt64)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.Int128)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.UInt128)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.SByte)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetEnumerator(System.IntPtr)">
@@ -1924,6 +1955,12 @@
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt64,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.Int128,System.Int32)">
+            <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
+        </member>
+        <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.UInt128,System.Int32)">
             <inheritdoc cref="M:System.Numerics.BitOperationsExtensions.SetAt(System.Byte,System.Int32)"/>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.SetAt(System.IntPtr,System.Int32)">

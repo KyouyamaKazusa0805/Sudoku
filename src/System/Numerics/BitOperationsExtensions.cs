@@ -14,8 +14,11 @@ public static partial class BitOperationsExtensions
 	public static partial ReadOnlySpan<int> GetAllSets(this uint @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this long @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this ulong @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this llong @this);
+	public static partial ReadOnlySpan<int> GetAllSets(this ullong @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this nint @this);
 	public static partial ReadOnlySpan<int> GetAllSets(this nuint @this);
+	public static partial ReadOnlySpan<int> GetAllSets<T>(this T @this) where T : IBinaryInteger<T>;
 
 	public static partial Int32Enumerator GetEnumerator(this sbyte @this);
 	public static partial Int32Enumerator GetEnumerator(this byte @this);
@@ -25,6 +28,8 @@ public static partial class BitOperationsExtensions
 	public static partial Int32Enumerator GetEnumerator(this uint @this);
 	public static partial Int64Enumerator GetEnumerator(this long @this);
 	public static partial Int64Enumerator GetEnumerator(this ulong @this);
+	public static partial Int128Enumerator GetEnumerator(this llong @this);
+	public static partial Int128Enumerator GetEnumerator(this ullong @this);
 	public static partial NativeIntegerEnumerator GetEnumerator(this nint @this);
 	public static partial NativeIntegerEnumerator GetEnumerator(this nuint @this);
 
@@ -46,6 +51,8 @@ public static partial class BitOperationsExtensions
 	public static partial int SetAt(this uint @this, int order);
 	public static partial int SetAt(this long @this, int order);
 	public static partial int SetAt(this ulong @this, int order);
+	public static partial int SetAt(this llong @this, int order);
+	public static partial int SetAt(this ullong @this, int order);
 	public static partial int SetAt(this nint @this, int order);
 	public static partial int SetAt(this nuint @this, int order);
 

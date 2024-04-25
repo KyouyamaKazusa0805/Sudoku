@@ -8,6 +8,7 @@
         "add": {
           "Int32Enumerator.cs": [ "__Enumerators" ],
           "Int64Enumerator.cs": [ "__Enumerators" ],
+          "Int128Enumerator.cs": [ "__Enumerators" ],
           "NativeIntegerEnumerator.cs": [ "__Enumerators" ],
           "GenericNumberEnumerator.cs": [ "__Enumerators" ],
           "MaskCombinationEnumerator.cs": [ "__Enumerators" ],

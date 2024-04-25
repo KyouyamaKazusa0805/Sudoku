@@ -175,6 +175,56 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="GetAllSets(sbyte)"/>
+	public static partial ReadOnlySpan<int> GetAllSets(this llong @this)
+	{
+		if (@this == 0)
+		{
+			return [];
+		}
+
+		unsafe
+		{
+			var (upper, lower) = ((ulong)(@this >>> 64), (ulong)(@this & ulong.MaxValue));
+			var length = PopCount(upper) + PopCount(lower);
+			var result = new int[length];
+			for (byte i = 0, p = 0; i < sizeof(llong) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0)
+				{
+					result[p++] = i;
+				}
+			}
+
+			return result;
+		}
+	}
+
+	/// <inheritdoc cref="GetAllSets(sbyte)"/>
+	public static partial ReadOnlySpan<int> GetAllSets(this ullong @this)
+	{
+		if (@this == 0)
+		{
+			return [];
+		}
+
+		unsafe
+		{
+			var (upper, lower) = ((ulong)(@this >>> 64), (ulong)(@this & ulong.MaxValue));
+			var length = PopCount(upper) + PopCount(lower);
+			var result = new int[length];
+			for (byte i = 0, p = 0; i < sizeof(ullong) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0)
+				{
+					result[p++] = i;
+				}
+			}
+
+			return result;
+		}
+	}
+
+	/// <inheritdoc cref="GetAllSets(sbyte)"/>
 	public static partial ReadOnlySpan<int> GetAllSets(this nint @this)
 	{
 		if (@this == 0)
@@ -219,6 +269,29 @@ public partial class BitOperationsExtensions
 			}
 
 			return result;
+		}
+	}
+
+	/// <inheritdoc cref="GetAllSets(sbyte)"/>
+	public static partial ReadOnlySpan<int> GetAllSets<T>(this T @this) where T : IBinaryInteger<T>
+	{
+		if (@this == T.Zero)
+		{
+			return [];
+		}
+
+		unsafe
+		{
+			var result = new List<int>();
+			for (byte i = 0, p = 0; i < sizeof(T) << 3; i++, @this >>= 1)
+			{
+				if ((@this & T.One) != T.Zero)
+				{
+					result[p++] = i;
+				}
+			}
+
+			return result.AsReadOnlySpan();
 		}
 	}
 }

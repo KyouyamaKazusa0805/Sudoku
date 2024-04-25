@@ -1,16 +1,23 @@
 namespace System.Numerics;
 
 /// <summary>
-/// Represents an enumerator that iterates an <see cref="nint"/> or <see cref="nuint"/> value.
+/// Represents an enumerator that iterates a <see cref="llong"/> or <see cref="ullong"/> value.
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref struct NativeIntegerEnumerator(nuint value)
+public ref struct Int128Enumerator(ullong value)
 {
 	/// <summary>
 	/// Indicates the population count of the value.
 	/// </summary>
-	public readonly int PopulationCount => PopCount(value);
+	public readonly int PopulationCount
+	{
+		get
+		{
+			var (upper, lower) = ((ulong)(value >>> 64), (ulong)(value & ulong.MaxValue));
+			return PopCount(upper) + PopCount(lower);
+		}
+	}
 
 	/// <summary>
 	/// Indicates the bits set.
@@ -26,9 +33,9 @@ public ref struct NativeIntegerEnumerator(nuint value)
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
-	public unsafe bool MoveNext()
+	public bool MoveNext()
 	{
-		while (++Current < sizeof(nuint) << 3)
+		while (++Current < 64)
 		{
 			if ((value >> Current & 1) != 0)
 			{

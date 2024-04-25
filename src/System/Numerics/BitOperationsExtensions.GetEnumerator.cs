@@ -50,6 +50,14 @@ public partial class BitOperationsExtensions
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static partial Int128Enumerator GetEnumerator(this llong @this) => new((ullong)@this);
+
+	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static partial Int128Enumerator GetEnumerator(this ullong @this) => new(@this);
+
+	/// <inheritdoc cref="GetEnumerator(sbyte)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static partial NativeIntegerEnumerator GetEnumerator(this nint @this) => new((nuint)@this);
 
 	/// <inheritdoc cref="GetEnumerator(sbyte)"/>

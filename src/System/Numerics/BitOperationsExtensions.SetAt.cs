@@ -120,6 +120,40 @@ public partial class BitOperationsExtensions
 	}
 
 	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this llong @this, int order)
+	{
+		unsafe
+		{
+			for (int i = 0, count = -1; i < sizeof(llong) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0 && ++count == order)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
+	public static partial int SetAt(this ullong @this, int order)
+	{
+		unsafe
+		{
+			for (int i = 0, count = -1; i < sizeof(ullong) << 3; i++, @this >>= 1)
+			{
+				if ((@this & 1) != 0 && ++count == order)
+				{
+					return i;
+				}
+			}
+
+			return -1;
+		}
+	}
+
+	/// <inheritdoc cref="SetAt(byte, int)"/>
 	public static partial int SetAt(this nint @this, int order)
 	{
 		unsafe

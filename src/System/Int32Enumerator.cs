@@ -5,24 +5,24 @@ namespace System.Numerics;
 /// </summary>
 /// <param name="value">The value to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
-public ref partial struct Int32Enumerator([PrimaryConstructorParameter(MemberKinds.Field, IsImplicitlyReadOnly = false)] uint value)
+public ref struct Int32Enumerator(uint value)
 {
 	/// <summary>
 	/// Indicates the population count of the value.
 	/// </summary>
-	public readonly int PopulationCount => PopCount(_value);
+	public readonly int PopulationCount => PopCount(value);
 
 	/// <summary>
 	/// Indicates the bits set.
 	/// </summary>
-	public readonly ReadOnlySpan<int> Bits => _value.GetAllSets();
+	public readonly ReadOnlySpan<int> Bits => value.GetAllSets();
 
 	/// <inheritdoc cref="IEnumerator{T}.Current"/>
 	public int Current { get; private set; } = -1;
 
 
 	/// <inheritdoc cref="BitOperationsExtensions.SetAt(uint, int)"/>
-	public readonly int this[int index] => _value.SetAt(index);
+	public readonly int this[int index] => value.SetAt(index);
 
 
 	/// <inheritdoc cref="IEnumerator.MoveNext"/>
@@ -30,7 +30,7 @@ public ref partial struct Int32Enumerator([PrimaryConstructorParameter(MemberKin
 	{
 		while (++Current < 32)
 		{
-			if ((_value >> Current & 1) != 0)
+			if ((value >> Current & 1) != 0)
 			{
 				return true;
 			}
