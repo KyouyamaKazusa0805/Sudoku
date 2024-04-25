@@ -194,13 +194,11 @@ public static class SolutionFields
 						}
 					}
 				}
-
 				if (map.Count == NumberOfPeersForEachCell)
 				{
 					break;
 				}
 			}
-
 			PeersMap[cell] = map;
 		}
 

@@ -57,6 +57,7 @@ public partial struct Grid :
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
+	ISudokuConcept<Grid>,
 	ITokenizable<Grid>
 {
 	/// <summary>
@@ -1039,7 +1040,7 @@ public partial struct Grid :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default);
+	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default(string));
 
 	/// <summary>
 	/// Serializes this instance to an array, where all digit value will be stored.
@@ -1115,6 +1116,18 @@ public partial struct Grid :
 			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)
 				?? throw new FormatException(ResourceDictionary.ExceptionMessage("FormatInvalid"))
 		};
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(CultureInfo? culture)
+		=> ToString(
+			culture switch
+			{
+				{ Name: ['E' or 'e', 'N' or 'n', ..] } => "@:", // Pencilmark grid.
+				{ Name: ['Z' or 'z', 'H' or 'h', ..] } => ".", // Susser grid.
+				_ => "#"
+			}
+		);
 
 	/// <summary>
 	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
@@ -1376,6 +1389,9 @@ public partial struct Grid :
 	}
 
 	/// <inheritdoc/>
+	readonly string ISudokuConceptConvertible<Grid>.ToString<T>(T converter) => ToString();
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
 
@@ -1477,7 +1493,6 @@ public partial struct Grid :
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void RemoveSukakuHeader() => this[0] &= (1 << HeaderShift) - 1;
-
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
@@ -1748,16 +1763,6 @@ public partial struct Grid :
 		}
 	}
 
-	/// <inheritdoc/>
-	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
-	{
-		result = Undefined;
-		return s is not null && TryParse(s, out result);
-	}
-
-	/// <inheritdoc/>
-	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
-
 	/// <summary>
 	/// Get digit via token.
 	/// </summary>
@@ -1767,6 +1772,22 @@ public partial struct Grid :
 	internal static int GetDigitViaToken(string s)
 		=> (Base32CharSpan.IndexOf(s[0]) << 25) + (Base32CharSpan.IndexOf(s[1]) << 20) + (Base32CharSpan.IndexOf(s[2]) << 15)
 		+ (Base32CharSpan.IndexOf(s[3]) << 10) + (Base32CharSpan.IndexOf(s[4]) << 5) + Base32CharSpan.IndexOf(s[5]);
+
+	/// <inheritdoc/>
+	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
+	{
+		result = Undefined;
+		return s is not null && TryParse(s, out result);
+	}
+
+	/// <inheritdoc/>
+	static bool ISudokuConceptParsable<Grid>.TryParse<T>(string str, T parser, out Grid result) => TryParse(str, out result);
+
+	/// <inheritdoc/>
+	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
+
+	/// <inheritdoc/>
+	static Grid ISudokuConceptParsable<Grid>.Parse<T>(string str, T parser) => Parse(str);
 
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.

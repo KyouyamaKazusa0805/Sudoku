@@ -2410,6 +2410,9 @@
         <member name="M:Sudoku.Concepts.Grid.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.ToString``1(``0)">
             <summary>
             Try to convert the current instance into an equivalent <see cref="T:System.String"/> representation,
@@ -2512,6 +2515,9 @@
             The case you want to set. <see langword="false"/> means that this candidate
             doesn't exist in this current sudoku grid; otherwise, <see langword="true"/>.
             </param>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptConvertible{Sudoku#Concepts#Grid}#ToString``1(``0)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -2659,18 +2665,24 @@
             <param name="result">A parsed value of type <see cref="T:Sudoku.Concepts.Grid"/>.</param>
             <returns>Indicates whether the parsing operation is successful.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.GetDigitViaToken(System.String)">
             <summary>
             Get digit via token.
             </summary>
             <param name="s">The string.</param>
             <returns>The result digit.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptParsable{Sudoku#Concepts#Grid}#TryParse``1(System.String,``0,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptParsable{Sudoku#Concepts#Grid}#Parse``1(System.String,``0)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>
