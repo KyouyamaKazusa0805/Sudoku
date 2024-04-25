@@ -27,7 +27,7 @@ public ref partial struct AnalysisContext(
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public AnalysisContext(ref readonly Grid grid) : this(in grid, in Grid.NullRef)
+	public AnalysisContext(ref readonly Grid grid) : this(in grid, in Ref.MakeNullReference<Grid>())
 	{
 	}
 

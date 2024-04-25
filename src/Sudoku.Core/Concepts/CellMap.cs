@@ -447,9 +447,6 @@ public partial struct CellMap :
 
 
 	/// <inheritdoc/>
-	public static ref readonly CellMap NullRef => ref Ref.MakeNullReference<CellMap>();
-
-	/// <inheritdoc/>
 	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>

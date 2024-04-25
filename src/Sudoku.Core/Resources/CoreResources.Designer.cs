@@ -169,6 +169,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
+        /// </summary>
+        internal static string ErrorInfo_ComparableGridMustBeStandard {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ComparableGridMustBeStandard", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The string contains empty segment..
         /// </summary>
         internal static string ErrorInfo_ContainsEmptySegmentOnParsing {

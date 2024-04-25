@@ -35,7 +35,7 @@ public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-) : IMetadataObject<StepSearcherMetadataInfo>
+)
 {
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
@@ -112,7 +112,4 @@ public abstract partial class StepSearcher(
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
 	protected internal abstract Step? Collect(ref AnalysisContext context);
-
-	/// <inheritdoc/>
-	StepSearcherMetadataInfo IMetadataObject<StepSearcherMetadataInfo>.GetMetadata() => Metadata;
 }

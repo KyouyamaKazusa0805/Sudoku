@@ -305,9 +305,6 @@
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.NullRef">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
@@ -759,9 +756,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Offsets">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.CellMap.NullRef">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
@@ -2190,10 +2184,8 @@
         <member name="P:Sudoku.Concepts.Grid.System#Collections#Generic#IReadOnlyCollection{System#Int32}#Count">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.NullRef">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.Base32CharSpan">
+            <inheritdoc/>
             <summary>
             The character span that indicates all possible characters appeared in a number with base 32.
             </summary>
@@ -2362,6 +2354,10 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -2751,7 +2747,31 @@
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IEqualityOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_Inequality(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.op_GreaterThan(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_LessThan(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_GreaterThanOrEqual(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.op_LessThanOrEqual(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_GreaterThan(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_LessThan(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.System#IEquatable{Sudoku#Concepts#Grid}#Equals(Sudoku.Concepts.Grid)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#IComparable{Sudoku#Concepts#Grid}#CompareTo(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.GridCellPredicates">
@@ -6638,6 +6658,11 @@
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_CellsShouldInSameLine">
             <summary>
               Looks up a localized string similar to Two cells must be in a same line (row or column)..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ComparableGridMustBeStandard">
+            <summary>
+              Looks up a localized string similar to The puzzle can be comparable if it must be a standard sudoku..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.CoreResources.ErrorInfo_ContainsEmptySegmentOnParsing">

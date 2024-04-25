@@ -228,9 +228,6 @@ public partial struct CandidateMap :
 
 
 	/// <inheritdoc/>
-	public static ref readonly CandidateMap NullRef => ref Ref.MakeNullReference<CandidateMap>();
-
-	/// <inheritdoc/>
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
 
 	/// <inheritdoc/>

@@ -45,15 +45,17 @@ using unsafe ValueEventHandler = void*;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [LargeStructure]
+[ComparisonOperators]
 [Equals]
 [EqualityOperators]
 public partial struct Grid :
+	IComparable<Grid>,
+	IComparisonOperators<Grid, Grid, bool>,
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFormattable,
 	IMinMaxValue<Grid>,
-	INullRef<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
 	ITokenizable<Grid>
@@ -740,8 +742,6 @@ public partial struct Grid :
 
 
 	/// <inheritdoc/>
-	public static ref readonly Grid NullRef => ref Ref.MakeNullReference<Grid>();
-
 	/// <summary>
 	/// The character span that indicates all possible characters appeared in a number with base 32.
 	/// </summary>
@@ -1028,6 +1028,15 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly int GetHashCode()
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
+
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
+	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	[ExplicitInterfaceImpl(typeof(IComparable<>))]
+	public readonly int CompareTo(ref readonly Grid other)
+		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
+			? ToString("#").CompareTo(other.ToString("#"))
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"));
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

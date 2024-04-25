@@ -25,10 +25,7 @@ namespace Sudoku.Strategying;
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
-public abstract partial class Constraint :
-	IEquatable<Constraint>,
-	IEqualityOperators<Constraint, Constraint, bool>,
-	IMetadataObject<ConstraintOptionsAttribute?>
+public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
 {
 	/// <summary>
 	/// Indicates whether the constraint should be negated.
@@ -78,7 +75,10 @@ public abstract partial class Constraint :
 	public Expression<Func<Constraint, ConstraintCheckingContext, bool>> CreateCheckingQueryExpression()
 		=> static (constraint, context) => constraint.CheckCore(context);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Returns a <see cref="ConstraintOptionsAttribute"/> instance that represents the metadata of the constraint configured.
+	/// </summary>
+	/// <returns>A <see cref="ConstraintOptionsAttribute"/> instance or <see langword="null"/> if not configured.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConstraintOptionsAttribute? GetMetadata() => GetType().GetCustomAttribute<ConstraintOptionsAttribute>();
 

@@ -273,4 +273,7 @@
   <data name="ErrorInfo_MinLexShouldBeUniqueAndNotSukaku" xml:space="preserve">
     <value>The puzzle should be standard sudoku puzzle, and contain a unique solution.</value>
   </data>
+  <data name="ErrorInfo_ComparableGridMustBeStandard" xml:space="preserve">
+    <value>The puzzle can be comparable if it must be a standard sudoku.</value>
+  </data>
 </root>
