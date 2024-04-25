@@ -4,20 +4,16 @@ namespace Sudoku.Generating;
 /// Represents a generator that is based on pattern.
 /// </summary>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
-public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
+public sealed class PatternBasedPuzzleGenerator(params CellMap seedPattern) : IGenerator<Grid>
 {
-	/// <summary>
-	/// Try to generate a puzzle using the specified pattern.
-	/// </summary>
-	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	/// <returns>A valid <see cref="Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
-	public Grid Generate(CancellationToken cancellationToken = default)
+	/// <inheritdoc/>
+	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var resultGrid = Grid.Undefined;
 		try
 		{
-			var playground = Grid.Empty;
-			GenerateCore(OrderPatternCellsViaConnectionDegrees(), ref playground, ref resultGrid, 0, cancellationToken);
+			var (playground, count, cellsOrdered) = (Grid.Empty, 0, OrderCellsViaConnectionComplexity());
+			GenerateCore(cellsOrdered, ref playground, ref resultGrid, 0, ref count, progress, cancellationToken);
 		}
 		catch (OperationCanceledException)
 		{
@@ -34,7 +30,7 @@ public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPatter
 	/// Order the pattern cells via connection complexity.
 	/// </summary>
 	/// <returns>The cells ordered.</returns>
-	private Cell[] OrderPatternCellsViaConnectionDegrees()
+	private Cell[] OrderCellsViaConnectionComplexity()
 	{
 		var (isOrdered, result) = ((CellMap)[], new Cell[seedPattern.Count]);
 		for (var index = 0; index < seedPattern.Count; index++)
@@ -89,8 +85,18 @@ public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPatter
 	/// <param name="playground">The playground to be operated with.</param>
 	/// <param name="resultGrid">The result grid to be returned.</param>
 	/// <param name="i">The index that the current searching is on.</param>
+	/// <param name="count">The number of puzzles generated.</param>
+	/// <param name="progress">The progress instance.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	private static void GenerateCore(Cell[] patternCellsSorted, ref Grid playground, ref Grid resultGrid, int i, CancellationToken cancellationToken)
+	private static void GenerateCore(
+		Cell[] patternCellsSorted,
+		ref Grid playground,
+		ref Grid resultGrid,
+		int i,
+		ref int count,
+		IProgress<GeneratorProgress>? progress,
+		CancellationToken cancellationToken
+	)
 	{
 		if (i == patternCellsSorted.Length)
 		{
@@ -99,6 +105,8 @@ public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPatter
 				resultGrid = result;
 				throw new OperationCanceledException("Finished.");
 			}
+
+			progress?.Report(new(count++));
 			return;
 		}
 
@@ -118,7 +126,7 @@ public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPatter
 
 			cancellationToken.ThrowIfCancellationRequested();
 
-			GenerateCore(patternCellsSorted, ref playground, ref resultGrid, i + 1, cancellationToken);
+			GenerateCore(patternCellsSorted, ref playground, ref resultGrid, i + 1, ref count, progress, cancellationToken);
 		}
 
 		playground.SetDigit(cell, -1);
