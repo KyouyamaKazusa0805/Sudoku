@@ -1,5 +1,4 @@
 #undef EMPTY_GRID_STRING_CONSTANT
-#define IMPL_INTERFACE_MIN_MAX_VALUE
 #undef SYNC_ROOT_VIA_METHODIMPL
 #define SYNC_ROOT_VIA_OBJECT
 #undef SYNC_ROOT_VIA_THREAD_LOCAL
@@ -53,9 +52,7 @@ public partial struct Grid :
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFormattable,
-#if IMPL_INTERFACE_MIN_MAX_VALUE
 	IMinMaxValue<Grid>,
-#endif
 	INullRef<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
@@ -750,7 +747,6 @@ public partial struct Grid :
 	/// </summary>
 	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv".AsSpan();
 
-#if IMPL_INTERFACE_MIN_MAX_VALUE
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
 	/// </summary>
@@ -768,7 +764,6 @@ public partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
-#endif
 
 
 	/// <summary>
