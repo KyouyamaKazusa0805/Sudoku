@@ -13,7 +13,6 @@ public static class ArrayEnumerable
 		{
 			result[i] = (TResult)@this[i];
 		}
-
 		return result;
 	}
 
@@ -43,7 +42,6 @@ public static class ArrayEnumerable
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -58,7 +56,6 @@ public static class ArrayEnumerable
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -75,7 +72,6 @@ public static class ArrayEnumerable
 		{
 			result += element;
 		}
-
 		return result;
 	}
 
@@ -91,7 +87,6 @@ public static class ArrayEnumerable
 		{
 			result[i] = selector(source[i]);
 		}
-
 		return result;
 	}
 
@@ -121,7 +116,6 @@ public static class ArrayEnumerable
 				result.Add(resultSelector(element, subElement));
 			}
 		}
-
 		return [.. result];
 	}
 
@@ -142,7 +136,6 @@ public static class ArrayEnumerable
 				result.Add(resultSelector(element, subElement));
 			}
 		}
-
 		return [.. result];
 	}
 
@@ -166,7 +159,6 @@ public static class ArrayEnumerable
 				result[finalIndex++] = @this[i];
 			}
 		}
-
 		return result[..finalIndex];
 	}
 
@@ -294,7 +286,6 @@ public static class ArrayEnumerable
 		{
 			result = func(result, element);
 		}
-
 		return result;
 	}
 
@@ -314,7 +305,6 @@ public static class ArrayEnumerable
 		{
 			result = func(result, element);
 		}
-
 		return result;
 	}
 
@@ -328,7 +318,6 @@ public static class ArrayEnumerable
 		{
 			result[i] = (first[i], second[i]);
 		}
-
 		return result;
 	}
 
@@ -347,7 +336,6 @@ public static class ArrayEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -376,7 +364,6 @@ public static class ArrayEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -403,7 +390,6 @@ public static class ArrayEnumerable
 				result[i++] = element;
 			}
 		}
-
 		return result[..i];
 	}
 
@@ -438,7 +424,6 @@ public static class ArrayEnumerable
 				}
 			}
 		}
-
 		return result[..i];
 	}
 
@@ -476,7 +461,6 @@ public static class ArrayEnumerable
 				}
 			}
 		}
-
 		return result[..i];
 	}
 }

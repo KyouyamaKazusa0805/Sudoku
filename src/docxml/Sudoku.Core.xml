@@ -1884,16 +1884,6 @@
             Indicates the empty grid string.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.Empty">
             <summary>
             The empty grid that is valid during implementation or running the program (all values are <see cref="F:Sudoku.Concepts.Grid.DefaultMask"/>, i.e. empty cells).
@@ -1921,6 +1911,16 @@
         <member name="F:Sudoku.Concepts.Grid.Solver">
             <summary>
             Indicates the backing solver.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.ValueChanged">
+            <summary>
+            Indicates the event triggered when the value is changed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
+            <summary>
+            Indicates the event triggered when should re-compute candidates.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Parsers">

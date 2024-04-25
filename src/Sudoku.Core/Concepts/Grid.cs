@@ -31,7 +31,6 @@ using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
 using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
 using unsafe RefreshingCandidatesHandlerFuncPtr = delegate*<ref Grid, void>;
 using unsafe ValueChangedHandlerFuncPtr = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
-using unsafe ValueEventHandler = void*;
 
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -121,16 +120,6 @@ public partial struct Grid :
 #endif
 
 	/// <summary>
-	/// Indicates the event triggered when the value is changed.
-	/// </summary>
-	public static readonly unsafe ValueEventHandler ValueChanged = (ValueChangedHandlerFuncPtr)(&OnValueChanged);
-
-	/// <summary>
-	/// Indicates the event triggered when should re-compute candidates.
-	/// </summary>
-	public static readonly unsafe ValueEventHandler RefreshingCandidates = (RefreshingCandidatesHandlerFuncPtr)(&OnRefreshingCandidates);
-
-	/// <summary>
 	/// The empty grid that is valid during implementation or running the program (all values are <see cref="DefaultMask"/>, i.e. empty cells).
 	/// </summary>
 	/// <remarks>
@@ -168,6 +157,16 @@ public partial struct Grid :
 #else
 	private static readonly BitwiseSolver Solver = new();
 #endif
+
+	/// <summary>
+	/// Indicates the event triggered when the value is changed.
+	/// </summary>
+	private static readonly unsafe ValueChangedHandlerFuncPtr ValueChanged = &OnValueChanged;
+
+	/// <summary>
+	/// Indicates the event triggered when should re-compute candidates.
+	/// </summary>
+	private static readonly unsafe RefreshingCandidatesHandlerFuncPtr RefreshingCandidates = &OnRefreshingCandidates;
 
 
 	/// <summary>
@@ -1271,7 +1270,7 @@ public partial struct Grid :
 		ref var mask = ref this[cell];
 		var copied = mask;
 		mask = (Mask)((Mask)(GetHeaderBits(cell) | (Mask)((int)state << CellCandidatesCount)) | (Mask)(mask & MaxCandidatesMask));
-		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, mask, -1);
+		ValueChanged(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -1285,7 +1284,7 @@ public partial struct Grid :
 		ref var newMask = ref this[cell];
 		var originalMask = newMask;
 		newMask = mask;
-		((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, originalMask, newMask, -1);
+		ValueChanged(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <summary>
@@ -1329,7 +1328,7 @@ public partial struct Grid :
 				// Note that reset candidates may not trigger the event.
 				this[cell] = (Mask)(GetHeaderBits(cell) | DefaultMask);
 
-				((RefreshingCandidatesHandlerFuncPtr)RefreshingCandidates)(ref this);
+				RefreshingCandidates(ref this);
 				break;
 			}
 			case >= 0 and < CellCandidatesCount:
@@ -1341,7 +1340,7 @@ public partial struct Grid :
 				result = (Mask)(GetHeaderBits(cell) | ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, result, digit);
+				ValueChanged(ref this, cell, copied, result, digit);
 				break;
 			}
 		}
@@ -1372,7 +1371,7 @@ public partial struct Grid :
 			}
 
 			// To trigger the event.
-			((ValueChangedHandlerFuncPtr)ValueChanged)(ref this, cell, copied, this[cell], -1);
+			ValueChanged(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
@@ -2076,8 +2075,11 @@ public partial struct Grid :
 	public static explicit operator Grid(Mask[] maskArray)
 	{
 		var result = Empty;
-		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), (uint)(sizeof(Mask) * maskArray.Length));
-
+		Unsafe.CopyBlock(
+			ref Ref.AsByteRef(ref result[0]),
+			in Ref.AsReadOnlyByteRef(in maskArray[0]),
+			(uint)(sizeof(Mask) * maskArray.Length)
+		);
 		return result;
 	}
 
@@ -2099,7 +2101,6 @@ public partial struct Grid :
 
 		var result = Empty;
 		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
-
 		return result;
 	}
 }
