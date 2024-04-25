@@ -1084,7 +1084,7 @@ public partial struct Grid :
 	public readonly Mask[] ToCandidateMaskArray()
 	{
 		var result = new Mask[CellsCount];
-		for (var cell = 0; cell < 81; cell++)
+		for (var cell = 0; cell < CellsCount; cell++)
 		{
 			result[cell] = (Mask)(this[cell] & MaxCandidatesMask);
 		}
