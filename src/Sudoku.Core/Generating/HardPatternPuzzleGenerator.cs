@@ -37,7 +37,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 
 
 	/// <inheritdoc/>
-	public unsafe Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
+	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var puzzleString = (stackalloc char[82]);
 		var solutionString = (stackalloc char[82]);
@@ -63,14 +63,14 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 					var temp = solutionString[p];
 					solutionString[p] = '0';
 
-					if (!_solver.CheckValidity(solutionString[0].ToPointer()))
+					if (!_solver.CheckValidity(in solutionString[0]))
 					{
 						// Reset the value.
 						solutionString[p] = temp;
 					}
 				}
 
-				if (_solver.CheckValidity(solutionString[0].ToPointer()) && Grid.Parse(new string(solutionString)) is var grid)
+				if (_solver.CheckValidity(in solutionString[0]) && Grid.Parse(new string(solutionString)) is var grid)
 				{
 					return grid;
 				}

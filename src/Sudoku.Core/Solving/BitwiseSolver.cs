@@ -465,27 +465,17 @@ public sealed unsafe partial class BitwiseSolver : ISolver
 	public bool CheckValidity(char* grid)
 	{
 		ArgumentNullException.ThrowIfNull(grid);
-
 		ClearStack();
-
 		return InternalSolve(grid, null, 2) == 1;
 	}
 
-	/// <summary>
-	/// Same as <see cref="CheckValidity(string, out string?)"/>, but doesn't contain
-	/// any <see langword="out"/> parameters.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <returns>The <see cref="bool"/> result. <see langword="true"/> for unique solution.</returns>
-	/// <seealso cref="CheckValidity(string, out string?)"/>
+	/// <inheritdoc cref="CheckValidity(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(string grid)
-	{
-		fixed (char* puzzle = grid)
-		{
-			return CheckValidity(puzzle);
-		}
-	}
+	public bool CheckValidity(ref readonly char grid) => CheckValidity((char*)Unsafe.AsPointer(ref R.AsMutableRef(in grid)));
+
+	/// <inheritdoc cref="CheckValidity(char*)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool CheckValidity(string grid) => CheckValidity(in grid.Ref());
 
 	/// <summary>
 	/// Check the validity of the puzzle.
