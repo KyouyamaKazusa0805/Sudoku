@@ -121,7 +121,7 @@ public sealed class PatternBasedPuzzleGenerator(params CellMap seedPattern) : IG
 			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
 			{
 				playground.SetDigit(cell, -1);
-				return;
+				continue;
 			}
 
 			cancellationToken.ThrowIfCancellationRequested();
