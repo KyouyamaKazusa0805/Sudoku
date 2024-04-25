@@ -2171,6 +2171,26 @@
         <member name="M:System.ISimpleFormattable.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
+        <member name="T:System.ISpecializedDelegate`1">
+            <summary>
+            Represents a delegate type.
+            </summary>
+            <typeparam name="T">The type of delegate</typeparam>
+        </member>
+        <member name="T:System.ISpecializedEnumerator`2">
+            <summary>
+            Represents an enumerator type that can iterate elements of type <typeparamref name="TElement"/>,
+            stored in collection of type <typeparamref name="TCollection"/>.
+            </summary>
+            <typeparam name="TCollection">The type of collection.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
+        </member>
+        <member name="P:System.ISpecializedEnumerator`2.Current">
+            <inheritdoc cref="P:System.Collections.Generic.IEnumerator`1.Current"/>
+        </member>
+        <member name="M:System.ISpecializedEnumerator`2.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
         <member name="T:System.Linq.ArrayEnumerable">
             <summary>
             Provides with the LINQ-related methods on type <see cref="T:System.Array"/>, especially for the one-dimensional array.
