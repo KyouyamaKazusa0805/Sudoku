@@ -4459,16 +4459,6 @@
             </summary>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
-        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._playground">
-            <summary>
-            Indicates the test grid.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._resultGrid">
-            <summary>
-            Indicates the result grid.
-            </summary>
-        </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.Threading.CancellationToken)">
             <summary>
             Try to generate a puzzle using the specified pattern.
@@ -4481,6 +4471,16 @@
             Order the pattern cells via connection complexity.
             </summary>
             <returns>The cells ordered.</returns>
+        </member>
+        <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GenerateCore(System.Int32[],Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Threading.CancellationToken)">
+            <summary>
+            The back method to generate a valid sudoku grid puzzle.
+            </summary>
+            <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
+            <param name="playground">The playground to be operated with.</param>
+            <param name="resultGrid">The result grid to be returned.</param>
+            <param name="i">The index that the current searching is on.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
         </member>
         <member name="T:Sudoku.Generating.PuzzleBase">
             <summary>

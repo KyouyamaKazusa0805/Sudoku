@@ -4,19 +4,8 @@ namespace Sudoku.Generating;
 /// Represents a generator that is based on pattern.
 /// </summary>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
-public ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
+public readonly ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
 {
-	/// <summary>
-	/// Indicates the test grid.
-	/// </summary>
-	private Grid _playground;
-
-	/// <summary>
-	/// Indicates the result grid.
-	/// </summary>
-	private Grid _resultGrid;
-
-
 	/// <summary>
 	/// Try to generate a puzzle using the specified pattern.
 	/// </summary>
@@ -24,10 +13,11 @@ public ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
 	/// <returns>A valid <see cref="Grid"/> pattern that has a specified pattern, with specified digits should be filled in.</returns>
 	public Grid Generate(CancellationToken cancellationToken = default)
 	{
+		var resultGrid = Grid.Undefined;
 		try
 		{
-			(_playground, _resultGrid, var patternCellsSorted) = (Grid.Empty, Grid.Undefined, OrderPatternCellsViaConnectionDegrees());
-			getGrid(patternCellsSorted, ref _playground, ref _resultGrid, 0);
+			var playground = Grid.Empty;
+			GenerateCore(OrderPatternCellsViaConnectionDegrees(), ref playground, ref resultGrid, 0, cancellationToken);
 		}
 		catch (OperationCanceledException)
 		{
@@ -37,63 +27,19 @@ public ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
 			throw;
 		}
 
-		return _resultGrid.FixedGrid;
-
-
-		void getGrid(Cell[] patternCellsSorted, ref Grid playground, ref Grid resultGrid, int currentIndex)
-		{
-			if (currentIndex == patternCellsSorted.Length)
-			{
-				if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
-				{
-					resultGrid = result;
-					throw new OperationCanceledException("Finished.");
-				}
-
-				return;
-			}
-
-			if (playground.GetCandidates(patternCellsSorted[currentIndex]) == 0)
-			{
-				// Invalid state.
-				return;
-			}
-
-			var cell = patternCellsSorted[currentIndex];
-			var digits = playground.GetCandidates(cell).GetAllSets();
-			var indexArray = Digits[..digits.Length];
-			Random.Shared.Shuffle(indexArray);
-			foreach (var randomizedIndex in indexArray)
-			{
-				playground.ReplaceDigit(cell, digits[randomizedIndex]);
-
-				if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
-				{
-					playground.SetDigit(cell, -1);
-					continue;
-				}
-
-				cancellationToken.ThrowIfCancellationRequested();
-
-				getGrid(patternCellsSorted, ref playground, ref resultGrid, currentIndex + 1);
-			}
-
-			playground.SetDigit(cell, -1);
-		}
+		return resultGrid;
 	}
 
 	/// <summary>
 	/// Order the pattern cells via connection complexity.
 	/// </summary>
 	/// <returns>The cells ordered.</returns>
-	private readonly Cell[] OrderPatternCellsViaConnectionDegrees()
+	private Cell[] OrderPatternCellsViaConnectionDegrees()
 	{
-		var isOrdered = (CellMap)[];
-		var result = new Cell[seedPattern.Count];
+		var (isOrdered, result) = ((CellMap)[], new Cell[seedPattern.Count]);
 		for (var index = 0; index < seedPattern.Count; index++)
 		{
-			var maxRating = 0;
-			var best = -1;
+			var (maxRating, best) = (0, -1);
 			for (var i = 0; i < 81; i++)
 			{
 				if (!seedPattern.Contains(i) || isOrdered.Contains(i))
@@ -125,15 +71,56 @@ public ref struct PatternBasedPuzzleGenerator(params CellMap seedPattern)
 
 				if (maxRating < rating)
 				{
-					maxRating = rating;
-					best = i;
+					(maxRating, best) = (rating, i);
 				}
 			}
 
-			isOrdered.Add(best);
-			result[index] = best;
+			(_, result[index]) = (isOrdered.Add(best), best);
 		}
 
 		return result;
+	}
+
+
+	/// <summary>
+	/// The back method to generate a valid sudoku grid puzzle.
+	/// </summary>
+	/// <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
+	/// <param name="playground">The playground to be operated with.</param>
+	/// <param name="resultGrid">The result grid to be returned.</param>
+	/// <param name="i">The index that the current searching is on.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	private static void GenerateCore(Cell[] patternCellsSorted, ref Grid playground, ref Grid resultGrid, int i, CancellationToken cancellationToken)
+	{
+		if (i == patternCellsSorted.Length)
+		{
+			if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
+			{
+				resultGrid = result;
+				throw new OperationCanceledException("Finished.");
+			}
+			return;
+		}
+
+		var cell = patternCellsSorted[i];
+		var digits = playground.GetCandidates(cell).GetAllSets();
+		var indexArray = Digits[..digits.Length];
+		Random.Shared.Shuffle(indexArray);
+		foreach (var randomizedIndex in indexArray)
+		{
+			playground.ReplaceDigit(cell, digits[randomizedIndex]);
+
+			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
+			{
+				playground.SetDigit(cell, -1);
+				continue;
+			}
+
+			cancellationToken.ThrowIfCancellationRequested();
+
+			GenerateCore(patternCellsSorted, ref playground, ref resultGrid, i + 1, cancellationToken);
+		}
+
+		playground.SetDigit(cell, -1);
 	}
 }
