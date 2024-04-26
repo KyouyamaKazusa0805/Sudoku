@@ -3,8 +3,9 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a generator that is based on pattern.
 /// </summary>
+/// <param name="missingDigit">Indicates the missing digit that can be used.</param>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
-public sealed class PatternBasedPuzzleGenerator(params CellMap seedPattern) : IGenerator<Grid>
+public sealed class PatternBasedPuzzleGenerator(Digit missingDigit, params CellMap seedPattern) : IGenerator<Grid>
 {
 	/// <inheritdoc/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
@@ -24,6 +25,61 @@ public sealed class PatternBasedPuzzleGenerator(params CellMap seedPattern) : IG
 		}
 
 		return resultGrid;
+	}
+
+	/// <summary>
+	/// The back method to generate a valid sudoku grid puzzle.
+	/// </summary>
+	/// <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
+	/// <param name="playground">The playground to be operated with.</param>
+	/// <param name="resultGrid">The result grid to be returned.</param>
+	/// <param name="i">The index that the current searching is on.</param>
+	/// <param name="count">The number of puzzles generated.</param>
+	/// <param name="progress">The progress instance.</param>
+	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+	private void GenerateCore(
+		Cell[] patternCellsSorted,
+		ref Grid playground,
+		ref Grid resultGrid,
+		int i,
+		ref int count,
+		IProgress<GeneratorProgress>? progress,
+		CancellationToken cancellationToken
+	)
+	{
+		if (i == patternCellsSorted.Length)
+		{
+			if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
+			{
+				resultGrid = result;
+				throw new OperationCanceledException("Finished.");
+			}
+
+			progress?.Report(new(count++));
+			return;
+		}
+
+		var cell = patternCellsSorted[i];
+		var digitsMask = playground.GetCandidates(cell);
+		var digits = ((Mask)(missingDigit != -1 ? digitsMask & (Mask)~(1 << missingDigit) : digitsMask)).GetAllSets();
+		var indexArray = Digits[..digits.Length];
+		Random.Shared.Shuffle(indexArray);
+		foreach (var randomizedIndex in indexArray)
+		{
+			playground.ReplaceDigit(cell, digits[randomizedIndex]);
+
+			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
+			{
+				playground.SetDigit(cell, -1);
+				continue;
+			}
+
+			cancellationToken.ThrowIfCancellationRequested();
+
+			GenerateCore(patternCellsSorted, ref playground, ref resultGrid, i + 1, ref count, progress, cancellationToken);
+		}
+
+		playground.SetDigit(cell, -1);
 	}
 
 	/// <summary>
@@ -75,60 +131,5 @@ public sealed class PatternBasedPuzzleGenerator(params CellMap seedPattern) : IG
 		}
 
 		return result;
-	}
-
-
-	/// <summary>
-	/// The back method to generate a valid sudoku grid puzzle.
-	/// </summary>
-	/// <param name="patternCellsSorted">The cells ordered by the number of related cells.</param>
-	/// <param name="playground">The playground to be operated with.</param>
-	/// <param name="resultGrid">The result grid to be returned.</param>
-	/// <param name="i">The index that the current searching is on.</param>
-	/// <param name="count">The number of puzzles generated.</param>
-	/// <param name="progress">The progress instance.</param>
-	/// <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-	private static void GenerateCore(
-		Cell[] patternCellsSorted,
-		ref Grid playground,
-		ref Grid resultGrid,
-		int i,
-		ref int count,
-		IProgress<GeneratorProgress>? progress,
-		CancellationToken cancellationToken
-	)
-	{
-		if (i == patternCellsSorted.Length)
-		{
-			if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
-			{
-				resultGrid = result;
-				throw new OperationCanceledException("Finished.");
-			}
-
-			progress?.Report(new(count++));
-			return;
-		}
-
-		var cell = patternCellsSorted[i];
-		var digits = playground.GetCandidates(cell).GetAllSets();
-		var indexArray = Digits[..digits.Length];
-		Random.Shared.Shuffle(indexArray);
-		foreach (var randomizedIndex in indexArray)
-		{
-			playground.ReplaceDigit(cell, digits[randomizedIndex]);
-
-			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
-			{
-				playground.SetDigit(cell, -1);
-				continue;
-			}
-
-			cancellationToken.ThrowIfCancellationRequested();
-
-			GenerateCore(patternCellsSorted, ref playground, ref resultGrid, i + 1, ref count, progress, cancellationToken);
-		}
-
-		playground.SetDigit(cell, -1);
 	}
 }
