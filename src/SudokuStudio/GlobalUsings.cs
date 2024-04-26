@@ -60,6 +60,7 @@ global using Sudoku.Concepts;
 global using Sudoku.Generating;
 global using Sudoku.Generating.JustOneCell;
 global using Sudoku.Generating.TechniqueBased;
+global using Sudoku.Ittoryu;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
 global using Sudoku.Rendering;
