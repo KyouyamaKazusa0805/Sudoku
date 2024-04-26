@@ -2486,4 +2486,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription" xml:space="preserve">
     <value>This function is not supported for Sukaku puzzles.</value>
   </data>
+  <data name="AnalyzePage_ToMinLexGrid" xml:space="preserve">
+    <value>Min-lex form</value>
+  </data>
 </root>

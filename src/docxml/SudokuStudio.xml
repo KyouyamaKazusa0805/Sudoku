@@ -6925,6 +6925,11 @@
               Looks up a localized string similar to Show/Hide candidates.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_ToMinLexGrid">
+            <summary>
+              Looks up a localized string similar to Min-lex form.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AnalyzePage_TopBottomSwapButton">
             <summary>
               Looks up a localized string similar to Top-Bottom swap.

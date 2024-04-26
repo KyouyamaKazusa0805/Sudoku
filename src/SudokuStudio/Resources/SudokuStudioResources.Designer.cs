@@ -1888,6 +1888,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Min-lex form.
+        /// </summary>
+        internal static string AnalyzePage_ToMinLexGrid {
+            get {
+                return ResourceManager.GetString("AnalyzePage_ToMinLexGrid", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Top-Bottom swap.
         /// </summary>
         internal static string AnalyzePage_TopBottomSwapButton {

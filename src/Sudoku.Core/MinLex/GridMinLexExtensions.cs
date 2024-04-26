@@ -18,8 +18,16 @@ public static class GridMinLexExtensions
 			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MinLexShouldBeUniqueAndNotSukaku"));
 
 	/// <summary>
-	/// Checks the minimal-lexicographical grid form.
+	/// Checks the minimal lexicographical grid form.
 	/// </summary>
+	/// <param name="this">The grid to be checked.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid MinLexForm(this in Grid @this) => new MinLexFinder().Find(in @this);
+
+	/// <summary>
+	/// Adjust the grid to minimal lexicographical form.
+	/// </summary>
+	/// <param name="this">The grid to be changed.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void MakeMinLex(this ref Grid @this) => @this = @this.MinLexForm();
 }

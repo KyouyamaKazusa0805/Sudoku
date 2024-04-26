@@ -13,6 +13,10 @@
 			x:Name="InfoDialog_DisorderedIttoryuDigitSequence" IsLightDismissEnabled="True" Target="{x:Bind AdjustToMakeIttoryuButton}"
 			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_DisorderedIttoryuOrderResult}"
 			Subtitle="{m:R Key=AnalyzePage_DisorderedIttoryuDoesNotExist}" />
+		<TeachingTip
+			x:Name="InfoDialog_NotSupportedForSukaku" IsLightDismissEnabled="True" Target="{x:Bind AdjustToMinLexButton}"
+			CloseButtonContent="{m:R Key=AnalyzePage_Okay}" Title="{m:R Key=AnalyzePage_SukakuIsNotSupportedForThisFunction}"
+			Subtitle="{m:R Key=AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription}" />
 	</Page.Resources>
 
 	<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
@@ -27,5 +31,9 @@
 		<AppBarButton
 			x:Name="AdjustToMakeIttoryuButton" Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_AdjustToMakeIttoryuButton}"
 			Click="AdjustToMakeIttoryuButton_Click" />
+		<AppBarSeparator />
+		<AppBarButton
+			x:Name="AdjustToMinLexButton" Icon="{ui:FontIcon Glyph=&#xE8EE;}" Label="{m:R Key=AnalyzePage_ToMinLexGrid}"
+			Click="ToMinLexButton_Click" />
 	</CommandBar>
 </Page>

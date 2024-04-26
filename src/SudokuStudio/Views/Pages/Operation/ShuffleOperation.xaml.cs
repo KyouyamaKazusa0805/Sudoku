@@ -74,15 +74,28 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	private void AdjustToMakeIttoryuButton_Click(object sender, RoutedEventArgs e)
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
-		if (modified.IsIttoryu([.. ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques], out var digitPath)
-			&& digitPath is { } path)
-		{
-			modified.MakeIttoryu(path);
-			BasePage.SudokuPane.Puzzle = modified;
-		}
-		else
+		var techniques = ((App)Application.Current).Preference.AnalysisPreferences.IttoryuSupportedTechniques;
+		if (!modified.IsIttoryu([.. techniques], out var digitPath)
+			|| digitPath is not { } path)
 		{
 			InfoDialog_DisorderedIttoryuDigitSequence.IsOpen = true;
+			return;
 		}
+
+		modified.MakeIttoryu(path);
+		BasePage.SudokuPane.Puzzle = modified;
+	}
+
+	private void ToMinLexButton_Click(object sender, RoutedEventArgs e)
+	{
+		var modified = BasePage.SudokuPane.Puzzle;
+		if (modified.PuzzleType == SudokuType.Sukaku)
+		{
+			InfoDialog_NotSupportedForSukaku.IsOpen = true;
+			return;
+		}
+
+		modified.MakeMinLex();
+		BasePage.SudokuPane.Puzzle = modified;
 	}
 }

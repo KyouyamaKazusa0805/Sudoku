@@ -5447,8 +5447,15 @@
         </member>
         <member name="M:Sudoku.MinLex.GridMinLexExtensions.MinLexForm(Sudoku.Concepts.Grid@)">
             <summary>
-            Checks the minimal-lexicographical grid form.
+            Checks the minimal lexicographical grid form.
             </summary>
+            <param name="this">The grid to be checked.</param>
+        </member>
+        <member name="M:Sudoku.MinLex.GridMinLexExtensions.MakeMinLex(Sudoku.Concepts.Grid@)">
+            <summary>
+            Adjust the grid to minimal lexicographical form.
+            </summary>
+            <param name="this">The grid to be changed.</param>
         </member>
         <member name="T:Sudoku.MinLex.GridPattern">
             <summary>
