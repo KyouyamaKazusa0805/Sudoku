@@ -4461,11 +4461,6 @@
             <param name="missingDigit">Indicates the missing digit that can be used.</param>
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
-        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
-            <summary>
-            Indicates the seed pattern.
-            </summary>
-        </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
@@ -4486,6 +4481,11 @@
             Order the pattern cells via connection complexity.
             </summary>
             <returns>The cells ordered.</returns>
+        </member>
+        <member name="F:Sudoku.Generating.PatternBasedPuzzleGenerator._seedPattern">
+            <summary>
+            The generated field declaration for parameter <c>seedPattern</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Generating.PuzzleBase">
             <summary>

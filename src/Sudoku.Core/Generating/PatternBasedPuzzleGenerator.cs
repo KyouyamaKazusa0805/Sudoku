@@ -5,14 +5,12 @@ namespace Sudoku.Generating;
 /// </summary>
 /// <param name="missingDigit">Indicates the missing digit that can be used.</param>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
-public readonly ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seedPattern, Digit missingDigit = -1)
+[StructLayout(LayoutKind.Auto)]
+public readonly ref partial struct PatternBasedPuzzleGenerator(
+	[PrimaryConstructorParameter(MemberKinds.Field)] ref readonly CellMap seedPattern,
+	Digit missingDigit = -1
+)
 {
-	/// <summary>
-	/// Indicates the seed pattern.
-	/// </summary>
-	private readonly ref readonly CellMap _seedPattern = ref seedPattern;
-
-
 	/// <inheritdoc/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
