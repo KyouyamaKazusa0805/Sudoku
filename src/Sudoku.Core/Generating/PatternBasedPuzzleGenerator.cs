@@ -5,8 +5,14 @@ namespace Sudoku.Generating;
 /// </summary>
 /// <param name="missingDigit">Indicates the missing digit that can be used.</param>
 /// <param name="seedPattern">Indicates the predefind pattern used.</param>
-public sealed class PatternBasedPuzzleGenerator(Digit missingDigit, params CellMap seedPattern) : IGenerator<Grid>
+public readonly ref struct PatternBasedPuzzleGenerator(ref readonly CellMap seedPattern, Digit missingDigit = -1)
 {
+	/// <summary>
+	/// Indicates the seed pattern.
+	/// </summary>
+	private readonly ref readonly CellMap _seedPattern = ref seedPattern;
+
+
 	/// <inheritdoc/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
@@ -88,13 +94,13 @@ public sealed class PatternBasedPuzzleGenerator(Digit missingDigit, params CellM
 	/// <returns>The cells ordered.</returns>
 	private Cell[] OrderCellsViaConnectionComplexity()
 	{
-		var (isOrdered, result) = ((CellMap)[], new Cell[seedPattern.Count]);
-		for (var index = 0; index < seedPattern.Count; index++)
+		var (isOrdered, result) = ((CellMap)[], new Cell[_seedPattern.Count]);
+		for (var index = 0; index < _seedPattern.Count; index++)
 		{
 			var (maxRating, best) = (0, -1);
 			for (var i = 0; i < 81; i++)
 			{
-				if (!seedPattern.Contains(i) || isOrdered.Contains(i))
+				if (!_seedPattern.Contains(i) || isOrdered.Contains(i))
 				{
 					continue;
 				}
@@ -102,7 +108,7 @@ public sealed class PatternBasedPuzzleGenerator(Digit missingDigit, params CellM
 				var rating = 0;
 				for (var j = 0; j < 81; j++)
 				{
-					if (!seedPattern.Contains(j) || i == j)
+					if (!_seedPattern.Contains(j) || i == j)
 					{
 						continue;
 					}
@@ -114,7 +120,8 @@ public sealed class PatternBasedPuzzleGenerator(Digit missingDigit, params CellM
 						rating += isOrdered.Contains(j) ? 10000 : 100;
 					}
 
-					if (!isOrdered.Contains(j) && (i.ToBandIndex() == j.ToBandIndex() || i.ToTowerIndex() == j.ToTowerIndex())
+					if (!isOrdered.Contains(j)
+						&& (i.ToBandIndex() == j.ToBandIndex() || i.ToTowerIndex() == j.ToTowerIndex())
 						&& i.ToHouseIndex(HouseType.Block) == j.ToHouseIndex(HouseType.Block))
 					{
 						rating++;
