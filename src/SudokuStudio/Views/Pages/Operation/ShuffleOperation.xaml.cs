@@ -19,7 +19,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.MirrorLeftRight();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -27,7 +26,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.MirrorTopBottom();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -35,7 +33,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.MirrorDiagonal();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -43,7 +40,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.MirrorAntidiagonal();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -51,7 +47,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.RotateClockwise();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -59,7 +54,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.RotateCounterclockwise();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
@@ -67,7 +61,6 @@ public sealed partial class ShuffleOperation : Page, IOperationProviderPage
 	{
 		var modified = BasePage.SudokuPane.Puzzle;
 		modified.RotatePi();
-
 		BasePage.SudokuPane.Puzzle = modified;
 	}
 
