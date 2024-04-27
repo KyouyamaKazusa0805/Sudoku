@@ -1,5 +1,3 @@
-namespace RootLevelSourceGeneration;
-
 /// <summary>
 /// Banner provider type.
 /// </summary>

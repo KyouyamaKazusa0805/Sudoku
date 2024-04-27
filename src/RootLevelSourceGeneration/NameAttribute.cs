@@ -1,5 +1,3 @@
-namespace Sudoku.SourceGeneration;
-
 /// <summary>
 /// The name attribute that applies to a field in enumeration field, indicating its name.
 /// </summary>

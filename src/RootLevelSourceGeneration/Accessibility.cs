@@ -1,5 +1,3 @@
-namespace Sudoku.SourceGeneration;
-
 /// <summary>
 /// Defines an accessibility kind.
 /// </summary>
