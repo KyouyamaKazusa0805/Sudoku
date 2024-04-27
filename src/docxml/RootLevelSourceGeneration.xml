@@ -4,6 +4,76 @@
         <name>RootLevelSourceGeneration</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.SourceGeneration.Accessibility">
+            <summary>
+            Defines an accessibility kind.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.File">
+            <summary>
+            Indicates the accessibility is <see langword="file"/>-scoped.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Private">
+            <summary>
+            Indicates the accessibility is <see langword="private"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Protected">
+            <summary>
+            Indicates the accessibility is <see langword="protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.PrivateProtected">
+            <summary>
+            Indicates the accessibility is <see langword="private protected"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Internal">
+            <summary>
+            Indicates the accessibility is <see langword="internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.ProtectedInternal">
+            <summary>
+            Indicates the accessibility is <see langword="protected internal"/>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SourceGeneration.Accessibility.Public">
+            <summary>
+            Indicates the accessibility is <see langword="public"/>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.AccessibilityExtensions">
+            <summary>
+            Provides with extension methods for <see cref="T:Sudoku.SourceGeneration.Accessibility"/>.
+            </summary>
+            <seealso cref="T:Sudoku.SourceGeneration.Accessibility"/>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.AccessibilityExtensions.GetName(Sudoku.SourceGeneration.Accessibility)">
+            <summary>
+            Gets the name of the accessibility enumeration field.
+            </summary>
+            <param name="this">The field.</param>
+            <returns>The name of the field.</returns>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.NameAttribute">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.NameAttribute.#ctor(System.String)">
+            <summary>
+            The name attribute that applies to a field in enumeration field, indicating its name.
+            </summary>
+            <param name="name">The name of the field.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.NameAttribute.Name">
+            <summary>
+            Indicates the name of the attribute.
+            </summary>
+        </member>
         <member name="T:RootLevelSourceGeneration.Banner">
             <summary>
             Banner provider type.
