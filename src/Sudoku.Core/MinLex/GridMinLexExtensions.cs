@@ -22,12 +22,12 @@ public static class GridMinLexExtensions
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid MinLexForm(this in Grid @this) => new MinLexFinder().Find(in @this);
+	public static Grid GetMinLexGrid(this in Grid @this) => new MinLexFinder().Find(in @this);
 
 	/// <summary>
 	/// Adjust the grid to minimal lexicographical form.
 	/// </summary>
 	/// <param name="this">The grid to be changed.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void MakeMinLex(this ref Grid @this) => @this = @this.MinLexForm();
+	public static void MakeMinLex(this ref Grid @this) => @this = @this.GetMinLexGrid();
 }

@@ -2271,6 +2271,16 @@
             <param name="other">The instance to compare.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Determine whether the specified <see cref="T:Sudoku.Concepts.Grid"/> instance hold the same values as the current instance,
+            by using the specified comparison type.
+            </summary>
+            <param name="other">The instance to compare.</param>
+            <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.DuplicateWith(System.Int32,System.Int32)">
             <summary>
             Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -2358,6 +2368,17 @@
         <member name="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@)">
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@,Sudoku.Concepts.GridComparison)">
+            <summary>
+            Compares the current instance with another object of the same type and returns an integer
+            that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <param name="comparisonType">The comparison type to be used.</param>
+            <returns>A value that indicates the relative order of the objects being compared.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Grid.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
@@ -2838,6 +2859,24 @@
             Checks whether the cell is a value cell, being filled by the digit.
             </summary>
             <inheritdoc cref="M:Sudoku.Concepts.GridCellPredicates.CandidatesMap(Sudoku.Concepts.Grid@,System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.GridComparison">
+            <summary>
+            Specifies the culture, case, and sort rules to be used by certain overloads of
+            the <see cref="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@)"/> and <see cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/> methods.
+            </summary>
+            <seealso cref="M:Sudoku.Concepts.Grid.CompareTo(Sudoku.Concepts.Grid@)"/>
+            <seealso cref="M:Sudoku.Concepts.Grid.Equals(Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridComparison.Default">
+            <summary>
+            Indicates two <see cref="T:Sudoku.Concepts.Grid"/> instances only compares internal <see cref="T:System.Int16"/> values one by one.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.GridComparison.IncludingTransforms">
+            <summary>
+            Indicates two <see cref="T:Sudoku.Concepts.Grid"/> instances compares not only internal values, but its all possible transformations.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.GridCreatingOption">
             <summary>
@@ -5445,7 +5484,7 @@
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.MinLex.GridMinLexExtensions.MinLexForm(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.MinLex.GridMinLexExtensions.GetMinLexGrid(Sudoku.Concepts.Grid@)">
             <summary>
             Checks the minimal lexicographical grid form.
             </summary>

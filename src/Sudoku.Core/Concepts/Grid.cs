@@ -884,7 +884,6 @@ public partial struct Grid :
 		valuesMap = ValuesMap;
 	}
 
-
 	/// <summary>
 	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance.
 	/// </summary>
@@ -892,8 +891,25 @@ public partial struct Grid :
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
-	public readonly bool Equals(ref readonly Grid other)
-		=> InternalEqualsByRef(in R.AsReadOnlyByteRef(in this[0]), in R.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount);
+	public readonly bool Equals(ref readonly Grid other) => Equals(in other, GridComparison.Default);
+
+	/// <summary>
+	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance,
+	/// by using the specified comparison type.
+	/// </summary>
+	/// <param name="other">The instance to compare.</param>
+	/// <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool Equals(ref readonly Grid other, GridComparison comparisonType)
+		=> comparisonType switch
+		{
+			GridComparison.Default
+				=> InternalEqualsByRef(in R.AsReadOnlyByteRef(in this[0]), in R.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount),
+			GridComparison.IncludingTransforms => this.GetMinLexGrid() == other.GetMinLexGrid(),
+			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
+		};
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -1037,6 +1053,28 @@ public partial struct Grid :
 		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
 			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"));
+
+	/// <summary>
+	/// Compares the current instance with another object of the same type and returns an integer
+	/// that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
+	/// </summary>
+	/// <param name="other">The other object to be compared.</param>
+	/// <param name="comparisonType">The comparison type to be used.</param>
+	/// <returns>A value that indicates the relative order of the objects being compared.</returns>
+	/// <exception cref="InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
+	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly int CompareTo(ref readonly Grid other, GridComparison comparisonType)
+		=> (PuzzleType, other.PuzzleType) switch
+		{
+			(not SudokuType.Sukaku, not SudokuType.Sukaku) => comparisonType switch
+			{
+				GridComparison.Default => ToString("#").CompareTo(other.ToString("#")),
+				GridComparison.IncludingTransforms => this.GetMinLexGrid().ToString("#").CompareTo(other.GetMinLexGrid().ToString("#")),
+				_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
+			},
+			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"))
+		};
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
