@@ -11,7 +11,6 @@ public sealed class Generator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
-		// Elementary generators
 		ActionExtension(context);
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
@@ -19,9 +18,6 @@ public sealed class Generator : IIncrementalGenerator
 		InlineArray(context);
 		ImplicitField(context);
 		ExplicitInterfaceImpl(context);
-
-		// Advanced generators
-		StepSearcherImports(context);
 	}
 
 	private void ActionExtension(IncrementalGeneratorInitializationContext context)
@@ -135,12 +131,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ExplicitInterfaceImplHandler.Output
-		);
-
-	private void StepSearcherImports(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
-			context.CompilationProvider,
-			static (spc, c) => { if (c.AssemblyName == "Sudoku.Analytics") { StepSearcherDefaultImportingHandler.Output(spc, c); } }
 		);
 }
 

@@ -9,6 +9,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Gdip\Sudoku.Gdip.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
