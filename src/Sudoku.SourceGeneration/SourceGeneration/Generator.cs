@@ -15,7 +15,8 @@ public sealed class Generator : IIncrementalGenerator
 		ActionExtension(context);
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
-		DuckTyping(context);
+		Operators(context);
+		InlineArray(context);
 		ImplicitField(context);
 		ExplicitInterfaceImpl(context);
 
@@ -76,7 +77,7 @@ public sealed class Generator : IIncrementalGenerator
 		);
 	}
 
-	private void DuckTyping(IncrementalGeneratorInitializationContext context)
+	private void Operators(IncrementalGeneratorInitializationContext context)
 	{
 		const string equalityOperatorsAttributeName = "System.SourceGeneration.EqualityOperatorsAttribute";
 		context.RegisterSourceOutput(
@@ -97,7 +98,10 @@ public sealed class Generator : IIncrementalGenerator
 				.Collect(),
 			ComparisonOperatorsHandler.Output
 		);
+	}
 
+	private void InlineArray(IncrementalGeneratorInitializationContext context)
+	{
 		const string inlineArrayFieldAttributeName = "System.SourceGeneration.InlineArrayFieldAttribute`1";
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
