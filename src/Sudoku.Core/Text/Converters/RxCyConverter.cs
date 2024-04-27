@@ -34,7 +34,7 @@ public sealed record RxCyConverter(
 			return cells switch
 			{
 				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[var p] => MakeLettersUpperCase switch { true => $"Ref{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 
@@ -200,8 +200,8 @@ public sealed record RxCyConverter(
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(
-					ref R.AsByteRef(ref conclusions[0]),
-					in R.AsReadOnlyByteRef(in c[0]),
+					ref Ref.AsByteRef(ref conclusions[0]),
+					in Ref.AsReadOnlyByteRef(in c[0]),
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 

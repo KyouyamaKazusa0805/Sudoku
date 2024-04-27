@@ -69,7 +69,7 @@ public static partial class StringExtensions
 	/// <param name="this">The string.</param>
 	/// <returns>The reference to the first element.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref char MutableRef(this string @this) => ref System.R.AsMutableRef(in @this.Ref());
+	public static ref char MutableRef(this string @this) => ref System.Ref.AsMutableRef(in @this.Ref());
 
 	/// <summary>
 	/// Removes all specified characters.

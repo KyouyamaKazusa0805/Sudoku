@@ -38,8 +38,8 @@
           "SpecializedEqualityComparer.cs": [ "__Types" ],
           "ILogicalOperators.cs": [ "__Types" ],
           "ArgumentNullRefException.cs": [ "__Types" ],
-          "M.cs": [ "__Types" ],
-          "R.cs": [ "__Types" ]
+          "Methods.cs": [ "__Types" ],
+          "Ref.cs": [ "__Types" ]
         }
       }
     }

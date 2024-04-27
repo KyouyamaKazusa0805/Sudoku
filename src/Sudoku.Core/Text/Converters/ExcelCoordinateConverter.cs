@@ -122,8 +122,8 @@ public sealed record ExcelCoordinateConverter(
 			{
 				var conclusions = new Conclusion[c.Length];
 				Unsafe.CopyBlock(
-					ref R.AsByteRef(ref conclusions[0]),
-					in R.AsReadOnlyByteRef(in c[0]),
+					ref Ref.AsByteRef(ref conclusions[0]),
+					in Ref.AsReadOnlyByteRef(in c[0]),
 					(uint)(sizeof(Conclusion) * c.Length)
 				);
 

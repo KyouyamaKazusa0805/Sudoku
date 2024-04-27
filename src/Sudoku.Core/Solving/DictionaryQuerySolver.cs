@@ -179,7 +179,7 @@ public sealed class DictionaryQuerySolver : ISolver
 	public Dictionary<string, string>? ParseGrid(string gridStr)
 	{
 		//var grid2 = from c in gridStr where "0.-123456789".Contains(c) select c;
-		var values = Coordinates.ToDictionary(M.Self, static _ => Digits);
+		var values = Coordinates.ToDictionary(Methods.Self, static _ => Digits);
 
 		foreach (var sd in Zip(Coordinates, [.. from s in gridStr select s.ToString()]))
 		{

@@ -224,7 +224,7 @@ public sealed unsafe class MinLexFinder
 							ref readonly var rowGivens = ref pair[target.IsTransposed].Digits[target.MapRowsBackward[toRow] * 9];
 							for (var col = 0; col < 9; col++)
 							{
-								var fromDigit = Unsafe.Add(ref R.AsMutableRef(in rowGivens), toColsInStack[col]);
+								var fromDigit = Unsafe.Add(ref Ref.AsMutableRef(in rowGivens), toColsInStack[col]);
 								if (fromDigit == 0)
 								{
 									continue;

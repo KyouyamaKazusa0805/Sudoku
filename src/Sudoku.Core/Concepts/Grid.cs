@@ -237,7 +237,7 @@ public partial struct Grid :
 	/// </exception>
 	private Grid(ref readonly Digit firstElement, GridCreatingOption creatingOption = GridCreatingOption.None)
 	{
-		R.ThrowIfNullRef(in firstElement);
+		Ref.ThrowIfNullRef(in firstElement);
 
 		// Firstly we should initialize the inner values.
 		this = Empty;
@@ -246,7 +246,7 @@ public partial struct Grid :
 		var minusOneEnabled = creatingOption == GridCreatingOption.MinusOne;
 		for (var i = 0; i < CellsCount; i++)
 		{
-			var value = Unsafe.Add(ref R.AsMutableRef(in firstElement), i);
+			var value = Unsafe.Add(ref Ref.AsMutableRef(in firstElement), i);
 			if ((minusOneEnabled ? value - 1 : value) is var realValue and not -1)
 			{
 				// Calls the indexer to trigger the event (Clear the candidates in peer cells).
@@ -906,7 +906,7 @@ public partial struct Grid :
 		=> comparisonType switch
 		{
 			GridComparison.Default
-				=> InternalEqualsByRef(in R.AsReadOnlyByteRef(in this[0]), in R.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount),
+				=> InternalEqualsByRef(in Ref.AsReadOnlyByteRef(in this[0]), in Ref.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount),
 			GridComparison.IncludingTransforms => this.GetMinLexGrid() == other.GetMinLexGrid(),
 			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 		};
@@ -1872,8 +1872,8 @@ public partial struct Grid :
 			}
 			if ((length & 1) != 0)
 			{
-				differentBits |= (uint)Unsafe.AddByteOffset(ref R.AsMutableRef(in first), offset)
-					- Unsafe.AddByteOffset(ref R.AsMutableRef(in second), offset);
+				differentBits |= (uint)Unsafe.AddByteOffset(ref Ref.AsMutableRef(in first), offset)
+					- Unsafe.AddByteOffset(ref Ref.AsMutableRef(in second), offset);
 			}
 
 			result = differentBits == 0;
@@ -1891,7 +1891,7 @@ public partial struct Grid :
 		}
 	Longer:
 		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
-		if (!R.MemoryLocationAreSame(in first, in second))
+		if (!Ref.MemoryLocationAreSame(in first, in second))
 		{
 			// C# compiler inverts this test, making the outer goto the conditional jmp.
 			goto Vector;
@@ -2057,18 +2057,18 @@ public partial struct Grid :
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static uint loadUint2(ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref R.AsMutableRef(in start), offset));
+			=> Unsafe.ReadUnaligned<uint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint(ref readonly byte start) => Unsafe.ReadUnaligned<nuint>(in start);
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static nuint loadNuint2(ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref R.AsMutableRef(in start), offset));
+			=> Unsafe.ReadUnaligned<nuint>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static Vector<byte> loadVector(ref readonly byte start, nuint offset)
-			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref R.AsMutableRef(in start), offset));
+			=> Unsafe.ReadUnaligned<Vector<byte>>(ref Unsafe.AddByteOffset(ref Ref.AsMutableRef(in start), offset));
 	}
 
 	/// <summary>
@@ -2135,8 +2135,8 @@ public partial struct Grid :
 	{
 		var result = Empty;
 		Unsafe.CopyBlock(
-			ref R.AsByteRef(ref result[0]),
-			in R.AsReadOnlyByteRef(in maskArray[0]),
+			ref Ref.AsByteRef(ref result[0]),
+			in Ref.AsReadOnlyByteRef(in maskArray[0]),
 			(uint)(sizeof(Mask) * maskArray.Length)
 		);
 		return result;
@@ -2159,7 +2159,7 @@ public partial struct Grid :
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref R.AsByteRef(ref result[0]), in R.AsReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
+		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
 		return result;
 	}
 }

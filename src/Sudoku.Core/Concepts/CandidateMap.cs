@@ -268,8 +268,8 @@ public partial struct CandidateMap :
 		if (length >= 729)
 		{
 			Unsafe.CopyBlock(
-				ref R.AsByteRef(ref sequence),
-				in R.AsReadOnlyByteRef(in Offsets[0]),
+				ref Ref.AsByteRef(ref sequence),
+				in Ref.AsReadOnlyByteRef(in Offsets[0]),
 				(uint)(sizeof(Candidate) * length)
 			);
 		}

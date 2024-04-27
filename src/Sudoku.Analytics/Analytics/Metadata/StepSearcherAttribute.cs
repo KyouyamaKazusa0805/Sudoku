@@ -66,7 +66,7 @@ public sealed partial class StepSearcherAttribute(
 	/// <summary>
 	/// Indicates what difficulty levels the current step searcher can produce.
 	/// </summary>
-	public DifficultyLevel DifficultyLevels => (from t in SupportedTechniques select t.GetDifficultyLevel()).Aggregate(M.EnumFlagMerger);
+	public DifficultyLevel DifficultyLevels => (from t in SupportedTechniques select t.GetDifficultyLevel()).Aggregate(Methods.EnumFlagMerger);
 
 	/// <summary>
 	/// Indicates the supported sudoku types.

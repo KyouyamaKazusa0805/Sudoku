@@ -305,7 +305,7 @@ public partial class TokenView : ListViewBase
 			VirtualKey.Left => () => e.Handled = moveFocus(MoveDirection.Previous),
 			VirtualKey.Right => () => e.Handled = moveFocus(MoveDirection.Next),
 			VirtualKey.Back or VirtualKey.Delete => () => e.Handled = removeItem(),
-			_ => M.DoNothing
+			_ => Methods.DoNothing
 		});
 
 		action();

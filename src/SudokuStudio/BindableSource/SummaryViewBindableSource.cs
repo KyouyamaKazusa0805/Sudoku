@@ -60,7 +60,7 @@ internal sealed partial class SummaryViewBindableSource(
 				select targetDifficultyLevel
 			select new SummaryViewBindableSource(
 				stepGroup.Key,
-				difficultyLevels.Aggregate(M.EnumFlagMerger),
+				difficultyLevels.Aggregate(Methods.EnumFlagMerger),
 				stepGroupArray.SumUnsafe(&r),
 				stepGroupArray.MaxUnsafe(&r),
 				stepGroupArray.Length
