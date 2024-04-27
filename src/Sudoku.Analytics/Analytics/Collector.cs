@@ -54,11 +54,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public ReadOnlySpan<Step> Collect(
-		ref readonly Grid puzzle,
-		IProgress<AnalyzerProgress>? progress = null,
-		CancellationToken cancellationToken = default
-	)
+	public ReadOnlySpan<Step> Collect(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
@@ -72,7 +68,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 
 		try
 		{
-			return searchInternal(isSukaku, progress, in puzzle, cancellationToken);
+			return s(isSukaku, progress, in puzzle, cancellationToken);
 		}
 		catch (OperationCanceledException ex) when (ex.CancellationToken == cancellationToken)
 		{
@@ -84,12 +80,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		}
 
 
-		ReadOnlySpan<Step> searchInternal(
-			bool isSukaku,
-			IProgress<AnalyzerProgress>? progress,
-			ref readonly Grid puzzle,
-			CancellationToken cancellationToken
-		)
+		ReadOnlySpan<Step> s(bool isSukaku, IProgress<AnalyzerProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 
@@ -134,7 +125,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 							}
 						}
 
-						cancellationToken.ThrowIfCancellationRequested();
+						ct.ThrowIfCancellationRequested();
 
 						// Searching.
 						accumulator.Clear();
