@@ -95,7 +95,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	private protected static House RandomlySelectHouse(ConlusionCellAlignment alignment)
 		=> alignment switch
 		{
-			ConlusionCellAlignment.NotLimited => Rng.Next(0, 27),
+			ConlusionCellAlignment.NotLimited => Rng.NextHouse(),
 			ConlusionCellAlignment.CenterHouse => 9 * Rng.Next(0, 3) + 4,
 			ConlusionCellAlignment.CenterBlock => CenterHouses[Rng.Next(0, CenterHouses.Length)],
 			_ => StrictCenterHouses[Rng.Next(0, StrictCenterHouses.Length)]

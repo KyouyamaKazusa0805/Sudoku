@@ -656,11 +656,11 @@ public readonly partial struct Library(
 			{
 				for (var i = 0; i < 10; i++)
 				{
-					var d1 = random.Next(0, 9);
+					var d1 = random.NextDigit();
 					int d2;
 					do
 					{
-						d2 = random.Next(0, 9);
+						d2 = random.NextDigit();
 					} while (d1 == d2);
 					grid.SwapTwoDigits(d1, d2);
 				}

@@ -123,7 +123,7 @@ public ref partial struct Generator
 		while (remainingClues > (cluesCount == -1 ? 17 : cluesCount) && usedCount > 1)
 		{
 			// Get the next position to try.
-			var cell = _rng.Next(81);
+			var cell = _rng.NextCell();
 			do
 			{
 				if (cell < 80)
@@ -203,10 +203,10 @@ public ref partial struct Generator
 
 		for (var i = 0; i < 81; i++)
 		{
-			var (index1, index2) = (_rng.Next(81), _rng.Next(81));
+			var (index1, index2) = (_rng.NextCell(), _rng.NextCell());
 			while (index1 == index2)
 			{
-				index2 = _rng.Next(81);
+				index2 = _rng.NextCell();
 			}
 
 			(_generateIndices[index1], _generateIndices[index2]) = (_generateIndices[index2], _generateIndices[index1]);

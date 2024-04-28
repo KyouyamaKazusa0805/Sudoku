@@ -107,7 +107,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 			{
 				while (true)
 				{
-					if (map.Add(Rng.Next(81)))
+					if (map.Add(Rng.NextCell()))
 					{
 						break;
 					}
@@ -194,12 +194,4 @@ file static class Extensions
 	/// <returns>The pointer.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static unsafe char* ToPointer(this ref char @this) => (char*)Unsafe.AsPointer(ref @this);
-
-	/// <summary>
-	/// Gets the next digit.
-	/// </summary>
-	/// <param name="this">The random instance.</param>
-	/// <returns>The next digit.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Digit NextDigit(this Random @this) => @this.Next(0, 9);
 }

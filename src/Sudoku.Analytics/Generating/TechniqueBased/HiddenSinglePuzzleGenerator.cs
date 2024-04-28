@@ -75,7 +75,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				// Now checks for uncovered cells in the target house, one of the uncovered cells is the target cell,
 				// and the others should be placeholders.
 				ShuffleSequence(DigitSeed);
-				var targetDigit = DigitSeed[Rng.Next(0, 9)];
+				var targetDigit = DigitSeed[Rng.NextDigit()];
 				var puzzle = Grid.Empty;
 				var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
 				var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];
@@ -222,7 +222,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					House excluderHouse;
 					do
 					{
-						excluderHouse = Rng.Next(0, 9);
+						excluderHouse = Rng.NextDigit();
 					} while ((blocks >> excluderHouse & 1) == 0);
 					_ = (excluderBlocks |= 1 << excluderHouse, blocks &= ~(1 << excluderHouse));
 				}
@@ -255,7 +255,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				// Now checks for uncovered cells in the target house, one of the uncovered cells is the target cell,
 				// and the others should be placeholders.
 				ShuffleSequence(DigitSeed);
-				var targetDigit = DigitSeed[Rng.Next(0, 9)];
+				var targetDigit = DigitSeed[Rng.NextDigit()];
 				var puzzle = Grid.Empty;
 				var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
 				var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];

@@ -4354,13 +4354,6 @@
             <param name="this">The reference to be casted.</param>
             <returns>The pointer.</returns>
         </member>
-        <member name="M:Sudoku.Generating.Extensions.NextDigit(System.Random)">
-            <summary>
-            Gets the next digit.
-            </summary>
-            <param name="this">The random instance.</param>
-            <returns>The next digit.</returns>
-        </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
             Indicates the data provider type,
