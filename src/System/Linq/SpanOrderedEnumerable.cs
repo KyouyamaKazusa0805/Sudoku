@@ -16,7 +16,7 @@ namespace System.Linq;
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
-	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
+	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
 )
 {
 	/// <summary>
@@ -33,7 +33,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		get
 		{
 			// Copy field in order to make the variable can be used inside lambda.
-			var selectors = _selectors;
+			var selectors = _selectors.ToArray();
 
 			// Sort the span of values.
 			var result = new T[_values.Length].AsSpan();
@@ -100,7 +100,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
 		=> new(
 			_values,
-			[
+			(Func<T, T, int>[])[
 				.. _selectors,
 				(l, r) => (selector(l), selector(r)) switch
 				{
@@ -115,7 +115,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public SpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector)
 		=> new(
 			_values,
-			[
+			(Func<T, T, int>[])[
 				.. _selectors,
 				(l, r) => (selector(l), selector(r)) switch
 				{

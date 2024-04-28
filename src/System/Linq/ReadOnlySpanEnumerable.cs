@@ -331,11 +331,13 @@ public static class ReadOnlySpanEnumerable
 	public static SpanOrderedEnumerable<T> OrderBy<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
 		=> new(
 			@this,
-			(l, r) => (selector(l), selector(r)) switch
-			{
-				(IComparable<TKey> left, var right) => left.CompareTo(right),
-				var (a, b) => Comparer<TKey>.Default.Compare(a, b)
-			}
+			(Func<T, T, int>[])[
+				(l, r) => (selector(l), selector(r)) switch
+				{
+					(IComparable<TKey> left, var right) => left.CompareTo(right),
+					var (a, b) => Comparer<TKey>.Default.Compare(a, b)
+				}
+			]
 		);
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
@@ -343,11 +345,13 @@ public static class ReadOnlySpanEnumerable
 	public static SpanOrderedEnumerable<T> OrderByDescending<T, TKey>(this ReadOnlySpan<T> @this, Func<T, TKey> selector)
 		=> new(
 			@this,
-			(l, r) => (selector(l), selector(r)) switch
-			{
-				(IComparable<TKey> left, var right) => -left.CompareTo(right),
-				var (a, b) => -Comparer<TKey>.Default.Compare(a, b)
-			}
+			(Func<T, T, int>[])[
+				(l, r) => (selector(l), selector(r)) switch
+				{
+					(IComparable<TKey> left, var right) => -left.CompareTo(right),
+					var (a, b) => -Comparer<TKey>.Default.Compare(a, b)
+				}
+			]
 		);
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>

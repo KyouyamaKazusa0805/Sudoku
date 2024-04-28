@@ -2667,7 +2667,7 @@
             Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
             </param>
         </member>
-        <member name="M:System.Linq.SpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.Func{`0,`0,System.Int32}[])">
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.ReadOnlySpan{System.Func{`0,`0,System.Int32}})">
             <summary>
             Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
             </summary>
