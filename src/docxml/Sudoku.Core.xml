@@ -4311,75 +4311,32 @@
         <member name="M:Sudoku.Generating.GeneratorProgress.Sudoku#Generating#IProgressDataProvider{Sudoku#Generating#GeneratorProgress}#Create(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Generating.GridBasedPuzzleGenerator">
+        <member name="T:Sudoku.Generating.GeneratorRecursionStackEntry">
             <summary>
-            Represents a grid-based puzzle generator.
-            </summary>
-            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Represents a grid-based puzzle generator.
-            </summary>
-            <param name="seedGrid"><inheritdoc cref="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid" path="/summary"/></param>
-        </member>
-        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._solver">
-            <summary>
-            The internal solver.
+            One entry in recursion stack.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._playground">
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates">
             <summary>
-            Indicates the playground.
+            The candidates for cells <see cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell"/>
+        </member>
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.Cell">
+            <summary>
+            The index of the cell that's being tried.
             </summary>
         </member>
-        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._resultGrid">
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.CandidateIndex">
             <summary>
-            Indicates the result grid.
+            The index of the last tried candidate in <see cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates"/>.
             </summary>
+            <seealso cref="F:Sudoku.Generating.GeneratorRecursionStackEntry.Candidates"/>
         </member>
-        <member name="P:Sudoku.Generating.GridBasedPuzzleGenerator.SeedGrid">
+        <member name="F:Sudoku.Generating.GeneratorRecursionStackEntry.SudokuGrid">
             <summary>
-            Indicates the seed grid to be used.
+            The current state of the sudoku.
             </summary>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)">
-            <summary>
-            Try to generate a puzzle using the specified seed pattern.
-            </summary>
-            <param name="shuffleDigits">Indicates whether the method will shuffle digits, making the puzzle looking different with the seed.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A valid <see cref="T:Sudoku.Concepts.Grid"/> to be used.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.BatchGenerate(System.Int32,System.Boolean,System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Batch generating puzzles.
-            </summary>
-            <param name="times">The times of the pattern will be tried.</param>
-            <param name="shuffleDigits"><inheritdoc cref="M:Sudoku.Generating.GridBasedPuzzleGenerator.Generate(System.Boolean,System.Threading.CancellationToken)" path="/param[@name='shuffleDigits']"/></param>
-            <param name="progress">The <see cref="T:System.IProgress`1"/> instance that can report the progess.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>A list of valid <see cref="T:Sudoku.Concepts.Grid"/> values.</returns>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.ShuffleDigitsFor10Times(Sudoku.Concepts.Grid@)">
-            <summary>
-            Shuffle digits for 10 times.
-            </summary>
-            <param name="puzzle">The puzzle to be shuffle.</param>
-        </member>
-        <member name="F:Sudoku.Generating.GridBasedPuzzleGenerator._seedGrid">
-            <summary>
-            The generated field declaration for parameter <c>seedGrid</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Generating.GridBasedPuzzleGenerator.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="T:Sudoku.Generating.HardPatternPuzzleGenerator">
             <summary>
@@ -4591,33 +4548,6 @@
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Generating.RecursionStackEntry">
-            <summary>
-            One entry in recursion stack.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.RecursionStackEntry.Candidates">
-            <summary>
-            The candidates for cells <see cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Cell"/>
-        </member>
-        <member name="F:Sudoku.Generating.RecursionStackEntry.Cell">
-            <summary>
-            The index of the cell that's being tried.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Generating.RecursionStackEntry.CandidateIndex">
-            <summary>
-            The index of the last tried candidate in <see cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Generating.RecursionStackEntry.Candidates"/>
-        </member>
-        <member name="F:Sudoku.Generating.RecursionStackEntry.SudokuGrid">
-            <summary>
-            The current state of the sudoku.
-            </summary>
         </member>
         <member name="T:Sudoku.Globalization.Languages">
             <summary>

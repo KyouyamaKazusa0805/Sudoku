@@ -45,7 +45,7 @@ public ref partial struct Generator
 	/// <summary>
 	/// The recursion stack.
 	/// </summary>
-	private readonly RecursionStackEntry[] _stack;
+	private readonly GeneratorRecursionStackEntry[] _stack;
 
 	/// <summary>
 	/// The final grid to be used.
@@ -65,8 +65,8 @@ public ref partial struct Generator
 	public Generator()
 	{
 		_generateIndices = new int[81];
-		_stack = new RecursionStackEntry[82];
-		_stack.InitializeArray(static ([NotNull] ref RecursionStackEntry? element) => element = new());
+		_stack = new GeneratorRecursionStackEntry[82];
+		_stack.InitializeArray(static ([NotNull] ref GeneratorRecursionStackEntry? element) => element = new());
 	}
 
 
