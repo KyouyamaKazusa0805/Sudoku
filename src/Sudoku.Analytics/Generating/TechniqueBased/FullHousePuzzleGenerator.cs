@@ -158,9 +158,9 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 	/// <inheritdoc/>
 	public override FullPuzzle GenerateUnique(CancellationToken cancellationToken = default)
 	{
-		if (EmptyCellsCount is not (-1 or >= 1 and <= 21))
+		if (EmptyCellsCount is not (-1 or >= 1 and <= PeersCount + 1))
 		{
-			EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, 21);
+			EmptyCellsCount = Math.Clamp(EmptyCellsCount, 1, PeersCount + 1);
 		}
 
 		for (var i = 1; ; i++)

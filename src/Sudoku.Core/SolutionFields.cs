@@ -8,7 +8,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates the number of each cell's peer cells. The value is a constant.
 	/// </summary>
-	public const Cell NumberOfPeersForEachCell = 20;
+	public const Cell PeersCount = 20;
 
 	/// <summary>
 	/// Indicates the invalid fallback value
@@ -194,7 +194,7 @@ public static class SolutionFields
 						}
 					}
 				}
-				if (map.Count == NumberOfPeersForEachCell)
+				if (map.Count == PeersCount)
 				{
 					break;
 				}

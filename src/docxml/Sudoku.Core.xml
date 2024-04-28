@@ -8007,7 +8007,7 @@
             Provides with solution-wide read-only fields used.
             </summary>
         </member>
-        <member name="F:Sudoku.SolutionFields.NumberOfPeersForEachCell">
+        <member name="F:Sudoku.SolutionFields.PeersCount">
             <summary>
             Indicates the number of each cell's peer cells. The value is a constant.
             </summary>
