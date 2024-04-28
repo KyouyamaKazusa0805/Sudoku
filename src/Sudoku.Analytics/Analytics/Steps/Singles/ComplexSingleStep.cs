@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subtype"><inheritdoc/></param>
 /// <param name="basedOn"><inheritdoc/></param>
 /// <param name="indirectTechniques"><inheritdoc/></param>
-public sealed partial class ComplexSingleStep(
+public sealed class ComplexSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,
@@ -51,9 +51,21 @@ public sealed partial class ComplexSingleStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ComplexSingleFactor()];
 
-	private string TechniqueNotationEnUs => string.Join(" -> ", from t in IndirectTechniques select t[0].GetName(EnglishCulture));
+	private string TechniqueNotationEnUs
+		=> string.Join(
+			" -> ",
+			from techniqueGroup in IndirectTechniques
+			let tt = string.Join(", ", from subtechnique in techniqueGroup select subtechnique.GetName(EnglishCulture))
+			select techniqueGroup.Length == 1 ? tt : $"({tt})"
+		);
 
-	private string TechniqueNotationZhCn => string.Join(" -> ", from t in IndirectTechniques select t[0].GetName(ChineseCulture));
+	private string TechniqueNotationZhCn
+		=> string.Join(
+			" -> ",
+			from techniqueGroup in IndirectTechniques
+			let tt = string.Join(", ", from subtechnique in techniqueGroup select subtechnique.GetName(ChineseCulture))
+			select techniqueGroup.Length == 1 ? tt : $"({tt})"
+		);
 
 
 	/// <inheritdoc/>
@@ -73,8 +85,8 @@ public sealed partial class ComplexSingleStep(
 		var (sortKeyThis, sortKeyOther) = (0, 0);
 		for (var i = 0; i < IndirectTechniques.Length; i++)
 		{
-			sortKeyThis += getSortKey(IndirectTechniques[i][0]);
-			sortKeyOther += getSortKey(comparer.IndirectTechniques[i][0]);
+			sortKeyThis += IndirectTechniques[i].Sum(getSortKey);
+			sortKeyOther += comparer.IndirectTechniques[i].Sum(getSortKey);
 		}
 
 		return sortKeyThis.CompareTo(sortKeyOther);
@@ -99,12 +111,15 @@ public sealed partial class ComplexSingleStep(
 	public override string GetName(CultureInfo? culture = null)
 	{
 		var (hasLockedCandidates, hasSubset) = (false, false);
-		foreach (var technique in IndirectTechniques)
+		foreach (var techniqueGroup in IndirectTechniques)
 		{
-			switch (technique[0].GetGroup())
+			foreach (var technique in techniqueGroup)
 			{
-				case TechniqueGroup.LockedCandidates: { hasLockedCandidates = true; break; }
-				case TechniqueGroup.Subset: { hasSubset = true; break; }
+				switch (technique.GetGroup())
+				{
+					case TechniqueGroup.LockedCandidates: { hasLockedCandidates = true; break; }
+					case TechniqueGroup.Subset: { hasSubset = true; break; }
+				}
 			}
 		}
 

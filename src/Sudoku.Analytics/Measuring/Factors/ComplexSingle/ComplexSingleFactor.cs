@@ -22,7 +22,8 @@ public sealed class ComplexSingleFactor : Factor
 		{
 			return static step => step switch
 			{
-				ComplexSingleStep { IndirectTechniques: var techniques } => d(from technique in techniques select technique[0]),
+				ComplexSingleStep { IndirectTechniques: var techniques }
+					=> d(from techniqueGroup in techniques from technique in techniqueGroup select technique),
 				_ => null
 			};
 

@@ -66,6 +66,11 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 	[SettingItemName(SettingItemNames.HiddenSubsetMaxSizeInComplexSingle)]
 	public int HiddenSubsetMaxSize { get; set; } = 4;
 
+	/// <summary>
+	/// Indicates the maximum number of <see cref="Step"/>s can be applied in one interim step. The maximum value is 4.
+	/// </summary>
+	public int MaxApplyingStepsInOneInterimStep { get; set; } = 1;
+
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
@@ -96,15 +101,18 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void pushStep(out Grid playground, ref readonly Grid baseGrid, Step indirectStep, LinkedList<Step> interimSteps)
+		static void pushStep(out Grid playground, ref readonly Grid baseGrid, Step[] indirectStepGroup, LinkedList<Step[]> interimSteps)
 		{
-			interimSteps.AddLast(indirectStep);
+			interimSteps.AddLast(indirectStepGroup);
 			playground = baseGrid;
-			playground.Apply(indirectStep);
+			foreach (var indirectStep in indirectStepGroup)
+			{
+				playground.Apply(indirectStep);
+			}
 		}
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static void popStep(ref Grid playground, ref readonly Grid baseGrid, LinkedList<Step> interimSteps)
+		static void popStep(ref Grid playground, ref readonly Grid baseGrid, LinkedList<Step[]> interimSteps)
 		{
 			interimSteps.RemoveLast();
 			playground = baseGrid;
@@ -114,7 +122,7 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			ref AnalysisContext context,
 			List<ComplexSingleStep> accumulator,
 			ref readonly Grid grid,
-			LinkedList<Step> interimSteps,
+			LinkedList<Step[]> interimSteps,
 			List<Step> previousIndirectFoundSteps
 		)
 		{
@@ -167,94 +175,122 @@ public sealed partial class ComplexSingleStepSearcher : StepSearcher
 			previousIndirectFoundSteps.AddRange(indirectFoundSteps);
 
 			// Iterate on each step collected, and check whether it can be solved with direct singles.
-			foreach (var indirectStep in indirectFoundSteps)
+			for (var applyingSize = 1; applyingSize <= MaxApplyingStepsInOneInterimStep; applyingSize++)
 			{
-				// A step will be valid if it has new conclusions that recorded steps don't have.
-				var isValid = true;
-				foreach (var interimStep in interimSteps)
+				foreach (var indirectSteps in indirectFoundSteps.AsReadOnlySpan().GetSubsets(applyingSize))
 				{
-					if (interimStep.ConclusionText == indirectStep.ConclusionText)
+					// A step will be valid if it has new conclusions that recorded steps don't have.
+					var isValid = true;
+					foreach (var indirectStep in indirectSteps)
 					{
-						isValid = false;
-						break;
-					}
-				}
-				if (!isValid)
-				{
-					continue;
-				}
-
-				pushStep(out var playground, in grid, indirectStep, interimSteps);
-
-				// Check whether the puzzle can be solved via a direct single.
-				var directStepsFound = new List<Step>();
-				var nestedContext = new AnalysisContext(in playground)
-				{
-					Accumulator = directStepsFound,
-					OnlyFindOne = false,
-					IsSukaku = context.IsSukaku,
-					Options = context.Options
-				};
-				_searcher_DirectLockedCandidates.Collect(ref nestedContext);
-				_searcher_DirectSubset.Collect(ref nestedContext);
-
-				if (directStepsFound.Count != 0)
-				{
-					// Good! We have already found a step available! Iterate on each step to create the result value.
-					foreach (ComplexSingleBaseStep directStep in directStepsFound)
-					{
-						var (views, tempConclusions, tempIndex) = (new View[interimSteps.Count + 1], new List<Conclusion>(), 0);
-						foreach (var interimStep in interimSteps)
+						foreach (var interimStepGroup in interimSteps)
 						{
-							tempConclusions.AddRange(interimStep.Conclusions.AsReadOnlySpan());
-							views[tempIndex++] = [
-								.. interimStep.Views![0],
-								..
-								from conclusion in tempConclusions
-								select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
-							];
+							foreach (var interimStep in interimStepGroup)
+							{
+								if (interimStep.ConclusionText == indirectStep.ConclusionText)
+								{
+									isValid = false;
+									goto ValidityCheck;
+								}
+							}
 						}
-						views[tempIndex] = [
-							.. directStep.Views![0],
-							..
-							from conclusion in tempConclusions
-							select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
-						];
-
-						// Add step into accumulator or return step.
-						accumulator.Add(
-							new(
-								directStep.Conclusions,
-								views,
-								context.Options,
-								directStep.Cell,
-								directStep.Digit,
-								directStep.Subtype,
-								directStep.BasedOn,
-								[
-									.. from interimStep in interimSteps select (Technique[])[interimStep.Code],
-									[
-										directStep switch
-										{
-											DirectIntersectionStep { IsPointing: var isPointing }
-												=> isPointing ? Technique.Pointing : Technique.Claiming,
-											DirectSubsetStep { SubsetTechnique: var technique } => technique
-										}
-									]
-								]
-							)
-						);
-						goto PopStep;
 					}
+				ValidityCheck:
+					if (!isValid)
+					{
+						continue;
+					}
+
+					pushStep(out var playground, in grid, indirectSteps, interimSteps);
+
+					// Check whether the puzzle can be solved via a direct single.
+					var directStepsFound = new List<Step>();
+					var nestedContext = new AnalysisContext(in playground)
+					{
+						Accumulator = directStepsFound,
+						OnlyFindOne = false,
+						IsSukaku = context.IsSukaku,
+						Options = context.Options
+					};
+					_searcher_DirectLockedCandidates.Collect(ref nestedContext);
+					_searcher_DirectSubset.Collect(ref nestedContext);
+
+					if (directStepsFound.Count != 0)
+					{
+						// Good! We have already found a step available! Iterate on each step to create the result value.
+						foreach (ComplexSingleBaseStep directStep in directStepsFound)
+						{
+							var (views, tempConclusions) = (new List<View>(), new List<Conclusion>());
+							foreach (var interimStepGroup in interimSteps)
+							{
+								foreach (var interimStep in interimStepGroup)
+								{
+									tempConclusions.AddRange(interimStep.Conclusions.AsReadOnlySpan());
+									views.Add(
+										[
+											.. interimStep.Views![0],
+											..
+											from conclusion in tempConclusions
+											select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
+										]
+									);
+								}
+							}
+							views.Add(
+								[
+									.. directStep.Views![0],
+									..
+									from conclusion in tempConclusions
+									select new CandidateViewNode(ColorIdentifier.Elimination, conclusion.Candidate)
+								]
+							);
+
+							// Add step into accumulator or return step.
+							accumulator.Add(
+								new(
+									directStep.Conclusions,
+									[.. views],
+									context.Options,
+									directStep.Cell,
+									directStep.Digit,
+									directStep.Subtype,
+									directStep.BasedOn,
+									[
+										.. from @group in interimSteps select from interimStep in @group select interimStep.Code,
+										[
+											directStep switch
+											{
+												DirectIntersectionStep { IsPointing: var isPointing } => isPointing switch
+												{
+													true => Technique.Pointing,
+													_ => Technique.Claiming
+												},
+												DirectSubsetStep { SubsetTechnique: var technique } => technique
+											}
+										]
+									]
+								)
+							);
+							if (context.OnlyFindOne)
+							{
+								goto PopStep;
+							}
+						}
+
+						if (!context.OnlyFindOne)
+						{
+							goto PopStep;
+						}
+					}
+
+					// If code goes to here, the puzzle won't be solved with the current step.
+					// We should continue the searching from the current state.
+					// Use this puzzle to check for the next elimination step by recursion.
+					dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps);
+
+				PopStep:
+					popStep(ref playground, in grid, interimSteps);
 				}
-
-				// If code goes to here, the puzzle won't be solved with the current step.
-				// We should continue the searching from the current state.
-				// Use this puzzle to check for the next elimination step by recursion.
-				dfs(ref context, accumulator, in playground, interimSteps, previousIndirectFoundSteps);
-
-			PopStep:
-				popStep(ref playground, in grid, interimSteps);
 			}
 		}
 

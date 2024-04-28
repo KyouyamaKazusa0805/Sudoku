@@ -12,8 +12,6 @@ namespace Sudoku.Analytics;
 [Equals]
 [GetHashCode]
 [ToString]
-[method: EditorBrowsable(EditorBrowsableState.Never)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct AnalysisContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")]
 	ref readonly Grid grid,

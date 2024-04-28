@@ -10519,6 +10519,11 @@
             Indicates the maximum size of hidden subsets. The maximum value is 4.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.MaxApplyingStepsInOneInterimStep">
+            <summary>
+            Indicates the maximum number of <see cref="T:Sudoku.Analytics.Step"/>s can be applied in one interim step. The maximum value is 4.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ComplexSingleStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
