@@ -8,9 +8,10 @@ namespace Sudoku.Solving;
 /// The reason why the type name contains the word <i>bitwise</i> is that the solver uses the bitwise algorithm
 /// to handle a sudoku grid, which is more efficient.
 /// </para>
-/// <para><b><i>
+/// <para><b>
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
-/// </i></b></para>
+/// </b></para>
+/// <para>This type is translated from project <c>Jcz.Solve</c> in solution folder "Interim Projects".</para>
 /// </remarks>
 public sealed unsafe class BitwiseSolver : ISolver
 {

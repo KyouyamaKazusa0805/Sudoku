@@ -3,6 +3,9 @@ namespace Sudoku.MinLex;
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>, by checking min-lex-related properties.
 /// </summary>
+/// <remarks>
+/// <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
+/// </remarks>
 public static class GridMinLexExtensions
 {
 	/// <summary>

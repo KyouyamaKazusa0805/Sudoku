@@ -3,6 +3,9 @@ namespace Sudoku.MinLex;
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
+/// <remarks>
+/// <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
+/// </remarks>
 public unsafe struct MinLexCandidate
 {
 	/// <summary>
