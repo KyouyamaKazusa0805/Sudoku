@@ -590,7 +590,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
 
 	/// <summary>
@@ -627,7 +626,6 @@ public partial struct CellMap :
 	/// If all rules are compared, but they are still considered equal, then return 0.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(ref readonly CellMap other)
 	{
 		var b = new BitStatusCellMapConverter().Converter;
@@ -854,6 +852,12 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = default;
+
+	/// <inheritdoc/>
+	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(in other);
+
+	/// <inheritdoc/>
+	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(in other);
 
 
 	/// <inheritdoc/>
@@ -1103,7 +1107,6 @@ public partial struct CellMap :
 	/// <param name="base">The base map.</param>
 	/// <param name="digit">The digit.</param>
 	/// <returns>The result instance.</returns>
-	[ExplicitInterfaceImpl(typeof(IMultiplyOperators<,,>))]
 	public static CandidateMap operator *(in CellMap @base, Digit digit)
 	{
 		var result = (CandidateMap)[];
@@ -1121,7 +1124,6 @@ public partial struct CellMap :
 	/// <param name="map">The map.</param>
 	/// <param name="houseIndex">The house index.</param>
 	/// <returns>The mask.</returns>
-	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
 	public static Mask operator /(in CellMap map, House houseIndex)
 	{
 		var (p, i) = ((Mask)0, 0);
@@ -1139,12 +1141,16 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap IAdditionOperators<CellMap, Cell, CellMap>.operator +(CellMap left, Cell right) => left + right;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static CellMap ISubtractionOperators<CellMap, Cell, CellMap>.operator -(CellMap left, Cell right) => left - right;
+
+	/// <inheritdoc/>
+	static Mask IDivisionOperators<CellMap, House, Mask>.operator /(CellMap left, House right) => left / right;
+
+	/// <inheritdoc/>
+	static CandidateMap IMultiplyOperators<CellMap, Digit, CandidateMap>.operator *(CellMap left, Digit right) => left * right;
 
 
 	/// <summary>

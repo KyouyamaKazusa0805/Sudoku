@@ -281,7 +281,6 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
@@ -546,6 +545,9 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Clear() => this = default;
 
+	/// <inheritdoc/>
+	readonly bool IEquatable<CandidateMap>.Equals(CandidateMap other) => Equals(in other);
+
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CandidateMap result)
@@ -632,7 +634,7 @@ public partial struct CandidateMap :
 
 			return TryParse(s, out result);
 		}
-		catch
+		catch (FormatException)
 		{
 		}
 
@@ -677,7 +679,6 @@ public partial struct CandidateMap :
 	}
 
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
-	[ExplicitInterfaceImpl(typeof(IDivisionOperators<,,>))]
 	public static CellMap operator /(in CandidateMap offsets, Digit digit)
 	{
 		var result = (CellMap)[];
@@ -813,14 +814,13 @@ public partial struct CandidateMap :
 		=> (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right)
-		=> left + right;
+	static CellMap IDivisionOperators<CandidateMap, int, CellMap>.operator /(CandidateMap left, int right) => left / right;
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	static CandidateMap ISubtractionOperators<CandidateMap, Candidate, CandidateMap>.operator -(CandidateMap left, Candidate right)
-		=> left - right;
+	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right) => left + right;
+
+	/// <inheritdoc/>
+	static CandidateMap ISubtractionOperators<CandidateMap, Candidate, CandidateMap>.operator -(CandidateMap left, Candidate right) => left - right;
 
 
 	/// <inheritdoc/>

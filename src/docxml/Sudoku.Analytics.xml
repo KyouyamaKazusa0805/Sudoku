@@ -20743,6 +20743,9 @@ result ^= expression;
         <member name="M:Sudoku.Concepts.MultipleForcingChains.GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains.Enumerator">
             <summary>
             Defines an enumerator that iterates the current collection.
@@ -20765,9 +20768,6 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Concepts.MultipleForcingChains.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
-        </member>
-        <member name="M:Sudoku.Concepts.MultipleForcingChains.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.StrongLinkInfo">
             <summary>

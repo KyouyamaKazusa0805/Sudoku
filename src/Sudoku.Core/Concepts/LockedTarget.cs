@@ -44,7 +44,6 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public bool Equals(ref readonly LockedTarget other) => Digit == other.Digit && Cells == other.Cells;
 
 	/// <inheritdoc/>
@@ -58,4 +57,7 @@ public readonly partial struct LockedTarget(
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(Cells * Digit);
+
+	/// <inheritdoc/>
+	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(in other);
 }

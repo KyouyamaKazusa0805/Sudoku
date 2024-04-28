@@ -3115,7 +3115,7 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					// This type also requires both diagonal cells should be contain digits x, y and the conjugate pair digit.
+					// This type also requires both diagonal cells should contain digits x, y and the conjugate pair digit.
 					var _xOr_yOrExtraDigitMask = (Mask)(_xOr_yMask | (Mask)(1 << extraDigit));
 					var bothDiagonalCellsContain_xOr_yOrExtraDigit = true;
 					foreach (var cell in targetCell.AsCellMap() + GetDiagonalCell(urCells, targetCell))

@@ -890,7 +890,6 @@ public partial struct Grid :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public readonly bool Equals(ref readonly Grid other) => Equals(in other, GridComparison.Default);
 
 	/// <summary>
@@ -1048,7 +1047,6 @@ public partial struct Grid :
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IComparable<>))]
 	public readonly int CompareTo(ref readonly Grid other)
 		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
@@ -1427,14 +1425,18 @@ public partial struct Grid :
 	}
 
 	/// <inheritdoc/>
+	readonly bool IEquatable<Grid>.Equals(Grid other) => Equals(in other);
+
+	/// <inheritdoc/>
+	readonly int IComparable<Grid>.CompareTo(Grid other) => CompareTo(in other);
+
+	/// <inheritdoc/>
 	readonly string ISudokuConceptConvertible<Grid>.ToString<T>(T converter) => ToString();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
 
 	/// <summary>

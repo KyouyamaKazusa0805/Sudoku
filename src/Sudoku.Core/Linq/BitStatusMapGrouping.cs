@@ -45,7 +45,6 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[ExplicitInterfaceImpl(typeof(IEquatable<>))]
 	public bool Equals(ref readonly BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Values == other.Values;
 
 	/// <summary>
@@ -68,15 +67,15 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 		{
 			result.Add(group.Key);
 		}
-
 		return result;
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>.Equals(BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey> other) => Equals(in other);
+
+	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Values).GetEnumerator();
 }

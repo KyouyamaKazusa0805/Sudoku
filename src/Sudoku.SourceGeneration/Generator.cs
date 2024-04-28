@@ -17,7 +17,6 @@ public sealed class Generator : IIncrementalGenerator
 		Operators(context);
 		InlineArray(context);
 		ImplicitField(context);
-		ExplicitInterfaceImpl(context);
 	}
 
 	private void ActionExtension(IncrementalGeneratorInitializationContext context)
@@ -121,16 +120,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ImplicitFieldHandler.Output
-		);
-
-	private void ExplicitInterfaceImpl(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.CreateSyntaxProvider(SyntaxNodeTypePredicate<TypeDeclarationSyntax>, ExplicitInterfaceImplHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			ExplicitInterfaceImplHandler.Output
 		);
 }
 
