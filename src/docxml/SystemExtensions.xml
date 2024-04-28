@@ -909,19 +909,31 @@
         </member>
         <member name="M:System.Text.StringBuilderExtensions.AppendRange``1(System.Text.StringBuilder,System.Func{``0,System.String},System.Func{System.Text.StringBuilder,System.String,System.Text.StringBuilder},System.ReadOnlySpan{``0})">
             <summary>
-            Appends a list of elements of type <typeparamref name="T"/> into the <see cref="T:System.Text.StringBuilder"/> instance,
-            using the specified converter to convert each element into <see cref="T:System.String"/> value.
+            Appends a list of elements of type <typeparamref name="T" /> into the <see cref="T:System.Text.StringBuilder" /> instance,
+            using the specified converter to convert each element into <see cref="T:System.String" /> value.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The <see cref="T:System.Text.StringBuilder"/> instance.</param>
-            <param name="elements">The elements to be appended.</param>
+            <param name="this">The <see cref="T:System.Text.StringBuilder" /> instance.</param>
             <param name="stringConverter">The converter method.</param>
             <param name="builderAppender">
             The appender method for the builder instance, telling the handler which appending operation will be handled.
             By default, the method is equivalent to lambda:
             <code>
-            <see langword="static"/> (<see cref="T:System.Text.StringBuilder"/> sb, <typeparamref name="T"/> v) => sb.Append(v)
+            <see langword="static" /> (<see cref="T:System.Text.StringBuilder" /> sb, <typeparamref name="T" /> v) =&gt; sb.Append(v)
             </code>
+            </param>
+            <param name="elements">
+            <para>The elements to be appended.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
             </param>
             <returns>The reference of the current instance.</returns>
         </member>
@@ -2391,7 +2403,17 @@
             Try to get the minimal value appeared in the collection.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <returns>The minimal value.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Min``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
@@ -2403,7 +2425,17 @@
             </summary>
             <typeparam name="TSource">The type of the elements of source.</typeparam>
             <typeparam name="TKey">The type of key to compare elements by.</typeparam>
-            <param name="this">A sequence of values to determine the minimum value of.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the minimum key in the sequence.</returns>
         </member>
@@ -2412,7 +2444,17 @@
             Try to get the minimal value appeared in the collection.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The collection.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <returns>The minimal value.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Max``2(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,``1})">
@@ -2424,7 +2466,17 @@
             </summary>
             <typeparam name="TSource">The type of the elements of source.</typeparam>
             <typeparam name="TKey">The type of key to compare elements by.</typeparam>
-            <param name="this">A sequence of values to determine the maximum value of.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the maximum key in the sequence.</returns>
         </member>
@@ -2434,7 +2486,17 @@
             </summary>
             <typeparam name="TSource">The type of the elements of source.</typeparam>
             <typeparam name="TKey">The type of key to add up.</typeparam>
-            <param name="this">A sequence of values to determine the sum value of.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="keySelector">A function to extract the key for each element.</param>
             <returns>The value with the sum key in the sequence.</returns>
         </member>
@@ -2443,7 +2505,17 @@
             Totals up how many elements stored in the specified sequence satisfy the specified condition.
             </summary>
             <typeparam name="TSource">The type of each element.</typeparam>
-            <param name="this">A sequence of values to be determined.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="condition">The condition.</param>
             <returns>The number of elements satisfying the specified condition.</returns>
         </member>
@@ -2452,34 +2524,74 @@
             Checks whether at least one element are satisfied the specified condition.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list of elements to be checked.</param>
-            <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <param name="match">The <see cref="T:System.FuncRefReadOnly`2" /> that defines the conditions of the elements to search for.</param>
+            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.All``1(System.ReadOnlySpan{``0},System.FuncRefReadOnly{``0,System.Boolean})">
             <summary>
             Checks whether all elements are satisfied the specified condition.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The list of elements to be checked.</param>
-            <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <param name="match">The <see cref="T:System.FuncRefReadOnly`2" /> that defines the conditions of the elements to search for.</param>
+            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.AllAre``2(System.ReadOnlySpan{``0})">
             <summary>
-            Determines whether all elements are of type <typeparamref name="TDerived"/>.
+            Determines whether all elements are of type <typeparamref name="TDerived" />.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <typeparam name="TDerived">The derived type to be checked.</typeparam>
-            <param name="this">A list of elements to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Skip``1(System.ReadOnlySpan{``0},System.Int32)">
             <summary>
-            Skips the specified number of elements, make a new <see cref="T:System.ReadOnlySpan`1"/> instance points to it.
+            Skips the specified number of elements, make a new <see cref="T:System.ReadOnlySpan`1" /> instance points to it.
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The original span.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="count">The number of elements to skip.</param>
             <returns>
             The new instance that points to the first element that has already skipped the specified number of elements.
@@ -2490,36 +2602,66 @@
             Retrieves all the elements that match the conditions defined by the specified predicate.
             </summary>
             <typeparam name="T">The type of the elements of the span.</typeparam>
-            <param name="this">The span to search.</param>
-            <param name="match">The <see cref="T:System.FuncRefReadOnly`2"/> that defines the conditions of the elements to search for.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
+            <param name="match">The <see cref="T:System.FuncRefReadOnly`2" /> that defines the conditions of the elements to search for.</param>
             <returns>
-            A <see cref="T:System.ReadOnlySpan`1"/> containing all the elements that match the conditions defined
-            by the specified predicate, if found; otherwise, an empty <see cref="T:System.ReadOnlySpan`1"/>.
+            A <see cref="T:System.ReadOnlySpan`1" /> containing all the elements that match the conditions defined
+            by the specified predicate, if found; otherwise, an empty <see cref="T:System.ReadOnlySpan`1" />.
             </returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <summary>
-            Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult"/>,
+            Projects each element in the current instance into the target-typed span of element type <typeparamref name="TResult" />,
             using the specified function to convert.
             </summary>
             <typeparam name="T">The type of each elements in the span.</typeparam>
             <typeparam name="TResult">The type of target value.</typeparam>
-            <param name="this">The source elements.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="selector">The selector.</param>
-            <returns>An array of <typeparamref name="TResult"/> elements.</returns>
+            <returns>An array of <typeparamref name="TResult" /> elements.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,``1[]},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.Where``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <summary>
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary"/>
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/summary" />
             </summary>
-            <param name="this">A <see cref="T:System.ReadOnlySpan`1"/> to filter.</param>
-            <param name="predicate">
-            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='predicate']"/>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
             </param>
-            <returns>A <typeparamref name="T"/>[] that contains elements form the input sequence that satisfy the condition.</returns>
+            <param name="predicate">
+            <inheritdoc cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})" path="/param[@name='predicate']" />
+            </param>
+            <returns>A <typeparamref name="T" />[] that contains elements form the input sequence that satisfy the condition.</returns>
         </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.OrderBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
@@ -2552,7 +2694,17 @@
             <summary>
             Get all subsets from the specified number of the values to take.
             </summary>
-            <param name="this">The array.</param>
+            <param name="this">
+            <para>The collection to be used and checked.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            </param>
             <param name="count">The number of elements you want to take.</param>
             <returns>All subsets.</returns>
         </member>
@@ -2659,22 +2811,58 @@
         </member>
         <member name="T:System.Linq.SpanOrderedEnumerable`1">
             <summary>
-            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
+            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1" />.
             </summary>
             <typeparam name="T">Indicates the type of each element.</typeparam>
             <param name="values">Indicates the values.</param>
             <param name="selectors">
-            Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
+            <para>Indicates the selector functions that return <typeparamref name="T" /> instances, to be used as comparison.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
             </param>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.#ctor(System.ReadOnlySpan{`0},System.ReadOnlySpan{System.Func{`0,`0,System.Int32}})">
             <summary>
-            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1"/>.
+            Represents an enumerable instance that is based on a <see cref="T:System.ReadOnlySpan`1" />.
             </summary>
             <typeparam name="T">Indicates the type of each element.</typeparam>
             <param name="values">Indicates the values.</param>
             <param name="selectors">
-            Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
+            <para>Indicates the selector functions that return <typeparamref name="T" /> instances, to be used as comparison.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
             </param>
         </member>
         <member name="P:System.Linq.SpanOrderedEnumerable`1.Length">

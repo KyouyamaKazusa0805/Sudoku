@@ -32,7 +32,6 @@ public static class StringBuilderExtensions
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>
 	/// <param name="this">The <see cref="StringBuilder"/> instance.</param>
-	/// <param name="elements">The elements to be appended.</param>
 	/// <param name="stringConverter">The converter method.</param>
 	/// <param name="builderAppender">
 	/// The appender method for the builder instance, telling the handler which appending operation will be handled.
@@ -40,6 +39,10 @@ public static class StringBuilderExtensions
 	/// <code>
 	/// <see langword="static"/> (<see cref="StringBuilder"/> sb, <typeparamref name="T"/> v) => sb.Append(v)
 	/// </code>
+	/// </param>
+	/// <param name="elements">
+	/// <para>The elements to be appended.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 	/// </param>
 	/// <returns>The reference of the current instance.</returns>
 	public static StringBuilder AppendRange<T>(

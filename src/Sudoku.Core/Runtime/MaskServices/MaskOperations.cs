@@ -8,7 +8,10 @@ public static class MaskOperations
 	/// <summary>
 	/// Creates for a <see cref="Mask"/> instance via the specified digits.
 	/// </summary>
-	/// <param name="digits">The digits.</param>
+	/// <param name="digits">
+	/// <para>Indicates the digits to assign.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
+	/// </param>
 	/// <returns>A <see cref="Mask"/> instance.</returns>
 	public static Mask Create(params ReadOnlySpan<Digit> digits)
 	{

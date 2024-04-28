@@ -94,7 +94,10 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <summary>
 	/// Adds a list of offsets into the current collection.
 	/// </summary>
-	/// <param name="offsets">Offsets to be added.</param>
+	/// <param name="offsets">
+	/// <para>Offsets to be added.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
+	/// </param>
 	/// <returns>The number of offsets succeeded to be added.</returns>
 	public abstract int AddRange(params ReadOnlySpan<TElement> offsets);
 
@@ -107,7 +110,10 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <summary>
 	/// Removes a list of offsets from the current collection.
 	/// </summary>
-	/// <param name="offsets">Offsets to be removed.</param>
+	/// <param name="offsets">
+	/// <para>Offsets to be removed.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
+	/// </param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
 	public abstract int RemoveRange(params ReadOnlySpan<TElement> offsets);
 

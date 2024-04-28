@@ -6,7 +6,9 @@ namespace System.Linq;
 /// <typeparam name="T">Indicates the type of each element.</typeparam>
 /// <param name="values">Indicates the values.</param>
 /// <param name="selectors">
-/// Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.
+/// <para>Indicates the selector functions that return <typeparamref name="T"/> instances, to be used as comparison.</para>
+/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
+/// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 /// </param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]

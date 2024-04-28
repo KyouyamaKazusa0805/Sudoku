@@ -3192,7 +3192,19 @@
             <summary>
             Adds a list of offsets into the current collection.
             </summary>
-            <param name="offsets">Offsets to be added.</param>
+            <param name="offsets">
+            <para>Offsets to be added.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
             <returns>The number of offsets succeeded to be added.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Remove(`1)">
@@ -3205,7 +3217,19 @@
             <summary>
             Removes a list of offsets from the current collection.
             </summary>
-            <param name="offsets">Offsets to be removed.</param>
+            <param name="offsets">
+            <para>Offsets to be removed.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
             <returns>The number of offsets succeeded to be removed.</returns>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Clear">
@@ -7760,10 +7784,22 @@
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})">
             <summary>
-            Creates for a <see cref="T:System.Int16"/> instance via the specified digits.
+            Creates for a <see cref="T:System.Int16" /> instance via the specified digits.
             </summary>
-            <param name="digits">The digits.</param>
-            <returns>A <see cref="T:System.Int16"/> instance.</returns>
+            <param name="digits">
+            <para>Indicates the digits to assign.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>A <see cref="T:System.Int16" /> instance.</returns>
         </member>
         <member name="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.Collections.Generic.HashSet{System.Int32})">
             <inheritdoc cref="M:Sudoku.Runtime.MaskServices.MaskOperations.Create(System.ReadOnlySpan{System.Int32})"/>
@@ -8756,24 +8792,60 @@
         </member>
         <member name="T:Sudoku.Text.Converters.ChuteNotationConverter">
             <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Chute"/> instance.
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Chute" /> instance.
             </summary>
-            <param name="chutes">A list of chutes.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="chutes"/>.</returns>
+            <param name="chutes">
+            <para>A list of chutes.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="chutes" />.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.ConclusionNotationConverter">
             <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conclusion"/> instance.
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conclusion" /> instance.
             </summary>
-            <param name="conclusions">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conclusions"/>.</returns>
+            <param name="conclusions">
+            <para>A list of conjugate pairs.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conclusions" />.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.ConjugateNotationConverter">
             <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.Conjugate"/> instance.
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conjugate" /> instance.
             </summary>
-            <param name="conjugatePairs">A list of conjugate pairs.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="conjugatePairs"/>.</returns>
+            <param name="conjugatePairs">
+            <para>A list of conjugate pairs.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conjugatePairs" />.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.CoordinateConverter">
             <summary>
@@ -9125,11 +9197,23 @@
         </member>
         <member name="T:Sudoku.Text.Converters.IntersectionNotationConverter">
             <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value
-            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase"/> and <see cref="T:Sudoku.Concepts.IntersectionResult"/> instance.
+            Represents a delegate type that creates a <see cref="T:System.String" /> value
+            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase" /> and <see cref="T:Sudoku.Concepts.IntersectionResult" /> instance.
             </summary>
-            <param name="intersections">A list of intersections.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="intersections"/>.</returns>
+            <param name="intersections">
+            <para>A list of intersections.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="intersections" />.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.K9Converter">
             <summary>

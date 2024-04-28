@@ -86,6 +86,7 @@ result ^= expression;
 	</large-structure>
 
 	<!-- C# features -->
+	<!-- C# 5 -->
 	<csharp5>
 		<feature name="caller-member-name">
 			<target name="argument">
@@ -118,6 +119,8 @@ result ^= expression;
 			</target>
 		</feature>
 	</csharp5>
+
+	<!-- C# 7 -->
 	<csharp7>
 		<feature name="deconstruction-method">
 			<target name="method">
@@ -203,6 +206,8 @@ fixed (short* ptr = instance)
 			</target>
 		</feature>
 	</csharp7>
+
+	<!-- C# 9 -->
 	<csharp9>
 		<feature name="parameterless-struct-constructor">
 			<target name="constructor">
@@ -250,6 +255,8 @@ fixed (short* ptr = instance)
 			</b>
 		</feature>
 	</csharp9>
+
+	<!-- C# 10 -->
 	<csharp10>
 		<feature name="caller-argument-expression">
 			<para>
@@ -257,6 +264,8 @@ fixed (short* ptr = instance)
 			</para>
 		</feature>
 	</csharp10>
+
+	<!-- C# 11 -->
 	<csharp11>
 		<feature name="file-local">
 			<target name="class" when="constant">
@@ -290,5 +299,29 @@ fixed (short* ptr = instance)
 				</b>
 			</target>
 		</feature>
+		<feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped"/> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped"/> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
 	</csharp11>
+
+	<!-- C# 12 -->
+	<csharp12>
+		<feature name="params-collections">
+			<target name="parameter">
+				<para>
+					If a <see langword="ref struct"/>-typed parameter is marked as <see langword="params"/>,
+					it will be implicit-<see langword="scoped"/>, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute"/> if you want to store variable values.
+				</para>
+			</target>
+		</feature>
+	</csharp12>
 </g>
