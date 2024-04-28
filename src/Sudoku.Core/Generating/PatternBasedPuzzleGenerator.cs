@@ -11,7 +11,7 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 	Digit missingDigit = -1
 )
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IGenerator{TResult}.Generate(IProgress{GeneratorProgress}, CancellationToken)"/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		var resultGrid = Grid.Undefined;

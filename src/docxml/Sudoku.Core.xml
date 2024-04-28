@@ -4380,7 +4380,7 @@
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc/>
+            <inheritdoc cref="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GenerateCore(System.Int32[],Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32@,System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
