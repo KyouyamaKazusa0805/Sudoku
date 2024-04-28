@@ -1,4 +1,4 @@
-namespace Sudoku;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Represents a symmetric type that can describe which one a pattern or a puzzle uses.

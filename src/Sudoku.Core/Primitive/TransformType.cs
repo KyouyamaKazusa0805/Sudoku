@@ -1,4 +1,4 @@
-namespace Sudoku;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Represents a type of transformation.

@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Represents an instance that describes the result after executed the method

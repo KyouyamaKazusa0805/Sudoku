@@ -1,4 +1,4 @@
-namespace Sudoku.Analytics;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Represents an analyzer, which can solve a puzzle and return not a solution <see cref="Grid"/>.

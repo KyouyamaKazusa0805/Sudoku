@@ -7,88 +7,26 @@
         <member name="T:Sudoku.Analytics.AnalyzerProgress">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerProgress.#ctor(System.String,System.Double)">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerProgress.StepSearcherName">
             <summary>Indicates the currently used step searcher.</summary>
         </member>
         <member name="P:Sudoku.Analytics.AnalyzerProgress.Percent">
             <summary>The percent value.</summary>
-        </member>
-        <member name="T:Sudoku.Analytics.IAnalyzer`2">
-            <summary>
-            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
-            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
-            produced in the whole analysis time-cycle.
-            </summary>
-            <typeparam name="TSelf">The type of the solver itself.</typeparam>
-            <typeparam name="TResult">The type of the target result.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzer`2.IsFullApplying">
-            <summary>
-            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
-            <summary>
-            Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
-            </summary>
-            <param name="puzzle">The puzzle to be analyzed.</param>
-            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
-            <returns>The solver result that provides the information after analyzing.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.IAnalyzerResult`2">
-            <summary>
-            Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
-            </summary>
-            <typeparam name="TSolver">The solver's type.</typeparam>
-            <typeparam name="TSelf">The type of the target result itself.</typeparam>
-            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.IsSolved">
-            <summary>
-            Indicates whether the solver has solved the puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.ElapsedTime">
-            <summary>
-            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
-            Some case if the puzzle doesn't contain a valid unique solution, the value may be
-            <see cref="F:System.TimeSpan.Zero"/>.
-            </summary>
-            <seealso cref="F:System.TimeSpan.Zero"/>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle">
-            <summary>
-            Indicates the original puzzle to be solved.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.Solution">
-            <summary>
-            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
-            <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
-        <member name="P:Sudoku.Analytics.IAnalyzerResult`2.UnhandledException">
-            <summary>
-            Indicates the unhandled exception thrown.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.IGlobalizedAnalyzer`2">
             <summary>
@@ -126,17 +64,17 @@
         </member>
         <member name="T:Sudoku.Analytics.RuntimeAnalyticsException">
             <summary>
-            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Primitive.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+            <seealso cref="T:Sudoku.Primitive.IAnalyzer`2"/>
         </member>
         <member name="M:Sudoku.Analytics.RuntimeAnalyticsException.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
-            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Primitive.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
-            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+            <seealso cref="T:Sudoku.Primitive.IAnalyzer`2"/>
         </member>
         <member name="P:Sudoku.Analytics.RuntimeAnalyticsException.Message">
             <inheritdoc/>
@@ -1384,7 +1322,7 @@
         <member name="M:Sudoku.Concepts.Conclusion.ToString``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
+        <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.Primitive.SymmetricType,System.Int32)">
             <summary>
             Try to get a new <see cref="T:Sudoku.Concepts.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
             </summary>
@@ -2087,10 +2025,10 @@
             </summary>
             <remarks>
             Although the property type supports for other values, this property can only return a value
-            either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>.
+            either <see cref="F:Sudoku.Primitive.SudokuType.Standard"/> or <see cref="F:Sudoku.Primitive.SudokuType.Sukaku"/>.
             </remarks>
-            <seealso cref="F:Sudoku.SudokuType.Standard"/>
-            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
+            <seealso cref="F:Sudoku.Primitive.SudokuType.Standard"/>
+            <seealso cref="F:Sudoku.Primitive.SudokuType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
@@ -2543,7 +2481,7 @@
         <member name="M:Sudoku.Concepts.Grid.System#IComparable{Sudoku#Concepts#Grid}#CompareTo(Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptConvertible{Sudoku#Concepts#Grid}#ToString``1(``0)">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Primitive#ISudokuConceptConvertible{Sudoku#Concepts#Grid}#ToString``1(``0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
@@ -2554,7 +2492,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Primitive.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -2562,7 +2500,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Primitive.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -2702,13 +2640,13 @@
         <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptParsable{Sudoku#Concepts#Grid}#TryParse``1(System.String,``0,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Primitive#ISudokuConceptParsable{Sudoku#Concepts#Grid}#TryParse``1(System.String,``0,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.System#IParsable{Sudoku#Concepts#Grid}#Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Sudoku#ISudokuConceptParsable{Sudoku#Concepts#Grid}#Parse``1(System.String,``0)">
+        <member name="M:Sudoku.Concepts.Grid.Sudoku#Primitive#ISudokuConceptParsable{Sudoku#Concepts#Grid}#Parse``1(System.String,``0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
@@ -4009,11 +3947,11 @@
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.SymmetricType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Primitive.SymmetricType"/>.
             </summary>
-            <seealso cref="T:Sudoku.SymmetricType"/>
+            <seealso cref="T:Sudoku.Primitive.SymmetricType"/>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.Primitive.SymmetricType)">
             <summary>
             Try to get the number of cells that the current symmetry should be formed a complete symmetric pattern.
             </summary>
@@ -4026,14 +3964,14 @@
             <description>Return value</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.SymmetricType.None"/> (0)</term>
+            <term><see cref="F:Sudoku.Primitive.SymmetricType.None"/> (0)</term>
             <description>1 (Itself)</description>
             </item>
             <item>
             <term>
-            <see cref="F:Sudoku.SymmetricType.Central"/>,
-            <see cref="F:Sudoku.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.SymmetricType.AntiDiagonal"/>,
-            <see cref="F:Sudoku.SymmetricType.XAxis"/>, <see cref="F:Sudoku.SymmetricType.YAxis"/>
+            <see cref="F:Sudoku.Primitive.SymmetricType.Central"/>,
+            <see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/>,
+            <see cref="F:Sudoku.Primitive.SymmetricType.XAxis"/>, <see cref="F:Sudoku.Primitive.SymmetricType.YAxis"/>
             </term>
             <description>2</description>
             </item>
@@ -4049,18 +3987,18 @@
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.Primitive.SymmetricType)">
             <summary>
             Try to get the number of axes of the specified symmetric type.
             </summary>
             <param name="this">The symmetry.</param>
             <returns>
             The number of axes the current symmetric type contains.
-            If <paramref name="this"/> is <see cref="F:Sudoku.SymmetricType.None"/>, -1 will be returned.
+            If <paramref name="this"/> is <see cref="F:Sudoku.Primitive.SymmetricType.None"/>, -1 will be returned.
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.SymmetricType,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.Primitive.SymmetricType,System.Globalization.CultureInfo)">
             <summary>
             Gets the name of thr symmetry.
             </summary>
@@ -4069,22 +4007,22 @@
             <returns>The string.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Primitive.SymmetricType)">
             <summary>
             Try to get all possible cells in symmetry axis (or point).
             </summary>
             <param name="this">The symmetry.</param>
             <returns>Returns cells in the symmetry axis (or point).</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.SymmetricType.None"/>.
+            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.Primitive.SymmetricType.None"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/>
-            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/></param>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Primitive.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Primitive.SymmetricType,System.Int32,System.Int32)"/>
+            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Primitive.SymmetricType,System.Int32,System.Int32)"/></param>
             <param name="cell">Indicates the target cell to be checked.</param>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Primitive.SymmetricType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
             </summary>
@@ -4246,7 +4184,7 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.Primitive.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Try to generate a puzzle.
             </summary>
@@ -4258,7 +4196,7 @@
             this puzzle will be still treated as valid one.
             </para>
             </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Primitive.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>The result grid.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
@@ -4266,12 +4204,12 @@
             or the argument <paramref name="cluesCount"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.Primitive.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Generating.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.Primitive.SymmetricType,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.Generator.GenerateForFullGrid">
             <summary>
@@ -4290,17 +4228,17 @@
         </member>
         <member name="T:Sudoku.Generating.GeneratorProgress">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.GeneratorProgress.#ctor(System.Int32)">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Generating.GeneratorProgress.Count">
             <summary>The number of puzzles generated currently.</summary>
@@ -4422,25 +4360,6 @@
             </summary>
             <param name="this">The random instance.</param>
             <returns>The next digit.</returns>
-        </member>
-        <member name="T:Sudoku.Generating.IGenerator`1">
-            <summary>
-            Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
-            encapsulating the details of the result.
-            </summary>
-            <typeparam name="TResult">
-            The type of the result. This type must be either <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:Sudoku.Generating.PuzzleBase"/>.
-            </typeparam>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="T:Sudoku.Generating.PuzzleBase"/>
-        </member>
-        <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <summary>
-            Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
-            </summary>
-            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
-            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
-            <returns>The result returned.</returns>
         </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
@@ -4573,97 +4492,6 @@
             <summary>
             Indicates the Chinese culture.
             </summary>
-        </member>
-        <member name="T:Sudoku.ISudokuConcept`1">
-            <summary>
-            Represents a concept defined in Sudoku.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="T:Sudoku.ISudokuConceptConvertible`1">
-            <summary>
-            Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptConvertible`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptConvertible`1.ToString``1(``0)">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
-            <param name="converter">The converter instance that the current concept will rely on.</param>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="T:Sudoku.ISudokuConceptParsable`1">
-            <summary>
-            Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.TryParse(System.String,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.TryParse``1(System.String,``0,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <typeparam name="T">The type of coordinate parser.</typeparam>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="parser">
-            A parser instance derived from <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/>,
-            indicating the custom logic on parsing for coordinate items inside the concept.
-            </param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.Parse(System.String)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.Parse``1(System.String,``0)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <typeparam name="T">The type of coordinate parser.</typeparam>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="parser">
-            A parser instance derived from <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/>,
-            indicating the custom logic on parsing for coordinate items inside the concept.
-            </param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.ISudokuConceptParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
@@ -5616,6 +5444,422 @@
 					one module by default.
 				</remarks>
 			</target>
+        </member>
+        <member name="T:Sudoku.Primitive.IAnalyzer`2">
+            <summary>
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
+            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle.
+            </summary>
+            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzer`2.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+            <summary>
+            Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+            <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
+        <member name="T:Sudoku.Primitive.IAnalyzerResult`2">
+            <summary>
+            Represents an instance that describes the result after executed the method
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <typeparam name="TSolver">The solver's type.</typeparam>
+            <typeparam name="TSelf">The type of the target result itself.</typeparam>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.Puzzle">
+            <summary>
+            Indicates the original puzzle to be solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.UnhandledException">
+            <summary>
+            Indicates the unhandled exception thrown.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Primitive.IGenerator`1">
+            <summary>
+            Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
+            encapsulating the details of the result.
+            </summary>
+            <typeparam name="TResult">
+            The type of the result. This type must be either <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="T:Sudoku.Generating.PuzzleBase"/>.
+            </typeparam>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="T:Sudoku.Generating.PuzzleBase"/>
+        </member>
+        <member name="M:Sudoku.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+            <summary>
+            Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
+            </summary>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
+            <returns>The result returned.</returns>
+        </member>
+        <member name="T:Sudoku.Primitive.ISolver">
+            <summary>
+            Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
+            and returns its solution grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Primitive.ISolver.UriLink">
+            <summary>
+            Indicates the URI link that links to the introduction of the algorithm.
+            </summary>
+            <remarks>
+            This property is reserved as information that is offered to the algorithm learners.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Primitive.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+            <summary>
+            Solve the specified grid, and return the solution via argument <paramref name="result"/>
+            with returning a <see cref="T:System.Boolean"/>? value indicating the solved state.
+            </summary>
+            <param name="grid">The grid to be solved.</param>
+            <param name="result">
+            <para>The result of the grid.</para>
+            <para>
+            Please note that if the return value is not <see langword="true"/>,
+            the value should be a discard and should not be used, because the argument
+            keeps a memory-randomized value currently.
+            </para>
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
+            Please note that the method will return three possible values:
+            <list type="table">
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has multiple solutions.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has no solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="T:Sudoku.Primitive.ISudokuConcept`1">
+            <summary>
+            Represents a concept defined in Sudoku.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="T:Sudoku.Primitive.ISudokuConceptConvertible`1">
+            <summary>
+            Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptConvertible`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptConvertible`1.ToString``1(``0)">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <typeparam name="T">The type of the converter.</typeparam>
+            <param name="converter">The converter instance that the current concept will rely on.</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:Sudoku.Primitive.ISudokuConceptParsable`1">
+            <summary>
+            Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.TryParse(System.String,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.TryParse``1(System.String,``0,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <typeparam name="T">The type of coordinate parser.</typeparam>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="parser">
+            A parser instance derived from <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/>,
+            indicating the custom logic on parsing for coordinate items inside the concept.
+            </param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.Parse(System.String)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <returns>The result parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.Parse``1(System.String,``0)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <typeparam name="T">The type of coordinate parser.</typeparam>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="parser">
+            A parser instance derived from <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/>,
+            indicating the custom logic on parsing for coordinate items inside the concept.
+            </param>
+            <returns>The result parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Primitive.SudokuType">
+            <summary>
+            Represents a type of sudoku puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Primitive.SudokuType.None">
+            <summary>
+            The placeholder of the enumeration field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SudokuType.Standard">
+            <summary>
+            Indicates the sudoku puzzle is a standard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SudokuType.Sukaku">
+            <summary>
+            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SudokuType.JustOneCell">
+            <summary>
+            Indicates the sudoku puzzle is a just-one-cell sudoku.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Primitive.SymmetricType">
+            <summary>
+            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.None">
+            <summary>
+            Indicates none of symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.Central">
+            <summary>
+            Indicates the central symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.Diagonal">
+            <summary>
+            Indicates the diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.AntiDiagonal">
+            <summary>
+            Indicates the anti-diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.XAxis">
+            <summary>
+            Indicates the x-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.YAxis">
+            <summary>
+            Indicates the y-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.AxisBoth">
+            <summary>
+            Indicates both X-axis and Y-axis symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.DiagonalBoth">
+            <summary>
+            Indicates both diagonal and anti-diagonal symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.SymmetricType.All">
+            <summary>
+            Indicates all symmetry types should be satisfied.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Primitive.TransformType">
+            <summary>
+            Represents a type of transformation.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.DigitSwap">
+            <summary>
+            Indicates the transform type is to swap digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.RowSwap">
+            <summary>
+            Indicates the transform type is to swap rows.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.ColumnSwap">
+            <summary>
+            Indicates the transform type is to swap columns.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.BandSwap">
+            <summary>
+            Indicates the transform type is to swap bands.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.TowerSwap">
+            <summary>
+            Indicates the transform type is to swap towers.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.MirrorLeftRight">
+            <summary>
+            Indicates the transform type is to mirror left and right.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.MirrorTopBottom">
+            <summary>
+            Indicates the transform type is to mirror top and bottom.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.MirrorDiagonal">
+            <summary>
+            Indicates the transform type is to mirror diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.MirrorAntidiagonal">
+            <summary>
+            Indicates the transform type is to mirror anti-diagonal.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.RotateClockwise">
+            <summary>
+            Indicates the transform type is to rotate clockwise.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.TransformType.RotateCounterclockwise">
+            <summary>
+            Indicates the transform type is to ratate counter-clockwise.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Primitive.Uniqueness">
+            <summary>
+            Represents a flag describing the number of solutions to a puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Primitive.Uniqueness.None">
+            <summary>
+            The placeholder of this type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.Uniqueness.Bad">
+            <summary>
+            Indicates the puzzle has no valid solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.Uniqueness.Unique">
+            <summary>
+            Indicates the puzzle has a unique solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.Uniqueness.Multiple">
+            <summary>
+            Indicates the puzzle has multiple solutions.
+            </summary>
         </member>
         <member name="T:Sudoku.Rendering.ColorColorIdentifier">
             <summary>
@@ -7235,13 +7479,13 @@
             <exception cref="T:System.InvalidOperationException">Throws when the library file is not initialized.</exception>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the index is out of range.</exception>
         </member>
-        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.TransformType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Runtime.LibraryServices.Library.RandomReadOneAsync(Sudoku.Primitive.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
             <param name="transformTypes">
             Indicates the available transform type that the chosen grid can be transformed.
-            Use <see cref="T:Sudoku.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.TransformType"/>, <see cref="T:Sudoku.TransformType"/>)
+            Use <see cref="T:Sudoku.Primitive.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Primitive.TransformType"/>, <see cref="T:Sudoku.Primitive.TransformType"/>)
             to combine multiple flags.
             </param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
@@ -7943,7 +8187,7 @@
             <param name="result">
             <para>The result of the grid.</para>
             <para>
-            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.ISolver"/>,
+            Different with other methods whose containing type is <see cref="T:Sudoku.Primitive.ISolver"/>,
             this argument can be used no matter what the result value will be.
             </para>
             </param>
@@ -8549,53 +8793,6 @@
         <member name="M:Sudoku.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Solving.ISolver">
-            <summary>
-            Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
-            and returns its solution grid.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Solving.ISolver.UriLink">
-            <summary>
-            Indicates the URI link that links to the introduction of the algorithm.
-            </summary>
-            <remarks>
-            This property is reserved as information that is offered to the algorithm learners.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Solving.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
-            <summary>
-            Solve the specified grid, and return the solution via argument <paramref name="result"/>
-            with returning a <see cref="T:System.Boolean"/>? value indicating the solved state.
-            </summary>
-            <param name="grid">The grid to be solved.</param>
-            <param name="result">
-            <para>The result of the grid.</para>
-            <para>
-            Please note that if the return value is not <see langword="true"/>,
-            the value should be a discard and should not be used, because the argument
-            keeps a memory-randomized value currently.
-            </para>
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/>? value indicating whether the grid can be solved, i.e. has a unique solution.
-            Please note that the method will return three possible values:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has multiple solutions.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has no solution.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
         <member name="T:Sudoku.Solving.MatrixRow">
             <summary>
             The matrix row.
@@ -8604,97 +8801,6 @@
         <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode)">
             <summary>
             The matrix row.
-            </summary>
-        </member>
-        <member name="T:Sudoku.SudokuType">
-            <summary>
-            Represents a type of sudoku puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.SudokuType.None">
-            <summary>
-            The placeholder of the enumeration field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.Standard">
-            <summary>
-            Indicates the sudoku puzzle is a standard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.Sukaku">
-            <summary>
-            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
-        </member>
-        <member name="F:Sudoku.SudokuType.JustOneCell">
-            <summary>
-            Indicates the sudoku puzzle is a just-one-cell sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.SymmetricType">
-            <summary>
-            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.SymmetricType.None">
-            <summary>
-            Indicates none of symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.Central">
-            <summary>
-            Indicates the central symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.Diagonal">
-            <summary>
-            Indicates the diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.AntiDiagonal">
-            <summary>
-            Indicates the anti-diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.XAxis">
-            <summary>
-            Indicates the x-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.YAxis">
-            <summary>
-            Indicates the y-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.AxisBoth">
-            <summary>
-            Indicates both X-axis and Y-axis symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.DiagonalBoth">
-            <summary>
-            Indicates both diagonal and anti-diagonal symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.SymmetricType.All">
-            <summary>
-            Indicates all symmetry types should be satisfied.
             </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
@@ -9964,9 +10070,9 @@
         <member name="T:Sudoku.Text.Parsers.CoordinateParser">
             <summary>
             Represents for a parser instance that parses a <see cref="T:System.String"/> text,
-            converting it into a valid <see cref="T:Sudoku.ISudokuConcept`1"/> instance.
+            converting it into a valid <see cref="T:Sudoku.Primitive.ISudokuConcept`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.ISudokuConcept`1"/>
+            <seealso cref="T:Sudoku.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="F:Sudoku.Text.Parsers.CoordinateParser.DeprecatedInfo_NotSupported">
             <summary>
@@ -10053,9 +10159,9 @@
         <member name="T:Sudoku.Text.Parsers.HodokuTripletParser">
             <summary>
             Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.ISudokuConcept`1"/> instance.
+            converting into a valid <see cref="T:Sudoku.Primitive.ISudokuConcept`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.ISudokuConcept`1"/>
+            <seealso cref="T:Sudoku.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="P:Sudoku.Text.Parsers.HodokuTripletParser.Parser">
             <inheritdoc/>
@@ -10122,9 +10228,9 @@
         <member name="T:Sudoku.Text.Parsers.K9Parser">
             <summary>
             Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.ISudokuConcept`1"/> instance.
+            converting into a valid <see cref="T:Sudoku.Primitive.ISudokuConcept`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.ISudokuConcept`1"/>
+            <seealso cref="T:Sudoku.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="P:Sudoku.Text.Parsers.K9Parser.CellParser">
             <inheritdoc/>
@@ -10350,9 +10456,9 @@
         <member name="T:Sudoku.Text.Parsers.RxCyParser">
             <summary>
             Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.ISudokuConcept`1"/> instance.
+            converting into a valid <see cref="T:Sudoku.Primitive.ISudokuConcept`1"/> instance.
             </summary>
-            <seealso cref="T:Sudoku.ISudokuConcept`1"/>
+            <seealso cref="T:Sudoku.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="P:Sudoku.Text.Parsers.RxCyParser.CellParser">
             <inheritdoc/>
@@ -10892,112 +10998,6 @@
         </member>
         <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.TransformType">
-            <summary>
-            Represents a type of transformation.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.TransformType.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.DigitSwap">
-            <summary>
-            Indicates the transform type is to swap digits.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.RowSwap">
-            <summary>
-            Indicates the transform type is to swap rows.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.ColumnSwap">
-            <summary>
-            Indicates the transform type is to swap columns.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.BandSwap">
-            <summary>
-            Indicates the transform type is to swap bands.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.TowerSwap">
-            <summary>
-            Indicates the transform type is to swap towers.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.MirrorLeftRight">
-            <summary>
-            Indicates the transform type is to mirror left and right.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.MirrorTopBottom">
-            <summary>
-            Indicates the transform type is to mirror top and bottom.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.MirrorDiagonal">
-            <summary>
-            Indicates the transform type is to mirror diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.MirrorAntidiagonal">
-            <summary>
-            Indicates the transform type is to mirror anti-diagonal.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.RotateClockwise">
-            <summary>
-            Indicates the transform type is to rotate clockwise.
-            </summary>
-        </member>
-        <member name="F:Sudoku.TransformType.RotateCounterclockwise">
-            <summary>
-            Indicates the transform type is to ratate counter-clockwise.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Uniqueness">
-            <summary>
-            Represents a flag describing the number of solutions to a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Uniqueness.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Bad">
-            <summary>
-            Indicates the puzzle has no valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Unique">
-            <summary>
-            Indicates the puzzle has a unique solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Uniqueness.Multiple">
-            <summary>
-            Indicates the puzzle has multiple solutions.
-            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.AuthorPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the AuthorPattern method.</summary>

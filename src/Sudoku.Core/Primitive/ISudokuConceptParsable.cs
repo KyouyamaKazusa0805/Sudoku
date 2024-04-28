@@ -1,4 +1,4 @@
-﻿namespace Sudoku;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
