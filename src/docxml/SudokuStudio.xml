@@ -8085,6 +8085,16 @@
               Looks up a localized string similar to Sudoku Puzzle Recognition.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PatternBasedPuzzleGeneratingPageTitle">
+            <summary>
+              Looks up a localized string similar to Pattern-based puzzle generator.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PatternBasedPuzzleGeneratorPage">
+            <summary>
+              Looks up a localized string similar to Patterned Generator.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ProgramManual">
             <summary>
               Looks up a localized string similar to Program Manual.
@@ -8193,6 +8203,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_ReadPicture">
             <summary>
               Looks up a localized string similar to Read picture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratorPage_Description">
+            <summary>
+              Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Settings_Compatibility">
@@ -14758,6 +14773,31 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Operation.ShuffleOperation.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage">
+            <summary>
+            Represents a page that generates for pattern-based puzzles.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>

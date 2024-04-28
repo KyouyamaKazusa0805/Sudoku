@@ -3976,6 +3976,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Pattern-based puzzle generator.
+        /// </summary>
+        internal static string MainWindow_PatternBasedPuzzleGeneratingPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_PatternBasedPuzzleGeneratingPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Patterned Generator.
+        /// </summary>
+        internal static string MainWindow_PatternBasedPuzzleGeneratorPage {
+            get {
+                return ResourceManager.GetString("MainWindow_PatternBasedPuzzleGeneratorPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Program Manual.
         /// </summary>
         internal static string MainWindow_ProgramManual {
@@ -4170,6 +4188,15 @@ namespace SudokuStudio.Resources {
         internal static string OcrPage_ReadPicture {
             get {
                 return ResourceManager.GetString("OcrPage_ReadPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratorPage_Description {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratorPage_Description", resourceCulture);
             }
         }
         

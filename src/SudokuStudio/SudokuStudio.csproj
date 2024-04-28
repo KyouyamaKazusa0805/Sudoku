@@ -260,6 +260,9 @@
 		<Page Update="Views\Pages\GeneratedPuzzleConstraintPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\PatternBasedPuzzleGeneratingPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--

@@ -2480,10 +2480,19 @@
   <data name="AnalyzePage_SukakuIsNotSupportedForThisFunctionDescription" xml:space="preserve">
     <value>该功能不支持用于解析候选数数独题。</value>
   </data>
+  <data name="AnalyzePage_ToMinLexGrid" xml:space="preserve">
+    <value>最小字典序</value>
+  </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
-  <data name="AnalyzePage_ToMinLexGrid" xml:space="preserve">
-    <value>最小字典序</value>
+  <data name="PatternBasedPuzzleGeneratorPage_Description" xml:space="preserve">
+    <value>这个页面提供了一个方式，用于生成指定用户自定义图案（图形）作为提示数摆放的题目。</value>
+  </data>
+  <data name="MainWindow_PatternBasedPuzzleGeneratorPage" xml:space="preserve">
+    <value>图案题出题</value>
+  </data>
+  <data name="MainWindow_PatternBasedPuzzleGeneratingPageTitle" xml:space="preserve">
+    <value>图案题出题</value>
   </data>
 </root>

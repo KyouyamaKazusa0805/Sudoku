@@ -2489,4 +2489,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="AnalyzePage_ToMinLexGrid" xml:space="preserve">
     <value>Min-lex form</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratorPage_Description" xml:space="preserve">
+    <value>This page represents a way to generate a puzzle via user-defined patterns.</value>
+  </data>
+  <data name="MainWindow_PatternBasedPuzzleGeneratorPage" xml:space="preserve">
+    <value>Patterned Generator</value>
+  </data>
+  <data name="MainWindow_PatternBasedPuzzleGeneratingPageTitle" xml:space="preserve">
+    <value>Pattern-based puzzle generator</value>
+  </data>
 </root>
