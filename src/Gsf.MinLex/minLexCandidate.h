@@ -13,7 +13,7 @@ typedef struct {
 	unsigned char colsPermMask[3];	//bitmask of size 6 with still allowed permutations that don't affect the upper part of the result
 } MinLexCandidate;
 
-extern void init_candidate(MinLexCandidate* pThis, int transpose, int topRow) {
+extern void initCandidate(MinLexCandidate* pThis, int transpose, int topRow) {
 	MinLexCandidate defaultInstance = { 0, {-1,-1,-1,-1,-1,-1,-1,-1,-1}, {-1,-1,-1,-1,-1,-1,-1,-1,-1}, 63, {63,63,63} };
 	*pThis = defaultInstance;
 	pThis->isTransposed = transpose;

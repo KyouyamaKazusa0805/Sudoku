@@ -61,7 +61,7 @@ static void patminlex(const char* source, char* result) {
 				continue;
 			//here we have a top row candidate
 			MinLexCandidate cand;
-			init_candidate(&cand, nowTransposed, topRow); //in the empty template fix only the transposition and row 0
+			initCandidate(&cand, nowTransposed, topRow); //in the empty template fix only the transposition and row 0
 			expandStacks(&cand, pair, minTopRowScore, candidates, nCurCandidates); //fix all minimal stack permutations and store for later row expansion
 		}
 	}
