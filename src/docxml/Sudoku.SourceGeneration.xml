@@ -159,26 +159,6 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>
         </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
-            <summary>
-            The generator handler for step searcher default importing.
-            </summary>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.Output(Microsoft.CodeAnalysis.SourceProductionContext,Microsoft.CodeAnalysis.Compilation)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.CollectedResult">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
-        <member name="M:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler.CollectedResult.#ctor(Microsoft.CodeAnalysis.INamespaceSymbol,Microsoft.CodeAnalysis.INamedTypeSymbol,System.Int32,System.Int32,System.String,System.Collections.Immutable.ImmutableArray{System.Collections.Generic.KeyValuePair{System.String,Microsoft.CodeAnalysis.TypedConstant}},System.Boolean)">
-            <summary>
-            Indicates the data collected via <see cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>.
-            </summary>
-            <seealso cref="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler"/>
-        </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
             The member kind names.
