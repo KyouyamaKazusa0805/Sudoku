@@ -62,9 +62,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Source Generators", "Source
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Sudoku.Analytics.SourceGeneration", "src\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj", "{96AF1563-223A-4A39-B8F9-13BBA15A4ADE}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Miscellanous", "Miscellanous", "{A6A3704E-5606-423F-BF3C-771BFFAA70AA}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Interim Projects", "Interim Projects", "{A6A3704E-5606-423F-BF3C-771BFFAA70AA}"
 	ProjectSection(SolutionItems) = preProject
-		intro-misc-folder.txt = intro-misc-folder.txt
+		intro-interim-folder.txt = intro-interim-folder.txt
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Gsf.MinLex", "src\Gsf.MinLex\Gsf.MinLex.vcxproj", "{6690634D-6BC2-4332-97E9-8AD49E60457B}"
