@@ -1,5 +1,3 @@
-#pragma warning disable IDE0011
-
 namespace Sudoku.Solving;
 
 /// <summary>
@@ -677,6 +675,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 	/// Core of fast processing.
 	/// </summary>
 	/// <returns>The <see cref="bool"/> value.</returns>
+	[SuppressMessage("Style", "IDE0011:Add braces", Justification = "<Pending>")]
 	private bool Update()
 	{
 		uint shrink = 1, a, b, c, cl;
