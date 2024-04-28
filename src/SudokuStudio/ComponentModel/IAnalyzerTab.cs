@@ -14,5 +14,5 @@ internal interface IAnalyzerTab
 	/// Gets or sets the analysis result, updating the current tab page using this property.
 	/// </summary>
 	/// <value>The value you want to update. If <see langword="null"/>, clears the page data.</value>
-	public abstract AnalyzerResult? AnalysisResult { get; set; }
+	public abstract AnalysisResult? AnalysisResult { get; set; }
 }

@@ -4,8 +4,8 @@ namespace Sudoku.Analytics;
 /// Provides the result after <see cref="Analyzer"/> solving a puzzle.
 /// </summary>
 /// <param name="Puzzle"><inheritdoc cref="IAnalyzerResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
-public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
-	IAnalyzerResult<Analyzer, AnalyzerResult>,
+public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
+	IAnalyzerResult<Analyzer, AnalysisResult>,
 	ICultureFormattable,
 	IEnumerable<Step>
 {
@@ -27,12 +27,12 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
-	private const FormattingOptions DefaultOptions = FormattingOptions.ShowDifficulty
-		| FormattingOptions.ShowSeparators
-		| FormattingOptions.ShowStepsAfterBottleneck
-		| FormattingOptions.ShowSteps
-		| FormattingOptions.ShowGridAndSolutionCode
-		| FormattingOptions.ShowElapsedTime;
+	private const AnalysisResultFormattingOptions DefaultOptions = AnalysisResultFormattingOptions.ShowDifficulty
+		| AnalysisResultFormattingOptions.ShowSeparators
+		| AnalysisResultFormattingOptions.ShowStepsAfterBottleneck
+		| AnalysisResultFormattingOptions.ShowSteps
+		| AnalysisResultFormattingOptions.ShowGridAndSolutionCode
+		| AnalysisResultFormattingOptions.ShowElapsedTime;
 
 
 	/// <inheritdoc/>
@@ -406,11 +406,11 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <b>This method only checks for initial grid puzzle.</b>
-	/// This is by design: We only check for grids between two <see cref="AnalyzerResult"/> instances,
+	/// This is by design: We only check for grids between two <see cref="AnalysisResult"/> instances,
 	/// because the target value will be same if the base grid are same.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] AnalyzerResult? other) => other is not null && Puzzle == other.Puzzle;
+	public bool Equals([NotNullWhen(true)] AnalysisResult? other) => other is not null && Puzzle == other.Puzzle;
 
 	/// <summary>
 	/// Determine whether the analyzer result instance contains any step with specified technique.
@@ -444,7 +444,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 	/// <param name="options">The formatting options.</param>
 	/// <param name="converter">The converter to be used.</param>
 	/// <returns>A string that represents the current object.</returns>
-	public string ToString(FormattingOptions options, CoordinateConverter converter)
+	public string ToString(AnalysisResultFormattingOptions options, CoordinateConverter converter)
 	{
 		if (this is not
 			{
@@ -466,13 +466,13 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 
 		// Print header.
 		var sb = new StringBuilder();
-		if (options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
+		if (options.HasFlag(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{ResourceDictionary.Get("AnalysisResultPuzzle", culture)}{puzzle:#}");
 		}
 
 		// Print solving steps (if worth).
-		if (options.HasFlag(FormattingOptions.ShowSteps) && steps is not null)
+		if (options.HasFlag(AnalysisResultFormattingOptions.ShowSteps) && steps is not null)
 		{
 			sb.Append(ResourceDictionary.Get("AnalysisResultSolvingSteps", culture));
 			sb.AppendLine();
@@ -481,19 +481,19 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 			{
 				for (var i = 0; i < steps.Length; i++)
 				{
-					if (i > bIndex && !options.HasFlag(FormattingOptions.ShowStepsAfterBottleneck))
+					if (i > bIndex && !options.HasFlag(AnalysisResultFormattingOptions.ShowStepsAfterBottleneck))
 					{
 						sb.AppendLine(ResourceDictionary.Get("Ellipsis", culture));
 						break;
 					}
 
 					var info = steps[i];
-					var infoStr = options.HasFlag(FormattingOptions.ShowSimple) ? info.ToSimpleString(culture) : info.ToString(culture);
-					var showDiff = options.HasFlag(FormattingOptions.ShowDifficulty);
+					var infoStr = options.HasFlag(AnalysisResultFormattingOptions.ShowSimple) ? info.ToSimpleString(culture) : info.ToString(culture);
+					var showDiff = options.HasFlag(AnalysisResultFormattingOptions.ShowDifficulty);
 
 					var d = $"({info.Difficulty,5}";
 					var s = $"{i + 1,4}";
-					var labelInfo = (options.HasFlag(FormattingOptions.ShowStepLabel), showDiff) switch
+					var labelInfo = (options.HasFlag(AnalysisResultFormattingOptions.ShowStepLabel), showDiff) switch
 					{
 						(true, true) => $"{s}, {d}) ",
 						(true, false) => $"{s} ",
@@ -506,13 +506,13 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 					sb.AppendLine();
 				}
 
-				if (options.HasFlag(FormattingOptions.ShowBottleneck))
+				if (options.HasFlag(AnalysisResultFormattingOptions.ShowBottleneck))
 				{
-					a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+					a(sb, options.HasFlag(AnalysisResultFormattingOptions.ShowSeparators));
 
 					sb.Append(ResourceDictionary.Get("AnalysisResultBottleneckStep", culture));
 
-					if (options.HasFlag(FormattingOptions.ShowStepLabel))
+					if (options.HasFlag(AnalysisResultFormattingOptions.ShowStepLabel))
 					{
 						sb.Append(ResourceDictionary.Get("AnalysisResultInStep", culture));
 						sb.Append(bIndex + 1);
@@ -524,7 +524,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 					sb.AppendLine();
 				}
 
-				a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+				a(sb, options.HasFlag(AnalysisResultFormattingOptions.ShowSeparators));
 			}
 		}
 
@@ -533,7 +533,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 		{
 			sb.AppendLine(ResourceDictionary.Get("AnalysisResultTechniqueUsed", culture));
 
-			if (options.HasFlag(FormattingOptions.ShowStepDetail))
+			if (options.HasFlag(AnalysisResultFormattingOptions.ShowStepDetail))
 			{
 				sb
 					.Append($"{ResourceDictionary.Get("AnalysisResultMin", culture),6}, ")
@@ -543,7 +543,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 
 			foreach (var solvingStepsGroup in from s in steps.AsReadOnlySpan() orderby s.Difficulty group s by s.GetName())
 			{
-				if (options.HasFlag(FormattingOptions.ShowStepDetail))
+				if (options.HasFlag(AnalysisResultFormattingOptions.ShowStepDetail))
 				{
 					var currentTotal = 0;
 					var currentMinimum = int.MaxValue;
@@ -560,7 +560,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 				sb.AppendLine($"{solvingStepsGroup.Length,3} * {solvingStepsGroup.Key}");
 			}
 
-			if (options.HasFlag(FormattingOptions.ShowStepDetail))
+			if (options.HasFlag(AnalysisResultFormattingOptions.ShowStepDetail))
 			{
 				sb.Append($"  (---{total,8}) ");
 			}
@@ -568,7 +568,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 			sb.Append($"{stepsCount,3} ");
 			sb.AppendLine(ResourceDictionary.Get(stepsCount == 1 ? "AnalysisResultStepSingular" : "AnalysisResultStepPlural", culture));
 
-			a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+			a(sb, options.HasFlag(AnalysisResultFormattingOptions.ShowSeparators));
 		}
 
 		// Print detail data.
@@ -576,7 +576,7 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
-		if (!solution.IsUndefined && options.HasFlag(FormattingOptions.ShowGridAndSolutionCode))
+		if (!solution.IsUndefined && options.HasFlag(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))
 		{
 			sb.AppendLine($"{ResourceDictionary.Get("AnalysisResultPuzzleSolution", culture)}{solution:!}");
 		}
@@ -589,12 +589,12 @@ public sealed partial record AnalyzerResult(ref readonly Grid Puzzle) :
 		}
 		sb.Append(ResourceDictionary.Get("AnalysisResultBeenSolved", culture));
 		sb.AppendLine();
-		if (options.HasFlag(FormattingOptions.ShowElapsedTime))
+		if (options.HasFlag(AnalysisResultFormattingOptions.ShowElapsedTime))
 		{
 			sb.AppendLine($@"{ResourceDictionary.Get("AnalysisResultTimeElapsed", culture)}{elapsed:hh\:mm\:ss\.fff}");
 		}
 
-		a(sb, options.HasFlag(FormattingOptions.ShowSeparators));
+		a(sb, options.HasFlag(AnalysisResultFormattingOptions.ShowSeparators));
 		return sb.ToString();
 
 

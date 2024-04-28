@@ -455,7 +455,7 @@
             <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
             <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
             <param name="countOfSteps">Indicates the number of steps in this group.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
         <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.#ctor(System.String,Sudoku.Analytics.DifficultyLevel,System.Decimal,System.Decimal,System.Int32)">
             <summary>
@@ -467,15 +467,15 @@
             <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
             <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
             <param name="countOfSteps">Indicates the number of steps in this group.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.CreateListFrom(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:SudokuStudio.BindableSource.SummaryViewBindableSource.CreateListFrom(Sudoku.Analytics.AnalysisResult)">
             <summary>
             Creates the list of <see cref="T:SudokuStudio.BindableSource.SummaryViewBindableSource"/> as the result value,
-            via the specified <paramref name="analyzerResult"/> instance of <see cref="T:Sudoku.Analytics.AnalyzerResult"/> type.
+            via the specified <paramref name="analysisResult"/> instance of <see cref="T:Sudoku.Analytics.AnalysisResult"/> type.
             </summary>
-            <param name="analyzerResult">
-            The <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance that is used for creating the result value.
+            <param name="analysisResult">
+            The <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance that is used for creating the result value.
             </param>
             <returns>The result list of <see cref="T:SudokuStudio.BindableSource.SummaryViewBindableSource"/>-typed elements.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
@@ -879,11 +879,11 @@
             Defines a solving path.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalyzerResult,SudokuStudio.Interaction.StepTooltipDisplayItems)">
+        <member name="M:SudokuStudio.Collection.SolvingPathStepCollection.Create(Sudoku.Analytics.AnalysisResult,SudokuStudio.Interaction.StepTooltipDisplayItems)">
             <summary>
-            Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            Creates a <see cref="T:SudokuStudio.Collection.SolvingPathStepCollection"/> instance via the specified <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance.
             </summary>
-            <param name="analyzerResult">A <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.</param>
+            <param name="analysisResult">A <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance.</param>
             <param name="displayItems">Indicates all displaying values.</param>
             <returns>An instance of the current type.</returns>
         </member>
@@ -13196,12 +13196,12 @@
             To clear all possible data from the analyze tabs.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateAnalysisResult(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.UpdateAnalysisResult(Sudoku.Analytics.AnalysisResult)">
             <summary>
-            To update values via the specified <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            To update values via the specified <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance.
             </summary>
-            <param name="analyzerResult">The analysis result instance.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <param name="analysisResult">The analysis result instance.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
         <member name="M:SudokuStudio.Views.Pages.AnalyzePage.CopySudokuGridText(System.Boolean)">
             <summary>

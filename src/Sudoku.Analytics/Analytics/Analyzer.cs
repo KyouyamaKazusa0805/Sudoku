@@ -3,7 +3,7 @@
 namespace Sudoku.Analytics;
 
 /// <summary>
-/// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="AnalyzerResult"/> instance
+/// Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="AnalysisResult"/> instance
 /// indicating the analytics data.
 /// </summary>
 /// <remarks>
@@ -11,11 +11,11 @@ namespace Sudoku.Analytics;
 /// you can just use type <see cref="Analyzers"/> to get <see cref="Analyzer"/>s you want to get.
 /// In addition, you can also use <see cref="AnalyzerFactory"/> to create some extra configuration.
 /// </remarks>
-/// <seealso cref="AnalyzerResult"/>
+/// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzers"/>
 /// <seealso cref="AnalyzerFactory"/>
 /// <completionlist cref="Analyzers"/>
-public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<Analyzer, AnalyzerResult>, IRandomizedAnalyzer<Analyzer, AnalyzerResult>
+public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<Analyzer, AnalysisResult>, IRandomizedAnalyzer<Analyzer, AnalysisResult>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -81,7 +81,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
-	Random IRandomizedAnalyzer<Analyzer, AnalyzerResult>.RandomNumberGenerator => _random;
+	Random IRandomizedAnalyzer<Analyzer, AnalysisResult>.RandomNumberGenerator => _random;
 
 	/// <summary>
 	/// Indicates the final <see cref="CultureInfo"/> instance to be used.
@@ -91,14 +91,14 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public AnalyzerResult Analyze(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalysisResult Analyze(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
 			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridAlreadySolved"));
 		}
 
-		var result = new AnalyzerResult(in puzzle) { IsSolved = false };
+		var result = new AnalysisResult(in puzzle) { IsSolved = false };
 		var solution = puzzle.SolutionGrid;
 		if (puzzle.Uniqueness != Uniqueness.Bad)
 		{
@@ -145,10 +145,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 		return result with { IsSolved = false, FailedReason = FailedReason.PuzzleHasNoSolution };
 
 
-		AnalyzerResult analyzeInternal(
+		AnalysisResult analyzeInternal(
 			ref readonly Grid puzzle,
 			ref readonly Grid solution,
-			AnalyzerResult resultBase,
+			AnalysisResult resultBase,
 			SymmetricType symmetricType,
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
@@ -512,9 +512,9 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 				ref Grid playground,
 				long timestampOriginal,
 				List<Grid> steppingGrids,
-				AnalyzerResult resultBase,
+				AnalysisResult resultBase,
 				CancellationToken cancellationToken,
-				[NotNullWhen(true)] out AnalyzerResult? result
+				[NotNullWhen(true)] out AnalysisResult? result
 			)
 			{
 				// Optimization: If the grid is inferred as a GSP pattern, we can directly add extra eliminations at symmetric positions.

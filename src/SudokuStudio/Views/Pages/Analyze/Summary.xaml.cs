@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines a summary page.
 /// </summary>
-[DependencyProperty<AnalyzerResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
+[DependencyProperty<AnalysisResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
 public sealed partial class Summary : Page, IAnalyzerTab
 {
 	/// <summary>
@@ -19,11 +19,11 @@ public sealed partial class Summary : Page, IAnalyzerTab
 	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (Summary page, { NewValue: var rawValue and (null or AnalyzerResult) }))
+		if ((d, e) is not (Summary page, { NewValue: var rawValue and (null or Sudoku.Analytics.AnalysisResult) }))
 		{
 			return;
 		}
 
-		page.SummaryTable.ItemsSource = rawValue is AnalyzerResult value ? SummaryViewBindableSource.CreateListFrom(value) : null;
+		page.SummaryTable.ItemsSource = rawValue is AnalysisResult value ? SummaryViewBindableSource.CreateListFrom(value) : null;
 	}
 }

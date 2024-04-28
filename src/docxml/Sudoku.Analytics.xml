@@ -110,9 +110,470 @@
         <member name="M:Sudoku.Analytics.AnalysisContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.AnalysisResult">
+            <summary>
+            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
+            </summary>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
+            </summary>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Puzzle">
+            <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueTheory">
+            <summary>
+            Indicates the maximum rating value in theory.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueFact">
+            <summary>
+            Indicates the maximum rating value in fact.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResult.MinimumRatingValue">
+            <summary>
+            Indicates the minimum rating value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResult.DefaultOptions">
+            <summary>
+            Indicates the default options.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.IsSolved">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.IsPartiallySolved">
+            <summary>
+            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>.
+            If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/> and <see cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
+            won't be <see langword="null"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.IsPearl">
+            <summary>
+            Indicates whether the puzzle is a pearl puzzle, which means the first step must be an indirect technique usage.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.Boolean"/>? value indicating the result. The values are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution, and the first set step has same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has a unique solution, but the first set step does not have same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.IsDiamond">
+            <summary>
+            Indicates whether the puzzle is a diamond puzzle, which means the first deletion has the same difficulty
+            with the maximum difficulty of the whole steps.
+            </summary>
+            <returns>
+            Returns a <see cref="T:System.Boolean"/>? value indicating the result. The values are:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><see langword="true"/></term>
+            <description>The puzzle has a unique solution, and the first deletion step has same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="false"/></term>
+            <description>The puzzle has a unique solution, but the first deletion step does not have same difficulty with the whole steps.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.MaxDifficulty">
+            <summary>
+            Indicates the maximum difficulty of the puzzle.
+            </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>,
+            the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
+            or else the puzzle is solved by other solvers, this value will be always <c>200</c>,
+            equal to <see cref="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueTheory"/>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueTheory"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.TotalDifficulty">
+            <summary>
+            Indicates the total difficulty rating of the puzzle.
+            </summary>
+            <remarks>
+            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
+            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>.
+            However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.PearlDifficulty">
+            <summary>
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </summary>
+            <remarks>
+            When the puzzle is solved, the value will be the difficulty rating of the first delete step that cause a set.
+            </remarks>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.DiamondDifficulty">
+            <summary>
+            <para>
+            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
+            </para>
+            <para>
+            When the puzzle is solved, the value will be the difficulty rating of the first delete step.
+            </para>
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
+            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.FailedReason">
+            <summary>
+            Indicates why the solving operation is failed.
+            This property is meaningless when <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> keeps the <see langword="true"/> value.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level of the puzzle.
+            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Solution">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.ElapsedTime">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.InterimGrids">
+            <summary>
+            Indicates a list, whose element is the intermediate grid for each step.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.GridsSpan">
+            <summary>
+            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instances,
+            whose internal values come from <see cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.StepsSpan">
+            <summary>
+            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Step"/> instances,
+            whose internal values come from <see cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimSteps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.WrongStep">
+            <summary>
+            <para>
+            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> keeps
+            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
+            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Analytics.AnalysisResult.Puzzle"/> become invalid.
+            In this case we can check this property to get the wrong information to debug the error,
+            or tell the author himself directly, with the inner value of this property held.
+            </para>
+            <para>
+            However, if the puzzle is successful to be solved, the property won't contain any value,
+            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
+            of this property before using.
+            </para>
+            <para>
+            In general, this table will tell us the nullability of this property:
+            <list type="table">
+            <listheader>
+            <term>Nullability</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term>Not <see langword="null"/></term>
+            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
+            </item>
+            <item>
+            <term><see langword="null"/></term>
+            <description>Other cases.</description>
+            </item>
+            </list>
+            </para>
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.Puzzle"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.BottleneckSteps">
+            <summary>
+            Indicates the bottleneck steps.
+            </summary>
+            <remarks>
+            <para>
+            The bottleneck steps will be considered as "hardest" ones,
+            checking their difficulty rating (i.e. property <see cref="P:Sudoku.Analytics.Step.Difficulty"/>) and difficulty level
+            (i.e. <see cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>).
+            </para>
+            <para>
+            The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
+            they all will be considered as bottleneck steps.
+            </para>
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
+            <seealso cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.PearlStep">
+            <summary>
+            Indicates the pearl step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.DiamondStep">
+            <summary>
+            Indicates the diamond step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.InterimSteps">
+            <summary>
+            Indicates all solving steps that the solver has recorded.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.InterimGrids"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.TechniquesUsed">
+            <summary>
+            Indicates the techniques used during the solving operation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.UnhandledException">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.UnhandledException" path="/summary"/>
+            </summary>
+            <remarks>
+            You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
+            is <see cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/>
+            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.Equals(Sudoku.Analytics.AnalysisResult)">
+            <inheritdoc/>
+            <remarks>
+            <b>This method only checks for initial grid puzzle.</b>
+            This is by design: We only check for grids between two <see cref="T:Sudoku.Analytics.AnalysisResult"/> instances,
+            because the target value will be same if the base grid are same.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Determine whether the analyzer result instance contains any step with specified technique.
+            </summary>
+            <param name="technique">The technique you want to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,Sudoku.Text.Converters.CoordinateConverter)">
+            <summary>
+            Returns a string that represents the current object, with the specified formatting options.
+            </summary>
+            <param name="options">The formatting options.</param>
+            <param name="converter">The converter to be used.</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
+            <summary>
+            The inner executor to get the difficulty value (total, average).
+            </summary>
+            <param name="steps">The steps to be calculated.</param>
+            <param name="executor">The execute method.</param>
+            <param name="d">
+            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
+            </param>
+            <returns>The result.</returns>
+            <seealso cref="N:Sudoku.Analytics.Steps"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Span">
+            <summary>
+            A span of values.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Concepts.Grid@)">
+            <summary>
+            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same
+            with the specified argument <paramref name="grid"/>.
+            </summary>
+            <param name="grid">The grid to be matched.</param>
+            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> property returns <see langword="false"/>).
+            </exception>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
+            </exception>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.String)">
+            <summary>
+            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
+            </summary>
+            <param name="techniqueName">Technique name.</param>
+            <returns>The first found step.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
+            </summary>
+            <param name="difficultyRating">The specified difficulty rating value.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> returns <see langword="false"/>),
+            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
+            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
+            only depends on property <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>.
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
+            </summary>
+            <param name="code">The specified technique code.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisResult.Item(Sudoku.Analytics.DifficultyLevel)">
+            <summary>
+            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
+            </summary>
+            <param name="difficultyLevel">The specified difficulty level.</param>
+            <returns>
+            <inheritdoc cref="P:Sudoku.Analytics.AnalysisResult.Item(System.Int32)" path="/returns"/>
+            </returns>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
+        </member>
+        <member name="T:Sudoku.Analytics.AnalysisResultFormattingOptions">
+            <summary>
+            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalysisResult" /> instance.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult" />
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.None">
+            <summary>
+            Indicates the none of the formatting option.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSeparators">
+            <summary>
+            Indicates the analysis result will append separators.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepLabel">
+            <summary>
+            Indicates the analysis result will append the step label.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSimple">
+            <summary>
+            Indicates the analysis result will use simple mode to show steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowBottleneck">
+            <summary>
+            Indicates the analysis result will show the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowDifficulty">
+            <summary>
+            Indicates the analysis result will show the difficulty.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepsAfterBottleneck">
+            <summary>
+            Indicates the analysis result will show all steps after the bottleneck.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowStepDetail">
+            <summary>
+            Indicates the analysis result will show the step detail.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowSteps">
+            <summary>
+            Indicates the analysis result will show the steps.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowGridAndSolutionCode">
+            <summary>
+            Indicates the analysis result will show grid code for the puzzle itself and its solution.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.AnalysisResultFormattingOptions.ShowElapsedTime">
+            <summary>
+            Indicates the analysis result will show elapsed time on solving the puzzle.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>
-            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance
+            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance
             indicating the analytics data.
             </summary>
             <remarks>
@@ -120,7 +581,7 @@
             you can just use type <see cref="T:Sudoku.Analytics.Analyzers"/> to get <see cref="T:Sudoku.Analytics.Analyzer"/>s you want to get.
             In addition, you can also use <see cref="T:Sudoku.Analytics.AnalyzerFactory"/> to create some extra configuration.
             </remarks>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
             <seealso cref="T:Sudoku.Analytics.Analyzers"/>
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
             <completionlist cref="T:Sudoku.Analytics.Analyzers"/>
@@ -176,7 +637,7 @@
             Indicates the conditional options to be set.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalyzerResult}#RandomNumberGenerator">
+        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.ResultCurrentCulture">
@@ -320,467 +781,6 @@
             <param name="in">The step searchers passed in.</param>
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerResult">
-            <summary>
-            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
-            </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.#ctor(Sudoku.Concepts.Grid@)">
-            <summary>
-            Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
-            </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></param>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Puzzle">
-            <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.Puzzle" path="/summary"/></summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory">
-            <summary>
-            Indicates the maximum rating value in theory.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueFact">
-            <summary>
-            Indicates the maximum rating value in fact.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.MinimumRatingValue">
-            <summary>
-            Indicates the minimum rating value.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.DefaultOptions">
-            <summary>
-            Indicates the default options.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.IsSolved">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.IsPartiallySolved">
-            <summary>
-            Indicates whether the puzzle is solved, or failed by <see cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>.
-            If the property returns <see langword="true"/>, properties <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/> and <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
-            won't be <see langword="null"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.AnalyzerGiveUp"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.IsPearl">
-            <summary>
-            Indicates whether the puzzle is a pearl puzzle, which means the first step must be an indirect technique usage.
-            </summary>
-            <returns>
-            Returns a <see cref="T:System.Boolean"/>? value indicating the result. The values are:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution, and the first set step has same difficulty with the whole steps.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has a unique solution, but the first set step does not have same difficulty with the whole steps.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.IsDiamond">
-            <summary>
-            Indicates whether the puzzle is a diamond puzzle, which means the first deletion has the same difficulty
-            with the maximum difficulty of the whole steps.
-            </summary>
-            <returns>
-            Returns a <see cref="T:System.Boolean"/>? value indicating the result. The values are:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><see langword="true"/></term>
-            <description>The puzzle has a unique solution, and the first deletion step has same difficulty with the whole steps.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The puzzle has a unique solution, but the first deletion step does not have same difficulty with the whole steps.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The puzzle has multiple solutions, or the puzzle has no valid solution.</description>
-            </item>
-            </list>
-            </returns>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.MaxDifficulty">
-            <summary>
-            Indicates the maximum difficulty of the puzzle.
-            </summary>
-            <remarks>
-            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>,
-            the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
-            or else the puzzle is solved by other solvers, this value will be always <c>200</c>,
-            equal to <see cref="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory"/>.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="F:Sudoku.Analytics.AnalyzerResult.MaximumRatingValueTheory"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.TotalDifficulty">
-            <summary>
-            Indicates the total difficulty rating of the puzzle.
-            </summary>
-            <remarks>
-            When the puzzle is solved by <see cref="T:Sudoku.Analytics.Analyzer"/>, the value will be the sum of all difficulty ratings of steps.
-            If the puzzle has not been solved, the value will be the sum of all difficulty ratings of steps recorded in <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>.
-            However, if the puzzle is solved by other solvers, this value will be <c>0</c>.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlDifficulty">
-            <summary>
-            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            </summary>
-            <remarks>
-            When the puzzle is solved, the value will be the difficulty rating of the first delete step that cause a set.
-            </remarks>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondDifficulty">
-            <summary>
-            <para>
-            Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="T:Sudoku.Analytics.Analyzer"/>.
-            </para>
-            <para>
-            When the puzzle is solved, the value will be the difficulty rating of the first delete step.
-            </para>
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-            <seealso href="http://forum.enjoysudoku.com/the-hardest-sudokus-new-thread-t6539-690.html#p293738">Concept for EP, ER and ED</seealso>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.FailedReason">
-            <summary>
-            Indicates why the solving operation is failed.
-            This property is meaningless when <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> keeps the <see langword="true"/> value.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.DifficultyLevel">
-            <summary>
-            Indicates the difficulty level of the puzzle.
-            If the puzzle has not solved or solved by other solvers, this value will be <see cref="F:Sudoku.Analytics.DifficultyLevel.Unknown"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Solution">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.ElapsedTime">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.InterimGrids">
-            <summary>
-            Indicates a list, whose element is the intermediate grid for each step.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.GridsSpan">
-            <summary>
-            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Grid"/> instances,
-            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.StepsSpan">
-            <summary>
-            Returns a <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Analytics.Step"/> instances,
-            whose internal values come from <see cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimSteps"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.WrongStep">
-            <summary>
-            <para>
-            Indicates the wrong step found. In general cases, if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> keeps
-            <see langword="false"/> value, it'll mean the puzzle is invalid to solve, or the solver has found
-            one error step to apply, that causes the original puzzle <see cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/> become invalid.
-            In this case we can check this property to get the wrong information to debug the error,
-            or tell the author himself directly, with the inner value of this property held.
-            </para>
-            <para>
-            However, if the puzzle is successful to be solved, the property won't contain any value,
-            so it'll keep the <see langword="null"/> reference. Therefore, please check the nullability
-            of this property before using.
-            </para>
-            <para>
-            In general, this table will tell us the nullability of this property:
-            <list type="table">
-            <listheader>
-            <term>Nullability</term>
-            <description>Description</description>
-            </listheader>
-            <item>
-            <term>Not <see langword="null"/></term>
-            <description>The puzzle is failed to solve, and the solver has found an invalid step to apply.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>Other cases.</description>
-            </item>
-            </list>
-            </para>
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.Puzzle"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.BottleneckSteps">
-            <summary>
-            Indicates the bottleneck steps.
-            </summary>
-            <remarks>
-            <para>
-            The bottleneck steps will be considered as "hardest" ones,
-            checking their difficulty rating (i.e. property <see cref="P:Sudoku.Analytics.Step.Difficulty"/>) and difficulty level
-            (i.e. <see cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>).
-            </para>
-            <para>
-            The puzzle can contain multiple bottleneck steps. If multiple steps with same difficulty level and difficulty rating,
-            they all will be considered as bottleneck steps.
-            </para>
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.Step.Difficulty"/>
-            <seealso cref="P:Sudoku.Analytics.Step.DifficultyLevel"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.PearlStep">
-            <summary>
-            Indicates the pearl step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.DiamondStep">
-            <summary>
-            Indicates the diamond step.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.InterimSteps">
-            <summary>
-            Indicates all solving steps that the solver has recorded.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.InterimGrids"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.TechniquesUsed">
-            <summary>
-            Indicates the techniques used during the solving operation.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.UnhandledException">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Analytics.IAnalyzerResult`2.UnhandledException" path="/summary"/>
-            </summary>
-            <remarks>
-            You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
-            is <see cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/> or <see cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>.
-            </remarks>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.FailedReason"/>
-            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.ExceptionThrown"/>
-            <seealso cref="F:Sudoku.Analytics.Metadata.FailedReason.WrongStep"/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.Equals(Sudoku.Analytics.AnalyzerResult)">
-            <inheritdoc/>
-            <remarks>
-            <b>This method only checks for initial grid puzzle.</b>
-            This is by design: We only check for grids between two <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instances,
-            because the target value will be same if the base grid are same.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.HasTechnique(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Determine whether the analyzer result instance contains any step with specified technique.
-            </summary>
-            <param name="technique">The technique you want to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has not been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.GetHashCode">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Text.Converters.CoordinateConverter)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.ToString(Sudoku.Analytics.AnalyzerResult.FormattingOptions,Sudoku.Text.Converters.CoordinateConverter)">
-            <summary>
-            Returns a string that represents the current object, with the specified formatting options.
-            </summary>
-            <param name="options">The formatting options.</param>
-            <param name="converter">The converter to be used.</param>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.AnalyzerResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
-            <summary>
-            The inner executor to get the difficulty value (total, average).
-            </summary>
-            <param name="steps">The steps to be calculated.</param>
-            <param name="executor">The execute method.</param>
-            <param name="d">
-            The default value as the return value when <see cref="N:Sudoku.Analytics.Steps"/> is <see langword="null"/> or empty.
-            </param>
-            <returns>The result.</returns>
-            <seealso cref="N:Sudoku.Analytics.Steps"/>
-        </member>
-        <member name="T:Sudoku.Analytics.AnalyzerResult.FormattingOptions">
-            <summary>
-            Indicates the formatting options of <see cref="T:Sudoku.Analytics.AnalyzerResult" /> instance.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult" />
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.None">
-            <summary>
-            Indicates the none of the formatting option.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSeparators">
-            <summary>
-            Indicates the analysis result will append separators.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepLabel">
-            <summary>
-            Indicates the analysis result will append the step label.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSimple">
-            <summary>
-            Indicates the analysis result will use simple mode to show steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowBottleneck">
-            <summary>
-            Indicates the analysis result will show the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowDifficulty">
-            <summary>
-            Indicates the analysis result will show the difficulty.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepsAfterBottleneck">
-            <summary>
-            Indicates the analysis result will show all steps after the bottleneck.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowStepDetail">
-            <summary>
-            Indicates the analysis result will show the step detail.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowSteps">
-            <summary>
-            Indicates the analysis result will show the steps.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowGridAndSolutionCode">
-            <summary>
-            Indicates the analysis result will show grid code for the puzzle itself and its solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.AnalyzerResult.FormattingOptions.ShowElapsedTime">
-            <summary>
-            Indicates the analysis result will show elapsed time on solving the puzzle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Span">
-            <summary>
-            A span of values.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Concepts.Grid@)">
-            <summary>
-            Gets the found <see cref="T:Sudoku.Analytics.Step"/> instance whose corresponding candidates are same
-            with the specified argument <paramref name="grid"/>.
-            </summary>
-            <param name="grid">The grid to be matched.</param>
-            <returns>The found <see cref="T:Sudoku.Analytics.Step"/> instance.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the puzzle is not solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> property returns <see langword="false"/>).
-            </exception>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the specified puzzle cannot correspond to a paired <see cref="T:Sudoku.Analytics.Step"/> instance.
-            </exception>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.String)">
-            <summary>
-            Gets the first found <see cref="T:Sudoku.Analytics.Step"/> whose name is specified one, or nearly same as the specified one.
-            </summary>
-            <param name="techniqueName">Technique name.</param>
-            <returns>The first found step.</returns>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty rating value as argument <paramref name="difficultyRating"/>. 
-            </summary>
-            <param name="difficultyRating">The specified difficulty rating value.</param>
-            <returns>
-            A list of <see cref="T:Sudoku.Analytics.Step"/>s found. If the puzzle cannot be solved (i.e. <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> returns <see langword="false"/>),
-            the return value will be <see langword="null"/>. If the puzzle is solved, but the specified value is not found,
-            the return value will be an empty array, rather than <see langword="null"/>. The nullability of the return value
-            only depends on property <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>.
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that matches the specified technique.
-            </summary>
-            <param name="code">The specified technique code.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
-        </member>
-        <member name="P:Sudoku.Analytics.AnalyzerResult.Item(Sudoku.Analytics.DifficultyLevel)">
-            <summary>
-            Gets a list of <see cref="T:Sudoku.Analytics.Step"/>s that has the same difficulty level as argument <paramref name="difficultyLevel"/>. 
-            </summary>
-            <param name="difficultyLevel">The specified difficulty level.</param>
-            <returns>
-            <inheritdoc cref="P:Sudoku.Analytics.AnalyzerResult.Item(System.Int32)" path="/returns"/>
-            </returns>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
         </member>
         <member name="T:Sudoku.Analytics.Analyzers">
             <summary>
@@ -4944,11 +4944,11 @@
             <remarks>
             For example, if the value is <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>,
             the analyzer will automatically ignore naked single steps to analyze the grid.
-            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> with
-            <see cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
+            If the puzzle cannot be solved, the analyzer will return an <see cref="T:Sudoku.Analytics.AnalysisResult"/> with
+            <see cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/> a <see langword="false"/> value.
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
-            <seealso cref="P:Sudoku.Analytics.AnalyzerResult.IsSolved"/>
+            <seealso cref="P:Sudoku.Analytics.AnalysisResult.IsSolved"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherConditionalOptions.Default">
             <inheritdoc/>
@@ -21666,11 +21666,11 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Linq.AnalyzerResultEnumerable">
             <summary>
-            Provides with some LINQ methods for type <see cref="T:Sudoku.Analytics.AnalyzerResult"/>.
+            Provides with some LINQ methods for type <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.All(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.All(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Determines whether all <see cref="T:Sudoku.Analytics.Step"/> instances satisfy the specified condition.
             </summary>
@@ -21678,7 +21678,7 @@ result ^= expression;
             <param name="predicate">The match method.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Any(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Any(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Determines whether at least one <see cref="T:Sudoku.Analytics.Step"/> instance satisfies the specified condition.
             </summary>
@@ -21686,7 +21686,7 @@ result ^= expression;
             <param name="predicate">The match method.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Cast``1(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Cast``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
             Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> instances.
             </summary>
@@ -21694,7 +21694,7 @@ result ^= expression;
             <param name="this">The instance to be casted.</param>
             <returns>A list of <typeparamref name="T"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Where(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Where(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition.
             </summary>
@@ -21702,7 +21702,7 @@ result ^= expression;
             <param name="condition">The condition to be satisfied.</param>
             <returns>An array of <see cref="T:Sudoku.Analytics.Step"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Select``1(Sudoku.Analytics.AnalyzerResult,System.Func{Sudoku.Analytics.Step,``0})">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Select``1(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,``0})">
             <summary>
             Projects the collection, to an immutable result of target type.
             </summary>
@@ -21713,7 +21713,7 @@ result ^= expression;
             </param>
             <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.OfType``1(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.OfType``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
             Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
             </summary>
@@ -21756,17 +21756,17 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Measuring.AnalyzerResultMesurable">
             <summary>
-            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance.
             </summary>
-            <param name="analyzerResult">The instance.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <param name="analysisResult">The instance.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:Sudoku.Measuring.AnalyzerResultMesurable.#ctor(Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:Sudoku.Measuring.AnalyzerResultMesurable.#ctor(Sudoku.Analytics.AnalysisResult)">
             <summary>
-            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalyzerResult"/> instance.
+            Represents a type that can calculates the measurable items on an <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance.
             </summary>
-            <param name="analyzerResult">The instance.</param>
-            <seealso cref="T:Sudoku.Analytics.AnalyzerResult"/>
+            <param name="analysisResult">The instance.</param>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
         <member name="P:Sudoku.Measuring.AnalyzerResultMesurable.DistanceAll">
             <summary>
@@ -28333,7 +28333,7 @@ result ^= expression;
             <param name="AnalyzerResult">Indicates the analyzer result.</param>
             <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
         </member>
-        <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalyzerResult)">
+        <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
             <summary>
             Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
             </summary>

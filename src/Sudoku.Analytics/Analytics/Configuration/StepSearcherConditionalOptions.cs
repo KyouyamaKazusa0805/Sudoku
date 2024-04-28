@@ -20,11 +20,11 @@ internal sealed record StepSearcherConditionalOptions : IStepSearcherOptions<Ste
 	/// <remarks>
 	/// For example, if the value is <see cref="SingleTechniqueFlag.HiddenSingle"/>,
 	/// the analyzer will automatically ignore naked single steps to analyze the grid.
-	/// If the puzzle cannot be solved, the analyzer will return an <see cref="AnalyzerResult"/> with
-	/// <see cref="AnalyzerResult.IsSolved"/> a <see langword="false"/> value.
+	/// If the puzzle cannot be solved, the analyzer will return an <see cref="AnalysisResult"/> with
+	/// <see cref="AnalysisResult.IsSolved"/> a <see langword="false"/> value.
 	/// </remarks>
 	/// <seealso cref="SingleTechniqueFlag"/>
-	/// <seealso cref="AnalyzerResult.IsSolved"/>
+	/// <seealso cref="AnalysisResult.IsSolved"/>
 	public SingleTechniqueFlag LimitedSingle { get; init; } = 0;
 #endif
 

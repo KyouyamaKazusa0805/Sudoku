@@ -1,9 +1,9 @@
 namespace Sudoku.Linq;
 
 /// <summary>
-/// Provides with some LINQ methods for type <see cref="AnalyzerResult"/>.
+/// Provides with some LINQ methods for type <see cref="AnalysisResult"/>.
 /// </summary>
-/// <seealso cref="AnalyzerResult"/>
+/// <seealso cref="AnalysisResult"/>
 public static class AnalyzerResultEnumerable
 {
 	/// <summary>
@@ -12,7 +12,7 @@ public static class AnalyzerResultEnumerable
 	/// <param name="this">The instance to be checked.</param>
 	/// <param name="predicate">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool All(this AnalyzerResult @this, Func<Step, bool> predicate)
+	public static bool All(this AnalysisResult @this, Func<Step, bool> predicate)
 	{
 		foreach (var step in @this)
 		{
@@ -30,7 +30,7 @@ public static class AnalyzerResultEnumerable
 	/// <param name="this">The instance to be checked.</param>
 	/// <param name="predicate">The match method.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public static bool Any(this AnalyzerResult @this, Func<Step, bool> predicate)
+	public static bool Any(this AnalysisResult @this, Func<Step, bool> predicate)
 	{
 		foreach (var step in @this)
 		{
@@ -49,7 +49,7 @@ public static class AnalyzerResultEnumerable
 	/// <param name="this">The instance to be casted.</param>
 	/// <returns>A list of <typeparamref name="T"/> instances.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<T> Cast<T>(this AnalyzerResult @this) where T : Step => from element in @this select (T)element;
+	public static ReadOnlySpan<T> Cast<T>(this AnalysisResult @this) where T : Step => from element in @this select (T)element;
 
 	/// <summary>
 	/// Filters the current collection, preserving <see cref="Step"/> instances that are satisfied the specified condition.
@@ -57,7 +57,7 @@ public static class AnalyzerResultEnumerable
 	/// <param name="this">The instance.</param>
 	/// <param name="condition">The condition to be satisfied.</param>
 	/// <returns>An array of <see cref="Step"/> instances.</returns>
-	public static ReadOnlySpan<Step> Where(this AnalyzerResult @this, Func<Step, bool> condition)
+	public static ReadOnlySpan<Step> Where(this AnalysisResult @this, Func<Step, bool> condition)
 	{
 		if (@this.InterimSteps is not { Length: var stepsCount } steps)
 		{
@@ -85,7 +85,7 @@ public static class AnalyzerResultEnumerable
 	/// The selector to project the <see cref="Step"/> instance into type <typeparamref name="TResult"/>.
 	/// </param>
 	/// <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
-	public static ReadOnlySpan<TResult> Select<TResult>(this AnalyzerResult @this, Func<Step, TResult> selector)
+	public static ReadOnlySpan<TResult> Select<TResult>(this AnalysisResult @this, Func<Step, TResult> selector)
 	{
 		if (@this.InterimSteps is not { Length: var stepsCount } steps)
 		{
@@ -108,7 +108,7 @@ public static class AnalyzerResultEnumerable
 	/// <typeparam name="T">The type of the step you want to get.</typeparam>
 	/// <param name="this">The instance.</param>
 	/// <returns>An array of <typeparamref name="T"/> instances.</returns>
-	public static ReadOnlySpan<T> OfType<T>(this AnalyzerResult @this) where T : Step
+	public static ReadOnlySpan<T> OfType<T>(this AnalysisResult @this) where T : Step
 	{
 		if (@this.InterimSteps is not { Length: var stepsCount } steps)
 		{

@@ -32,7 +32,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	AnalyzerResult? IAnalyzerTab.AnalysisResult { get; set; }
+	AnalysisResult? IAnalyzerTab.AnalysisResult { get; set; }
 
 
 	/// <summary>

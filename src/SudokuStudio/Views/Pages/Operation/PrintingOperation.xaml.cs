@@ -24,7 +24,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 
 	private async void PrintAnalysisButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (BasePage.AnalysisResultCache is not { } analyzerResult)
+		if (BasePage.AnalysisResultCache is not { } analysisResult)
 		{
 			ErrorDialog_AnalysisResultNotExist.IsOpen = true;
 			return;
@@ -33,7 +33,7 @@ public sealed partial class PrintingOperation : Page, IOperationProviderPage
 		var document = await new AnalysisResultDocumentCreator
 		{
 			Comment = ResourceDictionary.Get("AnalyzePage_GenerateComment", App.CurrentCulture),
-			AnalysisResult = analyzerResult
+			AnalysisResult = analysisResult
 		}.CreateDocumentAsync();
 
 		if (!BasePage.EnsureUnsnapped(true))
@@ -84,7 +84,7 @@ file sealed class AnalysisResultDocumentCreator
 	/// <summary>
 	/// Indicates the analysis result to be used.
 	/// </summary>
-	public required AnalyzerResult AnalysisResult { get; init; }
+	public required AnalysisResult AnalysisResult { get; init; }
 
 
 	/// <summary>

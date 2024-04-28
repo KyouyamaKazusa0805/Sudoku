@@ -9,7 +9,7 @@ namespace SudokuStudio.BindableSource;
 /// <param name="totalDifficulty">Indicates the total difficulty of the group of steps.</param>
 /// <param name="maximumDifficulty">Indicates the maximum difficulty of the group of steps.</param>
 /// <param name="countOfSteps">Indicates the number of steps in this group.</param>
-/// <seealso cref="AnalyzerResult"/>
+/// <seealso cref="AnalysisResult"/>
 [method: SetsRequiredMembers]
 internal sealed partial class SummaryViewBindableSource(
 	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set")] string techniqueName,
@@ -21,17 +21,17 @@ internal sealed partial class SummaryViewBindableSource(
 {
 	/// <summary>
 	/// Creates the list of <see cref="SummaryViewBindableSource"/> as the result value,
-	/// via the specified <paramref name="analyzerResult"/> instance of <see cref="AnalyzerResult"/> type.
+	/// via the specified <paramref name="analysisResult"/> instance of <see cref="AnalysisResult"/> type.
 	/// </summary>
-	/// <param name="analyzerResult">
-	/// The <see cref="AnalyzerResult"/> instance that is used for creating the result value.
+	/// <param name="analysisResult">
+	/// The <see cref="AnalysisResult"/> instance that is used for creating the result value.
 	/// </param>
 	/// <returns>The result list of <see cref="SummaryViewBindableSource"/>-typed elements.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle hasn't been solved.</exception>
-	public static unsafe ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalyzerResult analyzerResult)
+	public static unsafe ObservableCollection<SummaryViewBindableSource> CreateListFrom(AnalysisResult analysisResult)
 	{
 		var pref = ((App)Application.Current).Preference.TechniqueInfoPreferences;
-		return analyzerResult switch
+		return analysisResult switch
 		{
 			{ IsSolved: true, InterimSteps: var steps } => [.. g(steps, pref)],
 			{ IsPartiallySolved: true, InterimSteps: var steps } => [.. g(steps, pref)],

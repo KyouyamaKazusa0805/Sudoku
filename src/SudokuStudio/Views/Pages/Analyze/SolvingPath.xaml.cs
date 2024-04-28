@@ -3,7 +3,7 @@ namespace SudokuStudio.Views.Pages.Analyze;
 /// <summary>
 /// Defines the solving path page.
 /// </summary>
-[DependencyProperty<AnalyzerResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
+[DependencyProperty<AnalysisResult>("AnalysisResult?", DocSummary = "Indicates the analysis result.")]
 public sealed partial class SolvingPath : Page, IAnalyzerTab
 {
 	/// <summary>
@@ -19,9 +19,9 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 	[Callback]
 	private static void AnalysisResultPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView }, { NewValue: var value and (null or AnalyzerResult) }))
+		if ((d, e) is (SolvingPath { SolvingPathList: var pathListView }, { NewValue: var value and (null or Sudoku.Analytics.AnalysisResult) }))
 		{
-			if (value is not AnalyzerResult analyzerResult)
+			if (value is not AnalysisResult analysisResult)
 			{
 				pathListView.ItemsSource = null;
 				return;
@@ -30,7 +30,7 @@ public sealed partial class SolvingPath : Page, IAnalyzerTab
 			var displayItems = ((App)Application.Current).Preference.UIPreferences.StepDisplayItems;
 			var collection = new ObservableCollection<SolvingPathStepBindableSource>();
 			pathListView.ItemsSource = collection;
-			foreach (var item in SolvingPathStepCollection.Create(analyzerResult, displayItems))
+			foreach (var item in SolvingPathStepCollection.Create(analysisResult, displayItems))
 			{
 				collection.Add(item);
 			}

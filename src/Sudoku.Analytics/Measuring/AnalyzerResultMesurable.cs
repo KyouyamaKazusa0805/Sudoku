@@ -1,11 +1,11 @@
 namespace Sudoku.Measuring;
 
 /// <summary>
-/// Represents a type that can calculates the measurable items on an <see cref="AnalyzerResult"/> instance.
+/// Represents a type that can calculates the measurable items on an <see cref="AnalysisResult"/> instance.
 /// </summary>
-/// <param name="analyzerResult">The instance.</param>
-/// <seealso cref="AnalyzerResult"/>
-public sealed class AnalyzerResultMesurable(AnalyzerResult analyzerResult)
+/// <param name="analysisResult">The instance.</param>
+/// <seealso cref="AnalysisResult"/>
+public sealed class AnalyzerResultMesurable(AnalysisResult analysisResult)
 {
 	/// <summary>
 	/// Indicates the distance values for all steps produced.
@@ -14,12 +14,12 @@ public sealed class AnalyzerResultMesurable(AnalyzerResult analyzerResult)
 	{
 		get
 		{
-			if (!analyzerResult.IsSolved)
+			if (!analysisResult.IsSolved)
 			{
 				return 0;
 			}
 
-			var steps = analyzerResult.StepsSpan;
+			var steps = analysisResult.StepsSpan;
 			if (steps.Length is 0 or 1)
 			{
 				return 0;

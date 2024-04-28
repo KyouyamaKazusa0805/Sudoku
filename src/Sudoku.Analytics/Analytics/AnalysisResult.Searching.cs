@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics;
 
-public partial record AnalyzerResult
+public partial record AnalysisResult
 {
 	/// <summary>
 	/// A span of values.

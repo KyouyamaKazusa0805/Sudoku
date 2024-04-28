@@ -228,8 +228,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					goto ReportState;
 				}
 
-				var analyzerResult = analyzer.Analyze(in grid);
-				switch (difficultyLevel, analyzerResult.DifficultyLevel)
+				var analysisResult = analyzer.Analyze(in grid);
+				switch (difficultyLevel, analysisResult.DifficultyLevel)
 				{
 					case (DifficultyLevel.Easy, DifficultyLevel.Easy):
 					{
@@ -253,13 +253,13 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 
 					CheckIttoryuConstraint:
 						// Check for ittoryu and ittoryu length constraint if worth.
-						if (!(ittoryu?.Check(new(in grid, analyzerResult)) ?? true))
+						if (!(ittoryu?.Check(new(in grid, analysisResult)) ?? true))
 						{
 							break;
 						}
 
 						// Check for the last constraints.
-						if ((constraints - ittoryu).IsValidFor(new(in grid, analyzerResult)))
+						if ((constraints - ittoryu).IsValidFor(new(in grid, analysisResult)))
 						{
 							return grid;
 						}
@@ -267,7 +267,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					}
 					default:
 					{
-						if (constraints.IsValidFor(new(in grid, analyzerResult)))
+						if (constraints.IsValidFor(new(in grid, analysisResult)))
 						{
 							return grid;
 						}
@@ -360,8 +360,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
-				var analyzerResult = analyzer.Analyze(in grid);
-				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+				var analysisResult = analyzer.Analyze(in grid);
+				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;
 				}
@@ -428,8 +428,8 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			false,
 			static (ref Grid grid, Analyzer analyzer) =>
 			{
-				var analyzerResult = analyzer.Analyze(in grid);
-				if (analyzerResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
+				var analysisResult = analyzer.Analyze(in grid);
+				if (analysisResult is not { IsSolved: true, InterimGrids: var interimGrids, InterimSteps: var interimSteps })
 				{
 					return;
 				}

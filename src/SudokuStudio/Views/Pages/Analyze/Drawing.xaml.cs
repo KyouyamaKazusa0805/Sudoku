@@ -15,7 +15,7 @@ public sealed partial class Drawing : Page, IAnalyzerTab
 	public AnalyzePage BasePage { get; set; } = null!;
 
 	/// <inheritdoc/>
-	AnalyzerResult? IAnalyzerTab.AnalysisResult { get; set; }
+	AnalysisResult? IAnalyzerTab.AnalysisResult { get; set; }
 
 
 	private void SetSelectedMode(int selectedIndex) => BasePage.SelectedMode = (DrawingMode)(selectedIndex + 1);

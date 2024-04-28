@@ -12,7 +12,7 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<string>("BabaGroupNameInput?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
 [DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
 [DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = Accessibility.Internal, DocSummary = "Indicates the link type.")]
-[DependencyProperty<AnalyzerResult>("AnalysisResultCache?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
+[DependencyProperty<AnalysisResult>("AnalysisResultCache?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = Accessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
 [DependencyProperty<IRenderable>("VisualUnit?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
@@ -112,17 +112,17 @@ public sealed partial class AnalyzePage : Page
 	}
 
 	/// <summary>
-	/// To update values via the specified <see cref="AnalyzerResult"/> instance.
+	/// To update values via the specified <see cref="AnalysisResult"/> instance.
 	/// </summary>
-	/// <param name="analyzerResult">The analysis result instance.</param>
-	/// <seealso cref="AnalyzerResult"/>
-	internal void UpdateAnalysisResult(AnalyzerResult analyzerResult)
+	/// <param name="analysisResult">The analysis result instance.</param>
+	/// <seealso cref="AnalysisResult"/>
+	internal void UpdateAnalysisResult(AnalysisResult analysisResult)
 	{
 		foreach (var pageData in (IEnumerable<AnalyzeTabPageBindableSource>)AnalyzeTabs.TabItemsSource)
 		{
 			if (pageData is { Page: IAnalyzerTab subTabPage })
 			{
-				subTabPage.AnalysisResult = analyzerResult;
+				subTabPage.AnalysisResult = analysisResult;
 			}
 		}
 	}
@@ -1056,10 +1056,10 @@ public sealed partial class AnalyzePage : Page
 				}
 			}))
 			{
-				case var analyzerResult and ({ IsSolved: true } or { IsPartiallySolved: true }):
+				case var analysisResult and ({ IsSolved: true } or { IsPartiallySolved: true }):
 				{
-					UpdateAnalysisResult(analyzerResult);
-					AnalysisResultCache = analyzerResult;
+					UpdateAnalysisResult(analysisResult);
+					AnalysisResultCache = analysisResult;
 					break;
 				}
 				case

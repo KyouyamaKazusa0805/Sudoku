@@ -6,14 +6,14 @@ namespace SudokuStudio.Collection;
 public sealed class SolvingPathStepCollection : List<SolvingPathStepBindableSource>
 {
 	/// <summary>
-	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="AnalyzerResult"/> instance.
+	/// Creates a <see cref="SolvingPathStepCollection"/> instance via the specified <see cref="AnalysisResult"/> instance.
 	/// </summary>
-	/// <param name="analyzerResult">A <see cref="AnalyzerResult"/> instance.</param>
+	/// <param name="analysisResult">A <see cref="AnalysisResult"/> instance.</param>
 	/// <param name="displayItems">Indicates all displaying values.</param>
 	/// <returns>An instance of the current type.</returns>
-	public static IEnumerable<SolvingPathStepBindableSource> Create(AnalyzerResult analyzerResult, StepTooltipDisplayItems displayItems)
+	public static IEnumerable<SolvingPathStepBindableSource> Create(AnalysisResult analysisResult, StepTooltipDisplayItems displayItems)
 	{
-		var (steps, grids) = analyzerResult switch
+		var (steps, grids) = analysisResult switch
 		{
 			{ IsSolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
 			{ IsPartiallySolved: true, InterimSteps: var s, InterimGrids: var g } => (s, g),
