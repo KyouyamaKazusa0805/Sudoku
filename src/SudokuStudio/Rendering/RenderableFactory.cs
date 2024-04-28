@@ -372,8 +372,23 @@ internal static class RenderableFactory
 
 		switch (sudokuPane.DisplayCandidates, cellNode)
 		{
+#pragma warning disable format
 			case (true, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.PencilmarkModeOnly }):
-			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly, Identifier: WellKnownColorIdentifier { Kind: not (>= ColorIdentifierKind.Normal and <= ColorIdentifierKind.Auxiliary3) } }):
+			case (
+				false,
+				{
+					RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly,
+					Identifier: WellKnownColorIdentifier
+					{
+						Kind: not (>= ColorIdentifierKind.Normal and <= ColorIdentifierKind.Auxiliary3)
+					}
+				}
+			):
+			case (
+				false,
+				{ RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }
+			) when !ShapeKindsCreator.ContainsKey(cellNode.Identifier):
+#pragma warning restore format
 			{
 				var control = new Border
 				{
@@ -405,15 +420,7 @@ internal static class RenderableFactory
 			}
 			case (false, { RenderingMode: RenderingMode.BothDirectAndPencilmark or RenderingMode.DirectModeOnly }):
 			{
-				if (!ShapeKindsCreator.TryGetValue(cellNode.Identifier, out var controlCreator))
-				{
-					// Bug fix: If a cell is colorized by a color, but the color is not an element stored in the dictionary,
-					// it will throw a KeyNotFoundException.
-					// For example, if we color a cell, and toggle the candiate displaying, the bug reproduced.
-					break;
-				}
-
-				var control = create(controlCreator);
+				var control = create(ShapeKindsCreator[cellNode.Identifier]);
 
 				GridLayout.SetRowSpan(control, 3);
 				GridLayout.SetColumnSpan(control, 3);
@@ -428,7 +435,6 @@ internal static class RenderableFactory
 				break;
 
 
-				[MethodImpl(MethodImplOptions.AggressiveInlining)]
 				Control create(Func<Control> instanceCreator)
 				{
 					var result = instanceCreator();

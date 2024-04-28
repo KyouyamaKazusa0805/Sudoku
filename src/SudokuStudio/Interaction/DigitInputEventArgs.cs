@@ -10,6 +10,11 @@ public sealed partial class DigitInputEventArgs([PrimaryConstructorParameter] Ce
 	EventArgs
 {
 	/// <summary>
+	/// A <see cref="bool"/> value indicating whether the event will cancel the inputting operation.
+	/// </summary>
+	public bool Cancel { get; set; }
+
+	/// <summary>
 	/// Indicates the candidate constructed. -1 is for the case that <see cref="DigitInput"/> is -1.
 	/// </summary>
 	public Candidate Candidate => DigitInput != -1 ? Cell * 9 + DigitInput : -1;

@@ -807,6 +807,12 @@
         <member name="M:Sudoku.Concepts.CellMap.RemoveRange(System.ReadOnlySpan{System.Int32})">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.Toggle(System.Int32)">
+            <summary>
+            Toggle a cell offset from the map, which means the cell will be removed if contained, or added if not contained.
+            </summary>
+            <param name="cell">The cell to be toggled.</param>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
             <inheritdoc/>
         </member>

@@ -3474,6 +3474,11 @@
             <param name="newDigitInput">Indicates the digit input that raises the event triggered. -1 is for clear the cell.</param>
             <seealso cref="T:SudokuStudio.Interaction.DigitInputEventHandler"/>
         </member>
+        <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Cancel">
+            <summary>
+            A <see cref="T:System.Boolean"/> value indicating whether the event will cancel the inputting operation.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Interaction.DigitInputEventArgs.Candidate">
             <summary>
             Indicates the candidate constructed. -1 is for the case that <see cref="P:SudokuStudio.Interaction.DigitInputEventArgs.DigitInput"/> is -1.
@@ -14782,6 +14787,12 @@
             Represents a page that generates for pattern-based puzzles.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._userColoringView">
+            <summary>
+            Defines a user-defined view that will be used.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage"/> instance.
@@ -14800,6 +14811,17 @@
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCellsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells">
+            <summary>
+            Indicates the selected cells.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">

@@ -917,7 +917,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 
@@ -949,6 +949,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		switch (Keyboard.GetModifierStateForCurrentThread(), SelectedCell, e.Key, Keyboard.GetInputDigit(e.Key))
 		{
+			// Invalid cases.
 			default:
 			case (_, not (>= 0 and < 81), _, _):
 			case var (_, cell, _, _) when Puzzle.GetState(cell) == CellState.Given:
@@ -956,33 +957,45 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 			{
 				return;
 			}
+
+			// Clear cell.
 			case ({ AllFalse: true }, var cell, _, -1):
 			{
+				var args = new DigitInputEventArgs(cell, -1);
+				DigitInput?.Invoke(this, args);
+				if (args.Cancel)
+				{
+					return;
+				}
+
 				var modified = Puzzle;
 				modified.SetDigit(cell, -1);
-
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Clear, cell));
-
 				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
-
-				DigitInput?.Invoke(this, new(cell, -1));
-
 				break;
 			}
+
+			// Clear a candidate from a cell.
 			case ((false, true, false, false), var cell, _, var digit) when Puzzle.Exists(cell, digit) is true:
 			{
 				var modified = Puzzle;
 				modified.SetExistence(cell, digit, false);
-
 				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
-
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Elimination, cell * 9 + digit));
-
 				break;
 			}
+
+			// Set a cell with a digit.
 			case ({ AllFalse: true }, var cell, _, var digit)
 			when PreventConflictingInput && !Puzzle.DuplicateWith(cell, digit) || !PreventConflictingInput:
 			{
+				var args = new DigitInputEventArgs(cell, digit);
+				DigitInput?.Invoke(this, args);
+				if (args.Cancel)
+				{
+					return;
+				}
+
 				var modified = Puzzle;
 				if (Puzzle.GetState(cell) == CellState.Modifiable)
 				{
@@ -991,12 +1004,8 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 				}
 
 				modified.SetDigit(cell, digit);
-
 				SetPuzzleInternal(in modified, PuzzleUpdatingMethod.UserUpdating);
-
-				DigitInput?.Invoke(this, new(cell, digit));
 				GridUpdated?.Invoke(this, new(GridUpdatedBehavior.Assignment, cell * 9 + digit));
-
 				break;
 			}
 		}

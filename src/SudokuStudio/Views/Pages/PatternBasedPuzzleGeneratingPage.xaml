@@ -12,6 +12,11 @@
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance Type=p:PatternBasedPuzzleGeneratingPage}">
+	<Page.Resources>
+		<Color x:Key="SelectedCellColorLight">#F5C716</Color>
+		<Color x:Key="SelectedCellColorDark">#E7A114</Color>
+	</Page.Resources>
+
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
 		<TextBlock Text="{m:R Key=PatternBasedPuzzleGeneratorPage_Description}" Margin="0,10,0,0" />
 		<Grid ColumnDefinitions="Auto,*">
@@ -23,7 +28,7 @@
 				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
 				HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="False"
 				DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
-				EnableRightTapRemoving="False" EnableDoubleTapFilling="False"
+				EnableRightTapRemoving="False" EnableDoubleTapFilling="False" HighlightBackgroundOpacity="{m:Decimal ParseString='1.0'}"
 				GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 				ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 				CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
@@ -33,6 +38,7 @@
 				CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
 				CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
 				Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged" Clicked="SudokuPane_Clicked"
+				DigitInput="SudokuPane_DigitInput"
 			/>
 
 			<!--Tools-->
