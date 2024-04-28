@@ -15,7 +15,6 @@ public sealed class Generator : IIncrementalGenerator
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
 		Operators(context);
-		InlineArray(context);
 		ImplicitField(context);
 	}
 
@@ -92,19 +91,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ComparisonOperatorsHandler.Output
-		);
-	}
-
-	private void InlineArray(IncrementalGeneratorInitializationContext context)
-	{
-		const string inlineArrayFieldAttributeName = "System.SourceGeneration.InlineArrayFieldAttribute`1";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(inlineArrayFieldAttributeName, IsPartialTypePredicate, InlineArrayFieldHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			InlineArrayFieldHandler.Output
 		);
 	}
 

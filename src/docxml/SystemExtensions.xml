@@ -4049,36 +4049,6 @@
             The value is <see langword="true"/> by default.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.InlineArrayFieldAttribute`1">
-            <summary>
-            Represents an attribute type that will be used by source generator,
-            telling the target source generator that the type must contain a fixed-sized buffer type,
-            with specified length and a generated field to visit it.
-            </summary>
-            <typeparam name="T">The type of the fixed-sized buffer element.</typeparam>
-            <param name="fieldName">Indicates the target field name.</param>
-            <param name="length">Indicates the length of the fixed-sized buffer type.</param>
-        </member>
-        <member name="M:System.SourceGeneration.InlineArrayFieldAttribute`1.#ctor(System.String,System.Int32)">
-            <summary>
-            Represents an attribute type that will be used by source generator,
-            telling the target source generator that the type must contain a fixed-sized buffer type,
-            with specified length and a generated field to visit it.
-            </summary>
-            <typeparam name="T">The type of the fixed-sized buffer element.</typeparam>
-            <param name="fieldName">Indicates the target field name.</param>
-            <param name="length">Indicates the length of the fixed-sized buffer type.</param>
-        </member>
-        <member name="P:System.SourceGeneration.InlineArrayFieldAttribute`1.FieldName">
-            <summary>
-            The generated property declaration for parameter <c>fieldName</c>.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.InlineArrayFieldAttribute`1.Length">
-            <summary>
-            The generated property declaration for parameter <c>length</c>.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.LargeStructureAttribute">
             <summary>
             Represents an attribute that can tell source generators the type is a large structure,

@@ -11,7 +11,6 @@ namespace Sudoku.Concepts;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
-[InlineArrayField<long>("_bits", 12)]
 [LargeStructure]
 [Equals]
 [EqualityOperators]
@@ -27,6 +26,13 @@ public partial struct CandidateMap :
 
 	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
 	public static readonly CandidateMap MinValue;
+
+
+	/// <summary>
+	/// Indicates the internal field that provides the visit entry for fixed-sized buffer type <see cref="BackingBuffer"/>.
+	/// </summary>
+	/// <seealso cref="BackingBuffer"/>
+	private BackingBuffer _bits;
 
 
 	/// <summary>
