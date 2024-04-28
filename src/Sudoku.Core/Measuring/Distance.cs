@@ -218,7 +218,7 @@ public readonly ref partial struct Distance(int p, int q)
 		if (cell1 > cell2)
 		{
 			// Keeps the less value as the first cell.
-			Ref.Swap(ref cell1, ref cell2);
+			(cell1, cell2) = (cell2, cell1);
 		}
 
 		if ((cell1.AsCellMap() + cell2).SharedLine is not (var sharedHouse and not TrailingZeroCountFallback))

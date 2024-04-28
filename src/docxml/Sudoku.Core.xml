@@ -4340,20 +4340,6 @@
             <param name="cell">The cell.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Generating.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Generating.Extensions.ToPointer(System.Char@)">
-            <summary>
-            Cast the reference to pointer.
-            </summary>
-            <param name="this">The reference to be casted.</param>
-            <returns>The pointer.</returns>
-        </member>
         <member name="T:Sudoku.Generating.IProgressDataProvider`1">
             <summary>
             Indicates the data provider type,

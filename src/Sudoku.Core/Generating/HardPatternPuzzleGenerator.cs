@@ -47,8 +47,8 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 		ref readonly var charRef = ref Grid.EmptyString.Ref();
 		while (true)
 		{
-			Unsafe.CopyBlock(ref Ref.AsByteRef(ref puzzleString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
-			Unsafe.CopyBlock(ref Ref.AsByteRef(ref solutionString[0]), in Ref.AsReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref Ref.ByteRef(ref puzzleString[0]), in Ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref Ref.ByteRef(ref solutionString[0]), in Ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
 
 			GenerateAnswerGrid(puzzleString, solutionString);
 
@@ -121,7 +121,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 					puzzleString[cell] = (char)(Rng.NextDigit() + '1');
 				} while (CheckDuplicate(puzzleString, cell));
 			}
-		} while (_solver.SolveString(puzzleString[0].ToPointer(), solutionString[0].ToPointer(), 2) == 0);
+		} while (_solver.SolveString(Ref.ToPointer(in puzzleString[0]), Ref.ToPointer(in solutionString[0]), 2) == 0);
 	}
 
 	/// <summary>
@@ -151,7 +151,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 	/// <param name="pattern">The pointer that points to an array of the pattern values.</param>
 	private void RecreatePattern(Span<Cell> pattern)
 	{
-		var target = (ReadOnlySpan<(int, int, int)>)[(23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27)];
+		var target = (stackalloc[] { (23, 0, 1), (47, 24, -23), (53, 48, -47), (80, 54, 27) });
 		for (var index = 0; index < 4; index++)
 		{
 			var (initial, boundary, delta) = target[index];
@@ -182,16 +182,4 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 
 		return false;
 	}
-}
-
-/// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
-file static class Extensions
-{
-	/// <summary>
-	/// Cast the reference to pointer.
-	/// </summary>
-	/// <param name="this">The reference to be casted.</param>
-	/// <returns>The pointer.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe char* ToPointer(this ref char @this) => (char*)Unsafe.AsPointer(ref @this);
 }

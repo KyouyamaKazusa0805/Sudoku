@@ -146,13 +146,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			unsafe
 			{
 				var tempValues = tempDictionary[key];
-				result.Add(
-					new(
-						(T*)Unsafe.AsPointer(ref Ref.AsMutableRef(in tempValues.AsReadOnlySpan()[0])),
-						tempValues.Count,
-						key
-					)
-				);
+				result.Add(new(Ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();

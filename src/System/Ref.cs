@@ -14,7 +14,7 @@ public static class Ref
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void Swap<T>(ref T left, ref T right)
 	{
-		if (!MemoryLocationAreSame(in left, in right))
+		if (!AreSameRef(in left, in right))
 		{
 			var temp = left;
 			left = right;
@@ -31,11 +31,11 @@ public static class Ref
 	/// using <see langword="ref readonly"/> as a combined parameter modifier.
 	/// </param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref byte AsByteRef<T>(ref T @ref) => ref Unsafe.As<T, byte>(ref @ref);
+	public static ref byte ByteRef<T>(ref T @ref) => ref Unsafe.As<T, byte>(ref @ref);
 
-	/// <inheritdoc cref="AsByteRef{T}(ref T)"/>
+	/// <inheritdoc cref="ByteRef{T}(ref T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly byte AsReadOnlyByteRef<T>(ref readonly T @ref) => ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
+	public static ref readonly byte ReadOnlyByteRef<T>(ref readonly T @ref) => ref Unsafe.As<T, byte>(ref Unsafe.AsRef(in @ref));
 
 	/// <summary>
 	/// Determines whether the current reference points to <see langword="null"/>.
@@ -44,7 +44,7 @@ public static class Ref
 	/// <param name="reference">The reference to be checked.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsNullReference<T>(ref readonly T reference) => Unsafe.IsNullRef(in reference);
+	public static bool IsNullRef<T>(ref readonly T reference) => Unsafe.IsNullRef(in reference);
 
 	/// <summary>
 	/// Check whether two references point to a same memory location.
@@ -54,7 +54,7 @@ public static class Ref
 	/// <param name="right">The second element to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool MemoryLocationAreSame<T>(ref readonly T left, ref readonly T right) => Unsafe.AreSame(in left, in right);
+	public static bool AreSameRef<T>(ref readonly T left, ref readonly T right) => Unsafe.AreSame(in left, in right);
 
 	/// <summary>
 	/// Returns a reference that points to <see langword="null"/>.
@@ -64,7 +64,7 @@ public static class Ref
 	/// </typeparam>
 	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T MakeNullReference<T>() => ref Unsafe.NullRef<T>();
+	public static ref readonly T NullRef<T>() => ref Unsafe.NullRef<T>();
 
 	/// <summary>
 	/// Re-interpret the read-only reference to non-read-only reference.
@@ -74,6 +74,16 @@ public static class Ref
 	/// <returns>The non-read-only reference.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref T AsMutableRef<T>(ref readonly T @ref) => ref Unsafe.AsRef(in @ref);
+
+	/// <summary>
+	/// Converts the managed pointer into unmanaged one,
+	/// meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
+	/// </summary>
+	/// <typeparam name="T">The type of the value that pointer points to.</typeparam>
+	/// <param name="ref">The reference to be converted.</param>
+	/// <returns>The unmanaged pointer as the result value.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static unsafe T* ToPointer<T>(ref readonly T @ref) => (T*)Unsafe.AsPointer(ref AsMutableRef(in @ref));
 
 	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
@@ -124,7 +134,7 @@ public static class Ref
 		[ConstantExpected, CallerArgumentExpression(nameof(reference))] string? paramName = null
 	)
 	{
-		if (IsNullReference(in reference))
+		if (IsNullRef(in reference))
 		{
 			throw new ArgumentNullRefException(nameof(reference));
 		}

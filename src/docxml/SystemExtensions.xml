@@ -3414,7 +3414,7 @@
             <param name="left">The first element to be swapped.</param>
             <param name="right">The second element to be swapped.</param>
         </member>
-        <member name="M:System.Ref.AsByteRef``1(``0@)">
+        <member name="M:System.Ref.ByteRef``1(``0@)">
             <summary>
             Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
             </summary>
@@ -3424,10 +3424,10 @@
             using <see langword="ref readonly"/> as a combined parameter modifier.
             </param>
         </member>
-        <member name="M:System.Ref.AsReadOnlyByteRef``1(``0@)">
-            <inheritdoc cref="M:System.Ref.AsByteRef``1(``0@)"/>
+        <member name="M:System.Ref.ReadOnlyByteRef``1(``0@)">
+            <inheritdoc cref="M:System.Ref.ByteRef``1(``0@)"/>
         </member>
-        <member name="M:System.Ref.IsNullReference``1(``0@)">
+        <member name="M:System.Ref.IsNullRef``1(``0@)">
             <summary>
             Determines whether the current reference points to <see langword="null"/>.
             </summary>
@@ -3435,7 +3435,7 @@
             <param name="reference">The reference to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Ref.MemoryLocationAreSame``1(``0@,``0@)">
+        <member name="M:System.Ref.AreSameRef``1(``0@,``0@)">
             <summary>
             Check whether two references point to a same memory location.
             </summary>
@@ -3444,7 +3444,7 @@
             <param name="right">The second element to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Ref.MakeNullReference``1">
+        <member name="M:System.Ref.NullRef``1">
             <summary>
             Returns a reference that points to <see langword="null"/>.
             </summary>
@@ -3460,6 +3460,15 @@
             <typeparam name="T">The type of the referenced item.</typeparam>
             <param name="ref">The read-only reference.</param>
             <returns>The non-read-only reference.</returns>
+        </member>
+        <member name="M:System.Ref.ToPointer``1(``0@)">
+            <summary>
+            Converts the managed pointer into unmanaged one,
+            meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
+            </summary>
+            <typeparam name="T">The type of the value that pointer points to.</typeparam>
+            <param name="ref">The reference to be converted.</param>
+            <returns>The unmanaged pointer as the result value.</returns>
         </member>
         <member name="M:System.Ref.Slice``1(``0@,System.Int32,System.Int32)">
             <summary>

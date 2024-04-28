@@ -905,7 +905,7 @@ public partial struct Grid :
 		=> comparisonType switch
 		{
 			GridComparison.Default
-				=> InternalEqualsByRef(in Ref.AsReadOnlyByteRef(in this[0]), in Ref.AsReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount),
+				=> InternalEqualsByRef(in Ref.ReadOnlyByteRef(in this[0]), in Ref.ReadOnlyByteRef(in other[0]), sizeof(Mask) * CellsCount),
 			GridComparison.IncludingTransforms => this.GetMinLexGrid() == other.GetMinLexGrid(),
 			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
 		};
@@ -1893,7 +1893,7 @@ public partial struct Grid :
 		}
 	Longer:
 		// Only check that the ref is the same if buffers are large, and hence its worth avoiding doing unnecessary comparisons.
-		if (!Ref.MemoryLocationAreSame(in first, in second))
+		if (!Ref.AreSameRef(in first, in second))
 		{
 			// C# compiler inverts this test, making the outer goto the conditional jmp.
 			goto Vector;
@@ -2137,8 +2137,8 @@ public partial struct Grid :
 	{
 		var result = Empty;
 		Unsafe.CopyBlock(
-			ref Ref.AsByteRef(ref result[0]),
-			in Ref.AsReadOnlyByteRef(in maskArray[0]),
+			ref Ref.ByteRef(ref result[0]),
+			in Ref.ReadOnlyByteRef(in maskArray[0]),
 			(uint)(sizeof(Mask) * maskArray.Length)
 		);
 		return result;
@@ -2161,7 +2161,7 @@ public partial struct Grid :
 		ArgumentOutOfRangeException.ThrowIfNotEqual(Array.TrueForAll(maskArray, maskMatcher), true);
 
 		var result = Empty;
-		Unsafe.CopyBlock(ref Ref.AsByteRef(ref result[0]), in Ref.AsReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
+		Unsafe.CopyBlock(ref Ref.ByteRef(ref result[0]), in Ref.ReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
 		return result;
 	}
 }
