@@ -2776,6 +2776,20 @@
             A new <see cref="T:System.String"/> instance that contains characters from the input sequence that satisfy the condition.
             </returns>
         </member>
+        <member name="M:System.Linq.StringEnumerable.SelectMany(System.String,System.Func{System.Char,System.String},System.Func{System.Char,System.Char,System.String})">
+            <summary>
+            Projects each element of a sequence to a <see cref="T:System.String"/>, flattens the resulting sequences into one sequence,
+            and invokes a result selector function on each element therein.
+            </summary>
+            <param name="this"></param>
+            <param name="collectionSelector"></param>
+            <param name="resultSelector"></param>
+            <returns>
+            A <see cref="T:System.String"/> whose elements are the result of invoking the one-to-many transform function
+            <paramref name="collectionSelector"/> on each element of <paramref name="this"/>
+            and then mapping each of those sequence elements and their corresponding source element to a result element.
+            </returns>
+        </member>
         <member name="T:System.Linq.TupleEnumerable">
             <summary>
             Provides with LINQ methods for <see cref="T:System.Runtime.CompilerServices.ITuple"/> instances.

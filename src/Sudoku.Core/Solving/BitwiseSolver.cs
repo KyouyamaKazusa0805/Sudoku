@@ -14,7 +14,7 @@ namespace Sudoku.Solving;
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </i></b></para>
 /// </remarks>
-public sealed unsafe partial class BitwiseSolver : ISolver
+public sealed unsafe class BitwiseSolver : ISolver
 {
 	/// <summary>
 	/// The buffer length of a solution puzzle.

@@ -11,7 +11,7 @@ namespace Sudoku.Solving;
 /// <code>
 /// ..............3.85..1.2.......5.7.....4...1...9.......5......73..2.1........4...9
 /// </code>
-/// The current solver may spend about 4.5 min on solving this puzzle.
+/// The current solver may spend about 4.5 min on solving this puzzle on my machine.
 /// </para>
 /// <para>
 /// For more information, please visit
