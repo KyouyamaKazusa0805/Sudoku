@@ -71,7 +71,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		=> _hotkeyFunctions = [
 			(new(VirtualKey.C, VirtualKeyModifiers.Control), CopyPatternText),
 			(new(VirtualKey.C, VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift), async () => await CopySudokuGridControlAsSnapshotAsync()),
-			(new(VirtualKey.V, VirtualKeyModifiers.Control), async () => await PasteCodeToSudokuGridAsync()),
+			(new(VirtualKey.V, VirtualKeyModifiers.Control), async () => await PastePatternTextAsync()),
 		];
 
 	/// <summary>
@@ -145,10 +145,9 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	}
 
 	/// <summary>
-	/// Paste the grid.
+	/// Paste the pattern text.
 	/// </summary>
-	/// <returns></returns>
-	private async Task PasteCodeToSudokuGridAsync()
+	private async Task PastePatternTextAsync()
 	{
 		if (SudokuPane.FocusState != FocusState.Unfocused
 			&& Clipboard.GetContent() is var dataPackageView
@@ -259,16 +258,27 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private async void GeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		var pattern = SelectedCells;
-		var missingDigit = MissingDigit;
-		var fixedCandidates = FixedCandidates;
+		var (pattern, missingDigit, fixedCandidates) = (SelectedCells, MissingDigit, FixedCandidates);
+		var ratingScale = ((App)Application.Current).Preference.TechniqueInfoPreferences.RatingScale;
+		var ratingScaleFormat = FactorMarshal.GetScaleFormatString(1 / ratingScale);
+		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(SudokuPane);
 		using var cts = new CancellationTokenSource();
 		try
 		{
 			(_ctsForGeneratingOperations, IsGeneratorLaunched, _generatingCount, _generatingFilteredCount) = (cts, true, 0, 0);
-			if (await Task.Run(() => taskEntry(cts.Token)) is { IsUndefined: false } grid)
+			if (await Task.Run(() => taskEntry(analyzer, cts.Token)) is
+				{
+					Grid: { IsUndefined: false } grid,
+					Result: { DifficultyLevel: var difficultyLevel, MaxDifficulty: var rating, TotalDifficulty: var ratingSum }
+				})
 			{
 				SudokuPane.Puzzle = grid;
+				RatingDisplayer.Text = string.Format(
+					ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_RatingInfo", App.CurrentCulture),
+					(rating / ratingScale).ToString(ratingScaleFormat),
+					(ratingSum / ratingScale).ToString(ratingScaleFormat),
+					difficultyLevel.GetName(App.CurrentCulture)
+				);
 			}
 		}
 		catch (OperationCanceledException)
@@ -281,10 +291,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		}
 
 
-		static T createProgress<T>(ref int total, int filtered) where T : struct, IEquatable<T>, IProgressDataProvider<T>
-			=> T.Create(++total, filtered);
-
-		bool checkGrid(ref Grid grid, ref readonly CandidateMap fixedCandidates)
+		static bool checkGrid(ref Grid grid, ref readonly CandidateMap fixedCandidates)
 		{
 			if (!fixedCandidates)
 			{
@@ -306,7 +313,21 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			return true;
 		}
 
-		Grid taskEntry(CancellationToken cancellationToken)
+		static AnalysisResult getAnalyzedResult(Analyzer analyzer, ref readonly Grid grid, CancellationToken cancellationToken)
+		{
+			lock (AnalyzingRelatedSyncRoot)
+			{
+				return analyzer.Analyze(in grid, cancellationToken: cancellationToken);
+			}
+		}
+
+		static T createProgress<T>(ref int total, int filtered) where T : struct, IEquatable<T>, IProgressDataProvider<T>
+			=> T.Create(++total, filtered);
+
+		void reportCallback<T>(T progress) where T : struct, IEquatable<T>, IProgressDataProvider<T>
+			=> DispatcherQueue.TryEnqueue(() => AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString());
+
+		(Grid Grid, AnalysisResult Result) taskEntry(Analyzer analyzer, CancellationToken cancellationToken)
 		{
 			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
 			var progress = new SelfReportingProgress<GeneratorProgress>(reportCallback);
@@ -315,21 +336,11 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 				var grid = generator.Generate(cancellationToken: cancellationToken);
 				if (checkGrid(ref grid, in fixedCandidates))
 				{
-					return grid;
+					return (grid, getAnalyzedResult(analyzer, in grid, cancellationToken));
 				}
 
 				progress.Report(createProgress<GeneratorProgress>(ref _generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
-			}
-
-
-			void reportCallback(GeneratorProgress progress)
-			{
-				DispatcherQueue.TryEnqueue(progressCallback);
-
-
-				void progressCallback()
-					=> AnalyzeStepSearcherNameLabel.Text = ((IProgressDataProvider<GeneratorProgress>)progress).ToDisplayString();
 			}
 		}
 	}
@@ -351,7 +362,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private async void CopyPictureButton_ClickAsync(object sender, RoutedEventArgs e) => await CopySudokuGridControlAsSnapshotAsync();
 
-	private async void PasteButton_ClickAsync(object sender, RoutedEventArgs e) => await PasteCodeToSudokuGridAsync();
+	private async void PasteButton_ClickAsync(object sender, RoutedEventArgs e) => await PastePatternTextAsync();
 
 	private void Dialog_AreYouSureToReturnToEmpty_ActionButtonClick(TeachingTip sender, object args)
 	{

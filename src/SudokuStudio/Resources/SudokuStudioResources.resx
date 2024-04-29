@@ -2513,4 +2513,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_SelectedCellsCount" xml:space="preserve">
     <value>Selected cells count: </value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_RatingInfo" xml:space="preserve">
+    <value>Rating: max {0}, total {1} (Difficulty level: {2})</value>
+  </data>
 </root>

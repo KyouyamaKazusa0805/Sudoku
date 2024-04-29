@@ -8252,6 +8252,11 @@
               Looks up a localized string similar to No missing digit.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_RatingInfo">
+            <summary>
+              Looks up a localized string similar to Rating: max {0}, total {1} (Difficulty level: {2}).
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_SelectedCellsCount">
             <summary>
               Looks up a localized string similar to Selected cells count: .
@@ -14917,11 +14922,10 @@
             <seealso cref="T:Windows.Storage.Streams.IRandomAccessStream"/>
             <seealso cref="T:Windows.Storage.StorageFile"/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.PasteCodeToSudokuGridAsync">
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.PastePatternTextAsync">
             <summary>
-            Paste the grid.
+            Paste the pattern text.
             </summary>
-            <returns></returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.InitializeComponent">
             <summary>

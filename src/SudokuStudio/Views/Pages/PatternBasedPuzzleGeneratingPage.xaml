@@ -95,6 +95,13 @@
 			<StackPanel
 				Grid.Column="1" Orientation="Vertical" Spacing="10" Margin="0,20,0,0"
 				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
+				<StackPanel.Resources>
+					<Style TargetType="TextBlock">
+						<Setter Property="FontSize" Value="16" />
+						<Setter Property="FontWeight" Value="Bold" />
+					</Style>
+				</StackPanel.Resources>
+
 				<TextBlock
 					x:Name="PatternCounter" FontWeight="Bold" FontSize="16"
 					Foreground="{x:Bind cvt:GeneratingConversion.GetPatternCounterBrush(SelectedCells),Mode=OneWay}" />
@@ -120,8 +127,9 @@
 					</Border>
 				</Grid>
 				<Button
-					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}" HorizontalAlignment="Center"
+					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
 					Click="GeneratingButton_ClickAsync" />
+				<TextBlock x:Name="RatingDisplayer" FontWeight="Bold" FontSize="16" />
 			</StackPanel>
 		</Grid>
 	</StackPanel>

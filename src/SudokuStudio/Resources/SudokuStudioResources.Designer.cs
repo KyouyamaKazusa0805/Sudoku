@@ -4228,6 +4228,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rating: max {0}, total {1} (Difficulty level: {2}).
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_RatingInfo {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_RatingInfo", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Selected cells count: .
         /// </summary>
         internal static string PatternBasedPuzzleGeneratingPage_SelectedCellsCount {
