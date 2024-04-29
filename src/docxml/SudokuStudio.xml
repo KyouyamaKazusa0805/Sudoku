@@ -14962,6 +14962,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidatesProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates"/>
+        </member>
         <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched">
             <summary>
             Indicates whether the generator is running.
@@ -14980,6 +14986,11 @@
         <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells">
             <summary>
             Indicates the selected cells.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.FixedCandidates">
+            <summary>
+            Indicates the fixed candidates.
             </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.SettingsPage">

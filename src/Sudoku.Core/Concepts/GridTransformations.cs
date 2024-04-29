@@ -232,7 +232,7 @@ public static unsafe class GridTransformations
 	/// <param name="digit2">The digit 2 to be swapped.</param>
 	/// <returns>The result.</returns>
 	/// <exception cref="ArgumentException">Throws when the puzzle is not solved.</exception>
-	public static ref Grid SwapTwoDigits(this ref Grid @this, Digit digit1, Digit digit2)
+	public static ref Grid SwapDigit(this ref Grid @this, Digit digit1, Digit digit2)
 	{
 		if (digit1 == digit2)
 		{
@@ -266,7 +266,7 @@ public static unsafe class GridTransformations
 	/// This method will return the reference that is same as the argument <paramref name="this"/>,
 	/// in order to inline multiple transformation operations.
 	/// </remarks>
-	public static ref Grid SwapTwoHouses(this ref Grid @this, House houseIndex1, House houseIndex2)
+	public static ref Grid SwapHouse(this ref Grid @this, House houseIndex1, House houseIndex2)
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex1 is >= 9 and < 27, true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(houseIndex2 is >= 9 and < 27, true);

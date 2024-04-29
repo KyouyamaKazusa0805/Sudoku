@@ -148,6 +148,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public abstract void ForEach(Action<TElement> action);
 
 	/// <summary>
+	/// Try to toggle the offset, which means the value will be added if not exist in collection, or removed if exists.
+	/// </summary>
+	/// <param name="offset">The offset to be added or removed.</param>
+	public abstract void Toggle(TElement offset);
+
+	/// <summary>
 	/// Determine whether the map contains the specified offset.
 	/// </summary>
 	/// <param name="offset">The offset.</param>

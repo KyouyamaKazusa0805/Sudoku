@@ -9,25 +9,20 @@ public partial struct CandidateMap
 	public struct Enumerator(Candidate[] offsets) : IEnumerator<Candidate>
 	{
 		/// <summary>
-		/// The internal field for offsets.
-		/// </summary>
-		private readonly Candidate[] _offsets = offsets;
-
-		/// <summary>
 		/// Indicates the index.
 		/// </summary>
 		private int _index = -1;
 
 
 		/// <inheritdoc/>
-		public readonly Candidate Current => _offsets[_index];
+		public readonly Candidate Current => offsets[_index];
 
 		/// <inheritdoc/>
 		readonly object IEnumerator.Current => Current;
 
 
 		/// <inheritdoc/>
-		public bool MoveNext() => ++_index < _offsets.Length;
+		public bool MoveNext() => ++_index < offsets.Length;
 
 		/// <inheritdoc/>
 		readonly void IDisposable.Dispose() { }

@@ -195,11 +195,6 @@
             </summary>
             <param name="candidates">Indicates the candidate offsets.</param>
         </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.CellDigitEnumerator._candidates">
-            <summary>
-            Indictaes the internal array.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.CandidateMap.CellDigitEnumerator._index">
             <summary>
             Indicates the index.
@@ -215,6 +210,35 @@
             <returns>The enumerator itself.</returns>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.CellDigitEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CandidateMap.CellEnumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each cell of the collection.
+            </summary>
+            <param name="candidates">Indicates the candidate offsets.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.#ctor(System.Int32[])">
+            <summary>
+            Represents an enumerator type that can iterate on each cell of the collection.
+            </summary>
+            <param name="candidates">Indicates the candidate offsets.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.CandidateMap.CellEnumerator._index">
+            <summary>
+            Indicates the index.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.CellEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.GetEnumerator">
+            <summary>
+            Returns itself, in order to iterate the value using <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator itself.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.MaxValue">
@@ -335,6 +359,12 @@
         <member name="M:Sudoku.Concepts.CandidateMap.GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.EnumerateCells">
+            <summary>
+            Try to enumerate cells on each candidates.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.EnumerateCellDigit">
             <summary>
             Try to enumerate cell and digit value on each candidates.
@@ -362,7 +392,16 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Remove(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.RemoveCell(System.Int32)">
+            <summary>
+            Remove all <see cref="T:System.Int32"/> instances that is equal to the argument <paramref name="cell"/>.
+            </summary>
+            <param name="cell">The cell to be removed.</param>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.RemoveRange(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Toggle(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Clear">
@@ -463,11 +502,6 @@
             Represents an enumerator type that iterates on each candidate offsets.
             </summary>
             <param name="offsets">Indicates the offsets.</param>
-        </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.Enumerator._offsets">
-            <summary>
-            The internal field for offsets.
-            </summary>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Enumerator._index">
             <summary>
@@ -808,10 +842,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Toggle(System.Int32)">
-            <summary>
-            Toggle a cell offset from the map, which means the cell will be removed if contained, or added if not contained.
-            </summary>
-            <param name="cell">The cell to be toggled.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Clear">
             <inheritdoc/>
@@ -2972,7 +3003,7 @@
             </remarks>
             <seealso cref="F:System.Math.PI"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridTransformations.SwapTwoDigits(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.GridTransformations.SwapDigit(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap two digits.
             </summary>
@@ -2982,7 +3013,7 @@
             <returns>The result.</returns>
             <exception cref="T:System.ArgumentException">Throws when the puzzle is not solved.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.GridTransformations.SwapTwoHouses(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.GridTransformations.SwapHouse(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
             <summary>
             Swap to houses.
             </summary>
@@ -3205,6 +3236,12 @@
             Iterates on each element in this collection.
             </summary>
             <param name="action">The visitor that handles for each element in this collection.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.Toggle(`1)">
+            <summary>
+            Try to toggle the offset, which means the value will be added if not exist in collection, or removed if exists.
+            </summary>
+            <param name="offset">The offset to be added or removed.</param>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.Contains(`1)">
             <summary>

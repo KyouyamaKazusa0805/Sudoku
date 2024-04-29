@@ -849,12 +849,9 @@ public partial struct CellMap :
 		return result;
 	}
 
-	/// <summary>
-	/// Toggle a cell offset from the map, which means the cell will be removed if contained, or added if not contained.
-	/// </summary>
-	/// <param name="cell">The cell to be toggled.</param>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Toggle(Cell cell) => _ = Contains(cell) ? Remove(cell) : Add(cell);
+	public void Toggle(Cell offset) => _ = Contains(offset) ? Remove(offset) : Add(offset);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -3,11 +3,10 @@ namespace Sudoku.Concepts;
 public partial struct CandidateMap
 {
 	/// <summary>
-	/// Represents an enumerator type that can iterate on each candidate of the collection,
-	/// with its cell and digit value in the target tuple.
+	/// Represents an enumerator type that can iterate on each cell of the collection.
 	/// </summary>
 	/// <param name="candidates">Indicates the candidate offsets.</param>
-	public ref struct CellDigitEnumerator(Candidate[] candidates)
+	public ref struct CellEnumerator(Candidate[] candidates)
 	{
 		/// <summary>
 		/// Indicates the index.
@@ -16,14 +15,10 @@ public partial struct CandidateMap
 
 
 		/// <inheritdoc cref="IEnumerator.Current"/>
-		public readonly (Candidate Candidate, Cell Cell, Digit Digit) Current
+		public readonly Cell Current
 		{
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			get
-			{
-				var candidate = candidates[_index];
-				return (candidate, candidate / 9, candidate % 9);
-			}
+			get => candidates[_index] / 9;
 		}
 
 
@@ -32,7 +27,7 @@ public partial struct CandidateMap
 		/// </summary>
 		/// <returns>The enumerator itself.</returns>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		public readonly CellDigitEnumerator GetEnumerator() => this;
+		public readonly CellEnumerator GetEnumerator() => this;
 
 		/// <inheritdoc cref="IEnumerator.MoveNext"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]

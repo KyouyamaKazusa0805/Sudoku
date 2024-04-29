@@ -7,6 +7,7 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress.")]
 [DependencyProperty<Digit>("MissingDigit", Accessibility = Accessibility.Internal, DocSummary = "Indicates the missing digit.")]
 [DependencyProperty<CellMap>("SelectedCells", Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected cells.")]
+[DependencyProperty<CandidateMap>("FixedCandidates", Accessibility = Accessibility.Internal, DocSummary = "Indicates the fixed candidates.")]
 public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 {
 	/// <summary>
@@ -174,15 +175,15 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	[Callback]
 	private static void SelectedCellsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((First: d, Second: e) is not
+		if ((d, e) is not
 			{
-				First: PatternBasedPuzzleGeneratingPage
+				Item1: PatternBasedPuzzleGeneratingPage
 				{
 					_userColoringView: var view,
 					PatternCounter: var counterTextBlock,
 					SudokuPane: var pane
 				} page,
-				Second.NewValue: CellMap newValue
+				Item2.NewValue: CellMap newValue
 			})
 		{
 			return;
@@ -228,12 +229,32 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		SelectedCells = newValue;
 	}
 
-	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e) => e.Cancel = true;
+	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e)
+	{
+		if (SudokuPane.Puzzle is { ModifiablesCount: 0 })
+		{
+			SudokuPane.Puzzle = Grid.Empty;
+		}
+
+		// Update fixed candidates.
+		var originalMap = FixedCandidates;
+		if (e.DigitInput == -1)
+		{
+			originalMap.RemoveCell(e.Cell);
+		}
+		else
+		{
+			originalMap.Add(e.Candidate);
+		}
+
+		FixedCandidates = originalMap;
+	}
 
 	private async void GeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var pattern = SelectedCells;
 		var missingDigit = MissingDigit;
+		var fixedCandidates = FixedCandidates;
 		using var cts = new CancellationTokenSource();
 		try
 		{
@@ -253,37 +274,56 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		}
 
 
+		static T createProgress<T>(ref int total, int filtered) where T : struct, IEquatable<T>, IProgressDataProvider<T>
+			=> T.Create(++total, filtered);
+
+		bool checkGrid(ref Grid grid, ref readonly CandidateMap fixedCandidates)
+		{
+			if (!fixedCandidates)
+			{
+				return true;
+			}
+
+			var cellsMap = fixedCandidates.CellDistribution;
+			foreach (var cell in fixedCandidates.EnumerateCells())
+			{
+				grid.SwapDigit(grid.SolutionGrid.GetDigit(cell), Log2((uint)cellsMap[cell]));
+			}
+			foreach (var cell in fixedCandidates.EnumerateCells())
+			{
+				if (grid.SolutionGrid.GetDigit(cell) != Log2((uint)cellsMap[cell]))
+				{
+					return false;
+				}
+			}
+			return true;
+		}
+
 		Grid taskEntry(CancellationToken cancellationToken)
 		{
-#if FULL_IMPL
 			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
-			var progress = new SelfReportingProgress<GeneratorProgress>(progressReporter);
+			var progress = new SelfReportingProgress<GeneratorProgress>(reportCallback);
 			while (true)
 			{
 				var grid = generator.Generate(cancellationToken: cancellationToken);
-				return grid;
-			ReportState:
-				progress.Report(create<GeneratorProgress>(ref _generatingCount, _generatingFilteredCount));
+				if (checkGrid(ref grid, in fixedCandidates))
+				{
+					return grid;
+				}
+
+				progress.Report(createProgress<GeneratorProgress>(ref _generatingCount, _generatingFilteredCount));
 				cancellationToken.ThrowIfCancellationRequested();
 			}
 
 
-			static T create<T>(ref int generatingCount, int generatingFilteredCount)
-				where T : struct, IEquatable<T>, IProgressDataProvider<T>
-				=> T.Create(++generatingCount, generatingFilteredCount);
-
-			void progressReporter(GeneratorProgress progress)
+			void reportCallback(GeneratorProgress progress)
 			{
-				DispatcherQueue.TryEnqueue(dispatchingHandler);
+				DispatcherQueue.TryEnqueue(progressCallback);
 
 
-				void dispatchingHandler()
+				void progressCallback()
 					=> AnalyzeStepSearcherNameLabel.Text = ((IProgressDataProvider<GeneratorProgress>)progress).ToDisplayString();
 			}
-#else
-			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
-			return generator.Generate(cancellationToken: cancellationToken);
-#endif
 		}
 	}
 
@@ -311,6 +351,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		SudokuPane.Puzzle = Grid.Empty;
 		SudokuPane.ViewUnit = null;
 		SelectedCells = [];
+		FixedCandidates = [];
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
 

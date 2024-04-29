@@ -192,10 +192,10 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					8 => (13, 14, 22, 23)
 				};
 
-				puzzle.SwapTwoHouses(c1s, c1e);
+				puzzle.SwapHouse(c1s, c1e);
 				if (c2s != -1)
 				{
-					puzzle.SwapTwoHouses(c2s, c2e);
+					puzzle.SwapHouse(c2s, c2e);
 				}
 
 				targetCell = 40;
@@ -402,10 +402,10 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					8 => (13, 14, 22, 23)
 				};
 
-				puzzle.SwapTwoHouses(c1s, c1e);
+				puzzle.SwapHouse(c1s, c1e);
 				if (c2s != -1)
 				{
-					puzzle.SwapTwoHouses(c2s, c2e);
+					puzzle.SwapHouse(c2s, c2e);
 				}
 
 				var isRow = house < 18;

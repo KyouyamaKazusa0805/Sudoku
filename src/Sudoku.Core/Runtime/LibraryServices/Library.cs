@@ -662,7 +662,7 @@ public readonly partial struct Library(
 					{
 						d2 = random.NextDigit();
 					} while (d1 == d2);
-					grid.SwapTwoDigits(d1, d2);
+					grid.SwapDigit(d1, d2);
 				}
 			}
 
@@ -677,7 +677,7 @@ public readonly partial struct Library(
 					{
 						l2 = l1p * 3 + random.Next(0, 3);
 					} while (l1 == l2);
-					grid.SwapTwoHouses(l1, l2);
+					grid.SwapHouse(l1, l2);
 				}
 			}
 
@@ -692,7 +692,7 @@ public readonly partial struct Library(
 					{
 						l2 = l1p * 3 + random.Next(0, 3);
 					} while (l1 == l2);
-					grid.SwapTwoHouses(l1, l2);
+					grid.SwapHouse(l1, l2);
 				}
 			}
 

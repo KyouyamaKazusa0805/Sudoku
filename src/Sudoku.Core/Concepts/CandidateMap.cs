@@ -356,6 +356,13 @@ public partial struct CandidateMap :
 	public readonly Enumerator GetEnumerator() => new(Offsets);
 
 	/// <summary>
+	/// Try to enumerate cells on each candidates.
+	/// </summary>
+	/// <returns>The enumerator instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly CellEnumerator EnumerateCells() => new(Offsets);
+
+	/// <summary>
 	/// Try to enumerate cell and digit value on each candidates.
 	/// </summary>
 	/// <returns>The enumerator instance.</returns>
@@ -528,8 +535,21 @@ public partial struct CandidateMap :
 			Count--;
 			return true;
 		}
-
 		return false;
+	}
+
+	/// <summary>
+	/// Remove all <see cref="Candidate"/> instances that is equal to the argument <paramref name="cell"/>.
+	/// </summary>
+	/// <param name="cell">The cell to be removed.</param>
+	public int RemoveCell(Cell cell)
+	{
+		var result = 0;
+		for (var digit = 0; digit < 9; digit++)
+		{
+			result += Remove(cell * 9 + digit) ? 1 : 0;
+		}
+		return result;
 	}
 
 	/// <inheritdoc/>
@@ -543,9 +563,12 @@ public partial struct CandidateMap :
 				result++;
 			}
 		}
-
 		return result;
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Toggle(Candidate offset) => _ = Contains(offset) ? Remove(offset) : Add(offset);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
