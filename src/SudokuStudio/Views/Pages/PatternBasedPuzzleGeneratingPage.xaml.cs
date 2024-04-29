@@ -16,7 +16,6 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private readonly ViewUnitBindableSource _userColoringView = new();
 
 
-
 	/// <summary>
 	/// Indicates the number of generating and generated puzzles.
 	/// </summary>
