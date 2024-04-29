@@ -2519,4 +2519,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_GoToAnalyzePage" xml:space="preserve">
     <value>Go to analyzer page</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_ClearCells" xml:space="preserve">
+    <value>Clear cells chosen</value>
+  </data>
+  <data name="PatternBasedPuzzleGeneratingPage_ClearDigits" xml:space="preserve">
+    <value>Clear digits input</value>
+  </data>
 </root>

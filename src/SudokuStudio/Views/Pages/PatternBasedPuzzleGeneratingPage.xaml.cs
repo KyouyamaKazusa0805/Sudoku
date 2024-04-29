@@ -216,6 +216,22 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		counterTextBlock.Text = $"{p}{newValue.Count}";
 	}
 
+	[Callback]
+	private static void FixedCandidatesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (PatternBasedPuzzleGeneratingPage { SudokuPane: var pane }, { NewValue: CandidateMap newValue }))
+		{
+			return;
+		}
+
+		var puzzle = Grid.Empty;
+		foreach (var (_, cell, digit) in newValue.EnumerateCellDigit())
+		{
+			puzzle.SetDigit(cell, digit);
+		}
+		pane.Puzzle = puzzle;
+	}
+
 
 	private void SudokuPane_Loaded(object sender, RoutedEventArgs e)
 		=> ((App)Application.Current).CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane);
@@ -377,6 +393,22 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private void GoToAnalyzePageButton_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage<AnalyzePage, Grid>(SudokuPane.Puzzle);
+
+	private void ClearCellButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (!IsGeneratorLaunched)
+		{
+			SelectedCells = [];
+		}
+	}
+
+	private void ClearDigitButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (!IsGeneratorLaunched)
+		{
+			FixedCandidates = [];
+		}
+	}
 
 	private void ClearButton_Click(object sender, RoutedEventArgs e) => Dialog_AreYouSureToReturnToEmpty.IsOpen = true;
 }

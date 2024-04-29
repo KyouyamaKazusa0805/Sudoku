@@ -4192,6 +4192,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Clear cells chosen.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_ClearCells {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_ClearCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Clear digits input.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_ClearDigits {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_ClearDigits", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Copy puzzle.
         /// </summary>
         internal static string PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName {

@@ -2516,4 +2516,10 @@
   <data name="PatternBasedPuzzleGeneratingPage_GoToAnalyzePage" xml:space="preserve">
     <value>前往分析页分析</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_ClearCells" xml:space="preserve">
+    <value>清空选中格子</value>
+  </data>
+  <data name="PatternBasedPuzzleGeneratingPage_ClearDigits" xml:space="preserve">
+    <value>清空输入数字</value>
+  </data>
 </root>

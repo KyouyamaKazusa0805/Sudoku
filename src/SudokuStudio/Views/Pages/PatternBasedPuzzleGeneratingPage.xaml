@@ -44,6 +44,12 @@
 					x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}"
 					Click="PasteButton_ClickAsync" />
 				<AppBarSeparator />
+				<AppBarButton
+					x:Name="ClearCellButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearCells}"
+					Click="ClearCellButton_Click" />
+				<AppBarButton
+					x:Name="ClearDigitButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearDigits}"
+					Click="ClearDigitButton_Click" />
 				<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
 			</CommandBar>
 		</Border>

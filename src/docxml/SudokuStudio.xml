@@ -8232,6 +8232,16 @@
               Looks up a localized string similar to Read picture.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_ClearCells">
+            <summary>
+              Looks up a localized string similar to Clear cells chosen.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_ClearDigits">
+            <summary>
+              Looks up a localized string similar to Clear digits input.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName">
             <summary>
               Looks up a localized string similar to Copy puzzle.
