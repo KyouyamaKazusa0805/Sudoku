@@ -12258,6 +12258,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPaddingProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadiusProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.GivenFontProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont"/>.
@@ -12570,6 +12582,16 @@
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
             <summary>
             Indicates the dash style of the other links.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding">
+            <summary>
+            Indicates the value that describes the padding value displaying cell view nodes.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerCornerRadius">
+            <summary>
+            Indicates the value that describes corner radiuse for displaying cell view nodes.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.GivenFont">

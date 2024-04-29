@@ -396,8 +396,8 @@ internal static class RenderableFactory
 					Tag = $"{nameof(RenderableFactory)}: {ViewNodeTagPrefixes[typeof(CellViewNode)][0]} {new RxCyConverter().CellConverter(cell)}{id.GetIdentifierSuffix()}",
 					Opacity = 0,
 					Background = new SolidColorBrush(IdentifierConversion.GetColor(id)),
-					CornerRadius = new(6),
-					Margin = new(6)
+					CornerRadius = sudokuPane.CellsInnerCornerRadius,
+					Margin = sudokuPane.CellsInnerPadding
 				};
 
 				GridLayout.SetRowSpan(control, 3);

@@ -52,6 +52,8 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
 [DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DocSummary = "Indicates the dash style of the cycle-like technique links.")]
 [DependencyProperty<DashArray>("OtherLinkDashStyle", DocSummary = "Indicates the dash style of the other links.")]
+[DependencyProperty<Thickness>("CellsInnerPadding", DocSummary = "Indicates the value that describes the padding value displaying cell view nodes.")]
+[DependencyProperty<CornerRadius>("CellsInnerCornerRadius", DocSummary = "Indicates the value that describes corner radiuse for displaying cell view nodes.")]
 [DependencyProperty<FontFamily>("GivenFont", DocSummary = "Indicates the given font.")]
 [DependencyProperty<FontFamily>("ModifiableFont", DocSummary = "Indicates the modifiable font.")]
 [DependencyProperty<FontFamily>("PencilmarkFont", DocSummary = "Indicates the candidate font.")]
@@ -142,6 +144,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Default]
 	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
+
+	[Default]
+	private static readonly Thickness CellsInnerPaddingDefaultValue = new(6);
+
+	[Default]
+	private static readonly CornerRadius CellsInnerCornerRadiusDefaultValue = new(6);
 
 	[Default]
 	private static readonly FontFamily GivenFontDefaultValue = new("Tahoma");

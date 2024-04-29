@@ -48,11 +48,11 @@
 			<c:SudokuPane
 				x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,20,40,0"
 				CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
-				EnableAnimationFeedback="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableAnimationFeedback,Mode=OneWay}"
 				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
 				HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCursors="True" DisplayCandidates="False"
 				DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False"
-				EnableRightTapRemoving="False" EnableDoubleTapFilling="False" HighlightBackgroundOpacity="{m:Decimal ParseString='1.0'}"
+				CellsInnerPadding="3" CellsInnerCornerRadius="6" HighlightBackgroundOpacity="{m:Decimal ParseString='0.8'}"
+				EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="False"
 				GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 				ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
 				CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
