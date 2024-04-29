@@ -12024,6 +12024,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdatedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdated"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdated"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScaleProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale"/>.
@@ -12384,6 +12390,11 @@
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.TransparentBackground">
             <summary>
             Indicates whether sudoku pane does not use background color to display a sudoku puzzle.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.ClearViewWhenUpdated">
+            <summary>
+            Indicates whether the view unit will be cleared if grid updated.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HighlightCandidateCircleScale">

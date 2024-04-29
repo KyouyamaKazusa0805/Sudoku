@@ -281,6 +281,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	{
 		SudokuPane.Puzzle = Grid.Empty;
 		SudokuPane.ViewUnit = null;
+		SelectedCells = [];
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
 

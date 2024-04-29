@@ -13,6 +13,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<bool>("EnableRightTapRemoving", DefaultValue = true, DocSummary = "Indicates whether the digit will be removed (eliminated) from the containing cell by tapping a candidate using right mouse button.")]
 [DependencyProperty<bool>("EnableAnimationFeedback", DefaultValue = true, DocSummary = "Indicates whether sudoku pane enables for animation feedback.")]
 [DependencyProperty<bool>("TransparentBackground", DocSummary = "Indicates whether sudoku pane does not use background color to display a sudoku puzzle.")]
+[DependencyProperty<bool>("ClearViewWhenUpdated", DefaultValue = true, DocSummary = "Indicates whether the view unit will be cleared if grid updated.")]
 [DependencyProperty<decimal>("HighlightCandidateCircleScale", DocSummary = "Indicates the scale of highlighted candidate circles. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("HighlightBackgroundOpacity", DocSummary = "Indicates the opacity of the background highlighted elements. The value should generally be below 1.0.")]
 [DependencyProperty<decimal>("ChainStrokeThickness", DocSummary = "Indicates the chain stroke thickness.")]
@@ -669,7 +670,10 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		}
 
 		// Clears the view unit.
-		ViewUnit = null;
+		if (ClearViewWhenUpdated)
+		{
+			ViewUnit = null;
+		}
 
 		// Reset scale.
 		if (EnableAnimationFeedback)
