@@ -146,7 +146,6 @@ public sealed partial class AnalyzePage : Page
 		var character = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(puzzle.ToString($"#{character}"));
-
 		Clipboard.SetContent(dataPackage);
 	}
 

@@ -17,10 +17,32 @@
 	<Page.Resources>
 		<Color x:Key="SelectedCellColorLight">Skyblue</Color>
 		<Color x:Key="SelectedCellColorDark">#5D8AE2</Color>
+		<TeachingTip
+			x:Name="Dialog_AreYouSureToReturnToEmpty" IsLightDismissEnabled="True" Target="{x:Bind ClearButton}"
+			ActionButtonContent="{m:R Key=AnalyzePage_Sure}" CloseButtonContent="{m:R Key=AnalyzePage_Cancel}"
+			Title="{m:R Key=AnalyzePage_Ensure}" Subtitle="{m:R Key=AnalyzePage_AreYouSureToReturnToEmpty}"
+			ActionButtonClick="Dialog_AreYouSureToReturnToEmpty_ActionButtonClick" />
 	</Page.Resources>
 
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+		<!--Description-->
 		<TextBlock Text="{m:R Key=PatternBasedPuzzleGeneratorPage_Description}" Margin="0,10,0,0" />
+
+		<!--Common functions-->
+		<Border
+			CornerRadius="5" BorderThickness="2" Margin="0,10" BorderBrush="{ThemeResource MenuBarBorderBrush}"
+			HorizontalAlignment="Left">
+			<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
+				<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
+				<AppBarButton
+					x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
+					Click="CopyPictureButton_ClickAsync" />
+				<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />
+				<AppBarSeparator />
+				<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
+			</CommandBar>
+		</Border>
+
 		<Grid ColumnDefinitions="Auto,*">
 			<!--Grid-->
 			<c:SudokuPane

@@ -14828,10 +14828,52 @@
             Indicates the cancellation token source for generating operations.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._hotkeyFunctions">
+            <summary>
+            Defines a key-value pair of functions that is used for routing hotkeys.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage"/> instance.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.OnKeyDown(Microsoft.UI.Xaml.Input.KeyRoutedEventArgs)">
+            <inheritdoc/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.InitializeFields">
+            <summary>
+            Try to initialize field <see cref="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._hotkeyFunctions"/>.
+            </summary>
+            <seealso cref="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._hotkeyFunctions"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopySudokuGridText">
+            <summary>
+            Copy the text.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopySudokuGridControlAsSnapshotAsync">
+            <summary>
+            Copy snapshot.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.OnSavingOrCopyingSudokuPanePictureSimpleAsync``1(``0)">
+            <summary>
+            Produces a copying/saving operation for pictures from sudoku pane <see cref="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SudokuPane"/>.
+            </summary>
+            <typeparam name="T">
+            The type of the handling argument. This type should be <see cref="T:Windows.Storage.Streams.IRandomAccessStream"/> or <see cref="T:Windows.Storage.StorageFile"/>.
+            </typeparam>
+            <param name="obj">The argument.</param>
+            <returns>A <see cref="T:System.Threading.Tasks.Task"/> instance that contains details for the current asynchronous operation.</returns>
+            <seealso cref="T:Windows.Storage.Streams.IRandomAccessStream"/>
+            <seealso cref="T:Windows.Storage.StorageFile"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.PasteCodeToSudokuGridAsync">
+            <summary>
+            Paste the grid.
+            </summary>
+            <returns></returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.InitializeComponent">
             <summary>
