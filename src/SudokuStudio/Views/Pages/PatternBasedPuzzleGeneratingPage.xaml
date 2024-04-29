@@ -12,7 +12,8 @@
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
 	xmlns:z="using:SudokuStudio"
 	mc:Ignorable="d"
-	d:DataContext="{d:DesignInstance Type=p:PatternBasedPuzzleGeneratingPage}">
+	d:DataContext="{d:DesignInstance Type=p:PatternBasedPuzzleGeneratingPage}"
+	Loaded="Page_Loaded">
 	<Page.Resources>
 		<Color x:Key="SelectedCellColorLight">Skyblue</Color>
 		<Color x:Key="SelectedCellColorDark">#5D8AE2</Color>
@@ -67,8 +68,24 @@
 			<StackPanel
 				Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
 				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
+				<Grid ColumnDefinitions="Auto,6,*">
+					<TextBlock FontWeight="Bold" VerticalAlignment="Center" Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
+					<SelectorBar x:Name="MissingDigitSelector" Grid.Column="2" SelectionChanged="SelectorBar_SelectionChanged">
+						<SelectorBarItem Text="1" Tag="{m:Int32 Value=0}" />
+						<SelectorBarItem Text="2" Tag="{m:Int32 Value=1}" />
+						<SelectorBarItem Text="3" Tag="{m:Int32 Value=2}" />
+						<SelectorBarItem Text="4" Tag="{m:Int32 Value=3}" />
+						<SelectorBarItem Text="5" Tag="{m:Int32 Value=4}" />
+						<SelectorBarItem Text="6" Tag="{m:Int32 Value=5}" />
+						<SelectorBarItem Text="7" Tag="{m:Int32 Value=6}" />
+						<SelectorBarItem Text="8" Tag="{m:Int32 Value=7}" />
+						<SelectorBarItem Text="9" Tag="{m:Int32 Value=8}" />
+						<SelectorBarItem Text="{m:R Key=PatternBasedPuzzleGeneratingPage_NoMissing}" Tag="{m:Int32 Value=-1}" />
+					</SelectorBar>
+				</Grid>
 				<Button
 					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
+					HorizontalAlignment="Center"
 					Click="GeneratingButton_ClickAsync" />
 			</StackPanel>
 		</Grid>

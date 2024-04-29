@@ -2501,4 +2501,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_Generate" xml:space="preserve">
     <value>Generate</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_MissingDigit" xml:space="preserve">
+    <value>Missing digit: </value>
+  </data>
+  <data name="PatternBasedPuzzleGeneratingPage_NoMissing" xml:space="preserve">
+    <value>No missing digit</value>
+  </data>
 </root>

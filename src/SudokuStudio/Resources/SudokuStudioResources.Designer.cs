@@ -4201,6 +4201,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Missing digit: .
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_MissingDigit {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_MissingDigit", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to No missing digit.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_NoMissing {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_NoMissing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
         /// </summary>
         internal static string PatternBasedPuzzleGeneratorPage_Description {

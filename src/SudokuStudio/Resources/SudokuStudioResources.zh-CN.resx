@@ -2483,9 +2483,6 @@
   <data name="AnalyzePage_ToMinLexGrid" xml:space="preserve">
     <value>最小字典序</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="PatternBasedPuzzleGeneratorPage_Description" xml:space="preserve">
     <value>这个页面提供了一个方式，用于生成指定用户自定义图案（图形）作为提示数摆放的题目。</value>
   </data>
@@ -2497,5 +2494,14 @@
   </data>
   <data name="PatternBasedPuzzleGeneratingPage_Generate" xml:space="preserve">
     <value>出题</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="PatternBasedPuzzleGeneratingPage_MissingDigit" xml:space="preserve">
+    <value>缺少的数字：</value>
+  </data>
+  <data name="PatternBasedPuzzleGeneratingPage_NoMissing" xml:space="preserve">
+    <value>没有缺少的数字</value>
   </data>
 </root>

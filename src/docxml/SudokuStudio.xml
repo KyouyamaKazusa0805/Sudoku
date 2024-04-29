@@ -8237,6 +8237,16 @@
               Looks up a localized string similar to Generate.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_MissingDigit">
+            <summary>
+              Looks up a localized string similar to Missing digit: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_NoMissing">
+            <summary>
+              Looks up a localized string similar to No missing digit.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratorPage_Description">
             <summary>
               Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
@@ -14850,6 +14860,12 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigitProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCellsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>.
@@ -14864,6 +14880,11 @@
         <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent">
             <summary>
             Indicates the progress.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.MissingDigit">
+            <summary>
+            Indicates the missing digit.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells">

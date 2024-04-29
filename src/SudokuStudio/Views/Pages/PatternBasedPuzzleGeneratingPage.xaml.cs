@@ -5,6 +5,7 @@ namespace SudokuStudio.Views.Pages;
 /// </summary>
 [DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is running.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress.")]
+[DependencyProperty<Digit>("MissingDigit", Accessibility = Accessibility.Internal, DocSummary = "Indicates the missing digit.")]
 [DependencyProperty<CellMap>("SelectedCells", Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected cells.")]
 public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 {
@@ -32,6 +33,18 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// </summary>
 	public PatternBasedPuzzleGeneratingPage() => InitializeComponent();
 
+
+	[Callback]
+	private static void MissingDigitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+	{
+		if ((d, e) is not (PatternBasedPuzzleGeneratingPage { MissingDigitSelector: var selector }, { NewValue: Digit newValue }))
+		{
+			return;
+		}
+
+		var control = selector.Items.First(item => item.Tag is Digit d && d == newValue);
+		selector.SelectedItem = control;
+	}
 
 	[Callback]
 	private static void SelectedCellsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
@@ -83,6 +96,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private async void GeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var pattern = SelectedCells;
+		var missingDigit = MissingDigit;
 		using var cts = new CancellationTokenSource();
 		try
 		{
@@ -105,7 +119,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		Grid taskEntry(CancellationToken cancellationToken)
 		{
 #if FULL_IMPL
-			var generator = new PatternBasedPuzzleGenerator(in pattern);
+			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
 			var progress = new SelfReportingProgress<GeneratorProgress>(progressReporter);
 			while (true)
 			{
@@ -130,11 +144,16 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 					=> AnalyzeStepSearcherNameLabel.Text = ((IProgressDataProvider<GeneratorProgress>)progress).ToDisplayString();
 			}
 #else
-			var generator = new PatternBasedPuzzleGenerator(in pattern);
+			var generator = new PatternBasedPuzzleGenerator(in pattern, missingDigit);
 			return generator.Generate(cancellationToken: cancellationToken);
 #endif
 		}
 	}
+
+	private void SelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
+		=> MissingDigit = (Digit)sender.SelectedItem.Tag!;
+
+	private void Page_Loaded(object sender, RoutedEventArgs e) => MissingDigit = -1;
 
 	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForGeneratingOperations?.Cancel();
 }
