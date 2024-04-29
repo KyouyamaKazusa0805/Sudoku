@@ -174,7 +174,16 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	[Callback]
 	private static void SelectedCellsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (PatternBasedPuzzleGeneratingPage { _userColoringView: var view, SudokuPane: var pane } page, { NewValue: CellMap newValue }))
+		if ((First: d, Second: e) is not
+			{
+				First: PatternBasedPuzzleGeneratingPage
+				{
+					_userColoringView: var view,
+					PatternCounter: var counterTextBlock,
+					SudokuPane: var pane
+				} page,
+				Second.NewValue: CellMap newValue
+			})
 		{
 			return;
 		}
@@ -195,6 +204,9 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 		pane.ViewUnit = null;
 		pane.ViewUnit = view;
+
+		var p = ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
+		counterTextBlock.Text = $"{p}{newValue.Count}";
 	}
 
 
@@ -278,7 +290,13 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private void SelectorBar_SelectionChanged(SelectorBar sender, SelectorBarSelectionChangedEventArgs args)
 		=> MissingDigit = (Digit)sender.SelectedItem.Tag!;
 
-	private void Page_Loaded(object sender, RoutedEventArgs e) => MissingDigit = -1;
+	private void Page_Loaded(object sender, RoutedEventArgs e)
+	{
+		MissingDigit = -1;
+
+		var p = ResourceDictionary.Get("PatternBasedPuzzleGeneratingPage_SelectedCellsCount", App.CurrentCulture);
+		PatternCounter.Text = $"{p}0";
+	}
 
 	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForGeneratingOperations?.Cancel();
 

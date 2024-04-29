@@ -14,4 +14,7 @@ internal static class GeneratingConversion
 
 	public static Visibility GetAnalyzeTabsVisibility_GeneratingPage(bool isGeneratorLaunched)
 		=> isGeneratorLaunched ? Visibility.Collapsed : Visibility.Visible;
+
+	public static Brush GetPatternCounterBrush(CellMap selectedCells)
+		=> new SolidColorBrush(selectedCells.Count < 17 ? Colors.Red : App.CurrentTheme == ApplicationTheme.Light ? Colors.Black : Colors.White);
 }

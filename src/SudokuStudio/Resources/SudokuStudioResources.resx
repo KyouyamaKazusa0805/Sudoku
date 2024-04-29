@@ -2510,4 +2510,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName" xml:space="preserve">
     <value>Copy puzzle</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_SelectedCellsCount" xml:space="preserve">
+    <value>Selected cells count: </value>
+  </data>
 </root>

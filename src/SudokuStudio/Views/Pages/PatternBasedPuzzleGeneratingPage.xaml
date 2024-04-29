@@ -40,7 +40,9 @@
 				<AppBarButton
 					x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
 					Click="CopyPictureButton_ClickAsync" />
-				<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />
+				<AppBarButton
+					x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}"
+					Click="PasteButton_ClickAsync" />
 				<AppBarSeparator />
 				<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
 			</CommandBar>
@@ -93,6 +95,9 @@
 			<StackPanel
 				Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
 				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
+				<TextBlock
+					x:Name="PatternCounter" FontWeight="Bold" FontSize="16"
+					Foreground="{x:Bind cvt:GeneratingConversion.GetPatternCounterBrush(SelectedCells),Mode=OneWay}" />
 				<Grid ColumnDefinitions="Auto,6,*">
 					<TextBlock FontWeight="Bold" VerticalAlignment="Center" Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
 					<SelectorBar x:Name="MissingDigitSelector" Grid.Column="2" SelectionChanged="SelectorBar_SelectionChanged">
