@@ -35,6 +35,9 @@
 			<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
 				<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
 				<AppBarButton
+					x:Name="CopyPuzzleButton" Icon="Copy" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName}"
+					Click="CopyPuzzleButton_Click" />
+				<AppBarButton
 					x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
 					Click="CopyPictureButton_ClickAsync" />
 				<AppBarButton x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}" Click="PasteButton_ClickAsync" />

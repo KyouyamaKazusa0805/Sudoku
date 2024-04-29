@@ -2504,4 +2504,7 @@
   <data name="PatternBasedPuzzleGeneratingPage_NoMissing" xml:space="preserve">
     <value>没有缺少的数字</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName" xml:space="preserve">
+    <value>复制题目</value>
+  </data>
 </root>

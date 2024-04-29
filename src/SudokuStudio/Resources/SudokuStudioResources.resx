@@ -2507,4 +2507,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_NoMissing" xml:space="preserve">
     <value>No missing digit</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName" xml:space="preserve">
+    <value>Copy puzzle</value>
+  </data>
 </root>

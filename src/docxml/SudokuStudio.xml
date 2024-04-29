@@ -8232,6 +8232,11 @@
               Looks up a localized string similar to Read picture.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName">
+            <summary>
+              Looks up a localized string similar to Copy puzzle.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_Generate">
             <summary>
               Looks up a localized string similar to Generate.
@@ -14880,9 +14885,14 @@
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._hotkeyFunctions"/>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopySudokuGridText">
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopyPatternText">
             <summary>
-            Copy the text.
+            Copy pattern text.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopyGridText">
+            <summary>
+            Copy grid text.
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.CopySudokuGridControlAsSnapshotAsync">

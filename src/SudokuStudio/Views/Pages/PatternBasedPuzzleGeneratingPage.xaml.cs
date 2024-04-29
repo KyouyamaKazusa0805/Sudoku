@@ -68,18 +68,29 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	[MemberNotNull(nameof(_hotkeyFunctions))]
 	private void InitializeFields()
 		=> _hotkeyFunctions = [
-			(new(VirtualKey.C, VirtualKeyModifiers.Control), () => CopySudokuGridText()),
+			(new(VirtualKey.C, VirtualKeyModifiers.Control), CopyPatternText),
 			(new(VirtualKey.C, VirtualKeyModifiers.Control | VirtualKeyModifiers.Shift), async () => await CopySudokuGridControlAsSnapshotAsync()),
 			(new(VirtualKey.V, VirtualKeyModifiers.Control), async () => await PasteCodeToSudokuGridAsync()),
 		];
 
 	/// <summary>
-	/// Copy the text.
+	/// Copy pattern text.
 	/// </summary>
-	private void CopySudokuGridText()
+	private void CopyPatternText()
 	{
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
 		dataPackage.SetText(new BitStatusCellMapConverter().Converter(SelectedCells));
+		Clipboard.SetContent(dataPackage);
+	}
+
+	/// <summary>
+	/// Copy grid text.
+	/// </summary>
+	private void CopyGridText()
+	{
+		var placeholderText = ((App)Application.Current).Preference.UIPreferences.EmptyCellCharacter;
+		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
+		dataPackage.SetText(SudokuPane.Puzzle.ToString($"{placeholderText}"));
 		Clipboard.SetContent(dataPackage);
 	}
 
@@ -271,7 +282,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 
 	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForGeneratingOperations?.Cancel();
 
-	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopySudokuGridText();
+	private void CopyButton_Click(object sender, RoutedEventArgs e) => CopyPatternText();
 
 	private async void CopyPictureButton_ClickAsync(object sender, RoutedEventArgs e) => await CopySudokuGridControlAsSnapshotAsync();
 
@@ -284,6 +295,8 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		SelectedCells = [];
 		Dialog_AreYouSureToReturnToEmpty.IsOpen = false;
 	}
+
+	private void CopyPuzzleButton_Click(object sender, RoutedEventArgs e) => CopyGridText();
 
 	private void ClearButton_Click(object sender, RoutedEventArgs e) => Dialog_AreYouSureToReturnToEmpty.IsOpen = true;
 }

@@ -4192,6 +4192,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Copy puzzle.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Generate.
         /// </summary>
         internal static string PatternBasedPuzzleGeneratingPage_Generate {
