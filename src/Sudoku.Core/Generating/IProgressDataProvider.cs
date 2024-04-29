@@ -3,8 +3,8 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Indicates the data provider type,
 /// </summary>
-/// <typeparam name="T">The type of the implementation data provider.</typeparam>
-public interface IProgressDataProvider<T> where T : struct, IEquatable<T>, IProgressDataProvider<T>
+/// <typeparam name="TSelf">The type of the implementation data provider.</typeparam>
+public interface IProgressDataProvider<TSelf> where TSelf : struct, IEquatable<TSelf>, IProgressDataProvider<TSelf>
 {
 	/// <summary>
 	/// Indicates the number of puzzles having been generated.
@@ -20,10 +20,10 @@ public interface IProgressDataProvider<T> where T : struct, IEquatable<T>, IProg
 
 
 	/// <summary>
-	/// Try to create a <typeparamref name="T"/> instance.
+	/// Try to create a <typeparamref name="TSelf"/> instance.
 	/// </summary>
 	/// <param name="count">The number of puzzles generated.</param>
 	/// <param name="succeeded">The number of puzzles has passed the checking.</param>
-	/// <returns>A <typeparamref name="T"/> instance.</returns>
-	public static abstract T Create(int count, int succeeded);
+	/// <returns>A <typeparamref name="TSelf"/> instance.</returns>
+	public static abstract TSelf Create(int count, int succeeded);
 }

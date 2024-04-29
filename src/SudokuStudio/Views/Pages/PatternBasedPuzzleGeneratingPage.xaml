@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:c="using:SudokuStudio.Views.Controls"
 	xmlns:concepts="using:Sudoku.Concepts"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	xmlns:y="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
@@ -13,8 +14,8 @@
 	mc:Ignorable="d"
 	d:DataContext="{d:DesignInstance Type=p:PatternBasedPuzzleGeneratingPage}">
 	<Page.Resources>
-		<Color x:Key="SelectedCellColorLight">#F5C716</Color>
-		<Color x:Key="SelectedCellColorDark">#E7A114</Color>
+		<Color x:Key="SelectedCellColorLight">Skyblue</Color>
+		<Color x:Key="SelectedCellColorDark">#5D8AE2</Color>
 	</Page.Resources>
 
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
@@ -41,8 +42,34 @@
 				DigitInput="SudokuPane_DigitInput"
 			/>
 
+			<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+				<ProgressRing
+					x:Name="AnalyzeProgress" Width="100" Height="100" Value="{x:Bind ProgressPercent,Mode=OneWay}"
+					IsIndeterminate="{x:Bind cvt:GeneratingConversion.GetProgressRingIsIntermediate_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+					IsActive="{x:Bind cvt:GeneratingConversion.GetProgressRingIsActive_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
+				<TextBlock
+					x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center" Margin="0,12"
+					Text="{m:R Key=AnalyzePage_GeneratorIsProcessing}"
+					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
+				<TextBlock
+					x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
+					HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"
+					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
+				<Button
+					x:Name="CancelOperationButton" x:FieldModifier="internal" HorizontalAlignment="Center"
+					FontWeight="Bold" FontSize="16" Content="{m:R Key=AnalyzePage_CancelAnalyzing}"
+					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+					Click="CancelOperationButton_Click" />
+			</StackPanel>
+
 			<!--Tools-->
-			<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+			<StackPanel
+				Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
+				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
+				<Button
+					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
+					Click="GeneratingButton_ClickAsync" />
 			</StackPanel>
 		</Grid>
 	</StackPanel>

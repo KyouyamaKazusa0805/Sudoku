@@ -15,11 +15,9 @@ public readonly record struct FilteredGeneratorProgress(int Count, int Succeeded
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	string IProgressDataProvider<FilteredGeneratorProgress>.ToDisplayString() => $"{Succeeded}/{Count} ({Percentage:P2})";
 
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	static FilteredGeneratorProgress IProgressDataProvider<FilteredGeneratorProgress>.Create(int count, int succeeded) => new(count, succeeded);
 }

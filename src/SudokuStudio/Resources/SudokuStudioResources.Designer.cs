@@ -4192,6 +4192,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generate.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_Generate {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_Generate", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
         /// </summary>
         internal static string PatternBasedPuzzleGeneratorPage_Description {

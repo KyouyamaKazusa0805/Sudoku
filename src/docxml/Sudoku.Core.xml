@@ -4350,7 +4350,7 @@
             <summary>
             Indicates the data provider type,
             </summary>
-            <typeparam name="T">The type of the implementation data provider.</typeparam>
+            <typeparam name="TSelf">The type of the implementation data provider.</typeparam>
         </member>
         <member name="P:Sudoku.Generating.IProgressDataProvider`1.Count">
             <summary>
@@ -4365,11 +4365,11 @@
         </member>
         <member name="M:Sudoku.Generating.IProgressDataProvider`1.Create(System.Int32,System.Int32)">
             <summary>
-            Try to create a <typeparamref name="T"/> instance.
+            Try to create a <typeparamref name="TSelf"/> instance.
             </summary>
             <param name="count">The number of puzzles generated.</param>
             <param name="succeeded">The number of puzzles has passed the checking.</param>
-            <returns>A <typeparamref name="T"/> instance.</returns>
+            <returns>A <typeparamref name="TSelf"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Generating.PatternBasedPuzzleGenerator">
             <summary>

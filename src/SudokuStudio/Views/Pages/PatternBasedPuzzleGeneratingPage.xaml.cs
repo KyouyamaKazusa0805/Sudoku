@@ -3,6 +3,8 @@ namespace SudokuStudio.Views.Pages;
 /// <summary>
 /// Represents a page that generates for pattern-based puzzles.
 /// </summary>
+[DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is running.")]
+[DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress.")]
 [DependencyProperty<CellMap>("SelectedCells", Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected cells.")]
 public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 {
@@ -11,6 +13,18 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	/// </summary>
 	/// <seealso cref="SudokuPane.CurrentPaneMode"/>
 	private readonly ViewUnitBindableSource _userColoringView = new();
+
+
+
+	/// <summary>
+	/// Indicates the number of generating and generated puzzles.
+	/// </summary>
+	private int _generatingCount, _generatingFilteredCount;
+
+	/// <summary>
+	/// Indicates the cancellation token source for generating operations.
+	/// </summary>
+	private CancellationTokenSource? _ctsForGeneratingOperations;
 
 
 	/// <summary>
@@ -65,4 +79,62 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	}
 
 	private void SudokuPane_DigitInput(SudokuPane sender, DigitInputEventArgs e) => e.Cancel = true;
+
+	private async void GeneratingButton_ClickAsync(object sender, RoutedEventArgs e)
+	{
+		var pattern = SelectedCells;
+		using var cts = new CancellationTokenSource();
+		try
+		{
+			(_ctsForGeneratingOperations, IsGeneratorLaunched, _generatingCount, _generatingFilteredCount) = (cts, true, 0, 0);
+			if (await Task.Run(() => taskEntry(cts.Token)) is { IsUndefined: false } grid)
+			{
+				SudokuPane.Puzzle = grid;
+			}
+		}
+		catch (OperationCanceledException)
+		{
+		}
+		finally
+		{
+			_ctsForGeneratingOperations = null;
+			IsGeneratorLaunched = false;
+		}
+
+
+		Grid taskEntry(CancellationToken cancellationToken)
+		{
+#if FULL_IMPL
+			var generator = new PatternBasedPuzzleGenerator(in pattern);
+			var progress = new SelfReportingProgress<GeneratorProgress>(progressReporter);
+			while (true)
+			{
+				var grid = generator.Generate(cancellationToken: cancellationToken);
+				return grid;
+			ReportState:
+				progress.Report(create<GeneratorProgress>(ref _generatingCount, _generatingFilteredCount));
+				cancellationToken.ThrowIfCancellationRequested();
+			}
+
+
+			static T create<T>(ref int generatingCount, int generatingFilteredCount)
+				where T : struct, IEquatable<T>, IProgressDataProvider<T>
+				=> T.Create(++generatingCount, generatingFilteredCount);
+
+			void progressReporter(GeneratorProgress progress)
+			{
+				DispatcherQueue.TryEnqueue(dispatchingHandler);
+
+
+				void dispatchingHandler()
+					=> AnalyzeStepSearcherNameLabel.Text = ((IProgressDataProvider<GeneratorProgress>)progress).ToDisplayString();
+			}
+#else
+			var generator = new PatternBasedPuzzleGenerator(in pattern);
+			return generator.Generate(cancellationToken: cancellationToken);
+#endif
+		}
+	}
+
+	private void CancelOperationButton_Click(object sender, RoutedEventArgs e) => _ctsForGeneratingOperations?.Cancel();
 }

@@ -2495,4 +2495,7 @@
   <data name="MainWindow_PatternBasedPuzzleGeneratingPageTitle" xml:space="preserve">
     <value>图案题出题</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_Generate" xml:space="preserve">
+    <value>出题</value>
+  </data>
 </root>

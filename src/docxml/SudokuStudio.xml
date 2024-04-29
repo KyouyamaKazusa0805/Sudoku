@@ -3331,6 +3331,11 @@
             Provides with conversion methods used by XAML designer, about font picker.
             </summary>
         </member>
+        <member name="T:SudokuStudio.Interaction.Conversions.GeneratingConversion">
+            <summary>
+            Provides with conversion methods used by XAML designer, about generator pages.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
             <summary>
             Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instances.
@@ -4332,6 +4337,23 @@
             <summary>
             Indicates the failed reason is the program cannot unsnap.
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Interaction.SelfReportingProgress`1">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:SudokuStudio.Interaction.SelfReportingProgress`1.#ctor(System.Action{`0})">
+            <summary>
+            Defines a self-reporting progress type.
+            </summary>
+            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
+            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
+        </member>
+        <member name="M:SudokuStudio.Interaction.SelfReportingProgress`1.Report(`0)">
+            <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
         </member>
         <member name="T:SudokuStudio.Interaction.StepSearcherListViewItemSelectedEventArgs">
             <summary>
@@ -8208,6 +8230,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_ReadPicture">
             <summary>
               Looks up a localized string similar to Read picture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_Generate">
+            <summary>
+              Looks up a localized string similar to Generate.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratorPage_Description">
@@ -14666,23 +14693,6 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
-        <member name="T:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1">
-            <summary>
-            Defines a self-reporting progress type.
-            </summary>
-            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
-            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.#ctor(System.Action{`0})">
-            <summary>
-            Defines a self-reporting progress type.
-            </summary>
-            <param name="handler"><inheritdoc cref="M:System.Progress`1.#ctor(System.Action{`0})" path="/param[@name='handler']"/></param>
-            <typeparam name="T"><inheritdoc cref="T:System.Progress`1" path="/typeparam[@name='T']"/></typeparam>
-        </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.SelfReportingProgress`1.Report(`0)">
-            <inheritdoc cref="M:System.Progress`1.OnReport(`0)"/>
-        </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.PrintingOperation">
             <summary>
             Represents printing operation.
@@ -14793,6 +14803,21 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CurrentPaneMode"/>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._generatingCount">
+            <summary>
+            Indicates the number of generating and generated puzzles.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._generatingFilteredCount">
+            <summary>
+            Indicates the number of generating and generated puzzles.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage._ctsForGeneratingOperations">
+            <summary>
+            Indicates the cancellation token source for generating operations.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.#ctor">
             <summary>
             Initializes a <see cref="T:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage"/> instance.
@@ -14813,11 +14838,33 @@
             GetBindingConnector(int connectionId, object target)
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunchedProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercentProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent"/>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCellsProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells"/>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.IsGeneratorLaunched">
+            <summary>
+            Indicates whether the generator is running.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.ProgressPercent">
+            <summary>
+            Indicates the progress.
+            </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.PatternBasedPuzzleGeneratingPage.SelectedCells">
             <summary>

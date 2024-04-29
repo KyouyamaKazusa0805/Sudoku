@@ -2498,4 +2498,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_PatternBasedPuzzleGeneratingPageTitle" xml:space="preserve">
     <value>Pattern-based puzzle generator</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_Generate" xml:space="preserve">
+    <value>Generate</value>
+  </data>
 </root>

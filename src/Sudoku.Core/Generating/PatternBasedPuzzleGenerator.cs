@@ -14,6 +14,11 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 	/// <inheritdoc cref="IGenerator{TResult}.Generate(IProgress{GeneratorProgress}, CancellationToken)"/>
 	public Grid Generate(IProgress<GeneratorProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
+		if (_seedPattern.Count < 17)
+		{
+			return Grid.Undefined;
+		}
+
 		var resultGrid = Grid.Undefined;
 		try
 		{
