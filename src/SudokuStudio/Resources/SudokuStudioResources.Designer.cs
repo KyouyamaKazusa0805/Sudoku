@@ -4210,6 +4210,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Go to analyzer page.
+        /// </summary>
+        internal static string PatternBasedPuzzleGeneratingPage_GoToAnalyzePage {
+            get {
+                return ResourceManager.GetString("PatternBasedPuzzleGeneratingPage_GoToAnalyzePage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Missing digit: .
         /// </summary>
         internal static string PatternBasedPuzzleGeneratingPage_MissingDigit {

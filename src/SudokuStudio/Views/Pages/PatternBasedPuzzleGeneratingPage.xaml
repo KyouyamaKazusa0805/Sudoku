@@ -129,6 +129,10 @@
 				<Button
 					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
 					Click="GeneratingButton_ClickAsync" />
+				<Button
+					x:Name="GoToAnalyzePageButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_GoToAnalyzePage}"
+					IsEnabled="{x:Bind cvt:GeneratingConversion.GetIsEnabledForGoToAnalyzePage(SudokuPane.Puzzle),Mode=OneWay}"
+					Click="GoToAnalyzePageButton_Click" />
 				<TextBlock x:Name="RatingDisplayer" FontWeight="Bold" FontSize="16" />
 			</StackPanel>
 		</Grid>

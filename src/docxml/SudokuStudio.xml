@@ -8242,6 +8242,11 @@
               Looks up a localized string similar to Generate.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_GoToAnalyzePage">
+            <summary>
+              Looks up a localized string similar to Go to analyzer page.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_MissingDigit">
             <summary>
               Looks up a localized string similar to Missing digit: .
@@ -15557,11 +15562,27 @@
             </summary>
             <param name="pageType">The target page type.</param>
         </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1(System.Type,``0)">
+            <summary>
+            Try to navigate to the target page with the custom data.
+            </summary>
+            <typeparam name="TValue">The target page type.</typeparam>
+            <param name="pageType">The page type.</param>
+            <param name="value">The value to be passed.</param>
+        </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``1">
             <summary>
             Try to navigate to the target page via its type specified as type argument.
             </summary>
             <typeparam name="TPage">The type of the page.</typeparam>
+        </member>
+        <member name="M:SudokuStudio.Views.Windows.MainWindow.NavigateToPage``2(``1)">
+            <summary>
+            Try to navigate to the target page via its type specified as type argument.
+            </summary>
+            <typeparam name="TPage">The type of the page.</typeparam>
+            <typeparam name="TValue">The value type.</typeparam>
+            <param name="value">The value.</param>
         </member>
         <member name="M:SudokuStudio.Views.Windows.MainWindow.InitializeField">
             <summary>

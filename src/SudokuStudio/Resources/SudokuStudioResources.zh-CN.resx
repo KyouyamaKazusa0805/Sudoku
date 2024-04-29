@@ -2513,4 +2513,7 @@
   <data name="PatternBasedPuzzleGeneratingPage_RatingInfo" xml:space="preserve">
     <value>难度：最大 {0}、总分 {1}（难度级别：{2}）</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_GoToAnalyzePage" xml:space="preserve">
+    <value>前往分析页分析</value>
+  </data>
 </root>

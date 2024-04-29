@@ -86,10 +86,37 @@ public sealed partial class MainWindow : Window
 	}
 
 	/// <summary>
+	/// Try to navigate to the target page with the custom data.
+	/// </summary>
+	/// <typeparam name="TValue">The target page type.</typeparam>
+	/// <param name="pageType">The page type.</param>
+	/// <param name="value">The value to be passed.</param>
+	internal void NavigateToPage<TValue>(Type pageType, TValue value)
+	{
+		if (NavigationPage.NavigationViewFrame.SourcePageType != pageType)
+		{
+			NavigationPage.NavigationViewFrame.Navigate(
+				pageType,
+				value,
+				new SlideNavigationTransitionInfo { Effect = SlideNavigationTransitionEffect.FromRight }
+			);
+			NavigationPage.SetFrameDisplayTitle(pageType);
+		}
+	}
+
+	/// <summary>
 	/// Try to navigate to the target page via its type specified as type argument.
 	/// </summary>
 	/// <typeparam name="TPage">The type of the page.</typeparam>
 	internal void NavigateToPage<TPage>() where TPage : Page => NavigateToPage(typeof(TPage));
+
+	/// <summary>
+	/// Try to navigate to the target page via its type specified as type argument.
+	/// </summary>
+	/// <typeparam name="TPage">The type of the page.</typeparam>
+	/// <typeparam name="TValue">The value type.</typeparam>
+	/// <param name="value">The value.</param>
+	internal void NavigateToPage<TPage, TValue>(TValue value) where TPage : Page => NavigateToPage(typeof(TPage), value);
 
 	/// <summary>
 	/// Initializes for fields.

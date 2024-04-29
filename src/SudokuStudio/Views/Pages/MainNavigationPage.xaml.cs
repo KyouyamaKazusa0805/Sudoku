@@ -79,8 +79,9 @@ internal sealed partial class MainNavigationPage : Page
 	[SuppressMessage("Style", "IDE0039:Use local function", Justification = "<Pending>")]
 	private void MainNavigationView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
 	{
-		var a = ParentWindow.NavigateToPage<SettingsPage>;
-		var b = () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p));
+		Action
+			a = ParentWindow.NavigateToPage<SettingsPage>,
+			b = () => HandleNavigation((c, _) => c == args.SelectedItemContainer, (_, p) => ParentWindow.NavigateToPage(p));
 		(args.IsSettingsSelected ? a : b)();
 	}
 

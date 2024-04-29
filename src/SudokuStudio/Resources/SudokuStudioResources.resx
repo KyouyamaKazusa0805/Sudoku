@@ -2516,4 +2516,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_RatingInfo" xml:space="preserve">
     <value>Rating: max {0}, total {1} (Difficulty level: {2})</value>
   </data>
+  <data name="PatternBasedPuzzleGeneratingPage_GoToAnalyzePage" xml:space="preserve">
+    <value>Go to analyzer page</value>
+  </data>
 </root>
