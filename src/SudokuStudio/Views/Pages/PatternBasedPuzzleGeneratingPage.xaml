@@ -120,8 +120,7 @@
 					</Border>
 				</Grid>
 				<Button
-					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
-					HorizontalAlignment="Center"
+					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}" HorizontalAlignment="Center"
 					Click="GeneratingButton_ClickAsync" />
 			</StackPanel>
 		</Grid>
