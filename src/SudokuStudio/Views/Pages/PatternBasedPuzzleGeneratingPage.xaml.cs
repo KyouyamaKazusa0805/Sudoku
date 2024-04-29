@@ -155,7 +155,14 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			&& dataPackageView.Contains(StandardDataFormats.Text)
 			&& await dataPackageView.GetTextAsync() is var targetText)
 		{
-			SelectedCells = new BitStatusCellMapParser().Parser(targetText);
+			try
+			{
+				var p = new BitStatusCellMapParser().Parser(targetText);
+				SelectedCells = p;
+			}
+			catch (Exception ex) when (ex is InvalidOperationException or FormatException)
+			{
+			}
 		}
 	}
 

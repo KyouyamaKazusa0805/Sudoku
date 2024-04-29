@@ -93,25 +93,31 @@
 
 			<!--Tools-->
 			<StackPanel
-				Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10"
+				Grid.Column="1" Orientation="Vertical" Spacing="10" Margin="0,20,0,0"
 				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
 				<TextBlock
 					x:Name="PatternCounter" FontWeight="Bold" FontSize="16"
 					Foreground="{x:Bind cvt:GeneratingConversion.GetPatternCounterBrush(SelectedCells),Mode=OneWay}" />
 				<Grid ColumnDefinitions="Auto,6,*">
-					<TextBlock FontWeight="Bold" VerticalAlignment="Center" Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
-					<SelectorBar x:Name="MissingDigitSelector" Grid.Column="2" SelectionChanged="SelectorBar_SelectionChanged">
-						<SelectorBarItem Text="1" Tag="{m:Int32 Value=0}" />
-						<SelectorBarItem Text="2" Tag="{m:Int32 Value=1}" />
-						<SelectorBarItem Text="3" Tag="{m:Int32 Value=2}" />
-						<SelectorBarItem Text="4" Tag="{m:Int32 Value=3}" />
-						<SelectorBarItem Text="5" Tag="{m:Int32 Value=4}" />
-						<SelectorBarItem Text="6" Tag="{m:Int32 Value=5}" />
-						<SelectorBarItem Text="7" Tag="{m:Int32 Value=6}" />
-						<SelectorBarItem Text="8" Tag="{m:Int32 Value=7}" />
-						<SelectorBarItem Text="9" Tag="{m:Int32 Value=8}" />
-						<SelectorBarItem Text="{m:R Key=PatternBasedPuzzleGeneratingPage_NoMissing}" Tag="{m:Int32 Value=-1}" />
-					</SelectorBar>
+					<TextBlock
+						FontWeight="Bold" FontSize="16" VerticalAlignment="Center"
+						Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
+					<Border
+						CornerRadius="5" BorderThickness="2" Grid.Column="2" BorderBrush="{ThemeResource MenuBarBorderBrush}"
+						HorizontalAlignment="Left">
+						<SelectorBar x:Name="MissingDigitSelector" SelectionChanged="SelectorBar_SelectionChanged">
+							<SelectorBarItem Text="1" Tag="{m:Int32 Value=0}" />
+							<SelectorBarItem Text="2" Tag="{m:Int32 Value=1}" />
+							<SelectorBarItem Text="3" Tag="{m:Int32 Value=2}" />
+							<SelectorBarItem Text="4" Tag="{m:Int32 Value=3}" />
+							<SelectorBarItem Text="5" Tag="{m:Int32 Value=4}" />
+							<SelectorBarItem Text="6" Tag="{m:Int32 Value=5}" />
+							<SelectorBarItem Text="7" Tag="{m:Int32 Value=6}" />
+							<SelectorBarItem Text="8" Tag="{m:Int32 Value=7}" />
+							<SelectorBarItem Text="9" Tag="{m:Int32 Value=8}" />
+							<SelectorBarItem Text="{m:R Key=PatternBasedPuzzleGeneratingPage_NoMissing}" Tag="{m:Int32 Value=-1}" />
+						</SelectorBar>
+					</Border>
 				</Grid>
 				<Button
 					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
