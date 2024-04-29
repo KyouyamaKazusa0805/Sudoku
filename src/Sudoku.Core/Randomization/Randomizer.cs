@@ -1,10 +1,10 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Randomization;
 
 /// <summary>
 /// Provides with extension methods for <see cref="Random"/>.
 /// </summary>
 /// <seealso cref="Random"/>
-public static class Randoming
+public static class Randomizer
 {
 	/// <summary>
 	/// Returns a random integer that is within valid digit range (0..9).
@@ -47,7 +47,7 @@ public static class Randoming
 	public static CellMap RandomlySelect(this Random random, ref readonly CellMap cells, int count)
 	{
 		var result = cells.Offsets[..];
-		(random ?? Random.Shared).Shuffle(result);
+		random.Shuffle(result);
 		return [.. result[..count]];
 	}
 
@@ -62,7 +62,27 @@ public static class Randoming
 	public static CandidateMap RandomlySelect(this Random random, ref readonly CandidateMap cells, int count)
 	{
 		var result = cells.Offsets[..];
-		(random ?? Random.Shared).Shuffle(result);
+		random.Shuffle(result);
 		return [.. result[..count]];
 	}
+
+	/// <summary>
+	/// Creates a <see cref="CellMap"/> instance, with the specified number of <see cref="Cell"/>s stored in the collection.
+	/// </summary>
+	/// <param name="random">The random instance.</param>
+	/// <param name="count">The desired number of elements.</param>
+	/// <returns>A <see cref="CellMap"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap CreateCellMap(this Random random, int count)
+		=> random.RandomlySelect(in CellMap.MaxValue, count);
+
+	/// <summary>
+	/// Creates a <see cref="CandidateMap"/> instance, with the specified number of <see cref="Candidate"/>s stored in the collection.
+	/// </summary>
+	/// <param name="random">The random instance.</param>
+	/// <param name="count">The desired number of elements.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap CreateCandidateMap(this Random random, int count)
+		=> random.RandomlySelect(in CandidateMap.MaxValue, count);
 }
