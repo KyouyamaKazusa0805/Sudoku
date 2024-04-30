@@ -8183,6 +8183,12 @@
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the cells belong to a house at the specified index.
             </summary>
         </member>
+        <member name="F:Sudoku.SolutionFields.CellMaps">
+            <summary>
+            Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances that are initialized as singleton element by its corresponding index.
+            For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
+            </summary>
+        </member>
         <member name="F:Sudoku.SolutionFields.PeersMap">
             <summary>
             Indicates a list of <see cref="T:Sudoku.Concepts.CellMap"/> instances representing the peer cells of a cell at the specified index.

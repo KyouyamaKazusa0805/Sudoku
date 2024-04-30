@@ -130,5 +130,5 @@ public static class CellMarshal
 	/// <param name="this">The cell to be converted.</param>
 	/// <returns>A <see cref="CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap AsCellMap(this Cell @this) => [@this];
+	public static ref readonly CellMap AsCellMap(this Cell @this) => ref CellMaps[@this];
 }

@@ -97,9 +97,23 @@ public static class SolutionFields
 	public static readonly CellMap[] HousesMap;
 
 	/// <summary>
+	/// Indicates a list of <see cref="CellMap"/> instances that are initialized as singleton element by its corresponding index.
+	/// For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
+	/// </summary>
+	public static readonly CellMap[] CellMaps;
+
+	/// <summary>
 	/// Indicates a list of <see cref="CellMap"/> instances representing the peer cells of a cell at the specified index.
 	/// </summary>
 	public static readonly CellMap[] PeersMap;
+
+#if CACHE_CANDIDATE_MAPS
+	/// <summary>
+	/// Indicates a list of <see cref="CandidateMap"/> instances that are initialized as singleton element by its corresponding index.
+	/// For example, <c>CandidateMaps[0]</c> is to <c>CandidateMap.Empty + 0</c>, i.e. <c>r1c1(1)</c>.
+	/// </summary>
+	public static readonly CandidateMap[] CandidateMaps;
+#endif
 
 	/// <summary>
 	/// Indicates a list of <see cref="Chute"/> instances representing chutes.
@@ -168,51 +182,85 @@ public static class SolutionFields
 		//
 		// HousesMap
 		//
-		HousesMap = new CellMap[27];
-		for (var house = 0; house < 27; house++)
 		{
-			HousesMap[house] = (CellMap)HousesCells[house];
+			HousesMap = new CellMap[27];
+			for (var house = 0; house < 27; house++)
+			{
+				HousesMap[house] = (CellMap)HousesCells[house];
+			}
+		}
+
+		//
+		// CellMaps
+		//
+		{
+			CellMaps = new CellMap[81];
+			var span = CellMaps.AsSpan();
+			var cell = 0;
+			foreach (ref var map in span)
+			{
+				map.Add(cell++);
+			}
 		}
 
 		//
 		// PeersMap
 		//
-		PeersMap = new CellMap[81];
-		for (var cell = 0; cell < 81; cell++)
 		{
-			var map = CellMap.Empty;
-			for (var peerCell = 0; peerCell < 81; peerCell++)
+			PeersMap = new CellMap[81];
+			for (var cell = 0; cell < 81; cell++)
 			{
-				if (cell != peerCell)
+				var map = CellMap.Empty;
+				for (var peerCell = 0; peerCell < 81; peerCell++)
 				{
-					foreach (var houseType in HouseTypes)
+					if (cell != peerCell)
 					{
-						if (HousesMap[cell.ToHouseIndex(houseType)].Contains(peerCell))
+						foreach (var houseType in HouseTypes)
 						{
-							map.Add(peerCell);
-							break;
+							if (HousesMap[cell.ToHouseIndex(houseType)].Contains(peerCell))
+							{
+								map.Add(peerCell);
+								break;
+							}
 						}
 					}
+					if (map.Count == PeersCount)
+					{
+						break;
+					}
 				}
-				if (map.Count == PeersCount)
-				{
-					break;
-				}
+				PeersMap[cell] = map;
 			}
-			PeersMap[cell] = map;
 		}
+
+#if CACHE_CANDIDATE_MAPS
+		//
+		// CandidateMaps
+		//
+		{
+			CandidateMaps = new CandidateMap[729];
+			var span = CandidateMaps.AsSpan();
+			var candidate = 0;
+			foreach (ref var map in span)
+			{
+				map.Add(candidate++);
+			}
+		}
+#endif
 
 		//
 		// Chutes
 		//
-		Chutes = new Chute[6];
-		for (var chute = 0; chute < 3; chute++)
 		{
-			var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
-			(Chutes[chute], Chutes[chute + 3]) = (
-				new(chute, HousesMap[r1] | HousesMap[r2] | HousesMap[r3], true, 1 << r1 | 1 << r2 | 1 << r3),
-				new(chute + 3, HousesMap[c1] | HousesMap[c2] | HousesMap[c3], false, 1 << c1 | 1 << c2 | 1 << c3)
-			);
+			Chutes = new Chute[6];
+			for (var chute = 0; chute < 3; chute++)
+			{
+				var ((r1, r2, r3), (c1, c2, c3)) = (ChuteHouses[chute], ChuteHouses[chute + 3]);
+				(Chutes[chute], Chutes[chute + 3]) = (
+					new(chute, HousesMap[r1] | HousesMap[r2] | HousesMap[r3], true, 1 << r1 | 1 << r2 | 1 << r3),
+					new(chute + 3, HousesMap[c1] | HousesMap[c2] | HousesMap[c3], false, 1 << c1 | 1 << c2 | 1 << c3)
+				);
+			}
 		}
 	}
 }
