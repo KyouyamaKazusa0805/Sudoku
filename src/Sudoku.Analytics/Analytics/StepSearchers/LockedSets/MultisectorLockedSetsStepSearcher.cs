@@ -35,7 +35,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 			var (rows, columns) = (PossibleSizes[sizeLength][0], PossibleSizes[sizeLength][1]);
 			foreach (var rowList in Digits.AsReadOnlySpan().GetSubsets(rows))
 			{
-				var (rowMask, rowMap) = ((Mask)0, (CellMap)[]);
+				var (rowMask, rowMap) = ((Mask)0, CellMap.Empty);
 				foreach (var row in rowList)
 				{
 					rowMask |= (Mask)(1 << row);
@@ -49,7 +49,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 
 				foreach (var columnList in Digits.AsReadOnlySpan().GetSubsets(columns))
 				{
-					var (columnMask, columnMap) = ((Mask)0, (CellMap)[]);
+					var (columnMask, columnMap) = ((Mask)0, CellMap.Empty);
 					foreach (var column in columnList)
 					{
 						columnMask |= (Mask)(1 << column);
@@ -110,7 +110,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					var cMask = (uint)currentMap.ColumnMask;
 					var bMask = (uint)currentMap.BlockMask;
 					var temp = MathExtensions.Min(PopCount(rMask), PopCount(cMask), PopCount(bMask));
-					var elimMap = (CellMap)[];
+					var elimMap = CellMap.Empty;
 					var check = 0;
 					if (PopCount(rMask) == temp)
 					{

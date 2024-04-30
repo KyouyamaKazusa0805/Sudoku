@@ -62,7 +62,7 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	public static CellMap CreateMapByKeys(ReadOnlySpan<BitStatusMapGrouping<TMap, TElement, TEnumerator, Cell>> groups)
 	{
-		var result = (CellMap)[];
+		var result = CellMap.Empty;
 		foreach (ref readonly var group in groups)
 		{
 			result.Add(group.Key);

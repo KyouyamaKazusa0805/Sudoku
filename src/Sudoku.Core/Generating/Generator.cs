@@ -116,7 +116,7 @@ public ref partial struct Generator
 	private void GenerateInitPos(int cluesCount, SymmetricType symmetricType, CancellationToken cancellationToken = default)
 	{
 		// We start with the full board.
-		(_newValidSudoku, var (used, usedCount, remainingClues)) = (_newFullSudoku, ((CellMap)[], 81, 81));
+		(_newValidSudoku, var (used, usedCount, remainingClues)) = (_newFullSudoku, (CellMap.Empty, 81, 81));
 		var candidateCells = new List<Cell>(8);
 
 		// Do until we have only 17 clues left or until all cells have been tried.

@@ -1466,7 +1466,7 @@ public partial struct Grid :
 	/// <seealso cref="BivalueCells"/>
 	private readonly unsafe CellMap GetMap(CellPredicateFuncPtr predicate)
 	{
-		var result = (CellMap)[];
+		var result = CellMap.Empty;
 		for (var cell = 0; cell < CellsCount; cell++)
 		{
 			if (predicate(in this, cell))

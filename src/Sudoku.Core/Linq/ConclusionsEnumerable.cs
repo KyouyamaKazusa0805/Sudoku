@@ -15,7 +15,7 @@ public static class ConclusionsEnumerable
 	/// <returns>A <see cref="CellMap"/> result.</returns>
 	public static CellMap Select(this ReadOnlySpan<Conclusion> @this, Func<Conclusion, Cell> selector)
 	{
-		var result = (CellMap)[];
+		var result = CellMap.Empty;
 		foreach (var element in @this)
 		{
 			result.Add(selector(element));

@@ -32,7 +32,7 @@ public sealed partial class TwoStrongLinksStepSearcher : StepSearcher
 					}
 
 					// Get all cells.
-					var (cells1, cells2) = ((CellMap)[], (CellMap)[]);
+					var (cells1, cells2) = (CellMap.Empty, CellMap.Empty);
 					var cellsList1 = new List<Cell>(2);
 					var cellsList2 = new List<Cell>(2);
 					foreach (var pos1 in mask1)

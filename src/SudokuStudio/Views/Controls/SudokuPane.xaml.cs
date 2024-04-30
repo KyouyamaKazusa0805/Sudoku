@@ -1038,7 +1038,7 @@ file static class Extensions
 				var result = new List<CellMap>(5);
 				for (var i = 1; ; i++)
 				{
-					var map = (CellMap)[];
+					var map = CellMap.Empty;
 					if (pos - i >= 0)
 					{
 						map.Add(cells[pos - i]);
@@ -1065,7 +1065,7 @@ file static class Extensions
 				var result = new List<CellMap>(5);
 				for (var i = 1; ; i++)
 				{
-					var map = (CellMap)[];
+					var map = CellMap.Empty;
 					if (pos - i >= 0)
 					{
 						map.Add(cells[pos - i]);

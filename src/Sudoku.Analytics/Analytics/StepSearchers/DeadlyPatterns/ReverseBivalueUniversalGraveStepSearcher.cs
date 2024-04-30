@@ -22,7 +22,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 	/// <summary>
 	/// Indicates the global maps. The length of this field is always 7.
 	/// </summary>
-	private static readonly CellMap[] GlobalMaps = [~(CellMap)[], .. from chute in Chutes select chute.Cells];
+	private static readonly CellMap[] GlobalMaps = [CellMap.Full, .. from chute in Chutes select chute.Cells];
 
 
 	/// <summary>

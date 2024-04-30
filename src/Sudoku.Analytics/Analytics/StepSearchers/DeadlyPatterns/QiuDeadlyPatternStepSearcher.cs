@@ -132,7 +132,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var lines = pattern.Lines;
 		var l1 = TrailingZeroCount(lines);
 		var l2 = lines.GetNextSet(l1);
-		var valueCellsInBothLines = (CellMap)[];
+		var valueCellsInBothLines = CellMap.Empty;
 		foreach (var cell in HousesMap[l1] | HousesMap[l2])
 		{
 			if (grid.GetState(cell) != CellState.Empty)
@@ -211,7 +211,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		// Check whether the paired cells contain at least 2 empty cells and not in a block.
-		var emptyCellsInPairedCells = (CellMap)[];
+		var emptyCellsInPairedCells = CellMap.Empty;
 		foreach (var pos in alignedPosMask)
 		{
 			if (HousesCells[l1][pos] is var cell1 && grid.GetState(cell1) == CellState.Empty)
@@ -287,7 +287,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			// One cell only holds those two and the other doesn't only hold them.
 			var cornerExtraDigitsMask = (Mask)(cornerDigitsMask & ~cornerDigitsMaskIntersected);
 			var cornerContainingExtraDigit = corner;
-			var tempMap = (CellMap)[];
+			var tempMap = CellMap.Empty;
 			foreach (var digit in cornerExtraDigitsMask)
 			{
 				tempMap |= CandidatesMap[digit];
@@ -830,7 +830,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		crossline.InOneHouse(out var house);
-		var lockedMap = (CandidateMap)[];
+		var lockedMap = CandidateMap.Empty;
 		foreach (var digit in currentDigitsMask)
 		{
 			foreach (var cell in HousesMap[house] & CandidatesMap[digit])
@@ -1157,7 +1157,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				var l21 = Lines1.GetNextSet(l11);
 				var l12 = TrailingZeroCount(Lines2);
 				var l22 = Lines2.GetNextSet(l12);
-				var result = (CellMap)[];
+				var result = CellMap.Empty;
 				foreach (var (a, b) in ((l11, l12), (l11, l22), (l21, l12), (l21, l22)))
 				{
 					result |= HousesMap[a] & HousesMap[b];

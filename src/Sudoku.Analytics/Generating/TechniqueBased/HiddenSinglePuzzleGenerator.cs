@@ -55,7 +55,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					} while ((columns >> excluderHouse & 1) == 0);
 					_ = (excluderColumns |= 1 << excluderHouse, columns &= ~(1 << excluderHouse));
 				}
-				var excluders = (CellMap)[];
+				var excluders = CellMap.Empty;
 				foreach (var r in excluderRows)
 				{
 					var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;
@@ -235,7 +235,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 					} while ((lines >> excluderHouse & 1) == 0);
 					_ = (excluderLines |= 1 << excluderHouse, lines &= ~(1 << excluderHouse));
 				}
-				var excluders = (CellMap)[];
+				var excluders = CellMap.Empty;
 				foreach (var r in excluderBlocks)
 				{
 					var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;

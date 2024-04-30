@@ -102,7 +102,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 				puzzleString[i] = '0';
 			}
 
-			var map = (CellMap)[];
+			var map = CellMap.Empty;
 			for (var i = 0; i < 16; i++)
 			{
 				while (true)

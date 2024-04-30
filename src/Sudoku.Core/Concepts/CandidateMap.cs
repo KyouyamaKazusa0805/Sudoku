@@ -95,7 +95,7 @@ public partial struct CandidateMap :
 					select digitGroups)
 				{
 					var sb = new StringBuilder(50);
-					var cells = (CellMap)[];
+					var cells = CellMap.Empty;
 					foreach (var candidate in digitGroup)
 					{
 						cells.Add(candidate / 9);
@@ -374,7 +374,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)
 	{
-		var result = (CandidateMap)[];
+		var result = CandidateMap.Empty;
 		var offsets = Offsets;
 		for (int i = start, end = start + count; i < end; i++)
 		{
@@ -712,7 +712,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
 	public static CellMap operator /(in CandidateMap offsets, Digit digit)
 	{
-		var result = (CellMap)[];
+		var result = CellMap.Empty;
 		foreach (var element in offsets)
 		{
 			if (element % 9 == digit)

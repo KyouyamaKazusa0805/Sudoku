@@ -97,7 +97,7 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 	/// <returns>The cells ordered.</returns>
 	private Cell[] OrderCellsViaConnectionComplexity()
 	{
-		var (isOrdered, result) = ((CellMap)[], new Cell[_seedPattern.Count]);
+		var (isOrdered, result) = (CellMap.Empty, new Cell[_seedPattern.Count]);
 		for (var index = 0; index < _seedPattern.Count; index++)
 		{
 			var (maxRating, best) = (0, -1);

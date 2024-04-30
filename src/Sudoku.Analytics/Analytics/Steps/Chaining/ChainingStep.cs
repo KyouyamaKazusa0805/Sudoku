@@ -430,7 +430,7 @@ public abstract partial class ChainingStep(
 	/// <returns>All found candidates.</returns>
 	protected CandidateMap GetPartiallyOffPotentials(ref readonly Grid grid, int viewIndex)
 	{
-		var result = (CandidateMap)[];
+		var result = CandidateMap.Empty;
 
 		viewIndex -= FlatViewsCount;
 		if (viewIndex >= 0)
@@ -624,7 +624,7 @@ public abstract partial class ChainingStep(
 	/// <returns>All found candidates.</returns>
 	protected internal static CandidateMap GetColorCandidates(ChainNode target, bool state, bool skipTarget)
 	{
-		var result = (CandidateMap)[];
+		var result = CandidateMap.Empty;
 		foreach (var p in target.FullChainPotentials)
 		{
 			var (cell, digit, isOn) = p;

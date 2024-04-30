@@ -147,7 +147,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			var mask = grid[in traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
 			{
-				var (tempMask, digitsMask, cells) = (mask, (Mask)0, (CellMap)[]);
+				var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
 				foreach (var digit in digits)
 				{
 					tempMask &= (Mask)~(1 << digit);
@@ -160,7 +160,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				}
 
 				// Gather eliminations.
-				var conclusions = (CandidateMap)[];
+				var conclusions = CandidateMap.Empty;
 				foreach (var digit in tempMask)
 				{
 					foreach (var cell in cells & candidatesMap[digit])
@@ -284,7 +284,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				}
 
 				// Naked subset found. Now check eliminations.
-				var (lockedDigitsMask, conclusions) = ((Mask)0, (CandidateMap)[]);
+				var (lockedDigitsMask, conclusions) = ((Mask)0, CandidateMap.Empty);
 				foreach (var digit in digitsMask)
 				{
 					var map = cells % candidatesMap[digit];

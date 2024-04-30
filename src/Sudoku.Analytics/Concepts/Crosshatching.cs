@@ -20,7 +20,7 @@ public sealed record Crosshatching(ref readonly CellMap BaseCells, ref readonly 
 	public static Crosshatching? TryCreate(ref readonly Grid grid, Digit digit, House house, ref readonly CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
-		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, (CellMap)[], (CellMap)[]);
+		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, CellMap.Empty, CellMap.Empty);
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
 			var tempValues = PeersMap[c] & valueCells;

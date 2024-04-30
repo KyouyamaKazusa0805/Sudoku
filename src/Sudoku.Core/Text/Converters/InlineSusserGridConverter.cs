@@ -71,7 +71,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 			var sb = new StringBuilder(162);
 			var originalGrid = Grid.Parse((SusserGridConverter.Default with { WithCandidates = false }).Converter(in grid));
 
-			var eliminatedCandidates = (CandidateMap)[];
+			var eliminatedCandidates = CandidateMap.Empty;
 			for (var c = 0; c < 81; c++)
 			{
 				var state = grid.GetState(c);
@@ -113,7 +113,7 @@ public sealed partial record InlineSusserGridConverter(bool NegateEliminationsTr
 			static CandidateMap negateElims(ref readonly Grid grid, ref readonly CandidateMap eliminatedCandidates)
 			{
 				var eliminatedCandidatesCellDistribution = eliminatedCandidates.CellDistribution;
-				var result = (CandidateMap)[];
+				var result = CandidateMap.Empty;
 				foreach (var cell in grid.EmptyCells)
 				{
 					if (eliminatedCandidatesCellDistribution.TryGetValue(cell, out var digitsMask))

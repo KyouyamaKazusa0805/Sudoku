@@ -20,7 +20,7 @@ public static class DeadlyPattern
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 
 		// Collect all used cells. This value may not be necessary but will make program be a little bit faster if cached.
-		var cellsUsed = (CellMap)[];
+		var cellsUsed = CellMap.Empty;
 		for (var cell = 0; cell < 81; cell++)
 		{
 			if (grid.GetCandidates(cell) != Grid.MaxCandidatesMask)

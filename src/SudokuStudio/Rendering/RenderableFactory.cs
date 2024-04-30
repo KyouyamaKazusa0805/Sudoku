@@ -233,7 +233,7 @@ internal static class RenderableFactory
 			new AnimatedResultCollection(),
 			new List<Conclusion>(),
 			new List<LinkViewNode>(),
-			(CandidateMap)[]
+			CandidateMap.Empty
 		);
 
 		// Iterate on each view node, and get their own corresponding controls.

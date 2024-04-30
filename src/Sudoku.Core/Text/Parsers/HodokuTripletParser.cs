@@ -17,7 +17,7 @@ public sealed record HodokuTripletParser : IConceptParser<CandidateMap>
 				throw new FormatException(ResourceDictionary.ExceptionMessage("ContainsEmptySegmentOnParsing"));
 			}
 
-			var result = (CandidateMap)[];
+			var result = CandidateMap.Empty;
 			foreach (var segment in segments)
 			{
 				if (segment is [var d and >= '1' and <= '9', var r and >= '1' and <= '9', var c and >= '1' and <= '9'])

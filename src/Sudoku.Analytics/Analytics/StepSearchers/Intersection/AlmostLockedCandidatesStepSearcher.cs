@@ -159,7 +159,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			}
 
 			// Gather the AHS cells.
-			var ahsCells = (CellMap)[];
+			var ahsCells = CellMap.Empty;
 			foreach (var pos in ahsMask)
 			{
 				ahsCells.Add(HousesCells[coverSet][pos]);

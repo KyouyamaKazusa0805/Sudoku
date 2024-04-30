@@ -27,7 +27,7 @@ public sealed partial class GuardianStepSearcher : StepSearcher
 		// Check POM eliminations first.
 		ref readonly var grid = ref context.Grid;
 		var eliminationMaps = (stackalloc CellMap[9]);
-		eliminationMaps.Fill((CellMap)[]);
+		eliminationMaps.Fill(CellMap.Empty);
 
 		var pomSteps = new List<Step>();
 		var playground = grid;

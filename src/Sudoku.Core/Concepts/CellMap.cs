@@ -359,7 +359,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			var result = (CellMap)[];
+			var result = CellMap.Empty;
 			foreach (var cell in Offsets)
 			{
 				result |= PeersMap[cell];
@@ -668,7 +668,7 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public readonly CellMap Slice(int start, int count)
 	{
-		var (result, offsets) = ((CellMap)[], Offsets);
+		var (result, offsets) = (CellMap.Empty, Offsets);
 		for (int i = start, end = start + count; i < end; i++)
 		{
 			result.Add(offsets[i]);
@@ -1113,7 +1113,7 @@ public partial struct CellMap :
 	/// <returns>The result instance.</returns>
 	public static CandidateMap operator *(in CellMap @base, Digit digit)
 	{
-		var result = (CandidateMap)[];
+		var result = CandidateMap.Empty;
 		foreach (var cell in @base.Offsets)
 		{
 			result.Add(cell * 9 + digit);

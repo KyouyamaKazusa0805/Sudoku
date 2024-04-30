@@ -359,7 +359,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 						}
 						else
 						{
-							var distinctCandidatesKey = (CandidateMap)[];
+							var distinctCandidatesKey = CandidateMap.Empty;
 							foreach (SingleStep step in accumulator)
 							{
 								if (!distinctCandidatesKey.Contains(step.Cell * 9 + step.Digit))

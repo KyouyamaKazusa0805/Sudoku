@@ -323,7 +323,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						var (baseMap, coverMap) = ((CellMap)[], (CellMap)[]);
+						var (baseMap, coverMap) = (CellMap.Empty, CellMap.Empty);
 						foreach (var b in baseSets)
 						{
 							baseMap |= HousesMap[b];

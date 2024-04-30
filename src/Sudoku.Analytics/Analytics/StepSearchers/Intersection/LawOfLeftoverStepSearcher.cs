@@ -18,7 +18,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 		{
 			// Try to check for value cells from two different sets.
 			var (lineSetDigitsMask, blockSetDigitsMask) = ((Mask)0, (Mask)0);
-			var mergedCells = (CellMap)[];
+			var mergedCells = CellMap.Empty;
 			foreach (var cell in a - EmptyCells)
 			{
 				lineSetDigitsMask |= (Mask)(1 << grid.GetDigit(cell));

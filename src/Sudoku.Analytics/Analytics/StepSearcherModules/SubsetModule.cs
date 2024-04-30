@@ -90,7 +90,7 @@ internal static class SubsetModule
 			var mask = grid[in traversingMap];
 			foreach (var digits in mask.GetAllSets().GetSubsets(size))
 			{
-				var (tempMask, digitsMask, cells) = (mask, (Mask)0, (CellMap)[]);
+				var (tempMask, digitsMask, cells) = (mask, (Mask)0, CellMap.Empty);
 				foreach (var digit in digits)
 				{
 					tempMask &= (Mask)~(1 << digit);

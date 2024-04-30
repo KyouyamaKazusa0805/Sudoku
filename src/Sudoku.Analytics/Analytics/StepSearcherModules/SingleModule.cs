@@ -169,7 +169,7 @@ internal static class SingleModule
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
-		(var result, var i, excluderHouses) = ((CellMap)[], 0, new House[8]);
+		(var result, var i, excluderHouses) = (CellMap.Empty, 0, new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
 		{
 			foreach (var otherCell in PeersMap[cell])

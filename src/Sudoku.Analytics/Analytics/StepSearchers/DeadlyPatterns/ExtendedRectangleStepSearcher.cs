@@ -130,7 +130,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					var (map, pairs) = ((CellMap)[], (List<(Cell, Cell)>)[]);
+					var (map, pairs) = (CellMap.Empty, (List<(Cell, Cell)>)[]);
 					foreach (var pos in mask)
 					{
 						var (cell1, cell2) = (HousesCells[house1][pos], HousesCells[house2][pos]);
@@ -237,7 +237,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 			}
 			else
 			{
-				var extraCellsMap = (CellMap)[];
+				var extraCellsMap = CellMap.Empty;
 				foreach (var cell in patternCells)
 				{
 					foreach (var digit in extraDigits)

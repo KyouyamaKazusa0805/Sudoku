@@ -75,7 +75,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						foreach (ref readonly var currentBlockMap in blockMap.GetSubsets(i))
 						{
 							var blockMask = grid[in currentBlockMap];
-							var elimMapBlock = (CellMap)[];
+							var elimMapBlock = CellMap.Empty;
 
 							// Get the elimination map in the block.
 							foreach (var digit in blockMask)
@@ -91,7 +91,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 								foreach (ref readonly var currentLineMap in lineMap.GetSubsets(j))
 								{
 									var lineMask = grid[in currentLineMap];
-									var elimMapLine = (CellMap)[];
+									var elimMapLine = CellMap.Empty;
 
 									// Get the elimination map in the line.
 									foreach (var digit in lineMask)
@@ -113,7 +113,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 										continue;
 									}
 
-									var elimMapIsolated = (CellMap)[];
+									var elimMapIsolated = CellMap.Empty;
 									var digitIsolated = TrailingZeroCount(maskIsolated);
 									if (digitIsolated != TrailingZeroCountFallback)
 									{
