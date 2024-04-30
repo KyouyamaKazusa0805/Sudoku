@@ -374,7 +374,7 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public readonly CandidateMap Slice(int start, int count)
 	{
-		var result = CandidateMap.Empty;
+		var result = Empty;
 		var offsets = Offsets;
 		for (int i = start, end = start + count; i < end; i++)
 		{
