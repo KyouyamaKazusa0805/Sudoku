@@ -74,7 +74,7 @@ public static class Randomizer
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap CreateCellMap(this Random random, int count)
-		=> random.RandomlySelect(in CellMap.MaxValue, count);
+		=> random.RandomlySelect(in CellMap.Full, count);
 
 	/// <summary>
 	/// Creates a <see cref="CandidateMap"/> instance, with the specified number of <see cref="Candidate"/>s stored in the collection.
@@ -84,5 +84,5 @@ public static class Randomizer
 	/// <returns>A <see cref="CandidateMap"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap CreateCandidateMap(this Random random, int count)
-		=> random.RandomlySelect(in CandidateMap.MaxValue, count);
+		=> random.RandomlySelect(in CandidateMap.Full, count);
 }

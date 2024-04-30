@@ -64,12 +64,28 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 
 	/// <summary>
+	/// Indicates an empty instance containing no elements.
+	/// </summary>
+	public static abstract TSelf Empty { get; }
+
+	/// <summary>
+	/// Indicates an instance that contains all possible elements.
+	/// </summary>
+	public static abstract TSelf Full { get; }
+
+	/// <summary>
 	/// Indicates the maximum number of elements that the collection can be reached.
 	/// </summary>
 	protected static abstract TElement MaxCount { get; }
 
 	/// <inheritdoc/>
-	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => [];
+	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
+
+	/// <inheritdoc/>
+	static TSelf IMinMaxValue<TSelf>.MinValue => TSelf.Empty;
+
+	/// <inheritdoc/>
+	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Empty;
 
 
 	/// <summary>

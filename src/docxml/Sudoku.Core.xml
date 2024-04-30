@@ -241,11 +241,11 @@
         <member name="M:Sudoku.Concepts.CandidateMap.CellEnumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.MaxValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
+        <member name="F:Sudoku.Concepts.CandidateMap.Empty">
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
-        <member name="F:Sudoku.Concepts.CandidateMap.MinValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MinValue"/>
+        <member name="F:Sudoku.Concepts.CandidateMap.Full">
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Full"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap._bits">
             <summary>
@@ -310,10 +310,10 @@
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MaxValue">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CandidateMap}#MinValue">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Full">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.CandidateIndex(System.Int32)">
@@ -570,11 +570,11 @@
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
             <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Shifting"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.MinValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MinValue"/>
+        <member name="F:Sudoku.Concepts.CellMap.Empty">
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.MaxValue">
-            <inheritdoc cref="P:System.Numerics.IMinMaxValue`1.MaxValue"/>
+        <member name="F:Sudoku.Concepts.CellMap.Full">
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Full"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.CellMapParser">
             <summary>
@@ -733,10 +733,10 @@
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MaxValue">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.System#Numerics#IMinMaxValue{Sudoku#Concepts#CellMap}#MinValue">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Full">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.CellIndex(System.Int32)">
@@ -3137,12 +3137,28 @@
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Count">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Empty">
+            <summary>
+            Indicates an empty instance containing no elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Full">
+            <summary>
+            Indicates an instance that contains all possible elements.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.MaxCount">
             <summary>
             Indicates the maximum number of elements that the collection can be reached.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.Item(System.Int32)">

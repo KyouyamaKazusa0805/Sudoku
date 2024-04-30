@@ -21,11 +21,11 @@ public partial struct CandidateMap :
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISudokuConcept<CandidateMap>
 {
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
-	public static readonly CandidateMap MaxValue = ~default(CandidateMap);
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
+	public static readonly CandidateMap Empty = [];
 
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
-	public static readonly CandidateMap MinValue;
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
+	public static readonly CandidateMap Full = ~default(CandidateMap);
 
 
 	/// <summary>
@@ -150,7 +150,7 @@ public partial struct CandidateMap :
 				return [];
 			}
 
-			var result = MaxValue;
+			var result = Full;
 			foreach (var candidate in Offsets)
 			{
 				result &= new CandidateMap(candidate, false);
@@ -237,10 +237,10 @@ public partial struct CandidateMap :
 	static Candidate IBitStatusMap<CandidateMap, Candidate, Enumerator>.MaxCount => 9 * 9 * 9;
 
 	/// <inheritdoc/>
-	static CandidateMap IMinMaxValue<CandidateMap>.MaxValue => MaxValue;
+	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Empty => Empty;
 
 	/// <inheritdoc/>
-	static CandidateMap IMinMaxValue<CandidateMap>.MinValue => MinValue;
+	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => Full;
 
 
 	/// <inheritdoc/>
@@ -271,6 +271,8 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	public readonly void CopyTo(ref Candidate sequence, int length)
 	{
+		Ref.ThrowIfNullRef(in sequence);
+
 		if (length >= 729)
 		{
 			Unsafe.CopyBlock(

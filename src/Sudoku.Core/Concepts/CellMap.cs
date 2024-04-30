@@ -30,11 +30,11 @@ public partial struct CellMap :
 	private const int Shifting = 41;
 
 
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MinValue"/>
-	public static readonly CellMap MinValue = [];
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
+	public static readonly CellMap Empty = [];
 
-	/// <inheritdoc cref="IMinMaxValue{TSelf}.MaxValue"/>
-	public static readonly CellMap MaxValue = ~default(CellMap);
+	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
+	public static readonly CellMap Full = ~default(CellMap);
 
 	/// <summary>
 	/// The internal cell map parser.
@@ -450,10 +450,10 @@ public partial struct CellMap :
 	static Cell IBitStatusMap<CellMap, Cell, Enumerator>.MaxCount => 9 * 9;
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MaxValue => MaxValue;
+	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Empty => Empty;
 
 	/// <inheritdoc/>
-	static CellMap IMinMaxValue<CellMap>.MinValue => MinValue;
+	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => Full;
 
 
 	/// <inheritdoc/>
@@ -498,7 +498,7 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public readonly void CopyTo(ref Cell sequence, int length)
 	{
-		ArgumentNullException.ThrowIfNull(sequence);
+		Ref.ThrowIfNullRef(in sequence);
 
 		if (!this)
 		{
