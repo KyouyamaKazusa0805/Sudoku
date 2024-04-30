@@ -33,7 +33,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 		for (var sizeLength = 0; sizeLength < PossibleSizes.Length; sizeLength++)
 		{
 			var (rows, columns) = (PossibleSizes[sizeLength][0], PossibleSizes[sizeLength][1]);
-			foreach (var rowList in Digits.GetSubsets(rows))
+			foreach (var rowList in Digits.AsReadOnlySpan().GetSubsets(rows))
 			{
 				var (rowMask, rowMap) = ((Mask)0, (CellMap)[]);
 				foreach (var row in rowList)
@@ -47,7 +47,7 @@ public sealed partial class MultisectorLockedSetsStepSearcher : StepSearcher
 					continue;
 				}
 
-				foreach (var columnList in Digits.GetSubsets(columns))
+				foreach (var columnList in Digits.AsReadOnlySpan().GetSubsets(columns))
 				{
 					var (columnMask, columnMap) = ((Mask)0, (CellMap)[]);
 					foreach (var column in columnList)

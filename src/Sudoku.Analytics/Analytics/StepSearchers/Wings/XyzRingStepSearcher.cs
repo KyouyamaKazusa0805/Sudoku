@@ -104,7 +104,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 			var digitsMaskPivot = grid.GetCandidates(pivot);
 
 			// Fetch for two cells from two different houses.
-			foreach (var housePair in HouseTypes.GetSubsets(2))
+			foreach (var housePair in HouseTypes.AsReadOnlySpan().GetSubsets(2))
 			{
 				var house1 = pivot.ToHouseIndex(housePair[0]);
 				var house2 = pivot.ToHouseIndex(housePair[1]);

@@ -46,18 +46,20 @@ public static class Combinatorial
 	/// <summary>
 	/// Get all subsets from the specified number of the values to take.
 	/// </summary>
-	/// <typeparam name="T">The type of each element.</typeparam>
-	/// <param name="this">The array.</param>
+	/// <param name="this">
+	/// <para>The collection to be used and checked.</para>
+	/// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
+	/// </param>
 	/// <param name="count">The number of elements you want to take.</param>
 	/// <returns>
 	/// The subsets of the list.
 	/// For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="count"/> is 2, the result will be
-	/// <code>
+	/// <code><![CDATA[
 	/// [[1, 2], [1, 3], [2, 3]]
-	/// </code>
+	/// ]]></code>
 	/// 3 cases.
 	/// </returns>
-	public static T[][] GetSubsets<T>(this T[] @this, int count)
+	public static ReadOnlySpan<T[]> GetSubsets<T>(this scoped ReadOnlySpan<T> @this, int count)
 	{
 		if (count == 0)
 		{
@@ -66,10 +68,10 @@ public static class Combinatorial
 
 		var result = new List<T[]>();
 		g(@this.Length, count, count, stackalloc int[count], @this, result);
-		return [.. result];
+		return result.AsReadOnlySpan();
 
 
-		static void g(int last, int count, int index, Span<int> tempArray, T[] @this, List<T[]> resultList)
+		static void g(int last, int count, int index, Span<int> tempArray, ReadOnlySpan<T> @this, List<T[]> resultList)
 		{
 			for (var i = last; i >= index; i--)
 			{
