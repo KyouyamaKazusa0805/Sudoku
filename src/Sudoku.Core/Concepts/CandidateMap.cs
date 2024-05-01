@@ -241,8 +241,13 @@ public partial struct CandidateMap :
 	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => Full;
 
 
-	/// <inheritdoc/>
-	[IndexerName("CandidateIndex")]
+	/// <summary>
+	/// Get the offset at the specified position index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>
+	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+	/// </returns>
 	public readonly Candidate this[int index]
 	{
 		get
@@ -281,9 +286,13 @@ public partial struct CandidateMap :
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the map contains the specified offset.
+	/// </summary>
+	/// <param name="item">The offset.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(Candidate offset) => (_bits[offset >> 6] >> (offset & 63) & 1) != 0;
+	public readonly bool Contains(Candidate item) => (_bits[item >> 6] >> (item & 63) & 1) != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -492,13 +501,17 @@ public partial struct CandidateMap :
 		return result.AsReadOnlySpan();
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Add a new <see cref="Candidate"/> into the collection.
+	/// </summary>
+	/// <param name="item">The offset to be added.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the collection has already contained the offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Add(Candidate offset)
+	public bool Add(Candidate item)
 	{
-		ref var v = ref _bits[offset >> 6];
-		var older = Contains(offset);
-		v |= 1L << (offset & 63);
+		ref var v = ref _bits[item >> 6];
+		var older = Contains(item);
+		v |= 1L << (item & 63);
 		if (!older)
 		{
 			Count++;
@@ -523,13 +536,17 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Removes the specified offset from the current collection.
+	/// </summary>
+	/// <param name="item">An offset to be removed.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the collection has already contained the specified offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Remove(Candidate offset)
+	public bool Remove(Candidate item)
 	{
-		ref var v = ref _bits[offset >> 6];
-		var older = Contains(offset);
-		v &= ~(1L << (offset & 63));
+		ref var v = ref _bits[item >> 6];
+		var older = Contains(item);
+		v &= ~(1L << (item & 63));
 		if (older)
 		{
 			Count--;
@@ -570,9 +587,12 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Toggle(Candidate offset) => _ = Contains(offset) ? Remove(offset) : Add(offset);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Remove all elements stored in the current collection, and set the property <see cref="Count"/> to zero.
+	/// </summary>
+	/// <seealso cref="Count"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => this = default;
+	public void Clear() => this = Empty;
 
 	/// <inheritdoc/>
 	readonly bool IEquatable<CandidateMap>.Equals(CandidateMap other) => Equals(in other);

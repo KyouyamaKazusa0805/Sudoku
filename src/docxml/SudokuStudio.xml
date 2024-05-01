@@ -1485,7 +1485,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
-            <inheritdoc cref="!:global::Sudoku.Concepts.DisorderedIttoryuFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="T:SudokuStudio.Configuration.BackdropKind">
             <summary>

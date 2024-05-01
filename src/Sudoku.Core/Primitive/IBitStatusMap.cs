@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Primitive;
 
 /// <summary>
 /// Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
@@ -27,9 +27,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>
 {
-	/// <summary>
-	/// Indicates the number of the values stored in this collection.
-	/// </summary>
+	/// <inheritdoc cref="ICollection{T}.Count"/>
 	public new abstract int Count { get; }
 
 	/// <summary>
@@ -60,9 +58,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	bool ICollection<TElement>.IsReadOnly => false;
 
-	/// <inheritdoc/>
-	int ICollection<TElement>.Count => Count;
-
 
 	/// <summary>
 	/// Indicates an empty instance containing no elements.
@@ -89,24 +84,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Empty;
 
 
-	/// <summary>
-	/// Get the offset at the specified position index.
-	/// </summary>
-	/// <param name="index">The index.</param>
-	/// <returns>
-	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
-	/// </returns>
+	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
 	public new abstract TElement this[int index] { get; }
 
-	/// <inheritdoc/>
-	TElement IReadOnlyList<TElement>.this[int index] => this[index];
-
-
-	/// <summary>
-	/// Adds a new offset into the current collection.
-	/// </summary>
-	/// <param name="offset">An offset to be added.</param>
-	public new abstract bool Add(TElement offset);
 
 	/// <summary>
 	/// Adds a list of offsets into the current collection.
@@ -119,12 +99,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public abstract int AddRange(params ReadOnlySpan<TElement> offsets);
 
 	/// <summary>
-	/// Removes the specified offset from the current collection.
-	/// </summary>
-	/// <param name="offset">An offset to be removed.</param>
-	public new abstract bool Remove(TElement offset);
-
-	/// <summary>
 	/// Removes a list of offsets from the current collection.
 	/// </summary>
 	/// <param name="offsets">
@@ -133,11 +107,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </param>
 	/// <returns>The number of offsets succeeded to be removed.</returns>
 	public abstract int RemoveRange(params ReadOnlySpan<TElement> offsets);
-
-	/// <summary>
-	/// Clear all bits.
-	/// </summary>
-	public new abstract void Clear();
 
 	/// <summary>
 	/// Copies the current instance to the target sequence specified as a reference
@@ -155,9 +124,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </exception>
 	public abstract void CopyTo(ref TElement sequence, int length);
 
-	/// <inheritdoc cref="ICollection{T}.CopyTo(T[], int)"/>
-	public new sealed void CopyTo(TElement[] array, int arrayIndex) => CopyTo(ref array[arrayIndex], Count - arrayIndex);
-
 	/// <summary>
 	/// Iterates on each element in this collection.
 	/// </summary>
@@ -169,13 +135,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offset">The offset to be added or removed.</param>
 	public abstract void Toggle(TElement offset);
-
-	/// <summary>
-	/// Determine whether the map contains the specified offset.
-	/// </summary>
-	/// <param name="offset">The offset.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	public new abstract bool Contains(TElement offset);
 
 	/// <summary>
 	/// Try to get the specified index of the offset.
@@ -239,10 +198,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public abstract ReadOnlySpan<TSelf> GetSubsets(int subsetSize);
 
 	/// <summary>
-	/// Equivalent to calling <see cref="GetSubsets(int)"/> with argument <see cref="Count"/>.
+	/// Equivalent to calling <see cref="GetSubsets(int)"/> with all possible cases.
 	/// </summary>
 	/// <returns>All subsets of the current instance.</returns>
-	/// <seealso cref="Count"/>
 	/// <seealso cref="GetSubsetsAllBelow(int)"/>
 	public abstract ReadOnlySpan<TSelf> GetSubsetsAll();
 
@@ -280,10 +238,11 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	void ICollection<TElement>.Clear() => Clear();
 
 	/// <inheritdoc/>
-	void ICollection<TElement>.CopyTo(TElement[] array, int arrayIndex) => CopyTo(array, arrayIndex);
+	void ICollection<TElement>.CopyTo(TElement[] array, int arrayIndex)
+		=> CopyTo(ref array[arrayIndex], ((ICollection<TElement>)this).Count - arrayIndex);
 
 	/// <inheritdoc/>
-	bool IReadOnlySet<TElement>.Contains(TElement item) => Contains(item);
+	bool IReadOnlySet<TElement>.Contains(TElement item) => ((ICollection<TElement>)this).Contains(item);
 
 	/// <inheritdoc/>
 	bool IEquatable<TSelf>.Equals(TSelf other) => Equals(in other);
@@ -360,7 +319,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 		var result = (TSelf)this;
 		foreach (var element in other)
 		{
-			if (Contains(element))
+			if (((ICollection<TElement>)this).Contains(element))
 			{
 				result.Add(element);
 			}
@@ -474,7 +433,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual bool operator true(in TSelf cells) => cells.Count != 0;
+	public static abstract bool operator true(in TSelf cells);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
@@ -482,7 +441,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="cells">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual bool operator false(in TSelf cells) => cells.Count == 0;
+	public static abstract bool operator false(in TSelf cells);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
@@ -557,12 +516,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <inheritdoc/>
 	static TSelf ISubtractionOperators<TSelf, TElement, TSelf>.operator -(TSelf left, TElement right) => left - right;
 
-	/// <summary>
-	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-	/// </summary>
-	/// <param name="left">The base map.</param>
-	/// <param name="right">The template map that the base map to check and cover.</param>
-	/// <returns>The result map.</returns>
+	/// <inheritdoc/>
 	static TSelf IModulusOperators<TSelf, TSelf, TSelf>.operator %(TSelf left, TSelf right) => (left & right).PeerIntersection & right;
 
 	/// <inheritdoc/>
@@ -592,19 +546,19 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(TElement[] offsets) => [.. offsets];
+	public static abstract explicit operator TSelf(TElement[] offsets);
 
 	/// <summary>
 	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(Span<TElement> offsets) => [.. offsets];
+	public static abstract explicit operator TSelf(Span<TElement> offsets);
 
 	/// <summary>
 	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
 	/// </summary>
 	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static virtual explicit operator TSelf(ReadOnlySpan<TElement> offsets) => [.. offsets];
+	public static abstract explicit operator TSelf(ReadOnlySpan<TElement> offsets);
 }

@@ -452,8 +452,13 @@ public partial struct CellMap :
 	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => Full;
 
 
-	/// <inheritdoc/>
-	[IndexerName("CellIndex")]
+	/// <summary>
+	/// Get the offset at the specified position index.
+	/// </summary>
+	/// <param name="index">The index.</param>
+	/// <returns>
+	/// The offset at the specified position index. If the value is invalid, the return value will be <c>-1</c>.
+	/// </returns>
 	public readonly Cell this[int index]
 	{
 		get
@@ -580,9 +585,13 @@ public partial struct CellMap :
 		return false;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Determine whether the map contains the specified offset.
+	/// </summary>
+	/// <param name="item">The offset.</param>
+	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Contains(Cell offset) => ((offset < Shifting ? _low : _high) >> offset % Shifting & 1) != 0;
+	public readonly bool Contains(Cell item) => ((item < Shifting ? _low : _high) >> item % Shifting & 1) != 0;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -783,13 +792,17 @@ public partial struct CellMap :
 		return result.AsReadOnlySpan();
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Add a new <see cref="Cell"/> into the collection.
+	/// </summary>
+	/// <param name="item">The offset to be added.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the collection has already contained the offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Add(Cell offset)
+	public bool Add(Cell item)
 	{
-		ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(offset);
-		v |= 1L << offset % Shifting;
+		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(item);
+		v |= 1L << item % Shifting;
 		if (!older)
 		{
 			Count++;
@@ -814,13 +827,17 @@ public partial struct CellMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Removes the specified offset from the current collection.
+	/// </summary>
+	/// <param name="item">An offset to be removed.</param>
+	/// <returns>A <see cref="bool"/> value indicating whether the collection has already contained the specified offset.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Remove(Cell offset)
+	public bool Remove(Cell item)
 	{
-		ref var v = ref offset / Shifting == 0 ? ref _low : ref _high;
-		var older = Contains(offset);
-		v &= ~(1L << offset % Shifting);
+		ref var v = ref item / Shifting == 0 ? ref _low : ref _high;
+		var older = Contains(item);
+		v &= ~(1L << item % Shifting);
 		if (older)
 		{
 			Count--;
@@ -849,9 +866,12 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Toggle(Cell offset) => _ = Contains(offset) ? Remove(offset) : Add(offset);
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Remove all elements stored in the current collection, and set the property <see cref="Count"/> to zero.
+	/// </summary>
+	/// <seealso cref="Count"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Clear() => this = default;
+	public void Clear() => this = Empty;
 
 	/// <inheritdoc/>
 	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(in other);

@@ -38,7 +38,6 @@ public static class BitStatusMapGroupingEnumerable
 				result[i++] = element;
 			}
 		}
-
 		return result.AsReadOnlySpan()[..i];
 	}
 
@@ -83,7 +82,6 @@ public static class BitStatusMapGroupingEnumerable
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 
@@ -106,7 +104,6 @@ public static class BitStatusMapGroupingEnumerable
 		{
 			result.Add(selector(group));
 		}
-
 		return result;
 	}
 
@@ -129,7 +126,6 @@ public static class BitStatusMapGroupingEnumerable
 		{
 			result.Add(selector(group));
 		}
-
 		return result;
 	}
 }
