@@ -240,6 +240,9 @@ public partial struct CandidateMap :
 	/// <inheritdoc/>
 	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => Full;
 
+	/// <inheritdoc/>
+	static JsonConverter<CandidateMap> IBitStatusMap<CandidateMap, Candidate, Enumerator>.JsonConverterInstance => new CandidateMapConverter();
+
 
 	/// <summary>
 	/// Get the offset at the specified position index.

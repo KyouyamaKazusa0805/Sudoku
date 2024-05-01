@@ -451,6 +451,9 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => Full;
 
+	/// <inheritdoc/>
+	static JsonConverter<CellMap> IBitStatusMap<CellMap, Cell, Enumerator>.JsonConverterInstance => new CellMapConverter();
+
 
 	/// <summary>
 	/// Get the offset at the specified position index.

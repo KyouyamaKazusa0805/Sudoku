@@ -864,6 +864,30 @@
         <member name="M:System.Text.Json.CultureInfoConverter.Write(System.Text.Json.Utf8JsonWriter,System.Globalization.CultureInfo,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.Json.IJsonSerializable`1">
+            <summary>
+            Represents a type that supports for JSON serialization.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:System.Text.Json.IJsonSerializable`1.DefaultOptions">
+            <summary>
+            Returns a <see cref="T:System.Text.Json.JsonSerializerOptions"/> instance that can be used in following methods.
+            </summary>
+        </member>
+        <member name="M:System.Text.Json.IJsonSerializable`1.ToJsonString">
+            <summary>
+            Converts the current instance to a JSON string value.
+            </summary>
+            <returns>The JSON string value.</returns>
+        </member>
+        <member name="M:System.Text.Json.IJsonSerializable`1.FromJsonString(System.String)">
+            <summary>
+            Converts the JSON string value into a valid <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="jsonString">The JSON string to be converted from.</param>
+            <returns>The valid <typeparamref name="TSelf"/> instance converted.</returns>
+        </member>
         <member name="T:System.Text.Json.PascalCaseJsonNamingPolicy">
             <summary>
             Defines the pascal casing JSON naming policy.

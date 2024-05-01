@@ -23,6 +23,7 @@ public readonly partial struct LockedTarget(
 	ICultureFormattable,
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>,
+	IJsonSerializable<LockedTarget>,
 	ISudokuConceptConvertible<LockedTarget>
 {
 	/// <summary>
@@ -36,6 +37,10 @@ public readonly partial struct LockedTarget(
 	/// </summary>
 	[StringMember(nameof(Digit))]
 	private string DigitString => GlobalizedConverter.InvariantCultureConverter.DigitConverter((Mask)(1 << Digit));
+
+
+	/// <inheritdoc/>
+	static JsonSerializerOptions IJsonSerializable<LockedTarget>.DefaultOptions => JsonSerializerOptions.Default;
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
@@ -60,4 +65,12 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc/>
 	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(in other);
+
+	/// <inheritdoc/>
+	string IJsonSerializable<LockedTarget>.ToJsonString() => JsonSerializer.Serialize(this);
+
+
+	/// <inheritdoc/>
+	static LockedTarget IJsonSerializable<LockedTarget>.FromJsonString(string jsonString)
+		=> JsonSerializer.Deserialize<LockedTarget>(jsonString);
 }

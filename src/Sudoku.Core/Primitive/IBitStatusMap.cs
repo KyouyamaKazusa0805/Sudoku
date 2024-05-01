@@ -18,6 +18,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
+	IJsonSerializable<TSelf>,
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
@@ -74,6 +75,11 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	protected static abstract TElement MaxCount { get; }
 
+	/// <summary>
+	/// Indicates a converter instance that supports for serialization on the current instance.
+	/// </summary>
+	protected static abstract JsonConverter<TSelf> JsonConverterInstance { get; }
+
 	/// <inheritdoc/>
 	static TSelf IAdditiveIdentity<TSelf, TSelf>.AdditiveIdentity => TSelf.Empty;
 
@@ -82,6 +88,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Empty;
+
+	/// <inheritdoc/>
+	static JsonSerializerOptions IJsonSerializable<TSelf>.DefaultOptions => new() { Converters = { TSelf.JsonConverterInstance } };
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
@@ -380,6 +389,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	bool ICollection<TElement>.Remove(TElement item) => Remove(item);
 
 	/// <inheritdoc/>
+	string IJsonSerializable<TSelf>.ToJsonString() => JsonSerializer.Serialize((TSelf)this, TSelf.DefaultOptions);
+
+	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();
 
 	/// <inheritdoc/>
@@ -399,6 +411,10 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	static TSelf IParsable<TSelf>.Parse(string s, IFormatProvider? provider) => TSelf.Parse(s);
+
+	/// <inheritdoc/>
+	static TSelf IJsonSerializable<TSelf>.FromJsonString(string jsonString)
+		=> JsonSerializer.Deserialize<TSelf>(jsonString, TSelf.DefaultOptions);
 
 
 	/// <summary>

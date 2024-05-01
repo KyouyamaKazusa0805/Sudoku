@@ -54,6 +54,7 @@ public partial struct Grid :
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
 	IFormattable,
+	IJsonSerializable<Grid>,
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
@@ -158,6 +159,11 @@ public partial struct Grid :
 #else
 	private static readonly BitwiseSolver Solver = new();
 #endif
+
+	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
+	[EditorBrowsable(EditorBrowsableState.Never)]
+	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new GridConverter() } };
 
 	/// <summary>
 	/// Indicates the event triggered when the value is changed.
@@ -764,6 +770,9 @@ public partial struct Grid :
 	/// </remarks>
 	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
+
+	/// <inheritdoc/>
+	static JsonSerializerOptions IJsonSerializable<Grid>.DefaultOptions => DefaultOptions;
 
 
 	/// <summary>
@@ -1434,6 +1443,9 @@ public partial struct Grid :
 	readonly string ISudokuConceptConvertible<Grid>.ToString<T>(T converter) => ToString();
 
 	/// <inheritdoc/>
+	readonly string IJsonSerializable<Grid>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);
+
+	/// <inheritdoc/>
 	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
 
 	/// <inheritdoc/>
@@ -1534,6 +1546,7 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private void RemoveSukakuHeader() => this[0] &= (1 << HeaderShift) - 1;
 
+
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
 	/// </summary>
@@ -1568,55 +1581,6 @@ public partial struct Grid :
 	/// <exception cref="ArgumentException">Throws when <see cref="Array.Length"/> is out of valid range.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Create(Mask[] masks) => checked((Grid)masks);
-
-	/// <summary>
-	/// Returns a <see cref="Grid"/> instance via the raw mask values.
-	/// </summary>
-	/// <param name="rawMaskValues">
-	/// <para>The raw mask values.</para>
-	/// <para>
-	/// This value can contain 1 or 81 elements.
-	/// If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
-	/// if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
-	/// </para>
-	/// </param>
-	/// <returns>A <see cref="Grid"/> result.</returns>
-	/// <remarks><b><i>
-	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
-	/// </i></b></remarks>
-	private static Grid Create(ReadOnlySpan<Mask> rawMaskValues)
-	{
-		switch (rawMaskValues.Length)
-		{
-			case 0:
-			{
-				return Undefined;
-			}
-			case 1:
-			{
-				var result = Undefined;
-				var uniformValue = rawMaskValues[0];
-				for (var cell = 0; cell < CellsCount; cell++)
-				{
-					result[cell] = uniformValue;
-				}
-				return result;
-			}
-			case CellsCount:
-			{
-				var result = Undefined;
-				for (var cell = 0; cell < CellsCount; cell++)
-				{
-					result[cell] = rawMaskValues[cell];
-				}
-				return result;
-			}
-			default:
-			{
-				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain {CellsCount} elements.");
-			}
-		}
-	}
 
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance via the array of cell digits
@@ -1828,6 +1792,9 @@ public partial struct Grid :
 
 	/// <inheritdoc/>
 	static Grid ISudokuConceptParsable<Grid>.Parse<T>(string str, T parser) => Parse(str);
+
+	/// <inheritdoc/>
+	static Grid IJsonSerializable<Grid>.FromJsonString(string jsonString) => JsonSerializer.Deserialize<Grid>(jsonString, DefaultOptions);
 
 	/// <summary>
 	/// Determines whether two sequences are considered equal on respective bits.
@@ -2123,6 +2090,55 @@ public partial struct Grid :
 					}
 				}
 				@this[cell] = (Mask)((Mask)(@this.GetHeaderBits(cell) | EmptyMask) | mask);
+			}
+		}
+	}
+
+	/// <summary>
+	/// Returns a <see cref="Grid"/> instance via the raw mask values.
+	/// </summary>
+	/// <param name="rawMaskValues">
+	/// <para>The raw mask values.</para>
+	/// <para>
+	/// This value can contain 1 or 81 elements.
+	/// If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
+	/// if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
+	/// </para>
+	/// </param>
+	/// <returns>A <see cref="Grid"/> result.</returns>
+	/// <remarks><b><i>
+	/// This creation ignores header bits. Please don't use this method in the puzzle creation.
+	/// </i></b></remarks>
+	private static Grid Create(ReadOnlySpan<Mask> rawMaskValues)
+	{
+		switch (rawMaskValues.Length)
+		{
+			case 0:
+			{
+				return Undefined;
+			}
+			case 1:
+			{
+				var result = Undefined;
+				var uniformValue = rawMaskValues[0];
+				for (var cell = 0; cell < CellsCount; cell++)
+				{
+					result[cell] = uniformValue;
+				}
+				return result;
+			}
+			case CellsCount:
+			{
+				var result = Undefined;
+				for (var cell = 0; cell < CellsCount; cell++)
+				{
+					result[cell] = rawMaskValues[cell];
+				}
+				return result;
+			}
+			default:
+			{
+				throw new InvalidOperationException($"The argument '{nameof(rawMaskValues)}' must contain {CellsCount} elements.");
 			}
 		}
 	}

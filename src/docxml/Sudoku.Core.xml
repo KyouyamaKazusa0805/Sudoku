@@ -113,23 +113,6 @@
             Throws when the argument <paramref name="this"/> is not defined in enumeration type.
             </exception>
         </member>
-        <member name="T:Sudoku.Concepts.BitStatusMapPredicate`3">
-            <summary>
-            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
-            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
-            determining whether the offset satisfies the specified condition.
-            </summary>
-            <typeparam name="TSelf">
-            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
-            </typeparam>
-            <typeparam name="TElement">
-            The type of each element in the collection of type <typeparamref name="TSelf"/>.
-            </typeparam>
-            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
-            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
-            <param name="grid">The grid as candidate reference.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
@@ -314,6 +297,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Full">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#JsonConverterInstance">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Item(System.Int32)">
@@ -749,6 +735,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Sudoku#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Full">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#JsonConverterInstance">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Item(System.Int32)">
@@ -1299,6 +1288,9 @@
             The internal parsers.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Conclusion.DefaultOptions">
+            <inheritdoc cref="P:System.Text.Json.IJsonSerializable`1.DefaultOptions"/>
+        </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.
@@ -1335,6 +1327,9 @@
             If the type is <see cref="F:Sudoku.Concepts.ConclusionType.Assignment"/>, this conclusion will be set value (Set a digit into a cell);
             otherwise, a candidate will be removed.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#DefaultOptions">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@)">
             <target name="method">
@@ -1379,6 +1374,9 @@
             symmetric with the current cell and digit.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#ToJsonString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Conclusion.TryParse(System.String,Sudoku.Concepts.Conclusion@)">
             <inheritdoc/>
         </member>
@@ -1389,6 +1387,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.Parse``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#FromJsonString(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_OnesComplement(Sudoku.Concepts.Conclusion)">
@@ -1896,6 +1897,9 @@
             Indicates the backing solver.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.Grid.DefaultOptions">
+            <inheritdoc cref="P:System.Text.Json.IJsonSerializable`1.DefaultOptions"/>
+        </member>
         <member name="F:Sudoku.Concepts.Grid.ValueChanged">
             <summary>
             Indicates the event triggered when the value is changed.
@@ -2190,6 +2194,9 @@
             This value is found out via backtracking algorithm. For more information, please visit type <see cref="T:Sudoku.Solving.BacktrackingSolver"/>.
             </remarks>
             <seealso cref="T:Sudoku.Solving.BacktrackingSolver"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#DefaultOptions">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -2529,6 +2536,9 @@
         <member name="M:Sudoku.Concepts.Grid.Sudoku#Primitive#ISudokuConceptConvertible{Sudoku#Concepts#Grid}#ToString``1(``0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#ToJsonString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -2609,23 +2619,6 @@
             <param name="masks">The masks.</param>
             <exception cref="T:System.ArgumentException">Throws when <see cref="P:System.Array.Length"/> is out of valid range.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int16})">
-            <summary>
-            Returns a <see cref="T:Sudoku.Concepts.Grid"/> instance via the raw mask values.
-            </summary>
-            <param name="rawMaskValues">
-            <para>The raw mask values.</para>
-            <para>
-            This value can contain 1 or 81 elements.
-            If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
-            if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
-            </para>
-            </param>
-            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
-            <remarks><b><i>
-            This creation ignores header bits. Please don't use this method in the puzzle creation.
-            </i></b></remarks>
-        </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int32},Sudoku.Concepts.GridCreatingOption)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance via the array of cell digits
@@ -2694,6 +2687,9 @@
         <member name="M:Sudoku.Concepts.Grid.Sudoku#Primitive#ISudokuConceptParsable{Sudoku#Concepts#Grid}#Parse``1(System.String,``0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#FromJsonString(System.String)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
             <summary>
             Determines whether two sequences are considered equal on respective bits.
@@ -2736,6 +2732,23 @@
             </summary>
             <param name="this">The grid itself.</param>
             <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int16})">
+            <summary>
+            Returns a <see cref="T:Sudoku.Concepts.Grid"/> instance via the raw mask values.
+            </summary>
+            <param name="rawMaskValues">
+            <para>The raw mask values.</para>
+            <para>
+            This value can contain 1 or 81 elements.
+            If the array contain 1 element, all elements in the target sudoku grid will be initialized by it, the uniform value;
+            if the array contain 81 elements, elements will be initialized by the array one by one using the array elements respectively.
+            </para>
+            </param>
+            <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
+            <remarks><b><i>
+            This creation ignores header bits. Please don't use this method in the puzzle creation.
+            </i></b></remarks>
         </member>
         <member name="M:Sudoku.Concepts.Grid.op_Explicit(System.Int16[])~Sudoku.Concepts.Grid">
             <summary>
@@ -3256,35 +3269,6 @@
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ITokenizable`1">
-            <summary>
-            Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.ITokenizable`1.Token">
-            <summary>
-            Indicates the token of the object.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ITokenizable`1.EqualityComparer">
-            <summary>
-            Indicates the equality comparer instance of type <typeparamref name="TSelf"/>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ITokenizable`1.TokenHashCode">
-            <summary>
-            Indicates the hash code that is calculated with token.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.ITokenizable`1.Create(System.String)">
-            <summary>
-            Create an instance of type <typeparamref name="TSelf"/> that is used a token.
-            </summary>
-            <param name="token">The token to be used.</param>
-            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
-            <exception cref="T:System.FormatException">Throws when the token is invalid.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.LockedTarget">
             <summary>
             Defines the data structure that stores a set of cells and a digit, indicating the information
@@ -3333,6 +3317,9 @@
             The digit string value.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.LockedTarget.System#Text#Json#IJsonSerializable{Sudoku#Concepts#LockedTarget}#DefaultOptions">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.LockedTarget.Deconstruct(Sudoku.Concepts.CellMap@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -3354,6 +3341,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.LockedTarget.System#IEquatable{Sudoku#Concepts#LockedTarget}#Equals(Sudoku.Concepts.LockedTarget)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.LockedTarget.System#Text#Json#IJsonSerializable{Sudoku#Concepts#LockedTarget}#ToJsonString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.LockedTarget.System#Text#Json#IJsonSerializable{Sudoku#Concepts#LockedTarget}#FromJsonString(System.String)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.LockedTarget.Digit">
@@ -4196,7 +4189,7 @@
             <returns>The first found candidate.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -4214,7 +4207,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found candidate.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -4285,7 +4278,7 @@
             <returns>The first found cell.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
@@ -4303,7 +4296,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found cell.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
@@ -4985,6 +4978,23 @@
 				</remarks>
 			</target>
         </member>
+        <member name="T:Sudoku.Primitive.BitStatusMapPredicate`3">
+            <summary>
+            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
+            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
+            determining whether the offset satisfies the specified condition.
+            </summary>
+            <typeparam name="TSelf">
+            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </typeparam>
+            <typeparam name="TElement">
+            The type of each element in the collection of type <typeparamref name="TSelf"/>.
+            </typeparam>
+            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
+            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
+            <param name="grid">The grid as candidate reference.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Primitive.IAnalyzer`2">
             <summary>
             Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
@@ -5101,6 +5111,11 @@
             Indicates the maximum number of elements that the collection can be reached.
             </summary>
         </member>
+        <member name="P:Sudoku.Primitive.IBitStatusMap`3.JsonConverterInstance">
+            <summary>
+            Indicates a converter instance that supports for serialization on the current instance.
+            </summary>
+        </member>
         <member name="P:Sudoku.Primitive.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
             <inheritdoc/>
         </member>
@@ -5108,6 +5123,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Primitive.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#DefaultOptions">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Primitive.IBitStatusMap`3.Item(System.Int32)">
@@ -5346,6 +5364,9 @@
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#ToJsonString">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
@@ -5353,6 +5374,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#FromJsonString(System.String)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.op_LogicalNot(`0@)">
@@ -5666,6 +5690,35 @@
         </member>
         <member name="M:Sudoku.Primitive.ISudokuConceptParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Primitive.ITokenizable`1">
+            <summary>
+            Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="P:Sudoku.Primitive.ITokenizable`1.Token">
+            <summary>
+            Indicates the token of the object.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Primitive.ITokenizable`1.EqualityComparer">
+            <summary>
+            Indicates the equality comparer instance of type <typeparamref name="TSelf"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Primitive.ITokenizable`1.TokenHashCode">
+            <summary>
+            Indicates the hash code that is calculated with token.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Primitive.ITokenizable`1.Create(System.String)">
+            <summary>
+            Create an instance of type <typeparamref name="TSelf"/> that is used a token.
+            </summary>
+            <param name="token">The token to be used.</param>
+            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
+            <exception cref="T:System.FormatException">Throws when the token is invalid.</exception>
         </member>
         <member name="T:Sudoku.Primitive.SudokuType">
             <summary>

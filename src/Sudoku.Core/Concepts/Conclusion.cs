@@ -34,12 +34,16 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	ICultureFormattable,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
+	IJsonSerializable<Conclusion>,
 	ISudokuConcept<Conclusion>
 {
 	/// <summary>
 	/// The internal parsers.
 	/// </summary>
 	private static readonly CoordinateParser[] Parsers = [new RxCyParser(), new K9Parser()];
+
+	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
+	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new ConclusionConverter() } };
 
 
 	/// <summary>
@@ -103,6 +107,10 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	}
 
 
+	/// <inheritdoc/>
+	static JsonSerializerOptions IJsonSerializable<Conclusion>.DefaultOptions => DefaultOptions;
+
+
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ConclusionType conclusionType, out Candidate candidate)
@@ -152,6 +160,9 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 				: new(ConclusionType, (symmetricType.GetCells(Cell) - Cell)[0], mappingDigit == -1 ? Digit : mappingDigit),
 			_ => throw new ArgumentOutOfRangeException(nameof(symmetricType))
 		};
+
+	/// <inheritdoc/>
+	string IJsonSerializable<Conclusion>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);
 
 
 	/// <inheritdoc/>
@@ -204,6 +215,10 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 		=> parser.ConclusionParser(str) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+
+	/// <inheritdoc/>
+	static Conclusion IJsonSerializable<Conclusion>.FromJsonString(string jsonString)
+		=> JsonSerializer.Deserialize<Conclusion>(jsonString, DefaultOptions);
 
 
 	/// <summary>
