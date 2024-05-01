@@ -5056,7 +5056,7 @@
             <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
         </member>
         <member name="P:Sudoku.Primitive.IBitStatusMap`3.Count">
-            <inheritdoc cref="P:System.Collections.Generic.ICollection`1.Count"/>
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
         </member>
         <member name="P:Sudoku.Primitive.IBitStatusMap`3.StringChunks">
             <summary>

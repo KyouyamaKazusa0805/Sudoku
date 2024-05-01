@@ -27,7 +27,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>
 {
-	/// <inheritdoc cref="ICollection{T}.Count"/>
+	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
 	public new abstract int Count { get; }
 
 	/// <summary>
