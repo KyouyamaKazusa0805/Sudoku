@@ -745,7 +745,7 @@ public partial struct Grid :
 	/// <summary>
 	/// The character span that indicates all possible characters appeared in a number with base 32.
 	/// </summary>
-	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv".AsSpan();
+	internal static ReadOnlySpan<char> Base32CharSpan => "0123456789abcdefghijklmnopqrstuv";
 
 	/// <summary>
 	/// Indicates the minimum possible grid value that the current type can reach.
