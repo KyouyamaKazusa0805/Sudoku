@@ -12,7 +12,7 @@ namespace Sudoku.Analytics;
 /// </remarks>
 /// <seealso cref="StepSearcherType"/>
 public sealed partial class PuzzleInvalidException(ref readonly Grid grid, [PrimaryConstructorParameter] Type stepSearcherType) :
-	RuntimeAnalyticsException(in grid)
+	RuntimeAnalysisException(in grid)
 {
 	/// <inheritdoc/>
 	public override string Message => string.Format(ResourceDictionary.Get("Message_PuzzleInvalidException"), InvalidGrid);

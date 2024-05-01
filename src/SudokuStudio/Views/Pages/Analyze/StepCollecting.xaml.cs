@@ -164,7 +164,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			{
 				return collector.Collect(
 					in grid,
-					new Progress<AnalyzerProgress>(
+					new Progress<AnalysisProgress>(
 						progress => DispatcherQueue.TryEnqueue(
 							() =>
 							{

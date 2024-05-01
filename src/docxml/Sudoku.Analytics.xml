@@ -645,7 +645,7 @@
             Indicates the final <see cref="T:System.Globalization.CultureInfo"/> instance to be used.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
         </member>
@@ -4644,7 +4644,7 @@
         <member name="P:Sudoku.Analytics.Collector.Options">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Analytics.Collector.Collect(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
             <summary>
             Search for all possible steps in a grid.
             </summary>

@@ -54,7 +54,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	/// The result. If cancelled, the return value will be an empty instance; otherwise, a real list even though it may be empty.
 	/// </returns>
 	/// <exception cref="InvalidOperationException">Throws when property <see cref="DifficultyLevelMode"/> is not defined.</exception>
-	public ReadOnlySpan<Step> Collect(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public ReadOnlySpan<Step> Collect(ref readonly Grid puzzle, IProgress<AnalysisProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (!Enum.IsDefined(DifficultyLevelMode))
 		{
@@ -80,7 +80,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 		}
 
 
-		ReadOnlySpan<Step> s(bool isSukaku, IProgress<AnalyzerProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
+		ReadOnlySpan<Step> s(bool isSukaku, IProgress<AnalysisProgress>? progress, ref readonly Grid puzzle, CancellationToken ct)
 		{
 			const int defaultLevel = int.MaxValue;
 

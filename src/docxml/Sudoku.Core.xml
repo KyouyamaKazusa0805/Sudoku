@@ -4,28 +4,28 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Analytics.AnalyzerProgress">
+        <member name="T:Sudoku.Analytics.AnalysisProgress">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerProgress.#ctor(System.String,System.Double)">
+        <member name="M:Sudoku.Analytics.AnalysisProgress.#ctor(System.String,System.Double)">
             <summary>
             Represents a progress used by
-            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="StepSearcherName">Indicates the currently used step searcher.</param>
             <param name="Percent">The percent value.</param>
-            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerProgress.StepSearcherName">
+        <member name="P:Sudoku.Analytics.AnalysisProgress.StepSearcherName">
             <summary>Indicates the currently used step searcher.</summary>
         </member>
-        <member name="P:Sudoku.Analytics.AnalyzerProgress.Percent">
+        <member name="P:Sudoku.Analytics.AnalysisProgress.Percent">
             <summary>The percent value.</summary>
         </member>
         <member name="T:Sudoku.Analytics.IGlobalizedAnalyzer`2">
@@ -62,24 +62,24 @@
             The internal <see cref="T:System.Random"/> instance to be used.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.RuntimeAnalyticsException">
+        <member name="T:Sudoku.Analytics.RuntimeAnalysisException">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Primitive.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Primitive.IAnalyzer`2"/>
         </member>
-        <member name="M:Sudoku.Analytics.RuntimeAnalyticsException.#ctor(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Analytics.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Represents an exception type that will be thrown by an <see cref="T:Sudoku.Primitive.IAnalyzer`2"/> instance.
             </summary>
             <param name="grid">Indicates the grid to be analyzed.</param>
             <seealso cref="T:Sudoku.Primitive.IAnalyzer`2"/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalyticsException.Message">
+        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.Message">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Analytics.RuntimeAnalyticsException.InvalidGrid">
+        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.InvalidGrid">
             <summary>
             The generated property declaration for parameter <c>grid</c>.
             </summary>
@@ -5009,7 +5009,7 @@
             Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
             </summary>
         </member>
-        <member name="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
             <summary>
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
             </summary>
@@ -5021,11 +5021,11 @@
         <member name="T:Sudoku.Primitive.IAnalyzerResult`2">
             <summary>
             Represents an instance that describes the result after executed the method
-            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>.
+            <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <typeparam name="TSolver">The solver's type.</typeparam>
             <typeparam name="TSelf">The type of the target result itself.</typeparam>
-            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalyzerProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Primitive.IAnalyzerResult`2.IsSolved">
             <summary>

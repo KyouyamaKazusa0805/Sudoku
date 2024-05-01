@@ -91,7 +91,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 
 	/// <inheritdoc/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public AnalysisResult Analyze(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default)
+	public AnalysisResult Analyze(ref readonly Grid puzzle, IProgress<AnalysisProgress>? progress = null, CancellationToken cancellationToken = default)
 	{
 		if (puzzle.IsSolved)
 		{
@@ -125,7 +125,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			{
 				return ex switch
 				{
-					RuntimeAnalyticsException e
+					RuntimeAnalysisException e
 						=> e switch
 						{
 							WrongStepException
@@ -152,7 +152,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IGlobalizedAnalyzer<
 			SymmetricType symmetricType,
 			ReadOnlySpan<Digit?> mappingDigits,
 			Mask selfPairedDigitsMask,
-			IProgress<AnalyzerProgress>? progress,
+			IProgress<AnalysisProgress>? progress,
 			CancellationToken cancellationToken
 		)
 		{

@@ -1041,7 +1041,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					return analyzer.Analyze(
 						in puzzle,
-						new Progress<AnalyzerProgress>(
+						new Progress<AnalysisProgress>(
 							progress => DispatcherQueue.TryEnqueue(
 								() =>
 								{

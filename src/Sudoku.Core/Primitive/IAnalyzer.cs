@@ -22,5 +22,5 @@ public interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf,
 	/// <param name="progress">An <see cref="IProgress{T}"/> instance that is used for reporting the state.</param>
 	/// <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
 	/// <returns>The solver result that provides the information after analyzing.</returns>
-	public abstract TResult Analyze(ref readonly Grid puzzle, IProgress<AnalyzerProgress>? progress = null, CancellationToken cancellationToken = default);
+	public abstract TResult Analyze(ref readonly Grid puzzle, IProgress<AnalysisProgress>? progress = null, CancellationToken cancellationToken = default);
 }
