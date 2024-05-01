@@ -702,7 +702,6 @@ public partial struct CandidateMap :
 		result._bits[9] = ~result._bits[9];
 		result._bits[10] = ~result._bits[10];
 		result._bits[11] = ~result._bits[11] & 0x1FFFFFF;
-
 		result.Count = 729 - offsets.Count;
 		return result;
 	}
@@ -721,7 +720,6 @@ public partial struct CandidateMap :
 	{
 		var result = collection;
 		result.Remove(offset);
-
 		return result;
 	}
 
@@ -743,7 +741,6 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[9] &= right._bits[9]));
 		finalCount += PopCount((ulong)(result._bits[10] &= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] &= right._bits[11]));
-
 		result.Count = finalCount;
 		return result;
 	}
@@ -766,7 +763,6 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[9] |= right._bits[9]));
 		finalCount += PopCount((ulong)(result._bits[10] |= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] |= right._bits[11]));
-
 		result.Count = finalCount;
 		return result;
 	}
@@ -789,7 +785,6 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[9] ^= right._bits[9]));
 		finalCount += PopCount((ulong)(result._bits[10] ^= right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] ^= right._bits[11]));
-
 		result.Count = finalCount;
 		return result;
 	}
@@ -812,7 +807,6 @@ public partial struct CandidateMap :
 		finalCount += PopCount((ulong)(result._bits[9] &= ~right._bits[9]));
 		finalCount += PopCount((ulong)(result._bits[10] &= ~right._bits[10]));
 		finalCount += PopCount((ulong)(result._bits[11] &= ~right._bits[11]));
-
 		result.Count = finalCount;
 		return result;
 	}
@@ -824,8 +818,7 @@ public partial struct CandidateMap :
 	/// <param name="template">The template map that the base map to check and cover.</param>
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
-		=> (@base & template).PeerIntersection & template;
+	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template) => (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
 	static CandidateMap ISubtractionOperators<CandidateMap, CandidateMap, CandidateMap>.operator -(CandidateMap left, CandidateMap right) => left - right;
