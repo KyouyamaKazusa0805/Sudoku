@@ -16,12 +16,10 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 [ComparisonOperators]
 public partial struct CellMap :
-	IAdditionOperators<CellMap, Cell, CellMap>,
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
-	ISubtractionOperators<CellMap, Cell, CellMap>,
-	ISudokuConcept<CellMap>,
+	ISubtractionOperators<CellMap, CellMap, CellMap>,
 	ITokenizable<CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
@@ -1104,10 +1102,7 @@ public partial struct CellMap :
 	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
-	static CellMap IAdditionOperators<CellMap, Cell, CellMap>.operator +(CellMap left, Cell right) => left + right;
-
-	/// <inheritdoc/>
-	static CellMap ISubtractionOperators<CellMap, Cell, CellMap>.operator -(CellMap left, Cell right) => left - right;
+	static CellMap ISubtractionOperators<CellMap, CellMap, CellMap>.operator -(CellMap left, CellMap right) => left - right;
 
 
 	/// <summary>

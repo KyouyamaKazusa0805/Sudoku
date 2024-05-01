@@ -10,6 +10,7 @@ namespace Sudoku.Concepts;
 [EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
 public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
+	IAdditionOperators<TSelf, TElement, TSelf>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICultureFormattable,
 	IEquatable<TSelf>,
@@ -20,7 +21,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISet<TElement>,
-	ISubtractionOperators<TSelf, TSelf, TSelf>,
+	ISubtractionOperators<TSelf, TElement, TSelf>,
 	ISudokuConcept<TSelf>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
@@ -508,7 +509,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="left">The left instance.</param>
 	/// <param name="right">The right instance.</param>
 	/// <returns>The result.</returns>
-	public static virtual TSelf operator -(in TSelf left, in TSelf right) => left & ~right;
+	public static abstract TSelf operator -(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
@@ -536,6 +537,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
 	/// <inheritdoc/>
+	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;
+
+	/// <inheritdoc/>
+	static bool ILogicalOperators<TSelf>.operator false(TSelf value) => !(value ? true : false);
+
+	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator !(TSelf value) => !value;
 
 	/// <inheritdoc/>
@@ -545,13 +552,10 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	static bool IEqualityOperators<TSelf, TSelf, bool>.operator !=(TSelf left, TSelf right) => left != right;
 
 	/// <inheritdoc/>
-	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;
+	static TSelf IAdditionOperators<TSelf, TElement, TSelf>.operator +(TSelf left, TElement right) => left + right;
 
 	/// <inheritdoc/>
-	static bool ILogicalOperators<TSelf>.operator false(TSelf value) => !(value ? true : false);
-
-	/// <inheritdoc/>
-	static TSelf ISubtractionOperators<TSelf, TSelf, TSelf>.operator -(TSelf left, TSelf right) => left - right;
+	static TSelf ISubtractionOperators<TSelf, TElement, TSelf>.operator -(TSelf left, TElement right) => left - right;
 
 	/// <summary>
 	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.

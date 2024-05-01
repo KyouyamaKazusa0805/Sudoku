@@ -15,10 +15,8 @@ namespace Sudoku.Concepts;
 [Equals]
 [EqualityOperators]
 public partial struct CandidateMap :
-	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>,
-	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
-	ISudokuConcept<CandidateMap>
+	ISubtractionOperators<CandidateMap, CandidateMap, CandidateMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CandidateMap Empty = [];
@@ -830,10 +828,7 @@ public partial struct CandidateMap :
 		=> (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
-	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right) => left + right;
-
-	/// <inheritdoc/>
-	static CandidateMap ISubtractionOperators<CandidateMap, Candidate, CandidateMap>.operator -(CandidateMap left, Candidate right) => left - right;
+	static CandidateMap ISubtractionOperators<CandidateMap, CandidateMap, CandidateMap>.operator -(CandidateMap left, CandidateMap right) => left - right;
 
 
 	/// <inheritdoc/>
