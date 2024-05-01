@@ -30,7 +30,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];
 
 	/// <inheritdoc/>
-	CandidateMap ITrueCandidatesTrait.TrueCandidates => Cells * ExtraDigit;
+	CandidateMap ITrueCandidatesTrait.TrueCandidates => Subview.ExpandedCellFromDigit(Cells, ExtraDigit);
 
 	private string ExtraDigitStr => Options.Converter.DigitConverter((Mask)(1 << ExtraDigit));
 

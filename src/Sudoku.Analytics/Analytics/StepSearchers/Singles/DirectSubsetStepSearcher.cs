@@ -289,7 +289,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				{
 					var map = cells % candidatesMap[digit];
 					lockedDigitsMask |= (Mask)(map.InOneHouse(out _) ? 0 : 1 << digit);
-					conclusions |= map * digit;
+					conclusions |= Subview.ExpandedCellFromDigit(in map, digit);
 				}
 				if (conclusions.Count == 0)
 				{

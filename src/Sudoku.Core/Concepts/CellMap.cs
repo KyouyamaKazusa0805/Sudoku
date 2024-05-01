@@ -20,8 +20,6 @@ public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
-	IDivisionOperators<CellMap, House, Mask>,
-	IMultiplyOperators<CellMap, Digit, CandidateMap>,
 	ISubtractionOperators<CellMap, Cell, CellMap>,
 	ISudokuConcept<CellMap>,
 	ITokenizable<CellMap>
@@ -1105,56 +1103,11 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
 
-	/// <summary>
-	/// Expands via the specified digit.
-	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="digit">The digit.</param>
-	/// <returns>The result instance.</returns>
-	public static CandidateMap operator *(in CellMap @base, Digit digit)
-	{
-		var result = CandidateMap.Empty;
-		foreach (var cell in @base.Offsets)
-		{
-			result.Add(cell * 9 + digit);
-		}
-
-		return result;
-	}
-
-	/// <summary>
-	/// Get the sub-view mask of this map.
-	/// </summary>
-	/// <param name="map">The map.</param>
-	/// <param name="houseIndex">The house index.</param>
-	/// <returns>The mask.</returns>
-	public static Mask operator /(in CellMap map, House houseIndex)
-	{
-		var (p, i) = ((Mask)0, 0);
-		foreach (var cell in HousesCells[houseIndex])
-		{
-			if (map.Contains(cell))
-			{
-				p |= (Mask)(1 << i);
-			}
-
-			i++;
-		}
-
-		return p;
-	}
-
 	/// <inheritdoc/>
 	static CellMap IAdditionOperators<CellMap, Cell, CellMap>.operator +(CellMap left, Cell right) => left + right;
 
 	/// <inheritdoc/>
 	static CellMap ISubtractionOperators<CellMap, Cell, CellMap>.operator -(CellMap left, Cell right) => left - right;
-
-	/// <inheritdoc/>
-	static Mask IDivisionOperators<CellMap, House, Mask>.operator /(CellMap left, House right) => left / right;
-
-	/// <inheritdoc/>
-	static CandidateMap IMultiplyOperators<CellMap, Digit, CandidateMap>.operator *(CellMap left, Digit right) => left * right;
 
 
 	/// <summary>

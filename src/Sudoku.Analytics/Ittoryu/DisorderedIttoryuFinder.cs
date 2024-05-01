@@ -164,7 +164,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 					continue;
 				}
 
-				if ((HousesMap[house] & candidatesMap[digit]) / house is var mask && IsPow2((uint)mask))
+				if (Subview.ReduceCellByHouse(HousesMap[house] & candidatesMap[digit], house) is var mask && IsPow2((uint)mask))
 				{
 					foundNodes.Add(new(in grid, house, HousesCells[house][Log2((uint)mask)] * 9 + digit));
 				}

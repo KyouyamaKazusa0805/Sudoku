@@ -17,7 +17,6 @@ namespace Sudoku.Concepts;
 public partial struct CandidateMap :
 	IAdditionOperators<CandidateMap, Candidate, CandidateMap>,
 	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>,
-	IDivisionOperators<CandidateMap, Digit, CellMap>,
 	ISubtractionOperators<CandidateMap, Candidate, CandidateMap>,
 	ISudokuConcept<CandidateMap>
 {
@@ -124,7 +123,7 @@ public partial struct CandidateMap :
 			var result = (Mask)0;
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if (this / digit)
+				if (Subview.ReduceCandidateByDigit(in this, digit))
 				{
 					result |= (Mask)(1 << digit);
 				}
@@ -170,7 +169,8 @@ public partial struct CandidateMap :
 			var dictionary = new Dictionary<Digit, CellMap>(9);
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if (this / digit is var map and not [])
+				var map = Subview.ReduceCandidateByDigit(in this, digit);
+				if (map)
 				{
 					dictionary.Add(digit, map);
 				}
@@ -709,21 +709,6 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <inheritdoc cref="IDivisionOperators{TSelf, TOther, TResult}.op_Division(TSelf, TOther)"/>
-	public static CellMap operator /(in CandidateMap offsets, Digit digit)
-	{
-		var result = CellMap.Empty;
-		foreach (var element in offsets)
-		{
-			if (element % 9 == digit)
-			{
-				result.Add(element / 9);
-			}
-		}
-
-		return result;
-	}
-
 	/// <inheritdoc/>
 	public static CandidateMap operator +(in CandidateMap collection, Candidate offset)
 	{
@@ -843,9 +828,6 @@ public partial struct CandidateMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template)
 		=> (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
-	static CellMap IDivisionOperators<CandidateMap, int, CellMap>.operator /(CandidateMap left, int right) => left / right;
 
 	/// <inheritdoc/>
 	static CandidateMap IAdditionOperators<CandidateMap, Candidate, CandidateMap>.operator +(CandidateMap left, Candidate right) => left + right;

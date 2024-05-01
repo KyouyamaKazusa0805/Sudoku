@@ -151,7 +151,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			var ahsMask = (Mask)0;
 			foreach (var digit in mask)
 			{
-				ahsMask |= (HousesMap[coverSet] & CandidatesMap[digit] & b) / coverSet;
+				ahsMask |= Subview.ReduceCellByHouse(HousesMap[coverSet] & CandidatesMap[digit] & b, coverSet);
 			}
 			if (PopCount((uint)ahsMask) != size - 1)
 			{

@@ -456,11 +456,11 @@ public partial struct Grid :
 		get
 		{
 			var result = 0;
-			for (var (houseIndex, valueCells) = (0, ~EmptyCells); houseIndex < 27; houseIndex++)
+			for (var (house, valueCells) = (0, ~EmptyCells); house < 27; house++)
 			{
-				if (valueCells / houseIndex == 0)
+				if (Subview.ReduceCellByHouse(in valueCells, house) == 0)
 				{
-					result |= 1 << houseIndex;
+					result |= 1 << house;
 				}
 			}
 

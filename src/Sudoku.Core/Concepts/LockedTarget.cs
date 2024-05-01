@@ -56,7 +56,7 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(Cells * Digit);
+	public string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(Subview.ExpandedCellFromDigit(Cells, Digit));
 
 	/// <inheritdoc/>
 	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(in other);

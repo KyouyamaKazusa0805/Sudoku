@@ -436,7 +436,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			for (var conjugatePairDigit = 0; conjugatePairDigit < 9; conjugatePairDigit++)
 			{
 				// Check whether forms a conjugate pair.
-				var mask = (HousesMap[house] & CandidatesMap[conjugatePairDigit]) / house;
+				var mask = Subview.ReduceCellByHouse(HousesMap[house] & CandidatesMap[conjugatePairDigit], house);
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
