@@ -1,5 +1,7 @@
 namespace Sudoku.MinLex;
 
+using static BestTripletPermutation;
+
 /// <summary>
 /// Represents a finder type.
 /// </summary>

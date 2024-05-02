@@ -42,5 +42,4 @@ global using Sudoku.Text.Serialization.Specialized;
 global using static System.Combinatorial;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
-global using static Sudoku.MinLex.BestTripletPermutation;
 global using static Sudoku.SolutionFields;

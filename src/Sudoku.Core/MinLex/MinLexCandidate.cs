@@ -1,5 +1,7 @@
 namespace Sudoku.MinLex;
 
+using static BestTripletPermutation;
+
 /// <summary>
 /// Indicates a node representing the min-lexicographical candidate.
 /// </summary>
