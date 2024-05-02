@@ -572,12 +572,16 @@ internal static class RenderableFactory
 				StrokeThickness = (width + height) / 2 * 3 / 20,
 				Tag = $"{nameof(RenderableFactory)}: {tagPrefix} {converter.CandidateConverter(candidate)}{conclusionTagStr}{id.GetIdentifierSuffix()}",
 				Opacity = enableAnimation ? 0 : 1,
-				ForwardLineVisibility = eliminationDisplayMode is EliminationDisplay.Cross or EliminationDisplay.Slash
-					? Visibility.Visible
-					: Visibility.Collapsed,
-				BackwardLineVisibility = eliminationDisplayMode is EliminationDisplay.Cross or EliminationDisplay.Backslash
-					? Visibility.Visible
-					: Visibility.Collapsed
+				ForwardLineVisibility = eliminationDisplayMode switch
+				{
+					EliminationDisplay.Cross or EliminationDisplay.Slash => Visibility.Visible,
+					_ => Visibility.Collapsed
+				},
+				BackwardLineVisibility = eliminationDisplayMode switch
+				{
+					EliminationDisplay.Cross or EliminationDisplay.Backslash => Visibility.Visible,
+					_ => Visibility.Collapsed
+				}
 			},
 			(true, _, _, _, _) or (_, _, CandidateViewNodeDisplay.CircleSolid, _, _) => new Ellipse
 			{
