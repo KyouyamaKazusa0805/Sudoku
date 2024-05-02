@@ -1,5 +1,7 @@
 namespace Sudoku.Linq;
 
+using CandidateMapPredicate = BitStatusMapPredicate<CandidateMap, Candidate, CandidateMap.Enumerator>;
+
 /// <summary>
 /// Represents a list of LINQ methods that can operate with <see cref="CandidateMap"/> instances.
 /// </summary>

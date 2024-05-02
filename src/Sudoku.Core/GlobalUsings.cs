@@ -44,5 +44,3 @@ global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.MinLex.BestTripletPermutation;
 global using static Sudoku.SolutionFields;
-global using CandidateMapPredicate = Sudoku.Primitive.BitStatusMapPredicate<Sudoku.Concepts.CandidateMap, int /*Candidate*/, Sudoku.Concepts.CandidateMap.Enumerator>;
-global using CellMapPredicate = Sudoku.Primitive.BitStatusMapPredicate<Sudoku.Concepts.CellMap, int /*Cell*/, Sudoku.Concepts.CellMap.Enumerator>;

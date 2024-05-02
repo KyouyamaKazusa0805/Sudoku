@@ -1,5 +1,7 @@
 namespace Sudoku.Linq;
 
+using CellMapPredicate = BitStatusMapPredicate<CellMap, Cell, CellMap.Enumerator>;
+
 /// <summary>
 /// Represents a list of LINQ methods that can operate with <see cref="CellMap"/> instances.
 /// </summary>
