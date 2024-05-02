@@ -24,5 +24,5 @@ public interface IJsonSerializable<TSelf> where TSelf : IJsonSerializable<TSelf>
 	/// </summary>
 	/// <param name="jsonString">The JSON string to be converted from.</param>
 	/// <returns>The valid <typeparamref name="TSelf"/> instance converted.</returns>
-	public static abstract TSelf FromJsonString(string jsonString);
+	public static abstract TSelf? FromJsonString(string jsonString);
 }

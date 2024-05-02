@@ -6775,6 +6775,9 @@
             </summary>
             <seealso cref="T:Sudoku.Rendering.ViewNode"/>
         </member>
+        <member name="P:Sudoku.Rendering.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Rendering#ViewNode}#DefaultOptions">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Rendering.ViewNode.Equals(Sudoku.Rendering.ViewNode)">
             <inheritdoc/>
         </member>
@@ -6783,6 +6786,12 @@
             Creates a new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance, with independency.
             </summary>
             <returns>A new <see cref="T:Sudoku.Rendering.View"/> instance with same values as the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Rendering#ViewNode}#ToJsonString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.ViewNode.System#Text#Json#IJsonSerializable{Sudoku#Rendering#ViewNode}#FromJsonString(System.String)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Rendering.ViewNode.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
