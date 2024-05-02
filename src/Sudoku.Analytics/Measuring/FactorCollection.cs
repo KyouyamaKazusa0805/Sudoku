@@ -3,9 +3,10 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents a read-only collection of <see cref="Factor"/> instances.
 /// </summary>
+/// <param name="factors">Indicates the factors inside the data structure.</param>
 /// <seealso cref="Factor"/>
 [CollectionBuilder(typeof(FactorCollection), nameof(Create))]
-public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyList<Factor>, IReadOnlyCollection<Factor>
+public sealed partial class FactorCollection(ReadOnlyMemory<Factor> factors) : IEnumerable<Factor>, IReadOnlyList<Factor>, IReadOnlyCollection<Factor>
 {
 	/// <summary>
 	/// Represents the empty instance.
@@ -14,26 +15,12 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 
 
 	/// <summary>
-	/// Indicates the factors.
-	/// </summary>
-	private readonly ReadOnlyMemory<Factor> _factors;
-
-
-	/// <summary>
-	/// Initializes a <see cref="FactorCollection"/> instance via initial elements.
-	/// </summary>
-	/// <param name="factors">The factors.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private FactorCollection(ReadOnlyMemory<Factor> factors) => _factors = factors;
-
-
-	/// <summary>
 	/// Indicates the length of elements stored in this collection.
 	/// </summary>
 	public int Length
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _factors.Length;
+		get => factors.Length;
 	}
 
 	/// <inheritdoc/>
@@ -48,7 +35,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	public Factor this[int index]
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => _factors.Span[index];
+		get => factors.Span[index];
 	}
 
 
@@ -60,7 +47,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// <returns>The first found <see cref="Factor"/> instance.</returns>
 	public Factor? FirstOrDefault(Func<Factor, bool> match)
 	{
-		foreach (var factor in _factors)
+		foreach (var factor in factors)
 		{
 			if (match(factor))
 			{
@@ -76,7 +63,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// <param name="action">The action to be executed and applied to each element.</param>
 	public void ForEach(Action<Factor> action)
 	{
-		foreach (var factor in _factors)
+		foreach (var factor in factors)
 		{
 			action(factor);
 		}
@@ -116,7 +103,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Enumerator GetEnumerator() => new(_factors.Span);
+	public Enumerator GetEnumerator() => new(factors.Span);
 
 	/// <summary>
 	/// Slices the collection via the specified index as the start, and the number of elements to be sliced.
@@ -125,7 +112,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// <param name="length">The number of elements to be sliced.</param>
 	/// <returns>A <see cref="FactorCollection"/> instance sliced.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public FactorCollection Slice(int start, int length) => new(_factors[start..(start + length)]);
+	public FactorCollection Slice(int start, int length) => new(factors[start..(start + length)]);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Factor>)this).GetEnumerator();
@@ -133,7 +120,7 @@ public sealed partial class FactorCollection : IEnumerable<Factor>, IReadOnlyLis
 	/// <inheritdoc/>
 	IEnumerator<Factor> IEnumerable<Factor>.GetEnumerator()
 	{
-		foreach (var element in _factors.ToArray())
+		foreach (var element in factors.ToArray())
 		{
 			yield return element;
 		}

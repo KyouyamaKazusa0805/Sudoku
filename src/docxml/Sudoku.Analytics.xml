@@ -21840,23 +21840,20 @@ result ^= expression;
             <summary>
             Represents a read-only collection of <see cref="T:Sudoku.Measuring.Factor"/> instances.
             </summary>
+            <param name="factors">Indicates the factors inside the data structure.</param>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorCollection.#ctor(System.ReadOnlyMemory{Sudoku.Measuring.Factor})">
+            <summary>
+            Represents a read-only collection of <see cref="T:Sudoku.Measuring.Factor"/> instances.
+            </summary>
+            <param name="factors">Indicates the factors inside the data structure.</param>
             <seealso cref="T:Sudoku.Measuring.Factor"/>
         </member>
         <member name="F:Sudoku.Measuring.FactorCollection.Empty">
             <summary>
             Represents the empty instance.
             </summary>
-        </member>
-        <member name="F:Sudoku.Measuring.FactorCollection._factors">
-            <summary>
-            Indicates the factors.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorCollection.#ctor(System.ReadOnlyMemory{Sudoku.Measuring.Factor})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Measuring.FactorCollection"/> instance via initial elements.
-            </summary>
-            <param name="factors">The factors.</param>
         </member>
         <member name="P:Sudoku.Measuring.FactorCollection.Length">
             <summary>
@@ -21954,6 +21951,25 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Measuring.FactorCollection.Enumerator.MoveNext">
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="T:Sudoku.Measuring.FactorPropertyAttribute`1">
+            <summary>
+            Represents an attribute type that describes the current property can be used as a factor.
+            </summary>
+            <typeparam name="TFactor">The type of the factor.</typeparam>
+            <param name="resourceKey">The name of the property. The key points to a resource dictionary.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.FactorPropertyAttribute`1.#ctor(System.String)">
+            <summary>
+            Represents an attribute type that describes the current property can be used as a factor.
+            </summary>
+            <typeparam name="TFactor">The type of the factor.</typeparam>
+            <param name="resourceKey">The name of the property. The key points to a resource dictionary.</param>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorPropertyAttribute`1.ResourceKey">
+            <summary>
+            The generated property declaration for parameter <c>resourceKey</c>.
+            </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
             <summary>
