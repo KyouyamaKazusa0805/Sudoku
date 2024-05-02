@@ -30,6 +30,8 @@
 
 namespace Sudoku.Analytics.StepSearchers;
 
+using TargetCellsGroup = BitStatusMapGrouping<CellMap, Cell, CellMap.Enumerator, House>;
+
 /// <summary>
 /// Provides with an <b>Exocet</b> step searcher.
 /// The step searcher will include the following techniques:

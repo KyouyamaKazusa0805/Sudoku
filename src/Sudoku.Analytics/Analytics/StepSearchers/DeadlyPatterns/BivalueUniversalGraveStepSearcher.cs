@@ -1,5 +1,7 @@
 namespace Sudoku.Analytics.StepSearchers;
 
+using TargetCandidatesGroup = BitStatusMapGrouping<CandidateMap, Candidate, CandidateMap.Enumerator, Cell>;
+
 /// <summary>
 /// Provides with a <b>Bi-value Universal Grave</b> step searcher.
 /// The step searcher will include the following techniques:

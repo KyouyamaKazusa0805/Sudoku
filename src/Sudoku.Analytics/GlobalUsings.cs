@@ -59,5 +59,3 @@ global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.Globalization.Languages;
 global using static Sudoku.Rendering.RenderingMode;
 global using static Sudoku.SolutionFields;
-global using TargetCandidatesGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CandidateMap, int /*Candidate*/, Sudoku.Concepts.CandidateMap.Enumerator, int /*Cell*/>;
-global using TargetCellsGroup = Sudoku.Linq.BitStatusMapGrouping<Sudoku.Concepts.CellMap, int /*Cell*/, Sudoku.Concepts.CellMap.Enumerator, int /*House*/>;
