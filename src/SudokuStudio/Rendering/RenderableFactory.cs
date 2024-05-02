@@ -1,6 +1,8 @@
-#undef ASYNC_LOAD_VIEW_NODES
+#define ASYNC_LOAD_VIEW_NODES
 
 namespace SudokuStudio.Rendering;
+
+using static RenderableItemIdentifiers;
 
 /// <summary>
 /// Defines a factory type that is used for creating a list of <see cref="FrameworkElement"/>
@@ -13,72 +15,11 @@ namespace SudokuStudio.Rendering;
 /// <seealso cref="FrameworkElement"/>
 internal static class RenderableFactory
 {
-	/// <summary>
-	/// Indicates the separator for the suffix of conclusions in tag text.
-	/// </summary>
-	internal const string ConclusionSuffixSeparator = "|c";
-
-	/// <summary>
-	/// Indicates the separator for the suffix of inferences in tag text.
-	/// </summary>
-	internal const string InferenceSuffixSeparator = "|i";
-
-	/// <summary>
-	/// Indicates the separator for the suffix of colorized in tag text.
-	/// </summary>
-	internal const string ColorizedSuffixSeparator = "|@";
-
-	/// <summary>
-	/// Indicates the separator for the suffix of colorized color identifier in tag text.
-	/// </summary>
-	internal const string ColorColorIdentifierSeparator = "|*";
-
-	/// <summary>
-	/// Indicates the separator for the suffix of colorized named identifier in tag text.
-	/// </summary>
-	internal const string IdColorIdentifierSeparator = "|#";
-
-	/// <summary>
-	/// The conclusion suffixes.
-	/// </summary>
-	internal const string
-		CannibalismConclusionSuffix = "|cc|",
-		EliminationConclusionSuffix = "|ce|",
-		OverlappedAssignmentConclusionSuffix = "|co|",
-		AssignmentConclusionSuffix = "|ca|";
-
-	/// <summary>
-	/// The link suffixes.
-	/// </summary>
-	internal const string
-		StrongInferenceSuffix = "|is|",
-		StrongGeneralizedInferenceSuffix = "|isg|",
-		WeakInferenceSuffix = "|iw|",
-		WeakGeneralizedInferenceSuffix = "|iwg|",
-		ConjugateInferenceSuffix = "|ic|",
-		DefaultInferenceSuffix = "|id|";
-
-	/// <summary>
-	/// The colorized suffixes.
-	/// </summary>
-	internal const string
-		NormalColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Normal)}|",
-		AssignmentColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Assignment)}|",
-		OverlappedAssignmentColorizedSuffix = $"|@{nameof(ColorIdentifierKind.OverlappedAssignment)}|",
-		EliminationColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Elimination)}|",
-		CannibalismColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Cannibalism)}|",
-		LinkColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Link)}|",
-		ExofinColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Exofin)}|",
-		EndofinColorizedSuffix = $"|@{nameof(ColorIdentifierKind.Endofin)}|",
-		AuxiliaryColorizedSuffix = "|@Auxiliary|",
-		AlmostLockedSetColorizedSuffix = "|@AlmostLockedSet|",
-		ColorPaletteColorizedSuffix = "|@ColorPalette|";
-
 #if ASYNC_LOAD_VIEW_NODES
 	/// <summary>
 	/// Indicates the load time for each view node.
 	/// </summary>
-	private const int AsyncLoadMilliseconds = 100;
+	private const int AsyncLoadMilliseconds = 10;
 #endif
 
 

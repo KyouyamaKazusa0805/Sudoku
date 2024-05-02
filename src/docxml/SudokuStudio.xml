@@ -5369,134 +5369,9 @@
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ConclusionSuffixSeparator">
+        <member name="F:SudokuStudio.Rendering.RenderableFactory.AsyncLoadMilliseconds">
             <summary>
-            Indicates the separator for the suffix of conclusions in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.InferenceSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of inferences in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ColorizedSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ColorColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized color identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.IdColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized named identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.CannibalismConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.EliminationConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.OverlappedAssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.AssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.StrongInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.StrongGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.WeakInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.WeakGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ConjugateInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.DefaultInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.NormalColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.AssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.OverlappedAssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.EliminationColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.CannibalismColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.LinkColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ExofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.EndofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.AuxiliaryColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.AlmostLockedSetColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ColorPaletteColorizedSuffix">
-            <summary>
-            The colorized suffixes.
+            Indicates the load time for each view node.
             </summary>
         </member>
         <member name="F:SudokuStudio.Rendering.RenderableFactory.ViewNodeTagPrefixes">
@@ -5531,7 +5406,7 @@
             <param name="pane">The target pane.</param>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControlsAsync(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
             Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
@@ -5920,6 +5795,142 @@
             The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:SudokuStudio.Rendering.RenderableItemIdentifiers">
+            <summary>
+            Represents a list of identifiers used by renderable items that will be consumed by <see cref="T:SudokuStudio.Rendering.RenderableFactory"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Rendering.RenderableFactory"/>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ConclusionSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of conclusions in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.InferenceSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of inferences in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorizedSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorColorIdentifierSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized color identifier in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.IdColorIdentifierSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized named identifier in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.CannibalismConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EliminationConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.OverlappedAssignmentConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AssignmentConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.StrongInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.StrongGeneralizedInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.WeakInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.WeakGeneralizedInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ConjugateInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.DefaultInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.NormalColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AssignmentColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.OverlappedAssignmentColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EliminationColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.CannibalismColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.LinkColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ExofinColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EndofinColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AuxiliaryColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AlmostLockedSetColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorPaletteColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Resources.SudokuStudioResources">
             <summary>
