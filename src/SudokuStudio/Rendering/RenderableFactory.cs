@@ -104,7 +104,12 @@ internal static class RenderableFactory
 	/// <param name="pane">The pane.</param>
 	/// <param name="reason">The reason why raising this updating operation.</param>
 	/// <param name="value">The value specified as an <see cref="object"/> value.</param>
-	public static void UpdateViewUnitControls(SudokuPane pane, RenderableItemsUpdatingReason reason, object? value = null)
+	[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+	public static
+#if ASYNC_LOAD_VIEW_NODES
+		async
+#endif
+		void UpdateViewUnitControls(SudokuPane pane, RenderableItemsUpdatingReason reason, object? value = null)
 	{
 		if (reason != RenderableItemsUpdatingReason.None)
 		{
@@ -112,7 +117,7 @@ internal static class RenderableFactory
 			if (pane.ViewUnit is not null)
 			{
 #if ASYNC_LOAD_VIEW_NODES
-				AddViewUnitControlsAsync(pane, pane.ViewUnit);
+				await AddViewUnitControlsAsync(pane, pane.ViewUnit);
 #else
 				AddViewUnitControls(pane, pane.ViewUnit);
 #endif
@@ -158,7 +163,7 @@ internal static class RenderableFactory
 	/// <seealso cref="FrameworkElement"/>
 	/// <seealso cref="ViewUnitBindableSource"/>
 #if ASYNC_LOAD_VIEW_NODES
-	private static async void AddViewUnitControlsAsync(SudokuPane pane, ViewUnitBindableSource viewUnit)
+	private static async Task AddViewUnitControlsAsync(SudokuPane pane, ViewUnitBindableSource viewUnit)
 #else
 	private static void AddViewUnitControls(SudokuPane pane, ViewUnitBindableSource viewUnit)
 #endif
