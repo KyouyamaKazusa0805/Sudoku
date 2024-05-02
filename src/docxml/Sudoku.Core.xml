@@ -8749,9 +8749,9 @@
             </summary>
             <param name="root">The root node.</param>
         </member>
-        <member name="P:Sudoku.Solving.DancingLink.Root">
+        <member name="P:Sudoku.Solving.DancingLink.Entry">
             <summary>
-            Indicates the root node.
+            Indicates the entry instance.
             </summary>
         </member>
         <member name="M:Sudoku.Solving.DancingLink.CreateLinkedList(System.Int32[])">
@@ -8761,18 +8761,6 @@
             <param name="gridArray">The grid array.</param>
             <returns>The column node for the root node.</returns>
         </member>
-        <member name="M:Sudoku.Solving.DancingLink.LinkRow(Sudoku.Solving.MatrixRow@)">
-            <summary>
-            Links the row.
-            </summary>
-            <param name="d">The matrix row instance.</param>
-        </member>
-        <member name="M:Sudoku.Solving.DancingLink.LinkRowToColumn(Sudoku.Solving.DancingLinkNode)">
-            <summary>
-            Links the row to the column.
-            </summary>
-            <param name="section">The section.</param>
-        </member>
         <member name="M:Sudoku.Solving.DancingLink.FormLinks(System.Collections.Generic.List{Sudoku.Solving.ColumnNode},System.Int32,System.Int32,System.Int32)">
             <summary>
             To form the links via the specified columns, the cell index and the digit used.
@@ -8781,6 +8769,16 @@
             <param name="x">The current row index.</param>
             <param name="y">The current column index.</param>
             <param name="d">The current digit.</param>
+        </member>
+        <member name="T:Sudoku.Solving.MatrixRow">
+            <summary>
+            Represents a type describing for a matrix row.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode)">
+            <summary>
+            Represents a type describing for a matrix row.
+            </summary>
         </member>
         <member name="T:Sudoku.Solving.DictionaryQuerySolver">
             <summary>
@@ -8922,16 +8920,6 @@
         </member>
         <member name="M:Sudoku.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Solving.MatrixRow">
-            <summary>
-            The matrix row.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Solving.MatrixRow.#ctor(Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode,Sudoku.Solving.DancingLinkNode)">
-            <summary>
-            The matrix row.
-            </summary>
         </member>
         <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
             <summary>

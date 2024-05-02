@@ -34,21 +34,16 @@ public sealed class DancingLinksSolver : ISolver
 	/// <inheritdoc/>
 	public bool? Solve(ref readonly Grid grid, out Grid result)
 	{
-		Unsafe.SkipInit(out result);
-
-		var gridValue = grid.ToArray();
-		var dlx = new DancingLink(new(-1));
-		_root = dlx.CreateLinkedList(gridValue);
-
 		try
 		{
+			_root = DancingLink.Entry.CreateLinkedList([.. grid]);
 			Search();
-
 			result = _solution;
 			return true;
 		}
 		catch (InvalidOperationException ex)
 		{
+			result = Grid.Undefined;
 			return ex.Message.Contains("multiple") ? false : null;
 		}
 	}
@@ -184,9 +179,9 @@ public sealed class DancingLinksSolver : ISolver
 file sealed class DancingLink(ColumnNode root)
 {
 	/// <summary>
-	/// Indicates the root node.
+	/// Indicates the entry instance.
 	/// </summary>
-	public ColumnNode Root { get; set; } = root;
+	public static DancingLink Entry => new(new(-1));
 
 
 	/// <summary>
@@ -199,9 +194,9 @@ file sealed class DancingLink(ColumnNode root)
 		var columns = new List<ColumnNode>();
 		for (var columnIndex = 0; columnIndex < 324; columnIndex++)
 		{
-			var col = new ColumnNode(columnIndex) { Right = Root, Left = Root.Left };
-			Root.Left.Right = col;
-			Root.Left = col;
+			var col = new ColumnNode(columnIndex) { Right = root, Left = root.Left };
+			root.Left.Right = col;
+			root.Left = col;
 			columns.Add(col);
 		}
 
@@ -225,41 +220,7 @@ file sealed class DancingLink(ColumnNode root)
 			}
 		}
 
-		return Root;
-	}
-
-	/// <summary>
-	/// Links the row.
-	/// </summary>
-	/// <param name="d">The matrix row instance.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void LinkRow(ref MatrixRow d)
-	{
-		d.Cell.Right = d.Column;
-		d.Cell.Left = d.Block;
-		d.Column.Right = d.Row;
-		d.Column.Left = d.Cell;
-		d.Row.Right = d.Block;
-		d.Row.Left = d.Column;
-		d.Block.Right = d.Cell;
-		d.Block.Left = d.Row;
-	}
-
-	/// <summary>
-	/// Links the row to the column.
-	/// </summary>
-	/// <param name="section">The section.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private void LinkRowToColumn(DancingLinkNode section)
-	{
-		if (section.Column is { } col)
-		{
-			col.Size++;
-			section.Down = col;
-			section.Up = col.Up;
-			col.Up.Down = section;
-			col.Up = section;
-		}
+		return root;
 	}
 
 	/// <summary>
@@ -278,10 +239,42 @@ file sealed class DancingLink(ColumnNode root)
 		var block = new DancingLinkNode(x * 81 + y * 9 + d, columns[243 + (3 * (x / 3) + y / 3) * 9 + d]);
 		var matrixRow = new MatrixRow(cell, row, column, block);
 
-		LinkRow(ref matrixRow);
-		LinkRowToColumn(matrixRow.Cell);
-		LinkRowToColumn(matrixRow.Row);
-		LinkRowToColumn(matrixRow.Column);
-		LinkRowToColumn(matrixRow.Block);
+		linkRow(ref matrixRow);
+		linkRowToColumn(matrixRow.Cell);
+		linkRowToColumn(matrixRow.Row);
+		linkRowToColumn(matrixRow.Column);
+		linkRowToColumn(matrixRow.Block);
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void linkRow(ref MatrixRow d)
+		{
+			d.Cell.Right = d.Column;
+			d.Cell.Left = d.Block;
+			d.Column.Right = d.Row;
+			d.Column.Left = d.Cell;
+			d.Row.Right = d.Block;
+			d.Row.Left = d.Column;
+			d.Block.Right = d.Cell;
+			d.Block.Left = d.Row;
+		}
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		void linkRowToColumn(DancingLinkNode section)
+		{
+			if (section.Column is { } col)
+			{
+				col.Size++;
+				section.Down = col;
+				section.Up = col.Up;
+				col.Up.Down = section;
+				col.Up = section;
+			}
+		}
 	}
 }
+
+/// <summary>
+/// Represents a type describing for a matrix row.
+/// </summary>
+file record struct MatrixRow(DancingLinkNode Cell, DancingLinkNode Row, DancingLinkNode Column, DancingLinkNode Block);
