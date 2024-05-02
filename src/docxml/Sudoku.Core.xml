@@ -370,15 +370,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsets(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsetsAll">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.GetSubsetsAllBelow(System.Int32)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Add(System.Int32)">
             <summary>
             Add a new <see cref="T:System.Int32"/> into the collection.
@@ -829,15 +820,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetSubsets(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetSubsetsAll">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.GetSubsetsAllBelow(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Add(System.Int32)">
@@ -3377,6 +3359,95 @@
         <member name="M:Sudoku.Concepts.LockedTarget.System#Numerics#IEqualityOperators{Sudoku#Concepts#LockedTarget,Sudoku#Concepts#LockedTarget,System#Boolean}#op_Inequality(Sudoku.Concepts.LockedTarget,Sudoku.Concepts.LockedTarget)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.MapCombinatorial">
+            <summary>
+            Represents some methods operating with <see cref="T:Sudoku.Primitive.IBitStatusMap`3"/> instances
+            (i.e. <see cref="T:Sudoku.Concepts.CellMap"/> and <see cref="T:Sudoku.Concepts.CandidateMap"/>) to get subsets.
+            </summary>
+            <seealso cref="T:Sudoku.Primitive.IBitStatusMap`3"/>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
+            </summary>
+            <param name="this">The instance to check for subsets.</param>
+            <param name="subsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term><c><paramref name="subsetSize"/> == Count</c></term>
+            <description>
+            Will return an array that contains only one element, same as the current instance.
+            </description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+            <exception cref="T:System.NotSupportedException">
+            Throws when both the count of the current instance and <paramref name="subsetSize"/> are greater than 30.
+            </exception>
+            <remarks>
+            For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+            and the argument <paramref name="subsetSize"/> is 2,
+            the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Equivalent to calling <see cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)"/> with all possible cases.
+            </summary>
+            <param name="this">The instance to check subsets.</param>
+            <returns>All subsets of the current instance.</returns>
+            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CellMap@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Gets all subsets of the current collection via the specified size
+            indicating the <b>maximum</b> number of elements of the each subset.
+            </summary>
+            <param name="this">The instance to check subsets.</param>
+            <param name="limitSubsetSize">The size to get.</param>
+            <returns>
+            All possible subsets. If:
+            <list type="table">
+            <listheader>
+            <term>Condition</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term><c><paramref name="limitSubsetSize"/> &gt; Count</c></term>
+            <description>Will return an empty array</description>
+            </item>
+            <item>
+            <term>Other cases</term>
+            <description>The valid combinations.</description>
+            </item>
+            </list>
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        </member>
         <member name="T:Sudoku.Concepts.Subview">
             <summary>
             Represents a list of methods that operates on <see cref="T:System.Int32"/>, <see cref="T:System.Int32"/>, <see cref="T:System.Int32"/> instances,
@@ -5220,74 +5291,6 @@
             <param name="start">The start index.</param>
             <param name="count">The number of elements.</param>
             <returns>The target instance.</returns>
-        </member>
-        <member name="M:Sudoku.Primitive.IBitStatusMap`3.GetSubsets(System.Int32)">
-            <summary>
-            Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
-            </summary>
-            <param name="subsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term><c><paramref name="subsetSize"/> == Count</c></term>
-            <description>
-            Will return an array that contains only one element, same as the current instance.
-            </description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
-            <exception cref="T:System.NotSupportedException">
-            Throws when both the count of the current instance and <paramref name="subsetSize"/> are greater than 30.
-            </exception>
-            <remarks>
-            For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
-            and the argument <paramref name="subsetSize"/> is 2,
-            the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Primitive.IBitStatusMap`3.GetSubsetsAll">
-            <summary>
-            Equivalent to calling <see cref="M:Sudoku.Primitive.IBitStatusMap`3.GetSubsets(System.Int32)"/> with all possible cases.
-            </summary>
-            <returns>All subsets of the current instance.</returns>
-            <seealso cref="M:Sudoku.Primitive.IBitStatusMap`3.GetSubsetsAllBelow(System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Primitive.IBitStatusMap`3.GetSubsetsAllBelow(System.Int32)">
-            <summary>
-            Gets all subsets of the current collection via the specified size
-            indicating the <b>maximum</b> number of elements of the each subset.
-            </summary>
-            <param name="limitSubsetSize">The size to get.</param>
-            <returns>
-            All possible subsets. If:
-            <list type="table">
-            <listheader>
-            <term>Condition</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term><c><paramref name="limitSubsetSize"/> &gt; Count</c></term>
-            <description>Will return an empty array</description>
-            </item>
-            <item>
-            <term>Other cases</term>
-            <description>The valid combinations.</description>
-            </item>
-            </list>
-            </returns>
         </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.GetEnumerator">
             <summary>

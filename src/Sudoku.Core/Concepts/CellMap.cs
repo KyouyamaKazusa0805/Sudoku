@@ -99,7 +99,7 @@ public partial struct CellMap :
 				case 2: { return InOneHouse(out _); }
 				default:
 				{
-					foreach (ref readonly var pair in GetSubsets(2))
+					foreach (ref readonly var pair in this.GetSubsets(2))
 					{
 						if (pair.InOneHouse(out _))
 						{
@@ -683,116 +683,6 @@ public partial struct CellMap :
 		}
 
 		return result;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe ReadOnlySpan<CellMap> GetSubsets(int subsetSize)
-	{
-		if (subsetSize == 0 || subsetSize > Count)
-		{
-			return [];
-		}
-
-		if (subsetSize == Count)
-		{
-			return (CellMap[])[this];
-		}
-
-		var n = Count;
-		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
-		{
-			// Optimization: Use table to get the total number of result elements.
-			var totalIndex = 0;
-			var result = new CellMap[PascalTriangle[n - 1][subsetSize - 1]];
-			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
-			return result;
-
-
-			void enumerateWithLimit(int size, int last, int index, Cell[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = (CellMap)temp;
-					}
-				}
-			}
-		}
-		else
-		{
-			if (n > 30 && subsetSize > 30)
-			{
-				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
-			}
-			var result = new List<CellMap>();
-			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return result.AsReadOnlySpan();
-
-
-			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.AddRef((CellMap)temp);
-					}
-				}
-			}
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CellMap> GetSubsetsAll() => GetSubsetsAllBelow(Count);
-
-	/// <inheritdoc/>
-	public readonly ReadOnlySpan<CellMap> GetSubsetsAllBelow(int limitSubsetSize)
-	{
-		if (limitSubsetSize == 0 || !this)
-		{
-			return [];
-		}
-
-		var (n, desiredSize) = (Count, 0);
-		var length = Math.Min(n, limitSubsetSize);
-		for (var i = 1; i <= length; i++)
-		{
-			desiredSize += PascalTriangle[n - 1][i - 1];
-		}
-
-		var result = new List<CellMap>(desiredSize);
-		for (var i = 1; i <= length; i++)
-		{
-			result.AddRangeRef(GetSubsets(i));
-		}
-
-		return result.AsReadOnlySpan();
 	}
 
 	/// <summary>

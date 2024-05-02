@@ -394,116 +394,6 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly unsafe ReadOnlySpan<CandidateMap> GetSubsets(int subsetSize)
-	{
-		if (subsetSize == 0 || subsetSize > Count)
-		{
-			return [];
-		}
-
-		if (subsetSize == Count)
-		{
-			return (CandidateMap[])[this];
-		}
-
-		var n = Count;
-		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
-		{
-			// Optimization: Use table to get the total number of result elements.
-			var totalIndex = 0;
-			var result = new CandidateMap[PascalTriangle[n - 1][subsetSize - 1]];
-			enumerateWithLimit(subsetSize, n, subsetSize, Offsets);
-			return result;
-
-
-			void enumerateWithLimit(int size, int last, int index, Candidate[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = [.. temp];
-					}
-				}
-			}
-		}
-		else
-		{
-			if (n > 30 && subsetSize > 30)
-			{
-				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
-			}
-			var result = new List<CandidateMap>();
-			enumerateWithoutLimit(subsetSize, n, subsetSize, Offsets);
-			return result.AsReadOnlySpan();
-
-
-			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.AddRef([.. temp]);
-					}
-				}
-			}
-		}
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAll() => GetSubsetsAllBelow(Count);
-
-	/// <inheritdoc/>
-	public readonly ReadOnlySpan<CandidateMap> GetSubsetsAllBelow(int limitSubsetSize)
-	{
-		if (limitSubsetSize == 0 || !this)
-		{
-			return [];
-		}
-
-		var (n, desiredSize) = (Count, 0);
-		var length = Math.Min(n, limitSubsetSize);
-		for (var i = 1; i <= length; i++)
-		{
-			desiredSize += PascalTriangle[n - 1][i - 1];
-		}
-
-		var result = new List<CandidateMap>(desiredSize);
-		for (var i = 1; i <= length; i++)
-		{
-			result.AddRangeRef(GetSubsets(i));
-		}
-
-		return result.AsReadOnlySpan();
-	}
-
 	/// <summary>
 	/// Add a new <see cref="Candidate"/> into the collection.
 	/// </summary>
@@ -535,7 +425,6 @@ public partial struct CandidateMap :
 				result++;
 			}
 		}
-
 		return result;
 	}
 
