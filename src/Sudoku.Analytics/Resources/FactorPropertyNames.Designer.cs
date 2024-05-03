@@ -61,6 +61,42 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Cells in base.
+        /// </summary>
+        internal static string AlmostLockedCandidatesStep_BaseCells {
+            get {
+                return ResourceManager.GetString("AlmostLockedCandidatesStep_BaseCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cells in cover.
+        /// </summary>
+        internal static string AlmostLockedCandidatesStep_CoverCells {
+            get {
+                return ResourceManager.GetString("AlmostLockedCandidatesStep_CoverCells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digits.
+        /// </summary>
+        internal static string AlmostLockedCandidatesStep_DigitsMask {
+            get {
+                return ResourceManager.GetString("AlmostLockedCandidatesStep_DigitsMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Has value cells.
+        /// </summary>
+        internal static string AlmostLockedCandidatesStep_HasValueCell {
+            get {
+                return ResourceManager.GetString("AlmostLockedCandidatesStep_HasValueCell", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Technique based on.
         /// </summary>
         internal static string ComplexSingleBaseStep_BasedOn {
@@ -228,6 +264,69 @@ namespace Sudoku.Resources {
         internal static string HiddenSingleStep_Subtype {
             get {
                 return ResourceManager.GetString("HiddenSingleStep_Subtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cells in set 1.
+        /// </summary>
+        internal static string LawOfLeftoverStep_Set1 {
+            get {
+                return ResourceManager.GetString("LawOfLeftoverStep_Set1", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House of set 1.
+        /// </summary>
+        internal static string LawOfLeftoverStep_Set1House {
+            get {
+                return ResourceManager.GetString("LawOfLeftoverStep_Set1House", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cells in set 2.
+        /// </summary>
+        internal static string LawOfLeftoverStep_Set2 {
+            get {
+                return ResourceManager.GetString("LawOfLeftoverStep_Set2", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House of set 2.
+        /// </summary>
+        internal static string LawOfLeftoverStep_Set2House {
+            get {
+                return ResourceManager.GetString("LawOfLeftoverStep_Set2House", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Base set.
+        /// </summary>
+        internal static string LockedCandidatesStep_BaseSet {
+            get {
+                return ResourceManager.GetString("LockedCandidatesStep_BaseSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cover set.
+        /// </summary>
+        internal static string LockedCandidatesStep_CoverSet {
+            get {
+                return ResourceManager.GetString("LockedCandidatesStep_CoverSet", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digit.
+        /// </summary>
+        internal static string LockedCandidatesStep_Digit {
+            get {
+                return ResourceManager.GetString("LockedCandidatesStep_Digit", resourceCulture);
             }
         }
         

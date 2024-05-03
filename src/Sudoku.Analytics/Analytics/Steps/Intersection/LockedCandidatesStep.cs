@@ -1,22 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Locked Candidates</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="digit">Indicates the digit used.</param>
-/// <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
-/// <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
-public sealed partial class LockedCandidatesStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	[PrimaryConstructorParameter] Digit digit,
-	[PrimaryConstructorParameter] House baseSet,
-	[PrimaryConstructorParameter] House coverSet
-) : IntersectionStep(conclusions, views, options)
+public partial class LockedCandidatesStep
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => BaseSet < 9 ? 26 : 28;

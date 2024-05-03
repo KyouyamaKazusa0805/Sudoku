@@ -1,24 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is an <b>Almost Locked Candidates</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="digitsMask">Indicates the mask that contains the digits used.</param>
-/// <param name="baseCells">Indicates the base cells.</param>
-/// <param name="targetCells">Indicates the target cells.</param>
-/// <param name="hasValueCell">Indicates whether the step contains value cells.</param>
-public sealed partial class AlmostLockedCandidatesStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	[PrimaryConstructorParameter] Mask digitsMask,
-	[PrimaryConstructorParameter] ref readonly CellMap baseCells,
-	[PrimaryConstructorParameter] ref readonly CellMap targetCells,
-	[PrimaryConstructorParameter] bool hasValueCell
-) : IntersectionStep(conclusions, views, options), ISizeTrait
+public partial class AlmostLockedCandidatesStep
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 45;
@@ -49,5 +31,5 @@ public sealed partial class AlmostLockedCandidatesStep(
 
 	private string BaseCellsStr => Options.Converter.CellConverter(BaseCells);
 
-	private string TargetCellsStr => Options.Converter.CellConverter(TargetCells);
+	private string TargetCellsStr => Options.Converter.CellConverter(CoverCells);
 }

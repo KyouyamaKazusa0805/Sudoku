@@ -186,4 +186,37 @@
   <data name="DirectSubsetStep_SubsetTechnique" xml:space="preserve">
     <value>Subset technique</value>
   </data>
+  <data name="LawOfLeftoverStep_Set1House" xml:space="preserve">
+    <value>House of set 1</value>
+  </data>
+  <data name="LawOfLeftoverStep_Set2House" xml:space="preserve">
+    <value>House of set 2</value>
+  </data>
+  <data name="LawOfLeftoverStep_Set1" xml:space="preserve">
+    <value>Cells in set 1</value>
+  </data>
+  <data name="LawOfLeftoverStep_Set2" xml:space="preserve">
+    <value>Cells in set 2</value>
+  </data>
+  <data name="LockedCandidatesStep_Digit" xml:space="preserve">
+    <value>Digit</value>
+  </data>
+  <data name="LockedCandidatesStep_BaseSet" xml:space="preserve">
+    <value>Base set</value>
+  </data>
+  <data name="LockedCandidatesStep_CoverSet" xml:space="preserve">
+    <value>Cover set</value>
+  </data>
+  <data name="AlmostLockedCandidatesStep_DigitsMask" xml:space="preserve">
+    <value>Digits</value>
+  </data>
+  <data name="AlmostLockedCandidatesStep_BaseCells" xml:space="preserve">
+    <value>Cells in base</value>
+  </data>
+  <data name="AlmostLockedCandidatesStep_CoverCells" xml:space="preserve">
+    <value>Cells in cover</value>
+  </data>
+  <data name="AlmostLockedCandidatesStep_HasValueCell" xml:space="preserve">
+    <value>Has value cells</value>
+  </data>
 </root>

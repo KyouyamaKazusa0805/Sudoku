@@ -16824,27 +16824,21 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
             <summary>
-            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
+            Represents a data structure that describes for a technique of <b>Almost Locked Candidates (ALC)</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask that contains the digits used.</param>
-            <param name="baseCells">Indicates the base cells.</param>
-            <param name="targetCells">Indicates the target cells.</param>
-            <param name="hasValueCell">Indicates whether the step contains value cells.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
-            <summary>
-            Provides with a step that is an <b>Almost Locked Candidates</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digitsMask">Indicates the mask that contains the digits used.</param>
-            <param name="baseCells">Indicates the base cells.</param>
-            <param name="targetCells">Indicates the target cells.</param>
-            <param name="hasValueCell">Indicates whether the step contains value cells.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask" path="/summary"/></param>
+            <param name="baseCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells" path="/summary"/></param>
+            <param name="coverCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.CoverCells" path="/summary"/></param>
+            <param name="hasValueCell"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -16861,65 +16855,89 @@
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.Factors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Almost Locked Candidates (ALC)</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask" path="/summary"/></param>
+            <param name="baseCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells" path="/summary"/></param>
+            <param name="coverCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.CoverCells" path="/summary"/></param>
+            <param name="hasValueCell"><inheritdoc cref="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.DigitsMask">
             <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
+            Indicates the mask that contains the digits used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.BaseCells">
             <summary>
-            The generated property declaration for parameter <c>baseCells</c>.
+            Indicates the cells in base set.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.TargetCells">
+        <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.CoverCells">
             <summary>
-            The generated property declaration for parameter <c>targetCells</c>.
+            Indicates the cells in cover set.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.HasValueCell">
             <summary>
-            The generated property declaration for parameter <c>hasValueCell</c>.
+            Indicates whether the step contains value cells.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.IntersectionStep">
             <summary>
-            Provides with a step that is an <b>Intersection</b> technique.
+            Represents a data structure that describes for a technique of <b>Intersection</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
-            Provides with a step that is an <b>Intersection</b> technique.
+            Represents a data structure that describes for a technique of <b>Intersection</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LawOfLeftoverStep">
             <summary>
-            Provides with a step that is a <b>Law of Leftover</b> technique.
+            Represents a data structure that describes for a technique of <b>Law of Leftover (LoL)</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="set1House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1"/>.</param>
-            <param name="set2House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2"/>.</param>
-            <param name="set1">Indicates the first set.</param>
-            <param name="set2">Indicates the second set.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LawOfLeftoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <summary>
-            Provides with a step that is a <b>Law of Leftover</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="set1House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1"/>.</param>
-            <param name="set2House">Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2"/>.</param>
-            <param name="set1">Indicates the first set.</param>
-            <param name="set2">Indicates the second set.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="set1House"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1House" path="/summary"/></param>
+            <param name="set2House"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2House" path="/summary"/></param>
+            <param name="set1"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1" path="/summary"/></param>
+            <param name="set2"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.BaseDifficulty">
             <inheritdoc/>
@@ -16930,47 +16948,60 @@
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.LawOfLeftoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Law of Leftover (LoL)</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="set1House"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1House" path="/summary"/></param>
+            <param name="set2House"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2House" path="/summary"/></param>
+            <param name="set1"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1" path="/summary"/></param>
+            <param name="set2"><inheritdoc cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1House">
             <summary>
-            The generated property declaration for parameter <c>set1House</c>.
+            Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1" />.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2House">
             <summary>
-            The generated property declaration for parameter <c>set2House</c>.
+            Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2" />.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1">
             <summary>
-            The generated property declaration for parameter <c>set1</c>.
+            Indicates the first set to be used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2">
             <summary>
-            The generated property declaration for parameter <c>set2</c>.
+            Indicates the second set to be used.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LockedCandidatesStep">
             <summary>
-            Provides with a step that is a <b>Locked Candidates</b> technique.
+            Represents a data structure that describes for a technique of <b>Locked Candidates</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
-            <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Locked Candidates</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
-            <param name="coverSet">Indicates the house that the current locked candidates influences.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit" path="/summary"/></param>
+            <param name="baseSet"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet" path="/summary"/></param>
+            <param name="coverSet"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseDifficulty">
             <inheritdoc/>
@@ -16981,19 +17012,36 @@
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Locked Candidates</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit" path="/summary"/></param>
+            <param name="baseSet"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet" path="/summary"/></param>
+            <param name="coverSet"><inheritdoc cref="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.Digit">
             <summary>
-            The generated property declaration for parameter <c>digit</c>.
+            Indicates the digit used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.BaseSet">
             <summary>
-            The generated property declaration for parameter <c>baseSet</c>.
+            Indicates the house that the current locked candidates forms.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LockedCandidatesStep.CoverSet">
             <summary>
-            The generated property declaration for parameter <c>coverSet</c>.
+            Indicates the house that the current locked candidates effects.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BowmanBingoStep">
@@ -28296,6 +28344,26 @@ result ^= expression;
               resource lookups using this strongly typed resource class.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.AlmostLockedCandidatesStep_BaseCells">
+            <summary>
+              Looks up a localized string similar to Cells in base.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.AlmostLockedCandidatesStep_CoverCells">
+            <summary>
+              Looks up a localized string similar to Cells in cover.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.AlmostLockedCandidatesStep_DigitsMask">
+            <summary>
+              Looks up a localized string similar to Digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.AlmostLockedCandidatesStep_HasValueCell">
+            <summary>
+              Looks up a localized string similar to Has value cells.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.FactorPropertyNames.ComplexSingleBaseStep_BasedOn">
             <summary>
               Looks up a localized string similar to Technique based on.
@@ -28389,6 +28457,41 @@ result ^= expression;
         <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSingleStep_Subtype">
             <summary>
               Looks up a localized string similar to Subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LawOfLeftoverStep_Set1">
+            <summary>
+              Looks up a localized string similar to Cells in set 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LawOfLeftoverStep_Set1House">
+            <summary>
+              Looks up a localized string similar to House of set 1.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LawOfLeftoverStep_Set2">
+            <summary>
+              Looks up a localized string similar to Cells in set 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LawOfLeftoverStep_Set2House">
+            <summary>
+              Looks up a localized string similar to House of set 2.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LockedCandidatesStep_BaseSet">
+            <summary>
+              Looks up a localized string similar to Base set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LockedCandidatesStep_CoverSet">
+            <summary>
+              Looks up a localized string similar to Cover set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.LockedCandidatesStep_Digit">
+            <summary>
+              Looks up a localized string similar to Digit.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.FactorPropertyNames.NakedSingleStep_Lasting">

@@ -1,24 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Law of Leftover</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="set1House">Indicates the house of <see cref="Set1"/>.</param>
-/// <param name="set2House">Indicates the house of <see cref="Set2"/>.</param>
-/// <param name="set1">Indicates the first set.</param>
-/// <param name="set2">Indicates the second set.</param>
-public sealed partial class LawOfLeftoverStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	[PrimaryConstructorParameter] House set1House,
-	[PrimaryConstructorParameter] House set2House,
-	[PrimaryConstructorParameter] ref readonly CellMap set1,
-	[PrimaryConstructorParameter] ref readonly CellMap set2
-) : IntersectionStep(conclusions, views, options)
+public partial class LawOfLeftoverStep
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 20;

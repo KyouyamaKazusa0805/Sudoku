@@ -275,5 +275,98 @@
 				<parameter name="indirectTechniques" type="Technique[][]" base-type="ComplexSingleBaseStep" order="7" base-order="7" />
 			</parameters>
 		</type>
+
+		<!--abstract IntersectionStep-->
+		<type modifier="abstract" name="IntersectionStep" comment-name="Intersection" base-type="Step">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+			</parameters>
+		</type>
+
+		<!--sealed LawOfLeftoverStep-->
+		<type modifier="sealed" name="LawOfLeftoverStep" comment-name="Law of Leftover (LoL)" base-type="IntersectionStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="set1House" type="House" order="3">
+					<comment>
+						Indicates the house of <see cref="Set1"/>.
+					</comment>
+					<key>LawOfLeftoverStep_Set1House</key>
+					<range>0-27</range>
+				</primary-parameter>
+				<primary-parameter name="set2House" type="House" order="4">
+					<comment>
+						Indicates the house of <see cref="Set2"/>.
+					</comment>
+					<key>LawOfLeftoverStep_Set2House</key>
+					<range>0-27</range>
+				</primary-parameter>
+				<primary-parameter name="set1" type="ref readonly CellMap" order="5">
+					<comment>Indicates the first set to be used.</comment>
+					<key>LawOfLeftoverStep_Set1</key>
+				</primary-parameter>
+				<primary-parameter name="set2" type="ref readonly CellMap" order="6">
+					<comment>Indicates the second set to be used.</comment>
+					<key>LawOfLeftoverStep_Set2</key>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed LockedCandidatesStep-->
+		<type modifier="sealed" name="LockedCandidatesStep" comment-name="Locked Candidates" base-type="IntersectionStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="digit" type="Digit" order="3">
+					<comment>Indicates the digit used.</comment>
+					<key>LockedCandidatesStep_Digit</key>
+					<range>0-9</range>
+				</primary-parameter>
+				<primary-parameter name="baseSet" type="House" order="4">
+					<comment>Indicates the house that the current locked candidates forms.</comment>
+					<key>LockedCandidatesStep_BaseSet</key>
+					<range>0-27</range>
+				</primary-parameter>
+				<primary-parameter name="coverSet" type="House" order="5">
+					<comment>Indicates the house that the current locked candidates effects.</comment>
+					<key>LockedCandidatesStep_CoverSet</key>
+					<range>0-27</range>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed AlmostLockedCandidatesStep-->
+		<type modifier="sealed" name="AlmostLockedCandidatesStep" comment-name="Almost Locked Candidates (ALC)" base-type="IntersectionStep">
+			<interfaces>
+				<interface>ISizeTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="digitsMask" type="Mask" order="3">
+					<comment>Indicates the mask that contains the digits used.</comment>
+					<key>AlmostLockedCandidatesStep_DigitsMask</key>
+				</primary-parameter>
+				<primary-parameter name="baseCells" type="ref readonly CellMap" order="4">
+					<comment>Indicates the cells in base set.</comment>
+					<key>AlmostLockedCandidatesStep_BaseCells</key>
+				</primary-parameter>
+				<primary-parameter name="coverCells" type="ref readonly CellMap" order="5">
+					<comment>Indicates the cells in cover set.</comment>
+					<key>AlmostLockedCandidatesStep_CoverCells</key>
+				</primary-parameter>
+				<primary-parameter name="hasValueCell" type="bool" order="6">
+					<comment>Indicates whether the step contains value cells.</comment>
+					<key>AlmostLockedCandidatesStep_HasValueCell</key>
+					<range>false-true</range>
+				</primary-parameter>
+			</parameters>
+		</type>
 	</types>
 </data>
