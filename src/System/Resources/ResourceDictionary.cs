@@ -19,7 +19,7 @@ public static class ResourceDictionary
 	/// <summary>
 	/// The internal resource managers.
 	/// </summary>
-	private static readonly Dictionary<Assembly, ResourceManager> ResourceManagers = [];
+	private static readonly List<(Assembly Assembly, ResourceManager ResourceManager)> ResourceManagers = [];
 
 
 	/// <summary>
@@ -51,7 +51,7 @@ public static class ResourceDictionary
 			{ } pi => (ResourceManager)pi.GetValue(null)!,
 			_ => null
 		};
-		ResourceManagers.Add(assembly, manager ?? throw new MissingResourceManagerException(assembly));
+		ResourceManagers.Add((assembly, manager ?? throw new MissingResourceManagerException(assembly)));
 	}
 
 	/// <summary>
@@ -101,7 +101,7 @@ public static class ResourceDictionary
 			throw new MissingResourceManagerException(assembly);
 		}
 
-		foreach (var m in ResourceManagers.Values)
+		foreach (var m in from pair in ResourceManagers select pair.ResourceManager)
 		{
 			if (ResourceFetchingHandler(m, resourceKey, culture) is { } result)
 			{
