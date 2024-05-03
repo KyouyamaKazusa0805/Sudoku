@@ -208,7 +208,14 @@ internal static class StepDataHandler
 						var baseOrder = parameterNode.Attributes[BaseOrderPropertyName]?.Value is { } baseOrderValue ? int.Parse(baseOrderValue) : default(int?);
 						var name = parameterNode.Attributes[NamePropertyName].Value;
 						var value = parameterNode.SelectSingleNode($"descendant::{ValuePropertyName}")?.InnerText ?? name;
-						var comment = parameterNode.SelectSingleNode($"descendant::{CommentPropertyName}").InnerXml.Trim();
+						var commentRaw = parameterNode.SelectSingleNode($"descendant::{CommentPropertyName}").InnerXml;
+						var comment = commentRaw.Contains("\r\n")
+							? string.Join(
+								"\r\n",
+								from line in commentRaw.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries)
+								select $"/// {line.Trim()}"
+							)
+							: $"/// {commentRaw.Trim()}";
 						var parameterType = parameterNode.Attributes[TypeAttributeName].Value;
 						var baseType = parameterNode.Attributes[BaseTypeAttributeName]?.Value;
 						var key = parameterNode.SelectSingleNode($"descendant::{KeyPropertyName}").InnerText;
@@ -372,7 +379,7 @@ file sealed record PrimaryConstructorParameter(
 	public override string PropertyValue
 		=> $$"""
 			/// <summary>
-			/// {{Comment}}
+			{{Comment}}
 			/// </summary>
 			[CompilerGenerated]
 			[GeneratedCode("{{nameof(StepDataHandler)}}", "{{Value}}")]

@@ -16969,11 +16969,13 @@
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1House">
             <summary>
             Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1" />.
+            
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2House">
             <summary>
             Indicates the house of <see cref="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set2" />.
+            
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.LawOfLeftoverStep.Set1">
@@ -18007,25 +18009,14 @@
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques">
             <summary>
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
+            <para>Indicates the indirect techniques used in this pattern.</para><para>
             This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique" /> instances,
             describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
+            <list type="table"><listheader><term>Value</term><description>Meaning</description></listheader><item><term>
+            [[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]
+            </term><description>The naked single will use a pointing and a claiming technique in one step</description></item><item><term>
+            [[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]
+            </term><description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description></item></list></para>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
@@ -18378,6 +18369,7 @@
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>
             Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit. If the technique is not a Last Digit, the value must be <see langword="false" />.
+            
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting">
@@ -18573,16 +18565,7 @@
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
             <summary>
             Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true" /></term>
-            <description>The subset is a locked hidden subset.</description>
-            </item>
-            <item>
-            <term><see langword="false" /></term>
-            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
-            </item>
-            </list>
+            <list type="table"><item><term><see langword="true" /></term><description>The subset is a locked hidden subset.</description></item><item><term><see langword="false" /></term><description>The subset is a normal hidden subset without any extra locked candidates.</description></item></list>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSubsetStep">
@@ -18633,20 +18616,7 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
             <summary>
             Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true" /></term>
-            <description>The subset is a locked subset.</description>
-            </item>
-            <item>
-            <term><see langword="false" /></term>
-            <description>The subset is a naked subset with at least one extra locked candidate.</description>
-            </item>
-            <item>
-            <term><see langword="null" /></term>
-            <description>The subset is a normal naked subset without any extra locked candidates.</description>
-            </item>
-            </list>
+            <list type="table"><item><term><see langword="true" /></term><description>The subset is a locked subset.</description></item><item><term><see langword="false" /></term><description>The subset is a naked subset with at least one extra locked candidate.</description></item><item><term><see langword="null" /></term><description>The subset is a normal naked subset without any extra locked candidates.</description></item></list>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SubsetStep">

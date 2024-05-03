@@ -146,7 +146,7 @@
 				</primary-parameter>
 			</parameters>
 		</type>
-		
+
 		<!--abstract ComplexSingleBaseStep-->
 		<type modifier="abstract" name="ComplexSingleBaseStep" comment-name="Complex Single" base-type="SingleStep">
 			<parameters>
@@ -162,25 +162,29 @@
 				</primary-parameter>
 				<primary-parameter name="indirectTechniques" type="Technique[][]" order="7">
 					<comment>
-	<para>Indicates the indirect techniques used in this pattern.</para>
-	/// <para>
-	/// This value is an array of array of <see cref="Technique"/> instances,
-	/// describing the detail usage on the complex combination of indirect technique usages. For example:
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Value</term>
-	/// <description>Meaning</description>
-	/// </listheader>
-	/// <item>
-	/// <term>[[<see cref="Technique.Pointing"/>, <see cref="Technique.Claiming"/>]]</term>
-	/// <description>The naked single will use a pointing and a claiming technique in one step</description>
-	/// </item>
-	/// <item>
-	/// <term>[[<see cref="Technique.Pointing"/>], [<see cref="Technique.Claiming"/>]]</term>
-	/// <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-	/// </item>
-	/// </list>
-	/// </para>
+						<para>Indicates the indirect techniques used in this pattern.</para>
+						<para>
+							This value is an array of array of <see cref="Technique"/> instances,
+							describing the detail usage on the complex combination of indirect technique usages. For example:
+							<list type="table">
+								<listheader>
+									<term>Value</term>
+									<description>Meaning</description>
+								</listheader>
+								<item>
+									<term>
+										[[<see cref="Technique.Pointing"/>, <see cref="Technique.Claiming"/>]]
+									</term>
+									<description>The naked single will use a pointing and a claiming technique in one step</description>
+								</item>
+								<item>
+									<term>
+										[[<see cref="Technique.Pointing"/>], [<see cref="Technique.Claiming"/>]]
+									</term>
+									<description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+								</item>
+							</list>
+						</para>
 					</comment>
 					<key>ComplexSingleBaseStep_IndirectTechniques</key>
 				</primary-parameter>
@@ -404,17 +408,21 @@
 				<parameter name="digitsMask" type="Mask" base-type="SubsetStep" order="5" base-order="5" />
 				<primary-parameter name="isLocked" type="bool" order="6">
 					<comment>
-	Indicates which locked type this subset is. The cases are as belows:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The subset is a locked hidden subset.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The subset is a normal hidden subset without any extra locked candidates.</description>
-	/// </item>
-	/// </list>
+						Indicates which locked type this subset is. The cases are as belows:
+						<list type="table">
+							<item>
+								<term>
+									<see langword="true"/>
+								</term>
+								<description>The subset is a locked hidden subset.</description>
+							</item>
+							<item>
+								<term>
+									<see langword="false"/>
+								</term>
+								<description>The subset is a normal hidden subset without any extra locked candidates.</description>
+							</item>
+						</list>
 					</comment>
 					<key>HiddenSubsetStep_IsLocked</key>
 					<range>false-true</range>
@@ -433,21 +441,27 @@
 				<parameter name="digitsMask" type="Mask" base-type="SubsetStep" order="5" base-order="5" />
 				<primary-parameter name="isLocked" type="bool?" order="6">
 					<comment>
-	Indicates which locked type this subset is. The cases are as belows:
-	/// <list type="table">
-	/// <item>
-	/// <term><see langword="true"/></term>
-	/// <description>The subset is a locked subset.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="false"/></term>
-	/// <description>The subset is a naked subset with at least one extra locked candidate.</description>
-	/// </item>
-	/// <item>
-	/// <term><see langword="null"/></term>
-	/// <description>The subset is a normal naked subset without any extra locked candidates.</description>
-	/// </item>
-	/// </list>
+						Indicates which locked type this subset is. The cases are as belows:
+						<list type="table">
+							<item>
+								<term>
+									<see langword="true"/>
+								</term>
+								<description>The subset is a locked subset.</description>
+							</item>
+							<item>
+								<term>
+									<see langword="false"/>
+								</term>
+								<description>The subset is a naked subset with at least one extra locked candidate.</description>
+							</item>
+							<item>
+								<term>
+									<see langword="null"/>
+								</term>
+								<description>The subset is a normal naked subset without any extra locked candidates.</description>
+							</item>
+						</list>
 					</comment>
 					<key>NakedSubsetStep_IsLocked</key>
 				</primary-parameter>
