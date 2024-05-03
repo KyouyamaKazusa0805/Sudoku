@@ -219,4 +219,19 @@
   <data name="AlmostLockedCandidatesStep_HasValueCell" xml:space="preserve">
     <value>Has value cells</value>
   </data>
+  <data name="SubsetStep_House" xml:space="preserve">
+    <value>House</value>
+  </data>
+  <data name="SubsetStep_Cells" xml:space="preserve">
+    <value>Cells</value>
+  </data>
+  <data name="SubsetStep_DigitsMask" xml:space="preserve">
+    <value>Digits</value>
+  </data>
+  <data name="HiddenSubsetStep_IsLocked" xml:space="preserve">
+    <value>Is locked</value>
+  </data>
+  <data name="NakedSubsetStep_IsLocked" xml:space="preserve">
+    <value>Is locked</value>
+  </data>
 </root>

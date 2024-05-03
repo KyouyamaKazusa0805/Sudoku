@@ -18524,51 +18524,21 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
             <summary>
-            Provides with a step that is a <b>Hidden Subset</b> technique.
+            Represents a data structure that describes for a technique of <b>Hidden Subset</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The subset is a locked hidden subset.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
-            </item>
-            </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
-            <summary>
-            Provides with a step that is a <b>Hidden Subset</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The subset is a locked hidden subset.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
-            </item>
-            </list>
-            </param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <param name="isLocked"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -18582,66 +18552,56 @@
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.Factors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Hidden Subset</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <param name="isLocked"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSubsetStep.IsLocked">
             <summary>
-            The generated property declaration for parameter <c>isLocked</c>.
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true" /></term>
+            <description>The subset is a locked hidden subset.</description>
+            </item>
+            <item>
+            <term><see langword="false" /></term>
+            <description>The subset is a normal hidden subset without any extra locked candidates.</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSubsetStep">
             <summary>
-            Provides with a step that is a <b>Naked Subset</b> technique.
+            Represents a data structure that describes for a technique of <b>Naked Subset</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The subset is a locked subset.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The subset is a naked subset with at least one extra locked candidate.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The subset is a normal naked subset without any extra locked candidates.</description>
-            </item>
-            </list>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
-            <summary>
-            Provides with a step that is a <b>Naked Subset</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
-            <param name="cells"><inheritdoc/></param>
-            <param name="digitsMask"><inheritdoc/></param>
-            <param name="isLocked">
-            Indicates which locked type this subset is. The cases are as belows:
-            <list type="table">
-            <item>
-            <term><see langword="true"/></term>
-            <description>The subset is a locked subset.</description>
-            </item>
-            <item>
-            <term><see langword="false"/></term>
-            <description>The subset is a naked subset with at least one extra locked candidate.</description>
-            </item>
-            <item>
-            <term><see langword="null"/></term>
-            <description>The subset is a normal naked subset without any extra locked candidates.</description>
-            </item>
-            </list>
-            </param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <param name="isLocked"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Code">
             <inheritdoc/>
@@ -18652,32 +18612,59 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.Factors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Naked Subset</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <param name="isLocked"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSubsetStep.IsLocked">
             <summary>
-            The generated property declaration for parameter <c>isLocked</c>.
+            Indicates which locked type this subset is. The cases are as belows:
+            <list type="table">
+            <item>
+            <term><see langword="true" /></term>
+            <description>The subset is a locked subset.</description>
+            </item>
+            <item>
+            <term><see langword="false" /></term>
+            <description>The subset is a naked subset with at least one extra locked candidate.</description>
+            </item>
+            <item>
+            <term><see langword="null" /></term>
+            <description>The subset is a normal naked subset without any extra locked candidates.</description>
+            </item>
+            </list>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SubsetStep">
             <summary>
-            Provides with a step that is a <b>Subset</b> technique.
+            Represents a data structure that describes for a technique of <b>Subset</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house">The house that pattern lies in.</param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the mask that contains all digits used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
-            <summary>
-            Provides with a step that is a <b>Subset</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house">The house that pattern lies in.</param>
-            <param name="cells">Indicates the cells used.</param>
-            <param name="digitsMask">Indicates the mask that contains all digits used.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.BaseDifficulty">
             <inheritdoc/>
@@ -18685,19 +18672,36 @@
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Size">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Subset</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.House" path="/summary"/></param>
+            <param name="cells"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.Cells" path="/summary"/></param>
+            <param name="digitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask" path="/summary"/></param>
+            <remarks>
+            <b>
+            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+            Please visit source code for source generator to modify the handling logic if you persist.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.House">
             <summary>
-            The generated property declaration for parameter <c>house</c>.
+            Indicates the house that pattern cells lying.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.Cells">
             <summary>
-            The generated property declaration for parameter <c>cells</c>.
+            Indicates the cells used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SubsetStep.DigitsMask">
             <summary>
-            The generated property declaration for parameter <c>digitsMask</c>.
+            Indicates the mask that contains all digits used.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep">
@@ -28459,6 +28463,11 @@ result ^= expression;
               Looks up a localized string similar to Subtype.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSubsetStep_IsLocked">
+            <summary>
+              Looks up a localized string similar to Is locked.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.FactorPropertyNames.LawOfLeftoverStep_Set1">
             <summary>
               Looks up a localized string similar to Cells in set 1.
@@ -28499,6 +28508,11 @@ result ^= expression;
               Looks up a localized string similar to Lasting.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.NakedSubsetStep_IsLocked">
+            <summary>
+              Looks up a localized string similar to Is locked.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.FactorPropertyNames.SingleStep_Cell">
             <summary>
               Looks up a localized string similar to Cell.
@@ -28512,6 +28526,21 @@ result ^= expression;
         <member name="P:Sudoku.Resources.FactorPropertyNames.SingleStep_Subtype">
             <summary>
               Looks up a localized string similar to Subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SubsetStep_Cells">
+            <summary>
+              Looks up a localized string similar to Cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SubsetStep_DigitsMask">
+            <summary>
+              Looks up a localized string similar to Digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SubsetStep_House">
+            <summary>
+              Looks up a localized string similar to House.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.BetweenRule">

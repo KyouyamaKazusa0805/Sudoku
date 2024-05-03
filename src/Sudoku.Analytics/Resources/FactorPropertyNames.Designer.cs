@@ -268,6 +268,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is locked.
+        /// </summary>
+        internal static string HiddenSubsetStep_IsLocked {
+            get {
+                return ResourceManager.GetString("HiddenSubsetStep_IsLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cells in set 1.
         /// </summary>
         internal static string LawOfLeftoverStep_Set1 {
@@ -340,6 +349,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Is locked.
+        /// </summary>
+        internal static string NakedSubsetStep_IsLocked {
+            get {
+                return ResourceManager.GetString("NakedSubsetStep_IsLocked", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cell.
         /// </summary>
         internal static string SingleStep_Cell {
@@ -363,6 +381,33 @@ namespace Sudoku.Resources {
         internal static string SingleStep_Subtype {
             get {
                 return ResourceManager.GetString("SingleStep_Subtype", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cells.
+        /// </summary>
+        internal static string SubsetStep_Cells {
+            get {
+                return ResourceManager.GetString("SubsetStep_Cells", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Digits.
+        /// </summary>
+        internal static string SubsetStep_DigitsMask {
+            get {
+                return ResourceManager.GetString("SubsetStep_DigitsMask", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to House.
+        /// </summary>
+        internal static string SubsetStep_House {
+            get {
+                return ResourceManager.GetString("SubsetStep_House", resourceCulture);
             }
         }
     }

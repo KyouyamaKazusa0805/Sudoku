@@ -368,5 +368,90 @@
 				</primary-parameter>
 			</parameters>
 		</type>
+
+		<!--abstract SubsetStep-->
+		<type modifier="abstract" name="SubsetStep" comment-name="Subset" base-type="Step">
+			<interfaces>
+				<interface>ISizeTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="house" type="House" order="3">
+					<comment>Indicates the house that pattern cells lying.</comment>
+					<key>SubsetStep_House</key>
+				</primary-parameter>
+				<primary-parameter name="cells" type="ref readonly CellMap" order="4">
+					<comment>Indicates the cells used.</comment>
+					<key>SubsetStep_Cells</key>
+				</primary-parameter>
+				<primary-parameter name="digitsMask" type="Mask" order="5">
+					<comment>Indicates the mask that contains all digits used.</comment>
+					<key>SubsetStep_DigitsMask</key>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed HiddenSubsetStep-->
+		<type modifier="sealed" name="HiddenSubsetStep" comment-name="Hidden Subset" base-type="SubsetStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="house" type="House" base-type="SubsetStep" order="3" base-order="3" />
+				<parameter name="cells" type="ref readonly CellMap" base-type="SubsetStep" order="4" base-order="4" />
+				<parameter name="digitsMask" type="Mask" base-type="SubsetStep" order="5" base-order="5" />
+				<primary-parameter name="isLocked" type="bool" order="6">
+					<comment>
+	Indicates which locked type this subset is. The cases are as belows:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The subset is a locked hidden subset.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The subset is a normal hidden subset without any extra locked candidates.</description>
+	/// </item>
+	/// </list>
+					</comment>
+					<key>HiddenSubsetStep_IsLocked</key>
+					<range>false-true</range>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed NakedSubsetStep-->
+		<type modifier="sealed" name="NakedSubsetStep" comment-name="Naked Subset" base-type="SubsetStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="house" type="House" base-type="SubsetStep" order="3" base-order="3" />
+				<parameter name="cells" type="ref readonly CellMap" base-type="SubsetStep" order="4" base-order="4" />
+				<parameter name="digitsMask" type="Mask" base-type="SubsetStep" order="5" base-order="5" />
+				<primary-parameter name="isLocked" type="bool?" order="6">
+					<comment>
+	Indicates which locked type this subset is. The cases are as belows:
+	/// <list type="table">
+	/// <item>
+	/// <term><see langword="true"/></term>
+	/// <description>The subset is a locked subset.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="false"/></term>
+	/// <description>The subset is a naked subset with at least one extra locked candidate.</description>
+	/// </item>
+	/// <item>
+	/// <term><see langword="null"/></term>
+	/// <description>The subset is a normal naked subset without any extra locked candidates.</description>
+	/// </item>
+	/// </list>
+					</comment>
+					<key>NakedSubsetStep_IsLocked</key>
+				</primary-parameter>
+			</parameters>
+		</type>
 	</types>
 </data>

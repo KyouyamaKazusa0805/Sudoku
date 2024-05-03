@@ -219,4 +219,19 @@
   <data name="AlmostLockedCandidatesStep_HasValueCell" xml:space="preserve">
     <value>包含明数单元格</value>
   </data>
+  <data name="SubsetStep_House" xml:space="preserve">
+    <value>区域</value>
+  </data>
+  <data name="SubsetStep_Cells" xml:space="preserve">
+    <value>单元格</value>
+  </data>
+  <data name="SubsetStep_DigitsMask" xml:space="preserve">
+    <value>数字</value>
+  </data>
+  <data name="HiddenSubsetStep_IsLocked" xml:space="preserve">
+    <value>是否死锁</value>
+  </data>
+  <data name="NakedSubsetStep_IsLocked" xml:space="preserve">
+    <value>是否死锁</value>
+  </data>
 </root>

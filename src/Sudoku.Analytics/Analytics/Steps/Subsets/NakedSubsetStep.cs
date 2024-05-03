@@ -1,40 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Naked Subset</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="house"><inheritdoc/></param>
-/// <param name="cells"><inheritdoc/></param>
-/// <param name="digitsMask"><inheritdoc/></param>
-/// <param name="isLocked">
-/// Indicates which locked type this subset is. The cases are as belows:
-/// <list type="table">
-/// <item>
-/// <term><see langword="true"/></term>
-/// <description>The subset is a locked subset.</description>
-/// </item>
-/// <item>
-/// <term><see langword="false"/></term>
-/// <description>The subset is a naked subset with at least one extra locked candidate.</description>
-/// </item>
-/// <item>
-/// <term><see langword="null"/></term>
-/// <description>The subset is a normal naked subset without any extra locked candidates.</description>
-/// </item>
-/// </list>
-/// </param>
-public sealed partial class NakedSubsetStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	House house,
-	ref readonly CellMap cells,
-	Mask digitsMask,
-	[PrimaryConstructorParameter] bool? isLocked
-) : SubsetStep(conclusions, views, options, house, in cells, digitsMask)
+public partial class NakedSubsetStep
 {
 	/// <inheritdoc/>
 	public override Technique Code
