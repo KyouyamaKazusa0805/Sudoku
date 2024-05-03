@@ -21,7 +21,6 @@ public sealed class VersionValueGenerator : IIncrementalGenerator
 						.Where(static element => element.Name == "Version")
 						.Select(static element => element.InnerText)
 						.First()
-						.ToString()
 				),
 			static (spc, v) => spc.AddSource(
 				"SolutionVersion.g.cs",

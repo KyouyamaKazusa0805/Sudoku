@@ -17916,105 +17916,88 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexSingleBaseStep">
             <summary>
-            Provides with a step that is a <b>Complex Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn">Indicates the single technique that is based on.</param>
-            <param name="indirectTechniques">
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
-            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
-            </param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
-            Provides with a step that is a <b>Complex Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn">Indicates the single technique that is based on.</param>
-            <param name="indirectTechniques">
-            <para>Indicates the indirect techniques used in this pattern.</para>
-            <para>
-            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances,
-            describing the detail usage on the complex combination of indirect technique usages. For example:
-            <list type="table">
-            <listheader>
-            <term>Value</term>
-            <description>Meaning</description>
-            </listheader>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>The naked single will use a pointing and a claiming technique in one step</description>
-            </item>
-            <item>
-            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing"/>], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming"/>]]</term>
-            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
-            </item>
-            </list>
-            </para>
-            </param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn">
             <summary>
-            The generated property declaration for parameter <c>basedOn</c>.
+            Indicates the single technique that is based on.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques">
             <summary>
-            The generated property declaration for parameter <c>indirectTechniques</c>.
+            <para>Indicates the indirect techniques used in this pattern.</para>
+            <para>
+            This value is an array of array of <see cref="T:Sudoku.Analytics.Categorization.Technique" /> instances,
+            describing the detail usage on the complex combination of indirect technique usages. For example:
+            <list type="table">
+            <listheader>
+            <term>Value</term>
+            <description>Meaning</description>
+            </listheader>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />, <see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]</term>
+            <description>The naked single will use a pointing and a claiming technique in one step</description>
+            </item>
+            <item>
+            <term>[[<see cref="F:Sudoku.Analytics.Categorization.Technique.Pointing" />], [<see cref="F:Sudoku.Analytics.Categorization.Technique.Claiming" />]]</term>
+            <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+            </item>
+            </list>
+            </para>
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.ComplexSingleStep">
             <summary>
-            Provides with a step that is a <b>Complex Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="indirectTechniques"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
-            <summary>
-            Provides with a step that is a <b>Complex Single</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="indirectTechniques"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ComplexSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -18034,39 +18017,47 @@
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Complex Single</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">
             <summary>
-            Provides with a step that is a <b>Direct Intersection</b> technique.
+            Represents a data structure that describes for a technique of <b>Direct Intersection</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="intersectionCells">Indicates the intersection cells.</param>
-            <param name="intersectionHouse">Indicates the intersection house.</param>
-            <param name="interim">Indicates the interim cells.</param>
-            <param name="interimDigit">Indicates the interim digit.</param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
-            <summary>
-            Provides with a step that is a <b>Direct Intersection</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="intersectionCells">Indicates the intersection cells.</param>
-            <param name="intersectionHouse">Indicates the intersection house.</param>
-            <param name="interim">Indicates the interim cells.</param>
-            <param name="interimDigit">Indicates the interim digit.</param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="intersectionCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionCells" path="/summary"/></param>
+            <param name="intersectionHouse"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionHouse" path="/summary"/></param>
+            <param name="interim"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Interim" path="/summary"/></param>
+            <param name="interimDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.InterimDigit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="isPointing"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.BaseDifficulty">
             <inheritdoc/>
@@ -18077,66 +18068,77 @@
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Direct Intersection</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="intersectionCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionCells" path="/summary"/></param>
+            <param name="intersectionHouse"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionHouse" path="/summary"/></param>
+            <param name="interim"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Interim" path="/summary"/></param>
+            <param name="interimDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.InterimDigit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="isPointing"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionCells">
             <summary>
-            The generated property declaration for parameter <c>intersectionCells</c>.
+            Indicates the intersection cells.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IntersectionHouse">
             <summary>
-            The generated property declaration for parameter <c>intersectionHouse</c>.
+            Indicates the intersection house.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.Interim">
             <summary>
-            The generated property declaration for parameter <c>interim</c>.
+            Indicates the interim cells.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.InterimDigit">
             <summary>
-            The generated property declaration for parameter <c>interimDigit</c>.
+            Indicates the interim digit.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectIntersectionStep.IsPointing">
             <summary>
-            The generated property declaration for parameter <c>isPointing</c>.
+            Indicates whether the current locked candidates pattern used is pointing.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DirectSubsetStep">
             <summary>
-            Provides with a step that is a <b>Direct Subset</b> technique.
+            Represents a data structure that describes for a technique of <b>Direct Subset</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subsetCells">Indicates the subset cells used.</param>
-            <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
-            <param name="subsetHouse">Indicates the subset house.</param>
-            <param name="interim">Indicates the interim.</param>
-            <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="subsetTechnique">Indicates the subset technique used.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Provides with a step that is a <b>Direct Subset</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subsetCells">Indicates the subset cells used.</param>
-            <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
-            <param name="subsetHouse">Indicates the subset house.</param>
-            <param name="interim">Indicates the interim.</param>
-            <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="basedOn"><inheritdoc/></param>
-            <param name="subsetTechnique">Indicates the subset technique used.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subsetCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetCells" path="/summary"/></param>
+            <param name="subsetDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetDigitsMask" path="/summary"/></param>
+            <param name="subsetHouse"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetHouse" path="/summary"/></param>
+            <param name="interim"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.Interim" path="/summary"/></param>
+            <param name="interimDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.InterimDigitsMask" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="subsetTechnique"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetTechnique" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.IsNaked">
             <summary>
@@ -18165,59 +18167,77 @@
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Factors">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Direct Subset</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subsetCells"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetCells" path="/summary"/></param>
+            <param name="subsetDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetDigitsMask" path="/summary"/></param>
+            <param name="subsetHouse"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetHouse" path="/summary"/></param>
+            <param name="interim"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.Interim" path="/summary"/></param>
+            <param name="interimDigitsMask"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.InterimDigitsMask" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+            <param name="subsetTechnique"><inheritdoc cref="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetTechnique" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetCells">
             <summary>
-            The generated property declaration for parameter <c>subsetCells</c>.
+            Indicates the subset cells used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetDigitsMask">
             <summary>
-            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            Indicates the digits that the subset used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetHouse">
             <summary>
-            The generated property declaration for parameter <c>subsetHouse</c>.
+            Indicates the subset house.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.Interim">
             <summary>
-            The generated property declaration for parameter <c>interim</c>.
+            Indicates the interim cells used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.InterimDigitsMask">
             <summary>
-            The generated property declaration for parameter <c>interimDigitsMask</c>.
+            Indicates the digits produced in interim.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.SubsetTechnique">
             <summary>
-            The generated property declaration for parameter <c>subsetTechnique</c>.
+            Indicates the subset technique used.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.FullHouseStep">
             <summary>
-            Provides with a step that is a <b>Full House</b> technique.
+            Represents a data structure that describes for a technique of <b>Full House</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house">The house to be displayed.</param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Full House</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="house">The house to be displayed.</param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.FullHouseStep.House" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.FullHouseStep.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>
@@ -18225,49 +18245,53 @@
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Code">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Full House</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.FullHouseStep.House" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.FullHouseStep.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.House">
             <summary>
-            The generated property declaration for parameter <c>house</c>.
+            The house to be displayed.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.Lasting">
             <summary>
-            The generated property declaration for parameter <c>lasting</c>.
+            <inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" />
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSingleStep">
             <summary>
-            Provides with a step that is a <b>Hidden Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Hidden Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
-            <param name="enableAndIsLastDigit">
-            Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
-            If the technique is not a Last Digit, the value must be <see langword="false"/>.
-            </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
-            <param name="subtype"><inheritdoc/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
-            <summary>
-            Provides with a step that is a <b>Hidden Single</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
-            <param name="enableAndIsLastDigit">
-            Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
-            If the technique is not a Last Digit, the value must be <see langword="false"/>.
-            </param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
-            <param name="subtype"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
+            <param name="enableAndIsLastDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -18278,68 +18302,99 @@
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.FormatInterpolationParts">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Hidden Single</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
+            <param name="enableAndIsLastDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.House">
             <summary>
-            The generated property declaration for parameter <c>house</c>.
+            The house to be displayed.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit">
             <summary>
-            The generated property declaration for parameter <c>enableAndIsLastDigit</c>.
+            Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit. If the technique is not a Last Digit, the value must be <see langword="false" />.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting">
             <summary>
-            The generated property declaration for parameter <c>lasting</c>.
+            <inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" />
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype">
+            <summary>
+            <inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary" />
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
             <summary>
-            Provides with a step that is a <b>Last Digit</b> technique.
+            Represents a data structure that describes for a technique of <b>Last Digit</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="!:SingleStep.House" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
-            Provides with a step that is a <b>Last Digit</b> technique.
+            Represents a data structure that describes for a technique of <b>Last Digit</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="house"><inheritdoc/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="!:SingleStep.House" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.Steps.NakedSingleStep">
             <summary>
-            Provides with a step that is a <b>Naked Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Naked Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
-            <summary>
-            Provides with a step that is a <b>Naked Single</b> technique.
-            </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell"><inheritdoc/></param>
-            <param name="digit"><inheritdoc/></param>
-            <param name="subtype"><inheritdoc/></param>
-            <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.BaseDifficulty">
             <inheritdoc/>
@@ -18347,46 +18402,76 @@
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Code">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
+            <summary>
+            Represents a data structure that describes for a technique of <b>Naked Single</b>.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.NakedSingleStep.Lasting">
             <summary>
-            The generated property declaration for parameter <c>lasting</c>.
+            <inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" />
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.SingleStep">
             <summary>
-            Provides with a step that is a <b>Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell">Indicates the cell used.</param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="subtype">Indicates the subtype of the technique.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
-            Provides with a step that is a <b>Single</b> technique.
+            Represents a data structure that describes for a technique of <b>Single</b>.
             </summary>
-            <param name="conclusions"><inheritdoc/></param>
-            <param name="views"><inheritdoc/></param>
-            <param name="options"><inheritdoc/></param>
-            <param name="cell">Indicates the cell used.</param>
-            <param name="digit">Indicates the digit used.</param>
-            <param name="subtype">Indicates the subtype of the technique.</param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+            <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
+            <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
+            <remarks>
+            <b>
+            This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+            If you persists, please visit source code for source generator to modify the handling logic.
+            </b>
+            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Cell">
             <summary>
-            The generated property declaration for parameter <c>cell</c>.
+            Indicates the cell used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Digit">
             <summary>
-            The generated property declaration for parameter <c>digit</c>.
+            Indicates the digit used.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Steps.SingleStep.Subtype">
             <summary>
-            The generated property declaration for parameter <c>subtype</c>.
+            Indicates the subtype of the technique.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.HiddenSubsetStep">
@@ -21956,19 +22041,23 @@ result ^= expression;
             <summary>
             Represents an attribute type that describes the current property can be used as a factor.
             </summary>
-            <typeparam name="TFactor">The type of the factor.</typeparam>
-            <param name="resourceKey">The name of the property. The key points to a resource dictionary.</param>
-        </member>
-        <member name="M:Sudoku.Measuring.FactorPropertyAttribute`1.#ctor(System.String)">
-            <summary>
-            Represents an attribute type that describes the current property can be used as a factor.
-            </summary>
-            <typeparam name="TFactor">The type of the factor.</typeparam>
-            <param name="resourceKey">The name of the property. The key points to a resource dictionary.</param>
+            <typeparam name="TValue">The type of the value.</typeparam>
         </member>
         <member name="P:Sudoku.Measuring.FactorPropertyAttribute`1.ResourceKey">
             <summary>
-            The generated property declaration for parameter <c>resourceKey</c>.
+            Indicates the name of the property that will be used in resource dictionary
+            by using <see cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>.
+            </summary>
+            <seealso cref="M:System.Resources.ResourceDictionary.Get(System.String,System.Globalization.CultureInfo,System.Reflection.Assembly)"/>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorPropertyAttribute`1.MinValue">
+            <summary>
+            Indicates the minimum value that the property value can be reached.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.FactorPropertyAttribute`1.MaxValue">
+            <summary>
+            Indicates the maximum value that the property value can be reached.
             </summary>
         </member>
         <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor">
@@ -28189,6 +28278,137 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.YChain">
             <summary>
               Looks up a localized string similar to Y-Chain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Resources.FactorPropertyNames">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.ComplexSingleBaseStep_BasedOn">
+            <summary>
+              Looks up a localized string similar to Technique based on.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.ComplexSingleBaseStep_IndirectTechniques">
+            <summary>
+              Looks up a localized string similar to Indirect techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectIntersectionStep_Interim">
+            <summary>
+              Looks up a localized string similar to Interim.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectIntersectionStep_InterimDigit">
+            <summary>
+              Looks up a localized string similar to Interim digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectIntersectionStep_IntersectionCells">
+            <summary>
+              Looks up a localized string similar to Intersection cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectIntersectionStep_IntersectionHouse">
+            <summary>
+              Looks up a localized string similar to Intersection house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectIntersectionStep_IsPointing">
+            <summary>
+              Looks up a localized string similar to Is pointing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_Interim">
+            <summary>
+              Looks up a localized string similar to Interim.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_InterimDigitsMask">
+            <summary>
+              Looks up a localized string similar to Interim digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_SubsetCells">
+            <summary>
+              Looks up a localized string similar to Subset cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_SubsetDigitsMask">
+            <summary>
+              Looks up a localized string similar to Subset digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_SubsetHouse">
+            <summary>
+              Looks up a localized string similar to Subset house.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.DirectSubsetStep_SubsetTechnique">
+            <summary>
+              Looks up a localized string similar to Subset technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.FullHouseStep_House">
+            <summary>
+              Looks up a localized string similar to House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.FullHouseStep_Lasting">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSingleStep_EnableAndIsLastDigit">
+            <summary>
+              Looks up a localized string similar to Enable and is Last Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSingleStep_House">
+            <summary>
+              Looks up a localized string similar to House.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSingleStep_Lasting">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.HiddenSingleStep_Subtype">
+            <summary>
+              Looks up a localized string similar to Subtype.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.NakedSingleStep_Lasting">
+            <summary>
+              Looks up a localized string similar to Lasting.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SingleStep_Cell">
+            <summary>
+              Looks up a localized string similar to Cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SingleStep_Digit">
+            <summary>
+              Looks up a localized string similar to Digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.FactorPropertyNames.SingleStep_Subtype">
+            <summary>
+              Looks up a localized string similar to Subtype.
             </summary>
         </member>
         <member name="T:Sudoku.Strategying.BetweenRule">

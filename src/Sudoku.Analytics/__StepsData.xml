@@ -1,0 +1,279 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<data>
+	<!--
+	Global Configurations
+	-->
+	<global-config>
+		<append-header>true</append-header>
+		<namespace>Sudoku.Analytics.Steps</namespace>
+		<type-summary>
+			Represents a data structure that describes for a technique of <b>{0}</b>.
+		</type-summary>
+		<type-remarks>
+			<b>
+				This type is implemented by source generators. You cannot modify the properties inside the current data structure.
+				If you persists, please visit source code for source generator to modify the handling logic.
+			</b>
+		</type-remarks>
+	</global-config>
+
+	<!--
+	Types of Technique Pattern Data Structures
+	-->
+	<types>
+		<!--abstract SingleStep-->
+		<type modifier="abstract" name="SingleStep" comment-name="Single" base-type="Step">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="cell" type="Cell" order="3">
+					<comment>Indicates the cell used.</comment>
+					<key>SingleStep_Cell</key>
+					<range>0-81</range>
+				</primary-parameter>
+				<primary-parameter name="digit" type="Digit" order="4">
+					<comment>Indicates the digit used.</comment>
+					<key>SingleStep_Digit</key>
+					<range>0-9</range>
+				</primary-parameter>
+				<primary-parameter name="subtype" type="SingleSubtype" order="5">
+					<comment>Indicates the subtype of the technique.</comment>
+					<key>SingleStep_Subtype</key>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed FullHouseStep-->
+		<type modifier="sealed" name="FullHouseStep" comment-name="Full House" base-type="SingleStep">
+			<interfaces>
+				<interface>ILastingTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<primary-parameter name="house" type="House" order="3" base-order="5">
+					<comment>The house to be displayed.</comment>
+					<key>FullHouseStep_House</key>
+					<range>0-27</range>
+					<value>house switch { &lt; 9 => SingleSubtype.FullHouseBlock, &gt;= 9 and &lt; 18 => SingleSubtype.FullHouseRow, _ => SingleSubtype.FullHouseColumn }</value>
+				</primary-parameter>
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="4" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="5" base-order="4" />
+				<primary-parameter name="lasting" type="int" order="6">
+					<comment>
+						<inheritdoc cref="ILastingTrait.Lasting" path="/summary"/>
+					</comment>
+					<key>FullHouseStep_Lasting</key>
+					<range>3-7</range>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--HiddenSingleStep-->
+		<type name="HiddenSingleStep" comment-name="Hidden Single" base-type="SingleStep">
+			<interfaces>
+				<interface>ILastingTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<primary-parameter name="house" type="House" order="5">
+					<comment>The house to be displayed.</comment>
+					<key>HiddenSingleStep_House</key>
+					<range>0-27</range>
+				</primary-parameter>
+				<primary-parameter name="enableAndIsLastDigit" type="bool" order="6">
+					<comment>
+						Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit. If the technique is not a Last Digit, the value must be <see langword="false"/>.
+					</comment>
+					<key>HiddenSingleStep_EnableAndIsLastDigit</key>
+					<range>false-true</range>
+				</primary-parameter>
+				<primary-parameter name="lasting" type="int" order="6">
+					<comment>
+						<inheritdoc cref="ILastingTrait.Lasting" path="/summary"/>
+					</comment>
+					<key>HiddenSingleStep_Lasting</key>
+					<range>2-7</range>
+				</primary-parameter>
+				<primary-parameter name="subtype" type="SingleSubtype" order="7" base-order="5">
+					<comment>
+						<inheritdoc cref="SingleStep.Subtype" path="/summary"/>
+					</comment>
+					<key>HiddenSingleStep_Subtype</key>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed LastDigitStep-->
+		<type modifier="sealed" name="LastDigitStep" comment-name="Last Digit" base-type="HiddenSingleStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<parameter name="house" type="House" base-type="SingleStep" order="5" base-order="5" />
+				<parameter name="lasting" type="int" base-type="ILastingTrait" order="6" base-order="7" />
+				<constant name="true" base-order="6" />
+				<constant name="SingleSubtype.LastDigit" base-order="8" />
+			</parameters>
+		</type>
+
+		<!--sealed NakedSingleStep-->
+		<type modifier="sealed" name="NakedSingleStep" comment-name="Naked Single" base-type="SingleStep">
+			<interfaces>
+				<interface>ILastingTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="5" base-order="5" />
+				<primary-parameter name="lasting" type="int" order="6">
+					<comment>
+						<inheritdoc cref="ILastingTrait.Lasting" path="/summary"/>
+					</comment>
+					<key>NakedSingleStep_Lasting</key>
+					<range>3-7</range>
+				</primary-parameter>
+			</parameters>
+		</type>
+		
+		<!--abstract ComplexSingleBaseStep-->
+		<type modifier="abstract" name="ComplexSingleBaseStep" comment-name="Complex Single" base-type="SingleStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="5" base-order="5" />
+				<primary-parameter name="basedOn" type="Technique" order="6">
+					<comment>Indicates the single technique that is based on.</comment>
+					<key>ComplexSingleBaseStep_BasedOn</key>
+				</primary-parameter>
+				<primary-parameter name="indirectTechniques" type="Technique[][]" order="7">
+					<comment>
+	<para>Indicates the indirect techniques used in this pattern.</para>
+	/// <para>
+	/// This value is an array of array of <see cref="Technique"/> instances,
+	/// describing the detail usage on the complex combination of indirect technique usages. For example:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Value</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term>[[<see cref="Technique.Pointing"/>, <see cref="Technique.Claiming"/>]]</term>
+	/// <description>The naked single will use a pointing and a claiming technique in one step</description>
+	/// </item>
+	/// <item>
+	/// <term>[[<see cref="Technique.Pointing"/>], [<see cref="Technique.Claiming"/>]]</term>
+	/// <description>We should apply a pointing firstly, and then claiming appears, then naked single appears</description>
+	/// </item>
+	/// </list>
+	/// </para>
+					</comment>
+					<key>ComplexSingleBaseStep_IndirectTechniques</key>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed DirectIntersectionStep-->
+		<type modifier="sealed" name="DirectIntersectionStep" comment-name="Direct Intersection" base-type="ComplexSingleBaseStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<primary-parameter name="intersectionCells" type="ref readonly CellMap" order="5">
+					<comment>Indicates the intersection cells.</comment>
+					<key>DirectIntersectionStep_IntersectionCells</key>
+				</primary-parameter>
+				<primary-parameter name="intersectionHouse" type="House" order="6">
+					<comment>Indicates the intersection house.</comment>
+					<key>DirectIntersectionStep_IntersectionHouse</key>
+				</primary-parameter>
+				<primary-parameter name="interim" type="ref readonly CellMap" order="7">
+					<comment>Indicates the interim cells.</comment>
+					<key>DirectIntersectionStep_Interim</key>
+				</primary-parameter>
+				<primary-parameter name="interimDigit" type="Digit" order="8">
+					<comment>Indicates the interim digit.</comment>
+					<key>DirectIntersectionStep_InterimDigit</key>
+				</primary-parameter>
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="9" base-order="5" />
+				<parameter name="basedOn" type="Technique" base-type="ComplexSingleBaseStep" order="10" base-order="6" />
+				<primary-parameter name="isPointing" type="bool" order="11" base-order="7">
+					<comment>Indicates whether the current locked candidates pattern used is pointing.</comment>
+					<key>DirectIntersectionStep_IsPointing</key>
+					<value>[[isPointing ? Technique.Pointing : Technique.Claiming]]</value>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed DirectSubsetStep-->
+		<type modifier="sealed" name="DirectSubsetStep" comment-name="Direct Subset" base-type="ComplexSingleBaseStep">
+			<interfaces>
+				<interface>ISizeTrait</interface>
+			</interfaces>
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<primary-parameter name="subsetCells" type="ref readonly CellMap" order="5">
+					<comment>Indicates the subset cells used.</comment>
+					<key>DirectSubsetStep_SubsetCells</key>
+				</primary-parameter>
+				<primary-parameter name="subsetDigitsMask" type="Mask" order="6">
+					<comment>Indicates the digits that the subset used.</comment>
+					<key>DirectSubsetStep_SubsetDigitsMask</key>
+				</primary-parameter>
+				<primary-parameter name="subsetHouse" type="House" order="7">
+					<comment>Indicates the subset house.</comment>
+					<key>DirectSubsetStep_SubsetHouse</key>
+				</primary-parameter>
+				<primary-parameter name="interim" type="ref readonly CellMap" order="8">
+					<comment>Indicates the interim cells used.</comment>
+					<key>DirectSubsetStep_Interim</key>
+				</primary-parameter>
+				<primary-parameter name="interimDigitsMask" type="Mask" order="9">
+					<comment>Indicates the digits produced in interim.</comment>
+					<key>DirectSubsetStep_InterimDigitsMask</key>
+				</primary-parameter>
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="10" base-order="5" />
+				<parameter name="basedOn" type="Technique" base-type="ComplexSingleBaseStep" order="11" base-order="6" />
+				<primary-parameter name="subsetTechnique" type="Technique" order="12" base-order="7">
+					<comment>Indicates the subset technique used.</comment>
+					<key>DirectSubsetStep_SubsetTechnique</key>
+					<value>[[subsetTechnique]]</value>
+				</primary-parameter>
+			</parameters>
+		</type>
+
+		<!--sealed ComplexSingleStep-->
+		<type modifier="sealed" name="ComplexSingleStep" comment-name="Complex Single" base-type="ComplexSingleBaseStep">
+			<parameters>
+				<parameter name="conclusions" order="0" base-order="0" />
+				<parameter name="views" order="1" base-order="1" />
+				<parameter name="options" order="2" base-order="2" />
+				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
+				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="5" base-order="5" />
+				<parameter name="basedOn" type="Technique" base-type="ComplexSingleBaseStep" order="6" base-order="6" />
+				<parameter name="indirectTechniques" type="Technique[][]" base-type="ComplexSingleBaseStep" order="7" base-order="7" />
+			</parameters>
+		</type>
+	</types>
+</data>

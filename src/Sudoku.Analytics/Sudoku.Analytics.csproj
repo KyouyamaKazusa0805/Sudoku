@@ -16,10 +16,19 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<AdditionalFiles Include="__StepsData.xml" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<Compile Update="Resources\AnalyticsResources.Designer.cs">
 			<DependentUpon>AnalyticsResources.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
+		</Compile>
+		<Compile Update="Resources\FactorPropertyNames.Designer.cs">
+			<DesignTime>True</DesignTime>
+			<AutoGen>True</AutoGen>
+			<DependentUpon>FactorPropertyNames.resx</DependentUpon>
 		</Compile>
 		<EmbeddedResource Update="Resources\AnalyticsResources.resx">
 			<SubType>Designer</SubType>
@@ -28,6 +37,10 @@
 		</EmbeddedResource>
 		<EmbeddedResource Update="Resources\AnalyticsResources.zh-CN.resx">
 			<SubType>Designer</SubType>
+		</EmbeddedResource>
+		<EmbeddedResource Update="Resources\FactorPropertyNames.resx">
+			<Generator>ResXFileCodeGenerator</Generator>
+			<LastGenOutput>FactorPropertyNames.Designer.cs</LastGenOutput>
 		</EmbeddedResource>
 	</ItemGroup>
 

@@ -12,6 +12,229 @@
         <member name="M:Sudoku.SourceGeneration.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.StepDataHandler.GetGlobalConfigInfo(System.Xml.XmlNodeList,Microsoft.CodeAnalysis.Compilation,System.Boolean@,System.String@)">
+            <summary>
+            Try to get global config.
+            </summary>
+            <param name="nodes">The nodes from XML file.</param>
+            <param name="compilation">The compilation instance.</param>
+            <param name="appendHeader">Indicates whether the source generator will append header.</param>
+            <param name="namespace">The namespace.</param>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.Parameter">
+            <summary>
+            Represents a parameter.
+            </summary>
+            <param name="ConstructorOrder">
+            Indicates the order that describes what place the parameter will be inserted into the constructor parameter list.
+            </param>
+            <param name="BaseConstructorOrder">
+            Indicates the order that describes what place the parameter will be inserted into the base constructor parameter list.
+            </param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.Parameter.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32})">
+            <summary>
+            Represents a parameter.
+            </summary>
+            <param name="ConstructorOrder">
+            Indicates the order that describes what place the parameter will be inserted into the constructor parameter list.
+            </param>
+            <param name="BaseConstructorOrder">
+            Indicates the order that describes what place the parameter will be inserted into the base constructor parameter list.
+            </param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.ConstructorOrder">
+            <summary>
+            Indicates the order that describes what place the parameter will be inserted into the constructor parameter list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.BaseConstructorOrder">
+            <summary>
+            Indicates the order that describes what place the parameter will be inserted into the base constructor parameter list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.XmlDocValue">
+            <summary>
+            Indicates the referenced original property name.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.ConstructorParameterValue">
+            <summary>
+            Indicates constructor parameter string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.BaseConstructorParameterValue">
+            <summary>
+            Indicates base constructor parameter string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.Parameter.PropertyValue">
+            <summary>
+            Indicates property string.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.ConstructorParameter">
+            <summary>
+            Represents a constructor parameter.
+            </summary>
+            <param name="ConstructorOrder"><inheritdoc/></param>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="Name">Indicates the parameter name.</param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+            <param name="ParameterType">Indicates the parameter type.</param>
+            <param name="BaseType">Indicates the base type.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.ConstructorParameter.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String)">
+            <summary>
+            Represents a constructor parameter.
+            </summary>
+            <param name="ConstructorOrder"><inheritdoc/></param>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="Name">Indicates the parameter name.</param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+            <param name="ParameterType">Indicates the parameter type.</param>
+            <param name="BaseType">Indicates the base type.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.Name">
+            <summary>Indicates the parameter name.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.ValueExpression">
+            <summary>Indicates the parameter value.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.ParameterType">
+            <summary>Indicates the parameter type.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.BaseType">
+            <summary>Indicates the base type.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.PropertyName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.XmlDocValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.ConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.BaseConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.PropertyValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstructorParameter.IsReserved">
+            <summary>
+            Indicates whether the property is reserved one.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter">
+            <summary>
+            Represents a primary constructor parameter.
+            </summary>
+            <param name="ConstructorOrder"><inheritdoc/></param>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="Name">Indicates the parameter name.</param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+            <param name="Comment">Indicates the comment.</param>
+            <param name="ParameterType">Indicates the parameter type.</param>
+            <param name="BaseType">Indicates the base type.</param>
+            <param name="ResourceKey">Indicates the resource key.</param>
+            <param name="RangeMin">Indicates the minimal value that the property can be reached.</param>
+            <param name="RangeMax">Indicates the maximal value that the property can be reached.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.#ctor(System.Nullable{System.Int32},System.Nullable{System.Int32},System.String,System.String,System.String,System.String,System.String,System.String,System.String,System.String)">
+            <summary>
+            Represents a primary constructor parameter.
+            </summary>
+            <param name="ConstructorOrder"><inheritdoc/></param>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="Name">Indicates the parameter name.</param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+            <param name="Comment">Indicates the comment.</param>
+            <param name="ParameterType">Indicates the parameter type.</param>
+            <param name="BaseType">Indicates the base type.</param>
+            <param name="ResourceKey">Indicates the resource key.</param>
+            <param name="RangeMin">Indicates the minimal value that the property can be reached.</param>
+            <param name="RangeMax">Indicates the maximal value that the property can be reached.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.Name">
+            <summary>Indicates the parameter name.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.ValueExpression">
+            <summary>Indicates the parameter value.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.Comment">
+            <summary>Indicates the comment.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.ParameterType">
+            <summary>Indicates the parameter type.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.BaseType">
+            <summary>Indicates the base type.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.ResourceKey">
+            <summary>Indicates the resource key.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.RangeMin">
+            <summary>Indicates the minimal value that the property can be reached.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.RangeMax">
+            <summary>Indicates the maximal value that the property can be reached.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.PropertyName">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.XmlDocValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.ConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.BaseConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.PropertyValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.MinMaxValueString">
+            <summary>
+            The internal min-max value string.
+            </summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.PrimaryConstructorParameter.ParameterTypeModifiersRemoved">
+            <summary>
+            Indicates the real parameter type name, removing modifiers.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.ConstantParameter">
+            <summary>
+            Represents a constant.
+            </summary>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Handlers.ConstantParameter.#ctor(System.Nullable{System.Int32},System.String)">
+            <summary>
+            Represents a constant.
+            </summary>
+            <param name="BaseConstructorOrder"><inheritdoc/></param>
+            <param name="ValueExpression">Indicates the parameter value.</param>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstantParameter.ValueExpression">
+            <summary>Indicates the parameter value.</summary>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstantParameter.XmlDocValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstantParameter.ConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstantParameter.BaseConstructorParameterValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.SourceGeneration.Handlers.ConstantParameter.PropertyValue">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.Handlers.StepSearcherDefaultImportingHandler">
             <summary>
             The generator handler for step searcher default importing.

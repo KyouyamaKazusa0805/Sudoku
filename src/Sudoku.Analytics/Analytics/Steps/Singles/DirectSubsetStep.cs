@@ -1,36 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Direct Subset</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="cell"><inheritdoc/></param>
-/// <param name="digit"><inheritdoc/></param>
-/// <param name="subsetCells">Indicates the subset cells used.</param>
-/// <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
-/// <param name="subsetHouse">Indicates the subset house.</param>
-/// <param name="interim">Indicates the interim.</param>
-/// <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
-/// <param name="subtype"><inheritdoc/></param>
-/// <param name="basedOn"><inheritdoc/></param>
-/// <param name="subsetTechnique">Indicates the subset technique used.</param>
-public sealed partial class DirectSubsetStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	Cell cell,
-	Digit digit,
-	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
-	[PrimaryConstructorParameter] Mask subsetDigitsMask,
-	[PrimaryConstructorParameter] House subsetHouse,
-	[PrimaryConstructorParameter] ref readonly CellMap interim,
-	[PrimaryConstructorParameter] Mask interimDigitsMask,
-	SingleSubtype subtype,
-	Technique basedOn,
-	[PrimaryConstructorParameter] Technique subsetTechnique
-) : ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]), ISizeTrait
+public partial class DirectSubsetStep
 {
 	/// <summary>
 	/// Indicates whether the used subset is a naked subset.

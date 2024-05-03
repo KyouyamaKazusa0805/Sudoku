@@ -1,44 +1,6 @@
-
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Direct Intersection</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="cell"><inheritdoc/></param>
-/// <param name="digit"><inheritdoc/></param>
-/// <param name="intersectionCells">Indicates the intersection cells.</param>
-/// <param name="intersectionHouse">Indicates the intersection house.</param>
-/// <param name="interim">Indicates the interim cells.</param>
-/// <param name="interimDigit">Indicates the interim digit.</param>
-/// <param name="subtype"><inheritdoc/></param>
-/// <param name="basedOn"><inheritdoc/></param>
-/// <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
-public sealed partial class DirectIntersectionStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	Cell cell,
-	Digit digit,
-	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells,
-	[PrimaryConstructorParameter] House intersectionHouse,
-	[PrimaryConstructorParameter] ref readonly CellMap interim,
-	[PrimaryConstructorParameter] Digit interimDigit,
-	SingleSubtype subtype,
-	Technique basedOn,
-	[PrimaryConstructorParameter] bool isPointing
-) : ComplexSingleBaseStep(
-	conclusions,
-	views,
-	options,
-	cell,
-	digit,
-	subtype,
-	basedOn,
-	[[isPointing ? Technique.Pointing : Technique.Claiming]]
-)
+public partial class DirectIntersectionStep
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty

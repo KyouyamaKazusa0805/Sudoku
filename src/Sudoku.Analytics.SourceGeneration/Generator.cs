@@ -8,5 +8,15 @@ public sealed class Generator : IIncrementalGenerator
 {
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
+	{
+		Basic(context);
+		StepData(context);
+	}
+
+
+	private void Basic(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(context.CompilationProvider, StepSearcherDefaultImportingHandler.Output);
+
+	private void StepData(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(context.CompilationProvider.Combine(context.AdditionalTextsProvider.Collect()), StepDataHandler.Output);
 }

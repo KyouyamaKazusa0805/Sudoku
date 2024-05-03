@@ -1,31 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Hidden Single</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="cell"><inheritdoc/></param>
-/// <param name="digit"><inheritdoc/></param>
-/// <param name="house">Indicates the house where the current Hidden Single technique forms.</param>
-/// <param name="enableAndIsLastDigit">
-/// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
-/// If the technique is not a Last Digit, the value must be <see langword="false"/>.
-/// </param>
-/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary"/></param>
-/// <param name="subtype"><inheritdoc/></param>
-public partial class HiddenSingleStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	Cell cell,
-	Digit digit,
-	[PrimaryConstructorParameter] House house,
-	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
-	[PrimaryConstructorParameter] int lasting,
-	SingleSubtype subtype
-) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
+public partial class HiddenSingleStep
 {
 	/// <inheritdoc/>
 	public sealed override int BaseDifficulty

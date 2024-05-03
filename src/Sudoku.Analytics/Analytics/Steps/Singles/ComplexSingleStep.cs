@@ -1,26 +1,6 @@
 namespace Sudoku.Analytics.Steps;
 
-/// <summary>
-/// Provides with a step that is a <b>Complex Single</b> technique.
-/// </summary>
-/// <param name="conclusions"><inheritdoc/></param>
-/// <param name="views"><inheritdoc/></param>
-/// <param name="options"><inheritdoc/></param>
-/// <param name="cell"><inheritdoc/></param>
-/// <param name="digit"><inheritdoc/></param>
-/// <param name="subtype"><inheritdoc/></param>
-/// <param name="basedOn"><inheritdoc/></param>
-/// <param name="indirectTechniques"><inheritdoc/></param>
-public sealed class ComplexSingleStep(
-	Conclusion[] conclusions,
-	View[]? views,
-	StepSearcherOptions options,
-	Cell cell,
-	Digit digit,
-	SingleSubtype subtype,
-	Technique basedOn,
-	Technique[][] indirectTechniques
-) : ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, indirectTechniques)
+public partial class ComplexSingleStep
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty
