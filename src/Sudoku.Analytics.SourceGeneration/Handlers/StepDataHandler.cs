@@ -49,8 +49,8 @@ internal static class StepDataHandler
 
 	private const string TypeRemarksFormat = """
 		/// <b>
-		/// This type is implemented by source generators. You cannot modify the properties inside the current data structure.
-		/// If you persists, please visit source code for source generator to modify the handling logic.
+		/// A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+		/// Please visit source code for source generator to modify the handling logic if you persist.
 		/// </b>
 		""";
 
