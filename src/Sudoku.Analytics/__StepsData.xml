@@ -101,12 +101,7 @@
 					<key>HiddenSingleStep_Lasting</key>
 					<range>2-7</range>
 				</primary-parameter>
-				<primary-parameter name="subtype" type="SingleSubtype" order="7" base-order="5">
-					<comment>
-						<inheritdoc cref="SingleStep.Subtype" path="/summary"/>
-					</comment>
-					<key>HiddenSingleStep_Subtype</key>
-				</primary-parameter>
+				<parameter name="subtype" type="SingleSubtype" base-type="SingleStep" order="7" base-order="5" />
 			</parameters>
 		</type>
 
@@ -118,7 +113,7 @@
 				<parameter name="options" order="2" base-order="2" />
 				<parameter name="cell" type="Cell" base-type="SingleStep" order="3" base-order="3" />
 				<parameter name="digit" type="Digit" base-type="SingleStep" order="4" base-order="4" />
-				<parameter name="house" type="House" base-type="SingleStep" order="5" base-order="5" />
+				<parameter name="house" type="House" base-type="HiddenSingleStep" order="5" base-order="5" />
 				<parameter name="lasting" type="int" base-type="ILastingTrait" order="6" base-order="7" />
 				<constant name="true" base-order="6" />
 				<constant name="SingleSubtype.LastDigit" base-order="8" />

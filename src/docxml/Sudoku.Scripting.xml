@@ -1,0 +1,59 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Scripting</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Analytics.AnalysisResultExtensions">
+            <summary>
+            Represents extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResultExtensions.LoadExternalFactors(Sudoku.Analytics.AnalysisResult,System.String)">
+            <summary>
+            Loads external <see cref="T:Sudoku.Measuring.Factor"/> source files, and take them into account,
+            by inserting factors into <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance to be updated.</param>
+            <param name="directoryPath">The directory path.</param>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
+        </member>
+        <member name="T:Sudoku.Scripting.Script">
+            <summary>
+            Represents a type that contains a list of methods that supports evaluate methods defined in external files,
+            e.g. stored in local file path.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Scripting.Script.DefaultTypeName">
+            <summary>
+            Indicates the default type name.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Scripting.Script.UsingDirectives">
+            <summary>
+            Indicates the supported <see langword="using"/> directives.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Scripting.Script.DefaultBindingFlags">
+            <summary>
+            Indicates the invoking binding flags.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Scripting.Script.EvaluateAsync(System.String,System.String,System.Object,System.Threading.CancellationToken)">
+            <summary>
+            Parses the text as a valid C# code for a method declaration, and evaluate the method and return a valid result.
+            </summary>
+            <param name="script">
+            The C# script, code. The text code must be a valid method declaration without keywords like <see langword="public"/>
+            and <see langword="static"/>, with an explicit <see langword="return"/> statement.
+            </param>
+            <param name="methodName">Indicates the method name you want to call in this script.</param>
+            <param name="argument">The argument to be passed into.</param>
+            <param name="cancellationToken">Indicates the cancellation token that can cancel the task.</param>
+            <returns>A <see cref="T:Microsoft.CodeAnalysis.SyntaxTree"/> object returned.</returns>
+            <exception cref="T:System.AggregateException">Throws when failed to compile the text.</exception>
+        </member>
+    </members>
+</doc>

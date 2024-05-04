@@ -5711,17 +5711,20 @@
             <remarks>
             Generally this property holds the default and basic difficulty of the step.
             If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-            as elementary and default rating value; other factors will be given in the other property <see cref="P:Sudoku.Analytics.Step.Factors"/>.
+            as elementary and default rating value; other factors will be given in the other property
+            <see cref="P:Sudoku.Analytics.Step.Factors"/> or <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/>.
             </remarks>
             <seealso cref="P:Sudoku.Analytics.Step.Factors"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Difficulty">
             <summary>
             Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-            <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and <see cref="P:Sudoku.Analytics.Step.Factors"/>.
+            <see cref="P:Sudoku.Analytics.Step.BaseDifficulty"/> and either <see cref="P:Sudoku.Analytics.Step.Factors"/> or <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/>.
             </summary>
             <seealso cref="P:Sudoku.Analytics.Step.BaseDifficulty"/>
             <seealso cref="P:Sudoku.Analytics.Step.Factors"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
             <seealso cref="T:Sudoku.Measuring.Factor"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Code">
@@ -5813,6 +5816,23 @@
             <summary>
             Represents a collection of factors that describes the difficulty rating on extra values.
             </summary>
+            <remarks>
+            Please note that if the property <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/> is not <see langword="null"/> with at least one element,
+            this property won't be used in calulation; in contrast, the property <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/> will be used in calculation
+            on difficulty rating.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Step.ExternalFactors">
+            <summary>
+            Represents a collection of factors, describing the difficulty rating on extra values, will be loaded from external source.
+            </summary>
+            <remarks>
+            Please note that if the property is not <see langword="null"/> with at least one element,
+            the property <see cref="P:Sudoku.Analytics.Step.Factors"/> won't be used in calculation; in contrast, this property will be used in calculation
+            on difficulty rating.
+            </remarks>
+            <seealso cref="P:Sudoku.Analytics.Step.Factors"/>
         </member>
         <member name="P:Sudoku.Analytics.Step.ConclusionText">
             <summary>
@@ -18324,7 +18344,7 @@
             <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
             <param name="enableAndIsLastDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting" path="/summary"/></param>
-            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <remarks>
             <b>
             A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
@@ -18353,7 +18373,7 @@
             <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
             <param name="enableAndIsLastDigit"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.EnableAndIsLastDigit" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Lasting" path="/summary"/></param>
-            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype" path="/summary"/></param>
+            <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <remarks>
             <b>
             A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
@@ -18377,11 +18397,6 @@
             <inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" />
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.HiddenSingleStep.Subtype">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary" />
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.Steps.LastDigitStep">
             <summary>
             Represents a data structure that describes for a technique of <b>Last Digit</b>.
@@ -18391,7 +18406,7 @@
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="house"><inheritdoc cref="!:SingleStep.House" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <remarks>
             <b>
@@ -18409,7 +18424,7 @@
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
-            <param name="house"><inheritdoc cref="!:SingleStep.House" path="/summary"/></param>
+            <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
             <remarks>
             <b>

@@ -75,19 +75,22 @@ public abstract partial class Step(
 	/// <remarks>
 	/// Generally this property holds the default and basic difficulty of the step.
 	/// If the step's difficulty rating requires multiple factors, this property will provide with a basic difficulty value
-	/// as elementary and default rating value; other factors will be given in the other property <see cref="Factors"/>.
+	/// as elementary and default rating value; other factors will be given in the other property
+	/// <see cref="Factors"/> or <see cref="ExternalFactors"/>.
 	/// </remarks>
 	/// <seealso cref="Factors"/>
+	/// <seealso cref="ExternalFactors"/>
 	public abstract int BaseDifficulty { get; }
 
 	/// <summary>
 	/// Indicates the total difficulty of the technique step. This value is the total sum of merged result from two properties
-	/// <see cref="BaseDifficulty"/> and <see cref="Factors"/>.
+	/// <see cref="BaseDifficulty"/> and either <see cref="Factors"/> or <see cref="ExternalFactors"/>.
 	/// </summary>
 	/// <seealso cref="BaseDifficulty"/>
 	/// <seealso cref="Factors"/>
+	/// <seealso cref="ExternalFactors"/>
 	/// <seealso cref="Factor"/>
-	public int Difficulty => BaseDifficulty + Factors.Sum(this);
+	public int Difficulty => BaseDifficulty + (ExternalFactors is { Length: not 0 } factors ? factors : Factors).Sum(this);
 
 	/// <summary>
 	/// The technique code of this instance used for comparison (e.g. search for specified puzzle that contains this technique).
@@ -181,7 +184,25 @@ public abstract partial class Step(
 	/// <summary>
 	/// Represents a collection of factors that describes the difficulty rating on extra values.
 	/// </summary>
+	/// <remarks>
+	/// Please note that if the property <see cref="ExternalFactors"/> is not <see langword="null"/> with at least one element,
+	/// this property won't be used in calulation; in contrast, the property <see cref="ExternalFactors"/> will be used in calculation
+	/// on difficulty rating.
+	/// </remarks>
+	/// <seealso cref="ExternalFactors"/>
 	public virtual FactorCollection Factors => [];
+
+	/// <summary>
+	/// Represents a collection of factors, describing the difficulty rating on extra values, will be loaded from external source.
+	/// </summary>
+	/// <remarks>
+	/// Please note that if the property is not <see langword="null"/> with at least one element,
+	/// the property <see cref="Factors"/> won't be used in calculation; in contrast, this property will be used in calculation
+	/// on difficulty rating.
+	/// </remarks>
+	/// <seealso cref="Factors"/>
+	[DisallowNull]
+	public FactorCollection? ExternalFactors { get; set; }
 
 	/// <summary>
 	/// Indicates the string representation of the conclusions of the step.
