@@ -5369,11 +5369,6 @@
             </remarks>
             <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
         </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.AsyncLoadMilliseconds">
-            <summary>
-            Indicates the load time for each view node.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Rendering.RenderableFactory.ViewNodeTagPrefixes">
             <summary>
             The internal dictionary that describes the tag prefixes of view nodes.
@@ -5406,7 +5401,7 @@
             <param name="pane">The target pane.</param>
             <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
         </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControlsAsync(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
             <summary>
             Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
             </summary>
@@ -8108,6 +8103,11 @@
               Looks up a localized string similar to Library Puzzles.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_MainPage">
+            <summary>
+              Looks up a localized string similar to Main page.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
@@ -8143,6 +8143,11 @@
               Looks up a localized string similar to Puzzle Libraries.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PuzzlesGeneratingAndLibraries">
+            <summary>
+              Looks up a localized string similar to Generating &amp; Library.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Search">
             <summary>
               Looks up a localized string similar to Search....
@@ -8171,6 +8176,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_StepSearcherSorterPageTitle">
             <summary>
               Looks up a localized string similar to Sorting step searchers....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueData">
+            <summary>
+              Looks up a localized string similar to Techniques.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_TechniqueGallery">

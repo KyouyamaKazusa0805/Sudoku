@@ -2507,9 +2507,6 @@
   <data name="PatternBasedPuzzleGeneratingPage_SelectedCellsCount" xml:space="preserve">
     <value>选择的格子数：</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="PatternBasedPuzzleGeneratingPage_RatingInfo" xml:space="preserve">
     <value>难度：最大 {0}、总分 {1}（难度级别：{2}）</value>
   </data>
@@ -2521,5 +2518,17 @@
   </data>
   <data name="PatternBasedPuzzleGeneratingPage_ClearDigits" xml:space="preserve">
     <value>清空输入数字</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="MainWindow_TechniqueData" xml:space="preserve">
+    <value>技巧</value>
+  </data>
+  <data name="MainWindow_PuzzlesGeneratingAndLibraries" xml:space="preserve">
+    <value>出题和题库</value>
+  </data>
+  <data name="MainWindow_MainPage" xml:space="preserve">
+    <value>主页面</value>
   </data>
 </root>

@@ -16,17 +16,23 @@
 		Loaded="NavigationView_Loaded" SelectionChanged="MainNavigationView_SelectionChanged"
 		BackRequested="MainNavigationView_BackRequested">
 		<NavigationView.MenuItems>
-			<NavigationViewItemHeader Content="{m:R Key=MainWindow_BasicFunctions}" />
+			<!--Main page-->
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_MainPage}" />
 			<NavigationViewItem
 				x:Name="AnalyzePageItem" Icon="{ui:FontIcon Glyph=&#xE9D9;}"
 				Content="{m:R Key=MainWindow_Analyze}" />
+
+			<!--Technique data-->
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_TechniqueData}" />
 			<NavigationViewItem
-				x:Name="ConstraintPageItem" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}"
-				Icon="{ui:FontIcon Glyph=&#xE8EE;}" />
+				x:Name="TechniqueGalleryPageItem" Content="{m:R Key=MainWindow_TechniqueGallery}"
+				Icon="{ui:FontIcon Glyph=&#xEA37;}" />
 			<NavigationViewItem
 				x:Name="TechniqueDataPageItem" Content="{m:R Key=MainWindow_TechniqueInfoModifierPage}"
 				Icon="{ui:FontIcon Glyph=&#xEF90;}" />
-			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
+
+			<!--Puzzle generating and libraries-->
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_PuzzlesGeneratingAndLibraries}" />
 			<NavigationViewItem
 				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
 				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
@@ -34,19 +40,19 @@
 				x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}"
 				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
 			<NavigationViewItem
+				x:Name="ConstraintPageItem" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}"
+				Icon="{ui:FontIcon Glyph=&#xE8EE;}" />
+			<NavigationViewItem
 				x:Name="GeneratorPageItem" Content="{m:R Key=MainWindow_PatternBasedPuzzleGeneratorPage}"
 				Icon="{ui:FontIcon Glyph=&#xE932;}" />
-			<NavigationViewItem
-				x:Name="TechniqueGalleryPageItem" Content="{m:R Key=MainWindow_TechniqueGallery}"
-				Icon="{ui:FontIcon Glyph=&#xEA37;}" />
+
+			<!--User manual-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
 			<NavigationViewItem
 				x:Name="HotkeyCheatTablePageItem" Content="{m:R Key=MainWindow_HotkeyCheatTable}"
 				Icon="{ui:FontIcon Glyph=&#xE92E;}" />
-		</NavigationView.MenuItems>
-		<NavigationView.FooterMenuItems>
 			<NavigationViewItem x:Name="AboutPageItem" Content="{m:R Key=MainWindow_About}" Icon="People" />
-		</NavigationView.FooterMenuItems>
+		</NavigationView.MenuItems>
 
 		<Grid ColumnDefinitions="Auto,*">
 			<wc:PropertySizer

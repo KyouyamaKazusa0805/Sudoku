@@ -2525,4 +2525,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="PatternBasedPuzzleGeneratingPage_ClearDigits" xml:space="preserve">
     <value>Clear digits input</value>
   </data>
+  <data name="MainWindow_TechniqueData" xml:space="preserve">
+    <value>Techniques</value>
+  </data>
+  <data name="MainWindow_PuzzlesGeneratingAndLibraries" xml:space="preserve">
+    <value>Generating &amp; Library</value>
+  </data>
+  <data name="MainWindow_MainPage" xml:space="preserve">
+    <value>Main page</value>
+  </data>
 </root>

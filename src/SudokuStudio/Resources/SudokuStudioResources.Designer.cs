@@ -3949,6 +3949,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Main page.
+        /// </summary>
+        internal static string MainWindow_MainPage {
+            get {
+                return ResourceManager.GetString("MainWindow_MainPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Menu.
         /// </summary>
         internal static string MainWindow_Menu {
@@ -4012,6 +4021,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Generating &amp; Library.
+        /// </summary>
+        internal static string MainWindow_PuzzlesGeneratingAndLibraries {
+            get {
+                return ResourceManager.GetString("MainWindow_PuzzlesGeneratingAndLibraries", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search....
         /// </summary>
         internal static string MainWindow_Search {
@@ -4062,6 +4080,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_StepSearcherSorterPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_StepSearcherSorterPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Techniques.
+        /// </summary>
+        internal static string MainWindow_TechniqueData {
+            get {
+                return ResourceManager.GetString("MainWindow_TechniqueData", resourceCulture);
             }
         }
         

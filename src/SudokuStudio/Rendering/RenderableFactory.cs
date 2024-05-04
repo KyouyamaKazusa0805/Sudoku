@@ -1,4 +1,4 @@
-#define ASYNC_LOAD_VIEW_NODES
+#undef ASYNC_LOAD_VIEW_NODES
 
 namespace SudokuStudio.Rendering;
 
