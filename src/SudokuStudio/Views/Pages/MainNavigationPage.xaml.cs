@@ -29,7 +29,6 @@ internal sealed partial class MainNavigationPage : Page
 	public MainNavigationPage()
 	{
 		InitializeComponent();
-
 		SetMemoryWidth();
 	}
 
