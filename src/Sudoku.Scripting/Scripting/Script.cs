@@ -46,11 +46,11 @@ public static class Script
 	/// and <see langword="static"/>, with an explicit <see langword="return"/> statement.
 	/// </param>
 	/// <param name="methodName">Indicates the method name you want to call in this script.</param>
-	/// <param name="argument">The argument to be passed into.</param>
+	/// <param name="args">The arguments to be passed.</param>
 	/// <param name="cancellationToken">Indicates the cancellation token that can cancel the task.</param>
 	/// <returns>A <see cref="SyntaxTree"/> object returned.</returns>
 	/// <exception cref="AggregateException">Throws when failed to compile the text.</exception>
-	public static async Task<object?> EvaluateAsync([StringSyntax("C#")] string script, string methodName, object argument, CancellationToken cancellationToken = default)
+	public static async Task<object?> EvaluateAsync([StringSyntax("C#")] string script, string methodName, object?[]? args, CancellationToken cancellationToken = default)
 	{
 		var compilation = CSharpCompilation.Create(
 			"InternalScriptCompilation",
@@ -103,6 +103,6 @@ public static class Script
 		stream.Seek(0, SeekOrigin.Begin);
 		return Assembly.Load(stream.ToArray())
 			.GetType(DefaultTypeName)!
-			.InvokeMember(methodName, DefaultBindingFlags, null, null, [argument])!;
+			.InvokeMember(methodName, DefaultBindingFlags, null, null, args)!;
 	}
 }
