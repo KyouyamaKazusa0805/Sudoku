@@ -8143,9 +8143,9 @@
               Looks up a localized string similar to Puzzle Libraries.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PuzzlesGeneratingAndLibraries">
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PuzzlesGenerating">
             <summary>
-              Looks up a localized string similar to Generating &amp; Library.
+              Looks up a localized string similar to Puzzle Generating.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Search">

@@ -4021,11 +4021,11 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Generating &amp; Library.
+        ///   Looks up a localized string similar to Puzzle Generating.
         /// </summary>
-        internal static string MainWindow_PuzzlesGeneratingAndLibraries {
+        internal static string MainWindow_PuzzlesGenerating {
             get {
-                return ResourceManager.GetString("MainWindow_PuzzlesGeneratingAndLibraries", resourceCulture);
+                return ResourceManager.GetString("MainWindow_PuzzlesGenerating", resourceCulture);
             }
         }
         

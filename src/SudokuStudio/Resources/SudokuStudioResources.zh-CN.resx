@@ -2525,8 +2525,8 @@
   <data name="MainWindow_TechniqueData" xml:space="preserve">
     <value>技巧</value>
   </data>
-  <data name="MainWindow_PuzzlesGeneratingAndLibraries" xml:space="preserve">
-    <value>出题和题库</value>
+  <data name="MainWindow_PuzzlesGenerating" xml:space="preserve">
+    <value>出题</value>
   </data>
   <data name="MainWindow_MainPage" xml:space="preserve">
     <value>主页面</value>

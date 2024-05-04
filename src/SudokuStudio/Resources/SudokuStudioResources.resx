@@ -2528,8 +2528,8 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_TechniqueData" xml:space="preserve">
     <value>Techniques</value>
   </data>
-  <data name="MainWindow_PuzzlesGeneratingAndLibraries" xml:space="preserve">
-    <value>Generating &amp; Library</value>
+  <data name="MainWindow_PuzzlesGenerating" xml:space="preserve">
+    <value>Puzzle Generating</value>
   </data>
   <data name="MainWindow_MainPage" xml:space="preserve">
     <value>Main page</value>

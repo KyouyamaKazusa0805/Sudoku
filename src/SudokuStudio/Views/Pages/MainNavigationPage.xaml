@@ -31,20 +31,23 @@
 				x:Name="TechniqueDataPageItem" Content="{m:R Key=MainWindow_TechniqueInfoModifierPage}"
 				Icon="{ui:FontIcon Glyph=&#xEF90;}" />
 
-			<!--Puzzle generating and libraries-->
-			<NavigationViewItemHeader Content="{m:R Key=MainWindow_PuzzlesGeneratingAndLibraries}" />
-			<NavigationViewItem
-				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
-				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
-			<NavigationViewItem
-				x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}"
-				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
+			<!--Puzzle generating-->
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_PuzzlesGenerating}" />
 			<NavigationViewItem
 				x:Name="ConstraintPageItem" Content="{m:R Key=MainWindow_GeneratedPuzzleConstraintPage}"
 				Icon="{ui:FontIcon Glyph=&#xE8EE;}" />
 			<NavigationViewItem
 				x:Name="GeneratorPageItem" Content="{m:R Key=MainWindow_PatternBasedPuzzleGeneratorPage}"
 				Icon="{ui:FontIcon Glyph=&#xE932;}" />
+
+			<!--Extra functions-->
+			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ExtraFunctions}" />
+			<NavigationViewItem
+				x:Name="SingleCountingPageItem" Content="{m:R Key=MainWindow_SingleCountingPracticing}"
+				Icon="{ui:FontIcon Glyph=&#xE7FC;}" />
+			<NavigationViewItem
+				x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}"
+				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
 
 			<!--User manual-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
