@@ -6,27 +6,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class HiddenSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString
-		=> """
-		{0} switch
-		{{
-			2 => 0,
-			3 => 6,
-			4 => 20
-		}}
-		""";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(HiddenSubsetStep.Size)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(HiddenSubsetStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			HiddenSubsetStep { Size: var size } => size switch { 2 => 0, 3 => 6, 4 => 20 },
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => (int)args![0]! switch { 2 => 0, 3 => 6, 4 => 20 };
 }

@@ -79,24 +79,7 @@ public sealed partial class FactorCollection(ReadOnlyMemory<Factor> factors) : I
 		var result = 0;
 		foreach (var element in this)
 		{
-			result += element.Formula(step) ?? 0;
-		}
-		return result;
-	}
-
-	/// <summary>
-	/// Calculates sum of difficulty of the current step, using the specified value converter.
-	/// </summary>
-	/// <typeparam name="T">The type of the value converter.</typeparam>
-	/// <param name="step">The step.</param>
-	/// <param name="valueConverter">The value converter to be used.</param>
-	/// <returns>The sum value of type <typeparamref name="T"/>.</returns>
-	public T Sum<T>(Step step, Func<int, T> valueConverter) where T : unmanaged, INumber<T>
-	{
-		var result = default(T);
-		foreach (var element in this)
-		{
-			result += valueConverter(element.Formula(step) ?? 0);
+			result += element.Formula(from propertyInfo in element.Parameters select propertyInfo.GetValue(step)!);
 		}
 		return result;
 	}

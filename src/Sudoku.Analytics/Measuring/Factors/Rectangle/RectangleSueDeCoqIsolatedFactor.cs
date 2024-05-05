@@ -7,9 +7,6 @@ namespace Sudoku.Measuring.Factors;
 public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "!{0} && {1} != 0 ? 1 : 0";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames
 		=> [nameof(UniqueRectangleWithSueDeCoqStep.IsCannibalistic), nameof(UniqueRectangleWithSueDeCoqStep.IsolatedDigitsMask)];
 
@@ -17,11 +14,5 @@ public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueRectangleWithSueDeCoqStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			UniqueRectangleWithSueDeCoqStep { IsCannibalistic: var isCannibalism, IsolatedDigitsMask: var mask }
-				=> !isCannibalism && mask != 0 ? 1 : 0,
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => !(bool)args![0]! && (Mask)args![1]! != 0 ? 1 : 0;
 }

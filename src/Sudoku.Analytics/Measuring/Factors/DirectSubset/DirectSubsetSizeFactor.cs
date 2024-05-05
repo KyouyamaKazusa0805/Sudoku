@@ -7,32 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class DirectSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString
-		=> """
-		{0} switch
-		{{
-			2 => 0,
-			3 => 6,
-			4 => 20
-		}}
-		""";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(DirectSubsetStep.SubsetCells)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(DirectSubsetStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			DirectSubsetStep { SubsetCells.Count: var cellsCount } => cellsCount switch
-			{
-				2 => 0,
-				3 => 6,
-				4 => 20
-			},
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => ((CellMap)args![0]!).Count switch { 2 => 0, 3 => 6, 4 => 20 };
 }

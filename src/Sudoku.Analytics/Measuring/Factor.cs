@@ -3,24 +3,13 @@ namespace Sudoku.Measuring;
 /// <summary>
 /// Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
 /// </summary>
-public abstract class Factor : ICultureFormattable
+public abstract class Factor
 {
 	/// <summary>
-	/// Indicates the name of the factor that can be used by telling with multple <see cref="Factor"/>
-	/// instances with different types.
+	/// Default property flags, including properties that are expclitly interface implemented.
 	/// </summary>
-	public string DistinctKey => GetType().Name;
+	private const BindingFlags PropertyFlags = BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
 
-	/// <summary>
-	/// Represents the string representation of formula.
-	/// </summary>
-	/// <remarks>
-	/// The text can contain placeholders such like <c>{0}</c>, <c>{1}</c>, <c>{2}</c> and so on. The values will be replaced
-	/// with the fact parameter name from property <see cref="Parameters"/> in runtime.
-	/// </remarks>
-	/// <seealso cref="Parameters"/>
-	[StringSyntax(StringSyntaxAttribute.CompositeFormat)]
-	public abstract string FormulaString { get; }
 
 	/// <summary>
 	/// Indicates a list of <see cref="string"/> instances that binds with real instance properties
@@ -37,14 +26,21 @@ public abstract class Factor : ICultureFormattable
 	/// <summary>
 	/// Indicates a <see cref="PropertyInfo"/> instance that creates from property <see cref="ParameterNames"/>.
 	/// </summary>
+	/// <exception cref="AmbiguousMatchException">Throws when property names is invalid.</exception>
 	/// <seealso cref="ParameterNames"/>
 	/// <seealso cref="PropertyInfo"/>
-	public PropertyInfo[] Parameters => from parameterName in ParameterNames select ReflectedStepType.GetProperty(parameterName)!;
+	public PropertyInfo[] Parameters
+		// Here a property may be explicitly implemented, the name may starts with interface name.
+		=> (
+			from propertyInfo in ReflectedStepType.GetProperties(PropertyFlags)
+			where Array.Exists(ParameterNames, propertyInfo.Name.EndsWith)
+			select propertyInfo
+		) is var result && result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
 
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.
 	/// </summary>
-	public abstract Func<Step, int?> Formula { get; }
+	public abstract ParameterizedFormula Formula { get; }
 
 
 	/// <summary>
@@ -52,17 +48,5 @@ public abstract class Factor : ICultureFormattable
 	/// </summary>
 	/// <param name="culture">The culture.</param>
 	/// <returns>The name of the factor.</returns>
-	public string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{DistinctKey}", culture);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public sealed override string ToString() => ToString(null);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null)
-	{
-		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
-		return $"{GetName(culture)}{colonCharacter}{Environment.NewLine}{FormulaString}";
-	}
+	public virtual string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{GetType().Name}", culture);
 }

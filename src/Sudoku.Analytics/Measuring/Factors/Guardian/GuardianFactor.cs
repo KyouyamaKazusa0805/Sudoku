@@ -7,20 +7,12 @@ namespace Sudoku.Measuring.Factors;
 public sealed class GuardianFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "A004526({0} + A004526({1}))";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(GuardianStep.LoopCells), nameof(GuardianStep.Guardians)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(GuardianStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			GuardianStep { LoopCells.Count: var loopCellsCount, Guardians.Count: var guardiansCount }
-				=> A004526(loopCellsCount + A004526(guardiansCount)),
-			_ => null
-		};
+	public override ParameterizedFormula Formula
+		=> static args => A004526(((CellMap)args![0]!).Count + A004526(((CellMap)args![1]!).Count));
 }

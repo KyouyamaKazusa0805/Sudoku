@@ -7,24 +7,12 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ExtendedSubsetPrincipleSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "{0}.Count switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 }";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ExtendedSubsetPrincipleStep.Cells)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(ExtendedSubsetPrincipleStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			ExtendedSubsetPrincipleStep { Cells.Count: var count } => count switch
-			{
-				3 or 4 => 0,
-				5 or 6 or 7 => 2,
-				8 or 9 => 4
-			},
-			_ => null
-		};
+	public override ParameterizedFormula Formula
+		=> static args => ((CellMap)args![0]!).Count switch { 3 or 4 => 0, 5 or 6 or 7 => 2, 8 or 9 => 4 };
 }

@@ -7,19 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ExocetAlmostHiddenSetSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "A002024({0})";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(JuniorExocetMirrorAlmostHiddenSetStep.SubsetSize)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(JuniorExocetMirrorAlmostHiddenSetStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			JuniorExocetMirrorAlmostHiddenSetStep { SubsetSize: var size } => A002024(size),
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => A002024((int)args![0]!);
 }

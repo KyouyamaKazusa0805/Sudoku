@@ -7,41 +7,25 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ComplexSingleFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "GetComplexSingleRating({0})";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ComplexSingleStep.IndirectTechniques)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(ComplexSingleStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-	{
-		get
+	public override ParameterizedFormula Formula
+		=> static args =>
 		{
-			return static step => step switch
+			var (result, max) = (0, 0);
+			foreach (var technique in from techniqueGroup in (Technique[][])args![0]! from technique in techniqueGroup select technique)
 			{
-				ComplexSingleStep { IndirectTechniques: var techniques }
-					=> d(from techniqueGroup in techniques from technique in techniqueGroup select technique),
-				_ => null
-			};
-
-
-			static int d(Technique[] techniques)
-			{
-				var (result, max) = (0, 0);
-				foreach (var technique in techniques)
+				technique.GetDefaultRating(out var directRatingValue);
+				result += directRatingValue;
+				if (directRatingValue >= max)
 				{
-					technique.GetDefaultRating(out var directRatingValue);
-					result += directRatingValue;
-					if (directRatingValue >= max)
-					{
-						max = directRatingValue;
-					}
+					max = directRatingValue;
 				}
-				return (max >> 1) + LengthFactor.GetLengthDifficulty(result);
 			}
-		}
-	}
+			return (max >> 1) + ChainingLength.GetLengthDifficulty(result);
+		};
 }

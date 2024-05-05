@@ -7,19 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ExtendedRectangleSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "A004526({0}.Count) - 2";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ExtendedRectangleStep.Cells)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(ExtendedRectangleStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			ExtendedRectangleStep { Cells.Count: var cellsCount } => A004526(cellsCount) - 2,
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => A004526(((CellMap)args![0]!).Count) - 2;
 }

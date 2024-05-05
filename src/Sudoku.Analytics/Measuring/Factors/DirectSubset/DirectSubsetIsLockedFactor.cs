@@ -7,16 +7,6 @@ namespace Sudoku.Measuring.Factors;
 public sealed class DirectSubsetIsLockedFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString
-		=> """
-		{0} switch
-		{{
-			true => {1} switch {{ true => {2} switch {{ 2 => -10, 3 => -11 }}, false => 1, _ => 0 }},
-			_ => {1} switch {{ true => {2} switch {{ 2 => -12, 3 => -13 }}, _ => 0 }}
-		}}
-		""";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames
 		=> [nameof(DirectSubsetStep.IsNaked), nameof(DirectSubsetStep.IsLocked), nameof(DirectSubsetStep.Size)];
 
@@ -24,14 +14,8 @@ public sealed class DirectSubsetIsLockedFactor : Factor
 	public override Type ReflectedStepType => typeof(DirectSubsetStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			DirectSubsetStep { IsNaked: var isNaked, IsLocked: var isLocked, Size: var size } => isNaked switch
-			{
-				true => isLocked switch { true => size switch { 2 => -10, 3 => -11 }, false => 1, _ => 0 },
-				_ => isLocked switch { true => size switch { 2 => -12, 3 => -13 }, _ => 0 }
-			},
-			_ => null
-		};
+	public override ParameterizedFormula Formula
+		=> static args => (bool)args![0]!
+			? (bool?)args[1]! switch { true => (int)args[2]! switch { 2 => -10, 3 => -11 }, false => 1, _ => 0 }
+			: (bool?)args[1]! switch { true => (int)args[2]! switch { 2 => -12, 3 => -13 }, _ => 0 };
 }

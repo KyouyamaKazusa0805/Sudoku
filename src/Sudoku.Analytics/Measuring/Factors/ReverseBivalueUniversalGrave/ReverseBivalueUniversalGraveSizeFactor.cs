@@ -7,19 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class ReverseBivalueUniversalGraveSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "A002024({0}.Count)";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ReverseBivalueUniversalGraveStep.CompletePattern)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(ReverseBivalueUniversalGraveStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			ReverseBivalueUniversalGraveStep { CompletePattern.Count: var cellsCount } => A002024(cellsCount),
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => A002024(((CellMap)args![0]!).Count);
 }

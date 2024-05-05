@@ -234,7 +234,7 @@ file static class Extensions
 	public static string ToString(this Factor @this, Step step, decimal scale, CultureInfo? culture = null)
 	{
 		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
-		return @this.Formula(step) switch
+		return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
 		{
 			{ } result when (result / scale).ToString(FactorMarshal.GetScaleFormatString(1 / scale)) is var value
 				=> $"{@this.GetName(culture)}{colonCharacter}{value}",

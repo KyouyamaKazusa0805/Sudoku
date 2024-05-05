@@ -1,16 +1,16 @@
-namespace Sudoku.Measuring.Factors;
+namespace Sudoku.Measuring.Functions;
 
 /// <summary>
-/// Represents the factor that describes the length of a pattern.
+/// Represents a function that calculates for length on chaining rules.
 /// </summary>
-public abstract class LengthFactor : Factor
+public static class ChainingLength
 {
 	/// <summary>
 	/// Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
 	/// </summary>
 	/// <param name="length">The length of the pattern.</param>
 	/// <returns>The result.</returns>
-	protected internal static int GetLengthDifficulty(int length)
+	public static int GetLengthDifficulty(int length)
 	{
 		var result = 0;
 		for (var (isOdd, ceil) = (false, 4); length > ceil; isOdd = !isOdd)

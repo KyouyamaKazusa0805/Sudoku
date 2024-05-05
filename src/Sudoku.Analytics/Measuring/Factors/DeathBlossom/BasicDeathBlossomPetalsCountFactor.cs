@@ -1,5 +1,14 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <inheritdoc/>
-public sealed class BasicDeathBlossomPetalsCountFactor :
-	DeathBlossomPetalsCountFactor<DeathBlossomStep, NormalBlossomBranchCollection, Digit>;
+public sealed class BasicDeathBlossomPetalsCountFactor : Factor
+{
+	/// <inheritdoc/>
+	public override string[] ParameterNames => [nameof(DeathBlossomStep.Branches)];
+
+	/// <inheritdoc/>
+	public override Type ReflectedStepType => typeof(DeathBlossomStep);
+
+	/// <inheritdoc/>
+	public override ParameterizedFormula Formula => static args => A002024(((NormalBlossomBranchCollection)args![0]!).Count);
+}

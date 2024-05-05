@@ -7,19 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class MultisectorLockedSetsSizeFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "A002024({0}.Count)";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(MultisectorLockedSetsStep.Cells)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(MultisectorLockedSetsStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			MultisectorLockedSetsStep { Cells.Count: var cellsCount } => A002024(cellsCount),
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => A002024(((CellMap)args![0]!).Count);
 }

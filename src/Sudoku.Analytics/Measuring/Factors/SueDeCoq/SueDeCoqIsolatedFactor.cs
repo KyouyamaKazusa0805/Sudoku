@@ -7,19 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed class SueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string FormulaString => "{0} != 0 ? 2 : 0";
-
-	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(SueDeCoqStep.IsolatedDigitsMask)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(SueDeCoqStep);
 
 	/// <inheritdoc/>
-	public override Func<Step, int?> Formula
-		=> static step => step switch
-		{
-			SueDeCoqStep { IsolatedDigitsMask: var mask } => mask != 0 ? 2 : 0,
-			_ => null
-		};
+	public override ParameterizedFormula Formula => static args => (Mask)args![0]! != 0 ? 2 : 0;
 }

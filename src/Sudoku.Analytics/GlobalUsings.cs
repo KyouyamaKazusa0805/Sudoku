@@ -39,6 +39,7 @@ global using Sudoku.Ittoryu;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
 global using Sudoku.Measuring.Factors;
+global using Sudoku.Measuring.Functions;
 global using Sudoku.Primitive;
 global using Sudoku.Randomization;
 global using Sudoku.Rendering;
