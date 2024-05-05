@@ -13,19 +13,5 @@ public sealed class ComplexSingleFactor : Factor
 	public override Type ReflectedStepType => typeof(ComplexSingleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
-		=> static args =>
-		{
-			var (result, max) = (0, 0);
-			foreach (var technique in from techniqueGroup in (Technique[][])args![0]! from technique in techniqueGroup select technique)
-			{
-				technique.GetDefaultRating(out var directRatingValue);
-				result += directRatingValue;
-				if (directRatingValue >= max)
-				{
-					max = directRatingValue;
-				}
-			}
-			return (max >> 1) + ChainingLength.GetLengthDifficulty(result);
-		};
+	public override ParameterizedFormula Formula => static args => ComplexTechnique.GetComplexityDifficulty((Technique[][])args![0]!);
 }

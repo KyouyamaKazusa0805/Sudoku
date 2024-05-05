@@ -33,9 +33,11 @@ public abstract class Factor
 		// Here a property may be explicitly implemented, the name may starts with interface name.
 		=> (
 			from propertyInfo in ReflectedStepType.GetProperties(PropertyFlags)
-			where Array.Exists(ParameterNames, propertyInfo.Name.EndsWith)
+			let indexOfMatch = Array.FindIndex(ParameterNames, propertyInfo.Name.EndsWith)
+			where indexOfMatch != -1
+			orderby indexOfMatch
 			select propertyInfo
-		) is var result && result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
+		).ToArray() is var result && result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
 
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.

@@ -23122,6 +23122,18 @@ result ^= expression;
             <param name="length">The length of the pattern.</param>
             <returns>The result.</returns>
         </member>
+        <member name="T:Sudoku.Measuring.Functions.ComplexTechnique">
+            <summary>
+            Represents a function that calculates for complex technique rules.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.ComplexTechnique.GetComplexityDifficulty(Sudoku.Analytics.Categorization.Technique[][])">
+            <summary>
+            Gets the complexity difficulty for complex single techniques usages.
+            </summary>
+            <param name="techniques">The techniques used.</param>
+            <returns>The result.</returns>
+        </member>
         <member name="T:Sudoku.Measuring.ParameterizedFormula">
             <summary>
             Represents a delegate type that calculates the difficulty rating using the specified operation,
