@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the length of <see cref="BowmanBingoStep"/>.
 /// </summary>
 /// <seealso cref="BowmanBingoStep"/>
-public sealed class BowmanBingoLengthFactor : Factor
+public sealed partial class BowmanBingoLengthFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(BowmanBingoStep.ContradictionLinks)];

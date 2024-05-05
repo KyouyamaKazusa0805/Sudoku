@@ -21910,6 +21910,15 @@ result ^= expression;
             Default property flags, including properties that are expclitly interface implemented.
             </summary>
         </member>
+        <member name="P:Sudoku.Measuring.Factor.FormulaExpressionString">
+            <summary>
+            Indicates the expression of string representation to property <see cref="P:Sudoku.Measuring.Factor.Formula"/>.
+            </summary>
+            <remarks><b>
+            This property will be automatically implemented by source generator. Please don't change the implementation of this property.
+            </b></remarks>
+            <seealso cref="P:Sudoku.Measuring.Factor.Formula"/>
+        </member>
         <member name="P:Sudoku.Measuring.Factor.ParameterNames">
             <summary>
             Indicates a list of <see cref="T:System.String"/> instances that binds with real instance properties
@@ -22087,6 +22096,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor">
             <summary>
             Represents a factor that measures value cell existence for <see cref="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep"/>.
@@ -22100,6 +22112,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.AlmostLockedCandidatesValueCellExistenceFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor">
@@ -22117,6 +22132,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonLengthFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor">
             <summary>
             Represents a factor that measures subset size of <see cref="T:Sudoku.Analytics.Steps.BivalueOddagonStep"/>.
@@ -22130,6 +22148,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueOddagonSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor">
@@ -22147,6 +22168,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveMultipleTrueCandidateFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor">
             <summary>
             Represents a factor that describes whether the subset appeare in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step"/> is hidden.
@@ -22160,6 +22184,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetIsHiddenFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor">
@@ -22177,6 +22204,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor">
             <summary>
             Represents a factor that describes the true candidates appeared in <see cref="T:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step"/>.
@@ -22190,6 +22220,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BivalueUniversalGraveType2TrueCandidateFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.BlossomLoopLengthFactor">
@@ -22207,6 +22240,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.BlossomLoopLengthFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor">
             <summary>
             Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step"/>.
@@ -22220,6 +22256,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BorescoperDeadlyPatternSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.BowmanBingoLengthFactor">
@@ -22237,6 +22276,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.BowmanBingoLengthFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BasicChainLengthFactor">
             <summary>
             Represents a factor that describes the length of a chain.
@@ -22249,6 +22291,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
@@ -22266,6 +22311,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor">
             <summary>
             Represents a factor that describes whether a <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is a Sashimi fish.
@@ -22279,6 +22327,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishIsSashimiFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishShapeFactor">
@@ -22296,6 +22347,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishShapeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishSizeFactor">
             <summary>
             Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/>.
@@ -22309,6 +22363,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexFishSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexSingleFactor">
@@ -22326,6 +22383,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ComplexSingleFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor">
             <inheritdoc/>
         </member>
@@ -22336,6 +22396,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.BasicDeathBlossomPetalsCountFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor">
@@ -22350,6 +22413,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.HouseDeathBlossomPetalsCountFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor">
             <inheritdoc/>
         </member>
@@ -22362,6 +22428,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor">
             <inheritdoc/>
         </member>
@@ -22372,6 +22441,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomPetalsCountFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor">
@@ -22389,6 +22461,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetIsLockedFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.DirectSubsetSizeFactor">
             <summary>
             Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.DirectSubsetStep"/>.
@@ -22402,6 +22477,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.DirectSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor">
@@ -22419,6 +22497,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetAlmostHiddenSetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor">
             <summary>
             Represents a factor that describes the number of conjugate pairs appeared in <see cref="T:Sudoku.Analytics.Steps.ExocetBaseStep"/>.
@@ -22432,6 +22513,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExocetConjugatePairsCountFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor">
@@ -22449,6 +22533,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleCannibalismFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor">
             <summary>
             Represents a factor that describes the size of <see cref="T:Sudoku.Analytics.Steps.ExtendedRectangleStep"/>.
@@ -22462,6 +22549,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor">
@@ -22479,6 +22569,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedRectangleSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor">
             <summary>
             Represents a factor that measures the size of the pattern appeared in a <see cref="T:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep"/>.
@@ -22492,6 +22585,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ExtendedSubsetPrincipleSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.GuardianFactor">
@@ -22509,6 +22605,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.GuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.GuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a hidden subset is.
@@ -22523,6 +22622,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetIsLockedFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor">
             <summary>
             Represents the size factor used in hidden subsets.
@@ -22535,6 +22637,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.HiddenSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor">
@@ -22552,6 +22657,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.MultisectorLockedSetsSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor">
             <summary>
             Represents a factor that describes which locked case a naked subset is.
@@ -22566,6 +22674,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetIsLockedFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NakedSubsetSizeFactor">
             <summary>
             Represents the size factor used in naked subsets.
@@ -22578,6 +22689,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NakedSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor">
@@ -22595,6 +22709,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishIsSashimiFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.NormalFishSizeFactor">
             <summary>
             Represents a factor that describes the size of a <see cref="T:Sudoku.Analytics.Steps.NormalFishStep"/>.
@@ -22608,6 +22725,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.NormalFishSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor">
@@ -22625,6 +22745,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.QiuDeadlyPatternSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor">
             <summary>
             Represents a factor that describes the number of conjugate pairs (strong links) appeared in a rectangle.
@@ -22637,6 +22760,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleConjugatePairsCountFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor">
@@ -22653,6 +22779,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleDeathBlossomIsAvoidableFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor">
             <summary>
             Represents a factor that describes whether the rectangle is an avoidable rectangle.
@@ -22665,6 +22794,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleIsAvoidableFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor">
@@ -22682,6 +22814,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqCannibalismFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor">
             <summary>
             Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep"/>.
@@ -22695,6 +22830,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RectangleSueDeCoqIsolatedFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor">
@@ -22712,6 +22850,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleBurredSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor">
             <summary>
             Represents a factor that describes the size of guardians appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep"/>.
@@ -22727,6 +22868,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor">
             <summary>
             Represents a factor that describes whether a rectangle is incomplete.
@@ -22739,6 +22883,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor">
@@ -22756,6 +22903,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor">
             <summary>
             Represents a factor that describes the guardian appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep"/>.
@@ -22771,6 +22921,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishGuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor">
             <summary>
             Represents a factor that describes whether the rectangle is incomplete.
@@ -22783,6 +22936,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalTurbotFishIsIncompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor">
@@ -22800,6 +22956,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2GuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor">
             <summary>
             Represents a factor that describes whether the external unique rectangle is incomplete.
@@ -22812,6 +22971,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType1Or2IsIncompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor">
@@ -22828,6 +22990,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType3IsIncompleteFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor">
             <summary>
             Represents a factor that describes whether the external unique rectangle is incomplete.
@@ -22840,6 +23005,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalType4IsIncompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor">
@@ -22857,6 +23025,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingGuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor">
             <summary>
             Represents a factor that describes whether the rectangle is incomplete.
@@ -22869,6 +23040,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalWWingIsCompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor">
@@ -22886,6 +23060,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingGuardianFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor">
             <summary>
             Represents a factor that describes whether the rectangle is incomplete.
@@ -22898,6 +23075,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleExternalXyWingIsCompleteFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor">
@@ -22915,6 +23095,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetIsHiddenFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor">
             <summary>
             Represents a factor that describes the size of the subset appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueRectangleType3Step"/>.
@@ -22928,6 +23111,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor">
@@ -22945,6 +23131,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueRectangleWingSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor">
             <summary>
             Represents a factor that describes the size of the pattern for <see cref="T:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep"/>.
@@ -22958,6 +23147,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ReverseBivalueUniversalGraveSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor">
@@ -22975,6 +23167,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqCannibalismFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor">
             <summary>
             Represents a factor that describes the isolated rule of <see cref="T:Sudoku.Analytics.Steps.SueDeCoqStep"/>.
@@ -22988,6 +23183,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.SueDeCoqIsolatedFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueLoopLengthFactor">
@@ -23005,6 +23203,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopLengthFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor">
             <summary>
             Represents a factor that describes the subset size appeared in <see cref="T:Sudoku.Analytics.Steps.UniqueLoopType3Step"/>.
@@ -23018,6 +23219,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueLoopSubsetSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor">
@@ -23035,6 +23239,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.UniqueMatrixSubsetSizeFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor">
             <summary>
             Represents a factor that describes the extra cells used in <see cref="T:Sudoku.Analytics.Steps.UniquenessClueCoverStep"/>.
@@ -23048,6 +23255,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.UniquenessClueCoverExtraCellsFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor">
@@ -23065,6 +23275,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.IrregularWingIsGroupedFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor">
             <summary>
             Represents a factor that describes the number of branches appeared in a <see cref="T:Sudoku.Analytics.Steps.MultiBranchWWingStep"/>.
@@ -23078,6 +23291,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.MultiBranchWWingBranchesCountFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor">
@@ -23095,6 +23311,9 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingIncompletenessFactor.FormulaExpressionString">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.RegularWingSizeFactor">
             <summary>
             Represents a factor that describes the size of regular wing comes from <see cref="T:Sudoku.Analytics.Steps.RegularWingStep"/>.
@@ -23108,6 +23327,9 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.Formula">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.RegularWingSizeFactor.FormulaExpressionString">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Measuring.Functions.ChainingLength">

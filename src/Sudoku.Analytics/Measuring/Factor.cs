@@ -12,6 +12,15 @@ public abstract class Factor
 
 
 	/// <summary>
+	/// Indicates the expression of string representation to property <see cref="Formula"/>.
+	/// </summary>
+	/// <remarks><b>
+	/// This property will be automatically implemented by source generator. Please don't change the implementation of this property.
+	/// </b></remarks>
+	/// <seealso cref="Formula"/>
+	public abstract string FormulaExpressionString { get; }
+
+	/// <summary>
 	/// Indicates a list of <see cref="string"/> instances that binds with real instance properties
 	/// stored inside a <see cref="Step"/> instance, representing the target step type is compatible
 	/// with the current factor and can be calculated its rating.

@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of regular wing comes from <see cref="RegularWingStep"/>.
 /// </summary>
 /// <seealso cref="RegularWingStep"/>
-public sealed class RegularWingSizeFactor : Factor
+public sealed partial class RegularWingSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(RegularWingStep.Size)];

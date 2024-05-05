@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes the factor 
 /// </summary>
-public sealed class RectangleDeathBlossomIsAvoidableFactor : Factor
+public sealed partial class RectangleDeathBlossomIsAvoidableFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(RectangleDeathBlossomStep.IsAvoidable)];

@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the guardian appeared in <see cref="UniqueRectangleExternalTurbotFishStep"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleExternalTurbotFishStep"/>
-public sealed class UniqueRectangleExternalTurbotFishGuardianFactor : Factor
+public sealed partial class UniqueRectangleExternalTurbotFishGuardianFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(UniqueRectangleExternalTurbotFishStep.GuardianCells)];

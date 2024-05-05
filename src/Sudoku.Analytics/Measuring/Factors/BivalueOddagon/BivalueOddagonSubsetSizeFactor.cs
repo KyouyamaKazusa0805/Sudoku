@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that measures subset size of <see cref="BivalueOddagonStep"/>.
 /// </summary>
 /// <seealso cref="BivalueOddagonStep"/>
-public sealed class BivalueOddagonSubsetSizeFactor : Factor
+public sealed partial class BivalueOddagonSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(BivalueOddagonType3Step.ExtraCells)];

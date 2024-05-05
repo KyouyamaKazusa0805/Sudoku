@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes incompleteness of <see cref="RegularWingStep"/>.
 /// </summary>
 /// <seealso cref="RegularWingStep"/>
-public sealed class RegularWingIncompletenessFactor : Factor
+public sealed partial class RegularWingIncompletenessFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(RegularWingStep.Code), nameof(RegularWingStep.IsIncomplete)];

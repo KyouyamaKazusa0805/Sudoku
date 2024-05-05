@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of <see cref="ExtendedRectangleStep"/>.
 /// </summary>
 /// <seealso cref="ExtendedRectangleStep"/>
-public sealed class ExtendedRectangleSizeFactor : Factor
+public sealed partial class ExtendedRectangleSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ExtendedRectangleStep.Cells)];

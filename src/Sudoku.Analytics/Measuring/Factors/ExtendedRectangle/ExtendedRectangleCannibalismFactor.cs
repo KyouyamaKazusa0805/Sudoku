@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes cannibalism rule of <see cref="ExtendedRectangleType3Step"/>.
 /// </summary>
 /// <seealso cref="ExtendedRectangleType3Step"/>
-public sealed class ExtendedRectangleCannibalismFactor : Factor
+public sealed partial class ExtendedRectangleCannibalismFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ExtendedRectangleType3Step.IsCannibalism)];

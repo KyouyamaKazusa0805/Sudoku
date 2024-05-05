@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes which locked case a naked subset is.
 /// </summary>
-public sealed class NakedSubsetIsLockedFactor : Factor
+public sealed partial class NakedSubsetIsLockedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(NakedSubsetStep.IsLocked), nameof(NakedSubsetStep.Size)];

@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the guardian in <see cref="GuardianStep"/>.
 /// </summary>
 /// <seealso cref="GuardianStep"/>
-public sealed class GuardianFactor : Factor
+public sealed partial class GuardianFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(GuardianStep.LoopCells), nameof(GuardianStep.Guardians)];

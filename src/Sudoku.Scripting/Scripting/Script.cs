@@ -39,6 +39,19 @@ public static class Script
 
 
 	/// <summary>
+	/// Loads external <see cref="Factor"/> source files, and take them into account,
+	/// by inserting factors into <see cref="Step.ExternalFactors"/>.
+	/// </summary>
+	/// <param name="this">The <see cref="AnalysisResult"/> instance to be updated.</param>
+	/// <param name="directoryPath">The directory path.</param>
+	/// <seealso cref="Factor"/>
+	/// <seealso cref="Step.ExternalFactors"/>
+	public static void LoadExternalFactors(AnalysisResult @this, string directoryPath)
+	{
+		throw new NotImplementedException();
+	}
+
+	/// <summary>
 	/// Parses the text as a valid C# code for a method declaration, and evaluate the method and return a valid result.
 	/// </summary>
 	/// <param name="script">
@@ -52,9 +65,8 @@ public static class Script
 	/// <exception cref="AggregateException">Throws when failed to compile the text.</exception>
 	public static async Task<object?> EvaluateAsync([StringSyntax("C#")] string script, string methodName, object?[]? args, CancellationToken cancellationToken = default)
 	{
-		var compilation = CSharpCompilation.Create(
-			"InternalScriptCompilation",
-			[
+		var compilation = AnalyticsCompilation.CreateCompilation()
+			.AddSyntaxTrees(
 				CSharpSyntaxTree.ParseText(
 					$$"""
 					#nullable enable
@@ -68,27 +80,7 @@ public static class Script
 					""",
 					cancellationToken: cancellationToken
 				)
-			],
-			[
-				..
-				from assembly in AppDomain.CurrentDomain.GetAssemblies()
-				where !assembly.IsDynamic
-				let location = assembly.Location
-				where !string.IsNullOrEmpty(location)
-				select MetadataReference.CreateFromFile(location),
-				MetadataReference.CreateFromFile(typeof(CellMap).Assembly.Location),
-				MetadataReference.CreateFromFile(typeof(Analyzer).Assembly.Location),
-			],
-			new CSharpCompilationOptions(
-				OutputKind.DynamicallyLinkedLibrary,
-				allowUnsafe: true,
-				checkOverflow: false,
-				concurrentBuild: true,
-				optimizationLevel: OptimizationLevel.Release,
-				platform: Platform.X64
-			)
-		);
-
+			);
 		await using var stream = new MemoryStream();
 		var result = compilation.Emit(stream, cancellationToken: cancellationToken);
 		if (!result.Success)

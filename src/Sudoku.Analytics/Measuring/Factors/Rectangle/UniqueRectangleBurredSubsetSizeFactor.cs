@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a type that describes the size of subset appeared in <see cref="UniqueRectangleBurredSubsetStep"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleBurredSubsetStep"/>
-public sealed class UniqueRectangleBurredSubsetSizeFactor : Factor
+public sealed partial class UniqueRectangleBurredSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IPatternType3StepTrait<UniqueRectangleBurredSubsetStep>.SubsetSize)];

@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes whether the <see cref="ComplexFishStep"/> is cannibalism.
 /// </summary>
 /// <seealso cref="ComplexFishStep"/>
-public sealed class ComplexFishCannibalismFactor : Factor
+public sealed partial class ComplexFishCannibalismFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ComplexFishStep.IsCannibalism)];

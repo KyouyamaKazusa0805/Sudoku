@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of the subset appeared in <see cref="DirectSubsetStep"/>.
 /// </summary>
 /// <seealso cref="DirectSubsetStepSearcher"/>
-public sealed class DirectSubsetSizeFactor : Factor
+public sealed partial class DirectSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(DirectSubsetStep.SubsetCells)];

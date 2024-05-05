@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the guardian appeared in <see cref="UniqueRectangleExternalWWingStep"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleExternalWWingStep"/>
-public sealed class UniqueRectangleExternalWWingGuardianFactor : Factor
+public sealed partial class UniqueRectangleExternalWWingGuardianFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(UniqueRectangleExternalWWingStep.GuardianCells)];

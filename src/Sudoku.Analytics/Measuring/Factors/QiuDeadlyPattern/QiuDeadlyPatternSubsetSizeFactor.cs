@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of the subset appeared in <see cref="QiuDeadlyPatternType3Step"/>.
 /// </summary>
 /// <seealso cref="QiuDeadlyPatternType3Step"/>
-public sealed class QiuDeadlyPatternSubsetSizeFactor : Factor
+public sealed partial class QiuDeadlyPatternSubsetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IPatternType3StepTrait<QiuDeadlyPatternType3Step>.SubsetSize)];

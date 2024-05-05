@@ -4,21 +4,16 @@
         <name>Sudoku.Scripting</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Analytics.AnalysisResultExtensions">
+        <member name="T:Sudoku.Scripting.AnalyticsCompilation">
             <summary>
-            Represents extension methods on <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
+            Represents a way to easily handle for analytics APIs in high-level reflection.
             </summary>
-            <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResultExtensions.LoadExternalFactors(Sudoku.Analytics.AnalysisResult,System.String)">
+        <member name="M:Sudoku.Scripting.AnalyticsCompilation.CreateCompilation">
             <summary>
-            Loads external <see cref="T:Sudoku.Measuring.Factor"/> source files, and take them into account,
-            by inserting factors into <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/>.
+            Creates a <see cref="T:Microsoft.CodeAnalysis.CSharp.CSharpCompilation"/> as environment on operating with APIs.
             </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance to be updated.</param>
-            <param name="directoryPath">The directory path.</param>
-            <seealso cref="T:Sudoku.Measuring.Factor"/>
-            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
+            <returns>A <see cref="T:Microsoft.CodeAnalysis.CSharp.CSharpCompilation"/> instance.</returns>
         </member>
         <member name="T:Sudoku.Scripting.Script">
             <summary>
@@ -40,6 +35,16 @@
             <summary>
             Indicates the invoking binding flags.
             </summary>
+        </member>
+        <member name="M:Sudoku.Scripting.Script.LoadExternalFactors(Sudoku.Analytics.AnalysisResult,System.String)">
+            <summary>
+            Loads external <see cref="T:Sudoku.Measuring.Factor"/> source files, and take them into account,
+            by inserting factors into <see cref="P:Sudoku.Analytics.Step.ExternalFactors"/>.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance to be updated.</param>
+            <param name="directoryPath">The directory path.</param>
+            <seealso cref="T:Sudoku.Measuring.Factor"/>
+            <seealso cref="P:Sudoku.Analytics.Step.ExternalFactors"/>
         </member>
         <member name="M:Sudoku.Scripting.Script.EvaluateAsync(System.String,System.String,System.Object[],System.Threading.CancellationToken)">
             <summary>

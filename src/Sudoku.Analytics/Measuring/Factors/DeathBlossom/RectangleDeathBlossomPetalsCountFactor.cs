@@ -1,7 +1,7 @@
 namespace Sudoku.Measuring.Factors;
 
 /// <inheritdoc/>
-public sealed class RectangleDeathBlossomPetalsCountFactor : Factor
+public sealed partial class RectangleDeathBlossomPetalsCountFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(RectangleDeathBlossomStep.Branches)];
