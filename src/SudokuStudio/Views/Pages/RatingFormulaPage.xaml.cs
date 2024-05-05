@@ -9,4 +9,20 @@ public sealed partial class RatingFormulaPage : Page
 	/// Initializes a <see cref="RatingFormulaPage"/> instance.
 	/// </summary>
 	public RatingFormulaPage() => InitializeComponent();
+
+
+	private void GoToBuiltInFormulaeButton_Click(object sender, RoutedEventArgs e)
+	{
+
+	}
+
+	private void GoToCustomizedFormulaeButton_Click(object sender, RoutedEventArgs e)
+	{
+
+	}
+
+	private void GoToFunctionsDefinedButton_Click(object sender, RoutedEventArgs e)
+	{
+
+	}
 }

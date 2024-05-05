@@ -2534,4 +2534,31 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_MainPage" xml:space="preserve">
     <value>Main page</value>
   </data>
+  <data name="RatingFormulaPage_Intro" xml:space="preserve">
+    <value>This page displays the formulae that you can configure customized calculation on difficulty ratings with each technique step.</value>
+  </data>
+  <data name="RatingFormulaPage_BuiltInFormulae" xml:space="preserve">
+    <value>Built-in formulae</value>
+  </data>
+  <data name="RatingFormulaPage_CustomizedFormulae" xml:space="preserve">
+    <value>Formulae customization</value>
+  </data>
+  <data name="RatingFormulaPage_FunctionsDefined" xml:space="preserve">
+    <value>Defined functions</value>
+  </data>
+  <data name="RatingFormulaPage_BuiltInFormulaeDescription" xml:space="preserve">
+    <value>If you don't know how to configure such expressions, please visit this to learn more infromation about formulae and how they works.</value>
+  </data>
+  <data name="RatingFormulaPage_CustomizedFormulaeDescription" xml:space="preserve">
+    <value>You can use this option to create your own customized formulae to calculate them. This option can also view them.</value>
+  </data>
+  <data name="RatingFormulaPage_FunctionsDefinedDescription" xml:space="preserve">
+    <value>This option stores extra functions that can be called by the formulae defined above.</value>
+  </data>
+  <data name="MainWindow_RatingFormulaPage" xml:space="preserve">
+    <value>Rating Customization</value>
+  </data>
+  <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
+    <value>Rating customization</value>
+  </data>
 </root>

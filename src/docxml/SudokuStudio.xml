@@ -8148,6 +8148,16 @@
               Looks up a localized string similar to Puzzle Generating.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_RatingFormulaPage">
+            <summary>
+              Looks up a localized string similar to Rating Customization.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_RatingFormulaPageTitle">
+            <summary>
+              Looks up a localized string similar to Rating customization.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Search">
             <summary>
               Looks up a localized string similar to Search....
@@ -8301,6 +8311,41 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratorPage_Description">
             <summary>
               Looks up a localized string similar to This page represents a way to generate a puzzle via user-defined patterns..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_BuiltInFormulae">
+            <summary>
+              Looks up a localized string similar to Built-in formulae.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_BuiltInFormulaeDescription">
+            <summary>
+              Looks up a localized string similar to If you don&apos;t know how to configure such expressions, please visit this to learn more infromation about formulae and how they works..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_CustomizedFormulae">
+            <summary>
+              Looks up a localized string similar to Formulae customization.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_CustomizedFormulaeDescription">
+            <summary>
+              Looks up a localized string similar to You can use this option to create your own customized formulae to calculate them. This option can also view them..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_FunctionsDefined">
+            <summary>
+              Looks up a localized string similar to Defined functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_FunctionsDefinedDescription">
+            <summary>
+              Looks up a localized string similar to This option stores extra functions that can be called by the formulae defined above..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.RatingFormulaPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page displays the formulae that you can configure customized calculation on difficulty ratings with each technique step..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Settings_Compatibility">

@@ -2519,9 +2519,6 @@
   <data name="PatternBasedPuzzleGeneratingPage_ClearDigits" xml:space="preserve">
     <value>清空输入数字</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="MainWindow_TechniqueData" xml:space="preserve">
     <value>技巧</value>
   </data>
@@ -2530,5 +2527,35 @@
   </data>
   <data name="MainWindow_MainPage" xml:space="preserve">
     <value>主页面</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="RatingFormulaPage_Intro" xml:space="preserve">
+    <value>这个页面展示的是一些你可以用于配置的公式，这些公式用于计算技巧难度的时候作为额外项进行额外难度分计算。</value>
+  </data>
+  <data name="RatingFormulaPage_BuiltInFormulae" xml:space="preserve">
+    <value>自带的计算规则</value>
+  </data>
+  <data name="RatingFormulaPage_CustomizedFormulae" xml:space="preserve">
+    <value>自定义计算规则</value>
+  </data>
+  <data name="RatingFormulaPage_FunctionsDefined" xml:space="preserve">
+    <value>自定义处理函数</value>
+  </data>
+  <data name="RatingFormulaPage_BuiltInFormulaeDescription" xml:space="preserve">
+    <value>如果你不知道如何去使用自定义的功能，请点此查看系统自带的计算规则，方便了解如何使用，以及他们都是如何运作的。</value>
+  </data>
+  <data name="RatingFormulaPage_CustomizedFormulaeDescription" xml:space="preserve">
+    <value>你可以使用这个选项来创建属于你自己的技巧处理规则。你也可以使用这个选项查看已经定义了的计算规则。</value>
+  </data>
+  <data name="RatingFormulaPage_FunctionsDefinedDescription" xml:space="preserve">
+    <value>这个选项存的是一些额外的函数处理，用于前面所有处理规则。</value>
+  </data>
+  <data name="MainWindow_RatingFormulaPage" xml:space="preserve">
+    <value>自定义难度计算</value>
+  </data>
+  <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
+    <value>自定义难度计算规则</value>
   </data>
 </root>

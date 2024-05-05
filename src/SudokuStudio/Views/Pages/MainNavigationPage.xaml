@@ -30,6 +30,9 @@
 			<NavigationViewItem
 				x:Name="TechniqueDataPageItem" Content="{m:R Key=MainWindow_TechniqueInfoModifierPage}"
 				Icon="{ui:FontIcon Glyph=&#xEF90;}" />
+			<NavigationViewItem
+				x:Name="RatingFormulaPageItem" Content="{m:R Key=MainWindow_RatingFormulaPage}"
+				Icon="{ui:FontIcon Glyph=&#xE950;}" />
 
 			<!--Puzzle generating-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_PuzzlesGenerating}" />

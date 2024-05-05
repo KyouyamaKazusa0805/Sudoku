@@ -4030,6 +4030,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Rating Customization.
+        /// </summary>
+        internal static string MainWindow_RatingFormulaPage {
+            get {
+                return ResourceManager.GetString("MainWindow_RatingFormulaPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rating customization.
+        /// </summary>
+        internal static string MainWindow_RatingFormulaPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_RatingFormulaPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search....
         /// </summary>
         internal static string MainWindow_Search {
@@ -4305,6 +4323,69 @@ namespace SudokuStudio.Resources {
         internal static string PatternBasedPuzzleGeneratorPage_Description {
             get {
                 return ResourceManager.GetString("PatternBasedPuzzleGeneratorPage_Description", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Built-in formulae.
+        /// </summary>
+        internal static string RatingFormulaPage_BuiltInFormulae {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_BuiltInFormulae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to If you don&apos;t know how to configure such expressions, please visit this to learn more infromation about formulae and how they works..
+        /// </summary>
+        internal static string RatingFormulaPage_BuiltInFormulaeDescription {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_BuiltInFormulaeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Formulae customization.
+        /// </summary>
+        internal static string RatingFormulaPage_CustomizedFormulae {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_CustomizedFormulae", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to You can use this option to create your own customized formulae to calculate them. This option can also view them..
+        /// </summary>
+        internal static string RatingFormulaPage_CustomizedFormulaeDescription {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_CustomizedFormulaeDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Defined functions.
+        /// </summary>
+        internal static string RatingFormulaPage_FunctionsDefined {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_FunctionsDefined", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This option stores extra functions that can be called by the formulae defined above..
+        /// </summary>
+        internal static string RatingFormulaPage_FunctionsDefinedDescription {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_FunctionsDefinedDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page displays the formulae that you can configure customized calculation on difficulty ratings with each technique step..
+        /// </summary>
+        internal static string RatingFormulaPage_Intro {
+            get {
+                return ResourceManager.GetString("RatingFormulaPage_Intro", resourceCulture);
             }
         }
         
