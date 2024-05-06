@@ -47,23 +47,7 @@ public sealed partial class BuiltInFormulaePage : Page
 					Header = factor.GetName(App.CurrentCulture),
 					Description = new TextBlock
 					{
-						Text = string.Join(
-							Environment.NewLine,
-							factor.ParameterNames.Select(
-								(parameterName, index) =>
-								{
-									var parameterIndex = string.Format(parameterFormat, index + 1);
-									var typeName = TypeReflecting.GetFriendlyTypeName(
-										(
-											from propertyInfo in stepType.GetProperties(PropertyFlags)
-											where propertyInfo.Name.EndsWith(parameterName)
-											select propertyInfo
-										).First().PropertyType
-									);
-									return $"{parameterIndex}: {typeName}";
-								}
-							)
-						)
+						Text = string.Join(Environment.NewLine, factor.ParameterNames.Select(parameterTypeIdentifier))
 					},
 					Content = new TextBlock
 					{
@@ -85,6 +69,19 @@ public sealed partial class BuiltInFormulaePage : Page
 
 
 				string argsEvaluator(Match match) => string.Format(parameterFormat, int.Parse(m(match)) + 1);
+			}
+
+			string parameterTypeIdentifier(string parameterName, int index)
+			{
+				var parameterIndex = string.Format(parameterFormat, index + 1);
+				var typeName = TypeReflecting.GetFriendlyTypeName(
+					(
+						from propertyInfo in stepType.GetProperties(PropertyFlags)
+						where propertyInfo.Name.EndsWith(parameterName)
+						select propertyInfo
+					).First().PropertyType
+				);
+				return $"{parameterIndex}: {typeName}";
 			}
 		}
 
