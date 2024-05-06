@@ -7026,6 +7026,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This text can be used in customized calculation in formulae page for defining extra difficulty rating..
+        /// </summary>
+        internal static string TechniqueGalleryPage_InfoForTechniqueRawValue {
+            get {
+                return ResourceManager.GetString("TechniqueGalleryPage_InfoForTechniqueRawValue", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Intersections.
         /// </summary>
         internal static string TechniqueGalleryPage_Intersections {

@@ -51,7 +51,7 @@ public sealed partial class BuiltInFormulaePage : Page
 					},
 					Content = new TextBlock
 					{
-						Text = formulaExpressionUpdate(factor.FormulaExpressionString),
+						Text = createExpressionString(factor.FormulaExpressionString),
 						FontFamily = new("Cascadia Code")
 					}
 				}
@@ -60,16 +60,13 @@ public sealed partial class BuiltInFormulaePage : Page
 			await Task.Delay(100);
 
 
-			string formulaExpressionUpdate(string originalExpression)
+			string createExpressionString(string expr)
 			{
-				var interim = ArgsPattern().Replace(originalExpression, parameterNameReplacer);
+				var interim = ArgsPattern().Replace(expr, match => string.Format(parameterFormat, int.Parse(matchItself(match)) + 1));
 				interim = interim.Replace(Tab, Spaces);
 				interim = BracePattern().Replace(interim, matchItself);
 				interim = TechniqueDotNamePatttern().Replace(interim, matchItself);
 				return interim;
-
-
-				string parameterNameReplacer(Match match) => string.Format(parameterFormat, int.Parse(matchItself(match)) + 1);
 			}
 
 			string parameterTypeIdentifier(string parameterName, int index)

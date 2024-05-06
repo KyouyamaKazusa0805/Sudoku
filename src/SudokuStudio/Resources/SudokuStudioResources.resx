@@ -2588,4 +2588,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
     <value>Raw name used in program</value>
   </data>
+  <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
+    <value>This text can be used in customized calculation in formulae page for defining extra difficulty rating.</value>
+  </data>
 </root>

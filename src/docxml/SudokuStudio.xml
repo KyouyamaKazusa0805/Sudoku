@@ -9816,6 +9816,11 @@
               Looks up a localized string similar to Will Be Replaced.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueGalleryPage_InfoForTechniqueRawValue">
+            <summary>
+              Looks up a localized string similar to This text can be used in customized calculation in formulae page for defining extra difficulty rating..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueGalleryPage_Intersections">
             <summary>
               Looks up a localized string similar to Intersections.

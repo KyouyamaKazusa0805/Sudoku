@@ -8,6 +8,7 @@
 	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
+	xmlns:ui="using:CommunityToolkit.WinUI"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:TechniqueGalleryPage}">
 	<Page.Resources>
 		<Style x:Key="PropertyTitleStyle" TargetType="TextBlock">
@@ -31,9 +32,16 @@
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAliasNames(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Abbreviation}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAbbreviation(CurrentSelectedTechnique),Mode=OneWay}" />
-			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ProgramRawName}" />
+			<Grid ColumnDefinitions="Auto,*">
+				<TextBlock
+					Grid.Column="0" Style="{StaticResource PropertyTitleStyle}" HorizontalAlignment="Left"
+					Text="{m:R Key=TechniqueSelectionPage_ProgramRawName}" />
+				<ContentPresenter Grid.Column="1" Margin="10,0,0,0" HorizontalAlignment="Left">
+					<FontIcon Glyph="&#xE897;" ToolTipService.ToolTip="{m:R Key=TechniqueGalleryPage_InfoForTechniqueRawValue}" />
+				</ContentPresenter>
+			</Grid>
 			<TextBlock
-				IsTextSelectionEnabled="True"
+				IsTextSelectionEnabled="True" HorizontalAlignment="Left"
 				Text="{x:Bind cvt:TechniqueConversion.GetProgramRawName(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Group}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetGroup(CurrentSelectedTechnique),Mode=OneWay}" />

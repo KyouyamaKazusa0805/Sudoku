@@ -2585,4 +2585,7 @@
   <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
     <value>技巧在程序之中使用的原始名称</value>
   </data>
+  <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
+    <value>这个文本会用于自定义难度计算规则的页面之中。</value>
+  </data>
 </root>
