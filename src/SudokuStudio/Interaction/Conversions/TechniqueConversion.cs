@@ -36,6 +36,8 @@ internal static class TechniqueConversion
 			? string.Empty
 			: technique.GetAbbreviation() ?? ResourceDictionary.Get("TechniqueSelectionPage_NoAbbreviation", App.CurrentCulture);
 
+	public static string GetProgramRawName(Technique technique) => technique.ToString();
+
 	public static string GetGroup(Technique technique)
 		=> technique == Technique.None ? string.Empty : technique.GetGroup().GetName(App.CurrentCulture);
 

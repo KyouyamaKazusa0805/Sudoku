@@ -31,6 +31,10 @@
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAliasNames(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Abbreviation}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetAbbreviation(CurrentSelectedTechnique),Mode=OneWay}" />
+			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_ProgramRawName}" />
+			<TextBlock
+				IsTextSelectionEnabled="True"
+				Text="{x:Bind cvt:TechniqueConversion.GetProgramRawName(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Group}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetGroup(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_DifficultyLevel}" />

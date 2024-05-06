@@ -2555,9 +2555,6 @@
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
     <value>自定义难度计算规则</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="MainWindow_BuiltInFormulaePageTitle" xml:space="preserve">
     <value>自带的计算规则</value>
   </data>
@@ -2581,5 +2578,11 @@
   </data>
   <data name="TypeName_CandidateMap" xml:space="preserve">
     <value>候选数列表</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
+    <value>技巧在程序之中使用的原始名称</value>
   </data>
 </root>

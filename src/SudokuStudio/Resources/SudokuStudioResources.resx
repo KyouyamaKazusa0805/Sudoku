@@ -2585,4 +2585,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TypeName_CandidateMap" xml:space="preserve">
     <value>Candidate list</value>
   </data>
+  <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
+    <value>Raw name used in program</value>
+  </data>
 </root>

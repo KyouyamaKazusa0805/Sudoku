@@ -7359,6 +7359,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Raw name used in program.
+        /// </summary>
+        internal static string TechniqueSelectionPage_ProgramRawName {
+            get {
+                return ResourceManager.GetString("TechniqueSelectionPage_ProgramRawName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Sudoku Explainer Rating.
         /// </summary>
         internal static string TechniqueSelectionPage_SudokuExplainerRating {

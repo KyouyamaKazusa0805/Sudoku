@@ -62,13 +62,14 @@ public sealed partial class BuiltInFormulaePage : Page
 
 			string formulaExpressionUpdate(string originalExpression)
 			{
-				var interim = ArgsPattern().Replace(originalExpression, argsEvaluator);
+				var interim = ArgsPattern().Replace(originalExpression, parameterNameReplacer);
 				interim = interim.Replace(Tab, Spaces);
-				interim = BracePattern().Replace(interim, m);
+				interim = BracePattern().Replace(interim, matchItself);
+				interim = TechniqueDotNamePatttern().Replace(interim, matchItself);
 				return interim;
 
 
-				string argsEvaluator(Match match) => string.Format(parameterFormat, int.Parse(m(match)) + 1);
+				string parameterNameReplacer(Match match) => string.Format(parameterFormat, int.Parse(matchItself(match)) + 1);
 			}
 
 			string parameterTypeIdentifier(string parameterName, int index)
@@ -86,7 +87,7 @@ public sealed partial class BuiltInFormulaePage : Page
 		}
 
 
-		static string m(Match match) => match.Groups[1].Value;
+		static string matchItself(Match match) => match.Groups[1].Value;
 	}
 
 
@@ -95,6 +96,9 @@ public sealed partial class BuiltInFormulaePage : Page
 
 	[GeneratedRegex("""\(([^\)]+)\)(?=\.)""", RegexOptions.Compiled)]
 	private static partial Regex BracePattern();
+
+	[GeneratedRegex("""Technique\.(\w+)""", RegexOptions.Compiled)]
+	private static partial Regex TechniqueDotNamePatttern();
 }
 
 /// <summary>
