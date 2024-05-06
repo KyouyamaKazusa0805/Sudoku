@@ -8038,6 +8038,11 @@
               Looks up a localized string similar to Program Basic Options.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BuiltInFormulaePageTitle">
+            <summary>
+              Looks up a localized string similar to Built-in formulae.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DrawingPageTitle">
             <summary>
               Looks up a localized string similar to Customized Drawing.
@@ -8261,6 +8266,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_ReadPicture">
             <summary>
               Looks up a localized string similar to Read picture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ParameterName">
+            <summary>
+              Looks up a localized string similar to @{0}.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.PatternBasedPuzzleGeneratingPage_ClearCells">
@@ -14411,6 +14421,78 @@
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty" />
         </member>
+        <member name="T:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage">
+            <summary>
+            Represents built-in formulae page.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.Tab">
+            <summary>
+            Indicates the tab ('<c>\t</c>').
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.Spaces">
+            <summary>
+            Indicates the spaces.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.ArgsPattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\([\\w\\[\\]\\?]+\\)args!?\\[(\\d+)\\]!?</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match '('.<br/>
+            ○ Match a character in the set [?[]\w] atomically at least once.<br/>
+            ○ Match the string ")args".<br/>
+            ○ Match '!' atomically, optionally.<br/>
+            ○ Match '['.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a Unicode digit atomically at least once.<br/>
+            ○ Match ']'.<br/>
+            ○ Match '!' atomically, optionally.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.BracePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>\\(([^\\)]+)\\)(?=\\.)</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match '('.<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a character other than ')' atomically at least once.<br/>
+            ○ Match ')'.<br/>
+            ○ Zero-width positive lookahead.<br/>
+                ○ Match '.'.<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage">
             <summary>
             Represents generated puzzle constraint page.
@@ -15983,6 +16065,79 @@
 					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
 				</summary>
 			</target>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ArgsPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the ArgsPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.ArgsPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ArgsPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.ArgsPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BracePattern_1">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the BracePattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.BracePattern_1.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BracePattern_1.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.BracePattern_1.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.Utilities">
+            <summary>Helper methods used by generated <see cref="T:System.Text.RegularExpressions.Regex"/>-derived implementations.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout">
+            <summary>Default timeout value set in <see cref="T:System.AppContext"/>, or <see cref="F:System.Text.RegularExpressions.Regex.InfiniteMatchTimeout"/> if none was set.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_hasTimeout">
+            <summary>Whether <see cref="F:System.Text.RegularExpressions.Generated.Utilities.s_defaultTimeout"/> is non-infinite.</summary>
         </member>
         <member name="T:Sudoku.Measuring.FactorMarshal">
             <summary>

@@ -2528,9 +2528,6 @@
   <data name="MainWindow_MainPage" xml:space="preserve">
     <value>主页面</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="RatingFormulaPage_Intro" xml:space="preserve">
     <value>这个页面展示的是一些你可以用于配置的公式，这些公式用于计算技巧难度的时候作为额外项进行额外难度分计算。</value>
   </data>
@@ -2557,5 +2554,14 @@
   </data>
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
     <value>自定义难度计算规则</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="MainWindow_BuiltInFormulaePageTitle" xml:space="preserve">
+    <value>自带的计算规则</value>
+  </data>
+  <data name="ParameterName" xml:space="preserve">
+    <value>参数{0}</value>
   </data>
 </root>

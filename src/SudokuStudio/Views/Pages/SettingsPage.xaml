@@ -10,7 +10,7 @@
 	xmlns:ui="using:CommunityToolkit.WinUI"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:SettingsPage}">
 	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
-		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10,0,0" />
+		<TextBlock Text="{m:R Key=SettingsPage_Intro}" Margin="0,10" />
 		<w:SettingsCard
 			Header="{m:R Key=SettingsPage_Basic}" Description="{m:R Key=SettingsPage_BasicDescription}" IsClickEnabled="True"
 			Click="GoToBasicOptionsButton_Click" />

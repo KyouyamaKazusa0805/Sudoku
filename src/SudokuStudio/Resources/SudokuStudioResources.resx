@@ -2561,4 +2561,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
     <value>Rating customization</value>
   </data>
+  <data name="MainWindow_BuiltInFormulaePageTitle" xml:space="preserve">
+    <value>Built-in formulae</value>
+  </data>
+  <data name="ParameterName" xml:space="preserve">
+    <value>@{0}</value>
+  </data>
 </root>

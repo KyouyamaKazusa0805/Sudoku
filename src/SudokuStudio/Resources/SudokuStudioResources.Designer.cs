@@ -3832,6 +3832,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Built-in formulae.
+        /// </summary>
+        internal static string MainWindow_BuiltInFormulaePageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_BuiltInFormulaePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Customized Drawing.
         /// </summary>
         internal static string MainWindow_DrawingPageTitle {
@@ -4233,6 +4242,15 @@ namespace SudokuStudio.Resources {
         internal static string OcrPage_ReadPicture {
             get {
                 return ResourceManager.GetString("OcrPage_ReadPicture", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to @{0}.
+        /// </summary>
+        internal static string ParameterName {
+            get {
+                return ResourceManager.GetString("ParameterName", resourceCulture);
             }
         }
         
