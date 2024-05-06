@@ -2564,4 +2564,22 @@
   <data name="ParameterName" xml:space="preserve">
     <value>参数{0}</value>
   </data>
+  <data name="TypeName_NullableBoolean" xml:space="preserve">
+    <value>三值逻辑</value>
+  </data>
+  <data name="TypeName_Boolean" xml:space="preserve">
+    <value>逻辑</value>
+  </data>
+  <data name="TypeName_Int32" xml:space="preserve">
+    <value>整数</value>
+  </data>
+  <data name="TypeName_Technique" xml:space="preserve">
+    <value>技巧</value>
+  </data>
+  <data name="TypeName_CellMap" xml:space="preserve">
+    <value>单元格列表</value>
+  </data>
+  <data name="TypeName_CandidateMap" xml:space="preserve">
+    <value>候选数列表</value>
+  </data>
 </root>

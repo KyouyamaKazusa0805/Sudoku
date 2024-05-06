@@ -10016,6 +10016,36 @@
               Looks up a localized string similar to Should be pearl puzzle: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Boolean">
+            <summary>
+              Looks up a localized string similar to bool.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_CandidateMap">
+            <summary>
+              Looks up a localized string similar to Candidate list.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_CellMap">
+            <summary>
+              Looks up a localized string similar to Cell list.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Int32">
+            <summary>
+              Looks up a localized string similar to int.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_NullableBoolean">
+            <summary>
+              Looks up a localized string similar to bool?.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Technique">
+            <summary>
+              Looks up a localized string similar to Technique.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">
             <summary>
               Looks up a localized string similar to Yes.
@@ -14426,6 +14456,11 @@
             Represents built-in formulae page.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.PropertyFlags">
+            <summary>
+            Indicates the property flags.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage.Tab">
             <summary>
             Indicates the tab ('<c>\t</c>').
@@ -14492,6 +14527,18 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Formulae.TypeReflecting">
+            <summary>
+            Represents a list of types to be reflected with its short name.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.TypeReflecting.GetFriendlyTypeName(System.Type)">
+            <summary>
+            Gets friendly type name.
+            </summary>
+            <param name="type">Indicates the type.</param>
+            <returns>The name.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage">
             <summary>

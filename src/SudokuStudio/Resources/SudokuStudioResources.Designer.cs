@@ -7386,6 +7386,60 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to bool.
+        /// </summary>
+        internal static string TypeName_Boolean {
+            get {
+                return ResourceManager.GetString("TypeName_Boolean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Candidate list.
+        /// </summary>
+        internal static string TypeName_CandidateMap {
+            get {
+                return ResourceManager.GetString("TypeName_CandidateMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cell list.
+        /// </summary>
+        internal static string TypeName_CellMap {
+            get {
+                return ResourceManager.GetString("TypeName_CellMap", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to int.
+        /// </summary>
+        internal static string TypeName_Int32 {
+            get {
+                return ResourceManager.GetString("TypeName_Int32", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to bool?.
+        /// </summary>
+        internal static string TypeName_NullableBoolean {
+            get {
+                return ResourceManager.GetString("TypeName_NullableBoolean", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Technique.
+        /// </summary>
+        internal static string TypeName_Technique {
+            get {
+                return ResourceManager.GetString("TypeName_Technique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string Yes {
