@@ -20,7 +20,5 @@ public sealed partial class RatingFormulaPage : Page
 	}
 
 	private void GoToFunctionsDefinedButton_Click(object sender, RoutedEventArgs e)
-	{
-
-	}
+		=> App.GetMainWindow(this).NavigateToPage<FunctionPage>();
 }

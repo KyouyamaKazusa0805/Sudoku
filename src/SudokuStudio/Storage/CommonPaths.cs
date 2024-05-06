@@ -20,6 +20,11 @@ internal static class CommonPaths
 	/// </summary>
 	public static readonly string Library;
 
+	/// <summary>
+	/// Indicates functions folder path.
+	/// </summary>
+	public static readonly string Functions;
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonPaths()
@@ -28,5 +33,6 @@ internal static class CommonPaths
 		UserPreference = $@"{documents}\{nameof(SudokuStudio)}\user-preference{FileExtensions.UserPreference}";
 		GeneratingHistory = $@"{documents}\{nameof(SudokuStudio)}\generating-history{FileExtensions.GeneratingHistory}";
 		Library = $@"{documents}\{nameof(SudokuStudio)}\libraries";
+		Functions = $@"{documents}\{nameof(SudokuStudio)}\functions";
 	}
 }

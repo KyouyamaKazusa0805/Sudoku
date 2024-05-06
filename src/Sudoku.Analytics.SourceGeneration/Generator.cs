@@ -12,6 +12,7 @@ public sealed class Generator : IIncrementalGenerator
 		Basic(context);
 		StepData(context);
 		SyntaxExpression(context);
+		FunctionRawString(context);
 	}
 
 
@@ -29,5 +30,19 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(static (value, _) => value!.Value)
 				.Collect(),
 			SyntaxExpressionHandler.Output
+		);
+
+	private void FunctionRawString(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"Sudoku.Measuring.ExportFunctionAttribute",
+					static (node, _) => node is MethodDeclarationSyntax,
+					FunctionRawStringHandler.Check
+				)
+				.Where(static value => value is not null)
+				.Select(static (value, _) => value!.Value)
+				.Collect(),
+			FunctionRawStringHandler.Output
 		);
 }

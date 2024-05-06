@@ -7,7 +7,7 @@ namespace Sudoku.Measuring.Functions;
 /// <para>The index of the sequence. The index is 0-based.</para>
 /// <para>The index of the sequence. The index is 1-based.</para>
 /// </shared-comments>
-public sealed class OeisSequences : IFunctionProvider
+public sealed partial class OeisSequences : IFunctionProvider
 {
 	/// <summary>
 	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
@@ -15,7 +15,7 @@ public sealed class OeisSequences : IFunctionProvider
 	/// </summary>
 	/// <param name="index"><inheritdoc cref="OeisSequences" path="//shared-comments/para[1]"/></param>
 	/// <returns>The result value at the specified index.</returns>
-	[ExportFunction("Fibonacci")]
+	[ExportFunction("Triangular")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int A000217(int index) => index * (index - 1) >> 1;
 
@@ -38,14 +38,4 @@ public sealed class OeisSequences : IFunctionProvider
 	[ExportFunction("NonNegativeNumberRepeated")]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static int A004526(int index) => index >> 1;
-
-	/// <summary>
-	/// Gets the value at the specified index in the sequence <see href="https://oeis.org/A057353">A057353</see>
-	/// (0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, ..).
-	/// </summary>
-	/// <param name="index"><inheritdoc cref="OeisSequences" path="//shared-comments/para[1]"/></param>
-	/// <returns>The result value at the specified index.</returns>
-	[ExportFunction]
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static int A057353(int index) => (int)Math.Floor(3F * index / 4);
 }

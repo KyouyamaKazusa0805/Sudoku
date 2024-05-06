@@ -2588,4 +2588,10 @@
   <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
     <value>这个文本会用于自定义难度计算规则的页面之中。</value>
   </data>
+  <data name="MainWindow_FunctionPageTitle" xml:space="preserve">
+    <value>函数</value>
+  </data>
+  <data name="FunctionPage_Intro" xml:space="preserve">
+    <value>这个页面列举的是一些可能会在计算规则页面里使用到的额外计算函数。你也可以在这个页面里追加一些你想要定义的额外的函数。</value>
+  </data>
 </root>

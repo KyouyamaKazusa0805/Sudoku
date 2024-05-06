@@ -21993,6 +21993,12 @@ result ^= expression;
             Indicates the distance values for all steps produced.
             </summary>
         </member>
+        <member name="T:Sudoku.Measuring.ExportedMemberAttribute">
+            <summary>
+            Represents an attribute type that describes the member is a <see langword="static"/> property,
+            returning a <see cref="T:System.String"/> whose internal value is the raw C# code of member function.
+            </summary>
+        </member>
         <member name="T:Sudoku.Measuring.ExportFunctionAttribute">
             <summary>
             Provides with an attribute type that describes the function is or will be exported outside the API,
@@ -23502,14 +23508,6 @@ result ^= expression;
             <summary>
             Gets the value at the specified index in the sequence <see href="https://oeis.org/A004526">A004526</see>
             (0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, ..).
-            </summary>
-            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
-            <returns>The result value at the specified index.</returns>
-        </member>
-        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A057353(System.Int32)">
-            <summary>
-            Gets the value at the specified index in the sequence <see href="https://oeis.org/A057353">A057353</see>
-            (0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, ..).
             </summary>
             <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
             <returns>The result value at the specified index.</returns>

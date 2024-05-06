@@ -2591,4 +2591,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
     <value>This text can be used in customized calculation in formulae page for defining extra difficulty rating.</value>
   </data>
+  <data name="MainWindow_FunctionPageTitle" xml:space="preserve">
+    <value>Functions</value>
+  </data>
+  <data name="FunctionPage_Intro" xml:space="preserve">
+    <value>This page lists methods that will be used in formulae. You can also add new functions in this page.</value>
+  </data>
 </root>

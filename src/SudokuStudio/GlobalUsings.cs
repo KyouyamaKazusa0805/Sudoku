@@ -63,6 +63,7 @@ global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Ittoryu;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
+global using Sudoku.Measuring.Functions;
 global using Sudoku.MinLex;
 global using Sudoku.Primitive;
 global using Sudoku.Rendering;

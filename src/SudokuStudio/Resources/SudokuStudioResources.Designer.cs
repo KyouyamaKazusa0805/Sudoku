@@ -2230,6 +2230,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to This page lists methods that will be used in formulae. You can also add new functions in this page..
+        /// </summary>
+        internal static string FunctionPage_Intro {
+            get {
+                return ResourceManager.GetString("FunctionPage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Add constraint.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_AddNewConstraint {
@@ -3873,6 +3882,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Functions.
+        /// </summary>
+        internal static string MainWindow_FunctionPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_FunctionPageTitle", resourceCulture);
             }
         }
         

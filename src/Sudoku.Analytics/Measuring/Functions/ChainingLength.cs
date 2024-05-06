@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Functions;
 /// <summary>
 /// Represents a function that calculates for length on chaining rules.
 /// </summary>
-public sealed class ChainingLength : IFunctionProvider
+public sealed partial class ChainingLength : IFunctionProvider
 {
 	/// <summary>
 	/// Gets the difficulty rating value of the length. The length can be used in chaining-like techniques.
