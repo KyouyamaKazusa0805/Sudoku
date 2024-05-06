@@ -129,15 +129,6 @@ file static class TypeReflecting
 		{
 			return $"{ResourceDictionary.Get("TypeName_Technique", App.CurrentCulture)}[][]";
 		}
-		if (type == typeof(CellMap))
-		{
-			return ResourceDictionary.Get("TypeName_CellMap", App.CurrentCulture);
-		}
-		if (type == typeof(CandidateMap))
-		{
-			return ResourceDictionary.Get("TypeName_CandidateMap", App.CurrentCulture);
-		}
-
 		return type.Name;
 	}
 }
