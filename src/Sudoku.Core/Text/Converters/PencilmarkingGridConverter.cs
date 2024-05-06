@@ -152,7 +152,7 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 					}
 					default: // Print values and tabs.
 					{
-						defaultPrinting(sb, valuesByRow[Sequences.A057353(i)], '|', '|', maxLengths);
+						defaultPrinting(sb, valuesByRow[a057353(i)], '|', '|', maxLengths);
 
 						break;
 					}
@@ -163,6 +163,9 @@ public sealed record PencilmarkingGridConverter(bool SubtleGridLines = true, boo
 			sb.RemoveFrom(^Environment.NewLine.Length);
 			return sb.ToString();
 
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static int a057353(int index) => (int)Math.Floor(3F * index / 4);
 
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			void defaultPrinting(StringBuilder sb, IList<Mask> valuesByRow, char c1, char c2, int* maxLengths)

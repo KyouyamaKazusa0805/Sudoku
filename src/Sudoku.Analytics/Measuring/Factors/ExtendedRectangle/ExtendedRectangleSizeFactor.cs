@@ -13,5 +13,5 @@ public sealed partial class ExtendedRectangleSizeFactor : Factor
 	public override Type ReflectedStepType => typeof(ExtendedRectangleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!) - 2;
+	public override ParameterizedFormula Formula => static args => OeisSequences.A004526((int)args![0]!) - 2;
 }

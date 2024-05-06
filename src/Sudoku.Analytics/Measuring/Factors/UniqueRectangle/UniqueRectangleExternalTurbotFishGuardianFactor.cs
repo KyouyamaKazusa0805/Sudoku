@@ -13,5 +13,5 @@ public sealed partial class UniqueRectangleExternalTurbotFishGuardianFactor : Fa
 	public override Type ReflectedStepType => typeof(UniqueRectangleExternalTurbotFishStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
+	public override ParameterizedFormula Formula => static args => OeisSequences.A004526((int)args![0]!);
 }

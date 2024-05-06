@@ -21993,6 +21993,25 @@ result ^= expression;
             Indicates the distance values for all steps produced.
             </summary>
         </member>
+        <member name="T:Sudoku.Measuring.ExportFunctionAttribute">
+            <summary>
+            Provides with an attribute type that describes the function is or will be exported outside the API,
+            as isolated function to be called.
+            </summary>
+            <param name="alias">Indicates the alias identifier to be used.</param>
+        </member>
+        <member name="M:Sudoku.Measuring.ExportFunctionAttribute.#ctor(System.String)">
+            <summary>
+            Provides with an attribute type that describes the function is or will be exported outside the API,
+            as isolated function to be called.
+            </summary>
+            <param name="alias">Indicates the alias identifier to be used.</param>
+        </member>
+        <member name="P:Sudoku.Measuring.ExportFunctionAttribute.Alias">
+            <summary>
+            The generated property declaration for parameter <c>alias</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Measuring.Factor">
             <summary>
             Represents a factor that describes a rule for calculating difficulty rating for a step in one factor.
@@ -23448,6 +23467,52 @@ result ^= expression;
             </summary>
             <param name="techniques">The techniques used.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.IFunctionProvider">
+            <summary>
+            Represents a type that provides with functions. This type will only be used in reflection.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Measuring.Functions.OeisSequences">
+            <summary>
+            Represents a list of methods that calculates for values in OEIS sequences.
+            </summary>
+            <shared-comments>
+            <para>The index of the sequence. The index is 0-based.</para>
+            <para>The index of the sequence. The index is 1-based.</para>
+            </shared-comments>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A000217(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A000217">A000217</see>
+            (0, 1, 3, 6, 10, 15, 21, 28, 36, 45, 55, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A002024(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A002024">A002024</see>
+            (1, 2, 2, 3, 3, 3, 4, 4, 4, 4, 5, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[2]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A004526(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A004526">A004526</see>
+            (0, 0, 1, 1, 2, 2, 3, 3, 4, 4, 5, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
+            <returns>The result value at the specified index.</returns>
+        </member>
+        <member name="M:Sudoku.Measuring.Functions.OeisSequences.A057353(System.Int32)">
+            <summary>
+            Gets the value at the specified index in the sequence <see href="https://oeis.org/A057353">A057353</see>
+            (0, 1, 2, 3, 3, 4, 5, 6, 6, 7, 8, 9, ..).
+            </summary>
+            <param name="index"><inheritdoc cref="T:Sudoku.Measuring.Functions.OeisSequences" path="//shared-comments/para[1]"/></param>
+            <returns>The result value at the specified index.</returns>
         </member>
         <member name="T:Sudoku.Measuring.ParameterizedFormula">
             <summary>

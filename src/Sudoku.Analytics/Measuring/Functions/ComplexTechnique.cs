@@ -3,13 +3,14 @@ namespace Sudoku.Measuring.Functions;
 /// <summary>
 /// Represents a function that calculates for complex technique rules.
 /// </summary>
-public static class ComplexTechnique
+public sealed class ComplexTechnique : IFunctionProvider
 {
 	/// <summary>
 	/// Gets the complexity difficulty for complex single techniques usages.
 	/// </summary>
 	/// <param name="techniques">The techniques used.</param>
 	/// <returns>The result.</returns>
+	[ExportFunction("ComplexityDifficulty")]
 	public static int GetComplexityDifficulty(Technique[][] techniques)
 	{
 		var result = 0;

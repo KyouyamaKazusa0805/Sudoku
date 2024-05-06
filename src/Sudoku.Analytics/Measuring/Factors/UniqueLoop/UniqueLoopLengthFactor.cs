@@ -13,5 +13,5 @@ public sealed partial class UniqueLoopLengthFactor : Factor
 	public override Type ReflectedStepType => typeof(UniqueLoopStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!) - 3;
+	public override ParameterizedFormula Formula => static args => OeisSequences.A004526((int)args![0]!) - 3;
 }

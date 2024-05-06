@@ -13,5 +13,6 @@ public sealed partial class GuardianFactor : Factor
 	public override Type ReflectedStepType => typeof(GuardianStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526((int)args![0]! + A004526((int)args![1]!));
+	public override ParameterizedFormula Formula
+		=> static args => OeisSequences.A004526((int)args![0]! + OeisSequences.A004526((int)args![1]!));
 }

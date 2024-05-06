@@ -10,5 +10,5 @@ public sealed partial class HouseDeathBlossomPetalsCountFactor : Factor
 	public override Type ReflectedStepType => typeof(HouseDeathBlossomStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A002024((int)args![0]!);
+	public override ParameterizedFormula Formula => static args => OeisSequences.A002024((int)args![0]!);
 }

@@ -13,5 +13,5 @@ public sealed partial class BivalueUniversalGraveMultipleTrueCandidateFactor : F
 	public override Type ReflectedStepType => typeof(BivalueUniversalGraveMultipleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A002024((int)args![0]!);
+	public override ParameterizedFormula Formula => static args => OeisSequences.A002024((int)args![0]!);
 }
