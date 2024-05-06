@@ -224,6 +224,7 @@
 		<type modifier="sealed" name="DirectSubsetStep" comment-name="Direct Subset" base-type="ComplexSingleBaseStep">
 			<interfaces>
 				<interface>ISizeTrait</interface>
+				<interface>ICellListTrait</interface>
 			</interfaces>
 			<parameters>
 				<parameter name="conclusions" order="0" base-order="0" />

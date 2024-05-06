@@ -20,7 +20,7 @@ public sealed partial class BivalueOddagonType3Step(
 	Digit digit2,
 	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigitsMask
-) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2)
+) : BivalueOddagonStep(conclusions, views, options, in loopCells, digit1, digit2), IExtraCellListTrait
 {
 	/// <inheritdoc/>
 	public override int Type => 3;
@@ -34,6 +34,9 @@ public sealed partial class BivalueOddagonType3Step(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [.. base.Factors, new BivalueOddagonSubsetSizeFactor()];
+
+	/// <inheritdoc/>
+	int IExtraCellListTrait.ExtraCellSize => ExtraCells.Count;
 
 	private string Digit1Str => Options.Converter.DigitConverter((Mask)(1 << Digit1));
 

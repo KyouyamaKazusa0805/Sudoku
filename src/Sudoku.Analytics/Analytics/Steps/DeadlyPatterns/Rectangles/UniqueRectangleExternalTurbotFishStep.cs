@@ -44,5 +44,8 @@ public sealed partial class UniqueRectangleExternalTurbotFishStep(
 			new UniqueRectangleExternalTurbotFishIsIncompleteFactor()
 		];
 
+	/// <inheritdoc/>
+	int IGuardianTrait.GuardianCellsCount => GuardianCells.Count;
+
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);
 }

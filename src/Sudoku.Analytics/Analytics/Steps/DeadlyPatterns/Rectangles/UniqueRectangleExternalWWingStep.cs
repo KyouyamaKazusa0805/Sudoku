@@ -59,6 +59,9 @@ public sealed partial class UniqueRectangleExternalWWingStep(
 			new UniqueRectangleExternalWWingIsCompleteFactor()
 		];
 
+	/// <inheritdoc/>
+	int IGuardianTrait.GuardianCellsCount => GuardianCells.Count;
+
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);
 
 	private string CellPairStr => Options.Converter.CellConverter(CellPair);

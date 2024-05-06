@@ -43,6 +43,9 @@ public partial class DirectSubsetStep
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new DirectSubsetSizeFactor(), new DirectSubsetIsLockedFactor()];
 
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => SubsetCells.Count;
+
 	private string CellsStr => Options.Converter.CellConverter(SubsetCells);
 
 	private string HouseStr => Options.Converter.HouseConverter(1 << SubsetHouse);

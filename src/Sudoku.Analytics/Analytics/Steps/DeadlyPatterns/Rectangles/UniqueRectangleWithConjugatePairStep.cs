@@ -24,7 +24,9 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	bool isAvoidable,
 	[PrimaryConstructorParameter] Conjugate[] conjugatePairs,
 	int absoluteOffset
-) : UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset)
+) :
+	UniqueRectangleStep(conclusions, views, options, code, digit1, digit2, in cells, isAvoidable, absoluteOffset),
+	IConjugatePairTrait
 {
 	/// <inheritdoc/>
 	public sealed override int BaseDifficulty => base.BaseDifficulty - 1;
@@ -43,6 +45,9 @@ public partial class UniqueRectangleWithConjugatePairStep(
 	/// <inheritdoc/>
 	public sealed override FactorCollection Factors
 		=> [new RectangleConjugatePairsCountFactor(), new RectangleIsAvoidableFactor()];
+
+	/// <inheritdoc/>
+	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;
 
 	private string ConjPairsStr => Options.Converter.ConjugateConverter(ConjugatePairs);
 

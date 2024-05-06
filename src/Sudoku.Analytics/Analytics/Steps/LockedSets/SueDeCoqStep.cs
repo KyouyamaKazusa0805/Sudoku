@@ -32,7 +32,7 @@ public sealed partial class SueDeCoqStep(
 	[PrimaryConstructorParameter] ref readonly CellMap blockCells,
 	[PrimaryConstructorParameter] ref readonly CellMap lineCells,
 	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells
-) : LockedSetStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options), IIsolatedDigitTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 50;
@@ -55,6 +55,12 @@ public sealed partial class SueDeCoqStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new SueDeCoqIsolatedFactor(), new SueDeCoqCannibalismFactor()];
+
+	/// <inheritdoc/>
+	bool IIsolatedDigitTrait.ContainsIsolatedDigits => IsolatedDigitsMask != 0;
+
+	/// <inheritdoc/>
+	int IIsolatedDigitTrait.IsolatedDigitsCount => IsolatedDigitsMask == 0 ? 0 : PopCount((uint)IsolatedDigitsMask);
 
 	private string IntersectionCellsStr => Options.Converter.CellConverter(IntersectionCells);
 

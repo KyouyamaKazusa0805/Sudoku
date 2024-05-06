@@ -16,7 +16,7 @@ public sealed partial class GuardianStep(
 	[PrimaryConstructorParameter] Digit digit,
 	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] ref readonly CellMap guardians
-) : NegativeRankStep(conclusions, views, options)
+) : NegativeRankStep(conclusions, views, options), ICellListTrait, IGuardianTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 55;
@@ -33,6 +33,15 @@ public sealed partial class GuardianStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new GuardianFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => LoopCells.Count;
+
+	/// <inheritdoc/>
+	int IGuardianTrait.GuardianCellsCount => Guardians.Count;
+
+	/// <inheritdoc/>
+	CellMap IGuardianTrait.GuardianCells => Guardians;
 
 	private string CellsStr => Options.Converter.CellConverter(LoopCells);
 

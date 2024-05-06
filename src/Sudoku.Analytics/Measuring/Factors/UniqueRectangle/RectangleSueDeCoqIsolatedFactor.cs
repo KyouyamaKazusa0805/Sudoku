@@ -8,11 +8,11 @@ public sealed partial class RectangleSueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames
-		=> [nameof(UniqueRectangleWithSueDeCoqStep.IsCannibalistic), nameof(UniqueRectangleWithSueDeCoqStep.IsolatedDigitsMask)];
+		=> [nameof(UniqueRectangleWithSueDeCoqStep.IsCannibalistic), nameof(IIsolatedDigitTrait.ContainsIsolatedDigits)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(UniqueRectangleWithSueDeCoqStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => !(bool)args![0]! && (Mask)args![1]! != 0 ? 1 : 0;
+	public override ParameterizedFormula Formula => static args => !(bool)args![0]! && (bool)args![1]! ? 1 : 0;
 }

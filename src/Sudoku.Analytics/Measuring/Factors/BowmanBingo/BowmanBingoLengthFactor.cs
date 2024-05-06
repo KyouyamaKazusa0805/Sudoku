@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class BowmanBingoLengthFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(BowmanBingoStep.ContradictionLinks)];
+	public override string[] ParameterNames => [nameof(ISizeTrait.Size)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(BowmanBingoStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => ChainingLength.GetLengthDifficulty(((Conclusion[])args![0]!).Length);
+	public override ParameterizedFormula Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
 }

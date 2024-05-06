@@ -18,7 +18,10 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 	[PrimaryConstructorParameter] ref readonly CellMap nTimesAlmostLockedSetCells,
 	[PrimaryConstructorParameter] NTimesAlmostLockedSetsBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] int freedomDegree
-) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>
+) :
+	DeathBlossomBaseStep(conclusions, views, options),
+	IBranchTrait,
+	IDeathBlossomCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 5;
@@ -35,6 +38,9 @@ public sealed partial class NTimesAlmostLockedSetDeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new NTimesAlmostLockedSetsDeathBlossomPetalsCountFactor()];
+
+	/// <inheritdoc/>
+	int IBranchTrait.BranchesCount => Branches.Count;
 
 	private string FreedomDegreeStr => FreedomDegree.ToString();
 

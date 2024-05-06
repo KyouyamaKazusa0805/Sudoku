@@ -6,11 +6,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class RectangleConjugatePairsCountFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(UniqueRectangleWithConjugatePairStep.ConjugatePairs)];
+	public override string[] ParameterNames => [nameof(IConjugatePairTrait.ConjugatePairsCount)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(UniqueRectangleWithConjugatePairStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526(((Conjugate[])args![0]!).Length);
+	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
 }

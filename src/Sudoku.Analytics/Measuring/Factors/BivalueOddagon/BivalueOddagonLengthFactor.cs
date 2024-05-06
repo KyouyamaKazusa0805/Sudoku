@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class BivalueOddagonLengthFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(BivalueOddagonStep.LoopCells)];
+	public override string[] ParameterNames => [nameof(ICellListTrait.CellSize)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(BivalueOddagonStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526(((CellMap)args![0]!).Count);
+	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
 }

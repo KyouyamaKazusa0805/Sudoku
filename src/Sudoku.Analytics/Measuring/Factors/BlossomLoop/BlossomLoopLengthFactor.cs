@@ -7,12 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class BlossomLoopLengthFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(BlossomLoopStep.Chains)];
+	public override string[] ParameterNames => [nameof(IComplexChainLengthTrait.ComplexLength)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(BlossomLoopStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula
-		=> static args => ChainingLength.GetLengthDifficulty(((MultipleForcingChains)args![0]!).Potentials.Sum(ChainingStep.AncestorsCountOf));
+	public override ParameterizedFormula Formula => static args => ChainingLength.GetLengthDifficulty((int)args![0]!);
 }

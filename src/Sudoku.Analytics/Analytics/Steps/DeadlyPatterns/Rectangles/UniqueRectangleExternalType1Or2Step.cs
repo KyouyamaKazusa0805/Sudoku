@@ -62,6 +62,9 @@ public sealed partial class UniqueRectangleExternalType1Or2Step(
 			new UniqueRectangleExternalType1Or2IsIncompleteFactor()
 		];
 
+	/// <inheritdoc/>
+	int IGuardianTrait.GuardianCellsCount => GuardianCells.Count;
+
 	private string GuardianDigitStr => Options.Converter.DigitConverter((Mask)(1 << GuardianDigit));
 
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);

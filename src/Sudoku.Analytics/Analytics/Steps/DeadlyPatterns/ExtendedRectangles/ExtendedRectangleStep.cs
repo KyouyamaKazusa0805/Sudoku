@@ -14,7 +14,7 @@ public abstract partial class ExtendedRectangleStep(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask
-) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -30,6 +30,9 @@ public abstract partial class ExtendedRectangleStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ExtendedRectangleSizeFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => Cells.Count;
 
 	private protected string DigitsStr => Options.Converter.DigitConverter(DigitsMask);
 

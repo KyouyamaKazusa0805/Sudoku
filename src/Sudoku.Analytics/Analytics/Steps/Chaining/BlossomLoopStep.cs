@@ -16,7 +16,7 @@ public sealed partial class BlossomLoopStep(
 	[PrimaryConstructorParameter] House houseIndex,
 	[PrimaryConstructorParameter] byte digit,
 	[PrimaryConstructorParameter] MultipleForcingChains chains
-) : Step(conclusions, views, options)
+) : Step(conclusions, views, options), IComplexChainLengthTrait
 {
 	internal BlossomLoopStep(Conclusion[] conclusions, StepSearcherOptions options, House houseIndex, byte digit, MultipleForcingChains chains) :
 		this(conclusions, null!, options, houseIndex, digit, chains)
@@ -41,6 +41,9 @@ public sealed partial class BlossomLoopStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BlossomLoopLengthFactor()];
+
+	/// <inheritdoc/>
+	int IComplexChainLengthTrait.ComplexLength => Chains.Potentials.Sum(ChainingStep.AncestorsCountOf);
 
 	private string DigitStr => Options.Converter.DigitConverter((Mask)(1 << Digit));
 

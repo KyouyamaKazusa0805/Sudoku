@@ -39,14 +39,24 @@ public abstract class Factor
 	/// <seealso cref="ParameterNames"/>
 	/// <seealso cref="PropertyInfo"/>
 	public PropertyInfo[] Parameters
-		// Here a property may be explicitly implemented, the name may starts with interface name.
-		=> (
-			from propertyInfo in ReflectedStepType.GetProperties(PropertyFlags)
-			let indexOfMatch = Array.FindIndex(ParameterNames, propertyInfo.Name.EndsWith)
-			where indexOfMatch != -1
-			orderby indexOfMatch
-			select propertyInfo
-		).ToArray() is var result && result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
+	{
+		get
+		{
+			var result = (
+				from propertyInfo in ReflectedStepType.GetProperties(PropertyFlags)
+				let indexOfMatch = Array.FindIndex(ParameterNames, name => compareString(propertyInfo.Name, name))
+				where indexOfMatch != -1
+				orderby indexOfMatch
+				select propertyInfo
+			).ToArray();
+			return result.Length == ParameterNames.Length ? result : throw new AmbiguousMatchException();
+
+
+			// Here a property may be explicitly implemented, the name may starts with interface name.
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static bool compareString(string a, string b) => a == b || a.Contains('.') && a.EndsWith(b);
+		}
+	}
 
 	/// <summary>
 	/// Provides with a formula that calculates for the result, unscaled.

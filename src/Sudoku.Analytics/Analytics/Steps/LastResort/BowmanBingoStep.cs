@@ -12,7 +12,7 @@ public sealed partial class BowmanBingoStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] Conclusion[] contradictionLinks
-) : LastResortStep(conclusions, views, options)
+) : LastResortStep(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 80;
@@ -26,6 +26,9 @@ public sealed partial class BowmanBingoStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BowmanBingoLengthFactor()];
+
+	/// <inheritdoc/>
+	int ISizeTrait.Size => ContradictionLinks.Length;
 
 	private string ContradictionSeriesStr
 	{

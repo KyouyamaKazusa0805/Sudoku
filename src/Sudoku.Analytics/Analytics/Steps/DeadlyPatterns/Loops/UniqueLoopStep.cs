@@ -18,7 +18,7 @@ public abstract partial class UniqueLoopStep(
 	[PrimaryConstructorParameter] Digit digit2,
 	[PrimaryConstructorParameter] ref readonly CellMap loop,
 	[PrimaryConstructorParameter] Cell[] loopPath
-) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait
+) : DeadlyPatternStep(conclusions, views, options), IDeadlyPatternTypeTrait, ICellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => true;
@@ -34,6 +34,9 @@ public abstract partial class UniqueLoopStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new UniqueLoopLengthFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => Loop.Count;
 
 	private protected string LoopStr => Options.Converter.CellConverter(Loop);
 

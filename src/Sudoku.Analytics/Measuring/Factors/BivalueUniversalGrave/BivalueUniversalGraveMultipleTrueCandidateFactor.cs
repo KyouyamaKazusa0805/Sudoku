@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class BivalueUniversalGraveMultipleTrueCandidateFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(BivalueUniversalGraveMultipleStep.TrueCandidates)];
+	public override string[] ParameterNames => [nameof(ICandidateListTrait.CandidateSize)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(BivalueUniversalGraveMultipleStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A002024(((CellMap)args![0]!).Count);
+	public override ParameterizedFormula Formula => static args => A002024((int)args![0]!);
 }

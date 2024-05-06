@@ -16,7 +16,7 @@ public sealed partial class MultisectorLockedSetsStep(
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] int rowsCount,
 	[PrimaryConstructorParameter] int columnsCount
-) : LockedSetStep(conclusions, views, options)
+) : LockedSetStep(conclusions, views, options), ICellListTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 94;
@@ -30,6 +30,9 @@ public sealed partial class MultisectorLockedSetsStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new MultisectorLockedSetsSizeFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => Cells.Count;
 
 	private string CellsCountStr => Cells.Count.ToString();
 

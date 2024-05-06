@@ -12,7 +12,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	View[]? views,
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter] ref readonly CandidateMap trueCandidates
-) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
+) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait, ICandidateListTrait
 {
 	/// <inheritdoc/>
 	public override int Type => 5;
@@ -34,6 +34,9 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BivalueUniversalGraveMultipleTrueCandidateFactor()];
+
+	/// <inheritdoc/>
+	int ICandidateListTrait.CandidateSize => TrueCandidates.Count;
 
 	private string CandidatesStr => Options.Converter.CandidateConverter(TrueCandidates);
 

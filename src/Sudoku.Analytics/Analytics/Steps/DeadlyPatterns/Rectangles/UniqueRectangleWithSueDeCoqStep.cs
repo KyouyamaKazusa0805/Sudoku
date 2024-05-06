@@ -42,17 +42,19 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 	[PrimaryConstructorParameter] ref readonly CellMap lineCells,
 	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells,
 	int absoluteOffset
-) : UniqueRectangleStep(
-	conclusions,
-	views,
-	options,
-	isAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
-	digit1,
-	digit2,
-	in cells,
-	isAvoidable,
-	absoluteOffset
-)
+) :
+	UniqueRectangleStep(
+		conclusions,
+		views,
+		options,
+		isAvoidable ? Technique.AvoidableRectangleSueDeCoq : Technique.UniqueRectangleSueDeCoq,
+		digit1,
+		digit2,
+		in cells,
+		isAvoidable,
+		absoluteOffset
+	),
+	IIsolatedDigitTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + 5;
@@ -71,6 +73,12 @@ public sealed partial class UniqueRectangleWithSueDeCoqStep(
 			new RectangleSueDeCoqCannibalismFactor(),
 			new RectangleIsAvoidableFactor()
 		];
+
+	/// <inheritdoc/>
+	bool IIsolatedDigitTrait.ContainsIsolatedDigits => IsolatedDigitsMask != 0;
+
+	/// <inheritdoc/>
+	int IIsolatedDigitTrait.IsolatedDigitsCount => IsolatedDigitsMask == 0 ? 0 : PopCount((uint)IsolatedDigitsMask);
 
 	private string MergedCellsStr => Options.Converter.CellConverter(LineCells | BlockCells);
 

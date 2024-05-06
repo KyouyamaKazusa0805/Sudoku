@@ -14,7 +14,7 @@ public sealed partial class BivalueUniversalGraveType2Step(
 	StepSearcherOptions options,
 	[PrimaryConstructorParameter(GeneratedMemberName = "ExtraDigit")] Digit digit,
 	[PrimaryConstructorParameter] ref readonly CellMap cells
-) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait
+) : BivalueUniversalGraveStep(conclusions, views, options), ITrueCandidatesTrait, ICellListTrait
 {
 	/// <inheritdoc/>
 	public override int Type => 2;
@@ -28,6 +28,9 @@ public sealed partial class BivalueUniversalGraveType2Step(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BivalueUniversalGraveType2TrueCandidateFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => Cells.Count;
 
 	/// <inheritdoc/>
 	CandidateMap ITrueCandidatesTrait.TrueCandidates => Subview.ExpandedCellFromDigit(Cells, ExtraDigit);

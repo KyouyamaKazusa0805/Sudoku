@@ -1,4 +1,3 @@
-
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -23,7 +22,9 @@ public sealed partial class ExocetBaseStep(
 	ref readonly CellMap endoTargetCells,
 	ref readonly CellMap crosslineCells,
 	[PrimaryConstructorParameter] Conjugate[] conjugatePairs
-) : ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells)
+) :
+	ExocetStep(conclusions, views, options, digitsMask, in baseCells, in targetCells, in endoTargetCells, in crosslineCells),
+	IConjugatePairTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => base.BaseDifficulty + (Code == Technique.SeniorExocet ? 2 : 0);
@@ -32,11 +33,14 @@ public sealed partial class ExocetBaseStep(
 	public override Technique Code
 		=> (Delta, ConjugatePairs) switch
 		{
-			(< 0, _) => Technique.SeniorExocet,
+			( < 0, _) => Technique.SeniorExocet,
 			(_, []) => Technique.JuniorExocet,
 			_ => Technique.JuniorExocetConjugatePair
 		};
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ExocetConjugatePairsCountFactor()];
+
+	/// <inheritdoc/>
+	int IConjugatePairTrait.ConjugatePairsCount => ConjugatePairs.Length;
 }

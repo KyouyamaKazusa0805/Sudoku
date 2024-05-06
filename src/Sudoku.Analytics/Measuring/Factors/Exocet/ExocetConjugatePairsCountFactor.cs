@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class ExocetConjugatePairsCountFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(ExocetBaseStep.ConjugatePairs)];
+	public override string[] ParameterNames => [nameof(IConjugatePairTrait.ConjugatePairsCount)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(ExocetBaseStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526(((Conjugate[])args![0]!).Length);
+	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
 }

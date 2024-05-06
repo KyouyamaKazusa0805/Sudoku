@@ -16,7 +16,7 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 	[PrimaryConstructorParameter] ref readonly CellMap cells,
 	[PrimaryConstructorParameter] Mask digitsMask,
 	[PrimaryConstructorParameter] Digit extraDigit
-) : AlmostLockedSetsStep(conclusions, views, options)
+) : AlmostLockedSetsStep(conclusions, views, options), ICellListTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 55;
@@ -30,6 +30,9 @@ public sealed partial class ExtendedSubsetPrincipleStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ExtendedSubsetPrincipleSizeFactor()];
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => Cells.Count;
 
 	private string CellsStr => Options.Converter.CellConverter(Cells);
 

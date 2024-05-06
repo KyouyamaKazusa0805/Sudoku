@@ -16,7 +16,7 @@ public sealed partial class UniquenessClueCoverStep(
 	[PrimaryConstructorParameter] ref readonly CellMap extraCells,
 	[PrimaryConstructorParameter] Mask extraDigits,
 	[PrimaryConstructorParameter] int chuteIndex
-) : DeadlyPatternStep(conclusions, views, options)
+) : DeadlyPatternStep(conclusions, views, options), IExtraCellListTrait
 {
 	/// <inheritdoc/>
 	public override bool OnlyUseBivalueCells => false;
@@ -36,6 +36,9 @@ public sealed partial class UniquenessClueCoverStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new UniquenessClueCoverExtraCellsFactor()];
+
+	/// <inheritdoc/>
+	int IExtraCellListTrait.ExtraCellSize => ExtraCells.Count;
 
 	private string ChuteString => Options.Converter.ChuteConverter([Chutes[ChuteIndex]]);
 

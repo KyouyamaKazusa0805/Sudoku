@@ -16,7 +16,7 @@ public abstract partial class BivalueOddagonStep(
 	[PrimaryConstructorParameter] ref readonly CellMap loopCells,
 	[PrimaryConstructorParameter] Digit digit1,
 	[PrimaryConstructorParameter] Digit digit2
-) : NegativeRankStep(conclusions, views, options)
+) : NegativeRankStep(conclusions, views, options), ICellListTrait
 {
 	/// <summary>
 	/// Indicates the type of the technique.
@@ -33,6 +33,9 @@ public abstract partial class BivalueOddagonStep(
 	public override FactorCollection Factors => [new BivalueOddagonLengthFactor()];
 
 	private protected string LoopStr => Options.Converter.CellConverter(LoopCells);
+
+	/// <inheritdoc/>
+	int ICellListTrait.CellSize => LoopCells.Count;
 
 
 	/// <inheritdoc/>

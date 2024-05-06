@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class UniquenessClueCoverExtraCellsFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(UniquenessClueCoverStep.ExtraCells)];
+	public override string[] ParameterNames => [nameof(IExtraCellListTrait.ExtraCellSize)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(UniquenessClueCoverStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526(((CellMap)args![0]!).Count);
+	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
 }

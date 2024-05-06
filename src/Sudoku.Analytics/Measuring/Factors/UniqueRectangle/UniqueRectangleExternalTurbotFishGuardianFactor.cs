@@ -7,11 +7,11 @@ namespace Sudoku.Measuring.Factors;
 public sealed partial class UniqueRectangleExternalTurbotFishGuardianFactor : Factor
 {
 	/// <inheritdoc/>
-	public override string[] ParameterNames => [nameof(UniqueRectangleExternalTurbotFishStep.GuardianCells)];
+	public override string[] ParameterNames => [nameof(IGuardianTrait.GuardianCellsCount)];
 
 	/// <inheritdoc/>
 	public override Type ReflectedStepType => typeof(UniqueRectangleExternalTurbotFishStep);
 
 	/// <inheritdoc/>
-	public override ParameterizedFormula Formula => static args => A004526(((CellMap)args![0]!).Count);
+	public override ParameterizedFormula Formula => static args => A004526((int)args![0]!);
 }

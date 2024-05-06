@@ -16,7 +16,7 @@ public sealed partial class DeathBlossomStep(
 	[PrimaryConstructorParameter] Cell pivot,
 	[PrimaryConstructorParameter] NormalBlossomBranchCollection branches,
 	[PrimaryConstructorParameter] Mask zDigitsMask
-) : DeathBlossomBaseStep(conclusions, views, options), IDeathBlossomCollection<NormalBlossomBranchCollection, Digit>
+) : DeathBlossomBaseStep(conclusions, views, options), IBranchTrait, IDeathBlossomCollection<NormalBlossomBranchCollection, Digit>
 {
 	/// <inheritdoc/>
 	public override Technique Code => Technique.DeathBlossom;
@@ -27,6 +27,9 @@ public sealed partial class DeathBlossomStep(
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new BasicDeathBlossomPetalsCountFactor()];
+
+	/// <inheritdoc/>
+	int IBranchTrait.BranchesCount => Branches.Count;
 
 	private string PivotStr => Options.Converter.CellConverter(Pivot);
 

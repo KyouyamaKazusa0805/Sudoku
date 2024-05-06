@@ -59,6 +59,9 @@ public sealed partial class UniqueRectangleExternalAlmostLockedSetsXzStep(
 			new UniqueRectangleExternalAlmostLockedSetsXzGuardianIsIncompleteFactor()
 		];
 
+	/// <inheritdoc/>
+	int IGuardianTrait.GuardianCellsCount => GuardianCells.Count;
+
 	private string GuardianCellsStr => Options.Converter.CellConverter(GuardianCells);
 
 	private string AnotherAlsStr => AlmostLockedSet.ToString(Options.Converter);
