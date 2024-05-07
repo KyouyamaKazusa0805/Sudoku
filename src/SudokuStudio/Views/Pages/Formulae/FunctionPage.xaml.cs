@@ -1,4 +1,4 @@
-namespace SudokuStudio.Views.Pages;
+namespace SudokuStudio.Views.Pages.Formulae;
 
 /// <summary>
 /// Represents a function page.

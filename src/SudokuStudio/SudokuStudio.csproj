@@ -120,7 +120,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
-		<Page Update="Views\Pages\FunctionPage.xaml">
+		<Page Update="Views\Pages\Formulae\FunctionPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\TechniqueInfoModifierPage.xaml">
