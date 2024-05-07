@@ -940,6 +940,31 @@
             </remarks>
             <seealso cref="F:System.SourceGeneration.Accessibility.Public"/>
         </member>
+        <member name="T:SudokuStudio.ComponentModel.FormulaExpression">
+            <summary>
+            Represents a formula expression.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Name">
+            <summary>
+            Indicates the name of the formula.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.FileId">
+            <summary>
+            Indicates the file ID.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Description">
+            <summary>
+            Indicates the description of the formula.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Expression">
+            <summary>
+            Indicates the expression of the formula.
+            </summary>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
@@ -6165,12 +6190,32 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Apply">
             <summary>
-              Looks up a localized string similar to Apply.
+              Looks up a localized string similar to Check and apply.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace">
+            <summary>
+              Looks up a localized string similar to The description cannot be empty or only contains whitespaces..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_FileAlreadyExists">
+            <summary>
+              Looks up a localized string similar to The specified file name already exists in local path..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_FileIdContainsInvalidCharacters">
+            <summary>
+              Looks up a localized string similar to The value contains invalid characters as a character used in a file name..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_NameIsEmptyOrWhitespace">
+            <summary>
+              Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FileId">
@@ -14525,6 +14570,24 @@
             <summary>
             Initializes an <see cref="T:SudokuStudio.Views.Pages.Formulae.AddFormulaPage"/> instance.
             </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.ManuallyClearErrorMessages">
+            <summary>
+            Manually clear error messages.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.ReturnBack">
+            <summary>
+            Returns the page back to parent.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.CheckValidity(Microsoft.UI.Xaml.Controls.TextBlock@,System.String@)">
+            <summary>
+            Try to check validity of values input.
+            </summary>
+            <param name="textBlock">The text block that will display error message.</param>
+            <param name="errorString">The error string that will display error message.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating the validation result.</returns>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.InitializeComponent">
             <summary>

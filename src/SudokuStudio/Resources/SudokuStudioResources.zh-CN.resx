@@ -2592,7 +2592,7 @@
     <value>名称</value>
   </data>
   <data name="AddFormulaPage_Apply" xml:space="preserve">
-    <value>应用</value>
+    <value>检查和应用</value>
   </data>
   <data name="AddFormulaPage_Cancel" xml:space="preserve">
     <value>取消</value>
@@ -2605,5 +2605,17 @@
   </data>
   <data name="AddFormulaPage_FileId" xml:space="preserve">
     <value>文件名称</value>
+  </data>
+  <data name="AddFormulaPage_Error_FileIdContainsInvalidCharacters" xml:space="preserve">
+    <value>这个名称包含不能作为文件名的特殊字符。</value>
+  </data>
+  <data name="AddFormulaPage_Error_NameIsEmptyOrWhitespace" xml:space="preserve">
+    <value>名称不能为空，或者只有空白字符。</value>
+  </data>
+  <data name="AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace" xml:space="preserve">
+    <value>描述文字不能为空，或者只有空白字符。</value>
+  </data>
+  <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
+    <value>在本地已经存在和这个名称重名的文件。</value>
   </data>
 </root>

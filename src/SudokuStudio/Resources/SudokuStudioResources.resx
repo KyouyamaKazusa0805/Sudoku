@@ -2595,7 +2595,7 @@ Correct rate: {3:P} ({4}/{5})</value>
     <value>Name</value>
   </data>
   <data name="AddFormulaPage_Apply" xml:space="preserve">
-    <value>Apply</value>
+    <value>Check and apply</value>
   </data>
   <data name="AddFormulaPage_Cancel" xml:space="preserve">
     <value>Cancel</value>
@@ -2608,5 +2608,17 @@ Correct rate: {3:P} ({4}/{5})</value>
   </data>
   <data name="AddFormulaPage_FileId" xml:space="preserve">
     <value>File name</value>
+  </data>
+  <data name="AddFormulaPage_Error_FileIdContainsInvalidCharacters" xml:space="preserve">
+    <value>The value contains invalid characters as a character used in a file name.</value>
+  </data>
+  <data name="AddFormulaPage_Error_NameIsEmptyOrWhitespace" xml:space="preserve">
+    <value>The name cannot be empty or only contain whitespaces.</value>
+  </data>
+  <data name="AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace" xml:space="preserve">
+    <value>The description cannot be empty or only contains whitespaces.</value>
+  </data>
+  <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
+    <value>The specified file name already exists in local path.</value>
   </data>
 </root>

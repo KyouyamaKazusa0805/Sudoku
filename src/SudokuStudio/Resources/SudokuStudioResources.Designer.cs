@@ -457,7 +457,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Apply.
+        ///   Looks up a localized string similar to Check and apply.
         /// </summary>
         internal static string AddFormulaPage_Apply {
             get {
@@ -471,6 +471,42 @@ namespace SudokuStudio.Resources {
         internal static string AddFormulaPage_Cancel {
             get {
                 return ResourceManager.GetString("AddFormulaPage_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The description cannot be empty or only contains whitespaces..
+        /// </summary>
+        internal static string AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The specified file name already exists in local path..
+        /// </summary>
+        internal static string AddFormulaPage_Error_FileAlreadyExists {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_FileAlreadyExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The value contains invalid characters as a character used in a file name..
+        /// </summary>
+        internal static string AddFormulaPage_Error_FileIdContainsInvalidCharacters {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_FileIdContainsInvalidCharacters", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
+        /// </summary>
+        internal static string AddFormulaPage_Error_NameIsEmptyOrWhitespace {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_NameIsEmptyOrWhitespace", resourceCulture);
             }
         }
         
