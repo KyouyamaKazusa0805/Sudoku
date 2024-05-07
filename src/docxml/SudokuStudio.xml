@@ -965,6 +965,32 @@
             Indicates the expression of the formula.
             </summary>
         </member>
+        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.AppliedTechniques">
+            <summary>
+            Indicates the techniques that the expression can be applied to, if <see cref="P:Sudoku.Analytics.Step.Code"/> is in the current set.
+            </summary>
+            <seealso cref="P:Sudoku.Analytics.Step.Code"/>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.SaveToLocal">
+            <summary>
+            Saves the file to local.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.TryLoadFromLocal(System.String,SudokuStudio.ComponentModel.FormulaExpression@)">
+            <summary>
+            Loads the file from local path.
+            </summary>
+            <param name="filePath">The file to be loaded.</param>
+            <param name="result">The result parsed.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.LoadFromLocal(System.String)">
+            <summary>
+            Loads the file from local path.
+            </summary>
+            <param name="filePath">The file to be loaded.</param>
+            <returns>The instance.</returns>
+        </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
@@ -6188,6 +6214,11 @@
               Looks up a localized string similar to Version.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_AppliedTechniques">
+            <summary>
+              Looks up a localized string similar to Applied techniques.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Apply">
             <summary>
               Looks up a localized string similar to Check and apply.
@@ -6196,6 +6227,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Cancel">
             <summary>
               Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps">
+            <summary>
+              Looks up a localized string similar to The chosen techniques &apos;{0}&apos; and &apos;{1}&apos; cannot be included as one formula, program not permitted..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace">
@@ -6213,9 +6249,19 @@
               Looks up a localized string similar to The value contains invalid characters as a character used in a file name..
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_MustSelectAtLeastOneTechnique">
+            <summary>
+              Looks up a localized string similar to You must select at least one technique..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_NameIsEmptyOrWhitespace">
             <summary>
               Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_TechniqueNotReferToStep">
+            <summary>
+              Looks up a localized string similar to The technique may not refer to a valid technique step, meaning it isn&apos;t implemented..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FileId">
@@ -7161,6 +7207,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_GridMustBeSolvedOrNotBad">
             <summary>
               Looks up a localized string similar to The puzzle must be solved or contain at least one valid solution..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_ParseFailedOnFormula">
+            <summary>
+              Looks up a localized string similar to Parse failed on formula expression..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_CommaSeparated">
@@ -10129,6 +10180,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_Intro">
             <summary>
               Looks up a localized string similar to This page lists your own defining rules on calculating difficulty ratings on techniques..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_NoDescription">
+            <summary>
+              Looks up a localized string similar to &lt;None&gt;.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">

@@ -4545,6 +4545,19 @@
             <param name="this">The current instance.</param>
             <returns>The final result.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSuitableStepType(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Try to get suitable <see cref="T:System.Type"/> which refers to a <see cref="T:Sudoku.Analytics.Step"/>,
+            whose contained property <see cref="P:Sudoku.Analytics.Step.Code"/> may create this technique.
+            </summary>
+            <param name="this">The current technique.</param>
+            <returns>
+            A valid <see cref="T:System.Type"/> instance, or <see langword="null"/> if it may not be referred by all <see cref="T:Sudoku.Analytics.Step"/>
+            derived types.
+            </returns>
+            <seealso cref="T:Sudoku.Analytics.Step"/>
+            <seealso cref="P:Sudoku.Analytics.Step.Code"/>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSpecificPuzzleGenerator(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Creates a <see cref="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.

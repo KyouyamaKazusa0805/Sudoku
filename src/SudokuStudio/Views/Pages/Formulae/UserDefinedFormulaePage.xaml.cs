@@ -15,6 +15,31 @@ public sealed partial class UserDefinedFormulaePage : Page
 
 	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
+		var di = new DirectoryInfo(CommonPaths.Formulae);
+		if (!di.Exists)
+		{
+			di.Create();
+			return;
+		}
 
+		foreach (var fi in di.EnumerateFiles())
+		{
+			if (!FormulaExpression.TryLoadFromLocal(fi.FullName, out var result))
+			{
+				continue;
+			}
+
+			FormulaeDisplayer.Children.Add(
+				new SettingsCard
+				{
+					Header = result.Name,
+					HeaderIcon = new FontIcon { Glyph = "\uE94E" },
+					Description = result.Description is var description && !string.IsNullOrWhiteSpace(description)
+						? description
+						: ResourceDictionary.Get("UserDefinedFormulaePage_NoDescription", App.CurrentCulture),
+					Content = result.Expression
+				}
+			);
+		}
 	}
 }

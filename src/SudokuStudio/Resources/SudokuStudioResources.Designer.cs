@@ -457,6 +457,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Applied techniques.
+        /// </summary>
+        internal static string AddFormulaPage_AppliedTechniques {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_AppliedTechniques", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Check and apply.
         /// </summary>
         internal static string AddFormulaPage_Apply {
@@ -471,6 +480,15 @@ namespace SudokuStudio.Resources {
         internal static string AddFormulaPage_Cancel {
             get {
                 return ResourceManager.GetString("AddFormulaPage_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The chosen techniques &apos;{0}&apos; and &apos;{1}&apos; cannot be included as one formula, program not permitted..
+        /// </summary>
+        internal static string AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps", resourceCulture);
             }
         }
         
@@ -502,11 +520,29 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to You must select at least one technique..
+        /// </summary>
+        internal static string AddFormulaPage_Error_MustSelectAtLeastOneTechnique {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_MustSelectAtLeastOneTechnique", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
         /// </summary>
         internal static string AddFormulaPage_Error_NameIsEmptyOrWhitespace {
             get {
                 return ResourceManager.GetString("AddFormulaPage_Error_NameIsEmptyOrWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The technique may not refer to a valid technique step, meaning it isn&apos;t implemented..
+        /// </summary>
+        internal static string AddFormulaPage_Error_TechniqueNotReferToStep {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_TechniqueNotReferToStep", resourceCulture);
             }
         }
         
@@ -2208,6 +2244,15 @@ namespace SudokuStudio.Resources {
         internal static string ErrorInfo_GridMustBeSolvedOrNotBad {
             get {
                 return ResourceManager.GetString("ErrorInfo_GridMustBeSolvedOrNotBad", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Parse failed on formula expression..
+        /// </summary>
+        internal static string ErrorInfo_ParseFailedOnFormula {
+            get {
+                return ResourceManager.GetString("ErrorInfo_ParseFailedOnFormula", resourceCulture);
             }
         }
         
@@ -7544,6 +7589,15 @@ namespace SudokuStudio.Resources {
         internal static string UserDefinedFormulaePage_Intro {
             get {
                 return ResourceManager.GetString("UserDefinedFormulaePage_Intro", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to &lt;None&gt;.
+        /// </summary>
+        internal static string UserDefinedFormulaePage_NoDescription {
+            get {
+                return ResourceManager.GetString("UserDefinedFormulaePage_NoDescription", resourceCulture);
             }
         }
         

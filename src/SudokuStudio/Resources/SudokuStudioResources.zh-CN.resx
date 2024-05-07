@@ -2618,4 +2618,19 @@
   <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
     <value>在本地已经存在和这个名称重名的文件。</value>
   </data>
+  <data name="UserDefinedFormulaePage_NoDescription" xml:space="preserve">
+    <value>&lt;无&gt;</value>
+  </data>
+  <data name="AddFormulaPage_AppliedTechniques" xml:space="preserve">
+    <value>对计算规则起效的技巧</value>
+  </data>
+  <data name="AddFormulaPage_Error_MustSelectAtLeastOneTechnique" xml:space="preserve">
+    <value>你必须选择至少一个技巧。</value>
+  </data>
+  <data name="AddFormulaPage_Error_TechniqueNotReferToStep" xml:space="preserve">
+    <value>选中的技巧可能不支持，因为它可能压根没实现。</value>
+  </data>
+  <data name="AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps" xml:space="preserve">
+    <value>选择的技巧“{0}”和“{1}”不允许使用一个通用公式涵盖。</value>
+  </data>
 </root>

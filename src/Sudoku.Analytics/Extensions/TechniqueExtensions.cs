@@ -302,6 +302,21 @@ public static class TechniqueExtensions
 	public static TechniqueSet AsTechniqueSet(this Technique[] @this) => [.. @this];
 
 	/// <summary>
+	/// Try to get suitable <see cref="Type"/> which refers to a <see cref="Step"/>,
+	/// whose contained property <see cref="Step.Code"/> may create this technique.
+	/// </summary>
+	/// <param name="this">The current technique.</param>
+	/// <returns>
+	/// A valid <see cref="Type"/> instance, or <see langword="null"/> if it may not be referred by all <see cref="Step"/>
+	/// derived types.
+	/// </returns>
+	/// <seealso cref="Step"/>
+	/// <seealso cref="Step.Code"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Type? GetSuitableStepType(this Technique @this)
+		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.PrimaryStepType;
+
+	/// <summary>
 	/// Creates a <see cref="TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>

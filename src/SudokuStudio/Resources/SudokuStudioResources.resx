@@ -2621,4 +2621,22 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
     <value>The specified file name already exists in local path.</value>
   </data>
+  <data name="ErrorInfo_ParseFailedOnFormula" xml:space="preserve">
+    <value>Parse failed on formula expression.</value>
+  </data>
+  <data name="UserDefinedFormulaePage_NoDescription" xml:space="preserve">
+    <value>&lt;None&gt;</value>
+  </data>
+  <data name="AddFormulaPage_AppliedTechniques" xml:space="preserve">
+    <value>Applied techniques</value>
+  </data>
+  <data name="AddFormulaPage_Error_MustSelectAtLeastOneTechnique" xml:space="preserve">
+    <value>You must select at least one technique.</value>
+  </data>
+  <data name="AddFormulaPage_Error_TechniqueNotReferToStep" xml:space="preserve">
+    <value>The technique may not refer to a valid technique step, meaning it isn't implemented.</value>
+  </data>
+  <data name="AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps" xml:space="preserve">
+    <value>The chosen techniques '{0}' and '{1}' cannot be included as one formula, program not permitted.</value>
+  </data>
 </root>

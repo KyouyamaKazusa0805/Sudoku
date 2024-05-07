@@ -69,6 +69,42 @@ public sealed partial class AddFormulaPage : Page
 			return false;
 		}
 
+		// Technique selector.
+		if (TechniqueSelector.SelectedTechniques.Count == 0)
+		{
+			textBlock = Error_TechniqueSelector;
+			errorString = ResourceDictionary.Get("AddFormulaPage_Error_MustSelectAtLeastOneTechnique", App.CurrentCulture);
+			return false;
+		}
+		var appliedSteps = new HashSet<Type>();
+		var keys = new List<Technique>();
+		foreach (var (technique, correspondingStepType) in
+			from technique in TechniqueSelector.SelectedTechniques
+			select (technique, technique.GetSuitableStepType()))
+		{
+			if (correspondingStepType is null)
+			{
+				textBlock = Error_TechniqueSelector;
+				errorString = ResourceDictionary.Get("AddFormulaPage_Error_TechniqueNotReferToStep", App.CurrentCulture);
+				return false;
+			}
+			if (appliedSteps.Add(correspondingStepType))
+			{
+				keys.Add(technique);
+			}
+
+			if (appliedSteps.Count >= 2)
+			{
+				textBlock = Error_TechniqueSelector;
+				errorString = string.Format(
+					ResourceDictionary.Get("AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps", App.CurrentCulture),
+					keys[0].GetName(App.CurrentCulture),
+					keys[1].GetName(App.CurrentCulture)
+				);
+				return false;
+			}
+		}
+
 		// Expression.
 		// TODO: Check for expression.
 
@@ -79,19 +115,36 @@ public sealed partial class AddFormulaPage : Page
 
 	private void ApplyButton_Click(object sender, RoutedEventArgs e)
 	{
+		ManuallyClearErrorMessages();
+
 		if (!CheckValidity(out var textBlock, out var errorString))
 		{
-			ManuallyClearErrorMessages();
-
 			textBlock.Text = errorString;
 			return;
 		}
 
-		// TODO: Add source to local path.
+		var expression = new FormulaExpression
+		{
+			Name = NameBox.Text,
+			FileId = FileIdBox.Text,
+			Description = DescriptionBox.Text,
+			AppliedTechniques = TechniqueSelector.SelectedTechniques,
+			Expression = FormulaExpressionBox.Text
+		};
+		expression.SaveToLocal();
 
 		// Return the page back.
 		ReturnBack();
 	}
 
 	private void CancelButton_Click(object sender, RoutedEventArgs e) => ReturnBack();
+
+	private void TechniqueSelector_SelectedTechniquesChanged(TechniqueView sender, TechniqueViewSelectedTechniquesChangedEventArgs e)
+	{
+		var comma = ResourceDictionary.Get("_Token_Comma", App.CurrentCulture);
+		AppliedTechniqueDisplayer.Text = string.Join(
+			comma,
+			[.. from technique in e.TechniqueSet select technique.GetName(App.CurrentCulture)]
+		);
+	}
 }
