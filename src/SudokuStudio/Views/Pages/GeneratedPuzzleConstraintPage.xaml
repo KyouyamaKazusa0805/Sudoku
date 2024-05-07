@@ -18,7 +18,7 @@
 		</ScrollViewer>
 		<Border
 			Grid.Row="1" BorderThickness="0,2,0,0" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}"
-			BorderBrush="DimGray">
+			BorderBrush="{ThemeResource SolvingStepItemForeground}">
 			<Button Content="{m:R Key=GeneratedPuzzleConstraintPage_AddNewConstraint}" Margin="12">
 				<Button.Flyout>
 					<MenuFlyout x:Name="MenuFlyout" Opening="MenuFlyout_Opening">

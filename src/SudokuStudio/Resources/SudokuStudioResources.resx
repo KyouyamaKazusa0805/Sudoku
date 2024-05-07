@@ -2588,4 +2588,25 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="UserDefinedFormulaePage_AddFormula" xml:space="preserve">
     <value>Add new</value>
   </data>
+  <data name="MainWindow_AddFormulaPageTitle" xml:space="preserve">
+    <value>Add formula...</value>
+  </data>
+  <data name="AddFormulaPage_FormulaName" xml:space="preserve">
+    <value>Name</value>
+  </data>
+  <data name="AddFormulaPage_Apply" xml:space="preserve">
+    <value>Apply</value>
+  </data>
+  <data name="AddFormulaPage_Cancel" xml:space="preserve">
+    <value>Cancel</value>
+  </data>
+  <data name="AddFormulaPage_FormulaDescription" xml:space="preserve">
+    <value>Description</value>
+  </data>
+  <data name="AddFormulaPage_FormulaExpression" xml:space="preserve">
+    <value>Expression</value>
+  </data>
+  <data name="AddFormulaPage_FileId" xml:space="preserve">
+    <value>File name</value>
+  </data>
 </root>

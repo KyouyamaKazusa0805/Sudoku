@@ -6,6 +6,12 @@ namespace SudokuStudio.Storage;
 internal static class CommonPaths
 {
 	/// <summary>
+	/// Indicates the sudoku studio name.
+	/// </summary>
+	private const string SudokuStudioName = nameof(SudokuStudio);
+
+
+	/// <summary>
 	/// Indicates the user preference path.
 	/// </summary>
 	public static readonly string UserPreference;
@@ -25,14 +31,20 @@ internal static class CommonPaths
 	/// </summary>
 	public static readonly string Functions;
 
+	/// <summary>
+	/// Indicates formulae folder path.
+	/// </summary>
+	public static readonly string Formulae;
+
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
 	static CommonPaths()
 	{
 		var documents = Environment.GetFolderPath(SpecialFolder.MyDocuments);
-		UserPreference = $@"{documents}\{nameof(SudokuStudio)}\user-preference{FileExtensions.UserPreference}";
-		GeneratingHistory = $@"{documents}\{nameof(SudokuStudio)}\generating-history{FileExtensions.GeneratingHistory}";
-		Library = $@"{documents}\{nameof(SudokuStudio)}\libraries";
-		Functions = $@"{documents}\{nameof(SudokuStudio)}\functions";
+		UserPreference = $@"{documents}\{SudokuStudioName}\user-preference{FileExtensions.UserPreference}";
+		GeneratingHistory = $@"{documents}\{SudokuStudioName}\generating-history{FileExtensions.GeneratingHistory}";
+		Library = $@"{documents}\{SudokuStudioName}\libraries";
+		Functions = $@"{documents}\{SudokuStudioName}\functions";
+		Formulae = $@"{documents}\{SudokuStudioName}\formulae";
 	}
 }

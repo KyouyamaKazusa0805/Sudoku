@@ -11,7 +11,9 @@ public sealed partial class UserDefinedFormulaePage : Page
 	public UserDefinedFormulaePage() => InitializeComponent();
 
 
-	private void AddFormulaButton_Click(object sender, RoutedEventArgs e)
+	private void AddFormulaButton_Click(object sender, RoutedEventArgs e) => App.GetMainWindow(this).NavigateToPage<AddFormulaPage>();
+
+	private void Page_Loaded(object sender, RoutedEventArgs e)
 	{
 
 	}

@@ -6163,6 +6163,36 @@
               Looks up a localized string similar to Version.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Apply">
+            <summary>
+              Looks up a localized string similar to Apply.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Cancel">
+            <summary>
+              Looks up a localized string similar to Cancel.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FileId">
+            <summary>
+              Looks up a localized string similar to File name.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaDescription">
+            <summary>
+              Looks up a localized string similar to Description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaExpression">
+            <summary>
+              Looks up a localized string similar to Expression.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaName">
+            <summary>
+              Looks up a localized string similar to Name.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddToLibraryContent_Apply">
             <summary>
               Looks up a localized string similar to Apply.
@@ -8016,6 +8046,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AboutPageTitle">
             <summary>
               Looks up a localized string similar to About....
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AddFormulaPageTitle">
+            <summary>
+              Looks up a localized string similar to Add formula....
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AnalysisPreferenceItemsPageTitle">
@@ -10131,6 +10166,11 @@
             Provides with some paths that is used for the whole program.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Storage.CommonPaths.SudokuStudioName">
+            <summary>
+            Indicates the sudoku studio name.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Storage.CommonPaths.UserPreference">
             <summary>
             Indicates the user preference path.
@@ -10149,6 +10189,11 @@
         <member name="F:SudokuStudio.Storage.CommonPaths.Functions">
             <summary>
             Indicates functions folder path.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.CommonPaths.Formulae">
+            <summary>
+            Indicates formulae folder path.
             </summary>
         </member>
         <member name="M:SudokuStudio.Storage.CommonPaths.#cctor">
@@ -10190,14 +10235,14 @@
             </summary>
             <seealso cref="T:SudokuStudio.Storage.FileFormat"/>
         </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.PlainText">
+        <member name="F:SudokuStudio.Storage.FileExtensions.UserFormulae">
             <summary>
-            Indicates the plain text format.
+            Indicates the user-defined formula format(SSE - Sudoku Studio Expression format).
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.PortablePicture">
+        <member name="F:SudokuStudio.Storage.FileExtensions.UserFunction">
             <summary>
-            Indicates the portable picture format.
+            Indicates the user-defined function format (SSF - Sudoku Studio Function format).
             </summary>
         </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.GeneratingHistory">
@@ -10210,24 +10255,29 @@
             Indicates the sudoku grid library file format (SSL - Sudoku Studio Library format).
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.Text">
-            <summary>
-            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.CommaSeparated">
-            <summary>
-            Indicates the comma-separated text file format.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.UserPreference">
             <summary>
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.FileExtensions.UserFunction">
+        <member name="F:SudokuStudio.Storage.FileExtensions.Text">
             <summary>
-            Indicates the user-defined function format (SSF - Sudoku Studio Function format).
+            Indicates the sudoku text file format (SST - Sudoku Studio Text format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.PlainText">
+            <summary>
+            Indicates the plain text format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.PortablePicture">
+            <summary>
+            Indicates the portable picture format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.CommaSeparated">
+            <summary>
+            Indicates the comma-separated text file format.
             </summary>
         </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.PortableDocument">
@@ -14465,6 +14515,31 @@
             Indicates the interactive property that uses dependency property <see cref="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Pages.ContentDialogs.SaveToLibraryDialogContent.AvailableLibrariesProperty" />
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Formulae.AddFormulaPage">
+            <summary>
+            Represents a page that can add formulae.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.Formulae.AddFormulaPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.AddFormulaPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Formulae.BuiltInFormulaePage">
             <summary>

@@ -459,6 +459,60 @@ namespace SudokuStudio.Resources {
         /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
+        internal static string AddFormulaPage_Apply {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Apply", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Cancel.
+        /// </summary>
+        internal static string AddFormulaPage_Cancel {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Cancel", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to File name.
+        /// </summary>
+        internal static string AddFormulaPage_FileId {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_FileId", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Description.
+        /// </summary>
+        internal static string AddFormulaPage_FormulaDescription {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_FormulaDescription", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Expression.
+        /// </summary>
+        internal static string AddFormulaPage_FormulaExpression {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_FormulaExpression", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Name.
+        /// </summary>
+        internal static string AddFormulaPage_FormulaName {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_FormulaName", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Apply.
+        /// </summary>
         internal static string AddToLibraryContent_Apply {
             get {
                 return ResourceManager.GetString("AddToLibraryContent_Apply", resourceCulture);
@@ -3792,6 +3846,15 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_AboutPageTitle {
             get {
                 return ResourceManager.GetString("MainWindow_AboutPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add formula....
+        /// </summary>
+        internal static string MainWindow_AddFormulaPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_AddFormulaPageTitle", resourceCulture);
             }
         }
         

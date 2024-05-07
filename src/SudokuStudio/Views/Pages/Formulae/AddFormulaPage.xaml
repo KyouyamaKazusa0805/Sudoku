@@ -1,0 +1,54 @@
+<Page
+	x:Class="SudokuStudio.Views.Pages.Formulae.AddFormulaPage"
+	xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+	xmlns:m="using:SudokuStudio.Markup"
+	xmlns:pf="using:SudokuStudio.Views.Pages.Formulae"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pf:AddFormulaPage}">
+	<Page.Resources>
+		<Style x:Key="GridBorderStyle" TargetType="Border">
+			<Setter Property="BorderBrush" Value="DimGray" />
+			<Setter Property="BorderThickness" Value="0,.5" />
+			<Setter Property="Padding" Value="10" />
+		</Style>
+	</Page.Resources>
+
+	<Grid RowDefinitions="*,Auto" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+		<Border Grid.Row="0" VerticalAlignment="Top" Margin="0,10">
+			<Grid RowDefinitions="Auto,Auto,Auto,Auto" ColumnDefinitions="150,600">
+				<Border Grid.Row="0" Grid.Column="0" Style="{StaticResource GridBorderStyle}">
+					<TextBlock VerticalAlignment="Center" Text="{m:R Key=AddFormulaPage_FormulaName}" />
+				</Border>
+				<Border Grid.Row="0" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
+					<TextBox x:Name="NameBox" VerticalAlignment="Center" />
+				</Border>
+				<Border Grid.Row="1" Grid.Column="0" Style="{StaticResource GridBorderStyle}">
+					<TextBlock VerticalAlignment="Center" Text="{m:R Key=AddFormulaPage_FileId}" />
+				</Border>
+				<Border Grid.Row="1" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
+					<TextBox x:Name="FileIdBox" VerticalAlignment="Center" />
+				</Border>
+				<Border Grid.Row="2" Grid.Column="0" Style="{StaticResource GridBorderStyle}">
+					<TextBlock VerticalAlignment="Center" Text="{m:R Key=AddFormulaPage_FormulaDescription}" />
+				</Border>
+				<Border Grid.Row="2" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
+					<TextBox x:Name="DescriptionBox" VerticalAlignment="Center" />
+				</Border>
+				<Border Grid.Row="3" Grid.Column="0" Style="{StaticResource GridBorderStyle}">
+					<TextBlock VerticalAlignment="Center" Text="{m:R Key=AddFormulaPage_FormulaExpression}" />
+				</Border>
+				<Border Grid.Row="3" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
+					<TextBox x:Name="FormulaExpressionBox" VerticalAlignment="Center" />
+				</Border>
+			</Grid>
+		</Border>
+		<Border Grid.Row="1" BorderBrush="{ThemeResource SolvingStepItemForeground}" BorderThickness="0,2,0,0">
+			<StackPanel Margin="10" HorizontalAlignment="Stretch" Orientation="Horizontal" Spacing="10">
+				<Button x:Name="ApplyButton" Content="{m:R Key=AddFormulaPage_Apply}" />
+				<Button x:Name="CancelButton" Content="{m:R Key=AddFormulaPage_Cancel}" Click="CancelButton_Click" />
+			</StackPanel>
+		</Border>
+	</Grid>
+</Page>

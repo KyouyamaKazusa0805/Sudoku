@@ -6,7 +6,8 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:pf="using:SudokuStudio.Views.Pages.Formulae"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pf:UserDefinedFormulaePage}">
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pf:UserDefinedFormulaePage}"
+	Loaded="Page_Loaded">
 	<ScrollViewer>
 		<Grid RowDefinitions="*,Auto" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 			<StackPanel Grid.Row="0" x:Name="FormulaeDisplayer" Spacing="4">

@@ -32,6 +32,9 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
+	<ItemGroup>
+	  <None Remove="Views\Pages\Formulae\AddFormulaPage.xaml" />
+	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -117,6 +120,12 @@
 			<AutoGen>True</AutoGen>
 			<DependentUpon>SudokuStudioResources.resx</DependentUpon>
 		</Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Page Update="Views\Pages\Formulae\AddFormulaPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </Page>
 	</ItemGroup>
 
 	<ItemGroup>
