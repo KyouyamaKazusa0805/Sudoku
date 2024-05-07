@@ -10,7 +10,7 @@
 	<Page.Resources>
 		<Style x:Key="GridBorderStyle" TargetType="Border">
 			<Setter Property="BorderBrush" Value="DimGray" />
-			<Setter Property="BorderThickness" Value="0,.5" />
+			<Setter Property="BorderThickness" Value="0,.5,0,0" />
 			<Setter Property="Padding" Value="10" />
 		</Style>
 	</Page.Resources>
@@ -36,10 +36,10 @@
 				<Border Grid.Row="2" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
 					<TextBox x:Name="DescriptionBox" VerticalAlignment="Center" />
 				</Border>
-				<Border Grid.Row="3" Grid.Column="0" Style="{StaticResource GridBorderStyle}">
+				<Border Grid.Row="3" Grid.Column="0" Style="{StaticResource GridBorderStyle}" BorderThickness="0,0.5">
 					<TextBlock VerticalAlignment="Center" Text="{m:R Key=AddFormulaPage_FormulaExpression}" />
 				</Border>
-				<Border Grid.Row="3" Grid.Column="1" Style="{StaticResource GridBorderStyle}">
+				<Border Grid.Row="3" Grid.Column="1" Style="{StaticResource GridBorderStyle}" BorderThickness="0,0.5">
 					<TextBox x:Name="FormulaExpressionBox" VerticalAlignment="Center" />
 				</Border>
 			</Grid>
