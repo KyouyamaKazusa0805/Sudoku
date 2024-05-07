@@ -1736,7 +1736,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.StepSearcherInfo.TypeName">
             <summary>
-            Indicates the type name of the step searcher. This property can be used for creating instances via reflection using method <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
+            Indicates the type name of the step searcher. This property can be used for creating instances via reflection using getMetaProperties <see cref="M:System.Activator.CreateInstance(System.Type)"/>.
             </summary>
         </member>
         <member name="T:SudokuStudio.Configuration.StepSearcherOrderingPreferenceGroup">
@@ -7148,6 +7148,11 @@
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.FunctionPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page lists methods that will be used in formulae. You can also add new functions in this page..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_AddNewConstraint">
             <summary>
               Looks up a localized string similar to Add constraint.
@@ -8061,6 +8066,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_FunctionPageTitle">
+            <summary>
+              Looks up a localized string similar to Functions.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPage">
@@ -10026,36 +10036,6 @@
               Looks up a localized string similar to Should be pearl puzzle: .
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Boolean">
-            <summary>
-              Looks up a localized string similar to bool.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_CandidateMap">
-            <summary>
-              Looks up a localized string similar to Candidate list.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_CellMap">
-            <summary>
-              Looks up a localized string similar to Cell list.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Int32">
-            <summary>
-              Looks up a localized string similar to int.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_NullableBoolean">
-            <summary>
-              Looks up a localized string similar to bool?.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TypeName_Technique">
-            <summary>
-              Looks up a localized string similar to Technique.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">
             <summary>
               Looks up a localized string similar to Yes.
@@ -10151,6 +10131,11 @@
             Indicates puzzle-library folder path.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Storage.CommonPaths.Functions">
+            <summary>
+            Indicates functions folder path.
+            </summary>
+        </member>
         <member name="M:SudokuStudio.Storage.CommonPaths.#cctor">
             <static-constructor>
 		<summary>
@@ -10223,6 +10208,11 @@
         <member name="F:SudokuStudio.Storage.FileExtensions.UserPreference">
             <summary>
             Indicates the user preference file format (SSP - Sudoku Studio Preference format).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.UserFunction">
+            <summary>
+            Indicates the user-defined function format (SSF - Sudoku Studio Function format).
             </summary>
         </member>
         <member name="F:SudokuStudio.Storage.FileExtensions.PortableDocument">
@@ -14564,6 +14554,46 @@
             <param name="type">Indicates the type.</param>
             <returns>The name.</returns>
         </member>
+        <member name="T:SudokuStudio.Views.Pages.FunctionPage">
+            <summary>
+            Represents a function page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.FunctionPage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.FunctionPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.FunctionPage.PropertyNamePattern">
+            <remarks>
+            Pattern:<br/>
+            <code>_{2}(\\w+)_RawSyntaxText</code><br/>
+            Options:<br/>
+            <code>RegexOptions.Compiled</code><br/>
+            Explanation:<br/>
+            <code>
+            ○ Match the string "__".<br/>
+            ○ 1st capture group.<br/>
+                ○ Match a word character greedily at least once.<br/>
+            ○ Match the string "_RawSyntaxText".<br/>
+            </code>
+            </remarks>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.FunctionPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.FunctionPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.FunctionPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
         <member name="T:SudokuStudio.Views.Pages.GeneratedPuzzleConstraintPage">
             <summary>
             Represents generated puzzle constraint page.
@@ -16229,6 +16259,38 @@
             <returns>true if a possible match was found; false if no more matches are possible.</returns>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.TechniqueDotNamePatttern_2.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PropertyNamePattern_3">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the PropertyNamePattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory.Runner.TryFindNextPossibleStartingPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Search <paramref name="inputSpan"/> starting from base.runtextpos for the next location a match could possibly start.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if a possible match was found; false if no more matches are possible.</returns>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.PropertyNamePattern_3.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
             <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
             <param name="inputSpan">The text being scanned by the regular expression.</param>
             <returns>true if the regular expression matches at the current position; otherwise, false.</returns>

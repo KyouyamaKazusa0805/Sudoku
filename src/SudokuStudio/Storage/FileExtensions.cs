@@ -43,6 +43,11 @@ public static class FileExtensions
 	public const string UserPreference = ".ssp";
 
 	/// <summary>
+	/// Indicates the user-defined function format (SSF - Sudoku Studio Function format).
+	/// </summary>
+	public const string UserFunction = ".ssf";
+
+	/// <summary>
 	/// Indicates the portable document format.
 	/// </summary>
 	public const string PortableDocument = ".pdf";

@@ -43,7 +43,7 @@ public sealed partial class BuiltInFormulaePage : Page
 			FormulaeDisplayer.Children.Add(
 				new SettingsCard
 				{
-					HeaderIcon = new FontIcon { Glyph = "\uE943" },
+					HeaderIcon = new FontIcon { Glyph = "\uE734" },
 					Header = factor.GetName(App.CurrentCulture),
 					Description = new TextBlock
 					{
@@ -109,27 +109,7 @@ file static class TypeReflecting
 	/// <param name="type">Indicates the type.</param>
 	/// <returns>The name.</returns>
 	public static string GetFriendlyTypeName(Type type)
-	{
-		if (type == typeof(bool?))
-		{
-			return ResourceDictionary.Get("TypeName_NullableBoolean", App.CurrentCulture);
-		}
-		if (type == typeof(bool))
-		{
-			return ResourceDictionary.Get("TypeName_Boolean", App.CurrentCulture);
-		}
-		if (type == typeof(int))
-		{
-			return ResourceDictionary.Get("TypeName_Int32", App.CurrentCulture);
-		}
-		if (type == typeof(Technique))
-		{
-			return ResourceDictionary.Get("TypeName_Technique", App.CurrentCulture);
-		}
-		if (type == typeof(Technique[][]))
-		{
-			return $"{ResourceDictionary.Get("TypeName_Technique", App.CurrentCulture)}[][]";
-		}
-		return type.Name;
-	}
+		=> type == typeof(Technique[][])
+			? $"{TypeSystem.GetFriendlyTypeName(type, App.CurrentCulture)}[][]"
+			: TypeSystem.GetFriendlyTypeName(type, App.CurrentCulture);
 }

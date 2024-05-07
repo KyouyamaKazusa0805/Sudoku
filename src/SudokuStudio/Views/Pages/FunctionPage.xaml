@@ -7,10 +7,10 @@
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:FunctionPage}"
-	Loaded="Page_Loaded">
+	Loaded="Page_LoadedAsync">
 	<ScrollViewer Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
 		<StackPanel>
-			<TextBlock Text="{m:R Key=FunctionPage_Intro}" />
+			<TextBlock Text="{m:R Key=FunctionPage_Intro}" Margin="0,10" />
 			<StackPanel x:Name="FunctionsDisplayer" Spacing="4">
 				<StackPanel.ChildrenTransitions>
 					<AddDeleteThemeTransition />

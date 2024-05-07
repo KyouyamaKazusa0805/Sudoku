@@ -2567,24 +2567,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ParameterName" xml:space="preserve">
     <value>@{0}</value>
   </data>
-  <data name="TypeName_NullableBoolean" xml:space="preserve">
-    <value>bool?</value>
-  </data>
-  <data name="TypeName_Boolean" xml:space="preserve">
-    <value>bool</value>
-  </data>
-  <data name="TypeName_Int32" xml:space="preserve">
-    <value>int</value>
-  </data>
-  <data name="TypeName_Technique" xml:space="preserve">
-    <value>Technique</value>
-  </data>
-  <data name="TypeName_CellMap" xml:space="preserve">
-    <value>Cell list</value>
-  </data>
-  <data name="TypeName_CandidateMap" xml:space="preserve">
-    <value>Candidate list</value>
-  </data>
   <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
     <value>Raw name used in program</value>
   </data>

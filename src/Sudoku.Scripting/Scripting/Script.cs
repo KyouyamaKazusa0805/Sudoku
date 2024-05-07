@@ -9,12 +9,12 @@ public static class Script
 	/// <summary>
 	/// Indicates the default type name.
 	/// </summary>
-	private const string DefaultTypeName = "__Script";
+	internal const string DefaultTypeName = "__Script";
 
 	/// <summary>
 	/// Indicates the supported <see langword="using"/> directives.
 	/// </summary>
-	private const string UsingDirectives = """
+	internal const string UsingDirectives = """
 		using System;
 		using System.Collections;
 		using System.Collections.Generic;
@@ -35,7 +35,7 @@ public static class Script
 	/// <summary>
 	/// Indicates the invoking binding flags.
 	/// </summary>
-	private const BindingFlags DefaultBindingFlags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
+	internal const BindingFlags DefaultBindingFlags = BindingFlags.Static | BindingFlags.Public | BindingFlags.InvokeMethod;
 
 
 	/// <summary>

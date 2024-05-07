@@ -45,7 +45,7 @@ public abstract partial class XamlBindingAttribute<T>([PrimaryConstructorParamet
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="DefaultValue"/>
-	[Obsolete($"Use attribute type '{nameof(DefaultAttribute)}' to mark target callback method instead.", false)]
+	[Obsolete($"Use attribute type '{nameof(DefaultAttribute)}' to mark target callback getMetaProperties instead.", false)]
 	public string? DefaultValueGeneratingMemberName { get; init; }
 
 	/// <summary>
@@ -61,7 +61,7 @@ public abstract partial class XamlBindingAttribute<T>([PrimaryConstructorParamet
 	/// }
 	/// ]]></code>
 	/// </remarks>
-	[Obsolete($"Use attribute type '{nameof(CallbackAttribute)}' to mark target callback method instead.", false)]
+	[Obsolete($"Use attribute type '{nameof(CallbackAttribute)}' to mark target callback getMetaProperties instead.", false)]
 	public string? CallbackMethodName { get; init; }
 
 	/// <summary>

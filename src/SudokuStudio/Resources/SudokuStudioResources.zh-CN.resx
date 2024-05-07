@@ -2561,27 +2561,6 @@
   <data name="ParameterName" xml:space="preserve">
     <value>参数{0}</value>
   </data>
-  <data name="TypeName_NullableBoolean" xml:space="preserve">
-    <value>三值逻辑</value>
-  </data>
-  <data name="TypeName_Boolean" xml:space="preserve">
-    <value>逻辑</value>
-  </data>
-  <data name="TypeName_Int32" xml:space="preserve">
-    <value>整数</value>
-  </data>
-  <data name="TypeName_Technique" xml:space="preserve">
-    <value>技巧</value>
-  </data>
-  <data name="TypeName_CellMap" xml:space="preserve">
-    <value>单元格列表</value>
-  </data>
-  <data name="TypeName_CandidateMap" xml:space="preserve">
-    <value>候选数列表</value>
-  </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="TechniqueSelectionPage_ProgramRawName" xml:space="preserve">
     <value>技巧在程序之中使用的原始名称</value>
   </data>
@@ -2593,5 +2572,8 @@
   </data>
   <data name="FunctionPage_Intro" xml:space="preserve">
     <value>这个页面列举的是一些可能会在计算规则页面里使用到的额外计算函数。你也可以在这个页面里追加一些你想要定义的额外的函数。</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
   </data>
 </root>

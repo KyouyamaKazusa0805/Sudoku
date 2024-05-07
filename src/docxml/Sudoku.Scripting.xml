@@ -4,6 +4,164 @@
         <name>Sudoku.Scripting</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.MetaProgramming.ScriptDocument">
+            <summary>
+            Represents a document that is loaded from local path, describing a script.
+            </summary>
+            <param name="filePath">Indicates the document file path.</param>
+        </member>
+        <member name="M:Sudoku.MetaProgramming.ScriptDocument.#ctor(System.String)">
+            <summary>
+            Represents a document that is loaded from local path, describing a script.
+            </summary>
+            <param name="filePath">Indicates the document file path.</param>
+        </member>
+        <member name="F:Sudoku.MetaProgramming.ScriptDocument._isDisposed">
+            <summary>
+            Indicates whether the object has been already disposed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MetaProgramming.ScriptDocument.Diagnostics">
+            <summary>
+            Indicates the diagnostic results if the loading operation is failed.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MetaProgramming.ScriptDocument.Stream">
+            <summary>
+            Represents a <see cref="T:System.IO.MemoryStream"/> object that describes the method can be run in.
+            The value can be <see langword="null"/> if the method <see cref="M:Sudoku.MetaProgramming.ScriptDocument.LoadAsync(System.Threading.CancellationToken)"/> is not called.
+            </summary>
+            <seealso cref="M:Sudoku.MetaProgramming.ScriptDocument.LoadAsync(System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.MetaProgramming.ScriptDocument.Method">
+            <summary>
+            Indicates the loaded method information. This value can also be used by invocation.
+            </summary>
+        </member>
+        <member name="P:Sudoku.MetaProgramming.ScriptDocument.Compilation">
+            <summary>
+            Indicates the compilation instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MetaProgramming.ScriptDocument.DisposeAsync">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.MetaProgramming.ScriptDocument.LoadAsync(System.Threading.CancellationToken)">
+            <summary>
+            Loads a file from local path, and parse it into a valid method, making the property <see cref="P:Sudoku.MetaProgramming.ScriptDocument.Method"/>
+            not <see langword="null"/>.
+            </summary>
+            <param name="cancellationToken">The cancellation token that can cancel the loading operation.</param>
+            <returns>
+            A <see cref="T:System.Threading.Tasks.Task"/> instance that holds the asynchronous operation; the result value is a <see cref="T:System.Boolean"/> value
+            indicating whether the operation is succeeded.
+            </returns>
+            <seealso cref="P:Sudoku.MetaProgramming.ScriptDocument.Method"/>
+        </member>
+        <member name="T:Sudoku.MetaProgramming.TypeSystem">
+            <summary>
+            Represents methods relating to C# type system.
+            </summary>
+        </member>
+        <member name="M:Sudoku.MetaProgramming.TypeSystem.GetFriendlyTypeName(System.Type,System.Globalization.CultureInfo)">
+            <summary>
+            Try to get friendly type name of a type.
+            </summary>
+            <param name="type">The type.</param>
+            <param name="culture">Indicates the current culture.</param>
+            <returns>The friendly name of the type.</returns>
+        </member>
+        <member name="T:Sudoku.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Resources.ScriptingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Boolean">
+            <summary>
+              Looks up a localized string similar to Boolean (True &amp; False).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_CandidateMap">
+            <summary>
+              Looks up a localized string similar to Candidate list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_CellMap">
+            <summary>
+              Looks up a localized string similar to Cell list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Grid">
+            <summary>
+              Looks up a localized string similar to Sudoku grid.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Int32">
+            <summary>
+              Looks up a localized string similar to Integer.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Mask">
+            <summary>
+              Looks up a localized string similar to Digit list.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_NullableBoolean">
+            <summary>
+              Looks up a localized string similar to Three-valued boolean.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Other">
+            <summary>
+              Looks up a localized string similar to Other.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.ScriptingResources.Type_Technique">
+            <summary>
+              Looks up a localized string similar to Technique.
+            </summary>
+        </member>
         <member name="T:Sudoku.Scripting.AnalyticsCompilation">
             <summary>
             Represents a way to easily handle for analytics APIs in high-level reflection.

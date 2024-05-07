@@ -1,8 +1,12 @@
 global using System;
+global using System.Collections.Immutable;
+global using System.ComponentModel;
 global using System.Diagnostics.CodeAnalysis;
+global using System.Globalization;
 global using System.IO;
 global using System.Linq;
 global using System.Reflection;
+global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Threading;
 global using System.Threading.Tasks;
@@ -11,3 +15,5 @@ global using Microsoft.CodeAnalysis.CSharp;
 global using Sudoku.Analytics;
 global using Sudoku.Concepts;
 global using Sudoku.Measuring;
+global using Sudoku.Resources;
+global using Sudoku.Scripting;
