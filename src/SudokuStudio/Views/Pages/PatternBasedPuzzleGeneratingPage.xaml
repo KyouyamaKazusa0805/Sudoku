@@ -24,123 +24,125 @@
 			ActionButtonClick="Dialog_AreYouSureToReturnToEmpty_ActionButtonClick" />
 	</Page.Resources>
 
-	<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
-		<!--Description-->
-		<TextBlock Text="{m:R Key=PatternBasedPuzzleGeneratorPage_Description}" Margin="0,10,0,0" />
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" Spacing="4">
+			<!--Description-->
+			<TextBlock Text="{m:R Key=PatternBasedPuzzleGeneratorPage_Description}" Margin="0,10,0,0" />
 
-		<!--Common functions-->
-		<Border
-			CornerRadius="5" BorderThickness="2" Margin="0,10" BorderBrush="{ThemeResource MenuBarBorderBrush}"
-			HorizontalAlignment="Left">
-			<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
-				<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
-				<AppBarButton
-					x:Name="CopyPuzzleButton" Icon="Copy" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName}"
-					Click="CopyPuzzleButton_Click" />
-				<AppBarButton
-					x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
-					Click="CopyPictureButton_ClickAsync" />
-				<AppBarButton
-					x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}"
-					Click="PasteButton_ClickAsync" />
-				<AppBarSeparator />
-				<AppBarButton
-					x:Name="ClearCellButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearCells}"
-					Click="ClearCellButton_Click" />
-				<AppBarButton
-					x:Name="ClearDigitButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearDigits}"
-					Click="ClearDigitButton_Click" />
-				<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
-			</CommandBar>
-		</Border>
+			<!--Common functions-->
+			<Border
+				CornerRadius="5" BorderThickness="2" Margin="0,10" BorderBrush="{ThemeResource MenuBarBorderBrush}"
+				HorizontalAlignment="Left">
+				<CommandBar DefaultLabelPosition="Right" HorizontalAlignment="Left">
+					<AppBarButton x:Name="CopyButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyCommandName}" Click="CopyButton_Click" />
+					<AppBarButton
+						x:Name="CopyPuzzleButton" Icon="Copy" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_CopyPuzzleCommandName}"
+						Click="CopyPuzzleButton_Click" />
+					<AppBarButton
+						x:Name="CopyPictureButton" Icon="Copy" Label="{m:R Key=AnalyzePage_CopyPictureCommandName}"
+						Click="CopyPictureButton_ClickAsync" />
+					<AppBarButton
+						x:Name="PasteButton" Icon="Paste" Label="{m:R Key=AnalyzePage_PasteCommandName}"
+						Click="PasteButton_ClickAsync" />
+					<AppBarSeparator />
+					<AppBarButton
+						x:Name="ClearCellButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearCells}"
+						Click="ClearCellButton_Click" />
+					<AppBarButton
+						x:Name="ClearDigitButton" Icon="ClearSelection" Label="{m:R Key=PatternBasedPuzzleGeneratingPage_ClearDigits}"
+						Click="ClearDigitButton_Click" />
+					<AppBarButton x:Name="ClearButton" Icon="Clear" Label="{m:R Key=AnalyzePage_Clear}" Click="ClearButton_Click" />
+				</CommandBar>
+			</Border>
 
-		<Grid ColumnDefinitions="Auto,*">
-			<!--Grid-->
-			<c:SudokuPane
-				x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,20,40,0"
-				CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
-				TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
-				HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
-				DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False" ClearViewWhenUpdated="False"
-				HighlightBackgroundOpacity="{m:Decimal ParseString='0.8'}" DisplayCursors="False"
-				EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="False"
-				GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-				ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-				CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
-				GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
-				ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
-				CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
-				CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
-				CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
-				Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged" Clicked="SudokuPane_Clicked"
-				DigitInput="SudokuPane_DigitInput"
-			/>
+			<Grid ColumnDefinitions="Auto,*">
+				<!--Grid-->
+				<c:SudokuPane
+					x:Name="SudokuPane" x:FieldModifier="internal" Width="610" Height="610" Margin="0,20,40,0"
+					CornerRadius="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EnableCornerRadiusForSudokuPanes,Converter={StaticResource BooleanCornerRadiusConverter},Mode=OneWay}"
+					TransparentBackground="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.TransparentBackground,Mode=OneWay}"
+					HorizontalAlignment="Left" VerticalAlignment="Top" SelectedCell="-1" DisplayCandidates="False"
+					DisableFlyout="True" PreventConflictingInput="False" EnableUndoRedoStacking="False" ClearViewWhenUpdated="False"
+					HighlightBackgroundOpacity="{m:Decimal ParseString='0.8'}" DisplayCursors="False"
+					EnableRightTapRemoving="False" EnableDoubleTapFilling="False" EnableAnimationFeedback="False"
+					GivenFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					ModifiableFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					CoordinateLabelFont="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontName,Converter={StaticResource String2FontConverter},Mode=OneWay}"
+					GivenFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GivenFontScale,Mode=OneWay}"
+					ModifiableFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ModifiableFontScale,Mode=OneWay}"
+					CoordinateLabelFontScale="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelFontScale,Mode=OneWay}"
+					CoordinateLabelDisplayKind="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ConceptNotationBasedKind,Converter={StaticResource IntToCoordinateKindConverter},Mode=OneWay}"
+					CoordinateLabelDisplayMode="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CoordinateLabelDisplayMode,Converter={StaticResource IntToCoordinateModeConverter},Mode=OneWay}"
+					Loaded="SudokuPane_Loaded" ActualThemeChanged="SudokuPane_ActualThemeChanged" Clicked="SudokuPane_Clicked"
+					DigitInput="SudokuPane_DigitInput"
+				/>
 
-			<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
-				<ProgressRing
-					x:Name="AnalyzeProgress" Width="100" Height="100" Value="{x:Bind ProgressPercent,Mode=OneWay}"
-					IsIndeterminate="{x:Bind cvt:GeneratingConversion.GetProgressRingIsIntermediate_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
-					IsActive="{x:Bind cvt:GeneratingConversion.GetProgressRingIsActive_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
-					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
-				<TextBlock
-					x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center" Margin="0,12"
-					Text="{m:R Key=AnalyzePage_GeneratorIsProcessing}"
-					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
-				<TextBlock
-					x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
-					HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"
-					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
-				<Button
-					x:Name="CancelOperationButton" x:FieldModifier="internal" HorizontalAlignment="Center"
-					FontWeight="Bold" FontSize="16" Content="{m:R Key=AnalyzePage_CancelAnalyzing}"
-					Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
-					Click="CancelOperationButton_Click" />
-			</StackPanel>
-
-			<!--Tools-->
-			<StackPanel
-				Grid.Column="1" Orientation="Vertical" Spacing="10" Margin="0,20,0,0"
-				Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
-				<StackPanel.Resources>
-					<Style TargetType="TextBlock">
-						<Setter Property="FontSize" Value="16" />
-						<Setter Property="FontWeight" Value="Bold" />
-					</Style>
-				</StackPanel.Resources>
-
-				<TextBlock
-					x:Name="PatternCounter" FontWeight="Bold" FontSize="16"
-					Foreground="{x:Bind cvt:GeneratingConversion.GetPatternCounterBrush(SelectedCells),Mode=OneWay}" />
-				<Grid ColumnDefinitions="Auto,6,*">
+				<StackPanel Grid.Column="1" Orientation="Vertical" HorizontalAlignment="Center" VerticalAlignment="Center">
+					<ProgressRing
+						x:Name="AnalyzeProgress" Width="100" Height="100" Value="{x:Bind ProgressPercent,Mode=OneWay}"
+						IsIndeterminate="{x:Bind cvt:GeneratingConversion.GetProgressRingIsIntermediate_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+						IsActive="{x:Bind cvt:GeneratingConversion.GetProgressRingIsActive_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+						Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
 					<TextBlock
-						FontWeight="Bold" FontSize="16" VerticalAlignment="Center"
-						Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
-					<Border
-						CornerRadius="5" BorderThickness="2" Grid.Column="2" BorderBrush="{ThemeResource MenuBarBorderBrush}"
-						HorizontalAlignment="Left">
-						<SelectorBar x:Name="MissingDigitSelector" SelectionChanged="SelectorBar_SelectionChanged">
-							<SelectorBarItem Text="1" Tag="{m:Int32 Value=0}" />
-							<SelectorBarItem Text="2" Tag="{m:Int32 Value=1}" />
-							<SelectorBarItem Text="3" Tag="{m:Int32 Value=2}" />
-							<SelectorBarItem Text="4" Tag="{m:Int32 Value=3}" />
-							<SelectorBarItem Text="5" Tag="{m:Int32 Value=4}" />
-							<SelectorBarItem Text="6" Tag="{m:Int32 Value=5}" />
-							<SelectorBarItem Text="7" Tag="{m:Int32 Value=6}" />
-							<SelectorBarItem Text="8" Tag="{m:Int32 Value=7}" />
-							<SelectorBarItem Text="9" Tag="{m:Int32 Value=8}" />
-							<SelectorBarItem Text="{m:R Key=PatternBasedPuzzleGeneratingPage_NoMissing}" Tag="{m:Int32 Value=-1}" />
-						</SelectorBar>
-					</Border>
-				</Grid>
-				<Button
-					x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
-					Click="GeneratingButton_ClickAsync" />
-				<Button
-					x:Name="GoToAnalyzePageButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_GoToAnalyzePage}"
-					IsEnabled="{x:Bind cvt:GeneratingConversion.GetIsEnabledForGoToAnalyzePage(SudokuPane.Puzzle),Mode=OneWay}"
-					Click="GoToAnalyzePageButton_Click" />
-				<TextBlock x:Name="RatingDisplayer" FontWeight="Bold" FontSize="16" />
-			</StackPanel>
-		</Grid>
-	</StackPanel>
+						x:Name="AnalyzeProgressLabel" x:FieldModifier="internal" HorizontalAlignment="Center" Margin="0,12"
+						Text="{m:R Key=AnalyzePage_GeneratorIsProcessing}"
+						Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
+					<TextBlock
+						x:Name="AnalyzeStepSearcherNameLabel" x:FieldModifier="internal"
+						HorizontalAlignment="Center" FontWeight="Bold" FontSize="24"
+						Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}" />
+					<Button
+						x:Name="CancelOperationButton" x:FieldModifier="internal" HorizontalAlignment="Center"
+						FontWeight="Bold" FontSize="16" Content="{m:R Key=AnalyzePage_CancelAnalyzing}"
+						Visibility="{x:Bind cvt:GeneratingConversion.GetProgressRingVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}"
+						Click="CancelOperationButton_Click" />
+				</StackPanel>
+
+				<!--Tools-->
+				<StackPanel
+					Grid.Column="1" Orientation="Vertical" Spacing="10" Margin="0,20,0,0"
+					Visibility="{x:Bind cvt:GeneratingConversion.GetAnalyzeTabsVisibility_GeneratingPage(IsGeneratorLaunched),Mode=OneWay}">
+					<StackPanel.Resources>
+						<Style TargetType="TextBlock">
+							<Setter Property="FontSize" Value="16" />
+							<Setter Property="FontWeight" Value="Bold" />
+						</Style>
+					</StackPanel.Resources>
+
+					<TextBlock
+						x:Name="PatternCounter" FontWeight="Bold" FontSize="16"
+						Foreground="{x:Bind cvt:GeneratingConversion.GetPatternCounterBrush(SelectedCells),Mode=OneWay}" />
+					<Grid ColumnDefinitions="Auto,6,*">
+						<TextBlock
+							FontWeight="Bold" FontSize="16" VerticalAlignment="Center"
+							Text="{m:R Key=PatternBasedPuzzleGeneratingPage_MissingDigit}" />
+						<Border
+							CornerRadius="5" BorderThickness="2" Grid.Column="2" BorderBrush="{ThemeResource MenuBarBorderBrush}"
+							HorizontalAlignment="Left">
+							<SelectorBar x:Name="MissingDigitSelector" SelectionChanged="SelectorBar_SelectionChanged">
+								<SelectorBarItem Text="1" Tag="{m:Int32 Value=0}" />
+								<SelectorBarItem Text="2" Tag="{m:Int32 Value=1}" />
+								<SelectorBarItem Text="3" Tag="{m:Int32 Value=2}" />
+								<SelectorBarItem Text="4" Tag="{m:Int32 Value=3}" />
+								<SelectorBarItem Text="5" Tag="{m:Int32 Value=4}" />
+								<SelectorBarItem Text="6" Tag="{m:Int32 Value=5}" />
+								<SelectorBarItem Text="7" Tag="{m:Int32 Value=6}" />
+								<SelectorBarItem Text="8" Tag="{m:Int32 Value=7}" />
+								<SelectorBarItem Text="9" Tag="{m:Int32 Value=8}" />
+								<SelectorBarItem Text="{m:R Key=PatternBasedPuzzleGeneratingPage_NoMissing}" Tag="{m:Int32 Value=-1}" />
+							</SelectorBar>
+						</Border>
+					</Grid>
+					<Button
+						x:Name="GeneratingButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_Generate}"
+						Click="GeneratingButton_ClickAsync" />
+					<Button
+						x:Name="GoToAnalyzePageButton" Content="{m:R Key=PatternBasedPuzzleGeneratingPage_GoToAnalyzePage}"
+						IsEnabled="{x:Bind cvt:GeneratingConversion.GetIsEnabledForGoToAnalyzePage(SudokuPane.Puzzle),Mode=OneWay}"
+						Click="GoToAnalyzePageButton_Click" />
+					<TextBlock x:Name="RatingDisplayer" FontWeight="Bold" FontSize="16" />
+				</StackPanel>
+			</Grid>
+		</StackPanel>
+	</ScrollViewer>
 </Page>

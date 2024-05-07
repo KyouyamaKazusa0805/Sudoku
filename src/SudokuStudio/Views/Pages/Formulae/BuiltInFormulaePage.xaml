@@ -4,12 +4,12 @@
 	xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
 	xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-	xmlns:p="using:SudokuStudio.Views.Pages.Formulae"
+	xmlns:pf="using:SudokuStudio.Views.Pages.Formulae"
 	xmlns:w="using:CommunityToolkit.WinUI.Controls"
-	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:BuiltInFormulaePage}"
+	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=pf:BuiltInFormulaePage}"
 	Loaded="Page_LoadedAsync">
-	<ScrollViewer Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
-		<StackPanel x:Name="FormulaeDisplayer" Spacing="4">
+	<ScrollViewer>
+		<StackPanel Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}" x:Name="FormulaeDisplayer" Spacing="4">
 			<StackPanel.ChildrenTransitions>
 				<AddDeleteThemeTransition />
 			</StackPanel.ChildrenTransitions>

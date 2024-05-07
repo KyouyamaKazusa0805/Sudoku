@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Functions;
 /// <summary>
 /// Represents a function that calculates for complex technique rules.
 /// </summary>
-public sealed partial class ComplexTechnique : IFunctionProvider
+public sealed partial class ComplexTechniqueUsages : IFunctionProvider
 {
 	/// <summary>
 	/// Gets the complexity difficulty for complex single techniques usages.
