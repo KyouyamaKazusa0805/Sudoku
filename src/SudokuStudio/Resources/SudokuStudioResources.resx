@@ -2579,4 +2579,13 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="FunctionPage_Intro" xml:space="preserve">
     <value>This page lists methods that will be used in formulae. You can also add new functions in this page.</value>
   </data>
+  <data name="MainWindow_UserDefinedFormulaePageTitle" xml:space="preserve">
+    <value>User-defined Formulae</value>
+  </data>
+  <data name="UserDefinedFormulaePage_Intro" xml:space="preserve">
+    <value>This page lists your own defining rules on calculating difficulty ratings on techniques.</value>
+  </data>
+  <data name="UserDefinedFormulaePage_AddFormula" xml:space="preserve">
+    <value>Add new</value>
+  </data>
 </root>

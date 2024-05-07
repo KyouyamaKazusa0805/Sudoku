@@ -4183,6 +4183,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to User-defined Formulae.
+        /// </summary>
+        internal static string MainWindow_UserDefinedFormulaePageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_UserDefinedFormulaePageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -7418,6 +7427,24 @@ namespace SudokuStudio.Resources {
         internal static string TechniqueSelector_ShouleBePearlPuzzle {
             get {
                 return ResourceManager.GetString("TechniqueSelector_ShouleBePearlPuzzle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Add new.
+        /// </summary>
+        internal static string UserDefinedFormulaePage_AddFormula {
+            get {
+                return ResourceManager.GetString("UserDefinedFormulaePage_AddFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists your own defining rules on calculating difficulty ratings on techniques..
+        /// </summary>
+        internal static string UserDefinedFormulaePage_Intro {
+            get {
+                return ResourceManager.GetString("UserDefinedFormulaePage_Intro", resourceCulture);
             }
         }
         

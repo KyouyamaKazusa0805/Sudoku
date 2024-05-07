@@ -270,6 +270,12 @@
 		<Page Update="Views\Pages\RatingFormulaPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
+		<Page Update="Views\Pages\Formulae\BuiltInFormulaePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
+		<Page Update="Views\Pages\Formulae\UserDefinedFormulaePage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 	</ItemGroup>
 
 	<!--
@@ -279,11 +285,6 @@
 	-->
 	<ItemGroup Condition="'$(DisableMsixProjectCapabilityAddedByProject)'!='true' and '$(EnableMsixTooling)'=='true'">
 		<ProjectCapability Include="Msix" />
-	</ItemGroup>
-	<ItemGroup>
-		<Page Update="Views\Pages\Formulae\BuiltInFormulaePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 	</ItemGroup>
 
 	<!--

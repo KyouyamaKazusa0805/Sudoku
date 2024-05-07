@@ -2576,4 +2576,13 @@
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
   </data>
+  <data name="MainWindow_UserDefinedFormulaePageTitle" xml:space="preserve">
+    <value>自定义计算规则</value>
+  </data>
+  <data name="UserDefinedFormulaePage_Intro" xml:space="preserve">
+    <value>这个页面展示的是一些你自定义的计算技巧难度的额外规则。</value>
+  </data>
+  <data name="UserDefinedFormulaePage_AddFormula" xml:space="preserve">
+    <value>添加计算规则</value>
+  </data>
 </root>

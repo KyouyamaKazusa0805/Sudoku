@@ -15,9 +15,7 @@ public sealed partial class RatingFormulaPage : Page
 		=> App.GetMainWindow(this).NavigateToPage<BuiltInFormulaePage>();
 
 	private void GoToCustomizedFormulaeButton_Click(object sender, RoutedEventArgs e)
-	{
-
-	}
+		=> App.GetMainWindow(this).NavigateToPage<UserDefinedFormulaePage>();
 
 	private void GoToFunctionsDefinedButton_Click(object sender, RoutedEventArgs e)
 		=> App.GetMainWindow(this).NavigateToPage<FunctionPage>();

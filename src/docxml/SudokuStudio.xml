@@ -8233,6 +8233,11 @@
               Looks up a localized string similar to Select Techniques....
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_UserDefinedFormulaePageTitle">
+            <summary>
+              Looks up a localized string similar to User-defined Formulae.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.No">
             <summary>
               Looks up a localized string similar to No.
@@ -10034,6 +10039,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueSelector_ShouleBePearlPuzzle">
             <summary>
               Looks up a localized string similar to Should be pearl puzzle: .
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_AddFormula">
+            <summary>
+              Looks up a localized string similar to Add new.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_Intro">
+            <summary>
+              Looks up a localized string similar to This page lists your own defining rules on calculating difficulty ratings on techniques..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">
@@ -14590,6 +14605,31 @@
             </summary>
         </member>
         <member name="M:SudokuStudio.Views.Pages.Formulae.FunctionPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage">
+            <summary>
+            Represents a user-defined formulae page.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage.#ctor">
+            <summary>
+            Initializes a <see cref="T:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Formulae.UserDefinedFormulaePage.GetBindingConnector(System.Int32,System.Object)">
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
