@@ -6214,81 +6214,6 @@
               Looks up a localized string similar to Version.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_AppliedTechniques">
-            <summary>
-              Looks up a localized string similar to Applied techniques.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Apply">
-            <summary>
-              Looks up a localized string similar to Check and apply.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Cancel">
-            <summary>
-              Looks up a localized string similar to Cancel.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps">
-            <summary>
-              Looks up a localized string similar to The chosen techniques cannot be included as one formula, program not permitted..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace">
-            <summary>
-              Looks up a localized string similar to The description cannot be empty or only contains whitespaces..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace">
-            <summary>
-              Looks up a localized string similar to The expression cannot be empty or only contains whitespaces..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_FileAlreadyExists">
-            <summary>
-              Looks up a localized string similar to The specified file name already exists in local path..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_FileIdContainsInvalidCharacters">
-            <summary>
-              Looks up a localized string similar to The value contains invalid characters as a character used in a file name..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_MustSelectAtLeastOneTechnique">
-            <summary>
-              Looks up a localized string similar to You must select at least one technique..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_NameIsEmptyOrWhitespace">
-            <summary>
-              Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_TechniqueNotReferToStep">
-            <summary>
-              Looks up a localized string similar to The technique may not refer to a valid technique step, meaning it isn&apos;t implemented..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FileId">
-            <summary>
-              Looks up a localized string similar to File name.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaDescription">
-            <summary>
-              Looks up a localized string similar to Description.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaExpression">
-            <summary>
-              Looks up a localized string similar to Expression.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_FormulaName">
-            <summary>
-              Looks up a localized string similar to Name.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddToLibraryContent_Apply">
             <summary>
               Looks up a localized string similar to Apply.
@@ -7279,11 +7204,6 @@
               Looks up a localized string similar to Select a font.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.FunctionPage_Intro">
-            <summary>
-              Looks up a localized string similar to This page lists methods that will be used in formulae. You can also add new functions in this page..
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.GeneratedPuzzleConstraintPage_AddNewConstraint">
             <summary>
               Looks up a localized string similar to Add constraint.
@@ -8149,11 +8069,6 @@
               Looks up a localized string similar to About....
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AddFormulaPageTitle">
-            <summary>
-              Looks up a localized string similar to Add formula....
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_AnalysisPreferenceItemsPageTitle">
             <summary>
               Looks up a localized string similar to Analysis Options.
@@ -8179,11 +8094,6 @@
               Looks up a localized string similar to Program Basic Options.
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_BuiltInFormulaePageTitle">
-            <summary>
-              Looks up a localized string similar to Built-in formulae.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_DrawingPageTitle">
             <summary>
               Looks up a localized string similar to Customized Drawing.
@@ -8202,11 +8112,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_ExtraFunctions">
             <summary>
               Looks up a localized string similar to Extra Functions.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_FunctionPageTitle">
-            <summary>
-              Looks up a localized string similar to Functions.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_GeneratedPuzzleConstraintPage">
@@ -8262,16 +8167,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_Menu">
             <summary>
               Looks up a localized string similar to Menu.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_OcrPageItem">
-            <summary>
-              Looks up a localized string similar to OCR.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_OcrPageTitle">
-            <summary>
-              Looks up a localized string similar to Sudoku Puzzle Recognition.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PatternBasedPuzzleGeneratingPageTitle">
@@ -8369,11 +8264,6 @@
               Looks up a localized string similar to Select Techniques....
             </summary>
         </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_UserDefinedFormulaePageTitle">
-            <summary>
-              Looks up a localized string similar to User-defined Formulae.
-            </summary>
-        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.No">
             <summary>
               Looks up a localized string similar to No.
@@ -8392,31 +8282,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.NoTags">
             <summary>
               Looks up a localized string similar to &lt;No Tags&gt;.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_DescriptionPart1">
-            <summary>
-              Looks up a localized string similar to This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_DescriptionPart2">
-            <summary>
-              Looks up a localized string similar to This function is experimental one. Please DO NOT rely on it..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_LanguageIsNotSupportedForNow">
-            <summary>
-              Looks up a localized string similar to Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_LanguageIsNotSupportedForNowTitle">
-            <summary>
-              Looks up a localized string similar to OCR Engine Error.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OcrPage_ReadPicture">
-            <summary>
-              Looks up a localized string similar to Read picture.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.ParameterName">
@@ -10175,21 +10040,6 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueSelector_ShouleBePearlPuzzle">
             <summary>
               Looks up a localized string similar to Should be pearl puzzle: .
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_AddFormula">
-            <summary>
-              Looks up a localized string similar to Add new.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_Intro">
-            <summary>
-              Looks up a localized string similar to This page lists your own defining rules on calculating difficulty ratings on techniques..
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Resources.SudokuStudioResources.UserDefinedFormulaePage_NoDescription">
-            <summary>
-              Looks up a localized string similar to &lt;None&gt;.
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">

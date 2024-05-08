@@ -457,141 +457,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Applied techniques.
-        /// </summary>
-        internal static string AddFormulaPage_AppliedTechniques {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_AppliedTechniques", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Check and apply.
-        /// </summary>
-        internal static string AddFormulaPage_Apply {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Apply", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Cancel.
-        /// </summary>
-        internal static string AddFormulaPage_Cancel {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Cancel", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The chosen techniques cannot be included as one formula, program not permitted..
-        /// </summary>
-        internal static string AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The description cannot be empty or only contains whitespaces..
-        /// </summary>
-        internal static string AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The expression cannot be empty or only contains whitespaces..
-        /// </summary>
-        internal static string AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The specified file name already exists in local path..
-        /// </summary>
-        internal static string AddFormulaPage_Error_FileAlreadyExists {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_FileAlreadyExists", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The value contains invalid characters as a character used in a file name..
-        /// </summary>
-        internal static string AddFormulaPage_Error_FileIdContainsInvalidCharacters {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_FileIdContainsInvalidCharacters", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to You must select at least one technique..
-        /// </summary>
-        internal static string AddFormulaPage_Error_MustSelectAtLeastOneTechnique {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_MustSelectAtLeastOneTechnique", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The name cannot be empty or only contain whitespaces..
-        /// </summary>
-        internal static string AddFormulaPage_Error_NameIsEmptyOrWhitespace {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_NameIsEmptyOrWhitespace", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to The technique may not refer to a valid technique step, meaning it isn&apos;t implemented..
-        /// </summary>
-        internal static string AddFormulaPage_Error_TechniqueNotReferToStep {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_Error_TechniqueNotReferToStep", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to File name.
-        /// </summary>
-        internal static string AddFormulaPage_FileId {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_FileId", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Description.
-        /// </summary>
-        internal static string AddFormulaPage_FormulaDescription {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_FormulaDescription", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Expression.
-        /// </summary>
-        internal static string AddFormulaPage_FormulaExpression {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_FormulaExpression", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Name.
-        /// </summary>
-        internal static string AddFormulaPage_FormulaName {
-            get {
-                return ResourceManager.GetString("AddFormulaPage_FormulaName", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Apply.
         /// </summary>
         internal static string AddToLibraryContent_Apply {
@@ -2374,15 +2239,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to This page lists methods that will be used in formulae. You can also add new functions in this page..
-        /// </summary>
-        internal static string FunctionPage_Intro {
-            get {
-                return ResourceManager.GetString("FunctionPage_Intro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Add constraint.
         /// </summary>
         internal static string GeneratedPuzzleConstraintPage_AddNewConstraint {
@@ -3940,15 +3796,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Add formula....
-        /// </summary>
-        internal static string MainWindow_AddFormulaPageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_AddFormulaPageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Analysis Options.
         /// </summary>
         internal static string MainWindow_AnalysisPreferenceItemsPageTitle {
@@ -3994,15 +3841,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to Built-in formulae.
-        /// </summary>
-        internal static string MainWindow_BuiltInFormulaePageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_BuiltInFormulaePageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to Customized Drawing.
         /// </summary>
         internal static string MainWindow_DrawingPageTitle {
@@ -4035,15 +3873,6 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_ExtraFunctions {
             get {
                 return ResourceManager.GetString("MainWindow_ExtraFunctions", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Functions.
-        /// </summary>
-        internal static string MainWindow_FunctionPageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_FunctionPageTitle", resourceCulture);
             }
         }
         
@@ -4143,24 +3972,6 @@ namespace SudokuStudio.Resources {
         internal static string MainWindow_Menu {
             get {
                 return ResourceManager.GetString("MainWindow_Menu", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OCR.
-        /// </summary>
-        internal static string MainWindow_OcrPageItem {
-            get {
-                return ResourceManager.GetString("MainWindow_OcrPageItem", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sudoku Puzzle Recognition.
-        /// </summary>
-        internal static string MainWindow_OcrPageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_OcrPageTitle", resourceCulture);
             }
         }
         
@@ -4336,15 +4147,6 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to User-defined Formulae.
-        /// </summary>
-        internal static string MainWindow_UserDefinedFormulaePageTitle {
-            get {
-                return ResourceManager.GetString("MainWindow_UserDefinedFormulaePageTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
         ///   Looks up a localized string similar to No.
         /// </summary>
         internal static string No {
@@ -4377,51 +4179,6 @@ namespace SudokuStudio.Resources {
         internal static string NoTags {
             get {
                 return ResourceManager.GetString("NoTags", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program..
-        /// </summary>
-        internal static string OcrPage_DescriptionPart1 {
-            get {
-                return ResourceManager.GetString("OcrPage_DescriptionPart1", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This function is experimental one. Please DO NOT rely on it..
-        /// </summary>
-        internal static string OcrPage_DescriptionPart2 {
-            get {
-                return ResourceManager.GetString("OcrPage_DescriptionPart2", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs..
-        /// </summary>
-        internal static string OcrPage_LanguageIsNotSupportedForNow {
-            get {
-                return ResourceManager.GetString("OcrPage_LanguageIsNotSupportedForNow", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to OCR Engine Error.
-        /// </summary>
-        internal static string OcrPage_LanguageIsNotSupportedForNowTitle {
-            get {
-                return ResourceManager.GetString("OcrPage_LanguageIsNotSupportedForNowTitle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Read picture.
-        /// </summary>
-        internal static string OcrPage_ReadPicture {
-            get {
-                return ResourceManager.GetString("OcrPage_ReadPicture", resourceCulture);
             }
         }
         
@@ -7580,33 +7337,6 @@ namespace SudokuStudio.Resources {
         internal static string TechniqueSelector_ShouleBePearlPuzzle {
             get {
                 return ResourceManager.GetString("TechniqueSelector_ShouleBePearlPuzzle", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to Add new.
-        /// </summary>
-        internal static string UserDefinedFormulaePage_AddFormula {
-            get {
-                return ResourceManager.GetString("UserDefinedFormulaePage_AddFormula", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to This page lists your own defining rules on calculating difficulty ratings on techniques..
-        /// </summary>
-        internal static string UserDefinedFormulaePage_Intro {
-            get {
-                return ResourceManager.GetString("UserDefinedFormulaePage_Intro", resourceCulture);
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized string similar to &lt;None&gt;.
-        /// </summary>
-        internal static string UserDefinedFormulaePage_NoDescription {
-            get {
-                return ResourceManager.GetString("UserDefinedFormulaePage_NoDescription", resourceCulture);
             }
         }
         

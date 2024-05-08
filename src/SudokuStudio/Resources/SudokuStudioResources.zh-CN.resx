@@ -1110,12 +1110,6 @@
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>菜单</value>
   </data>
-  <data name="MainWindow_OcrPageItem" xml:space="preserve">
-    <value>图片识别</value>
-  </data>
-  <data name="MainWindow_OcrPageTitle" xml:space="preserve">
-    <value>数独题目图片识别</value>
-  </data>
   <data name="MainWindow_ProgramManual" xml:space="preserve">
     <value>程序手册</value>
   </data>
@@ -1160,21 +1154,6 @@
   </data>
   <data name="NoTags" xml:space="preserve">
     <value>&lt;无标签&gt;</value>
-  </data>
-  <data name="OcrPage_DescriptionPart1" xml:space="preserve">
-    <value>该页面提供 OCR 技术，识别一个图片，并将其解析为该程序可用的数独题目。</value>
-  </data>
-  <data name="OcrPage_DescriptionPart2" xml:space="preserve">
-    <value>该功能为实验性功能，会存在诸多 bug。请勿依赖于此功能。</value>
-  </data>
-  <data name="OcrPage_LanguageIsNotSupportedForNow" xml:space="preserve">
-    <value>抱歉，你所使用的设备尚不支持一些 OCR 所必需的组件（如语言包等），因此你无法使用此功能。</value>
-  </data>
-  <data name="OcrPage_LanguageIsNotSupportedForNowTitle" xml:space="preserve">
-    <value>OCR 引擎错误</value>
-  </data>
-  <data name="OcrPage_ReadPicture" xml:space="preserve">
-    <value>读取图片</value>
   </data>
   <data name="SettingsPage_1033" xml:space="preserve">
     <value>英语（English）</value>
@@ -2555,9 +2534,6 @@
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
     <value>自定义难度计算规则</value>
   </data>
-  <data name="MainWindow_BuiltInFormulaePageTitle" xml:space="preserve">
-    <value>自带的计算规则</value>
-  </data>
   <data name="ParameterName" xml:space="preserve">
     <value>参数{0}</value>
   </data>
@@ -2567,73 +2543,7 @@
   <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
     <value>这个文本会用于自定义难度计算规则的页面之中。</value>
   </data>
-  <data name="MainWindow_FunctionPageTitle" xml:space="preserve">
-    <value>函数</value>
-  </data>
-  <data name="FunctionPage_Intro" xml:space="preserve">
-    <value>这个页面列举的是一些可能会在计算规则页面里使用到的额外计算函数。你也可以在这个页面里追加一些你想要定义的额外的函数。</value>
-  </data>
-  <data name="MainWindow_UserDefinedFormulaePageTitle" xml:space="preserve">
-    <value>自定义计算规则</value>
-  </data>
-  <data name="UserDefinedFormulaePage_Intro" xml:space="preserve">
-    <value>这个页面展示的是一些你自定义的计算技巧难度的额外规则。</value>
-  </data>
-  <data name="UserDefinedFormulaePage_AddFormula" xml:space="preserve">
-    <value>添加计算规则</value>
-  </data>
-  <data name="MainWindow_AddFormulaPageTitle" xml:space="preserve">
-    <value>添加计算规则……</value>
-  </data>
-  <data name="AddFormulaPage_FormulaName" xml:space="preserve">
-    <value>名称</value>
-  </data>
-  <data name="AddFormulaPage_Apply" xml:space="preserve">
-    <value>检查和应用</value>
-  </data>
-  <data name="AddFormulaPage_Cancel" xml:space="preserve">
-    <value>取消</value>
-  </data>
-  <data name="AddFormulaPage_FormulaDescription" xml:space="preserve">
-    <value>描述</value>
-  </data>
-  <data name="AddFormulaPage_FormulaExpression" xml:space="preserve">
-    <value>表达式</value>
-  </data>
-  <data name="AddFormulaPage_FileId" xml:space="preserve">
-    <value>文件名称</value>
-  </data>
-  <data name="AddFormulaPage_Error_FileIdContainsInvalidCharacters" xml:space="preserve">
-    <value>这个名称包含不能作为文件名的特殊字符。</value>
-  </data>
-  <data name="AddFormulaPage_Error_NameIsEmptyOrWhitespace" xml:space="preserve">
-    <value>名称不能为空，或者只有空白字符。</value>
-  </data>
-  <data name="AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace" xml:space="preserve">
-    <value>描述文字不能为空，或者只有空白字符。</value>
-  </data>
-  <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
-    <value>在本地已经存在和这个名称重名的文件。</value>
-  </data>
-  <data name="UserDefinedFormulaePage_NoDescription" xml:space="preserve">
-    <value>&lt;无&gt;</value>
-  </data>
-  <data name="AddFormulaPage_AppliedTechniques" xml:space="preserve">
-    <value>对计算规则起效的技巧</value>
-  </data>
-  <data name="AddFormulaPage_Error_MustSelectAtLeastOneTechnique" xml:space="preserve">
-    <value>你必须选择至少一个技巧。</value>
-  </data>
-  <data name="AddFormulaPage_Error_TechniqueNotReferToStep" xml:space="preserve">
-    <value>选中的技巧可能不支持，因为它可能压根没实现。</value>
-  </data>
-  <data name="AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps" xml:space="preserve">
-    <value>选择的技巧不允许使用一个通用公式涵盖。</value>
-  </data>
   <data name="AnalyzePage_DrawingButton" xml:space="preserve">
     <value>绘图模式</value>
-  </data>
-  <data name="AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace" xml:space="preserve">
-    <value>表达式不能为空，或者只有空白字符。</value>
   </data>
 </root>

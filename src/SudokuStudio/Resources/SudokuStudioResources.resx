@@ -1110,12 +1110,6 @@
   <data name="MainWindow_Menu" xml:space="preserve">
     <value>Menu</value>
   </data>
-  <data name="MainWindow_OcrPageItem" xml:space="preserve">
-    <value>OCR</value>
-  </data>
-  <data name="MainWindow_OcrPageTitle" xml:space="preserve">
-    <value>Sudoku Puzzle Recognition</value>
-  </data>
   <data name="MainWindow_ProgramManual" xml:space="preserve">
     <value>Program Manual</value>
   </data>
@@ -1160,21 +1154,6 @@
   </data>
   <data name="NoTags" xml:space="preserve">
     <value>&lt;No Tags&gt;</value>
-  </data>
-  <data name="OcrPage_DescriptionPart1" xml:space="preserve">
-    <value>This page uses OCR technique to recognize from a picture, and convert it into a valid sudoku puzzle to be used in the current program.</value>
-  </data>
-  <data name="OcrPage_DescriptionPart2" xml:space="preserve">
-    <value>This function is experimental one. Please DO NOT rely on it.</value>
-  </data>
-  <data name="OcrPage_LanguageIsNotSupportedForNow" xml:space="preserve">
-    <value>Sorry. OCR engine requires some items (e.g. language packages) that may not be supported for your device. You cannot use this engine due to the lack of such APIs.</value>
-  </data>
-  <data name="OcrPage_LanguageIsNotSupportedForNowTitle" xml:space="preserve">
-    <value>OCR Engine Error</value>
-  </data>
-  <data name="OcrPage_ReadPicture" xml:space="preserve">
-    <value>Read picture</value>
   </data>
   <data name="SettingsPage_1033" xml:space="preserve">
     <value>English</value>
@@ -2561,9 +2540,6 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="MainWindow_RatingFormulaPageTitle" xml:space="preserve">
     <value>Rating customization</value>
   </data>
-  <data name="MainWindow_BuiltInFormulaePageTitle" xml:space="preserve">
-    <value>Built-in formulae</value>
-  </data>
   <data name="ParameterName" xml:space="preserve">
     <value>@{0}</value>
   </data>
@@ -2573,73 +2549,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
     <value>This text can be used in customized calculation in formulae page for defining extra difficulty rating.</value>
   </data>
-  <data name="MainWindow_FunctionPageTitle" xml:space="preserve">
-    <value>Functions</value>
-  </data>
-  <data name="FunctionPage_Intro" xml:space="preserve">
-    <value>This page lists methods that will be used in formulae. You can also add new functions in this page.</value>
-  </data>
-  <data name="MainWindow_UserDefinedFormulaePageTitle" xml:space="preserve">
-    <value>User-defined Formulae</value>
-  </data>
-  <data name="UserDefinedFormulaePage_Intro" xml:space="preserve">
-    <value>This page lists your own defining rules on calculating difficulty ratings on techniques.</value>
-  </data>
-  <data name="UserDefinedFormulaePage_AddFormula" xml:space="preserve">
-    <value>Add new</value>
-  </data>
-  <data name="MainWindow_AddFormulaPageTitle" xml:space="preserve">
-    <value>Add formula...</value>
-  </data>
-  <data name="AddFormulaPage_FormulaName" xml:space="preserve">
-    <value>Name</value>
-  </data>
-  <data name="AddFormulaPage_Apply" xml:space="preserve">
-    <value>Check and apply</value>
-  </data>
-  <data name="AddFormulaPage_Cancel" xml:space="preserve">
-    <value>Cancel</value>
-  </data>
-  <data name="AddFormulaPage_FormulaDescription" xml:space="preserve">
-    <value>Description</value>
-  </data>
-  <data name="AddFormulaPage_FormulaExpression" xml:space="preserve">
-    <value>Expression</value>
-  </data>
-  <data name="AddFormulaPage_FileId" xml:space="preserve">
-    <value>File name</value>
-  </data>
-  <data name="AddFormulaPage_Error_FileIdContainsInvalidCharacters" xml:space="preserve">
-    <value>The value contains invalid characters as a character used in a file name.</value>
-  </data>
-  <data name="AddFormulaPage_Error_NameIsEmptyOrWhitespace" xml:space="preserve">
-    <value>The name cannot be empty or only contain whitespaces.</value>
-  </data>
-  <data name="AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace" xml:space="preserve">
-    <value>The description cannot be empty or only contains whitespaces.</value>
-  </data>
-  <data name="AddFormulaPage_Error_FileAlreadyExists" xml:space="preserve">
-    <value>The specified file name already exists in local path.</value>
-  </data>
   <data name="ErrorInfo_ParseFailedOnFormula" xml:space="preserve">
     <value>Parse failed on formula expression.</value>
-  </data>
-  <data name="UserDefinedFormulaePage_NoDescription" xml:space="preserve">
-    <value>&lt;None&gt;</value>
-  </data>
-  <data name="AddFormulaPage_AppliedTechniques" xml:space="preserve">
-    <value>Applied techniques</value>
-  </data>
-  <data name="AddFormulaPage_Error_MustSelectAtLeastOneTechnique" xml:space="preserve">
-    <value>You must select at least one technique.</value>
-  </data>
-  <data name="AddFormulaPage_Error_TechniqueNotReferToStep" xml:space="preserve">
-    <value>The technique may not refer to a valid technique step, meaning it isn't implemented.</value>
-  </data>
-  <data name="AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps" xml:space="preserve">
-    <value>The chosen techniques cannot be included as one formula, program not permitted.</value>
-  </data>
-  <data name="AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace" xml:space="preserve">
-    <value>The expression cannot be empty or only contains whitespaces.</value>
   </data>
 </root>
