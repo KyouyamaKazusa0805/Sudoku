@@ -625,16 +625,6 @@
             <summary>
             Represents a bindable source for a group of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
             </summary>
-            <param name="group">Indicates the group of the techniques.</param>
-            <param name="items">Indicates the items belonging to the group.</param>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="M:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.#ctor(Sudoku.Analytics.Categorization.TechniqueGroup,SudokuStudio.BindableSource.TechniqueViewBindableSource[])">
-            <summary>
-            Represents a bindable source for a group of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instances.
-            </summary>
-            <param name="group">Indicates the group of the techniques.</param>
-            <param name="items">Indicates the items belonging to the group.</param>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupFullName">
@@ -652,14 +642,37 @@
             Indicates the shortened name of the group.
             </summary>
         </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButtonProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.GroupProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group"/>
+        </member>
+        <member name="F:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ItemsProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items"/>
+        </member>
+        <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.ShowSelectAllButton">
+            <summary>
+            Indicates whether the "Select all" button should be shown.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Group">
             <summary>
-            The generated property declaration for parameter <c>group</c>.
+            Indicates the group of the techniques.
             </summary>
         </member>
         <member name="P:SudokuStudio.BindableSource.TechniqueViewGroupBindableSource.Items">
             <summary>
-            The generated property declaration for parameter <c>items</c>.
+            Indicates the items belonging to the group.
             </summary>
         </member>
         <member name="T:SudokuStudio.BindableSource.ViewUnitBindableSource">

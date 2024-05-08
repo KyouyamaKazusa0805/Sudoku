@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:cvt="using:SudokuStudio.Interaction.Conversions"
 	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueView}"
@@ -14,7 +15,7 @@
 		<vcvt:SelectionModeToIsItemClickEnabledConverter x:Key="SelectionModeToClickEnabledConverter" />
 	</UserControl.Resources>
 
-	<ListView ItemsSource="{x:Bind _itemsSource,Mode=OneWay}" SelectionMode="None">
+	<ListView x:Name="MainView" ItemsSource="{x:Bind _itemsSource,Mode=OneWay}" SelectionMode="None">
 		<ListView.Transitions>
 			<AddDeleteThemeTransition />
 		</ListView.Transitions>
@@ -30,6 +31,7 @@
 							HorizontalAlignment="Right" VerticalAlignment="Center">
 							<Button
 								x:Name="SelectAllButton" VerticalAlignment="Center" Tag="{x:Bind}"
+								Visibility="{x:Bind cvt:TechniqueConversion.GetSelectAllButtonVisibility(ShowSelectAllButton)}"
 								Click="SelectAllButton_Click">
 								<Grid ColumnDefinitions="*,*">
 									<FontIcon Grid.Column="0" Glyph="&#xE8B3;" />
@@ -39,8 +41,8 @@
 								</Grid>
 							</Button>
 							<Button
-								x:Name="UnselectAllButton" VerticalAlignment="Center" Tag="{x:Bind}"
-								Margin="0,0,20,0"
+								x:Name="UnselectAllButton" VerticalAlignment="Center" Tag="{x:Bind}" Margin="0,0,20,0"
+								Visibility="{x:Bind cvt:TechniqueConversion.GetSelectAllButtonVisibility(ShowSelectAllButton)}"
 								Click="UnselectAllButton_Click">
 								<Grid ColumnDefinitions="*,*">
 									<FontIcon Grid.Column="0" Glyph="&#xE8E6;" />

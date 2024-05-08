@@ -131,6 +131,11 @@ public sealed partial class TechniqueView : UserControl
 					TechniqueViewSelectionMode.Multiple => ListViewSelectionMode.Multiple
 				};
 			}
+
+			foreach (var item in view._itemsSource)
+			{
+				item.ShowSelectAllButton = mode == TechniqueViewSelectionMode.Multiple;
+			}
 		}
 	}
 
@@ -202,7 +207,12 @@ public sealed partial class TechniqueView : UserControl
 			select new TechniqueViewBindableSource(technique) into item
 			group item by item.ContainingGroup into itemGroup
 			orderby itemGroup.Key
-			select new TechniqueViewGroupBindableSource(itemGroup.Key, [.. itemGroup]))
+			select new TechniqueViewGroupBindableSource
+			{
+				Group = itemGroup.Key,
+				Items = [.. itemGroup],
+				ShowSelectAllButton = SelectionMode == TechniqueViewSelectionMode.Multiple
+			})
 		{
 			_itemsSource.Add(source);
 			await .1.Seconds();

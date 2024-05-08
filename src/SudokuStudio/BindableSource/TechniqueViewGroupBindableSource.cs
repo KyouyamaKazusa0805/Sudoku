@@ -3,14 +3,11 @@ namespace SudokuStudio.BindableSource;
 /// <summary>
 /// Represents a bindable source for a group of <see cref="Technique"/> instances.
 /// </summary>
-/// <param name="group">Indicates the group of the techniques.</param>
-/// <param name="items">Indicates the items belonging to the group.</param>
 /// <seealso cref="Technique"/>
-[method: SetsRequiredMembers]
-public sealed partial class TechniqueViewGroupBindableSource(
-	[PrimaryConstructorParameter(SetterExpression = "init", Accessibility = "public required")] TechniqueGroup group,
-	[PrimaryConstructorParameter(SetterExpression = "init", Accessibility = "public required")] TechniqueViewBindableSource[] items
-)
+[DependencyProperty<bool>("ShowSelectAllButton", DocSummary = "Indicates whether the \"Select all\" button should be shown.")]
+[DependencyProperty<TechniqueGroup>("Group", DocSummary = "Indicates the group of the techniques.")]
+[DependencyProperty<TechniqueViewBindableSource[]>("Items", DocSummary = "Indicates the items belonging to the group.")]
+public sealed partial class TechniqueViewGroupBindableSource : DependencyObject
 {
 	/// <summary>
 	/// Indicates the full name of the group.
