@@ -6,6 +6,7 @@
 	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
 	xmlns:bs="using:SudokuStudio.BindableSource"
 	xmlns:c="using:SudokuStudio.Views.Controls"
+	xmlns:m="using:SudokuStudio.Markup"
 	xmlns:vcvt="using:SudokuStudio.Interaction.ValueConverters"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=c:TechniqueView}"
 	Loaded="UserControl_LoadedAsync">
@@ -20,7 +21,36 @@
 		<ListView.ItemTemplate>
 			<DataTemplate x:DataType="bs:TechniqueViewGroupBindableSource">
 				<StackPanel Margin="0,20">
-					<TextBlock Text="{x:Bind GroupFullName}" FontSize="20" FontWeight="Bold" Margin="0,0,0,8" />
+					<Grid ColumnDefinitions="Auto,*">
+						<TextBlock
+							Text="{x:Bind GroupFullName}" FontSize="20" FontWeight="Bold"
+							Margin="0,0,0,8" VerticalAlignment="Center" />
+						<StackPanel
+							Grid.Column="1" Orientation="Horizontal" Spacing="6"
+							HorizontalAlignment="Right" VerticalAlignment="Center">
+							<Button
+								x:Name="SelectAllButton" VerticalAlignment="Center" Tag="{x:Bind}"
+								Click="SelectAllButton_Click">
+								<Grid ColumnDefinitions="*,*">
+									<FontIcon Grid.Column="0" Glyph="&#xE8B3;" />
+									<TextBlock
+										Grid.Column="1" Margin="6,0,0,0" VerticalAlignment="Center"
+										Text="{m:R Key=TechniqueView_SelectAll}" />
+								</Grid>
+							</Button>
+							<Button
+								x:Name="UnselectAllButton" VerticalAlignment="Center" Tag="{x:Bind}"
+								Margin="0,0,20,0"
+								Click="UnselectAllButton_Click">
+								<Grid ColumnDefinitions="*,*">
+									<FontIcon Grid.Column="0" Glyph="&#xE8E6;" />
+									<TextBlock
+										Grid.Column="1" Margin="6,0,0,0" VerticalAlignment="Center"
+										Text="{m:R Key=TechniqueView_UnselectAll}" />
+								</Grid>
+							</Button>
+						</StackPanel>
+					</Grid>
 					<c:TokenView
 						SelectionMode="None" IsWrapped="True" ItemsSource="{x:Bind Items}"
 						IsItemClickEnabled="{Binding SelectionMode,RelativeSource={RelativeSource Mode=Self},Converter={StaticResource SelectionModeToClickEnabledConverter},Mode=OneWay}"

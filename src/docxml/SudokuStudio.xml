@@ -10042,6 +10042,16 @@
               Looks up a localized string similar to Should be pearl puzzle: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueView_SelectAll">
+            <summary>
+              Looks up a localized string similar to Select All.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.TechniqueView_UnselectAll">
+            <summary>
+              Looks up a localized string similar to Unselect All.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.Yes">
             <summary>
               Looks up a localized string similar to Yes.

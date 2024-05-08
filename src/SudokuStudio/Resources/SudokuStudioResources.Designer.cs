@@ -7341,6 +7341,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Select All.
+        /// </summary>
+        internal static string TechniqueView_SelectAll {
+            get {
+                return ResourceManager.GetString("TechniqueView_SelectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Unselect All.
+        /// </summary>
+        internal static string TechniqueView_UnselectAll {
+            get {
+                return ResourceManager.GetString("TechniqueView_UnselectAll", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Yes.
         /// </summary>
         internal static string Yes {

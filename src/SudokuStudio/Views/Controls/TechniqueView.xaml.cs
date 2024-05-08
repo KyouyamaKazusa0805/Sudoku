@@ -208,4 +208,42 @@ public sealed partial class TechniqueView : UserControl
 			await .1.Seconds();
 		}
 	}
+
+	private void SelectAllButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not Button { Tag: TechniqueViewGroupBindableSource { Items: var items } })
+		{
+			return;
+		}
+
+		var originalTechniques = SelectedTechniques;
+		foreach (var item in items)
+		{
+			originalTechniques.Add(item.TechniqueField);
+		}
+
+		SelectedTechniques = null!;
+		SelectedTechniques = originalTechniques;
+
+		SelectedTechniquesChanged?.Invoke(this, new(SelectedTechniques));
+	}
+
+	private void UnselectAllButton_Click(object sender, RoutedEventArgs e)
+	{
+		if (sender is not Button { Tag: TechniqueViewGroupBindableSource { Items: var items } })
+		{
+			return;
+		}
+
+		var originalTechniques = SelectedTechniques;
+		foreach (var item in items)
+		{
+			originalTechniques.Remove(item.TechniqueField);
+		}
+
+		SelectedTechniques = null!;
+		SelectedTechniques = originalTechniques;
+
+		SelectedTechniquesChanged?.Invoke(this, new(SelectedTechniques));
+	}
 }

@@ -2552,4 +2552,10 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ErrorInfo_ParseFailedOnFormula" xml:space="preserve">
     <value>Parse failed on formula expression.</value>
   </data>
+  <data name="TechniqueView_SelectAll" xml:space="preserve">
+    <value>Select All</value>
+  </data>
+  <data name="TechniqueView_UnselectAll" xml:space="preserve">
+    <value>Unselect All</value>
+  </data>
 </root>
