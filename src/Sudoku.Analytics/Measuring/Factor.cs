@@ -54,7 +54,7 @@ public abstract class Factor
 
 			// Here a property may be explicitly implemented, the name may starts with interface name.
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static bool compareString(string a, string b) => a == b || a.Contains('.') && a.EndsWith(b);
+			static bool compareString(string a, string b) => a == b || a.Contains('.') && a[(a.LastIndexOf('.') + 1)..] == b;
 		}
 	}
 
