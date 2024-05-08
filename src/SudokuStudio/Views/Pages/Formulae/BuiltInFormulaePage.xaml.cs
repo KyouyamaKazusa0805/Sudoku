@@ -17,9 +17,9 @@ public sealed partial class BuiltInFormulaePage : Page
 	private static readonly string Tab = "\t";
 
 	/// <summary>
-	/// Indicates the spaces.
+	/// Indicates the quad spaces.
 	/// </summary>
-	private static readonly string Spaces = new(' ', 4);
+	private static readonly string QuadSpaces = new(' ', 4);
 
 
 	/// <summary>
@@ -30,9 +30,10 @@ public sealed partial class BuiltInFormulaePage : Page
 
 	private async void Page_LoadedAsync(object sender, RoutedEventArgs e)
 	{
-		foreach (var type in typeof(Factor).Assembly.GetTypes())
+		var factorType = typeof(Factor);
+		foreach (var type in factorType.Assembly.GetTypes())
 		{
-			if (type.BaseType != typeof(Factor))
+			if (type.BaseType != factorType)
 			{
 				continue;
 			}
@@ -60,12 +61,15 @@ public sealed partial class BuiltInFormulaePage : Page
 			await Task.Delay(100);
 
 
+			static string matchItself(Match match) => match.Groups[1].Value;
+
 			string createExpressionString(string expr)
 			{
 				var interim = ArgsPattern().Replace(expr, match => string.Format(parameterFormat, int.Parse(matchItself(match)) + 1));
-				interim = interim.Replace(Tab, Spaces);
+				interim = interim.Replace(Tab, QuadSpaces);
 				interim = BracePattern().Replace(interim, matchItself);
-				interim = TechniqueDotNamePatttern().Replace(interim, matchItself);
+				interim = TechniqueDotNamePattern().Replace(interim, matchItself);
+				interim = StaticMethodNamePattern().Replace(interim, static match => $"${matchItself(match)}");
 				return interim;
 			}
 
@@ -82,9 +86,6 @@ public sealed partial class BuiltInFormulaePage : Page
 				return $"{parameterIndex}: {typeName}";
 			}
 		}
-
-
-		static string matchItself(Match match) => match.Groups[1].Value;
 	}
 
 
@@ -94,8 +95,11 @@ public sealed partial class BuiltInFormulaePage : Page
 	[GeneratedRegex("""\(([^\)]+)\)(?=\.)""", RegexOptions.Compiled)]
 	private static partial Regex BracePattern();
 
-	[GeneratedRegex("""Technique\.(\w+)""", RegexOptions.Compiled)]
-	private static partial Regex TechniqueDotNamePatttern();
+	[GeneratedRegex("""\bTechnique\.(\w+)""", RegexOptions.Compiled)]
+	private static partial Regex TechniqueDotNamePattern();
+
+	[GeneratedRegex("""\w+\.(\w+)(?=\([^\)]+\))""", RegexOptions.Compiled)]
+	private static partial Regex StaticMethodNamePattern();
 }
 
 /// <summary>
