@@ -41,7 +41,7 @@
 				</ContentPresenter>
 			</Grid>
 			<TextBlock
-				IsTextSelectionEnabled="True" HorizontalAlignment="Left"
+				IsTextSelectionEnabled="True" HorizontalAlignment="Left" FontFamily="Consolas"
 				Text="{x:Bind cvt:TechniqueConversion.GetProgramRawName(CurrentSelectedTechnique),Mode=OneWay}" />
 			<TextBlock Style="{StaticResource PropertyTitleStyle}" Text="{m:R Key=TechniqueSelectionPage_Group}" />
 			<TextBlock Text="{x:Bind cvt:TechniqueConversion.GetGroup(CurrentSelectedTechnique),Mode=OneWay}" />
