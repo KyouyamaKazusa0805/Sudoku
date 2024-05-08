@@ -1,6 +1,24 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class NakedSingleStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Naked Single</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
+public sealed partial class NakedSingleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	SingleSubtype subtype,
+	[PrimaryConstructorParameter] int lasting
+) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => Options.IsDirectMode ? 23 : 10;

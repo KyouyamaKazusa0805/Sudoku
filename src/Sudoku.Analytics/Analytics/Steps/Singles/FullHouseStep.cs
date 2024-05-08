@@ -1,6 +1,44 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class FullHouseStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Full House</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="house">The house to be displayed.</param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
+/// <remarks>
+/// <b>
+/// A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
+/// Please visit source code for source generator to modify the handling logic if you persist.
+/// </b>
+/// </remarks>
+public sealed partial class FullHouseStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	[PrimaryConstructorParameter] House house,
+	Cell cell,
+	Digit digit,
+	[PrimaryConstructorParameter] int lasting
+) :
+	SingleStep(
+		conclusions,
+		views,
+		options,
+		cell,
+		digit,
+		house switch
+		{
+			< 9 => SingleSubtype.FullHouseBlock,
+			>= 9 and < 18 => SingleSubtype.FullHouseRow,
+			_ => SingleSubtype.FullHouseColumn
+		}
+	),
+	ILastingTrait
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty => 10;

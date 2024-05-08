@@ -1,6 +1,31 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class HiddenSingleStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Hidden Single</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="house">The house to be displayed.</param>
+/// <param name="enableAndIsLastDigit">
+/// Indicates whether currently options enable "Last Digit" technique, and the current instance is a real Last Digit.
+/// If the technique is not a Last Digit, the value must be <see langword="false"/>.
+/// </param>
+/// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
+/// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
+public partial class HiddenSingleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	[PrimaryConstructorParameter] House house,
+	[PrimaryConstructorParameter] bool enableAndIsLastDigit,
+	[PrimaryConstructorParameter] int lasting,
+	SingleSubtype subtype
+) : SingleStep(conclusions, views, options, cell, digit, subtype), ILastingTrait
 {
 	/// <inheritdoc/>
 	public sealed override int BaseDifficulty

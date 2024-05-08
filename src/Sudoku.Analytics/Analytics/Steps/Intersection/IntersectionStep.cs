@@ -1,3 +1,9 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class IntersectionStep;
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Intersection</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+public abstract class IntersectionStep(Conclusion[] conclusions, View[]? views, StepSearcherOptions options) : Step(conclusions, views, options);

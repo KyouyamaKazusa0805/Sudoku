@@ -1,6 +1,26 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class ComplexSingleStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Complex Single</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
+/// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+/// <param name="indirectTechniques"><inheritdoc cref="ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
+public sealed partial class ComplexSingleStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	SingleSubtype subtype,
+	Technique basedOn,
+	Technique[][] indirectTechniques
+) : ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, indirectTechniques)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty

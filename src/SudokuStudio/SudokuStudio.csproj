@@ -32,9 +32,6 @@
 		<!--A bug fix.-->
 		<WindowsAppSDKSelfContained>true</WindowsAppSDKSelfContained>
 	</PropertyGroup>
-	<ItemGroup>
-	  <None Remove="Views\Pages\Formulae\AddFormulaPage.xaml" />
-	</ItemGroup>
 
 	<ItemGroup>
 		<PackageReference Include="CommunityToolkit.WinUI" Version="7.1.2" />
@@ -64,7 +61,6 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
-		<ProjectReference Include="..\Sudoku.Scripting\Sudoku.Scripting.csproj" />
 		<ProjectReference Include="..\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 
@@ -123,15 +119,6 @@
 	</ItemGroup>
 
 	<ItemGroup>
-	  <Page Update="Views\Pages\Formulae\AddFormulaPage.xaml">
-	    <Generator>MSBuild:Compile</Generator>
-	  </Page>
-	</ItemGroup>
-
-	<ItemGroup>
-		<Page Update="Views\Pages\Formulae\FunctionPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
 		<Page Update="Views\Pages\TechniqueInfoModifierPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
@@ -274,15 +261,6 @@
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 		<Page Update="Views\Pages\PatternBasedPuzzleGeneratingPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\RatingFormulaPage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\Formulae\BuiltInFormulaePage.xaml">
-			<Generator>MSBuild:Compile</Generator>
-		</Page>
-		<Page Update="Views\Pages\Formulae\UserDefinedFormulaePage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>
 	</ItemGroup>

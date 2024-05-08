@@ -1,6 +1,43 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class DirectIntersectionStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Direct Intersection</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="intersectionCells">Indicates the intersection cells.</param>
+/// <param name="intersectionHouse">Indicates the intersection house.</param>
+/// <param name="interim">Indicates the interim cells.</param>
+/// <param name="interimDigit">Indicates the interim digit.</param>
+/// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
+/// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+/// <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
+public sealed partial class DirectIntersectionStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	[PrimaryConstructorParameter] ref readonly CellMap intersectionCells,
+	[PrimaryConstructorParameter] House intersectionHouse,
+	[PrimaryConstructorParameter] ref readonly CellMap interim,
+	[PrimaryConstructorParameter] Digit interimDigit,
+	SingleSubtype subtype,
+	Technique basedOn,
+	[PrimaryConstructorParameter] bool isPointing
+) : ComplexSingleBaseStep(
+	conclusions,
+	views,
+	options,
+	cell,
+	digit,
+	subtype,
+	basedOn,
+	[[isPointing ? Technique.Pointing : Technique.Claiming]]
+)
 {
 	/// <inheritdoc/>
 	public override int BaseDifficulty

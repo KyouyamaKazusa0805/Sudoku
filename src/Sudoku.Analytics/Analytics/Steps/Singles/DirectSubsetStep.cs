@@ -1,6 +1,39 @@
 namespace Sudoku.Analytics.Steps;
 
-public partial class DirectSubsetStep
+/// <summary>
+/// Represents a data structure that describes for a technique of <b>Direct Subset</b>.
+/// </summary>
+/// <param name="conclusions"><inheritdoc cref="Step.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="Step.Views" path="/summary"/></param>
+/// <param name="options"><inheritdoc cref="Step.Options" path="/summary"/></param>
+/// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
+/// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
+/// <param name="subsetCells">Indicates the subset cells used.</param>
+/// <param name="subsetDigitsMask">Indicates the digits that the subset used.</param>
+/// <param name="subsetHouse">Indicates the subset house.</param>
+/// <param name="interim">Indicates the interim cells used.</param>
+/// <param name="interimDigitsMask">Indicates the digits produced in interim.</param>
+/// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
+/// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
+/// <param name="subsetTechnique">Indicates the subset technique used.</param>
+public sealed partial class DirectSubsetStep(
+	Conclusion[] conclusions,
+	View[]? views,
+	StepSearcherOptions options,
+	Cell cell,
+	Digit digit,
+	[PrimaryConstructorParameter] ref readonly CellMap subsetCells,
+	[PrimaryConstructorParameter] Mask subsetDigitsMask,
+	[PrimaryConstructorParameter] House subsetHouse,
+	[PrimaryConstructorParameter] ref readonly CellMap interim,
+	[PrimaryConstructorParameter] Mask interimDigitsMask,
+	SingleSubtype subtype,
+	Technique basedOn,
+	[PrimaryConstructorParameter] Technique subsetTechnique
+) :
+	ComplexSingleBaseStep(conclusions, views, options, cell, digit, subtype, basedOn, [[subsetTechnique]]),
+	ISizeTrait,
+	ICellListTrait
 {
 	/// <summary>
 	/// Indicates whether the used subset is a naked subset.
