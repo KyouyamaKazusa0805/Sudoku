@@ -3989,6 +3989,13 @@
             <param name="item">The technique.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Exists(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+            <summary>
+            Determines whether at least one <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance satisfies the specified condition.
+            </summary>
+            <param name="match">The match method to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Add(Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Try to add a new technique.
@@ -4538,16 +4545,9 @@
             </returns>
             <seealso cref="M:System.Enum.HasFlag(System.Enum)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.AsTechniqueSet(Sudoku.Analytics.Categorization.Technique[])">
-            <summary>
-            Try to convert the current array instance into a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance.
-            </summary>
-            <param name="this">The current instance.</param>
-            <returns>The final result.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetSuitableStepType(Sudoku.Analytics.Categorization.Technique)">
             <summary>
-            Try to get suitable <see cref="T:System.Type"/> which refers to a <see cref="T:Sudoku.Analytics.Step"/>,
+            Try to get suitable <see cref="T:System.Type"/> which refers to a <see cref="T:Sudoku.Analytics.Step"/> type,
             whose contained property <see cref="P:Sudoku.Analytics.Step.Code"/> may create this technique.
             </summary>
             <param name="this">The current technique.</param>
@@ -4623,6 +4623,27 @@
             <param name="this">The group to be checked.</param>
             <param name="filter">Indicates the filter.</param>
             <returns>A <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance that contains all <see cref="T:Sudoku.Analytics.Categorization.Technique"/> fields belonging to the current group.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueSetExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSetExtensions.GetCommonSuitableStepType(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Try to get common suitable <see cref="T:System.Type"/> referring to a <see cref="T:Sudoku.Analytics.Step"/> type,
+            whose containied property <see cref="P:Sudoku.Analytics.Step.Code"/> can create this technique.
+            </summary>
+            <param name="this">The current instance.</param>
+            <returns>
+            A valid <see cref="T:System.Type"/> instance, or <see langword="null"/> if it may not be referred by all <see cref="T:Sudoku.Analytics.Step"/>
+            derived types.
+            </returns>
+            <seealso href="https://en.wikipedia.org/wiki/Lowest_common_ancestor">Wikipedia: Lowest Common Ancestor</seealso>
+            <seealso href="https://www.zhihu.com/question/369088717/answer/2613233529">
+            Zhihu: Which way to calculate LCA in a multiway tree is fastest?
+            </seealso>
         </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>

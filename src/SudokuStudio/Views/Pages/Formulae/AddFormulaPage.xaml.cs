@@ -19,6 +19,7 @@ public sealed partial class AddFormulaPage : Page
 		Error_NameBox.Text = string.Empty;
 		Error_FileIdBox.Text = string.Empty;
 		Error_DescriptionBox.Text = string.Empty;
+		Error_TechniqueSelector.Text = string.Empty;
 		Error_FormulaExpressionBox.Text = string.Empty;
 	}
 
@@ -76,9 +77,8 @@ public sealed partial class AddFormulaPage : Page
 			errorString = ResourceDictionary.Get("AddFormulaPage_Error_MustSelectAtLeastOneTechnique", App.CurrentCulture);
 			return false;
 		}
-		var appliedSteps = new HashSet<Type>();
-		var keys = new List<Technique>();
-		foreach (var (technique, correspondingStepType) in
+
+		foreach (var (_, correspondingStepType) in
 			from technique in TechniqueSelector.SelectedTechniques
 			select (technique, technique.GetSuitableStepType()))
 		{
@@ -88,25 +88,23 @@ public sealed partial class AddFormulaPage : Page
 				errorString = ResourceDictionary.Get("AddFormulaPage_Error_TechniqueNotReferToStep", App.CurrentCulture);
 				return false;
 			}
-			if (appliedSteps.Add(correspondingStepType))
-			{
-				keys.Add(technique);
-			}
+		}
 
-			if (appliedSteps.Count >= 2)
-			{
-				textBlock = Error_TechniqueSelector;
-				errorString = string.Format(
-					ResourceDictionary.Get("AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps", App.CurrentCulture),
-					keys[0].GetName(App.CurrentCulture),
-					keys[1].GetName(App.CurrentCulture)
-				);
-				return false;
-			}
+		var technqiues = TechniqueSelector.SelectedTechniques;
+		if (technqiues.GetCommonSuitableStepType() is not { } common)
+		{
+			textBlock = Error_TechniqueSelector;
+			errorString = ResourceDictionary.Get("AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps", App.CurrentCulture);
+			return false;
 		}
 
 		// Expression.
-		// TODO: Check for expression.
+		if (string.IsNullOrWhiteSpace(FormulaExpressionBox.Text))
+		{
+			textBlock = Error_FormulaExpressionBox;
+			errorString = ResourceDictionary.Get("AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace", App.CurrentCulture);
+			return false;
+		}
 
 		(textBlock, errorString) = (null, null);
 		return true;

@@ -294,15 +294,7 @@ public static class TechniqueExtensions
 		?? PencilmarkVisibility.Direct | PencilmarkVisibility.Indirect;
 
 	/// <summary>
-	/// Try to convert the current array instance into a <see cref="TechniqueSet"/> instance.
-	/// </summary>
-	/// <param name="this">The current instance.</param>
-	/// <returns>The final result.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueSet AsTechniqueSet(this Technique[] @this) => [.. @this];
-
-	/// <summary>
-	/// Try to get suitable <see cref="Type"/> which refers to a <see cref="Step"/>,
+	/// Try to get suitable <see cref="Type"/> which refers to a <see cref="Step"/> type,
 	/// whose contained property <see cref="Step.Code"/> may create this technique.
 	/// </summary>
 	/// <param name="this">The current technique.</param>

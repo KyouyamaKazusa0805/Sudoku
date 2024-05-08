@@ -484,7 +484,7 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
-        ///   Looks up a localized string similar to The chosen techniques &apos;{0}&apos; and &apos;{1}&apos; cannot be included as one formula, program not permitted..
+        ///   Looks up a localized string similar to The chosen techniques cannot be included as one formula, program not permitted..
         /// </summary>
         internal static string AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps {
             get {
@@ -498,6 +498,15 @@ namespace SudokuStudio.Resources {
         internal static string AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace {
             get {
                 return ResourceManager.GetString("AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The expression cannot be empty or only contains whitespaces..
+        /// </summary>
+        internal static string AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace {
+            get {
+                return ResourceManager.GetString("AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace", resourceCulture);
             }
         }
         

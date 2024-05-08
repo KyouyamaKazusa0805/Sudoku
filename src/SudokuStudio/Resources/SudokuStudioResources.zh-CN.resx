@@ -2573,9 +2573,6 @@
   <data name="FunctionPage_Intro" xml:space="preserve">
     <value>这个页面列举的是一些可能会在计算规则页面里使用到的额外计算函数。你也可以在这个页面里追加一些你想要定义的额外的函数。</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="MainWindow_UserDefinedFormulaePageTitle" xml:space="preserve">
     <value>自定义计算规则</value>
   </data>
@@ -2631,6 +2628,12 @@
     <value>选中的技巧可能不支持，因为它可能压根没实现。</value>
   </data>
   <data name="AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps" xml:space="preserve">
-    <value>选择的技巧“{0}”和“{1}”不允许使用一个通用公式涵盖。</value>
+    <value>选择的技巧不允许使用一个通用公式涵盖。</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace" xml:space="preserve">
+    <value>表达式不能为空，或者只有空白字符。</value>
   </data>
 </root>

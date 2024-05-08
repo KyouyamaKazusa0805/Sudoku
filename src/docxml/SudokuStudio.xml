@@ -6231,12 +6231,17 @@
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_ChosenTechniquesCoverMultipleSteps">
             <summary>
-              Looks up a localized string similar to The chosen techniques &apos;{0}&apos; and &apos;{1}&apos; cannot be included as one formula, program not permitted..
+              Looks up a localized string similar to The chosen techniques cannot be included as one formula, program not permitted..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_DescriptionIsEmptyOrWhitespace">
             <summary>
               Looks up a localized string similar to The description cannot be empty or only contains whitespaces..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_ExpressionIsEmptyOrWhitespace">
+            <summary>
+              Looks up a localized string similar to The expression cannot be empty or only contains whitespaces..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.AddFormulaPage_Error_FileAlreadyExists">

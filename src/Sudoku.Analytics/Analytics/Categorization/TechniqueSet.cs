@@ -229,6 +229,23 @@ public sealed partial class TechniqueSet :
 	public bool Contains(Technique item) => _techniqueBits[TechniqueProjection(item)];
 
 	/// <summary>
+	/// Determines whether at least one <see cref="Technique"/> instance satisfies the specified condition.
+	/// </summary>
+	/// <param name="match">The match method to be used.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Exists(Func<Technique, bool> match)
+	{
+		foreach (var technique in this)
+		{
+			if (match(technique))
+			{
+				return true;
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
 	/// Try to add a new technique.
 	/// </summary>
 	/// <param name="item">A technique to be added.</param>

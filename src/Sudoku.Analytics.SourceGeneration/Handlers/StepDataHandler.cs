@@ -67,13 +67,6 @@ internal static class StepDataHandler
 
 	public static void Output(SourceProductionContext spc, (Compilation Compilation, ImmutableArray<AdditionalText> AdditionalFiles) pair)
 	{
-#if DEBUG && false
-		if (!System.Diagnostics.Debugger.IsAttached)
-		{
-			System.Diagnostics.Debugger.Launch();
-		}
-#endif
-
 		var xmlFile = new XmlDocument();
 		xmlFile.Load(pair.AdditionalFiles[0].Path);
 		var root = xmlFile.DocumentElement;

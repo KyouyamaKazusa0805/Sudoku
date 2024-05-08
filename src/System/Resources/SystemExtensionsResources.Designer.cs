@@ -97,6 +97,15 @@ namespace System.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to There&apos;s no elements in this collection..
+        /// </summary>
+        internal static string ErrorInfo_NoElementsFoundInCollection {
+            get {
+                return ResourceManager.GetString("ErrorInfo_NoElementsFoundInCollection", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The collection does not contain any possible element satisfying the specified condition..
         /// </summary>
         internal static string ErrorInfo_NoSuchElementSatisfyingCondition {

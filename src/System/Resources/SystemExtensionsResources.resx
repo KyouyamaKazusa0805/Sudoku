@@ -147,4 +147,7 @@
   <data name="Message_MissingResourceManagerException" xml:space="preserve">
     <value>Assembly '{0}' is lack of invocation '{1}.{2}'.</value>
   </data>
+  <data name="ErrorInfo_NoElementsFoundInCollection" xml:space="preserve">
+    <value>There's no elements in this collection.</value>
+  </data>
 </root>

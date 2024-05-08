@@ -2270,6 +2270,32 @@
         <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="T:System.Linq.DictionaryEnumerable">
+            <summary>
+            Represents LINQ methods used by <see cref="T:System.Collections.Generic.Dictionary`2"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.Dictionary`2"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.MaxByValue``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <summary>
+            Get the maximal value in all <see cref="P:System.Collections.Generic.Dictionary`2.Values"/>.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary instance.</param>
+            <returns>An instance of type <typeparamref name="TValue"/> as maximal-valued one.</returns>
+            <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
+        </member>
+        <member name="M:System.Linq.DictionaryEnumerable.MinByValue``2(System.Collections.Generic.Dictionary{``0,``1})">
+            <summary>
+            Get the minimal value in all <see cref="P:System.Collections.Generic.Dictionary`2.Values"/>.
+            </summary>
+            <typeparam name="TKey">The type of each key.</typeparam>
+            <typeparam name="TValue">The type of each value.</typeparam>
+            <param name="this">The dictionary instance.</param>
+            <returns>An instance of type <typeparamref name="TValue"/> as minimal-valued one.</returns>
+            <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
+        </member>
         <member name="T:System.Linq.Enumerable2">
             <summary>
             The extension for <see cref="T:System.Linq.Enumerable"/>.
@@ -2318,6 +2344,21 @@
             <exception cref="T:System.InvalidOperationException">
             Throws when the enumeration type is not marked <see cref="T:System.FlagsAttribute"/>.
             </exception>
+        </member>
+        <member name="T:System.Linq.HashSetEnumerable">
+            <summary>
+            Represents LINQ methods used by <see cref="T:System.Collections.Generic.HashSet`1"/> instances.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.HashSet`1"/>
+        </member>
+        <member name="M:System.Linq.HashSetEnumerable.First``1(System.Collections.Generic.HashSet{``0})">
+            <summary>
+            Indicates the first element of the collection.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <returns>The first element of the collection.</returns>
+            <exception cref="T:System.InvalidOperationException">Throws when the collection contains no elements.</exception>
         </member>
         <member name="T:System.Linq.LinkedListEnumerable">
             <summary>
@@ -3701,6 +3742,11 @@
         <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_MemberNotSupported">
             <summary>
               Looks up a localized string similar to This member does not supported..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_NoElementsFoundInCollection">
+            <summary>
+              Looks up a localized string similar to There&apos;s no elements in this collection..
             </summary>
         </member>
         <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_NoSuchElementSatisfyingCondition">
