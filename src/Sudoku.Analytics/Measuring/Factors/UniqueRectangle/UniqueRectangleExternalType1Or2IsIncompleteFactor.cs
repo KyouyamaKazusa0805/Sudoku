@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes whether the external unique rectangle is incomplete.
 /// </summary>
-public sealed partial class UniqueRectangleExternalType1Or2IsIncompleteFactor : Factor
+public sealed class UniqueRectangleExternalType1Or2IsIncompleteFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(UniqueRectangleExternalType1Or2Step.IsIncomplete)];

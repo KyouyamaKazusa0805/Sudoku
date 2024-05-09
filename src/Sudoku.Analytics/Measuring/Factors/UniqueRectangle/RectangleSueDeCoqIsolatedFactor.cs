@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the isolated rule of <see cref="UniqueRectangleWithSueDeCoqStep"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleWithSueDeCoqStep"/>
-public sealed partial class RectangleSueDeCoqIsolatedFactor : Factor
+public sealed class RectangleSueDeCoqIsolatedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames

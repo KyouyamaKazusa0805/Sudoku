@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the length of <see cref="UniqueLoopStep"/>.
 /// </summary>
 /// <seealso cref="UniqueLoopStep"/>
-public sealed partial class UniqueLoopLengthFactor : Factor
+public sealed class UniqueLoopLengthFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ICellListTrait.CellSize)];

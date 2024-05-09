@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the extra cells used in <see cref="UniquenessClueCoverStep"/>.
 /// </summary>
 /// <seealso cref="UniquenessClueCoverStep"/>
-public sealed partial class UniquenessClueCoverExtraCellsFactor : Factor
+public sealed class UniquenessClueCoverExtraCellsFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IExtraCellListTrait.ExtraCellSize)];

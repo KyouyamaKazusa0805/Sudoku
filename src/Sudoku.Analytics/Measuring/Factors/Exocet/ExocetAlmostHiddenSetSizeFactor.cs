@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of almost hidden set appeared in <see cref="JuniorExocetMirrorAlmostHiddenSetStep"/>.
 /// </summary>
 /// <seealso cref="JuniorExocetMirrorAlmostHiddenSetStep"/>
-public sealed partial class ExocetAlmostHiddenSetSizeFactor : Factor
+public sealed class ExocetAlmostHiddenSetSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(JuniorExocetMirrorAlmostHiddenSetStep.SubsetSize)];

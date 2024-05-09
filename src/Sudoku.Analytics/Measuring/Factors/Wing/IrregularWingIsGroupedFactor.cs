@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes whether an <see cref="IrregularWingStep"/> is grouped.
 /// </summary>
 /// <seealso cref="IrregularWingStep"/>
-public sealed partial class IrregularWingIsGroupedFactor : Factor
+public sealed class IrregularWingIsGroupedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IrregularWingStep.IsGrouped)];

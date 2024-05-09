@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the number of branches appeared in a <see cref="MultiBranchWWingStep"/>.
 /// </summary>
 /// <seealso cref="MultiBranchWWingStep"/>
-public sealed partial class MultiBranchWWingBranchesCountFactor : Factor
+public sealed class MultiBranchWWingBranchesCountFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(MultiBranchWWingStep.Size)];

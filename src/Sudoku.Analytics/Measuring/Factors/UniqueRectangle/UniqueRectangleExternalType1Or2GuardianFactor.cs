@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the size of guardians appeared in <see cref="UniqueRectangleExternalType1Or2Step"/>.
 /// </summary>
 /// <seealso cref="UniqueRectangleExternalType1Or2Step"/>
-public sealed partial class UniqueRectangleExternalType1Or2GuardianFactor : Factor
+public sealed class UniqueRectangleExternalType1Or2GuardianFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IGuardianTrait.GuardianCellsCount)];

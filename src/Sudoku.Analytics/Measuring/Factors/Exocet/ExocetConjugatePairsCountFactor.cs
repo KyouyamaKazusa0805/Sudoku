@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the number of conjugate pairs appeared in <see cref="ExocetBaseStep"/>.
 /// </summary>
 /// <seealso cref="ExocetBaseStep"/>
-public sealed partial class ExocetConjugatePairsCountFactor : Factor
+public sealed class ExocetConjugatePairsCountFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IConjugatePairTrait.ConjugatePairsCount)];

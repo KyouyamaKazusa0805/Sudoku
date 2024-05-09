@@ -3,7 +3,7 @@ namespace Sudoku.Measuring.Factors;
 /// <summary>
 /// Represents a factor that describes which locked case a hidden subset is.
 /// </summary>
-public sealed partial class HiddenSubsetIsLockedFactor : Factor
+public sealed class HiddenSubsetIsLockedFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(HiddenSubsetStep.IsLocked), nameof(HiddenSubsetStep.Size)];

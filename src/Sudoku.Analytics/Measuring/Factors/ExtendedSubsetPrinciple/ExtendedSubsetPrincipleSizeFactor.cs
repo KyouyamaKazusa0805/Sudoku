@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that measures the size of the pattern appeared in a <see cref="ExtendedSubsetPrincipleStep"/>.
 /// </summary>
 /// <seealso cref="ExtendedSubsetPrincipleStep"/>
-public sealed partial class ExtendedSubsetPrincipleSizeFactor : Factor
+public sealed class ExtendedSubsetPrincipleSizeFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ICellListTrait.CellSize)];

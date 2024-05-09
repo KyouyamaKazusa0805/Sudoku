@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes whether a subset appeared in <see cref="UniqueRectangleType3Step"/> is hidden.
 /// </summary>
 /// <seealso cref="UniqueRectangleType3Step"/>
-public sealed partial class UniqueRectangleSubsetIsHiddenFactor : Factor
+public sealed class UniqueRectangleSubsetIsHiddenFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(IPatternType3StepTrait<UniqueRectangleType3Step>.IsHidden)];

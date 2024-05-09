@@ -4,7 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the factor for <see cref="ComplexSingleStep"/>.
 /// </summary>
 /// <seealso cref="ComplexSingleStep"/>
-public sealed partial class ComplexSingleFactor : Factor
+public sealed class ComplexSingleFactor : Factor
 {
 	/// <inheritdoc/>
 	public override string[] ParameterNames => [nameof(ComplexSingleStep.IndirectTechniques)];
