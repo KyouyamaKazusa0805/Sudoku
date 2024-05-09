@@ -110,20 +110,44 @@
         <member name="M:Sudoku.Analytics.AnalysisContext.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Analytics.AnalysisProgress">
+            <summary>
+            Represents a progress used by
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisProgress.#ctor(System.String,System.Double)">
+            <summary>
+            Represents a progress used by
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <param name="StepSearcherName">Indicates the currently used step searcher.</param>
+            <param name="Percent">The percent value.</param>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisProgress.StepSearcherName">
+            <summary>Indicates the currently used step searcher.</summary>
+        </member>
+        <member name="P:Sudoku.Analytics.AnalysisProgress.Percent">
+            <summary>The percent value.</summary>
+        </member>
         <member name="T:Sudoku.Analytics.AnalysisResult">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Primitive.IAnalysisResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalysisResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.#ctor(Sudoku.Concepts.Grid@)">
             <summary>
             Provides the result after <see cref="T:Sudoku.Analytics.Analyzer"/> solving a puzzle.
             </summary>
-            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Primitive.IAnalysisResult`2.Puzzle" path="/summary"/></param>
+            <param name="Puzzle"><inheritdoc cref="P:Sudoku.Analytics.IAnalysisResult`2.Puzzle" path="/summary"/></param>
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.Puzzle">
-            <summary><inheritdoc cref="P:Sudoku.Primitive.IAnalysisResult`2.Puzzle" path="/summary"/></summary>
+            <summary><inheritdoc cref="P:Sudoku.Analytics.IAnalysisResult`2.Puzzle" path="/summary"/></summary>
         </member>
         <member name="F:Sudoku.Analytics.AnalysisResult.MaximumRatingValueTheory">
             <summary>
@@ -373,7 +397,7 @@
         </member>
         <member name="P:Sudoku.Analytics.AnalysisResult.UnhandledException">
             <summary>
-            <inheritdoc cref="P:Sudoku.Primitive.IAnalysisResult`2.UnhandledException" path="/summary"/>
+            <inheritdoc cref="P:Sudoku.Analytics.IAnalysisResult`2.UnhandledException" path="/summary"/>
             </summary>
             <remarks>
             You can visit the property value if the property <see cref="P:Sudoku.Analytics.AnalysisResult.FailedReason"/>
@@ -5058,6 +5082,102 @@
             Indicates the puzzle can't be solved unless using last resort methods.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.IAnalysisResult`2">
+            <summary>
+            Represents an instance that describes the result after executed the method
+            <see cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
+            </summary>
+            <typeparam name="TSolver">The solver's type.</typeparam>
+            <typeparam name="TSelf">The type of the target result itself.</typeparam>
+            <seealso cref="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalysisResult`2.IsSolved">
+            <summary>
+            Indicates whether the solver has solved the puzzle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalysisResult`2.ElapsedTime">
+            <summary>
+            Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
+            Some case if the puzzle doesn't contain a valid unique solution, the value may be
+            <see cref="F:System.TimeSpan.Zero"/>.
+            </summary>
+            <seealso cref="F:System.TimeSpan.Zero"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalysisResult`2.Puzzle">
+            <summary>
+            Indicates the original puzzle to be solved.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalysisResult`2.Solution">
+            <summary>
+            Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
+            <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalysisResult`2.UnhandledException">
+            <summary>
+            Indicates the unhandled exception thrown.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.IAnalyzer`2">
+            <summary>
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
+            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle.
+            </summary>
+            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzer`2.IsFullApplying">
+            <summary>
+            Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
+            <summary>
+            Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
+            </summary>
+            <param name="puzzle">The puzzle to be analyzed.</param>
+            <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
+            <returns>The solver result that provides the information after analyzing.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.IGlobalizedAnalyzer`2">
+            <summary>
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
+            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle, using the specified culture to display running information.
+            </summary>
+            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+        </member>
+        <member name="P:Sudoku.Analytics.IGlobalizedAnalyzer`2.CurrentCulture">
+            <summary>
+            Indicates the current culture that is used for displaying running information.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.IRandomizedAnalyzer`2">
+            <summary>
+            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>,
+            The result is a <typeparamref name="TSelf"/> instance that encapsulates all possible information
+            produced in the whole analysis time-cycle, with randomized chosing.
+            </summary>
+            <typeparam name="TSelf">The type of the solver itself.</typeparam>
+            <typeparam name="TResult">The type of the target result.</typeparam>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomizedChoosing">
+            <summary>
+            Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomNumberGenerator">
+            <summary>
+            The internal <see cref="T:System.Random"/> instance to be used.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1">
             <summary>
             Defines an attribute that can be applied to the solving assembly,
@@ -5673,6 +5793,28 @@
         <member name="P:Sudoku.Analytics.PuzzleInvalidException.StepSearcherType">
             <summary>
             The generated property declaration for parameter <c>stepSearcherType</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.RuntimeAnalysisException">
+            <summary>
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            </summary>
+            <param name="grid">Indicates the grid to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+        </member>
+        <member name="M:Sudoku.Analytics.RuntimeAnalysisException.#ctor(Sudoku.Concepts.Grid@)">
+            <summary>
+            Represents an exception type that will be thrown by an <see cref="T:Sudoku.Analytics.IAnalyzer`2"/> instance.
+            </summary>
+            <param name="grid">Indicates the grid to be analyzed.</param>
+            <seealso cref="T:Sudoku.Analytics.IAnalyzer`2"/>
+        </member>
+        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.RuntimeAnalysisException.InvalidGrid">
+            <summary>
+            The generated property declaration for parameter <c>grid</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Step">
