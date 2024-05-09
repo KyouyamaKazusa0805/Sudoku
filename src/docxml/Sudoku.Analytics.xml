@@ -22014,13 +22014,13 @@ result ^= expression;
             <param name="path">The first found ittoryu path.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Linq.AnalyzerResultEnumerable">
+        <member name="T:Sudoku.Linq.AnalysisResultEnumerable">
             <summary>
             Provides with some LINQ methods for type <see cref="T:Sudoku.Analytics.AnalysisResult"/>.
             </summary>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.All(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.All(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Determines whether all <see cref="T:Sudoku.Analytics.Step"/> instances satisfy the specified condition.
             </summary>
@@ -22028,7 +22028,7 @@ result ^= expression;
             <param name="predicate">The match method.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Any(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Any(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Determines whether at least one <see cref="T:Sudoku.Analytics.Step"/> instance satisfies the specified condition.
             </summary>
@@ -22036,7 +22036,7 @@ result ^= expression;
             <param name="predicate">The match method.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Cast``1(Sudoku.Analytics.AnalysisResult)">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Cast``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
             Cast the object into a <see cref="T:System.ReadOnlySpan`1"/> of <typeparamref name="T"/> instances.
             </summary>
@@ -22044,7 +22044,7 @@ result ^= expression;
             <param name="this">The instance to be casted.</param>
             <returns>A list of <typeparamref name="T"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Where(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Where(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,System.Boolean})">
             <summary>
             Filters the current collection, preserving <see cref="T:Sudoku.Analytics.Step"/> instances that are satisfied the specified condition.
             </summary>
@@ -22052,7 +22052,7 @@ result ^= expression;
             <param name="condition">The condition to be satisfied.</param>
             <returns>An array of <see cref="T:Sudoku.Analytics.Step"/> instances.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.Select``1(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,``0})">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.Select``1(Sudoku.Analytics.AnalysisResult,System.Func{Sudoku.Analytics.Step,``0})">
             <summary>
             Projects the collection, to an immutable result of target type.
             </summary>
@@ -22063,7 +22063,7 @@ result ^= expression;
             </param>
             <returns>The projected collection of element type <typeparamref name="TResult"/>.</returns>
         </member>
-        <member name="M:Sudoku.Linq.AnalyzerResultEnumerable.OfType``1(Sudoku.Analytics.AnalysisResult)">
+        <member name="M:Sudoku.Linq.AnalysisResultEnumerable.OfType``1(Sudoku.Analytics.AnalysisResult)">
             <summary>
             Filters the current collection, preserving steps that are of type <typeparamref name="T"/>.
             </summary>

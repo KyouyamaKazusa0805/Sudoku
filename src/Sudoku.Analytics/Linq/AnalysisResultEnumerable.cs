@@ -4,7 +4,7 @@ namespace Sudoku.Linq;
 /// Provides with some LINQ methods for type <see cref="AnalysisResult"/>.
 /// </summary>
 /// <seealso cref="AnalysisResult"/>
-public static class AnalyzerResultEnumerable
+public static class AnalysisResultEnumerable
 {
 	/// <summary>
 	/// Determines whether all <see cref="Step"/> instances satisfy the specified condition.
