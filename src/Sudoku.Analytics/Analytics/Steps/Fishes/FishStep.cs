@@ -41,10 +41,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) :
-	Step(conclusions, views, options),
-	ISizeTrait,
-	ISudokuConceptConvertible<FishStep>
+) : Step(conclusions, views, options), ISizeTrait
 {
 	/// <inheritdoc/>
 	/// <remarks>
@@ -61,63 +58,30 @@ public abstract partial class FishStep(
 	/// </remarks>
 	public int Size => PopCount((uint)BaseSetsMask);
 
-	/// <inheritdoc/>
-	public int Rank => 0;
-
 	/// <summary>
 	/// The internal notation.
 	/// </summary>
-	private protected string InternalNotation => ToString(Options.Converter);
+	private protected string InternalNotation => Pattern.ToString(Options.Converter);
+
+	/// <summary>
+	/// Creates a <see cref="Fish"/> instance via the current data.
+	/// </summary>
+	private Fish Pattern
+		=> new(
+			Digit,
+			BaseSetsMask,
+			CoverSetsMask,
+			in this is NormalFishStep { Fins: var f }
+				? ref f
+				: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref Ref.NullRef<CellMap>(),
+			in this is NormalFishStep
+				? ref CellMap.Empty
+				: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref Ref.NullRef<CellMap>()
+		);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="Step.ToString(CultureInfo?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public new string ToString(CultureInfo? culture = null)
-		=> ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
-
-	/// <inheritdoc/>
-	public string ToString<T>(T converter) where T : CoordinateConverter
-	{
-		switch (converter)
-		{
-			case RxCyConverter c:
-			{
-				// Special optimization.
-				var baseSets = c.HouseConverter(BaseSetsMask);
-				var coverSets = c.HouseConverter(CoverSetsMask);
-				var exofins = this switch
-				{
-					NormalFishStep { Fins: var f and not [] } => $" f{c.CellConverter(f)} ",
-					ComplexFishStep { Exofins: var f and not [] } => $" f{c.CellConverter(f)} ",
-					_ => string.Empty
-				};
-				var endofins = this switch
-				{
-					ComplexFishStep { Endofins: var e and not [] } => $"ef{c.CellConverter(e)}",
-					_ => string.Empty
-				};
-				return $@"{c.DigitConverter((Mask)(1 << Digit))} {baseSets}\{coverSets}{exofins}{endofins}";
-			}
-			case var c:
-			{
-				var exofinsAre = ResourceDictionary.Get("ExofinsAre", ResultCurrentCulture);
-				var comma = ResourceDictionary.Get("Comma", ResultCurrentCulture);
-				var digitString = c.DigitConverter((Mask)(1 << Digit));
-				var baseSets = c.HouseConverter(BaseSetsMask);
-				var coverSets = c.HouseConverter(CoverSetsMask);
-				var exofins = this switch
-				{
-					NormalFishStep { Fins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
-					ComplexFishStep { Exofins: var f and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(f))}",
-					_ => string.Empty
-				};
-				var endofins = this switch
-				{
-					ComplexFishStep { Endofins: var e and not [] } => $"{comma}{string.Format(exofinsAre, c.CellConverter(e))}",
-					_ => string.Empty
-				};
-				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{baseSets}\{coverSets}{exofins}{endofins}";
-			}
-		}
-	}
+		=> Pattern.ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
 }

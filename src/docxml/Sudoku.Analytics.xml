@@ -16850,19 +16850,18 @@
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.Rank">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.InternalNotation">
             <summary>
             The internal notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.Pattern">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.Fish"/> instance via the current data.
+            </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString``1(``0)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.Globalization.CultureInfo)">
+            <inheritdoc cref="M:Sudoku.Analytics.Step.ToString(System.Globalization.CultureInfo)"/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
             <summary>
@@ -20441,6 +20440,86 @@
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Fish">
+            <summary>
+            Represents a fish pattern.
+            </summary>
+            <param name="digit">Indicates the digit to be used.</param>
+            <param name="baseSets">Indicates the base sets.</param>
+            <param name="coverSets">Indicates the cover sets.</param>
+            <param name="exofins">Indicates the exo-fins.</param>
+            <param name="endofins">Indicates the endo-fins.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.#ctor(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents a fish pattern.
+            </summary>
+            <param name="digit">Indicates the digit to be used.</param>
+            <param name="baseSets">Indicates the base sets.</param>
+            <param name="coverSets">Indicates the cover sets.</param>
+            <param name="exofins">Indicates the exo-fins.</param>
+            <param name="endofins">Indicates the endo-fins.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.IsComplex">
+            <summary>
+            Indicates whether the pattern is complex fish.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.Equals(Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#IEquatable{Sudoku#Concepts#Fish}#Equals(Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.BaseSets">
+            <summary>
+            The generated property declaration for parameter <c>baseSets</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.CoverSets">
+            <summary>
+            The generated property declaration for parameter <c>coverSets</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Exofins">
+            <summary>
+            The generated property declaration for parameter <c>exofins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Endofins">
+            <summary>
+            The generated property declaration for parameter <c>endofins</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.op_Equality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.op_Inequality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Equality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Inequality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Grouped">
             <summary>
