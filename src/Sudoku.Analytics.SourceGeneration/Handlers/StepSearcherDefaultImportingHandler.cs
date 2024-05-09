@@ -198,19 +198,18 @@ internal static class StepSearcherDefaultImportingHandler
 			return string.Join(" | ", targetList);
 		}
 	}
-
-
-	/// <summary>
-	/// Indicates the data collected via <see cref="StepSearcherDefaultImportingHandler"/>.
-	/// </summary>
-	/// <seealso cref="StepSearcherDefaultImportingHandler"/>
-	internal sealed record CollectedResult(
-		INamespaceSymbol Namespace,
-		INamedTypeSymbol BaseType,
-		int PriorityValue,
-		int StepSearcherLevel,
-		string TypeName,
-		NamedArgs NamedArguments,
-		bool IsPolymorphism
-	);
 }
+
+/// <summary>
+/// Indicates the data collected via <see cref="StepSearcherDefaultImportingHandler"/>.
+/// </summary>
+/// <seealso cref="StepSearcherDefaultImportingHandler"/>
+file sealed record CollectedResult(
+	INamespaceSymbol Namespace,
+	INamedTypeSymbol BaseType,
+	int PriorityValue,
+	int StepSearcherLevel,
+	string TypeName,
+	NamedArgs NamedArguments,
+	bool IsPolymorphism
+);
