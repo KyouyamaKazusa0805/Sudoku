@@ -1978,26 +1978,6 @@
             Determines whether the current grid contains any missing candidates.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
-            <summary>
-            Indicates the number of total candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.GivensCount">
-            <summary>
-            Indicates the total number of given cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.ModifiablesCount">
-            <summary>
-            Indicates the total number of modifiable cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.EmptiesCount">
-            <summary>
-            Indicates the total number of empty cells.
-            </summary>
-        </member>
         <member name="P:Sudoku.Concepts.Grid.Token">
             <summary>
             Indicates the token of the grid at the initial state.
@@ -2020,6 +2000,26 @@
             ]]></code>
             </remarks>
             <exception cref="T:System.NotSupportedException">Throws when the puzzle type is Sukaku.</exception>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.GivensCount">
+            <summary>
+            Indicates the total number of given cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.ModifiablesCount">
+            <summary>
+            Indicates the total number of modifiable cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.EmptiesCount">
+            <summary>
+            Indicates the total number of empty cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Grid.CandidatesCount">
+            <summary>
+            Indicates the number of total candidates.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Grid.EmptyHouses">
             <summary>

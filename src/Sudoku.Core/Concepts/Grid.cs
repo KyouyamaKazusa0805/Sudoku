@@ -106,12 +106,12 @@ public partial struct Grid :
 	/// <summary>
 	/// Indicates the number of cells of a sudoku grid.
 	/// </summary>
-	private const int CellsCount = 81;
+	private const Cell CellsCount = 81;
 
 	/// <summary>
 	/// Indicates the number of candidates appeared in a cell.
 	/// </summary>
-	private const int CellCandidatesCount = 9;
+	private const Digit CellCandidatesCount = 9;
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
@@ -349,53 +349,6 @@ public partial struct Grid :
 	public readonly bool ContainsAnyMissingCandidates => ResetGrid == ResetCandidatesGrid.ResetGrid && this != ResetCandidatesGrid;
 
 	/// <summary>
-	/// Indicates the number of total candidates.
-	/// </summary>
-	public readonly int CandidatesCount
-	{
-		get
-		{
-			var count = 0;
-			for (var i = 0; i < CellsCount; i++)
-			{
-				if (GetState(i) == CellState.Empty)
-				{
-					count += PopCount((uint)GetCandidates(i));
-				}
-			}
-
-			return count;
-		}
-	}
-
-	/// <summary>
-	/// Indicates the total number of given cells.
-	/// </summary>
-	public readonly int GivensCount
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => GivenCells.Count;
-	}
-
-	/// <summary>
-	/// Indicates the total number of modifiable cells.
-	/// </summary>
-	public readonly int ModifiablesCount
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => ModifiableCells.Count;
-	}
-
-	/// <summary>
-	/// Indicates the total number of empty cells.
-	/// </summary>
-	public readonly int EmptiesCount
-	{
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => EmptyCells.Count;
-	}
-
-	/// <summary>
 	/// Indicates the token of the grid at the initial state.
 	/// </summary>
 	/// <remarks>
@@ -445,6 +398,53 @@ public partial struct Grid :
 			}
 
 			return sb.ToString();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the total number of given cells.
+	/// </summary>
+	public readonly Cell GivensCount
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => GivenCells.Count;
+	}
+
+	/// <summary>
+	/// Indicates the total number of modifiable cells.
+	/// </summary>
+	public readonly Cell ModifiablesCount
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => ModifiableCells.Count;
+	}
+
+	/// <summary>
+	/// Indicates the total number of empty cells.
+	/// </summary>
+	public readonly Cell EmptiesCount
+	{
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		get => EmptyCells.Count;
+	}
+
+	/// <summary>
+	/// Indicates the number of total candidates.
+	/// </summary>
+	public readonly Candidate CandidatesCount
+	{
+		get
+		{
+			var count = 0;
+			for (var i = 0; i < CellsCount; i++)
+			{
+				if (GetState(i) == CellState.Empty)
+				{
+					count += PopCount((uint)GetCandidates(i));
+				}
+			}
+
+			return count;
 		}
 	}
 
