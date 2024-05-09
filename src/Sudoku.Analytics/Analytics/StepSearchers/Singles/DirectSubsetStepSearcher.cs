@@ -174,7 +174,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				}
 
 				// Gather highlight candidates.
-				var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
+				var (cellOffsets, candidateOffsets) = (new List<IconViewNode>(), new List<CandidateViewNode>());
 				foreach (var digit in digits)
 				{
 					foreach (var cell in cells & candidatesMap[digit])
@@ -366,7 +366,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
-		List<CellViewNode> cellOffsets,
+		List<IconViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
 		ref readonly CellMap emptyCells
 	)
@@ -453,7 +453,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
 		ref AnalysisContext context,
@@ -464,7 +464,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
-		List<CellViewNode> cellOffsets,
+		List<IconViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
 		ReadOnlySpan<CellMap> candidatesMap
 	)
@@ -503,7 +503,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
-							new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+							new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
@@ -541,7 +541,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{CellViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
 		ref AnalysisContext context,
@@ -552,7 +552,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		House subsetHouse,
 		bool searchingForLocked,
 		bool containsExtraEliminations,
-		List<CellViewNode> cellOffsets,
+		List<IconViewNode> cellOffsets,
 		List<CandidateViewNode> candidateOffsets,
 		ref readonly CellMap emptyCells
 	)
@@ -776,7 +776,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 							..
 							from c in HousesMap[house] & eliminatedCells
 							select new CandidateViewNode(ColorIdentifier.Elimination, c * 9 + digit),
-							new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+							new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 							new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 							new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
 							new HouseViewNode(ColorIdentifier.Auxiliary3, house)
@@ -860,7 +860,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						.. candidateOffsets,
 						.. SingleModule.GetNakedSingleExcluders(in grid, cell, lastDigit, out _),
 						new HouseViewNode(ColorIdentifier.Normal, subsetHouse),
-						new CellViewNode(ColorIdentifier.Auxiliary3, cell) { RenderingMode = DirectModeOnly },
+						new DiamondViewNode(ColorIdentifier.Auxiliary3, cell),
 						new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit)
 					]
 				],

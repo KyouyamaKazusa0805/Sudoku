@@ -429,7 +429,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 
 		// The digit is a hidden single.
 		// Now collect information (especially for rendering & text) from the current found step.
-		var (enableAndIsLastDigit, cellOffsets) = (false, new List<CellViewNode>());
+		var (enableAndIsLastDigit, cellOffsets) = (false, new List<IconViewNode>());
 		if (@this.EnableLastDigit)
 		{
 			// Sum up the number of appearing in the grid of 'digit'.
@@ -439,7 +439,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				if (grid.GetDigit(cell) == digit)
 				{
 					digitCount++;
-					cellOffsets.Add(new(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
+					cellOffsets.Add(new CircleViewNode(ColorIdentifier.Normal, cell));
 				}
 			}
 

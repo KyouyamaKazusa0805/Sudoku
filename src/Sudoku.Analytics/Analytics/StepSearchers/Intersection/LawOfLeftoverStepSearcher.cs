@@ -7,7 +7,10 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Law of leftover</item>
 /// </list>
 /// </summary>
-[StepSearcher("StepSearcherName_LawOfLeftoverStepSearcher", Technique.LawOfLeftover, RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
+[StepSearcher(
+	"StepSearcherName_LawOfLeftoverStepSearcher",
+	Technique.LawOfLeftover,
+	RuntimeFlags = StepSearcherRuntimeFlags.DirectTechniquesOnly)]
 public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>
@@ -82,15 +85,9 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 				[.. conclusions],
 				[
 					[
-						..
-						from cell in a
-						select new CellViewNode(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark },
-						..
-						from cell in b
-						select new CellViewNode(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark },
-						..
-						from cell in c
-						select new CellViewNode(ColorIdentifier.Auxiliary3, cell) { RenderingMode = BothDirectAndPencilmark }
+						.. from cell in a select new CircleViewNode(ColorIdentifier.Normal, cell),
+						.. from cell in b select new TriangleViewNode(ColorIdentifier.Auxiliary2, cell),
+						.. from cell in c select new DiamondViewNode(ColorIdentifier.Auxiliary3, cell)
 					]
 				],
 				context.Options,

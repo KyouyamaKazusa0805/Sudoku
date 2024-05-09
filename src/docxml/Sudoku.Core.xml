@@ -6139,12 +6139,6 @@
             <param name="identifier"><inheritdoc/></param>
             <param name="cell">Indicates the cell highlighted.</param>
         </member>
-        <member name="P:Sudoku.Rendering.Nodes.CellViewNode.RenderingMode">
-            <summary>
-            Indicates the mode that the bound view node will be displayed.
-            The default value is <see cref="F:Sudoku.Rendering.RenderingMode.PencilmarkModeOnly"/>, which means only pencilmark mode the node will be displayed.
-            </summary>
-        </member>
         <member name="P:Sudoku.Rendering.Nodes.CellViewNode.CellString">
             <summary>
             Indicates the cell string.
@@ -6511,31 +6505,6 @@
         </member>
         <member name="M:Sudoku.Rendering.PaletteIdColorIdentifier.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:Sudoku.Rendering.RenderingMode">
-            <summary>
-            Represents a kind of the rendering mode.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Rendering.RenderingMode.None">
-            <summary>
-            Indicates never displays the current node.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Rendering.RenderingMode.DirectModeOnly">
-            <summary>
-            Indicates the view node is only displayed in direct mode. In the direct mode, candidates will be never displayed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Rendering.RenderingMode.PencilmarkModeOnly">
-            <summary>
-            Indicates the view node is only displayed in pencilmark mode. In the pencilmark mode, candidates will be displayed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Rendering.RenderingMode.BothDirectAndPencilmark">
-            <summary>
-            Indicates the view node will be displayed in both direct and pencilmark mode.
-            </summary>
         </member>
         <member name="T:Sudoku.Rendering.View">
             <summary>

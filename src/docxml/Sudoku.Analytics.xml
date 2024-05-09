@@ -6449,13 +6449,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
@@ -6494,14 +6494,14 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cell">The cell.</param>
             <param name="chosenCells">The chosen cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6533,13 +6533,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
-            Get all <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s that represents as excluders.
+            Get all <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s that represents as excluders.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <param name="excluderHouses">The excluder houses.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
@@ -6556,13 +6556,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
             <summary>
@@ -10840,7 +10840,7 @@
             Search for naked subsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for full houses produced on hidden subsets.
             </summary>
@@ -10858,17 +10858,17 @@
             <param name="emptyCells">Indicates the empty cells.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
             <summary>
             Check for hidden single produced on hidden subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for naked single produced on hidden subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>

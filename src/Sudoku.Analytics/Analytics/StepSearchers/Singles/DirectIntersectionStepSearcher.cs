@@ -234,7 +234,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						..
 						from cell in HousesMap[house] & elimMap
 						select new CandidateViewNode(ColorIdentifier.Elimination, cell * 9 + digit),
-						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+						new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet),
@@ -306,7 +306,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 						.. from cell in intersection select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 						.. SingleModule.GetNakedSingleExcluders(in grid, lastCell, lastDigit, out _),
 						.. IntersectionModule.GetCrosshatchBaseCells(in grid, digit, baseSet, in intersection),
-						new CellViewNode(ColorIdentifier.Auxiliary3, lastCell) { RenderingMode = DirectModeOnly },
+						new DiamondViewNode(ColorIdentifier.Auxiliary3, lastCell),
 						new CandidateViewNode(ColorIdentifier.Elimination, lastCell * 9 + digit),
 						new HouseViewNode(ColorIdentifier.Normal, baseSet),
 						new HouseViewNode(ColorIdentifier.Auxiliary1, coverSet)
@@ -317,7 +317,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
-				[lastCell],
+				in CellMaps[lastCell],
 				digit,
 				SingleModule.GetNakedSingleSubtype(in grid, lastCell),
 				Technique.NakedSingle,

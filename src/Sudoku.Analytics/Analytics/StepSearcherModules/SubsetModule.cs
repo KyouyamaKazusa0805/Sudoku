@@ -37,14 +37,14 @@ internal static class SubsetModule
 	}
 
 	/// <summary>
-	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// Try to create a list of <see cref="IconViewNode"/>s indicating the crosshatching base cells.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="digit">The digit.</param>
 	/// <param name="house">The house.</param>
 	/// <param name="cells">The cells.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	public static ReadOnlySpan<CellViewNode> GetCrosshatchBaseCells(
+	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
+	public static ReadOnlySpan<IconViewNode> GetCrosshatchBaseCells(
 		ref readonly Grid grid,
 		Digit digit,
 		House house,
@@ -57,15 +57,15 @@ internal static class SubsetModule
 			return [];
 		}
 
-		var result = new List<CellViewNode>();
+		var result = new List<IconViewNode>();
 		foreach (var c in combination)
 		{
-			result.Add(new(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly });
+			result.Add(new CircleViewNode(ColorIdentifier.Normal, c));
 		}
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
 			var p = emptyCellsNotNeedToBeCovered.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1;
-			result.Add(new(p, c) { RenderingMode = DirectModeOnly });
+			result.Add(p == ColorIdentifier.Auxiliary2 ? new TriangleViewNode(p, c) : new CrossViewNode(p, c));
 		}
 
 		return result.AsReadOnlySpan();
@@ -117,7 +117,7 @@ internal static class SubsetModule
 				}
 
 				// Gather highlight candidates.
-				var (cellOffsets, candidateOffsets) = (new List<CellViewNode>(), new List<CandidateViewNode>());
+				var (cellOffsets, candidateOffsets) = (new List<IconViewNode>(), new List<CandidateViewNode>());
 				foreach (var digit in digits)
 				{
 					foreach (var cell in cells & candidatesMapForGrid[digit])

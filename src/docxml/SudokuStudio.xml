@@ -5443,13 +5443,6 @@
             The filters for controls that describes for view node.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ShapeKindsCreator">
-            <summary>
-            Represents a dictionary that displays the relations between <see cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/> and <see cref="T:Microsoft.UI.Xaml.Controls.Control"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.WellKnownColorIdentifier"/>
-            <seealso cref="T:Microsoft.UI.Xaml.Controls.Control"/>
-        </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.RenderableItemsUpdatingReason,System.Object)">
             <summary>
             Refresh the pane view unit controls.
@@ -5498,6 +5491,19 @@
             <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <seealso cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForIconNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.IconViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="iconNode">The node to be displayed.</param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <seealso cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>
         </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)">
             <summary>
@@ -5620,90 +5626,6 @@
             <param name="s">The caller expression for argument <paramref name="o"/>.</param>
             <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
             <exception cref="T:System.InvalidOperationException">Always throws.</exception>
-        </member>
-        <member name="T:SudokuStudio.Rendering.PathCreator">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Pane">Indicates the sudoku pane control.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Pane">Indicates the sudoku pane control.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Pane">
-            <summary>Indicates the sudoku pane control.</summary>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Converter">
-            <summary>Indicates the position converter.</summary>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Conclusions">
-            <summary>Indicates the conclusions of the whole chain.</summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.PathCreator.RotateAngle">
-            <summary>
-            Indicates the rotate angle (45 degrees).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.PathCreator.SqrtOf2">
-            <summary>
-            Indicates the square root of 2.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.CreateLinks(Sudoku.Rendering.Nodes.LinkViewNode[])">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
-            </summary>
-            <param name="nodes">The link view nodes.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
-            meaning the arrow cap lines besides the line.
-            </summary>
-            <param name="pt1">The start point.</param>
-            <param name="pt2">The end point.</param>
-            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
-        </member>
-        <member name="T:SudokuStudio.Rendering.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.GetIdentifierSuffix(Sudoku.Rendering.ColorIdentifier)">
-            <summary>
-            Try to get identifier suffix for the specified value.
-            </summary>
-            <param name="this">The color identifier.</param>
-            <returns>The string suffix text.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
-            <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
-            </summary>
-            <param name="this">The collection.</param>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
-            <summary>
-            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-            <para>This method is used for checking cannibalism.</para>
-            </summary>
-            <param name="conclusions">The conclusion collection.</param>
-            <param name="candidate">The candidate to be determined.</param>
-            <param name="conclusion">The overlapped result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:SudokuStudio.Rendering.Filters">
             <summary>
@@ -5853,6 +5775,90 @@
             <param name="tagMatcher">
             The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
             </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:SudokuStudio.Rendering.PathCreator">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Pane">Indicates the sudoku pane control.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="M:SudokuStudio.Rendering.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Pane">Indicates the sudoku pane control.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="P:SudokuStudio.Rendering.PathCreator.Pane">
+            <summary>Indicates the sudoku pane control.</summary>
+        </member>
+        <member name="P:SudokuStudio.Rendering.PathCreator.Converter">
+            <summary>Indicates the position converter.</summary>
+        </member>
+        <member name="P:SudokuStudio.Rendering.PathCreator.Conclusions">
+            <summary>Indicates the conclusions of the whole chain.</summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.PathCreator.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Rendering.PathCreator.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Rendering.PathCreator.CreateLinks(Sudoku.Rendering.Nodes.LinkViewNode[])">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Rendering.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
+            meaning the arrow cap lines besides the line.
+            </summary>
+            <param name="pt1">The start point.</param>
+            <param name="pt2">The end point.</param>
+            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
+        </member>
+        <member name="T:SudokuStudio.Rendering.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Rendering.Extensions.GetIdentifierSuffix(Sudoku.Rendering.ColorIdentifier)">
+            <summary>
+            Try to get identifier suffix for the specified value.
+            </summary>
+            <param name="this">The color identifier.</param>
+            <returns>The string suffix text.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
+        </member>
+        <member name="M:SudokuStudio.Rendering.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            </summary>
+            <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Rendering.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
+            <summary>
+            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+            <para>This method is used for checking cannibalism.</para>
+            </summary>
+            <param name="conclusions">The conclusion collection.</param>
+            <param name="candidate">The candidate to be determined.</param>
+            <param name="conclusion">The overlapped result.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:SudokuStudio.Rendering.RenderableItemIdentifiers">

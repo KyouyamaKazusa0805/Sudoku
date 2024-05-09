@@ -57,15 +57,15 @@ internal static class SingleModule
 	}
 
 	/// <summary>
-	/// Try to create a list of <see cref="CellViewNode"/>s indicating the crosshatching base cells.
+	/// Try to create a list of <see cref="IconViewNode"/>s indicating the crosshatching base cells.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="digit">The digit.</param>
 	/// <param name="house">The house.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="chosenCells">The chosen cells.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	public static ReadOnlySpan<CellViewNode> GetHiddenSingleExcluders(
+	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
+	public static ReadOnlySpan<IconViewNode> GetHiddenSingleExcluders(
 		ref readonly Grid grid,
 		Digit digit,
 		House house,
@@ -76,12 +76,12 @@ internal static class SingleModule
 		if (Crosshatching.TryCreate(in grid, digit, house, [cell]) is var (cc, covered, excluded))
 		{
 			chosenCells = cc;
-			return (CellViewNode[])[
-				.. from c in chosenCells select new CellViewNode(ColorIdentifier.Normal, c) { RenderingMode = DirectModeOnly },
+			return (IconViewNode[])[
+				.. from c in chosenCells select new CircleViewNode(ColorIdentifier.Normal, c),
 				..
 				from c in covered
 				let p = excluded.Contains(c) ? ColorIdentifier.Auxiliary2 : ColorIdentifier.Auxiliary1
-				select new CellViewNode(p, c) { RenderingMode = DirectModeOnly }
+				select (IconViewNode)(p == ColorIdentifier.Auxiliary2 ? new TriangleViewNode(p, c) : new CrossViewNode(p, c))
 			];
 		}
 
@@ -169,7 +169,7 @@ internal static class SingleModule
 	/// <returns>A <see cref="CellMap"/> instance.</returns>
 	public static CellMap GetNakedSingleExcluderCells(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
 	{
-		(var result, var i, excluderHouses) = (CellMap.Empty, 0, new House[8]);
+		(var (result, i), excluderHouses) = ((CellMap.Empty, 0), new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
 		{
 			foreach (var otherCell in PeersMap[cell])
@@ -177,7 +177,7 @@ internal static class SingleModule
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result.Add(otherCell);
-					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
+					(CellMaps[cell] + otherCell).InOneHouse(out excluderHouses[i]);
 					i++;
 					break;
 				}
@@ -188,24 +188,29 @@ internal static class SingleModule
 	}
 
 	/// <summary>
-	/// Get all <see cref="CellViewNode"/>s that represents as excluders.
+	/// Get all <see cref="IconViewNode"/>s that represents as excluders.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="cell">The cell.</param>
 	/// <param name="digit">The digit.</param>
 	/// <param name="excluderHouses">The excluder houses.</param>
-	/// <returns>A list of <see cref="CellViewNode"/> instances.</returns>
-	public static ReadOnlySpan<CellViewNode> GetNakedSingleExcluders(ref readonly Grid grid, Cell cell, Digit digit, out House[] excluderHouses)
+	/// <returns>A list of <see cref="IconViewNode"/> instances.</returns>
+	public static ReadOnlySpan<IconViewNode> GetNakedSingleExcluders(
+		ref readonly Grid grid,
+		Cell cell,
+		Digit digit,
+		out House[] excluderHouses
+	)
 	{
-		(var result, var i, excluderHouses) = (new CellViewNode[8], 0, new House[8]);
+		(var (result, i), excluderHouses) = ((new IconViewNode[8], 0), new House[8]);
 		foreach (var otherDigit in (Mask)(Grid.MaxCandidatesMask & (Mask)~(1 << digit)))
 		{
 			foreach (var otherCell in PeersMap[cell])
 			{
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
-					result[i] = new(ColorIdentifier.Normal, otherCell) { RenderingMode = DirectModeOnly };
-					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
+					result[i] = new CircleViewNode(ColorIdentifier.Normal, otherCell);
+					(CellMaps[cell] + otherCell).InOneHouse(out excluderHouses[i]);
 					i++;
 					break;
 				}

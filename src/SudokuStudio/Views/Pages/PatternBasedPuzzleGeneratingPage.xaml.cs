@@ -201,13 +201,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			_ => (Color)page.Resources["SelectedCellColorDark"]!
 		};
 		view.View.Clear();
-		view.View.AddRange(
-			from cell in newValue
-			select new CellViewNode(new ColorColorIdentifier(a, r, g, b), cell)
-			{
-				RenderingMode = RenderingMode.BothDirectAndPencilmark
-			}
-		);
+		view.View.AddRange(from cell in newValue select new CellViewNode(new ColorColorIdentifier(a, r, g, b), cell));
 
 		pane.ViewUnit = null;
 		pane.ViewUnit = view;

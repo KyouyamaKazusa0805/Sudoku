@@ -338,7 +338,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							continue;
 						}
 
-						cellOffsets.Add(new(ColorIdentifier.Normal, cell) { RenderingMode = BothDirectAndPencilmark });
+						cellOffsets.Add(new(ColorIdentifier.Normal, cell));
 						break;
 					}
 				}
@@ -347,9 +347,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 
 		return [
 			.. cellOffsets,
-			..
-			from cell in ValuesMap[digit]
-			select new CellViewNode(ColorIdentifier.Auxiliary2, cell) { RenderingMode = BothDirectAndPencilmark },
+			.. from cell in ValuesMap[digit] select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 			.. fins ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : []
 		];
 	}

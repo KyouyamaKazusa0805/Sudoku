@@ -652,7 +652,7 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					view.View.Add(new CellViewNode(index, cell) { RenderingMode = RenderingMode.BothDirectAndPencilmark });
+					view.View.Add(new CellViewNode(index, cell));
 				}
 
 				UpdateViewUnit();
