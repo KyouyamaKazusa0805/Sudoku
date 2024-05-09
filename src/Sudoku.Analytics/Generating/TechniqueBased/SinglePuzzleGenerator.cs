@@ -21,7 +21,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 	/// Indicates the analyzer. This field can only be called inside method <see cref="GenerateJustOneCellPhased"/>.
 	/// </summary>
 	/// <seealso cref="GenerateJustOneCellPhased"/>
-	private protected static readonly Analyzer SingleAnalyzer = Analyzers.Default
+	private protected static readonly Analyzer SingleAnalyzer = Analyzer.Default
 		.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, HiddenSinglesInBlockFirst = true })
 		.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });
 

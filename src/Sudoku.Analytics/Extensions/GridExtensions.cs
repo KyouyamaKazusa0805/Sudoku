@@ -26,7 +26,7 @@ public static class GridExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CanPrimaryFullHouse(this in Grid @this)
-		=> Analyzers.Default
+		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
 			.Analyze(in @this)
@@ -42,7 +42,7 @@ public static class GridExtensions
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CanPrimaryHiddenSingle(this in Grid @this, bool allowHiddenSingleInLine)
-		=> Analyzers.Default
+		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.HiddenSingle, AllowsHiddenSingleInLines = allowHiddenSingleInLine })
@@ -56,7 +56,7 @@ public static class GridExtensions
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool CanPrimaryNakedSingle(this in Grid @this)
-		=> Analyzers.Default
+		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.NakedSingle })

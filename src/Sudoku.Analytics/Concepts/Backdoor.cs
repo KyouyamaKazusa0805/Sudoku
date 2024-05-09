@@ -16,7 +16,7 @@ public static class Backdoor
 	{
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 
-		var sstsChecker = Analyzers.SstsOnly;
+		var sstsChecker = Analyzer.SstsOnly;
 		return (grid, sstsChecker.Analyze(in grid)) switch
 		{
 			({ IsValid: false } or { IsSolved: true }, _)

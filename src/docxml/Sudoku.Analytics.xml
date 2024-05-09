@@ -573,18 +573,12 @@
         </member>
         <member name="T:Sudoku.Analytics.Analyzer">
             <summary>
-            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics, and creates an <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance
-            indicating the analytics data.
+            Provides an analyzer that solves a sudoku puzzle using the human-friendly logics,
+            and creates an <see cref="T:Sudoku.Analytics.AnalysisResult"/> instance indicating the analytics data.
             </summary>
-            <remarks>
-            Please note that this type has no accessible constructors,
-            you can just use type <see cref="T:Sudoku.Analytics.Analyzers"/> to get <see cref="T:Sudoku.Analytics.Analyzer"/>s you want to get.
-            In addition, you can also use <see cref="T:Sudoku.Analytics.AnalyzerFactory"/> to create some extra configuration.
-            </remarks>
             <seealso cref="T:Sudoku.Analytics.AnalysisResult"/>
-            <seealso cref="T:Sudoku.Analytics.Analyzers"/>
+            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
             <seealso cref="T:Sudoku.Analytics.AnalyzerFactory"/>
-            <completionlist cref="T:Sudoku.Analytics.Analyzers"/>
         </member>
         <member name="F:Sudoku.Analytics.Analyzer.DefaultStepsCapacity">
             <summary>
@@ -643,6 +637,41 @@
         <member name="P:Sudoku.Analytics.Analyzer.ResultCurrentCulture">
             <summary>
             Indicates the final <see cref="T:System.Globalization.CultureInfo"/> instance to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.Default">
+            <summary>
+            Indicates the default <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has no extra configuration.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.AllIn">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that all possible <see cref="T:Sudoku.Analytics.StepSearcher"/> instances are included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.Balanced">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.SstsOnly">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only contains SSTS techniques:
+            <list type="bullet">
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/></item>
+            <item><see cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/></item>
+            </list>
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/>
+            <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/>
+        </member>
+        <member name="P:Sudoku.Analytics.Analyzer.SudokuExplainer">
+            <summary>
+            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Analyzer.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
@@ -781,47 +810,6 @@
             <param name="in">The step searchers passed in.</param>
             <param name="runningArea">The running area to be checked.</param>
             <returns>Filtered collection.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.Analyzers">
-            <summary>
-            Represents a list of <see cref="T:Sudoku.Analytics.Analyzer"/> instances that are already configured.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Analyzer"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzers.Default">
-            <summary>
-            Indicates the default <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has no extra configuration.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzers.AllIn">
-            <summary>
-            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that all possible <see cref="T:Sudoku.Analytics.StepSearcher"/> instances are included.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzers.Balanced">
-            <summary>
-            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that has some extra configuration, suitable for a whole analysis lifecycle.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzers.SstsOnly">
-            <summary>
-            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only contains SSTS techniques:
-            <list type="bullet">
-            <item><see cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/></item>
-            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/></item>
-            <item><see cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/></item>
-            <item><see cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/></item>
-            </list>
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.SingleStepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedCandidatesStepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.LockedSubsetStepSearcher"/>
-            <seealso cref="T:Sudoku.Analytics.StepSearchers.NormalSubsetStepSearcher"/>
-        </member>
-        <member name="P:Sudoku.Analytics.Analyzers.SudokuExplainer">
-            <summary>
-            Indicates an <see cref="T:Sudoku.Analytics.Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.CachedFields">
             <summary>

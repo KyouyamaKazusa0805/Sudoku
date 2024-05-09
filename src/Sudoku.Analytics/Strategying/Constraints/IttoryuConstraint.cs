@@ -10,7 +10,7 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 	/// <summary>
 	/// Indicates the step searcher used.
 	/// </summary>
-	private static readonly Analyzer LocalAnalyzer = Analyzers.Default
+	private static readonly Analyzer LocalAnalyzer = Analyzer.Default
 		.WithStepSearchers(
 			new SingleStepSearcher
 			{
