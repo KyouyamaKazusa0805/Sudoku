@@ -7,7 +7,7 @@ namespace Sudoku.Primitive;
 /// <typeparam name="TSolver">The solver's type.</typeparam>
 /// <typeparam name="TSelf">The type of the target result itself.</typeparam>
 /// <seealso cref="IAnalyzer{TSolver, TSolverResult}.Analyze(ref readonly Grid, IProgress{AnalysisProgress}, CancellationToken)"/>
-public interface IAnalyzerResult<in TSolver, out TSelf> where TSolver : IAnalyzer<TSolver, TSelf> where TSelf : IAnalyzerResult<TSolver, TSelf>
+public interface IAnalysisResult<in TSolver, out TSelf> where TSolver : IAnalyzer<TSolver, TSelf> where TSelf : IAnalysisResult<TSolver, TSelf>
 {
 	/// <summary>
 	/// Indicates whether the solver has solved the puzzle.

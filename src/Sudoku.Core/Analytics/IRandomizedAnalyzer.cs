@@ -10,7 +10,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Grid"/>
 public interface IRandomizedAnalyzer<in TSelf, out TResult> : IAnalyzer<TSelf, TResult>
 	where TSelf : IRandomizedAnalyzer<TSelf, TResult>
-	where TResult : IAnalyzerResult<TSelf, TResult>
+	where TResult : IAnalysisResult<TSelf, TResult>
 {
 	/// <summary>
 	/// Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.

@@ -5089,7 +5089,7 @@
             <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
         </member>
-        <member name="T:Sudoku.Primitive.IAnalyzerResult`2">
+        <member name="T:Sudoku.Primitive.IAnalysisResult`2">
             <summary>
             Represents an instance that describes the result after executed the method
             <see cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>.
@@ -5098,12 +5098,12 @@
             <typeparam name="TSelf">The type of the target result itself.</typeparam>
             <seealso cref="M:Sudoku.Primitive.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)"/>
         </member>
-        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.IsSolved">
+        <member name="P:Sudoku.Primitive.IAnalysisResult`2.IsSolved">
             <summary>
             Indicates whether the solver has solved the puzzle.
             </summary>
         </member>
-        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.ElapsedTime">
+        <member name="P:Sudoku.Primitive.IAnalysisResult`2.ElapsedTime">
             <summary>
             Indicates the elapsed time used during solving the puzzle. The value may not be an useful value.
             Some case if the puzzle doesn't contain a valid unique solution, the value may be
@@ -5111,19 +5111,19 @@
             </summary>
             <seealso cref="F:System.TimeSpan.Zero"/>
         </member>
-        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.Puzzle">
+        <member name="P:Sudoku.Primitive.IAnalysisResult`2.Puzzle">
             <summary>
             Indicates the original puzzle to be solved.
             </summary>
         </member>
-        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.Solution">
+        <member name="P:Sudoku.Primitive.IAnalysisResult`2.Solution">
             <summary>
             Indicates the result sudoku grid solved. If the solver can't solve this puzzle, the value will be
             <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="P:Sudoku.Primitive.IAnalyzerResult`2.UnhandledException">
+        <member name="P:Sudoku.Primitive.IAnalysisResult`2.UnhandledException">
             <summary>
             Indicates the unhandled exception thrown.
             </summary>

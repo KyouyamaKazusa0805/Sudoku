@@ -9,7 +9,7 @@ namespace Sudoku.Analytics;
 /// <typeparam name="TResult">The type of the target result.</typeparam>
 public interface IGlobalizedAnalyzer<in TSelf, out TResult> : IAnalyzer<TSelf, TResult>
 	where TSelf : IGlobalizedAnalyzer<TSelf, TResult>
-	where TResult : IAnalyzerResult<TSelf, TResult>
+	where TResult : IAnalysisResult<TSelf, TResult>
 {
 	/// <summary>
 	/// Indicates the current culture that is used for displaying running information.
