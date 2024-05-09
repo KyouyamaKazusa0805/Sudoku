@@ -140,10 +140,6 @@ internal partial class RenderableFactory
 		foreach (var (animator, adder) in controlAddingActions)
 		{
 			(animator + adder)();
-
-#if ASYNC_LOAD_VIEW_NODES
-			await Task.Delay(AsyncLoadMilliseconds);
-#endif
 		}
 
 		// Update property to get highlighted candidates.
@@ -1112,22 +1108,13 @@ file static class Extensions
 	/// <param name="this">The collection.</param>
 	public static void RemoveAllViewUnitControls(this UIElementCollection @this)
 	{
-		// Gather the UI elements.
-		// We should not use LINQ here because we should remove the elements from the control, where the control is itself.
-		// Modifying collection and iterating it synchronuously is worse.
-		var gathered = new List<FrameworkElement>();
-		foreach (var element in @this.OfType<FrameworkElement>())
+		foreach (var control in new List<FrameworkElement>(
+			from control in @this.OfType<FrameworkElement>()
+			where control.Tag is string s && s.StartsWith(nameof(RenderableFactory))
+			select control
+		))
 		{
-			if (element.Tag is string s && s.StartsWith(nameof(RenderableFactory)))
-			{
-				gathered.Add(element);
-			}
-		}
-
-		// Remove them.
-		foreach (var element in gathered)
-		{
-			@this.Remove(element);
+			@this.Remove(control);
 		}
 	}
 

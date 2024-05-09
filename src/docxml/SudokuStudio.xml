@@ -5443,6 +5443,23 @@
             The filters for controls that describes for view node.
             </summary>
         </member>
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.GetConclusionTagSuffix(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get conclusion suffix of tag.
+            </summary>
+            <returns>A <see cref="T:System.String"/> text as the result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Rendering.RenderableFactory.Throw``1(System.Object,System.Int32,System.String)">
+            <summary>
+            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
+            </summary>
+            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
+            <param name="o">The object.</param>
+            <param name="range">The range of the argument should be.</param>
+            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
+            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
+            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
+        </member>
         <member name="M:SudokuStudio.Rendering.RenderableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.RenderableItemsUpdatingReason,System.Object)">
             <summary>
             Refresh the pane view unit controls.
@@ -5609,23 +5626,6 @@
             <remarks>
             This method is special: We should handle all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s together.
             </remarks>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.GetConclusionTagSuffix(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Get conclusion suffix of tag.
-            </summary>
-            <returns>A <see cref="T:System.String"/> text as the result.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.Throw``1(System.Object,System.Int32,System.String)">
-            <summary>
-            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
-            </summary>
-            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
-            <param name="o">The object.</param>
-            <param name="range">The range of the argument should be.</param>
-            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
-            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
-            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
         </member>
         <member name="T:SudokuStudio.Rendering.Filters">
             <summary>
