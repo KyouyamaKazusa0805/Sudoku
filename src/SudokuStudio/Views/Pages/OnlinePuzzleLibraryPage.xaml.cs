@@ -179,8 +179,14 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 			var formatMessage = ResourceDictionary.Get("ExceptionMessage_ExceedRateLimit", App.CurrentCulture);
 			ErrorDisplayer.Text = string.Format(formatMessage, ex.Reset.LocalDateTime.ToString());
 		}
-		catch (OperationCanceledException) { }
-		catch (JsonException) { throw; }
+		catch (OperationCanceledException)
+		{
+			// Do nothing.
+		}
+		catch (JsonException)
+		{
+			throw;
+		}
 		catch (Exception ex)
 		{
 			ErrorDisplayer.Text = ex.Message;
