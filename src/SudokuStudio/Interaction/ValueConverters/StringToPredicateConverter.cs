@@ -1,5 +1,7 @@
 namespace SudokuStudio.Interaction.ValueConverters;
 
+using unsafe StringCheckerFuncPtr = delegate*<string, bool>;
+
 /// <summary>
 /// Converts a <see cref="string"/> value into a predicate that can return a <see cref="bool"/> result.
 /// </summary>

@@ -38,7 +38,7 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 		IncludeFields = false,
 		IgnoreReadOnlyProperties = true,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-		Converters = { new CultureInfoConverter() }
+		Converters = { new json::CultureInfoConverter() }
 	};
 
 	/// <summary>
