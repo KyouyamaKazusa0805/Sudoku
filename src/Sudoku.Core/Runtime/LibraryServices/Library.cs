@@ -249,7 +249,10 @@ public readonly partial struct Library(
 			using var sw = new StreamWriter(fs);
 			sw.WriteLine(ConfigFileHeader);
 
-			File.Create(LibraryFilePath).Close();
+			if (!File.Exists(LibraryFilePath))
+			{
+				File.Create(LibraryFilePath).Close();
+			}
 			return;
 		}
 

@@ -38,7 +38,7 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 		IncludeFields = false,
 		IgnoreReadOnlyProperties = true,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-		Converters = { new json::CultureInfoConverter() }
+		Converters = { new json::CultureInfoConverter(), new json::DateOnlyConverter("yyyy/MM/dd") }
 	};
 
 	/// <summary>
@@ -124,7 +124,6 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 
 					var (libraryFile, jsonFile) = (d1, d2);
 					var fileUrl = jsonFile.DownloadUrl;
-
 					await using var stream = new MemoryStream();
 					if (await _httpClient.DownloadFileAsync(fileUrl, stream) is { } exceptionThrown)
 					{
@@ -147,25 +146,44 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 						continue;
 					}
 
+					var lastSlashPos = fileUrl.LastIndexOf('/');
+					var fileIdWithExtension = fileUrl[(lastSlashPos + 1)..];
+					var fileId = fileIdWithExtension[fileIdWithExtension.LastIndexOf('.') is var p and not -1 ? ..p : ..];
 					var downloadButton = new Button { Content = downloadText };
-					var progressRing = new ProgressRing { HorizontalAlignment = HorizontalAlignment.Center };
+					var progressRing = new ProgressRing
+					{
+						HorizontalAlignment = HorizontalAlignment.Center,
+						Visibility = Visibility.Collapsed
+					};
 					downloadButton.Click += async (_, _) =>
 					{
 						downloadButton.IsEnabled = false;
-						progressRing.IsActive = true;
+						progressRing.Visibility = Visibility.Visible;
 
-						await downloadButtonHandler(name, libraryInfo, libDetailCurrentCulture);
+						await downloadButtonHandler(name, fileId, libraryInfo, libDetailCurrentCulture);
 
 						downloadButton.IsEnabled = true;
-						progressRing.IsActive = false;
+						progressRing.Visibility = Visibility.Collapsed;
 					};
 					PuzzleLibrariesOnGitHubDisplayer.Children.Add(
 						new SettingsCard
 						{
 							Header = name,
 							HeaderIcon = new FontIcon { Glyph = "\uE8F1" },
-							Description = string.Join(Separator, [libraryInfo.Author, libraryInfo.LastUpdate.ToString(App.CurrentCulture)]),
-							Content = new StackPanel { Spacing = 6, Children = { downloadButton, progressRing } }
+							Description = string.Join(
+								Separator,
+								[
+									fileId,
+									libraryInfo.Author,
+									libraryInfo.LastUpdate.ToString(App.CurrentCulture)
+								]
+							),
+							Content = new StackPanel
+							{
+								Orientation = Orientation.Horizontal,
+								Spacing = 6,
+								Children = { downloadButton, progressRing }
+							}
 						}
 					);
 
@@ -187,6 +205,10 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 		{
 			throw;
 		}
+		catch (HttpRequestException ex)
+		{
+			ErrorDisplayer.Text = ex.HttpRequestError.ToString();
+		}
 		catch (Exception ex)
 		{
 			ErrorDisplayer.Text = ex.Message;
@@ -200,11 +222,11 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 
 		static bool cultureMatch(OnlineLibraryDetail data) => data.Culture?.Equals(App.CurrentCulture) ?? false;
 
-		async Task downloadButtonHandler(string name, OnlineLibraryInfo libraryInfo, OnlineLibraryDetail libDataChosen)
+		async Task downloadButtonHandler(string name, string fileId, OnlineLibraryInfo libraryInfo, OnlineLibraryDetail libDataChosen)
 		{
 			try
 			{
-				var filePath = await loadPuzzleOnlineAsync(name);
+				var filePath = await loadPuzzleOnlineAsync(name, fileId);
 				writeConfigFileAlso(filePath, libraryInfo, libDataChosen);
 			}
 			catch (OperationCanceledException)
@@ -213,13 +235,23 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 			}
 		}
 
-		async Task<string> loadPuzzleOnlineAsync(string libraryName)
+		async Task<string> loadPuzzleOnlineAsync(string libraryName, string fileId)
 		{
 			const string prefix = "https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/libraries/";
 			CommonPaths.CreateIfNotExist(CommonPaths.Cache);
-			var cachedFilePath = $@"{CommonPaths.Cache}\{libraryName}{FileExtensions.PlainText}";
-			await _httpClient.DownloadFileAsync($"{prefix}{libraryName}{FileExtensions.PlainText}", cachedFilePath, _cts.Token);
-			return cachedFilePath;
+
+			var fileIdWithExtension = $@"{fileId}{FileExtensions.PlainText}";
+			var cachedFilePath = $@"{CommonPaths.Cache}\{fileIdWithExtension}";
+			try
+			{
+				await _httpClient.DownloadFileAsync($"{prefix}{fileIdWithExtension}", cachedFilePath, _cts.Token);
+				File.Move(cachedFilePath, cachedFilePath = $@"{CommonPaths.Library}\{fileIdWithExtension}");
+				return cachedFilePath;
+			}
+			catch (TaskCanceledException)
+			{
+				throw;
+			}
 		}
 
 		static void writeConfigFileAlso(string cachedFilePath, OnlineLibraryInfo libraryInfo, OnlineLibraryDetail libDataChosen)
@@ -232,8 +264,10 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 			library.Name = libDataChosen.Name;
 			library.Author = libraryInfo.Author;
 			library.Description = libDataChosen.Description;
-			library.Tags = libDataChosen.Tags;
-			File.Move(cachedFilePath, $@"{CommonPaths.Library}\{fileName}");
+			if (libDataChosen.Tags.Length != 0)
+			{
+				library.Tags = libDataChosen.Tags;
+			}
 		}
 	}
 

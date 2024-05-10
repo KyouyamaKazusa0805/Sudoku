@@ -864,6 +864,31 @@
         <member name="M:System.Text.Json.CultureInfoConverter.Write(System.Text.Json.Utf8JsonWriter,System.Globalization.CultureInfo,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.Json.DateOnlyConverter">
+            <summary>
+            Represents a converter for <see cref="T:System.DateOnly"/> instance.
+            </summary>
+            <param name="format">Indicates the format to be initialized.</param>
+            <seealso cref="T:System.DateOnly"/>
+        </member>
+        <member name="M:System.Text.Json.DateOnlyConverter.#ctor(System.String)">
+            <summary>
+            Represents a converter for <see cref="T:System.DateOnly"/> instance.
+            </summary>
+            <param name="format">Indicates the format to be initialized.</param>
+            <seealso cref="T:System.DateOnly"/>
+        </member>
+        <member name="M:System.Text.Json.DateOnlyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Text.Json.DateOnlyConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateOnly,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Text.Json.DateOnlyConverter.Format">
+            <summary>
+            The generated property declaration for parameter <c>format</c>.
+            </summary>
+        </member>
         <member name="T:System.Text.Json.IJsonSerializable`1">
             <summary>
             Represents a type that supports for JSON serialization.
