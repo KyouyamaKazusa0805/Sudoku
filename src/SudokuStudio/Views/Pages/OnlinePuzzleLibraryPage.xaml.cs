@@ -17,6 +17,11 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 	/// </summary>
 	private const string MyName = "SunnieShine";
 
+	/// <summary>
+	/// Indicates the separator.
+	/// </summary>
+	private const string Separator = " | ";
+
 
 	/// <summary>
 	/// Indicates the URI for libraries repo.
@@ -31,10 +36,15 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 		WriteIndented = true,
 		Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,
 		IncludeFields = false,
-		IgnoreReadOnlyProperties = false,
+		IgnoreReadOnlyProperties = true,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
 		Converters = { new CultureInfoConverter() }
 	};
+
+	/// <summary>
+	/// Indicates the UTF-8 encoding.
+	/// </summary>
+	private static readonly Encoding Utf8Encoding = Encoding.UTF8;
 
 
 	/// <summary>
@@ -84,85 +94,140 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 	{
 		try
 		{
-			ErrorDisplayer.Text = "";
+			ErrorDisplayer.Text = string.Empty;
 			IsActiveProgressRing.IsActive = true;
 			var downloadText = ResourceDictionary.Get("OnlinePuzzleLibraryPage_DownloadLibrary", App.CurrentCulture);
 
-			await using var stream = new MemoryStream();
-
 			// Fetch libraries and their own information.
 			var librariesAndInfos = await _gitHubClient.Repository.Content.GetAllContents(MyName, RepositoryName, "libraries");
-			foreach (var libraryInfo in
-				from d1 in librariesAndInfos
-				from d2 in librariesAndInfos
-				where d1.Path != d2.Path
-				let pair = (Name1: d1.Name, Name2: d2.Name)
-				let extension1 = io::Path.GetExtension(pair.Name1)
-				let extension2 = io::Path.GetExtension(pair.Name2)
-				let fileName1 = io::Path.GetFileNameWithoutExtension(pair.Name1)
-				let fileName2 = io::Path.GetFileNameWithoutExtension(pair.Name2)
-				where extension1 == ".txt" && extension2 == ".json" && fileName1 == fileName2
-				select (LibraryFile: d1, JsonFile: d2) into filePair
-				let fileUrl = filePair.JsonFile.DownloadUrl
-				let exceptionThrown = _httpClient.DownloadFileAsync(fileUrl, stream)
-				where exceptionThrown is null
-				let contentJson = Encoding.UTF8.GetString(stream.ToArray())
-				let instance = JsonSerializer.Deserialize<OnlineLibraryInfo>(contentJson, Options)
-				where instance is { Data: not null }
-				select instance)
+			foreach (var d1 in librariesAndInfos)
 			{
-				var libData = libraryInfo.Data!;
-				var libDataChosen = libData.FirstOrDefault(static data => data.Culture?.Equals(App.CurrentCulture) ?? false);
-				if (libDataChosen is null)
+				foreach (var d2 in librariesAndInfos)
 				{
-					continue;
+					if (d1.Path == d2.Path)
+					{
+						// Same file.
+						continue;
+					}
+
+					var (name1, name2) = (d1.Name, d2.Name);
+					var extension1 = io::Path.GetExtension(name1);
+					var extension2 = io::Path.GetExtension(name2);
+					var fileName1 = io::Path.GetFileNameWithoutExtension(name1);
+					var fileName2 = io::Path.GetFileNameWithoutExtension(name2);
+					if (extension1 != FileExtensions.PlainText || extension2 != FileExtensions.JsonDocument
+						|| fileName1 != fileName2)
+					{
+						// Fix the appearance order.
+						continue;
+					}
+
+					var (libraryFile, jsonFile) = (d1, d2);
+					var fileUrl = jsonFile.DownloadUrl;
+
+					await using var stream = new MemoryStream();
+					if (await _httpClient.DownloadFileAsync(fileUrl, stream) is { } exceptionThrown)
+					{
+						// TODO: Load exception message to text block or throw it.
+						continue;
+					}
+
+					var contentJson = Utf8Encoding.GetString(stream.ToArray());
+					var libraryInfo = JsonSerializer.Deserialize<OnlineLibraryInfo>(contentJson, Options);
+					if (libraryInfo is not { Data: { } libraryData })
+					{
+						// Data is invalid.
+						continue;
+					}
+
+					var libDetailCurrentCulture = libraryData.FirstOrDefault(cultureMatch);
+					if (libDetailCurrentCulture is not { Name: { } name })
+					{
+						// Name or other values is valid.
+						continue;
+					}
+
+					var downloadButton = new Button { Content = downloadText };
+					var progressRing = new ProgressRing { HorizontalAlignment = HorizontalAlignment.Center };
+					downloadButton.Click += async (_, _) =>
+					{
+						downloadButton.IsEnabled = false;
+						progressRing.IsActive = true;
+
+						await downloadButtonHandler(name, libraryInfo, libDetailCurrentCulture);
+
+						downloadButton.IsEnabled = true;
+						progressRing.IsActive = false;
+					};
+					PuzzleLibrariesOnGitHubDisplayer.Children.Add(
+						new SettingsCard
+						{
+							Header = name,
+							HeaderIcon = new FontIcon { Glyph = "\uE8F1" },
+							Description = string.Join(Separator, [libraryInfo.Author, libraryInfo.LastUpdate.ToString(App.CurrentCulture)]),
+							Content = new StackPanel { Spacing = 6, Children = { downloadButton, progressRing } }
+						}
+					);
+
+					_files.Add(libraryInfo);
+					break; // A JSON file must be matched with only one library file.
 				}
-
-				var author = libraryInfo.Author;
-				var name = libDataChosen.Name!;
-				var lastUpdate = libraryInfo.LastUpdate;
-
-				var downloadButton = new Button { Content = downloadText };
-				downloadButton.Click += async (_, _) =>
-				{
-					try
-					{
-						await _httpClient.DownloadFileAsync(
-							$"https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/libraries/{name}.txt",
-							$@"{CommonPaths.Library}\{name}.txt",
-							_cts.Token
-						);
-					}
-					catch (OperationCanceledException)
-					{
-					}
-				};
-
-				PuzzleLibrariesOnGitHubDisplayer.Children.Add(
-					new SettingsCard
-					{
-						Header = name,
-						HeaderIcon = new FontIcon { Glyph = "\uE8F1" },
-						Description = string.Join(" | ", [author, lastUpdate.ToString(App.CurrentCulture)]),
-						Content = downloadButton
-					}
-				);
-
-				_files.Add(libraryInfo);
 			}
 		}
 		catch (RateLimitExceededException ex)
 		{
-			ErrorDisplayer.Text = string.Join(
-				ResourceDictionary.Get("ExceptionMessage_ExceedRateLimit", App.CurrentCulture),
-				ex.Reset.LocalDateTime.ToString()
-			);
-			return;
+			var formatMessage = ResourceDictionary.Get("ExceptionMessage_ExceedRateLimit", App.CurrentCulture);
+			ErrorDisplayer.Text = string.Format(formatMessage, ex.Reset.LocalDateTime.ToString());
+		}
+		catch (OperationCanceledException) { }
+		catch (JsonException) { throw; }
+		catch (Exception ex)
+		{
+			ErrorDisplayer.Text = ex.Message;
 		}
 		finally
 		{
 			IsActiveProgressRing.IsActive = false;
 			IsActiveProgressRing.Visibility = Visibility.Collapsed;
+		}
+
+
+		static bool cultureMatch(OnlineLibraryDetail data) => data.Culture?.Equals(App.CurrentCulture) ?? false;
+
+		async Task downloadButtonHandler(string name, OnlineLibraryInfo libraryInfo, OnlineLibraryDetail libDataChosen)
+		{
+			try
+			{
+				var filePath = await loadPuzzleOnlineAsync(name);
+				writeConfigFileAlso(filePath, libraryInfo, libDataChosen);
+			}
+			catch (OperationCanceledException)
+			{
+				throw;
+			}
+		}
+
+		async Task<string> loadPuzzleOnlineAsync(string libraryName)
+		{
+			const string prefix = "https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/libraries/";
+			CommonPaths.CreateIfNotExist(CommonPaths.Cache);
+			var cachedFilePath = $@"{CommonPaths.Cache}\{libraryName}{FileExtensions.PlainText}";
+			await _httpClient.DownloadFileAsync($"{prefix}{libraryName}{FileExtensions.PlainText}", cachedFilePath, _cts.Token);
+			return cachedFilePath;
+		}
+
+		static void writeConfigFileAlso(string cachedFilePath, OnlineLibraryInfo libraryInfo, OnlineLibraryDetail libDataChosen)
+		{
+			var folder = io::Path.GetDirectoryName(cachedFilePath);
+			var fileName = io::Path.GetFileNameWithoutExtension(cachedFilePath);
+			var newFilePath = $@"{folder}\{fileName}{FileExtensions.JsonDocument}";
+			var library = new Library(CommonPaths.Library, fileName);
+			library.Initialize();
+			library.Name = libDataChosen.Name;
+			library.Author = libraryInfo.Author;
+			library.Description = libDataChosen.Description;
+			library.Tags = libDataChosen.Tags;
+			File.Move(cachedFilePath, $@"{CommonPaths.Library}\{fileName}");
 		}
 	}
 

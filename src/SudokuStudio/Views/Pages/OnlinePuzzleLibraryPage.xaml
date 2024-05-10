@@ -8,7 +8,9 @@
 	xmlns:p="using:SudokuStudio.Views.Pages"
 	mc:Ignorable="d" d:DataContext="{d:DesignInstance Type=p:OnlinePuzzleLibraryPage}"
 	Loaded="Page_LoadedAsync" Unloaded="Page_Unloaded">
-	<StackPanel x:Name="PuzzleLibrariesOnGitHubDisplayer" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}">
+	<StackPanel
+		x:Name="PuzzleLibrariesOnGitHubDisplayer" Margin="{StaticResource ContentAlignedWithNavigationViewHeaderMargin}"
+		Spacing="4">
 		<StackPanel.ChildrenTransitions>
 			<AddDeleteThemeTransition />
 		</StackPanel.ChildrenTransitions>

@@ -67,4 +67,9 @@ public static class FileExtensions
 	/// Indicates the portable document format.
 	/// </summary>
 	public const string PortableDocument = ".pdf";
+
+	/// <summary>
+	/// Indicates JSON format (JSON - JavaScript Object Notation).
+	/// </summary>
+	public const string JsonDocument = ".json";
 }

@@ -29,11 +29,7 @@ public sealed class ProgramPreferenceFileHandler : IProgramSupportedFileHandler<
 	public static void Write(string filePath, ProgramPreference instance)
 	{
 		var directory = io::Path.GetDirectoryName(filePath)!;
-		if (!Directory.Exists(directory))
-		{
-			Directory.CreateDirectory(directory);
-		}
-
+		CommonPaths.CreateIfNotExist(directory);
 		File.WriteAllText(filePath, JsonSerializer.Serialize(instance, Options));
 	}
 }

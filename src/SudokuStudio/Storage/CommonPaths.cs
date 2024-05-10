@@ -27,14 +27,9 @@ internal static class CommonPaths
 	public static readonly string Library;
 
 	/// <summary>
-	/// Indicates functions folder path.
+	/// Indicates cache folder path.
 	/// </summary>
-	public static readonly string Functions;
-
-	/// <summary>
-	/// Indicates formulae folder path.
-	/// </summary>
-	public static readonly string Formulae;
+	public static readonly string Cache;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />
@@ -44,7 +39,19 @@ internal static class CommonPaths
 		UserPreference = $@"{documents}\{SudokuStudioName}\user-preference{FileExtensions.UserPreference}";
 		GeneratingHistory = $@"{documents}\{SudokuStudioName}\generating-history{FileExtensions.GeneratingHistory}";
 		Library = $@"{documents}\{SudokuStudioName}\libraries";
-		Functions = $@"{documents}\{SudokuStudioName}\functions";
-		Formulae = $@"{documents}\{SudokuStudioName}\formulae";
+		Cache = $@"{documents}\{SudokuStudioName}\cache";
+	}
+
+
+	/// <summary>
+	/// Creates the target path if the path doesn't exist.
+	/// </summary>
+	/// <param name="path">The path.</param>
+	public static void CreateIfNotExist(string path)
+	{
+		if (!Directory.Exists(path))
+		{
+			Directory.CreateDirectory(path);
+		}
 	}
 }

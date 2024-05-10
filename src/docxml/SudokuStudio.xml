@@ -10210,14 +10210,9 @@
             Indicates puzzle-library folder path.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Storage.CommonPaths.Functions">
+        <member name="F:SudokuStudio.Storage.CommonPaths.Cache">
             <summary>
-            Indicates functions folder path.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Storage.CommonPaths.Formulae">
-            <summary>
-            Indicates formulae folder path.
+            Indicates cache folder path.
             </summary>
         </member>
         <member name="M:SudokuStudio.Storage.CommonPaths.#cctor">
@@ -10232,6 +10227,12 @@
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="M:SudokuStudio.Storage.CommonPaths.CreateIfNotExist(System.String)">
+            <summary>
+            Creates the target path if the path doesn't exist.
+            </summary>
+            <param name="path">The path.</param>
         </member>
         <member name="T:SudokuStudio.Storage.CommonSerializerOptions">
             <summary>
@@ -10307,6 +10308,11 @@
         <member name="F:SudokuStudio.Storage.FileExtensions.PortableDocument">
             <summary>
             Indicates the portable document format.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Storage.FileExtensions.JsonDocument">
+            <summary>
+            Indicates JSON format (JSON - JavaScript Object Notation).
             </summary>
         </member>
         <member name="T:SudokuStudio.Storage.FileFormat">
@@ -14793,7 +14799,6 @@
             "<see href="https://github.com/SunnieShine/sudoku-puzzle-libraries">Sudoku Puzzle Libraries</see>".
             </summary>
             <!--https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/libraries/-->
-            <!--https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/info/-->
         </member>
         <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.RepositoryName">
             <summary>
@@ -14805,6 +14810,11 @@
             Indicates my name.
             </summary>
         </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.Separator">
+            <summary>
+            Indicates the separator.
+            </summary>
+        </member>
         <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.RepoUri">
             <summary>
             Indicates the URI for libraries repo.
@@ -14813,6 +14823,11 @@
         <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.Options">
             <summary>
             Indicates the backing serialzer options.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.Utf8Encoding">
+            <summary>
+            Indicates the UTF-8 encoding.
             </summary>
         </member>
         <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage._files">
