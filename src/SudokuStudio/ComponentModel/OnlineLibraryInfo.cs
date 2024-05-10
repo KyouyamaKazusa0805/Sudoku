@@ -24,6 +24,7 @@ public sealed class OnlineLibraryInfo
 	/// <summary>
 	/// Indicates the last update time.
 	/// </summary>
+	[JsonPropertyName("update")]
 	public DateOnly LastUpdate { get; set; }
 
 	/// <summary>
