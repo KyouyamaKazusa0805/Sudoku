@@ -49,6 +49,7 @@
 		<PackageReference Include="Microsoft.WindowsAppSDK" Version="1.5.240227000" />
 		<PackageReference Include="Microsoft.Windows.SDK.BuildTools" Version="10.0.22621.3233" />
 		<PackageReference Include="Microsoft.Xaml.Behaviors.WinUI.Managed" Version="2.0.9" />
+		<PackageReference Include="Octokit" Version="10.0.0" />
 		<PackageReference Include="QuestPDF" Version="2023.9.0" />
 		<PackageReference Include="WinUICommunity.Core" Version="6.5.0" />
 		<PackageReference Include="WinUICommunity.Win2D" Version="6.5.0" />
@@ -119,6 +120,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<Page Update="Views\Pages\OnlinePuzzleLibraryPage.xaml">
+			<Generator>MSBuild:Compile</Generator>
+		</Page>
 		<Page Update="Views\Pages\TechniqueInfoModifierPage.xaml">
 			<Generator>MSBuild:Compile</Generator>
 		</Page>

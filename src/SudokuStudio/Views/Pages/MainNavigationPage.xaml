@@ -48,6 +48,9 @@
 			<NavigationViewItem
 				x:Name="LibraryPageItem" Content="{m:R Key=MainWindow_PuzzleLibraryPage}"
 				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
+			<NavigationViewItem
+				x:Name="OnlinePuzzleLibraryPageItem" Content="{m:R Key=MainWindow_OnlinePuzzleLibraryPage}"
+				Icon="{ui:FontIcon Glyph=&#xF6FA;}" />
 
 			<!--User manual-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />

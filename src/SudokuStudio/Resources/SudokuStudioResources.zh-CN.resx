@@ -2543,13 +2543,28 @@
   <data name="TechniqueGalleryPage_InfoForTechniqueRawValue" xml:space="preserve">
     <value>这个文本会用于自定义难度计算规则的页面之中。</value>
   </data>
-  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
-    <value>绘图模式</value>
-  </data>
   <data name="TechniqueView_SelectAll" xml:space="preserve">
     <value>选择所有</value>
   </data>
   <data name="TechniqueView_UnselectAll" xml:space="preserve">
     <value>取消选择所有</value>
+  </data>
+  <data name="AnalyzePage_DrawingButton" xml:space="preserve">
+    <value>绘图模式</value>
+  </data>
+  <data name="OnlinePuzzleLibraryPage_Intro" xml:space="preserve">
+    <value>这个页面列举的是我自己的 GitHub 仓库里的数独题库。</value>
+  </data>
+  <data name="MainWindow_OnlinePuzzleLibraryPageTitle" xml:space="preserve">
+    <value>线上数独题库</value>
+  </data>
+  <data name="MainWindow_OnlinePuzzleLibraryPage" xml:space="preserve">
+    <value>线上题库</value>
+  </data>
+  <data name="OnlinePuzzleLibraryPage_DownloadLibrary" xml:space="preserve">
+    <value>下载</value>
+  </data>
+  <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
+    <value>超出访问次数上限。这个规则是 GitHub 定义的，所以我改变不了。下一次允许使用此功能的时间为 {0}。</value>
   </data>
 </root>

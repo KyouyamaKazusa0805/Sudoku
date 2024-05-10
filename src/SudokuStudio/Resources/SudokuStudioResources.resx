@@ -2558,4 +2558,22 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="TechniqueView_UnselectAll" xml:space="preserve">
     <value>Unselect All</value>
   </data>
+  <data name="OnlinePuzzleLibraryPage_Intro" xml:space="preserve">
+    <value>This page lists the puzzle libraries that is available from my GitHub repo.</value>
+  </data>
+  <data name="ErrorInfo_DownloadFileExists" xml:space="preserve">
+    <value>The file already exists, the download operation will cover the file if persists. Please remove the file or move the file to another place and try again.</value>
+  </data>
+  <data name="MainWindow_OnlinePuzzleLibraryPageTitle" xml:space="preserve">
+    <value>Online puzzle libraries</value>
+  </data>
+  <data name="MainWindow_OnlinePuzzleLibraryPage" xml:space="preserve">
+    <value>Online puzzles</value>
+  </data>
+  <data name="OnlinePuzzleLibraryPage_DownloadLibrary" xml:space="preserve">
+    <value>Download</value>
+  </data>
+  <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
+    <value>Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}.</value>
+  </data>
 </root>

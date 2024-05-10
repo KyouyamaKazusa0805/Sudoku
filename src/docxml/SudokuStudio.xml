@@ -953,57 +953,6 @@
             </remarks>
             <seealso cref="F:System.SourceGeneration.Accessibility.Public"/>
         </member>
-        <member name="T:SudokuStudio.ComponentModel.FormulaExpression">
-            <summary>
-            Represents a formula expression.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Name">
-            <summary>
-            Indicates the name of the formula.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.FileId">
-            <summary>
-            Indicates the file ID.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Description">
-            <summary>
-            Indicates the description of the formula.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.Expression">
-            <summary>
-            Indicates the expression of the formula.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.ComponentModel.FormulaExpression.AppliedTechniques">
-            <summary>
-            Indicates the techniques that the expression can be applied to, if <see cref="P:Sudoku.Analytics.Step.Code"/> is in the current set.
-            </summary>
-            <seealso cref="P:Sudoku.Analytics.Step.Code"/>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.SaveToLocal">
-            <summary>
-            Saves the file to local.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.TryLoadFromLocal(System.String,SudokuStudio.ComponentModel.FormulaExpression@)">
-            <summary>
-            Loads the file from local path.
-            </summary>
-            <param name="filePath">The file to be loaded.</param>
-            <param name="result">The result parsed.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.ComponentModel.FormulaExpression.LoadFromLocal(System.String)">
-            <summary>
-            Loads the file from local path.
-            </summary>
-            <param name="filePath">The file to be loaded.</param>
-            <returns>The instance.</returns>
-        </member>
         <member name="T:SudokuStudio.ComponentModel.IAnalyzerTab">
             <summary>
             Defines a page that is used for displaying analysis result for a puzzle.
@@ -1028,6 +977,66 @@
         <member name="P:SudokuStudio.ComponentModel.IOperationProviderPage.BasePage">
             <summary>
             Indicates the base page.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.OnlineLibraryDetail">
+            <summary>
+            Represents the details to a library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryDetail.Culture">
+            <summary>
+            Indicates the culture.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryDetail.Name">
+            <summary>
+            Indicates the name of the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryDetail.Description">
+            <summary>
+            Indicates the description.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryDetail.Remarks">
+            <summary>
+            Indicates the remarks.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryDetail.Tags">
+            <summary>
+            Indicates the tags.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.ComponentModel.OnlineLibraryInfo">
+            <summary>
+            Represents a data type that describes for an online library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryInfo.Schema">
+            <summary>
+            Indicates the schema.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryInfo.Author">
+            <summary>
+            Indicates the author.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryInfo.Link">
+            <summary>
+            Indicates the extra link that can visit to learn more information about the library.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryInfo.LastUpdate">
+            <summary>
+            Indicates the last update time.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.ComponentModel.OnlineLibraryInfo.Data">
+            <summary>
+            Indicates the data of library.
             </summary>
         </member>
         <member name="T:SudokuStudio.ComponentModel.XamlBindingAttribute`1">
@@ -7153,6 +7162,11 @@
               Looks up a localized string similar to Select Mode: .
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_DownloadFileExists">
+            <summary>
+              Looks up a localized string similar to The file already exists, the download operation will cover the file if persists. Please remove the file or move the file to another place and try again..
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_GridMustBeSolvedOrNotBad">
             <summary>
               Looks up a localized string similar to The puzzle must be solved or contain at least one valid solution..
@@ -7161,6 +7175,11 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.ErrorInfo_ParseFailedOnFormula">
             <summary>
               Looks up a localized string similar to Parse failed on formula expression..
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.ExceptionMessage_ExceedRateLimit">
+            <summary>
+              Looks up a localized string similar to Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.FileExtension_CommaSeparated">
@@ -8188,6 +8207,16 @@
               Looks up a localized string similar to Menu.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_OnlinePuzzleLibraryPage">
+            <summary>
+              Looks up a localized string similar to Online puzzles.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_OnlinePuzzleLibraryPageTitle">
+            <summary>
+              Looks up a localized string similar to Online puzzle libraries.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.MainWindow_PatternBasedPuzzleGeneratingPageTitle">
             <summary>
               Looks up a localized string similar to Pattern-based puzzle generator.
@@ -8301,6 +8330,16 @@
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.NoTags">
             <summary>
               Looks up a localized string similar to &lt;No Tags&gt;.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OnlinePuzzleLibraryPage_DownloadLibrary">
+            <summary>
+              Looks up a localized string similar to Download.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.OnlinePuzzleLibraryPage_Intro">
+            <summary>
+              Looks up a localized string similar to This page lists the puzzle libraries that is available from my GitHub repo..
             </summary>
         </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.ParameterName">
@@ -14747,6 +14786,99 @@
             <summary>
             GetBindingConnector(int connectionId, object target)
             </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage">
+            <summary>
+            Represents a page that can download online puzzle libraries from my own repository
+            "<see href="https://github.com/SunnieShine/sudoku-puzzle-libraries">Sudoku Puzzle Libraries</see>".
+            </summary>
+            <!--https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/libraries/-->
+            <!--https://raw.githubusercontent.com/SunnieShine/sudoku-puzzle-libraries/main/info/-->
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.RepositoryName">
+            <summary>
+            Indicates the repository name.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.MyName">
+            <summary>
+            Indicates my name.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.RepoUri">
+            <summary>
+            Indicates the URI for libraries repo.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.Options">
+            <summary>
+            Indicates the backing serialzer options.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage._files">
+            <summary>
+            Indicates the files in the repository.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage._cts">
+            <summary>
+            Indicates the cancellation token source.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage._httpClient">
+            <summary>
+            Indicates the web client.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage._gitHubClient">
+            <summary>
+            Indicates the backing GitHub client.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.#ctor">
+            <summary>
+            Initializes an <see cref="T:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage"/> instance.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.InitializeFields">
+            <summary>
+            Initializes for fields.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.InitializeComponent">
+            <summary>
+            InitializeComponent()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.Connect(System.Int32,System.Object)">
+            <summary>
+            Connect()
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.OnlinePuzzleLibraryPage.GetBindingConnector(System.Int32,System.Object)">
+            <summary>
+            GetBindingConnector(int connectionId, object target)
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Views.Pages.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Extensions.DownloadFileAsync(System.Net.Http.HttpClient,System.String,System.IO.Stream,System.Threading.CancellationToken)">
+            <inheritdoc cref="M:SudokuStudio.Views.Pages.Extensions.DownloadFileAsync(System.Net.Http.HttpClient,System.String,System.String,System.Threading.CancellationToken)"/>
+        </member>
+        <member name="M:SudokuStudio.Views.Pages.Extensions.DownloadFileAsync(System.Net.Http.HttpClient,System.String,System.String,System.Threading.CancellationToken)">
+            <summary>
+            Downloads a file from web.
+            </summary>
+            <param name="this">The client instance.</param>
+            <param name="url">The specified URL.</param>
+            <param name="path">The path where the downloaded data to be stored.</param>
+            <param name="cancellationToken">The cancellation token that can cancel the current task.</param>
+            <returns>An asynchronous task instance that holds the task data to be called.</returns>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.AttributeCheckingOperation">
             <summary>

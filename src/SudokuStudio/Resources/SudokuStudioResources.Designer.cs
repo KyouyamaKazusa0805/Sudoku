@@ -2113,6 +2113,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The file already exists, the download operation will cover the file if persists. Please remove the file or move the file to another place and try again..
+        /// </summary>
+        internal static string ErrorInfo_DownloadFileExists {
+            get {
+                return ResourceManager.GetString("ErrorInfo_DownloadFileExists", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The puzzle must be solved or contain at least one valid solution..
         /// </summary>
         internal static string ErrorInfo_GridMustBeSolvedOrNotBad {
@@ -2127,6 +2136,15 @@ namespace SudokuStudio.Resources {
         internal static string ErrorInfo_ParseFailedOnFormula {
             get {
                 return ResourceManager.GetString("ErrorInfo_ParseFailedOnFormula", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}..
+        /// </summary>
+        internal static string ExceptionMessage_ExceedRateLimit {
+            get {
+                return ResourceManager.GetString("ExceptionMessage_ExceedRateLimit", resourceCulture);
             }
         }
         
@@ -3976,6 +3994,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Online puzzles.
+        /// </summary>
+        internal static string MainWindow_OnlinePuzzleLibraryPage {
+            get {
+                return ResourceManager.GetString("MainWindow_OnlinePuzzleLibraryPage", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Online puzzle libraries.
+        /// </summary>
+        internal static string MainWindow_OnlinePuzzleLibraryPageTitle {
+            get {
+                return ResourceManager.GetString("MainWindow_OnlinePuzzleLibraryPageTitle", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Pattern-based puzzle generator.
         /// </summary>
         internal static string MainWindow_PatternBasedPuzzleGeneratingPageTitle {
@@ -4179,6 +4215,24 @@ namespace SudokuStudio.Resources {
         internal static string NoTags {
             get {
                 return ResourceManager.GetString("NoTags", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Download.
+        /// </summary>
+        internal static string OnlinePuzzleLibraryPage_DownloadLibrary {
+            get {
+                return ResourceManager.GetString("OnlinePuzzleLibraryPage_DownloadLibrary", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to This page lists the puzzle libraries that is available from my GitHub repo..
+        /// </summary>
+        internal static string OnlinePuzzleLibraryPage_Intro {
+            get {
+                return ResourceManager.GetString("OnlinePuzzleLibraryPage_Intro", resourceCulture);
             }
         }
         
