@@ -50,7 +50,7 @@
 				Icon="{ui:FontIcon Glyph=&#xE8F1;}" />
 			<NavigationViewItem
 				x:Name="OnlinePuzzleLibraryPageItem" Content="{m:R Key=MainWindow_OnlinePuzzleLibraryPage}"
-				Icon="{ui:FontIcon Glyph=&#xF6FA;}" />
+				Icon="{ui:FontIcon Glyph=&#xF6FA;}" IsEnabled="False" />
 
 			<!--User manual-->
 			<NavigationViewItemHeader Content="{m:R Key=MainWindow_ProgramManual}" />
