@@ -177,7 +177,7 @@ internal static class SingleModule
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result.Add(otherCell);
-					(CellMaps[cell] + otherCell).InOneHouse(out excluderHouses[i]);
+					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
 					i++;
 					break;
 				}
@@ -210,7 +210,7 @@ internal static class SingleModule
 				if (grid.GetDigit(otherCell) == otherDigit)
 				{
 					result[i] = new CircleViewNode(ColorIdentifier.Normal, otherCell);
-					(CellMaps[cell] + otherCell).InOneHouse(out excluderHouses[i]);
+					(cell.AsCellMap() + otherCell).InOneHouse(out excluderHouses[i]);
 					i++;
 					break;
 				}

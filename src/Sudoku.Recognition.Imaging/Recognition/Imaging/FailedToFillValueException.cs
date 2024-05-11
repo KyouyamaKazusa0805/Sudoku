@@ -9,7 +9,7 @@ public sealed class FailedToFillValueException(Cell cell, Digit digit) : Excepti
 {
 	/// <inheritdoc/>
 	public override string Message
-		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), cell.AsCellMap(), digit + 1);
+		=> string.Format(ResourceDictionary.Get("Message_FailedToFillValueException"), cell.AsCellMap().ToString(), digit + 1);
 
 	/// <inheritdoc/>
 	public override string? HelpLink => null;

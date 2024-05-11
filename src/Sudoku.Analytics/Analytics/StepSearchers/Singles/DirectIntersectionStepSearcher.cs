@@ -322,7 +322,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				lastDigit,
 				HousesMap[baseSet] & HousesMap[coverSet] & emptyCells,
 				baseSet,
-				in CellMaps[lastCell],
+				in lastCell.AsCellMap(),
 				digit,
 				SingleModule.GetNakedSingleSubtype(in grid, lastCell),
 				Technique.NakedSingle,
