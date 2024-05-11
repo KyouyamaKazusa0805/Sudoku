@@ -81,6 +81,11 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 				}
 
 				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & map);
+				if (intersection.Count < 2)
+				{
+					continue;
+				}
+
 				if (!AllowDirectPointing && realBaseSet < 9 || !AllowDirectClaiming && realBaseSet >= 9)
 				{
 					continue;

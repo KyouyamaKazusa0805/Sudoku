@@ -104,6 +104,16 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		var emptyCells = grid.EmptyCells;
 		var candidatesMap = grid.CandidatesMap;
+		var nakedSingleCells = CellMap.Empty;
+		foreach (var cell in emptyCells)
+		{
+			if (IsPow2((uint)grid.GetCandidates(cell)))
+			{
+				nakedSingleCells.Add(cell);
+			}
+		}
+		emptyCells -= nakedSingleCells;
+
 		foreach (var searchingForLocked in (true, false))
 		{
 			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)

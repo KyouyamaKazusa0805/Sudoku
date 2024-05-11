@@ -22,6 +22,16 @@ internal static class SubsetModule
 		ref readonly var grid = ref context.Grid;
 		var emptyCellsForGrid = grid.EmptyCells;
 		var candidatesMapForGrid = grid.CandidatesMap;
+		var nakedSingleCells = CellMap.Empty;
+		foreach (var cell in emptyCellsForGrid)
+		{
+			if (IsPow2((uint)grid.GetCandidates(cell)))
+			{
+				nakedSingleCells.Add(cell);
+			}
+		}
+		emptyCellsForGrid -= nakedSingleCells;
+
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
 			for (var i = 0; i < 2; i++)

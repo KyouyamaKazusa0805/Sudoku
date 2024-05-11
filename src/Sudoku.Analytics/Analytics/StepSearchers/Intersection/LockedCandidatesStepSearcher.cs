@@ -73,6 +73,11 @@ public sealed partial class LockedCandidatesStepSearcher : StepSearcher
 
 				// Okay, now put the current step into the collection.
 				var (realBaseSet, realCoverSet, intersection) = (housesMask >> 8 & 127, housesMask & 127, c & candidatesMap);
+				if (c.Count < 2)
+				{
+					continue;
+				}
+
 				var step = new LockedCandidatesStep(
 					[.. from cell in elimMap select new Conclusion(Elimination, cell, digit)],
 					[
