@@ -13,7 +13,7 @@ public static class StepMarshal
 	/// <param name="accumulator">The accumulator instance.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void SortItems<TStep>(List<TStep> accumulator) where TStep : Step
-		=> accumulator.Sort(ValueComparison.Create<TStep>(static (l, r) => l.CompareTo(r)));
+		=> accumulator.Sort(Comparing.Create<TStep>(static (l, r) => l.CompareTo(r)));
 
 #pragma warning disable format
 	/// <summary>
@@ -31,7 +31,7 @@ public static class StepMarshal
 			[] => [],
 			[var firstElement] => [firstElement],
 			[var a, var b] => a == b ? [a] : [a, b],
-			_ => new HashSet<TStep>(accumulator, ValueComparison.CreateByEqualityOperator<Step>())
+			_ => new HashSet<TStep>(accumulator, EqualityComparing.CreateByEqualityOperator<Step>())
 		};
 #pragma warning restore format
 

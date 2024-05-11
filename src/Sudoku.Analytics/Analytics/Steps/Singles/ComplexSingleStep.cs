@@ -11,7 +11,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="subtype"><inheritdoc cref="SingleStep.Subtype" path="/summary"/></param>
 /// <param name="basedOn"><inheritdoc cref="ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
 /// <param name="indirectTechniques"><inheritdoc cref="ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
-public sealed partial class ComplexSingleStep(
+public sealed class ComplexSingleStep(
 	Conclusion[] conclusions,
 	View[]? views,
 	StepSearcherOptions options,

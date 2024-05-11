@@ -10,7 +10,7 @@ public sealed class NodeSet : HashSet<ChainNode>
 	/// Initializes a <see cref="NodeSet"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public NodeSet() : base(ValueComparison.CreateByEqualityOperator<ChainNode>())
+	public NodeSet() : base(EqualityComparing.CreateByEqualityOperator<ChainNode>())
 	{
 	}
 
@@ -19,7 +19,7 @@ public sealed class NodeSet : HashSet<ChainNode>
 	/// </summary>
 	/// <param name="base">The collection of <see cref="ChainNode"/> instances.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public NodeSet(NodeSet @base) : base(@base, ValueComparison.CreateByEqualityOperator<ChainNode>())
+	public NodeSet(NodeSet @base) : base(@base, EqualityComparing.CreateByEqualityOperator<ChainNode>())
 	{
 	}
 

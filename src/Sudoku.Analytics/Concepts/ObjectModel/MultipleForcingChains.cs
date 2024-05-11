@@ -8,7 +8,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	/// <summary>
 	/// Indicates the internal dictionary.
 	/// </summary>
-	private readonly SortedDictionary<byte, ChainNode> _internalDictionary = new(ValueComparison.Create<byte>(static (x, y) => Math.Sign(x - y)));
+	private readonly SortedDictionary<byte, ChainNode> _internalDictionary = new(Comparing.Create<byte>(static (x, y) => Math.Sign(x - y)));
 
 	/// <summary>
 	/// Indicates the keys.
