@@ -20,7 +20,6 @@ public static class MaskOperations
 		{
 			result |= (Mask)(1 << digit);
 		}
-
 		return result;
 	}
 
@@ -32,7 +31,6 @@ public static class MaskOperations
 		{
 			result |= (Mask)(1 << digit);
 		}
-
 		return result;
 	}
 
@@ -51,7 +49,6 @@ public static class MaskOperations
 				result[p++] = i;
 			}
 		}
-
 		return result;
 	}
 
@@ -86,7 +83,6 @@ public static class MaskOperations
 		{
 			maskSubsets[size - 1] = [.. GetMaskSubsets(value, size)];
 		}
-
 		return from maskSubset in maskSubsets from mask in maskSubset select mask;
 	}
 
@@ -109,7 +105,6 @@ public static class MaskOperations
 			}
 			result[index++] = mask;
 		}
-
 		return result;
 	}
 
