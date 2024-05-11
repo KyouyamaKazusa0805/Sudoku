@@ -1226,6 +1226,7 @@ public enum Technique
 		Rating = 26,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.LockedCandidates,
+		Abbreviation = "LC1",
 		PrimaryStepType = typeof(LockedCandidatesStep),
 		StepSearcherType = typeof(LockedCandidatesStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Locked_Candidates.html"])]
@@ -1244,6 +1245,7 @@ public enum Technique
 		Rating = 28,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.LockedCandidates,
+		Abbreviation = "LC2",
 		PrimaryStepType = typeof(LockedCandidatesStep),
 		StepSearcherType = typeof(LockedCandidatesStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Locked_Candidates.html"])]
@@ -1278,6 +1280,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS2",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
@@ -1290,6 +1293,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS2+",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Pair.html"])]
@@ -1306,6 +1310,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "LS2",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(LockedSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Locked_Pair.html"])]
@@ -1320,6 +1325,7 @@ public enum Technique
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "HS2",
 		PrimaryStepType = typeof(HiddenSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Pair.html"])]
@@ -1333,6 +1339,7 @@ public enum Technique
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "LHS2",
 		PrimaryStepType = typeof(HiddenSubsetStep),
 		StepSearcherType = typeof(LockedSubsetStepSearcher))]
 	LockedHiddenPair,
@@ -1346,6 +1353,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS3",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
@@ -1358,6 +1366,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS3+",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Triple.html"])]
@@ -1374,6 +1383,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "LS3",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(LockedSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Locked_Triple.html"])]
@@ -1388,6 +1398,7 @@ public enum Technique
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "HS3",
 		PrimaryStepType = typeof(HiddenSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Triple.html"])]
@@ -1401,6 +1412,7 @@ public enum Technique
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NHS3",
 		PrimaryStepType = typeof(HiddenSubsetStep),
 		StepSearcherType = typeof(LockedSubsetStepSearcher))]
 	LockedHiddenTriple,
@@ -1414,6 +1426,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS4",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
@@ -1426,6 +1439,7 @@ public enum Technique
 		Rating = 30,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "NS4+",
 		PrimaryStepType = typeof(NakedSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Quad.html"])]
@@ -1440,6 +1454,7 @@ public enum Technique
 		Rating = 34,
 		DifficultyLevel = DifficultyLevel.Moderate,
 		ContainingGroup = TechniqueGroup.Subset,
+		Abbreviation = "HS4",
 		PrimaryStepType = typeof(HiddenSubsetStep),
 		StepSearcherType = typeof(NormalSubsetStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Quad.html"])]
