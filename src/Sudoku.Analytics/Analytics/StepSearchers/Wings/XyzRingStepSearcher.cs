@@ -165,13 +165,15 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 							var conclusions = new List<Conclusion>();
 
 							// Elim zone 1: Sharing house for pivot and leaf cell 1 -> eliminate digit they both hold (not intersected digit).
-							foreach (var cell in (HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1]) - patternCells - cellsShouldBeCovered)
+							foreach (var cell in
+								HousesMap[coveringHouseForDigit1] & CandidatesMap[theOtherDigit1] & ~patternCells & ~cellsShouldBeCovered)
 							{
 								conclusions.Add(new(Elimination, cell, theOtherDigit1));
 							}
 
 							// Elim zone 2: Sharing house for pivot and leaf cell 2 -> eliminate digit they both hold (not intersected digit).
-							foreach (var cell in (HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2]) - patternCells - cellsShouldBeCovered)
+							foreach (var cell in
+								HousesMap[coveringHouseForDigit2] & CandidatesMap[theOtherDigit2] & ~patternCells & ~cellsShouldBeCovered)
 							{
 								conclusions.Add(new(Elimination, cell, theOtherDigit2));
 							}
@@ -189,7 +191,7 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 										{
 											// Elim zone 3: Intersected cell for the leaf and one grouped node of cells in (grouped) strong link
 											// that they shares in a same mini-line -> eliminate intersected digit.
-											foreach (var cell in (i & CandidatesMap[intersectedDigit]) - patternCells - cellsShouldBeCovered)
+											foreach (var cell in i & CandidatesMap[intersectedDigit] & ~patternCells & ~cellsShouldBeCovered)
 											{
 												conclusions.Add(new(Elimination, cell, intersectedDigit));
 											}
@@ -201,16 +203,16 @@ public sealed partial class XyzRingStepSearcher : StepSearcher
 											isType2 = true;
 
 											// Elim zone 4 and 5: shared houses for leaf and (grouped) strong link nodes.
-											foreach (var cell in (HousesMap[leafCellHouse] & CandidatesMap[intersectedDigit])
-												- pivot - cellsShouldBeCovered - leaf)
+											foreach (var cell in
+												((HousesMap[leafCellHouse] & CandidatesMap[intersectedDigit]) - pivot & ~cellsShouldBeCovered) - leaf)
 											{
 												conclusions.Add(new(Elimination, cell, intersectedDigit));
 											}
 
-											var lastCellsToCheck = cellsShouldBeCovered - linkCellsIntersected + theOtherLeaf;
+											var lastCellsToCheck = (cellsShouldBeCovered & ~linkCellsIntersected) + theOtherLeaf;
 											foreach (var house in lastCellsToCheck.SharedHouses)
 											{
-												foreach (var cell in HousesMap[house] & CandidatesMap[intersectedDigit] - lastCellsToCheck)
+												foreach (var cell in HousesMap[house] & CandidatesMap[intersectedDigit] & ~lastCellsToCheck)
 												{
 													conclusions.Add(new(Elimination, cell, intersectedDigit));
 												}

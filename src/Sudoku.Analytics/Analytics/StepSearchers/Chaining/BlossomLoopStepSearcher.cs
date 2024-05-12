@@ -269,7 +269,7 @@ public sealed partial class BlossomLoopStepSearcher : StepSearcher
 					houseIndex,
 					baseDigit,
 					projectedStartNodes,
-					(HousesMap[house] & CandidatesMap[digit]) - selectedPotentialCells,
+					HousesMap[house] & CandidatesMap[digit] & ~selectedPotentialCells,
 					digit
 				);
 				if (step is not null)

@@ -213,12 +213,12 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						// If the current searcher doesn't check fins, we'll just get the pure check:
 						// 1. Base set contain more cells than cover sets.
 						// 2. Elimination cells set isn't empty.
-						if (baseLine - coverLine)
+						if (baseLine & ~coverLine)
 						{
 							continue;
 						}
 
-						elimMap = coverLine - baseLine;
+						elimMap = coverLine & ~baseLine;
 						if (!elimMap)
 						{
 							continue;
@@ -227,7 +227,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 					else // Should check fins.
 					{
 						// All fins should be in the same block.
-						var blockMask = (fins = baseLine - coverLine).BlockMask;
+						var blockMask = (fins = baseLine & ~coverLine).BlockMask;
 						if (!fins || !IsPow2(blockMask))
 						{
 							continue;
@@ -241,13 +241,13 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 						}
 
 						// Don't intersect.
-						if (!(HousesMap[finBlock] & coverLine - baseLine))
+						if (!(HousesMap[finBlock] & coverLine & ~baseLine))
 						{
 							continue;
 						}
 
 						// Finally, get the elimination cells.
-						elimMap = coverLine - baseLine & HousesMap[finBlock];
+						elimMap = coverLine & ~baseLine & HousesMap[finBlock];
 					}
 
 					if (DisableFinnedOrSashimiXWing && size == 2 && !!fins)
@@ -263,7 +263,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 							[
 								[
 									..
-									from cell in withFin ? baseLine - fins : baseLine
+									from cell in withFin ? baseLine & ~fins : baseLine
 									select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + digit),
 									.. withFin ? from cell in fins select new CandidateViewNode(ColorIdentifier.Exofin, cell * 9 + digit) : [],
 									.. from baseSet in bs select new HouseViewNode(ColorIdentifier.Normal, baseSet),

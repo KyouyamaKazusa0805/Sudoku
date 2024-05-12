@@ -97,8 +97,8 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 
 				// Extra check: If the global map doesn't use all cells of a grid, we should check the other 2 floors/towers.
 				// If those floors/towers are not filled one of two digits, the pattern won't be formed, neither.
-				var d1Map = ValuesMap[d1] - globalMap;
-				var d2Map = ValuesMap[d2] - globalMap;
+				var d1Map = ValuesMap[d1] & ~globalMap;
+				var d2Map = ValuesMap[d2] & ~globalMap;
 				var d1Counter = d1Map.Count;
 				var d2Counter = d2Map.Count;
 				switch (i)
@@ -340,7 +340,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 		var numbersOfOtherDigits = PopCount((uint)otherDigitsMask);
 		foreach (var house in cellsChosen.SharedHouses)
 		{
-			var otherEmptyCells = (EmptyCells & HousesMap[house]) - cellsChosen;
+			var otherEmptyCells = EmptyCells & HousesMap[house] & ~cellsChosen;
 			if (otherEmptyCells.Count <= numbersOfOtherDigits - 1)
 			{
 				// No conclusion will be created.
@@ -356,7 +356,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				}
 
 				// Type 3 found. Now check eliminations.
-				var elimMap = otherEmptyCells - cells;
+				var elimMap = otherEmptyCells & ~cells;
 				if (!elimMap)
 				{
 					continue;
@@ -476,7 +476,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				continue;
 			}
 
-			var conjugatePairCellOuterPattern = (possibleConjugatePairCells - cellsChosen)[0];
+			var conjugatePairCellOuterPattern = (possibleConjugatePairCells & ~cellsChosen)[0];
 			var conjugatePairCellInnerPattern = (possibleConjugatePairCells - conjugatePairCellOuterPattern)[0];
 			var anotherCell = (cellsChosen - conjugatePairCellInnerPattern)[0];
 			if (!(anotherCell.AsCellMap() + conjugatePairCellOuterPattern).InOneHouse(out _))

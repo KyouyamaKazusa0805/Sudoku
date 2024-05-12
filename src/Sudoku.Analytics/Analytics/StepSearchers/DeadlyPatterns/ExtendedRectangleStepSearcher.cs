@@ -441,7 +441,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				}
 
 				// Find all possible cells that are out of relation with the extended rectangle pattern.
-				var otherCells = (HousesMap[house] & EmptyCells) - patternCells;
+				var otherCells = HousesMap[house] & EmptyCells & ~patternCells;
 
 				// Iterate on size of the pattern.
 				// Please note that the cannibalism mode may use all empty cells recorded in variable 'otherCells'.
@@ -460,7 +460,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						if (!isCannibalism) // Non-cannibalism check.
 						{
 							// Now a step is formed. Check for elimination.
-							var elimMap = (HousesMap[house] & EmptyCells) - patternCells - cells;
+							var elimMap = HousesMap[house] & EmptyCells & ~patternCells & ~cells;
 							if (!elimMap)
 							{
 								continue;
@@ -574,7 +574,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 		)
 		{
 			candidateOffsets = [];
-			foreach (var cell in patternCells - extraCells)
+			foreach (var cell in patternCells & ~extraCells)
 			{
 				foreach (var digit in grid.GetCandidates(cell))
 				{
@@ -711,7 +711,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 						}
 
 						var candidateOffsets = new List<CandidateViewNode>();
-						foreach (var cell in patternCells - extraCells)
+						foreach (var cell in patternCells & ~extraCells)
 						{
 							foreach (var digit in grid.GetCandidates(cell))
 							{

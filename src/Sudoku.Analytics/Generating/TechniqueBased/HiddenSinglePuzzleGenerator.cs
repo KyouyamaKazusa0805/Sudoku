@@ -58,12 +58,12 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				var excluders = CellMap.Empty;
 				foreach (var r in excluderRows)
 				{
-					var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;
+					var lastCellsAvailable = HousesMap[r] & ~cellsInHouse & ~excluders.ExpandedPeers;
 					excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
 				}
 				foreach (var c in excluderColumns)
 				{
-					var lastCellsAvailable = HousesMap[c] - cellsInHouse - excluders.ExpandedPeers;
+					var lastCellsAvailable = HousesMap[c] & ~cellsInHouse & ~excluders.ExpandedPeers;
 					excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
 				}
 				if (!excluders)
@@ -77,7 +77,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				ShuffleSequence(DigitSeed);
 				var targetDigit = DigitSeed[Rng.NextDigit()];
 				var puzzle = Grid.Empty;
-				var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
+				var uncoveredCells = cellsInHouse & ~excluders.ExpandedPeers;
 				var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];
 				var tempIndex = 0;
 				foreach (var placeholderCell in uncoveredCells - targetCell)
@@ -238,12 +238,12 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				var excluders = CellMap.Empty;
 				foreach (var r in excluderBlocks)
 				{
-					var lastCellsAvailable = HousesMap[r] - cellsInHouse - excluders.ExpandedPeers;
+					var lastCellsAvailable = HousesMap[r] & ~cellsInHouse & ~excluders.ExpandedPeers;
 					excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
 				}
 				foreach (var c in excluderLines)
 				{
-					var lastCellsAvailable = HousesMap[c] - cellsInHouse - excluders.ExpandedPeers;
+					var lastCellsAvailable = HousesMap[c] & ~cellsInHouse & ~excluders.ExpandedPeers;
 					excluders.Add(lastCellsAvailable[Rng.Next(0, lastCellsAvailable.Count)]);
 				}
 				if (!excluders)
@@ -257,7 +257,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				ShuffleSequence(DigitSeed);
 				var targetDigit = DigitSeed[Rng.NextDigit()];
 				var puzzle = Grid.Empty;
-				var uncoveredCells = cellsInHouse - excluders.ExpandedPeers;
+				var uncoveredCells = cellsInHouse & ~excluders.ExpandedPeers;
 				var targetCell = uncoveredCells[Rng.Next(0, uncoveredCells.Count)];
 				var tempIndex = 0;
 				foreach (var placeholderCell in uncoveredCells - targetCell)
@@ -274,7 +274,7 @@ public sealed class HiddenSinglePuzzleGenerator : SinglePuzzleGenerator<HiddenSi
 				if (!AllowsBlockExcluders)
 				{
 					var emptyCellsRelatedBlocksContainAnyExcluder = false;
-					foreach (var block in (HousesMap[house] - puzzle.GivenCells).BlockMask)
+					foreach (var block in (HousesMap[house] & ~puzzle.GivenCells).BlockMask)
 					{
 						if (HousesMap[block] & excluders)
 						{

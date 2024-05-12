@@ -41,7 +41,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 					continue;
 				}
 
-				var blockMap = (b | c - currentInterMap) & EmptyCells;
+				var blockMap = (b | c & ~currentInterMap) & EmptyCells;
 				var lineMap = a & EmptyCells;
 
 				// Iterate on the number of the cells that should be selected in block.

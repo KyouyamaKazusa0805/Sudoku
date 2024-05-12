@@ -161,7 +161,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 					continue;
 				}
 
-				var otherCellsCanBeIterated = cellsContainingBothDigits - loop + startCell & HousesMap[nextHouse];
+				var otherCellsCanBeIterated = (cellsContainingBothDigits & ~loop) + startCell & HousesMap[nextHouse];
 				if (!otherCellsCanBeIterated)
 				{
 					continue;
@@ -321,7 +321,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 				goto ReturnNull;
 			}
 
-			var otherCells = (HousesMap[house] & EmptyCells) - loop;
+			var otherCells = HousesMap[house] & EmptyCells & ~loop;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 			{
 				foreach (ref readonly var cells in otherCells.GetSubsets(size))
@@ -332,7 +332,7 @@ public sealed partial class BivalueOddagonStepSearcher : StepSearcher
 						continue;
 					}
 
-					if ((HousesMap[house] & EmptyCells) - cells - loop is not (var elimMap and not []))
+					if ((HousesMap[house] & EmptyCells & ~cells & ~loop) is not (var elimMap and not []))
 					{
 						continue;
 					}

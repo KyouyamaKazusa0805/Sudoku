@@ -73,7 +73,7 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 				ref readonly var bm = ref HousesMap[bs];
 				ref readonly var cm = ref HousesMap[cs];
 				var i = bm & cm;
-				dic.Add(new(bs, (byte)cs), new(bm - i, cm - i, in i, IntersectionBlockTable[(bs - 9) * 3 + j]));
+				dic.Add(new(bs, (byte)cs), new(bm & ~i, cm & ~i, in i, IntersectionBlockTable[(bs - 9) * 3 + j]));
 			}
 		}
 

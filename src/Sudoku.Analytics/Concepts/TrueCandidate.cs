@@ -66,7 +66,7 @@ public static class TrueCandidate
 		// The comments will help you to understand the processing.
 		Unsafe.SkipInit<Mask>(out var mask);
 		var pairs = new Mask[multivalueCellsCount, (1 + 8) * 8 / 2 + 1];
-		var multivalueCells = (Cell[])[.. grid.EmptyCells - grid.BivalueCells];
+		var multivalueCells = (Cell[])[.. grid.EmptyCells & ~grid.BivalueCells];
 		for (var i = 0; i < multivalueCells.Length; i++)
 		{
 			// e.g. [2, 4, 6] (42)
@@ -145,7 +145,7 @@ public static class TrueCandidate
 					{
 						// Take the cell that doesn't contain in the map above.
 						// Here, the cell is the "true candidate cell".
-						foreach (var cell in grid.CandidatesMap[digit] - stack[currentIndex, digit])
+						foreach (var cell in grid.CandidatesMap[digit] & ~stack[currentIndex, digit])
 						{
 							result.Add(cell * 9 + digit);
 						}

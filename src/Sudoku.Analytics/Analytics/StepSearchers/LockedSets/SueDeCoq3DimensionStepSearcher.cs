@@ -56,9 +56,9 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 					}
 
 					// Get all maps to use later.
-					var blockMap = HousesMap[b] - rbCurrentMap - cbCurrentMap & EmptyCells;
-					var rowMap = HousesMap[r] - HousesMap[b] & EmptyCells;
-					var columnMap = HousesMap[c] - HousesMap[b] & EmptyCells;
+					var blockMap = HousesMap[b] & ~rbCurrentMap & ~cbCurrentMap & EmptyCells;
+					var rowMap = HousesMap[r] & ~HousesMap[b] & EmptyCells;
+					var columnMap = HousesMap[c] & ~HousesMap[b] & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (var i = 1; i < blockMap.Count; i++)
@@ -73,7 +73,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 							{
 								elimMapBlock |= CandidatesMap[digit];
 							}
-							elimMapBlock &= blockMap - selectedBlockCells;
+							elimMapBlock &= blockMap & ~selectedBlockCells;
 
 							for (var j = 1; j < MathExtensions.Min(9 - i - selectedBlockCells.Count, rowMap.Count, columnMap.Count); j++)
 							{
@@ -86,7 +86,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 									{
 										elimMapRow |= CandidatesMap[digit];
 									}
-									elimMapRow &= HousesMap[r] - rbCurrentMap - selectedRowCells;
+									elimMapRow &= HousesMap[r] & ~rbCurrentMap & ~selectedRowCells;
 
 									for (var k = 1; k <= MathExtensions.Min(9 - i - j - selectedBlockCells.Count - selectedRowCells.Count, rowMap.Count, columnMap.Count); k++)
 									{
@@ -99,7 +99,7 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 											{
 												elimMapColumn |= CandidatesMap[digit];
 											}
-											elimMapColumn &= HousesMap[c] - cbCurrentMap - selectedColumnCells;
+											elimMapColumn &= HousesMap[c] & ~cbCurrentMap & ~selectedColumnCells;
 
 											if ((blockMask & rowMask) != 0 && (rowMask & columnMask) != 0 && (columnMask & blockMask) != 0)
 											{
@@ -107,8 +107,8 @@ public sealed partial class SueDeCoq3DimensionStepSearcher : StepSearcher
 											}
 
 											var fullMap = rbCurrentMap | cbCurrentMap | selectedRowCells | selectedColumnCells | selectedBlockCells;
-											var otherMap_row = fullMap - (selectedRowCells | rbCurrentMap);
-											var otherMap_column = fullMap - (selectedColumnCells | cbCurrentMap);
+											var otherMap_row = fullMap & ~(selectedRowCells | rbCurrentMap);
+											var otherMap_column = fullMap & ~(selectedColumnCells | cbCurrentMap);
 											var mask = grid[in otherMap_row];
 											if ((mask & rowMask) != 0)
 											{

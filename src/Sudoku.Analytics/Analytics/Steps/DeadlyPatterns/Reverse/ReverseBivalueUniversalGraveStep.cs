@@ -40,7 +40,7 @@ public abstract partial class ReverseBivalueUniversalGraveStep(
 	/// <summary>
 	/// Indicates the last cells used that are not empty.
 	/// </summary>
-	public CellMap PatternNonEmptyCells => CompletePattern - EmptyCells;
+	public CellMap PatternNonEmptyCells => CompletePattern & ~EmptyCells;
 
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ReverseBivalueUniversalGraveSizeFactor()];

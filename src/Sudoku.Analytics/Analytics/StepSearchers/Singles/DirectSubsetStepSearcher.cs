@@ -112,7 +112,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				nakedSingleCells.Add(cell);
 			}
 		}
-		emptyCells -= nakedSingleCells;
+		emptyCells &= ~nakedSingleCells;
 
 		foreach (var searchingForLocked in (true, false))
 		{
@@ -204,7 +204,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
 						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
-						foreach (var cell in (HousesMap[eliminatingHouse] & emptyCells) - cells)
+						foreach (var cell in HousesMap[eliminatingHouse] & emptyCells & ~cells)
 						{
 							foreach (var digit in digitsMask)
 							{
@@ -394,7 +394,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check for candidates for the cell.
 				var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] - emptyCellsInHouse, true]);
+				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
 				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMask);
 				if (!IsPow2(lastDigitsMask))
 				{
@@ -485,7 +485,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			{
 				var house = cell.ToHouseIndex(houseType);
 				var eliminatedCells = (CellMap)from c in conclusions where c % 9 == digit select c / 9;
-				var availableCells = (HousesMap[house] & candidatesMap[digit]) - eliminatedCells;
+				var availableCells = HousesMap[house] & candidatesMap[digit] & ~eliminatedCells;
 				if (availableCells is not [var lastCell])
 				{
 					continue;
@@ -665,7 +665,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check for candidates for the cell.
 				var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
-				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] - emptyCellsInHouse, true]);
+				var valueDigitsMask = (Mask)(Grid.MaxCandidatesMask & (Mask)~grid[HousesMap[house] & ~emptyCellsInHouse, true]);
 				var lastDigitsMask = (Mask)(valueDigitsMask & (Mask)~eliminatedDigitsMask);
 				if (!IsPow2(lastDigitsMask))
 				{
@@ -757,7 +757,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			{
 				var house = cell.ToHouseIndex(houseType);
 				var eliminatedCells = (CellMap)from c in conclusions where c % 9 == digit select c / 9;
-				var availableCells = (HousesMap[house] & candidatesMap[digit]) - eliminatedCells;
+				var availableCells = HousesMap[house] & candidatesMap[digit] & ~eliminatedCells;
 				if (availableCells is not [var lastCell])
 				{
 					continue;

@@ -36,7 +36,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 		ref readonly var grid = ref context.Grid;
 		foreach (var (chuteIndex, chute, isRow, _) in Chutes)
 		{
-			if (chute - EmptyCells is not [var c1, var c2] valueCells)
+			if ((chute & ~EmptyCells) is not [var c1, var c2] valueCells)
 			{
 				// The number of the value cells must be 2 for this type.
 				continue;
@@ -60,7 +60,7 @@ public sealed partial class UniquenessClueCoverStepSearcher : StepSearcher
 			var excludedHouseType = isRow ? HouseType.Row : HouseType.Column;
 			var excludedLines = HousesMap[c1.ToHouseIndex(excludedHouseType)] | HousesMap[c2.ToHouseIndex(excludedHouseType)];
 			var conclusions = new List<Conclusion>(2);
-			foreach (var elimCell in chute - excludedLines & (HousesMap[c1.ToHouseIndex(elimHouseType)] | HousesMap[c2.ToHouseIndex(elimHouseType)]))
+			foreach (var elimCell in chute & ~excludedLines & (HousesMap[c1.ToHouseIndex(elimHouseType)] | HousesMap[c2.ToHouseIndex(elimHouseType)]))
 			{
 				var correspondingValueCell = (HousesMap[elimCell.ToHouseIndex(elimHouseType)] & chute & valueCells)[0];
 				var elimDigit = TrailingZeroCount((Mask)(digitsMask & ~(1 << grid.GetDigit(correspondingValueCell))));

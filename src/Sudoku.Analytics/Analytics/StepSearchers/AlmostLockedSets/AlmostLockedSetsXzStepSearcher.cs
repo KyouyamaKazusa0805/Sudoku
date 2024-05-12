@@ -143,7 +143,7 @@ public sealed partial class AlmostLockedSetsXzStepSearcher : StepSearcher
 					var k = 0;
 					foreach (var digit in rccMask)
 					{
-						foreach (var cell in (HousesMap[house[k]] & CandidatesMap[digit]) - map)
+						foreach (var cell in HousesMap[house[k]] & CandidatesMap[digit] & ~map)
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}

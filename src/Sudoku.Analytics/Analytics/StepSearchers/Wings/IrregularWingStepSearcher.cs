@@ -149,7 +149,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 			// Iterate on each cells which are not peers in 'c1'.
 			var digits = grid.GetCandidates(c1).GetAllSets();
-			foreach (var c2 in BivalueCells - (PeersMap[c1] + c1))
+			foreach (var c2 in BivalueCells & ~(PeersMap[c1] + c1))
 			{
 				if (c2 < c1)
 				{
@@ -449,7 +449,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											continue;
 										}
 
-										if (cells1 - p is not [var theOtherCell1])
+										if ((cells1 & ~p) is not [var theOtherCell1])
 										{
 											// We cannot make both two nodes grouped.
 											continue;
@@ -464,7 +464,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 												continue;
 											}
 
-											if (cells2 - q is not [var theOtherCell2])
+											if ((cells2 & ~q) is not [var theOtherCell2])
 											{
 												// We cannot make both nodes grouped.
 												continue;
@@ -492,7 +492,8 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 												{
 													foreach (var strongXyCellHouse in theOtherNode.SharedHouses)
 													{
-														foreach (var strongXyCell in (possibleBivalueCells & HousesMap[strongXyCellHouse]) - node - theOtherNode)
+														foreach (var strongXyCell in
+															possibleBivalueCells & HousesMap[strongXyCellHouse] & ~node & ~theOtherNode)
 														{
 															if (strongXyCell == weakXyCell)
 															{
@@ -668,7 +669,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 							foreach (var (yStart, yEnd) in ((yNode1, yNode2), (yNode2, yNode1)))
 							{
 								// Check whether both cells 'xEnd' and 'yStart' can see a same bi-value cell containing the digits 'x' and 'y'.
-								var possibleBivalueCells = ((xEnd | yStart).PeerIntersection & BivalueCells) - xStart - yEnd;
+								var possibleBivalueCells = (xEnd | yStart).PeerIntersection & BivalueCells & ~xStart & ~yEnd;
 								possibleBivalueCells &= CandidatesMap[digitX] & CandidatesMap[digitY];
 								if (!possibleBivalueCells)
 								{

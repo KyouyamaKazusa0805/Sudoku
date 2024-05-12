@@ -20,7 +20,7 @@ public sealed record Crosshatching(ref readonly CellMap BaseCells, ref readonly 
 	public static Crosshatching? TryCreate(ref readonly Grid grid, Digit digit, House house, ref readonly CellMap cells)
 	{
 		var (houseCells, valueCells, emptyCells) = (HousesMap[house], grid.ValuesMap[digit], grid.EmptyCells);
-		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells - cells & emptyCells, CellMap.Empty, CellMap.Empty);
+		var (emptyCellsShouldBeCovered, emptyCellsNotNeedToBeCovered, values) = (houseCells & ~cells & emptyCells, CellMap.Empty, CellMap.Empty);
 		foreach (var c in emptyCellsShouldBeCovered)
 		{
 			var tempValues = PeersMap[c] & valueCells;
@@ -37,7 +37,8 @@ public sealed record Crosshatching(ref readonly CellMap BaseCells, ref readonly 
 		var nullableCombination = default(CellMap?);
 		foreach (ref readonly var valueCombination in values.GetSubsetsAll())
 		{
-			if ((valueCombination.ExpandedPeers & houseCells & emptyCells) - cells == emptyCellsShouldBeCovered - emptyCellsNotNeedToBeCovered)
+			if ((valueCombination.ExpandedPeers & houseCells & emptyCells & ~cells)
+				== (emptyCellsShouldBeCovered & ~emptyCellsNotNeedToBeCovered))
 			{
 				nullableCombination = valueCombination;
 				break;

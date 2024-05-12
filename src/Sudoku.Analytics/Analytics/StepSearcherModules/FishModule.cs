@@ -34,7 +34,7 @@ internal static class FishModule
 		var isSashimi = false;
 		foreach (var baseSet in baseSets)
 		{
-			if ((HousesMap[baseSet] - fins & CandidatesMap[digit]).Count == 1)
+			if ((HousesMap[baseSet] & ~fins & CandidatesMap[digit]).Count == 1)
 			{
 				isSashimi = true;
 				break;

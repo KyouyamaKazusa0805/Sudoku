@@ -245,7 +245,7 @@ public partial class UniqueRectangleStepSearcher
 				return;
 			}
 
-			var iterationMap = (HousesMap[houseIndex] & EmptyCells) - otherCellsMap;
+			var iterationMap = HousesMap[houseIndex] & EmptyCells & ~otherCellsMap;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
 				foreach (ref readonly var iteratedCells in iterationMap.GetSubsets(size))
@@ -259,7 +259,7 @@ public partial class UniqueRectangleStepSearcher
 					var conclusions = new List<Conclusion>(16);
 					foreach (var digit in tempMask)
 					{
-						foreach (var cell in (iterationMap - iteratedCells) & CandidatesMap[digit])
+						foreach (var cell in iterationMap & ~iteratedCells & CandidatesMap[digit])
 						{
 							conclusions.Add(new(Elimination, cell, digit));
 						}
@@ -809,7 +809,7 @@ public partial class UniqueRectangleStepSearcher
 		var xyMask = (Mask)(o ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - (CellMap)urCells;
+		var inter = otherCellsMap.PeerIntersection & ~(CellMap)urCells;
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1264,7 +1264,7 @@ public partial class UniqueRectangleStepSearcher
 		var xyMask = (Mask)(mask ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection - [.. urCells];
+		var inter = otherCellsMap.PeerIntersection & ~(CellMap)urCells;
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -2671,7 +2671,7 @@ public partial class UniqueRectangleStepSearcher
 				}
 
 				var a = Intersection.IntersectionMaps[new(line, otherBlock)].LineMap;
-				var b = HousesMap[otherBlock] - HousesMap[line];
+				var b = HousesMap[otherBlock] & ~HousesMap[line];
 				var c = a & b;
 
 				list.Clear();
@@ -2703,8 +2703,8 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					var blockMap = (b | c - currentInterMap) & EmptyCells;
-					var lineMap = (a & EmptyCells) - otherCellsMap;
+					var blockMap = (b | c & ~currentInterMap) & EmptyCells;
+					var lineMap = a & EmptyCells & ~otherCellsMap;
 
 					// Iterate on the number of the cells that should be selected in block.
 					for (var i = 1; i <= blockMap.Count - 1; i++)
@@ -2739,13 +2739,13 @@ public partial class UniqueRectangleStepSearcher
 							{
 								elimMapBlock |= CandidatesMap[digit];
 							}
-							elimMapBlock &= blockMap - currentBlockMap;
+							elimMapBlock &= blockMap & ~currentBlockMap;
 
 							foreach (var digit in otherDigitsMask)
 							{
 								elimMapLine |= CandidatesMap[digit];
 							}
-							elimMapLine &= lineMap - currentInterMap;
+							elimMapLine &= lineMap & ~currentInterMap;
 
 							checkGeneralizedSdc(
 								accumulator, in grid, ref context, arMode, cannibalMode, d1, d2, urCells,
@@ -2956,7 +2956,7 @@ public partial class UniqueRectangleStepSearcher
 		foreach (var targetCell in cells)
 		{
 			var block = targetCell.ToHouseIndex(HouseType.Block);
-			var bivalueCellsToCheck = (PeersMap[targetCell] & HousesMap[block] & BivalueCells) - cells;
+			var bivalueCellsToCheck = PeersMap[targetCell] & HousesMap[block] & BivalueCells & ~cells;
 			if (!bivalueCellsToCheck)
 			{
 				continue;
@@ -3270,8 +3270,8 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardian1 = houseCells - cells & CandidatesMap[d1];
-			var guardian2 = houseCells - cells & CandidatesMap[d2];
+			var guardian1 = houseCells & ~cells & CandidatesMap[d1];
+			var guardian2 = houseCells & ~cells & CandidatesMap[d2];
 			if (!guardian1 ^ !guardian2)
 			{
 				var guardianDigit = -1;
@@ -3385,7 +3385,7 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardianCells = guardianMap - cells & EmptyCells;
+			var guardianCells = guardianMap & ~cells & EmptyCells;
 			foreach (ref readonly var guardianCellPair in guardianCells.GetSubsets(2))
 			{
 				var c1 = guardianCellPair[0];
@@ -3417,7 +3417,7 @@ public partial class UniqueRectangleStepSearcher
 
 				foreach (var house in houses)
 				{
-					var houseCells = HousesMap[house] - cells - guardianCellPair & EmptyCells;
+					var houseCells = HousesMap[house] & ~cells & ~guardianCellPair & EmptyCells;
 					for (var size = 2; size <= houseCells.Count; size++)
 					{
 						foreach (ref readonly var otherCells in houseCells.GetSubsets(size - 1))
@@ -3430,7 +3430,7 @@ public partial class UniqueRectangleStepSearcher
 							}
 
 							// UR Guardian External Subsets found. Now check eliminations.
-							var elimMap = houseCells - otherCells | guardianCellPair;
+							var elimMap = houseCells & ~otherCells | guardianCellPair;
 							var conclusions = new List<Conclusion>();
 							foreach (var cell in elimMap)
 							{
@@ -3557,7 +3557,7 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardianCells = guardianMap - cells & EmptyCells;
+			var guardianCells = guardianMap & ~cells & EmptyCells;
 			foreach (ref readonly var guardianCellPair in guardianCells.GetSubsets(2))
 			{
 				var c1 = guardianCellPair[0];
@@ -3722,7 +3722,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Gets the guardian cells in both houses.
 				// Here guardian cells may contain multiple cells. We don't check for it because it can be used as grouped turbot fish.
-				var guardianCells = (housesFullMap & CandidatesMap[guardianDigit]) - cells;
+				var guardianCells = housesFullMap & CandidatesMap[guardianDigit] & ~cells;
 
 				// Then check whether the other digit is locked in the UR pattern.
 				var flag = true;
@@ -3772,7 +3772,7 @@ public partial class UniqueRectangleStepSearcher
 				// But what digit will be filled with 'abw'? We don't know! We cannot decide which digit will be filled with the cell,
 				// so the final digit a (causing a deadly pattern) may not be formed.
 				// We should exclude this case to make the pattern be strict, which is what I want to tell you.
-				if ((cells - housesFullMap)[0] is var lastCell and not -1
+				if ((cells & ~housesFullMap)[0] is var lastCell and not -1
 					&& (!BivalueCells.Contains(lastCell) || comparer != grid.GetCandidates(lastCell)))
 				{
 					continue;
@@ -3787,7 +3787,7 @@ public partial class UniqueRectangleStepSearcher
 
 				foreach (var weakLinkHouse in a | b)
 				{
-					var otherCellsInWeakLinkHouse = (HousesMap[weakLinkHouse] & CandidatesMap[guardianDigit]) - guardianCells;
+					var otherCellsInWeakLinkHouse = HousesMap[weakLinkHouse] & CandidatesMap[guardianDigit] & ~guardianCells;
 					if (!otherCellsInWeakLinkHouse)
 					{
 						// Cannot continue the turbot fish.
@@ -3805,7 +3805,7 @@ public partial class UniqueRectangleStepSearcher
 							}
 
 							// A turbot fish found. Now check eliminations.
-							var elimMap = (guardianCells - (HousesMap[weakLinkHouse] & guardianCells)).PeerIntersection & PeersMap[finalCell] & CandidatesMap[guardianDigit];
+							var elimMap = (guardianCells & ~(HousesMap[weakLinkHouse] & guardianCells)).PeerIntersection & PeersMap[finalCell] & CandidatesMap[guardianDigit];
 							if (!elimMap)
 							{
 								// No eliminations.
@@ -3949,7 +3949,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Gets the guardian cells in both houses.
 				// Here guardian cells may contain multiple cells. We don't check for it because it can be used as grouped turbot fish.
-				var guardianCells = (housesFullMap & CandidatesMap[xDigit]) - cells;
+				var guardianCells = housesFullMap & CandidatesMap[xDigit] & ~cells;
 
 				// Then check whether the other digit is locked in the UR pattern.
 				var flag = true;
@@ -3977,7 +3977,7 @@ public partial class UniqueRectangleStepSearcher
 
 				// Gets the last cell that the houses iterated don't contain.
 				// Why we should do this? Please see the comments above this method (same statement in the method "UR external turbot fish").
-				if ((cells - housesFullMap)[0] is var lastCell and not -1
+				if ((cells & ~housesFullMap)[0] is var lastCell and not -1
 					&& (!BivalueCells.Contains(lastCell) || comparer != grid.GetCandidates(lastCell)))
 				{
 					continue;
@@ -3997,8 +3997,8 @@ public partial class UniqueRectangleStepSearcher
 						continue;
 					}
 
-					var bivalueCellsFoundStart = ((HousesMap[weakLinkHouses[0]] & CandidatesMap[xDigit]) - guardianCells) & BivalueCells;
-					var bivalueCellsFoundEnd = ((HousesMap[weakLinkHouses[1]] & CandidatesMap[xDigit]) - guardianCells) & BivalueCells;
+					var bivalueCellsFoundStart = HousesMap[weakLinkHouses[0]] & CandidatesMap[xDigit] & ~guardianCells & BivalueCells;
+					var bivalueCellsFoundEnd = HousesMap[weakLinkHouses[1]] & CandidatesMap[xDigit] & ~guardianCells & BivalueCells;
 					foreach (var startCell in bivalueCellsFoundStart)
 					{
 						var startCellDigitsMask = grid.GetCandidates(startCell);
@@ -4130,14 +4130,14 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			var guardianCells = guardianMap & ~cells & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (!(guardianCells & CandidatesMap[d1]) || !(guardianCells & CandidatesMap[d2]))
 			{
 				// Guardian cells must contain both two digits; otherwise, skip the current case.
 				continue;
 			}
 
-			var cellsToEnumerate = guardianCells.ExpandedPeers - guardianCells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			var cellsToEnumerate = guardianCells.ExpandedPeers & ~guardianCells & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (cellsToEnumerate.Count < 2)
 			{
 				// No valid combinations.
@@ -4434,7 +4434,7 @@ public partial class UniqueRectangleStepSearcher
 				continue;
 			}
 
-			var guardianCells = guardianMap - cells & (CandidatesMap[d1] | CandidatesMap[d2]);
+			var guardianCells = guardianMap & ~cells & (CandidatesMap[d1] | CandidatesMap[d2]);
 			if (guardianCells is { Count: not 1, SharedHouses: 0 })
 			{
 				// All guardian cells must lie in one house.

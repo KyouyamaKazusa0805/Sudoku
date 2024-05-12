@@ -75,7 +75,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 		{
 			foreach (ref readonly var map in TemplateCellMaps.AsReadOnlySpan())
 			{
-				if (mustPos[digit] - map || invalidPos[digit] & map)
+				if (mustPos[digit] & ~map || invalidPos[digit] & map)
 				{
 					continue;
 				}
@@ -83,7 +83,7 @@ public sealed partial class PatternOverlayStepSearcher : StepSearcher
 				result[digit] |= map;
 			}
 
-			result[digit] = CandidatesMap[digit] - result[digit];
+			result[digit] = CandidatesMap[digit] & ~result[digit];
 		}
 
 		return result;

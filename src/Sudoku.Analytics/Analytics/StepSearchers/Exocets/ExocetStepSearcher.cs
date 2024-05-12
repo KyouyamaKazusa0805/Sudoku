@@ -158,11 +158,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 									// Now we should check for target cells.
 									// The target cells must be located in houses being iterated, and intersects with the current chute.
 									var chuteEmptyCells = chuteCells & EmptyCells;
-									var targetCells = (chuteEmptyCells & housesEmptyCells) - baseCells.PeerIntersection;
+									var targetCells = chuteEmptyCells & housesEmptyCells & ~baseCells.PeerIntersection;
 									var (baseCellsDigitsMask, targetCellsDigitsMask) = (grid[in baseCells], grid[in targetCells]);
 
 									// Check whether all cross-line lines contains at least one digit appeared in base cells.
-									var crossline = housesCells - chuteCells;
+									var crossline = housesCells & ~chuteCells;
 									var atLeastOneLineContainNoDigitsAppearedInBase = false;
 									foreach (var line in isRow ? crossline.RowMask << 9 : crossline.ColumnMask << 18)
 									{
@@ -180,7 +180,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									// Check whether escape cells contain any digits appeared in base. If so, invalid.
 									var escapeCellsContainValueCellsDigitAppearedInBaseCells = false;
-									foreach (var cell in housesCells - crossline - EmptyCells)
+									foreach (var cell in housesCells & ~crossline & ~EmptyCells)
 									{
 										if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0)
 										{
@@ -516,7 +516,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var crosslineIncludingTarget = CellMap.Empty;
 		foreach (var house in housesMask)
 		{
-			crosslineIncludingTarget |= HousesMap[house] - baseCells.PeerIntersection;
+			crosslineIncludingTarget |= HousesMap[house] & ~baseCells.PeerIntersection;
 		}
 
 		// Try to fetch all possible endo-target cells if worth.
@@ -630,8 +630,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var extraHouse in extraHousesMask.GetAllSets())
 		{
 			// Create a map that contains both cross-line cells and extra houses cells.
-			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) - baseCells.PeerIntersection;
-			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCells - baseCells.PeerIntersection;
+			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) & ~baseCells.PeerIntersection;
+			var intersectedCellsBase = housesCells & HousesMap[extraHouse] & ~targetCells & ~baseCells.PeerIntersection;
 
 			// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
 			// except endo-target cells; and cannot be of value appeared in base cells.
@@ -646,7 +646,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				baseCellsDigitsMask,
 				in baseCells,
 				in targetCells,
-				expandedCrosslineIncludingTarget - targetCells,
+				expandedCrosslineIncludingTarget & ~targetCells,
 				size,
 				out var digitsMaskExactlySizeMinusOneTimes,
 				out _,
@@ -772,9 +772,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var extraHouse in extraHousesMask.GetAllSets())
 		{
 			// Create a map that contains both cross-line cells and extra houses cells.
-			var expandedCrossline = (crossline | HousesMap[extraHouse]) - baseCells.PeerIntersection;
-			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) - baseCells.PeerIntersection;
-			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCell - baseCells.PeerIntersection;
+			var expandedCrossline = (crossline | HousesMap[extraHouse]) & ~baseCells.PeerIntersection;
+			var expandedCrosslineIncludingTarget = (housesCells | HousesMap[extraHouse]) & ~baseCells.PeerIntersection;
+			var intersectedCellsBase = (housesCells & HousesMap[extraHouse]) - targetCell & ~baseCells.PeerIntersection;
 
 			// Iterate on each empty cells in the above map, to get the other target cell.
 			foreach (var endoTargetCell in expandedCrossline & EmptyCells)
@@ -901,8 +901,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										in grid,
 										baseCellsDigitsMask,
 										in baseCells,
-										[targetCell],
-										expandedCrosslineIncludingTarget - targetCell - endoTargetCellsGroup,
+										in CellMaps[targetCell],
+										expandedCrosslineIncludingTarget - targetCell & ~endoTargetCellsGroup,
 										size,
 										out digitsMaskExactlySizeMinusOneTimes,
 										out _,
@@ -966,8 +966,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 											in grid,
 											baseCellsDigitsMask,
 											in baseCells,
-											[targetCell],
-											expandedCrosslineIncludingTarget - targetCell - endoTargetCellsGroup,
+											in CellMaps[targetCell],
+											expandedCrosslineIncludingTarget - targetCell & ~endoTargetCellsGroup,
 											size,
 											out digitsMaskExactlySizeMinusOneTimes,
 											out _,
@@ -1130,7 +1130,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		//
 		// r1c1 has a value digit that will make cross-line c158 to be 7 values, failed to be checked.
 		// Today I don't know which, where and how values influence the elimination, so I don't allow for this.
-		if (crossline - EmptyCells is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
+		if ((crossline & ~EmptyCells) is not { Count: 5 or 6, RowMask: var rowsCovered, ColumnMask: var columnsCovered })
 		{
 			return null;
 		}
@@ -1205,7 +1205,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var valueDigitsPos = new List<Cell>(6);
 		foreach (var block in baseCellCoveredBlocksMaskCoveringCrossline)
 		{
-			foreach (var cell in HousesMap[block] - EmptyCells - crossline)
+			foreach (var cell in HousesMap[block] & ~EmptyCells & ~crossline)
 			{
 				if ((baseCellsDigitsMask >> grid.GetDigit(cell) & 1) != 0 && !PeersMap[missingValueCell].Contains(cell))
 				{
@@ -1256,7 +1256,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		// Check whether the value cell digit isn't covered in the same line as value cells in cross-line.
 		var coveredLinesForValueCells = (isRow ? columnsCovered << 18 : rowsCovered << 9).GetAllSets();
-		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) - crossline;
+		var intersectedLinesForSuchLastCells = (HousesMap[coveredLinesForValueCells[0]] | HousesMap[coveredLinesForValueCells[1]]) & ~crossline;
 		if (valueDigitCell != -1 && intersectedLinesForSuchLastCells.Contains(valueDigitCell))
 		{
 			return null;
@@ -1280,14 +1280,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Then check for digits of values in houses that base cell chute does not cover.
 		// All four blocks should contain 4 kinds of digits of value representation, with diagonal-distributed rule.
 		var blocks = baseCellUncoveredBlocksMaskCoveringCrossline.GetAllSets();
-		var lastSixteenCells = (HousesMap[blocks[0]] | HousesMap[blocks[1]] | HousesMap[blocks[2]] | HousesMap[blocks[3]]) - crossline - intersectedLinesForSuchLastCells;
+		var lastSixteenCells = (HousesMap[blocks[0]] | HousesMap[blocks[1]] | HousesMap[blocks[2]] | HousesMap[blocks[3]]) & ~crossline & ~intersectedLinesForSuchLastCells;
 		var isDiagonallyDistributed = true;
 		foreach (var ((a1, da1), (a2, da2)) in (((0, 3), (1, 2)), ((1, 2), (0, 3))))
 		{
-			var ca1 = (Mask)(grid[(HousesMap[blocks[a1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var cda1 = (Mask)(grid[(HousesMap[blocks[da1]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var ca2 = (Mask)(grid[(HousesMap[blocks[a2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
-			var cda2 = (Mask)(grid[(HousesMap[blocks[da2]] & lastSixteenCells) - EmptyCells, true] & baseCellsDigitsMask);
+			var ca1 = (Mask)(grid[HousesMap[blocks[a1]] & lastSixteenCells & ~EmptyCells, true] & baseCellsDigitsMask);
+			var cda1 = (Mask)(grid[HousesMap[blocks[da1]] & lastSixteenCells & ~EmptyCells, true] & baseCellsDigitsMask);
+			var ca2 = (Mask)(grid[HousesMap[blocks[a2]] & lastSixteenCells & ~EmptyCells, true] & baseCellsDigitsMask);
+			var cda2 = (Mask)(grid[HousesMap[blocks[da2]] & lastSixteenCells & ~EmptyCells, true] & baseCellsDigitsMask);
 			if (ca1 != cda1 || ca2 != cda2
 				|| (Mask)(ca1 | ca2) != baseCellsDigitsMask
 				|| (PopCount((uint)ca1), PopCount((uint)cda1), PopCount((uint)ca2), PopCount((uint)cda2)) is not (2, 2, 2, 2))
@@ -1393,10 +1393,10 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			lastCells |= HousesMap[block];
 		}
-		lastCells -= baseCells.PeerIntersection;
+		lastCells &= ~baseCells.PeerIntersection;
 		foreach (var line in isRow ? crossline.RowMask << 9 : crossline.ColumnMask << 18)
 		{
-			lastCells -= HousesMap[line];
+			lastCells &= ~HousesMap[line];
 		}
 
 		// Now we have a possible double JE. However, we haven't checked for validity. Now check for it.
@@ -1427,7 +1427,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Try to calculate the target cells.
-			var theOtherTargetCells = (Chutes[chuteIndex].Cells & housesEmptyCells & EmptyCells) - theOtherBaseCells.PeerIntersection;
+			var theOtherTargetCells = Chutes[chuteIndex].Cells & housesEmptyCells & EmptyCells & ~theOtherBaseCells.PeerIntersection;
 			var theOtherTargetCellsDigitsMask = grid[in theOtherTargetCells];
 
 			// Check whether all digits appeared in base cells can be filled in target empty cells.
@@ -2051,12 +2051,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				cellsDoNotCover |= chuteCells;
 			}
 		}
-		var lastFourBlocks = CellMap.Full - cellsDoNotCover;
-		var lastFourBlocksNotIntersectedWithCrossline = lastFourBlocks - crossline;
+		var lastFourBlocks = CellMap.Full & ~cellsDoNotCover;
+		var lastFourBlocksNotIntersectedWithCrossline = lastFourBlocks & ~crossline;
 		var lastFourBlocksIntersectedWithCrossline = lastFourBlocks & crossline;
 
 		// Try to check for cross-line cells, get all values and its containing cells.
-		var valueCellsInLastFourBlocksIntersectedWithCrossline = lastFourBlocksIntersectedWithCrossline - EmptyCells;
+		var valueCellsInLastFourBlocksIntersectedWithCrossline = lastFourBlocksIntersectedWithCrossline & ~EmptyCells;
 
 		// Determine whether the value cells only span with 2 rows and columns, forming a square shape:
 		//
@@ -2080,11 +2080,11 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var lastSixteenCells = lastFourBlocksNotIntersectedWithCrossline;
 		foreach (var house in valueCellsInLastFourBlocksIntersectedWithCrossline.RowMask << 9)
 		{
-			lastSixteenCells -= HousesMap[house];
+			lastSixteenCells &= ~HousesMap[house];
 		}
 		foreach (var house in valueCellsInLastFourBlocksIntersectedWithCrossline.ColumnMask << 18)
 		{
-			lastSixteenCells -= HousesMap[house];
+			lastSixteenCells &= ~HousesMap[house];
 		}
 
 		// Now we have the 16 cells to be checked. Such cells are called "X Region".
@@ -2093,8 +2093,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var valueCellsBlocks = lastSixteenCells.BlockMask.GetAllSets();
 		foreach (var blockIndex in (0, 1))
 		{
-			var valueCellsFromBlock1 = (lastSixteenCells & HousesMap[valueCellsBlocks[blockIndex]]) - EmptyCells;
-			var valueCellsFromBlock2 = (lastSixteenCells & HousesMap[valueCellsBlocks[3 - blockIndex]]) - EmptyCells;
+			var valueCellsFromBlock1 = lastSixteenCells & HousesMap[valueCellsBlocks[blockIndex]] & ~EmptyCells;
+			var valueCellsFromBlock2 = lastSixteenCells & HousesMap[valueCellsBlocks[3 - blockIndex]] & ~EmptyCells;
 			var valuesFromBlock1 = MaskOperations.Create(from cell in valueCellsFromBlock1 select grid.GetDigit(cell));
 			var valuesFromBlock2 = MaskOperations.Create(from cell in valueCellsFromBlock2 select grid.GetDigit(cell));
 			var valuesFromBothBlocks = (Mask)(valuesFromBlock1 & valuesFromBlock2);
@@ -2189,7 +2189,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					.. from cell in crossline select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
-					.. from cell in lastSixteenCells - EmptyCells select new CellViewNode(ColorIdentifier.Auxiliary3, cell),
+					.. from cell in lastSixteenCells & ~EmptyCells select new CellViewNode(ColorIdentifier.Auxiliary3, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
@@ -2373,7 +2373,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				continue;
 			}
 
-			var elimCells = (HousesMap[line] & EmptyCells) - crossline;
+			var elimCells = HousesMap[line] & EmptyCells & ~crossline;
 			foreach (var cell in elimCells)
 			{
 				foreach (var digit in (Mask)(grid.GetCandidates(cell) & inferredTargetPairMask))
@@ -2474,7 +2474,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Now check for empty cells in this house, removing all cells located in the miniline that the target cell located in.
 			foreach (var coveredHouse in mirrorEmptyCells.SharedHouses)
 			{
-				var otherCells = (HousesMap[coveredHouse] & EmptyCells) - miniline;
+				var otherCells = HousesMap[coveredHouse] & EmptyCells & ~miniline;
 				if (otherCells.Count < 2)
 				{
 					// The target house does not contain enough cells to form an AHS.
@@ -2648,7 +2648,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					: (targetCell2, targetCell1);
 				var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 #pragma warning disable format
-				var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
+				var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 				{
 					[] when mirrorCellsThisTarget is [var a, var b]
 						=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
@@ -2930,7 +2930,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					let colorIdentifier = trueBaseDigit != d ? ColorIdentifier.Normal : ColorIdentifier.Auxiliary1
 					select new CandidateViewNode(colorIdentifier, cell * 9 + d),
 					..
-					from cell in crosslineIncludingTarget - EmptyCells
+					from cell in crosslineIncludingTarget & ~EmptyCells
 					where grid.GetDigit(cell) == trueBaseDigit
 					select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					..
@@ -3180,7 +3180,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		{
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 #pragma warning disable format
-			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
+			var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 			{
 				[] when mirrorCellsThisTarget is [var a, var b]
 					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
@@ -3282,7 +3282,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		foreach (var block in blocks)
 		{
 			// Check for digits appeared in this block.
-			var valueCells = (cellsCanBeEliminated & HousesMap[block]) - EmptyCells;
+			var valueCells = cellsCanBeEliminated & HousesMap[block] & ~EmptyCells;
 			var valueCellsBaseDigitsMask = (Mask)0;
 			foreach (var digit in baseCellsDigitsMask)
 			{
@@ -3374,7 +3374,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var finalIntersectedFourCells = elimLinesMap & intersectedLinesMap;
 
 		var conclusions = new List<Conclusion>();
-		foreach (var cell in HousesMap[TrailingZeroCount(finalIntersectedFourCells.BlockMask)] - crossline - finalIntersectedFourCells)
+		foreach (var cell in HousesMap[TrailingZeroCount(finalIntersectedFourCells.BlockMask)] & ~crossline & ~finalIntersectedFourCells)
 		{
 			foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~baseCellsDigitsMask))
 			{
@@ -3525,7 +3525,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			foreach (var line in isRow ? digitDistribution.ColumnMask << 18 : digitDistribution.RowMask << 9)
 			{
-				var cells = (HousesMap[line] & CandidatesMap[digit]) - crossline;
+				var cells = HousesMap[line] & CandidatesMap[digit] & ~crossline;
 				if (!cells)
 				{
 					continue;
@@ -3665,7 +3665,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			var mirrorCellsThisTarget = GetMirrorCells(thisTargetCell, chuteIndex, out _);
 #pragma warning disable format
-			var finalDigitsMask = (mirrorCellsThisTarget - EmptyCells) switch
+			var finalDigitsMask = (mirrorCellsThisTarget & ~EmptyCells) switch
 			{
 				[] when mirrorCellsThisTarget is [var a, var b]
 					=> (Mask)((grid.GetCandidates(a) | grid.GetCandidates(b)) & baseCellsDigitsMask),
@@ -3984,7 +3984,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				// If the maximum appearing times of the digit is less than the minimum possible limit,
 				// the digit will make exocet pattern unstable. Therefore, the digit cannot be the one appeared in base cells.
 				// We can safely remove it from base cells.
-				if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell - endoTargetCells) < size)
+				if (grid.AppearingTimesOf(lockedDigit, expandedCrosslineIncludingTarget - targetCell & ~endoTargetCells) < size)
 				{
 					foreach (var cell in (baseCells | endoTargetCells) + targetCell & CandidatesMap[lockedDigit])
 					{
@@ -4078,7 +4078,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		var allDigitsSatisfySizeRule = true;
 		foreach (var digit in baseCellsDigitsMask)
 		{
-			var lastMap = expandedCrosslineIncludingTarget - targetCells;
+			var lastMap = expandedCrosslineIncludingTarget & ~targetCells;
 			if (!grid.IsExactAppearingTimesOf(digit, in lastMap, size))
 			{
 				allDigitsSatisfySizeRule = false;
@@ -4404,7 +4404,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					..
-					from cell in expandedCrosslineIncludingTarget - targetCells
+					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 					.. from cell in singleMirrors select new CellViewNode(ColorIdentifier.Auxiliary3, cell),
 					..
@@ -4412,7 +4412,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					from d in grid.GetCandidates(cell)
 					select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + d),
 					..
-					from cell in expandedCrosslineIncludingTarget - targetCells
+					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + d),
@@ -4524,14 +4524,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					.. from cell in baseCells select new CellViewNode(ColorIdentifier.Normal, cell),
 					.. from cell in targetCells select new CellViewNode(ColorIdentifier.Auxiliary1, cell),
 					..
-					from cell in expandedCrosslineIncludingTarget - targetCells
+					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					select new CellViewNode(ColorIdentifier.Auxiliary2, cell),
 					..
 					from cell in baseCells
 					from d in grid.GetCandidates(cell)
 					select new CandidateViewNode(ColorIdentifier.Normal, cell * 9 + d),
 					..
-					from cell in expandedCrosslineIncludingTarget - targetCells
+					from cell in expandedCrosslineIncludingTarget & ~targetCells
 					where grid.GetState(cell) == CellState.Empty
 					from d in (Mask)(grid.GetCandidates(cell) & baseCellsDigitsMask)
 					select new CandidateViewNode(ColorIdentifier.Auxiliary2, cell * 9 + d),
@@ -4771,7 +4771,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			var (lockedMemberMap, lockedBlock) = (CellMap.Empty, -1);
 			foreach (var block in targetCells.BlockMask)
 			{
-				var lastMap = HousesMap[block] - targetCells & CandidatesMap[lockedDigit];
+				var lastMap = HousesMap[block] & ~targetCells & CandidatesMap[lockedDigit];
 				if (!!lastMap && (HousesMap[baseCells.SharedLine] & lastMap) == lastMap)
 				{
 					(lockedMemberMap, lockedBlock) = (lastMap, block);

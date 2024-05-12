@@ -253,7 +253,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 
 			foreach (var house in tempMap.SharedHouses)
 			{
-				var allCells = (HousesMap[house] & EmptyCells) - pattern;
+				var allCells = HousesMap[house] & EmptyCells & ~pattern;
 				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
 					foreach (ref readonly var cells in allCells.GetSubsets(size))
@@ -267,7 +267,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 						var conclusions = new List<Conclusion>();
 						foreach (var digit in tempMask)
 						{
-							foreach (var cell in (allCells - cells) & CandidatesMap[digit])
+							foreach (var cell in allCells & ~cells & CandidatesMap[digit])
 							{
 								conclusions.Add(new(Elimination, cell, digit));
 							}
@@ -390,7 +390,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in pattern - conjugateMap)
+				foreach (var cell in pattern & ~conjugateMap)
 				{
 					foreach (var digit in grid.GetCandidates(cell))
 					{

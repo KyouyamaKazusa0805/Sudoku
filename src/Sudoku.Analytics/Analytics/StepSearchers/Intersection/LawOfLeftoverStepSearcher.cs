@@ -22,12 +22,12 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 			// Try to check for value cells from two different sets.
 			var (lineSetDigitsMask, blockSetDigitsMask) = ((Mask)0, (Mask)0);
 			var mergedCells = CellMap.Empty;
-			foreach (var cell in a - EmptyCells)
+			foreach (var cell in a & ~EmptyCells)
 			{
 				lineSetDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
 				mergedCells.Add(cell);
 			}
-			foreach (var cell in b - EmptyCells)
+			foreach (var cell in b & ~EmptyCells)
 			{
 				blockSetDigitsMask |= (Mask)(1 << grid.GetDigit(cell));
 				mergedCells.Add(cell);
@@ -42,7 +42,7 @@ public sealed partial class LawOfLeftoverStepSearcher : StepSearcher
 			}
 
 			// Check whether both two sides don't hold all 6 digits.
-			if ((a - EmptyCells).Count == 6 || (b - EmptyCells).Count == 6)
+			if ((a & ~EmptyCells).Count == 6 || (b & ~EmptyCells).Count == 6)
 			{
 				continue;
 			}

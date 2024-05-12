@@ -336,7 +336,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 			var tempMask = MaskOperations.Create(digits);
 			var otherDigit = TrailingZeroCount(orMask & ~tempMask);
 			var mapContainingThatDigit = map & CandidatesMap[otherDigit];
-			var elimMap = (mapContainingThatDigit.PeerIntersection - map) & CandidatesMap[otherDigit];
+			var elimMap = mapContainingThatDigit.PeerIntersection & ~map & CandidatesMap[otherDigit];
 			if (!elimMap)
 			{
 				continue;
@@ -390,7 +390,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
-			var otherCellsMap = map - currentMap;
+			var otherCellsMap = map & ~currentMap;
 			var otherMask = grid[in otherCellsMap];
 			foreach (var digits in orMask.GetAllSets().GetSubsets(pattern.IsHeptagon ? 3 : 4))
 			{
@@ -401,7 +401,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				}
 
 				// Iterate on the cells by the specified size.
-				var iterationCellsMap = (HousesMap[houseIndex] - currentMap) & EmptyCells;
+				var iterationCellsMap = HousesMap[houseIndex] & ~currentMap & EmptyCells;
 				var otherDigitsMask = (Mask)(orMask & ~tempMask);
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 				{
@@ -503,7 +503,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 		foreach (var houseIndex in map.Houses)
 		{
 			var currentMap = HousesMap[houseIndex] & map;
-			var otherCellsMap = map - currentMap;
+			var otherCellsMap = map & ~currentMap;
 			var otherMask = grid[in otherCellsMap];
 
 			// Iterate on each possible digit combination.

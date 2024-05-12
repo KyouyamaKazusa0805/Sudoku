@@ -56,7 +56,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 						continue;
 					}
 
-					var t = (linkMap - HousesMap[i < 6 ? column : row])[0];
+					var t = (linkMap & ~HousesMap[i < 6 ? column : row])[0];
 					var elimHouse = i < 6 ? t % 9 + 18 : t / 9 + 9;
 					if ((CandidatesMap[digit] & HousesMap[elimHouse] & HousesMap[i < 6 ? row : column]) is not [var elimCell, ..])
 					{
@@ -144,7 +144,7 @@ public sealed partial class EmptyRectangleStepSearcher : StepSearcher
 		{
 			for (var j = c; j < c + 3; j++)
 			{
-				if (cells - (HousesMap[i] | HousesMap[j]))
+				if (cells & ~(HousesMap[i] | HousesMap[j]))
 				{
 					continue;
 				}

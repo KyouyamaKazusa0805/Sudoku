@@ -141,7 +141,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 		}
 
-		if (pattern.Corner - EmptyCells)
+		if (pattern.Corner & ~EmptyCells)
 		{
 			// Corners cannot be non-empty.
 			return null;
@@ -184,7 +184,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var l2 = lines.GetNextSet(l1);
 
 		// Check whether both two lines are finished.
-		if (((HousesMap[l1] | HousesMap[l2]) - EmptyCells).Count == 18)
+		if (((HousesMap[l1] | HousesMap[l2]) & ~EmptyCells).Count == 18)
 		{
 			return null;
 		}
@@ -239,14 +239,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 
 		// Check whether at least 2 cells is empty in cross-line.
 		var crossline = pattern.Crossline;
-		if ((crossline - EmptyCells).Count >= 3)
+		if ((crossline & ~EmptyCells).Count >= 3)
 		{
 			return null;
 		}
 
 		// Check whether the number of locked digits appeared in cross-line is at least 2.
 		crossline.InOneHouse(out var block);
-		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] - crossline];
+		var allDigitsMaskNotAppearedInCrossline = grid[HousesMap[block] & ~crossline];
 		var allDigitsMaskAppearedInCrossline = grid[in crossline];
 		var cornerLockedDigitsMask = (Mask)(allDigitsMaskAppearedInCrossline & ~allDigitsMaskNotAppearedInCrossline);
 		if (PopCount((uint)cornerLockedDigitsMask) < 2)
@@ -271,7 +271,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:
 		//       825 826 833 837 839 844 254 255 256 779 789 495 496 499 799
 		var cornerDigitsMask = grid[in corner];
-		if ((grid[crossline - EmptyCells, true] & cornerDigitsMask) != 0)
+		if ((grid[crossline & ~EmptyCells, true] & cornerDigitsMask) != 0)
 		{
 			return null;
 		}
@@ -576,7 +576,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		foreach (var cornerCellCoveredHouse in corner.SharedHouses)
 		{
 			var emptyCellsInCurrentHouse = HousesMap[cornerCellCoveredHouse] & EmptyCells;
-			var availableCellsToBeIterated = emptyCellsInCurrentHouse - corner;
+			var availableCellsToBeIterated = emptyCellsInCurrentHouse & ~corner;
 			if (availableCellsToBeIterated.Count - 1 < size)
 			{
 				// No more cells or eliminations to exist.
@@ -591,7 +591,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 					continue;
 				}
 
-				var elimMap = emptyCellsInCurrentHouse - extraCells - corner;
+				var elimMap = emptyCellsInCurrentHouse & ~extraCells & ~corner;
 				var conclusions = new List<Conclusion>();
 				foreach (var digit in currentDigitsMask)
 				{
@@ -987,7 +987,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		var elimDigit = Log2((uint)elimDigits);
-		var range = (HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells) - crossline;
+		var range = HousesMap[TrailingZeroCount(mirror.BlockMask)] & EmptyCells & ~crossline;
 		var truth = range & CandidatesMap[elimDigit];
 		var elimMap = range % CandidatesMap[elimDigit];
 		if (!elimMap)
@@ -1003,7 +1003,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		var crosslineBlock = HousesMap[Log2((uint)crossline.BlockMask)] & EmptyCells;
 		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & (Mask)~(1 << elimDigit)))
 		{
-			if ((crosslineBlock & CandidatesMap[digit]) - crossline)
+			if (crosslineBlock & CandidatesMap[digit] & ~crossline)
 			{
 				allOtherDigitsAreLockedInCrosslineCells = false;
 				break;
@@ -1114,7 +1114,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				Crossline.InOneHouse(out var block);
 				var l1 = TrailingZeroCount(Lines);
 				var l2 = Lines.GetNextSet(l1);
-				return HousesMap[block] - (HousesMap[l1] | HousesMap[l2]);
+				return HousesMap[block] & ~(HousesMap[l1] | HousesMap[l2]);
 			}
 		}
 	}

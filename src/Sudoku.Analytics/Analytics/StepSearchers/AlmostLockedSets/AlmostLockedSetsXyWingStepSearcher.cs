@@ -119,7 +119,7 @@ public sealed partial class AlmostLockedSetsXyWingStepSearcher : StepSearcher
 						var (finalZ, conclusions) = ((Mask)0, new List<Conclusion>());
 						foreach (var digit in digitsMask)
 						{
-							if ((aMap | bMap) % CandidatesMap[digit] - (aMap | bMap | cMap) is not (var elimMap and not []))
+							if ((aMap | bMap) % (CandidatesMap[digit] & ~(aMap | bMap | cMap)) is not (var elimMap and not []))
 							{
 								continue;
 							}

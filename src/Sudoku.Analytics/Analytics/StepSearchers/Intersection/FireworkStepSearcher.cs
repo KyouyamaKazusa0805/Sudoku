@@ -200,7 +200,7 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 			foreach (var digit in currentDigitsMask)
 			{
 				var possibleBlockCells = HousesMap[pivotCellBlock] & EmptyCells & CandidatesMap[digit];
-				foreach (var cell in possibleBlockCells - pivotRowCells - pivotColumnCells)
+				foreach (var cell in possibleBlockCells & ~pivotRowCells & ~pivotColumnCells)
 				{
 					conclusions.Add(new(Elimination, cell, digit));
 				}
@@ -334,11 +334,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						}
 					}
 					foreach (var cell in
-						(
-							HousesMap[pivot1.ToHouseIndex(HouseType.Block)]
-								- HousesMap[pivot1.ToHouseIndex(HouseType.Row)]
-								- HousesMap[pivot1.ToHouseIndex(HouseType.Column)]
-						) & EmptyCells)
+						HousesMap[pivot1.ToHouseIndex(HouseType.Block)]
+							& ~HousesMap[pivot1.ToHouseIndex(HouseType.Row)]
+							& ~HousesMap[pivot1.ToHouseIndex(HouseType.Column)]
+							& EmptyCells)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair1DigitsMask))
 						{
@@ -346,11 +345,10 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 						}
 					}
 					foreach (var cell in
-						(
-							HousesMap[pivot2.ToHouseIndex(HouseType.Block)]
-								- HousesMap[pivot2.ToHouseIndex(HouseType.Row)]
-								- HousesMap[pivot2.ToHouseIndex(HouseType.Column)]
-						) & EmptyCells)
+						HousesMap[pivot2.ToHouseIndex(HouseType.Block)]
+							& ~HousesMap[pivot2.ToHouseIndex(HouseType.Row)]
+							& ~HousesMap[pivot2.ToHouseIndex(HouseType.Column)]
+							& EmptyCells)
 					{
 						foreach (var digit in (Mask)(grid.GetCandidates(cell) & pair2DigitsMask))
 						{
@@ -457,8 +455,8 @@ public sealed partial class FireworkStepSearcher : StepSearcher
 	)
 	{
 		var pivotCellBlock = pivot.ToHouseIndex(HouseType.Block);
-		var excluded1 = HousesMap[(c1.AsCellMap() + pivot).SharedLine] - HousesMap[pivotCellBlock] - c1;
-		var excluded2 = HousesMap[(c2.AsCellMap() + pivot).SharedLine] - HousesMap[pivotCellBlock] - c2;
+		var excluded1 = HousesMap[(c1.AsCellMap() + pivot).SharedLine] & ~HousesMap[pivotCellBlock] - c1;
+		var excluded2 = HousesMap[(c2.AsCellMap() + pivot).SharedLine] & ~HousesMap[pivotCellBlock] - c2;
 		var finalMask = (Mask)0;
 		foreach (var digit in grid[[c1, c2, pivot]])
 		{

@@ -51,7 +51,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 			var comparer = (Mask)(1 << d1 | 1 << d2);
 			foreach (var (loop, path, _) in patterns)
 			{
-				var extraCellsMap = loop - BivalueCells;
+				var extraCellsMap = loop & ~BivalueCells;
 				switch (extraCellsMap.Count)
 				{
 					case 0:
@@ -313,7 +313,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				otherCells = (HousesMap[houseIndex] & EmptyCells) - loop;
+				otherCells = HousesMap[houseIndex] & EmptyCells & ~loop;
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < otherCells.Count; size++)
 				{
 					foreach (ref readonly var cells in otherCells.GetSubsets(size))
@@ -324,7 +324,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 							continue;
 						}
 
-						if ((HousesMap[houseIndex] & EmptyCells) - cells - loop is not (var elimMap and not []))
+						if ((HousesMap[houseIndex] & EmptyCells & ~cells & ~loop) is not (var elimMap and not []))
 						{
 							continue;
 						}
@@ -389,7 +389,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 		}
 
 		// Extra cells may not lie in a same house. However the type 3 can form in this case.
-		otherCells = extraCellsMap.PeerIntersection - loop & EmptyCells;
+		otherCells = extraCellsMap.PeerIntersection & ~loop & EmptyCells;
 		if (!otherCells)
 		{
 			return null;
@@ -405,7 +405,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					continue;
 				}
 
-				if ((extraCellsMap | cells).PeerIntersection - loop is not (var elimMap and not []))
+				if (((extraCellsMap | cells).PeerIntersection & ~loop) is not (var elimMap and not []))
 				{
 					continue;
 				}
@@ -526,7 +526,7 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				}
 
 				var candidateOffsets = new List<CandidateViewNode>();
-				foreach (var cell in loop - extraCellsMap)
+				foreach (var cell in loop & ~extraCellsMap)
 				{
 					foreach (var d in grid.GetCandidates(cell))
 					{

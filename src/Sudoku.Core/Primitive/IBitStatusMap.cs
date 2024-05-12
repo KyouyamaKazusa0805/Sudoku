@@ -282,7 +282,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 			left.Remove(element);
 		}
 
-		var right = [.. other] - (TSelf)this;
+		var right = [.. other] & ~(TSelf)this;
 		Clear();
 		foreach (var element in (TSelf)left | right)
 		{
@@ -408,15 +408,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="offset">The offset to be removed.</param>
 	/// <returns>The result collection.</returns>
 	public static abstract TSelf operator -(in TSelf collection, TElement offset);
-
-	/// <summary>
-	/// Get a <typeparamref name="TSelf"/> that contains all <paramref name="left"/> instance
-	/// but not in <paramref name="right"/> instance.
-	/// </summary>
-	/// <param name="left">The left instance.</param>
-	/// <param name="right">The right instance.</param>
-	/// <returns>The result.</returns>
-	public static abstract TSelf operator -(in TSelf left, in TSelf right);
 
 	/// <summary>
 	/// Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.

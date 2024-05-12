@@ -19,7 +19,6 @@ public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
 	IComparisonOperators<CellMap, CellMap, bool>,
-	ISubtractionOperators<CellMap, CellMap, CellMap>,
 	ITokenizable<CellMap>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
@@ -967,10 +966,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator -(in CellMap left, in CellMap right) => left & ~right;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator &(in CellMap left, in CellMap right)
 		=> CreateByBits(left._high & right._high, left._low & right._low);
 
@@ -1013,9 +1008,6 @@ public partial struct CellMap :
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
-	static CellMap ISubtractionOperators<CellMap, CellMap, CellMap>.operator -(CellMap left, CellMap right) => left - right;
 
 
 	/// <summary>

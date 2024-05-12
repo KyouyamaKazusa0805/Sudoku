@@ -166,7 +166,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 			}
 
 			// Value cells checker.
-			var valueCells = (alsCells | ahsCells) - EmptyCells;
+			var valueCells = (alsCells | ahsCells) & ~EmptyCells;
 			if (!checkValueCells && !!valueCells)
 			{
 				// Value cells must be empty if we don't check value cells.

@@ -65,7 +65,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 						continue;
 					}
 
-					var blockMap = (b | c - currentInterMap) & EmptyCells;
+					var blockMap = (b | c & ~currentInterMap) & EmptyCells;
 					var lineMap = a & EmptyCells;
 
 					// Iterate on the number of the cells that should be selected in block.
@@ -82,7 +82,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 							{
 								elimMapBlock |= CandidatesMap[digit];
 							}
-							elimMapBlock &= blockMap - currentBlockMap;
+							elimMapBlock &= blockMap & ~currentBlockMap;
 
 							// Iterate on the number of the cells that should be selected in line.
 							for (var j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
@@ -98,7 +98,7 @@ public sealed partial class SueDeCoqStepSearcher : StepSearcher
 									{
 										elimMapLine |= CandidatesMap[digit];
 									}
-									elimMapLine &= lineMap - currentLineMap;
+									elimMapLine &= lineMap & ~currentLineMap;
 
 									var maskIsolated = (Mask)(
 										cannibalMode

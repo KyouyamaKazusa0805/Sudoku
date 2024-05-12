@@ -30,7 +30,7 @@ internal static class SubsetModule
 				nakedSingleCells.Add(cell);
 			}
 		}
-		emptyCellsForGrid -= nakedSingleCells;
+		emptyCellsForGrid &= ~nakedSingleCells;
 
 		for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 		{
@@ -147,7 +147,7 @@ internal static class SubsetModule
 						// A potential locked hidden subset found. Extra eliminations should be checked.
 						// Please note that here a hidden subset may not be a locked one because eliminations aren't validated.
 						var eliminatingHouse = TrailingZeroCount(cells.SharedHouses & ~(1 << house));
-						foreach (var cell in (HousesMap[eliminatingHouse] & emptyCellsForGrid) - cells)
+						foreach (var cell in (HousesMap[eliminatingHouse] & emptyCellsForGrid) & ~cells)
 						{
 							foreach (var digit in digitsMask)
 							{

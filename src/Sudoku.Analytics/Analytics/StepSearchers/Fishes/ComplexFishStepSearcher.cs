@@ -148,7 +148,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 				{
 					// Try to assume the digit is true in the current cell,
 					// and we can get a map of all possible cells that can be filled with the digit.
-					var possibleMap = CandidatesMap[digit] - PeersMap[cell] - cell;
+					var possibleMap = (CandidatesMap[digit] & ~PeersMap[cell]) - cell;
 
 					// Get the table of all possible houses that contains that digit.
 					var baseTable = possibleMap.Houses.GetAllSets();
@@ -256,7 +256,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 							}
 
 							// All cells in base sets should lie in cover sets.
-							if (baseMap - coverMap)
+							if (baseMap & ~coverMap)
 							{
 								continue;
 							}
@@ -376,8 +376,8 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 								var nowCoverMap = coverMap | HousesMap[houseIndex];
 
 								// Collect all exo-fins, in order to get all eliminations.
-								var exofins = actualBaseMap - nowCoverMap - endofins;
-								var elimMap = nowCoverMap - actualBaseMap & CandidatesMap[digit];
+								var exofins = actualBaseMap & ~nowCoverMap & ~endofins;
+								var elimMap = nowCoverMap & ~actualBaseMap & CandidatesMap[digit];
 								var fins = exofins | endofins;
 								if (fins)
 								{
@@ -442,7 +442,7 @@ public sealed partial class ComplexFishStepSearcher : StepSearcher
 										[
 											[
 												..
-												from body in actualBaseMap - exofins - endofins
+												from body in actualBaseMap & ~exofins & ~endofins
 												select new CandidateViewNode(ColorIdentifier.Normal, body * 9 + digit),
 												..
 												from exofin in exofins

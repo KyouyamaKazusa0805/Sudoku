@@ -179,7 +179,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 	private BivalueUniversalGraveFalseCandidateTypeStep? CheckForFalseCandidateTypes(ref AnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
-		var multivalueCells = EmptyCells - BivalueCells;
+		var multivalueCells = EmptyCells & ~BivalueCells;
 		if ((multivalueCells.PeerIntersection & EmptyCells) is not (var falseCandidatePossibleCells and not []))
 		{
 			// Optimization: The false candidates must lie in the intersection of all multi-value cells.
@@ -324,7 +324,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 		foreach (var house in map.SharedHouses)
 		{
 			var houseMap = HousesMap[house];
-			if ((houseMap & EmptyCells) - map is not (var otherCellsMap and not []))
+			if ((houseMap & EmptyCells & ~map) is not (var otherCellsMap and not []))
 			{
 				continue;
 			}
@@ -340,7 +340,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 						continue;
 					}
 
-					if (((houseMap - cells - map) & EmptyCells) is not (var elimMap and not []))
+					if ((houseMap & ~cells & ~map & EmptyCells) is not (var elimMap and not []))
 					{
 						continue;
 					}

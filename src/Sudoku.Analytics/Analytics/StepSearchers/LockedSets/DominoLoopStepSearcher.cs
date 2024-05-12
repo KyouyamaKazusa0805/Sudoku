@@ -53,7 +53,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 						}
 
 						all &= HousesMap[s[0]] | HousesMap[s[1]] | HousesMap[s[2]] | HousesMap[s[3]];
-						all -= overlap;
+						all &= ~overlap;
 
 						SkLoopTable[n] = new Cell[16];
 						var pos = 0;
@@ -188,7 +188,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				var map = [.. cells] & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
-					if ((HousesMap[linkHouse[k]] & EmptyCells) - map is not (var elimMap and not []))
+					if (((HousesMap[linkHouse[k]] & EmptyCells) & ~map) is not (var elimMap and not []))
 					{
 						continue;
 					}

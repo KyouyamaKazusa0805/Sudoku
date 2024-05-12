@@ -223,7 +223,7 @@ public sealed partial class DirectIntersectionStepSearcher : StepSearcher
 	{
 		foreach (var house in elimMap.Houses)
 		{
-			var emptyCellsInHouse = (HousesMap[house] & candidatesMap[digit]) - elimMap;
+			var emptyCellsInHouse = HousesMap[house] & candidatesMap[digit] & ~elimMap;
 			if (emptyCellsInHouse is not [var lastCell])
 			{
 				continue;

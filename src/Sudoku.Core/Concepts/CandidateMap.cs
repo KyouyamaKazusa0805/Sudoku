@@ -14,9 +14,7 @@ namespace Sudoku.Concepts;
 [LargeStructure]
 [Equals]
 [EqualityOperators]
-public partial struct CandidateMap :
-	IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>,
-	ISubtractionOperators<CandidateMap, CandidateMap, CandidateMap>
+public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
 	public static readonly CandidateMap Empty = [];
@@ -701,28 +699,6 @@ public partial struct CandidateMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator -(in CandidateMap left, in CandidateMap right)
-	{
-		var finalCount = 0;
-		var result = left;
-		finalCount += PopCount((ulong)(result._bits[0] &= ~right._bits[0]));
-		finalCount += PopCount((ulong)(result._bits[1] &= ~right._bits[1]));
-		finalCount += PopCount((ulong)(result._bits[2] &= ~right._bits[2]));
-		finalCount += PopCount((ulong)(result._bits[3] &= ~right._bits[3]));
-		finalCount += PopCount((ulong)(result._bits[4] &= ~right._bits[4]));
-		finalCount += PopCount((ulong)(result._bits[5] &= ~right._bits[5]));
-		finalCount += PopCount((ulong)(result._bits[6] &= ~right._bits[6]));
-		finalCount += PopCount((ulong)(result._bits[7] &= ~right._bits[7]));
-		finalCount += PopCount((ulong)(result._bits[8] &= ~right._bits[8]));
-		finalCount += PopCount((ulong)(result._bits[9] &= ~right._bits[9]));
-		finalCount += PopCount((ulong)(result._bits[10] &= ~right._bits[10]));
-		finalCount += PopCount((ulong)(result._bits[11] &= ~right._bits[11]));
-		result.Count = finalCount;
-		return result;
-	}
-
 	/// <summary>
 	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
 	/// </summary>
@@ -731,9 +707,6 @@ public partial struct CandidateMap :
 	/// <returns>The result map.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template) => (@base & template).PeerIntersection & template;
-
-	/// <inheritdoc/>
-	static CandidateMap ISubtractionOperators<CandidateMap, CandidateMap, CandidateMap>.operator -(CandidateMap left, CandidateMap right) => left - right;
 
 
 	/// <inheritdoc/>

@@ -55,7 +55,7 @@ public sealed partial class TemplateStepSearcher : StepSearcher
 			}
 
 			// Then check template deletes.
-			if (CandidatesMap[digit] - distributedMapsByDigit[digit] is not (var templateDelete and not []))
+			if ((CandidatesMap[digit] & ~distributedMapsByDigit[digit]) is not (var templateDelete and not []))
 			{
 				continue;
 			}
