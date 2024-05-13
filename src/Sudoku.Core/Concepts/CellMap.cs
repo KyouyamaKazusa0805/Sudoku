@@ -501,7 +501,7 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	public readonly void CopyTo(ref Cell sequence, int length)
 	{
-		Ref.ThrowIfNullRef(in sequence);
+		@ref.ThrowIfNullRef(in sequence);
 
 		if (!this)
 		{
@@ -518,7 +518,7 @@ public partial struct CellMap :
 			{
 				if ((value & 1) != 0)
 				{
-					Unsafe.Add(ref sequence, pos++) = i;
+					@ref.Add(ref sequence, pos++) = i;
 				}
 			}
 		}
@@ -528,7 +528,7 @@ public partial struct CellMap :
 			{
 				if ((value & 1) != 0)
 				{
-					Unsafe.Add(ref sequence, pos++) = i;
+					@ref.Add(ref sequence, pos++) = i;
 				}
 			}
 		}

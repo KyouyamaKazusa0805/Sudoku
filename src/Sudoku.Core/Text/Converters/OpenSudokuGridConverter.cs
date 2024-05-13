@@ -42,7 +42,7 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 			// Replace the base character with the separator.
 			for (var pos = 1; pos < length; pos += 2)
 			{
-				Unsafe.Add(ref pResult, pos) = Separator;
+				@ref.Add(ref pResult, pos) = Separator;
 			}
 
 			// Now replace some positions with the specified values.
@@ -52,17 +52,17 @@ public sealed record OpenSudokuGridConverter : IConceptConverter<Grid>
 				{
 					case CellState.Empty:
 					{
-						Unsafe.Add(ref pResult, pos) = Zero;
-						Unsafe.Add(ref pResult, pos + 2) = Zero;
-						Unsafe.Add(ref pResult, pos + 4) = One;
+						@ref.Add(ref pResult, pos) = Zero;
+						@ref.Add(ref pResult, pos + 2) = Zero;
+						@ref.Add(ref pResult, pos + 4) = One;
 						break;
 					}
 					case CellState.Modifiable:
 					case CellState.Given:
 					{
-						Unsafe.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + One);
-						Unsafe.Add(ref pResult, pos + 2) = Zero;
-						Unsafe.Add(ref pResult, pos + 4) = Zero;
+						@ref.Add(ref pResult, pos) = (char)(grid.GetDigit(i) + One);
+						@ref.Add(ref pResult, pos + 2) = Zero;
+						@ref.Add(ref pResult, pos + 4) = Zero;
 						break;
 					}
 					default:

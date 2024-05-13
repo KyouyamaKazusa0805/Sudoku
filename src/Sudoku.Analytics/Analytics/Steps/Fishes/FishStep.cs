@@ -73,10 +73,10 @@ public abstract partial class FishStep(
 			CoverSetsMask,
 			in this is NormalFishStep { Fins: var f }
 				? ref f
-				: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref Ref.NullRef<CellMap>(),
+				: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref @ref.NullRef<CellMap>(),
 			in this is NormalFishStep
 				? ref CellMap.Empty
-				: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref Ref.NullRef<CellMap>()
+				: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref @ref.NullRef<CellMap>()
 		);
 
 

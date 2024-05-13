@@ -47,8 +47,8 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 		ref readonly var charRef = ref Grid.EmptyString.Ref();
 		while (true)
 		{
-			Unsafe.CopyBlock(ref Ref.ByteRef(ref puzzleString[0]), in Ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
-			Unsafe.CopyBlock(ref Ref.ByteRef(ref solutionString[0]), in Ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref @ref.ByteRef(ref puzzleString[0]), in @ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
+			Unsafe.CopyBlock(ref @ref.ByteRef(ref solutionString[0]), in @ref.ReadOnlyByteRef(in charRef), sizeof(char) * 81);
 
 			GenerateAnswerGrid(puzzleString, solutionString);
 
@@ -121,7 +121,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 					puzzleString[cell] = (char)(Rng.NextDigit() + '1');
 				} while (CheckDuplicate(puzzleString, cell));
 			}
-		} while (_solver.SolveString(Ref.ToPointer(in puzzleString[0]), Ref.ToPointer(in solutionString[0]), 2) == 0);
+		} while (_solver.SolveString(@ref.ToPointer(in puzzleString[0]), @ref.ToPointer(in solutionString[0]), 2) == 0);
 	}
 
 	/// <summary>
@@ -157,7 +157,7 @@ public sealed class HardPatternPuzzleGenerator : IGenerator<Grid>
 			var (initial, boundary, delta) = target[index];
 			for (var i = initial; i >= boundary; i--)
 			{
-				Ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble())]);
+				@ref.Swap(ref pattern[i], ref pattern[boundary + (Cell)((index == 3 ? delta : (i + delta)) * Rng.NextDouble())]);
 			}
 		}
 	}

@@ -69,7 +69,7 @@ public static partial class StringExtensions
 	/// <param name="this">The string.</param>
 	/// <returns>The reference to the first element.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref char MutableRef(this string @this) => ref System.Ref.AsMutableRef(in @this.Ref());
+	public static ref char MutableRef(this string @this) => ref @ref.AsMutableRef(in @this.Ref());
 
 	/// <summary>
 	/// Removes all specified characters.
@@ -270,7 +270,7 @@ public static partial class StringExtensions
 		var buffer = (stackalloc char[length]);
 		var count = 0;
 		ref var pointer = ref @this.MutableRef();
-		for (var i = 0; i < length; i++, pointer = Unsafe.Add(ref pointer, 1))
+		for (var i = 0; i < length; i++, pointer = @ref.Add(ref pointer, 1))
 		{
 			if (predicate(pointer))
 			{

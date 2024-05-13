@@ -275,13 +275,13 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	public readonly void CopyTo(ref Candidate sequence, int length)
 	{
-		Ref.ThrowIfNullRef(in sequence);
+		@ref.ThrowIfNullRef(in sequence);
 
 		if (length >= 729)
 		{
 			Unsafe.CopyBlock(
-				ref Ref.ByteRef(ref sequence),
-				in Ref.ReadOnlyByteRef(in Offsets[0]),
+				ref @ref.ByteRef(ref sequence),
+				in @ref.ReadOnlyByteRef(in Offsets[0]),
 				(uint)(sizeof(Candidate) * length)
 			);
 		}

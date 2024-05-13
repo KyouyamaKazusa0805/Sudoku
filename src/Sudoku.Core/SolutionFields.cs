@@ -97,23 +97,9 @@ public static class SolutionFields
 	public static readonly CellMap[] HousesMap;
 
 	/// <summary>
-	/// Indicates a list of <see cref="CellMap"/> instances that are initialized as singleton element by its corresponding index.
-	/// For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
-	/// </summary>
-	public static readonly CellMap[] CellMaps;
-
-	/// <summary>
 	/// Indicates a list of <see cref="CellMap"/> instances representing the peer cells of a cell at the specified index.
 	/// </summary>
 	public static readonly CellMap[] PeersMap;
-
-#if CACHE_CANDIDATE_MAPS
-	/// <summary>
-	/// Indicates a list of <see cref="CandidateMap"/> instances that are initialized as singleton element by its corresponding index.
-	/// For example, <c>CandidateMaps[0]</c> is to <c>CandidateMap.Empty + 0</c>, i.e. <c>r1c1(1)</c>.
-	/// </summary>
-	public static readonly CandidateMap[] CandidateMaps;
-#endif
 
 	/// <summary>
 	/// Indicates a list of <see cref="Chute"/> instances representing chutes.
@@ -133,7 +119,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates a block list that each cell belongs to.
 	/// </summary>
-	public static readonly BlockIndex[] BlockTable = [
+	internal static readonly BlockIndex[] BlockTable = [
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
 		0, 0, 0, 1, 1, 1, 2, 2, 2,
@@ -148,7 +134,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates a row list that each cell belongs to.
 	/// </summary>
-	public static readonly RowIndex[] RowTable = [
+	internal static readonly RowIndex[] RowTable = [
 		9, 9, 9, 9, 9, 9, 9, 9, 9,
 		10, 10, 10, 10, 10, 10, 10, 10, 10,
 		11, 11, 11, 11, 11, 11, 11, 11, 11,
@@ -163,7 +149,7 @@ public static class SolutionFields
 	/// <summary>
 	/// Indicates a column list that each cell belongs to.
 	/// </summary>
-	public static readonly ColumnIndex[] ColumnTable = [
+	internal static readonly ColumnIndex[] ColumnTable = [
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
@@ -174,6 +160,20 @@ public static class SolutionFields
 		18, 19, 20, 21, 22, 23, 24, 25, 26,
 		18, 19, 20, 21, 22, 23, 24, 25, 26
 	];
+
+	/// <summary>
+	/// Indicates a list of <see cref="CellMap"/> instances that are initialized as singleton element by its corresponding index.
+	/// For example, <c>CellMaps[0]</c> is to <c>CellMap.Empty + 0</c>, i.e. <c>r1c1</c>.
+	/// </summary>
+	internal static readonly CellMap[] CellMaps;
+
+#if CACHE_CANDIDATE_MAPS
+	/// <summary>
+	/// Indicates a list of <see cref="CandidateMap"/> instances that are initialized as singleton element by its corresponding index.
+	/// For example, <c>CandidateMaps[0]</c> is to <c>CandidateMap.Empty + 0</c>, i.e. <c>r1c1(1)</c>.
+	/// </summary>
+	internal static readonly CandidateMap[] CandidateMaps;
+#endif
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor' />

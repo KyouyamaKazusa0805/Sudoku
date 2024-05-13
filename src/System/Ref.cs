@@ -3,7 +3,8 @@ namespace System;
 /// <summary>
 /// Represents a list of methods that can check for the concept "References" defined in C#.
 /// </summary>
-public static class Ref
+[SuppressMessage("Style", "IDE1006:Naming Styles", Justification = "<Pending>")]
+public static class @ref
 {
 	/// <summary>
 	/// Swaps for two elements.
@@ -76,6 +77,21 @@ public static class Ref
 	public static ref T AsMutableRef<T>(ref readonly T @ref) => ref Unsafe.AsRef(in @ref);
 
 	/// <summary>
+	/// Advances the pointer to an element after the specified number of block memory elements.
+	/// </summary>
+	/// <typeparam name="T">The type of the element in block memory.</typeparam>
+	/// <param name="ref">The reference to be advanced.</param>
+	/// <param name="length">The length that the pointer moves.</param>
+	/// <returns>The target reference to the specified element.</returns>
+	/// <remarks>
+	/// Pass negative value into parameter <paramref name="length"/> if you want to move previously,
+	/// which is equivalent to method call <see cref="Unsafe.Subtract{T}(ref T, int)"/>
+	/// </remarks>
+	/// <seealso cref="Unsafe.Subtract{T}(ref T, int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref T Add<T>(ref T @ref, int length) => ref Unsafe.Add(ref @ref, length);
+
+	/// <summary>
 	/// Converts the managed pointer into unmanaged one,
 	/// meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
 	/// </summary>
@@ -103,7 +119,7 @@ public static class Ref
 		var result = new T[count - start];
 		for (var i = start; i < count; i++)
 		{
-			result[i - start] = Unsafe.Add(ref Unsafe.AsRef(in memorySpan), i);
+			result[i - start] = Add(ref Unsafe.AsRef(in memorySpan), i);
 		}
 
 		return result;

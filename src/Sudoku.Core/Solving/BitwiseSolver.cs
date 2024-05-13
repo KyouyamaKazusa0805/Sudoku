@@ -470,7 +470,7 @@ public sealed unsafe class BitwiseSolver : ISolver
 
 	/// <inheritdoc cref="CheckValidity(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool CheckValidity(ref readonly char grid) => CheckValidity(Ref.ToPointer(in grid));
+	public bool CheckValidity(ref readonly char grid) => CheckValidity(@ref.ToPointer(in grid));
 
 	/// <inheritdoc cref="CheckValidity(char*)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

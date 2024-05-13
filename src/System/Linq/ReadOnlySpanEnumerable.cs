@@ -415,7 +415,7 @@ public static class ReadOnlySpanEnumerable
 			unsafe
 			{
 				var tempValues = tempDictionary[key];
-				result.Add(new(Ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
+				result.Add(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();

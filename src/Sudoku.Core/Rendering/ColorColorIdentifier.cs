@@ -29,5 +29,5 @@ public sealed class ColorColorIdentifier(byte alpha, byte red, byte green, byte 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"A = {alpha}, Ref = {red}, G = {green}, B = {blue}";
+	public override string ToString() => $"A = {alpha}, @ref = {red}, G = {green}, B = {blue}";
 }

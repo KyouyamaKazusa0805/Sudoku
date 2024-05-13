@@ -3534,12 +3534,12 @@
             The generated field declaration for parameter <c>chunks</c>.
             </summary>
         </member>
-        <member name="T:System.Ref">
+        <member name="T:System.ref">
             <summary>
             Represents a list of methods that can check for the concept "References" defined in C#.
             </summary>
         </member>
-        <member name="M:System.Ref.Swap``1(``0@,``0@)">
+        <member name="M:System.ref.Swap``1(``0@,``0@)">
             <summary>
             Swaps for two elements.
             </summary>
@@ -3547,7 +3547,7 @@
             <param name="left">The first element to be swapped.</param>
             <param name="right">The second element to be swapped.</param>
         </member>
-        <member name="M:System.Ref.ByteRef``1(``0@)">
+        <member name="M:System.ref.ByteRef``1(``0@)">
             <summary>
             Simply invokes the method <see cref="M:System.Runtime.CompilerServices.Unsafe.As``2(``0@)"/>, but with target generic type being fixed type <see cref="T:System.Byte"/>.
             </summary>
@@ -3557,10 +3557,10 @@
             using <see langword="ref readonly"/> as a combined parameter modifier.
             </param>
         </member>
-        <member name="M:System.Ref.ReadOnlyByteRef``1(``0@)">
-            <inheritdoc cref="M:System.Ref.ByteRef``1(``0@)"/>
+        <member name="M:System.ref.ReadOnlyByteRef``1(``0@)">
+            <inheritdoc cref="M:System.ref.ByteRef``1(``0@)"/>
         </member>
-        <member name="M:System.Ref.IsNullRef``1(``0@)">
+        <member name="M:System.ref.IsNullRef``1(``0@)">
             <summary>
             Determines whether the current reference points to <see langword="null"/>.
             </summary>
@@ -3568,7 +3568,7 @@
             <param name="reference">The reference to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
-        <member name="M:System.Ref.AreSameRef``1(``0@,``0@)">
+        <member name="M:System.ref.AreSameRef``1(``0@,``0@)">
             <summary>
             Check whether two references point to a same memory location.
             </summary>
@@ -3577,7 +3577,7 @@
             <param name="right">The second element to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:System.Ref.NullRef``1">
+        <member name="M:System.ref.NullRef``1">
             <summary>
             Returns a reference that points to <see langword="null"/>.
             </summary>
@@ -3586,7 +3586,7 @@
             </typeparam>
             <returns>A read-only reference that points to <see langword="null"/>.</returns>
         </member>
-        <member name="M:System.Ref.AsMutableRef``1(``0@)">
+        <member name="M:System.ref.AsMutableRef``1(``0@)">
             <summary>
             Re-interpret the read-only reference to non-read-only reference.
             </summary>
@@ -3594,7 +3594,21 @@
             <param name="ref">The read-only reference.</param>
             <returns>The non-read-only reference.</returns>
         </member>
-        <member name="M:System.Ref.ToPointer``1(``0@)">
+        <member name="M:System.ref.Add``1(``0@,System.Int32)">
+            <summary>
+            Advances the pointer to an element after the specified number of block memory elements.
+            </summary>
+            <typeparam name="T">The type of the element in block memory.</typeparam>
+            <param name="ref">The reference to be advanced.</param>
+            <param name="length">The length that the pointer moves.</param>
+            <returns>The target reference to the specified element.</returns>
+            <remarks>
+            Pass negative value into parameter <paramref name="length"/> if you want to move previously,
+            which is equivalent to method call <see cref="M:System.Runtime.CompilerServices.Unsafe.Subtract``1(``0@,System.Int32)"/>
+            </remarks>
+            <seealso cref="M:System.Runtime.CompilerServices.Unsafe.Subtract``1(``0@,System.Int32)"/>
+        </member>
+        <member name="M:System.ref.ToPointer``1(``0@)">
             <summary>
             Converts the managed pointer into unmanaged one,
             meaning it converts <see langword="ref readonly"/> <typeparamref name="T"/> to <typeparamref name="T"/>*.
@@ -3603,7 +3617,7 @@
             <param name="ref">The reference to be converted.</param>
             <returns>The unmanaged pointer as the result value.</returns>
         </member>
-        <member name="M:System.Ref.Slice``1(``0@,System.Int32,System.Int32)">
+        <member name="M:System.ref.Slice``1(``0@,System.Int32,System.Int32)">
             <summary>
             Get the new array from the reference to the block memory start position, with the specified start index.
             </summary>
@@ -3616,7 +3630,7 @@
             Throws when the argument <paramref name="memorySpan"/> is <see langword="null"/>.
             </exception>
         </member>
-        <member name="M:System.Ref.ThrowIfNullRef``1(``0@,System.String)">
+        <member name="M:System.ref.ThrowIfNullRef``1(``0@,System.String)">
             <summary>
             Throws an <see cref="T:System.ArgumentNullRefException" /> if the argument points to <see langword="null" />.
             </summary>

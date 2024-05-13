@@ -37,7 +37,7 @@
           "ILogicalOperators.cs": [ "__Types" ],
           "ArgumentNullRefException.cs": [ "__Types" ],
           "Methods.cs": [ "__Types" ],
-          "Ref.cs": [ "__Types" ],
+          "ref.cs": [ "__Types" ],
           "EqualityComparing.cs": [ "__Types" ],
           "Comparing.cs": [ "__Types" ]
         }
