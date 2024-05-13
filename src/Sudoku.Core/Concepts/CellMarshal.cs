@@ -72,7 +72,6 @@ public static class CellMarshal
 		result |= @this.ToHouseIndex(HouseType.Block);
 		result |= @this.ToHouseIndex(HouseType.Row);
 		result |= @this.ToHouseIndex(HouseType.Column);
-
 		return result;
 	}
 
@@ -84,7 +83,6 @@ public static class CellMarshal
 		result |= @this.ToHouseIndex(HouseType.Block);
 		result |= @this.ToHouseIndex(HouseType.Row);
 		result |= @this.ToHouseIndex(HouseType.Column);
-
 		return result;
 	}
 
@@ -102,7 +100,6 @@ public static class CellMarshal
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
@@ -120,7 +117,6 @@ public static class CellMarshal
 				return i;
 			}
 		}
-
 		return -1;
 	}
 
