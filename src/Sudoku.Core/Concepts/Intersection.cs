@@ -27,7 +27,7 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 	/// In addition, in this data pattern, a <b>CoverSet</b> is a block and a <b>BaseSet</b> is a line.
 	/// </para>
 	/// </summary>
-	public static readonly FrozenDictionary<IntersectionBase, IntersectionResult> IntersectionMaps;
+	public static readonly FrozenDictionary<IntersectionBase, IntersectionResult> Map;
 
 	/// <summary>
 	/// Indicates the internal intersection block combinations.
@@ -77,6 +77,6 @@ public readonly record struct Intersection(ref readonly IntersectionBase Base, r
 			}
 		}
 
-		IntersectionMaps = dic.ToFrozenDictionary(EqualityComparing.Create<IntersectionBase>(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
+		Map = dic.ToFrozenDictionary(EqualityComparing.Create<IntersectionBase>(static (x, y) => x == y, static v => v.Line << 5 | v.Block));
 	}
 }

@@ -294,7 +294,6 @@ public partial struct Grid :
 								return false;
 							}
 						}
-
 						break;
 					}
 					case CellState.Empty:
@@ -469,7 +468,6 @@ public partial struct Grid :
 					result |= 1 << house;
 				}
 			}
-
 			return result;
 		}
 	}
@@ -503,7 +501,6 @@ public partial struct Grid :
 
 				result |= 1 << houseIndex;
 			}
-
 			return result;
 		}
 	}
@@ -651,7 +648,6 @@ public partial struct Grid :
 					}
 				}
 			}
-
 			return conjugatePairs.AsReadOnlySpan();
 		}
 	}
@@ -737,7 +733,6 @@ public partial struct Grid :
 						result.SetState(cell, CellState.Modifiable);
 					}
 				}
-
 				return result;
 			}
 		}

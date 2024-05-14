@@ -3035,7 +3035,7 @@
             Indicates the mini-lines to be iterated, grouped by chute index.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Intersection.IntersectionMaps">
+        <member name="F:Sudoku.Concepts.Intersection.Map">
             <summary>
             <para>
             Indicates all maps that forms the each intersection. The pattern will be like:
@@ -3093,7 +3093,7 @@
         <member name="T:Sudoku.Concepts.IntersectionResult">
             <summary>
             Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
+            especially used by <see cref="F:Sudoku.Concepts.Intersection.Map"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -3101,12 +3101,12 @@
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Concepts.Intersection.Map"/>
         </member>
         <member name="M:Sudoku.Concepts.IntersectionResult.#ctor(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Byte[])">
             <summary>
             Defines a tuple of <see cref="T:Sudoku.Concepts.CellMap"/> instances that represents the house cells used,
-            especially used by <see cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/> property.
+            especially used by <see cref="F:Sudoku.Concepts.Intersection.Map"/> property.
             </summary>
             <param name="LineMap">The map of the line.</param>
             <param name="BlockMap">The map of the block.</param>
@@ -3114,7 +3114,7 @@
             <param name="OtherBlocks">
             Other blocks that the intersection map data does not cover. This property will be used by techniques such as Sue de Coq.
             </param>
-            <seealso cref="F:Sudoku.Concepts.Intersection.IntersectionMaps"/>
+            <seealso cref="F:Sudoku.Concepts.Intersection.Map"/>
         </member>
         <member name="P:Sudoku.Concepts.IntersectionResult.LineMap">
             <summary>The map of the line.</summary>
