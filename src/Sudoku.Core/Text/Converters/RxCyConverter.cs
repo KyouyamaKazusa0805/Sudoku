@@ -209,7 +209,7 @@ public sealed record RxCyConverter(
 
 				Array.Sort(conclusions);
 				var selection = from conclusion in conclusions orderby conclusion.Digit group conclusion by conclusion.ConclusionType;
-				var hasOnlyOneType = selection.HasOnlyOneElement();
+				var hasOnlyOneType = selection.Length == 1;
 				foreach (var typeGroup in selection)
 				{
 					var op = typeGroup.Key.GetNotation();

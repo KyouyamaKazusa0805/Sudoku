@@ -1,7 +1,7 @@
 namespace System.Linq;
 
 /// <summary>
-/// Represents an enumerable instance that is based on a <see cref="ReadOnlySpan{T}"/>.
+/// Represents an enumerable instance that is based on an array of type <typeparamref name="T"/>.
 /// </summary>
 /// <typeparam name="T">Indicates the type of each element.</typeparam>
 /// <param name="values">Indicates the values.</param>
@@ -10,15 +10,9 @@ namespace System.Linq;
 /// <include file="../../global-doc-comments.xml" path="//g/csharp11/feature[@name='scoped-keyword']"/>
 /// <include file="../../global-doc-comments.xml" path="//g/csharp12/feature[@name='params-collections']/target[@name='parameter']"/>
 /// </param>
-[StructLayout(LayoutKind.Auto)]
-[DebuggerStepThrough]
-[Equals]
-[GetHashCode]
-[ToString]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly ref partial struct SpanOrderedEnumerable<T>(
-	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
-	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
+public sealed partial class ArrayOrderedEnumerable<T>(
+	[PrimaryConstructorParameter(MemberKinds.Field)] T[] values,
+	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
 )
 {
 	/// <summary>
@@ -27,23 +21,19 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	public int Length => _values.Length;
 
 	/// <summary>
-	/// Creates an ordered <see cref="Span{T}"/> instance.
+	/// Creates an ordered <typeparamref name="T"/>[] instance.
 	/// </summary>
-	/// <returns>An ordered <see cref="Span{T}"/> instance, whose value is from the current enumerable instance.</returns>
-	private Span<T> Span
+	/// <returns>An ordered <typeparamref name="T"/>[] instance, whose value is from the current enumerable instance.</returns>
+	public T[] ArrayOrdered
 	{
 		get
 		{
-			// Copy field in order to make the variable can be used inside lambda.
-			var selectors = _selectors.ToArray();
-
-			// Sort the span of values.
-			var result = new T[_values.Length].AsSpan();
-			_values.CopyTo(result);
-			result.Sort(
+			var result = _values[..];
+			Array.Sort(
+				result,
 				(l, r) =>
 				{
-					foreach (var selector in selectors)
+					foreach (var selector in _selectors)
 					{
 						if (selector(l, r) is var tempResult and not 0)
 						{
@@ -68,14 +58,14 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// <typeparam name="TResult">The type of the result values.</typeparam>
 	/// <param name="selector">The selector to be used by transforming the <typeparamref name="T"/> instances.</param>
 	/// <returns>A span of <typeparamref name="TResult"/> values.</returns>
-	public ReadOnlySpan<TResult> Select<TResult>(Func<T, TResult> selector)
+	public TResult[] Select<TResult>(Func<T, TResult> selector)
 	{
 		var result = new List<TResult>(_values.Length);
-		foreach (var element in Span)
+		foreach (var element in ArrayOrdered)
 		{
 			result.Add(selector(element));
 		}
-		return result.AsReadOnlySpan();
+		return [.. result];
 	}
 
 	/// <summary>
@@ -83,25 +73,25 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// </summary>
 	/// <param name="condition">The condition to be used.</param>
 	/// <returns>A span of <typeparamref name="T"/> instances.</returns>
-	public ReadOnlySpan<T> Where(Func<T, bool> condition)
+	public T[] Where(Func<T, bool> condition)
 	{
 		var result = new List<T>(_values.Length);
-		foreach (var element in Span)
+		foreach (var element in ArrayOrdered)
 		{
 			if (condition(element))
 			{
 				result.Add(element);
 			}
 		}
-		return result.AsReadOnlySpan();
+		return [.. result];
 	}
 
 	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SpanOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
+	public ArrayOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
 		=> new(
 			_values,
-			(Func<T, T, int>[])[
+			[
 				.. _selectors,
 				(l, r) => (selector(l), selector(r)) switch
 				{
@@ -113,10 +103,10 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 
 	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public SpanOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector)
+	public ArrayOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector)
 		=> new(
 			_values,
-			(Func<T, T, int>[])[
+			[
 				.. _selectors,
 				(l, r) => (selector(l), selector(r)) switch
 				{
@@ -127,10 +117,10 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		);
 
 	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
-	public ReadOnlySpan<SpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
+	public ArrayGrouping<T, TKey>[] GroupBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
-		foreach (var element in Span)
+		foreach (var element in ArrayOrdered)
 		{
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
@@ -139,24 +129,21 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			}
 		}
 
-		var result = new List<SpanGrouping<T, TKey>>(tempDictionary.Count);
+		var result = new List<ArrayGrouping<T, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
-			unsafe
-			{
-				var tempValues = tempDictionary[key];
-				result.Add(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
-			}
+			var tempValues = tempDictionary[key];
+			result.Add(new([.. tempValues], key));
 		}
-		return result.AsReadOnlySpan();
+		return [.. result];
 	}
 
-	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey, TElement}(ReadOnlySpan{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
-	public ReadOnlySpan<SpanGrouping<TElement, TKey>> GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
+	public ArrayGrouping<TElement, TKey>[] GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
 		where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
-		foreach (var element in Span)
+		foreach (var element in ArrayOrdered)
 		{
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
@@ -165,31 +152,43 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			}
 		}
 
-		var result = new List<SpanGrouping<TElement, TKey>>(tempDictionary.Count);
+		var result = new List<ArrayGrouping<TElement, TKey>>(tempDictionary.Count);
 		foreach (var key in tempDictionary.Keys)
 		{
-			unsafe
-			{
-				var tempValues = tempDictionary[key];
-				var valuesConverted = from value in tempValues select elementSelector(value);
-				result.Add(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
-			}
+			var tempValues = tempDictionary[key];
+			var valuesConverted = from value in tempValues select elementSelector(value);
+			result.Add(new([.. valuesConverted], key));
 		}
-		return result.AsReadOnlySpan();
+		return [.. result];
+	}
+
+	/// <summary>
+	/// Accumulates the values by the specified rule.
+	/// </summary>
+	/// <param name="accumulator">The accumulator that creates a new value via original value and the next value.</param>
+	/// <returns>The final result.</returns>
+	public T? Aggregate(Func<T?, T?, T> accumulator)
+	{
+		var result = default(T);
+		foreach (var element in this)
+		{
+			result = accumulator(result, element);
+		}
+		return result;
 	}
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<T> Slice(int start, int length) => Span.Slice(start, length);
-
-	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Span<T>.Enumerator GetEnumerator() => Span.GetEnumerator();
+	public T[] Slice(int start, int length) => ArrayOrdered[start..(start + length)];
 
 	/// <summary>
 	/// Sorts the span and return the array representation.
 	/// </summary>
 	/// <returns>The array of values sorted.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public T[] ToArray() => Span.ToArray();
+	public T[] ToArray() => ArrayOrdered;
+
+	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<T>.Enumerator GetEnumerator() => ArrayOrdered.AsReadOnlySpan().GetEnumerator();
 }

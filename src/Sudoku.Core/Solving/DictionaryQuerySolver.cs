@@ -47,13 +47,13 @@ public sealed class DictionaryQuerySolver : ISolver
 	/// <summary>
 	/// Indicates the houses.
 	/// </summary>
-	private static readonly Dictionary<string, IGrouping<string, string[]>> Houses;
+	private static readonly Dictionary<string, ArrayGrouping<string[], string>> Houses;
 
 
 	/// <include file='../../global-doc-comments.xml' path='g/static-constructor'/>
 	static DictionaryQuerySolver()
 	{
-		var houseList = (IEnumerable<string[]>)[
+		var houseList = (string[][])[
 			.. from c in Columns select (string[])[.. from r in Rows from p in c.ToString() select $"{r}{p}"],
 			.. from r in Rows select (string[])[.. from p in r.ToString() from c in Columns select $"{p}{c}"],
 			..
@@ -62,9 +62,19 @@ public sealed class DictionaryQuerySolver : ISolver
 			select (string[])[.. from r in rs from c in cs select $"{r}{c}"]
 		];
 
-		Houses = (from s in Coordinates from u in houseList where u.Contains(s) group u by s).ToDictionary(static g => g.Key);
-		Peers = (from s in Coordinates from u in Houses[s] from s2 in u where s2 != s group s2 by s)
-			.ToDictionary(static g => g.Key, static g => g.Distinct());
+		Houses = (
+			from s in Coordinates
+			from u in houseList
+			where u.Contains(s)
+			group u by s
+		).ToDictionary(static g => g.Key);
+		Peers = (
+			from s in Coordinates
+			from u in Houses[s]
+			from s2 in u
+			where s2 != s
+			group s2 by s
+		).ToDictionary(static g => g.Key, static g => g.Distinct());
 	}
 
 
@@ -215,7 +225,7 @@ public sealed class DictionaryQuerySolver : ISolver
 		}
 
 		// Choose the unfilled block s with the fewest possibilities.
-		var s2 = (from s in Coordinates where values[s].Length > 1 orderby values[s].Length select s).First();
+		var s2 = (from s in Coordinates where values[s].Length > 1 orderby values[s].Length select s)[0];
 		return (
 			from d in values[s2]
 			let solution = Search(Assign(new(values), s2, d.ToString()))

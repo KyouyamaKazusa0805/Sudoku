@@ -41,7 +41,6 @@ public static class ReadOnlySpanEnumerable
 				resultKey = key;
 			}
 		}
-
 		return resultKey;
 	}
 
@@ -67,7 +66,6 @@ public static class ReadOnlySpanEnumerable
 				result = element;
 			}
 		}
-
 		return result;
 	}
 
@@ -106,7 +104,6 @@ public static class ReadOnlySpanEnumerable
 				resultKey = key;
 			}
 		}
-
 		return resultKey;
 	}
 
@@ -132,7 +129,6 @@ public static class ReadOnlySpanEnumerable
 				result = element;
 			}
 		}
-
 		return result;
 	}
 
@@ -155,7 +151,6 @@ public static class ReadOnlySpanEnumerable
 		{
 			result += keySelector(in element);
 		}
-
 		return result;
 	}
 
@@ -179,7 +174,6 @@ public static class ReadOnlySpanEnumerable
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -202,7 +196,6 @@ public static class ReadOnlySpanEnumerable
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -225,7 +218,6 @@ public static class ReadOnlySpanEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -248,7 +240,6 @@ public static class ReadOnlySpanEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -314,7 +305,6 @@ public static class ReadOnlySpanEnumerable
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 
@@ -421,6 +411,36 @@ public static class ReadOnlySpanEnumerable
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
+	public static ReadOnlySpan<SpanGrouping<TElement, TKey>> GroupBy<TSource, TKey, TElement>(
+		this scoped ReadOnlySpan<TSource> values,
+		Func<TSource, TKey> keySelector,
+		Func<TSource, TElement> elementSelector
+	) where TKey : notnull
+	{
+		var tempDictionary = new Dictionary<TKey, List<TSource>>(values.Length >> 2);
+		foreach (var element in values)
+		{
+			var key = keySelector(element);
+			if (!tempDictionary.TryAdd(key, [element]))
+			{
+				tempDictionary[key].Add(element);
+			}
+		}
+
+		var result = new List<SpanGrouping<TElement, TKey>>(tempDictionary.Count);
+		foreach (var key in tempDictionary.Keys)
+		{
+			unsafe
+			{
+				var tempValues = tempDictionary[key];
+				var valuesConverted = from value in tempValues select elementSelector(value);
+				result.Add(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
@@ -473,7 +493,6 @@ public static class ReadOnlySpanEnumerable
 				return element;
 			}
 		}
-
 		return default;
 	}
 
@@ -497,7 +516,6 @@ public static class ReadOnlySpanEnumerable
 		{
 			result = func(result, element);
 		}
-
 		return result;
 	}
 }

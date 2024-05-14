@@ -2294,6 +2294,18 @@
         <member name="M:System.Linq.ArrayEnumerable.MaxUnsafe``2(``0[],)">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.Max``2(``0[],System.Func{``0,``1})"/>
         </member>
+        <member name="M:System.Linq.ArrayEnumerable.OrderBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.OrderByDescending``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupBy``2(``0[],System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayEnumerable.GroupBy``3(``0[],System.Func{``0,``1},System.Func{``0,``2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
+        </member>
         <member name="M:System.Linq.ArrayEnumerable.Aggregate``1(``0[],System.Func{``0,``0,``0})">
             <summary>
             Applies an accumulator function over a sequence.
@@ -2347,6 +2359,94 @@
         <member name="M:System.Linq.ArrayEnumerable.DistinctBy``2(``0[],System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.DistinctBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IEqualityComparer{``1})"/>
         </member>
+        <member name="T:System.Linq.ArrayGrouping`2">
+            <summary>
+            Represents a type that enumerates elements of type <typeparamref name="TSource"/>[],
+            grouped by the specified key of type <typeparamref name="TKey"/>.
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+            <param name="key">Indicates the key that can compare each element.</param>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.#ctor(`0[],`1)">
+            <summary>
+            Represents a type that enumerates elements of type <typeparamref name="TSource"/>[],
+            grouped by the specified key of type <typeparamref name="TKey"/>.
+            </summary>
+            <typeparam name="TSource">The type of each element.</typeparam>
+            <typeparam name="TKey">The type of the key.</typeparam>
+            <param name="elements">Indicates the elements.</param>
+            <param name="key">Indicates the key that can compare each element.</param>
+        </member>
+        <member name="P:System.Linq.ArrayGrouping`2.System#Collections#Generic#IReadOnlyCollection{TSource}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.ArrayGrouping`2.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the element at the specified index.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.Equals(System.Linq.ArrayGrouping{`0,`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.Select``1(System.Func{`0,``0})">
+            <summary>
+            Projects elements into a new form.
+            </summary>
+            <typeparam name="TResult">The type of each element in result collection.</typeparam>
+            <param name="selector">The selector method that transform the object into new one.</param>
+            <returns>A list of <typeparamref name="TResult"/> values.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.Where(System.Func{`0,System.Boolean})">
+            <summary>
+            Filters the collection, only reserving elements satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition that checks for each element.</param>
+            <returns>A list of <typeparamref name="TSource"/> elements satisfying the condition.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.GetEnumerator">
+            <summary>
+            Creates an enumerator that can enumerate each element in the source collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.GetPinnableReference">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.System#Collections#Generic#IEnumerable{TSource}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="F:System.Linq.ArrayGrouping`2._elements">
+            <summary>
+            The generated field declaration for parameter <c>elements</c>.
+            </summary>
+        </member>
+        <member name="P:System.Linq.ArrayGrouping`2.Key">
+            <summary>
+            The generated property declaration for parameter <c>key</c>.
+            </summary>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.op_Equality(System.Linq.ArrayGrouping{`0,`1},System.Linq.ArrayGrouping{`0,`1})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.op_Inequality(System.Linq.ArrayGrouping{`0,`1},System.Linq.ArrayGrouping{`0,`1})">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:System.Linq.ArrayListEnumerable">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.ArrayList"/>.
@@ -2358,6 +2458,132 @@
         </member>
         <member name="M:System.Linq.ArrayListEnumerable.Select``1(System.Collections.ArrayList,System.Func{System.Object,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Linq.ArrayOrderedEnumerable`1">
+            <summary>
+            Represents an enumerable instance that is based on an array of type <typeparamref name="T" />.
+            </summary>
+            <typeparam name="T">Indicates the type of each element.</typeparam>
+            <param name="values">Indicates the values.</param>
+            <param name="selectors">
+            <para>Indicates the selector functions that return <typeparamref name="T" /> instances, to be used as comparison.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.#ctor(`0[],System.Func{`0,`0,System.Int32}[])">
+            <summary>
+            Represents an enumerable instance that is based on an array of type <typeparamref name="T" />.
+            </summary>
+            <typeparam name="T">Indicates the type of each element.</typeparam>
+            <param name="values">Indicates the values.</param>
+            <param name="selectors">
+            <para>Indicates the selector functions that return <typeparamref name="T" /> instances, to be used as comparison.</para>
+            <feature name="scoped-keyword">
+			<para>
+				The keyword <see langword="scoped" /> means the argument and local variable can only be used inside the method.
+				This means you cannot use this variable and argument outside the scope,
+				such as <c>new RefStructType(scoped_variable)</c>, <c>return scoped_variable</c> and <c>field = scoped_variable</c>.
+				Such expressions may store the <see langword="scoped" /> variables, unsafely expanding the variable's lifecycle.
+			</para>
+		</feature>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+        </member>
+        <member name="P:System.Linq.ArrayOrderedEnumerable`1.Length">
+            <summary>
+            Indicates the number of elements stored in the collection.
+            </summary>
+        </member>
+        <member name="P:System.Linq.ArrayOrderedEnumerable`1.ArrayOrdered">
+            <summary>
+            Creates an ordered <typeparamref name="T"/>[] instance.
+            </summary>
+            <returns>An ordered <typeparamref name="T"/>[] instance, whose value is from the current enumerable instance.</returns>
+        </member>
+        <member name="P:System.Linq.ArrayOrderedEnumerable`1.Item(System.Int32)">
+            <inheritdoc cref="P:System.ReadOnlySpan`1.Item(System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Select``1(System.Func{`0,``0})">
+            <summary>
+            Projects each element into a new transform.
+            </summary>
+            <typeparam name="TResult">The type of the result values.</typeparam>
+            <param name="selector">The selector to be used by transforming the <typeparamref name="T"/> instances.</param>
+            <returns>A span of <typeparamref name="TResult"/> values.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Where(System.Func{`0,System.Boolean})">
+            <summary>
+            Filters the collection using the specified condition.
+            </summary>
+            <param name="condition">The condition to be used.</param>
+            <returns>A span of <typeparamref name="T"/> instances.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.ThenBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.ThenByDescending``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Aggregate(System.Func{`0,`0,`0})">
+            <summary>
+            Accumulates the values by the specified rule.
+            </summary>
+            <param name="accumulator">The accumulator that creates a new value via original value and the next value.</param>
+            <returns>The final result.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.ToArray">
+            <summary>
+            Sorts the span and return the array representation.
+            </summary>
+            <returns>The array of values sorted.</returns>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.GetEnumerator">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
+        </member>
+        <member name="F:System.Linq.ArrayOrderedEnumerable`1._values">
+            <summary>
+            The generated field declaration for parameter <c>values</c>.
+            </summary>
+        </member>
+        <member name="F:System.Linq.ArrayOrderedEnumerable`1._selectors">
+            <summary>
+            The generated field declaration for parameter <c>selectors</c>.
+            </summary>
         </member>
         <member name="T:System.Linq.DictionaryEnumerable">
             <summary>
@@ -2835,6 +3061,9 @@
         <member name="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
+        <member name="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})">
+            <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
+        </member>
         <member name="M:System.Linq.ReadOnlySpanEnumerable.First``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
@@ -3047,6 +3276,9 @@
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.GroupBy``1(System.Func{`0,``0})">
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.SpanOrderedEnumerable`1.GroupBy``2(System.Func{`0,``0},System.Func{`0,``1})">
+            <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
