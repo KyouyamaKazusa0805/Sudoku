@@ -45,7 +45,7 @@ internal sealed partial class SummaryViewBindableSource(
 			return pref.GetRating(step.Code) switch { { } v => v, _ => step.Difficulty } / pref.RatingScale;
 		}
 
-		static IEnumerable<SummaryViewBindableSource> g(Step[] steps, TechniqueInfoPreferenceGroup pref)
+		static SummaryViewBindableSource[] g(Step[] steps, TechniqueInfoPreferenceGroup pref)
 			=>
 			from step in steps
 			orderby step.DifficultyLevel, step.Code
