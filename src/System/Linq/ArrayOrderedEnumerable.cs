@@ -13,7 +13,10 @@ namespace System.Linq;
 public sealed partial class ArrayOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] T[] values,
 	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
-)
+) :
+	IEnumerable<T>,
+	IOrderedEnumerable<T>,
+	IReadOnlyCollection<T>
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
@@ -46,6 +49,9 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 			return result;
 		}
 	}
+
+	/// <inheritdoc/>
+	int IReadOnlyCollection<T>.Count => Length;
 
 
 	/// <inheritdoc cref="ReadOnlySpan{T}.this[int]"/>
@@ -191,4 +197,39 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	/// <inheritdoc cref="ReadOnlySpan{T}.GetEnumerator"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ReadOnlySpan<T>.Enumerator GetEnumerator() => ArrayOrdered.AsReadOnlySpan().GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
+
+	/// <inheritdoc/>
+	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending) => Create(_values, keySelector, comparer, descending);
+
+
+	/// <summary>
+	/// Creates an <see cref="ArrayOrderedEnumerable{T}"/> instance via the specified values.
+	/// </summary>
+	/// <typeparam name="TKey">The type of the key to be compared.</typeparam>
+	/// <param name="values">The values to be used.</param>
+	/// <param name="keySelector">
+	/// The selector method that calculates a <typeparamref name="TKey"/> from each <typeparamref name="T"/> instance.
+	/// </param>
+	/// <param name="comparer">
+	/// A comparable instance that temporarily checks the comparing result of two <typeparamref name="TKey"/> values.
+	/// </param>
+	/// <param name="descending">A <see cref="bool"/> value indicating whether the creation is for descending comparison rule.</param>
+	/// <returns>An <see cref="ArrayOrderedEnumerable{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ArrayOrderedEnumerable<T> Create<TKey>(T[] values, Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
+	{
+		comparer ??= Comparer<TKey>.Default;
+		return new(values, descending ? descendingComparer : ascendingComparer);
+
+
+		int ascendingComparer(T left, T right) => comparer.Compare(keySelector(left), keySelector(right));
+
+		int descendingComparer(T left, T right) => -comparer.Compare(keySelector(left), keySelector(right));
+	}
 }

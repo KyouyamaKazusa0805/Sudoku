@@ -2526,6 +2526,9 @@
             </summary>
             <returns>An ordered <typeparamref name="T"/>[] instance, whose value is from the current enumerable instance.</returns>
         </member>
+        <member name="P:System.Linq.ArrayOrderedEnumerable`1.System#Collections#Generic#IReadOnlyCollection{T}#Count">
+            <inheritdoc/>
+        </member>
         <member name="P:System.Linq.ArrayOrderedEnumerable`1.Item(System.Int32)">
             <inheritdoc cref="P:System.ReadOnlySpan`1.Item(System.Int32)"/>
         </member>
@@ -2574,6 +2577,30 @@
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#IOrderedEnumerable{T}#CreateOrderedEnumerable``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Create``1(`0[],System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
+            <summary>
+            Creates an <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance via the specified values.
+            </summary>
+            <typeparam name="TKey">The type of the key to be compared.</typeparam>
+            <param name="values">The values to be used.</param>
+            <param name="keySelector">
+            The selector method that calculates a <typeparamref name="TKey"/> from each <typeparamref name="T"/> instance.
+            </param>
+            <param name="comparer">
+            A comparable instance that temporarily checks the comparing result of two <typeparamref name="TKey"/> values.
+            </param>
+            <param name="descending">A <see cref="T:System.Boolean"/> value indicating whether the creation is for descending comparison rule.</param>
+            <returns>An <see cref="T:System.Linq.ArrayOrderedEnumerable`1"/> instance.</returns>
         </member>
         <member name="F:System.Linq.ArrayOrderedEnumerable`1._values">
             <summary>
