@@ -1389,6 +1389,18 @@
             A string whose contents match the current string, but with all new-line sequences replaced with <see cref="F:System.String.Empty"/>.
             </returns>
         </member>
+        <member name="M:System.StringExtensions.ReplaceRegex(System.String,System.String,System.Text.RegularExpressions.MatchEvaluator)">
+            <summary>
+            Replace the string by using the specified regular expression.
+            </summary>
+            <param name="this">The base string.</param>
+            <param name="pattern">A valid regular expression pattern to be used.</param>
+            <param name="evaluator">
+            The evaluator method that replace all strings inside <paramref name="this"/>
+            satisfying the specified <paramref name="pattern"/>, with the target string which this method will return.
+            </param>
+            <returns>The final replaced string.</returns>
+        </member>
         <member name="M:System.StringExtensions.Reserve(System.String,System.String)">
             <summary>
             Reserve all characters that satisfy the specified pattern.

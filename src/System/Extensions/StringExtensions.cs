@@ -222,6 +222,20 @@ public static partial class StringExtensions
 	public static string RemoveLineEndings(this string @this) => @this.ReplaceLineEndings(string.Empty);
 
 	/// <summary>
+	/// Replace the string by using the specified regular expression.
+	/// </summary>
+	/// <param name="this">The base string.</param>
+	/// <param name="pattern">A valid regular expression pattern to be used.</param>
+	/// <param name="evaluator">
+	/// The evaluator method that replace all strings inside <paramref name="this"/>
+	/// satisfying the specified <paramref name="pattern"/>, with the target string which this method will return.
+	/// </param>
+	/// <returns>The final replaced string.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ReplaceRegex(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, MatchEvaluator evaluator)
+		=> Regex.Replace(@this, pattern, evaluator);
+
+	/// <summary>
 	/// Reserve all characters that satisfy the specified pattern.
 	/// </summary>
 	/// <param name="this">The string.</param>
