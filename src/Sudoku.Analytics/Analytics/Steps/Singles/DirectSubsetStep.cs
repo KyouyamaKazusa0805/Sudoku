@@ -1,3 +1,4 @@
+
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
@@ -92,4 +93,12 @@ public sealed partial class DirectSubsetStep(
 	private string DigitsStr => Options.Converter.DigitConverter(SubsetDigitsMask);
 
 	private string SubsetNameStr => SubsetTechnique.GetName(ResultCurrentCulture);
+
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] Step? other)
+		=> other is DirectSubsetStep comparer
+		&& SubsetCells == comparer.SubsetCells && SubsetDigitsMask == comparer.SubsetDigitsMask
+		&& Interim == comparer.Interim && InterimDigitsMask == comparer.InterimDigitsMask
+		&& Subtype == comparer.Subtype && SubsetTechnique == comparer.SubsetTechnique;
 }

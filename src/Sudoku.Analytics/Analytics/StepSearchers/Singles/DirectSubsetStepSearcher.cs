@@ -1,6 +1,6 @@
 namespace Sudoku.Analytics.StepSearchers;
 
-using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
+using unsafe DirectSubsetHandlerFuncPtr = delegate*<DirectSubsetStepSearcher, List<DirectSubsetStep>, ref AnalysisContext, ref readonly Grid, int, bool, ref readonly CellMap, ReadOnlySpan<CellMap>, DirectSubsetStep?>;
 
 /// <summary>
 /// Provides with a <b>Direct Subset</b> step searcher.
@@ -114,20 +114,28 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		}
 		emptyCells &= ~nakedSingleCells;
 
+		var accumulator = new List<DirectSubsetStep>();
 		foreach (var searchingForLocked in (true, false))
 		{
 			for (var size = 2; size <= (searchingForLocked ? 3 : 4); size++)
 			{
-				if (searchers[0](this, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step1)
+				if (searchers[0](this, accumulator, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step1)
 				{
 					return step1;
 				}
-				if (searchers[1](this, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step2)
+				if (searchers[1](this, accumulator, ref context, in grid, size, searchingForLocked, in emptyCells, candidatesMap) is { } step2)
 				{
 					return step2;
 				}
 			}
 		}
+
+		if (!context.OnlyFindOne && accumulator.Count != 0)
+		{
+			var final = StepMarshal.RemoveDuplicateItems(accumulator);
+			context.Accumulator.AddRange(final);
+		}
+
 		return null;
 	}
 
@@ -137,6 +145,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// </summary>
 	private static DirectSubsetStep? HiddenSubset(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		int size,
@@ -226,19 +235,19 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 					// Check whether such conclusions will raise a single.
 					if (CheckHiddenSubsetFullHouse(
-						@this, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
+						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
 						containsExtraEliminations, cellOffsets, candidateOffsets, in emptyCells) is { } fullHouse)
 					{
 						return fullHouse;
 					}
 					if (CheckHiddenSubsetHiddenSingle(
-						@this, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
+						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
 						containsExtraEliminations, cellOffsets, candidateOffsets, candidatesMap) is { } hiddenSingle)
 					{
 						return hiddenSingle;
 					}
 					if (CheckHiddenSubsetNakedSingle(
-						@this, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
+						@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house, searchingForLocked,
 						containsExtraEliminations, cellOffsets, candidateOffsets, in emptyCells) is { } nakedSingle)
 					{
 						return nakedSingle;
@@ -255,6 +264,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// </summary>
 	private static DirectSubsetStep? NakedSubset(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		int size,
@@ -327,19 +337,19 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 
 				// Check whether such conclusions will raise a single.
 				if (CheckNakedSubsetFullHouse(
-					@this, ref context, in grid, in conclusions, in cells, digitsMask, house,
+					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house,
 					searchingForLocked, isLocked, candidateOffsets, in emptyCells) is { } fullHouse)
 				{
 					return fullHouse;
 				}
 				if (CheckNakedSubsetHiddenSingle(
-					@this, ref context, in grid, in conclusions, in cells, digitsMask, house,
+					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house,
 					searchingForLocked, isLocked, candidateOffsets, candidatesMap) is { } hiddenSingle)
 				{
 					return hiddenSingle;
 				}
 				if (CheckNakedSubsetNakedSingle(
-					@this, ref context, in grid, in conclusions, in cells, digitsMask, house,
+					@this, accumulator, ref context, in grid, in conclusions, in cells, digitsMask, house,
 					searchingForLocked, isLocked, candidateOffsets, in emptyCells) is { } nakedSingle)
 				{
 					return nakedSingle;
@@ -354,6 +364,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// Check for full houses produced on hidden subsets.
 	/// </summary>
 	/// <param name="this">Indicates the current type instance.</param>
+	/// <param name="accumulator">Indicates the accumulator.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="conclusions">The conclusions produced by hidden subsets.</param>
@@ -368,6 +379,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private static DirectSubsetStep? CheckHiddenSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -381,7 +393,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		ref readonly CellMap emptyCells
 	)
 	{
-		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
+		foreach (var cell in conclusions.Cells)
 		{
 			foreach (var houseType in HouseTypes)
 			{
@@ -453,7 +465,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					return step;
 				}
 
-				context.Accumulator.Add(step);
+				accumulator.Add(step);
 			}
 		}
 
@@ -463,9 +475,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -541,7 +554,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					return step;
 				}
 
-				context.Accumulator.Add(step);
+				accumulator.Add(step);
 			}
 		}
 
@@ -551,9 +564,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on hidden subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckHiddenSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, Mask, House, bool, bool, List{IconViewNode}, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckHiddenSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -567,13 +581,13 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 		ref readonly CellMap emptyCells
 	)
 	{
-		foreach (var (_, cell, digit) in conclusions.EnumerateCellDigit())
+		foreach (var cell in conclusions.Cells)
 		{
 			var eliminatedDigitsMask = MaskOperations.Create(from c in conclusions where c / 9 == cell select c % 9);
 			var availableDigitsMask = (Mask)(grid.GetCandidates(cell) & (Mask)~eliminatedDigitsMask);
 			if (!IsPow2(availableDigitsMask))
 			{
-				continue;
+				return null;
 			}
 
 			var subsetTechnique = GetSubsetTechnique_Hidden(in subsetCells);
@@ -584,7 +598,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				case Technique.HiddenPair or Technique.HiddenTriple or Technique.HiddenQuadruple
 				when !@this.AllowDirectHiddenSubset:
 				{
-					continue;
+					return null;
 				}
 			}
 
@@ -617,7 +631,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				return step;
 			}
 
-			context.Accumulator.Add(step);
+			accumulator.Add(step);
 		}
 
 		return null;
@@ -627,6 +641,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// Check for full house produced on naked subsets.
 	/// </summary>
 	/// <param name="this">Indicates the current type instance.</param>
+	/// <param name="accumulator">Indicates the accumulator.</param>
 	/// <param name="context">The context.</param>
 	/// <param name="grid">The grid.</param>
 	/// <param name="conclusions">The conclusions produced by hidden subsets.</param>
@@ -640,6 +655,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <returns>The found step.</returns>
 	private static DirectSubsetStep? CheckNakedSubsetFullHouse(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -726,7 +742,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					return step;
 				}
 
-				context.Accumulator.Add(step);
+				accumulator.Add(step);
 			}
 		}
 
@@ -736,9 +752,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for hidden single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetHiddenSingle(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -814,7 +831,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 					return step;
 				}
 
-				context.Accumulator.Add(step);
+				accumulator.Add(step);
 			}
 		}
 
@@ -824,9 +841,10 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 	/// <summary>
 	/// Check for naked single produced on naked subsets.
 	/// </summary>
-	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
+	/// <inheritdoc cref="CheckNakedSubsetFullHouse(DirectSubsetStepSearcher, List{DirectSubsetStep}, ref AnalysisContext, ref readonly Grid, ref readonly CandidateMap, ref readonly CellMap, short, int, bool, bool?, List{CandidateViewNode}, ref readonly CellMap)"/>
 	private static DirectSubsetStep? CheckNakedSubsetNakedSingle(
 		DirectSubsetStepSearcher @this,
+		List<DirectSubsetStep> accumulator,
 		ref AnalysisContext context,
 		ref readonly Grid grid,
 		ref readonly CandidateMap conclusions,
@@ -891,7 +909,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 				return step;
 			}
 
-			context.Accumulator.Add(step);
+			accumulator.Add(step);
 		}
 
 		return null;
