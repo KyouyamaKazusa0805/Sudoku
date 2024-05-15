@@ -14,7 +14,6 @@ global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Runtime.Versioning;
 global using System.SourceGeneration;
-global using Sudoku.Analytics;
 global using Sudoku.Concepts;
 global using Sudoku.Drawing.TextRendering;
 global using Sudoku.Gdip;
