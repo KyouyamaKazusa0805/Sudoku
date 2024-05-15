@@ -121,7 +121,6 @@ public static class @ref
 		{
 			result[i - start] = Add(ref Unsafe.AsRef(in memorySpan), i);
 		}
-
 		return result;
 	}
 

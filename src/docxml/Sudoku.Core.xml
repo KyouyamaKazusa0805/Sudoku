@@ -2664,6 +2664,19 @@
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.GridFormatterFactory">
+            <summary>
+            Indicates the factory that creates the grid formatter.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridFormatterFactory.GetBuiltInConverter(System.String)">
+            <summary>
+            Get a built-in converter instance according to the specified format.
+            </summary>
+            <param name="format">The format.</param>
+            <returns>The grid formatter.</returns>
+            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
+        </member>
         <member name="T:Sudoku.Concepts.GridCellPredicates">
             <summary>
             Represents a list of methods to filter the cells.
@@ -9941,19 +9954,6 @@
             Represents an attribute type that specifies the bound concept for parser.
             </summary>
             <typeparam name="T">The type of the parser.</typeparam>
-        </member>
-        <member name="T:Sudoku.Text.GridFormatterFactory">
-            <summary>
-            Indicates the factory that creates the grid formatter.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.GridFormatterFactory.GetBuiltInConverter(System.String)">
-            <summary>
-            Get a built-in converter instance according to the specified format.
-            </summary>
-            <param name="format">The format.</param>
-            <returns>The grid formatter.</returns>
-            <exception cref="T:System.FormatException">Throws when the format string is invalid.</exception>
         </member>
         <member name="T:Sudoku.Text.IConceptConverter`1">
             <summary>
