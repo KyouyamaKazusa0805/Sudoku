@@ -13,10 +13,10 @@ namespace Sudoku.Analytics;
 [GetHashCode]
 [ToString]
 public ref partial struct AnalysisContext(
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "Grid")]
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
 	ref readonly Grid grid,
 
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", GeneratedMemberName = "InitialGrid")]
+	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
 	ref readonly Grid initialGrid
 )
 {
