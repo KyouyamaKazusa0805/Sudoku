@@ -9,10 +9,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="AnalysisResult"/>
 /// <seealso cref="Analyzer"/>
 /// <seealso cref="AnalyzerFactory"/>
-public sealed partial class Analyzer :
-	AnalyzerOrCollector,
-	IGlobalizedAnalyzer<Analyzer, AnalysisResult>,
-	IRandomizedAnalyzer<Analyzer, AnalysisResult>
+public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, AnalysisResult>
 {
 	/// <summary>
 	/// Indicates the default steps capacity.
@@ -78,7 +75,7 @@ public sealed partial class Analyzer :
 	internal StepSearcherConditionalOptions? ConditionalOptions { get; set; } = StepSearcherConditionalOptions.Default;
 
 	/// <inheritdoc/>
-	Random IRandomizedAnalyzer<Analyzer, AnalysisResult>.RandomNumberGenerator => _random;
+	Random IAnalyzer<Analyzer, AnalysisResult>.RandomNumberGenerator => _random;
 
 	/// <summary>
 	/// Indicates the final <see cref="CultureInfo"/> instance to be used.

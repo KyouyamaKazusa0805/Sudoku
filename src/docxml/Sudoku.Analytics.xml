@@ -655,7 +655,7 @@
             Indicates the conditional options to be set.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IRandomizedAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
+        <member name="P:Sudoku.Analytics.Analyzer.Sudoku#Analytics#IAnalyzer{Sudoku#Analytics#Analyzer,Sudoku#Analytics#AnalysisResult}#RandomNumberGenerator">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Analyzer.ResultCurrentCulture">
@@ -5135,6 +5135,21 @@
             Indicates whether the solver will apply all found steps in a step searcher, in order to solve a puzzle faster.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.IAnalyzer`2.RandomizedChoosing">
+            <summary>
+            Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzer`2.CurrentCulture">
+            <summary>
+            Indicates the current culture that is used for displaying running information.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.IAnalyzer`2.RandomNumberGenerator">
+            <summary>
+            The internal <see cref="T:System.Random"/> instance to be used.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.IAnalyzer`2.Analyze(Sudoku.Concepts.Grid@,System.IProgress{Sudoku.Analytics.AnalysisProgress},System.Threading.CancellationToken)">
             <summary>
             Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
@@ -5143,40 +5158,6 @@
             <param name="progress">An <see cref="T:System.IProgress`1"/> instance that is used for reporting the state.</param>
             <param name="cancellationToken">The cancellation token that can cancel the current analyzing operation.</param>
             <returns>The solver result that provides the information after analyzing.</returns>
-        </member>
-        <member name="T:Sudoku.Analytics.IGlobalizedAnalyzer`2">
-            <summary>
-            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>.
-            The result is a <typeparamref name="TResult"/> instance that encapsulates all possible information
-            produced in the whole analysis time-cycle, using the specified culture to display running information.
-            </summary>
-            <typeparam name="TSelf">The type of the solver itself.</typeparam>
-            <typeparam name="TResult">The type of the target result.</typeparam>
-        </member>
-        <member name="P:Sudoku.Analytics.IGlobalizedAnalyzer`2.CurrentCulture">
-            <summary>
-            Indicates the current culture that is used for displaying running information.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Analytics.IRandomizedAnalyzer`2">
-            <summary>
-            Represents an analyzer, which can solve a puzzle and return not a solution <see cref="T:Sudoku.Concepts.Grid"/>,
-            The result is a <typeparamref name="TSelf"/> instance that encapsulates all possible information
-            produced in the whole analysis time-cycle, with randomized chosing.
-            </summary>
-            <typeparam name="TSelf">The type of the solver itself.</typeparam>
-            <typeparam name="TResult">The type of the target result.</typeparam>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomizedChoosing">
-            <summary>
-            Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.IRandomizedAnalyzer`2.RandomNumberGenerator">
-            <summary>
-            The internal <see cref="T:System.Random"/> instance to be used.
-            </summary>
         </member>
         <member name="T:Sudoku.Analytics.Metadata.BuiltInStepSearcherAttribute`1">
             <summary>
@@ -18464,12 +18445,6 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
-            <remarks>
-            <b>
-            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
-            Please visit source code for source generator to modify the handling logic if you persist.
-            </b>
-            </remarks>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -18482,12 +18457,6 @@
             <param name="cell"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Cell" path="/summary"/></param>
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
-            <remarks>
-            <b>
-            A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
-            Please visit source code for source generator to modify the handling logic if you persist.
-            </b>
-            </remarks>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FullHouseStep.BaseDifficulty">
             <inheritdoc/>

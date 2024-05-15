@@ -14,6 +14,21 @@ public interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf,
 	/// </summary>
 	public abstract bool IsFullApplying { get; }
 
+	/// <summary>
+	/// Indicates whether the solver will choose a step to be applied after having searched all possible steps, in random.
+	/// </summary>
+	public abstract bool RandomizedChoosing { get; }
+
+	/// <summary>
+	/// Indicates the current culture that is used for displaying running information.
+	/// </summary>
+	public abstract CultureInfo? CurrentCulture { get; set; }
+
+	/// <summary>
+	/// The internal <see cref="Random"/> instance to be used.
+	/// </summary>
+	protected abstract Random RandomNumberGenerator { get; }
+
 
 	/// <summary>
 	/// Analyze the specified puzzle, and return a <typeparamref name="TResult"/> instance indicating the analyzed result.
