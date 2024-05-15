@@ -16,16 +16,10 @@ namespace System.Linq;
 public sealed partial class ArrayGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private")] TSource[] elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) :
-	IEnumerable<TSource>,
-	IEqualityOperators<ArrayGrouping<TSource, TKey>, ArrayGrouping<TSource, TKey>, bool>,
-	IEquatable<ArrayGrouping<TSource, TKey>>,
-	IGrouping<TKey, TSource>,
-	IReadOnlyCollection<TSource>
-	where TKey : notnull
+) : IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource> where TKey : notnull
 {
 	/// <inheritdoc/>
-	int IReadOnlyCollection<TSource>.Count => _elements.Length;
+	ReadOnlySpan<TSource> IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>.Elements => _elements;
 
 	[HashCodeMember]
 	private unsafe nint ElementsRawPointerValue => (nint)Unsafe.AsPointer(ref _elements[0]);
@@ -96,10 +90,4 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref readonly TSource GetPinnableReference() => ref _elements[0];
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TSource>)_elements).GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<TSource> IEnumerable<TSource>.GetEnumerator() => ((IEnumerable<TSource>)_elements).GetEnumerator();
 }

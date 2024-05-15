@@ -19,17 +19,8 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) :
-	IEnumerable<TSource>,
-	IEqualityOperators<SpanGrouping<TSource, TKey>, SpanGrouping<TSource, TKey>, bool>,
-	IEquatable<SpanGrouping<TSource, TKey>>,
-	IGrouping<TKey, TSource>,
-	IReadOnlyCollection<TSource>
-	where TKey : notnull
+) : IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource> where TKey : notnull
 {
-	/// <inheritdoc/>
-	int IReadOnlyCollection<TSource>.Count => Length;
-
 	[HashCodeMember]
 	private nint ElementsRawPointerValue => (nint)_elements;
 
@@ -45,6 +36,9 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => new(_elements, Length);
 	}
+
+	/// <inheritdoc/>
+	ReadOnlySpan<TSource> IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>.Elements => SourceSpan;
 
 
 	/// <summary>
@@ -109,10 +103,4 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref readonly TSource GetPinnableReference() => ref _elements[0];
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TSource>)this).GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<TSource> IEnumerable<TSource>.GetEnumerator() => ((IEnumerable<TSource>)SourceSpan.ToArray()).GetEnumerator();
 }

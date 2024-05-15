@@ -2391,7 +2391,7 @@
             <param name="elements">Indicates the elements.</param>
             <param name="key">Indicates the key that can compare each element.</param>
         </member>
-        <member name="P:System.Linq.ArrayGrouping`2.System#Collections#Generic#IReadOnlyCollection{TSource}#Count">
+        <member name="P:System.Linq.ArrayGrouping`2.System#Linq#IGroupingDataProvider{System#Linq#ArrayGrouping{TSource,TKey},TKey,TSource}#Elements">
             <inheritdoc/>
         </member>
         <member name="P:System.Linq.ArrayGrouping`2.Item(System.Int32)">
@@ -2427,12 +2427,6 @@
         </member>
         <member name="M:System.Linq.ArrayGrouping`2.GetPinnableReference">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
-        </member>
-        <member name="M:System.Linq.ArrayGrouping`2.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Linq.ArrayGrouping`2.System#Collections#Generic#IEnumerable{TSource}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="F:System.Linq.ArrayGrouping`2._elements">
             <summary>
@@ -2713,6 +2707,41 @@
             <param name="this">The collection.</param>
             <returns>The first element of the collection.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the collection contains no elements.</exception>
+        </member>
+        <member name="T:System.Linq.IGroupingDataProvider`3">
+            <summary>
+            Represents a grouping data structure for LINQ grouping methods.
+            </summary>
+        </member>
+        <member name="P:System.Linq.IGroupingDataProvider`3.Elements">
+            <summary>
+            Indicates the backing elements.
+            </summary>
+        </member>
+        <member name="P:System.Linq.IGroupingDataProvider`3.System#Collections#Generic#IReadOnlyCollection{TElement}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.IGroupingDataProvider`3.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The reference to the element at the specified index.</returns>
+        </member>
+        <member name="M:System.Linq.IGroupingDataProvider`3.GetPinnableReference">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
+        </member>
+        <member name="M:System.Linq.IGroupingDataProvider`3.GetEnumerator">
+            <summary>
+            Creates an enumerator that can enumerate each element in the source collection.
+            </summary>
+            <returns>An enumerator instance.</returns>
+        </member>
+        <member name="M:System.Linq.IGroupingDataProvider`3.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.IGroupingDataProvider`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
         </member>
         <member name="T:System.Linq.LinkedListEnumerable">
             <summary>
@@ -3155,14 +3184,14 @@
             <param name="length">Indicates the length of elements stored in this collection.</param>
             <param name="key">Indicates the key that can compare each element.</param>
         </member>
-        <member name="P:System.Linq.SpanGrouping`2.System#Collections#Generic#IReadOnlyCollection{TSource}#Count">
-            <inheritdoc/>
-        </member>
         <member name="P:System.Linq.SpanGrouping`2.SourceSpan">
             <summary>
             Creates a <see cref="T:System.ReadOnlySpan`1"/> instance that is aligned as <see cref="F:System.Linq.SpanGrouping`2._elements"/>.
             </summary>
             <seealso cref="F:System.Linq.SpanGrouping`2._elements"/>
+        </member>
+        <member name="P:System.Linq.SpanGrouping`2.System#Linq#IGroupingDataProvider{System#Linq#SpanGrouping{TSource,TKey},TKey,TSource}#Elements">
+            <inheritdoc/>
         </member>
         <member name="P:System.Linq.SpanGrouping`2.Item(System.Int32)">
             <summary>
@@ -3197,12 +3226,6 @@
         </member>
         <member name="M:System.Linq.SpanGrouping`2.GetPinnableReference">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
-        </member>
-        <member name="M:System.Linq.SpanGrouping`2.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.Linq.SpanGrouping`2.System#Collections#Generic#IEnumerable{TSource}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="F:System.Linq.SpanGrouping`2._elements">
             <summary>
