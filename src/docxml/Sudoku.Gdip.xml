@@ -78,9 +78,9 @@
             The default singleton instance that you can get.
             </summary>
         </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainter.Create(Sudoku.Drawing.ISudokuPainter,Sudoku.Drawing.SudokuPainterPropertySetter)">
+        <member name="M:Sudoku.Drawing.ISudokuPainter.Create(Sudoku.Drawing.ISudokuPainter,System.SelfReturner{Sudoku.Drawing.ISudokuPainter})">
             <summary>
-            Create an instance using the specified <see cref="T:Sudoku.Drawing.SudokuPainterPropertySetter"/> method,
+            Create an instance using the specified <see cref="T:System.SelfReturner`1"/> method,
             and a default base <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.
             </summary>
             <param name="base">The base instance.</param>
@@ -291,13 +291,6 @@
             </summary>
             <param name="predicate">The predicate.</param>
             <returns>The target painter.</returns>
-        </member>
-        <member name="T:Sudoku.Drawing.SudokuPainterPropertySetter">
-            <summary>
-            Defines a type that holds a list of methods to create <see cref="T:Sudoku.Drawing.ISudokuPainter"/> using the specified rule.
-            </summary>
-            <param name="base">The base <see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance.</param>
-            <returns><see cref="T:Sudoku.Drawing.ISudokuPainter"/> instance returned.</returns>
         </member>
         <member name="T:Sudoku.Drawing.TextRendering.TextAlignmentType">
             <summary>

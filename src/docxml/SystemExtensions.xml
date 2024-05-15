@@ -255,15 +255,6 @@
             24 cases.
             </returns>
         </member>
-        <member name="T:System.CompareHandler`1">
-            <summary>
-            Represents a handler that checks the value comparison of two <typeparamref name="T"/> values.
-            </summary>
-            <typeparam name="T">The type of values to be compared.</typeparam>
-            <param name="left">The left value to be compared.</param>
-            <param name="right">The right value to be compared.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
-        </member>
         <member name="T:System.Comparing">
             <summary>
             Create <see cref="T:System.Collections.Generic.IComparer`1"/> instances.
@@ -271,9 +262,9 @@
             <seealso cref="T:System.Collections.Generic.IComparer`1"/>
         </member>
         <member name="M:System.Comparing.Create``1(System.Comparison{``0})">
-            <inheritdoc cref="M:System.Comparing.Create``1(System.CompareHandler{``0})"/>
+            <inheritdoc cref="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})"/>
         </member>
-        <member name="M:System.Comparing.Create``1(System.CompareHandler{``0})">
+        <member name="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})">
             <summary>
             Creates an <see cref="T:System.Collections.Generic.IComparer`1"/> instance via specified method.
             </summary>
@@ -282,7 +273,7 @@
             <returns>An <see cref="T:System.Collections.Generic.IComparer`1"/> value serving as comparing rules.</returns>
         </member>
         <member name="M:System.Comparing.CreateUnsafe``1()">
-            <inheritdoc cref="M:System.Comparing.Create``1(System.CompareHandler{``0})"/>
+            <inheritdoc cref="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})"/>
         </member>
         <member name="T:System.ComplexValueTupleEnumerator`2">
             <summary>
@@ -385,12 +376,12 @@
             <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
         </member>
         <member name="M:System.EqualityComparing.CreateByEqualityOperator``1">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
         </member>
         <member name="M:System.EqualityComparing.Create``1(System.Func{``0,``0,System.Boolean},System.Func{``0,System.Int32})">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
+            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
         </member>
-        <member name="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})">
+        <member name="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})">
             <summary>
             Creates an <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance via specified methods.
             </summary>
@@ -400,16 +391,7 @@
             <returns>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> value serving as comparing equality rules.</returns>
         </member>
         <member name="M:System.EqualityComparing.CreateUnsafe``1(,)">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
-        </member>
-        <member name="T:System.EqualsHandler`1">
-            <summary>
-            The specialized equality comparing handler.
-            </summary>
-            <typeparam name="T">The type of the object.</typeparam>
-            <param name="left">The left value to be compared.</param>
-            <param name="right">The right value to be compared.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating the result.</returns>
+            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>
@@ -1678,14 +1660,6 @@
             <summary>
             The generated field declaration for parameter <c>bitsCount</c>.
             </summary>
-        </member>
-        <member name="T:System.GetHashCodeHandler`1">
-            <summary>
-            The specialized get hash code handler.
-            </summary>
-            <typeparam name="T">The type of the object.</typeparam>
-            <param name="obj">The object to be calculated.</param>
-            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
         </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
@@ -4223,6 +4197,14 @@
         <member name="M:System.ReverseEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:System.SelfReturner`1">
+            <summary>
+            Represents a method that will return itself. The method can also handle some other logic inside method block.
+            </summary>
+            <typeparam name="T">The type of an instance to be returned.</typeparam>
+            <param name="value">The value to be returned.</param>
+            <returns>The instance to be returned.</returns>
+        </member>
         <member name="T:System.SimdOperations">
             <summary>
             Encapsulates a list of methods to handle with bits, using SIMD.
@@ -4874,7 +4856,7 @@
             Indicates whether the comparer uses unsafe logic.
             </summary>
         </member>
-        <member name="M:System.SpecializedComparer`1.#ctor(System.CompareHandler{`0})">
+        <member name="M:System.SpecializedComparer`1.#ctor(System.FuncRefReadOnly{`0,`0,System.Int32})">
             <summary>
             Initializes a <see cref="T:System.SpecializedComparer`1"/> instance.
             </summary>
@@ -4920,7 +4902,7 @@
         <member name="F:System.SpecializedEqualityComparer`1._getHashCodeUnsafe">
             <inheritdoc cref="F:System.SpecializedEqualityComparer`1._getHashCode"/>
         </member>
-        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.EqualsHandler{`0},System.GetHashCodeHandler{`0})">
+        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.FuncRefReadOnly{`0,`0,System.Boolean},System.FuncRefReadOnly{`0,System.Int32})">
             <summary>
             Initializes a <see cref="T:System.SpecializedEqualityComparer`1"/> instance.
             </summary>

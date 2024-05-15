@@ -10,7 +10,7 @@ public sealed class SpecializedComparer<T>(bool isUnsafe) : IComparer<T>
 	/// <summary>
 	/// The handler for method <see cref="Compare(ref readonly T, ref readonly T)"/>.
 	/// </summary>
-	private readonly CompareHandler<T>? _compare;
+	private readonly FuncRefReadOnly<T, T, int>? _compare;
 
 	/// <inheritdoc cref="_compare"/>
 	private readonly unsafe delegate*<ref readonly T, ref readonly T, int> _compareUnsafe;
@@ -27,7 +27,7 @@ public sealed class SpecializedComparer<T>(bool isUnsafe) : IComparer<T>
 	/// <summary>
 	/// Initializes a <see cref="SpecializedComparer{T}"/> instance.
 	/// </summary>
-	public SpecializedComparer(CompareHandler<T> compareHandler) : this(false) => _compare = compareHandler;
+	public SpecializedComparer(FuncRefReadOnly<T, T, int> compareHandler) : this(false) => _compare = compareHandler;
 
 	/// <summary>
 	/// Initializes a <see cref="SpecializedComparer{T}"/> instance.

@@ -136,19 +136,18 @@ public interface ISudokuPainter : ISudokuPainterFactory
 	public static sealed ISudokuPainter Create(int canvasDefaultSize, int canvasOffset = 10) => new SudokuPainter(canvasDefaultSize, canvasOffset);
 
 	/// <summary>
-	/// Create an instance using the specified <see cref="SudokuPainterPropertySetter"/> method,
+	/// Create an instance using the specified <see cref="SelfReturner{T}"/> method,
 	/// and a default base <see cref="ISudokuPainter"/> instance.
 	/// </summary>
 	/// <param name="base">The base instance.</param>
 	/// <param name="propertySetters">The property setter method.</param>
 	/// <returns>Created <see cref="ISudokuPainter"/> instance.</returns>
-	public static sealed ISudokuPainter Create(ISudokuPainter @base, SudokuPainterPropertySetter propertySetters)
+	public static sealed ISudokuPainter Create(ISudokuPainter @base, SelfReturner<ISudokuPainter> propertySetters)
 	{
 		foreach (var method in propertySetters.GetInvocations())
 		{
-			@base = method(@base);
+			@base = method(in @base);
 		}
-
 		return @base;
 	}
 }

@@ -10,12 +10,12 @@ public sealed class SpecializedEqualityComparer<T>(bool isUnsafe) : IEqualityCom
 	/// <summary>
 	/// The handler for method <see cref="Equals(ref readonly T, ref readonly T)"/>.
 	/// </summary>
-	private readonly EqualsHandler<T>? _equals;
+	private readonly FuncRefReadOnly<T, T, bool>? _equals;
 
 	/// <summary>
 	/// The handler for method <see cref="GetHashCode(ref readonly T)"/>.
 	/// </summary>
-	private readonly GetHashCodeHandler<T>? _getHashCode;
+	private readonly FuncRefReadOnly<T, int>? _getHashCode;
 
 	/// <inheritdoc cref="_equals"/>
 	private readonly unsafe delegate*<ref readonly T, ref readonly T, bool> _equalsUnsafe;
@@ -27,7 +27,7 @@ public sealed class SpecializedEqualityComparer<T>(bool isUnsafe) : IEqualityCom
 	/// <summary>
 	/// Initializes a <see cref="SpecializedEqualityComparer{T}"/> instance.
 	/// </summary>
-	public SpecializedEqualityComparer(EqualsHandler<T> equals, GetHashCodeHandler<T> getHashCode) : this(false)
+	public SpecializedEqualityComparer(FuncRefReadOnly<T, T, bool> equals, FuncRefReadOnly<T, int> getHashCode) : this(false)
 	{
 		_equals = equals;
 		_getHashCode = getHashCode;
