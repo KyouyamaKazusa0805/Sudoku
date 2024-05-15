@@ -2551,28 +2551,6 @@
         <member name="M:Sudoku.Concepts.Grid.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Grid}#FromJsonString(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Grid.InternalEqualsByRef(System.Byte@,System.Byte@,System.UIntPtr)">
-            <summary>
-            Determines whether two sequences are considered equal on respective bits.
-            </summary>
-            <param name="first">The first sequence.</param>
-            <param name="second">The second sequence.</param>
-            <param name="length">
-            The total bits of the sequence to be compared. Please note that two sequences
-            <paramref name="first"/> and <paramref name="second"/> must hold a same length.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating whether they are considered equal.</returns>
-            <remarks>
-            Optimized byte-based <c>SequenceEquals</c>.
-            The <paramref name="length"/> parameter for this one is declared a <see langword="nuint"/> rather than <see cref="T:System.Int32"/>
-            as we also use it for types other than <see cref="T:System.Byte"/> where the length can exceed 2Gb once scaled by <see langword="sizeof"/>(T).
-            </remarks>
-            <!--
-            Licensed to the .NET Foundation under one or more agreements.
-            The .NET Foundation licenses this file to you under the MIT license.
-            https://source.dot.net/#System.Private.CoreLib/src/libraries/System.Private.CoreLib/src/System/SpanHelpers.Byte.cs,998a36a55f580ab1
-            -->
-        </member>
         <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
             The light-weight event handler for <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
