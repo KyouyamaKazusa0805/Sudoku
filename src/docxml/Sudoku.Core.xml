@@ -1704,14 +1704,14 @@
             Indicates the given mask.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
-            <summary>
-            Indicates ths header bits describing the sudoku type is a Sukaku.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.Grid.HeaderShift">
             <summary>
             Indicates the shifting bits count for header bits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Grid.SukakuHeader">
+            <summary>
+            Indicates ths header bits describing the sudoku type is a Sukaku.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Grid.CellsCount">
@@ -1760,16 +1760,6 @@
         </member>
         <member name="F:Sudoku.Concepts.Grid.DefaultOptions">
             <inheritdoc cref="P:System.Text.Json.IJsonSerializable`1.DefaultOptions"/>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.ValueChanged">
-            <summary>
-            Indicates the event triggered when the value is changed.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Grid.RefreshingCandidates">
-            <summary>
-            Indicates the event triggered when should re-compute candidates.
-            </summary>
         </member>
         <member name="F:Sudoku.Concepts.Grid.Parsers">
             <summary>
@@ -2553,7 +2543,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnValueChanged(Sudoku.Concepts.Grid@,System.Int32,System.Int16,System.Int16,System.Int32)">
             <summary>
-            The light-weight event handler for <see cref="F:Sudoku.Concepts.Grid.ValueChanged"/>.
+            Event handler on value changed.
             </summary>
             <param name="this">The grid itself.</param>
             <param name="cell">Indicates the cell changed.</param>
@@ -2563,14 +2553,12 @@
             Indicates the set value. If to clear the cell, the value will be -1.
             In fact, if the value is -1, this method will do nothing.
             </param>
-            <seealso cref="F:Sudoku.Concepts.Grid.ValueChanged"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.OnRefreshingCandidates(Sudoku.Concepts.Grid@)">
             <summary>
-            The light-weight event handler for <see cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>.
+            Event handler on refreshing candidates.
             </summary>
             <param name="this">The grid itself.</param>
-            <seealso cref="F:Sudoku.Concepts.Grid.RefreshingCandidates"/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Int16})">
             <summary>

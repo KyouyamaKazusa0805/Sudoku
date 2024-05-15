@@ -26,12 +26,6 @@
 
 namespace Sudoku.Concepts;
 
-using unsafe CellMapPredicateFuncPtr = delegate*<ref readonly Grid, Cell, Digit, bool>;
-using unsafe CellPredicateFuncPtr = delegate*<ref readonly Grid, Cell, bool>;
-using unsafe MaskMergingFuncPtr = delegate*<ref Mask, ref readonly Grid, Cell, void>;
-using unsafe RefreshingCandidatesHandlerFuncPtr = delegate*<ref Grid, void>;
-using unsafe ValueChangedHandlerFuncPtr = delegate*<ref Grid, Cell, Mask, Mask, Digit, void>;
-
 /// <summary>
 /// Represents a sudoku grid that uses the mask list to construct the data structure.
 /// </summary>
@@ -94,14 +88,14 @@ public partial struct Grid :
 #endif
 
 	/// <summary>
-	/// Indicates ths header bits describing the sudoku type is a Sukaku.
-	/// </summary>
-	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
-
-	/// <summary>
 	/// Indicates the shifting bits count for header bits.
 	/// </summary>
 	internal const int HeaderShift = CellCandidatesCount + 3;
+
+	/// <summary>
+	/// Indicates ths header bits describing the sudoku type is a Sukaku.
+	/// </summary>
+	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
 
 	/// <summary>
 	/// Indicates the number of cells of a sudoku grid.
@@ -164,16 +158,6 @@ public partial struct Grid :
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new GridConverter() } };
-
-	/// <summary>
-	/// Indicates the event triggered when the value is changed.
-	/// </summary>
-	private static readonly unsafe ValueChangedHandlerFuncPtr ValueChanged = &OnValueChanged;
-
-	/// <summary>
-	/// Indicates the event triggered when should re-compute candidates.
-	/// </summary>
-	private static readonly unsafe RefreshingCandidatesHandlerFuncPtr RefreshingCandidates = &OnRefreshingCandidates;
 
 
 	/// <summary>
@@ -841,7 +825,7 @@ public partial struct Grid :
 				GridMaskMergingMethod.AndNot => &andNot,
 				GridMaskMergingMethod.And => &and,
 				GridMaskMergingMethod.Or => &or,
-				_ => default(MaskMergingFuncPtr)
+				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
 			};
 			foreach (var cell in cells)
 			{
@@ -1322,7 +1306,7 @@ public partial struct Grid :
 		ref var mask = ref this[cell];
 		var copied = mask;
 		mask = (Mask)((Mask)(GetHeaderBits(cell) | (Mask)((int)state << CellCandidatesCount)) | (Mask)(mask & MaxCandidatesMask));
-		ValueChanged(ref this, cell, copied, mask, -1);
+		OnValueChanged(ref this, cell, copied, mask, -1);
 	}
 
 	/// <summary>
@@ -1336,7 +1320,7 @@ public partial struct Grid :
 		ref var newMask = ref this[cell];
 		var originalMask = newMask;
 		newMask = mask;
-		ValueChanged(ref this, cell, originalMask, newMask, -1);
+		OnValueChanged(ref this, cell, originalMask, newMask, -1);
 	}
 
 	/// <summary>
@@ -1380,7 +1364,7 @@ public partial struct Grid :
 				// Note that reset candidates may not trigger the event.
 				this[cell] = (Mask)(GetHeaderBits(cell) | DefaultMask);
 
-				RefreshingCandidates(ref this);
+				OnRefreshingCandidates(ref this);
 				break;
 			}
 			case >= 0 and < CellCandidatesCount:
@@ -1392,7 +1376,7 @@ public partial struct Grid :
 				result = (Mask)(GetHeaderBits(cell) | ModifiableMask | 1 << digit);
 
 				// To trigger the event, which is used for eliminate all same candidates in peer cells.
-				ValueChanged(ref this, cell, copied, result, digit);
+				OnValueChanged(ref this, cell, copied, result, digit);
 				break;
 			}
 		}
@@ -1423,7 +1407,7 @@ public partial struct Grid :
 			}
 
 			// To trigger the event.
-			ValueChanged(ref this, cell, copied, this[cell], -1);
+			OnValueChanged(ref this, cell, copied, this[cell], -1);
 		}
 	}
 
@@ -1470,7 +1454,7 @@ public partial struct Grid :
 	/// <returns>The map.</returns>
 	/// <seealso cref="EmptyCells"/>
 	/// <seealso cref="BivalueCells"/>
-	private readonly unsafe CellMap GetMap(CellPredicateFuncPtr predicate)
+	private readonly unsafe CellMap GetMap(delegate*<ref readonly Grid, Cell, bool> predicate)
 	{
 		var result = CellMap.Empty;
 		for (var cell = 0; cell < CellsCount; cell++)
@@ -1491,7 +1475,7 @@ public partial struct Grid :
 	/// <seealso cref="CandidatesMap"/>
 	/// <seealso cref="DigitsMap"/>
 	/// <seealso cref="ValuesMap"/>
-	private readonly unsafe CellMap[] GetMaps(CellMapPredicateFuncPtr predicate)
+	private readonly unsafe CellMap[] GetMaps(delegate*<ref readonly Grid, Cell, Digit, bool> predicate)
 	{
 		var result = new CellMap[CellCandidatesCount];
 		for (var digit = 0; digit < CellCandidatesCount; digit++)
@@ -1791,7 +1775,7 @@ public partial struct Grid :
 	static Grid IJsonSerializable<Grid>.FromJsonString(string jsonString) => JsonSerializer.Deserialize<Grid>(jsonString, DefaultOptions);
 
 	/// <summary>
-	/// The light-weight event handler for <see cref="ValueChanged"/>.
+	/// Event handler on value changed.
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
 	/// <param name="cell">Indicates the cell changed.</param>
@@ -1801,7 +1785,6 @@ public partial struct Grid :
 	/// Indicates the set value. If to clear the cell, the value will be -1.
 	/// In fact, if the value is -1, this method will do nothing.
 	/// </param>
-	/// <seealso cref="ValueChanged"/>
 	private static void OnValueChanged(ref Grid @this, Cell cell, Mask oldMask, Mask newMask, Digit setValue)
 	{
 		if (setValue == -1)
@@ -1820,10 +1803,9 @@ public partial struct Grid :
 	}
 
 	/// <summary>
-	/// The light-weight event handler for <see cref="RefreshingCandidates"/>.
+	/// Event handler on refreshing candidates.
 	/// </summary>
 	/// <param name="this">The grid itself.</param>
-	/// <seealso cref="RefreshingCandidates"/>
 	private static void OnRefreshingCandidates(ref Grid @this)
 	{
 		for (var cell = 0; cell < CellsCount; cell++)
