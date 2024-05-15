@@ -441,6 +441,107 @@ public static class ReadOnlySpanEnumerable
 		return result.AsReadOnlySpan();
 	}
 
+	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
+		this scoped ReadOnlySpan<TOuter> outer,
+		scoped ReadOnlySpan<TInner> inner,
+		Func<TOuter, TKey> outerKeySelector,
+		Func<TInner, TKey> innerKeySelector,
+		Func<TOuter, TInner, TResult> resultSelector
+	) where TKey : notnull => Join(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
+
+	/// <inheritdoc cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult}, IEqualityComparer{TKey}?)"/>
+	public static ReadOnlySpan<TResult> Join<TOuter, TInner, TKey, TResult>(
+		this scoped ReadOnlySpan<TOuter> outer,
+		scoped ReadOnlySpan<TInner> inner,
+		Func<TOuter, TKey> outerKeySelector,
+		Func<TInner, TKey> innerKeySelector,
+		Func<TOuter, TInner, TResult> resultSelector,
+		IEqualityComparer<TKey>? equalityComparer
+	) where TKey : notnull
+	{
+		equalityComparer ??= EqualityComparer<TKey>.Default;
+
+		var result = new List<TResult>(outer.Length * inner.Length);
+		foreach (var outerItem in outer)
+		{
+			var outerKey = outerKeySelector(outerItem);
+			var outerKeyHash = equalityComparer.GetHashCode(outerKey);
+			foreach (var innerItem in inner)
+			{
+				var innerKey = innerKeySelector(innerItem);
+				var innerKeyHash = equalityComparer.GetHashCode(innerKey);
+				if (outerKeyHash != innerKeyHash)
+				{
+					// They are not same due to hash code difference.
+					continue;
+				}
+
+				if (!equalityComparer.Equals(outerKey, innerKey))
+				{
+					// They are not same due to inequality.
+					continue;
+				}
+
+				result.Add(resultSelector(outerItem, innerItem));
+			}
+		}
+		return result.AsReadOnlySpan();
+	}
+
+	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
+		this scoped ReadOnlySpan<TOuter> outer,
+		scoped ReadOnlySpan<TInner> inner,
+		Func<TOuter, TKey> outerKeySelector,
+		Func<TInner, TKey> innerKeySelector,
+		Func<TOuter, TInner[], TResult> resultSelector
+	) where TKey : notnull => GroupJoin(outer, inner, outerKeySelector, innerKeySelector, resultSelector, EqualityComparer<TKey>.Default);
+
+	/// <inheritdoc cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult}, IEqualityComparer{TKey}?)"/>
+	public static ReadOnlySpan<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(
+		this scoped ReadOnlySpan<TOuter> outer,
+		scoped ReadOnlySpan<TInner> inner,
+		Func<TOuter, TKey> outerKeySelector,
+		Func<TInner, TKey> innerKeySelector,
+		Func<TOuter, TInner[], TResult> resultSelector,
+		IEqualityComparer<TKey>? equalityComparer
+	) where TKey : notnull
+	{
+		equalityComparer ??= EqualityComparer<TKey>.Default;
+
+		var innerKvps = from element in inner select new KeyValuePair<TKey, TInner>(innerKeySelector(element), element);
+		var result = new List<TResult>();
+		foreach (var outerItem in outer)
+		{
+			var outerKey = outerKeySelector(outerItem);
+			var outerKeyHash = equalityComparer.GetHashCode(outerKey);
+			var satisfiedInnerKvps = new List<TInner>(innerKvps.Length);
+			foreach (var (innerKey, innerItem) in innerKvps)
+			{
+				var innerKeyHash = equalityComparer.GetHashCode(innerKey);
+				if (outerKeyHash != innerKeyHash)
+				{
+					// They are not same due to hash code difference.
+					continue;
+				}
+
+				if (!equalityComparer.Equals(outerKey, innerKey))
+				{
+					// They are not same due to inequality.
+					continue;
+				}
+
+				satisfiedInnerKvps.Add(innerItem);
+			}
+
+			result.Add(resultSelector(outerItem, [.. satisfiedInnerKvps]));
+		}
+		return result.AsReadOnlySpan();
+	}
+
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource}, Func{TSource, bool})"/>
 	public static T First<T>(this scoped ReadOnlySpan<T> @this, Func<T, bool> predicate)
 	{
@@ -465,7 +566,6 @@ public static class ReadOnlySpanEnumerable
 				return element;
 			}
 		}
-
 		return default;
 	}
 
