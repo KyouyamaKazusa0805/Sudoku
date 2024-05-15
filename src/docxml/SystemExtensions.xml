@@ -387,7 +387,7 @@
         <member name="M:System.EqualityComparing.CreateByEqualityOperator``1">
             <inheritdoc cref="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
         </member>
-        <member name="M:System.EqualityComparing.Create``1(System.Func{``0,``0,System.Boolean},System.GetHashCodeFunc{``0})">
+        <member name="M:System.EqualityComparing.Create``1(System.Func{``0,``0,System.Boolean},System.Func{``0,System.Int32})">
             <inheritdoc cref="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})"/>
         </member>
         <member name="M:System.EqualityComparing.Create``1(System.EqualsHandler{``0},System.GetHashCodeHandler{``0})">
@@ -1678,9 +1678,6 @@
             <summary>
             The generated field declaration for parameter <c>bitsCount</c>.
             </summary>
-        </member>
-        <member name="T:System.GetHashCodeFunc`1">
-            <inheritdoc cref="T:System.GetHashCodeHandler`1"/>
         </member>
         <member name="T:System.GetHashCodeHandler`1">
             <summary>

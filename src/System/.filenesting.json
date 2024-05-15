@@ -23,7 +23,6 @@
           "ArrayInitializer.cs": [ "__Delegates" ],
           "CompareHandler.cs": [ "__Delegates" ],
           "EqualsHandler.cs": [ "__Delegates" ],
-          "GetHashCodeFunc.cs": [ "__Delegates" ],
           "GetHashCodeHandler.cs": [ "__Delegates" ],
           "Combinatorial.cs": [ "__Algorithm" ],
           "SimdOperations.cs": [ "__Algorithm" ],
