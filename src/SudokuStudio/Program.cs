@@ -13,19 +13,16 @@ file static class Program
 	private static void Main(string[] args)
 	{
 		checkProcessRequirements();
-
 		ComWrappersSupport.InitializeComWrappers();
-		Application.Start(startCallback);
-
-
-		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
-		static extern void checkProcessRequirements();
-
-		static void startCallback(ApplicationInitializationCallbackParams __)
+		Application.Start(static __ =>
 		{
 			var context = new DispatcherQueueSynchronizationContext(DispatcherQueue.GetForCurrentThread());
 			SynchronizationContext.SetSynchronizationContext(context);
 			_ = new App();
-		}
+		});
+
+
+		[DllImport("Microsoft.ui.xaml", EntryPoint = "XamlCheckProcessRequirements")]
+		static extern void checkProcessRequirements();
 	}
 }
