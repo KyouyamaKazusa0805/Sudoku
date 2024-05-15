@@ -10,12 +10,6 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="cell"><inheritdoc cref="SingleStep.Cell" path="/summary"/></param>
 /// <param name="digit"><inheritdoc cref="SingleStep.Digit" path="/summary"/></param>
 /// <param name="lasting"><inheritdoc cref="ILastingTrait.Lasting" path="/summary" /></param>
-/// <remarks>
-/// <b>
-/// A part of members in this type are implemented by source generator, meaning you cannot modify them inside this.
-/// Please visit source code for source generator to modify the handling logic if you persist.
-/// </b>
-/// </remarks>
 public sealed partial class FullHouseStep(
 	Conclusion[] conclusions,
 	View[]? views,

@@ -1,4 +1,3 @@
-
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
