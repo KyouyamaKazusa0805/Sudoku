@@ -11,11 +11,10 @@ public static class MatchCollectionEnumerable
 	{
 		var result = new TResult[@this.Count];
 		var i = 0;
-		foreach (var element in @this.Cast<Match>())
+		foreach (Match element in @this)
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 }
