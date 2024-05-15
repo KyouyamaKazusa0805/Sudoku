@@ -14,5 +14,5 @@ public interface IGlobalizedAnalyzer<in TSelf, out TResult> : IAnalyzer<TSelf, T
 	/// <summary>
 	/// Indicates the current culture that is used for displaying running information.
 	/// </summary>
-	public CultureInfo? CurrentCulture { get; set; }
+	public abstract CultureInfo? CurrentCulture { get; set; }
 }
