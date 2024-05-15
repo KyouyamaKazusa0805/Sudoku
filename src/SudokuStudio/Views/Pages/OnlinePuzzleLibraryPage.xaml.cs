@@ -38,7 +38,7 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 		IncludeFields = false,
 		IgnoreReadOnlyProperties = true,
 		PropertyNamingPolicy = JsonNamingPolicy.CamelCase,
-		Converters = { new json::CultureInfoConverter(), new json::DateOnlyConverter("yyyy/MM/dd") }
+		Converters = { new json::CultureInfoConverter(), new json::DateOnlyConverter { Format = "yyyy/MM/dd" } }
 	};
 
 	/// <summary>

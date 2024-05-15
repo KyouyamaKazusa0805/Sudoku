@@ -902,6 +902,12 @@
         <member name="P:System.Text.Json.CultureInfoConverter.HandleNull">
             <inheritdoc/>
         </member>
+        <member name="P:System.Text.Json.CultureInfoConverter.UseUserOverride">
+            <summary>
+            <para><inheritdoc cref="M:System.Globalization.CultureInfo.#ctor(System.String,System.Boolean)" path="/param[@name='useUserOverride']"/></para>
+            <para>The default value is <see langword="true"/>.</para>
+            </summary>
+        </member>
         <member name="M:System.Text.Json.CultureInfoConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
@@ -912,26 +918,18 @@
             <summary>
             Represents a converter for <see cref="T:System.DateOnly"/> instance.
             </summary>
-            <param name="format">Indicates the format to be initialized.</param>
             <seealso cref="T:System.DateOnly"/>
         </member>
-        <member name="M:System.Text.Json.DateOnlyConverter.#ctor(System.String)">
+        <member name="P:System.Text.Json.DateOnlyConverter.Format">
             <summary>
-            Represents a converter for <see cref="T:System.DateOnly"/> instance.
+            Indicates the format text to be used.
             </summary>
-            <param name="format">Indicates the format to be initialized.</param>
-            <seealso cref="T:System.DateOnly"/>
         </member>
         <member name="M:System.Text.Json.DateOnlyConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
         <member name="M:System.Text.Json.DateOnlyConverter.Write(System.Text.Json.Utf8JsonWriter,System.DateOnly,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
-        </member>
-        <member name="P:System.Text.Json.DateOnlyConverter.Format">
-            <summary>
-            The generated property declaration for parameter <c>format</c>.
-            </summary>
         </member>
         <member name="T:System.Text.Json.IJsonSerializable`1">
             <summary>
@@ -2663,14 +2661,6 @@
             </summary>
             <typeparam name="T">The type of each element.</typeparam>
             <param name="this">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Linq.Enumerable2.HasOnlyOneElement``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Check whether the specified list has only one element.
-            </summary>
-            <typeparam name="T">The type of the element.</typeparam>
-            <param name="this">The list.</param>
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
         </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">

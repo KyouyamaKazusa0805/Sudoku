@@ -24,30 +24,4 @@ public static class Enumerable2
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool None<T>(this IEnumerable<T> @this) => !@this.GetEnumerator().MoveNext();
-
-	/// <summary>
-	/// Check whether the specified list has only one element.
-	/// </summary>
-	/// <typeparam name="T">The type of the element.</typeparam>
-	/// <param name="this">The list.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	public static bool HasOnlyOneElement<T>(this IEnumerable<T> @this)
-	{
-		if (@this.None())
-		{
-			return false;
-		}
-
-		var count = 0;
-		using var enumerator = @this.GetEnumerator();
-		while (enumerator.MoveNext())
-		{
-			if (++count >= 2)
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
 }

@@ -282,7 +282,7 @@ public sealed class DictionaryQuerySolver : ISolver
 				return null;
 			}
 
-			if (dPlaces.HasOnlyOneElement())
+			if (dPlaces.Length == 1)
 			{
 				// d can only be in one place in unit; assign it there.
 				if (Assign(values, dPlaces[0], d) is null)
