@@ -33,13 +33,13 @@ public sealed class ConstraintCollection :
 	/// <summary>
 	/// Determine whether the collection contains an element of the specified type.
 	/// </summary>
-	/// <typeparam name="TConstraint">The type of the constraint to be checked.</typeparam>
+	/// <typeparam name="T">The type of the constraint to be checked.</typeparam>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool Has<TConstraint>() where TConstraint : Constraint
+	public bool Has<T>() where T : Constraint
 	{
 		foreach (var element in this)
 		{
-			if (element is TConstraint)
+			if (element is T)
 			{
 				return true;
 			}

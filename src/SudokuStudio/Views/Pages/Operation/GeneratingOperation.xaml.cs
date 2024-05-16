@@ -142,16 +142,30 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 			gridTextConsumer?.Invoke($"{grid:#}");
 		}
 
-		Grid taskEntry()
+		unsafe Grid taskEntry()
 		{
-			var hasFullHouseConstraint = constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }];
-			var hasSymmetryConstraint = constraints.OfType<SymmetryConstraint>() is not [];
-			var hasFullHouseConstraintInTechniqueSet = constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }];
-			var a = handlerFullHouse;
-			var b = handlerDefault;
-			var handler = hasFullHouseConstraint && !hasSymmetryConstraint || hasFullHouseConstraintInTechniqueSet ? a : b;
-			return coreHandler(constraints, handler, progressReporter, cts.Token, analyzer, ittoryuFinder);
+			return coreHandler(
+				constraints,
+				constraints.OfType<PrimarySingleConstraint>() is [{ Primary: SingleTechniqueFlag.FullHouse }] // hasFullHouseConstraint
+					&& constraints.Has<SymmetryConstraint>() // hasSymmetryConstraint
+					|| constraints.OfType<TechniqueSetConstraint>() is [{ Techniques: [Technique.FullHouse] }] // hasFullHouseConstraintInTechniqueSet
+					? &handlerFullHouse
+					: &handlerDefault,
+				progressReporter,
+				cts.Token,
+				analyzer,
+				ittoryuFinder
+			);
 
+
+			static Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
+			{
+				var generator = new FullHousePuzzleGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens };
+				return generator.GenerateUnique(ct).Puzzle;
+			}
+
+			static Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
+				=> new Generator().Generate(givens, symmetry, ct);
 
 			void progressReporter(T progress)
 			{
@@ -164,20 +178,11 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 					BasePage.AnalyzeStepSearcherNameLabel.Text = progress.ToDisplayString();
 				}
 			}
-
-			Grid handlerFullHouse(int givens, SymmetricType _, CancellationToken ct)
-			{
-				var generator = new FullHousePuzzleGenerator { EmptyCellsCount = givens == -1 ? -1 : 81 - givens };
-				return generator.GenerateUnique(ct).Puzzle;
-			}
-
-			Grid handlerDefault(int givens, SymmetricType symmetry, CancellationToken ct)
-				=> new Generator().Generate(givens, symmetry, ct);
 		}
 
-		Grid coreHandler(
+		unsafe Grid coreHandler(
 			ConstraintCollection constraints,
-			Func<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
+			delegate*<Cell, SymmetricType, CancellationToken, Grid> gridCreator,
 			Action<T> reporter,
 			CancellationToken cancellationToken,
 			Analyzer analyzer,

@@ -28727,7 +28727,7 @@ result ^= expression;
             <summary>
             Determine whether the collection contains an element of the specified type.
             </summary>
-            <typeparam name="TConstraint">The type of the constraint to be checked.</typeparam>
+            <typeparam name="T">The type of the constraint to be checked.</typeparam>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
