@@ -373,7 +373,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
 	/// <example>
-	/// Test example:
+	/// Test examples:
 	/// <code><![CDATA[
 	/// 12...+4+35..731.5..+4+4...23..1...8..41.+8+145.2..3...4.+158.....17.+49.913+48..+574..+5.+13.:715 632 833 341 641 543 643 645 955 661 663 665 271 671 672 673 299
 	/// .48.163.736...2.4.5..3.....+4.....+1.8...451+7..1.....+4..+7....9..4.2.1...736.478.21+9:918 938 862 574
@@ -385,6 +385,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// ..+3......+2.+7...659+95..27..3+4398+16+5+27.2.975.3.1+7+52+4398+67+8+246+1+39+5561......+3+9+4....+6.:815 816 117 417 418 119 419 137
 	/// .+2.75.....9.+3...2.5+8392...1+47+2+59+3186.+3.+8...+5.856+21..3.2+1.+4356.8+36+8+1+7+9.4..+4+5+682.+1.:416 616 426 626 727 729 457 957 959
 	/// 4.5+8+1+6..9.7.94.+56116+9+5....+4+9+5+736+14+28+6+8+1...+3+5+72+43+785+1+9+6.......1571..58+94+35..+1..6.2:737 738 273 274 276
+	/// +8.....7219...7.34+6..+7..4+5+8+9.+7+92.+54383...9..755.......+2+49+36812+5+77...5.8...........:232 135 154 662 663 164 192 292 692 193 293 693 394 296
 	/// ]]></code>
 	/// </example>
 	private QiuDeadlyPatternType1Step? BaseType_Type1(
