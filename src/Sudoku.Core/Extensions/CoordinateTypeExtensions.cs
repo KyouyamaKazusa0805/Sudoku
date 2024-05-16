@@ -10,33 +10,30 @@ public static class CoordinateTypeExtensions
 	/// Gets the <see cref="CoordinateConverter"/> instance via the specified <see cref="CoordinateType"/> instance.
 	/// </summary>
 	/// <param name="this">The current instance.</param>
-	/// <param name="arguments">The arguments to be initialized when calling the constructor.</param>
 	/// <returns>
 	/// A valid <see cref="CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateConverter? GetConverter(this CoordinateType @this, object?[]? arguments = null)
-		=> @this.GetField()?.GetGenericAttributeTypeArguments(typeof(CoordinateConverterAttribute<>)) switch
+	public static CoordinateConverter? GetConverter(this CoordinateType @this)
+		=> @this switch
 		{
-			[var type] => Activator.CreateInstance(type, arguments),
+			CoordinateType.Literal => new LiteralCoordinateConverter(),
+			CoordinateType.RxCy => new RxCyConverter(),
+			CoordinateType.K9 => new K9Converter(),
+			CoordinateType.Excel => new ExcelCoordinateConverter(),
 			_ => null
-		} as CoordinateConverter;
+		};
 
 	/// <summary>
 	/// Gets the <see cref="CoordinateParser"/> instance via the specified <see cref="CoordinateType"/> instance.
 	/// </summary>
 	/// <param name="this">The current instance.</param>
-	/// <param name="arguments">The arguments to be initialized when calling the constructor.</param>
 	/// <returns>
 	/// A valid <see cref="CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CoordinateParser? GetParser(this CoordinateType @this, object?[]? arguments = null)
-		=> @this.GetField()?.GetGenericAttributeTypeArguments(typeof(CoordinateParserAttribute<>)) switch
-		{
-			[var type] => Activator.CreateInstance(type, arguments),
-			_ => null
-		} as CoordinateParser;
+	public static CoordinateParser? GetParser(this CoordinateType @this)
+		=> @this switch { CoordinateType.RxCy => new RxCyParser(), CoordinateType.K9 => new K9Parser(), _ => null };
 
 	/// <summary>
 	/// Gets the <see cref="FieldInfo"/> instance for the specified field.

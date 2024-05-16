@@ -1638,31 +1638,6 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.CoordinateType">
-            <summary>
-            Represents a type of notation to describe a coordinate in sudoku.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CoordinateType.Literal">
-            <summary>
-            Idnicates the notation is based on literally notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CoordinateType.RxCy">
-            <summary>
-            Indicates the notation is based on <b>RxCy</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CoordinateType.K9">
-            <summary>
-            Indicates the notation is based on <b>K9</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CoordinateType.Excel">
-            <summary>
-            Indicates the notation is based on <b>Excel</b> notation.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Grid">
             <summary>
             Represents a sudoku grid that uses the mask list to construct the data structure.
@@ -3339,31 +3314,29 @@
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.CoordinateType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Primitive.CoordinateType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.CoordinateType"/>
+            <seealso cref="T:Sudoku.Primitive.CoordinateType"/>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.CoordinateType,System.Object[])">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Primitive.CoordinateType)">
             <summary>
-            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Primitive.CoordinateType"/> instance.
             </summary>
             <param name="this">The current instance.</param>
-            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
             <returns>
             A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.CoordinateType,System.Object[])">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Primitive.CoordinateType)">
             <summary>
-            Gets the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.CoordinateType"/> instance.
+            Gets the <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Primitive.CoordinateType"/> instance.
             </summary>
             <param name="this">The current instance.</param>
-            <param name="arguments">The arguments to be initialized when calling the constructor.</param>
             <returns>
             A valid <see cref="T:Sudoku.Text.Parsers.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.CoordinateType)">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Primitive.CoordinateType)">
             <summary>
             Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
             </summary>
@@ -4952,6 +4925,31 @@
             <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
             <param name="grid">The grid as candidate reference.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Primitive.CoordinateType">
+            <summary>
+            Represents a type of notation to describe a coordinate in sudoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.CoordinateType.Literal">
+            <summary>
+            Idnicates the notation is based on literally notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.CoordinateType.RxCy">
+            <summary>
+            Indicates the notation is based on <b>RxCy</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.CoordinateType.K9">
+            <summary>
+            Indicates the notation is based on <b>K9</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Primitive.CoordinateType.Excel">
+            <summary>
+            Indicates the notation is based on <b>Excel</b> notation.
+            </summary>
         </member>
         <member name="T:Sudoku.Primitive.IBitStatusMap`3">
             <summary>
@@ -9908,18 +9906,6 @@
         </member>
         <member name="P:Sudoku.Text.Converters.SusserGridConverterTreatingValuesAsGivens.Converter">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.CoordinateConverterAttribute`1">
-            <summary>
-            Represents an attribute type that specifies the bound concept for converter.
-            </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
-        </member>
-        <member name="T:Sudoku.Text.CoordinateParserAttribute`1">
-            <summary>
-            Represents an attribute type that specifies the bound concept for parser.
-            </summary>
-            <typeparam name="T">The type of the parser.</typeparam>
         </member>
         <member name="T:Sudoku.Text.IConceptConverter`1">
             <summary>

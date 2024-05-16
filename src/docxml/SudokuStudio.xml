@@ -4875,7 +4875,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Concepts.CoordinateType"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Primitive.CoordinateType"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter.Convert(System.Object,System.Type,System.Object,System.String)">
