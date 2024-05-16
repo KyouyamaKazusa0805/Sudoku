@@ -7,6 +7,7 @@ global using System.Diagnostics;
 global using System.Diagnostics.CodeAnalysis;
 global using System.Globalization;
 global using System.Linq;
+global using System.Linq.Providers;
 global using System.Numerics;
 global using System.Reflection;
 global using System.Resources;

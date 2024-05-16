@@ -2535,20 +2535,19 @@
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.Aggregate(System.Func{`0,`0,`0})">
-            <summary>
-            Accumulates the values by the specified rule.
-            </summary>
-            <param name="accumulator">The accumulator that creates a new value via original value and the next value.</param>
-            <returns>The final result.</returns>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Aggregate``1(``0,System.Func{``0,`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.Aggregate``2(``0,System.Func{``0,`0,``0},System.Func{``0,``1})">
+            <inheritdoc/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.ToArray">
-            <summary>
-            Sorts the span and return the array representation.
-            </summary>
-            <returns>The array of values sorted.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
@@ -2557,6 +2556,9 @@
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Collections#Generic#IEnumerable{T}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#Providers#ISliceProvider{System#Linq#ArrayOrderedEnumerable{T},T}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#IOrderedEnumerable{T}#CreateOrderedEnumerable``1(System.Func{`0,``0},System.Collections.Generic.IComparer{``0},System.Boolean)">
@@ -2797,6 +2799,434 @@
         </member>
         <member name="M:System.Linq.ListEnumerable.SelectMany``3(System.Collections.Generic.List{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.Enumerable.SelectMany``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}},System.Func{``0,``1,``2})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IAggregateProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Aggregate</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IAggregateProvider`2.Aggregate(System.Func{`1,`1,`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IAggregateProvider`2.Aggregate``1(``0,System.Func{``0,`1,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``2(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IAggregateProvider`2.Aggregate``2(``0,System.Func{``0,`1,``0},System.Func{``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IAnyAllProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Any</c> and <c>All</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IAnyAllProvider`2.Any">
+            <inheritdoc cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IAnyAllProvider`2.Any(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Any``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IAnyAllProvider`2.All(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.All``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IAppendPrependProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Append</c> and <c>Prepend</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IAppendPrependProvider`2.Append(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Append``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IAppendPrependProvider`2.Prepend(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Prepend``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="T:System.Linq.Providers.IAverageProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Average</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IAverageProvider`2.Average``2">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Providers.ICastProvider`1">
+            <summary>
+            Represents a type that supports method group <c>Cast</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ICastProvider`1.Cast``1">
+            <inheritdoc cref="M:System.Linq.Enumerable.Cast``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="T:System.Linq.Providers.IChunkProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Chunk</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IChunkProvider`2.Chunk(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Chunk``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="T:System.Linq.Providers.IConcatProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Concat</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IConcatProvider`2.Concat(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Concat``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IContainsProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Contains</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IContainsProvider`2.Contains(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Contains``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IContainsProvider`2.Contains(`1,System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Contains``1(System.Collections.Generic.IEnumerable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.ICountByProvider`2">
+            <summary>
+            Represents a type that supports method group <c>CountBy</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountByProvider`2.CountBy``1(System.Func{`1,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountByProvider`2.CountBy``1(System.Func{`1,``0},System.Collections.Generic.IEqualityComparer{``0})">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Providers.ICountProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Count</c> and <c>LongCount</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountProvider`2.TryGetNonEnumeratedCount(System.Int32@)">
+            <inheritdoc cref="M:System.Linq.Enumerable.TryGetNonEnumeratedCount``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountProvider`2.Count">
+            <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountProvider`2.Count(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountProvider`2.LongCount">
+            <inheritdoc cref="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.ICountProvider`2.LongCount(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IDefaultIfEmptyProvider`2">
+            <summary>
+            Represents a type that supports method group <c>DefaultIfEmpty</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IDefaultIfEmptyProvider`2.DefaultIfEmpty">
+            <inheritdoc cref="M:System.Linq.Enumerable.DefaultIfEmpty``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IDefaultIfEmptyProvider`2.DefaultIfEmpty(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.DefaultIfEmpty``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="T:System.Linq.Providers.IDistinctProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Distinct</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IDistinctProvider`2.Distinct">
+            <inheritdoc cref="M:System.Linq.Enumerable.Distinct``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IDistinctProvider`2.Distinct(System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Distinct``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IElementAtProvider`2">
+            <summary>
+            Represents a type that supports method group <c>ElementAt</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IElementAtProvider`2.ElementAt(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IElementAtProvider`2.ElementAt(System.Index)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAt``1(System.Collections.Generic.IEnumerable{``0},System.Index)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IElementAtProvider`2.ElementAtOrDefault(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAtOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IElementAtProvider`2.ElementAtOrDefault(System.Index)">
+            <inheritdoc cref="M:System.Linq.Enumerable.ElementAtOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Index)"/>
+        </member>
+        <member name="T:System.Linq.Providers.IExceptProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Except</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IExceptProvider`2.Except(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Except``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IExceptProvider`2.Except(System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Except``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IFirstLastProvider`2">
+            <summary>
+            Represents a type that supports method group <c>First</c>, <c>FirstOrDefault</c>, <c>Last</c> and <c>LastOrDefault</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.First">
+            <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.First(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.First``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.FirstOrDefault">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.FirstOrDefault(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.FirstOrDefault(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.FirstOrDefault(System.Func{`1,System.Boolean},`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.Last">
+            <inheritdoc cref="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.Last(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Last``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.LastOrDefault">
+            <inheritdoc cref="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.LastOrDefault(`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.LastOrDefault(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.LastOrDefault(System.Func{`1,System.Boolean},`1)">
+            <inheritdoc cref="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean},``0)"/>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.TryGetFirst(`1@)">
+            <summary>
+            Try to get the first element in the sequence.
+            </summary>
+            <param name="result">The result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.TryGetFirst(System.Func{`1,System.Boolean},`1@)">
+            <summary>
+            Try to get the first element in the sequence satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <param name="result">The result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.TryGetLast(`1@)">
+            <summary>
+            Try to get the last element in the sequence.
+            </summary>
+            <param name="result">The result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:System.Linq.Providers.IFirstLastProvider`2.TryGetLast(System.Func{`1,System.Boolean},`1@)">
+            <summary>
+            Try to get the last element in the sequence satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <param name="result">The result value.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:System.Linq.Providers.IIndexProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Index</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IIndexProvider`2.Index">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Providers.IIntersectionProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Intersect</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IIntersectionProvider`2.Intersect(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Intersect``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IIntersectionProvider`2.Intersect(System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Intersect``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.ILinqMethodProvider`2">
+            <summary>
+            Represents a type that supports a certain method group defined in <see cref="T:System.Linq.Enumerable"/>, well-known as LINQ methods.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
+            <seealso cref="T:System.Linq.Enumerable"/>
+        </member>
+        <member name="T:System.Linq.Providers.IMinMaxProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Min</c>, <c>MinBy</c>, <c>Max</c> and <c>MaxBy</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Min">
+            <inheritdoc cref="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Min(System.Comparison{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Min(System.Collections.Generic.IComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Min``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.MinBy``1(System.Func{`1,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.MinBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MinBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Max">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Max(System.Comparison{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.Max(System.Collections.Generic.IComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Max``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IComparer{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.MaxBy``1(System.Func{`1,``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IMinMaxProvider`2.MaxBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.MaxBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IOfTypeProvider`2">
+            <summary>
+            Represents a type that supports method group <c>OfType</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IOfTypeProvider`2.OfType``1">
+            <inheritdoc cref="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)"/>
+        </member>
+        <member name="T:System.Linq.Providers.ISequenceEqualProvider`2">
+            <summary>
+            Represents a type that supports method group <c>SequenceEqual</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ISequenceEqualProvider`2.SequenceEqual(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.ISequenceEqualProvider`2.SequenceEqual(System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.SequenceEqual``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.ISkipProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Skip</c>, <c>SkipLast</c> and <c>SkipWhile</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ISkipProvider`2.Skip(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Skip``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ISkipProvider`2.SkipLast(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.SkipLast``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ISkipProvider`2.SkipWhile(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.SkipWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.Providers.ISliceProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Slice</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="T:System.Linq.Providers.ISumProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Sum</c> and <c>SumBy</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ISumProvider`2.Sum">
+            <inheritdoc/>
+        </member>
+        <member name="T:System.Linq.Providers.ITakeProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Take</c>, <c>TakeLast</c> and <c>TakeWhile</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.ITakeProvider`2.Take(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Take``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ITakeProvider`2.Take(System.Range)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Take``1(System.Collections.Generic.IEnumerable{``0},System.Range)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ITakeProvider`2.TakeLast(System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.TakeLast``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.Providers.ITakeProvider`2.TakeWhile(System.Func{`1,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.TakeWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
+        </member>
+        <member name="M:System.Linq.Providers.ITakeProvider`2.TakeWhile(System.Func{`1,System.Int32,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.TakeWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IToArrayProvider`2">
+            <summary>
+            Represents a type that supports method group <c>ToArray</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IToArrayProvider`2.ToArray">
+            <inheritdoc cref="M:System.Linq.Enumerable.ToArray``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IUnionProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Union</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IUnionProvider`2.Union(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Union``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IUnionProvider`2.Union(System.Collections.Generic.IEnumerable{`1},System.Collections.Generic.IEqualityComparer{`1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Union``1(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IZipProvider`2">
+            <summary>
+            Represents a type that supports method group <c>Zip</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IZipProvider`2.Zip``1(System.Collections.Generic.IEnumerable{``0})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IZipProvider`2.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IZipProvider`2.Zip``2(System.Collections.Generic.IEnumerable{``0},System.Func{`1,``0,``1})">
+            <inheritdoc cref="M:System.Linq.Enumerable.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``1,``2})"/>
+        </member>
+        <member name="M:System.Linq.Providers.IZipProvider`2.Zip``3(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{`1,``0,``1,``2})">
+            <inheritdoc/>
         </member>
         <member name="T:System.Linq.ReadOnlyMemoryEnumerable">
             <summary>
@@ -3316,16 +3746,13 @@
             <inheritdoc cref="M:System.Linq.ReadOnlySpanEnumerable.GroupBy``3(System.ReadOnlySpan{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.ReadOnlySpan`1.Slice(System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.GetEnumerator">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetEnumerator"/>
         </member>
         <member name="M:System.Linq.SpanOrderedEnumerable`1.ToArray">
-            <summary>
-            Sorts the span and return the array representation.
-            </summary>
-            <returns>The array of values sorted.</returns>
+            <inheritdoc cref="M:System.Linq.Providers.IToArrayProvider`2.ToArray"/>
         </member>
         <member name="F:System.Linq.SpanOrderedEnumerable`1._values">
             <summary>

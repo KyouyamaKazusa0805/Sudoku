@@ -20,8 +20,10 @@ namespace Sudoku.Analytics.Categorization;
 [EqualityOperators]
 public sealed partial class TechniqueSet :
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
+	IAnyAllProvider<TechniqueSet, Technique>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
+	IContainsProvider<TechniqueSet, Technique>,
 	ICultureFormattable,
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
@@ -30,7 +32,9 @@ public sealed partial class TechniqueSet :
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
 	ISet<Technique>,
-	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>
+	ISliceProvider<TechniqueSet, Technique>,
+	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
+	IToArrayProvider<TechniqueSet, Technique>
 {
 	/// <summary>
 	/// Indicates the information for the techniques, can lookup the relation via its belonging technique group.
@@ -220,11 +224,7 @@ public sealed partial class TechniqueSet :
 		return true;
 	}
 
-	/// <summary>
-	/// Determines whether the specified technique is in the collection.
-	/// </summary>
-	/// <param name="item">The technique.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Contains(Technique item) => _techniqueBits[TechniqueProjection(item)];
 
@@ -316,21 +316,11 @@ public sealed partial class TechniqueSet :
 		);
 	}
 
-	/// <summary>
-	/// Converts the current collection into an array.
-	/// </summary>
-	/// <returns>The final array converted.</returns>
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Technique[] ToArray() => [.. this];
 
-	/// <summary>
-	/// Forms a slice out of the current collection starting at a specified index for a specified length.
-	/// </summary>
-	/// <param name="start"><inheritdoc cref="ReadOnlySpan{T}.Slice(int)" path="/param[@name='start']"/></param>
-	/// <param name="count"><inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)" path="/param[@name='length']"/></param>
-	/// <returns>
-	/// A new <see cref="TechniqueSet"/> that consists of all elements of the current collection
-	/// from <paramref name="start"/> to the end of the slicing, given by <paramref name="count"/>.
-	/// </returns>
+	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
 	public TechniqueSet Slice(int start, int count)
 	{
 		var result = TechniqueSets.None;
@@ -351,87 +341,11 @@ public sealed partial class TechniqueSet :
 	public Enumerator GetEnumerator() => new(_techniqueBits);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	void ICollection<Technique>.CopyTo(Technique[] array, int arrayIndex)
 		=> Array.Copy(this[arrayIndex..].ToArray(), array, Count - arrayIndex);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSubsetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.IsSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSupersetOf(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.Overlaps(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).Overlaps(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool ISet<Technique>.SetEquals(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).SetEquals(other);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other)
-	{
-		var otherSet = (TechniqueSet)([.. other]);
-		return (otherSet & this) == this && this != otherSet;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other)
-	{
-		var otherSet = (TechniqueSet)([.. other]);
-		return (this & otherSet) == otherSet && this != otherSet;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ([.. other] & this) == this;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.IsSupersetOf(IEnumerable<Technique> other)
-	{
-		var otherSet = (TechniqueSet)([.. other]);
-		return (this & otherSet) == otherSet;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.Overlaps(IEnumerable<Technique> other) => (this & [.. other]).Count != 0;
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	bool IReadOnlySet<Technique>.SetEquals(IEnumerable<Technique> other) => this == [.. other];
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	IEnumerator IEnumerable.GetEnumerator() => _techniqueBits.GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<Technique> IEnumerable<Technique>.GetEnumerator()
-	{
-		var index = 0;
-		foreach (bool techniqueBit in _techniqueBits)
-		{
-			if (techniqueBit)
-			{
-				yield return TechniqueProjectionBack(index);
-			}
-			index++;
-		}
-	}
+	void ICollection<Technique>.Add(Technique item) => Add(item);
 
 	/// <inheritdoc/>
 	void ISet<Technique>.ExceptWith(IEnumerable<Technique> other)
@@ -476,8 +390,78 @@ public sealed partial class TechniqueSet :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	void ICollection<Technique>.Add(Technique item) => Add(item);
+	bool ISet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSubsetOf(other);
+
+	/// <inheritdoc/>
+	bool ISet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsProperSupersetOf(other);
+
+	/// <inheritdoc/>
+	bool ISet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSubsetOf(other);
+
+	/// <inheritdoc/>
+	bool ISet<Technique>.IsSupersetOf(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).IsSupersetOf(other);
+
+	/// <inheritdoc/>
+	bool ISet<Technique>.Overlaps(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).Overlaps(other);
+
+	/// <inheritdoc/>
+	bool ISet<Technique>.SetEquals(IEnumerable<Technique> other) => ((IReadOnlySet<Technique>)this).SetEquals(other);
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.IsProperSubsetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (otherSet & this) == this && this != otherSet;
+	}
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.IsProperSupersetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (this & otherSet) == otherSet && this != otherSet;
+	}
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.IsSubsetOf(IEnumerable<Technique> other) => ([.. other] & this) == this;
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.IsSupersetOf(IEnumerable<Technique> other)
+	{
+		var otherSet = (TechniqueSet)([.. other]);
+		return (this & otherSet) == otherSet;
+	}
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.Overlaps(IEnumerable<Technique> other) => (this & [.. other]).Count != 0;
+
+	/// <inheritdoc/>
+	bool IReadOnlySet<Technique>.SetEquals(IEnumerable<Technique> other) => this == [.. other];
+
+	/// <inheritdoc/>
+	bool IAnyAllProvider<TechniqueSet, Technique>.Any() => Count != 0;
+
+	/// <inheritdoc/>
+	bool IAnyAllProvider<TechniqueSet, Technique>.Any(Func<Technique, bool> predicate) => Exists(predicate);
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => _techniqueBits.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Technique> IEnumerable<Technique>.GetEnumerator()
+	{
+		var index = 0;
+		foreach (bool techniqueBit in _techniqueBits)
+		{
+			if (techniqueBit)
+			{
+				yield return TechniqueProjectionBack(index);
+			}
+			index++;
+		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<Technique> ISliceProvider<TechniqueSet, Technique>.Slice(int start, int count) => Slice(start, count);
 
 
 	/// <summary>

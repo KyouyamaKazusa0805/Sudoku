@@ -14,9 +14,12 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] T[] values,
 	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
 ) :
+	IAggregateProvider<ArrayOrderedEnumerable<T>, T>,
 	IEnumerable<T>,
 	IOrderedEnumerable<T>,
-	IReadOnlyCollection<T>
+	IReadOnlyCollection<T>,
+	ISliceProvider<ArrayOrderedEnumerable<T>, T>,
+	IToArrayProvider<ArrayOrderedEnumerable<T>, T>
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
@@ -168,29 +171,31 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		return [.. result];
 	}
 
-	/// <summary>
-	/// Accumulates the values by the specified rule.
-	/// </summary>
-	/// <param name="accumulator">The accumulator that creates a new value via original value and the next value.</param>
-	/// <returns>The final result.</returns>
-	public T? Aggregate(Func<T?, T?, T> accumulator)
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public T? Aggregate(Func<T?, T?, T> func) => Aggregate(default, func, Methods.Self);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func)
+		=> Aggregate(seed, func, Methods.Self);
+
+	/// <inheritdoc/>
+	public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)
 	{
-		var result = default(T);
+		var result = seed;
 		foreach (var element in this)
 		{
-			result = accumulator(result, element);
+			result = func(result, element);
 		}
-		return result;
+		return resultSelector(result);
 	}
 
-	/// <inheritdoc cref="ReadOnlySpan{T}.Slice(int, int)"/>
+	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public T[] Slice(int start, int length) => ArrayOrdered[start..(start + length)];
 
-	/// <summary>
-	/// Sorts the span and return the array representation.
-	/// </summary>
-	/// <returns>The array of values sorted.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public T[] ToArray() => ArrayOrdered;
 
@@ -203,6 +208,9 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 
 	/// <inheritdoc/>
 	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<T> ISliceProvider<ArrayOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count);
 
 	/// <inheritdoc/>
 	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending) => Create(_values, keySelector, comparer, descending);

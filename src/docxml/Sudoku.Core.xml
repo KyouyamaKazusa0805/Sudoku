@@ -1384,11 +1384,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Contains(Sudoku.Concepts.Conclusion)">
-            <summary>
-            Indicates whether the collection contains the specified conclusion.
-            </summary>
-            <param name="conclusion">The conclusion.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ContainsCell(System.Int32)">
             <summary>
@@ -1410,10 +1406,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
-            <summary>
-            Try to get the conclusions.
-            </summary>
-            <returns>The conclusions.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetEnumerator">
             <summary>
@@ -1422,17 +1415,15 @@
             <returns>An enumerator type that iterates on each conclusion.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the collection, from the specified start index and the number of the elements.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="length">The number of elements you want to get.</param>
-            <returns>The result <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Conclusion}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#ISliceProvider{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.TryParse(System.String,Sudoku.Concepts.ConclusionSet@)">

@@ -13,11 +13,14 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public sealed partial class ConclusionSet() :
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
+	IContainsProvider<ConclusionSet, Conclusion>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
 	ILogicalOperators<ConclusionSet>,
-	ISudokuConcept<ConclusionSet>
+	ISliceProvider<ConclusionSet, Conclusion>,
+	ISudokuConcept<ConclusionSet>,
+	IToArrayProvider<ConclusionSet, Conclusion>
 {
 	/// <summary>
 	/// The total length of bits.
@@ -176,13 +179,9 @@ public sealed partial class ConclusionSet() :
 		return true;
 	}
 
-	/// <summary>
-	/// Indicates whether the collection contains the specified conclusion.
-	/// </summary>
-	/// <param name="conclusion">The conclusion.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Contains(Conclusion conclusion) => _bitArray[conclusion.GetHashCode()];
+	public bool Contains(Conclusion value) => _bitArray[value.GetHashCode()];
 
 	/// <summary>
 	/// Indicates whether the collection contains the specified cell.
@@ -233,10 +232,7 @@ public sealed partial class ConclusionSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConclusionConverter([.. _conclusionsEntry]);
 
-	/// <summary>
-	/// Try to get the conclusions.
-	/// </summary>
-	/// <returns>The conclusions.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Conclusion[] ToArray() => [.. _conclusionsEntry];
 
@@ -247,21 +243,18 @@ public sealed partial class ConclusionSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
 
-	/// <summary>
-	/// Slices the collection, from the specified start index and the number of the elements.
-	/// </summary>
-	/// <param name="start">The start index.</param>
-	/// <param name="length">The number of elements you want to get.</param>
-	/// <returns>The result <see cref="ConclusionSet"/> instance.</returns>
-	public ConclusionSet Slice(int start, int length) => new(_conclusionsEntry[start..(start + length)].AsSpan());
+	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConclusionSet Slice(int start, int count) => new(_conclusionsEntry[start..(start + count)].AsSpan());
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => _conclusionsEntry.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<Conclusion> ISliceProvider<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);
 
 
 	/// <inheritdoc/>
