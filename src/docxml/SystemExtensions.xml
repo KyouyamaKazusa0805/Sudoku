@@ -3078,6 +3078,119 @@
             <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
             <seealso cref="T:System.Linq.Enumerable"/>
         </member>
+        <member name="P:System.Linq.Providers.ILinqMethodProvider`2.IsValueLazilyCalculated">
+            <summary>
+            Indicates whether the provider type <typeparamref name="TSelf"/> won't calculate the final result immediately.
+            The value can be <see langword="true"/> if such calculation is applied like <see cref="T:System.Collections.Generic.IEnumerable`1"/> values.
+            By default, the value is <see langword="false"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1"/>
+        </member>
+        <member name="P:System.Linq.Providers.ILinqMethodProvider`2.SupportsQuerySyntax">
+            <summary>
+            Indicates whether the methods defined in type <typeparamref name="TSelf"/> support for query syntax also.
+            By default, the value is <see langword="false"/>.
+            </summary>
+            <remarks>
+            All possible query clauses are:
+            <list type="table">
+            <listheader>
+            <term>Query syntax</term>
+            <description>Equivalent method</description>
+            </listheader>
+            </list>
+            <list type="bullet">
+            <item>
+            <term><see langword="from"/> element <see langword="in"/> collection</term>
+            <description>N/A</description>
+            </item>
+            <item>
+            <term>
+            <see langword="from"/> element1 <see langword="in"/> collection1<br/>
+            <see langword="from"/> element2 <see langword="in"/> collection2
+            </term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.SelectMany``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Collections.Generic.IEnumerable{``1}})"/>
+            </description>
+            </item>
+            <item>
+            <term><see langword="where"/> condition</term>
+            <description><see cref="M:System.Linq.Enumerable.Where``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/></description>
+            </item>
+            <item>
+            <term><see langword="let"/> variable = expression</term>
+            <description><see cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term><see langword="select"/> { variable | expression } [<see langword="into"/> variable]</term>
+            <description><see cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term><see langword="orderby"/> { variable | expression }</term>
+            <description><see cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term><see langword="orderby"/> { variable | expression } <see langword="ascending"/></term>
+            <description><see cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term><see langword="orderby"/> { variable | expression } <see langword="descending"/></term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+            </description>
+            </item>
+            <item>
+            <term><see langword="orderby"/> { v1 | e1 }, { v2 | e2 } ...</term>
+            <description><see cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term>
+            <see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="ascending"/> ...
+            </term>
+            <description><see cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/></description>
+            </item>
+            <item>
+            <term>
+            <see langword="orderby"/> { v1 | e1 }, { v2 | e2 } <see langword="descending"/> ...
+            </term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
+            </description>
+            </item>
+            <item>
+            <term><see langword="group"/> variable <see langword="by"/> { variable | expression } [<see langword="into"/> variable]</term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.GroupBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
+            </description>
+            </item>
+            <item>
+            <term><see langword="group"/> expression <see langword="by"/> expression [<see langword="into"/> variable]</term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.GroupBy``3(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2})"/>
+            </description>
+            </item>
+            <item>
+            <term>
+            <see langword="join"/> variable <see langword="in"/> collection
+            <see langword="on"/> previousVariable <see langword="equals"/> variable
+            </term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.Join``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,``1,``3})"/>
+            </description>
+            </item>
+            <item>
+            <term>
+            <see langword="join"/> variable2 <see langword="in"/> collection2
+            <see langword="on"/> variable1 <see langword="equals"/> variable2
+            <see langword="into"/> joinedGroup
+            </term>
+            <description>
+            <see cref="M:System.Linq.Enumerable.GroupJoin``4(System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEnumerable{``1},System.Func{``0,``2},System.Func{``1,``2},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3})"/>
+            </description>
+            </item>
+            </list>
+            </remarks>
+        </member>
         <member name="T:System.Linq.Providers.IMinMaxProvider`2">
             <summary>
             Represents a type that supports method group <c>Min</c>, <c>MinBy</c>, <c>Max</c> and <c>MaxBy</c>.
