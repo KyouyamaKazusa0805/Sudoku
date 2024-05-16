@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Count</c> and <c>LongCount</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ICountProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : ICountProvider<TSelf, TSource>
+public interface ICountMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICountMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.TryGetNonEnumeratedCount{TSource}(IEnumerable{TSource}, out int)"/>
 	public virtual bool TryGetNonEnumeratedCount(out int count)

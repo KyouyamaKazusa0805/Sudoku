@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Zip</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IZipProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IZipProvider<TSelf, TSource>
+public interface IZipMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IZipMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Zip{TFirst, TSecond}(IEnumerable{TFirst}, IEnumerable{TSecond})"/>
 	public virtual IEnumerable<(TSource First, TSecond Second)> Zip<TSecond>(IEnumerable<TSecond> second)

@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Chunk</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IChunkProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IChunkProvider<TSelf, TSource>
+public interface IChunkMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IChunkMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Chunk{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource[]> Chunk(int size)

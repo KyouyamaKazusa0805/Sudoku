@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Aggregate</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IAggregateProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IAggregateProvider<TSelf, TSource>
+public interface IAggregateMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IAggregateMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
 	public virtual TSource? Aggregate(Func<TSource?, TSource?, TSource> func) => Aggregate(default, func, Methods.Self);

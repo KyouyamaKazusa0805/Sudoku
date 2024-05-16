@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>SequenceEqual</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ISequenceEqualProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : ISequenceEqualProvider<TSelf, TSource>
+public interface ISequenceEqualMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ISequenceEqualMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.SequenceEqual{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual bool SequenceEqual(IEnumerable<TSource> second) => SequenceEqual(second, null);

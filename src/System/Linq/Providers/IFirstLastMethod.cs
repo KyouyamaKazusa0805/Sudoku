@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>First</c>, <c>FirstOrDefault</c>, <c>Last</c> and <c>LastOrDefault</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IFirstLastProvider<TSelf, TSource> : IAnyAllProvider<TSelf, TSource>, ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IFirstLastProvider<TSelf, TSource>
+public interface IFirstLastMethod<TSelf, TSource> : IAnyAllMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
+	where TSelf : IFirstLastMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.First{TSource}(IEnumerable{TSource})"/>
 	public virtual TSource First() => TryGetFirst(out var result) ? result : throw new InvalidOperationException();

@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>OfType</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IOfTypeProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IOfTypeProvider<TSelf, TSource>
+public interface IOfTypeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IOfTypeMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.OfType{TResult}(IEnumerable)"/>
 	public virtual IEnumerable<TResult> OfType<TResult>() where TResult : TSource

@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Index</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IIndexProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IIndexProvider<TSelf, TSource>
+public interface IIndexMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IIndexMethod<TSelf, TSource>
 {
 	/// <inheritdoc/>
 	public virtual IEnumerable<(int Index, TSource Item)> Index()

@@ -14,12 +14,12 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] T[] values,
 	[PrimaryConstructorParameter(MemberKinds.Field)] params Func<T, T, int>[] selectors
 ) :
-	IAggregateProvider<ArrayOrderedEnumerable<T>, T>,
+	IAggregateMethod<ArrayOrderedEnumerable<T>, T>,
 	IEnumerable<T>,
 	IOrderedEnumerable<T>,
 	IReadOnlyCollection<T>,
-	ISliceProvider<ArrayOrderedEnumerable<T>, T>,
-	IToArrayProvider<ArrayOrderedEnumerable<T>, T>
+	ISliceMethod<ArrayOrderedEnumerable<T>, T>,
+	IToArrayMethod<ArrayOrderedEnumerable<T>, T>
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
@@ -191,7 +191,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		return resultSelector(result);
 	}
 
-	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
+	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public T[] Slice(int start, int length) => ArrayOrdered[start..(start + length)];
 
@@ -210,7 +210,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)ArrayOrdered).GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerable<T> ISliceProvider<ArrayOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count);
+	IEnumerable<T> ISliceMethod<ArrayOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count);
 
 	/// <inheritdoc/>
 	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending) => Create(_values, keySelector, comparer, descending);

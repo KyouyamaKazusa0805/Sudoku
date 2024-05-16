@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Except</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IExceptProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IExceptProvider<TSelf, TSource>
+public interface IExceptMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : IExceptMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Except{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Except(IEnumerable<TSource> second) => Except(second, null);

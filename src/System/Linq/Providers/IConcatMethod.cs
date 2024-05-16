@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Concat</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IConcatProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IConcatProvider<TSelf, TSource>
+public interface IConcatMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IConcatMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Concat{TSource}(IEnumerable{TSource}, IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Concat(IEnumerable<TSource> second) => [.. this, .. second];

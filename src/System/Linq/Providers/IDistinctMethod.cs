@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Distinct</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IDistinctProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IDistinctProvider<TSelf, TSource>
+public interface IDistinctMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IDistinctMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Distinct{TSource}(IEnumerable{TSource})"/>
 	public virtual IEnumerable<TSource> Distinct() => Distinct(EqualityComparer<TSource>.Default);

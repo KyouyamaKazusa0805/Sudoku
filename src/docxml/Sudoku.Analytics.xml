@@ -4031,7 +4031,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -4090,10 +4090,10 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#IReadOnlySet{Sudoku#Analytics#Categorization#Technique}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IAnyAllProvider{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Any">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Any">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IAnyAllProvider{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Any(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Any(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#IEnumerable#GetEnumerator">
@@ -4102,7 +4102,7 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Categorization#Technique}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#ISliceProvider{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#ISliceMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueProjection(Sudoku.Analytics.Categorization.Technique)">

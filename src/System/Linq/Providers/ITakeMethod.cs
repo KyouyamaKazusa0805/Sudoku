@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Take</c>, <c>TakeLast</c> and <c>TakeWhile</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ITakeProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : ITakeProvider<TSelf, TSource>
+public interface ITakeMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ITakeMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual IEnumerable<TSource> Take(int count) => new List<TSource>(this)[..count];

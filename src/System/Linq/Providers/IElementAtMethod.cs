@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>ElementAt</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IElementAtProvider<TSelf, TSource> : ICountProvider<TSelf, TSource>, ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IElementAtProvider<TSelf, TSource>
+public interface IElementAtMethod<TSelf, TSource> : ICountMethod<TSelf, TSource>, ILinqMethod<TSelf, TSource>
+	where TSelf : IElementAtMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.ElementAt{TSource}(IEnumerable{TSource}, int)"/>
 	public virtual TSource ElementAt(int index)

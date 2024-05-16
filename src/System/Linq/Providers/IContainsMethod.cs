@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Contains</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IContainsProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IContainsProvider<TSelf, TSource>
+public interface IContainsMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : IContainsMethod<TSelf, TSource>
 	where TSource : notnull
 {
 	/// <inheritdoc cref="Enumerable.Contains{TSource}(IEnumerable{TSource}, TSource)"/>

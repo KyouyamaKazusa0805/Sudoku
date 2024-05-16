@@ -20,10 +20,10 @@ namespace Sudoku.Analytics.Categorization;
 [EqualityOperators]
 public sealed partial class TechniqueSet :
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
-	IAnyAllProvider<TechniqueSet, Technique>,
+	IAnyAllMethod<TechniqueSet, Technique>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
-	IContainsProvider<TechniqueSet, Technique>,
+	IContainsMethod<TechniqueSet, Technique>,
 	ICultureFormattable,
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
@@ -32,9 +32,9 @@ public sealed partial class TechniqueSet :
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
 	ISet<Technique>,
-	ISliceProvider<TechniqueSet, Technique>,
+	ISliceMethod<TechniqueSet, Technique>,
 	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
-	IToArrayProvider<TechniqueSet, Technique>
+	IToArrayMethod<TechniqueSet, Technique>
 {
 	/// <summary>
 	/// Indicates the information for the techniques, can lookup the relation via its belonging technique group.
@@ -320,7 +320,7 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Technique[] ToArray() => [.. this];
 
-	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
+	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public TechniqueSet Slice(int start, int count)
 	{
 		var result = TechniqueSets.None;
@@ -438,10 +438,10 @@ public sealed partial class TechniqueSet :
 	bool IReadOnlySet<Technique>.SetEquals(IEnumerable<Technique> other) => this == [.. other];
 
 	/// <inheritdoc/>
-	bool IAnyAllProvider<TechniqueSet, Technique>.Any() => Count != 0;
+	bool IAnyAllMethod<TechniqueSet, Technique>.Any() => Count != 0;
 
 	/// <inheritdoc/>
-	bool IAnyAllProvider<TechniqueSet, Technique>.Any(Func<Technique, bool> predicate) => Exists(predicate);
+	bool IAnyAllMethod<TechniqueSet, Technique>.Any(Func<Technique, bool> predicate) => Exists(predicate);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _techniqueBits.GetEnumerator();
@@ -461,7 +461,7 @@ public sealed partial class TechniqueSet :
 	}
 
 	/// <inheritdoc/>
-	IEnumerable<Technique> ISliceProvider<TechniqueSet, Technique>.Slice(int start, int count) => Slice(start, count);
+	IEnumerable<Technique> ISliceMethod<TechniqueSet, Technique>.Slice(int start, int count) => Slice(start, count);
 
 
 	/// <summary>

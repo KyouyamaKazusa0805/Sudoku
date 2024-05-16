@@ -13,14 +13,14 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 public sealed partial class ConclusionSet() :
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
-	IContainsProvider<ConclusionSet, Conclusion>,
+	IContainsMethod<ConclusionSet, Conclusion>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
 	ILogicalOperators<ConclusionSet>,
-	ISliceProvider<ConclusionSet, Conclusion>,
+	ISliceMethod<ConclusionSet, Conclusion>,
 	ISudokuConcept<ConclusionSet>,
-	IToArrayProvider<ConclusionSet, Conclusion>
+	IToArrayMethod<ConclusionSet, Conclusion>
 {
 	/// <summary>
 	/// The total length of bits.
@@ -243,7 +243,7 @@ public sealed partial class ConclusionSet() :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Enumerator GetEnumerator() => new(this);
 
-	/// <inheritdoc cref="ISliceProvider{TSelf, TSource}.Slice(int, int)"/>
+	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConclusionSet Slice(int start, int count) => new(_conclusionsEntry[start..(start + count)].AsSpan());
 
@@ -254,7 +254,7 @@ public sealed partial class ConclusionSet() :
 	IEnumerator<Conclusion> IEnumerable<Conclusion>.GetEnumerator() => _conclusionsEntry.GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerable<Conclusion> ISliceProvider<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);
+	IEnumerable<Conclusion> ISliceMethod<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);
 
 
 	/// <inheritdoc/>

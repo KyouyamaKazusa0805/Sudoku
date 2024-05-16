@@ -4,8 +4,7 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Append</c> and <c>Prepend</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IAppendPrependProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IAppendPrependProvider<TSelf, TSource>
+public interface IAppendPrependMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : IAppendPrependMethod<TSelf, TSource>
 {
 	/// <inheritdoc cref="Enumerable.Append{TSource}(IEnumerable{TSource}, TSource)"/>
 	public virtual IEnumerable<TSource> Append(TSource element) => [.. this, element];

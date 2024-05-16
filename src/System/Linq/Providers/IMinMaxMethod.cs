@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Min</c>, <c>MinBy</c>, <c>Max</c> and <c>MaxBy</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface IMinMaxProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : IMinMaxProvider<TSelf, TSource>
+public interface IMinMaxMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : IMinMaxMethod<TSelf, TSource>
 	where TSource : IComparable<TSource>, IComparisonOperators<TSource, TSource, bool>, IMinMaxValue<TSource>
 {
 	/// <inheritdoc cref="Enumerable.Min{TSource}(IEnumerable{TSource})"/>

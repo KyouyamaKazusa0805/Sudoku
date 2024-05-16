@@ -4,8 +4,8 @@ namespace System.Linq.Providers;
 /// Represents a type that supports method group <c>Sum</c> and <c>SumBy</c>.
 /// </summary>
 /// <inheritdoc/>
-public interface ISumProvider<TSelf, TSource> : ILinqMethodProvider<TSelf, TSource>
-	where TSelf : ISumProvider<TSelf, TSource>
+public interface ISumMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
+	where TSelf : ISumMethod<TSelf, TSource>
 	where TSource : IAdditiveIdentity<TSource, TSource>, IAdditionOperators<TSource, TSource, TSource>
 {
 	/// <inheritdoc/>

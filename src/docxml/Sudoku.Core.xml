@@ -1415,7 +1415,7 @@
             <returns>An enumerator type that iterates on each conclusion.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Linq.Providers.ISliceProvider`2.Slice(System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -1423,7 +1423,7 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Conclusion}#GetEnumerator">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#ISliceProvider{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Slice(System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#ISliceMethod{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.TryParse(System.String,Sudoku.Concepts.ConclusionSet@)">
