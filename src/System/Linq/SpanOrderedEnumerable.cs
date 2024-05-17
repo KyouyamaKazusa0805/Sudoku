@@ -20,11 +20,28 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	[PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> values,
 	[PrimaryConstructorParameter(MemberKinds.Field), UnscopedRef] params ReadOnlySpan<Func<T, T, int>> selectors
 )
+#if false
+	:
+	IEnumerable<T>,
+	IGroupByMethod<SpanOrderedEnumerable<T>, T>,
+	IOrderedEnumerable<T>,
+	IReadOnlyCollection<T>,
+	ISelectMethod<SpanOrderedEnumerable<T>, T>,
+	ISliceMethod<SpanOrderedEnumerable<T>, T>,
+	IThenByMethod<SpanOrderedEnumerable<T>, T>,
+	IToArrayMethod<SpanOrderedEnumerable<T>, T>,
+	IWhereMethod<SpanOrderedEnumerable<T>, T>
+#endif
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
 	/// </summary>
 	public int Length => _values.Length;
+
+#if false
+	/// <inheritdoc/>
+	int IReadOnlyCollection<T>.Count => Length;
+#endif
 
 	/// <summary>
 	/// Creates an ordered <see cref="Span{T}"/> instance.
@@ -189,4 +206,66 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 	/// <inheritdoc cref="IToArrayMethod{TSelf, TSource}.ToArray"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public T[] ToArray() => Span.ToArray();
+
+#if false
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => Span.ToArray().GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<T> IEnumerable<T>.GetEnumerator() => ((IEnumerable<T>)Span.ToArray()).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<T> ISliceMethod<SpanOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<T> IWhereMethod<SpanOrderedEnumerable<T>, T>.Where(Func<T, bool> predicate) => Where(predicate).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenBy<TKey>(Func<T, TKey> keySelector) => ThenBy(keySelector);
+
+	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<SpanOrderedEnumerable<T>, T>.ThenByDescending<TKey>(Func<T, TKey> keySelector)
+		=> ThenByDescending(keySelector);
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<SpanOrderedEnumerable<T>, T>.Select<TResult>(Func<T, TResult> selector) => Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<IGrouping<TKey, T>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey>(Func<T, TKey> keySelector)
+		=> GroupBy(keySelector).ToArray().Select(element => (IGrouping<TKey, T>)element);
+
+	/// <inheritdoc/>
+	IEnumerable<IGrouping<TKey, TElement>> IGroupByMethod<SpanOrderedEnumerable<T>, T>.GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
+		=> GroupBy(keySelector, elementSelector).ToArray().Select(element => (IGrouping<TKey, TElement>)element);
+
+	/// <inheritdoc/>
+	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
+		=> Create(_values, keySelector, comparer, descending);
+
+
+	/// <summary>
+	/// Creates an <see cref="SpanOrderedEnumerable{T}"/> instance via the specified values.
+	/// </summary>
+	/// <typeparam name="TKey">The type of the key to be compared.</typeparam>
+	/// <param name="values">The values to be used.</param>
+	/// <param name="keySelector">
+	/// The selector method that calculates a <typeparamref name="TKey"/> from each <typeparamref name="T"/> instance.
+	/// </param>
+	/// <param name="comparer">
+	/// A comparable instance that temporarily checks the comparing result of two <typeparamref name="TKey"/> values.
+	/// </param>
+	/// <param name="descending">A <see cref="bool"/> value indicating whether the creation is for descending comparison rule.</param>
+	/// <returns>An <see cref="SpanOrderedEnumerable{T}"/> instance.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static SpanOrderedEnumerable<T> Create<TKey>(ReadOnlySpan<T> values, Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending)
+	{
+		comparer ??= Comparer<TKey>.Default;
+		return new(values, descending ? descendingComparer : ascendingComparer);
+
+
+		int ascendingComparer(T left, T right) => comparer.Compare(keySelector(left), keySelector(right));
+
+		int descendingComparer(T left, T right) => -comparer.Compare(keySelector(left), keySelector(right));
+	}
+#endif
 }
