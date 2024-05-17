@@ -5223,6 +5223,9 @@
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Linq#Providers#IContainsMethod{TSelf,TElement}#Contains(`1)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#ToJsonString">
             <inheritdoc/>
         </member>

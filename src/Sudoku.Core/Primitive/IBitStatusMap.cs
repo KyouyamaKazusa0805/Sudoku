@@ -14,6 +14,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAnyAllMethod<TSelf, TElement>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICultureFormattable,
+	IContainsMethod<TSelf, TElement>,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IFirstLastMethod<TSelf, TElement>,
@@ -324,6 +325,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	bool ICollection<TElement>.Remove(TElement item) => Remove(item);
+
+	/// <inheritdoc/>
+	bool IContainsMethod<TSelf, TElement>.Contains(TElement value) => ((ICollection<TElement>)this).Contains(value);
 
 	/// <inheritdoc/>
 	string IJsonSerializable<TSelf>.ToJsonString() => JsonSerializer.Serialize((TSelf)this, TSelf.DefaultOptions);
