@@ -9,11 +9,10 @@ namespace System.Linq.Providers;
 /// <typeparam name="TThenBySource">The type of each element of collection type <typeparamref name="TThenBy"/>.</typeparam>
 public interface IOrderByMethod<TSelf, TSource, TThenBy, TThenBySource> : IQueryExpressionMethod<TSelf, TSource>
 	where TSelf : IOrderByMethod<TSelf, TSource, TThenBy, TThenBySource>
-	where TThenBy : IThenByMethod<TThenBy, TThenBySource, TThenBy, TThenBySource>
+	where TThenBy : IThenByMethod<TThenBy, TThenBySource>
 {
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey})"/>
-	public virtual TThenBy OrderBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull
-		=> OrderBy(keySelector, null);
+	public virtual TThenBy OrderBy<TKey>(Func<TSource, TKey> keySelector) where TKey : notnull => OrderBy(keySelector, null);
 
 	/// <inheritdoc cref="Enumerable.OrderBy{TSource, TKey}(IEnumerable{TSource}, Func{TSource, TKey}, IComparer{TKey}?)"/>
 	public virtual TThenBy OrderBy<TKey>(Func<TSource, TKey> keySelector, IComparer<TKey>? comparer) where TKey : notnull

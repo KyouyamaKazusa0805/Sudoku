@@ -16,7 +16,11 @@ namespace System.Linq;
 public sealed partial class ArrayGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private")] TSource[] elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) : IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource> where TKey : notnull
+) :
+	IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>,
+	ISelectMethod<ArrayGrouping<TSource, TKey>, TSource>,
+	IWhereMethod<ArrayGrouping<TSource, TKey>, TSource>
+	where TKey : notnull
 {
 	/// <inheritdoc/>
 	ReadOnlySpan<TSource> IGroupingDataProvider<ArrayGrouping<TSource, TKey>, TKey, TSource>.Elements => _elements;
@@ -90,4 +94,12 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref readonly TSource GetPinnableReference() => ref _elements[0];
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<ArrayGrouping<TSource, TKey>, TSource>.Select<TResult>(Func<TSource, TResult> selector)
+		=> Select(selector);
+
+	/// <inheritdoc/>
+	IEnumerable<TSource> IWhereMethod<ArrayGrouping<TSource, TKey>, TSource>.Where(Func<TSource, bool> predicate)
+		=> Where(predicate);
 }

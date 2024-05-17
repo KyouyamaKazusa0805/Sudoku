@@ -2397,6 +2397,12 @@
         <member name="M:System.Linq.ArrayGrouping`2.GetPinnableReference">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
         </member>
+        <member name="M:System.Linq.ArrayGrouping`2.System#Linq#Providers#ISelectMethod{System#Linq#ArrayGrouping{TSource,TKey},TSource}#Select``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayGrouping`2.System#Linq#Providers#IWhereMethod{System#Linq#ArrayGrouping{TSource,TKey},TSource}#Where(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="F:System.Linq.ArrayGrouping`2._elements">
             <summary>
             The generated field declaration for parameter <c>elements</c>.
@@ -3114,7 +3120,7 @@
         </member>
         <member name="T:System.Linq.Providers.IJoinMethod`2">
             <summary>
-            Represents a type that supports method group <c>Join</c>.
+            Represents a type that supports method group <c>Join</c> and <c>GroupJoin</c>.
             </summary>
             <inheritdoc/>
         </member>
@@ -3422,25 +3428,22 @@
         <member name="M:System.Linq.Providers.ITakeMethod`2.TakeWhile(System.Func{`1,System.Int32,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.TakeWhile``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Int32,System.Boolean})"/>
         </member>
-        <member name="T:System.Linq.Providers.IThenByMethod`4">
+        <member name="T:System.Linq.Providers.IThenByMethod`2">
             <summary>
             Represents a type that supports method group <c>ThenBy</c> and <c>ThenByDescending</c>.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-            <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
-            <typeparam name="TThenBy">The type of instance that methods <c>ThenBy</c> and <c>ThenByDescending</c> will return.</typeparam>
-            <typeparam name="TThenBySource">The type of each element of collection type <typeparamref name="TThenBy"/>.</typeparam>
+            <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Providers.IThenByMethod`4.ThenBy``1(System.Func{`1,``0})">
+        <member name="M:System.Linq.Providers.IThenByMethod`2.ThenBy``1(System.Func{`1,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IThenByMethod`4.ThenBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+        <member name="M:System.Linq.Providers.IThenByMethod`2.ThenBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenBy``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IThenByMethod`4.ThenByDescending``1(System.Func{`1,``0})">
+        <member name="M:System.Linq.Providers.IThenByMethod`2.ThenByDescending``1(System.Func{`1,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IThenByMethod`4.ThenByDescending``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+        <member name="M:System.Linq.Providers.IThenByMethod`2.ThenByDescending``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.ThenByDescending``2(System.Linq.IOrderedEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
         </member>
         <member name="T:System.Linq.Providers.IToArrayMethod`2">

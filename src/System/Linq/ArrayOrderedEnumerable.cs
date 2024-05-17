@@ -21,7 +21,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	IReadOnlyCollection<T>,
 	ISelectMethod<ArrayOrderedEnumerable<T>, T>,
 	ISliceMethod<ArrayOrderedEnumerable<T>, T>,
-	IThenByMethod<ArrayOrderedEnumerable<T>, T, ArrayOrderedEnumerable<T>, T>,
+	IThenByMethod<ArrayOrderedEnumerable<T>, T>,
 	IToArrayMethod<ArrayOrderedEnumerable<T>, T>,
 	IWhereMethod<ArrayOrderedEnumerable<T>, T>
 {

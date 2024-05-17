@@ -1,7 +1,7 @@
 namespace System.Linq.Providers;
 
 /// <summary>
-/// Represents a type that supports method group <c>Join</c>.
+/// Represents a type that supports method group <c>Join</c> and <c>GroupJoin</c>.
 /// </summary>
 /// <inheritdoc/>
 public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSource> where TSelf : IJoinMethod<TSelf, TSource>
