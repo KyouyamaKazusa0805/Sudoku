@@ -6,7 +6,13 @@ namespace Sudoku.Strategying;
 public sealed class ConstraintCollection :
 	List<Constraint>,
 	IAdditionOperators<ConstraintCollection, Constraint?, ConstraintCollection>,
-	ISubtractionOperators<ConstraintCollection, Constraint?, ConstraintCollection>
+	IElementAtMethod<ConstraintCollection, Constraint>,
+	IFirstLastMethod<ConstraintCollection, Constraint>,
+	ISubtractionOperators<ConstraintCollection, Constraint?, ConstraintCollection>,
+	ISelectMethod<ConstraintCollection, Constraint>,
+	ISliceMethod<ConstraintCollection, Constraint>,
+	IOfTypeMethod<ConstraintCollection, Constraint>,
+	IWhereMethod<ConstraintCollection, Constraint>
 {
 	/// <inheritdoc cref="List{T}()"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -66,11 +72,11 @@ public sealed class ConstraintCollection :
 	}
 
 	/// <inheritdoc cref="Enumerable.FirstOrDefault{TSource}(IEnumerable{TSource})"/>
-	public Constraint? FirstOrDefault(Func<Constraint, bool> match)
+	public Constraint? FirstOrDefault(Func<Constraint, bool> predicate)
 	{
 		foreach (var element in this)
 		{
-			if (match(element))
+			if (predicate(element))
 			{
 				return element;
 			}
@@ -140,6 +146,54 @@ public sealed class ConstraintCollection :
 		}
 		return result;
 	}
+
+	/// <inheritdoc/>
+	Constraint IElementAtMethod<ConstraintCollection, Constraint>.ElementAt(int index) => this[index];
+
+	/// <inheritdoc/>
+	Constraint IElementAtMethod<ConstraintCollection, Constraint>.ElementAt(Index index) => this[index];
+
+	/// <inheritdoc/>
+	Constraint? IElementAtMethod<ConstraintCollection, Constraint>.ElementAtOrDefault(int index)
+		=> index >= 0 && index < Count ? this[index] : default;
+
+	/// <inheritdoc/>
+	Constraint? IElementAtMethod<ConstraintCollection, Constraint>.ElementAtOrDefault(Index index)
+		=> index.GetOffset(Count) is var p && p >= 0 && p < Count ? this[p] : default;
+
+	/// <inheritdoc/>
+	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.First() => this[0];
+
+	/// <inheritdoc/>
+	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.First(Func<Constraint, bool> predicate)
+		=> FirstOrDefault(predicate) ?? throw new InvalidOperationException();
+
+	/// <inheritdoc/>
+	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.FirstOrDefault() => this[0];
+
+	/// <inheritdoc/>
+	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.FirstOrDefault(Constraint defaultValue) => this[0];
+
+	/// <inheritdoc/>
+	Constraint? IFirstLastMethod<ConstraintCollection, Constraint>.FirstOrDefault(Func<Constraint, bool> predicate)
+		=> FirstOrDefault(predicate);
+
+	/// <inheritdoc/>
+	Constraint IFirstLastMethod<ConstraintCollection, Constraint>.FirstOrDefault(Func<Constraint, bool> predicate, Constraint defaultValue)
+		=> FirstOrDefault(predicate) ?? defaultValue;
+
+	/// <inheritdoc/>
+	IEnumerable<Constraint> IWhereMethod<ConstraintCollection, Constraint>.Where(Func<Constraint, bool> predicate) => Where(predicate);
+
+	/// <inheritdoc/>
+	IEnumerable<Constraint> ISliceMethod<ConstraintCollection, Constraint>.Slice(int start, int count) => Slice(start, count);
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<ConstraintCollection, Constraint>.Select<TResult>(Func<Constraint, TResult> selector)
+		=> Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> IOfTypeMethod<ConstraintCollection, Constraint>.OfType<TResult>() => OfType<TResult>().ToArray();
 
 
 	/// <inheritdoc/>

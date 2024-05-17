@@ -771,6 +771,22 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(in other);
 
+	/// <inheritdoc/>
+	readonly Cell IFirstLastMethod<CellMap, Cell>.First() => this[0];
+
+	/// <inheritdoc/>
+	readonly Cell IFirstLastMethod<CellMap, Cell>.First(Func<Cell, bool> predicate) => this.First(predicate);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<Cell> IWhereMethod<CellMap, Cell>.Where(Func<Cell, bool> predicate) => this.Where(predicate);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<IGrouping<TKey, Cell>> IGroupByMethod<CellMap, Cell>.GroupBy<TKey>(Func<Cell, TKey> keySelector)
+		=> this.GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Cell>)element);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector)
+		=> this.Select(selector).ToArray();
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CellMap result)

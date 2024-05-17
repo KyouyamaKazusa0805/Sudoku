@@ -22,7 +22,9 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	IEnumerable<TElement>,
 	IEquatable<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>>,
 	IEqualityOperators<BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>, bool>,
-	IGrouping<TKey, TElement>
+	IGrouping<TKey, TElement>,
+	ISelectMethod<TMap, TElement>,
+	IWhereMethod<TMap, TElement>
 	where TMap : unmanaged, IBitStatusMap<TMap, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>
@@ -77,5 +79,12 @@ public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator,
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable)Values).GetEnumerator();
 
 	/// <inheritdoc/>
+	IEnumerable<TElement> IWhereMethod<TMap, TElement>.Where(Func<TElement, bool> predicate) => this.Where(predicate).ToArray();
+
+	/// <inheritdoc/>
 	IEnumerator<TElement> IEnumerable<TElement>.GetEnumerator() => ((IEnumerable<TElement>)Values).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<TMap, TElement>.Select<TResult>(Func<TElement, TResult> selector)
+		=> this.Select(selector).ToArray();
 }

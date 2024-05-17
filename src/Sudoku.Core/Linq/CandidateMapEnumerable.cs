@@ -130,7 +130,6 @@ public static class CandidateMapEnumerable
 		{
 			result[i++] = new(key, in value);
 		}
-
 		return result;
 	}
 
@@ -161,7 +160,6 @@ public static class CandidateMapEnumerable
 				result.Add(resultSelector(candidate, digit));
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 

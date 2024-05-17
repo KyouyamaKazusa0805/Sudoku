@@ -487,6 +487,24 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	readonly bool IEquatable<CandidateMap>.Equals(CandidateMap other) => Equals(in other);
 
+	/// <inheritdoc/>
+	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First() => this[0];
+
+	/// <inheritdoc/>
+	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First(Func<Candidate, bool> predicate) => this.First(predicate);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<Candidate> IWhereMethod<CandidateMap, Candidate>.Where(Func<Candidate, bool> predicate)
+		=> this.Where(predicate);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<IGrouping<TKey, Candidate>> IGroupByMethod<CandidateMap, Candidate>.GroupBy<TKey>(Func<Candidate, TKey> keySelector)
+		=> this.GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Candidate>)element);
+
+	/// <inheritdoc/>
+	readonly IEnumerable<TResult> ISelectMethod<CandidateMap, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
+		=> this.Select(selector).ToArray();
+
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CandidateMap result)

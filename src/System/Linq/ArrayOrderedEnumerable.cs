@@ -16,10 +16,14 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 ) :
 	IAggregateMethod<ArrayOrderedEnumerable<T>, T>,
 	IEnumerable<T>,
+	IGroupByMethod<ArrayOrderedEnumerable<T>, T>,
 	IOrderedEnumerable<T>,
 	IReadOnlyCollection<T>,
+	ISelectMethod<ArrayOrderedEnumerable<T>, T>,
 	ISliceMethod<ArrayOrderedEnumerable<T>, T>,
-	IToArrayMethod<ArrayOrderedEnumerable<T>, T>
+	IThenByMethod<ArrayOrderedEnumerable<T>, T, ArrayOrderedEnumerable<T>, T>,
+	IToArrayMethod<ArrayOrderedEnumerable<T>, T>,
+	IWhereMethod<ArrayOrderedEnumerable<T>, T>
 {
 	/// <summary>
 	/// Indicates the number of elements stored in the collection.
@@ -61,12 +65,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	public ref readonly T this[int index] => ref _values[index];
 
 
-	/// <summary>
-	/// Projects each element into a new transform.
-	/// </summary>
-	/// <typeparam name="TResult">The type of the result values.</typeparam>
-	/// <param name="selector">The selector to be used by transforming the <typeparamref name="T"/> instances.</param>
-	/// <returns>A span of <typeparamref name="TResult"/> values.</returns>
+	/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, TResult})"/>
 	public TResult[] Select<TResult>(Func<T, TResult> selector)
 	{
 		var result = new List<TResult>(_values.Length);
@@ -77,17 +76,13 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		return [.. result];
 	}
 
-	/// <summary>
-	/// Filters the collection using the specified condition.
-	/// </summary>
-	/// <param name="condition">The condition to be used.</param>
-	/// <returns>A span of <typeparamref name="T"/> instances.</returns>
-	public T[] Where(Func<T, bool> condition)
+	/// <inheritdoc cref="IWhereMethod{TSelf, TSource}.Where(Func{TSource, bool})"/>
+	public T[] Where(Func<T, bool> predicate)
 	{
 		var result = new List<T>(_values.Length);
 		foreach (var element in ArrayOrdered)
 		{
-			if (condition(element))
+			if (predicate(element))
 			{
 				result.Add(element);
 			}
@@ -95,14 +90,14 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		return [.. result];
 	}
 
-	/// <inheritdoc cref="Enumerable.ThenBy{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ArrayOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> selector)
+	public ArrayOrderedEnumerable<T> ThenBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 		=> new(
 			_values,
 			[
 				.. _selectors,
-				(l, r) => (selector(l), selector(r)) switch
+				(l, r) => (keySelector(l), keySelector(r)) switch
 				{
 					(IComparable<TKey> left, var right) => left.CompareTo(right),
 					var (a, b) => Comparer<TKey>.Default.Compare(a, b)
@@ -110,14 +105,14 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 			]
 		);
 
-	/// <inheritdoc cref="Enumerable.ThenByDescending{TSource, TKey}(IOrderedEnumerable{TSource}, Func{TSource, TKey})"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ArrayOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> selector)
+	public ArrayOrderedEnumerable<T> ThenByDescending<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 		=> new(
 			_values,
 			[
 				.. _selectors,
-				(l, r) => (selector(l), selector(r)) switch
+				(l, r) => (keySelector(l), keySelector(r)) switch
 				{
 					(IComparable<TKey> left, var right) => -left.CompareTo(right),
 					var (a, b) => -Comparer<TKey>.Default.Compare(a, b)
@@ -125,7 +120,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 			]
 		);
 
-	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+	/// <inheritdoc cref="IGroupByMethod{TSelf, TSource}.GroupBy{TKey}(Func{TSource, TKey})"/>
 	public ArrayGrouping<T, TKey>[] GroupBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
@@ -147,7 +142,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		return [.. result];
 	}
 
-	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
+	/// <inheritdoc cref="IGroupByMethod{TSelf, TSource}.GroupBy{TKey, TElement}(Func{TSource, TKey}, Func{TSource, TElement})"/>
 	public ArrayGrouping<TElement, TKey>[] GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
 		where TKey : notnull
 	{
@@ -211,6 +206,20 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 
 	/// <inheritdoc/>
 	IEnumerable<T> ISliceMethod<ArrayOrderedEnumerable<T>, T>.Slice(int start, int count) => Slice(start, count);
+
+	/// <inheritdoc/>
+	IEnumerable<T> IWhereMethod<ArrayOrderedEnumerable<T>, T>.Where(Func<T, bool> predicate) => Where(predicate);
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<ArrayOrderedEnumerable<T>, T>.Select<TResult>(Func<T, TResult> selector) => Select(selector);
+
+	/// <inheritdoc/>
+	IEnumerable<IGrouping<TKey, T>> IGroupByMethod<ArrayOrderedEnumerable<T>, T>.GroupBy<TKey>(Func<T, TKey> keySelector)
+		=> GroupBy(keySelector);
+
+	/// <inheritdoc/>
+	IEnumerable<IGrouping<TKey, TElement>> IGroupByMethod<ArrayOrderedEnumerable<T>, T>.GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
+		=> GroupBy(keySelector, elementSelector);
 
 	/// <inheritdoc/>
 	IOrderedEnumerable<T> IOrderedEnumerable<T>.CreateOrderedEnumerable<TKey>(Func<T, TKey> keySelector, IComparer<TKey>? comparer, bool descending) => Create(_values, keySelector, comparer, descending);

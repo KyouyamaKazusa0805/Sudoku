@@ -6,8 +6,13 @@ namespace Sudoku.Analytics;
 /// <param name="Puzzle"><inheritdoc cref="IAnalysisResult{TSolver, TSolverResult}.Puzzle" path="/summary"/></param>
 public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	IAnalysisResult<Analyzer, AnalysisResult>,
+	IAnyAllMethod<AnalysisResult, Step>,
+	ICastMethod<AnalysisResult, Step>,
 	ICultureFormattable,
-	IEnumerable<Step>
+	IEnumerable<Step>,
+	IOfTypeMethod<AnalysisResult, Step>,
+	ISelectMethod<AnalysisResult, Step>,
+	IWhereMethod<AnalysisResult, Step>
 {
 	/// <summary>
 	/// Indicates the maximum rating value in theory.
@@ -637,12 +642,32 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	public ReadOnlySpan<Step>.Enumerator GetEnumerator() => StepsSpan.GetEnumerator();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	bool IAnyAllMethod<AnalysisResult, Step>.Any() => InterimSteps is { Length: not 0 };
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<AnalysisResult, Step>.Any(Func<Step, bool> predicate) => this.Any(predicate);
+
+	/// <inheritdoc/>
+	bool IAnyAllMethod<AnalysisResult, Step>.All(Func<Step, bool> predicate) => this.All(predicate);
+
+	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => StepsSpan.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	IEnumerator<Step> IEnumerable<Step>.GetEnumerator() => ((IEnumerable<Step>)StepsSpan.ToArray()).GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerable<Step> IWhereMethod<AnalysisResult, Step>.Where(Func<Step, bool> predicate) => this.Where(predicate).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<AnalysisResult, Step>.Select<TResult>(Func<Step, TResult> selector)
+		=> this.Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ICastMethod<AnalysisResult, Step>.Cast<TResult>() => this.Cast<TResult>().ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> IOfTypeMethod<AnalysisResult, Step>.OfType<TResult>() => this.OfType<TResult>().ToArray();
 
 
 	/// <summary>

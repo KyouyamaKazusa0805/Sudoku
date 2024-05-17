@@ -5,7 +5,15 @@ namespace Sudoku.Rendering;
 /// </summary>
 [Equals]
 [EqualityOperators]
-public sealed partial class View : HashSet<ViewNode>, IEquatable<View>, IEqualityOperators<View, View, bool>
+public sealed partial class View :
+	HashSet<ViewNode>,
+	IEquatable<View>,
+	IEqualityOperators<View, View, bool>,
+	IFirstLastMethod<View, ViewNode>,
+	IOfTypeMethod<View, ViewNode>,
+	ISelectMethod<View, ViewNode>,
+	ISelectManyMethod<View, ViewNode>,
+	IWhereMethod<View, ViewNode>
 {
 	/// <summary>
 	/// Adds a list of <see cref="ViewNode"/>s into the collection.
@@ -102,6 +110,36 @@ public sealed partial class View : HashSet<ViewNode>, IEquatable<View>, IEqualit
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ReadOnlySpan<ViewNode> AsSpan() => from node in this select node;
+
+	/// <inheritdoc/>
+	ViewNode IFirstLastMethod<View, ViewNode>.First() => this.First();
+
+	/// <inheritdoc/>
+	ViewNode IFirstLastMethod<View, ViewNode>.First(Func<ViewNode, bool> predicate) => this.First(predicate);
+
+	/// <inheritdoc/>
+	ViewNode? IFirstLastMethod<View, ViewNode>.FirstOrDefault() => this.FirstOrDefault();
+
+	/// <inheritdoc/>
+	ViewNode IFirstLastMethod<View, ViewNode>.FirstOrDefault(ViewNode defaultValue) => this.FirstOrDefault() ?? defaultValue;
+
+	/// <inheritdoc/>
+	ViewNode? IFirstLastMethod<View, ViewNode>.FirstOrDefault(Func<ViewNode, bool> predicate) => this.FirstOrDefault(predicate);
+
+	/// <inheritdoc/>
+	ViewNode IFirstLastMethod<View, ViewNode>.FirstOrDefault(Func<ViewNode, bool> predicate, ViewNode defaultValue)
+		=> this.FirstOrDefault(predicate) ?? defaultValue;
+
+	/// <inheritdoc/>
+	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate)
+		=> this.Where(predicate).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<View, ViewNode>.Select<TResult>(Func<ViewNode, TResult> selector)
+		=> this.Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> IOfTypeMethod<View, ViewNode>.OfType<TResult>() => this.OfType<TResult>().ToArray();
 
 
 	/// <summary>

@@ -4,7 +4,7 @@ namespace System.Linq;
 /// Provides LINQ-based extension methods on <see cref="ReadOnlySpan{T}"/>.
 /// </summary>
 /// <seealso cref="ReadOnlySpan{T}"/>
-public static class ReadOnlySpanEnumerable
+public static class SpanEnumerable
 {
 	/// <summary>
 	/// Try to get the minimal value appeared in the collection.
@@ -458,27 +458,27 @@ public static class ReadOnlySpanEnumerable
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
 		Func<TOuter, TInner, TResult> resultSelector,
-		IEqualityComparer<TKey>? equalityComparer
+		IEqualityComparer<TKey>? comparer
 	) where TKey : notnull
 	{
-		equalityComparer ??= EqualityComparer<TKey>.Default;
+		comparer ??= EqualityComparer<TKey>.Default;
 
 		var result = new List<TResult>(outer.Length * inner.Length);
 		foreach (var outerItem in outer)
 		{
 			var outerKey = outerKeySelector(outerItem);
-			var outerKeyHash = equalityComparer.GetHashCode(outerKey);
+			var outerKeyHash = comparer.GetHashCode(outerKey);
 			foreach (var innerItem in inner)
 			{
 				var innerKey = innerKeySelector(innerItem);
-				var innerKeyHash = equalityComparer.GetHashCode(innerKey);
+				var innerKeyHash = comparer.GetHashCode(innerKey);
 				if (outerKeyHash != innerKeyHash)
 				{
 					// They are not same due to hash code difference.
 					continue;
 				}
 
-				if (!equalityComparer.Equals(outerKey, innerKey))
+				if (!comparer.Equals(outerKey, innerKey))
 				{
 					// They are not same due to inequality.
 					continue;
@@ -507,28 +507,28 @@ public static class ReadOnlySpanEnumerable
 		Func<TOuter, TKey> outerKeySelector,
 		Func<TInner, TKey> innerKeySelector,
 		Func<TOuter, TInner[], TResult> resultSelector,
-		IEqualityComparer<TKey>? equalityComparer
+		IEqualityComparer<TKey>? comparer
 	) where TKey : notnull
 	{
-		equalityComparer ??= EqualityComparer<TKey>.Default;
+		comparer ??= EqualityComparer<TKey>.Default;
 
 		var innerKvps = from element in inner select new KeyValuePair<TKey, TInner>(innerKeySelector(element), element);
 		var result = new List<TResult>();
 		foreach (var outerItem in outer)
 		{
 			var outerKey = outerKeySelector(outerItem);
-			var outerKeyHash = equalityComparer.GetHashCode(outerKey);
+			var outerKeyHash = comparer.GetHashCode(outerKey);
 			var satisfiedInnerKvps = new List<TInner>(innerKvps.Length);
 			foreach (var (innerKey, innerItem) in innerKvps)
 			{
-				var innerKeyHash = equalityComparer.GetHashCode(innerKey);
+				var innerKeyHash = comparer.GetHashCode(innerKey);
 				if (outerKeyHash != innerKeyHash)
 				{
 					// They are not same due to hash code difference.
 					continue;
 				}
 
-				if (!equalityComparer.Equals(outerKey, innerKey))
+				if (!comparer.Equals(outerKey, innerKey))
 				{
 					// They are not same due to inequality.
 					continue;

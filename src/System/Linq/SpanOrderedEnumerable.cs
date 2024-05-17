@@ -126,7 +126,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			]
 		);
 
-	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
+	/// <inheritdoc cref="SpanEnumerable.GroupBy{TSource, TKey}(ReadOnlySpan{TSource}, Func{TSource, TKey})"/>
 	public ReadOnlySpan<SpanGrouping<T, TKey>> GroupBy<TKey>(Func<T, TKey> keySelector) where TKey : notnull
 	{
 		var tempDictionary = new Dictionary<TKey, List<T>>(_values.Length >> 2);
@@ -151,7 +151,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		return result.AsReadOnlySpan();
 	}
 
-	/// <inheritdoc cref="ReadOnlySpanEnumerable.GroupBy{TSource, TKey, TElement}(ReadOnlySpan{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
+	/// <inheritdoc cref="SpanEnumerable.GroupBy{TSource, TKey, TElement}(ReadOnlySpan{TSource}, Func{TSource, TKey}, Func{TSource, TElement})"/>
 	public ReadOnlySpan<SpanGrouping<TElement, TKey>> GroupBy<TKey, TElement>(Func<T, TKey> keySelector, Func<T, TElement> elementSelector)
 		where TKey : notnull
 	{

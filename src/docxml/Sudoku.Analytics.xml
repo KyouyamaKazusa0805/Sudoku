@@ -449,10 +449,31 @@
             </summary>
             <returns>The enumerator instance.</returns>
         </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Any(System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#All(System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Step}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IWhereMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Where(System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#ISelectMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Select``1(System.Func{Sudoku.Analytics.Step,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#ICastMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#Cast``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IOfTypeMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#OfType``1">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.EvaluateRatingUnsafe(Sudoku.Analytics.Step[],,System.Int32)">
@@ -4103,6 +4124,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#ISliceMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IWhereMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Where(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#ISelectMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Select``1(System.Func{Sudoku.Analytics.Categorization.Technique,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.TechniqueProjection(Sudoku.Analytics.Categorization.Technique)">
@@ -28760,6 +28787,48 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean},Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IWhereMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISliceMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISelectMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IOfTypeMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#OfType``1">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.op_Addition(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
             <inheritdoc/>

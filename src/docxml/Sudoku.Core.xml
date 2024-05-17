@@ -299,6 +299,21 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CandidateMap,System#Int32}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CandidateMap,System#Int32}#First(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#CandidateMap,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IGroupByMethod{Sudoku#Concepts#CandidateMap,System#Int32}#GroupBy``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#CandidateMap,System#Int32}#Select``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -740,6 +755,21 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CellMap,System#Int32}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CellMap,System#Int32}#First(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#CellMap,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IGroupByMethod{Sudoku#Concepts#CellMap,System#Int32}#GroupBy``1(System.Func{System.Int32,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#CellMap,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,Sudoku.Concepts.CellMap@)">
@@ -2359,7 +2389,13 @@
         <member name="M:Sudoku.Concepts.Grid.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#IWhereMethod{Sudoku#Concepts#Grid,System#Int32}#Where(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.System#Linq#Providers#ISelectMethod{Sudoku#Concepts#Grid,System#Int32}#Select``1(System.Func{System.Int32,``0})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
@@ -3993,7 +4029,13 @@
         <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Linq#Providers#IWhereMethod{TMap,TElement}#Where(System.Func{`1,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.System#Linq#Providers#ISelectMethod{TMap,TElement}#Select``1(System.Func{`1,``0})">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Key">
@@ -6489,6 +6531,33 @@
             Try to convert this collection as a <see cref="T:System.ReadOnlySpan`1"/> instance.
             </summary>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#First(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#FirstOrDefault">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#FirstOrDefault(Sudoku.Rendering.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#FirstOrDefault(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IFirstLastMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#FirstOrDefault(System.Func{Sudoku.Rendering.ViewNode,System.Boolean},Sudoku.Rendering.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IWhereMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#Where(System.Func{Sudoku.Rendering.ViewNode,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#ISelectMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#Select``1(System.Func{Sudoku.Rendering.ViewNode,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Rendering.View.System#Linq#Providers#IOfTypeMethod{Sudoku#Rendering#View,Sudoku#Rendering#ViewNode}#OfType``1">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Rendering.View.op_BitwiseAnd(Sudoku.Rendering.View,Sudoku.Rendering.View)">
             <summary>

@@ -6,7 +6,7 @@ namespace System.Text.RegularExpressions;
 /// <seealso cref="MatchCollection"/>
 public static class MatchCollectionEnumerable
 {
-	/// <inheritdoc cref="ReadOnlySpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
+	/// <inheritdoc cref="SpanEnumerable.Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
 	public static ReadOnlySpan<TResult> Select<TResult>(this MatchCollection @this, Func<Match, TResult> selector)
 	{
 		var result = new TResult[@this.Count];

@@ -11,19 +11,24 @@ namespace Sudoku.Primitive;
 public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
+	IAnyAllMethod<TSelf, TElement>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	ICultureFormattable,
 	IEquatable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
+	IFirstLastMethod<TSelf, TElement>,
+	IGroupByMethod<TSelf, TElement>,
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
 	IJsonSerializable<TSelf>,
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
+	ISelectMethod<TSelf, TElement>,
 	ISet<TElement>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
-	ISudokuConcept<TSelf>
+	ISudokuConcept<TSelf>,
+	IWhereMethod<TSelf, TElement>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>

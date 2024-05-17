@@ -31,10 +31,12 @@ public sealed partial class TechniqueSet :
 	ILogicalOperators<TechniqueSet>,
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
+	ISelectMethod<TechniqueSet, Technique>,
 	ISet<Technique>,
 	ISliceMethod<TechniqueSet, Technique>,
 	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
-	IToArrayMethod<TechniqueSet, Technique>
+	IToArrayMethod<TechniqueSet, Technique>,
+	IWhereMethod<TechniqueSet, Technique>
 {
 	/// <summary>
 	/// Indicates the information for the techniques, can lookup the relation via its belonging technique group.
@@ -462,6 +464,13 @@ public sealed partial class TechniqueSet :
 
 	/// <inheritdoc/>
 	IEnumerable<Technique> ISliceMethod<TechniqueSet, Technique>.Slice(int start, int count) => Slice(start, count);
+
+	/// <inheritdoc/>
+	IEnumerable<Technique> IWhereMethod<TechniqueSet, Technique>.Where(Func<Technique, bool> predicate) => this.Where(predicate);
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<TechniqueSet, Technique>.Select<TResult>(Func<Technique, TResult> selector)
+		=> this.Select(selector).ToArray();
 
 
 	/// <summary>

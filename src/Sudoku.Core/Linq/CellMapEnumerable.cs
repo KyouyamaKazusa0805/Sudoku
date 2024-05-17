@@ -149,7 +149,6 @@ public static class CellMapEnumerable
 		{
 			result[i++] = new(key, in value);
 		}
-
 		return result;
 	}
 
@@ -180,7 +179,6 @@ public static class CellMapEnumerable
 				result.Add(resultSelector(cell, digit));
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 

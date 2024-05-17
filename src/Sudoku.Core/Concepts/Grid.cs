@@ -52,8 +52,10 @@ public partial struct Grid :
 	IMinMaxValue<Grid>,
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
+	ISelectMethod<Grid, Candidate>,
 	ISudokuConcept<Grid>,
-	ITokenizable<Grid>
+	ITokenizable<Grid>,
+	IWhereMethod<Grid, Candidate>
 {
 	/// <summary>
 	/// Indicates the default mask of a cell (an empty cell, with all 9 candidates left).
@@ -1427,7 +1429,15 @@ public partial struct Grid :
 	readonly IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Digit>)this).GetEnumerator();
 
 	/// <inheritdoc/>
+	readonly IEnumerable<Candidate> IWhereMethod<Grid, Candidate>.Where(Func<Candidate, bool> predicate)
+		=> this.Where(predicate).ToArray();
+
+	/// <inheritdoc/>
 	readonly IEnumerator<Digit> IEnumerable<Digit>.GetEnumerator() => ((IEnumerable<Digit>)ToArray()).GetEnumerator();
+
+	/// <inheritdoc/>
+	readonly IEnumerable<TResult> ISelectMethod<Grid, Candidate>.Select<TResult>(Func<Candidate, TResult> selector)
+		=> this.Select(selector).ToArray();
 
 	/// <summary>
 	/// Gets the header 4 bits. The value can be <see cref="SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,

@@ -31,7 +31,6 @@ public static class DeathBlossomBranchCollectionEnumerable
 		{
 			result[i++] = selector((key, value));
 		}
-
 		return result;
 	}
 }
