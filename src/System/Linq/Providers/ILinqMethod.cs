@@ -104,6 +104,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource> where TSelf 
 	/// <see langword="on"/> previousVariable <see langword="equals"/> variable
 	/// </term>
 	/// <description>
+	/// <br/>
 	/// <see cref="Enumerable.Join{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, TInner, TResult})"/>
 	/// </description>
 	/// </item>
@@ -114,6 +115,7 @@ public interface ILinqMethod<TSelf, TSource> : IEnumerable<TSource> where TSelf 
 	/// <see langword="into"/> joinedGroup
 	/// </term>
 	/// <description>
+	/// <br/>
 	/// <see cref="Enumerable.GroupJoin{TOuter, TInner, TKey, TResult}(IEnumerable{TOuter}, IEnumerable{TInner}, Func{TOuter, TKey}, Func{TInner, TKey}, Func{TOuter, IEnumerable{TInner}, TResult})"/>
 	/// </description>
 	/// </item>
