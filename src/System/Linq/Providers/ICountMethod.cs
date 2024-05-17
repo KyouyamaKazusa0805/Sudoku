@@ -6,29 +6,6 @@ namespace System.Linq.Providers;
 /// <inheritdoc/>
 public interface ICountMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICountMethod<TSelf, TSource>
 {
-	/// <inheritdoc cref="Enumerable.TryGetNonEnumeratedCount{TSource}(IEnumerable{TSource}, out int)"/>
-	public virtual bool TryGetNonEnumeratedCount(out int count)
-	{
-		switch (this)
-		{
-			case ICollection<TSource> collection:
-			{
-				count = collection.Count;
-				return true;
-			}
-			case ICollection collection:
-			{
-				count = collection.Count;
-				return true;
-			}
-			default:
-			{
-				count = 0;
-				return false;
-			}
-		}
-	}
-
 	/// <inheritdoc cref="Enumerable.Count{TSource}(IEnumerable{TSource})"/>
 	public virtual int Count()
 	{

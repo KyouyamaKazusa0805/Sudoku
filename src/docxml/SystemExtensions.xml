@@ -2938,9 +2938,6 @@
             </summary>
             <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Providers.ICountMethod`2.TryGetNonEnumeratedCount(System.Int32@)">
-            <inheritdoc cref="M:System.Linq.Enumerable.TryGetNonEnumeratedCount``1(System.Collections.Generic.IEnumerable{``0},System.Int32@)"/>
-        </member>
         <member name="M:System.Linq.Providers.ICountMethod`2.Count">
             <inheritdoc cref="M:System.Linq.Enumerable.Count``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
