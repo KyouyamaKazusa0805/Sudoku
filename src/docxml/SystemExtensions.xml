@@ -2561,6 +2561,12 @@
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#Providers#IWhereMethod{System#Linq#ArrayOrderedEnumerable{T},T}#Where(System.Func{`0,System.Boolean})">
             <inheritdoc/>
         </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#Providers#IThenByMethod{System#Linq#ArrayOrderedEnumerable{T},T}#ThenBy``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#Providers#IThenByMethod{System#Linq#ArrayOrderedEnumerable{T},T}#ThenByDescending``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Linq.ArrayOrderedEnumerable`1.System#Linq#Providers#ISelectMethod{System#Linq#ArrayOrderedEnumerable{T},T}#Select``1(System.Func{`0,``0})">
             <inheritdoc/>
         </member>
@@ -3310,6 +3316,9 @@
             </summary>
             <inheritdoc/>
         </member>
+        <member name="P:System.Linq.Providers.IOrderByMethod`2.System#Linq#Providers#ILinqMethod{TSelf,TSource}#IsValueLazilyCalculated">
+            <inheritdoc/>
+        </member>
         <member name="M:System.Linq.Providers.IOrderByMethod`2.OrderBy``1(System.Func{`1,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
@@ -3431,6 +3440,9 @@
             <summary>
             Represents a type that supports method group <c>ThenBy</c> and <c>ThenByDescending</c>.
             </summary>
+            <inheritdoc/>
+        </member>
+        <member name="P:System.Linq.Providers.IThenByMethod`2.System#Linq#Providers#ILinqMethod{TSelf,TSource}#IsValueLazilyCalculated">
             <inheritdoc/>
         </member>
         <member name="M:System.Linq.Providers.IThenByMethod`2.ThenBy``1(System.Func{`1,``0})">

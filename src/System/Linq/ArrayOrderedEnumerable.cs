@@ -211,6 +211,13 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 	IEnumerable<T> IWhereMethod<ArrayOrderedEnumerable<T>, T>.Where(Func<T, bool> predicate) => Where(predicate);
 
 	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<ArrayOrderedEnumerable<T>, T>.ThenBy<TKey>(Func<T, TKey> keySelector) => ThenBy(keySelector);
+
+	/// <inheritdoc/>
+	IEnumerable<T> IThenByMethod<ArrayOrderedEnumerable<T>, T>.ThenByDescending<TKey>(Func<T, TKey> keySelector)
+		=> ThenByDescending(keySelector);
+
+	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<ArrayOrderedEnumerable<T>, T>.Select<TResult>(Func<T, TResult> selector) => Select(selector);
 
 	/// <inheritdoc/>

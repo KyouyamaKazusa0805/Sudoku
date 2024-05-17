@@ -26,12 +26,12 @@ public interface IGroupByMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, 
 		=> this.ToLookup(keySelector, elementSelector);
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement, TResult}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, Func{TKey, IEnumerable{TElement}, TResult})"/>
-	public virtual IEnumerable<IGrouping<TKey, TResult>> GroupBy<TKey, TElement, TResult>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector)
+	public virtual IEnumerable<TResult> GroupBy<TKey, TElement, TResult>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector)
 		where TKey : notnull
 		=> GroupBy(keySelector, elementSelector, resultSelector, null);
 
 	/// <inheritdoc cref="Enumerable.GroupBy{TSource, TKey, TElement, TResult}(IEnumerable{TSource}, Func{TSource, TKey}, Func{TSource, TElement}, Func{TKey, IEnumerable{TElement}, TResult}, IEqualityComparer{TKey}?)"/>
-	public virtual IEnumerable<IGrouping<TKey, TResult>> GroupBy<TKey, TElement, TResult>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey>? comparer)
+	public virtual IEnumerable<TResult> GroupBy<TKey, TElement, TResult>(Func<TSource, TKey> keySelector, Func<TSource, TElement> elementSelector, Func<TKey, IEnumerable<TElement>, TResult> resultSelector, IEqualityComparer<TKey>? comparer)
 		where TKey : notnull
-		=> throw new NotImplementedException();
+		=> this.ToLookup(keySelector, elementSelector, comparer).Select(p => resultSelector(p.Key, p));
 }
