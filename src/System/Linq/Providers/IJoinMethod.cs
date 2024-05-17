@@ -71,7 +71,7 @@ public interface IJoinMethod<TSelf, TSource> : IQueryExpressionMethod<TSelf, TSo
 	{
 		comparer ??= EqualityComparer<TKey>.Default;
 
-		var innerKvps = inner.Select(element => new KeyValuePair<TKey, TInner>(innerKeySelector(element), element));
+		var innerKvps = inner.Select(element => (innerKeySelector(element), element));
 		var result = new List<TResult>();
 		foreach (var outerItem in this)
 		{

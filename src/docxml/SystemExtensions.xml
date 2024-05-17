@@ -3302,25 +3302,22 @@
         <member name="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1">
             <inheritdoc cref="M:System.Linq.Enumerable.OfType``1(System.Collections.IEnumerable)"/>
         </member>
-        <member name="T:System.Linq.Providers.IOrderByMethod`4">
+        <member name="T:System.Linq.Providers.IOrderByMethod`2">
             <summary>
             Represents a type that supports method group <c>OrderBy</c> and <c>OrderByDescending</c>.
             </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-            <typeparam name="TSource">The type of each element that the type supports for iteration.</typeparam>
-            <typeparam name="TThenBy">The type of instance that methods <c>OrderBy</c> and <c>OrderByDescending</c> will return.</typeparam>
-            <typeparam name="TThenBySource">The type of each element of collection type <typeparamref name="TThenBy"/>.</typeparam>
+            <inheritdoc/>
         </member>
-        <member name="M:System.Linq.Providers.IOrderByMethod`4.OrderBy``1(System.Func{`1,``0})">
+        <member name="M:System.Linq.Providers.IOrderByMethod`2.OrderBy``1(System.Func{`1,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IOrderByMethod`4.OrderBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+        <member name="M:System.Linq.Providers.IOrderByMethod`2.OrderBy``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderBy``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IOrderByMethod`4.OrderByDescending``1(System.Func{`1,``0})">
+        <member name="M:System.Linq.Providers.IOrderByMethod`2.OrderByDescending``1(System.Func{`1,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
         </member>
-        <member name="M:System.Linq.Providers.IOrderByMethod`4.OrderByDescending``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
+        <member name="M:System.Linq.Providers.IOrderByMethod`2.OrderByDescending``1(System.Func{`1,``0},System.Collections.Generic.IComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.OrderByDescending``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Collections.Generic.IComparer{``1})"/>
         </member>
         <member name="T:System.Linq.Providers.IQueryExpressionMethod`2">
