@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <summary>
 /// Provides with a <b>Firework</b> step searcher. The step searcher will include the following techniques:
 /// <list type="bullet">
+/// <!--
 /// <item>
 /// Firework Pair:
 /// <list type="bullet">
@@ -11,6 +12,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Firework Pair Type 3 (Single Fireworks + Empty Rectangle)</item>
 /// </list>
 /// </item>
+/// -->
 /// <item>Firework Triple</item>
 /// <item>Firework Quadruple</item>
 /// </list>
