@@ -51,7 +51,7 @@ public static class ResourceDictionary
 			{ } pi => (ResourceManager)pi.GetValue(null)!,
 			_ => null
 		};
-		ResourceManagers.Add((assembly, manager ?? throw new MissingResourceManagerException(assembly)));
+		ResourceManagers.Add((assembly, manager.Unwrap()));
 	}
 
 	/// <summary>

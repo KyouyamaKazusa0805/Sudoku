@@ -17,7 +17,7 @@ public static class CandidateMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidate First(this in CandidateMap @this, Func<Candidate, bool> match)
-		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+		=> @this.FirstOrNull(match).Unwrap();
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
@@ -29,8 +29,7 @@ public static class CandidateMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Candidate First(this in CandidateMap @this, ref readonly Grid grid, CandidateMapPredicate match)
-		=> @this.FirstOrNull(in grid, match)
-		?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+		=> @this.FirstOrNull(in grid, match).Unwrap();
 
 	/// <summary>
 	/// Finds the first candidate that satisfies the specified condition.
@@ -47,7 +46,6 @@ public static class CandidateMapEnumerable
 				return candidate;
 			}
 		}
-
 		return null;
 	}
 
@@ -67,7 +65,6 @@ public static class CandidateMapEnumerable
 				return candidate;
 			}
 		}
-
 		return null;
 	}
 
@@ -80,7 +77,6 @@ public static class CandidateMapEnumerable
 		{
 			result[i] = selector(offsets[i]);
 		}
-
 		return result;
 	}
 
@@ -102,7 +98,6 @@ public static class CandidateMapEnumerable
 				result.Remove(cell);
 			}
 		}
-
 		return result;
 	}
 

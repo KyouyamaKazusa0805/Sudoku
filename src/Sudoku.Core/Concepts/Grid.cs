@@ -1134,8 +1134,7 @@ public partial struct Grid :
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)
-				?? throw new FormatException(ResourceDictionary.ExceptionMessage("FormatInvalid"))
+			_ => (GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)).Unwrap()
 		};
 
 	/// <inheritdoc/>

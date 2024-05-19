@@ -16,8 +16,7 @@ public static class CellMapEnumerable
 	/// <returns>The first found cell.</returns>
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Cell First(this in CellMap @this, Func<Cell, bool> match)
-		=> @this.FirstOrNull(match) ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+	public static Cell First(this in CellMap @this, Func<Cell, bool> match) => @this.FirstOrNull(match).Unwrap();
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.
@@ -29,8 +28,7 @@ public static class CellMapEnumerable
 	/// <exception cref="InvalidOperationException">Throws when no elements found.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Cell First(this in CellMap @this, ref readonly Grid grid, CellMapPredicate match)
-		=> @this.FirstOrNull(in grid, match)
-		?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsInSequence"));
+		=> @this.FirstOrNull(in grid, match).Unwrap();
 
 	/// <summary>
 	/// Finds the first cell that satisfies the specified condition.

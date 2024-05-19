@@ -77,7 +77,7 @@ public static class @delegate
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ToStringConverter<T>(scoped ref readonly T @this) where T : notnull
-		=> @this.ToString() ?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull"));
+		=> @this.ToString().Unwrap();
 
 	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method

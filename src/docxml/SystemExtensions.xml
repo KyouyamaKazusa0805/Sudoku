@@ -1204,6 +1204,44 @@
         <member name="M:System.MemoryExtensions2.AsReadOnlySpan``1(``0[])">
             <inheritdoc cref="M:System.MemoryExtensions.AsSpan``1(``0[])"/>
         </member>
+        <member name="T:System.Nullable2">
+            <summary>
+            Represents extension methods on generic-typed instance.
+            </summary>
+        </member>
+        <member name="M:System.Nullable2.Unwrap``1(``0)">
+            <summary>
+            Unwraps the value and returns its non-null representation,
+            or throws an <see cref="T:System.ArgumentNullException"/> reporting the argument has no value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance to be unwrapped.</param>
+            <returns>The unwrapped value.</returns>
+            <exception cref="T:System.ArgumentNullException">Throws when the argument doesn't have a value.</exception>
+        </member>
+        <member name="M:System.Nullable2.Unwrap``1(System.Nullable{``0})">
+            <inheritdoc cref="M:System.Nullable2.Unwrap``1(``0)"/>
+        </member>
+        <member name="M:System.Nullable2.UnwrapRef``1(``0@)">
+            <summary>
+            Unwraps the reference to a value and returns its non-null representation,
+            or throws an <see cref="T:System.ArgumentNullRefException"/> reporting the reference references <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance to be unwrapped.</param>
+            <returns>The unwrapped value.</returns>
+            <exception cref="T:System.ArgumentNullRefException">Throws when the argument doesn't have a value.</exception>
+        </member>
+        <member name="M:System.Nullable2.UnwrapRef``1(System.Nullable{``0}@)">
+            <summary>
+            Unwraps the reference to a value and returns its non-null representation,
+            or throws an <see cref="T:System.ArgumentNullRefException"/> reporting the reference references <see langword="null"/>.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="this">The instance to be unwrapped.</param>
+            <returns>The unwrapped value.</returns>
+            <exception cref="T:System.ArgumentNullRefException">Throws when the argument doesn't have a value.</exception>
+        </member>
         <member name="T:System.ReadOnlyMemoryExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.ReadOnlyMemory`1"/>.

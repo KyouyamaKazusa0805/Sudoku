@@ -226,8 +226,7 @@ public static class TechniqueExtensions
 	/// Throws when the specified <see cref="Technique"/> does not belong to any <see cref="TechniqueGroup"/>.
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueGroup GetGroup(this Technique @this)
-		=> @this.TryGetGroup() ?? throw new MissingTechniqueGroupException(@this.ToString());
+	public static TechniqueGroup GetGroup(this Technique @this) => @this.TryGetGroup().Unwrap();
 
 	/// <summary>
 	/// Try to get its static difficulty level for the specified technique.

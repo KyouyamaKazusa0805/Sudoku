@@ -222,5 +222,5 @@ public sealed partial class GridImageGenerator
 	/// <exception cref="ArgumentNullException">Throws when <paramref name="fontName"/> is <see langword="null"/>.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	private static Font GetFont(string? fontName, float size, decimal scale, FontStyle style)
-		=> new(fontName ?? throw new ArgumentNullException(nameof(size)), size * (float)scale, style);
+		=> new(fontName.Unwrap(), size * (float)scale, style);
 }

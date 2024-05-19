@@ -120,19 +120,11 @@ public static partial class AnalyzerProperties
 	{
 		foreach (var methodInfo in typeof(AnalyzerProperties).GetMethods(BindingFlags.Static | BindingFlags.Public))
 		{
-			if (!methodInfo.Name.StartsWith(GetSetterName))
+			if (methodInfo.Name.StartsWith(GetSetterName))
 			{
-				continue;
+				@this.WithRuntimeIdentifierSetter(methodInfo.Invoke(null, [attachedPane]).Unwrap(), methodInfo.Name, out _);
 			}
-
-			@this.WithRuntimeIdentifierSetter(
-				methodInfo.Invoke(null, [attachedPane])
-					?? throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ArgCannotBeNull")),
-				methodInfo.Name,
-				out _
-			);
 		}
-
 		return @this;
 	}
 
