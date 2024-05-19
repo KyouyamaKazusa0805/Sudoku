@@ -55,6 +55,7 @@ public partial struct Grid :
 	ISelectMethod<Grid, Candidate>,
 	ISudokuConcept<Grid>,
 	ITokenizable<Grid>,
+	IToArrayMethod<Grid, Digit>,
 	IWhereMethod<Grid, Candidate>
 {
 	/// <summary>
@@ -1067,12 +1068,7 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => PuzzleType == SudokuType.Sukaku ? ToString("~") : ToString(default(string));
 
-	/// <summary>
-	/// Serializes this instance to an array, where all digit value will be stored.
-	/// </summary>
-	/// <returns>
-	/// This array. All elements are between 0 and 9, where 0 means the cell is <see cref="CellState.Empty"/> now.
-	/// </returns>
+	/// <inheritdoc/>
 	public readonly Digit[] ToArray()
 	{
 		var result = new Digit[CellsCount];
