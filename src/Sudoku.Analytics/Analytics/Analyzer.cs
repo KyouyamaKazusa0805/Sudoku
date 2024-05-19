@@ -205,14 +205,13 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			{
 				return ex switch
 				{
-					RuntimeAnalysisException e
-						=> e switch
-						{
-							WrongStepException
-								=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
-							PuzzleInvalidException
-								=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
-						},
+					RuntimeAnalysisException e => e switch
+					{
+						WrongStepException
+							=> result with { IsSolved = false, FailedReason = FailedReason.WrongStep, UnhandledException = e },
+						PuzzleInvalidException
+							=> result with { IsSolved = false, FailedReason = FailedReason.PuzzleIsInvalid }
+					},
 					OperationCanceledException { CancellationToken: var c } when c == cancellationToken
 						=> result with { IsSolved = false, FailedReason = FailedReason.UserCancelled },
 					NotImplementedException or NotSupportedException
