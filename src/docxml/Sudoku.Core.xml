@@ -3566,7 +3566,7 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
-        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsConclusionSet(Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Analytics.ConclusionExtensions.AsSet(Sudoku.Concepts.Conclusion[])">
             <summary>
             Converts the <see cref="T:Sudoku.Concepts.Conclusion"/> array into a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.
             </summary>

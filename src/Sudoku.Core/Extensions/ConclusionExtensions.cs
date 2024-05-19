@@ -12,5 +12,5 @@ public static class ConclusionExtensions
 	/// <param name="this">The conclusion array.</param>
 	/// <returns>A <see cref="ConclusionSet"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionSet AsConclusionSet(this Conclusion[] @this) => [.. @this];
+	public static ConclusionSet AsSet(this Conclusion[] @this) => [.. @this];
 }
