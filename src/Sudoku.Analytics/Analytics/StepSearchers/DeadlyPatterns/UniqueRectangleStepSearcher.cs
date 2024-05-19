@@ -300,7 +300,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 							{
 								CheckRegularWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in cellsExcluding2CornerCells, index, (c1, c2) is (0, 3) or (1, 2));
 #if UNIQUE_RECTANGLE_W_WING
-								CheckWWing(gathered, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
+								CheckWWing(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, corner2, in tempOtherCellsMap, index);
 #endif
 							}
 
