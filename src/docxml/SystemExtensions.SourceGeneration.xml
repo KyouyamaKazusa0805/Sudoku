@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>SystemExtensions.SourceGeneration</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.SourceGeneration.Generator">
+            <summary>
+            Represents a source generator type that runs multiple different usage of source output services on compiling code.
+            </summary>
+        </member>
+        <member name="M:Sudoku.SourceGeneration.Generator.Initialize(Microsoft.CodeAnalysis.IncrementalGeneratorInitializationContext)">
+            <inheritdoc/>
+        </member>
+        <member name="T:SolutionVersion">
+            <summary>
+            Represents the data that describes the version used in the project or solution.
+            </summary>
+        </member>
+        <member name="F:SolutionVersion.Value">
+            <summary>
+            Indicates the version value represented as a <see cref="T:System.String"/> value.
+            </summary>
+        </member>
+    </members>
+</doc>

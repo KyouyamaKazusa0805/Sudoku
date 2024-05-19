@@ -78,9 +78,9 @@ public readonly partial struct Fish(
 				return FishFinKind.Normal;
 			}
 
-			foreach (var baseSet in baseSets)
+			foreach (var baseSet in BaseSets)
 			{
-				if ((HousesMap[baseSet] & ~fins & CandidatesMap[digit]).Count == 1)
+				if ((HousesMap[baseSet] & ~fins & CandidatesMap[Digit]).Count == 1)
 				{
 					return FishFinKind.Sashimi;
 				}

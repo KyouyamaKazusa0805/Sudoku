@@ -11,18 +11,11 @@ public sealed class Generator : IIncrementalGenerator
 	/// <inheritdoc/>
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
-		ActionExtension(context);
 		PrimaryConstructor(context);
 		ObjectOverridden(context);
 		Operators(context);
 		ImplicitField(context);
 	}
-
-	private void ActionExtension(IncrementalGeneratorInitializationContext context)
-		=> context.RegisterSourceOutput(
-			context.CompilationProvider,
-			static (spc, c) => { if (c.AssemblyName == "SystemExtensions") { ActionExtensionHandler.Generate(spc); } }
-		);
 
 	private void PrimaryConstructor(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(

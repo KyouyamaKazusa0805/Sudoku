@@ -22,6 +22,9 @@
     <Project Path="src\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
+    <Project Path="src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
   </Folder>
   <Folder Name="/Solution Items/Miscellaneous/">
     <File Path=".editorconfig" />
@@ -89,4 +92,5 @@
   <Project Path="src\System\SystemExtensions.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
+</Solution>ject>
 </Solution>
