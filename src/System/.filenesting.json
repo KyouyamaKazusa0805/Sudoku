@@ -33,7 +33,7 @@
           "SpecializedEqualityComparer.cs": [ "__Types" ],
           "ILogicalOperators.cs": [ "__Types" ],
           "ArgumentNullRefException.cs": [ "__Types" ],
-          "Methods.cs": [ "__Types" ],
+          "delegate.cs": [ "__Types" ],
           "ref.cs": [ "__Types" ],
           "EqualityComparing.cs": [ "__Types" ],
           "Comparing.cs": [ "__Types" ]

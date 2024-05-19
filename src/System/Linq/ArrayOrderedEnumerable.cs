@@ -168,12 +168,12 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public T? Aggregate(Func<T?, T?, T> func) => Aggregate(default, func, Methods.Self);
+	public T? Aggregate(Func<T?, T?, T> func) => Aggregate(default, func, @delegate.Self);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public TAccumulate Aggregate<TAccumulate>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func)
-		=> Aggregate(seed, func, Methods.Self);
+		=> Aggregate(seed, func, @delegate.Self);
 
 	/// <inheritdoc/>
 	public TResult Aggregate<TAccumulate, TResult>(TAccumulate seed, Func<TAccumulate, T, TAccumulate> func, Func<TAccumulate, TResult> resultSelector)

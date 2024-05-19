@@ -22,7 +22,7 @@ public abstract partial class ChromaticPatternStep(
 	public override int BaseDifficulty => 65;
 
 	private protected string BlocksStr
-		=> Options.Converter.HouseConverter(Blocks.Aggregate(Methods.BitMerger));
+		=> Options.Converter.HouseConverter(Blocks.Aggregate(@delegate.BitMerger));
 
 	private protected string CellsStr => Options.Converter.CellConverter(Pattern);
 

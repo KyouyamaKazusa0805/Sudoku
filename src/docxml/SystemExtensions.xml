@@ -316,6 +316,122 @@
         <member name="M:System.ComplexValueTupleEnumerator`2.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:System.delegate">
+            <summary>
+            Represents a set of method groups that can be used as delegate-typed arguments, in easy ways.
+            </summary>
+        </member>
+        <member name="M:System.delegate.DoNothing">
+            <summary>
+            Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
+            </summary>
+        </member>
+        <member name="M:System.delegate.True``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+            <remarks>
+            This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="T:System.Boolean"/> value.
+            If the type <typeparamref name="T"/> has implemented <see cref="T:System.ILogicalOperators`1"/>, C# language will allow this type
+            using <see cref="T:System.Boolean"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
+            to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
+            to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
+            <code><![CDATA[
+            if (integer) // integer != 0 in C and op_True(integer) in C#
+            {
+                // ...
+            }
+            ]]></code>
+            The backing implementation is like the following code in C#:
+            <code><![CDATA[
+            struct Int32
+            {
+                public static bool operator true(int value) => value != 0;
+                public sttaic bool operator false(int value) => value == 0;
+            }
+            ]]></code>
+            </remarks>
+        </member>
+        <member name="M:System.delegate.True``1(``0@)">
+            <inheritdoc cref="M:System.delegate.True``1(``0)"/>
+        </member>
+        <member name="M:System.delegate.False``1(``0)">
+            <summary>
+            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
+            </summary>
+            <typeparam name="T">The type of the value.</typeparam>
+            <param name="value">The value to be checked.</param>
+            <returns>The logical conversion result.</returns>
+            <remarks>
+            <inheritdoc cref="M:System.delegate.True``1(``0)" path="/remarks"/>
+            </remarks>
+        </member>
+        <member name="M:System.delegate.False``1(``0@)">
+            <inheritdoc cref="M:System.delegate.False``1(``0)"/>
+        </member>
+        <member name="M:System.delegate.ToStringConverter``1(``0@)">
+            <summary>
+            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
+            into a <see cref="T:System.String"/> value.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="this">The instance.</param>
+            <returns>The <see cref="T:System.String"/> value.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the argument <paramref name="this"/> return <see langword="null"/>
+            as the <c>ToString</c> method result.
+            </exception>
+        </member>
+        <member name="M:System.delegate.BitMerger``1(``0,``0)">
+            <summary>
+            Merges two integers by bits. This method will be used by LINQ method
+            <see cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>.
+            </summary>
+            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
+            <param name="interim">The interim value.</param>
+            <param name="next">The next value to be merged by its bits.</param>
+            <returns>The final value merged.</returns>
+            <seealso cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
+        </member>
+        <member name="M:System.delegate.EnumFlagMerger``1(``0,``0)">
+            <summary>
+            Merges two flags of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the enumeration.</typeparam>
+            <param name="left">The first instance to be merged.</param>
+            <param name="right">The second instance to be merged.</param>
+            <returns>A merged result.</returns>
+        </member>
+        <member name="M:System.delegate.Self``1(``0)">
+            <summary>
+            Returns the argument <paramref name="value"/>.
+            </summary>
+            <typeparam name="T">The type of the argument.</typeparam>
+            <param name="value">The value.</param>
+            <returns>The value itself.</returns>
+        </member>
+        <member name="M:System.delegate.YCombinator``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})">
+            <summary>
+            Represents Y-Combinator. This method can allow you create recursive lambdas.
+            </summary>
+            <typeparam name="T">The type of the argument to be passed.</typeparam>
+            <typeparam name="TResult">The type of the result.</typeparam>
+            <param name="f">The recursion logic.</param>
+            <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
+            <remarks>
+            You can use this to create customized recursive lambda:
+            <code><![CDATA[
+            //                           T TResult
+            var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
+            //                          ~~~  ~~~
+            int result = factorial(5); // T -> TResult
+            Console.WriteLine(result);
+            ]]></code>
+            </remarks>
+        </member>
         <member name="T:System.EnumFlagsEnumerator`1">
             <summary>
             Defines an enumerator that iterates the possible fields of an enumeration type.
@@ -4093,122 +4209,6 @@
         </member>
         <member name="M:System.Linq.TupleEnumerable.Select``2(System.Runtime.CompilerServices.ITuple,System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Select``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="T:System.Methods">
-            <summary>
-            Represents a set of methods to be used as method groups.
-            </summary>
-        </member>
-        <member name="M:System.Methods.DoNothing">
-            <summary>
-            Do nothing. This method is equivalent to lambda expression <c>static () => {}</c>.
-            </summary>
-        </member>
-        <member name="M:System.Methods.True``1(``0)">
-            <summary>
-            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value to be checked.</param>
-            <returns>The logical conversion result.</returns>
-            <remarks>
-            This method does not use casting to make the target <typeparamref name="T"/> value to be converted into a <see cref="T:System.Boolean"/> value.
-            If the type <typeparamref name="T"/> has implemented <see cref="T:System.ILogicalOperators`1"/>, C# language will allow this type
-            using <see cref="T:System.Boolean"/>-like operators <see langword="operator"/> <![CDATA[&&]]> and <see langword="operator"/> ||
-            to determine multiple <typeparamref name="T"/> values are <see langword="true"/> or <see langword="false"/> via the specified way
-            to be checked. This is just like C programming language rule - allowing any implicit casts from an integer to a boolean value like:
-            <code><![CDATA[
-            if (integer) // integer != 0 in C and op_True(integer) in C#
-            {
-                // ...
-            }
-            ]]></code>
-            The backing implementation is like the following code in C#:
-            <code><![CDATA[
-            struct Int32
-            {
-                public static bool operator true(int value) => value != 0;
-                public sttaic bool operator false(int value) => value == 0;
-            }
-            ]]></code>
-            </remarks>
-        </member>
-        <member name="M:System.Methods.True``1(``0@)">
-            <inheritdoc cref="M:System.Methods.True``1(``0)"/>
-        </member>
-        <member name="M:System.Methods.False``1(``0)">
-            <summary>
-            Makes the variable <paramref name="value"/> be an equivalent <see cref="T:System.Boolean"/> value, and negate it.
-            </summary>
-            <typeparam name="T">The type of the value.</typeparam>
-            <param name="value">The value to be checked.</param>
-            <returns>The logical conversion result.</returns>
-            <remarks>
-            <inheritdoc cref="M:System.Methods.True``1(``0)" path="/remarks"/>
-            </remarks>
-        </member>
-        <member name="M:System.Methods.False``1(``0@)">
-            <inheritdoc cref="M:System.Methods.False``1(``0)"/>
-        </member>
-        <member name="M:System.Methods.ToStringConverter``1(``0@)">
-            <summary>
-            Provides with the default way to convert the specified instance of type <see cref="T:System.Int16"/>
-            into a <see cref="T:System.String"/> value.
-            </summary>
-            <typeparam name="T">The type of the argument.</typeparam>
-            <param name="this">The instance.</param>
-            <returns>The <see cref="T:System.String"/> value.</returns>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the argument <paramref name="this"/> return <see langword="null"/>
-            as the <c>ToString</c> method result.
-            </exception>
-        </member>
-        <member name="M:System.Methods.BitMerger``1(``0,``0)">
-            <summary>
-            Merges two integers by bits. This method will be used by LINQ method
-            <see cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>.
-            </summary>
-            <typeparam name="T">The type of the value. The value must be an integer type, and supports for shifting operators.</typeparam>
-            <param name="interim">The interim value.</param>
-            <param name="next">The next value to be merged by its bits.</param>
-            <returns>The final value merged.</returns>
-            <seealso cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
-        </member>
-        <member name="M:System.Methods.EnumFlagMerger``1(``0,``0)">
-            <summary>
-            Merges two flags of type <typeparamref name="T"/>.
-            </summary>
-            <typeparam name="T">The type of the enumeration.</typeparam>
-            <param name="left">The first instance to be merged.</param>
-            <param name="right">The second instance to be merged.</param>
-            <returns>A merged result.</returns>
-        </member>
-        <member name="M:System.Methods.Self``1(``0)">
-            <summary>
-            Returns the argument <paramref name="value"/>.
-            </summary>
-            <typeparam name="T">The type of the argument.</typeparam>
-            <param name="value">The value.</param>
-            <returns>The value itself.</returns>
-        </member>
-        <member name="M:System.Methods.YCombinator``2(System.Func{System.Func{``0,``1},System.Func{``0,``1}})">
-            <summary>
-            Represents Y-Combinator. This method can allow you create recursive lambdas.
-            </summary>
-            <typeparam name="T">The type of the argument to be passed.</typeparam>
-            <typeparam name="TResult">The type of the result.</typeparam>
-            <param name="f">The recursion logic.</param>
-            <returns>A function that creates a nesting lambda that is a recursive lambda.</returns>
-            <remarks>
-            You can use this to create customized recursive lambda:
-            <code><![CDATA[
-            //                           T TResult
-            var factorial = YCombinator<int, int>(lambda => x => x == 0 ? 1 : x * lambda(x - 1));
-            //                          ~~~  ~~~
-            int result = factorial(5); // T -> TResult
-            Console.WriteLine(result);
-            ]]></code>
-            </remarks>
         </member>
         <member name="T:System.ModuleInitializer">
             <target name="type">

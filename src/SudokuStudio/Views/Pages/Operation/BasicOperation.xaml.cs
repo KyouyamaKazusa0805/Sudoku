@@ -45,7 +45,7 @@ public sealed partial class BasicOperation : Page, IOperationProviderPage
 			from children in panel.Children
 			where children is CheckBox { Tag: int and not 0, IsChecked: true }
 			select (SudokuFormatFlags)(int)((CheckBox)children).Tag!
-		).Aggregate(SudokuFormatFlags.None, Methods.EnumFlagMerger);
+		).Aggregate(SudokuFormatFlags.None, @delegate.EnumFlagMerger);
 
 
 	private void Page_Loaded(object sender, RoutedEventArgs e)

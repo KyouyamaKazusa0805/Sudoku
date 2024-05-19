@@ -14,7 +14,7 @@ public static unsafe class EqualityComparing
 	/// <inheritdoc cref="Create{T}(FuncRefReadOnly{T, T, bool}, FuncRefReadOnly{T, int})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IEqualityComparer<T> Create<T>(Func<T, T, bool> equals, Func<T, int> getHashCode)
-		=> Create((ref readonly T left, ref readonly T right) => equals(left, right), (ref readonly T obj) => getHashCode(obj));
+		=> Create((scoped ref readonly T left, scoped ref readonly T right) => equals(left, right), (ref readonly T obj) => getHashCode(obj));
 
 	/// <summary>
 	/// Creates an <see cref="IEqualityComparer{T}"/> instance via specified methods.
@@ -31,7 +31,7 @@ public static unsafe class EqualityComparing
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IEqualityComparer<T> CreateUnsafe<T>(delegate*<ref readonly T, ref readonly T, bool> equals, delegate*<ref readonly T, int> getHashCode)
 		=> Create(
-			(ref readonly T left, ref readonly T right) => equals(in left, in right),
-			(ref readonly T obj) => getHashCode(in obj)
+			(scoped ref readonly T left, scoped ref readonly T right) => equals(in left, in right),
+			(scoped ref readonly T obj) => getHashCode(in obj)
 		);
 }

@@ -159,7 +159,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public abstract int IndexOf(TElement offset);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
-	public abstract bool Equals(ref readonly TSelf other);
+	public abstract bool Equals(scoped ref readonly TSelf other);
 
 	/// <summary>
 	/// Get all offsets whose bits are set <see langword="true"/>.

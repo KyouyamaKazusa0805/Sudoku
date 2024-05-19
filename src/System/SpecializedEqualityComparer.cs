@@ -52,11 +52,11 @@ public sealed class SpecializedEqualityComparer<T>(bool isUnsafe) : IEqualityCom
 
 
 	/// <inheritdoc cref="IEqualityComparer{T}.Equals(T, T)"/>
-	public unsafe bool Equals(ref readonly T left, ref readonly T right)
+	public unsafe bool Equals(scoped ref readonly T left, scoped ref readonly T right)
 		=> IsUnsafe ? _equalsUnsafe(in left, in right) : _equals(in left, in right);
 
 	/// <inheritdoc cref="IEqualityComparer{T}.GetHashCode(T)"/>
-	public unsafe int GetHashCode([DisallowNull] ref readonly T obj)
+	public unsafe int GetHashCode([DisallowNull] scoped ref readonly T obj)
 		=> IsUnsafe ? _getHashCodeUnsafe(in obj) : _getHashCode(in obj);
 
 	/// <inheritdoc/>

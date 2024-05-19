@@ -9,7 +9,7 @@ public static unsafe class Comparing
 	/// <inheritdoc cref="Create{T}(FuncRefReadOnly{T, T, int})"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static IComparer<T> Create<T>(Comparison<T> compare)
-		=> Create((ref readonly T left, ref readonly T right) => compare(left, right));
+		=> Create((scoped ref readonly T left, scoped ref readonly T right) => compare(left, right));
 
 	/// <summary>
 	/// Creates an <see cref="IComparer{T}"/> instance via specified method.
