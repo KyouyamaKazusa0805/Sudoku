@@ -2840,6 +2840,12 @@ public partial class UniqueRectangleStepSearcher
 				var candidateOffsets = new List<CandidateViewNode>();
 				foreach (var cell in urCells)
 				{
+					if (arMode && grid.GetState(cell) != CellState.Empty)
+					{
+						// Skip for non-empty cells.
+						continue;
+					}
+
 					foreach (var digit in grid.GetCandidates(cell))
 					{
 						candidateOffsets.Add(
