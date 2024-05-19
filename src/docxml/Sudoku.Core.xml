@@ -1310,25 +1310,8 @@
         </member>
         <member name="T:Sudoku.Concepts.ConclusionSet">
             <summary>
-            Represents a list of conclusions. The collection only allows adding conclusions.
+            Represents a list of conclusions.
             </summary>
-            <remarks>
-            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.
-            Because the type contains a reference-typed field, the type is also a reference type.
-            </remarks>
-            <seealso cref="T:System.Collections.BitArray"/>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.#ctor">
-            <summary>
-            Represents a list of conclusions. The collection only allows adding conclusions.
-            </summary>
-            <remarks>
-            This type uses <see cref="T:System.Collections.BitArray"/> to make determining on equality for two collections of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.
-            Because the type contains a reference-typed field, the type is also a reference type.
-            </remarks>
-            <seealso cref="T:System.Collections.BitArray"/>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="F:Sudoku.Concepts.ConclusionSet.BitsCount">
             <summary>
@@ -1355,12 +1338,6 @@
             The entry point that can visit conclusions.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.#ctor(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance via the specified conclusions.
-            </summary>
-            <param name="conclusions">The conclusions to be added.</param>
-        </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.ContainsAssignment">
             <summary>
             Indicates whether the collection contains any assignment conclusions.
@@ -1375,6 +1352,9 @@
             <summary>
             Indicates the number of bit array elements.
             </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#IsReadOnly">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.ConclusionSet.Empty">
             <summary>
@@ -1399,16 +1379,37 @@
             </param>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Add(Sudoku.Concepts.Conclusion)">
-            <summary>
-            Add a new conclusion into the collection.
-            </summary>
-            <param name="conclusion">The conclusion to be added.</param>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.AddRange(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
             Add a list of conclusions into the collection.
             </summary>
             <param name="conclusions">The conclusions to be added.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Remove(System.Int32)">
+            <summary>
+            Remove a conclusion, represented as a global index (between 0 and 1458), from the collection.
+            </summary>
+            <param name="index">
+            <para>The global index (between 0 and 1458) to be added.</para>
+            <para>The global index is equivalent to the result value of this formula <c>conclusionType * 729 + candidate</c>.</para>
+            </param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Remove(Sudoku.Concepts.Conclusion)">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.Remove(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Replace(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Removes all elements in the collection and add all elements from <paramref name="conclusions"/>.
+            </summary>
+            <param name="conclusions">The conclusions provider to replace with the current instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.CopyTo(System.Span{Sudoku.Concepts.Conclusion})">
+            <inheritdoc cref="M:System.Collections.Generic.ICollection`1.CopyTo(`0[],System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Equals(Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
@@ -1422,6 +1423,12 @@
             </summary>
             <param name="cell">The cell to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.Exists(System.Func{Sudoku.Concepts.Conclusion,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any(System.Func{`1,System.Boolean})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.TrueForAll(System.Func{Sudoku.Concepts.Conclusion,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.All(System.Func{`1,System.Boolean})"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.GetHashCode">
             <inheritdoc/>
@@ -1446,6 +1453,72 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Slice(System.Int32,System.Int32)">
             <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#CopyTo(Sudoku.Concepts.Conclusion[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#ExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#IntersectWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#UnionWith(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#Any(System.Func{Sudoku.Concepts.Conclusion,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#ConclusionSet,Sudoku#Concepts#Conclusion}#All(System.Func{Sudoku.Concepts.Conclusion,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ICollection{Sudoku#Concepts#Conclusion}#Remove(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#IReadOnlySet{Sudoku#Concepts#Conclusion}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#Add(Sudoku.Concepts.Conclusion)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#IsSubsetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#IsSupersetOf(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#Overlaps(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#Generic#ISet{Sudoku#Concepts#Conclusion}#SetEquals(System.Collections.Generic.IEnumerable{Sudoku.Concepts.Conclusion})">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
@@ -1488,12 +1561,6 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_ExclusiveOr(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.op_Implicit(System.ReadOnlySpan{Sudoku.Concepts.Conclusion})~Sudoku.Concepts.ConclusionSet">
-            <summary>
-            Implicit cast from <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Conclusion"/> instances to <see cref="T:Sudoku.Concepts.ConclusionSet"/>.
-            </summary>
-            <param name="conclusions">Conclusions to be added.</param>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionSet.Enumerator">
             <summary>
