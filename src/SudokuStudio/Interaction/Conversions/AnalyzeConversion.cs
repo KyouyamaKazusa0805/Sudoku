@@ -68,7 +68,7 @@ internal static class AnalyzeConversion
 		=> showDifficultyRating ? Visibility.Visible : Visibility.Collapsed;
 
 	public static Visibility GetSummaryTableVisibility(IEnumerable itemsSource)
-		=> itemsSource is null || itemsSource.None() ? Visibility.Collapsed : Visibility.Visible;
+		=> itemsSource is null || !itemsSource.Cast<object>().Any() ? Visibility.Collapsed : Visibility.Visible;
 
 	public static Visibility GetSolvingPathListVisibility(object itemsSource)
 		=> itemsSource switch

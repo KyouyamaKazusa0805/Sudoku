@@ -2746,27 +2746,6 @@
             <returns>An instance of type <typeparamref name="TValue"/> as minimal-valued one.</returns>
             <seealso cref="P:System.Collections.Generic.Dictionary`2.Values"/>
         </member>
-        <member name="T:System.Linq.Enumerable2">
-            <summary>
-            The extension for <see cref="T:System.Linq.Enumerable"/>.
-            </summary>
-            <seealso cref="T:System.Linq.Enumerable"/>
-        </member>
-        <member name="M:System.Linq.Enumerable2.None(System.Collections.IEnumerable)">
-            <summary>
-            Determines whether an <see cref="T:System.Collections.IEnumerable"/> collection has no elements in it.
-            </summary>
-            <param name="this">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:System.Linq.Enumerable2.None``1(System.Collections.Generic.IEnumerable{``0})">
-            <summary>
-            Determines whether an <see cref="T:System.Collections.Generic.IEnumerable`1"/> collection has no elements in it.
-            </summary>
-            <typeparam name="T">The type of each element.</typeparam>
-            <param name="this">The element.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
         <member name="T:System.Linq.EnumFlagsEnumerable">
             <summary>
             Provides with some extension methods for enumeration types.
