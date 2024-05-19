@@ -4000,31 +4000,6 @@
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Globalization.Languages">
-            <summary>
-            Indicates the supported languages in resource.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.Languages.EnglishLanguage">
-            <summary>
-            Indicates English language identifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.Languages.ChineseLanguage">
-            <summary>
-            Indicates Chinese language identifier.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.Languages.EnglishCulture">
-            <summary>
-            Indicates the English culture.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Globalization.Languages.ChineseCulture">
-            <summary>
-            Indicates the Chinese culture.
-            </summary>
-        </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.

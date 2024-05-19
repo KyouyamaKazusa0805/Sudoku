@@ -1771,6 +1771,31 @@
             The generated field declaration for parameter <c>bitsCount</c>.
             </summary>
         </member>
+        <member name="T:System.Globalization.Languages">
+            <summary>
+            Indicates the supported languages in resource.
+            </summary>
+        </member>
+        <member name="F:System.Globalization.Languages.EnglishLanguage">
+            <summary>
+            Indicates English language identifier.
+            </summary>
+        </member>
+        <member name="F:System.Globalization.Languages.ChineseLanguage">
+            <summary>
+            Indicates Chinese language identifier.
+            </summary>
+        </member>
+        <member name="F:System.Globalization.Languages.EnglishCulture">
+            <summary>
+            Indicates the English culture.
+            </summary>
+        </member>
+        <member name="F:System.Globalization.Languages.ChineseCulture">
+            <summary>
+            Indicates the Chinese culture.
+            </summary>
+        </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>
             Defines a mechanism for computing the logical relation between two instances of type <typeparamref name="TSelf"/>.

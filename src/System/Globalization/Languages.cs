@@ -1,4 +1,4 @@
-namespace Sudoku.Globalization;
+namespace System.Globalization;
 
 /// <summary>
 /// Indicates the supported languages in resource.
