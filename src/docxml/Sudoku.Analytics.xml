@@ -6429,13 +6429,6 @@
             </para>
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetShapeKind(Sudoku.Analytics.Steps.FishStep)">
-            <summary>
-            Determine the fish kind of the shape.
-            </summary>
-            <param name="pattern">The fish pattern.</param>
-            <returns>The shape kind.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.FishModule.GetSiamese(System.Collections.Generic.List{Sudoku.Analytics.Steps.FishStep},Sudoku.Concepts.Grid@)">
             <summary>
             Get all possible Siamese patterns of type <see cref="T:Sudoku.Analytics.Steps.FishStep"/> for the specified accumulator.
@@ -16949,6 +16942,11 @@
             </param>
             <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
+        <member name="F:Sudoku.Analytics.Steps.FishStep._pattern">
+            <summary>
+            Indicates the pattern to be used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Size">
             <inheritdoc/>
             <remarks>
@@ -16964,14 +16962,14 @@
             Other fishes of sizes not appearing in above don't have well-known names.
             </remarks>
         </member>
-        <member name="P:Sudoku.Analytics.Steps.FishStep.InternalNotation">
-            <summary>
-            The internal notation.
-            </summary>
-        </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Pattern">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Fish"/> instance via the current data.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.FishStep.InternalNotation">
+            <summary>
+            The internal notation.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.Globalization.CultureInfo)">
@@ -20569,6 +20567,21 @@
         <member name="P:Sudoku.Concepts.Fish.IsComplex">
             <summary>
             Indicates whether the pattern is complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Fins">
+            <summary>
+            Indicates all fins.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.ShapeKind">
+            <summary>
+            Indicates the shape kind of the current fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.FinKind">
+            <summary>
+            Indicates the fin kind.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Fish.Equals(Sudoku.Concepts.Fish@)">

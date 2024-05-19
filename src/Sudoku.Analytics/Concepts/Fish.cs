@@ -26,6 +26,69 @@ public readonly partial struct Fish(
 	/// </summary>
 	public bool IsComplex => Endofins is not [];
 
+	/// <summary>
+	/// Indicates all fins.
+	/// </summary>
+	public CellMap Fins => Exofins | Endofins;
+
+	/// <summary>
+	/// Indicates the shape kind of the current fish.
+	/// </summary>
+	public FishShapeKind ShapeKind
+	{
+		get
+		{
+			return this switch
+			{
+				{ IsComplex: true, BaseSets: var baseSets, CoverSets: var coverSets } => (k(baseSets), k(coverSets)) switch
+				{
+					(FishShapeKind.Mutant, _) or (_, FishShapeKind.Mutant) => FishShapeKind.Mutant,
+					(FishShapeKind.Franken, _) or (_, FishShapeKind.Franken) => FishShapeKind.Franken,
+					_ => FishShapeKind.Basic
+				},
+				_ => FishShapeKind.Basic
+			};
+
+
+			[MethodImpl(MethodImplOptions.AggressiveInlining)]
+			static FishShapeKind k(HouseMask mask)
+			{
+				var blockMask = mask & Grid.MaxCandidatesMask;
+				var rowMask = mask >> 9 & Grid.MaxCandidatesMask;
+				var columnMask = mask >> 18 & Grid.MaxCandidatesMask;
+				return rowMask * columnMask != 0
+					? FishShapeKind.Mutant
+					: (rowMask | columnMask) != 0 && blockMask != 0
+						? FishShapeKind.Franken
+						: FishShapeKind.Basic;
+			}
+		}
+	}
+
+	/// <summary>
+	/// Indicates the fin kind.
+	/// </summary>
+	public FishFinKind FinKind
+	{
+		get
+		{
+			var fins = Fins;
+			if (!fins)
+			{
+				return FishFinKind.Normal;
+			}
+
+			foreach (var baseSet in baseSets)
+			{
+				if ((HousesMap[baseSet] & ~fins & CandidatesMap[digit]).Count == 1)
+				{
+					return FishFinKind.Sashimi;
+				}
+			}
+			return FishFinKind.Finned;
+		}
+	}
+
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

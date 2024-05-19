@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-internal enum FishFinKind
+public enum FishFinKind
 {
 	/// <summary>
 	/// Indicates the normal fish (i.e. no fins).

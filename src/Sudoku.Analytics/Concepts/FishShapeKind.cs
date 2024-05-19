@@ -5,7 +5,7 @@ namespace Sudoku.Analytics.Steps;
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-internal enum FishShapeKind
+public enum FishShapeKind
 {
 	/// <summary>
 	/// Indicates the basic fish.

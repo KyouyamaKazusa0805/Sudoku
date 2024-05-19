@@ -40,42 +40,7 @@ internal static class FishModule
 				break;
 			}
 		}
-
 		return isSashimi;
-	}
-
-	/// <summary>
-	/// Determine the fish kind of the shape.
-	/// </summary>
-	/// <param name="pattern">The fish pattern.</param>
-	/// <returns>The shape kind.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static FishShapeKind GetShapeKind(FishStep pattern)
-	{
-		return pattern switch
-		{
-			ComplexFishStep { BaseSetsMask: var baseSets, CoverSetsMask: var coverSets } => (k(baseSets), k(coverSets)) switch
-			{
-				(FishShapeKind.Mutant, _) or (_, FishShapeKind.Mutant) => FishShapeKind.Mutant,
-				(FishShapeKind.Franken, _) or (_, FishShapeKind.Franken) => FishShapeKind.Franken,
-				_ => FishShapeKind.Basic
-			},
-			_ => FishShapeKind.Basic
-		};
-
-
-		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static FishShapeKind k(HouseMask mask)
-		{
-			var blockMask = mask & Grid.MaxCandidatesMask;
-			var rowMask = mask >> 9 & Grid.MaxCandidatesMask;
-			var columnMask = mask >> 18 & Grid.MaxCandidatesMask;
-			return rowMask * columnMask != 0
-				? FishShapeKind.Mutant
-				: (rowMask | columnMask) != 0 && blockMask != 0
-					? FishShapeKind.Franken
-					: FishShapeKind.Basic;
-		}
 	}
 
 	/// <summary>
@@ -124,7 +89,7 @@ internal static class FishModule
 				goto ReturnFalse;
 			}
 
-			if ((fish1, fish2) is (ComplexFishStep a, ComplexFishStep b) && GetShapeKind(a) != GetShapeKind(b))
+			if ((fish1, fish2) is (ComplexFishStep { Pattern.ShapeKind: var a }, ComplexFishStep { Pattern.ShapeKind: var b }) && a != b)
 			{
 				// They cannot hold different kind of shapes.
 				goto ReturnFalse;
@@ -197,7 +162,7 @@ internal static class FishModule
 					coveredSetsMask,
 					mergedFins & (p.Exofins | ((ComplexFishStep)fish2).Exofins),
 					mergedFins & (p.Endofins | ((ComplexFishStep)fish2).Endofins),
-					GetShapeKind(p) switch
+					p.Pattern.ShapeKind switch
 					{
 						FishShapeKind.Franken => true,
 						FishShapeKind.Mutant => false,

@@ -43,6 +43,12 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] bool isSiamese = false
 ) : Step(conclusions, views, options), ISizeTrait
 {
+	/// <summary>
+	/// Indicates the pattern to be used.
+	/// </summary>
+	private Fish? _pattern;
+
+
 	/// <inheritdoc/>
 	/// <remarks>
 	/// The name of the corresponding names are:
@@ -59,25 +65,31 @@ public abstract partial class FishStep(
 	public int Size => PopCount((uint)BaseSetsMask);
 
 	/// <summary>
+	/// Creates a <see cref="Fish"/> instance via the current data.
+	/// </summary>
+	internal ref readonly Fish Pattern
+	{
+		get
+		{
+			_pattern ??= new(
+				Digit,
+				BaseSetsMask,
+				CoverSetsMask,
+				in this is NormalFishStep { Fins: var f }
+					? ref f
+					: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref @ref.NullRef<CellMap>(),
+				in this is NormalFishStep
+					? ref CellMap.Empty
+					: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref @ref.NullRef<CellMap>()
+			);
+			return ref Nullable.GetValueRefOrDefaultRef(in _pattern);
+		}
+	}
+
+	/// <summary>
 	/// The internal notation.
 	/// </summary>
 	private protected string InternalNotation => Pattern.ToString(Options.Converter);
-
-	/// <summary>
-	/// Creates a <see cref="Fish"/> instance via the current data.
-	/// </summary>
-	private Fish Pattern
-		=> new(
-			Digit,
-			BaseSetsMask,
-			CoverSetsMask,
-			in this is NormalFishStep { Fins: var f }
-				? ref f
-				: ref this is ComplexFishStep { Exofins: var f2 } ? ref f2 : ref @ref.NullRef<CellMap>(),
-			in this is NormalFishStep
-				? ref CellMap.Empty
-				: ref this is ComplexFishStep { Endofins: var f3 } ? ref f3 : ref @ref.NullRef<CellMap>()
-		);
 
 
 	/// <inheritdoc cref="Step.ToString(CultureInfo?)"/>
