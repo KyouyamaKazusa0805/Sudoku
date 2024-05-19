@@ -28761,11 +28761,7 @@ result ^= expression;
             <param name="other">The other collection.</param>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.Has``1">
-            <summary>
-            Determine whether the collection contains an element of the specified type.
-            </summary>
-            <typeparam name="T">The type of the constraint to be checked.</typeparam>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
             <summary>
@@ -28779,11 +28775,7 @@ result ^= expression;
             <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.OfType``1">
-            <summary>
-            Filter the collection, only reserving constraints of type <typeparamref name="TConstraint"/>.
-            </summary>
-            <typeparam name="TConstraint">The type of the target constraint to be reserved.</typeparam>
-            <returns>A new collection that only contains <typeparamref name="TConstraint"/> instances.</returns>
+            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
             <summary>
@@ -28793,15 +28785,10 @@ result ^= expression;
             <returns>A new collection that only contains constraints satisfying the specified condition.</returns>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
-            <summary>
-            Projects each element in this collection into a new form.
-            </summary>
-            <typeparam name="TResult">The type of each result element.</typeparam>
-            <param name="selector">The selector method to convert the value into <typeparamref name="TResult"/> instance.</param>
-            <returns>A list of <typeparamref name="TResult"/> instances.</returns>
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.Slice(System.Int32,System.Int32)">
-            <inheritdoc cref="M:System.Collections.Generic.List`1.Slice(System.Int32,System.Int32)"/>
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Int32)">
             <inheritdoc/>

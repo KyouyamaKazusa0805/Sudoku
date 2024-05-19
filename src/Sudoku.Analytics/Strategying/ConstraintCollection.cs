@@ -8,6 +8,7 @@ public sealed class ConstraintCollection :
 	IAdditionOperators<ConstraintCollection, Constraint?, ConstraintCollection>,
 	IElementAtMethod<ConstraintCollection, Constraint>,
 	IFirstLastMethod<ConstraintCollection, Constraint>,
+	IHasMethod<ConstraintCollection, Constraint>,
 	ISubtractionOperators<ConstraintCollection, Constraint?, ConstraintCollection>,
 	ISelectMethod<ConstraintCollection, Constraint>,
 	ISliceMethod<ConstraintCollection, Constraint>,
@@ -36,11 +37,7 @@ public sealed class ConstraintCollection :
 	}
 
 
-	/// <summary>
-	/// Determine whether the collection contains an element of the specified type.
-	/// </summary>
-	/// <typeparam name="T">The type of the constraint to be checked.</typeparam>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <inheritdoc/>
 	public bool Has<T>() where T : Constraint
 	{
 		foreach (var element in this)
@@ -84,11 +81,7 @@ public sealed class ConstraintCollection :
 		return null;
 	}
 
-	/// <summary>
-	/// Filter the collection, only reserving constraints of type <typeparamref name="TConstraint"/>.
-	/// </summary>
-	/// <typeparam name="TConstraint">The type of the target constraint to be reserved.</typeparam>
-	/// <returns>A new collection that only contains <typeparamref name="TConstraint"/> instances.</returns>
+	/// <inheritdoc cref="IOfTypeMethod{TSelf, TSource}.OfType{TResult}"/>
 	public ReadOnlySpan<TConstraint> OfType<TConstraint>() where TConstraint : Constraint
 	{
 		var result = new List<TConstraint>();
@@ -120,12 +113,7 @@ public sealed class ConstraintCollection :
 		return result;
 	}
 
-	/// <summary>
-	/// Projects each element in this collection into a new form.
-	/// </summary>
-	/// <typeparam name="TResult">The type of each result element.</typeparam>
-	/// <param name="selector">The selector method to convert the value into <typeparamref name="TResult"/> instance.</param>
-	/// <returns>A list of <typeparamref name="TResult"/> instances.</returns>
+	/// <inheritdoc cref="ISelectMethod{TSelf, TSource}.Select{TResult}(Func{TSource, TResult})"/>
 	public ReadOnlySpan<TResult> Select<TResult>(Func<Constraint, TResult> selector)
 	{
 		var result = new List<TResult>(Count);
@@ -136,7 +124,7 @@ public sealed class ConstraintCollection :
 		return result.AsReadOnlySpan();
 	}
 
-	/// <inheritdoc cref="List{T}.Slice(int, int)"/>
+	/// <inheritdoc cref="ISliceMethod{TSelf, TSource}.Slice(int, int)"/>
 	public new ConstraintCollection Slice(int start, int count)
 	{
 		var result = new ConstraintCollection(count);

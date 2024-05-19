@@ -3066,6 +3066,12 @@
         <member name="M:System.Linq.Providers.ICountMethod`2.LongCount(System.Func{`1,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
+        <member name="T:System.Linq.Providers.ICustomMethod`2">
+            <summary>
+            Represents a type that supports customized LINQ method defined in this repository.
+            </summary>
+            <inheritdoc/>
+        </member>
         <member name="T:System.Linq.Providers.IDefaultIfEmptyMethod`2">
             <summary>
             Represents a type that supports method group <c>DefaultIfEmpty</c>.
@@ -3215,6 +3221,19 @@
         </member>
         <member name="M:System.Linq.Providers.IGroupByMethod`2.GroupBy``3(System.Func{`1,``0},System.Func{`1,``1},System.Func{``0,System.Collections.Generic.IEnumerable{``1},``2},System.Collections.Generic.IEqualityComparer{``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.GroupBy``4(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1},System.Func{``0,``2},System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3},System.Collections.Generic.IEqualityComparer{``1})"/>
+        </member>
+        <member name="T:System.Linq.Providers.IHasMethod`2">
+            <summary>
+            Represents a type that supports method group <c>Has</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IHasMethod`2.Has``1">
+            <summary>
+            Determine whether the collection contains an element of the specified type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the constraint to be checked.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="T:System.Linq.Providers.IIndexMethod`2">
             <summary>
