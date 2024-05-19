@@ -197,7 +197,7 @@ public abstract partial class ChainingStep(
 	/// Represents an equality comparer of <see cref="ChainingStep"/> instances.
 	/// </summary>
 	private static IEqualityComparer<ChainingStep> ChainStepEqualityComparer
-		=> EqualityComparing.Create<ChainingStep>(
+		=> EqualityComparer<ChainingStep>.Create(
 			static (left, right) =>
 			{
 				return (left, right) switch
@@ -219,7 +219,6 @@ public abstract partial class ChainingStep(
 							return false;
 						}
 					}
-
 					return true;
 				}
 			},
@@ -233,7 +232,6 @@ public abstract partial class ChainingStep(
 						result ^= p.GetHashCode();
 					}
 				}
-
 				return result;
 			}
 		);

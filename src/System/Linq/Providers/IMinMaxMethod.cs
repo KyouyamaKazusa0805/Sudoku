@@ -12,7 +12,7 @@ public interface IMinMaxMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	public virtual TSource? Min() => Min(default(IComparer<TSource>));
 
 	/// <inheritdoc/>
-	public virtual TSource Min(Comparison<TSource> comparer) => Min(Comparing.Create(comparer));
+	public virtual TSource Min(Comparison<TSource> comparer) => Min(Comparer<TSource>.Create(comparer));
 
 	/// <inheritdoc cref="Enumerable.Min{TSource}(IEnumerable{TSource}, IComparer{TSource}?)"/>
 	public virtual TSource Min(IComparer<TSource>? comparer)
@@ -53,7 +53,7 @@ public interface IMinMaxMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource>
 	public virtual TSource? Max() => Max(default(IComparer<TSource>));
 
 	/// <inheritdoc/>
-	public virtual TSource Max(Comparison<TSource> comparer) => Max(Comparing.Create(comparer));
+	public virtual TSource Max(Comparison<TSource> comparer) => Max(Comparer<TSource>.Create(comparer));
 
 	/// <inheritdoc cref="Enumerable.Max{TSource}(IEnumerable{TSource}, IComparer{TSource}?)"/>
 	public virtual TSource Max(IComparer<TSource>? comparer)

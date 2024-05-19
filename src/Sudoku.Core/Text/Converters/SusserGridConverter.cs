@@ -237,7 +237,7 @@ public partial record SusserGridConverter(
 						{
 							var hashSet = new HashSet<Match>(
 								collection,
-								EqualityComparing.Create<Match>(static (l, r) => l.Length == r.Length, static v => v.Length)
+								EqualityComparer<Match>.Create(static (l, r) => (l?.Length ?? 0) == (r?.Length ?? 0), static v => v.Length)
 							);
 							switch (hashSet)
 							{

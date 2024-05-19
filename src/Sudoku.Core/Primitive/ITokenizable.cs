@@ -15,7 +15,7 @@ public interface ITokenizable<TSelf> where TSelf : ITokenizable<TSelf>
 	/// Indicates the equality comparer instance of type <typeparamref name="TSelf"/>.
 	/// </summary>
 	public sealed IEqualityComparer<TSelf> EqualityComparer
-		=> EqualityComparing.Create<TSelf>(static (x, y) => x?.Token == y?.Token, static v => v.TokenHashCode);
+		=> EqualityComparer<TSelf>.Create(static (x, y) => x?.Token == y?.Token, static v => v.TokenHashCode);
 
 	/// <summary>
 	/// Indicates the hash code that is calculated with token.

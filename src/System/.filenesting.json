@@ -29,14 +29,10 @@
           "ChunkNode.cs": [ "__Types" ],
           "ChunkNodeType.cs": [ "__Types" ],
           "ChunkNodeBuilder.cs": [ "__Types" ],
-          "SpecializedComparer.cs": [ "__Types" ],
-          "SpecializedEqualityComparer.cs": [ "__Types" ],
           "ILogicalOperators.cs": [ "__Types" ],
           "ArgumentNullRefException.cs": [ "__Types" ],
           "delegate.cs": [ "__Types" ],
-          "ref.cs": [ "__Types" ],
-          "EqualityComparing.cs": [ "__Types" ],
-          "Comparing.cs": [ "__Types" ]
+          "ref.cs": [ "__Types" ]
         }
       }
     }

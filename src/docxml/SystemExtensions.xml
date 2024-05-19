@@ -255,26 +255,6 @@
             24 cases.
             </returns>
         </member>
-        <member name="T:System.Comparing">
-            <summary>
-            Create <see cref="T:System.Collections.Generic.IComparer`1"/> instances.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IComparer`1"/>
-        </member>
-        <member name="M:System.Comparing.Create``1(System.Comparison{``0})">
-            <inheritdoc cref="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})"/>
-        </member>
-        <member name="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})">
-            <summary>
-            Creates an <see cref="T:System.Collections.Generic.IComparer`1"/> instance via specified method.
-            </summary>
-            <typeparam name="T">The type of the value to be compared.</typeparam>
-            <param name="compare">The compare method handler.</param>
-            <returns>An <see cref="T:System.Collections.Generic.IComparer`1"/> value serving as comparing rules.</returns>
-        </member>
-        <member name="M:System.Comparing.CreateUnsafe``1()">
-            <inheritdoc cref="M:System.Comparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Int32})"/>
-        </member>
         <member name="T:System.ComplexValueTupleEnumerator`2">
             <summary>
             Defines a complex value tuple enumerator.
@@ -484,30 +464,6 @@
         </member>
         <member name="M:System.EnumFlagsEnumerator`1.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="T:System.EqualityComparing">
-            <summary>
-            Creates <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instances.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.IEqualityComparer`1"/>
-        </member>
-        <member name="M:System.EqualityComparing.CreateByEqualityOperator``1">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
-        </member>
-        <member name="M:System.EqualityComparing.Create``1(System.Func{``0,``0,System.Boolean},System.Func{``0,System.Int32})">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
-        </member>
-        <member name="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})">
-            <summary>
-            Creates an <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> instance via specified methods.
-            </summary>
-            <typeparam name="T">The type of the value to be compared.</typeparam>
-            <param name="equals">The equals method handler.</param>
-            <param name="getHashCode">The get hash code method handler.</param>
-            <returns>An <see cref="T:System.Collections.Generic.IEqualityComparer`1"/> value serving as comparing equality rules.</returns>
-        </member>
-        <member name="M:System.EqualityComparing.CreateUnsafe``1(,)">
-            <inheritdoc cref="M:System.EqualityComparing.Create``1(System.FuncRefReadOnly{``0,``0,System.Boolean},System.FuncRefReadOnly{``0,System.Int32})"/>
         </member>
         <member name="T:System.ArrayExtensions">
             <summary>
@@ -5556,106 +5512,6 @@
             <summary>
             Indicates the method will be made <see langword="abstract"/>.
             </summary>
-        </member>
-        <member name="T:System.SpecializedComparer`1">
-            <summary>
-            Represents a specialized comparer.
-            </summary>
-            <typeparam name="T">The type of values to be compared.</typeparam>
-            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
-        </member>
-        <member name="M:System.SpecializedComparer`1.#ctor(System.Boolean)">
-            <summary>
-            Represents a specialized comparer.
-            </summary>
-            <typeparam name="T">The type of values to be compared.</typeparam>
-            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
-        </member>
-        <member name="F:System.SpecializedComparer`1._compare">
-            <summary>
-            The handler for method <see cref="M:System.SpecializedComparer`1.Compare(`0@,`0@)"/>.
-            </summary>
-        </member>
-        <member name="F:System.SpecializedComparer`1._compareUnsafe">
-            <inheritdoc cref="F:System.SpecializedComparer`1._compare"/>
-        </member>
-        <member name="P:System.SpecializedComparer`1.IsUnsafe">
-            <summary>
-            Indicates whether the comparer uses unsafe logic.
-            </summary>
-        </member>
-        <member name="M:System.SpecializedComparer`1.#ctor(System.FuncRefReadOnly{`0,`0,System.Int32})">
-            <summary>
-            Initializes a <see cref="T:System.SpecializedComparer`1"/> instance.
-            </summary>
-        </member>
-        <member name="M:System.SpecializedComparer`1.#ctor()">
-            <summary>
-            Initializes a <see cref="T:System.SpecializedComparer`1"/> instance.
-            </summary>
-        </member>
-        <member name="M:System.SpecializedComparer`1.Compare(`0@,`0@)">
-            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
-        </member>
-        <member name="M:System.SpecializedComparer`1.System#Collections#Generic#IComparer{T}#Compare(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="T:System.SpecializedEqualityComparer`1">
-            <summary>
-            Represents a specialized equality comparer.
-            </summary>
-            <typeparam name="T">The type of values to be compared.</typeparam>
-            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.Boolean)">
-            <summary>
-            Represents a specialized equality comparer.
-            </summary>
-            <typeparam name="T">The type of values to be compared.</typeparam>
-            <param name="isUnsafe">Indicates whether the handler methods are unsafe.</param>
-        </member>
-        <member name="F:System.SpecializedEqualityComparer`1._equals">
-            <summary>
-            The handler for method <see cref="M:System.SpecializedEqualityComparer`1.Equals(`0@,`0@)"/>.
-            </summary>
-        </member>
-        <member name="F:System.SpecializedEqualityComparer`1._getHashCode">
-            <summary>
-            The handler for method <see cref="M:System.SpecializedEqualityComparer`1.GetHashCode(`0@)"/>.
-            </summary>
-        </member>
-        <member name="F:System.SpecializedEqualityComparer`1._equalsUnsafe">
-            <inheritdoc cref="F:System.SpecializedEqualityComparer`1._equals"/>
-        </member>
-        <member name="F:System.SpecializedEqualityComparer`1._getHashCodeUnsafe">
-            <inheritdoc cref="F:System.SpecializedEqualityComparer`1._getHashCode"/>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.#ctor(System.FuncRefReadOnly{`0,`0,System.Boolean},System.FuncRefReadOnly{`0,System.Int32})">
-            <summary>
-            Initializes a <see cref="T:System.SpecializedEqualityComparer`1"/> instance.
-            </summary>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.#ctor(,)">
-            <summary>
-            Initializes a <see cref="T:System.SpecializedEqualityComparer`1"/> instance.
-            </summary>
-        </member>
-        <member name="P:System.SpecializedEqualityComparer`1.IsUnsafe">
-            <summary>
-            Indicates whether the comparer uses unsafe logic.
-            </summary>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.Equals(`0@,`0@)">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.Equals(`0,`0)"/>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.GetHashCode(`0@)">
-            <inheritdoc cref="M:System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)"/>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#Equals(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:System.SpecializedEqualityComparer`1.System#Collections#Generic#IEqualityComparer{T}#GetHashCode(`0)">
-            <inheritdoc/>
         </member>
         <member name="T:System.Threading.Tasks.TimeSpanAwaitable">
             <summary>

@@ -10,7 +10,7 @@ public sealed partial class GeneratedPuzzleConstraintPage : Page
 	/// <summary>
 	/// Indicates a dictionary type that can create controls, distincted by its real type.
 	/// </summary>
-	private static readonly Dictionary<Type, ConstraintControlCreator> ControlCreatorFactory = new(EqualityComparing.Create<Type>(static (a, b) => a == b, static v => v.GetHashCode()))
+	private static readonly Dictionary<Type, ConstraintControlCreator> ControlCreatorFactory = new(EqualityComparer<Type>.Create(static (a, b) => a == b, static v => v.GetHashCode()))
 	{
 		{ typeof(BottleneckStepRatingConstraint), static (@this, s) => @this.Create_BottleneckStepRating((BottleneckStepRatingConstraint) s) },
 		{ typeof(BottleneckTechniqueConstraint), static (@this, s) => @this.Create_BottleneckTechnique((BottleneckTechniqueConstraint) s) },
