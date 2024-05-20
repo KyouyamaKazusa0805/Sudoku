@@ -7,14 +7,14 @@ namespace SudokuStudio.Views.Pages;
 [DependencyProperty<bool>("IsGathererLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the gatherer is launched.")]
 [DependencyProperty<bool>("IsGeneratorLaunched", Accessibility = Accessibility.Internal, DocSummary = "Indicates whether the generator is launched.")]
 [DependencyProperty<double>("ProgressPercent", Accessibility = Accessibility.Internal, DocSummary = "Indicates the progress percent value.")]
-[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"global::Sudoku.Rendering.IRenderable.Views\"/> displayed.")]
+[DependencyProperty<int>("CurrentViewIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the current index of the view of property <see cref=\"global::Sudoku.Drawing.IDrawable.Views\"/> displayed.")]
 [DependencyProperty<int>("SelectedColorIndex", DefaultValue = -1, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected color index.")]
 [DependencyProperty<string>("BabaGroupNameInput?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the input character that is used as a baba group variable.")]
 [DependencyProperty<DrawingMode>("SelectedMode", DefaultValue = DrawingMode.Cell, Accessibility = Accessibility.Internal, DocSummary = "Indicates the selected drawing mode.")]
 [DependencyProperty<Inference>("LinkKind", DefaultValue = Inference.Strong, Accessibility = Accessibility.Internal, DocSummary = "Indicates the link type.")]
 [DependencyProperty<AnalysisResult>("AnalysisResultCache?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the analysis result cache.")]
 [DependencyProperty<ColorPalette>("UserDefinedPalette", Accessibility = Accessibility.Internal, DocSummary = "Indicates the user-defined colors.")]
-[DependencyProperty<IRenderable>("VisualUnit?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
+[DependencyProperty<IDrawable>("VisualUnit?", Accessibility = Accessibility.Internal, DocSummary = "Indicates the visual unit.")]
 public sealed partial class AnalyzePage : Page
 {
 	[Default]
@@ -484,7 +484,7 @@ public sealed partial class AnalyzePage : Page
 			new(
 				ResourceDictionary.Get("AnalyzePage_Drawing", App.CurrentCulture),
 				new SymbolIconSource { Symbol = Symbol.Edit },
-				new Drawing { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
+				new Analyze.Drawing { Margin = DefaultMarginForAnalyzerPages, BasePage = this }
 			)
 		];
 		_hotkeyFunctions = [
@@ -828,7 +828,7 @@ public sealed partial class AnalyzePage : Page
 
 	private bool CheckBabaGroupingNode(int index, GridClickedEventArgs e, ViewUnitBindableSource view)
 	{
-		TextBlock wrongHintControl() => ((Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
+		TextBlock wrongHintControl() => ((Analyze.Drawing)((AnalyzeTabPageBindableSource)AnalyzeTabs.SelectedItem).Page).InvalidInputInfoDisplayer;
 		switch (BabaGroupNameInput, e, view)
 		{
 			case (null or [], _, _):
@@ -935,12 +935,12 @@ public sealed partial class AnalyzePage : Page
 	[Callback]
 	private static void VisualUnitPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 	{
-		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or IRenderable) }))
+		if ((d, e) is not (AnalyzePage page, { NewValue: var value and (null or IDrawable) }))
 		{
 			return;
 		}
 
-		var currentViewIndex = value is IRenderable ? 0 : -1;
+		var currentViewIndex = value is IDrawable ? 0 : -1;
 		page.CurrentViewIndex = currentViewIndex;
 
 		ChangeCurrentViewIndex(page, currentViewIndex);

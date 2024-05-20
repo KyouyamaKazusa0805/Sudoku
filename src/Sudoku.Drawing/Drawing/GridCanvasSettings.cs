@@ -11,12 +11,12 @@ public sealed class GridCanvasSettings
 	public bool ShowCandidates { get; set; } = true;
 
 	/// <summary>
-	/// Indicates whether the grid painter will use new algorithm to render a house (lighter).
+	/// Indicates whether the grid painter will use new algorithm to draw a house (lighter).
 	/// </summary>
 	public bool ShowLightHouse { get; set; } = false;
 
 	/// <summary>
-	/// Indicates whether border bars will fully overlaps the shared grid line while rendering.
+	/// Indicates whether border bars will fully overlaps the shared grid line while drawing.
 	/// </summary>
 	public bool BorderBarFullyOverlapsGridLine { get; set; } = false;
 
@@ -39,12 +39,12 @@ public sealed class GridCanvasSettings
 	public decimal FooterTextScale { get; set; } = .4M;
 
 	/// <summary>
-	/// Indicates the grid line width of the sudoku grid to render.
+	/// Indicates the grid line width of the sudoku grid to draw.
 	/// </summary>
 	public float GridLineWidth { get; set; } = 1.5F;
 
 	/// <summary>
-	/// Indicates the block line width of the sudoku grid to render.
+	/// Indicates the block line width of the sudoku grid to draw.
 	/// </summary>
 	public float BlockLineWidth { get; set; } = 3F;
 
@@ -54,27 +54,27 @@ public sealed class GridCanvasSettings
 	public float FigurePadding { get; set; } = 5F;
 
 	/// <summary>
-	/// Indicates the font of given digits to render.
+	/// Indicates the font of given digits to draw.
 	/// </summary>
 	public string? GivenFontName { get; set; } = "MiSans";
 
 	/// <summary>
-	/// Indicates the font of modifiable digits to render.
+	/// Indicates the font of modifiable digits to draw.
 	/// </summary>
 	public string? ModifiableFontName { get; set; } = "MiSans";
 
 	/// <summary>
-	/// Indicates the font of candidate digits to render.
+	/// Indicates the font of candidate digits to draw.
 	/// </summary>
 	public string? CandidateFontName { get; set; } = "MiSans";
 
 	/// <summary>
-	/// Indicates the font of baba grouping characters to render.
+	/// Indicates the font of baba grouping characters to draw.
 	/// </summary>
 	public string? BabaGroupingFontName { get; set; } = "Times New Roman";
 
 	/// <summary>
-	/// Indicates the font of footer text to render.
+	/// Indicates the font of footer text to draw.
 	/// </summary>
 	public string? FooterTextFontName { get; set; } = "MiSans";
 
@@ -104,17 +104,17 @@ public sealed class GridCanvasSettings
 	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;
 
 	/// <summary>
-	/// Indicates the given digits to render.
+	/// Indicates the given digits to draw.
 	/// </summary>
 	public Color GivenColor { get; set; } = Color.Black;
 
 	/// <summary>
-	/// Indicates the modifiable digits to render.
+	/// Indicates the modifiable digits to draw.
 	/// </summary>
 	public Color ModifiableColor { get; set; } = Color.Blue;
 
 	/// <summary>
-	/// Indicates the candidate digits to render.
+	/// Indicates the candidate digits to draw.
 	/// </summary>
 	public Color CandidateColor { get; set; } = Color.DimGray;
 
@@ -154,17 +154,17 @@ public sealed class GridCanvasSettings
 	public Color ChainColor { get; set; } = Color.Red;
 
 	/// <summary>
-	/// Indicates the background color of the sudoku grid to render.
+	/// Indicates the background color of the sudoku grid to draw.
 	/// </summary>
 	public Color BackgroundColor { get; set; } = Color.White;
 
 	/// <summary>
-	/// Indicates the grid line color of the sudoku grid to render.
+	/// Indicates the grid line color of the sudoku grid to draw.
 	/// </summary>
 	public Color GridLineColor { get; set; } = Color.Black;
 
 	/// <summary>
-	/// Indicates the block line color of the sudoku grid to render.
+	/// Indicates the block line color of the sudoku grid to draw.
 	/// </summary>
 	public Color BlockLineColor { get; set; } = Color.Black;
 

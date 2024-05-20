@@ -115,7 +115,7 @@
             <returns>The <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the ID is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.GridCanvas.GetColor(Sudoku.Rendering.ColorIdentifier)">
+        <member name="M:Sudoku.Drawing.GridCanvas.GetColor(Sudoku.Drawing.ColorIdentifier)">
             <summary>
             Gets the color value.
             </summary>

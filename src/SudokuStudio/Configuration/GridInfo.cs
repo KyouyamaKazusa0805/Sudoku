@@ -30,5 +30,5 @@ public sealed class GridInfo
 	/// <summary>
 	/// Indicates the data that represents the conclusions and view nodes.
 	/// </summary>
-	public UserDefinedRenderable? RenderableData { get; set; }
+	public UserDefinedDrawable? RenderableData { get; set; }
 }

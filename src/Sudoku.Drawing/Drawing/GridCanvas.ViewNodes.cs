@@ -30,7 +30,7 @@ public partial class GridCanvas
 			return;
 		}
 
-		var vOffsetCandidate = candidateWidth / 9; // The vertical offset of rendering each candidate.
+		var vOffsetCandidate = candidateWidth / 9; // The vertical offset of drawing each candidate.
 		using var bCandidate = new SolidBrush(cColor);
 		using var bCandidateLighter = new SolidBrush(cColor.QuarterAlpha());
 		using var fCandidate = GetFont(cFontName, cellWidth / 2F, cScale, cFontStyle);
@@ -325,7 +325,7 @@ public partial class GridCanvas
 		}
 
 		var cellWidth = _calculator.CellSize.Width;
-		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each value.
+		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of drawing each value.
 		var halfWidth = cellWidth / 2F;
 		using var brush = new SolidBrush(uColor);
 		using var font = GetFont(uFontName, halfWidth, vScale, uFontStyle);

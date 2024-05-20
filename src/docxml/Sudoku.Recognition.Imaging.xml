@@ -54,16 +54,6 @@
         <member name="P:Sudoku.Recognition.Imaging.FailedToFillValueException.HelpLink">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Recognition.Imaging.FailedToFillValueException.Cell">
-            <summary>
-            The generated property declaration for parameter <c>cell</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Recognition.Imaging.FailedToFillValueException.Digit">
-            <summary>
-            The generated property declaration for parameter <c>digit</c>.
-            </summary>
-        </member>
         <member name="T:Sudoku.Recognition.Imaging.GridRecognizer">
             <summary>
             Provides a grid field recognizer. If you want to know what is a <b>field</b>,
@@ -103,21 +93,6 @@
         <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.ThresholdMax">
             <summary>
             Indicates the maximum threshold.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.FontSize">
-            <summary>
-            Indicates the font size.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.FontSizePr">
-            <summary>
-            Indicates the font size pr.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.Font">
-            <summary>
-            Indicates the font face.
             </summary>
         </member>
         <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.ChainApproximation">
@@ -351,11 +326,6 @@
         </member>
         <member name="P:Sudoku.Recognition.Imaging.TesseractException.HelpLink">
             <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Recognition.Imaging.TesseractException.Detail">
-            <summary>
-            The generated property declaration for parameter <c>detail</c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Resources.RecognitionImagingResources">
             <summary>

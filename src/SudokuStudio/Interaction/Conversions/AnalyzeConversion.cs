@@ -15,7 +15,7 @@ internal static class AnalyzeConversion
 	public static bool GetProgressRingIsActive(bool isAnalyzerLaunched, bool isGathererLaunched, bool isGeneratorLaunched)
 		=> (isAnalyzerLaunched, isGathererLaunched, isGeneratorLaunched) switch { (_, _, true) => false, _ => true };
 
-	public static int GetViewPipsPagerPageCount(IRenderable? renderable) => renderable?.Views?.Length ?? 0;
+	public static int GetViewPipsPagerPageCount(IDrawable? drawable) => drawable?.Views?.Length ?? 0;
 
 	public static int GetCurrentViewIndexForViewPipsPager(int currentIndex) => currentIndex;
 
@@ -47,7 +47,7 @@ internal static class AnalyzeConversion
 
 	public static string GetIndexText(SolvingPathStepBindableSource step) => (step.Index + 1).ToString();
 
-	public static string GetViewIndexDisplayerString(IRenderable? visualUnit, int currentIndex)
+	public static string GetViewIndexDisplayerString(IDrawable? visualUnit, int currentIndex)
 		=> visualUnit?.Views?.Length is { } length ? $"{currentIndex + 1}/{length}" : "0/0";
 
 	public static string GetName(Step step) => step.GetName(App.CurrentCulture);
@@ -77,8 +77,8 @@ internal static class AnalyzeConversion
 			_ => Visibility.Collapsed
 		};
 
-	public static Visibility GetViewPipsPagerVisibility(IRenderable? renderable)
-		=> renderable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
+	public static Visibility GetViewPipsPagerVisibility(IDrawable? drawable)
+		=> drawable switch { { Views.Length: >= 2 } => Visibility.Visible, _ => Visibility.Collapsed };
 
 	public static Visibility GetEnglishNameTextBlockVisibility()
 		=> ((App)Application.Current).Preference.AnalysisPreferences.AlsoDisplayEnglishNameOfStep ? Visibility.Visible : Visibility.Collapsed;

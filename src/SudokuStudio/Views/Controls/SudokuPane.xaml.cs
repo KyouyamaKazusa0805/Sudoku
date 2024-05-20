@@ -26,7 +26,7 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Cell>("SelectedCell", DocSummary = "Indicates the currently selected cell.")]
 [DependencyProperty<CoordinateType>("CoordinateLabelDisplayKind", DefaultValue = CoordinateType.RxCy, DocSummary = "Indicates the displaying kind of coordinate labels.")]
 [DependencyProperty<PaneMode>("CurrentPaneMode", Accessibility = Accessibility.Internal, DefaultValue = PaneMode.Normal, DocSummary = "Indicates the mode that the current pane uses.")]
-[DependencyProperty<CoordinateLabelDisplay>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplay.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Rendering.CoordinateLabelDisplay\"/>.")]
+[DependencyProperty<CoordinateLabelDisplay>("CoordinateLabelDisplayMode", DefaultValue = CoordinateLabelDisplay.UpperAndLeft, DocSummary = "Indicates the displaying mode of coordinate labels.", DocRemarks = "For more information please visit <see cref=\"Drawing.CoordinateLabelDisplay\"/>.")]
 [DependencyProperty<CandidateViewNodeDisplay>("CandidateViewNodeDisplayMode", DefaultValue = CandidateViewNodeDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of candidate view nodes.")]
 [DependencyProperty<EliminationDisplay>("EliminationDisplayMode", DefaultValue = EliminationDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an elimination.")]
 [DependencyProperty<AssignmentDisplay>("AssignmentDisplayMode", DefaultValue = AssignmentDisplay.CircleSolid, DocSummary = "Indicates the displaying mode of an assignment.")]
@@ -703,7 +703,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		if (d is SudokuPane pane)
 		{
 			pane.CandidatesDisplayingToggled?.Invoke(pane, new());
-			UpdateViewUnitControls(pane, RenderableItemsUpdatingReason.All); // Update view nodes no matter whether the event is triggered.
+			UpdateViewUnitControls(pane, DrawableItemUpdatingReason.All); // Update view nodes no matter whether the event is triggered.
 		}
 	}
 
@@ -712,106 +712,106 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	{
 		if (d is SudokuPane pane)
 		{
-			UpdateViewUnitControls(pane, RenderableItemsUpdatingReason.All);
+			UpdateViewUnitControls(pane, DrawableItemUpdatingReason.All);
 			pane.Caching?.Invoke(pane, EventArgs.Empty);
 		}
 	}
 
 	[Callback]
 	private static void BabaGroupLabelColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.BabaGrouping, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.BabaGrouping, (Color)e.NewValue!);
 
 	[Callback]
 	private static void LinkColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.Link, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.Link, (Color)e.NewValue!);
 
 	[Callback]
 	private static void NormalColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.NormalColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.NormalColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void AssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.AssignmentColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.AssignmentColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void OverlappedAssignmentColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.OverlappedAssignmentColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.OverlappedAssignmentColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void EliminationColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.EliminationColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.EliminationColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void CannibalismColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.CannibalismColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.CannibalismColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void ExofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.ExofinColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.ExofinColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.EndofinColorized, (Color)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.EndofinColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void BabaGroupLabelFontPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.BabaGrouping, (FontFamily)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.BabaGrouping, (FontFamily)e.NewValue!);
 
 	[Callback]
 	private static void AuxiliaryColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.AuxiliaryColorized, (ColorPalette)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.AuxiliaryColorized, (ColorPalette)e.NewValue!);
 
 	[Callback]
 	private static void UserDefinedColorPalettePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.ColorPaletteColorized, (ColorPalette)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.ColorPaletteColorized, (ColorPalette)e.NewValue!);
 
 	[Callback]
 	private static void AlmostLockedSetsColorsPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.AlmostLockedSetColorized, (ColorPalette)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.AlmostLockedSetColorized, (ColorPalette)e.NewValue!);
 
 	[Callback]
 	private static void StrongLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.StrongLinkDashStyle, (DashArray)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.StrongLinkDashStyle, (DashArray)e.NewValue!);
 
 	[Callback]
 	private static void WeakLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.WeakLinkDashStyle, (DashArray)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.WeakLinkDashStyle, (DashArray)e.NewValue!);
 
 	[Callback]
 	private static void CycleLikeLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.CycleLikeLinkDashStyle, (DashArray)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.CycleLikeLinkDashStyle, (DashArray)e.NewValue!);
 
 	[Callback]
 	private static void OtherLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.OtherLinkDashStyle, (DashArray)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.OtherLinkDashStyle, (DashArray)e.NewValue!);
 
 	[Callback]
 	private static void HighlightCandidateCircleScalePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.HighlightCandidateScale, (decimal)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.HighlightCandidateScale, (decimal)e.NewValue!);
 
 	[Callback]
 	private static void HighlightBackgroundOpacityPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.HighlightBackgroundOpacity, (decimal)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.HighlightBackgroundOpacity, (decimal)e.NewValue!);
 
 	[Callback]
 	private static void ChainStrokeThicknessPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.LinkStrokeThickness, (decimal)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.LinkStrokeThickness, (decimal)e.NewValue!);
 
 	[Callback]
 	private static void CandidateViewNodeDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls(
 			(SudokuPane)d,
-			RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode,
+			DrawableItemUpdatingReason.CandidateViewNodeDisplayMode,
 			(CandidateViewNodeDisplay)e.NewValue!
 		);
 
 	[Callback]
 	private static void EliminationDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.EliminationDisplayMode, (EliminationDisplay)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.EliminationDisplayMode, (EliminationDisplay)e.NewValue!);
 
 	[Callback]
 	private static void AssignmentDisplayModePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, RenderableItemsUpdatingReason.AssignmentDisplayMode, (AssignmentDisplay)e.NewValue!);
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.AssignmentDisplayMode, (AssignmentDisplay)e.NewValue!);
 
 	[Callback]
 	private static void HouseCompletedFeedbackDurationPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

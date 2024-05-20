@@ -428,7 +428,7 @@ public sealed partial class SingleStepSearcher : StepSearcher
 		}
 
 		// The digit is a hidden single.
-		// Now collect information (especially for rendering & text) from the current found step.
+		// Now collect information (especially for drawing & text) from the current found step.
 		var (enableAndIsLastDigit, cellOffsets) = (false, new List<IconViewNode>());
 		if (@this.EnableLastDigit)
 		{

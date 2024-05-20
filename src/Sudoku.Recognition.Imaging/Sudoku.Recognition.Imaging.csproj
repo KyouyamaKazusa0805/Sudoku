@@ -8,11 +8,13 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<PackageReference Include="System.Drawing.Common" Version="8.0.1" />
 		<PackageReference Include="Emgu.CV" Version="4.6.0.5131" />
 	</ItemGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>

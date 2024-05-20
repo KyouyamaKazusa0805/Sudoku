@@ -34,21 +34,6 @@ internal sealed class GridRecognizer(Bitmap photo) : IDisposable
 	private const int ThresholdMax = 100;
 
 	/// <summary>
-	/// Indicates the font size.
-	/// </summary>
-	private const int FontSize = 3;
-
-	/// <summary>
-	/// Indicates the font size pr.
-	/// </summary>
-	private const int FontSizePr = 1;
-
-	/// <summary>
-	/// Indicates the font face.
-	/// </summary>
-	private const FontFace Font = FontFace.HersheyPlain;
-
-	/// <summary>
 	/// Indicates the behavior that specifies and executes the chain approximation algorithm.
 	/// </summary>
 	private const ChainApproxMethod ChainApproximation = ChainApproxMethod.ChainApproxNone;

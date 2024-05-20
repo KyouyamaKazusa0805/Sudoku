@@ -657,7 +657,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 	/// heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
 	/// </para>
 	/// <para>
-	/// Due to the rendering engine, you have to check this file rather than the tip window.
+	/// Due to the drawing API, you have to check this file rather than the tip window.
 	/// </para>
 	/// </param>
 	private readonly struct Pattern(long mask)

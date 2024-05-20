@@ -116,24 +116,24 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 /// Defines a backdoor visual unit.
 /// </summary>
 /// <param name="view">The view.</param>
-file sealed class BackdoorVisualUnit(View view) : IRenderable
+file sealed class BackdoorVisualUnit(View view) : IDrawable
 {
 	/// <inheritdoc/>
 	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
-	Conclusion[] IRenderable.Conclusions { get; } = [];
+	Conclusion[] IDrawable.Conclusions { get; } = [];
 }
 
 /// <summary>
 /// Defines a true-candidate visual unit.
 /// </summary>
 /// <param name="view">The view.</param>
-file sealed class TrueCandidateVisualUnit(View view) : IRenderable
+file sealed class TrueCandidateVisualUnit(View view) : IDrawable
 {
 	/// <inheritdoc/>
 	public View[]? Views { get; } = [view];
 
 	/// <inheritdoc/>
-	Conclusion[] IRenderable.Conclusions { get; } = [];
+	Conclusion[] IDrawable.Conclusions { get; } = [];
 }

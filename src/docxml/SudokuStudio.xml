@@ -685,7 +685,7 @@
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance.
             </summary>
         </member>
-        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View)">
+        <member name="M:SudokuStudio.BindableSource.ViewUnitBindableSource.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View)">
             <summary>
             Initializes a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/> instance via the specified values.
             </summary>
@@ -2942,7 +2942,7 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastRenderable">
             <summary>
-            Indicates the renderable items produced by last opened puzzle.
+            Indicates the drawable items produced by last opened puzzle.
             </summary>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AuxiliaryColors">
@@ -2975,27 +2975,747 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.AlmostLockedSetsColors_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.AlmostLockedSetsColors"/>
         </member>
-        <member name="T:SudokuStudio.Configuration.UserDefinedRenderable">
+        <member name="T:SudokuStudio.Configuration.UserDefinedDrawable">
             <summary>
-            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Rendering.IRenderable"/> members.
+            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Drawing.IDrawable"/> members.
             </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
-            <seealso cref="T:Sudoku.Rendering.IRenderable"/>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Drawing.IDrawable"/>
         </member>
-        <member name="M:SudokuStudio.Configuration.UserDefinedRenderable.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[])">
+        <member name="M:SudokuStudio.Configuration.UserDefinedDrawable.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[])">
             <summary>
-            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Rendering.IRenderable"/> members.
+            Represents a data structure that provides the basic usage in <see cref="T:Sudoku.Drawing.IDrawable"/> members.
             </summary>
-            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
-            <param name="Views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
-            <seealso cref="T:Sudoku.Rendering.IRenderable"/>
+            <param name="Conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
+            <param name="Views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
+            <seealso cref="T:Sudoku.Drawing.IDrawable"/>
         </member>
-        <member name="P:SudokuStudio.Configuration.UserDefinedRenderable.Conclusions">
-            <summary><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></summary>
+        <member name="P:SudokuStudio.Configuration.UserDefinedDrawable.Conclusions">
+            <summary><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></summary>
         </member>
-        <member name="P:SudokuStudio.Configuration.UserDefinedRenderable.Views">
-            <summary><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></summary>
+        <member name="P:SudokuStudio.Configuration.UserDefinedDrawable.Views">
+            <summary><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.AnimatedResultCollection">
+            <summary>
+            Represents a type that records a list of animating data.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.AssignmentDisplay">
+            <summary>
+            Defines a mode that is used for displaying an assignment.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.AssignmentDisplay.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.AssignmentDisplay.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.CandidateViewNodeDisplay">
+            <summary>
+            Defines a mode that is used for displaying candidate view nodes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.SquareSolid">
+            <summary>
+            Indicates the display mode is to draw a solid square.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.SquareHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow square.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.RoundedRectangleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid rounded rectangle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CandidateViewNodeDisplay.RoundedRectangleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow rounded rectangle.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.CoordinateLabelDisplay">
+            <summary>
+            Defines a mode that is used for describing a kind of displaying case on coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CoordinateLabelDisplay.None">
+            <summary>
+            Indicates the mode that never displays coordinate labels.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CoordinateLabelDisplay.UpperAndLeft">
+            <summary>
+            Indicates the mode that displays for coordinate labels only at upper and left-side.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.CoordinateLabelDisplay.FourDirection">
+            <summary>
+            Indicates the mode that displays for coordinate labels at four directions.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.DrawableFactory">
+            <summary>
+            Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            to display for highlighted cells, candidates and so on.
+            </summary>
+            <remarks>
+            All created <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/> instances will be tagged as a <see cref="T:System.String"/>, whose value is "<c>RenderableFactory</c>",
+            in order to be used for distinction with other controls in the collection.
+            </remarks>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableFactory.ViewNodeTagPrefixes">
+            <summary>
+            The internal dictionary that describes the tag prefixes of view nodes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableFactory.ReasonNodeFilters">
+            <summary>
+            The filters for controls that describes for view node.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.GetConclusionTagSuffix(System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            Get conclusion suffix of tag.
+            </summary>
+            <returns>A <see cref="T:System.String"/> text as the result.</returns>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.Throw``1(System.Object,System.Int32,System.String)">
+            <summary>
+            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
+            </summary>
+            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
+            <param name="o">The object.</param>
+            <param name="range">The range of the argument should be.</param>
+            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
+            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
+            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.DrawableItemUpdatingReason,System.Object)">
+            <summary>
+            Refresh the pane view unit controls.
+            </summary>
+            <param name="pane">The pane.</param>
+            <param name="reason">The reason why raising this updating operation.</param>
+            <param name="value">The value specified as an <see cref="T:System.Object"/> value.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
+            <summary>
+            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            </summary>
+            <param name="pane">The target pane.</param>
+            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
+            <summary>
+            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            </summary>
+            <param name="pane">The target pane.</param>
+            <param name="viewUnit">The view unit that you want to display.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
+            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
+            </summary>
+            <param name="sudokuPane">
+            The target sudoku pane.
+            This instance provides with user-defined customized properties used for displaying elements, e.g. background color.
+            </param>
+            <param name="conclusion">The conclusion to be displayed.</param>
+            <param name="overlapped">A collection that stores for overlapped candidates.</param>
+            <param name="animatedResults">A list that stores the final actions to adding controls into the sudoku pane.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="cellNode">The node to be displayed.</param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForIconNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.IconViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="iconNode">The node to be displayed.</param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <seealso cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="candidateNode">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
+            <param name="overlapped">
+            Indicates the collection that returns a possible <see cref="T:Sudoku.Concepts.Conclusion"/> value indicating
+            what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
+            </param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNodeCore(Sudoku.Drawing.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Drawing.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
+            <summary>
+            The core method called by <see cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)"/>.
+            </summary>
+            <param name="id">The color identifier.</param>
+            <param name="color">The color to be used on rendering.</param>
+            <param name="candidate">The candidate to be rendered.</param>
+            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
+            <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
+            <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
+            <seealso cref="M:SudokuStudio.Drawing.DrawableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Drawing.AnimatedResultCollection)"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.HouseViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="houseNode">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Drawing.Nodes.HouseViewNode.House"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForChuteNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.ChuteViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="chuteNode">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <exception cref="T:System.ArgumentException">
+            Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Drawing.Nodes.ChuteViewNode.ChuteIndex"/>.
+            </exception>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForBabaGroupNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.BabaGroupViewNode,SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="babaGroupNode">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.LinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
+            <summary>
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s.
+            </summary>
+            <param name="sudokuPane">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
+            </param>
+            <param name="linkNodes">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Drawing.Nodes.CellViewNode,SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
+            </param>
+            <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
+            <param name="animatedResults">
+            <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
+            </param>
+            <remarks>
+            This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s together.
+            </remarks>
+        </member>
+        <member name="T:SudokuStudio.Drawing.Filters">
+            <summary>
+            The internal type that filters the controls.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.CandidateViewNodeDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.EliminationDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.AssignmentDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.HighlightCandidateScale(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.HighlightBackgroundOpacity(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.Link(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.BabaGrouping(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.StrongLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.WeakLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.CycleLikeLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.OtherLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.LinkStrokeThickness(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness"/>.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.Colorized(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Drawing.WellKnownColorIdentifierKind)">
+            <summary>
+            The filter for colorized items (except for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <param name="kind">The kind to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.ColorizedRange(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Drawing.WellKnownColorIdentifierKind[])">
+            <summary>
+            The filter for colorized range items (for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <param name="kinds">The kinds to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.ColorizedPaletteId(Microsoft.UI.Xaml.FrameworkElement)">
+            <summary>
+            The filter for colorized paleete ID items.
+            </summary>
+            <param name="control">The control to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.TemplateMethod``1(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
+            <summary>
+            The template method for view nodes.
+            </summary>
+            <typeparam name="T">The type of the node.</typeparam>
+            <param name="control">The control to be checked.</param>
+            <param name="tagMatcher">
+            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Filters.TemplateMethod``3(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
+            <summary>
+            The template method for view nodes.
+            </summary>
+            <typeparam name="T1">The first type of the node.</typeparam>
+            <typeparam name="T2">The second type of the node.</typeparam>
+            <typeparam name="T3">The third type of the node.</typeparam>
+            <param name="control">The control to be checked.</param>
+            <param name="tagMatcher">
+            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
+            </param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:SudokuStudio.Drawing.PathCreator">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Pane">Indicates the sudoku pane control.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="M:SudokuStudio.Drawing.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Concepts.Conclusion[])">
+            <summary>
+            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
+            </summary>
+            <param name="Pane">Indicates the sudoku pane control.</param>
+            <param name="Converter">Indicates the position converter.</param>
+            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
+            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
+        </member>
+        <member name="P:SudokuStudio.Drawing.PathCreator.Pane">
+            <summary>Indicates the sudoku pane control.</summary>
+        </member>
+        <member name="P:SudokuStudio.Drawing.PathCreator.Converter">
+            <summary>Indicates the position converter.</summary>
+        </member>
+        <member name="P:SudokuStudio.Drawing.PathCreator.Conclusions">
+            <summary>Indicates the conclusions of the whole chain.</summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.PathCreator.RotateAngle">
+            <summary>
+            Indicates the rotate angle (45 degrees).
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.PathCreator.SqrtOf2">
+            <summary>
+            Indicates the square root of 2.
+            </summary>
+        </member>
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.Nodes.LinkViewNode[])">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
+            </summary>
+            <param name="nodes">The link view nodes.</param>
+            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
+        </member>
+        <member name="M:SudokuStudio.Drawing.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
+            <summary>
+            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
+            meaning the arrow cap lines besides the line.
+            </summary>
+            <param name="pt1">The start point.</param>
+            <param name="pt2">The end point.</param>
+            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
+        </member>
+        <member name="T:SudokuStudio.Drawing.Extensions">
+            <target name="class" when="extension">
+				<summary>
+					Provides with file-local extension methods.
+				</summary>
+			</target>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.GetIdentifierSuffix(Sudoku.Drawing.ColorIdentifier)">
+            <summary>
+            Try to get identifier suffix for the specified value.
+            </summary>
+            <param name="this">The color identifier.</param>
+            <returns>The string suffix text.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
+            <summary>
+            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
+            </summary>
+            <param name="this">The collection.</param>
+        </member>
+        <member name="M:SudokuStudio.Drawing.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
+            <summary>
+            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
+            <para>This method is used for checking cannibalism.</para>
+            </summary>
+            <param name="conclusions">The conclusion collection.</param>
+            <param name="candidate">The candidate to be determined.</param>
+            <param name="conclusion">The overlapped result.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:SudokuStudio.Drawing.DrawableItemIdentifiers">
+            <summary>
+            Represents a list of identifiers used by renderable items that will be consumed by <see cref="T:SudokuStudio.Drawing.DrawableFactory"/>.
+            </summary>
+            <seealso cref="T:SudokuStudio.Drawing.DrawableFactory"/>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ConclusionSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of conclusions in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.InferenceSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of inferences in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorizedSuffixSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorColorIdentifierSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized color identifier in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.IdColorIdentifierSeparator">
+            <summary>
+            Indicates the separator for the suffix of colorized named identifier in tag text.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.CannibalismConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EliminationConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.OverlappedAssignmentConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AssignmentConclusionSuffix">
+            <summary>
+            The conclusion suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.StrongInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.StrongGeneralizedInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.WeakInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.WeakGeneralizedInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ConjugateInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.DefaultInferenceSuffix">
+            <summary>
+            The link suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.NormalColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AssignmentColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.OverlappedAssignmentColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EliminationColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.CannibalismColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.LinkColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ExofinColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.EndofinColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AuxiliaryColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.AlmostLockedSetColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ColorPaletteColorizedSuffix">
+            <summary>
+            The colorized suffixes.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.DrawingMode">
+            <summary>
+            Indicates the drawing mode.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.None">
+            <summary>
+            Indicates the mode is none.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.Cell">
+            <summary>
+            Indicates the mode is cell filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.Candidate">
+            <summary>
+            Indicates the mode is candidate filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.House">
+            <summary>
+            Indicates the mode is house filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.Chute">
+            <summary>
+            Indicates the mode is chute filling.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.Link">
+            <summary>
+            Indicates the mode is link drawing.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.DrawingMode.BabaGrouping">
+            <summary>
+            Indicates the mode is baba grouping.
+            </summary>
+        </member>
+        <member name="T:SudokuStudio.Drawing.EliminationDisplay">
+            <summary>
+            Defines a mode that is used for displaying an elimination.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.EliminationDisplay.CircleSolid">
+            <summary>
+            Indicates the display mode is to draw a solid circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.EliminationDisplay.CircleHollow">
+            <summary>
+            Indicates the display mode is to draw a hollow circle.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.EliminationDisplay.Cross">
+            <summary>
+            Indicates the display mode is to draw a cross sign.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.EliminationDisplay.Slash">
+            <summary>
+            Indicates the display mode is to draw a slash.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Drawing.EliminationDisplay.Backslash">
+            <summary>
+            Indicates the display mode is to draw a backslash.
+            </summary>
         </member>
         <member name="T:SudokuStudio.StepSearcherCollectionExtensions">
             <summary>
@@ -3411,9 +4131,9 @@
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.IdentifierConversion">
             <summary>
-            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instances.
+            Provides with conversion methods used by XAML designer, about <see cref="T:Sudoku.Drawing.ColorIdentifier"/> instances.
             </summary>
-            <seealso cref="T:Sudoku.Rendering.ColorIdentifier"/>
+            <seealso cref="T:Sudoku.Drawing.ColorIdentifier"/>
         </member>
         <member name="T:SudokuStudio.Interaction.Conversions.PencilmarkTextConversion">
             <summary>
@@ -3606,6 +4326,170 @@
             <param name="sender">An object which triggers the event.</param>
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.DigitSet.SelectedDigitChanged"/>
+        </member>
+        <member name="T:SudokuStudio.Interaction.DrawableItemUpdatingReason">
+            <summary>
+            Represents a list of values that describes the reason why nodes should be updated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.None">
+            <summary>
+            Indicates none will be updated.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CandidateViewNodeDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for non-eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentDisplayMode">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightCandidateScale">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>s, changing their scale.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.HighlightBackgroundOpacity">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>s, <see cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>s and <see cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>s,
+            changing their background opacity.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.CellViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.HouseViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChuteViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s, changing their dash styles.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle">
+            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>, changing their stroke thickness.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping">
+            <summary>
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>s.
+            </summary>
+            <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.NormalColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Normal"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Normal"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Normal"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AssignmentColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Assignment"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Assignment"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Assignment"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OverlappedAssignmentColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.OverlappedAssignment"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.OverlappedAssignment"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.OverlappedAssignment"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EliminationColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Elimination"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Elimination"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Elimination"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CannibalismColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Cannibalism"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Cannibalism"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Cannibalism"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.ExofinColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Exofin"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Exofin"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Exofin"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.EndofinColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Endofin"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Endofin"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Endofin"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AuxiliaryColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary1"/>,
+            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary2"/> or <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary3"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary1"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary2"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Auxiliary3"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary1"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary2"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Auxiliary3"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AlmostLockedSetColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet1"/>,
+            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet2"/>, <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet3"/>,
+            <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet4"/> or <see cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
+            <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet1"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet2"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet3"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet4"/>
+            <seealso cref="F:Sudoku.Drawing.ColorIdentifier.AlmostLockedSet5"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.ColorPaletteColorized">
+            <summary>
+            Indicates the updating items are view nodes that are defined colors defined in color palette.
+            </summary>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.All">
+            <summary>
+            Indicates all nodes should be refreshed.
+            </summary>
         </member>
         <member name="T:SudokuStudio.Interaction.GridClickedEventArgs">
             <summary>
@@ -4204,170 +5088,6 @@
             <param name="e">The event data provided.</param>
             <seealso cref="E:SudokuStudio.Views.Controls.SudokuPane.ReceivedDroppedFileSuccessfully"/>
         </member>
-        <member name="T:SudokuStudio.Interaction.RenderableItemsUpdatingReason">
-            <summary>
-            Represents a list of values that describes the reason why nodes should be updated.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.None">
-            <summary>
-            Indicates none will be updated.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for non-eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their display shape mode; only for eliminations.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightCandidateScale">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>s, changing their scale.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightBackgroundOpacity">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>s, <see cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>s and <see cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>s,
-            changing their background opacity.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>
-            <seealso cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>
-            <seealso cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s, changing their dash styles.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.WeakLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CycleLikeLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OtherLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.LinkStrokeThickness">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>, changing their stroke thickness.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping">
-            <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>s.
-            </summary>
-            <seealso cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.NormalColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Normal"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Normal"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Assignment"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Assignment"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OverlappedAssignmentColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.OverlappedAssignment"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.OverlappedAssignment"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Elimination"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Elimination"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CannibalismColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Cannibalism"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Cannibalism"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ExofinColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Exofin"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Exofin"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EndofinColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Endofin"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Endofin"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AuxiliaryColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>,
-            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/> or <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary1"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary2"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.Auxiliary3"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary1"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary2"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.Auxiliary3"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AlmostLockedSetColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>,
-            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>, <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>,
-            <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/> or <see cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet1"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet2"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet3"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet4"/>
-            <seealso cref="F:Sudoku.Rendering.WellKnownColorIdentifierKind.AlmostLockedSet5"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet1"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet2"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet3"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet4"/>
-            <seealso cref="F:Sudoku.Rendering.ColorIdentifier.AlmostLockedSet5"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.ColorPaletteColorized">
-            <summary>
-            Indicates the updating items are view nodes that are defined colors defined in color palette.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.All">
-            <summary>
-            Indicates all nodes should be refreshed.
-            </summary>
-        </member>
         <member name="T:SudokuStudio.Interaction.SaveFileFailedEventArgs">
             <summary>
             Provides event data used by delegate type <see cref="T:SudokuStudio.Interaction.SaveFileFailedEventHandler"/>.
@@ -4853,7 +5573,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToAssignmentDisplayModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.AssignmentDisplay"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Drawing.AssignmentDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToAssignmentDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4864,7 +5584,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CandidateViewNodeDisplay"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Drawing.CandidateViewNodeDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCandidateViewNodeDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4886,7 +5606,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplay"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Drawing.CoordinateLabelDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -4897,7 +5617,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Rendering.EliminationDisplay"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:SudokuStudio.Drawing.EliminationDisplay"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToEliminationDisplayModeConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -5285,726 +6005,6 @@
             Indicates the current assembly, of type <see cref="T:System.Reflection.Assembly"/>.
             </summary>
             <seealso cref="T:System.Reflection.Assembly"/>
-        </member>
-        <member name="T:SudokuStudio.Rendering.AnimatedResultCollection">
-            <summary>
-            Represents a type that records a list of animating data.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.AssignmentDisplay">
-            <summary>
-            Defines a mode that is used for displaying an assignment.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.AssignmentDisplay.CircleSolid">
-            <summary>
-            Indicates the display mode is to draw a solid circle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.AssignmentDisplay.CircleHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow circle.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.CandidateViewNodeDisplay">
-            <summary>
-            Defines a mode that is used for displaying candidate view nodes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleSolid">
-            <summary>
-            Indicates the display mode is to draw a solid circle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.CircleHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow circle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareSolid">
-            <summary>
-            Indicates the display mode is to draw a solid square.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.SquareHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow square.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleSolid">
-            <summary>
-            Indicates the display mode is to draw a solid rounded rectangle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CandidateViewNodeDisplay.RoundedRectangleHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow rounded rectangle.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.CoordinateLabelDisplay">
-            <summary>
-            Defines a mode that is used for describing a kind of displaying case on coordinate labels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.None">
-            <summary>
-            Indicates the mode that never displays coordinate labels.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.UpperAndLeft">
-            <summary>
-            Indicates the mode that displays for coordinate labels only at upper and left-side.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.CoordinateLabelDisplay.FourDirection">
-            <summary>
-            Indicates the mode that displays for coordinate labels at four directions.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.DrawingMode">
-            <summary>
-            Indicates the drawing mode.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.None">
-            <summary>
-            Indicates the mode is none.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.Cell">
-            <summary>
-            Indicates the mode is cell filling.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.Candidate">
-            <summary>
-            Indicates the mode is candidate filling.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.House">
-            <summary>
-            Indicates the mode is house filling.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.Chute">
-            <summary>
-            Indicates the mode is chute filling.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.Link">
-            <summary>
-            Indicates the mode is link drawing.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.DrawingMode.BabaGrouping">
-            <summary>
-            Indicates the mode is baba grouping.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.EliminationDisplay">
-            <summary>
-            Defines a mode that is used for displaying an elimination.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplay.CircleSolid">
-            <summary>
-            Indicates the display mode is to draw a solid circle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplay.CircleHollow">
-            <summary>
-            Indicates the display mode is to draw a hollow circle.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Cross">
-            <summary>
-            Indicates the display mode is to draw a cross sign.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Slash">
-            <summary>
-            Indicates the display mode is to draw a slash.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.EliminationDisplay.Backslash">
-            <summary>
-            Indicates the display mode is to draw a backslash.
-            </summary>
-        </member>
-        <member name="T:SudokuStudio.Rendering.RenderableFactory">
-            <summary>
-            Defines a factory type that is used for creating a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            to display for highlighted cells, candidates and so on.
-            </summary>
-            <remarks>
-            All created <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/> instances will be tagged as a <see cref="T:System.String"/>, whose value is "<c>RenderableFactory</c>",
-            in order to be used for distinction with other controls in the collection.
-            </remarks>
-            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ViewNodeTagPrefixes">
-            <summary>
-            The internal dictionary that describes the tag prefixes of view nodes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableFactory.ReasonNodeFilters">
-            <summary>
-            The filters for controls that describes for view node.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.GetConclusionTagSuffix(System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            Get conclusion suffix of tag.
-            </summary>
-            <returns>A <see cref="T:System.String"/> text as the result.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.Throw``1(System.Object,System.Int32,System.String)">
-            <summary>
-            The internal helper method that creates a <see cref="T:System.InvalidOperationException"/> instance without any other operation.
-            </summary>
-            <typeparam name="T">The type of the return value if the exception were not thrown.</typeparam>
-            <param name="o">The object.</param>
-            <param name="range">The range of the argument should be.</param>
-            <param name="s">The caller expression for argument <paramref name="o"/>.</param>
-            <returns><typeparamref name="T"/> instance. The value is unnecessary because an exception will be thrown.</returns>
-            <exception cref="T:System.InvalidOperationException">Always throws.</exception>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.UpdateViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Interaction.RenderableItemsUpdatingReason,System.Object)">
-            <summary>
-            Refresh the pane view unit controls.
-            </summary>
-            <param name="pane">The pane.</param>
-            <param name="reason">The reason why raising this updating operation.</param>
-            <param name="value">The value specified as an <see cref="T:System.Object"/> value.</param>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.RemoveViewUnitControls(SudokuStudio.Views.Controls.SudokuPane)">
-            <summary>
-            Removes all possible controls that are used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
-            </summary>
-            <param name="pane">The target pane.</param>
-            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.AddViewUnitControls(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.BindableSource.ViewUnitBindableSource)">
-            <summary>
-            Adds a list of <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that are used for displaying highlight elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
-            </summary>
-            <param name="pane">The target pane.</param>
-            <param name="viewUnit">The view unit that you want to display.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.FrameworkElement"/>
-            <seealso cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for conclusions.
-            </summary>
-            <param name="sudokuPane">
-            The target sudoku pane.
-            This instance provides with user-defined customized properties used for displaying elements, e.g. background color.
-            </param>
-            <param name="conclusion">The conclusion to be displayed.</param>
-            <param name="overlapped">A collection that stores for overlapped candidates.</param>
-            <param name="animatedResults">A list that stores the final actions to adding controls into the sudoku pane.</param>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="cellNode">The node to be displayed.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CellViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForIconNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.IconViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="iconNode">The node to be displayed.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <seealso cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="candidateNode">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="conclusions">Indicates the conclusion collection. The argument is used for checking cannibalism.</param>
-            <param name="overlapped">
-            Indicates the collection that returns a possible <see cref="T:Sudoku.Concepts.Conclusion"/> value indicating
-            what candidate conflicts with the current node while displaying. If no overlapped conclusion, <see langword="null"/>.
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <seealso cref="T:Sudoku.Rendering.Nodes.CandidateViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNodeCore(Sudoku.Rendering.ColorIdentifier,Windows.UI.Color,System.Int32,SudokuStudio.Views.Controls.SudokuPaneCell,SudokuStudio.Rendering.AnimatedResultCollection,System.Boolean,System.Boolean,System.Boolean)">
-            <summary>
-            The core method called by <see cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>.
-            </summary>
-            <param name="id">The color identifier.</param>
-            <param name="color">The color to be used on rendering.</param>
-            <param name="candidate">The candidate to be rendered.</param>
-            <param name="paneCellControl">The pane cell control that stores the rendered control.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <param name="isForConclusion">Indicates whether the operation draws for a conclusion.</param>
-            <param name="isForElimination">Indicates whether the operation draws for an elimination.</param>
-            <param name="isOverlapped">Indicates whether the operation draws for an overlapped conclusion.</param>
-            <seealso cref="M:SudokuStudio.Rendering.RenderableFactory.ForCandidateNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CandidateViewNode,Sudoku.Concepts.Conclusion[],System.Nullable{Sudoku.Concepts.Conclusion}@,SudokuStudio.Rendering.AnimatedResultCollection)"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForHouseNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.HouseViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="houseNode">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="houseNode"/> stores invalid data of property <see cref="P:Sudoku.Rendering.Nodes.HouseViewNode.House"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Rendering.Nodes.HouseViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForChuteNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.ChuteViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="chuteNode">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <exception cref="T:System.ArgumentException">
-            Throws when the argument <paramref name="chuteNode"/> stores invalid data of property <see cref="P:Sudoku.Rendering.Nodes.ChuteViewNode.ChuteIndex"/>.
-            </exception>
-            <seealso cref="T:Sudoku.Rendering.Nodes.ChuteViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForBabaGroupNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.BabaGroupViewNode,SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="babaGroupNode">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <seealso cref="T:Sudoku.Rendering.Nodes.BabaGroupViewNode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.RenderableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Rendering.Nodes.LinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Rendering.AnimatedResultCollection)">
-            <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s.
-            </summary>
-            <param name="sudokuPane">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
-            </param>
-            <param name="linkNodes">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForCellNode(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Rendering.Nodes.CellViewNode,SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='cellNode']"/>
-            </param>
-            <param name="conclusions">Indicates the conclusions. The value is used for appending links between tail node and conclusion.</param>
-            <param name="animatedResults">
-            <inheritdoc cref="M:SudokuStudio.Rendering.RenderableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Rendering.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
-            </param>
-            <remarks>
-            This method is special: We should handle all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>s together.
-            </remarks>
-        </member>
-        <member name="T:SudokuStudio.Rendering.Filters">
-            <summary>
-            The internal type that filters the controls.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.CandidateViewNodeDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CandidateViewNodeDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.EliminationDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationDisplayMode"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.EliminationDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.AssignmentDisplayMode(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.AssignmentDisplayMode"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.HighlightCandidateScale(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightCandidateScale"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightCandidateScale"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.HighlightBackgroundOpacity(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightBackgroundOpacity"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.HighlightBackgroundOpacity"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.Link(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.Link"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.BabaGrouping(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.BabaGrouping"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.StrongLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.WeakLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.WeakLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.WeakLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.CycleLikeLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CycleLikeLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.CycleLikeLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.OtherLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OtherLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.OtherLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.LinkStrokeThickness(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.LinkStrokeThickness"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.RenderableItemsUpdatingReason.LinkStrokeThickness"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.Colorized(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Rendering.WellKnownColorIdentifierKind)">
-            <summary>
-            The filter for colorized items (except for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <param name="kind">The kind to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.ColorizedRange(Microsoft.UI.Xaml.FrameworkElement,Sudoku.Rendering.WellKnownColorIdentifierKind[])">
-            <summary>
-            The filter for colorized range items (for <see cref="T:SudokuStudio.Collection.ColorPalette"/>-based items).
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <param name="kinds">The kinds to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="T:SudokuStudio.Collection.ColorPalette"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.ColorizedPaletteId(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for colorized paleete ID items.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.TemplateMethod``1(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
-            <summary>
-            The template method for view nodes.
-            </summary>
-            <typeparam name="T">The type of the node.</typeparam>
-            <param name="control">The control to be checked.</param>
-            <param name="tagMatcher">
-            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Filters.TemplateMethod``3(Microsoft.UI.Xaml.FrameworkElement,System.Func{System.String,System.String,System.Boolean})">
-            <summary>
-            The template method for view nodes.
-            </summary>
-            <typeparam name="T1">The first type of the node.</typeparam>
-            <typeparam name="T2">The second type of the node.</typeparam>
-            <typeparam name="T3">The third type of the node.</typeparam>
-            <param name="control">The control to be checked.</param>
-            <param name="tagMatcher">
-            The matcher method that checks for the tag text, and return a result indicating whether the tag is satisfied.
-            </param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:SudokuStudio.Rendering.PathCreator">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Pane">Indicates the sudoku pane control.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.#ctor(SudokuStudio.Views.Controls.SudokuPane,SudokuStudio.Input.SudokuPanePositionConverter,Sudoku.Concepts.Conclusion[])">
-            <summary>
-            Extracted type that creates the <see cref="T:Microsoft.UI.Xaml.Shapes.Path"/> instances.
-            </summary>
-            <param name="Pane">Indicates the sudoku pane control.</param>
-            <param name="Converter">Indicates the position converter.</param>
-            <param name="Conclusions">Indicates the conclusions of the whole chain.</param>
-            <seealso cref="T:Microsoft.UI.Xaml.Shapes.Path"/>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Pane">
-            <summary>Indicates the sudoku pane control.</summary>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Converter">
-            <summary>Indicates the position converter.</summary>
-        </member>
-        <member name="P:SudokuStudio.Rendering.PathCreator.Conclusions">
-            <summary>Indicates the conclusions of the whole chain.</summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.PathCreator.RotateAngle">
-            <summary>
-            Indicates the rotate angle (45 degrees).
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.PathCreator.SqrtOf2">
-            <summary>
-            Indicates the square root of 2.
-            </summary>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.CreateLinks(Sudoku.Rendering.Nodes.LinkViewNode[])">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
-            </summary>
-            <param name="nodes">The link view nodes.</param>
-            <returns>A <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instance.</returns>
-        </member>
-        <member name="M:SudokuStudio.Rendering.PathCreator.ArrowCap(Windows.Foundation.Point,Windows.Foundation.Point)">
-            <summary>
-            Creates a list of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/> instances via two <see cref="T:Windows.Foundation.Point"/>s indicating start and end point respectively,
-            meaning the arrow cap lines besides the line.
-            </summary>
-            <param name="pt1">The start point.</param>
-            <param name="pt2">The end point.</param>
-            <returns>An instance of type <see cref="T:System.Collections.Generic.IEnumerable`1"/> of <see cref="T:Microsoft.UI.Xaml.Media.Geometry"/>.</returns>
-        </member>
-        <member name="T:SudokuStudio.Rendering.Extensions">
-            <target name="class" when="extension">
-				<summary>
-					Provides with file-local extension methods.
-				</summary>
-			</target>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.GetIdentifierSuffix(Sudoku.Rendering.ColorIdentifier)">
-            <summary>
-            Try to get identifier suffix for the specified value.
-            </summary>
-            <param name="this">The color identifier.</param>
-            <returns>The string suffix text.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument value is invalid.</exception>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.RemoveAllViewUnitControls(Microsoft.UI.Xaml.Controls.UIElementCollection)">
-            <summary>
-            Removes all possible <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that is used for displaying elements in a <see cref="T:SudokuStudio.BindableSource.ViewUnitBindableSource"/>.
-            </summary>
-            <param name="this">The collection.</param>
-        </member>
-        <member name="M:SudokuStudio.Rendering.Extensions.ConflictWith(Sudoku.Concepts.Conclusion[],System.Int32,System.Nullable{Sudoku.Concepts.Conclusion}@)">
-            <summary>
-            <para>Fast determines whether the specified conclusion list contains the specified candidate.</para>
-            <para>This method is used for checking cannibalism.</para>
-            </summary>
-            <param name="conclusions">The conclusion collection.</param>
-            <param name="candidate">The candidate to be determined.</param>
-            <param name="conclusion">The overlapped result.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:SudokuStudio.Rendering.RenderableItemIdentifiers">
-            <summary>
-            Represents a list of identifiers used by renderable items that will be consumed by <see cref="T:SudokuStudio.Rendering.RenderableFactory"/>.
-            </summary>
-            <seealso cref="T:SudokuStudio.Rendering.RenderableFactory"/>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ConclusionSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of conclusions in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.InferenceSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of inferences in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorizedSuffixSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized color identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.IdColorIdentifierSeparator">
-            <summary>
-            Indicates the separator for the suffix of colorized named identifier in tag text.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.CannibalismConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EliminationConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.OverlappedAssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AssignmentConclusionSuffix">
-            <summary>
-            The conclusion suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.StrongInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.StrongGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.WeakInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.WeakGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ConjugateInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.DefaultInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.NormalColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.OverlappedAssignmentColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EliminationColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.CannibalismColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.LinkColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ExofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.EndofinColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AuxiliaryColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.AlmostLockedSetColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Rendering.RenderableItemIdentifiers.ColorPaletteColorizedSuffix">
-            <summary>
-            The colorized suffixes.
-            </summary>
         </member>
         <member name="T:SudokuStudio.Resources.SudokuStudioResources">
             <summary>
@@ -12693,7 +12693,7 @@
             Indicates the displaying mode of coordinate labels.
             </summary>
             <remarks>
-            For more information please visit <see cref="T:SudokuStudio.Rendering.CoordinateLabelDisplay"/>.
+            For more information please visit <see cref="T:SudokuStudio.Drawing.CoordinateLabelDisplay"/>.
             </remarks>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CandidateViewNodeDisplayMode">
@@ -13774,7 +13774,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.CurrentViewIndex">
             <summary>
-            Indicates the current index of the view of property <see cref="P:Sudoku.Rendering.IRenderable.Views"/> displayed.
+            Indicates the current index of the view of property <see cref="P:Sudoku.Drawing.IDrawable.Views"/> displayed.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.AnalyzePage.SelectedColorIndex">
@@ -14168,7 +14168,7 @@
         </member>
         <member name="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ViewUnit">
             <summary>
-            <para>Indicates the <see cref="T:Sudoku.Rendering.ViewNode"/>s displayed for the current wrong step.</para>
+            <para>Indicates the <see cref="T:Sudoku.Drawing.ViewNode"/>s displayed for the current wrong step.</para>
             <para><inheritdoc cref="P:SudokuStudio.Views.Pages.ContentDialogs.ErrorStepDialogContent.ErrorStepText" path="//summary/para[2]"/></para>
             </summary>
             <value>The value of the view.</value>
@@ -14929,7 +14929,7 @@
             </summary>
             <param name="view">The view.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.#ctor(Sudoku.Rendering.View)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.#ctor(Sudoku.Drawing.View)">
             <summary>
             Defines a backdoor visual unit.
             </summary>
@@ -14938,7 +14938,7 @@
         <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Views">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Sudoku#Rendering#IRenderable#Conclusions">
+        <member name="P:SudokuStudio.Views.Pages.Operation.BackdoorVisualUnit.Sudoku#Drawing#IDrawable#Conclusions">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit">
@@ -14947,7 +14947,7 @@
             </summary>
             <param name="view">The view.</param>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.#ctor(Sudoku.Rendering.View)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.#ctor(Sudoku.Drawing.View)">
             <summary>
             Defines a true-candidate visual unit.
             </summary>
@@ -14956,7 +14956,7 @@
         <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Views">
             <inheritdoc/>
         </member>
-        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Sudoku#Rendering#IRenderable#Conclusions">
+        <member name="P:SudokuStudio.Views.Pages.Operation.TrueCandidateVisualUnit.Sudoku#Drawing#IDrawable#Conclusions">
             <inheritdoc/>
         </member>
         <member name="T:SudokuStudio.Views.Pages.Operation.BasicOperation">
@@ -16062,10 +16062,10 @@
         </member>
         <member name="M:Windows.UI.ColorExtensions.GetIdentifier(Windows.UI.Color)">
             <summary>
-            Gets an equivalent <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance via the current color.
+            Gets an equivalent <see cref="T:Sudoku.Drawing.ColorIdentifier"/> instance via the current color.
             </summary>
             <param name="color">The color.</param>
-            <returns>An <see cref="T:Sudoku.Rendering.ColorIdentifier"/> instance.</returns>
+            <returns>An <see cref="T:Sudoku.Drawing.ColorIdentifier"/> instance.</returns>
         </member>
         <member name="T:Windows.Storage.Pickers.FileOpenPickerExtensions">
             <summary>
@@ -16166,7 +16166,7 @@
         </member>
         <member name="M:Microsoft.UI.Xaml.UIElementExtensions.RenderToAsync``2(``0,``1)">
             <summary>
-            Renders the specified UI control to the target file as a picture.
+            Draws the specified UI control to the target file as a picture.
             </summary>
             <typeparam name="TUIElement">The type of the UI control.</typeparam>
             <typeparam name="TStorageFileOrRandomAccessStream">

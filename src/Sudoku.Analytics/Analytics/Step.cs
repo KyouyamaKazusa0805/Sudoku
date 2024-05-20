@@ -3,8 +3,8 @@ namespace Sudoku.Analytics;
 /// <summary>
 /// Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
 /// </summary>
-/// <param name="conclusions"><inheritdoc cref="IRenderable.Conclusions" path="/summary"/></param>
-/// <param name="views"><inheritdoc cref="IRenderable.Views" path="/summary"/></param>
+/// <param name="conclusions"><inheritdoc cref="IDrawable.Conclusions" path="/summary"/></param>
+/// <param name="views"><inheritdoc cref="IDrawable.Views" path="/summary"/></param>
 /// <param name="options">
 /// Indicates an optional instance that provides with extra information for a step searcher.
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
@@ -21,9 +21,9 @@ public abstract partial class Step(
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
 	ICultureFormattable,
+	IDrawable,
 	IEqualityOperators<Step, Step, bool>,
-	IEquatable<Step>,
-	IRenderable
+	IEquatable<Step>
 {
 	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:

@@ -69,8 +69,8 @@ public partial class GridCanvas
 			return;
 		}
 
-		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each value.
-		var vOffsetCandidate = candidateWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of rendering each candidate.
+		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of drawing each value.
+		var vOffsetCandidate = candidateWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of drawing each candidate.
 		var halfWidth = cellWidth / 2F;
 
 		using var bGiven = new SolidBrush(gColor);

@@ -7,7 +7,7 @@ namespace Microsoft.UI.Xaml;
 public static class UIElementExtensions
 {
 	/// <summary>
-	/// Renders the specified UI control to the target file as a picture.
+	/// Draws the specified UI control to the target file as a picture.
 	/// </summary>
 	/// <typeparam name="TUIElement">The type of the UI control.</typeparam>
 	/// <typeparam name="TStorageFileOrRandomAccessStream">

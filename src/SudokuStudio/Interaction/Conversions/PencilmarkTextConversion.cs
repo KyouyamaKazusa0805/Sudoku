@@ -23,7 +23,7 @@ internal static class PencilmarkTextConversion
 		CandidateMap usedCandidates
 	)
 	{
-		// Special case: If the candidate is rendered by a view node, display it.
+		// Special case: If the candidate is drawn by a view node, display it.
 		if (cellState == CellState.Empty && usedCandidates.Contains(cell * 9 + digit))
 		{
 			return new SolidColorBrush(pencilmarkColor);

@@ -5823,19 +5823,19 @@
             <summary>
             Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
             <param name="options">
             Indicates an optional instance that provides with extra information for a step searcher.
             This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a solving step that describes for a technique usage, with conclusions and detail data for the corresponding technique pattern.
             </summary>
-            <param name="conclusions"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Conclusions" path="/summary"/></param>
-            <param name="views"><inheritdoc cref="P:Sudoku.Rendering.IRenderable.Views" path="/summary"/></param>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Drawing.IDrawable.Views" path="/summary"/></param>
             <param name="options">
             Indicates an optional instance that provides with extra information for a step searcher.
             This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
@@ -6444,13 +6444,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.IntersectionModule.IsLockedCandidates(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
@@ -6489,14 +6489,14 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cell">The cell.</param>
             <param name="chosenCells">The chosen cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetHiddenSingleSubtype(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
@@ -6528,13 +6528,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SingleModule.GetNakedSingleExcluders(Sudoku.Concepts.Grid@,System.Int32,System.Int32,System.Int32[]@)">
             <summary>
-            Get all <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s that represents as excluders.
+            Get all <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s that represents as excluders.
             </summary>
             <param name="grid">The grid.</param>
             <param name="cell">The cell.</param>
             <param name="digit">The digit.</param>
             <param name="excluderHouses">The excluder houses.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.SubsetModule">
             <summary>
@@ -6551,13 +6551,13 @@
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.GetCrosshatchBaseCells(Sudoku.Concepts.Grid@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
-            Try to create a list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
+            Try to create a list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/>s indicating the crosshatching base cells.
             </summary>
             <param name="grid">The grid.</param>
             <param name="digit">The digit.</param>
             <param name="house">The house.</param>
             <param name="cells">The cells.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.IconViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.IconViewNode"/> instances.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcherModules.SubsetModule.HiddenSubset(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.ReadOnlySpan{Sudoku.Concepts.CellMap},System.Int32,System.Boolean)">
             <summary>
@@ -7494,7 +7494,7 @@
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
             </para>
             <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
+            Due to the drawing API, you have to check this file rather than the tip window.
             </para>
             </param>
         </member>
@@ -7544,7 +7544,7 @@
             heptagon or a octagon. If the value is 127 (not available), the pattern will be a heptagon.
             </para>
             <para>
-            Due to the rendering engine, you have to check this file rather than the tip window.
+            Due to the drawing API, you have to check this file rather than the tip window.
             </para>
             </param>
         </member>
@@ -8354,7 +8354,7 @@
             Gets all possible links of the loop.
             </summary>
             <param name="path">The loop, specified as its path.</param>
-            <returns>A list of <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances.</returns>
+            <returns>A list of <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.UniqueLoopStepSearcher.Pattern">
             <summary>
@@ -9327,7 +9327,7 @@
             The <see cref="T:System.Boolean"/> value indicating whether the another cell is same house as the current one.
             </returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode})">
+        <member name="M:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.IsIncomplete(System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode})">
             <summary>
             Check whether the highlight UR candidates is incomplete.
             </summary>
@@ -10838,7 +10838,7 @@
             Search for naked subsets.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for full houses produced on hidden subsets.
             </summary>
@@ -10857,19 +10857,19 @@
             <param name="emptyCells">Indicates the empty cells.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
             <summary>
             Check for hidden single produced on hidden subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for naked single produced on hidden subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Rendering.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckHiddenSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Boolean,System.Collections.Generic.List{Sudoku.Drawing.Nodes.IconViewNode},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for full house produced on naked subsets.
             </summary>
@@ -10887,17 +10887,17 @@
             <param name="emptyCells">Indicates the empty cells.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetHiddenSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.CellMap})">
             <summary>
             Check for hidden single produced on naked subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetNakedSingle(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)">
             <summary>
             Check for naked single produced on naked subsets.
             </summary>
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Rendering.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
+            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.CheckNakedSubsetFullHouse(Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher,System.Collections.Generic.List{Sudoku.Analytics.Steps.DirectSubsetStep},Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.Grid@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Nullable{System.Boolean},System.Collections.Generic.List{Sudoku.Drawing.Nodes.CandidateViewNode},Sudoku.Concepts.CellMap@)"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.GetSubsetTechnique_Hidden(Sudoku.Concepts.CellMap@)">
             <summary>
@@ -11083,7 +11083,7 @@
         <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
+        <member name="M:Sudoku.Analytics.StepSearchers.AntiGurthSymmetricalPlacementStepSearcher.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CellViewNode},System.Span{System.Nullable{System.Int32}})">
             <summary>
             Records all possible highlight cells.
             </summary>
@@ -11404,7 +11404,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets</b> technique.
             </summary>
@@ -11425,7 +11425,7 @@
             <param name="wDigitsMask">Indicates the mask of W digits used.</param>
             <param name="xDigit">Indicates the digit X.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.Conjugate,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets W-Wing</b> technique.
             </summary>
@@ -11486,7 +11486,7 @@
             <param name="yDigitsMask">Indicates the mask that holds the digits for the Y value.</param>
             <param name="zDigitsMask">Indicates the mask that holds the digits for the Z value.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXyWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XY-Wing</b> technique.
             </summary>
@@ -11559,7 +11559,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet,System.Int16,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Almost Locked Sets XZ</b> or <b>Extended Subset Principle</b> technique.
             </summary>
@@ -11624,7 +11624,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -11646,7 +11646,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -11697,7 +11697,7 @@
             <param name="digit1">Indicates the first digit used.</param>
             <param name="digit2">Indicates the second digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleIntersectionPairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle Intersection Pair</b> technique.
             </summary>
@@ -11755,7 +11755,7 @@
             <param name="digitsMask">Indicates the digits used.</param>
             <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedSubsetPrincipleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Subset Principle</b> technique.
             </summary>
@@ -11808,7 +11808,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
             </summary>
@@ -11870,7 +11870,7 @@
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
@@ -11935,7 +11935,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (Rectangle Blooming)</b> technique.
             </summary>
@@ -11996,7 +11996,7 @@
             <param name="isX"><inheritdoc/></param>
             <param name="isY"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.BidirectionalCycleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bidirectional Cycle</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -12046,7 +12046,7 @@
             <param name="isNishio"><inheritdoc/></param>
             <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BinaryForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Binary Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             The technique contains two kinds of forcing chains:
@@ -12119,7 +12119,7 @@
             <param name="digit">Indicates the digit of the chain bound with.</param>
             <param name="chains">Indicates all possible branches in this loop.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Byte,Sudoku.Concepts.MultipleForcingChains)">
+        <member name="M:Sudoku.Analytics.Steps.BlossomLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Byte,Sudoku.Concepts.MultipleForcingChains)">
             <summary>
             Provides with a step that is a <b>Blossom Loop</b> technique.
             </summary>
@@ -12197,7 +12197,7 @@
             <param name="isDynamic"><inheritdoc/></param>
             <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Byte,Sudoku.Concepts.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.CellForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Byte,Sudoku.Concepts.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Cell Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -12255,7 +12255,7 @@
             <param name="isNishio">Indicates whether the chain is a nishio forcing chains.</param>
             <param name="dynamicNestingLevel">Indicates the dynamic nesting level.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -12400,17 +12400,17 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(System.Int32)">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the specified view index.
+            Try to fetch all <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> instances of the specified view index.
             </summary>
             <param name="viewIndex">The view index.</param>
-            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/>.</returns>
+            <returns>All <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetNestedLinks(System.Int32)">
             <summary>
-            Try to fetch all nested <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the specified view.
+            Try to fetch all nested <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> instances of the specified view.
             </summary>
             <param name="nestedViewIndex">The specified index of the view.</param>
-            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instance in this view.</returns>
+            <returns>All <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> instance in this view.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetChainTargetAt(System.Int32)">
             <summary>
@@ -12467,11 +12467,11 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetLinks(Sudoku.Concepts.ChainNode)">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> instances of the branch from the specified target,
+            Try to fetch all <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> instances of the branch from the specified target,
             specified as a <see cref="T:Sudoku.Concepts.ChainNode"/> instance.
             </summary>
             <param name="target">The target node.</param>
-            <returns>All <see cref="T:Sudoku.Rendering.Nodes.LinkViewNode"/> displayed in this branch.</returns>
+            <returns>All <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/> displayed in this branch.</returns>
         </member>
         <member name="P:Sudoku.Analytics.Steps.ChainingStep.IsX">
             <summary>
@@ -12514,7 +12514,7 @@
             <param name="isX"><inheritdoc/></param>
             <param name="isY"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.ForcingChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Alternating Inference Chain</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -12565,7 +12565,7 @@
             <param name="isDynamic"><inheritdoc/></param>
             <param name="dynamicNestingLevel"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Byte,Sudoku.Concepts.MultipleForcingChains,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.RegionForcingChainsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Byte,Sudoku.Concepts.MultipleForcingChains,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is an <b>Region (House) Forcing Chains</b> technique that is compatible with program <b>Sudoku Explainer</b>.
             </summary>
@@ -12624,7 +12624,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="falseCandidate">Indicates the false candidate that will cause a BUG deadly pattern if it is true.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave False Candidate Type</b> technique.
             </summary>
@@ -12659,7 +12659,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="trueCandidates">Indicates the true candidates.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave + n</b> technique.
             </summary>
@@ -12707,7 +12707,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave</b> technique.
             </summary>
@@ -12735,7 +12735,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 1</b> technique.
             </summary>
@@ -12759,7 +12759,7 @@
             <param name="digit">Indicates the extra digit.</param>
             <param name="cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Bivalue Universal Grave Type 2</b> technique.
             </summary>
@@ -12809,7 +12809,7 @@
             <param name="cells">Indicates the subset cells used.</param>
             <param name="isNaked">Indicates whether the subset is naked.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CandidateMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -12878,7 +12878,7 @@
             <param name="cells">Indicates the cells used.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -12927,7 +12927,7 @@
             <param name="cells">Indicates the cells used.</param>
             <param name="xzCell">Indicates the extra cell used. This cell is a bivalue cell that only contains digit X and Z.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Universal Grave XZ</b> technique.
             </summary>
@@ -12975,7 +12975,7 @@
             <param name="cells">The map that contains the cells used for this technique.</param>
             <param name="digitsMask">Indicates the mask of used digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern</b> technique.
             </summary>
@@ -13017,7 +13017,7 @@
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -13044,7 +13044,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -13081,7 +13081,7 @@
             <param name="subsetCells">Indicates the cells that the subset used.</param>
             <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -13130,7 +13130,7 @@
             <param name="conjugateHouse">Indicates the cells used as generalized conjugate.</param>
             <param name="extraDigitsMask">Indicates the mask of extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BorescoperDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Borescoper's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -13172,7 +13172,7 @@
             <param name="extraDigits">Indicates the extra digits.</param>
             <param name="chuteIndex">Indicates the chute index.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniquenessClueCoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniquenessClueCoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Uniqueness Clue Cover</b> technique.
             </summary>
@@ -13224,7 +13224,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.DeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Deadly Pattern</b> technique.
             </summary>
@@ -13247,7 +13247,7 @@
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle</b> technique.
             </summary>
@@ -13295,7 +13295,7 @@
             <param name="cells"><inheritdoc/></param>
             <param name="digitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 1</b> technique.
             </summary>
@@ -13322,7 +13322,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 2</b> technique.
             </summary>
@@ -13361,7 +13361,7 @@
             <param name="house">Indicates the house that subset formed.</param>
             <param name="isCannibalism">Indicates whether the pattern is cannibalism.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 3</b> technique.
             </summary>
@@ -13424,7 +13424,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.ExtendedRectangleType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Extended Rectangle Type 4</b> technique.
             </summary>
@@ -13461,7 +13461,7 @@
             <param name="loop">Indicates the whole loop of cells used.</param>
             <param name="loopPath">Indicates the loop path.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop</b> technique.
             </summary>
@@ -13529,7 +13529,7 @@
             <param name="loop"><inheritdoc/></param>
             <param name="loopPath"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 1</b> technique.
             </summary>
@@ -13560,7 +13560,7 @@
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="loopPath"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 2</b> technique.
             </summary>
@@ -13601,7 +13601,7 @@
             <param name="subsetDigitsMask">Indicates the mask that contains the subset digits used in this instance.</param>
             <param name="loopPath"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 3</b> technique.
             </summary>
@@ -13653,7 +13653,7 @@
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
             <param name="loopPath"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@,System.Int32[])">
+        <member name="M:Sudoku.Analytics.Steps.UniqueLoopType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@,System.Int32[])">
             <summary>
             Provides with a step that is a <b>Unique Loop Type 4</b> technique.
             </summary>
@@ -13690,7 +13690,7 @@
             <param name="cells">Indicates the cells used in this pattern.</param>
             <param name="digitsMask">Indicates the mask that describes all digits used in this pattern.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Matrix</b> technique.
             </summary>
@@ -13733,7 +13733,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="candidate">Indicates the true candidate.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Matrix Type 1</b> technique.
             </summary>
@@ -13766,7 +13766,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 2</b> technique.
             </summary>
@@ -13803,7 +13803,7 @@
             <param name="subsetDigitsMask">Indicates the mask that describes the extra digits used in the subset.</param>
             <param name="subsetCells">Indicates the cells that the subset used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 3</b> technique.
             </summary>
@@ -13853,7 +13853,7 @@
             <param name="digit2">Indicates the second digit used in the conjugate.</param>
             <param name="conjugateHouse">Indicates the cells that describes the generalized conjugate pair.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueMatrixType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Unique Square Type 4</b> technique.
             </summary>
@@ -13904,7 +13904,7 @@
             <param name="targetCell">Indicates the target cell.</param>
             <param name="targetDigits">Indicates the target digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern External Type 1</b> technique.
             </summary>
@@ -13948,7 +13948,7 @@
             <param name="mirrorCells">Indicates the mirror cells.</param>
             <param name="targetDigit">Indicates the target digit.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern External Type 2</b> technique.
             </summary>
@@ -13993,7 +13993,7 @@
             <param name="corner1"><inheritdoc/></param>
             <param name="corner2"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternExternalTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern External Type</b> technique.
             </summary>
@@ -14024,7 +14024,7 @@
             <param name="corner2"><inheritdoc/></param>
             <param name="candidates">Indicates the candidates used as locked one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternLockedTypeStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CandidateMap@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Locked Type</b> technique.
             </summary>
@@ -14072,7 +14072,7 @@
             Indicates the corner cell 2. The value can be <see langword="null"/> if <paramref name="is2LinesWith2Cells"/> is <see langword="false"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32})">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern</b> technique.
             </summary>
@@ -14141,7 +14141,7 @@
             <param name="targetCell">Indicates the target cell.</param>
             <param name="targetDigits">Indicates the target digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 1</b> technique.
             </summary>
@@ -14184,7 +14184,7 @@
             <param name="corner2"><inheritdoc/></param>
             <param name="targetDigit">Indicates the target digit.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},System.Int32)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 2</b> technique.
             </summary>
@@ -14226,7 +14226,7 @@
             <param name="subsetCells">Indicates the subset cells used.</param>
             <param name="isNaked">Indicates whether the subset is naked one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 3</b> technique.
             </summary>
@@ -14284,7 +14284,7 @@
             <param name="corner2"><inheritdoc/></param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.QiuDeadlyPatternType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean,System.Int32,System.Nullable{System.Int32},System.Nullable{System.Int32},Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Qiu's Deadly Pattern Type 4</b> technique.
             </summary>
@@ -14326,7 +14326,7 @@
             <param name="house">Indicates the house where the pattern lies.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.AvoidableRectangleWithHiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is an <b>Avoidable Rectangle with Hidden Single</b> technique.
             </summary>
@@ -14376,7 +14376,7 @@
             <param name="conjugatePairs"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenUniqueRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Hidden Unique Rectangle</b> technique.
             </summary>
@@ -14407,7 +14407,7 @@
             <param name="xyCell">Indicates a bi-value cell that only contains digit X and Y.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangle2DOr3XStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle 2D (or 3X)</b> technique.
             </summary>
@@ -14459,7 +14459,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Burred</b> technique.
             </summary>
@@ -14488,7 +14488,7 @@
             <param name="subsetIncludedCorner">Indicates the subset-included corner cell.</param>
             <param name="extraDigitsMask">Indicates the extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleBurredSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Burred Subset</b> technique.
             </summary>
@@ -14555,7 +14555,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalAlmostLockedSetsXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.AlmostLockedSet,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Almost Locked Sets XZ Rule</b> technique.
             </summary>
@@ -14612,7 +14612,7 @@
             <param name="isIncomplete">Indicates whether the pattern is incomplete.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalTurbotFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Turbot Fish</b> technique.
             </summary>
@@ -14664,7 +14664,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType1Or2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 1/2</b> or <b>Avoidable Rectangle External Type 1/2</b> technique.
             </summary>
@@ -14721,7 +14721,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 3</b> technique.
             </summary>
@@ -14789,7 +14789,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External Type 4</b> technique.
             </summary>
@@ -14845,7 +14845,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External W-Wing</b> technique.
             </summary>
@@ -14904,7 +14904,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleExternalXyWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle External XY-Wing</b> technique.
             </summary>
@@ -14971,7 +14971,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle</b> technique.
             </summary>
@@ -15053,7 +15053,7 @@
             <param name="isAvoidable"><inheritdoc/></param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 1</b> technique.
             </summary>
@@ -15087,7 +15087,7 @@
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType2Or5Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.Technique,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 2</b> or <b>Unique Rectangle Type 5</b> technique.
             </summary>
@@ -15135,7 +15135,7 @@
             Indicates whether the subset is naked subset. If <see langword="true"/>, a naked subset; otherwise, a hidden subset.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,System.Boolean,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle Type 3</b> technique.
             </summary>
@@ -15209,7 +15209,7 @@
             <param name="extraDigit">Indicates the extra digit used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithBabaGroupingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Baba Grouping</b> technique.
             </summary>
@@ -15254,7 +15254,7 @@
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.Conjugate[],System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Conjugate Pair(s)</b> technique.
             </summary>
@@ -15314,7 +15314,7 @@
             <param name="intersectionCells">Indicates the cells in the intersection from houses <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Block"/> and <see cref="P:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.Line"/>.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithSueDeCoqStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Sue de Coq</b> technique.
             </summary>
@@ -15421,7 +15421,7 @@
             <param name="extraDigitsMask">Indicates the mask that contains all extra digits.</param>
             <param name="absoluteOffset"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.UniqueRectangleWithWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Analytics.Categorization.Technique,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16,System.Int32)">
             <summary>
             Provides with a step that is a <b>Unique Rectangle with Wing</b> technique.
             </summary>
@@ -15471,7 +15471,7 @@
             <param name="pattern">Indicates the pattern, all possible cells included.</param>
             <param name="emptyCells">Indicates the empty cells used. This cells have already included in <paramref name="pattern"/>.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave</b> technique.
             </summary>
@@ -15546,7 +15546,7 @@
             <param name="pattern"><inheritdoc/></param>
             <param name="emptyCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 1</b> technique.
             </summary>
@@ -15577,7 +15577,7 @@
             <param name="pattern"><inheritdoc/></param>
             <param name="emptyCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 2</b> technique.
             </summary>
@@ -15621,7 +15621,7 @@
             <param name="pattern"><inheritdoc/></param>
             <param name="emptyCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 3</b> technique.
             </summary>
@@ -15664,7 +15664,7 @@
             <param name="emptyCells"><inheritdoc/></param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.ReverseBivalueUniversalGraveType4Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is a <b>Reverse Bi-value Universal Grave Type 4</b> technique.
             </summary>
@@ -15710,7 +15710,7 @@
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
             <param name="almostHiddenSetMask">The mask that holds a list of digits forming an external AHS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
             </summary>
@@ -15762,7 +15762,7 @@
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet</b> or <b>Complex Senior Exocet</b> technique.
             </summary>
@@ -15808,7 +15808,7 @@
             <param name="crosslineHousesMask">Indicates the mask holding a list of houses spanned for cross-line cells.</param>
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexExocetLockedMemberStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet (Locked Member)</b> or <b>Complex Senior Exocet (Locked Member)</b> technique.
             </summary>
@@ -15854,7 +15854,7 @@
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
             <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet (Adjacent Target)</b> technique.
             </summary>
@@ -15905,7 +15905,7 @@
             <param name="extraHousesMask">Indicates the mask holding a list of extra houses.</param>
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.Conjugate[])">
+        <member name="M:Sudoku.Analytics.Steps.ComplexJuniorExocetMirrorConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.Conjugate[])">
             <summary>
             Provides with a step that is a <b>Complex Junior Exocet (Mirror Conjugate Pair)</b> technique.
             </summary>
@@ -15955,7 +15955,7 @@
             <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
             <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DoubleExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DoubleExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Double Exocet (Base)</b> technique.
             </summary>
@@ -15996,7 +15996,7 @@
             <param name="baseCellsTheOther">Indicates the other side of the base cells.</param>
             <param name="targetCellsTheOther">Indicates the other side of the target cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DoubleExocetGeneralizedFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Double Exocet (Fish)</b> technique.
             </summary>
@@ -16040,7 +16040,7 @@
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used in target.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
+        <member name="M:Sudoku.Analytics.Steps.ExocetBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
             <summary>
             Provides with a step that is an <b>Exocet (Base)</b> technique.
             </summary>
@@ -16085,7 +16085,7 @@
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetLockedMemberStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetLockedMemberStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is an <b>Exocet (Locked Member)</b> technique.
             </summary>
@@ -16124,7 +16124,7 @@
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="conjugatePairs">Indicates the conjugate pairs used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
+        <member name="M:Sudoku.Analytics.Steps.ExocetMirrorConjugatePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.Conjugate[])">
             <summary>
             Provides with a step that is an <b>Exocet (Mirror Conjugate Pair)</b> technique.
             </summary>
@@ -16162,7 +16162,7 @@
             <param name="endoTargetCells">Indicates the endo-target cells used.</param>
             <param name="crosslineCells">Indicates the cross-line cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.ExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is an <b>Exocet</b> technique.
             </summary>
@@ -16245,7 +16245,7 @@
             <param name="crosslineCells"><inheritdoc/></param>
             <param name="singleMirrors">Indicates the single mirror cells. The value should be used one-by-one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Adjacent Target)</b> technique.
             </summary>
@@ -16283,7 +16283,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetGeneralizedFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Fish)</b> technique.
             </summary>
@@ -16320,7 +16320,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetIncompatiblePairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
             </summary>
@@ -16358,7 +16358,7 @@
             <param name="extraCells">Indicates the cells that provides with the AHS rule.</param>
             <param name="extraDigitsMask">Indicates the mask that holds the digits used by the AHS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorAlmostHiddenSetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Mirror Almost Hidden Set)</b> technique.
             </summary>
@@ -16417,7 +16417,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetMirrorSyncStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Mirror Sync)</b> technique.
             </summary>
@@ -16448,7 +16448,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.JuniorExocetTargetPairStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Junior Exocet (Incompatible Pair)</b> technique.
             </summary>
@@ -16486,7 +16486,7 @@
             <param name="endoTargetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SeniorExocetTrueBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Senior Exocet (True Base)</b> technique.
             </summary>
@@ -16525,7 +16525,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WeakExocetAdjacentTargetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Weak Exocet (Adjacent Target)</b> technique.
             </summary>
@@ -16569,7 +16569,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WeakExocetBzRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Weak Exocet (BZ Rectangle)</b> technique.
             </summary>
@@ -16613,7 +16613,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WeakExocetSlashStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WeakExocetSlashStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Weak Exocet (Slash)</b> technique.
             </summary>
@@ -16657,7 +16657,7 @@
             <param name="targetCells"><inheritdoc/></param>
             <param name="crosslineCells"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WeakExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WeakExocetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Weak Exocet (Base)</b> technique.
             </summary>
@@ -16697,7 +16697,7 @@
             <param name="cells">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkQuadrupleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Quadruple</b> technique.
             </summary>
@@ -16737,7 +16737,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Firework</b> technique.
             </summary>
@@ -16761,7 +16761,7 @@
             <param name="cells">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask of digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FireworkTripleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.FireworkTripleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Firework Triple</b> technique.
             </summary>
@@ -16817,7 +16817,7 @@
             <param name="isCannibalism">Indicates whether the fish contains any cannibalism.</param>
             <param name="isSiamese"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean},System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean,System.Nullable{System.Boolean},System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Complex Fish</b> technique.
             </summary>
@@ -16909,7 +16909,7 @@
             </param>
             <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.FishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
             <summary>
             Provides with a step that is a <b>Fish</b> technique.
             </summary>
@@ -17019,7 +17019,7 @@
             <param name="isSashimi"><inheritdoc/></param>
             <param name="isSiamese">Indicates whether the pattern is a Siamese Fish.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.NormalFishStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Nullable{System.Boolean},System.Boolean)">
             <summary>
             Provides with a step that is an <b>Normal Fish</b> technique.
             </summary>
@@ -17062,7 +17062,7 @@
             <param name="coverCells">Indicates the cells in cover set.</param>
             <param name="hasValueCell">Indicates whether the step contains value cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Boolean)">
             <summary>
             Represents a data structure that describes for a technique of <b>Almost Locked Candidates (ALC)</b>.
             </summary>
@@ -17117,7 +17117,7 @@
             <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
             <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.IntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Represents a data structure that describes for a technique of <b>Intersection</b>.
             </summary>
@@ -17137,7 +17137,7 @@
             <param name="set1">Indicates the first set to be used.</param>
             <param name="set2">Indicates the second set to be used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LawOfLeftoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.LawOfLeftoverStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Represents a data structure that describes for a technique of <b>Law of Leftover (LoL)</b>.
             </summary>
@@ -17189,7 +17189,7 @@
             <param name="baseSet">Indicates the house that the current locked candidates forms.</param>
             <param name="coverSet">Indicates the house that the current locked candidates effects.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LockedCandidatesStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32)">
             <summary>
             Represents a data structure that describes for a technique of <b>Locked Candidates</b>.
             </summary>
@@ -17233,7 +17233,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="contradictionLinks">Indicates the list of contradiction links.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Conclusion[])">
+        <member name="M:Sudoku.Analytics.Steps.BowmanBingoStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Conclusion[])">
             <summary>
             Provides with a step that is a <b>Bowman's Bingo</b> technique.
             </summary>
@@ -17270,7 +17270,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.BruteForceStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Brute Force</b> technique.
             </summary>
@@ -17295,7 +17295,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.LastResortStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Last Resort</b> technique.
             </summary>
@@ -17340,7 +17340,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="isTemplateDeletion">Indicates the current template step is a template deletion.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.TemplateStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Template</b> technique.
             </summary>
@@ -17377,7 +17377,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="cells">Indicates the cells used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.DominoLoopStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Domino Loop</b> technique.
             </summary>
@@ -17408,7 +17408,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LockedSetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.LockedSetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Locked Sets</b> technique.
             </summary>
@@ -17427,7 +17427,7 @@
             <param name="rowsCount">Indicates the number of rows used.</param>
             <param name="columnsCount">Indicates the number of columns used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultisectorLockedSetsStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-sector Locked Sets</b> technique.
             </summary>
@@ -17482,7 +17482,7 @@
             <param name="columnCells">Indicates the cells used in this pattern in a column.</param>
             <param name="blockCells">Indicates the cells used in this pattern in a block.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoq3DimensionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,System.Int16,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>3-dimensional Sue de Coq</b> technique.
             </summary>
@@ -17555,7 +17555,7 @@
             Indicates the cells that the current pattern used in an intersection of <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.BlockCells"/> and <see cref="P:Sudoku.Analytics.Steps.SueDeCoqStep.LineCells"/>.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.SueDeCoqStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,System.Int16,System.Int16,System.Boolean,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Sue de Coq</b> technique.
             </summary>
@@ -17654,7 +17654,7 @@
             <param name="digit1">Indicates the first digit used.</param>
             <param name="digit2">Indicates the second digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bi-value Oddagon</b> technique.
             </summary>
@@ -17715,7 +17715,7 @@
             <param name="digit2"><inheritdoc/></param>
             <param name="extraDigit">Indicates the extra digit used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType2Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>Bivalue Oddagon Type 2</b> technique.
             </summary>
@@ -17754,7 +17754,7 @@
             <param name="extraCells">Indicates the extra cells used.</param>
             <param name="extraDigitsMask">Indicates the mask that contains all extra digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueOddagonType3Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Bivalue Oddagon Type 3</b> technique.
             </summary>
@@ -17800,7 +17800,7 @@
             <param name="pattern">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask of digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern</b> technique.
             </summary>
@@ -17841,7 +17841,7 @@
             <param name="extraCell">Indicates the extra cell used.</param>
             <param name="digitsMask"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternType1Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern Type 1</b> technique.
             </summary>
@@ -17878,7 +17878,7 @@
             <param name="digitsMask"><inheritdoc/></param>
             <param name="extraDigitsMask">Indicates the mask of extra digits.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.ChromaticPatternXzStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32[],Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16)">
             <summary>
             Provides with a step that is a <b>Chromatic Pattern XZ</b> technique.
             </summary>
@@ -17927,7 +17927,7 @@
             <param name="loopCells">Indicates the cells of the loop used.</param>
             <param name="guardians">Indicates the guardian cells.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GuardianStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.GuardianStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Guardian</b> technique.
             </summary>
@@ -17988,7 +17988,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.NegativeRankStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Negative Rank</b> technique.
             </summary>
@@ -18006,7 +18006,7 @@
             <param name="cells">Indicates the target cells used in the pattern.</param>
             <param name="lockedCombinations">Indicates all locked combinations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.AlignedExclusionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.ValueTuple{System.Int32[],System.Int32}[])">
             <summary>
             Provides with a step that is an <b>Aligned Exclusion</b> technique.
             </summary>
@@ -18049,7 +18049,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.PermutationStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.PermutationStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Permutation</b> technique.
             </summary>
@@ -18068,7 +18068,7 @@
             <param name="block">Indicates the block that the real empty rectangle pattern lis in.</param>
             <param name="conjugatePair">Indicates the conjugate pair used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
+        <member name="M:Sudoku.Analytics.Steps.EmptyRectangleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.Conjugate@)">
             <summary>
             Provides with a step that is an <b>Empty Rectangle</b> technique.
             </summary>
@@ -18107,7 +18107,7 @@
             <param name="options"><inheritdoc/></param>
             <param name="digit">Indicates the digit used in this pattern.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SingleDigitPatternStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32)">
             <summary>
             Provides with a step that is a <b>Single Digit Pattern</b> technique.
             </summary>
@@ -18133,7 +18133,7 @@
             <param name="targetHouse">Indicates the target house used.</param>
             <param name="isGrouped">Indicates whether the links is grouped.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.TwoStrongLinksStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean)">
             <summary>
             Provides with a step that is a <b>Single-Digit Pattern</b> or <b>Grouped Single-Digit Pattern</b> technique.
             </summary>
@@ -18202,7 +18202,7 @@
             </para>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleBaseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
             Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
@@ -18258,7 +18258,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
             <param name="indirectTechniques"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.IndirectTechniques" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique[][])">
             <summary>
             Represents a data structure that describes for a technique of <b>Complex Single</b>.
             </summary>
@@ -18306,7 +18306,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
             <param name="isPointing">Indicates whether the current locked candidates pattern used is pointing.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.DirectIntersectionStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Concepts.CellMap@,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,System.Boolean)">
             <summary>
             Represents a data structure that describes for a technique of <b>Direct Intersection</b>.
             </summary>
@@ -18375,7 +18375,7 @@
             <param name="basedOn"><inheritdoc cref="P:Sudoku.Analytics.Steps.ComplexSingleBaseStep.BasedOn" path="/summary"/></param>
             <param name="subsetTechnique">Indicates the subset technique used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
+        <member name="M:Sudoku.Analytics.Steps.DirectSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,Sudoku.Analytics.Categorization.SingleSubtype,Sudoku.Analytics.Categorization.Technique,Sudoku.Analytics.Categorization.Technique)">
             <summary>
             Represents a data structure that describes for a technique of <b>Direct Subset</b>.
             </summary>
@@ -18401,7 +18401,7 @@
         <member name="P:Sudoku.Analytics.Steps.DirectSubsetStep.IsLocked">
             <summary>
             <inheritdoc
-                cref="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})"
+                cref="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})"
                 path="/param[@name='isLocked']"/>
             </summary>
         </member>
@@ -18468,7 +18468,7 @@
             <param name="digit"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Digit" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.FullHouseStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Represents a data structure that describes for a technique of <b>Full House</b>.
             </summary>
@@ -18513,7 +18513,7 @@
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Boolean,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Represents a data structure that describes for a technique of <b>Hidden Single</b>.
             </summary>
@@ -18566,7 +18566,7 @@
             <param name="house"><inheritdoc cref="P:Sudoku.Analytics.Steps.HiddenSingleStep.House" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary"/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LastDigitStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Represents a data structure that describes for a technique of <b>Last Digit</b>.
             </summary>
@@ -18590,7 +18590,7 @@
             <param name="subtype"><inheritdoc cref="P:Sudoku.Analytics.Steps.SingleStep.Subtype" path="/summary"/></param>
             <param name="lasting"><inheritdoc cref="P:Sudoku.Traits.ILastingTrait.Lasting" path="/summary" /></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NakedSingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype,System.Int32)">
             <summary>
             Represents a data structure that describes for a technique of <b>Naked Single</b>.
             </summary>
@@ -18624,7 +18624,7 @@
             <param name="digit">Indicates the digit used.</param>
             <param name="subtype">Indicates the subtype of the technique.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
+        <member name="M:Sudoku.Analytics.Steps.SingleStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Represents a data structure that describes for a technique of <b>Single</b>.
             </summary>
@@ -18674,7 +18674,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.HiddenSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Boolean)">
             <summary>
             Represents a data structure that describes for a technique of <b>Hidden Subset</b>.
             </summary>
@@ -18743,7 +18743,7 @@
             </list>
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
+        <member name="M:Sudoku.Analytics.Steps.NakedSubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16,System.Nullable{System.Boolean})">
             <summary>
             Represents a data structure that describes for a technique of <b>Naked Subset</b>.
             </summary>
@@ -18796,7 +18796,7 @@
             <param name="cells">Indicates the cells used.</param>
             <param name="digitsMask">Indicates the mask that contains all digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.SubsetStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.CellMap@,System.Int16)">
             <summary>
             Represents a data structure that describes for a technique of <b>Subset</b>.
             </summary>
@@ -18847,7 +18847,7 @@
             </param>
             <param name="mapping"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -18894,7 +18894,7 @@
             Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -18940,7 +18940,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.SymmetryStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Symmetrical</b> technique.
             </summary>
@@ -18962,7 +18962,7 @@
             <param name="digitZ">Indicates the digit Z.</param>
             <param name="strongLink">Indicates the storng link used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.HWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>(Grouped) H-Wing</b> technique.
             </summary>
@@ -19029,7 +19029,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.IrregularWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Irregular Wing</b> technique.
             </summary>
@@ -19065,7 +19065,7 @@
             <param name="midWeakCell1">Indicates the mid cell 1.</param>
             <param name="midWeakCell2">Indicates the mid cell 2.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.LWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.LWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>(Grouped) L-Wing</b> technique.
             </summary>
@@ -19138,7 +19138,7 @@
             <param name="root">The root cells that corresponds to each leaf.</param>
             <param name="house">Indicates the house that all cells in <see cref="P:Sudoku.Analytics.Steps.MultiBranchWWingStep.Root"/> lie in.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.MultiBranchWWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Provides with a step that is a <b>Multi-Branch W-Wing</b> technique.
             </summary>
@@ -19198,7 +19198,7 @@
             <param name="weakXyCell">Indicates the weak XY cell.</param>
             <param name="digitsMask">Indicates the digits used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.MWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.MWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int16)">
             <summary>
             Provides with a step that is a <b>(Grouped) M-Wing</b> technique.
             </summary>
@@ -19263,7 +19263,7 @@
             <param name="digitsMask">Indicates a mask that contains all digits used.</param>
             <param name="petals">Indicates the petals used.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.RegularWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int16,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>Regular Wing</b> technique.
             </summary>
@@ -19363,7 +19363,7 @@
             <param name="DigitY">Indicates the digit Y.</param>
             <param name="midCell">Indicates the mid cell.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.SWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.SWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.Int32)">
             <summary>
             Provides with a step that is a <b>(Grouped) S-Wing</b> technique.
             </summary>
@@ -19436,7 +19436,7 @@
             <param name="views"><inheritdoc/></param>
             <param name="options"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+        <member name="M:Sudoku.Analytics.Steps.WingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
             <summary>
             Provides with a step that is a <b>Wing</b> technique.
             </summary>
@@ -19455,7 +19455,7 @@
             <param name="endCell">Indicates the end cell.</param>
             <param name="bridge">Indicates the bridge cells connecting with cells <see cref="P:Sudoku.Analytics.Steps.WWingStep.StartCell"/> and <see cref="P:Sudoku.Analytics.Steps.WWingStep.EndCell"/>.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Analytics.Steps.WWingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.CellMap@)">
             <summary>
             Provides with a step that is a <b>(Grouped) W-Wing</b> technique.
             </summary>
@@ -19512,7 +19512,7 @@
             <param name="isGrouped">Indicates whether the conjugate pair is grouped one.</param>
             <param name="isSiamese">Indicates whether the XYZ-loop is a Siamese one.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
+        <member name="M:Sudoku.Analytics.Steps.XyzRingStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,System.Boolean,System.Boolean)">
             <summary>
             Provides with a step that is a <b>(Siamese) (Grouped) XYZ-Ring</b> technique.
             </summary>
@@ -21206,7 +21206,7 @@ result ^= expression;
             <param name="options">The options to set.</param>
             <returns>The found step.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Rendering.Nodes.CellViewNode},System.ReadOnlySpan{System.Nullable{System.Int32}})">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.GetHighlightCells(Sudoku.Concepts.Grid@,System.Collections.Generic.List{Sudoku.Drawing.Nodes.CellViewNode},System.ReadOnlySpan{System.Nullable{System.Int32}})">
             <summary>
             Records all possible highlight cells.
             </summary>
@@ -21370,7 +21370,7 @@ result ^= expression;
             <para>
             Assign a not-<see langword="null"/> value to this parameter
             if argument <see cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
-            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
             </para>
@@ -21389,7 +21389,7 @@ result ^= expression;
             <para>
             Assign a not-<see langword="null"/> value to this parameter
             if argument <see cref="P:Sudoku.Generating.PuzzleBase.FailedReason"/> is <see cref="F:Sudoku.Generating.GeneratingFailedReason.None"/>.
-            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Rendering.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
+            Set the arguments of constructor <see cref="M:Sudoku.Analytics.Step.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)"/>
             to be <c>[]</c>, <c>[]</c> and <c><see langword="new"/>()</c> respectively,
             in order to avoid the potential bug on displaying details.
             </para>
