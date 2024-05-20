@@ -4,4 +4,4 @@ namespace System.Linq.Providers;
 /// Represents a type that supports customized LINQ method defined in this repository.
 /// </summary>
 /// <inheritdoc/>
-public interface ICustomMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICustomMethod<TSelf, TSource>;
+public interface ICustomLinqMethod<TSelf, TSource> : ILinqMethod<TSelf, TSource> where TSelf : ICustomLinqMethod<TSelf, TSource>;

@@ -2956,6 +2956,19 @@
         <member name="M:System.Linq.Providers.IAggregateMethod`2.Aggregate``2(``0,System.Func{``0,`1,``0},System.Func{``0,``1})">
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``3(System.Collections.Generic.IEnumerable{``0},``1,System.Func{``1,``0,``1},System.Func{``1,``2})"/>
         </member>
+        <member name="T:System.Linq.Providers.IAllAreMethod`2">
+            <summary>
+            Represents a type that supports method group <c>AllAre</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IAllAreMethod`2.AllAre``1">
+            <summary>
+            Determine whether all elements are of type <typeparamref name="T"/>.
+            </summary>
+            <typeparam name="T">The type of the target elements.</typeparam>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:System.Linq.Providers.IAnyAllMethod`2">
             <summary>
             Represents a type that supports method group <c>Any</c> and <c>All</c>.
@@ -3064,7 +3077,7 @@
         <member name="M:System.Linq.Providers.ICountMethod`2.LongCount(System.Func{`1,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.LongCount``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
-        <member name="T:System.Linq.Providers.ICustomMethod`2">
+        <member name="T:System.Linq.Providers.ICustomLinqMethod`2">
             <summary>
             Represents a type that supports customized LINQ method defined in this repository.
             </summary>
