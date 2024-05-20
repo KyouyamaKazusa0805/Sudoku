@@ -92,7 +92,4 @@
   <Project Path="src\System\SystemExtensions.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
-</Solution>th="src\System\SystemExtensions.csproj">
-    <Configuration Solution="Build|*" Project="Release|*" />
-  </Project>
 </Solution>
