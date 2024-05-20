@@ -165,6 +165,9 @@
             <summary>
             Clear the canvas, removing all drawn elements.
             </summary>
+            <remarks>
+            This will invalidate drawing items, and draw background, border lines and footer text.
+            </remarks>
         </member>
         <member name="T:Sudoku.Drawing.GridCanvasSettings">
             <summary>
