@@ -71,7 +71,7 @@
   <Project Path="src\Sudoku.Core\Sudoku.Core.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
-  <Project Path="src\Sudoku.Gdip\Sudoku.Gdip.csproj">
+  <Project Path="src\Sudoku.Drawing\Sudoku.Drawing.csproj" Type="Classic C#">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
   <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
@@ -90,6 +90,9 @@
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
   <Project Path="src\System\SystemExtensions.csproj">
+    <Configuration Solution="Build|*" Project="Release|*" />
+  </Project>
+</Solution>th="src\System\SystemExtensions.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
 </Solution>

@@ -1,4 +1,4 @@
-namespace Sudoku.Gdip;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Provides a serial of methods for a point calculator that interacts with the UI projects.
@@ -174,7 +174,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Candidate"));
+				throw new ArgumentException("The value contains no elements.", nameof(map));
 			}
 		}
 	}
@@ -203,7 +203,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Cell"));
+				throw new ArgumentException("The value contains no elements.", nameof(lockedTarget));
 			}
 		}
 	}
@@ -228,7 +228,7 @@ public sealed class PointCalculator
 			}
 			default:
 			{
-				throw new ArgumentException(ResourceDictionary.ExceptionMessage("CannotGetMapMoreThan1Candidate"));
+				throw new ArgumentException("The value contains no elements.", nameof(map));
 			}
 		}
 	}
@@ -320,15 +320,6 @@ public sealed class PointCalculator
 	}
 
 	/// <inheritdoc cref="GetSharedLinePosition(Cell, Cell)"/>
-	/// <summary>
-	/// <inheritdoc path="/summary"/>
-	/// </summary>
-	/// <param name="cell1"><inheritdoc path="/param[@name='cell1']"/></param>
-	/// <param name="cell2"><inheritdoc path="/param[@name='cell2']"/></param>
-	/// <param name="borderBarFullyOverlapsGridLine">
-	/// <inheritdoc cref="DrawingConfigurations.BorderBarFullyOverlapsGridLine" path="/summary"/>
-	/// </param>
-	/// <returns><inheritdoc path="/returns"/></returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal (PointF Start, PointF End) GetSharedLinePosition(Cell cell1, Cell cell2, bool borderBarFullyOverlapsGridLine)
 	{

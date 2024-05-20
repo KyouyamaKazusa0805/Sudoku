@@ -21334,20 +21334,6 @@ result ^= expression;
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Drawing.ISudokuPainterExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Drawing.ISudokuPainter"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Drawing.ISudokuPainter"/>
-        </member>
-        <member name="M:Sudoku.Drawing.ISudokuPainterExtensions.WithStep(Sudoku.Drawing.ISudokuPainter,Sudoku.Analytics.Step)">
-            <summary>
-            Sets <see cref="T:Sudoku.Concepts.Conclusion"/>s and <see cref="T:Sudoku.Rendering.View"/>s for the specified step.
-            </summary>
-            <param name="this">The sudoku painter instance.</param>
-            <param name="step">The step instance.</param>
-            <returns>Argument <paramref name="this"/>.</returns>
-        </member>
         <member name="T:Sudoku.Generating.JustOneCell.ConlusionCellAlignment">
             <summary>
             Represents a rule that describes for the just-one-cell puzzles only produce conclusions in row 5, column 5 and block 5.

@@ -1,9 +1,9 @@
-namespace Sudoku.Gdip;
+namespace Sudoku.Drawing;
 
 /// <summary>
 /// Represents with a preference type that stores the configurations on drawing.
 /// </summary>
-public sealed class DrawingConfigurations
+public sealed class GridCanvasSettings
 {
 	/// <summary>
 	/// Indicates whether the form shows candidates.
@@ -29,6 +29,14 @@ public sealed class DrawingConfigurations
 	/// Indicates the scale of candidates.
 	/// </summary>
 	public decimal CandidateScale { get; set; } = .3M;
+
+	/// <summary>
+	/// Indicates the scale that footer text will be drawn. The value unit is unified with
+	/// <see cref="ValueScale"/> and <see cref="CandidateScale"/>.
+	/// </summary>
+	/// <seealso cref="ValueScale"/>
+	/// <seealso cref="CandidateScale"/>
+	public decimal FooterTextScale { get; set; } = .4M;
 
 	/// <summary>
 	/// Indicates the grid line width of the sudoku grid to render.
@@ -66,6 +74,11 @@ public sealed class DrawingConfigurations
 	public string? BabaGroupingFontName { get; set; } = "Times New Roman";
 
 	/// <summary>
+	/// Indicates the font of footer text to render.
+	/// </summary>
+	public string? FooterTextFontName { get; set; } = "MiSans";
+
+	/// <summary>
 	/// Indicates the font style of the givens.
 	/// </summary>
 	public FontStyle GivenFontStyle { get; set; } = FontStyle.Regular;
@@ -86,6 +99,11 @@ public sealed class DrawingConfigurations
 	public FontStyle BabaGroupCharacterFontStyle { get; set; } = FontStyle.Italic | FontStyle.Bold;
 
 	/// <summary>
+	/// Indicates the font style of footer text.
+	/// </summary>
+	public FontStyle FooterTextFontStyle { get; set; } = FontStyle.Bold;
+
+	/// <summary>
 	/// Indicates the given digits to render.
 	/// </summary>
 	public Color GivenColor { get; set; } = Color.Black;
@@ -101,14 +119,34 @@ public sealed class DrawingConfigurations
 	public Color CandidateColor { get; set; } = Color.DimGray;
 
 	/// <summary>
+	/// Indicates the normal color.
+	/// </summary>
+	public Color NormalColor { get; set; } = Color.FromArgb(63, 218, 101); // Green
+
+	/// <summary>
+	/// Indicates the color that draws for an assignment.
+	/// </summary>
+	public Color AssignmentColor { set; get; } = Color.FromArgb(63, 218, 101); // Green
+
+	/// <summary>
 	/// Indicates the elimination color.
 	/// </summary>
-	public Color EliminationColor { get; set; } = Color.FromArgb(255, 118, 132);
+	public Color EliminationColor { get; set; } = Color.FromArgb(255, 118, 132); // Red
 
 	/// <summary>
 	/// Indicates the cannibalism color.
 	/// </summary>
-	public Color CannibalismColor { get; set; } = Color.FromArgb(235, 0, 0);
+	public Color CannibalismColor { get; set; } = Color.FromArgb(235, 0, 0); // Dark-red
+
+	/// <summary>
+	/// Indicates the exo-fin color.
+	/// </summary>
+	public Color ExofinColor { get; set; } = Color.FromArgb(255, 192, 89); // Orange
+
+	/// <summary>
+	/// Indicates the endo-fin color.
+	/// </summary>
+	public Color EndofinColor { get; set; } = Color.FromArgb(216, 178, 255); // Purple
 
 	/// <summary>
 	/// Indicates the chain color.
@@ -141,15 +179,35 @@ public sealed class DrawingConfigurations
 	public Color FooterTextColor { get; set; } = Color.Black;
 
 	/// <summary>
-	/// The color palette. This property stores a list of customized colors to be used as user-defined colors.
+	/// Indicates the auxiliary color set.
 	/// </summary>
-	public Color[] ColorPalette { get; set; } = [
-		Color.FromArgb(63, 218, 101), // Green (normal)
-		Color.FromArgb(255, 192, 89), // Orange (auxiliary)
-		Color.FromArgb(127, 187, 255), // Sky-blue (exo-fin)
-		Color.FromArgb(216, 178, 255), // Purple (endo-fin)
+	public ColorPalette AuxiliaryColorSet { get; set; } = [
+		Color.FromArgb(255, 192, 89), // Orange
+		Color.FromArgb(127, 187, 255), // Sky-blue
+		Color.FromArgb(216, 178, 255) // Purple
+	];
+
+	/// <summary>
+	/// Indicates the almost locked set color set.
+	/// </summary>
+	public ColorPalette AlmostLockedSetColorSet { get; set; } = [
+		Color.FromArgb(220, 212, 252), // Purple
+		Color.FromArgb(255, 118, 132), // Red
+		Color.FromArgb(206, 251, 237), // Light sky-blue
+		Color.FromArgb(215, 255, 215), // Light green
+		Color.FromArgb(192, 192, 192) // Gray
+	];
+
+	/// <summary>
+	/// Indicates the user-defined color palette.
+	/// </summary>
+	public ColorPalette ColorPalette { get; set; } = [
+		Color.FromArgb(63, 218, 101), // Green
+		Color.FromArgb(255, 192, 89), // Orange
+		Color.FromArgb(127, 187, 255), // Sky-blue
+		Color.FromArgb(216, 178, 255), // Purple
 		Color.FromArgb(197, 232, 140), // Yellow-green
-		Color.FromArgb(255, 203, 203), // Light red (eliminations)
+		Color.FromArgb(255, 203, 203), // Light red
 		Color.FromArgb(178, 223, 223), // Blue green
 		Color.FromArgb(252, 220, 165), // Light orange
 		Color.FromArgb(255, 255, 150), // Yellow
@@ -160,9 +218,4 @@ public sealed class DrawingConfigurations
 		Color.FromArgb(215, 255, 215), // Light green
 		Color.FromArgb(192, 192, 192) // Gray
 	];
-
-	/// <summary>
-	/// Indicates the font of footer text.
-	/// </summary>
-	public FontData FooterTextFont { get; set; } = new("MiSans", 24F, FontStyle.Bold);
 }
