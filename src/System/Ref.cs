@@ -24,6 +24,34 @@ public static class @ref
 	}
 
 	/// <summary>
+	/// Throws an <see cref="ArgumentNullRefException"/> if the argument points to <see langword="null"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of the referenced element.</typeparam>
+	/// <param name="reference">
+	/// <para>The reference to the target element, or maybe a <see langword="null"/> reference.</para>
+	/// <para><i>
+	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
+	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
+	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
+	/// where the only argument is passed by <see langword="ref"/>.
+	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
+	/// </i></para>
+	/// </param>
+	/// <param name="paramName">
+	/// <para>The parameter name.</para>
+	/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
+	/// </param>
+	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static void ThrowIfNullRef<T>(scoped ref readonly T reference, [CallerArgumentExpression(nameof(reference))] string paramName = null!)
+	{
+		if (IsNullRef(in reference))
+		{
+			throw new ArgumentNullRefException(nameof(reference));
+		}
+	}
+
+	/// <summary>
 	/// Simply invokes the method <see cref="Unsafe.As{TFrom, TTo}(ref TFrom)"/>, but with target generic type being fixed type <see cref="byte"/>.
 	/// </summary>
 	/// <typeparam name="T">The base type that is converted from.</typeparam>
@@ -56,16 +84,6 @@ public static class @ref
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool AreSameRef<T>(scoped ref readonly T left, scoped ref readonly T right) => Unsafe.AreSame(in left, in right);
-
-	/// <summary>
-	/// Returns a reference that points to <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">
-	/// The type of the element the reference points to if this reference were not <see langword="null"/>.
-	/// </typeparam>
-	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ref readonly T NullRef<T>() => ref Unsafe.NullRef<T>();
 
 	/// <summary>
 	/// Re-interpret the read-only reference to non-read-only reference.
@@ -102,6 +120,16 @@ public static class @ref
 	public static unsafe T* ToPointer<T>(ref readonly T @ref) => (T*)Unsafe.AsPointer(ref AsMutableRef(in @ref));
 
 	/// <summary>
+	/// Returns a reference that points to <see langword="null"/>.
+	/// </summary>
+	/// <typeparam name="T">
+	/// The type of the element the reference points to if this reference were not <see langword="null"/>.
+	/// </typeparam>
+	/// <returns>A read-only reference that points to <see langword="null"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ref readonly T NullRef<T>() => ref Unsafe.NullRef<T>();
+
+	/// <summary>
 	/// Get the new array from the reference to the block memory start position, with the specified start index.
 	/// </summary>
 	/// <typeparam name="T">The type of the pointed element.</typeparam>
@@ -122,36 +150,5 @@ public static class @ref
 			result[i - start] = Add(ref Unsafe.AsRef(in memorySpan), i);
 		}
 		return result;
-	}
-
-	/// <summary>
-	/// Throws an <see cref="ArgumentNullRefException"/> if the argument points to <see langword="null"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the referenced element.</typeparam>
-	/// <param name="reference">
-	/// <para>The reference to the target element, or maybe a <see langword="null"/> reference.</para>
-	/// <para><i>
-	/// Please note that the argument requires a <see langword="ref"/> modifier, but it does not modify the referenced value
-	/// of the argument. It is nearly equal to <see langword="in"/> modifier.
-	/// However, the method will invoke <see cref="Unsafe.IsNullRef{T}(ref readonly T)"/>,
-	/// where the only argument is passed by <see langword="ref"/>.
-	/// Therefore, here the current method argument requires a modifier <see langword="ref"/> instead of <see langword="in"/>.
-	/// </i></para>
-	/// </param>
-	/// <param name="paramName">
-	/// <para>The parameter name.</para>
-	/// <include file="../../global-doc-comments.xml" path="g/csharp10/feature[@name='caller-argument-expression']" />
-	/// </param>
-	/// <exception cref="ArgumentNullRefException">Throws if the argument is a <see langword="null"/> reference.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void ThrowIfNullRef<T>(
-		scoped ref readonly T reference,
-		[ConstantExpected, CallerArgumentExpression(nameof(reference))] string? paramName = null
-	)
-	{
-		if (IsNullRef(in reference))
-		{
-			throw new ArgumentNullRefException(nameof(reference));
-		}
 	}
 }
