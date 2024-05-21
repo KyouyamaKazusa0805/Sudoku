@@ -157,7 +157,7 @@ internal static class PrimaryConstructorMemberHandler
 					null or "" => null,
 					_ => string.Join(
 						"\r\n",
-						from line in comment.Split((char[])['\r', '\n'], StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
+						from line in comment.Split(['\r', '\n'], StringSplitOptions.RemoveEmptyEntries) select $"/// {line.Trim()}"
 					)
 				};
 		}
