@@ -20,6 +20,7 @@
           "EnumFlagsEnumerator.cs": [ "__Enumerators" ],
           "PairEnumerator.cs": [ "__Enumerators" ],
           "PairEnumeratorCasted.cs": [ "__Enumerators" ],
+          "ValueMatchEnumerator.cs": [ "__Enumerators" ],
           "ArrayInitializer.cs": [ "__Delegates" ],
           "SelfReturner.cs": [ "__Delegates" ],
           "Combinatorial.cs": [ "__Algorithm" ],

@@ -1039,6 +1039,68 @@
         <member name="M:System.Text.Json.RangeConverter.Write(System.Text.Json.Utf8JsonWriter,System.Range,System.Text.Json.JsonSerializerOptions)">
             <inheritdoc/>
         </member>
+        <member name="T:System.Text.RegularExpressions.RegexExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.Regex"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegexExtensions.ValueMatch(System.Text.RegularExpressions.Regex,System.String)">
+            <inheritdoc cref="M:System.Text.RegularExpressions.Regex.Match(System.String)"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.RegexExtensions.ValueMatches(System.Text.RegularExpressions.Regex,System.String)">
+            <inheritdoc cref="M:System.Text.RegularExpressions.Regex.Matches(System.String)"/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.ValueMatchExtensions">
+            <summary>
+            Provides with extension methdos on <see cref="T:System.Text.RegularExpressions.ValueMatch"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.ValueMatch"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.ValueMatchExtensions.MatchString(System.Text.RegularExpressions.ValueMatch,System.String)">
+            <summary>
+            Try to get the target match string at the specified position the current instance specified.
+            </summary>
+            <param name="this">Indicates the instance.</param>
+            <param name="originalString">The original string.</param>
+            <returns>The target string.</returns>
+        </member>
+        <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
+            <summary>
+            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>.
+            </summary>
+            <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
+        </member>
+        <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0">
+            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.Instance">
+            <summary>Cached, thread-safe singleton instance.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.#ctor">
+            <summary>Initializes the instance.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory">
+            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.CreateInstance">
+            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
+        </member>
+        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner">
+            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
+            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
+            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
+            <param name="inputSpan">The text being scanned by the regular expression.</param>
+            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
+        </member>
         <member name="T:System.Text.StringBuilderExtensions">
             <summary>
             Provides extension methods on <see cref="T:System.Text.StringBuilder"/>.
@@ -1090,42 +1152,6 @@
 			</target>
             </param>
             <returns>The reference of the current instance.</returns>
-        </member>
-        <member name="T:System.Text.RegularExpressions.MatchCollectionEnumerable">
-            <summary>
-            Provides LINQ-based extension methods on <see cref="T:System.Text.RegularExpressions.MatchCollection"/>.
-            </summary>
-            <seealso cref="T:System.Text.RegularExpressions.MatchCollection"/>
-        </member>
-        <member name="M:System.Text.RegularExpressions.MatchCollectionEnumerable.Select``1(System.Text.RegularExpressions.MatchCollection,System.Func{System.Text.RegularExpressions.Match,``0})">
-            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0">
-            <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the NullLinesOrHeaderSpacesPattern method.</summary>
-        </member>
-        <member name="F:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.Instance">
-            <summary>Cached, thread-safe singleton instance.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.#ctor">
-            <summary>Initializes the instance.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory">
-            <summary>Provides a factory for creating <see cref="T:System.Text.RegularExpressions.RegexRunner"/> instances to be used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.CreateInstance">
-            <summary>Creates an instance of a <see cref="T:System.Text.RegularExpressions.RegexRunner"/> used by methods on <see cref="T:System.Text.RegularExpressions.Regex"/>.</summary>
-        </member>
-        <member name="T:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner">
-            <summary>Provides the runner that contains the custom logic implementing the specified regular expression.</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.Scan(System.ReadOnlySpan{System.Char})">
-            <summary>Scan the <paramref name="inputSpan"/> starting from base.runtextstart for the next match.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.NullLinesOrHeaderSpacesPattern_0.RunnerFactory.Runner.TryMatchAtCurrentPosition(System.ReadOnlySpan{System.Char})">
-            <summary>Determine whether <paramref name="inputSpan"/> at base.runtextpos is a match for the regular expression.</summary>
-            <param name="inputSpan">The text being scanned by the regular expression.</param>
-            <returns>true if the regular expression matches at the current position; otherwise, false.</returns>
         </member>
         <member name="T:System.MathExtensions">
             <summary>
@@ -5586,6 +5612,37 @@
         </member>
         <member name="M:System.Threading.Tasks.TimeSpanAwaiter.OnCompleted(System.Action)">
             <inheritdoc cref="M:System.Runtime.CompilerServices.TaskAwaiter.OnCompleted(System.Action)"/>
+        </member>
+        <member name="T:System.ValueMatchEnumerator">
+            <summary>
+            Represents an enumerator that is used for iteration on matches.
+            </summary>
+            <param name="originalString">Indicates the original string value.</param>
+            <param name="backingEnumerator">Indicates the backing enumerator.</param>
+        </member>
+        <member name="M:System.ValueMatchEnumerator.#ctor(System.String,System.Text.RegularExpressions.Regex.ValueMatchEnumerator)">
+            <summary>
+            Represents an enumerator that is used for iteration on matches.
+            </summary>
+            <param name="originalString">Indicates the original string value.</param>
+            <param name="backingEnumerator">Indicates the backing enumerator.</param>
+        </member>
+        <member name="P:System.ValueMatchEnumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:System.ValueMatchEnumerator.Any">
+            <inheritdoc cref="M:System.Linq.Providers.IAnyAllMethod`2.Any"/>
+        </member>
+        <member name="M:System.ValueMatchEnumerator.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:System.ValueMatchEnumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="F:System.ValueMatchEnumerator._backingEnumerator">
+            <summary>
+            The generated field declaration for parameter <c>backingEnumerator</c>.
+            </summary>
         </member>
         <member name="T:System.ValueTupleEnumerator`1">
             <summary>
