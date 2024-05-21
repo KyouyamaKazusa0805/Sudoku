@@ -42,7 +42,6 @@ public sealed partial class View :
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -73,7 +72,6 @@ public sealed partial class View :
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -93,7 +91,6 @@ public sealed partial class View :
 				result.Add(element);
 			}
 		}
-
 		return result.ToHashCode();
 	}
 
@@ -131,8 +128,7 @@ public sealed partial class View :
 		=> this.FirstOrDefault(predicate) ?? defaultValue;
 
 	/// <inheritdoc/>
-	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate)
-		=> this.Where(predicate).ToArray();
+	IEnumerable<ViewNode> IWhereMethod<View, ViewNode>.Where(Func<ViewNode, bool> predicate) => this.Where(predicate).ToArray();
 
 	/// <inheritdoc/>
 	IEnumerable<TResult> ISelectMethod<View, ViewNode>.Select<TResult>(Func<ViewNode, TResult> selector)
@@ -165,7 +161,6 @@ public sealed partial class View :
 				result.Add(element);
 			}
 		}
-
 		return result;
 	}
 
@@ -186,7 +181,6 @@ public sealed partial class View :
 		{
 			result.Add(element);
 		}
-
 		return result;
 	}
 
@@ -214,7 +208,6 @@ public sealed partial class View :
 				result.Add(element);
 			}
 		}
-
 		return result;
 	}
 }
