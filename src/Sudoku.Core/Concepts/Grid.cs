@@ -32,7 +32,7 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <para><include file="../../global-doc-comments.xml" path="/g/large-structure"/></para>
 /// </remarks>
-[JsonConverter(typeof(GridConverter))]
+[JsonConverter(typeof(Converter))]
 [DebuggerDisplay($$"""{{{nameof(ToString)}}("#")}""")]
 [InlineArray(CellsCount)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
@@ -159,7 +159,7 @@ public partial struct Grid :
 	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new GridConverter() } };
+	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new Converter() } };
 
 
 	/// <summary>
@@ -1870,4 +1870,24 @@ public partial struct Grid :
 		Unsafe.CopyBlock(ref @ref.ByteRef(ref result[0]), in @ref.ReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
 		return result;
 	}
+}
+
+/// <summary>
+/// Indicates the JSON converter of the current type.
+/// </summary>
+file sealed class Converter : JsonConverter<Grid>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => true;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override Grid Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> reader.GetString() is { } s ? Grid.Parse(s) : Grid.Undefined;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
+		=> writer.WriteStringValue(value.ToString("#"));
 }

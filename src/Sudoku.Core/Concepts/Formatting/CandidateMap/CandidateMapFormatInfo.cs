@@ -30,12 +30,12 @@ public abstract partial class CandidateMapFormatInfo :
 	/// </summary>
 	/// <param name="map">The map to be formatted.</param>
 	/// <returns>The <see cref="string"/> representation of the argument <paramref name="map"/>.</returns>
-	protected internal abstract string FormatGrid(ref readonly CandidateMap map);
+	protected internal abstract string FormatMap(ref readonly CandidateMap map);
 
 	/// <summary>
 	/// Try to parse the specified <see cref="string"/> instance into a valid <see cref="CandidateMap"/>.
 	/// </summary>
 	/// <param name="str">The string value to be parsed.</param>
 	/// <returns>The <see cref="CandidateMap"/> as the result.</returns>
-	protected internal abstract CandidateMap ParseGrid(string str);
+	protected internal abstract CandidateMap ParseMap(string str);
 }

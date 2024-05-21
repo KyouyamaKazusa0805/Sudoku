@@ -39,7 +39,6 @@ global using Sudoku.Runtime.CompilerServices;
 global using Sudoku.Runtime.MaskServices;
 global using Sudoku.Solving;
 global using Sudoku.Text.Converters;
-global using Sudoku.Text.Serialization.Specialized;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;

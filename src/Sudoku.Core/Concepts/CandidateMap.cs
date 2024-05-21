@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-[JsonConverter(typeof(CandidateMapConverter))]
+[JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
@@ -239,7 +239,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	static CandidateMap IBitStatusMap<CandidateMap, Candidate, Enumerator>.Full => Full;
 
 	/// <inheritdoc/>
-	static JsonConverter<CandidateMap> IBitStatusMap<CandidateMap, Candidate, Enumerator>.JsonConverterInstance => new CandidateMapConverter();
+	static JsonConverter<CandidateMap> IBitStatusMap<CandidateMap, Candidate, Enumerator>.JsonConverterInstance => new Converter();
 
 
 	/// <summary>
@@ -355,7 +355,12 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IFormatProvider? formatProvider)
-		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
+		=> formatProvider switch
+		{
+			CandidateMapFormatInfo i => i.FormatMap(in this),
+			CultureInfo c => ToString(GlobalizedConverter.GetConverter(c)),
+			_ => ToString(GlobalizedConverter.GetConverter(CultureInfo.CurrentUICulture))
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -611,7 +616,12 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap Parse(string s, IFormatProvider? provider)
-		=> provider is CandidateMapFormatInfo i ? i.ParseGrid(s) : Parse(s);
+		=> provider switch
+		{
+			CandidateMapFormatInfo i => i.ParseMap(s),
+			CultureInfo c => Parse(s, GlobalizedConverter.GetParser(c)),
+			_ => Parse(s)
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -755,4 +765,31 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CandidateMap(ReadOnlySpan<Candidate> offsets) => [.. offsets];
+}
+
+/// <summary>
+/// Indicates the JSON converter of <see cref="CandidateMap"/> instance.
+/// </summary>
+/// <seealso cref="CandidateMap"/>
+file sealed class Converter : JsonConverter<CandidateMap>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override CandidateMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, CandidateMap value, JsonSerializerOptions options)
+	{
+		writer.WriteStartArray();
+		foreach (var element in value.StringChunks)
+		{
+			writer.WriteStringValue(element);
+		}
+		writer.WriteEndArray();
+	}
 }

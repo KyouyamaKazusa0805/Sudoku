@@ -6,7 +6,7 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-[JsonConverter(typeof(CellMapConverter))]
+[JsonConverter(typeof(Converter))]
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
@@ -441,7 +441,7 @@ public partial struct CellMap :
 	static CellMap IBitStatusMap<CellMap, Cell, Enumerator>.Full => Full;
 
 	/// <inheritdoc/>
-	static JsonConverter<CellMap> IBitStatusMap<CellMap, Cell, Enumerator>.JsonConverterInstance => new CellMapConverter();
+	static JsonConverter<CellMap> IBitStatusMap<CellMap, Cell, Enumerator>.JsonConverterInstance => new Converter();
 
 
 	/// <summary>
@@ -652,7 +652,12 @@ public partial struct CellMap :
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IFormatProvider? formatProvider)
-		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
+		=> formatProvider switch
+		{
+			CellMapFormatInfo i => i.FormatMap(in this),
+			CultureInfo c => ToString(GlobalizedConverter.GetConverter(c)),
+			_ => ToString(GlobalizedConverter.GetConverter(CultureInfo.CurrentUICulture))
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -935,7 +940,14 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	public static CellMap Parse(string s, IFormatProvider? provider) => provider is CellMapFormatInfo i ? i.ParseMap(s) : Parse(s);
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap Parse(string s, IFormatProvider? provider)
+		=> provider switch
+		{
+			CellMapFormatInfo i => i.ParseMap(s),
+			CultureInfo c => Parse(s, GlobalizedConverter.GetParser(c)),
+			_ => Parse(s)
+		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1060,4 +1072,31 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static explicit operator CellMap(ReadOnlySpan<Cell> offsets) => [.. offsets];
+}
+
+/// <summary>
+/// Indicates the JSON converter of <see cref="CellMap"/> instance.
+/// </summary>
+/// <seealso cref="CellMap"/>
+file sealed class Converter : JsonConverter<CellMap>
+{
+	/// <inheritdoc/>
+	public override bool HandleNull => false;
+
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public override CellMap Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
+		=> new(JsonSerializer.Deserialize<string[]>(ref reader, options)!);
+
+	/// <inheritdoc/>
+	public override void Write(Utf8JsonWriter writer, CellMap value, JsonSerializerOptions options)
+	{
+		writer.WriteStartArray();
+		foreach (var element in value.StringChunks)
+		{
+			writer.WriteStringValue(element);
+		}
+		writer.WriteEndArray();
+	}
 }

@@ -442,6 +442,21 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#Numerics#IEqualityOperators{Sudoku#Concepts#CandidateMap,Sudoku#Concepts#CandidateMap,System#Boolean}#op_Inequality(Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.CandidateMarshal">
             <summary>
             Represents methods that operates with <see cref="T:System.Int32"/> values.
@@ -994,6 +1009,21 @@
         <member name="M:Sudoku.Concepts.CellMap.System#Numerics#IComparisonOperators{Sudoku#Concepts#CellMap,Sudoku#Concepts#CellMap,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.CellMap,Sudoku.Concepts.CellMap)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.CellMarshal">
             <summary>
             Represents a list of extension methods that operates with cell instances, as <see cref="T:System.Int32"/> representation.
@@ -1333,6 +1363,21 @@
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_Inequality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Represents a JSON converter for type <see cref="T:Sudoku.Concepts.Conclusion"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.ConclusionSet">
             <summary>
@@ -2442,14 +2487,14 @@
             </summary>
             <returns>A new instance whose internal values are equal to the current instance.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMapFormatInfo.FormatGrid(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.CandidateMapFormatInfo.FormatMap(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Try to format the current map into a valid string result.
             </summary>
             <param name="map">The map to be formatted.</param>
             <returns>The <see cref="T:System.String"/> representation of the argument <paramref name="map"/>.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMapFormatInfo.ParseGrid(System.String)">
+        <member name="M:Sudoku.Concepts.CandidateMapFormatInfo.ParseMap(System.String)">
             <summary>
             Try to parse the specified <see cref="T:System.String"/> instance into a valid <see cref="T:Sudoku.Concepts.CandidateMap"/>.
             </summary>
@@ -2485,10 +2530,10 @@
         <member name="M:Sudoku.Concepts.HodokuTripletCandidateMapFormatInfo.Clone">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.HodokuTripletCandidateMapFormatInfo.FormatGrid(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.HodokuTripletCandidateMapFormatInfo.FormatMap(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.HodokuTripletCandidateMapFormatInfo.ParseGrid(System.String)">
+        <member name="M:Sudoku.Concepts.HodokuTripletCandidateMapFormatInfo.ParseMap(System.String)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Formatting.CandidateNotationConverter">
@@ -4127,6 +4172,20 @@
         <member name="M:Sudoku.Concepts.Grid.System#Numerics#IComparisonOperators{Sudoku#Concepts#Grid,Sudoku#Concepts#Grid,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Grid,Sudoku.Concepts.Grid)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.Converter">
+            <summary>
+            Indicates the JSON converter of the current type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Converter.HandleNull">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Converter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.GridCellPredicates">
             <summary>
             Represents a list of methods to filter the cells.
@@ -5056,65 +5115,6 @@
             <summary>
             Indicates the target culture.
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.CandidateMapConverter">
-            <summary>
-            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
-        </member>
-        <member name="P:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CandidateMapConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CandidateMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.CellMapConverter">
-            <summary>
-            Indicates the JSON converter of <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Text.Serialization.Specialized.CellMapConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.CellMapConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.CellMap,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.ConclusionConverter">
-            <summary>
-            Represents a JSON converter for type <see cref="T:Sudoku.Concepts.Conclusion"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="P:Sudoku.Text.Serialization.Specialized.ConclusionConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.ConclusionConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Conclusion,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Serialization.Specialized.GridConverter">
-            <summary>
-            Indicates the JSON converter of the current type.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Serialization.Specialized.GridConverter.HandleNull">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Read(System.Text.Json.Utf8JsonReader@,System.Type,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Text.Serialization.Specialized.GridConverter.Write(System.Text.Json.Utf8JsonWriter,Sudoku.Concepts.Grid,System.Text.Json.JsonSerializerOptions)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Drawing.ColorColorIdentifier">
             <summary>
@@ -6514,12 +6514,24 @@
             Indicates the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance for the invariant culture.
             </summary>
         </member>
+        <member name="P:Sudoku.Globalization.GlobalizedConverter.InvariantCultureParser">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance for the invariant culture.
+            </summary>
+        </member>
         <member name="M:Sudoku.Globalization.GlobalizedConverter.GetConverter(System.Globalization.CultureInfo)">
             <summary>
             Try to get a <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.
             </summary>
             <param name="culture">The culture.</param>
             <returns>The <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.</returns>
+        </member>
+        <member name="M:Sudoku.Globalization.GlobalizedConverter.GetParser(System.Globalization.CultureInfo)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
