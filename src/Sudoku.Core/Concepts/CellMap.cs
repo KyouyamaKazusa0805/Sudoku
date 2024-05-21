@@ -31,16 +31,6 @@ public partial struct CellMap :
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Full"/>
 	public static readonly CellMap Full = ~default(CellMap);
 
-	/// <summary>
-	/// The internal cell map parser.
-	/// </summary>
-	private static readonly BitStatusCellMapParser CellMapParser = new();
-
-	/// <summary>
-	/// The internal cell map converter.
-	/// </summary>
-	private static readonly BitStatusCellMapConverter CellMapConverter = new();
-
 
 	/// <summary>
 	/// Indicates the internal two <see cref="long"/> values,
@@ -120,7 +110,7 @@ public partial struct CellMap :
 	{
 		get
 		{
-			var convertedString = CellMapConverter.Converter(in this);
+			var convertedString = new BitmapCellMapFormatInfo().FormatMap(in this);
 			var bits = convertedString.CutOfLength(27);
 			var sb = new StringBuilder(18);
 			foreach (var z in (sextuple(getInteger(bits[2])), sextuple(getInteger(bits[1])), sextuple(getInteger(bits[0]))))
@@ -635,8 +625,11 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(ref readonly CellMap other)
 	{
-		var b = new BitStatusCellMapConverter().Converter;
 		return Count > other.Count ? 1 : Count < other.Count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string b(ref readonly CellMap f) => new BitmapCellMapFormatInfo().FormatMap(in f);
 	}
 
 	/// <inheritdoc/>
@@ -832,11 +825,32 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = [];
+				return false;
+			}
+
+			result = Parse(s, provider);
+			return true;
+		}
+		catch
+		{
+			result = [];
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap Create(string token)
 		=> token.Length switch
 		{
-			18 => CellMapParser.Parser(
+			18 => new BitmapCellMapFormatInfo().ParseMap(
 				string.Concat(
 					from i in Digits[..3]
 					let segment = Grid.GetDigitViaToken(token[(i * 6)..((i + 1) * 6)]).ToString()
@@ -921,29 +935,11 @@ public partial struct CellMap :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CellParser(str);
+	public static CellMap Parse(string s, IFormatProvider? provider) => provider is CellMapFormatInfo i ? i.ParseMap(s) : Parse(s);
 
 	/// <inheritdoc/>
-	static bool IParsable<CellMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CellMap result)
-	{
-		try
-		{
-			if (s is null)
-			{
-				goto ReturnFalse;
-			}
-
-			return TryParse(s, out result);
-		}
-		catch
-		{
-		}
-
-	ReturnFalse:
-		Unsafe.SkipInit(out result);
-		return false;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CellParser(str);
 
 
 	/// <inheritdoc/>

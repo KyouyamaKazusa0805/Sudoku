@@ -477,16 +477,6 @@
         <member name="F:Sudoku.Concepts.CellMap.Full">
             <inheritdoc cref="P:Sudoku.Primitive.IBitStatusMap`3.Full"/>
         </member>
-        <member name="F:Sudoku.Concepts.CellMap.CellMapParser">
-            <summary>
-            The internal cell map parser.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.CellMap.CellMapConverter">
-            <summary>
-            The internal cell map converter.
-            </summary>
-        </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
             Indicates the internal two <see cref="T:System.Int64"/> values,
@@ -802,6 +792,9 @@
         <member name="M:Sudoku.Concepts.CellMap.TryParse``1(System.String,``0,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Create(System.String)">
             <inheritdoc/>
         </member>
@@ -839,10 +832,10 @@
         <member name="M:Sudoku.Concepts.CellMap.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.Parse``1(System.String,``0)">
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.System#IParsable{Sudoku#Concepts#CellMap}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMap.Parse``1(System.String,``0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">
@@ -1866,6 +1859,73 @@
 			</target>
             </param>
             <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="intersections" />.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.BitmapCellMapFormatInfo">
+            <summary>
+            Represents a <see cref="T:Sudoku.Concepts.CellMapFormatInfo"/> type that supports bitmap formatting.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.Equals(Sudoku.Concepts.CellMapFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.FormatMap(Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.BitmapCellMapFormatInfo.ParseMap(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.CellMapFormatInfo">
+            <summary>
+            Represents extra options that formats a <see cref="T:Sudoku.Concepts.CellMap"/> instance, or parses into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.Equals(Sudoku.Concepts.CellMapFormatInfo)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.Clone">
+            <summary>
+            Creates a copy of the current instance.
+            </summary>
+            <returns>A new instance whose internal values are equal to the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.FormatMap(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to format the current map into a valid string result.
+            </summary>
+            <param name="map">The map to be formatted.</param>
+            <returns>The <see cref="T:System.String"/> representation of the argument <paramref name="map"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.ParseMap(System.String)">
+            <summary>
+            Try to parse the specified <see cref="T:System.String"/> instance into a valid <see cref="T:Sudoku.Concepts.CellMap"/>.
+            </summary>
+            <param name="str">The string value to be parsed.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.CellMap"/> as the result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.op_Equality(Sudoku.Concepts.CellMapFormatInfo,Sudoku.Concepts.CellMapFormatInfo)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapFormatInfo.op_Inequality(Sudoku.Concepts.CellMapFormatInfo,Sudoku.Concepts.CellMapFormatInfo)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.CsvGridFormatInfo">
             <summary>
@@ -9463,15 +9523,6 @@
         <member name="M:Sudoku.Solving.EnumerableQuerySolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Converters.BitStatusCellMapConverter">
-            <summary>
-            Represents a converter that uses bit operation to format <see cref="T:Sudoku.Concepts.CellMap"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Text.Converters.BitStatusCellMapConverter.Converter">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Text.Converters.CoordinateConverter">
             <summary>
             Represents an option provider for coordinates.
@@ -9895,15 +9946,6 @@
             <summary>
             A parser instance that parses the specified <see cref="T:System.String"/> text, converting it into a valid <typeparamref name="T"/> instance.
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Parsers.BitStatusCellMapParser">
-            <summary>
-            Represents a parser that uses bit operation rule to parse <see cref="T:Sudoku.Concepts.CellMap"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.CellMap"/>
-        </member>
-        <member name="P:Sudoku.Text.Parsers.BitStatusCellMapParser.Parser">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Text.Parsers.CoordinateParser">
             <summary>

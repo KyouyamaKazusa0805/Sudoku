@@ -1,5 +1,3 @@
-using Sudoku.Concepts.Formatting;
-
 namespace Sudoku.Text.Converters;
 
 /// <summary>

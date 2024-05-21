@@ -80,7 +80,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 	private void CopyPatternText()
 	{
 		var dataPackage = new DataPackage { RequestedOperation = DataPackageOperation.Copy };
-		dataPackage.SetText(new BitStatusCellMapConverter().Converter(SelectedCells));
+		dataPackage.SetText(SelectedCells.ToString(new BitmapCellMapFormatInfo()));
 		Clipboard.SetContent(dataPackage);
 	}
 
@@ -156,7 +156,7 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 		{
 			try
 			{
-				var p = new BitStatusCellMapParser().Parser(targetText);
+				var p = CellMap.Parse(targetText, new BitmapCellMapFormatInfo());
 				SelectedCells = p;
 			}
 			catch (Exception ex) when (ex is InvalidOperationException or FormatException)
