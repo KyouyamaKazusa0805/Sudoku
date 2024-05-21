@@ -5462,6 +5462,26 @@
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Globalization.GlobalizedConverter">
+            <summary>
+            Represents a type that defines some easy-in-use members, making user work with types derived from <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> easier
+            for variant culture.
+            </summary>
+            <seealso cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
+            <seealso cref="T:System.Globalization.CultureInfo"/>
+        </member>
+        <member name="P:Sudoku.Globalization.GlobalizedConverter.InvariantCultureConverter">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance for the invariant culture.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Globalization.GlobalizedConverter.GetConverter(System.Globalization.CultureInfo)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.</returns>
+        </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>
             Represents a map group for <see cref="T:Sudoku.Concepts.CandidateMap"/> and <see cref="T:Sudoku.Concepts.CellMap"/>.
@@ -9609,26 +9629,6 @@
             <para>Indicates the current culture.</para>
             <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Converters.GlobalizedConverter">
-            <summary>
-            Represents a type that defines some easy-in-use members, making user work with types derived from <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> easier
-            for variant culture.
-            </summary>
-            <seealso cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
-            <seealso cref="T:System.Globalization.CultureInfo"/>
-        </member>
-        <member name="P:Sudoku.Text.Converters.GlobalizedConverter.InvariantCultureConverter">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance for the invariant culture.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Converters.GlobalizedConverter.GetConverter(System.Globalization.CultureInfo)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.
-            </summary>
-            <param name="culture">The culture.</param>
-            <returns>The <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.GridNotationConverter">
             <summary>

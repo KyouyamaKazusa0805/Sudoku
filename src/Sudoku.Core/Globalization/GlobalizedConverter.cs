@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Converters;
+namespace Sudoku.Globalization;
 
 /// <summary>
 /// Represents a type that defines some easy-in-use members, making user work with types derived from <see cref="CoordinateConverter"/> easier
