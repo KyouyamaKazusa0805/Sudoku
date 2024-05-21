@@ -84,11 +84,11 @@ public sealed partial class View :
 		{
 			if ((i++ & 1) != 0)
 			{
-				result.Add(element.GetHashCode());
+				result.Add(element.GetHashCode() * 17 & 333);
 			}
 			else
 			{
-				result.Add(element);
+				result.Add(element.GetHashCode() * 29 & 666);
 			}
 		}
 		return result.ToHashCode();
