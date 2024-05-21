@@ -151,11 +151,9 @@ public partial class SusserGridFormatInfo : GridFormatInfo
 				}
 			}
 
-			var elimsStr = new HodokuTripletConverter().Converter(
-				NegateEliminationsTripletRule
-					? eliminatedCandidates
-					: negateElims(in grid, in eliminatedCandidates)
-			);
+			var elimsStr = (
+				NegateEliminationsTripletRule ? eliminatedCandidates : negateElims(in grid, in eliminatedCandidates)
+			).ToString(new HodokuTripletCandidateMapFormatInfo());
 			var @base = sb.ToString();
 			var final = ShortenSusser
 				? shorten(@base, Placeholder)
@@ -177,7 +175,6 @@ public partial class SusserGridFormatInfo : GridFormatInfo
 					}
 				}
 			}
-
 			return result;
 		}
 
@@ -357,7 +354,7 @@ public partial class SusserGridFormatInfo : GridFormatInfo
 		// If we have met the colon sign ':', this loop would not be executed.
 		if (EliminationPattern().Match(match) is { Success: true, Value: var elimMatch })
 		{
-			var candidates = new HodokuTripletParser().Parser(elimMatch);
+			var candidates = CandidateMap.Parse(elimMatch, new HodokuTripletCandidateMapFormatInfo());
 			if (!NegateEliminationsTripletRule)
 			{
 				// This applies for normal rule - removing candidates marked.

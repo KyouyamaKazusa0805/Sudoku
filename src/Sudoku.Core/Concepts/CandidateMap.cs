@@ -534,6 +534,27 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = [];
+				return false;
+			}
+
+			result = Parse(s, provider);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = [];
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
 	public static bool TryParse<T>(string str, T parser, out CandidateMap result) where T : CoordinateParser
 	{
 		try
@@ -589,28 +610,12 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CandidateParser(str);
+	public static CandidateMap Parse(string s, IFormatProvider? provider)
+		=> provider is CandidateMapFormatInfo i ? i.ParseGrid(s) : Parse(s);
 
 	/// <inheritdoc/>
-	static bool IParsable<CandidateMap>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out CandidateMap result)
-	{
-		try
-		{
-			if (s is null)
-			{
-				goto ReturnFalse;
-			}
-
-			return TryParse(s, out result);
-		}
-		catch (FormatException)
-		{
-		}
-
-	ReturnFalse:
-		Unsafe.SkipInit(out result);
-		return false;
-	}
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CandidateParser(str);
 
 
 	/// <inheritdoc/>
