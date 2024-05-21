@@ -31,9 +31,9 @@ namespace Sudoku.Concepts;
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
-	ICultureFormattable,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
+	IFormattable,
 	IJsonSerializable<Conclusion>,
 	ISudokuConcept<Conclusion>
 {
@@ -135,7 +135,8 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -160,6 +161,9 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 				: new(ConclusionType, (symmetricType.GetCells(Cell) - Cell)[0], mappingDigit == -1 ? Digit : mappingDigit),
 			_ => throw new ArgumentOutOfRangeException(nameof(symmetricType))
 		};
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	string IJsonSerializable<Conclusion>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);

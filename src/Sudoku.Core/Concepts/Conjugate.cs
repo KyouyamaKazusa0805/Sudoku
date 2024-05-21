@@ -87,11 +87,15 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConjugateConverter(this);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
 	/// <inheritdoc/>

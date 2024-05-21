@@ -20,9 +20,9 @@ public readonly partial struct LockedTarget(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CellMap cells
 ) :
-	ICultureFormattable,
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>,
+	IFormattable,
 	IJsonSerializable<LockedTarget>,
 	ISudokuConceptConvertible<LockedTarget>
 {
@@ -57,7 +57,8 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -65,6 +66,9 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc/>
 	bool IEquatable<LockedTarget>.Equals(LockedTarget other) => Equals(in other);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	string IJsonSerializable<LockedTarget>.ToJsonString() => JsonSerializer.Serialize(this);

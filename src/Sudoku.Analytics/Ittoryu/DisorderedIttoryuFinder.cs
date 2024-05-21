@@ -200,7 +200,7 @@ file sealed class AlreadyFinishedException : Exception;
 /// <param name="Grid">Indicates the currently-used grid.</param>
 /// <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
 /// <param name="Candidate">Indicates the target candidate.</param>
-file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candidate) : ICultureFormattable
+file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candidate) : IFormattable
 {
 	/// <summary>
 	/// Indicates the target digit.
@@ -224,7 +224,8 @@ file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candi
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -232,4 +233,7 @@ file sealed record PathNode(ref readonly Grid Grid, House House, Candidate Candi
 		=> House != -1
 			? $"Full House / Hidden Single: {converter.CandidateConverter(Candidate)} in house {converter.HouseConverter(1 << House)}"
 			: $"Naked Single: {converter.CandidateConverter(Candidate)}";
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

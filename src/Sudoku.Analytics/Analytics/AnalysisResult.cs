@@ -8,8 +8,8 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	IAnalysisResult<Analyzer, AnalysisResult>,
 	IAnyAllMethod<AnalysisResult, Step>,
 	ICastMethod<AnalysisResult, Step>,
-	ICultureFormattable,
 	IEnumerable<Step>,
+	IFormattable,
 	IOfTypeMethod<AnalysisResult, Step>,
 	ISelectMethod<AnalysisResult, Step>,
 	IWhereMethod<AnalysisResult, Step>
@@ -434,10 +434,10 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(DefaultOptions, GlobalizedConverter.InvariantCultureConverter);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null)
-		=> ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(formatProvider is CultureInfo culture ? GlobalizedConverter.GetConverter(culture) : GlobalizedConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -649,6 +649,9 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<AnalysisResult, Step>.All(Func<Step, bool> predicate) => this.All(predicate);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => StepsSpan.ToArray().GetEnumerator();

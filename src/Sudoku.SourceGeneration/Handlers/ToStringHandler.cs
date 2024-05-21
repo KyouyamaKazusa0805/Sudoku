@@ -112,7 +112,7 @@ internal static class ToStringHandler
 			var expression = behavior switch
 			{
 				Behavior.ReturnTypeName => fullTypeNameString,
-				Behavior.CallOverload => "ToString(default(string), default(global::System.IFormatProvider))",
+				Behavior.CallOverload => "((global::System.IFormattable)this).ToString(null, null)",
 				Behavior.Specified => referencedMembers[0].Name,
 				Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 				Behavior.RecordLike

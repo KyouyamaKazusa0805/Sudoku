@@ -35,7 +35,7 @@ public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,
 	[PrimaryConstructorParameter] StepSearcherRunningArea runningArea = StepSearcherRunningArea.Searching | StepSearcherRunningArea.Collecting
-)
+) : IFormattable
 {
 	/// <summary>
 	/// Indicates the implementation details of the current step searcher instance.
@@ -72,8 +72,9 @@ public abstract partial class StepSearcher(
 	private string Name => Metadata.GetName(null);
 
 
-	/// <inheritdoc cref="ICultureFormattable"/>
-	public string ToString(CultureInfo? culture) => Metadata.GetName(culture);
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider) => Metadata.GetName(formatProvider as CultureInfo);
 
 	/// <summary>
 	/// Try to collect all available <see cref="Step"/>s using the current technique rule.
@@ -112,4 +113,7 @@ public abstract partial class StepSearcher(
 	/// <seealso cref="Step"/>
 	/// <seealso cref="AnalysisContext"/>
 	protected internal abstract Step? Collect(ref AnalysisContext context);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

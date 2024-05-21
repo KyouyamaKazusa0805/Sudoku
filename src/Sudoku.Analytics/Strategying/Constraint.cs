@@ -25,7 +25,7 @@ namespace Sudoku.Strategying;
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
-public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>
+public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>, IFormattable
 {
 	/// <summary>
 	/// Indicates whether the constraint should be negated.
@@ -44,7 +44,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	/// <inheritdoc/>
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
 
-	/// <inheritdoc cref="ICultureFormattable"/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(CultureInfo? culture = null);
 
 	/// <summary>
@@ -84,4 +84,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 
 	/// <inheritdoc cref="Check(ConstraintCheckingContext)"/>
 	protected abstract bool CheckCore(ConstraintCheckingContext context);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider as CultureInfo);
 }

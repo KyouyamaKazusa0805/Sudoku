@@ -352,10 +352,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		return result;
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? culture = null)
-		=> ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public readonly string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -495,6 +495,9 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	readonly bool IAnyAllMethod<CandidateMap, Candidate>.All(Func<Candidate, bool> predicate) => this.All(predicate);
+
+	/// <inheritdoc/>
+	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider as CultureInfo);
 
 	/// <inheritdoc/>
 	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First() => this[0];

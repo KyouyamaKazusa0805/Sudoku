@@ -656,9 +656,10 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public readonly string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -779,6 +780,9 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(in other);
+
+	/// <inheritdoc/>
+	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	readonly Cell IFirstLastMethod<CellMap, Cell>.First() => this[0];

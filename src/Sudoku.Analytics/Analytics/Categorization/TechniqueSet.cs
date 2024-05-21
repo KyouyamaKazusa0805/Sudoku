@@ -24,10 +24,10 @@ public sealed partial class TechniqueSet :
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
 	IContainsMethod<TechniqueSet, Technique>,
-	ICultureFormattable,
 	IEnumerable<Technique>,
 	IEquatable<TechniqueSet>,
 	IEqualityOperators<TechniqueSet, TechniqueSet, bool>,
+	IFormattable,
 	ILogicalOperators<TechniqueSet>,
 	IReadOnlyCollection<Technique>,
 	IReadOnlySet<Technique>,
@@ -302,10 +302,11 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString() => ToString(null);
 
-	/// <inheritdoc/>
-	public string ToString(CultureInfo? culture = null)
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider)
 	{
-		var currentCountryOrRegionName = (culture ?? CultureInfo.CurrentUICulture).Parent.Name;
+		var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture;
+		var currentCountryOrRegionName = culture.Parent.Name;
 		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			ResourceDictionary.Get("Comma", culture),
@@ -444,6 +445,9 @@ public sealed partial class TechniqueSet :
 
 	/// <inheritdoc/>
 	bool IAnyAllMethod<TechniqueSet, Technique>.Any(Func<Technique, bool> predicate) => Exists(predicate);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => _techniqueBits.GetEnumerator();

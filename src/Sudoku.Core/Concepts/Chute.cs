@@ -11,11 +11,15 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ChuteConverter(this);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, System.IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
 	/// <inheritdoc/>

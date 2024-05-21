@@ -429,8 +429,8 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Text.Converters.CoordinateConverter)">
             <inheritdoc/>
@@ -456,6 +456,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#AnalysisResult,Sudoku#Analytics#Step}#All(System.Func{Sudoku.Analytics.Step,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.AnalysisResult.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.AnalysisResult.System#Collections#IEnumerable#GetEnumerator">
@@ -4045,8 +4048,8 @@
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.ToArray">
             <inheritdoc/>
@@ -4115,6 +4118,9 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Linq#Providers#IAnyAllMethod{Sudoku#Analytics#Categorization#TechniqueSet,Sudoku#Analytics#Categorization#Technique}#Any(System.Func{Sudoku.Analytics.Categorization.Technique,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.System#Collections#IEnumerable#GetEnumerator">
@@ -6238,8 +6244,8 @@
             Returns the real name of this instance.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc cref="T:Sudoku.Text.ICultureFormattable"/>
+        <member name="M:Sudoku.Analytics.StepSearcher.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Analytics.StepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <summary>
@@ -6278,6 +6284,9 @@
             </returns>
             <seealso cref="T:Sudoku.Analytics.Step"/>
             <seealso cref="T:Sudoku.Analytics.AnalysisContext"/>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcher.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.StepSearcher.Priority">
             <summary>
@@ -20265,10 +20274,13 @@
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse(System.String,Sudoku.Concepts.AlmostLockedSet@)">
@@ -21721,8 +21733,8 @@ result ^= expression;
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell">
             <summary>
@@ -21765,6 +21777,9 @@ result ^= expression;
             </returns>
             <seealso cref="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.GenerateJustOneCell"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
+        </member>
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Primitive#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
@@ -21957,10 +21972,13 @@ result ^= expression;
         <member name="M:Sudoku.Ittoryu.PathNode.ToString">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Ittoryu.PathNode.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Ittoryu.PathNode.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Ittoryu.PathNode.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Ittoryu.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Ittoryu.Ittoryu">
@@ -28655,7 +28673,7 @@ result ^= expression;
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc cref="T:Sudoku.Text.ICultureFormattable"/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Clone">
             <summary>
@@ -28691,6 +28709,9 @@ result ^= expression;
         </member>
         <member name="M:Sudoku.Strategying.Constraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
             <inheritdoc cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>

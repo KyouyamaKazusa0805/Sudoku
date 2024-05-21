@@ -299,7 +299,8 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture) => ToString(GlobalizedConverter.GetConverter(culture ?? CultureInfo.CurrentUICulture));
+	public string ToString(IFormatProvider? formatProvider)
+		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -446,6 +447,9 @@ public sealed partial class ConclusionSet :
 
 	/// <inheritdoc/>
 	bool ISet<Conclusion>.SetEquals(IEnumerable<Conclusion> other) => ((IReadOnlySet<Conclusion>)this).SetEquals(other);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<Conclusion>)this).GetEnumerator();

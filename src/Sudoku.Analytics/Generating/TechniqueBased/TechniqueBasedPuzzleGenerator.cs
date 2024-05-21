@@ -4,7 +4,7 @@ namespace Sudoku.Generating.TechniqueBased;
 /// Represents a generator type that generates puzzles, relating to a kind of technique.
 /// </summary>
 public abstract class TechniqueBasedPuzzleGenerator :
-	ICultureFormattable,
+	IFormattable,
 	IGenerator<Grid>,
 	IGenerator<FullPuzzle>,
 	IGenerator<JustOneCellPuzzle>
@@ -77,8 +77,8 @@ public abstract class TechniqueBasedPuzzleGenerator :
 	/// <inheritdoc/>
 	public sealed override string ToString() => ToString(null);
 
-	/// <inheritdoc/>
-	public string ToString(CultureInfo? culture = null) => SupportedTechniques.ToString(culture);
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public string ToString(IFormatProvider? formatProvider) => SupportedTechniques.ToString(formatProvider as CultureInfo);
 
 	/// <summary>
 	/// Generates a puzzle that has multiple solutions, with only one cell has only one possibility to be filled
@@ -177,6 +177,9 @@ public abstract class TechniqueBasedPuzzleGenerator :
 
 		return GeneratingFailedReason.None;
 	}
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	Grid IGenerator<Grid>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)

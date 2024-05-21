@@ -20,10 +20,10 @@ public abstract partial class Step(
 ) :
 	IComparable<Step>,
 	IComparisonOperators<Step, Step, bool>,
-	ICultureFormattable,
 	IDrawable,
 	IEqualityOperators<Step, Step, bool>,
-	IEquatable<Step>
+	IEquatable<Step>,
+	IFormattable
 {
 	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:
