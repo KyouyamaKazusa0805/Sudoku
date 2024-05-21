@@ -24,6 +24,7 @@ global using System.Threading;
 global using System.Threading.Tasks;
 global using Sudoku.Analytics;
 global using Sudoku.Concepts;
+global using Sudoku.Concepts.Formatting;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
 global using Sudoku.Generating;

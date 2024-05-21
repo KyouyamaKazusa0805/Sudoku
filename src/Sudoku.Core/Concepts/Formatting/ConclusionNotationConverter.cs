@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Converters;
+namespace Sudoku.Concepts.Formatting;
 
 /// <summary>
 /// Represents a delegate type that creates a <see cref="string"/> value via the specified <see cref="Conclusion"/> instance.

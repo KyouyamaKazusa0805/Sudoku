@@ -1762,6 +1762,111 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Concepts.Formatting.CandidateNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="candidates">A list of candidates.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.CellNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="cells">A list of cells.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.ChuteNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Chute" /> instance.
+            </summary>
+            <param name="chutes">
+            <para>A list of chutes.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="chutes" />.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.ConclusionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conclusion" /> instance.
+            </summary>
+            <param name="conclusions">
+            <para>A list of conjugate pairs.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conclusions" />.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.ConjugateNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conjugate" /> instance.
+            </summary>
+            <param name="conjugatePairs">
+            <para>A list of conjugate pairs.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conjugatePairs" />.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.DigitNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
+            </summary>
+            <param name="digitsMask">A list of digits.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.HouseNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
+            </summary>
+            <param name="housesMask">A list of houses.</param>
+            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Formatting.IntersectionNotationConverter">
+            <summary>
+            Represents a delegate type that creates a <see cref="T:System.String" /> value
+            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase" /> and <see cref="T:Sudoku.Concepts.IntersectionResult" /> instance.
+            </summary>
+            <param name="intersections">
+            <para>A list of intersections.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="intersections" />.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CsvGridFormatInfo">
             <summary>
             Represents a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> type that supports Comma-separated-values formatting.
@@ -9367,77 +9472,6 @@
         <member name="P:Sudoku.Text.Converters.BitStatusCellMapConverter.Converter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Text.Converters.CandidateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
-            </summary>
-            <param name="candidates">A list of candidates.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="candidates"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.CellNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:Sudoku.Concepts.CellMap"/> instance.
-            </summary>
-            <param name="cells">A list of cells.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="cells"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.ChuteNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Chute" /> instance.
-            </summary>
-            <param name="chutes">
-            <para>A list of chutes.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="chutes" />.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.ConclusionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conclusion" /> instance.
-            </summary>
-            <param name="conclusions">
-            <para>A list of conjugate pairs.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conclusions" />.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.ConjugateNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String" /> value via the specified <see cref="T:Sudoku.Concepts.Conjugate" /> instance.
-            </summary>
-            <param name="conjugatePairs">
-            <para>A list of conjugate pairs.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="conjugatePairs" />.</returns>
-        </member>
         <member name="T:Sudoku.Text.Converters.CoordinateConverter">
             <summary>
             Represents an option provider for coordinates.
@@ -9516,13 +9550,6 @@
             <summary>
             Indicates the target culture.
             </summary>
-        </member>
-        <member name="T:Sudoku.Text.Converters.DigitNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int16"/> instance.
-            </summary>
-            <param name="digitsMask">A list of digits.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="digitsMask"/>.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.ExcelCoordinateConverter">
             <summary>
@@ -9630,13 +9657,6 @@
             <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
             </summary>
         </member>
-        <member name="T:Sudoku.Text.Converters.GridNotationConverter">
-            <summary>
-            Defines a method that converts a <see cref="T:Sudoku.Concepts.Grid"/> instance, converting it into an equivalent <see cref="T:System.String"/> value.
-            </summary>
-            <param name="Grid">The grid.</param>
-            <returns>The equivalent <see cref="T:System.String"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Text.Converters.HodokuTripletConverter">
             <summary>
             Represents a coordinate converter using <b>Hodoku Triplet</b> notation.
@@ -9644,33 +9664,6 @@
         </member>
         <member name="P:Sudoku.Text.Converters.HodokuTripletConverter.Converter">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Text.Converters.HouseNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String"/> value via the specified <see cref="T:System.Int32"/> instance.
-            </summary>
-            <param name="housesMask">A list of houses.</param>
-            <returns>An equivalent <see cref="T:System.String"/> value to the specified argument <paramref name="housesMask"/>.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.IntersectionNotationConverter">
-            <summary>
-            Represents a delegate type that creates a <see cref="T:System.String" /> value
-            via the specified <see cref="T:Sudoku.Concepts.IntersectionBase" /> and <see cref="T:Sudoku.Concepts.IntersectionResult" /> instance.
-            </summary>
-            <param name="intersections">
-            <para>A list of intersections.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>An equivalent <see cref="T:System.String" /> value to the specified argument <paramref name="intersections" />.</returns>
         </member>
         <member name="T:Sudoku.Text.Converters.K9Converter">
             <summary>
