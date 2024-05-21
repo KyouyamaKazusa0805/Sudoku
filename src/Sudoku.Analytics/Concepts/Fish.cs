@@ -145,4 +145,7 @@ public readonly partial struct Fish(
 
 	/// <inheritdoc/>
 	bool IEquatable<Fish>.Equals(Fish other) => Equals(in other);
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString();
 }

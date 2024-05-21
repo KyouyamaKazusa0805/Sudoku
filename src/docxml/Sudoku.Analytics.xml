@@ -20608,6 +20608,9 @@
         <member name="M:Sudoku.Concepts.Fish.System#IEquatable{Sudoku#Concepts#Fish}#Equals(Sudoku.Concepts.Fish)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Fish.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Fish.Digit">
             <summary>
             The generated property declaration for parameter <c>digit</c>.
