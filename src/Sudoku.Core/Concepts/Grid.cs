@@ -53,7 +53,6 @@ public partial struct Grid :
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<Grid, Candidate>,
-	ISudokuConcept<Grid>,
 	ITokenizable<Grid>,
 	IToArrayMethod<Grid, Digit>,
 	IWhereMethod<Grid, Candidate>
@@ -161,24 +160,6 @@ public partial struct Grid :
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new GridConverter() } };
-
-
-	/// <summary>
-	/// Indicates the internal grid parsers.
-	/// </summary>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-	private static readonly IConceptParser<Grid>[] Parsers = [
-		new MultipleLineGridParser(),
-		new SimpleMultipleLineGridParser(),
-		new PencilmarkingGridParser(),
-		new SusserGridParser(),
-		new SusserGridParser(true),
-		new ExcelGridParser(),
-		new OpenSudokuGridParser(),
-		new SukakuGridParser(),
-		new SukakuGridParser(true)
-	];
 
 
 	/// <summary>
@@ -1127,6 +1108,16 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format) => ToString(format, null);
 
+	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly string ToString(IFormatProvider? formatProvider)
+		=> (formatProvider ?? new SusserGridFormatInfo()) switch
+		{
+			GridFormatInfo f => f.FormatGrid(in this),
+			CultureInfo c => ToString(c),
+			_ => throw new FormatException()
+		};
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(string? format, IFormatProvider? formatProvider)
@@ -1134,36 +1125,19 @@ public partial struct Grid :
 		{
 			{ IsEmpty: true } => $"<{nameof(Empty)}>",
 			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			_ => (GridFormatterFactory.GetBuiltInConverter(format)?.Converter(in this)).Unwrap()
+			_ => formatProvider switch
+			{
+				GridFormatInfo f => f.FormatGrid(in this),
+				CultureInfo c => ToString(c),
+				not null when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
+				_ => GridFormatInfo.Create(format).Unwrap().FormatGrid(in this)
+			}
 		};
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(CultureInfo? culture)
-		=> ToString(
-			culture switch
-			{
-				{ Name: ['E' or 'e', 'N' or 'n', ..] } => "@:", // Pencilmark grid.
-				{ Name: ['Z' or 'z', 'H' or 'h', ..] } => ".", // Susser grid.
-				_ => "#"
-			}
-		);
-
-	/// <summary>
-	/// Try to convert the current instance into an equivalent <see cref="string"/> representation,
-	/// using the specified formatting rule defined in argument <paramref name="converter"/>.
-	/// </summary>
-	/// <typeparam name="T">The type of the converter instance.</typeparam>
-	/// <param name="converter">A converter instance that defines the conversion rule.</param>
-	/// <returns>The target <see cref="string"/> representation.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString<T>(T converter) where T : IConceptConverter<Grid>
-		=> this switch
-		{
-			{ IsUndefined: true } => $"<{nameof(Undefined)}>",
-			{ IsEmpty: true } => $"<{nameof(Empty)}>",
-			_ => converter.Converter(in this)
-		};
+		=> ToString(culture?.Name.ToLower() switch { ['e', 'n', ..] => "@:", ['z', 'h', ..] => ".", _ => "#" });
 
 	/// <summary>
 	/// Get the cell state at the specified cell.
@@ -1415,9 +1389,6 @@ public partial struct Grid :
 	readonly int IComparable<Grid>.CompareTo(Grid other) => CompareTo(in other);
 
 	/// <inheritdoc/>
-	readonly string ISudokuConceptConvertible<Grid>.ToString<T>(T converter) => ToString();
-
-	/// <inheritdoc/>
 	readonly string IJsonSerializable<Grid>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);
 
 	/// <inheritdoc/>
@@ -1530,6 +1501,42 @@ public partial struct Grid :
 	private void RemoveSukakuHeader() => this[0] &= (1 << HeaderShift) - 1;
 
 
+	/// <inheritdoc/>
+	public static bool TryParse(string str, out Grid result)
+	{
+		try
+		{
+			result = Parse(str);
+			return !result.IsUndefined;
+		}
+		catch (FormatException)
+		{
+			result = Undefined;
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
+	{
+		try
+		{
+			if (s is null)
+			{
+				result = Undefined;
+				return false;
+			}
+
+			result = Parse(s, provider);
+			return !result.IsUndefined;
+		}
+		catch (FormatException)
+		{
+			result = Undefined;
+			return false;
+		}
+	}
+
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
 	/// </summary>
@@ -1578,6 +1585,19 @@ public partial struct Grid :
 	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider)"/>
 	public static Grid Parse(string str)
 	{
+		var parsers = (GridFormatInfo[])[
+			new MultipleLineGridFormatInfo(),
+			new MultipleLineGridFormatInfo { RemoveGridLines = true },
+			new PencilmarkGridFormatInfo(),
+			new SusserGridFormatInfo(),
+			new SusserGridFormatInfo { ShortenSusser = true },
+			new CsvGridFormatInfo(),
+			new OpenSudokuGridFormatInfo(),
+			new SukakuGridFormatInfo(),
+			new SukakuGridFormatInfo { Multiline = true }
+		];
+
+
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
 		var grid = Undefined;
 		switch (str.Length, str.Contains("-+-"), str.Contains('\t'))
@@ -1619,7 +1639,7 @@ public partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool parseAsSukaku(string str, out Grid result)
 		{
-			if (new SukakuGridParser().Parser(str) is { IsUndefined: false } g)
+			if (new SukakuGridFormatInfo().ParseGrid(str) is { IsUndefined: false } g)
 			{
 				g.AddSukakuHeader();
 				result = g;
@@ -1633,7 +1653,7 @@ public partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		static bool parseAsExcel(string str, out Grid result)
 		{
-			if (new ExcelGridParser().Parser(str) is { IsUndefined: false } g)
+			if (new CsvGridFormatInfo().ParseGrid(str) is { IsUndefined: false } g)
 			{
 				result = g;
 				return true;
@@ -1643,11 +1663,11 @@ public partial struct Grid :
 			return false;
 		}
 
-		static bool parseMultipleLines(string str, out Grid result)
+		bool parseMultipleLines(string str, out Grid result)
 		{
-			foreach (var parser in Parsers[..3])
+			foreach (var parser in parsers[..3])
 			{
-				if (parser.Parser(str) is { IsUndefined: false } g)
+				if (parser.ParseGrid(str) is { IsUndefined: false } g)
 				{
 					result = g;
 					return true;
@@ -1658,12 +1678,12 @@ public partial struct Grid :
 			return false;
 		}
 
-		static bool parseAll(string str, out Grid result)
+		bool parseAll(string str, out Grid result)
 		{
-			for (var trial = 0; trial < Parsers.Length; trial++)
+			for (var trial = 0; trial < parsers.Length; trial++)
 			{
-				var currentParser = Parsers[trial];
-				if (currentParser.Parser(str) is { IsUndefined: false } g)
+				var currentParser = parsers[trial];
+				if (currentParser.ParseGrid(str) is { IsUndefined: false } g)
 				{
 					result = g;
 					return true;
@@ -1675,80 +1695,29 @@ public partial struct Grid :
 		}
 	}
 
+#pragma warning disable format
+	/// <inheritdoc/>
+	public static Grid Parse(string s, IFormatProvider? provider)
+		=> provider switch
+		{
+			GridFormatInfo g => g.ParseGrid(s),
+			CultureInfo { Name: var n } => n.ToLower() switch
+			{
+				['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(s),
+				['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(s),
+				_ => Parse(s)
+			},
+			_ => Parse(s)
+		};
+#pragma warning restore format
+
 	/// <summary>
-	/// <para>Parses a string value and converts to this type.</para>
-	/// <para>
-	/// If you want to parse a PM grid, we recommend you
-	/// use the method <see cref="ParseExact{T}(string, T)"/> instead of this method.
-	/// </para>
+	/// Parses a string value and converts to this type.
 	/// </summary>
 	/// <param name="str">The string.</param>
 	/// <returns>The result instance had converted.</returns>
-	/// <seealso cref="ParseExact{T}(string, T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlySpan<char> str) => Parse(str.ToString());
-
-	/// <summary>
-	/// Parses the specified <see cref="string"/> text and convert into a grid parser instance,
-	/// using the specified parsing rule.
-	/// </summary>
-	/// <typeparam name="T">The type of the parser.</typeparam>
-	/// <param name="str">The string text to be parsed.</param>
-	/// <param name="parser">The parser instance to be used.</param>
-	/// <returns>A valid grid parsed.</returns>
-	/// <exception cref="FormatException">Throws when the target grid parser instance cannot parse it.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid ParseExact<T>(string str, T parser) where T : IConceptParser<Grid>
-	{
-		if (parser.Parser(str) is { IsUndefined: false } result)
-		{
-			if (parser is SukakuGridParser)
-			{
-				result.AddSukakuHeader();
-			}
-			return result;
-		}
-		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
-	}
-
-	/// <inheritdoc/>
-	public static bool TryParse(string str, out Grid result)
-	{
-		try
-		{
-			result = Parse(str);
-			return !result.IsUndefined;
-		}
-		catch (FormatException)
-		{
-			result = Undefined;
-			return false;
-		}
-	}
-
-	/// <summary>
-	/// Try to parse the specified <see cref="string"/> text and convert into a <see cref="Grid"/> instance,
-	/// using the specified parsing rule. If the parsing operation is failed, return <see langword="false"/> to report the failure case.
-	/// No exceptions will be thrown.
-	/// </summary>
-	/// <typeparam name="T">The type of the parser.</typeparam>
-	/// <param name="str">The string text to be parsed.</param>
-	/// <param name="parser">The parser instance to be used.</param>
-	/// <param name="result">A parsed value of type <see cref="Grid"/>.</param>
-	/// <returns>Indicates whether the parsing operation is successful.</returns>
-	public static bool TryParseExact<T>(string str, T parser, out Grid result) where T : IConceptParser<Grid>
-	{
-		try
-		{
-			result = ParseExact(str, parser);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = default;
-			return false;
-		}
-	}
 
 	/// <summary>
 	/// Get digit via token.
@@ -1759,22 +1728,6 @@ public partial struct Grid :
 	internal static int GetDigitViaToken(string s)
 		=> (Base32CharSpan.IndexOf(s[0]) << 25) + (Base32CharSpan.IndexOf(s[1]) << 20) + (Base32CharSpan.IndexOf(s[2]) << 15)
 		+ (Base32CharSpan.IndexOf(s[3]) << 10) + (Base32CharSpan.IndexOf(s[4]) << 5) + Base32CharSpan.IndexOf(s[5]);
-
-	/// <inheritdoc/>
-	static bool IParsable<Grid>.TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Grid result)
-	{
-		result = Undefined;
-		return s is not null && TryParse(s, out result);
-	}
-
-	/// <inheritdoc/>
-	static bool ISudokuConceptParsable<Grid>.TryParse<T>(string str, T parser, out Grid result) => TryParse(str, out result);
-
-	/// <inheritdoc/>
-	static Grid IParsable<Grid>.Parse(string s, IFormatProvider? provider) => Parse(s);
-
-	/// <inheritdoc/>
-	static Grid ISudokuConceptParsable<Grid>.Parse<T>(string str, T parser) => Parse(str);
 
 	/// <inheritdoc/>
 	static Grid IJsonSerializable<Grid>.FromJsonString(string jsonString) => JsonSerializer.Deserialize<Grid>(jsonString, DefaultOptions);
@@ -1917,55 +1870,4 @@ public partial struct Grid :
 		Unsafe.CopyBlock(ref @ref.ByteRef(ref result[0]), in @ref.ReadOnlyByteRef(in maskArray[0]), sizeof(Mask) * CellsCount);
 		return result;
 	}
-}
-
-/// <summary>
-/// Indicates the factory that creates the grid formatter.
-/// </summary>
-file static class GridFormatterFactory
-{
-	/// <summary>
-	/// Get a built-in converter instance according to the specified format.
-	/// </summary>
-	/// <param name="format">The format.</param>
-	/// <returns>The grid formatter.</returns>
-	/// <exception cref="FormatException">Throws when the format string is invalid.</exception>
-	public static IConceptConverter<Grid>? GetBuiltInConverter(string? format)
-		=> format switch
-		{
-			null or "." => SusserGridConverter.Default,
-			"0" => SusserGridConverter.Default with { Placeholder = '0' },
-			"0+" or "+0" => SusserGridConverter.Default with { Placeholder = '0', WithModifiables = true },
-			"+" or ".+" or "+." => SusserGridConverter.Default with { WithModifiables = true },
-			"+:" or "+.:" or ".+:" or "#" or "#." => SusserGridConverter.Full,
-			"^+:" or "^:+" or "^.+:" or "^#" or "^#." => SusserGridConverter.Full with { NegateEliminationsTripletRule = true },
-			"0+:" or "+0:" or "#0" => SusserGridConverter.FullZero,
-			"^0+:" or "^+0:" or "^#0" => SusserGridConverter.FullZero with { NegateEliminationsTripletRule = true },
-			":" or ".:" => SusserEliminationsGridConverter.Default,
-			"0:" => SusserEliminationsGridConverter.Default with { Placeholder = '0' },
-			"!" or ".!" or "!." => SusserGridConverterTreatingValuesAsGivens.Default,
-			"0!" or "!0" => SusserGridConverterTreatingValuesAsGivens.Default with { Placeholder = '0' },
-			".!:" or "!.:" => SusserGridConverterTreatingValuesAsGivens.Default with { WithCandidates = true },
-			"^.!:" or "^!.:" => SusserGridConverterTreatingValuesAsGivens.Default with { WithCandidates = true, NegateEliminationsTripletRule = true },
-			"0!:" or "!0:" => SusserGridConverterTreatingValuesAsGivens.Default with { Placeholder = '0', WithCandidates = true },
-			"^0!:" or "^!0:" => SusserGridConverterTreatingValuesAsGivens.Default with { Placeholder = '0', WithCandidates = true, NegateEliminationsTripletRule = true },
-			".*" or "*." => SusserGridConverter.Default with { Placeholder = '.', ShortenSusser = true },
-			"0*" or "*0" => SusserGridConverter.Default with { Placeholder = '0', ShortenSusser = true },
-			"@" or "@." => MultipleLineGridConverter.Default,
-			"@*" or "@.*" or "@*." => MultipleLineGridConverter.Default with { SubtleGridLines = false },
-			"@0" => MultipleLineGridConverter.Default with { Placeholder = '0' },
-			"@0!" or "@!0" => MultipleLineGridConverter.Default with { Placeholder = '0', TreatValueAsGiven = true },
-			"@0*" or "@*0" => MultipleLineGridConverter.Default with { Placeholder = '0', SubtleGridLines = false },
-			"@!" or "@.!" or "@!." => MultipleLineGridConverter.Default with { TreatValueAsGiven = true },
-			"@!*" or "@*!" => MultipleLineGridConverter.Default with { TreatValueAsGiven = true, SubtleGridLines = false },
-			"@:" => PencilmarkingGridConverter.Default,
-			"@*:" or "@:*" => PencilmarkingGridConverter.Default with { SubtleGridLines = false },
-			"@:!" or "@!:" => PencilmarkingGridConverter.Default with { TreatValueAsGiven = true },
-			"@!*:" or "@*!:" or "@!:*" or "@*:!" or "@:!*" or "@:*!" => new PencilmarkingGridConverter() with { TreatValueAsGiven = true, SubtleGridLines = false },
-			"~." => SukakuGridConverter.Default,
-			"~" or "~0" => SukakuGridConverter.Default with { Placeholder = '0' },
-			"@~" or "~@" or "@~." or "@.~" or "~@." or "~.@" => SukakuGridConverter.Default with { Multiline = true },
-			"@~0" or "@0~" or "~@0" or "~0@" => SukakuGridConverter.Default with { Multiline = true, Placeholder = '0' },
-			_ => null
-		};
 }

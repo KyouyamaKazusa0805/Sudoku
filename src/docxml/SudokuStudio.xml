@@ -13564,7 +13564,7 @@
             </summary>
             <returns>A task that handles the operation.</returns>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(Sudoku.Text.IConceptConverter{Sudoku.Concepts.Grid}[])">
+        <member name="M:SudokuStudio.Views.Pages.AnalyzePage.SaveFileInternalAsync(Sudoku.Concepts.GridFormatInfo[])">
             <summary>
             Save a file via grid formatters.
             </summary>

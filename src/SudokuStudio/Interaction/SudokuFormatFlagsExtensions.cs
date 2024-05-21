@@ -12,18 +12,20 @@ internal static class SudokuFormatFlagsExtensions
 	/// <param name="this">The flag instance.</param>
 	/// <returns>The final <see cref="IConceptConverter{T}"/> instance.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
-	public static IConceptConverter<Grid> GetConverter(this SudokuFormatFlags @this)
+	public static GridFormatInfo GetConverter(this SudokuFormatFlags @this)
 		=> @this switch
 		{
-			SudokuFormatFlags.InitialFormat => SusserGridConverter.Default,
-			SudokuFormatFlags.CurrentFormat => SusserGridConverter.Full,
-			SudokuFormatFlags.CurrentFormatIgnoringValueKind => SusserGridConverterTreatingValuesAsGivens.Default,
-			SudokuFormatFlags.HodokuCompatibleFormat => HodokuLibraryGridConverter.Default,
-			SudokuFormatFlags.MultipleGridFormat => MultipleLineGridConverter.Default,
-			SudokuFormatFlags.PencilMarkFormat => new PencilmarkingGridConverter(),
-			SudokuFormatFlags.SukakuFormat => SukakuGridConverter.Default,
-			SudokuFormatFlags.ExcelFormat => new ExcelGridConverter(),
-			SudokuFormatFlags.OpenSudokuFormat => new OpenSudokuGridConverter(),
+			SudokuFormatFlags.InitialFormat => new SusserGridFormatInfo(),
+			SudokuFormatFlags.CurrentFormat => new SusserGridFormatInfo { WithCandidates = true, WithModifiables = true },
+			SudokuFormatFlags.CurrentFormatIgnoringValueKind
+				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, TreatValueAsGiven = true },
+			SudokuFormatFlags.HodokuCompatibleFormat
+				=> new SusserGridFormatInfo { WithModifiables = true, WithCandidates = true, IsCompatibleMode = true },
+			SudokuFormatFlags.MultipleGridFormat => new MultipleLineGridFormatInfo { RemoveGridLines = true },
+			SudokuFormatFlags.PencilMarkFormat => new PencilmarkGridFormatInfo { SubtleGridLines = true },
+			SudokuFormatFlags.SukakuFormat => new SukakuGridFormatInfo(),
+			SudokuFormatFlags.ExcelFormat => new CsvGridFormatInfo(),
+			SudokuFormatFlags.OpenSudokuFormat => new OpenSudokuGridFormatInfo(),
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }

@@ -17,5 +17,5 @@ public sealed class GridConverter : JsonConverter<Grid>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override void Write(Utf8JsonWriter writer, Grid value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(SusserGridConverter.Full));
+		=> writer.WriteStringValue(value.ToString("#"));
 }

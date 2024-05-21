@@ -254,7 +254,7 @@ public sealed partial class AnalyzePage : Page
 	/// </summary>
 	/// <param name="gridFormatters">The grid formatters. The default value is <see langword="null"/>.</param>
 	/// <returns>A task that handles the operation.</returns>
-	internal async Task<bool> SaveFileInternalAsync(IConceptConverter<Grid>[]? gridFormatters = null)
+	internal async Task<bool> SaveFileInternalAsync(GridFormatInfo[]? gridFormatters = null)
 	{
 		if (!EnsureUnsnapped(true))
 		{
@@ -291,7 +291,7 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select formatter.Converter(in grid)])
+						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select grid.ToString(formatter)])
 					);
 				}
 				break;
@@ -318,7 +318,7 @@ public sealed partial class AnalyzePage : Page
 						select new GridInfo
 						{
 							BaseGrid = grid,
-							GridString = formatter.Converter(in grid),
+							GridString = grid.ToString(formatter),
 							RenderableData = viewUnit switch
 							{
 								{ Conclusions: var conclusions, View: var view } => new() { Conclusions = conclusions, Views = [view] },
