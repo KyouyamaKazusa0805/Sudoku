@@ -15,7 +15,7 @@ internal static class GeneratorExecutionContextExtensions
 	/// <param name="sourceCode">The source code.</param>
 	/// <seealso cref="GeneratorExecutionContext.AddSource(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static void AddSource(this ref GeneratorExecutionContext @this, string fileName, string? sourceGeneratorName, string sourceCode)
+	internal static void AddSource(this scoped ref GeneratorExecutionContext @this, string fileName, string? sourceGeneratorName, string sourceCode)
 		=> @this.AddSource(
 			$"{fileName}{(sourceGeneratorName is null ? string.Empty : $".g.{sourceGeneratorName}")}.cs",
 			SourceText.From(sourceCode, Encoding.UTF8)

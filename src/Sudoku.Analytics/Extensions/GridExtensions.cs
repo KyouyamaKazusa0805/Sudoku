@@ -11,7 +11,7 @@ public static class GridExtensions
 	/// </summary>
 	/// <param name="this">A <see cref="Grid"/> instance that receives the conclusions to be applied.</param>
 	/// <param name="step">A conclusion-provider <see cref="Step"/> instance.</param>
-	public static void Apply(this ref Grid @this, Step step)
+	public static void Apply(this scoped ref Grid @this, Step step)
 	{
 		foreach (var conclusion in step.Conclusions)
 		{
@@ -25,7 +25,7 @@ public static class GridExtensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryFullHouse(this in Grid @this)
+	public static bool CanPrimaryFullHouse(this scoped in Grid @this)
 		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
@@ -41,7 +41,7 @@ public static class GridExtensions
 	/// </param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryHiddenSingle(this in Grid @this, bool allowHiddenSingleInLine)
+	public static bool CanPrimaryHiddenSingle(this scoped in Grid @this, bool allowHiddenSingleInLine)
 		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
@@ -55,7 +55,7 @@ public static class GridExtensions
 	/// <param name="this">The grid to be checked.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryNakedSingle(this in Grid @this)
+	public static bool CanPrimaryNakedSingle(this scoped in Grid @this)
 		=> Analyzer.Default
 			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })

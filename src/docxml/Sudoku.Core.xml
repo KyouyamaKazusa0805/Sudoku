@@ -299,6 +299,15 @@
         <member name="M:Sudoku.Concepts.CandidateMap.System#IEquatable{Sudoku#Concepts#CandidateMap}#Equals(Sudoku.Concepts.CandidateMap)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CandidateMap,System#Int32}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CandidateMap,System#Int32}#Any(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CandidateMap,System#Int32}#All(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.System#Linq#Providers#IFirstLastMethod{Sudoku#Concepts#CandidateMap,System#Int32}#First">
             <inheritdoc/>
         </member>
@@ -752,6 +761,15 @@
             <seealso cref="P:Sudoku.Concepts.CellMap.Count"/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IEquatable{Sudoku#Concepts#CellMap}#Equals(Sudoku.Concepts.CellMap)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CellMap,System#Int32}#Any">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CellMap,System#Int32}#Any(System.Func{System.Int32,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.System#Linq#Providers#IAnyAllMethod{Sudoku#Concepts#CellMap,System#Int32}#All(System.Func{System.Int32,System.Boolean})">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.System#IComparable{Sudoku#Concepts#CellMap}#CompareTo(Sudoku.Concepts.CellMap)">

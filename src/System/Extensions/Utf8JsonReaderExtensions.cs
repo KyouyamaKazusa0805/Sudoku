@@ -13,6 +13,6 @@ public static class Utf8JsonReaderExtensions
 	/// <param name="this">The <see cref="Utf8JsonReader"/> instance.</param>
 	/// <param name="options">The options.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static T? GetNestedObject<T>(this ref Utf8JsonReader @this, JsonSerializerOptions? options = null)
+	public static T? GetNestedObject<T>(this scoped ref Utf8JsonReader @this, JsonSerializerOptions? options = null)
 		=> JsonSerializer.Deserialize<T>(ref @this, options);
 }

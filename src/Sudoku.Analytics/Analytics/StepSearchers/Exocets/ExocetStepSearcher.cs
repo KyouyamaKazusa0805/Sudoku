@@ -4803,7 +4803,7 @@ file static class Extensions
 	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="cells">The cells to be checked.</param>
 	/// <returns>The maximum possible times of the appearing.</returns>
-	public static int AppearingTimesOf(this in Grid @this, Digit digit, ref readonly CellMap cells)
+	public static int AppearingTimesOf(this scoped in Grid @this, Digit digit, ref readonly CellMap cells)
 	{
 		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
@@ -4829,7 +4829,7 @@ file static class Extensions
 	/// <param name="limitCount">The numebr of times that the digit can be filled with the specified cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating whether the argument <paramref name="limitCount"/> is exactly correct.</returns>
 	public static bool IsExactAppearingTimesOf(
-		this in Grid @this,
+		this scoped in Grid @this,
 		Digit digit,
 		ref readonly CellMap cells,
 		int limitCount

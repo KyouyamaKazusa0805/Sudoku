@@ -46,7 +46,7 @@ public static class MapCombinatorial
 	/// the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe ReadOnlySpan<CellMap> GetSubsets(this in CellMap @this, int subsetSize)
+	public static unsafe ReadOnlySpan<CellMap> GetSubsets(this scoped in CellMap @this, int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > @this.Count)
 		{
@@ -128,7 +128,7 @@ public static class MapCombinatorial
 
 	/// <inheritdoc cref="GetSubsets(in CellMap, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static unsafe ReadOnlySpan<CandidateMap> GetSubsets(this in CandidateMap @this, int subsetSize)
+	public static unsafe ReadOnlySpan<CandidateMap> GetSubsets(this scoped in CandidateMap @this, int subsetSize)
 	{
 		if (subsetSize == 0 || subsetSize > @this.Count)
 		{
@@ -215,11 +215,11 @@ public static class MapCombinatorial
 	/// <returns>All subsets of the current instance.</returns>
 	/// <seealso cref="GetSubsetsAllBelow(in CellMap, int)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> GetSubsetsAll(this in CellMap @this) => @this.GetSubsetsAllBelow(@this.Count);
+	public static ReadOnlySpan<CellMap> GetSubsetsAll(this scoped in CellMap @this) => @this.GetSubsetsAllBelow(@this.Count);
 
 	/// <inheritdoc cref="GetSubsetsAll(in CellMap)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CandidateMap> GetSubsetsAll(this in CandidateMap @this) => @this.GetSubsetsAllBelow(@this.Count);
+	public static ReadOnlySpan<CandidateMap> GetSubsetsAll(this scoped in CandidateMap @this) => @this.GetSubsetsAllBelow(@this.Count);
 
 	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
@@ -244,7 +244,7 @@ public static class MapCombinatorial
 	/// </item>
 	/// </list>
 	/// </returns>
-	public static ReadOnlySpan<CellMap> GetSubsetsAllBelow(this in CellMap @this, int limitSubsetSize)
+	public static ReadOnlySpan<CellMap> GetSubsetsAllBelow(this scoped in CellMap @this, int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !@this)
 		{
@@ -267,7 +267,7 @@ public static class MapCombinatorial
 	}
 
 	/// <inheritdoc cref="GetSubsetsAllBelow(in CellMap, int)"/>
-	public static ReadOnlySpan<CandidateMap> GetSubsetsAllBelow(this in CandidateMap @this, int limitSubsetSize)
+	public static ReadOnlySpan<CandidateMap> GetSubsetsAllBelow(this scoped in CandidateMap @this, int limitSubsetSize)
 	{
 		if (limitSubsetSize == 0 || !@this)
 		{

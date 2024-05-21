@@ -769,6 +769,15 @@ public partial struct CellMap :
 	readonly bool IEquatable<CellMap>.Equals(CellMap other) => Equals(in other);
 
 	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CellMap, Cell>.Any() => Count != 0;
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CellMap, Cell>.Any(Func<Cell, bool> predicate) => this.Any(predicate);
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CellMap, Cell>.All(Func<Cell, bool> predicate) => this.All(predicate);
+
+	/// <inheritdoc/>
 	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(in other);
 
 	/// <inheritdoc/>

@@ -488,6 +488,15 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	readonly bool IEquatable<CandidateMap>.Equals(CandidateMap other) => Equals(in other);
 
 	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any() => Count != 0;
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CandidateMap, Candidate>.Any(Func<Candidate, bool> predicate) => this.Any(predicate);
+
+	/// <inheritdoc/>
+	readonly bool IAnyAllMethod<CandidateMap, Candidate>.All(Func<Candidate, bool> predicate) => this.All(predicate);
+
+	/// <inheritdoc/>
 	readonly Candidate IFirstLastMethod<CandidateMap, Candidate>.First() => this[0];
 
 	/// <inheritdoc/>
