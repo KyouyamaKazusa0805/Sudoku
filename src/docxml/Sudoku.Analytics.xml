@@ -5055,7 +5055,7 @@
             <remarks>
             This default option makes the internal members be:
             <list type="bullet">
-            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Text.Converters.RxCyConverter"/></item>
+            <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter"/>: <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.DistinctDirectMode"/>: <see langword="false"/></item>
             <item><see cref="P:Sudoku.Analytics.Configuration.StepSearcherOptions.IsDirectMode"/>: <see langword="false"/></item>
             </list>
