@@ -12,7 +12,6 @@ public sealed partial class View :
 	IFirstLastMethod<View, ViewNode>,
 	IOfTypeMethod<View, ViewNode>,
 	ISelectMethod<View, ViewNode>,
-	ISelectManyMethod<View, ViewNode>,
 	IWhereMethod<View, ViewNode>
 {
 	/// <summary>
