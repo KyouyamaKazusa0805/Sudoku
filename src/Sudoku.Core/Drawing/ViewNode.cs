@@ -16,6 +16,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(TriangleViewNode), 12)]
 [JsonDerivedType(typeof(DiamondViewNode), 13)]
 [JsonDerivedType(typeof(StarViewNode), 14)]
+[JsonDerivedType(typeof(HeartViewNode), 15)]
 [Equals]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
