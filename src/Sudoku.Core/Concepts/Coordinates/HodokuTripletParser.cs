@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Parsers;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents a parser type that uses <b>Hodoku Triplet</b> notation rule to parse text,

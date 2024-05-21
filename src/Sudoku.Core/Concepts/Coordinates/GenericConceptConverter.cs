@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Converters;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="string"/> values.

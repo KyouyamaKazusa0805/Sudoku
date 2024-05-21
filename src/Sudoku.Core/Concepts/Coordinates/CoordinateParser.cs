@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Parsers;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents for a parser instance that parses a <see cref="string"/> text,

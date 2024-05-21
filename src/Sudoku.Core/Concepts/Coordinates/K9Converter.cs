@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Converters;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents a coordinate converter using K9 notation.
