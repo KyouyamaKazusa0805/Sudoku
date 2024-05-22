@@ -1074,7 +1074,6 @@ public partial class GeneratedPuzzleConstraintPage
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>
 file static class Extensions
 {
-#pragma warning disable format
 	/// <summary>
 	/// Try to fetch the string representation of the techniques chosen in UI.
 	/// </summary>
@@ -1087,8 +1086,14 @@ file static class Extensions
 			[var technique] => technique.GetName(App.CurrentCulture),
 			_ => string.Join(
 				ResourceDictionary.Get("_Token_Comma", App.CurrentCulture),
-				[.. from technique in @this select technique.GetName(App.CurrentCulture)]
+#if !NET9_0_OR_GREATER
+				[
+				..
+#endif
+				from technique in @this select technique.GetName(App.CurrentCulture)
+#if !NET9_0_OR_GREATER
+				]
+#endif
 			)
 		};
-#pragma warning restore format
 }

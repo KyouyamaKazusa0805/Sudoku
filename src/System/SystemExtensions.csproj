@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
 	<PropertyGroup>
-		<TargetFramework>net8.0</TargetFramework>
+		<TargetFramework>net9.0</TargetFramework>
 		<AssemblyName>SystemExtensions</AssemblyName>
 		<Description>Provides the extension methods for the System library instances.</Description>
 		<RootNamespace>System</RootNamespace>

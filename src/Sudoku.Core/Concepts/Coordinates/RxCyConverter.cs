@@ -246,23 +246,31 @@ public sealed record RxCyConverter(
 		=> intersections => DefaultSeparator switch
 		{
 			null or [] => string.Concat(
+#if !NET9_0_OR_GREATER
 				[
-					..
-					from intersection in intersections
-					let baseSet = intersection.Base.Line
-					let coverSet = intersection.Base.Block
-					select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				..
+#endif
+				from intersection in intersections
+				let baseSet = intersection.Base.Line
+				let coverSet = intersection.Base.Block
+				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+#if !NET9_0_OR_GREATER
 				]
+#endif
 			),
 			_ => string.Join(
 				DefaultSeparator,
+#if !NET9_0_OR_GREATER
 				[
-					..
-					from intersection in intersections
-					let baseSet = intersection.Base.Line
-					let coverSet = intersection.Base.Block
-					select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+				..
+#endif
+				from intersection in intersections
+				let baseSet = intersection.Base.Line
+				let coverSet = intersection.Base.Block
+				select $"{GetLabel((byte)(baseSet / 9))}{baseSet % 9 + 1}{GetLabel((byte)(coverSet / 9))}{coverSet % 9 + 1}"
+#if !NET9_0_OR_GREATER
 				]
+#endif
 			)
 		};
 

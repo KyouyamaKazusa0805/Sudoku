@@ -2355,7 +2355,7 @@
             <code>
             ○ Match with 2 alternative expressions, atomically.<br/>
                 ○ Match a sequence of expressions.<br/>
-                    ○ Match a character in the set [Rr].<br/>
+                    ○ Match an empty string.<br/>
                     ○ Match a character in the set [1-9] atomically at least once.<br/>
                     ○ Match a character in the set [Cc].<br/>
                     ○ Match a character in the set [1-9] atomically at least once.<br/>
@@ -11189,20 +11189,20 @@
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfAnyDecimalDigitNumberDecimalDigitNumber(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [\d\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_3BCFC31BFB1AD1127D0564F4B3C20ECED086F1C7438F92ACB58165A04BF23DD9(System.ReadOnlySpan{System.Char})">
-            <summary>Finds the next index of any character that matches a character in the set [*+-&lt;\d\d].</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_5C1843170313CB42CA4CF4E0FCD6C277723EAACCD85464A69BFC7D367CF48212(System.ReadOnlySpan{System.Char})">
-            <summary>Finds the next index of any character that matches a character in the set [+.\d].</summary>
-        </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_65EF16F1D4CC2684453DF3C3240E17C0787C2CE3C7B9F2FA94357B7AEAC8AC3F(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004012A2B2E2F09(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [*.\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_85D9C34033677881D8993C4388EDB85FC6297ECDBC9E515FF9B602A26978DF84(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004012B2C2E2F09(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [+.\d].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0004022B2C2D2E0909(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [+-\d\d].</summary>
         </member>
-        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_CD2F1FA646F2680322897C0F819061CC86FEA149AFB0FCC253B807E2A597D6F4(System.ReadOnlySpan{System.Char})">
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0006012B2C2E2F5B5C09(System.ReadOnlySpan{System.Char})">
             <summary>Finds the next index of any character that matches a character in the set [+.[\d].</summary>
+        </member>
+        <member name="M:System.Text.RegularExpressions.Generated.Utilities.IndexOfNonAsciiOrAny_0006022A2C2D2E3C3D0909(System.ReadOnlySpan{System.Char})">
+            <summary>Finds the next index of any character that matches a character in the set [*+-&lt;\d\d].</summary>
         </member>
         <member name="M:System.Text.RegularExpressions.Generated.Utilities.StackPop(System.Int32[],System.Int32@,System.Int32@,System.Int32@)">
             <summary>Pops 2 values from the backtracking stack.</summary>
@@ -11243,7 +11243,19 @@
         <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_ascii_FFFFFFFFFFD700FCFFFFFFFFFFFFFFFF">
             <summary>Supports searching for characters in or not in "\0\u0001\u0002\u0003\u0004\u0005\u0006\a\b\t\n\v\f\r\u000e\u000f\u0010\u0011\u0012\u0013\u0014\u0015\u0016\u0017\u0018\u0019\u001a\u001b\u001c\u001d\u001e\u001f !\"#$%&amp;'()*,./:;&lt;=&gt;?@ABCDEFGHIJKLMNOPQRSTUVWXYZ[\\]^_`abcdefghijklmnopqrstuvwxyz{|}~\u007f".</summary>
         </member>
-        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_nonAscii_F399137324019CEE8DA2E2200E10D0083E7A4C31A2E981061D50385C16616C8A">
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_617574686F723A5F4F7264696E616C49676E6F726543617365">
+            <summary>Supports searching for the string "author:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_6465736372697074696F6E3A5F4F7264696E616C49676E6F726543617365">
+            <summary>Supports searching for the string "description:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_6E616D653A5F4F7264696E616C49676E6F726543617365">
+            <summary>Supports searching for the string "name:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_indexOfString_746167733A5F4F7264696E616C49676E6F726543617365">
+            <summary>Supports searching for the string "tags:".</summary>
+        </member>
+        <member name="F:System.Text.RegularExpressions.Generated.Utilities.s_nonAscii_4142434445464748494A4B6162636465666768696A6BE284AA">
             <summary>Supports searching for characters in or not in "ABCDEFGHIJKabcdefghijkK".</summary>
         </member>
     </members>

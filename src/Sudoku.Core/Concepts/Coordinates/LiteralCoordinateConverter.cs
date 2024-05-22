@@ -17,7 +17,18 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			[var p] => string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
 			_ => string.Format(
 				ResourceDictionary.Get("CellsLabel", TargetCurrentCulture),
-				string.Join(DefaultSeparator, [.. from cell in cells select string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)])
+				string.Join(
+					DefaultSeparator,
+#if !NET9_0_OR_GREATER
+					[
+					..
+#endif
+					from cell in cells
+					select string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)
+#if !NET9_0_OR_GREATER
+					]
+#endif
+				)
 			)
 		};
 
@@ -145,8 +156,27 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 	public override DigitNotationConverter DigitConverter
 		=> mask => DigitsSeparator switch
 		{
-			null or [] => string.Concat([.. from digit in mask select (digit + 1).ToString()]),
-			_ => string.Join(DigitsSeparator, [.. from digit in mask select (digit + 1).ToString()])
+			null or [] => string.Concat(
+#if !NET9_0_OR_GREATER
+				[
+				..
+#endif
+				from digit in mask select (digit + 1).ToString()
+#if !NET9_0_OR_GREATER
+				]
+#endif
+			),
+			_ => string.Join(
+				DigitsSeparator,
+#if !NET9_0_OR_GREATER
+				[
+				..
+#endif
+				from digit in mask select (digit + 1).ToString()
+#if !NET9_0_OR_GREATER
+				]
+#endif
+			)
 		};
 
 	/// <inheritdoc/>
@@ -155,13 +185,21 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		{
 			return string.Join(
 				DefaultSeparator,
+#if !NET9_0_OR_GREATER
 				[
-					..
-					from intersection in intersections
-					let baseSet = intersection.Base.Line
-					let coverSet = intersection.Base.Block
-					select string.Format(ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture), labelKey(baseSet), labelKey(coverSet))
+				..
+#endif
+				from intersection in intersections
+				let baseSet = intersection.Base.Line
+				let coverSet = intersection.Base.Block
+				select string.Format(
+					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+					labelKey(baseSet),
+					labelKey(coverSet)
+				)
+#if !NET9_0_OR_GREATER
 				]
+#endif
 			);
 
 

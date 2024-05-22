@@ -172,7 +172,7 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 							HeaderIcon = new FontIcon { Glyph = "\uE8F1" },
 							Description = string.Join(
 								Separator,
-								[
+								(ReadOnlySpan<string?>)[
 									fileId,
 									libraryInfo.Author,
 									libraryInfo.LastUpdate.ToString(App.CurrentCulture)

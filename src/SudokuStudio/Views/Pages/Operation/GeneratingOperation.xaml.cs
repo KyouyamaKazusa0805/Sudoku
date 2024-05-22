@@ -40,7 +40,22 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
 		TextBlockBindable.SetInlines(
 			GeneratorStrategyTooltip,
-			[new Run { Text = string.Join(Environment.NewLine, [.. from c in constraints select c.ToString(App.CurrentCulture)]) }]
+			[
+				new Run
+				{
+					Text = string.Join(
+						Environment.NewLine,
+#if !NET9_0_OR_GREATER
+						[
+						..
+#endif
+						from c in constraints select c.ToString(App.CurrentCulture)
+#if !NET9_0_OR_GREATER
+						]
+#endif
+					)
+				}
+			]
 		);
 	}
 

@@ -174,11 +174,19 @@ public sealed record K9Converter(
 							},
 							TargetCurrentCulture
 						),
-						string.Concat([.. from house in h select (house % 9 + 1).ToString()])
+						string.Concat(
+#if !NET9_0_OR_GREATER
+							[
+							..
+#endif
+							from house in h select (house % 9 + 1).ToString()
+#if !NET9_0_OR_GREATER
+							]
+#endif
+						)
 					)
 				);
 			}
-
 			return sb.ToString();
 		};
 
@@ -243,8 +251,11 @@ public sealed record K9Converter(
 	public override IntersectionNotationConverter IntersectionConverter
 		=> intersections => DefaultSeparator switch
 		{
-			null or [] => string.Concat([
+			null or [] => string.Concat(
+#if !NET9_0_OR_GREATER
+				[
 				..
+#endif
 				from intersection in intersections
 				let baseSet = intersection.Base.Line
 				let coverSet = intersection.Base.Block
@@ -263,30 +274,37 @@ public sealed record K9Converter(
 						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
 				)
-			]),
+#if !NET9_0_OR_GREATER
+				]
+#endif
+			),
 			_ => string.Join(
 				DefaultSeparator,
+#if !NET9_0_OR_GREATER
 				[
-					..
-					from intersection in intersections
-					let baseSet = intersection.Base.Line
-					let coverSet = intersection.Base.Block
-					select string.Format(
-						ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
-						((House)baseSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
-						},
-						((House)coverSet).ToHouseType() switch
-						{
-							HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
-							HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
-						}
-					)
+				..
+#endif
+				from intersection in intersections
+				let baseSet = intersection.Base.Line
+				let coverSet = intersection.Base.Block
+				select string.Format(
+					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+					((House)baseSet).ToHouseType() switch
+					{
+						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString())
+					},
+					((House)coverSet).ToHouseType() switch
+					{
+						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
+						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
+					}
+				)
+#if !NET9_0_OR_GREATER
 				]
+#endif
 			)
 		};
 

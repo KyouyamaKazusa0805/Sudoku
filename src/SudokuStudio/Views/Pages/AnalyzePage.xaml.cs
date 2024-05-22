@@ -291,7 +291,17 @@ public sealed partial class AnalyzePage : Page
 				{
 					await File.WriteAllTextAsync(
 						filePath,
-						string.Join("\r\n\r\n", [.. from formatter in gridFormatters select grid.ToString(formatter)])
+						string.Join(
+							"\r\n\r\n",
+#if !NET9_0_OR_GREATER
+							[
+							..
+#endif
+							from formatter in gridFormatters select grid.ToString(formatter)
+#if !NET9_0_OR_GREATER
+							]
+#endif
+						)
 					);
 				}
 				break;
