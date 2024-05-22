@@ -169,6 +169,80 @@
             This will invalidate drawing items, and draw background, border lines and footer text.
             </remarks>
         </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBackground">
+            <summary>
+            Draw the background.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBorderLines">
+            <summary>
+            Draw border lines onto the canvas.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawFooterText">
+            <summary>
+            Draw footer text onto the canvas.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Draw grid onto the canvas.
+            </summary>
+            <param name="grid">The grid to be drawn.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawCellViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CellViewNode})">
+            <summary>
+            Draw cell view nodes onto the canvas.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawCandidateViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <summary>
+            Draw candidate view nodes onto the canvas, with confliction check on conclusions.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+            <param name="conclusions">The conclusions to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawHouseViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.HouseViewNode})">
+            <summary>
+            Draw house view nodes onto the canvas.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.LinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+            <summary>
+            Draw link view nodes onto the canvas, with confliction check on conclusions.
+            If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+            <param name="conclusions">The conclusion to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawChuteViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChuteViewNode})">
+            <summary>
+            Draw chute view nodes onto the canvas.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawBabaGroupingViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.BabaGroupViewNode})">
+            <summary>
+            Draw baba grouping view nodes onto the canvas.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawEliminations(System.ReadOnlySpan{Sudoku.Concepts.Conclusion},System.ReadOnlySpan{Sudoku.Drawing.Nodes.CandidateViewNode})">
+            <summary>
+            Draw eliminations onto the canvas, with confliction check on nodes.
+            If a node covers (uses) one candidate, the elimination will be treated as a cannibalism one, drawing with different color.
+            </summary>
+            <param name="conclusions">The conclusions to be drawn.</param>
+            <param name="nodes">The nodes to be checked.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.GridCanvas.DrawIconViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.IconViewNode})">
+            <summary>
+            Draw icon view nodes onto the canvas.
+            </summary>
+            <param name="nodes">The nodes to be drawn.</param>
+        </member>
         <member name="T:Sudoku.Drawing.GridCanvasSettings">
             <summary>
             Represents with a preference type that stores the configurations on drawing.
@@ -181,12 +255,12 @@
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.ShowLightHouse">
             <summary>
-            Indicates whether the grid painter will use new algorithm to render a house (lighter).
+            Indicates whether the grid painter will use new algorithm to draw a house (lighter).
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BorderBarFullyOverlapsGridLine">
             <summary>
-            Indicates whether border bars will fully overlaps the shared grid line while rendering.
+            Indicates whether border bars will fully overlaps the shared grid line while drawing.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.ValueScale">
@@ -209,12 +283,12 @@
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.GridLineWidth">
             <summary>
-            Indicates the grid line width of the sudoku grid to render.
+            Indicates the grid line width of the sudoku grid to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BlockLineWidth">
             <summary>
-            Indicates the block line width of the sudoku grid to render.
+            Indicates the block line width of the sudoku grid to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.FigurePadding">
@@ -224,27 +298,27 @@
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenFontName">
             <summary>
-            Indicates the font of given digits to render.
+            Indicates the font of given digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.ModifiableFontName">
             <summary>
-            Indicates the font of modifiable digits to render.
+            Indicates the font of modifiable digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateFontName">
             <summary>
-            Indicates the font of candidate digits to render.
+            Indicates the font of candidate digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BabaGroupingFontName">
             <summary>
-            Indicates the font of baba grouping characters to render.
+            Indicates the font of baba grouping characters to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.FooterTextFontName">
             <summary>
-            Indicates the font of footer text to render.
+            Indicates the font of footer text to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenFontStyle">
@@ -274,17 +348,17 @@
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.GivenColor">
             <summary>
-            Indicates the given digits to render.
+            Indicates the given digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.ModifiableColor">
             <summary>
-            Indicates the modifiable digits to render.
+            Indicates the modifiable digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.CandidateColor">
             <summary>
-            Indicates the candidate digits to render.
+            Indicates the candidate digits to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.NormalColor">
@@ -324,17 +398,17 @@
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BackgroundColor">
             <summary>
-            Indicates the background color of the sudoku grid to render.
+            Indicates the background color of the sudoku grid to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.GridLineColor">
             <summary>
-            Indicates the grid line color of the sudoku grid to render.
+            Indicates the grid line color of the sudoku grid to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BlockLineColor">
             <summary>
-            Indicates the block line color of the sudoku grid to render.
+            Indicates the block line color of the sudoku grid to draw.
             </summary>
         </member>
         <member name="P:Sudoku.Drawing.GridCanvasSettings.BabaGroupingCharacterColor">

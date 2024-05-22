@@ -2,6 +2,12 @@ namespace Sudoku.Drawing;
 
 public partial class GridCanvas
 {
+	/// <summary>
+	/// Draw eliminations onto the canvas, with confliction check on nodes.
+	/// If a node covers (uses) one candidate, the elimination will be treated as a cannibalism one, drawing with different color.
+	/// </summary>
+	/// <param name="conclusions">The conclusions to be drawn.</param>
+	/// <param name="nodes">The nodes to be checked.</param>
 	public partial void DrawEliminations(ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<CandidateViewNode> nodes)
 	{
 		if (_settings is not { EliminationColor: var eColor, CannibalismColor: var cColor })

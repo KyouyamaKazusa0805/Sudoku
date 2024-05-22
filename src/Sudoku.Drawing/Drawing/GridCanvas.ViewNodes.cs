@@ -2,6 +2,10 @@ namespace Sudoku.Drawing;
 
 public partial class GridCanvas
 {
+	/// <summary>
+	/// Draw cell view nodes onto the canvas.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawCellViewNodes(ReadOnlySpan<CellViewNode> nodes)
 	{
 		foreach (var node in nodes)
@@ -12,6 +16,11 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw candidate view nodes onto the canvas, with confliction check on conclusions.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
+	/// <param name="conclusions">The conclusions to be checked.</param>
 	public partial void DrawCandidateViewNodes(ReadOnlySpan<CandidateViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
 	{
 		if (this is not
@@ -92,6 +101,10 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw house view nodes onto the canvas.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawHouseViewNodes(ReadOnlySpan<HouseViewNode> nodes)
 	{
 		var showLightHouse = _settings.ShowLightHouse;
@@ -125,6 +138,12 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw link view nodes onto the canvas, with confliction check on conclusions.
+	/// If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
+	/// <param name="conclusions">The conclusion to be checked.</param>
 	public partial void DrawLinkViewNodes(ReadOnlySpan<LinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
 	{
 		// Collect all points used.
@@ -287,6 +306,10 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw chute view nodes onto the canvas.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawChuteViewNodes(ReadOnlySpan<ChuteViewNode> nodes)
 	{
 		foreach (var node in nodes)
@@ -311,6 +334,10 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw baba grouping view nodes onto the canvas.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawBabaGroupingViewNodes(ReadOnlySpan<BabaGroupViewNode> nodes)
 	{
 		if (_settings is not

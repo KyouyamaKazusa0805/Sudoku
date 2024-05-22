@@ -1,10 +1,10 @@
-#pragma warning disable CS1591, IDE0051, IDE0052
-
 namespace Sudoku.Drawing;
 
 /// <summary>
 /// Represents a canvas that allows drawing sudoku-related items onto it.
 /// </summary>
+[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
+[SuppressMessage("CodeQuality", "IDE0052:Remove unread private members", Justification = "<Pending>")]
 public sealed partial class GridCanvas : IDisposable
 {
 	/// <summary>

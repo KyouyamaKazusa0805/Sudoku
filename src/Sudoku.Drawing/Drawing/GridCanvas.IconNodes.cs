@@ -2,6 +2,10 @@ namespace Sudoku.Drawing;
 
 public partial class GridCanvas
 {
+	/// <summary>
+	/// Draw icon view nodes onto the canvas.
+	/// </summary>
+	/// <param name="nodes">The nodes to be drawn.</param>
 	public partial void DrawIconViewNodes(ReadOnlySpan<IconViewNode> nodes)
 	{
 		var (cw, ch) = _calculator.CellSize;

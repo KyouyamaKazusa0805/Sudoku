@@ -15,8 +15,14 @@ public partial class GridCanvas
 		DrawFooterText();
 	}
 
+	/// <summary>
+	/// Draw the background.
+	/// </summary>
 	public partial void DrawBackground() => _g.Clear(_settings.BackgroundColor);
 
+	/// <summary>
+	/// Draw border lines onto the canvas.
+	/// </summary>
 	public partial void DrawBorderLines()
 	{
 		const int anchorsCountTotal = PointCalculator.AnchorsCount + 1;
@@ -35,6 +41,9 @@ public partial class GridCanvas
 		}
 	}
 
+	/// <summary>
+	/// Draw footer text onto the canvas.
+	/// </summary>
 	public partial void DrawFooterText()
 	{
 		var w = _calculator.Width;
@@ -44,35 +53,36 @@ public partial class GridCanvas
 		_g.DrawString(_footerText, font, brush, new RectangleF(0, w, w, extraHeight), _stringAligner);
 	}
 
+	/// <summary>
+	/// Draw grid onto the canvas.
+	/// </summary>
+	/// <param name="grid">The grid to be drawn.</param>
 	public partial void DrawGrid(ref readonly Grid grid)
 	{
-		if (this is not
+		if (_settings is not
 			{
-				_calculator: { CellSize.Width: var cellWidth, CandidateSize.Width: var candidateWidth } calc,
-				_settings:
-				{
-					GivenColor: var gColor,
-					ModifiableColor: var mColor,
-					CandidateColor: var cColor,
-					GivenFontName: var gFontName,
-					ModifiableFontName: var mFontName,
-					CandidateFontName: var cFontName,
-					ValueScale: var vScale,
-					CandidateScale: var cScale,
-					GivenFontStyle: var gFontStyle,
-					ModifiableFontStyle: var mFontStyle,
-					CandidateFontStyle: var cFontStyle,
-					ShowCandidates: var showCandidates
-				}
+				GivenColor: var gColor,
+				ModifiableColor: var mColor,
+				CandidateColor: var cColor,
+				GivenFontName: var gFontName,
+				ModifiableFontName: var mFontName,
+				CandidateFontName: var cFontName,
+				ValueScale: var vScale,
+				CandidateScale: var cScale,
+				GivenFontStyle: var gFontStyle,
+				ModifiableFontStyle: var mFontStyle,
+				CandidateFontStyle: var cFontStyle,
+				ShowCandidates: var showCandidates
 			})
 		{
 			return;
 		}
 
+		var cellWidth = _calculator.CellSize.Width;
+		var candidateWidth = _calculator.CandidateSize.Width;
 		var vOffsetValue = cellWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of drawing each value.
 		var vOffsetCandidate = candidateWidth / (PointCalculator.AnchorsCount / 3); // The vertical offset of drawing each candidate.
 		var halfWidth = cellWidth / 2F;
-
 		using var bGiven = new SolidBrush(gColor);
 		using var bModifiable = new SolidBrush(mColor);
 		using var bCandidate = new SolidBrush(cColor);
@@ -80,7 +90,6 @@ public partial class GridCanvas
 		using var fGiven = GetFont(gFontName, halfWidth, vScale, gFontStyle);
 		using var fModifiable = GetFont(mFontName, halfWidth, vScale, mFontStyle);
 		using var fCandidate = GetFont(cFontName, halfWidth, cScale, cFontStyle);
-
 		for (var cell = 0; cell < 81; cell++)
 		{
 			var mask = grid[cell];
@@ -91,7 +100,7 @@ public partial class GridCanvas
 					// This block is use when user draw candidates from undefined grid.
 					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
-						var originalPoint = calc.GetMousePointInCenter(cell, digit);
+						var originalPoint = _calculator.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 						_g.DrawValue(digit + 1, fCandidate, bCandidate, point, _stringAligner);
 					}
@@ -101,7 +110,7 @@ public partial class GridCanvas
 				{
 					foreach (var digit in (Mask)(mask & Grid.MaxCandidatesMask))
 					{
-						var originalPoint = calc.GetMousePointInCenter(cell, digit);
+						var originalPoint = _calculator.GetMousePointInCenter(cell, digit);
 						var point = originalPoint with { Y = originalPoint.Y + vOffsetCandidate };
 						_g.DrawValue(digit + 1, fCandidate, bCandidate, point, _stringAligner);
 					}
@@ -110,7 +119,7 @@ public partial class GridCanvas
 				case var state and (CellState.Modifiable or CellState.Given):
 				{
 					// Draw values.
-					var originalPoint = calc.GetMousePointInCenter(cell);
+					var originalPoint = _calculator.GetMousePointInCenter(cell);
 					var point = originalPoint with { Y = originalPoint.Y + vOffsetValue };
 					_g.DrawValue(grid.GetDigit(cell) + 1, f(state, fGiven, fModifiable), f(state, bGiven, bModifiable), point, _stringAligner);
 					break;
