@@ -5,8 +5,12 @@ namespace Sudoku.Runtime.CompilerServices;
 /// </summary>
 /// <seealso cref="List{T}"/>
 /// <seealso cref="Grid"/>
+#if NET9_0_OR_GREATER
+[Obsolete("This type is replaced with generic version, which starts supporting from .NET 9 preview 4.", false)]
+#endif
 public static class ListGridExtensions
 {
+#if !NET9_0_OR_GREATER
 	/// <summary>
 	/// Adds the given object to the end of this list.
 	/// </summary>
@@ -109,4 +113,5 @@ public static class ListGridExtensions
 	/// </i></b></remarks>
 	[UnsafeAccessor(UnsafeAccessorKind.Field, Name = "_items")]
 	private static extern ref Grid[] GetItems(this List<Grid> @this);
+#endif
 }

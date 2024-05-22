@@ -703,6 +703,64 @@
             </summary>
             <seealso cref="T:System.Collections.Generic.List`1"/>
         </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddRef``1(System.Collections.Generic.List{``0},``0@)">
+            <summary>
+            Adds an object to the end of the <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="item">The object to be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+					supports with generic-typed references.
+				</para>
+			</feature>
+            <para>
+            This method passes with a reference to an object, which is unnecessary to be called by a referece-typed object,
+            or a value-typed object whose memory size is less than a pointer. <b>Always measure the necessity of the usage.</b>
+            </para>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddRangeRef``1(System.Collections.Generic.List{``0},System.ReadOnlySpan{``0})">
+            <summary>
+            Adds the elements of the specified <see cref="T:System.ReadOnlySpan`1" /> to the end of the <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of elements in the list.</typeparam>
+            <param name="this">The current instance.</param>
+            <param name="items">The collection whose elements should be added to the end of the <see cref="T:System.Collections.Generic.List`1" />.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+					supports with generic-typed references.
+				</para>
+			</feature>
+            <para>
+            This method passes with a <see cref="T:System.ReadOnlySpan`1" /> instead of <see cref="T:System.Collections.Generic.IEnumerable`1" />,
+            allowing iterating on read-only references of collection elements, which is unnecessary to be called
+            by a reference-typed object, or a value-typed object whose memory size is less than a pointer.
+            <b>Always measure the necessity of the usage.</b>
+            </para>
+            </remarks>
+            <seealso cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+            <seealso cref="T:System.ReadOnlySpan`1" />
+            <seealso cref="T:System.Collections.Generic.IEnumerable`1" />
+        </member>
         <member name="M:System.Collections.Generic.ListExtensions.Remove``1(System.Collections.Generic.List{``0})">
             <summary>
             Removes the last element stored in the current <see cref="T:System.Collections.Generic.List`1"/>.
@@ -736,6 +794,115 @@
             </summary>
             <param name="this">The instance to be transformed.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> instance over the <see cref="T:System.Collections.Generic.List`1"/>.</returns>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.AddWithResize``1(System.Collections.Generic.List{``0},``0@)">
+            <summary>
+            Add an item and resize the <see cref="T:System.Collections.Generic.List`1" /> of <typeparamref name="T" />.
+            </summary>
+            <typeparam name="T">The type of the target value to be added.</typeparam>
+            <param name="this">The list.</param>
+            <param name="item">An instance of type <typeparamref name="T" /> to be added.</param>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetNewCapacity``1(System.Collections.Generic.List{``0},System.Int32)">
+            <summary>
+            Try to get a new capacity value by the desired capacity to be set.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="capacity">The desired capacity to be set.</param>
+            <returns>The result value to be set.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetSize``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal field <c>_size</c> in type <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetVersion``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal field <c>_version</c> in type <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <param name="this">The list.</param>
+            <returns>The reference to the internal field.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
+        </member>
+        <member name="M:System.Collections.Generic.ListExtensions.GetItems``1(System.Collections.Generic.List{``0})">
+            <summary>
+            Try to fetch the internal reference to the first <typeparamref name="T" /> in a <see cref="T:System.Collections.Generic.List`1" />.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <param name="this">The list of <typeparamref name="T" /> instances.</param>
+            <returns>The reference to the first <typeparamref name="T" />.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly" />;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+            </remarks>
         </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>
@@ -1647,6 +1814,26 @@
         <member name="P:System.Runtime.CompilerServices.InterceptsLocationAttribute.Character">
             <summary>
             The generated property declaration for parameter <c>character</c>.
+            </summary>
+        </member>
+        <member name="T:System.Runtime.CompilerServices.LibraryIdentifiers">
+            <summary>
+            Represents some item names used by .NET library APIs.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Size">
+            <summary>
+            Indicates the name is <c>"_size"</c>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Version">
+            <summary>
+            Indicates the name is <c>"_version"</c>.
+            </summary>
+        </member>
+        <member name="F:System.Runtime.CompilerServices.LibraryIdentifiers.Items">
+            <summary>
+            Indicates the name is <c>"_items"</c>.
             </summary>
         </member>
         <member name="T:System.Runtime.CompilerServices.TupleEnumerator">

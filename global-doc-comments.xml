@@ -324,4 +324,36 @@ fixed (short* ptr = instance)
 			</target>
 		</feature>
 	</csharp12>
+
+	<!-- .NET 9 -->
+	<dotnet>
+		<version value="8">
+			<feature name="unsafe-accessor">
+				<target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute"/>,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+				<target name="field-related-method">
+					<para>
+						<b>
+							Please note that this method will return the reference to the internal field,
+							but this doesn't mean you can use its reference and re-assign it.
+							You cannot assign a value to the field if the ref kind of a field in fact is <see langword="ref readonly"/>;
+							it will raise an exception to report this wrong usage.
+						</b>
+					</para>
+				</target>
+			</feature>
+		</version>
+		<version value="9" preview-value="4">
+			<feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute"/>
+					supports with generic-typed references.
+				</para>
+			</feature>
+		</version>
+	</dotnet>
 </g>
