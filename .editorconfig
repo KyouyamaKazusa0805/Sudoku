@@ -435,6 +435,9 @@ dotnet_diagnostic.CS9099.severity = silent
 # CS9193: Argument should be a variable because it is passed to a 'ref readonly' parameter
 dotnet_diagnostic.CS9193.severity = silent
 
+# CS9236: Compiling requires binding the lambda expression many times. Consider declaring the lambda expression with explicit parameter types, or if the containing method call is generic, consider using explicit type arguments.
+dotnet_diagnostic.CS9236.severity = none
+
 
 # IDE0001: Simplify Names
 dotnet_diagnostic.IDE0001.severity = suggestion

@@ -595,7 +595,7 @@ public abstract partial class ChainingStep(
 	protected internal static int AncestorsCountOf(ChainNode child)
 	{
 		var ancestors = new NodeSet();
-		var todo = new List<ChainNode> { child };
+		var todo = (List<ChainNode>)[child];
 		while (todo.Count > 0)
 		{
 			var next = new List<ChainNode>();
@@ -606,10 +606,8 @@ public abstract partial class ChainingStep(
 					next.AddRange(p.Parents);
 				}
 			}
-
 			todo = next;
 		}
-
 		return ancestors.Count;
 	}
 
@@ -631,7 +629,6 @@ public abstract partial class ChainingStep(
 				result.Add(cell * 9 + digit);
 			}
 		}
-
 		return result;
 	}
 
