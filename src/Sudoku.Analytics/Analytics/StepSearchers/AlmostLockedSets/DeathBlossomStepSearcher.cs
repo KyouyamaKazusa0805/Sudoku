@@ -266,7 +266,7 @@ public sealed partial class DeathBlossomStepSearcher : StepSearcher
 
 					// Add empty cells also.
 					var tempCount = preeliminationsCount;
-					foreach (var cell in (HousesMap[availablePivotHouse] & EmptyCells) & ~pivotsLyingInHouse)
+					foreach (var cell in HousesMap[availablePivotHouse] & EmptyCells & ~pivotsLyingInHouse)
 					{
 						if (PopCount((uint)playground[cell]) >= 2)
 						{

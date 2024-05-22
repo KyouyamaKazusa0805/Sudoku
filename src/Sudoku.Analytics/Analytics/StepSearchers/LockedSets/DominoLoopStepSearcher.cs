@@ -188,7 +188,7 @@ public sealed partial class DominoLoopStepSearcher : StepSearcher
 				var map = [.. cells] & EmptyCells;
 				for (k = 0; k < 8; k++)
 				{
-					if (((HousesMap[linkHouse[k]] & EmptyCells) & ~map) is not (var elimMap and not []))
+					if ((HousesMap[linkHouse[k]] & EmptyCells & ~map) is not (var elimMap and not []))
 					{
 						continue;
 					}
