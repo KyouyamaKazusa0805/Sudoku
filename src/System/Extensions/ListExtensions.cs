@@ -97,25 +97,9 @@ public static class ListExtensions
 	/// <see langword="true"/> if the two source sequences are of equal length and their correpsonding elements are equal according
 	/// to <see cref="IEquatable{T}.Equals(T)"/> for their type; otherwise, <see langword="false"/>.
 	/// </returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SequenceEqual<T>(this List<T> @this, List<T> other) where T : IEquatable<T>
-	{
-		if (@this.Count != other.Count)
-		{
-			return false;
-		}
-
-		var leftSpan = @this.AsReadOnlySpan();
-		var rightSpan = other.AsReadOnlySpan();
-		for (var i = 0; i < @this.Count; i++)
-		{
-			if (!leftSpan[i].Equals(rightSpan[i]))
-			{
-				return false;
-			}
-		}
-
-		return true;
-	}
+		=> @this.AsReadOnlySpan().SequenceEqual(other.AsReadOnlySpan());
 
 	/// <inheritdoc cref="CollectionsMarshal.AsSpan{T}(List{T}?)"/>
 	/// <param name="this">The instance to be transformed.</param>
