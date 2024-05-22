@@ -19,7 +19,11 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] TKey key
-) : IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource> where TKey : notnull
+) :
+	IGroupingDataProvider<SpanGrouping<TSource, TKey>, TKey, TSource>,
+	ISelectMethod<SpanGrouping<TSource, TKey>, TSource>,
+	IWhereMethod<SpanGrouping<TSource, TKey>, TSource>
+	where TKey : notnull
 {
 	[HashCodeMember]
 	private nint ElementsRawPointerValue => (nint)_elements;
@@ -103,4 +107,12 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	public ref readonly TSource GetPinnableReference() => ref _elements[0];
+
+	/// <inheritdoc/>
+	IEnumerable<TResult> ISelectMethod<SpanGrouping<TSource, TKey>, TSource>.Select<TResult>(Func<TSource, TResult> selector)
+		=> Select(selector).ToArray();
+
+	/// <inheritdoc/>
+	IEnumerable<TSource> IWhereMethod<SpanGrouping<TSource, TKey>, TSource>.Where(Func<TSource, bool> predicate)
+		=> Where(predicate).ToArray();
 }

@@ -4242,6 +4242,12 @@
         <member name="M:System.Linq.SpanGrouping`2.GetPinnableReference">
             <inheritdoc cref="M:System.ReadOnlySpan`1.GetPinnableReference"/>
         </member>
+        <member name="M:System.Linq.SpanGrouping`2.System#Linq#Providers#ISelectMethod{System#Linq#SpanGrouping{TSource,TKey},TSource}#Select``1(System.Func{`0,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.SpanGrouping`2.System#Linq#Providers#IWhereMethod{System#Linq#SpanGrouping{TSource,TKey},TSource}#Where(System.Func{`0,System.Boolean})">
+            <inheritdoc/>
+        </member>
         <member name="F:System.Linq.SpanGrouping`2._elements">
             <summary>
             The generated field declaration for parameter <c>elements</c>.
