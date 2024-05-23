@@ -16,7 +16,7 @@ public sealed partial class BlossomLoopStep(
 	[PrimaryConstructorParameter] House houseIndex,
 	[PrimaryConstructorParameter] byte digit,
 	[PrimaryConstructorParameter] MultipleForcingChains chains
-) : Step(conclusions, views, options), IComplexChainLengthTrait
+) : IndirectStep(conclusions, views, options), IComplexChainLengthTrait
 {
 	internal BlossomLoopStep(Conclusion[] conclusions, StepSearcherOptions options, House houseIndex, byte digit, MultipleForcingChains chains) :
 		this(conclusions, null!, options, houseIndex, digit, chains)

@@ -41,7 +41,7 @@ public abstract partial class FishStep(
 	[PrimaryConstructorParameter] ref readonly CellMap fins,
 	[PrimaryConstructorParameter] bool? isSashimi,
 	[PrimaryConstructorParameter] bool isSiamese = false
-) : Step(conclusions, views, options), ISizeTrait
+) : IndirectStep(conclusions, views, options), ISizeTrait
 {
 	/// <summary>
 	/// Indicates the pattern to be used.

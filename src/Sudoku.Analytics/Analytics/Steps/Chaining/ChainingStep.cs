@@ -22,7 +22,7 @@ public abstract partial class ChainingStep(
 	[PrimaryConstructorParameter] bool isDynamic = false,
 	[PrimaryConstructorParameter] bool isNishio = false,
 	[PrimaryConstructorParameter] int dynamicNestingLevel = 0
-) : Step(conclusions, views, options)
+) : IndirectStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
 	public sealed override int BaseDifficulty

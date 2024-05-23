@@ -15703,6 +15703,22 @@
             The generated property declaration for parameter <c>conjugatePair</c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Steps.DirectStep">
+            <summary>
+            Represents a data structure that describes for direct techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.DirectStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a data structure that describes for direct techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+        </member>
         <member name="T:Sudoku.Analytics.Steps.AdvancedComplexSeniorExocetStep">
             <summary>
             Provides with a step that is an <b>Advanced Complex Senior Exocet</b> technique.
@@ -17058,6 +17074,22 @@
             <summary>
             Indicates the internal name.
             </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.IndirectStep">
+            <summary>
+            Represents a data structure that describes for indirect techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.IndirectStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Represents a data structure that describes for indirect techniques.
+            </summary>
+            <param name="conclusions"><inheritdoc cref="P:Sudoku.Analytics.Step.Conclusions" path="/summary"/></param>
+            <param name="views"><inheritdoc cref="P:Sudoku.Analytics.Step.Views" path="/summary"/></param>
+            <param name="options"><inheritdoc cref="P:Sudoku.Analytics.Step.Options" path="/summary"/></param>
         </member>
         <member name="T:Sudoku.Analytics.Steps.AlmostLockedCandidatesStep">
             <summary>
@@ -20745,11 +20777,17 @@
         <member name="M:Sudoku.Concepts.EliminationRange.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Inequality(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Equality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Fish">
             <summary>
