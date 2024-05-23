@@ -365,6 +365,15 @@
             as the <c>ToString</c> method result.
             </exception>
         </member>
+        <member name="M:System.delegate.ReturnEmptyString``1(``0)">
+            <summary>
+            Returns an empty string equivalent to <see cref="F:System.String.Empty"/> no matter what the argument is.
+            </summary>
+            <typeparam name="T">The type of the argument. In fact the argument won't be used in this method.</typeparam>
+            <param name="instance">The instance. In fact the argument won't be used in this method.</param>
+            <returns>A string that is equal to <see cref="F:System.String.Empty"/>.</returns>
+            <seealso cref="F:System.String.Empty"/>
+        </member>
         <member name="M:System.delegate.BitMerger``1(``0,``0)">
             <summary>
             Merges two integers by bits. This method will be used by LINQ method
@@ -1494,11 +1503,6 @@
             Indicates the time span that is used for matching.
             </summary>
         </member>
-        <member name="F:System.StringExtensions.InvalidOperation">
-            <summary>
-            Indicates the exception that will be thrown when a certain regular expression is invalid.
-            </summary>
-        </member>
         <member name="M:System.StringExtensions.SatisfyPattern(System.String,System.String)">
             <summary>
             Check whether the specified string instance is satisfied
@@ -1606,7 +1610,7 @@
             <param name="this">The current <see cref="T:System.String"/> instance.</param>
             <returns>An array of <see cref="T:System.String"/> elements.</returns>
         </member>
-        <member name="M:System.StringExtensions.CutOfLength(System.String,System.Int32)">
+        <member name="M:System.StringExtensions.Chunk(System.String,System.Int32)">
             <summary>
             Cut the array to multiple part, making them are all of length <paramref name="length"/>.
             </summary>
@@ -1683,39 +1687,6 @@
             satisfying the specified <paramref name="pattern"/>, with the target string which this method will return.
             </param>
             <returns>The final replaced string.</returns>
-        </member>
-        <member name="M:System.StringExtensions.Reserve(System.String,System.String)">
-            <summary>
-            Reserve all characters that satisfy the specified pattern.
-            </summary>
-            <param name="this">The string.</param>
-            <param name="reservePattern">
-            The pattern that reserved characters satisfied. All supported patterns are:
-            <list type="table">
-            <item>
-            <term><c>@"\d"</c></term>
-            <description>To match a digit.</description>
-            </item>
-            <item>
-            <term><c>@"\t"</c></term>
-            <description>To match a tab.</description>
-            </item>
-            <item>
-            <term><c>@"\w"</c></term>
-            <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
-            </item>
-            </list>
-            </param>
-            <returns>The result string.</returns>
-            <remarks>
-            For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
-            will only contain the letters, digits or the underscore character '<c>_</c>'
-            (i.e. <c>"Helloworld"</c> as the result of this example).
-            </remarks>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the <paramref name="reservePattern"/> is invalid.
-            All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
-            </exception>
         </member>
         <member name="M:System.StringExtensions.IsRegexPattern(System.String)">
             <summary>
@@ -5068,6 +5039,11 @@
         <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_SpecifiedValueMustBeEven">
             <summary>
               Looks up a localized string similar to The argument must be of an even length..
+            </summary>
+        </member>
+        <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_StringIsInvalidRegex">
+            <summary>
+              Looks up a localized string similar to The specified regular expression pattern is invalid..
             </summary>
         </member>
         <member name="P:System.Resources.SystemExtensionsResources.ErrorInfo_UnderlyingTypeNotSupported">

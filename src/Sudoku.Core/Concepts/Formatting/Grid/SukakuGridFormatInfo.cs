@@ -94,7 +94,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 			var result = Grid.Empty;
 			for (var offset = 0; offset < 81; offset++)
 			{
-				var s = matches[offset].Reserve(@"\d");
+				var s = Regex.Replace(matches[offset], @"\d", @delegate.ReturnEmptyString);
 				if (s.Length > 9)
 				{
 					// More than 9 characters.

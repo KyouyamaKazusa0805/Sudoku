@@ -346,7 +346,7 @@ public partial struct Grid :
 			}
 
 			var convertedString = ToString("0");
-			var values = from str in convertedString.CutOfLength(9) select int.Parse(str);
+			var values = from str in convertedString.Chunk(9) select int.Parse(str);
 			var sb = new StringBuilder(54);
 			for (var i = 8; i >= 0; i--)
 			{

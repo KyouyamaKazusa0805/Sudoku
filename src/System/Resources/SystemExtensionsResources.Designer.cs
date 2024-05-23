@@ -124,6 +124,15 @@ namespace System.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The specified regular expression pattern is invalid..
+        /// </summary>
+        internal static string ErrorInfo_StringIsInvalidRegex {
+            get {
+                return ResourceManager.GetString("ErrorInfo_StringIsInvalidRegex", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The target enumeration type has a wrong underlying numeric type. All possible underlying types for an enumeration type must be of size 1, 2, 4 or 8 bits..
         /// </summary>
         internal static string ErrorInfo_UnderlyingTypeNotSupported {

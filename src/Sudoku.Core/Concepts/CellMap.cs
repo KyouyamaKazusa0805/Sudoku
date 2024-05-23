@@ -110,7 +110,7 @@ public partial struct CellMap :
 		get
 		{
 			var convertedString = new BitmapCellMapFormatInfo().FormatMap(in this);
-			var bits = convertedString.CutOfLength(27);
+			var bits = convertedString.Chunk(27);
 			var sb = new StringBuilder(18);
 			foreach (var z in (sextuple(getInteger(bits[2])), sextuple(getInteger(bits[1])), sextuple(getInteger(bits[0]))))
 			{

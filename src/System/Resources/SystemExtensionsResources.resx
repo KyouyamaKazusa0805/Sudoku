@@ -150,4 +150,7 @@
   <data name="ErrorInfo_NoElementsFoundInCollection" xml:space="preserve">
     <value>There's no elements in this collection.</value>
   </data>
+  <data name="ErrorInfo_StringIsInvalidRegex" xml:space="preserve">
+    <value>The specified regular expression pattern is invalid.</value>
+  </data>
 </root>

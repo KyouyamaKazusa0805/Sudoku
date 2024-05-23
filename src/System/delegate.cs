@@ -80,6 +80,16 @@ public static class @delegate
 		=> @this.ToString().Unwrap();
 
 	/// <summary>
+	/// Returns an empty string equivalent to <see cref="string.Empty"/> no matter what the argument is.
+	/// </summary>
+	/// <typeparam name="T">The type of the argument. In fact the argument won't be used in this method.</typeparam>
+	/// <param name="instance">The instance. In fact the argument won't be used in this method.</param>
+	/// <returns>A string that is equal to <see cref="string.Empty"/>.</returns>
+	/// <seealso cref="string.Empty"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static string ReturnEmptyString<T>(T instance) => string.Empty;
+
+	/// <summary>
 	/// Merges two integers by bits. This method will be used by LINQ method
 	/// <see cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>.
 	/// </summary>

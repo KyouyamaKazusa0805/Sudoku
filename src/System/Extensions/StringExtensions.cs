@@ -11,11 +11,6 @@ public static partial class StringExtensions
 	/// </summary>
 	private static readonly TimeSpan MatchingTimeSpan = TimeSpan.FromSeconds(5);
 
-	/// <summary>
-	/// Indicates the exception that will be thrown when a certain regular expression is invalid.
-	/// </summary>
-	private static readonly InvalidOperationException InvalidOperation = new("The specified regular expression pattern is invalid.");
-
 
 	/// <summary>
 	/// Check whether the specified string instance is satisfied
@@ -33,7 +28,9 @@ public static partial class StringExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool SatisfyPattern(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), NotNullWhen(true)] string? pattern)
-		=> pattern?.IsRegexPattern() ?? false ? @this.Match(pattern) == @this : throw InvalidOperation;
+		=> pattern?.IsRegexPattern() ?? false
+			? @this.Match(pattern) == @this
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Check whether the specified string instance can match the value
@@ -53,7 +50,9 @@ public static partial class StringExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsMatch(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
-		=> pattern.IsRegexPattern() ? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan) : throw InvalidOperation;
+		=> pattern.IsRegexPattern()
+			? Regex.IsMatch(@this, pattern, RegexOptions.ExplicitCapture, MatchingTimeSpan)
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Try to get the reference to the first character from a string, and immutable by default.
@@ -101,7 +100,9 @@ public static partial class StringExtensions
 	/// </exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
-		=> pattern.IsRegexPattern() ? @this.Match(pattern, RegexOptions.None) : throw InvalidOperation;
+		=> pattern.IsRegexPattern()
+			? @this.Match(pattern, RegexOptions.None)
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Searches the input string for the first occurrence of the specified regular
@@ -127,7 +128,7 @@ public static partial class StringExtensions
 	public static string? Match(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? Regex.Match(@this, pattern, regexOption, MatchingTimeSpan) is { Success: true, Value: var value } ? value : null
-			: throw InvalidOperation;
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Gets a new <see cref="string"/>[] result, with each element (a <see cref="string"/> with a single character)
@@ -143,14 +144,13 @@ public static partial class StringExtensions
 	/// <param name="this">The string text.</param>
 	/// <param name="length">The desired length.</param>
 	/// <returns>A list of <see cref="string"/> values.</returns>
-	public static string[] CutOfLength(this string @this, int length)
+	public static string[] Chunk(this string @this, int length)
 	{
 		var result = new string[@this.Length % length == 0 ? @this.Length / length : @this.Length / length + 1];
 		for (var i = 0; i < @this.Length / length; i++)
 		{
 			result[i] = @this[(i * length)..((i + 1) * length)];
 		}
-
 		return result;
 	}
 
@@ -175,7 +175,9 @@ public static partial class StringExtensions
 	/// <seealso cref="Regex.Matches(string, string)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern)
-		=> pattern.IsRegexPattern() ? @this.MatchAll(pattern, RegexOptions.None) : throw InvalidOperation;
+		=> pattern.IsRegexPattern()
+			? @this.MatchAll(pattern, RegexOptions.None)
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <summary>
 	/// Searches the specified input string for all occurrences of a
@@ -202,7 +204,7 @@ public static partial class StringExtensions
 	public static string[] MatchAll(this string @this, [StringSyntax(StringSyntaxAttribute.Regex, nameof(regexOption))] string pattern, RegexOptions regexOption)
 		=> pattern.IsRegexPattern()
 			? [.. from m in Regex.Matches(@this, pattern, regexOption, MatchingTimeSpan) select m.Value]
-			: throw InvalidOperation;
+			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("StringIsInvalidRegex"));
 
 	/// <inheritdoc cref="string.Split(char[], StringSplitOptions)"/>
 	/// <param name="this">The array itself.</param>
@@ -234,66 +236,6 @@ public static partial class StringExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static string ReplaceRegex(this string @this, [StringSyntax(StringSyntaxAttribute.Regex)] string pattern, MatchEvaluator evaluator)
 		=> Regex.Replace(@this, pattern, evaluator);
-
-	/// <summary>
-	/// Reserve all characters that satisfy the specified pattern.
-	/// </summary>
-	/// <param name="this">The string.</param>
-	/// <param name="reservePattern">
-	/// The pattern that reserved characters satisfied. All supported patterns are:
-	/// <list type="table">
-	/// <item>
-	/// <term><c>@"\d"</c></term>
-	/// <description>To match a digit.</description>
-	/// </item>
-	/// <item>
-	/// <term><c>@"\t"</c></term>
-	/// <description>To match a tab.</description>
-	/// </item>
-	/// <item>
-	/// <term><c>@"\w"</c></term>
-	/// <description>To match a letter, digit or underscore character <c>'_'</c>.</description>
-	/// </item>
-	/// </list>
-	/// </param>
-	/// <returns>The result string.</returns>
-	/// <remarks>
-	/// For example, if code is <c>"Hello, world!".Reserve(@"\w")</c>, the return value
-	/// will only contain the letters, digits or the underscore character '<c>_</c>'
-	/// (i.e. <c>"Helloworld"</c> as the result of this example).
-	/// </remarks>
-	/// <exception cref="InvalidOperationException">
-	/// Throws when the <paramref name="reservePattern"/> is invalid.
-	/// All possible patterns are shown in the tip for the parameter <paramref name="reservePattern"/>.
-	/// </exception>
-	public static unsafe string Reserve(this string @this, [StringSyntax(StringSyntaxAttribute.Regex), ConstantExpected] string reservePattern)
-	{
-		static bool isTab(char c) => c == '\t';
-		static bool isLetterDigitOrUnderscore(char c) => c == '_' || char.IsLetterOrDigit(c);
-
-		//lang = regex
-		var predicate = reservePattern switch
-		{
-			@"\d" => &char.IsDigit,
-			@"\t" => &isTab,
-			@"\w" => (delegate*<char, bool>)(&isLetterDigitOrUnderscore),
-			_ => throw InvalidOperation
-		};
-
-		var length = @this.Length;
-		var buffer = (stackalloc char[length]);
-		var count = 0;
-		ref var pointer = ref @this.MutableRef();
-		for (var i = 0; i < length; i++, pointer = @ref.Add(ref pointer, 1))
-		{
-			if (predicate(pointer))
-			{
-				buffer[count++] = pointer;
-			}
-		}
-
-		return new(buffer[..count]);
-	}
 
 	/// <summary>
 	/// To check if the current string value is a valid regular
