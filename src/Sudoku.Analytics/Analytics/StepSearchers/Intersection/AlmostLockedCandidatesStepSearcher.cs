@@ -124,7 +124,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 		// Iterate on each cell combination.
 		foreach (ref readonly var alsCells in (checkValueCells ? a : a & EmptyCells) >> size - 1)
 		{
-			// Gather the mask. The cell combination must contain the specified number of digits.
+			// Collect the mask. The cell combination must contain the specified number of digits.
 			var mask = grid[in alsCells, checkValueCells];
 			if (PopCount((uint)mask) != size)
 			{
@@ -174,7 +174,7 @@ public sealed partial class AlmostLockedCandidatesStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Gather all eliminations.
+			// Collect all eliminations.
 			var conclusions = new List<Conclusion>();
 			foreach (var aCell in a)
 			{

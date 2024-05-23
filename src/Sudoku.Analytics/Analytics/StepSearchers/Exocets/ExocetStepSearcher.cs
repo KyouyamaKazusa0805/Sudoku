@@ -1512,7 +1512,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case ({ Count: 1 }, { Count: 2 }, -1):
 			{
-				var digitsMask = (Mask)(grid[in targetCells, false, GridMaskMergingMethod.And] & ~baseCellsDigitsMask);
+				var digitsMask = (Mask)(grid[in targetCells, false, '&'] & ~baseCellsDigitsMask);
 				if (digitsMask == 0)
 				{
 					break;
@@ -1583,7 +1583,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						}
 						case 2:
 						{
-							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, GridMaskMergingMethod.And] & ~baseCellsDigitsMask);
+							var digitsMask = (Mask)(grid[in cellsInThisBlock, false, '&'] & ~baseCellsDigitsMask);
 							if (digitsMask == 0)
 							{
 								break;
@@ -4582,7 +4582,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Why is 2? Because the target cells should be filled two different digits appeared from base cells.
 		{ Count: 2 } when (
 			(Mask)(grid[in targetCellsToBeChecked] & baseCellsDigitsMask),
-			(Mask)(grid[in targetCellsToBeChecked, false, GridMaskMergingMethod.And] & baseCellsDigitsMask)
+			(Mask)(grid[in targetCellsToBeChecked, false, '&'] & baseCellsDigitsMask)
 		) is var (u, i) => u == baseCellsDigitsMask && i != 0,
 
 		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.

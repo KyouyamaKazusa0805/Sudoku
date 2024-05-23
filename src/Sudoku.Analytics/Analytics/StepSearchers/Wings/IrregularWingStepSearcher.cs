@@ -900,7 +900,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 											continue;
 										}
 
-										if (grid[in midCells, false, GridMaskMergingMethod.And] is var mask && (mask == 0 || !IsPow2(mask)))
+										if (grid[in midCells, false, '&'] is var mask && (mask == 0 || !IsPow2(mask)))
 										{
 											// No digit Y can be found.
 											continue;

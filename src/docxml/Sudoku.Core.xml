@@ -3683,7 +3683,7 @@
             <param name="cells">The list of cells to gather the usages on all digits.</param>
             <returns>A mask of type <see cref="T:System.Int16"/> that represents the usages of digits 1 to 9.</returns>
         </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean)">
+        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,System.Char)">
             <summary>
             <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
             </summary>
@@ -3692,17 +3692,14 @@
             Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
             If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
             </param>
-            <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
-        </member>
-        <member name="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.GridMaskMergingMethod)">
-            <summary>
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/summary"/>
-            </summary>
-            <param name="cells"><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/param[@name='cells']"/></param>
-            <param name="withValueCells">
-            <inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@,System.Boolean)" path="/param[@name='withValueCells']"/>
-            </param>
             <param name="mergingMethod">
+            Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+            <list type="bullet">
+            <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
+            <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
+            <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
+            </list>
+            By default, the value is <c>'<![CDATA[|]]>'</c>.
             </param>
             <returns><inheritdoc cref="P:Sudoku.Concepts.Grid.Item(Sudoku.Concepts.CellMap@)" path="/returns"/></returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
@@ -4383,26 +4380,6 @@
         </member>
         <member name="M:Sudoku.Concepts.GridEqualityComparer.GetHashCode(Sudoku.Concepts.Grid)">
             <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.GridMaskMergingMethod">
-            <summary>
-            Represents a method that totals the masks in a list of cells up.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridMaskMergingMethod.AndNot">
-            <summary>
-            Indicates the merging operation is <see langword="operator"/> <c><![CDATA[&]]></c> and <see langword="operator"/> <c><![CDATA[~]]></c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridMaskMergingMethod.And">
-            <summary>
-            Indicates the merging operation is <see langword="operator"/> <c><![CDATA[&]]></c>.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.GridMaskMergingMethod.Or">
-            <summary>
-            Indicates the merging operation is <see langword="operator"/> <c><![CDATA[|]]></c>.
-            </summary>
         </member>
         <member name="T:Sudoku.Concepts.GridTransformations">
             <summary>

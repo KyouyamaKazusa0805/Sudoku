@@ -2347,7 +2347,7 @@ public partial class UniqueRectangleStepSearcher
 				// Here we should check for pivot digit for case 'pivotDigit == -1'.
 				if (pivotDigit == -1)
 				{
-					var mergedMask = grid[in combination, false, GridMaskMergingMethod.And];
+					var mergedMask = grid[in combination, false, '&'];
 					if (!IsPow2(mergedMask))
 					{
 						// No pivot digit can be found, meaning no eliminations can be found.

@@ -765,60 +765,42 @@ public partial struct Grid :
 	/// Indicates whether the value cells (given or modifiable ones) will be included to be gathered.
 	/// If <see langword="true"/>, all value cells (no matter what kind of cell) will be summed up.
 	/// </param>
-	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
-	public readonly Mask this[ref readonly CellMap cells, bool withValueCells]
-	{
-		get
-		{
-			var result = (Mask)0;
-			foreach (var cell in cells)
-			{
-				if (!withValueCells && GetState(cell) != CellState.Empty || withValueCells)
-				{
-					result |= this[cell];
-				}
-			}
-			return (Mask)(result & MaxCandidatesMask);
-		}
-	}
-
-	/// <summary>
-	/// <inheritdoc cref="this[ref readonly CellMap]" path="/summary"/>
-	/// </summary>
-	/// <param name="cells"><inheritdoc cref="this[ref readonly CellMap]" path="/param[@name='cells']"/></param>
-	/// <param name="withValueCells">
-	/// <inheritdoc cref="this[ref readonly CellMap, bool]" path="/param[@name='withValueCells']"/>
-	/// </param>
 	/// <param name="mergingMethod">
+	/// Indicates the merging method. Values are <c>'<![CDATA[&]]>'</c>, <c>'<![CDATA[|]]>'</c> and <c>'<![CDATA[~]]>'</c>.
+	/// <list type="bullet">
+	/// <item><c>'<![CDATA[&]]>'</c>: Use <b>bitwise and</b> operator to merge masks.</item>
+	/// <item><c>'<![CDATA[|]]>'</c>: Use <b>bitwise or</b> operator to merge masks.</item>
+	/// <item><c>'<![CDATA[~]]>'</c>: Use <b>bitwise nand</b> operator to merge masks.</item>
+	/// </list>
+	/// By default, the value is <c>'<![CDATA[|]]>'</c>.
 	/// </param>
 	/// <returns><inheritdoc cref="this[ref readonly CellMap]" path="/returns"/></returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when <paramref name="mergingMethod"/> is not defined.</exception>
-	public readonly unsafe Mask this[ref readonly CellMap cells, bool withValueCells, GridMaskMergingMethod mergingMethod]
+	public readonly unsafe Mask this[ref readonly CellMap cells, bool withValueCells, [ConstantExpected] char mergingMethod = '|']
 	{
 		get
 		{
 			var result = mergingMethod switch
 			{
-				GridMaskMergingMethod.AndNot => MaxCandidatesMask,
-				GridMaskMergingMethod.And => MaxCandidatesMask,
-				GridMaskMergingMethod.Or => (Mask)0,
+				'~' or '&' => MaxCandidatesMask,
+				'|' => (Mask)0,
 				_ => throw new ArgumentOutOfRangeException(nameof(mergingMethod))
 			};
 			var mergingFunctionPtr = mergingMethod switch
 			{
-				GridMaskMergingMethod.AndNot => &andNot,
-				GridMaskMergingMethod.And => &and,
-				GridMaskMergingMethod.Or => &or,
+				'~' => &andNot,
+				'&' => &and,
+				'|' => &or,
 				_ => default(delegate*<ref Mask, ref readonly Grid, Cell, void>)
 			};
 			foreach (var cell in cells)
 			{
-				if (!withValueCells && GetState(cell) == CellState.Empty || withValueCells)
+				if (!withValueCells && GetState(cell) != CellState.Empty || withValueCells)
 				{
 					mergingFunctionPtr(ref result, in this, cell);
 				}
 			}
-			return result;
+			return (Mask)(result & MaxCandidatesMask);
 
 
 			static void andNot(ref Mask result, ref readonly Grid grid, Cell cell) => result &= (Mask)~grid[cell];
