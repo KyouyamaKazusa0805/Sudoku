@@ -6,21 +6,21 @@ public partial struct CandidateMap
 	/// Indicates the internal buffer type.
 	/// </summary>
 	[InlineArray(12)]
+	[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
+	[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 	private struct BackingBuffer : IEquatable<BackingBuffer>, IEqualityOperators<BackingBuffer, BackingBuffer, bool>
 	{
 		/// <summary>
 		/// Indicates the first element of the whole buffer.
 		/// </summary>
-		[SuppressMessage("Style", "IDE0044:Add readonly modifier", Justification = "<Pending>")]
-		[SuppressMessage("CodeQuality", "IDE0051:Remove unused private members", Justification = "<Pending>")]
 		private long _firstElement;
 
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="object.ToString"/>
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		public override readonly bool Equals([NotNullWhen(true)] object? obj) => obj is BackingBuffer comparer && Equals(in comparer);
 
-		/// <inheritdoc/>
+		/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 		public readonly bool Equals(ref readonly BackingBuffer other)
 		{
 			for (var i = 0; i < 12; i++)

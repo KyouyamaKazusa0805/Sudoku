@@ -32,10 +32,10 @@
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.Equals(System.Object)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.Equals(Sudoku.Concepts.CandidateMap.BackingBuffer@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.BackingBuffer.GetHashCode">
             <inheritdoc/>
