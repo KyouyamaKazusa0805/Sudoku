@@ -349,7 +349,6 @@ public partial struct CellMap :
 			{
 				result |= PeersMap[cell];
 			}
-
 			return result;
 		}
 	}
