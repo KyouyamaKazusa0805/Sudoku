@@ -47,12 +47,11 @@ public partial struct Grid :
 	IEnumerable<Digit>,
 	IEquatable<Grid>,
 	IEqualityOperators<Grid, Grid, bool>,
-	IFormattable,
 	IJsonSerializable<Grid>,
 	IMinMaxValue<Grid>,
-	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<Grid, Candidate>,
+	ISpanFormattable,
 	ISpanParsable<Grid>,
 	ITokenizable<Grid>,
 	IToArrayMethod<Grid, Digit>,
@@ -949,6 +948,27 @@ public partial struct Grid :
 				return true;
 			}
 		}
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		var targetString = ToString(format.IsEmpty ? null : format.ToString(), provider);
+		if (destination.Length < targetString.Length)
+		{
+			goto ReturnFalse;
+		}
+
+		if (targetString.TryCopyTo(destination))
+		{
+			charsWritten = targetString.Length;
+			return true;
+		}
+
+	ReturnFalse:
+		charsWritten = 0;
+		return false;
 	}
 
 	/// <summary>

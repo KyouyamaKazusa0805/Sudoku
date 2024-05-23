@@ -3742,6 +3742,9 @@
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.GetExistence(System.Int32,System.Int32)">
             <summary>
             Sets a candidate existence case with a <see cref="T:System.Boolean"/> value.
