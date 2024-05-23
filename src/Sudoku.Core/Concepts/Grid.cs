@@ -38,9 +38,9 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
 [LargeStructure]
-[ComparisonOperators]
 [Equals]
 [EqualityOperators]
+[ComparisonOperators]
 public partial struct Grid :
 	IComparable<Grid>,
 	IComparisonOperators<Grid, Grid, bool>,
