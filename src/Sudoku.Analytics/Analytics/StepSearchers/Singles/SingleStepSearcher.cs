@@ -220,7 +220,6 @@ public sealed partial class SingleStepSearcher : StepSearcher
 				return step;
 			}
 		}
-
 		return null;
 	}
 
