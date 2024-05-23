@@ -78,7 +78,6 @@ public static unsafe class GridTransformations
 				@ref.Swap(ref @this[i * 9 + j], ref @this[i * 9 + (8 - j)]);
 			}
 		}
-
 		return ref @this;
 	}
 
@@ -100,7 +99,6 @@ public static unsafe class GridTransformations
 				@ref.Swap(ref @this[i * 9 + j], ref @this[(8 - i) * 9 + j]);
 			}
 		}
-
 		return ref @this;
 	}
 
@@ -122,7 +120,6 @@ public static unsafe class GridTransformations
 				@ref.Swap(ref @this[i * 9 + j], ref @this[j * 9 + i]);
 			}
 		}
-
 		return ref @this;
 	}
 
@@ -156,7 +153,6 @@ public static unsafe class GridTransformations
 				@ref.Swap(ref @this[i * 9 + j], ref @this[(8 - j) * 9 + (8 - i)]);
 			}
 		}
-
 		return ref @this;
 	}
 
@@ -247,7 +243,6 @@ public static unsafe class GridTransformations
 		foreach (var cell in digits1Map) { @this.SetDigit(cell, digit2); }
 		foreach (var cell in digits2Map) { @this.SetDigit(cell, digit1); }
 		@this.Fix();
-
 		return ref @this;
 	}
 
@@ -309,7 +304,6 @@ public static unsafe class GridTransformations
 		{
 			@ref.Swap(ref @this[chuteCells1[i]], ref @this[chuteCells2[i]]);
 		}
-
 		return ref @this;
 	}
 }
