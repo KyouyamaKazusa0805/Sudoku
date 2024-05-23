@@ -1,4 +1,4 @@
-namespace Sudoku.Recognition.Imaging;
+namespace Sudoku.Drawing.Ocr;
 
 /// <summary>
 /// Indicates the exception that throws when the value is failed to fill into a cell.

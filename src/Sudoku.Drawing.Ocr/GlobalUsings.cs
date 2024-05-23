@@ -15,3 +15,4 @@ global using Emgu.CV.Structure;
 global using Emgu.CV.Util;
 global using Sudoku.Concepts;
 global using Sudoku.Resources;
+global using @imaging = System.Drawing.Imaging;

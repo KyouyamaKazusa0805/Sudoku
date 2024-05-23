@@ -1,4 +1,4 @@
-namespace Sudoku.Recognition.Imaging;
+namespace Sudoku.Drawing.Ocr;
 
 /// <summary>
 /// Provides extension methods on <see cref="Bitmap"/>.
@@ -29,12 +29,13 @@ public static class ImageHandler
 			return false;
 		}
 
-		var sides = (LineSegment2DF[])[
-			new(contour[0], contour[1]),
-			new(contour[1], contour[3]),
-			new(contour[2], contour[3]),
-			new(contour[0], contour[2])
-		];
+		var sides = (stackalloc[]
+		{
+			new LineSegment2DF(contour[0], contour[1]),
+			new LineSegment2DF(contour[1], contour[3]),
+			new LineSegment2DF(contour[2], contour[3]),
+			new LineSegment2DF(contour[0], contour[2])
+		});
 
 		// Check angles between common sides.
 		for (var j = 0; j < 4; j++)
@@ -118,25 +119,20 @@ public static class ImageHandler
 			case PixelFormat.Format32bppRgb when colorIs<Bgr>() && depthIs<byte>():
 			{
 				var data = bitmap.LockBits(new(Point.Empty, size), ImageLockMode.ReadOnly, bitmap.PixelFormat);
-
 				using var mat = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				CvInvoke.MixChannels(mat, image, [0, 0, 1, 1, 2, 2]);
-
 				bitmap.UnlockBits(data);
-
 				break;
 			}
 			case PixelFormat.Format32bppRgb:
 			{
 				using var tmp = bitmap.ToImage<Bgr, byte>();
 				image.ConvertFrom(tmp);
-
 				break;
 			}
 			case PixelFormat.Format32bppArgb when colorIs<Bgra>() && depthIs<byte>():
 			{
 				image.CopyFromBitmap(bitmap);
-
 				break;
 			}
 			case PixelFormat.Format32bppArgb:
@@ -145,9 +141,7 @@ public static class ImageHandler
 
 				using var tmp = new Image<Bgra, byte>(size.Width, size.Height, data.Stride, data.Scan0);
 				image.ConvertFrom(tmp);
-
 				bitmap.UnlockBits(data);
-
 				break;
 			}
 			case PixelFormat.Format8bppIndexed when colorIs<Bgra>() && depthIs<byte>():
@@ -207,7 +201,6 @@ public static class ImageHandler
 				var srcAddress = data.Scan0.ToInt64();
 				var imageData = (image.Data as byte[,,])!;
 				var row = new byte[fullByteCount + (partialBitCount == 0 ? 0 : 1)];
-
 				var v = 0;
 				for (var i = 0; i < rows; i++, srcAddress += data.Stride)
 				{
@@ -270,8 +263,12 @@ public static class ImageHandler
 	/// <param name="rTable">Lookup table for the R channel.</param>
 	/// <param name="aTable">Lookup table for the A channel.</param>
 	public static void ColorPaletteToLookupTable(
-		ColorPalette palette, out Matrix<byte> bTable, out Matrix<byte> gTable,
-		out Matrix<byte> rTable, out Matrix<byte> aTable)
+		@imaging::ColorPalette palette,
+		out Matrix<byte> bTable,
+		out Matrix<byte> gTable,
+		out Matrix<byte> rTable,
+		out Matrix<byte> aTable
+	)
 	{
 		bTable = new(256, 1);
 		gTable = new(256, 1);
@@ -281,7 +278,6 @@ public static class ImageHandler
 		var gData = gTable.Data;
 		var rData = rTable.Data;
 		var aData = aTable.Data;
-
 		var colors = palette.Entries;
 		for (var (i, length) = (0, colors.Length); i < length; i++)
 		{

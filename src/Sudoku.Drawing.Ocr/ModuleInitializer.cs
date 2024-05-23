@@ -1,4 +1,4 @@
-namespace System;
+namespace Sudoku;
 
 /// <include file="../../global-doc-comments.xml" path="//g/csharp9/feature[@name='module-initializer']/target[@name='type']"/>
 [EditorBrowsable(EditorBrowsableState.Never)]

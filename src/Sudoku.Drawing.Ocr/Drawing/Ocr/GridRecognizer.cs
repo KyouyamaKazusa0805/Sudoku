@@ -1,4 +1,4 @@
-namespace Sudoku.Recognition.Imaging;
+namespace Sudoku.Drawing.Ocr;
 
 /// <summary>
 /// Provides a grid field recognizer. If you want to know what is a <b>field</b>,
