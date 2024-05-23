@@ -11,17 +11,6 @@ public interface ITokenizable<TSelf> where TSelf : ITokenizable<TSelf>
 	/// </summary>
 	public abstract string Token { get; }
 
-	/// <summary>
-	/// Indicates the equality comparer instance of type <typeparamref name="TSelf"/>.
-	/// </summary>
-	public sealed IEqualityComparer<TSelf> EqualityComparer
-		=> EqualityComparer<TSelf>.Create(static (x, y) => x?.Token == y?.Token, static v => v.TokenHashCode);
-
-	/// <summary>
-	/// Indicates the hash code that is calculated with token.
-	/// </summary>
-	protected internal sealed int TokenHashCode => Token.GetHashCode();
-
 
 	/// <summary>
 	/// Create an instance of type <typeparamref name="TSelf"/> that is used a token.
