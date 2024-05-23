@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.CompilerServices;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of extension methods operating with <see cref="List{T}"/> of <see cref="Grid"/>.
@@ -17,7 +17,7 @@ public static class ListGridExtensions
 	/// <param name="this">The list.</param>
 	/// <param name="grid">The item to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AddRef(this List<Grid> @this, ref readonly Grid grid)
+	public static void AddRef(this List<Grid> @this, scoped ref readonly Grid grid)
 	{
 		GetVersion(@this)++;
 		var array = @this.GetItems().AsSpan();
@@ -34,7 +34,7 @@ public static class ListGridExtensions
 	}
 
 	/// <inheritdoc cref="List{T}.AddRange(IEnumerable{T})"/>
-	public static void AddRangeRef(this List<Grid> @this, ReadOnlySpan<Grid> collection)
+	public static void AddRangeRef(this List<Grid> @this, scoped ReadOnlySpan<Grid> collection)
 	{
 		foreach (ref readonly var grid in collection)
 		{
@@ -47,7 +47,7 @@ public static class ListGridExtensions
 	/// </summary>
 	/// <param name="this">The list.</param>
 	/// <param name="grid">The grid to be added.</param>
-	private static void AddWithResize(this List<Grid> @this, ref readonly Grid grid)
+	private static void AddWithResize(this List<Grid> @this, scoped ref readonly Grid grid)
 	{
 		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 
@@ -78,12 +78,7 @@ public static class ListGridExtensions
 
 		// If the computed capacity is still less than specified, set to the original argument.
 		// Capacities exceeding Array.MaxLength will be surfaced as OutOfMemoryException by Array.Resize.
-		if (newCapacity < capacity)
-		{
-			newCapacity = capacity;
-		}
-
-		return newCapacity;
+		return Math.Min(newCapacity, capacity);
 	}
 
 	/// <summary>

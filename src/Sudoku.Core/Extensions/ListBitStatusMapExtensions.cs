@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.CompilerServices;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a list of extension methods operating with <see cref="List{T}"/>
@@ -18,7 +18,7 @@ public static class ListBitStatusMapExtensions
 	/// <param name="this">The list.</param>
 	/// <param name="cells">The <see cref="CellMap"/> to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AddRef(this List<CellMap> @this, ref readonly CellMap cells)
+	public static void AddRef(this List<CellMap> @this, scoped ref readonly CellMap cells)
 	{
 		GetVersion(@this)++;
 		var array = @this.GetItems().AsSpan();
@@ -40,7 +40,7 @@ public static class ListBitStatusMapExtensions
 	/// <param name="this">The list.</param>
 	/// <param name="candidates">The <see cref="CandidateMap"/> to be added.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static void AddRef(this List<CandidateMap> @this, ref readonly CandidateMap candidates)
+	public static void AddRef(this List<CandidateMap> @this, scoped ref readonly CandidateMap candidates)
 	{
 		GetVersion(@this)++;
 		var array = @this.GetItems().AsSpan();
@@ -79,7 +79,7 @@ public static class ListBitStatusMapExtensions
 	/// </summary>
 	/// <param name="this">The list.</param>
 	/// <param name="cells">The <see cref="CellMap"/> to be added.</param>
-	private static void AddWithResize(this List<CellMap> @this, ref readonly CellMap cells)
+	private static void AddWithResize(this List<CellMap> @this, scoped ref readonly CellMap cells)
 	{
 		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 		var size = GetSize(@this);
@@ -93,7 +93,7 @@ public static class ListBitStatusMapExtensions
 	/// </summary>
 	/// <param name="this">The list.</param>
 	/// <param name="candidates">The <see cref="CandidateMap"/> to be added.</param>
-	private static void AddWithResize(this List<CandidateMap> @this, ref readonly CandidateMap candidates)
+	private static void AddWithResize(this List<CandidateMap> @this, scoped ref readonly CandidateMap candidates)
 	{
 		Debug.Assert(GetSize(@this) == @this.GetItems().Length);
 		var size = GetSize(@this);
