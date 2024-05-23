@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a method that checks for an offset of type <typeparamref name="TElement"/>

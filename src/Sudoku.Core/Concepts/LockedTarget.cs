@@ -20,11 +20,11 @@ public readonly partial struct LockedTarget(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] CellMap cells
 ) :
+	ICoordinateConvertible<LockedTarget>,
 	IEquatable<LockedTarget>,
 	IEqualityOperators<LockedTarget, LockedTarget, bool>,
 	IFormattable,
-	IJsonSerializable<LockedTarget>,
-	ISudokuConceptConvertible<LockedTarget>
+	IJsonSerializable<LockedTarget>
 {
 	/// <summary>
 	/// Indicates whether the number of cells is 1.

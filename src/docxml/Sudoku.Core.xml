@@ -4,6 +4,23 @@
         <name>Sudoku.Core</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Concepts.BitStatusMapPredicate`3">
+            <summary>
+            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
+            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
+            determining whether the offset satisfies the specified condition.
+            </summary>
+            <typeparam name="TSelf">
+            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
+            </typeparam>
+            <typeparam name="TElement">
+            The type of each element in the collection of type <typeparamref name="TSelf"/>.
+            </typeparam>
+            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
+            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
+            <param name="grid">The grid as candidate reference.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.CandidateMap">
             <summary>
             Encapsulates a binary series of candidate state table.
@@ -116,10 +133,10 @@
             <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap.Full">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Full"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Full"/>
         </member>
         <member name="F:Sudoku.Concepts.CandidateMap._bits">
             <summary>
@@ -175,22 +192,22 @@
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Shifting">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Empty">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Full">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#Full">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#JsonConverterInstance">
+        <member name="P:Sudoku.Concepts.CandidateMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CandidateMap,System#Int32,Sudoku#Concepts#CandidateMap#Enumerator}#JsonConverterInstance">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CandidateMap.Item(System.Int32)">
@@ -508,13 +525,13 @@
             </remarks>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Shifting">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Shifting"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Shifting"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Empty">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Empty"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Empty"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap.Full">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Full"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Full"/>
         </member>
         <member name="F:Sudoku.Concepts.CellMap._high">
             <summary>
@@ -654,22 +671,22 @@
             Indicates the cell offsets in this collection.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Shifting">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Shifting">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Offsets">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Offsets">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#MaxCount">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Empty">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Empty">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Full">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#Full">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#Primitive#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#JsonConverterInstance">
+        <member name="P:Sudoku.Concepts.CellMap.Sudoku#Concepts#IBitStatusMap{Sudoku#Concepts#CellMap,System#Int32,Sudoku#Concepts#CellMap#Enumerator}#JsonConverterInstance">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.CellMap.Item(System.Int32)">
@@ -1848,9 +1865,8 @@
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateParser">
             <summary>
             Represents for a parser instance that parses a <see cref="T:System.String"/> text,
-            converting it into a valid <see cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/> instance.
+            converting into a valid instance that can be represented as a sudoku concept.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="F:Sudoku.Concepts.Coordinates.CoordinateParser.DeprecatedInfo_NotSupported">
             <summary>
@@ -1906,6 +1922,31 @@
             The parser method that can creates a <see cref="T:Sudoku.Concepts.Conjugate"/> list via the specified text to be parsed.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conjugate"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">
+            <summary>
+            Represents a type of notation to describe a coordinate in sudoku.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.CoordinateType.Literal">
+            <summary>
+            Idnicates the notation is based on literally notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.CoordinateType.RxCy">
+            <summary>
+            Indicates the notation is based on <b>RxCy</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.CoordinateType.K9">
+            <summary>
+            Indicates the notation is based on <b>K9</b> notation.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Coordinates.CoordinateType.Excel">
+            <summary>
+            Indicates the notation is based on <b>Excel</b> notation.
+            </summary>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter">
             <summary>
@@ -2018,6 +2059,91 @@
             Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.ICoordinateConvertible`1">
+            <summary>
+            Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateConvertible`1.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateConvertible`1.ToString``1(``0)">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <typeparam name="T">The type of the converter.</typeparam>
+            <param name="converter">The converter instance that the current concept will rely on.</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.Coordinates.ICoordinateParsable`1">
+            <summary>
+            Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.TryParse(System.String,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.TryParse``1(System.String,``0,`0@)">
+            <summary>
+            Try to parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <typeparam name="T">The type of coordinate parser.</typeparam>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="parser">
+            A parser instance derived from <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/>,
+            indicating the custom logic on parsing for coordinate items inside the concept.
+            </param>
+            <param name="result">
+            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
+            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
+            </param>
+            <returns>
+            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.Parse(System.String)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <returns>The result parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.Parse``1(System.String,``0)">
+            <summary>
+            Parse the specified string text, and get the same-meaning instance
+            of type <typeparamref name="TSelf"/>.
+            </summary>
+            <typeparam name="T">The type of coordinate parser.</typeparam>
+            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
+            <param name="parser">
+            A parser instance derived from <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/>,
+            indicating the custom logic on parsing for coordinate items inside the concept.
+            </param>
+            <returns>The result parsed.</returns>
+            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.ICoordinateParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.K9Converter">
             <summary>
             Represents a coordinate converter using K9 notation.
@@ -2101,9 +2227,8 @@
         <member name="T:Sudoku.Concepts.Coordinates.K9Parser">
             <summary>
             Represents a parser type that uses <b>K9</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/> instance.
+            converting into a valid instance that can be represented as a sudoku concept.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.CellParser">
             <inheritdoc/>
@@ -2344,9 +2469,8 @@
         <member name="T:Sudoku.Concepts.Coordinates.RxCyParser">
             <summary>
             Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-            converting into a valid <see cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/> instance.
+            converting into a valid instance that can be represented as a sudoku concept.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.ISudokuConcept`1"/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.CellParser">
             <inheritdoc/>
@@ -4586,6 +4710,433 @@
             Indicates the house type is a column.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.IBitStatusMap`3">
+            <summary>
+            Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
+            </summary>
+            <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Count">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.StringChunks">
+            <summary>
+            Gets all chunks of the current collection, meaning a list of <see cref="T:System.String"/> values that can describe
+            all cell and candidate indices, grouped with same row/column.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.PeerIntersection">
+            <summary>
+            Indicates the peer intersection of the current instance.
+            </summary>
+            <remarks>
+            A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+            For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Offsets">
+            <summary>
+            Indicates the cell offsets in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Shifting">
+            <summary>
+            Indicates the size of each unit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#IsReadOnly">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Empty">
+            <summary>
+            Indicates an empty instance containing no elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Full">
+            <summary>
+            Indicates an instance that contains all possible elements.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.MaxCount">
+            <summary>
+            Indicates the maximum number of elements that the collection can be reached.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.JsonConverterInstance">
+            <summary>
+            Indicates a converter instance that supports for serialization on the current instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MinValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#DefaultOptions">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.IBitStatusMap`3.Item(System.Int32)">
+            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.AddRange(System.ReadOnlySpan{`1})">
+            <summary>
+            Adds a list of offsets into the current collection.
+            </summary>
+            <param name="offsets">
+            <para>Offsets to be added.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>The number of offsets succeeded to be added.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.RemoveRange(System.ReadOnlySpan{`1})">
+            <summary>
+            Removes a list of offsets from the current collection.
+            </summary>
+            <param name="offsets">
+            <para>Offsets to be removed.</para>
+            <target name="parameter">
+				<para>
+					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
+					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
+					Value-storages are not permitted.
+				</para>
+				<para>
+					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
+				</para>
+			</target>
+            </param>
+            <returns>The number of offsets succeeded to be removed.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.CopyTo(`1@,System.Int32)">
+            <summary>
+            Copies the current instance to the target sequence specified as a reference
+            to an element of type <typeparamref name="TElement"/>.
+            </summary>
+            <param name="sequence">
+            The reference that points to the first element in a sequence of type <typeparamref name="TElement"/>.
+            </param>
+            <param name="length">The length of that array.</param>
+            <exception cref="T:System.ArgumentNullException">
+            Throws when the argument <paramref name="sequence"/> is <see langword="null"/>.
+            </exception>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the capacity isn't enough to store all values.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.ForEach(System.Action{`1})">
+            <summary>
+            Iterates on each element in this collection.
+            </summary>
+            <param name="action">The visitor that handles for each element in this collection.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.Toggle(`1)">
+            <summary>
+            Try to toggle the offset, which means the value will be added if not exist in collection, or removed if exists.
+            </summary>
+            <param name="offset">The offset to be added or removed.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.IndexOf(`1)">
+            <summary>
+            Try to get the specified index of the offset.
+            </summary>
+            <param name="offset">The desired offset.</param>
+            <returns>The index of the offset.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.Equals(`0@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.ToArray">
+            <summary>
+            Get all offsets whose bits are set <see langword="true"/>.
+            </summary>
+            <returns>An array of offsets.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the current instance, and get the new instance with some of elements between two indices.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="count">The number of elements.</param>
+            <returns>The target instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.GetEnumerator">
+            <summary>
+            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
+            </summary>
+            <returns>The enumerator instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Clear">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#CopyTo(`1[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Contains(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#IEquatable{TSelf}#Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Add(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Add(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#ExceptWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IntersectWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#UnionWith(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IContainsMethod{TSelf,TElement}#Contains(`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#ToJsonString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#FromJsonString(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_LogicalNot(`0@)">
+            <summary>
+            Determines whether the current collection is empty.
+            </summary>
+            <param name="offsets">The cells to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+            <remarks>
+            The type of the current collection supports using <see cref="T:System.Boolean"/>-like expression to determine whether the collection is not empty,
+            for example:
+            <code><![CDATA[
+            if (collection)
+                // ...
+            ]]></code>
+            The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
+            will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_OnesComplement(`0@)">
+            <summary>
+            Reverse state for all offsets, which means all <see langword="true"/> bits
+            will be set <see langword="false"/>, and all <see langword="false"/> bits
+            will be set <see langword="true"/>.
+            </summary>
+            <param name="offsets">The instance to negate.</param>
+            <returns>The negative result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_True(`0@)">
+            <summary>
+            Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_False(`0@)">
+            <summary>
+            Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
+            </summary>
+            <param name="cells">The collection.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Addition(`0@,`1)">
+            <summary>
+            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
+            and returns the added result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be added.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Subtraction(`0@,`1)">
+            <summary>
+            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
+            and returns the removed result.
+            </summary>
+            <param name="collection">The collection.</param>
+            <param name="offset">The offset to be removed.</param>
+            <returns>The result collection.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_BitwiseAnd(`0@,`0@)">
+            <summary>
+            Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_BitwiseOr(`0@,`0@)">
+            <summary>
+            Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
+            and return the merged result.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_ExclusiveOr(`0@,`0@)">
+            <summary>
+            Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
+            </summary>
+            <param name="left">The left instance.</param>
+            <param name="right">The right instance.</param>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_RightShift(`0@,System.Int32)">
+            <summary>
+            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+            with the specified value as the result number of elements in each subset.
+            </summary>
+            <param name="map">The map to be checked.</param>
+            <param name="subsetSize">The subset size for each result element.</param>
+            <returns>
+            A list of <typeparamref name="TSelf"/> instances
+            whose number of elements is equal to <paramref name="subsetSize"/> as its subsets.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_UnsignedRightShift(`0@,System.Int32)">
+            <summary>
+            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+            with the specified value as the maximum number of elements in each subset.
+            </summary>
+            <param name="map">The map to be checked.</param>
+            <param name="subsetSize">The subset size for each result element.</param>
+            <returns>
+            A list of <typeparamref name="TSelf"/> instances
+            whose number of elements is equal to or less than <paramref name="subsetSize"/> as its subsets.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_True(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_False(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_LogicalNot(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IAdditionOperators{TSelf,TElement,TSelf}#op_Addition(`0,`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#ISubtractionOperators{TSelf,TElement,TSelf}#op_Subtraction(`0,`1)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_BitwiseAnd(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_BitwiseOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1[])~`0">
+            <summary>
+            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.Span{`1})~`0">
+            <summary>
+            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.ReadOnlySpan{`1})~`0">
+            <summary>
+            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
+            </summary>
+            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
+        </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>
             Defines an inference.
@@ -4854,10 +5405,10 @@
         </member>
         <member name="T:Sudoku.Concepts.MapCombinatorial">
             <summary>
-            Represents some methods operating with <see cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`3"/> instances
+            Represents some methods operating with <see cref="T:Sudoku.Concepts.IBitStatusMap`3"/> instances
             (i.e. <see cref="T:Sudoku.Concepts.CellMap"/> and <see cref="T:Sudoku.Concepts.CandidateMap"/>) to get subsets.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`3"/>
+            <seealso cref="T:Sudoku.Concepts.IBitStatusMap`3"/>
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
@@ -4941,475 +5492,6 @@
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.BitStatusMapPredicate`3">
-            <summary>
-            Represents a method that checks for an offset of type <typeparamref name="TElement"/>
-            in the collection of type <typeparamref name="TSelf"/>, referenced from <paramref name="grid"/>,
-            determining whether the offset satisfies the specified condition.
-            </summary>
-            <typeparam name="TSelf">
-            The type of the bit status map. The value can be <see cref="T:Sudoku.Concepts.CellMap"/> or <see cref="T:Sudoku.Concepts.CandidateMap"/>.
-            </typeparam>
-            <typeparam name="TElement">
-            The type of each element in the collection of type <typeparamref name="TSelf"/>.
-            </typeparam>
-            <typeparam name="TEnumerator">The type of enumerator.</typeparam>
-            <param name="offset">The <typeparamref name="TElement"/> offset value to be checked.</param>
-            <param name="grid">The grid as candidate reference.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.CoordinateType">
-            <summary>
-            Represents a type of notation to describe a coordinate in sudoku.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.CoordinateType.Literal">
-            <summary>
-            Idnicates the notation is based on literally notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.CoordinateType.RxCy">
-            <summary>
-            Indicates the notation is based on <b>RxCy</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.CoordinateType.K9">
-            <summary>
-            Indicates the notation is based on <b>K9</b> notation.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.CoordinateType.Excel">
-            <summary>
-            Indicates the notation is based on <b>Excel</b> notation.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.IBitStatusMap`3">
-            <summary>
-            Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
-            </summary>
-            <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
-            <typeparam name="TElement">The type of each element.</typeparam>
-            <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Count">
-            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.StringChunks">
-            <summary>
-            Gets all chunks of the current collection, meaning a list of <see cref="T:System.String"/> values that can describe
-            all cell and candidate indices, grouped with same row/column.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.PeerIntersection">
-            <summary>
-            Indicates the peer intersection of the current instance.
-            </summary>
-            <remarks>
-            A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
-            For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
-            </remarks>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Offsets">
-            <summary>
-            Indicates the cell offsets in this collection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Shifting">
-            <summary>
-            Indicates the size of each unit.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#IsReadOnly">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Empty">
-            <summary>
-            Indicates an empty instance containing no elements.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Full">
-            <summary>
-            Indicates an instance that contains all possible elements.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.MaxCount">
-            <summary>
-            Indicates the maximum number of elements that the collection can be reached.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.JsonConverterInstance">
-            <summary>
-            Indicates a converter instance that supports for serialization on the current instance.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IAdditiveIdentity{TSelf,TSelf}#AdditiveIdentity">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MinValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IMinMaxValue{TSelf}#MaxValue">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#DefaultOptions">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Item(System.Int32)">
-            <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.AddRange(System.ReadOnlySpan{`1})">
-            <summary>
-            Adds a list of offsets into the current collection.
-            </summary>
-            <param name="offsets">
-            <para>Offsets to be added.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>The number of offsets succeeded to be added.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.RemoveRange(System.ReadOnlySpan{`1})">
-            <summary>
-            Removes a list of offsets from the current collection.
-            </summary>
-            <param name="offsets">
-            <para>Offsets to be removed.</para>
-            <target name="parameter">
-				<para>
-					If a <see langword="ref struct" />-typed parameter is marked as <see langword="params" />,
-					it will be implicit-<see langword="scoped" />, which means you must use this variables inside the method.
-					Value-storages are not permitted.
-				</para>
-				<para>
-					Use <see cref="T:System.Diagnostics.CodeAnalysis.UnscopedRefAttribute" /> if you want to store variable values.
-				</para>
-			</target>
-            </param>
-            <returns>The number of offsets succeeded to be removed.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.CopyTo(`1@,System.Int32)">
-            <summary>
-            Copies the current instance to the target sequence specified as a reference
-            to an element of type <typeparamref name="TElement"/>.
-            </summary>
-            <param name="sequence">
-            The reference that points to the first element in a sequence of type <typeparamref name="TElement"/>.
-            </param>
-            <param name="length">The length of that array.</param>
-            <exception cref="T:System.ArgumentNullException">
-            Throws when the argument <paramref name="sequence"/> is <see langword="null"/>.
-            </exception>
-            <exception cref="T:System.InvalidOperationException">
-            Throws when the capacity isn't enough to store all values.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.ForEach(System.Action{`1})">
-            <summary>
-            Iterates on each element in this collection.
-            </summary>
-            <param name="action">The visitor that handles for each element in this collection.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.Toggle(`1)">
-            <summary>
-            Try to toggle the offset, which means the value will be added if not exist in collection, or removed if exists.
-            </summary>
-            <param name="offset">The offset to be added or removed.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.IndexOf(`1)">
-            <summary>
-            Try to get the specified index of the offset.
-            </summary>
-            <param name="offset">The desired offset.</param>
-            <returns>The index of the offset.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.Equals(`0@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.ToArray">
-            <summary>
-            Get all offsets whose bits are set <see langword="true"/>.
-            </summary>
-            <returns>An array of offsets.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the current instance, and get the new instance with some of elements between two indices.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="count">The number of elements.</param>
-            <returns>The target instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.GetEnumerator">
-            <summary>
-            Gets the enumerator of the current instance in order to use <see langword="foreach"/> loop.
-            </summary>
-            <returns>The enumerator instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Clear">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#CopyTo(`1[],System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Contains(`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#IEquatable{TSelf}#Equals(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Add(`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Add(`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#ExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#IntersectWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#SymmetricExceptWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ISet{TElement}#UnionWith(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#Overlaps(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#SetEquals(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsProperSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSubsetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IReadOnlySet{TElement}#IsSupersetOf(System.Collections.Generic.IEnumerable{`1})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#ICollection{TElement}#Remove(`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Linq#Providers#IContainsMethod{TSelf,TElement}#Contains(`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#ToJsonString">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#FromJsonString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_LogicalNot(`0@)">
-            <summary>
-            Determines whether the current collection is empty.
-            </summary>
-            <param name="offsets">The cells to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
-            <remarks>
-            The type of the current collection supports using <see cref="T:System.Boolean"/>-like expression to determine whether the collection is not empty,
-            for example:
-            <code><![CDATA[
-            if (collection)
-                // ...
-            ]]></code>
-            The statement <c>collection</c> will be expanded to <c>collection.Count != 0</c>. Therefore, the negation operator <c>!</c>
-            will invert the result of above expression. This is why I use <see langword="operator"/> <c>!</c> to determine on this.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_OnesComplement(`0@)">
-            <summary>
-            Reverse state for all offsets, which means all <see langword="true"/> bits
-            will be set <see langword="false"/>, and all <see langword="false"/> bits
-            will be set <see langword="true"/>.
-            </summary>
-            <param name="offsets">The instance to negate.</param>
-            <returns>The negative result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_True(`0@)">
-            <summary>
-            Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
-            </summary>
-            <param name="cells">The collection.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_False(`0@)">
-            <summary>
-            Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
-            </summary>
-            <param name="cells">The collection.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_Addition(`0@,`1)">
-            <summary>
-            Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,
-            and returns the added result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be added.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_Subtraction(`0@,`1)">
-            <summary>
-            Removes the specified <paramref name="offset"/> from the <paramref name="collection"/>,
-            and returns the removed result.
-            </summary>
-            <param name="collection">The collection.</param>
-            <param name="offset">The offset to be removed.</param>
-            <returns>The result collection.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_BitwiseAnd(`0@,`0@)">
-            <summary>
-            Get the elements that both <paramref name="left"/> and <paramref name="right"/> contain.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_BitwiseOr(`0@,`0@)">
-            <summary>
-            Combine the elements from <paramref name="left"/> and <paramref name="right"/>,
-            and return the merged result.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_ExclusiveOr(`0@,`0@)">
-            <summary>
-            Get the elements that either <paramref name="left"/> or <paramref name="right"/> contains.
-            </summary>
-            <param name="left">The left instance.</param>
-            <param name="right">The right instance.</param>
-            <returns>The result.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_RightShift(`0@,System.Int32)">
-            <summary>
-            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
-            with the specified value as the result number of elements in each subset.
-            </summary>
-            <param name="map">The map to be checked.</param>
-            <param name="subsetSize">The subset size for each result element.</param>
-            <returns>
-            A list of <typeparamref name="TSelf"/> instances
-            whose number of elements is equal to <paramref name="subsetSize"/> as its subsets.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_UnsignedRightShift(`0@,System.Int32)">
-            <summary>
-            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
-            with the specified value as the maximum number of elements in each subset.
-            </summary>
-            <param name="map">The map to be checked.</param>
-            <param name="subsetSize">The subset size for each result element.</param>
-            <returns>
-            A list of <typeparamref name="TSelf"/> instances
-            whose number of elements is equal to or less than <paramref name="subsetSize"/> as its subsets.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_True(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_False(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_LogicalNot(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Equality(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IEqualityOperators{TSelf,TSelf,System#Boolean}#op_Inequality(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IAdditionOperators{TSelf,TElement,TSelf}#op_Addition(`0,`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#ISubtractionOperators{TSelf,TElement,TSelf}#op_Subtraction(`0,`1)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IModulusOperators{TSelf,TSelf,TSelf}#op_Modulus(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_OnesComplement(`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseAnd(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_BitwiseOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#Numerics#IBitwiseOperators{TSelf,TSelf,TSelf}#op_ExclusiveOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_BitwiseAnd(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_BitwiseOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_Explicit(`1[])~`0">
-            <summary>
-            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_Explicit(System.Span{`1})~`0">
-            <summary>
-            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.IBitStatusMap`3.op_Explicit(System.ReadOnlySpan{`1})~`0">
-            <summary>
-            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
         <member name="T:Sudoku.Concepts.Primitive.IGenerator`1">
             <summary>
             Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
@@ -5475,97 +5557,6 @@
             </item>
             </list>
             </returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISudokuConcept`1">
-            <summary>
-            Represents a concept defined in Sudoku.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISudokuConceptConvertible`1">
-            <summary>
-            Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptConvertible`1.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptConvertible`1.ToString``1(``0)">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
-            <param name="converter">The converter instance that the current concept will rely on.</param>
-            <returns>A string that represents the current object.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1">
-            <summary>
-            Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.TryParse(System.String,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.TryParse``1(System.String,``0,`0@)">
-            <summary>
-            Try to parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <typeparam name="T">The type of coordinate parser.</typeparam>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="parser">
-            A parser instance derived from <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/>,
-            indicating the custom logic on parsing for coordinate items inside the concept.
-            </param>
-            <param name="result">
-            The result parsed. If failed to parse, the value will keep the <see langword="default"/> value,
-            i.e. <see langword="default"/>(<typeparamref name="TSelf"/>).
-            </param>
-            <returns>
-            A <see cref="T:System.Boolean"/> result indicating whether the operation is successful to execute.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.Parse(System.String)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.Parse``1(System.String,``0)">
-            <summary>
-            Parse the specified string text, and get the same-meaning instance
-            of type <typeparamref name="TSelf"/>.
-            </summary>
-            <typeparam name="T">The type of coordinate parser.</typeparam>
-            <param name="str">The string to parse. The value cannot be <see langword="null"/>.</param>
-            <param name="parser">
-            A parser instance derived from <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/>,
-            indicating the custom logic on parsing for coordinate items inside the concept.
-            </param>
-            <returns>The result parsed.</returns>
-            <exception cref="T:System.FormatException">Throws when failed to parse.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.System#IParsable{TSelf}#TryParse(System.String,System.IFormatProvider,`0@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISudokuConceptParsable`1.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Primitive.ITokenizable`1">
             <summary>
@@ -5816,29 +5807,29 @@
         </member>
         <member name="T:Sudoku.Concepts.CoordinateTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Primitive.CoordinateType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.CoordinateType"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.Primitive.CoordinateType)">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.Coordinates.CoordinateType)">
             <summary>
-            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Primitive.CoordinateType"/> instance.
+            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
             </summary>
             <param name="this">The current instance.</param>
             <returns>
             A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.Primitive.CoordinateType)">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.Coordinates.CoordinateType)">
             <summary>
-            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.Primitive.CoordinateType"/> instance.
+            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
             </summary>
             <param name="this">The current instance.</param>
             <returns>
             A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.Primitive.CoordinateType)">
+        <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetField(Sudoku.Concepts.Coordinates.CoordinateType)">
             <summary>
             Gets the <see cref="T:System.Reflection.FieldInfo"/> instance for the specified field.
             </summary>
@@ -7497,7 +7488,7 @@
             <seealso cref="P:Sudoku.Linq.BitStatusMapGrouping`4.Values"/>
         </member>
         <member name="P:Sudoku.Linq.BitStatusMapGrouping`4.Item(System.Int32)">
-            <inheritdoc cref="P:Sudoku.Concepts.Primitive.IBitStatusMap`3.Item(System.Int32)"/>
+            <inheritdoc cref="P:Sudoku.Concepts.IBitStatusMap`3.Item(System.Int32)"/>
         </member>
         <member name="M:Sudoku.Linq.BitStatusMapGrouping`4.Deconstruct(`3@,`0@)">
             <target name="method">
@@ -7654,7 +7645,7 @@
             <returns>The first found candidate.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.First(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -7672,7 +7663,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found candidate.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CandidateMapEnumerable.FirstOrNull(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CandidateMap,System.Int32,Sudoku.Concepts.CandidateMap.Enumerator})">
             <summary>
             Finds the first candidate that satisfies the specified condition.
             </summary>
@@ -7743,7 +7734,7 @@
             <returns>The first found cell.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when no elements found.</exception>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.First(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
@@ -7761,7 +7752,7 @@
             <param name="match">The condition to be used.</param>
             <returns>The first found cell.</returns>
         </member>
-        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
+        <member name="M:Sudoku.Linq.CellMapEnumerable.FirstOrNull(Sudoku.Concepts.CellMap@,Sudoku.Concepts.Grid@,Sudoku.Concepts.BitStatusMapPredicate{Sudoku.Concepts.CellMap,System.Int32,Sudoku.Concepts.CellMap.Enumerator})">
             <summary>
             Finds the first cell that satisfies the specified condition.
             </summary>
@@ -8794,10 +8785,10 @@
         <member name="T:Sudoku.Runtime.CompilerServices.ListBitStatusMapExtensions">
             <summary>
             Represents a list of extension methods operating with <see cref="T:System.Collections.Generic.List`1"/>
-            of <see cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`3"/>.
+            of <see cref="T:Sudoku.Concepts.IBitStatusMap`3"/>.
             </summary>
             <seealso cref="T:System.Collections.Generic.List`1"/>
-            <seealso cref="T:Sudoku.Concepts.Primitive.IBitStatusMap`3"/>
+            <seealso cref="T:Sudoku.Concepts.IBitStatusMap`3"/>
         </member>
         <member name="T:Sudoku.Runtime.CompilerServices.ListGridExtensions">
             <summary>

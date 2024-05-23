@@ -10,6 +10,8 @@ public sealed partial class ConclusionSet :
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
 	ICollection<Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
+	ICoordinateConvertible<ConclusionSet>,
+	ICoordinateParsable<ConclusionSet>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
@@ -18,7 +20,6 @@ public sealed partial class ConclusionSet :
 	IReadOnlySet<Conclusion>,
 	ISet<Conclusion>,
 	ISliceMethod<ConclusionSet, Conclusion>,
-	ISudokuConcept<ConclusionSet>,
 	IToArrayMethod<ConclusionSet, Conclusion>
 {
 	/// <summary>

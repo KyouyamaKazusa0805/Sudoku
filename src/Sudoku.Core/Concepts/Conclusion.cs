@@ -31,11 +31,12 @@ namespace Sudoku.Concepts;
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
+	ICoordinateConvertible<Conclusion>,
+	ICoordinateParsable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
 	IFormattable,
-	IJsonSerializable<Conclusion>,
-	ISudokuConcept<Conclusion>
+	IJsonSerializable<Conclusion>
 {
 	/// <summary>
 	/// The internal parsers.

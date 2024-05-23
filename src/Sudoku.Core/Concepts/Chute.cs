@@ -7,7 +7,9 @@ namespace Sudoku.Concepts;
 /// <param name="Cells">The cells used.</param>
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
 /// <param name="HousesMask">Indicates the houses used.</param>
-public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool IsRow, HouseMask HousesMask) : ISudokuConcept<Chute>
+public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool IsRow, HouseMask HousesMask) :
+	ICoordinateConvertible<Chute>,
+	ICoordinateParsable<Chute>
 {
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -19,7 +21,7 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ChuteConverter(this);
 
 	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, System.IFormatProvider? formatProvider) => ToString(formatProvider);
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
 	/// <inheritdoc/>

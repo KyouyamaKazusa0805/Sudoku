@@ -19,7 +19,7 @@ public readonly partial struct Fish(
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask coverSets,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap exofins,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap endofins
-) : IEquatable<Fish>, IEqualityOperators<Fish, Fish, bool>, ISudokuConceptConvertible<Fish>
+) : ICoordinateConvertible<Fish>, IEquatable<Fish>, IEqualityOperators<Fish, Fish, bool>
 {
 	/// <summary>
 	/// Indicates whether the pattern is complex fish.

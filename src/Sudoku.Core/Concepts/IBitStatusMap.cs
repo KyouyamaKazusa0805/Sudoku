@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Extracts a base type that describes state table from elements of <typeparamref name="TSelf"/> type.
@@ -14,6 +14,8 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAnyAllMethod<TSelf, TElement>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
 	IContainsMethod<TSelf, TElement>,
+	ICoordinateConvertible<TSelf>,
+	ICoordinateParsable<TSelf>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
 	IFirstLastMethod<TSelf, TElement>,
@@ -30,7 +32,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
-	ISudokuConcept<TSelf>,
 	IWhereMethod<TSelf, TElement>
 	where TSelf : unmanaged, IBitStatusMap<TSelf, TElement, TEnumerator>
 	where TElement : unmanaged, IBinaryInteger<TElement>

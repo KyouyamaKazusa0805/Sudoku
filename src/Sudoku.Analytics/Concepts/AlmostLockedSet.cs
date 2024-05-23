@@ -27,9 +27,10 @@ public sealed partial class AlmostLockedSet(
 ) :
 	IComparable<AlmostLockedSet>,
 	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
+	ICoordinateConvertible<AlmostLockedSet>,
+	ICoordinateParsable<AlmostLockedSet>,
 	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
-	ISudokuConcept<AlmostLockedSet>
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.

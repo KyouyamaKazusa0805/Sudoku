@@ -1,10 +1,10 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface ISudokuConceptConvertible<TSelf> : IFormattable where TSelf : ISudokuConceptConvertible<TSelf>
+public interface ICoordinateConvertible<TSelf> : IFormattable where TSelf : ICoordinateConvertible<TSelf>
 {
 	/// <inheritdoc cref="object.ToString"/>
 	public abstract string ToString();

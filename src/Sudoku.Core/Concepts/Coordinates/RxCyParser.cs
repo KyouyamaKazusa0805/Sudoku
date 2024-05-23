@@ -2,9 +2,8 @@ namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents a parser type that uses <b>RxCy</b> notation rule to parse text,
-/// converting into a valid <see cref="ISudokuConcept{TSelf}"/> instance.
+/// converting into a valid instance that can be represented as a sudoku concept.
 /// </summary>
-/// <seealso cref="ISudokuConcept{TSelf}"/>
 public sealed partial record RxCyParser : CoordinateParser
 {
 	/// <inheritdoc/>

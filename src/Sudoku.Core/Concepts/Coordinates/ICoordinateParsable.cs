@@ -1,10 +1,10 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents an interface type that describes for an ability on <c>Parse</c> with custom sudoku coordinate logic.
 /// </summary>
 /// <typeparam name="TSelf">The type of itself.</typeparam>
-public interface ISudokuConceptParsable<TSelf> : IParsable<TSelf> where TSelf : ISudokuConceptParsable<TSelf>
+public interface ICoordinateParsable<TSelf> : IParsable<TSelf> where TSelf : ICoordinateParsable<TSelf>
 {
 	/// <summary>
 	/// Try to parse the specified string text, and get the same-meaning instance

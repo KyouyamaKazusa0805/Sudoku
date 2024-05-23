@@ -13,9 +13,10 @@ namespace Sudoku.Concepts;
 [EqualityOperators]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] ConjugateMask mask) :
+	ICoordinateConvertible<Conjugate>,
+	ICoordinateParsable<Conjugate>,
 	IEquatable<Conjugate>,
-	IEqualityOperators<Conjugate, Conjugate, bool>,
-	ISudokuConcept<Conjugate>
+	IEqualityOperators<Conjugate, Conjugate, bool>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
