@@ -5595,7 +5595,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter">
             <summary>
-            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Primitive.CoordinateType"/> field.
+            Defines a converter that converts an <see cref="T:System.Int32"/> value into a <see cref="T:Sudoku.Concepts.Primitive.CoordinateType"/> field.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.Int32ToCoordinateLabelKindConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -5725,7 +5725,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:Sudoku.Primitive.TransformType"/> to a <see cref="T:System.Boolean"/> value.
+            Represents a value converter that can convert a <see cref="T:Sudoku.Concepts.Primitive.TransformType"/> to a <see cref="T:System.Boolean"/> value.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">

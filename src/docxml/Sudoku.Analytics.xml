@@ -18847,16 +18847,16 @@
             <param name="symmetricType">
             Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Central"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.XAxis"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.YAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.XAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.YAxis"/></item>
             </list>
             </param>
             <param name="mapping"><inheritdoc/></param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.AntiGurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is an <b>Anti- Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -18866,11 +18866,11 @@
             <param name="symmetricType">
             Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Central"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.XAxis"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.YAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.XAxis"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.YAxis"/></item>
             </list>
             </param>
             <param name="mapping"><inheritdoc/></param>
@@ -18894,16 +18894,16 @@
             <param name="symmetricType">
             Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Central"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/></item>
             </list>
             </param>
             <param name="mapping">
             Indicates the mapping relations; in other words, this table shows what digits has symmetrical placement relation to what digits.
             </param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
+        <member name="M:Sudoku.Analytics.Steps.GurthSymmetricalPlacementStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.Primitive.SymmetricType,System.Nullable{System.Int32}[])">
             <summary>
             Provides with a step that is a <b>Gurth's Symmetrical Placement</b> technique.
             </summary>
@@ -18913,9 +18913,9 @@
             <param name="symmetricType">
             Indicates the symmetric type used. The supported value can only be:
             <list type="bullet">
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Central"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/></item>
-            <item><see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/></item>
+            <item><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/></item>
             </list>
             </param>
             <param name="mapping">
@@ -21185,7 +21185,7 @@ result ^= expression;
             The internal methods.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.IsSymmetricalPlacement(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.IsSymmetricalPlacement(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             Try to get the its mapping rule for the specified grid via the specified symmetric type.
             </summary>
@@ -21195,11 +21195,11 @@ result ^= expression;
             <param name="selfPairedDigitsMask">A mask that contains a list of digits self-paired.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the grid is a symmetrical-placement pattern.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="symmetricType"/> is not <see cref="F:Sudoku.Primitive.SymmetricType.Central"/>,
-            <see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/> or	<see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/>.
+            Throws when the argument <paramref name="symmetricType"/> is not <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/>,
+            <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/> or	<see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.InferSymmetricalPlacement(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.InferSymmetricalPlacement(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             Try to get the symmetric type and its mapping rule for the specified grid.
             </summary>
@@ -21229,7 +21229,7 @@ result ^= expression;
             <param name="cellOffsets">The target collection.</param>
             <param name="mapping">The mapping relation.</param>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.CheckAxesOrCenterPointForSymmetry(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType,System.Int16)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.CheckAxesOrCenterPointForSymmetry(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType,System.Int16)">
             <summary>
             Check for the symmetry behavior on axes or center point.
             </summary>
@@ -21238,37 +21238,37 @@ result ^= expression;
             <param name="nonselfPairedDigitsMask">The mask that holds a list of digits that is non-self-paired.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.Diagonal(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.Diagonal(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             The internal method to check for diagonal symmetrical placement kind.
             </summary>
             <param name="grid">The grid to be check.</param>
             <param name="symmetricType">
-            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Primitive.SymmetricType.Diagonal"/> or <see cref="F:Sudoku.Primitive.SymmetricType.None"/>.
+            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/> or <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/>.
             </param>
             <param name="mappingDigits">The mapping digits.</param>
             <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the grid is diagonal symmetrical placement.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.AntiDiagonal(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.AntiDiagonal(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             The internal method to check for anti-diagonal symmetrical placement kind.
             </summary>
             <param name="grid">The grid to be check.</param>
             <param name="symmetricType">
-            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Primitive.SymmetricType.AntiDiagonal"/> or <see cref="F:Sudoku.Primitive.SymmetricType.None"/>.
+            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/> or <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/>.
             </param>
             <param name="mappingDigits">The mapping digits.</param>
             <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating whether the grid is anti-diagonal symmetrical placement.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricalPlacing.Central(Sudoku.Concepts.Grid@,Sudoku.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
+        <member name="M:Sudoku.Concepts.SymmetricalPlacing.Central(Sudoku.Concepts.Grid@,Sudoku.Concepts.Primitive.SymmetricType@,System.ReadOnlySpan{System.Nullable{System.Int32}}@,System.Int16@)">
             <summary>
             The internal method to check for central symmetrical placement kind.
             </summary>
             <param name="grid">The grid to be check.</param>
             <param name="symmetricType">
-            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Primitive.SymmetricType.Central"/> or <see cref="F:Sudoku.Primitive.SymmetricType.None"/>.
+            The symmetrical placement type if so. The value can only be <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/> or <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/>.
             </param>
             <param name="mappingDigits">The mapping digits.</param>
             <param name="selfPairedDigitsMask">A mask holding a list of digits being self-paired.</param>
@@ -21641,7 +21641,7 @@ result ^= expression;
             <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Sudoku#Primitive#IGenerator{Sudoku#Generating#JustOneCell#PhasedJustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#JustOneCell#PhasedJustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
@@ -21784,13 +21784,13 @@ result ^= expression;
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Primitive#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Primitive#IGenerator{Sudoku#Generating#FullPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#FullPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Primitive#IGenerator{Sudoku#Generating#JustOneCell#JustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#JustOneCell#JustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ShuffleSequence``1(``0[])">

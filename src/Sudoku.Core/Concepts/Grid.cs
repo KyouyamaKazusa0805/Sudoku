@@ -53,6 +53,7 @@ public partial struct Grid :
 	IParsable<Grid>,
 	IReadOnlyCollection<Digit>,
 	ISelectMethod<Grid, Candidate>,
+	ISpanParsable<Grid>,
 	ITokenizable<Grid>,
 	IToArrayMethod<Grid, Digit>,
 	IWhereMethod<Grid, Candidate>
@@ -1556,6 +1557,25 @@ public partial struct Grid :
 		}
 	}
 
+	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out Grid)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(ReadOnlySpan<char> s, out Grid result) => TryParse(s, null, out result);
+
+	/// <inheritdoc/>
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out Grid result)
+	{
+		try
+		{
+			result = Parse(s, provider);
+			return !result.IsUndefined;
+		}
+		catch (FormatException)
+		{
+			result = Undefined;
+			return false;
+		}
+	}
+
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
 	/// </summary>
@@ -1730,13 +1750,28 @@ public partial struct Grid :
 		};
 #pragma warning restore format
 
-	/// <summary>
-	/// Parses a string value and converts to this type.
-	/// </summary>
-	/// <param name="str">The string.</param>
-	/// <returns>The result instance had converted.</returns>
+	/// <inheritdoc cref="ISpanParsable{TSelf}.Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Grid Parse(ReadOnlySpan<char> str) => Parse(str.ToString());
+	public static Grid Parse(ReadOnlySpan<char> s) => Parse(s, null);
+
+#pragma warning disable format
+	/// <inheritdoc/>
+	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
+	{
+		var str = s.ToString();
+		return provider switch
+		{
+			GridFormatInfo g => g.ParseGrid(str),
+			CultureInfo { Name: var n } => n.ToLower() switch
+			{
+				['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(str),
+				['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(str),
+				_ => Parse(str)
+			},
+			_ => Parse(str)
+		};
+	}
+#pragma warning restore format
 
 	/// <summary>
 	/// Get digit via token.

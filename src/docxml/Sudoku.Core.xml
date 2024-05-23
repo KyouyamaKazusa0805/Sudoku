@@ -4051,6 +4051,12 @@
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.Grid@)">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.String)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using the specified token of length 54.
@@ -4088,11 +4094,10 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char})">
-            <summary>
-            Parses a string value and converts to this type.
-            </summary>
-            <param name="str">The string.</param>
-            <returns>The result instance had converted.</returns>
+            <inheritdoc cref="M:System.ISpanParsable`1.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Grid.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetDigitViaToken(System.String)">
             <summary>
