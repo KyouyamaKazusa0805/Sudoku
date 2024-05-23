@@ -587,6 +587,27 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly bool Equals(ref readonly CellMap other) => _low == other._low && _high == other._high;
 
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		var targetString = ToString(provider);
+		if (destination.Length < targetString.Length)
+		{
+			goto ReturnFalse;
+		}
+
+		if (targetString.TryCopyTo(destination))
+		{
+			charsWritten = targetString.Length;
+			return true;
+		}
+
+	ReturnFalse:
+		charsWritten = 0;
+		return false;
+	}
+
 	/// <summary>
 	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
 	/// </summary>
@@ -848,6 +869,25 @@ public partial struct CellMap :
 		}
 	}
 
+	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out CellMap)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(ReadOnlySpan<char> s, out CellMap result) => TryParse(s, null, out result);
+
+	/// <inheritdoc/>
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CellMap result)
+	{
+		try
+		{
+			result = Parse(s, provider);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = Empty;
+			return false;
+		}
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap Create(string token)
@@ -950,6 +990,14 @@ public partial struct CellMap :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CellParser(str);
+
+	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap Parse(ReadOnlySpan<char> s) => Parse(s, null);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 
 	/// <inheritdoc/>

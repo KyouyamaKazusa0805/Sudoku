@@ -300,6 +300,27 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	public readonly bool Equals(ref readonly CandidateMap other) => _bits == other._bits;
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly bool TryFormat(Span<char> destination, out int charsWritten, ReadOnlySpan<char> format, IFormatProvider? provider)
+	{
+		var targetString = ToString(provider);
+		if (destination.Length < targetString.Length)
+		{
+			goto ReturnFalse;
+		}
+
+		if (targetString.TryCopyTo(destination))
+		{
+			charsWritten = targetString.Length;
+			return true;
+		}
+
+	ReturnFalse:
+		charsWritten = 0;
+		return false;
+	}
+
+	/// <inheritdoc/>
 	public readonly int IndexOf(Candidate offset)
 	{
 		for (var index = 0; index < Count; index++)
@@ -559,6 +580,25 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		}
 	}
 
+	/// <inheritdoc cref="TryParse(ReadOnlySpan{char}, IFormatProvider?, out CandidateMap)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(ReadOnlySpan<char> s, out CandidateMap result) => TryParse(s, null, out result);
+
+	/// <inheritdoc/>
+	public static bool TryParse(ReadOnlySpan<char> s, IFormatProvider? provider, out CandidateMap result)
+	{
+		try
+		{
+			result = Parse(s, provider);
+			return true;
+		}
+		catch (FormatException)
+		{
+			result = [];
+			return false;
+		}
+	}
+
 	/// <inheritdoc/>
 	public static bool TryParse<T>(string str, T parser, out CandidateMap result) where T : CoordinateParser
 	{
@@ -626,6 +666,14 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CandidateParser(str);
+
+	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap Parse(ReadOnlySpan<char> s) => Parse(s, null);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 
 	/// <inheritdoc/>

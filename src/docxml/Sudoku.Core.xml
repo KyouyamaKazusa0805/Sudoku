@@ -215,6 +215,9 @@
         <member name="M:Sudoku.Concepts.CandidateMap.Equals(Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.IndexOf(System.Int32)">
             <inheritdoc/>
         </member>
@@ -332,6 +335,12 @@
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CandidateMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.TryParse``1(System.String,``0,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -349,6 +358,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.Parse``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_LogicalNot(Sudoku.Concepts.CandidateMap@)">
@@ -692,6 +707,9 @@
         <member name="M:Sudoku.Concepts.CellMap.Equals(Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryFormat(System.Span{System.Char},System.Int32@,System.ReadOnlySpan{System.Char},System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.CompareTo(Sudoku.Concepts.CellMap@)">
             <summary>
             <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)" path="/summary"/>
@@ -819,6 +837,12 @@
         <member name="M:Sudoku.Concepts.CellMap.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.CellMap@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},Sudoku.Concepts.CellMap@)">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.CellMap.Create(System.String)">
             <inheritdoc/>
         </member>
@@ -860,6 +884,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.Parse``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.Parse(System.ReadOnlySpan{System.Char},System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_LogicalNot(Sudoku.Concepts.CellMap@)">

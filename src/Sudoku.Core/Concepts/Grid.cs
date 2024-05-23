@@ -1656,7 +1656,6 @@ public partial struct Grid :
 			new SukakuGridFormatInfo { Multiline = true }
 		];
 
-
 		// The core branches on parsing grids. Here we may leave a bug that we cannot determine if a puzzle is a Sukaku.
 		var grid = Undefined;
 		switch (str.Length, str.Contains("-+-"), str.Contains('\t'))
