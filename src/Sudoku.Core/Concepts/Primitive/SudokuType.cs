@@ -1,4 +1,4 @@
-namespace Sudoku.Primitive;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a type of sudoku puzzle.

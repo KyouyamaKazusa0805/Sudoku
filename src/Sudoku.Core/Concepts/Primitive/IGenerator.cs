@@ -1,4 +1,4 @@
-namespace Sudoku.Primitive;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,

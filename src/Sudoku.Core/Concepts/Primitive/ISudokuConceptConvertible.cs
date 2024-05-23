@@ -1,4 +1,4 @@
-namespace Sudoku.Primitive;
+namespace Sudoku.Concepts.Primitive;
 
 /// <summary>
 /// Represents an interface type that describes for an ability on <c>ToString</c> with custom sudoku coordinate logic.
