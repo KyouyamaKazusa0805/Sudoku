@@ -171,7 +171,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 所有的代码文件全部使用的是 MIT 开源协议。MIT 开源协议意味着**你需要在你的应用程序里声明本项目的作者信息**。
 
-### `Sudoku.Recognition.Imaging` 代码项目
+### `Sudoku.Drawing.Ocr` 代码项目
 
 该项目比较特殊。该项目的代码使用到了 [EmguCV](https://github.com/emgucv/emgucv) 仓库里的 API 以及部分源代码。根据源仓库的开源协议规则和规范，该项目也需要严格遵守此点。因此它采用的是独立的开源协议。请查看该项目在仓库里的 `LICENSE` 文件。
 

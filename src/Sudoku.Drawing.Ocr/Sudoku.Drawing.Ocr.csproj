@@ -3,8 +3,8 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Provides APIs that is used for recognition, loading a picture and parse it into a valid sudoku grid.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Recognition.Imaging.xml</DocumentationFile>
+		<Description>Provides APIs for OCR on sudoku grid.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Drawing.Ocr.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
@@ -19,16 +19,16 @@
 
 	<ItemGroup>
 		<Compile Update="Resources\RecognitionImagingResources.Designer.cs">
+			<DependentUpon>RecognitionImagingResources.resx</DependentUpon>
 			<DesignTime>True</DesignTime>
 			<AutoGen>True</AutoGen>
-			<DependentUpon>RecognitionImagingResources.resx</DependentUpon>
 		</Compile>
 	</ItemGroup>
 
 	<ItemGroup>
 		<EmbeddedResource Update="Resources\RecognitionImagingResources.resx">
-			<Generator>ResXFileCodeGenerator</Generator>
 			<LastGenOutput>RecognitionImagingResources.Designer.cs</LastGenOutput>
+			<Generator>ResXFileCodeGenerator</Generator>
 		</EmbeddedResource>
 	</ItemGroup>
 

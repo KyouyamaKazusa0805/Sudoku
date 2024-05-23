@@ -1,0 +1,372 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Drawing.Ocr</name>
+    </assembly>
+    <members>
+        <member name="T:System.ModuleInitializer">
+            <target name="type">
+				<summary>
+					<para>
+						Provides with the type that contains a module initializer method, called automatically by the CLR
+						(Common Language Runtime) to initialize some values.
+					</para>
+					<para>
+						<i>
+							The type is called by the compiler and the CLR (Common Language Runtime),
+							which means you cannot use any members in this type manually.
+						</i>
+					</para>
+				</summary>
+			</target>
+        </member>
+        <member name="M:System.ModuleInitializer.Initialize">
+            <target name="method">
+				<summary>
+					Called by the runtime automatically while booting on this solution to initialize the values,
+					data members or any other things that can or should be initialized here.
+				</summary>
+				<remarks>
+					The concept <b>module</b> is different with <b>assembly</b>.
+					The solution can contain multiple assemblies, while each assembly can contain multiple modules.
+					However, due to the design of Visual Studio project file system, each assembly will only contain
+					one module by default.
+				</remarks>
+			</target>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.FailedToFillValueException">
+            <summary>
+            Indicates the exception that throws when the value is failed to fill into a cell.
+            </summary>
+            <param name="cell">Indicates the wrong cell.</param>
+            <param name="digit">Indicates the wrong digit.</param>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.FailedToFillValueException.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Indicates the exception that throws when the value is failed to fill into a cell.
+            </summary>
+            <param name="cell">Indicates the wrong cell.</param>
+            <param name="digit">Indicates the wrong digit.</param>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.FailedToFillValueException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.FailedToFillValueException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.GridRecognizer">
+            <summary>
+            Provides a grid field recognizer. If you want to know what is a <b>field</b>,
+            please see the 'remark' part of <see cref="T:Sudoku.Recognition.Imaging.InternalServiceProvider"/>.
+            </summary>
+            <param name="photo">Indicates the photo to be assigned.</param>
+            <seealso cref="T:Sudoku.Recognition.Imaging.InternalServiceProvider"/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.#ctor(System.Drawing.Bitmap)">
+            <summary>
+            Provides a grid field recognizer. If you want to know what is a <b>field</b>,
+            please see the 'remark' part of <see cref="T:Sudoku.Recognition.Imaging.InternalServiceProvider"/>.
+            </summary>
+            <param name="photo">Indicates the photo to be assigned.</param>
+            <seealso cref="T:Sudoku.Recognition.Imaging.InternalServiceProvider"/>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.L2Gradient">
+            <summary>
+            Indicates the L2Gradient.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.MaxSize">
+            <summary>
+            Indicates the maximum size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.RSize">
+            <summary>
+            Indicates the R-size.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.ThresholdMin">
+            <summary>
+            Indicates the minimum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.ThresholdMax">
+            <summary>
+            Indicates the maximum threshold.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer.ChainApproximation">
+            <summary>
+            Indicates the behavior that specifies and executes the chain approximation algorithm.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.GridRecognizer._image">
+            <summary>
+            The image.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.Recognize">
+            <summary>
+            Recognize.
+            </summary>
+            <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.FindField(Emgu.CV.UMat)">
+            <summary>
+            Find the field.
+            </summary>
+            <param name="edges">The edges.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.GetFourCornerPoints(System.Drawing.Point[])">
+            <summary>
+            Getting four corner points from contour points.
+            </summary>
+            <param name="points">The points.</param>
+            <returns>The points.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.PrepareImage">
+            <summary>
+            Prepare the image.
+            </summary>
+            <returns>The <see cref="T:Emgu.CV.UMat"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.GridRecognizer.CutField(System.Drawing.PointF[])">
+            <summary>
+            To cut the field.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The image.</returns>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.ImageHandler">
+            <summary>
+            Provides extension methods on <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <remarks>
+            Some methods of this file is copied by 
+            <see href="https://github.com/emgucv/emgucv/blob/6ee487ad2709d1258cc014103deab2719b026303/Emgu.CV.NativeImage/BitmapExtension.cs">
+            the EmguCV's repository
+            </see>.
+            </remarks>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.ImageHandler.IsRectangle(System.Drawing.PointF[],System.Int32,System.Int32,System.Double)">
+            <summary>
+            Get true if contour is rectangle with angles within <c>[lowAngle, upAngle]</c> degree.
+            The default case is <c>[75, 105]</c> given by <paramref name="lowerAngle"/> and
+            <paramref name="upperAngle"/>.
+            </summary>
+            <param name="contour">The contour.</param>
+            <param name="lowerAngle">The lower angle. The default value is <c>75</c>.</param>
+            <param name="upperAngle">The upper angle. The default value is <c>105</c>.</param>
+            <param name="ratio">The ratio. The default value is <c>.35</c>.</param>
+            <returns>A <see cref="T:System.Boolean"/> value.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.ImageHandler.CorrectOrientation(System.Drawing.Bitmap)">
+            <summary>
+            To correct the orientation.
+            </summary>
+            <param name="this">The bitmap.</param>
+            <returns>Returns argument <paramref name="this"/> itself.</returns>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.ImageHandler.ToImage``2(System.Drawing.Bitmap)">
+            <summary>
+            Create an <see cref="T:Emgu.CV.Image`2"/> from <see cref="T:System.Drawing.Bitmap"/>.
+            </summary>
+            <typeparam name="TColor">
+            The type of the color model. The type should be implemented the interface <see cref="T:Emgu.CV.IColor"/>,
+            and must be a <see langword="struct"/>.
+            </typeparam>
+            <typeparam name="TDepth">
+            The type of the depth model. The only condition is the type should contain
+            a parameterless constructor.
+            </typeparam>
+            <seealso cref="T:Emgu.CV.Image`2"/>
+            <seealso cref="T:System.Drawing.Bitmap"/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.ImageHandler.ColorPaletteToLookupTable(System.Drawing.Imaging.ColorPalette,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@,Emgu.CV.Matrix{System.Byte}@)">
+            <summary>
+            Convert the color palette to four lookup tables.
+            </summary>
+            <param name="palette">The color palette to transform.</param>
+            <param name="bTable">Lookup table for the B channel.</param>
+            <param name="gTable">Lookup table for the G channel.</param>
+            <param name="rTable">Lookup table for the R channel.</param>
+            <param name="aTable">Lookup table for the A channel.</param>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.ImageHandler.CopyFromBitmap``2(Emgu.CV.Image{``0,``1},System.Drawing.Bitmap)">
+            <summary>
+            Utility function for converting <see cref="T:System.Drawing.Bitmap"/> to <see cref="T:System.Drawing.Image"/>.
+            </summary>
+            <param name="image">The image to copy data to.</param>
+            <param name="bmp">the bitmap to copy data from.</param>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.InternalServiceProvider">
+            <summary>
+            Define a recognizer.
+            </summary>
+            <remarks>
+            During the recognizing, the <b>field</b> indicates the whole outline of a grid.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.InternalServiceProvider.ThOcrMin">
+            <summary>
+            Indicates the ThOcrMin.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.InternalServiceProvider.ThOcrMax">
+            <summary>
+            Indicates the ThOcrMax.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.InternalServiceProvider._ocr">
+            <summary>
+            The internal <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.InternalServiceProvider.Initialized">
+            <summary>
+            Indicates whether the current recognizer has already initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.InternalServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.InternalServiceProvider.RecognizeDigits(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            Recognizes digits.
+            </summary>
+            <param name="field">The field.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:Sudoku.Recognition.Imaging.FailedToFillValueException">
+            Throws when the processing is wrong or un-handle-able.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.InternalServiceProvider.RecognizeCellNumber(Emgu.CV.Image{Emgu.CV.Structure.Bgr,System.Byte})">
+            <summary>
+            Recognize the number of a cell.
+            </summary>
+            <param name="cellImg">The image of a cell.</param>
+            <returns>
+            The result value (must be between 1 and 9). If the recognition is failed,
+            the value will be <c>0</c>.
+            </returns>
+            <exception cref="T:System.ArgumentNullException">Throws when the inner tool isn't been initialized.</exception>
+            <exception cref="T:Sudoku.Recognition.Imaging.TesseractException">Throws when the OCR engine error.</exception>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.InternalServiceProvider.InitTesseract(System.String,System.String)">
+            <summary>
+            Initializes <see cref="T:Emgu.CV.OCR.Tesseract"/> instance.
+            </summary>
+            <param name="dir">The directory.</param>
+            <param name="lang">The language. The default value is <c>"eng"</c>.</param>
+            <returns>The <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.IO.FileNotFoundException">Throws when the file doesn't found.</exception>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.RecognitionServiceProvider">
+            <summary>
+            Define a sudoku recognition service provider.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Recognition.Imaging.RecognitionServiceProvider._recognizingServiceProvider">
+            <summary>
+            Indicates the internal recognition service provider.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.RecognitionServiceProvider.#ctor">
+            <summary>
+            Initializes a default <see cref="T:Sudoku.Recognition.Imaging.RecognitionServiceProvider"/> instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.RecognitionServiceProvider.IsInitialized">
+            <summary>
+            Indicates whether the OCR tool has already initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.RecognitionServiceProvider.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.RecognitionServiceProvider.Recognize(System.Drawing.Bitmap)">
+            <summary>
+            Recognize the image.
+            </summary>
+            <param name="image">The image.</param>
+            <returns>The grid.</returns>
+            <exception cref="T:Sudoku.Recognition.Imaging.RecognizerNotInitializedException">Throws when the tool has not initialized yet.</exception>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.RecognizerNotInitializedException">
+            <summary>
+            Indicates the exception that throws when the recognition tools hasn't been initialized
+            before using a function.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.RecognizerNotInitializedException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.RecognizerNotInitializedException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Recognition.Imaging.TesseractException">
+            <summary>
+            Indicates the exception that throws when the tesseract has encountered an error.
+            </summary>
+            <param name="detail">Indicates the detail.</param>
+        </member>
+        <member name="M:Sudoku.Recognition.Imaging.TesseractException.#ctor(System.String)">
+            <summary>
+            Indicates the exception that throws when the tesseract has encountered an error.
+            </summary>
+            <param name="detail">Indicates the detail.</param>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.TesseractException.Message">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Recognition.Imaging.TesseractException.HelpLink">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Resources.RecognitionImagingResources">
+            <summary>
+              A strongly-typed resource class, for looking up localized strings, etc.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.ResourceManager">
+            <summary>
+              Returns the cached ResourceManager instance used by this class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Culture">
+            <summary>
+              Overrides the current thread's CurrentUICulture property for all
+              resource lookups using this strongly typed resource class.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.ErrorInfo_CannotRecognizeCellImage">
+            <summary>
+              Looks up a localized string similar to Cannot recognize any image relating to cell..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.ErrorInfo_MissingTrainedDataFile">
+            <summary>
+              Looks up a localized string similar to The training file can&apos;t be found in the folder &apos;traineddata&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_FailedToFillValueException">
+            <summary>
+              Looks up a localized string similar to Cannot fill cell {0} with digit {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_RecognizerNotInitializedException">
+            <summary>
+              Looks up a localized string similar to The recognition tools should have been initialized before using the current function..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.RecognitionImagingResources.Message_TesseractException">
+            <summary>
+              Looks up a localized string similar to Tesseract has encountered an error: {0}..
+            </summary>
+        </member>
+    </members>
+</doc>
