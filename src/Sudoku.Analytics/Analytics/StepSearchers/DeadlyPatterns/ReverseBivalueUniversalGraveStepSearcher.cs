@@ -142,7 +142,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 					incrementStep += 2
 				)
 				{
-					foreach (ref readonly var cellsChosen in emptyCells.GetSubsets(incrementStep))
+					foreach (ref readonly var cellsChosen in emptyCells >> incrementStep)
 					{
 						var completePattern = valuesMap | cellsChosen;
 						if (!IsGeneralizedUniqueLoop(in completePattern))
@@ -347,7 +347,7 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				continue;
 			}
 
-			foreach (ref readonly var cells in otherEmptyCells.GetSubsets(numbersOfOtherDigits - 1))
+			foreach (ref readonly var cells in otherEmptyCells >> numbersOfOtherDigits - 1)
 			{
 				if (grid[in cells] != otherDigitsMask)
 				{

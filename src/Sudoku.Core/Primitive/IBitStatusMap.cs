@@ -443,6 +443,30 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <returns>The result.</returns>
 	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
+	/// <summary>
+	/// Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+	/// with the specified value as the result number of elements in each subset.
+	/// </summary>
+	/// <param name="map">The map to be checked.</param>
+	/// <param name="subsetSize">The subset size for each result element.</param>
+	/// <returns>
+	/// A list of <typeparamref name="TSelf"/> instances
+	/// whose number of elements is equal to <paramref name="subsetSize"/> as its subsets.
+	/// </returns>
+	public static abstract ReadOnlySpan<TSelf> operator >>(in TSelf map, int subsetSize);
+
+	/// <summary>
+	/// Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+	/// with the specified value as the maximum number of elements in each subset.
+	/// </summary>
+	/// <param name="map">The map to be checked.</param>
+	/// <param name="subsetSize">The subset size for each result element.</param>
+	/// <returns>
+	/// A list of <typeparamref name="TSelf"/> instances
+	/// whose number of elements is equal to or less than <paramref name="subsetSize"/> as its subsets.
+	/// </returns>
+	public static abstract ReadOnlySpan<TSelf> operator >>>(in TSelf map, int subsetSize);
+
 	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;
 

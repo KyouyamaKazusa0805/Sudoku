@@ -405,7 +405,7 @@ public sealed partial class BorescoperDeadlyPatternStepSearcher : StepSearcher
 				var otherDigitsMask = (Mask)(orMask & ~tempMask);
 				for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationCellsMap.Count; size++)
 				{
-					foreach (ref readonly var combination in iterationCellsMap.GetSubsets(size))
+					foreach (ref readonly var combination in iterationCellsMap >> size)
 					{
 						var comparer = grid[in combination];
 						if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)

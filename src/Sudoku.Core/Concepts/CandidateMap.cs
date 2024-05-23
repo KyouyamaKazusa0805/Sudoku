@@ -662,6 +662,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator +(in CandidateMap collection, Candidate offset)
 	{
 		var result = collection;
@@ -671,12 +672,22 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CandidateMap operator -(in CandidateMap collection, Candidate offset)
 	{
 		var result = collection;
 		result.Remove(offset);
 		return result;
 	}
+
+	/// <summary>
+	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+	/// </summary>
+	/// <param name="base">The base map.</param>
+	/// <param name="template">The template map that the base map to check and cover.</param>
+	/// <returns>The result map.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template) => (@base & template).PeerIntersection & template;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -744,14 +755,13 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		return result;
 	}
 
-	/// <summary>
-	/// Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-	/// </summary>
-	/// <param name="base">The base map.</param>
-	/// <param name="template">The template map that the base map to check and cover.</param>
-	/// <returns>The result map.</returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap operator %(in CandidateMap @base, in CandidateMap template) => (@base & template).PeerIntersection & template;
+	public static ReadOnlySpan<CandidateMap> operator >>(in CandidateMap map, int subsetSize) => map.GetSubsets(subsetSize);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<CandidateMap> operator >>>(in CandidateMap map, int subsetSize) => map.GetSubsetsAllBelow(subsetSize);
 
 
 	/// <inheritdoc/>

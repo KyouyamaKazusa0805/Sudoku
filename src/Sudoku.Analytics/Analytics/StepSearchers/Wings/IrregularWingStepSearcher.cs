@@ -287,7 +287,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 				for (var size = 3; size <= Math.Min(possibleCells.Count, 5); size++)
 				{
 					// Iterates on each combination.
-					foreach (ref readonly var cells in possibleCells.GetSubsets(size))
+					foreach (ref readonly var cells in possibleCells >> size)
 					{
 						// Checks whether they can intersect to at least one cell, as the elimination cell.
 						if (cells.PeerIntersection is not (var elimMap and not []))
@@ -1073,7 +1073,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 
 			// Iterate on each pair of chosen cells, check whether they contain a common digit.
 			// If they hold totally same digits (both 2 digits are same), they form a naked pair.
-			foreach (ref readonly var pair in bivalueCells.GetSubsets(2))
+			foreach (ref readonly var pair in bivalueCells >> 2)
 			{
 				var (p, q) = (pair[0], pair[1]);
 				var commonCandidate = (Mask)(grid.GetCandidates(p) & grid.GetCandidates(q));

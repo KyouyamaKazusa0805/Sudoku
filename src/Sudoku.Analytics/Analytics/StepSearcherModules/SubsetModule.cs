@@ -218,7 +218,7 @@ internal static class SubsetModule
 			}
 
 			// Iterate on each combination.
-			foreach (ref readonly var cells in currentEmptyMap.GetSubsets(size))
+			foreach (ref readonly var cells in currentEmptyMap >> size)
 			{
 				var digitsMask = grid[in cells];
 				if (PopCount((uint)digitsMask) != size)

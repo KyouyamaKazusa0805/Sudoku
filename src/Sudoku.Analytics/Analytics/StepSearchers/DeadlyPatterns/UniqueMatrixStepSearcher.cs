@@ -256,7 +256,7 @@ public sealed partial class UniqueMatrixStepSearcher : StepSearcher
 				var allCells = HousesMap[house] & EmptyCells & ~pattern;
 				for (var size = PopCount((uint)extraDigitsMask) - 1; size < allCells.Count; size++)
 				{
-					foreach (ref readonly var cells in allCells.GetSubsets(size))
+					foreach (ref readonly var cells in allCells >> size)
 					{
 						var tempMask = grid[in cells];
 						if (PopCount((uint)tempMask) != size + 1 || (tempMask & extraDigitsMask) != extraDigitsMask)

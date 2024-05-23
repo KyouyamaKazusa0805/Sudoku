@@ -369,6 +369,14 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_Subtraction(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
+            </summary>
+            <param name="base">The base map.</param>
+            <param name="template">The template map that the base map to check and cover.</param>
+            <returns>The result map.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_BitwiseAnd(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
@@ -378,13 +386,11 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_ExclusiveOr(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Expands the operator to <c><![CDATA[(a & b).PeerIntersection & b]]></c>.
-            </summary>
-            <param name="base">The base map.</param>
-            <param name="template">The template map that the base map to check and cover.</param>
-            <returns>The result map.</returns>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_RightShift(Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMap.op_UnsignedRightShift(Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
             <inheritdoc/>
@@ -874,15 +880,6 @@
         <member name="M:Sudoku.Concepts.CellMap.op_Subtraction(Sudoku.Concepts.CellMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_ExclusiveOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Modulus(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
             <summary>
             <inheritdoc cref="M:Sudoku.Concepts.CandidateMap.op_Modulus(Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@)" path="/summary"/>
@@ -911,6 +908,21 @@
             ]]></code>
             </para>
             </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseAnd(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_BitwiseOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_ExclusiveOr(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_RightShift(Sudoku.Concepts.CellMap@,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMap.op_UnsignedRightShift(Sudoku.Concepts.CellMap@,System.Int32)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Implicit(Sudoku.Concepts.CellMap@)~System.Int128">
             <summary>
@@ -7893,6 +7905,30 @@
             <param name="left">The left instance.</param>
             <param name="right">The right instance.</param>
             <returns>The result.</returns>
+        </member>
+        <member name="M:Sudoku.Primitive.IBitStatusMap`3.op_RightShift(`0@,System.Int32)">
+            <summary>
+            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+            with the specified value as the result number of elements in each subset.
+            </summary>
+            <param name="map">The map to be checked.</param>
+            <param name="subsetSize">The subset size for each result element.</param>
+            <returns>
+            A list of <typeparamref name="TSelf"/> instances
+            whose number of elements is equal to <paramref name="subsetSize"/> as its subsets.
+            </returns>
+        </member>
+        <member name="M:Sudoku.Primitive.IBitStatusMap`3.op_UnsignedRightShift(`0@,System.Int32)">
+            <summary>
+            Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
+            with the specified value as the maximum number of elements in each subset.
+            </summary>
+            <param name="map">The map to be checked.</param>
+            <param name="subsetSize">The subset size for each result element.</param>
+            <returns>
+            A list of <typeparamref name="TSelf"/> instances
+            whose number of elements is equal to or less than <paramref name="subsetSize"/> as its subsets.
+            </returns>
         </member>
         <member name="M:Sudoku.Primitive.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_True(`0)">
             <inheritdoc/>

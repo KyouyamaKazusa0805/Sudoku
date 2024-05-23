@@ -261,7 +261,7 @@ public static class MapCombinatorial
 		var result = new List<CellMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRangeRef(@this.GetSubsets(i));
+			result.AddRangeRef(@this >> i);
 		}
 		return result.AsReadOnlySpan();
 	}
@@ -284,7 +284,7 @@ public static class MapCombinatorial
 		var result = new List<CandidateMap>(desiredSize);
 		for (var i = 1; i <= length; i++)
 		{
-			result.AddRangeRef(@this.GetSubsets(i));
+			result.AddRangeRef(@this >> i);
 		}
 		return result.AsReadOnlySpan();
 	}

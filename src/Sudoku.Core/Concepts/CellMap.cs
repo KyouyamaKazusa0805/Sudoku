@@ -88,14 +88,13 @@ public partial struct CellMap :
 				case 2: { return InOneHouse(out _); }
 				default:
 				{
-					foreach (ref readonly var pair in this.GetSubsets(2))
+					foreach (ref readonly var pair in this >> 2)
 					{
 						if (pair.InOneHouse(out _))
 						{
 							return true;
 						}
 					}
-
 					return false;
 				}
 			}
@@ -1000,21 +999,6 @@ public partial struct CellMap :
 		return result;
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator &(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high & right._high, left._low & right._low);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator |(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high | right._high, left._low | right._low);
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap operator ^(in CellMap left, in CellMap right)
-		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
-
 	/// <summary>
 	/// <inheritdoc cref="CandidateMap.op_Modulus(in CandidateMap, in CandidateMap)" path="/summary"/>
 	/// </summary>
@@ -1044,6 +1028,29 @@ public partial struct CellMap :
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static CellMap operator %(in CellMap @base, in CellMap template) => (@base & template).PeerIntersection & template;
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap operator &(in CellMap left, in CellMap right)
+		=> CreateByBits(left._high & right._high, left._low & right._low);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap operator |(in CellMap left, in CellMap right)
+		=> CreateByBits(left._high | right._high, left._low | right._low);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap operator ^(in CellMap left, in CellMap right)
+		=> CreateByBits(left._high ^ right._high, left._low ^ right._low);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<CellMap> operator >>(in CellMap map, int subsetSize) => map.GetSubsets(subsetSize);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<CellMap> operator >>>(in CellMap map, int subsetSize) => map.GetSubsetsAllBelow(subsetSize);
 
 
 	/// <summary>
