@@ -1774,24 +1774,9 @@ public partial struct Grid :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Grid Parse(ReadOnlySpan<char> s) => Parse(s, null);
 
-#pragma warning disable format
 	/// <inheritdoc/>
-	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider)
-	{
-		var str = s.ToString();
-		return provider switch
-		{
-			GridFormatInfo g => g.ParseGrid(str),
-			CultureInfo { Name: var n } => n.ToLower() switch
-			{
-				['e', 'n', ..] => new PencilmarkGridFormatInfo().ParseGrid(str),
-				['z', 'h', ..] => new SusserGridFormatInfo().ParseGrid(str),
-				_ => Parse(str)
-			},
-			_ => Parse(str)
-		};
-	}
-#pragma warning restore format
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Parse(ReadOnlySpan<char> s, IFormatProvider? provider) => Parse(s.ToString(), provider);
 
 	/// <summary>
 	/// Get digit via token.
