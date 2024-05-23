@@ -71,7 +71,7 @@
   <Project Path="src\Sudoku.Core\Sudoku.Core.csproj">
     <Configuration Solution="Build|*" Project="Release|*" />
   </Project>
-  <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj" Type="Classic C#">
+  <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
   <Project Path="src\Sudoku.Drawing\Sudoku.Drawing.csproj">

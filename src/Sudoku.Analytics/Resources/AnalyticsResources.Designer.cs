@@ -1438,6 +1438,24 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to The length is exceeded. The limit value is &apos;{0}&apos;..
+        /// </summary>
+        public static string ErrorInfo_LengthExceeded {
+            get {
+                return ResourceManager.GetString("ErrorInfo_LengthExceeded", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to The length of argument must be an even number..
+        /// </summary>
+        public static string ErrorInfo_LengthMustBeAnEven {
+            get {
+                return ResourceManager.GetString("ErrorInfo_LengthMustBeAnEven", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to The length of arguments &apos;{0}&apos; and &apos;{1}&apos; must be same..
         /// </summary>
         public static string ErrorInfo_LengthMustBeSame {

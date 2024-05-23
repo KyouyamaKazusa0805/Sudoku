@@ -3207,4 +3207,10 @@ Error grid: '{0:#}'</value>
   <data name="TechniqueSetConstraint" xml:space="preserve">
     <value>Technique sets: a puzzle can be solved by using only techniques {0}</value>
   </data>
+  <data name="ErrorInfo_LengthMustBeAnEven" xml:space="preserve">
+    <value>The length of argument must be an even number.</value>
+  </data>
+	<data name="ErrorInfo_LengthExceeded" xml:space="preserve">
+    <value>The length is exceeded. The limit value is '{0}'.</value>
+  </data>
 </root>

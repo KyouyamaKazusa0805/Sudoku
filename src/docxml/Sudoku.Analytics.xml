@@ -20556,6 +20556,201 @@
             <returns>A <see cref="T:System.Boolean"/> result.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
         </member>
+        <member name="T:Sudoku.Concepts.EliminationRange">
+            <summary>
+            Represents a type that includes a list of houses and a list of digits, indicating the eliminations range.
+            </summary>
+            <remarks>
+            You can create a collection of this type by using collection expressions. By using a pair of values to create an instance.
+            For example, <c>[0, 24, 1, 24]</c> means digit 0 and 1 holds blocks 4 and 5 (24 = <c>0b0001_1000</c>, 4th and 5th bits are set 1).
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.EliminationRange.Empty">
+            <summary>
+            Indicates the empty instance that contains no elements.
+            </summary>s
+        </member>
+        <member name="F:Sudoku.Concepts.EliminationRange._mask">
+            <summary>
+            Indicates the internal mask field. The length of the buffer is 9,
+            which represents distributions of each digit and their corresponding cover sets.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.EliminationRange.Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.EliminationRange.Houses">
+            <summary>
+            Indicates all houses covered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.EliminationRange.Digits">
+            <summary>
+            Indicates all digits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Equals(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Exists(System.Func{System.Int32,System.Int32,System.Boolean})">
+            <summary>
+            Determines whether the collection contains at least one element of digit and houses satisfies the specified condition.
+            </summary>
+            <param name="predicate">The condition to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ContainsDigit(System.Int32)">
+            <summary>
+            Determines whether the collection contains the specified digit.
+            </summary>
+            <param name="digit">The digit to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Add(System.Int32,System.Int32)">
+            <summary>
+            Add a new digit and houses into the current collection.
+            </summary>
+            <param name="digit">The digit to be added.</param>
+            <param name="houses">The houses to be added.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Remove(System.Int32)">
+            <summary>
+            Removes the digit and its configured value from the collection.
+            </summary>
+            <param name="digit">The digit to be removed.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.GetAtRef(System.Int32)">
+            <summary>
+            Gets the houses covered for the specified digit.
+            </summary>
+            <param name="digit">The digit.</param>
+            <returns>A <see cref="T:System.Int32"/> instance representing the houses covered.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#IEquatable{Sudoku#Concepts#EliminationRange}#Equals(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Collections#Generic#IEnumerable{System#Collections#Generic#KeyValuePair{System#Int32,System#Int32}}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates an <see cref="T:Sudoku.Concepts.EliminationRange"/> via collection expression.
+            </summary>
+            <param name="values">The values to be created.</param>
+            <returns>An <see cref="T:Sudoku.Concepts.EliminationRange"/> instance as result.</returns>
+            <exception cref="T:System.InvalidOperationException">
+            Throws when the number of argument <paramref name="values"/> is not an even number, or greater than 18.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_OnesComplement(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_OnesComplement(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_True(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_True(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_False(Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.ILogicalOperators`1.op_False(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_BitwiseAnd(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseAnd(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_BitwiseOr(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_BitwiseOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_ExclusiveOr(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
+            <inheritdoc cref="M:System.Numerics.IBitwiseOperators`3.op_ExclusiveOr(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_LogicalNot(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_True(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_False(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_OnesComplement(Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_BitwiseAnd(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_BitwiseOr(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IBitwiseOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange}#op_ExclusiveOr(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_BitwiseAnd(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_BitwiseOr(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#ILogicalOperators{Sudoku#Concepts#EliminationRange}#op_ExclusiveOr(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.EliminationRange.Enumerator">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="range">The range to be used.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Enumerator.#ctor(Sudoku.Concepts.EliminationRange@)">
+            <summary>
+            Indicates the enumerator of the current instance.
+            </summary>
+            <param name="range">The range to be used.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.EliminationRange.Enumerator._range">
+            <summary>
+            Indicates the internal field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.EliminationRange.Enumerator._digitIndex">
+            <summary>
+            Indicates the current digit index iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.EliminationRange.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Concepts.Fish">
             <summary>
             Represents a fish pattern.
@@ -24188,6 +24383,16 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_GridMustBeSolved">
             <summary>
               Looks up a localized string similar to The puzzle must have been solved before you consume this member..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_LengthExceeded">
+            <summary>
+              Looks up a localized string similar to The length is exceeded. The limit value is &apos;{0}&apos;..
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_LengthMustBeAnEven">
+            <summary>
+              Looks up a localized string similar to The length of argument must be an even number..
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.ErrorInfo_LengthMustBeSame">
