@@ -21,7 +21,6 @@ public static class MaskEnumerable
 		{
 			result[i++] = selector(bit);
 		}
-
 		return result;
 	}
 
@@ -52,7 +51,6 @@ public static class MaskEnumerable
 				result.Add(resultSelector(digit, cell));
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 

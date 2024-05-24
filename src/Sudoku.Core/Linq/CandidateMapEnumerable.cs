@@ -173,7 +173,6 @@ public static class CandidateMapEnumerable
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -192,7 +191,6 @@ public static class CandidateMapEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 }

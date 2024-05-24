@@ -20,7 +20,6 @@ public static class ConclusionsEnumerable
 		{
 			result.Add(selector(element));
 		}
-
 		return result;
 	}
 }

@@ -45,7 +45,6 @@ public static class CellMapEnumerable
 				return cell;
 			}
 		}
-
 		return null;
 	}
 
@@ -65,7 +64,6 @@ public static class CellMapEnumerable
 				return cell;
 			}
 		}
-
 		return null;
 	}
 
@@ -84,7 +82,6 @@ public static class CellMapEnumerable
 		{
 			result[i++] = selector(cell);
 		}
-
 		return result;
 	}
 
@@ -106,7 +103,6 @@ public static class CellMapEnumerable
 				result.Remove(cell);
 			}
 		}
-
 		return result;
 	}
 
@@ -195,7 +191,6 @@ public static class CellMapEnumerable
 				return true;
 			}
 		}
-
 		return false;
 	}
 
@@ -214,7 +209,6 @@ public static class CellMapEnumerable
 				return false;
 			}
 		}
-
 		return true;
 	}
 }
