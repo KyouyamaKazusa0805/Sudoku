@@ -97,7 +97,6 @@ public static class ResourceDictionary
 					return (resource = ResourceFetchingHandler(m, resourceKey, culture)) is not null;
 				}
 			}
-
 			throw new MissingResourceManagerException(assembly);
 		}
 
@@ -109,7 +108,6 @@ public static class ResourceDictionary
 				return true;
 			}
 		}
-
 		resource = null;
 		return false;
 	}
