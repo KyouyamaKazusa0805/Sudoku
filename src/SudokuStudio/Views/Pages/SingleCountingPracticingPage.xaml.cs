@@ -17,7 +17,11 @@ public sealed partial class SingleCountingPracticingPage : Page
 	/// <summary>
 	/// The internal sync root.
 	/// </summary>
+#if NET9_0_OR_GREATER
+	private static readonly Lock SyncRootOnChangingPuzzles = new();
+#else
 	private static readonly object SyncRootOnChangingPuzzles = new();
+#endif
 
 
 	/// <summary>

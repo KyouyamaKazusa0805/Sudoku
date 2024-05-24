@@ -10,7 +10,11 @@ internal static class ProjectWideConstants
 	/// used for the operations that is analyzing a puzzle, or gathering steps.
 	/// </summary>
 	/// <seealso cref="Step"/>
+#if NET9_0_OR_GREATER
+	public static readonly Lock AnalyzingRelatedSyncRoot = new();
+#else
 	public static readonly object AnalyzingRelatedSyncRoot = new();
+#endif
 
 	/// <summary>
 	/// Indicates the current assembly, of type <see cref="Assembly"/>.

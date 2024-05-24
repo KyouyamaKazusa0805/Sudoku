@@ -142,7 +142,11 @@ public partial struct Grid :
 	/// <seealso cref="Solver"/>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	[EditorBrowsable(EditorBrowsableState.Never)]
+#if NET9_0_OR_GREATER
+	private static readonly Lock PuzzleSolvingSynchronizer = new();
+#else
 	private static readonly object PuzzleSolvingSynchronizer = new();
+#endif
 #endif
 
 	/// <summary>
