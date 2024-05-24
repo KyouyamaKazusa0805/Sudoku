@@ -209,24 +209,6 @@ public static class MapCombinatorial
 	}
 
 	/// <summary>
-	/// Equivalent to calling <see cref="GetSubsets(in CellMap, int)"/> with all possible cases.
-	/// </summary>
-	/// <param name="this">The instance to check subsets.</param>
-	/// <returns>All subsets of the current instance.</returns>
-	/// <seealso cref="GetSubsetsBelow(in CellMap, int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> GetSubsetsAll(this scoped in CellMap @this) => @this.GetSubsetsBelow(@this.Count);
-
-	/// <summary>
-	/// Equivalent to calling <see cref="GetSubsets(in CandidateMap, int)"/> with all possible cases.
-	/// </summary>
-	/// <param name="this">The instance to check subsets.</param>
-	/// <returns>All subsets of the current instance.</returns>
-	/// <seealso cref="GetSubsetsBelow(in CandidateMap, int)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CandidateMap> GetSubsetsAll(this scoped in CandidateMap @this) => @this.GetSubsetsBelow(@this.Count);
-
-	/// <summary>
 	/// Gets all subsets of the current collection via the specified size
 	/// indicating the <b>maximum</b> number of elements of the each subset.
 	/// </summary>

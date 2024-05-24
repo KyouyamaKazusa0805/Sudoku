@@ -4970,13 +4970,31 @@
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IContainsMethod{TSelf,TElement}#Contains(`1)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#ICountMethod{TSelf,TElement}#Count">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Text#Json#IJsonSerializable{TSelf}#ToJsonString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IElementAtMethod{TSelf,TElement}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IElementAtMethod{TSelf,TElement}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IElementAtMethod{TSelf,TElement}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IElementAtMethod{TSelf,TElement}#ElementAtOrDefault(System.Index)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#IEnumerable#GetEnumerator">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Collections#Generic#IEnumerable{TElement}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#Linq#Providers#IGetSubsetMethod{TSelf,TElement}#GetSubsets(System.Int32)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#IParsable{TSelf}#Parse(System.String,System.IFormatProvider)">
@@ -5470,22 +5488,6 @@
         </member>
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CellMap@)">
-            <summary>
-            Equivalent to calling <see cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)"/> with all possible cases.
-            </summary>
-            <param name="this">The instance to check subsets.</param>
-            <returns>All subsets of the current instance.</returns>
-            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Equivalent to calling <see cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CandidateMap@,System.Int32)"/> with all possible cases.
-            </summary>
-            <param name="this">The instance to check subsets.</param>
-            <returns>All subsets of the current instance.</returns>
-            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>

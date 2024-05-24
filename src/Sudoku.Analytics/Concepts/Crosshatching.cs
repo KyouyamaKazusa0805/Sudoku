@@ -35,7 +35,7 @@ public sealed record Crosshatching(ref readonly CellMap BaseCells, ref readonly 
 		}
 
 		var nullableCombination = default(CellMap?);
-		foreach (ref readonly var valueCombination in values.GetSubsetsAll())
+		foreach (ref readonly var valueCombination in values.GetSubsetsBelow(values.Count))
 		{
 			if ((valueCombination.ExpandedPeers & houseCells & emptyCells & ~cells)
 				== (emptyCellsShouldBeCovered & ~emptyCellsNotNeedToBeCovered))

@@ -13,9 +13,11 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IAnyAllMethod<TSelf, TElement>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
+	ICountMethod<TSelf, TElement>,
 	IContainsMethod<TSelf, TElement>,
 	ICoordinateConvertible<TSelf>,
 	ICoordinateParsable<TSelf>,
+	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
 	IFirstLastMethod<TSelf, TElement>,
@@ -334,7 +336,22 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	bool IContainsMethod<TSelf, TElement>.Contains(TElement value) => ((ICollection<TElement>)this).Contains(value);
 
 	/// <inheritdoc/>
+	int ICountMethod<TSelf, TElement>.Count() => Count;
+
+	/// <inheritdoc/>
 	string IJsonSerializable<TSelf>.ToJsonString() => JsonSerializer.Serialize((TSelf)this, TSelf.DefaultOptions);
+
+	/// <inheritdoc/>
+	TElement IElementAtMethod<TSelf, TElement>.ElementAt(int index) => this[index];
+
+	/// <inheritdoc/>
+	TElement IElementAtMethod<TSelf, TElement>.ElementAt(Index index) => this[index];
+
+	/// <inheritdoc/>
+	TElement IElementAtMethod<TSelf, TElement>.ElementAtOrDefault(int index) => this[index];
+
+	/// <inheritdoc/>
+	TElement IElementAtMethod<TSelf, TElement>.ElementAtOrDefault(Index index) => this[index];
 
 	/// <inheritdoc/>
 	IEnumerator IEnumerable.GetEnumerator() => ((IEnumerable<TElement>)this).GetEnumerator();
@@ -351,6 +368,17 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 		{
 			yield return element;
 		}
+	}
+
+	/// <inheritdoc/>
+	IEnumerable<TElement[]> IGetSubsetMethod<TSelf, TElement>.GetSubsets(int subsetSize)
+	{
+		var result = new List<TElement[]>();
+		foreach (var element in (TSelf)this >> subsetSize)
+		{
+			result.Add(element.ToArray());
+		}
+		return result;
 	}
 
 
