@@ -168,7 +168,7 @@ public partial struct EliminationRange :
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => ToString(new RxCyConverter());
+	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	public readonly string ToString<T>(T converter) where T : CoordinateConverter
