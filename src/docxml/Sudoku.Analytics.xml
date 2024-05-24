@@ -5723,14 +5723,9 @@
             Indicates the special flags that the current technique will be applied in metadata.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.PrimaryStepType">
+        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.StepType">
             <summary>
-            Indicates a that that can create a <see cref="T:Sudoku.Analytics.Step"/> instance as the primary choice.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.SecondaryStepType">
-            <summary>
-            Indicates a that that can create a <see cref="T:Sudoku.Analytics.Step"/> instance as the secondary choice.
+            Indicates a that that can create a <see cref="T:Sudoku.Analytics.Step"/> instance that includes the current technique usage.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Metadata.TechniqueMetadataAttribute.StepSearcherType">

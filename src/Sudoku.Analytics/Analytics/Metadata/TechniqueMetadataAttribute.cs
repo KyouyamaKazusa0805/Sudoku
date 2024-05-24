@@ -85,16 +85,10 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, D
 	public TechniqueMetadataSpecialFlags SpecialFlags { get; init; }
 
 	/// <summary>
-	/// Indicates a that that can create a <see cref="Step"/> instance as the primary choice.
+	/// Indicates a that that can create a <see cref="Step"/> instance that includes the current technique usage.
 	/// </summary>
 	[DisallowNull]
-	public Type? PrimaryStepType { get; init; }
-
-	/// <summary>
-	/// Indicates a that that can create a <see cref="Step"/> instance as the secondary choice.
-	/// </summary>
-	[DisallowNull]
-	public Type? SecondaryStepType { get; init; }
+	public Type? StepType { get; init; }
 
 	/// <summary>
 	/// Indicates a step searcher type that can produce steps that describes the current technique.
