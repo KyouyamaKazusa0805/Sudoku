@@ -5477,12 +5477,17 @@
             </summary>
             <param name="this">The instance to check subsets.</param>
             <returns>All subsets of the current instance.</returns>
-            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
+            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CandidateMap@)">
-            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAll(Sudoku.Concepts.CellMap@)"/>
+            <summary>
+            Equivalent to calling <see cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CandidateMap@,System.Int32)"/> with all possible cases.
+            </summary>
+            <param name="this">The instance to check subsets.</param>
+            <returns>All subsets of the current instance.</returns>
+            <seealso cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)"/>
         </member>
-        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)">
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Gets all subsets of the current collection via the specified size
             indicating the <b>maximum</b> number of elements of the each subset.
@@ -5507,8 +5512,8 @@
             </list>
             </returns>
         </member>
-        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsAllBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
         <member name="T:Sudoku.Concepts.Primitive.IGenerator`1">
             <summary>

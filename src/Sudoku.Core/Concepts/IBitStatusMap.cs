@@ -19,6 +19,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
 	IFirstLastMethod<TSelf, TElement>,
+	IGetSubsetMethod<TSelf, TElement>,
 	IGroupByMethod<TSelf, TElement>,
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,

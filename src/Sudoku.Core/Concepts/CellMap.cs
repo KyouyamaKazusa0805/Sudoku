@@ -1098,7 +1098,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> operator >>>(in CellMap map, int subsetSize) => map.GetSubsetsAllBelow(subsetSize);
+	public static ReadOnlySpan<CellMap> operator >>>(in CellMap map, int subsetSize) => map.GetSubsetsBelow(subsetSize);
 
 
 	/// <summary>

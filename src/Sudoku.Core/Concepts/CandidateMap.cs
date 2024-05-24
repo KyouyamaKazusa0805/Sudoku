@@ -809,7 +809,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CandidateMap> operator >>>(in CandidateMap map, int subsetSize) => map.GetSubsetsAllBelow(subsetSize);
+	public static ReadOnlySpan<CandidateMap> operator >>>(in CandidateMap map, int subsetSize) => map.GetSubsetsBelow(subsetSize);
 
 
 	/// <inheritdoc/>

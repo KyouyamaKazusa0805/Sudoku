@@ -3393,6 +3393,26 @@
             <param name="result">The result value.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
+        <member name="T:System.Linq.Providers.IGetSubsetMethod`2">
+            <summary>
+            Represents a type that supports method group <c>GetSubset</c>.
+            </summary>
+            <inheritdoc/>
+        </member>
+        <member name="M:System.Linq.Providers.IGetSubsetMethod`2.GetSubsets(System.Int32)">
+            <summary>
+            Get all subsets from the specified number of the values to take.
+            </summary>
+            <param name="subsetSize">The number of elements you want to take.</param>
+            <returns>
+            The subsets of the list.
+            For example, if the input array is <c>[1, 2, 3]</c> and the argument <paramref name="subsetSize"/> is 2, the result will be
+            <code><![CDATA[
+            [[1, 2], [1, 3], [2, 3]]
+            ]]></code>
+            3 cases.
+            </returns>
+        </member>
         <member name="T:System.Linq.Providers.IGroupByMethod`2">
             <summary>
             Represents a type that supports method group <c>GroupBy</c>.
