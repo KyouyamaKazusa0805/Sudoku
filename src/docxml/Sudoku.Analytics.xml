@@ -20791,7 +20791,7 @@
         <member name="F:Sudoku.Concepts.EliminationRange.Empty">
             <summary>
             Indicates the empty instance that contains no elements.
-            </summary>s
+            </summary>
         </member>
         <member name="F:Sudoku.Concepts.EliminationRange._mask">
             <summary>

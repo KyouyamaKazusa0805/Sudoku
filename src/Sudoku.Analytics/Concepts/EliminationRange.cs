@@ -24,7 +24,7 @@ public partial struct EliminationRange :
 {
 	/// <summary>
 	/// Indicates the empty instance that contains no elements.
-	/// </summary>s
+	/// </summary>
 	public static readonly EliminationRange Empty = default;
 
 
