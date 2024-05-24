@@ -1311,6 +1311,86 @@
             Indicates the unknown technique.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup">
+            <summary>
+            Represents a group of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
+            </summary>
+            <param name="values">Indicates the array to be initialized.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.#ctor(System.ReadOnlyMemory{Sudoku.Analytics.Categorization.SingleSubtype})">
+            <summary>
+            Represents a group of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
+            </summary>
+            <param name="values">Indicates the array to be initialized.</param>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Empty">
+            <summary>
+            Indicates the empty instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.#ctor(Sudoku.Analytics.Categorization.SingleSubtype[])">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance via an array of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
+            </summary>
+            <param name="array">An array of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Length">
+            <summary>
+            Indicates the number of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances in this collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Span">
+            <summary>
+            Gets a span from the current collection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Techniques">
+            <summary>
+            Indicates the techniques that all flags covered.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#Generic#IReadOnlyCollection{Sudoku#Analytics#Categorization#SingleSubtype}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Item(System.Int32)">
+            <summary>
+            Gets the element at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instance as result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.ToArray">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Collections#Generic#IEnumerable{Sudoku#Analytics#Categorization#SingleSubtype}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.System#Linq#Providers#ISliceMethod{Sudoku#Analytics#Categorization#SingleSubtypeGroup,Sudoku#Analytics#Categorization#SingleSubtype}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeGroup.Create(System.ReadOnlySpan{Sudoku.Analytics.Categorization.SingleSubtype})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance.
+            </summary>
+            <param name="values">The values.</param>
+            <returns>A <see cref="T:Sudoku.Analytics.Categorization.SingleSubtypeGroup"/> instance.</returns>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeGroup._values">
+            <summary>
+            The generated field declaration for parameter <c>values</c>.
+            </summary>
+        </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag">
             <summary>
             Represents a flag that describes for a single technique usage or type kind.
@@ -4307,6 +4387,16 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced">
+            <summary>
+            Represents message to be used by reporting deprecated information "Unncessary technique cannot be referenced".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.Values">
+            <summary>
+            Indicates the values of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Indicates whether the specified subtype is unnecessary in practice.
@@ -4354,14 +4444,30 @@
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetSingleTechnique(Sudoku.Analytics.Categorization.SingleSubtype,System.Boolean)">
             <summary>
-            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> field.
+            Try to get related <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> field that corresponds the current subtype.
+            All values are:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.FullHouse"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.LastDigit"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleBlock"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleRow"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingleColumn"/></item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/> (if <paramref name="subtleValue"/> is <see langword="false"/>)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.NakedSingle"/></item>
+            </list>
             </summary>
             <param name="this">The subtype.</param>
             <param name="subtleValue">
+            <para>
             A <see cref="T:System.Boolean"/> indicating whether the return value should subtle the handling on return field.
+            If the value is <see langword="true"/>, hidden singles will be split into block, row and column subtypes,
+            instead of returning a unified value <see cref="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.HiddenSingle"/>.
+            </para>
+            <para>The return value is <see langword="false"/>.</para>
             </param>
             <returns>The single technique returned.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.GetAttribute(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
@@ -5763,6 +5869,90 @@
             <remarks>
             This technique is specially-handled - it will be executed before all possible step searchers.
             </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Preferring.PlayerOperationPrefer">
+            <summary>
+            Represents a kind of the behavior that specifies which way a player may prefer.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.Unknown">
+            <summary>
+            Indicates the preferred behavior is unknown.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferCellClicking">
+            <summary>
+            Indicates a user like clicking a cell, and then click digit button to fill with that.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferDigitLocking">
+            <summary>
+            Indicates a user like locking digits, and fill digits with only clicking cells.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferNearestPathingCell">
+            <summary>
+            Indicates a user like nearest path to fill digits.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferLeastLastingDigit">
+            <summary>
+            Indicates a user like filling with digits appeared more than the others.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferLeastLastingBlock">
+            <summary>
+            Indicates a user like filling with cells in a block that contains less empty cells with other blocks.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferDigitIttoryu">
+            <summary>
+            Indicates a user like filling with digit ittoryu mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.PreferHouseIttoryu">
+            <summary>
+            Indicates a user like filling with house ittoryu mode.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.CellGuessing">
+            <summary>
+            Indicates a user like filling with cell guessing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.HouseGuessing">
+            <summary>
+            Indicates a user like filling with house guessing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.RandomGuessing">
+            <summary>
+            Indicates a user like filling with guessing without any order.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.PlayerOperationPrefer.ImitatingLocking">
+            <summary>
+            Indicates a user like filling digits by imitating locking.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Preferring.SingleSubtypePreferring">
+            <summary>
+            Represents a list of preferring usages on <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Preferring.SingleSubtypePreferring.Values">
+            <summary>
+            Indicates the values.
+            </summary>
         </member>
         <member name="T:Sudoku.Analytics.PuzzleInvalidException">
             <summary>

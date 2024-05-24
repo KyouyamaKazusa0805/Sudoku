@@ -1,5 +1,3 @@
-#define ENHANCED_UNNECESSARY_SUBTYPES
-
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
@@ -8,6 +6,20 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="SingleSubtype"/>
 public static class SingleSubtypeExtensions
 {
+	/// <summary>
+	/// Represents message to be used by reporting deprecated information "Unncessary technique cannot be referenced".
+	/// </summary>
+	internal const string Message_UnnecessaryTechniqueCannotBeReferenced = "This field can only be used in reflection or other unreferenced environment.";
+
+
+	/// <summary>
+	/// Indicates the values of <see cref="SingleSubtype"/> instances.
+	/// </summary>
+	private static readonly SingleSubtype[] Values = Enum.GetValues<SingleSubtype>();
+
+
+
+#pragma warning disable CS0618
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
 	/// For example, a naked single with 8 digits in a block will form a full house, which is unnecessary.
@@ -18,11 +30,9 @@ public static class SingleSubtypeExtensions
 	public static bool IsUnnecessary(this SingleSubtype @this)
 		=> @this is SingleSubtype.BlockHiddenSingle000 or SingleSubtype.RowHiddenSingle000 or SingleSubtype.ColumnHiddenSingle000
 		or SingleSubtype.NakedSingleBlock8 or SingleSubtype.NakedSingleRow8 or SingleSubtype.NakedSingleColumn8
-#if ENHANCED_UNNECESSARY_SUBTYPES
 		or SingleSubtype.RowHiddenSingle200 or SingleSubtype.RowHiddenSingle201 or SingleSubtype.RowHiddenSingle202
-		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220
-#endif
-		;
+		or SingleSubtype.ColumnHiddenSingle200 or SingleSubtype.ColumnHiddenSingle210 or SingleSubtype.ColumnHiddenSingle220;
+#pragma warning restore CS0618
 
 	/// <summary>
 	/// Try to get the number of excluders that the current single subtype will use.
@@ -69,14 +79,30 @@ public static class SingleSubtypeExtensions
 	public static Technique GetRelatedTechnique(this SingleSubtype @this) => @this.GetAttribute().RelatedTechnique;
 
 	/// <summary>
-	/// Try to get related <see cref="SingleTechniqueFlag"/> field.
+	/// Try to get related <see cref="SingleTechniqueFlag"/> field that corresponds the current subtype.
+	/// All values are:
+	/// <list type="bullet">
+	/// <item><see cref="SingleTechniqueFlag.FullHouse"/></item>
+	/// <item><see cref="SingleTechniqueFlag.LastDigit"/></item>
+	/// <item><see cref="SingleTechniqueFlag.HiddenSingleBlock"/></item>
+	/// <item><see cref="SingleTechniqueFlag.HiddenSingleRow"/></item>
+	/// <item><see cref="SingleTechniqueFlag.HiddenSingleColumn"/></item>
+	/// <item><see cref="SingleTechniqueFlag.HiddenSingle"/> (if <paramref name="subtleValue"/> is <see langword="false"/>)</item>
+	/// <item><see cref="SingleTechniqueFlag.NakedSingle"/></item>
+	/// </list>
 	/// </summary>
 	/// <param name="this">The subtype.</param>
 	/// <param name="subtleValue">
+	/// <para>
 	/// A <see cref="bool"/> indicating whether the return value should subtle the handling on return field.
+	/// If the value is <see langword="true"/>, hidden singles will be split into block, row and column subtypes,
+	/// instead of returning a unified value <see cref="SingleTechniqueFlag.HiddenSingle"/>.
+	/// </para>
+	/// <para>The return value is <see langword="false"/>.</para>
 	/// </param>
 	/// <returns>The single technique returned.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument is out of range.</exception>
+	/// <seealso cref="SingleTechniqueFlag"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static SingleTechniqueFlag GetSingleTechnique(this SingleSubtype @this, bool subtleValue = false)
 	{

@@ -38,6 +38,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is Hidden Single in Block, with no excluder values.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHB00", RelatedTechnique = Technique.CrosshatchingBlock)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	BlockHiddenSingle000 = 1001,
 
 	/// <summary>
@@ -92,6 +93,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is Hidden Single in Row, with no excluders.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR00", RelatedTechnique = Technique.CrosshatchingRow)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	RowHiddenSingle000 = 1002,
 
 	/// <summary>
@@ -164,24 +166,28 @@ public enum SingleSubtype
 	/// Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR02", RelatedTechnique = Technique.CrosshatchingRow)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	RowHiddenSingle200 = 608,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 3 excluders (2 blocks + 1 column).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR12", RelatedTechnique = Technique.CrosshatchingRow)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	RowHiddenSingle201 = 609,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 4 excluders (2 blocks + 2 columns).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR22", RelatedTechnique = Technique.CrosshatchingRow)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	RowHiddenSingle202 = 616,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with no excluders.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC00", RelatedTechnique = Technique.CrosshatchingColumn)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	ColumnHiddenSingle000 = 1003,
 
 	/// <summary>
@@ -254,18 +260,21 @@ public enum SingleSubtype
 	/// Indicates the subtype is Hidden Single in Column, with 2 excluders (2 blocks).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC02", RelatedTechnique = Technique.CrosshatchingColumn)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	ColumnHiddenSingle200 = 611,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 3 excluders (2 blocks + 1 row).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC12", RelatedTechnique = Technique.CrosshatchingColumn)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	ColumnHiddenSingle210 = 612,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 4 excluders (2 blocks + 2 rows).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC22", RelatedTechnique = Technique.CrosshatchingColumn)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	ColumnHiddenSingle220 = 618,
 
 	/// <summary>
@@ -320,6 +329,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 8 values in target block.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS18", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleBlock8 = 1004,
 
 	/// <summary>
@@ -374,6 +384,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 8 values in target row.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS28", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleRow8 = 1005,
 
 	/// <summary>
@@ -428,6 +439,7 @@ public enum SingleSubtype
 	/// Indicates the subtype is naked single with 8 values in target column.
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "NS38", RelatedTechnique = Technique.NakedSingle)]
+	[Obsolete(SingleSubtypeExtensions.Message_UnnecessaryTechniqueCannotBeReferenced)]
 	NakedSingleColumn8 = 1006,
 
 	/// <summary>
