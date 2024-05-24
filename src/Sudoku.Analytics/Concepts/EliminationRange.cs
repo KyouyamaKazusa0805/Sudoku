@@ -127,6 +127,23 @@ public partial struct EliminationRange :
 	}
 
 	/// <summary>
+	/// Determines whether all elements in the collection satisfy the specified condition.
+	/// </summary>
+	/// <param name="predicate">The condition to be checked.</param>
+	/// <returns>A <see cref="bool"/> result.</returns>
+	public readonly bool TrueForAll(Func<HouseMask, Digit, bool> predicate)
+	{
+		for (var digit = 0; digit < 9; digit++)
+		{
+			if (!predicate(this[digit], digit))
+			{
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/// <summary>
 	/// Determines whether the collection contains the specified digit.
 	/// </summary>
 	/// <param name="digit">The digit to be checked.</param>
