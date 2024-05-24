@@ -79,7 +79,6 @@ public sealed partial class AlmostLockedSet(
 					result[x++] = (Mask)(1 << digits[i] | 1 << digits[j]);
 				}
 			}
-
 			return result;
 		}
 	}
