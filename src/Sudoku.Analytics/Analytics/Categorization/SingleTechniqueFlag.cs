@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Categorization;
 
 /// <summary>
-/// Represents a single technique.
+/// Represents a flag that describes for a single technique usage or type kind.
 /// </summary>
 public enum SingleTechniqueFlag
 {

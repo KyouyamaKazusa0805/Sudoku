@@ -948,7 +948,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleSubtype">
             <summary>
-            Represents a subtype of the single technique set.
+            Represents a subtype of a single technique.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.None">
@@ -1313,7 +1313,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag">
             <summary>
-            Represents a single technique.
+            Represents a flag that describes for a single technique usage or type kind.
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleTechniqueFlag.None">
