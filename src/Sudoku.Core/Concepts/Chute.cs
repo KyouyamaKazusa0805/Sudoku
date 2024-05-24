@@ -53,4 +53,19 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 		=> parser.ChuteParser(str) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleChuteValuesFound"));
+
+	/// <inheritdoc/>
+	static bool IParsable<Chute>.TryParse(string? s, IFormatProvider? provider, out Chute result)
+	{
+		if (s is null)
+		{
+			result = default;
+			return false;
+		}
+
+		return TryParse(s, out result);
+	}
+
+	/// <inheritdoc/>
+	static Chute IParsable<Chute>.Parse(string s, IFormatProvider? provider) => Parse(s);
 }

@@ -241,4 +241,19 @@ public sealed partial class AlmostLockedSet(
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
 				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
+
+	/// <inheritdoc/>
+	static bool IParsable<AlmostLockedSet>.TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out AlmostLockedSet? result)
+	{
+		if (s is null)
+		{
+			result = null;
+			return false;
+		}
+
+		return TryParse(s, out result);
+	}
+
+	/// <inheritdoc/>
+	static AlmostLockedSet IParsable<AlmostLockedSet>.Parse(string s, IFormatProvider? provider) => Parse(s);
 }

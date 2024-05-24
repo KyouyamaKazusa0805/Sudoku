@@ -20519,6 +20519,12 @@
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse``1(System.String,``0)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.AlmostLockedSet.DigitsMask">
             <summary>
             The generated property declaration for parameter <c>digitsMask</c>.

@@ -225,6 +225,21 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	static Conclusion IJsonSerializable<Conclusion>.FromJsonString(string jsonString)
 		=> JsonSerializer.Deserialize<Conclusion>(jsonString, DefaultOptions);
 
+	/// <inheritdoc/>
+	static bool IParsable<Conclusion>.TryParse(string? s, IFormatProvider? provider, out Conclusion result)
+	{
+		if (s is null)
+		{
+			result = default;
+			return false;
+		}
+
+		return TryParse(s, out result);
+	}
+
+	/// <inheritdoc/>
+	static Conclusion IParsable<Conclusion>.Parse(string s, IFormatProvider? provider) => Parse(s);
+
 
 	/// <summary>
 	/// Negates the current conclusion instance, changing the conclusion type from <see cref="Assignment"/> to <see cref="Elimination"/>,
