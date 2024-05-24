@@ -525,28 +525,28 @@ public partial struct Grid :
 	/// <summary>
 	/// Gets a cell list that only contains the given cells.
 	/// </summary>
-	public readonly unsafe CellMap GivenCells => GetMap(&GridCellPredicates.GivenCells);
+	public readonly unsafe CellMap GivenCells => GetMap(&Predicate.GivenCells);
 
 	/// <summary>
 	/// Gets a cell list that only contains the modifiable cells.
 	/// </summary>
-	public readonly unsafe CellMap ModifiableCells => GetMap(&GridCellPredicates.ModifiableCells);
+	public readonly unsafe CellMap ModifiableCells => GetMap(&Predicate.ModifiableCells);
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid is empty.
 	/// </summary>
-	public readonly unsafe CellMap EmptyCells => GetMap(&GridCellPredicates.EmptyCells);
+	public readonly unsafe CellMap EmptyCells => GetMap(&Predicate.EmptyCells);
 
 	/// <summary>
 	/// Indicates a cell list whose corresponding position in this grid contain two candidates.
 	/// </summary>
-	public readonly unsafe CellMap BivalueCells => GetMap(&GridCellPredicates.BivalueCells);
+	public readonly unsafe CellMap BivalueCells => GetMap(&Predicate.BivalueCells);
 
 	/// <summary>
 	/// Indicates the map of possible positions of the existence of the candidate value for each digit.
 	/// The return value will be an array of 9 elements, which stands for the statuses of 9 digits.
 	/// </summary>
-	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&GridCellPredicates.CandidatesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> CandidatesMap => GetMaps(&Predicate.CandidatesMap);
 
 	/// <summary>
 	/// <para>
@@ -559,7 +559,7 @@ public partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GetMaps(&GridCellPredicates.DigitsMap);
+	public readonly unsafe ReadOnlySpan<CellMap> DigitsMap => GetMaps(&Predicate.DigitsMap);
 
 	/// <summary>
 	/// <para>
@@ -572,7 +572,7 @@ public partial struct Grid :
 	/// </para>
 	/// </summary>
 	/// <seealso cref="CandidatesMap"/>
-	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GetMaps(&GridCellPredicates.ValuesMap);
+	public readonly unsafe ReadOnlySpan<CellMap> ValuesMap => GetMaps(&Predicate.ValuesMap);
 
 	/// <summary>
 	/// Indicates all possible candidates in the current grid.
@@ -1936,7 +1936,7 @@ file sealed class Converter : JsonConverter<Grid>
 /// Represents a list of methods to filter the cells.
 /// </summary>
 [DebuggerStepThrough]
-file static class GridCellPredicates
+file static class Predicate
 {
 	/// <summary>
 	/// Determines whether the specified cell in the specified grid is a given cell.
