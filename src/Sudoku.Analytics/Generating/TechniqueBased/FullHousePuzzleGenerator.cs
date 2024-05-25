@@ -179,7 +179,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			ShuffleSequence(CellSeed);
 
 			// Removes the selected cells.
-			var pattern = (CellMap)CellSeed[..(EmptyCellsCount == -1 ? Rng.Next(1, 22) : EmptyCellsCount)];
+			var pattern = CellSeed[..(EmptyCellsCount == -1 ? Rng.Next(1, 22) : EmptyCellsCount)].AsCellMap();
 			foreach (var cell in pattern)
 			{
 				grid.SetDigit(cell, -1);

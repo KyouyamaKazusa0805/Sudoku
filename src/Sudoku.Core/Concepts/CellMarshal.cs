@@ -127,4 +127,20 @@ public static class CellMarshal
 	/// <returns>A <see cref="CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static ref readonly CellMap AsCellMap(this Cell @this) => ref CellMaps[@this];
+
+	/// <inheritdoc cref="AsCellMap(Span{Cell})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap AsCellMap(this Cell[] @this) => [.. @this];
+
+	/// <summary>
+	/// Converts the specified list of <see cref="Cell"/> instances into a <see cref="CellMap"/> instance.
+	/// </summary>
+	/// <param name="this">The cells to be converted.</param>
+	/// <returns>A <see cref="CellMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap AsCellMap(this scoped Span<Cell> @this) => [.. @this];
+
+	/// <inheritdoc cref="AsCellMap(Span{Cell})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CellMap AsCellMap(this scoped ReadOnlySpan<Cell> @this) => [.. @this];
 }

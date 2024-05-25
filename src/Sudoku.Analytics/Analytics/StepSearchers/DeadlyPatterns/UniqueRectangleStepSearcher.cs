@@ -217,7 +217,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 			}
 
 			// Get all candidates that all four cells appeared.
-			var mask = grid[(CellMap)urCells];
+			var mask = grid[urCells.AsCellMap()];
 
 			// Iterate on each possible digit combination.
 			var allDigitsInThem = mask.GetAllSets();
@@ -264,7 +264,7 @@ public sealed partial class UniqueRectangleStepSearcher : StepSearcher
 					for (var c1 = 0; c1 < 4; c1++)
 					{
 						var corner1 = urCells[c1];
-						var cellsExcluding1CornerCell = (CellMap)urCells - corner1;
+						var cellsExcluding1CornerCell = urCells.AsCellMap() - corner1;
 
 						CheckType1(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);
 						CheckType5(collected, in grid, ref context, urCells, arMode, comparer, d1, d2, corner1, in cellsExcluding1CornerCell, index);

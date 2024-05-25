@@ -65,8 +65,8 @@ public abstract partial class UniqueRectangleStep(
 			return false;
 		}
 
-		var l = (CandidateMap)from conclusion in Conclusions select conclusion.Candidate;
-		var r = (CandidateMap)from conclusion in comparer.Conclusions select conclusion.Candidate;
+		var l = (from conclusion in Conclusions select conclusion.Candidate).AsCandidateMap();
+		var r = (from conclusion in comparer.Conclusions select conclusion.Candidate).AsCandidateMap();
 		return l == r;
 	}
 

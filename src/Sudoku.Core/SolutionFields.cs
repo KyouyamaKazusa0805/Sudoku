@@ -186,7 +186,7 @@ public static class SolutionFields
 			HousesMap = new CellMap[27];
 			for (var house = 0; house < 27; house++)
 			{
-				HousesMap[house] = (CellMap)HousesCells[house];
+				HousesMap[house] = HousesCells[house].AsCellMap();
 			}
 		}
 

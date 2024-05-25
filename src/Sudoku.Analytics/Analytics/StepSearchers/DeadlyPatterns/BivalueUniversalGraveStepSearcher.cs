@@ -265,7 +265,7 @@ public sealed partial class BivalueUniversalGraveStepSearcher : StepSearcher
 			cells[i++] = candidate / 9;
 		}
 
-		var cellsMap = (CellMap)cells;
+		var cellsMap = cells.AsCellMap();
 		if (cellsMap.PeerIntersection is not (var map and not []))
 		{
 			return null;

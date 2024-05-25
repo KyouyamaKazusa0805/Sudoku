@@ -86,7 +86,7 @@ public static class MapCombinatorial
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result[totalIndex++] = (CellMap)temp;
+						result[totalIndex++] = temp.AsCellMap();
 					}
 				}
 			}
@@ -119,7 +119,7 @@ public static class MapCombinatorial
 							temp[j] = offsets[buffer[j]];
 						}
 
-						result.AddRef((CellMap)temp);
+						result.AddRef(temp.AsCellMap());
 					}
 				}
 			}

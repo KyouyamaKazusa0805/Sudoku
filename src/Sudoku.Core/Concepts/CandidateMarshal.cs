@@ -17,4 +17,20 @@ public static class CandidateMarshal
 #else
 	public static CandidateMap AsCandidateMap(this Candidate @this) => [@this];
 #endif
+
+	/// <inheritdoc cref="AsCandidateMap(Span{Candidate})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap AsCandidateMap(this Candidate[] @this) => [.. @this];
+
+	/// <summary>
+	/// Converts the specified list of <see cref="Candidate"/> instances into a <see cref="CandidateMap"/> instance.
+	/// </summary>
+	/// <param name="this">The cells to be converted.</param>
+	/// <returns>A <see cref="CandidateMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap AsCandidateMap(this scoped Span<Candidate> @this) => [.. @this];
+
+	/// <inheritdoc cref="AsCandidateMap(Span{Candidate})"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CandidateMap AsCandidateMap(this scoped ReadOnlySpan<Candidate> @this) => [.. @this];
 }

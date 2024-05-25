@@ -424,15 +424,6 @@
         <member name="M:Sudoku.Concepts.CandidateMap.op_UnsignedRightShift(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CandidateMap">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.Span{System.Int32})~Sudoku.Concepts.CandidateMap">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CandidateMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CandidateMap">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.CandidateMap.Enumerator">
             <summary>
             Represents an enumerator type that iterates on each candidate offsets.
@@ -507,6 +498,19 @@
             </summary>
             <param name="this">The cell to be converted.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CandidateMap"/> instance.
+            </summary>
+            <param name="this">The cells to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CandidateMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CandidateMarshal.AsCandidateMap(System.Span{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Concepts.CellMap">
             <summary>
@@ -984,13 +988,10 @@
             <param name="value">A <see cref="T:System.Int128"/> value.</param>
         </member>
         <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Int32[])~Sudoku.Concepts.CellMap">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.Span{System.Int32})~Sudoku.Concepts.CellMap">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.CellMap.op_Explicit(System.ReadOnlySpan{System.Int32})~Sudoku.Concepts.CellMap">
-            <inheritdoc/>
+            <summary>
+            Explicit cast from a <see cref="T:System.Int32"/> array into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="cells">An array of <see cref="T:System.Int32"/> values.</param>
         </member>
         <member name="T:Sudoku.Concepts.CellMap.Enumerator">
             <summary>
@@ -1149,6 +1150,19 @@
             </summary>
             <param name="this">The cell to be converted.</param>
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing only one element of <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Int32[])">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})">
+            <summary>
+            Converts the specified list of <see cref="T:System.Int32"/> instances into a <see cref="T:Sudoku.Concepts.CellMap"/> instance.
+            </summary>
+            <param name="this">The cells to be converted.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> instance, containing all elements come from <paramref name="this"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.ReadOnlySpan{System.Int32})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMarshal.AsCellMap(System.Span{System.Int32})"/>
         </member>
         <member name="T:Sudoku.Concepts.CellState">
             <summary>
@@ -5154,24 +5168,6 @@
         </member>
         <member name="M:Sudoku.Concepts.IBitStatusMap`3.System#ILogicalOperators{TSelf}#op_ExclusiveOr(`0,`0)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(`1[])~`0">
-            <summary>
-            Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.Span{`1})~`0">
-            <summary>
-            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.IBitStatusMap`3.op_Explicit(System.ReadOnlySpan{`1})~`0">
-            <summary>
-            Converts an <see cref="T:System.ReadOnlySpan`1"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-            </summary>
-            <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
         </member>
         <member name="T:Sudoku.Concepts.Inference">
             <summary>

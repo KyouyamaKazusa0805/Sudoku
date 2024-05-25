@@ -668,7 +668,7 @@ public partial class UniqueRectangleStepSearcher
 	/// </remarks>
 	private partial void CheckHidden(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, bool arMode, Mask comparer, Digit d1, Digit d2, Cell cornerCell, ref readonly CellMap otherCellsMap, int index)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!arMode && grid.GetCandidates(cornerCell) != comparer || arMode && (EmptyCells & cells) != otherCellsMap)
 		{
 			return;
@@ -809,7 +809,7 @@ public partial class UniqueRectangleStepSearcher
 		var xyMask = (Mask)(o ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection & ~(CellMap)urCells;
+		var inter = otherCellsMap.PeerIntersection & ~urCells.AsCellMap();
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -1264,7 +1264,7 @@ public partial class UniqueRectangleStepSearcher
 		var xyMask = (Mask)(mask ^ comparer);
 		var x = TrailingZeroCount(xyMask);
 		var y = xyMask.GetNextSet(x);
-		var inter = otherCellsMap.PeerIntersection & ~(CellMap)urCells;
+		var inter = otherCellsMap.PeerIntersection & ~urCells.AsCellMap();
 		foreach (var possibleXyCell in inter)
 		{
 			if (grid.GetCandidates(possibleXyCell) != xyMask)
@@ -2218,7 +2218,7 @@ public partial class UniqueRectangleStepSearcher
 								context.Options,
 								d1,
 								d2,
-								(CellMap)urCells,
+								urCells.AsCellMap(),
 								index,
 								in subsetCells,
 								thisCorner,
@@ -2292,7 +2292,7 @@ public partial class UniqueRectangleStepSearcher
 		// Merge incomplete and complete wing logic into one loop.
 		// Here we don't know what digit will be selected as a pivot, so we should iterate all digits.
 		// The last case -1 is for complete wing.
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		var pivotDigits = (Digit[])[.. otherDigitsMask.GetAllSets(), -1];
 		foreach (var pivotDigit in pivotDigits)
 		{
@@ -2520,7 +2520,7 @@ public partial class UniqueRectangleStepSearcher
 		var otherDigit2 = TrailingZeroCount(otherDigits2);
 
 		// Now we check for other 2 cells, collecting digits not being UR/AR digits.
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		foreach (var endCell1 in PeersMap[otherCellsMap[0]] & BivalueCells & CandidatesMap[otherDigit1])
 		{
 			foreach (var endCell2 in (PeersMap[otherCellsMap[1]] & BivalueCells & CandidatesMap[otherDigit2]) - endCell1)
@@ -2941,7 +2941,7 @@ public partial class UniqueRectangleStepSearcher
 	/// </remarks>
 	private partial void CheckBabaGroupingUnique(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 
 		// Check all cells are empty.
 		var containsValueCells = false;
@@ -3255,7 +3255,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalType1Or2(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Digit d1, Digit d2, int index, bool arMode)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -3370,7 +3370,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalType3(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -3542,7 +3542,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalType4(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -3706,7 +3706,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="index">The mask index.</param>
 	private partial void CheckExternalTurbotFish(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -3932,7 +3932,7 @@ public partial class UniqueRectangleStepSearcher
 			return;
 		}
 
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -4115,7 +4115,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalXyWing(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;
@@ -4419,7 +4419,7 @@ public partial class UniqueRectangleStepSearcher
 	/// <param name="arMode"></param>
 	private partial void CheckExternalAlmostLockedSetsXz(List<UniqueRectangleStep> accumulator, ref readonly Grid grid, ref AnalysisContext context, Cell[] urCells, scoped ReadOnlySpan<AlmostLockedSet> alses, Mask comparer, Digit d1, Digit d2, int index, bool arMode)
 	{
-		var cells = (CellMap)urCells;
+		var cells = urCells.AsCellMap();
 		if (!CheckPreconditionsOnIncomplete(in grid, urCells, d1, d2))
 		{
 			return;

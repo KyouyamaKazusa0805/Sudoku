@@ -648,7 +648,7 @@ public partial struct CellMap :
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		static string b(ref readonly CellMap f) => new BitmapCellMapFormatInfo().FormatMap(in f);
+		static string b(ref readonly CellMap f) => f.ToString(new BitmapCellMapFormatInfo());
 	}
 
 	/// <inheritdoc/>
@@ -698,7 +698,6 @@ public partial struct CellMap :
 		{
 			result.Add(offsets[i]);
 		}
-
 		return result;
 	}
 
@@ -718,7 +717,6 @@ public partial struct CellMap :
 			Count++;
 			return true;
 		}
-
 		return false;
 	}
 
@@ -733,7 +731,6 @@ public partial struct CellMap :
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -753,7 +750,6 @@ public partial struct CellMap :
 			Count--;
 			return true;
 		}
-
 		return false;
 	}
 
@@ -768,7 +764,6 @@ public partial struct CellMap :
 				result++;
 			}
 		}
-
 		return result;
 	}
 
@@ -815,8 +810,7 @@ public partial struct CellMap :
 		=> this.GroupBy(keySelector).ToArray().Select(static element => (IGrouping<TKey, Cell>)element);
 
 	/// <inheritdoc/>
-	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector)
-		=> this.Select(selector).ToArray();
+	readonly IEnumerable<TResult> ISelectMethod<CellMap, Cell>.Select<TResult>(Func<Cell, TResult> selector) => this.Select(selector).ToArray();
 
 	/// <inheritdoc/>
 	public static bool TryParse(string str, out CellMap result)
@@ -862,7 +856,7 @@ public partial struct CellMap :
 			result = Parse(s, provider);
 			return true;
 		}
-		catch
+		catch (FormatException)
 		{
 			result = [];
 			return false;
@@ -1115,17 +1109,13 @@ public partial struct CellMap :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static implicit operator CellMap(llong value) => CreateByInt128(in value);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(Cell[] offsets) => [.. offsets];
 
-	/// <inheritdoc/>
+	/// <summary>
+	/// Explicit cast from a <see cref="Cell"/> array into a <see cref="CellMap"/> instance.
+	/// </summary>
+	/// <param name="cells">An array of <see cref="Cell"/> values.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(Span<Cell> offsets) => [.. offsets];
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static explicit operator CellMap(ReadOnlySpan<Cell> offsets) => [.. offsets];
+	public static explicit operator CellMap(Cell[] cells) => cells.AsCellMap();
 }
 
 /// <summary>

@@ -543,26 +543,4 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	static TSelf ILogicalOperators<TSelf>.operator ^(TSelf left, TSelf right) => left ^ right;
-
-
-	/// <summary>
-	/// Converts an array of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-	/// </summary>
-	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static abstract explicit operator TSelf(TElement[] offsets);
-
-	/// <summary>
-	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-	/// </summary>
-	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static abstract explicit operator TSelf(Span<TElement> offsets);
-
-	/// <summary>
-	/// Converts an <see cref="ReadOnlySpan{T}"/> of element type <typeparamref name="TElement"/> to a <typeparamref name="TSelf"/> instance.
-	/// </summary>
-	/// <param name="offsets">An array of element type <typeparamref name="TElement"/>.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static abstract explicit operator TSelf(ReadOnlySpan<TElement> offsets);
 }
