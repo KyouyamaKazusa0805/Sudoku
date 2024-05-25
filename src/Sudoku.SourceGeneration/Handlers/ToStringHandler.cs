@@ -53,6 +53,13 @@ internal static class ToStringHandler
 			return null;
 		}
 
+		const string formatProviderTypeName = "System.IFormatProvider";
+		var formatProviderSymbol = compilation.GetTypeByMetadataName(formatProviderTypeName);
+		if (formatProviderSymbol is null)
+		{
+			return null;
+		}
+
 		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
 			type,
 			semanticModel,
@@ -68,12 +75,16 @@ internal static class ToStringHandler
 			0 => (isRefStruct, referencedMembers) switch
 			{
 				(true, _) => Behavior.Throw,
-				_ when hasImpledFormattable(type) => Behavior.CallOverload,
+				_ when hasImpledFormattable(type) is var p and not null => p switch
+				{
+					true => Behavior.CallOverloadImplicit,
+					_ => Behavior.CallOverloadExplicit
+				},
 				(_, []) => Behavior.RecordLike,
 				(_, { Length: 1 }) => Behavior.Specified,
 				_ => Behavior.RecordLike
 			},
-			1 => Behavior.CallOverload,
+			1 => Behavior.CallOverloadExplicit,
 			2 when referencedMembers.Length == 1 => Behavior.Specified,
 			3 when referencedMembers.Length != 0 => Behavior.RecordLike,
 			4 => Behavior.Throw,
@@ -112,7 +123,8 @@ internal static class ToStringHandler
 			var expression = behavior switch
 			{
 				Behavior.ReturnTypeName => fullTypeNameString,
-				Behavior.CallOverload => "((global::System.IFormattable)this).ToString(null, null)",
+				Behavior.CallOverloadImplicit => "ToString(default(string), default(global::System.IFormatProvider))",
+				Behavior.CallOverloadExplicit => "((global::System.IFormattable)this).ToString(null, null)",
 				Behavior.Specified => referencedMembers[0].Name,
 				Behavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
 				Behavior.RecordLike
@@ -155,18 +167,46 @@ internal static class ToStringHandler
 		}
 
 
-		bool hasImpledFormattable(INamedTypeSymbol type)
-			=> type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default);
-
-		bool stringMemberAttirbuteMatcher(AttributeData a)
-			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
-
 		static IEnumerable<string> f((string Name, string ExtraData)[] referencedMembers)
 			=>
 			from referencedMember in referencedMembers
 			let displayName = referencedMember.ExtraData
 			let name = referencedMember.Name
 			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
+
+		bool? hasImpledFormattable(INamedTypeSymbol type)
+		{
+			if (type.Interfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default))
+			{
+				// Extra check: check wheteher the method is explicitly-impl'ed. If so, we should return 'false'.
+#pragma warning disable format
+				return type.GetMembers().OfType<IMethodSymbol>().Any(
+					method => method is
+					{
+						Name: "ToString",
+						IsImplicitlyDeclared: false,
+						ExplicitInterfaceImplementations: not [],
+						TypeParameters: [],
+						Parameters: [
+							{
+								Type.SpecialType: System_String,
+								NullableAnnotation: not NotAnnotated
+							},
+							{
+								Type: var formatProviderType
+							}
+						],
+						ReturnType.SpecialType: System_String
+					} && SymbolEqualityComparer.IncludeNullability.Equals(formatProviderType, formatProviderSymbol)
+				);
+#pragma warning restore format
+			}
+
+			return type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default) ? false : null;
+		}
+
+		bool stringMemberAttirbuteMatcher(AttributeData a)
+			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
 	}
 
 	public static void Output(SourceProductionContext spc, ImmutableArray<string> value)
@@ -186,7 +226,8 @@ file enum Behavior
 {
 	Throw,
 	ReturnTypeName,
-	CallOverload,
+	CallOverloadExplicit,
+	CallOverloadImplicit,
 	Specified,
 	RecordLike,
 	MakeAbstract
