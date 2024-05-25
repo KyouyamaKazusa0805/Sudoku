@@ -45,7 +45,7 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	public abstract bool Equals([NotNullWhen(true)] Constraint? other);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(CultureInfo? culture = null);
+	public abstract string ToString(IFormatProvider? formatProvider);
 
 	/// <summary>
 	/// Creates a new instance that contains same data with the current instance.
@@ -86,5 +86,5 @@ public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOper
 	protected abstract bool CheckCore(ConstraintCheckingContext context);
 
 	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider as CultureInfo);
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

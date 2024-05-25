@@ -37,11 +37,11 @@ public static class CollectorFactory
 	/// Try to set the variant culture for the specified <see cref="Collector"/> instance.
 	/// </summary>
 	/// <param name="this">The current <see cref="Collector"/> instance.</param>
-	/// <param name="culture">The culture to be set.</param>
+	/// <param name="formatProvider">The culture to be set.</param>
 	/// <returns>The result.</returns>
-	public static Collector WithCulture(this Collector @this, CultureInfo? culture)
+	public static Collector WithCulture(this Collector @this, IFormatProvider? formatProvider)
 	{
-		@this.CurrentCulture = culture;
+		@this.CurrentCulture = formatProvider;
 		return @this;
 	}
 

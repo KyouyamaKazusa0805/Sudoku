@@ -25,8 +25,11 @@ public sealed partial class TechniqueSetConstraint : Constraint
 		=> other is TechniqueSetConstraint comparer && Techniques == comparer.Techniques;
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(ResourceDictionary.Get("TechniqueSetConstraint", culture), Techniques.ToString(culture));
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(ResourceDictionary.Get("TechniqueSetConstraint", culture), Techniques.ToString(culture));
+	}
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)

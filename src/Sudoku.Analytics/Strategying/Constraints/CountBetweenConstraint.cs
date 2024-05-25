@@ -37,8 +37,10 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 		&& Range.Equals(comparer.Range) && (CellState, BetweenRule) == (comparer.CellState, comparer.BetweenRule);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("CountBetweenConstraint", culture),
 			ResourceDictionary.Get(CellState switch { CellState.Given => "GivenCell", _ => "EmptyCell" }, culture),
 			Range.Start.Value,
@@ -51,6 +53,7 @@ public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleCon
 				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
 			}
 		);
+	}
 
 	/// <inheritdoc/>
 	public override CountBetweenConstraint Clone()

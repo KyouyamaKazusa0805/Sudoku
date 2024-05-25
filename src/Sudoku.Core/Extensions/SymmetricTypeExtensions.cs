@@ -79,13 +79,13 @@ public static class SymmetricTypeExtensions
 	/// Gets the name of thr symmetry.
 	/// </summary>
 	/// <param name="this">The symmetry value.</param>
-	/// <param name="culture">The culture.</param>
+	/// <param name="formatProvider">The culture.</param>
 	/// <returns>The string.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this SymmetricType @this, CultureInfo? culture = null)
+	public static string GetName(this SymmetricType @this, IFormatProvider? formatProvider)
 		=> PopCount((uint)(int)@this) < 2
-			? ResourceDictionary.Get($"SymmetricType_{@this}", culture)
+			? ResourceDictionary.Get($"SymmetricType_{@this}", formatProvider as CultureInfo)
 			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleFlagsExist"));
 
 	/// <summary>

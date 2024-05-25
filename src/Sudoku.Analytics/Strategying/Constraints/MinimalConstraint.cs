@@ -22,11 +22,14 @@ public sealed partial class MinimalConstraint : Constraint
 		=> other is MinimalConstraint comparer && ShouldBeMinimal == comparer.ShouldBeMinimal;
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("MinimalConstraint", culture),
 			ShouldBeMinimal ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
+	}
 
 	/// <inheritdoc/>
 	public override MinimalConstraint Clone() => new() { IsNegated = IsNegated, ShouldBeMinimal = ShouldBeMinimal };

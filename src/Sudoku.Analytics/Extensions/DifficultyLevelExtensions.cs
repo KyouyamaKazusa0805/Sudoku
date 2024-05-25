@@ -10,11 +10,11 @@ public static class DifficultyLevelExtensions
 	/// Gets the name of the current value, with specified culture.
 	/// </summary>
 	/// <param name="this">The value.</param>
-	/// <param name="culture">The culture.</param>
+	/// <param name="formatProvider">The culture.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this DifficultyLevel @this, CultureInfo? culture = null)
+	public static string GetName(this DifficultyLevel @this, IFormatProvider? formatProvider)
 		=> PopCount((uint)(int)@this) < 2
-			? ResourceDictionary.Get(@this.ToString(), culture)
+			? ResourceDictionary.Get(@this.ToString(), formatProvider as CultureInfo)
 			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("MultipleFlagsExist"));
 }

@@ -30,9 +30,10 @@ public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.F
 	/// <summary>
 	/// Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
 	/// </summary>
-	/// <param name="culture">The culture information.</param>
-	public readonly string? GetTargetFormat(CultureInfo? culture)
-		=> _techniqueName is not null && ResourceDictionary.TryGet(TechniqueResourceName, out var resource, culture ?? CultureInfo.CurrentUICulture)
+	/// <param name="formatProvider">The culture information.</param>
+	public readonly string? GetTargetFormat(IFormatProvider? formatProvider)
+		=> _techniqueName is not null
+		&& ResourceDictionary.TryGet(TechniqueResourceName, out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
 			: null;
 

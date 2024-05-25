@@ -73,10 +73,12 @@ public sealed partial class StepSearcherMetadataInfo(
 	/// <summary>
 	/// Gets the name of the step searcher, using the specified culture.
 	/// </summary>
-	/// <param name="culture">The culture information.</param>
+	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The name.</returns>
-	public string GetName(CultureInfo? culture)
-		=> _stepSearcher.GetType() switch
+	public string GetName(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return _stepSearcher.GetType() switch
 		{
 			{ Name: var typeName } type => type.GetCustomAttribute<StepSearcherAttribute>() switch
 			{
@@ -86,4 +88,5 @@ public sealed partial class StepSearcherMetadataInfo(
 					: typeName
 			}
 		};
+	}
 }

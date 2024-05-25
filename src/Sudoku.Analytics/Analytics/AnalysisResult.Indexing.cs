@@ -64,7 +64,7 @@ public partial record AnalysisResult
 					return pair;
 				}
 
-				var aliases = step.Code.GetAliasedNames();
+				var aliases = step.Code.GetAliasedNames(null);
 				if (aliases is not null && Array.Exists(aliases, n))
 				{
 					return pair;

@@ -23,13 +23,16 @@ public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParame
 		&& (CheckPearl, ShouldBePearlOrDiamond) == (comparer.CheckPearl, comparer.ShouldBePearlOrDiamond);
 
 	/// <inheritdoc/>
-	public sealed override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public sealed override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("PearlOrDiamondConstraint", culture),
 			ResourceDictionary.Get(CheckPearl ? "PearlString" : "DiamondString", culture).ToUpper(),
 			ShouldBePearlOrDiamond ? string.Empty : ResourceDictionary.Get("NoString", culture),
 			ResourceDictionary.Get(CheckPearl ? "PearlString" : "DiamondString", culture)
 		);
+	}
 
 	/// <inheritdoc/>
 	protected override bool CheckCore(ConstraintCheckingContext context)

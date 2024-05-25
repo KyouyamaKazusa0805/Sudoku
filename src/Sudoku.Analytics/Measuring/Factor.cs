@@ -58,7 +58,8 @@ public abstract class Factor
 	/// <summary>
 	/// Try to fetch the name stored in resource dictionary.
 	/// </summary>
-	/// <param name="culture">The culture.</param>
+	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The name of the factor.</returns>
-	public virtual string GetName(CultureInfo? culture = null) => ResourceDictionary.Get($"Factor_{GetType().Name}", culture);
+	public virtual string GetName(IFormatProvider? formatProvider)
+		=> ResourceDictionary.Get($"Factor_{GetType().Name}", formatProvider as CultureInfo);
 }

@@ -21,7 +21,7 @@ public sealed partial class PrimarySingleConstraint : Constraint
 	public SingleTechniqueFlag Primary { get; set; }
 
 	[StringMember(nameof(Primary))]
-	private string SinglePreferString => Primary.GetName();
+	private string SinglePreferString => Primary.GetName(null);
 
 
 	/// <inheritdoc/>
@@ -29,12 +29,15 @@ public sealed partial class PrimarySingleConstraint : Constraint
 		=> other is PrimarySingleConstraint comparer && Primary == comparer.Primary;
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("PrimarySingleConstraint", culture),
 			Primary.GetName(culture),
 			AllowsHiddenSingleInLines ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
+	}
 
 	/// <inheritdoc/>
 	public override PrimarySingleConstraint Clone()

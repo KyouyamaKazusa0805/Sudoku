@@ -755,12 +755,12 @@
             <param name="ignoreLargeSpaceComplexity">Indicates whether the analyzer ignores for large space-complexity step searchers.</param>
             <returns>The result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithCulture(Sudoku.Analytics.Analyzer,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.AnalyzerFactory.WithCulture(Sudoku.Analytics.Analyzer,System.IFormatProvider)">
             <summary>
             Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.Analyzer"/> instance.
             </summary>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Analyzer"/> instance.</param>
-            <param name="culture">The culture to be set.</param>
+            <param name="formatProvider">The culture to be set.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.AnalyzerFactory.WithApplyAll(Sudoku.Analytics.Analyzer,System.Boolean)">
@@ -4480,12 +4480,12 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechniqueFlag,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.SingleTechniqueFlagExtensions.GetName(Sudoku.Analytics.Categorization.SingleTechniqueFlag,System.IFormatProvider)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.SingleTechniqueFlag"/> instance.</param>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>The name of the current technique.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the target technique is out of range.</exception>
         </member>
@@ -4565,12 +4565,12 @@
             </param>
             <returns>The difficulty value.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetName(Sudoku.Analytics.Categorization.Technique,System.IFormatProvider)">
             <summary>
             Try to get the name of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>The name of the current technique.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
         </member>
@@ -4597,12 +4597,12 @@
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
             <returns>All configured links.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueExtensions.GetAliasedNames(Sudoku.Analytics.Categorization.Technique,System.IFormatProvider)">
             <summary>
             Try to get all aliases of the current <see cref="T:Sudoku.Analytics.Categorization.Technique"/>.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>
             All possible aliases of the current technique.
             If the technique does not contain any aliases, the return value will be <see langword="null"/>.
@@ -4745,12 +4745,12 @@
             <param name="cultureInfo">The culture information instance.</param>
             <returns>The shortened name.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGroupExtensions.GetName(Sudoku.Analytics.Categorization.TechniqueGroup,System.IFormatProvider)">
             <summary>
             Try to get name of the current <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance, with the specified culture information.
             </summary>
             <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.TechniqueGroup"/> instance.</param>
-            <param name="culture">The culture information instance.</param>
+            <param name="formatProvider">The culture information instance.</param>
             <returns>The name.</returns>
             <exception cref="T:System.Resources.ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
         </member>
@@ -4887,12 +4887,12 @@
             <returns>The result.</returns>
             <seealso cref="P:Sudoku.Analytics.Collector.Options"/>
         </member>
-        <member name="M:Sudoku.Analytics.CollectorFactory.WithCulture(Sudoku.Analytics.Collector,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.CollectorFactory.WithCulture(Sudoku.Analytics.Collector,System.IFormatProvider)">
             <summary>
             Try to set the variant culture for the specified <see cref="T:Sudoku.Analytics.Collector"/> instance.
             </summary>
             <param name="this">The current <see cref="T:Sudoku.Analytics.Collector"/> instance.</param>
-            <param name="culture">The culture to be set.</param>
+            <param name="formatProvider">The culture to be set.</param>
             <returns>The result.</returns>
         </member>
         <member name="M:Sudoku.Analytics.CollectorFactory.WithStepSearchers(Sudoku.Analytics.Collector,Sudoku.Analytics.StepSearcher[])">
@@ -5652,11 +5652,11 @@
         <member name="P:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.SupportedTechniques">
             <inheritdoc cref="P:Sudoku.Analytics.Metadata.StepSearcherAttribute.SupportedTechniques"/>
         </member>
-        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo.GetName(System.IFormatProvider)">
             <summary>
             Gets the name of the step searcher, using the specified culture.
             </summary>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>The name.</returns>
         </member>
         <member name="F:Sudoku.Analytics.Metadata.StepSearcherMetadataInfo._stepSearcher">
@@ -6229,11 +6229,11 @@
         <member name="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.IFormatProvider)">
             <summary>
             Gets the string representation for the current step, describing only its technique name and conclusions.
             </summary>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>The string value.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Step.System#IFormattable#ToString(System.String,System.IFormatProvider)">
@@ -19897,12 +19897,12 @@
             </summary>
             <seealso cref="T:Sudoku.Analytics.DifficultyLevel"/>
         </member>
-        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.DifficultyLevelExtensions.GetName(Sudoku.Analytics.DifficultyLevel,System.IFormatProvider)">
             <summary>
             Gets the name of the current value, with specified culture.
             </summary>
             <param name="this">The value.</param>
-            <param name="culture">The culture.</param>
+            <param name="formatProvider">The culture.</param>
             <returns>The string value.</returns>
         </member>
         <member name="T:Sudoku.Compatibility.Hodoku.HodokuAttribute">
@@ -22566,11 +22566,11 @@ result ^= expression;
             Provides with a formula that calculates for the result, unscaled.
             </summary>
         </member>
-        <member name="M:Sudoku.Measuring.Factor.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Measuring.Factor.GetName(System.IFormatProvider)">
             <summary>
             Try to fetch the name stored in resource dictionary.
             </summary>
-            <param name="culture">The culture.</param>
+            <param name="formatProvider">The culture information.</param>
             <returns>The name of the factor.</returns>
         </member>
         <member name="T:Sudoku.Measuring.FactorCollection">
@@ -29094,7 +29094,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraint.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Strategying.Constraint.Clone">
@@ -29303,7 +29303,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Clone">
@@ -29331,7 +29331,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Clone">
@@ -29364,7 +29364,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Clone">
@@ -29403,7 +29403,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Clone">
@@ -29457,7 +29457,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Clone">
@@ -29497,7 +29497,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Clone">
@@ -29547,7 +29547,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Clone">
@@ -29592,7 +29592,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Clone">
@@ -29632,7 +29632,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Clone">
@@ -29660,7 +29660,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Clone">
@@ -29708,7 +29708,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdocs/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -29743,7 +29743,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Clone">
@@ -29823,7 +29823,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Clone">
@@ -29853,7 +29853,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Clone">
@@ -29894,7 +29894,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Clone">
@@ -29925,7 +29925,7 @@ result ^= expression;
         <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Equals(Sudoku.Strategying.Constraint)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
@@ -29992,11 +29992,11 @@ result ^= expression;
             Full name of the format.
             </summary>
         </member>
-        <member name="M:Sudoku.Text.TechniqueFormat.GetTargetFormat(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Text.TechniqueFormat.GetTargetFormat(System.IFormatProvider)">
             <summary>
             Indicates the format key. The value can be <see langword="null"/> if the step does not contain an equivalent resource key.
             </summary>
-            <param name="culture">The culture information.</param>
+            <param name="formatProvider">The culture information.</param>
         </member>
         <member name="M:Sudoku.Text.TechniqueFormat.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>

@@ -45,12 +45,12 @@ public static class TechniqueGroupExtensions
 	/// Try to get name of the current <see cref="TechniqueGroup"/> instance, with the specified culture information.
 	/// </summary>
 	/// <param name="this">The <see cref="TechniqueGroup"/> instance.</param>
-	/// <param name="culture">The culture information instance.</param>
+	/// <param name="formatProvider">The culture information instance.</param>
 	/// <returns>The name.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the specified group does not contain a name.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this TechniqueGroup @this, CultureInfo? culture = null)
-		=> ResourceDictionary.Get($"{nameof(TechniqueGroup)}_{@this}", culture ?? CultureInfo.CurrentUICulture);
+	public static string GetName(this TechniqueGroup @this, IFormatProvider? formatProvider)
+		=> ResourceDictionary.Get($"{nameof(TechniqueGroup)}_{@this}", formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture);
 
 	/// <summary>
 	/// Try to get abbreviation of the current <see cref="TechniqueGroup"/> instance.

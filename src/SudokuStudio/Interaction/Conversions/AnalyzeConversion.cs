@@ -228,11 +228,12 @@ file static class Extensions
 	/// <param name="this">The current instance.</param>
 	/// <param name="step">The step to be calculated.</param>
 	/// <param name="scale">The scale value to be used.</param>
-	/// <param name="culture">The culture to be used.</param>
+	/// <param name="formatProvider">The culture to be used.</param>
 	/// <returns>The string representation of final rating text.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string ToString(this Factor @this, Step step, decimal scale, CultureInfo? culture = null)
+	public static string ToString(this Factor @this, Step step, decimal scale, IFormatProvider? formatProvider)
 	{
+		var culture = formatProvider as CultureInfo;
 		var colonCharacter = ResourceDictionary.Get("_Token_Colon", culture);
 		return @this.Formula(from propertyInfo in @this.Parameters select propertyInfo.GetValue(step)!) switch
 		{

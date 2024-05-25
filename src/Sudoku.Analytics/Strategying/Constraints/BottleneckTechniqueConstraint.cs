@@ -23,8 +23,11 @@ public sealed partial class BottleneckTechniqueConstraint : Constraint
 		=> other is BottleneckTechniqueConstraint comparer && Techniques == comparer.Techniques;
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(ResourceDictionary.Get("BottleneckTechniqueConstraint", culture), Techniques.ToString(culture));
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(ResourceDictionary.Get("BottleneckTechniqueConstraint", culture), Techniques.ToString(culture));
+	}
 
 	/// <inheritdoc/>
 	public override BottleneckTechniqueConstraint Clone() => new() { IsNegated = IsNegated, Techniques = Techniques[..] };

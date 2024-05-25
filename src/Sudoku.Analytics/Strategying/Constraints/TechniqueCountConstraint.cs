@@ -40,13 +40,16 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 		&& (LimitCount, Operator, Technique) == (comparer.LimitCount, comparer.Operator, comparer.Technique);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("TechniqueCountConstraint", culture),
 			Technique.GetName(culture),
 			Operator.GetOperatorString(),
 			LimitCount
 		);
+	}
 
 	/// <inheritdoc/>
 	public override TechniqueCountConstraint Clone()

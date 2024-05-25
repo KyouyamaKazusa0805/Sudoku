@@ -22,7 +22,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 	public CollectorDifficultyLevelMode DifficultyLevelMode { get; set; } = CollectorDifficultyLevelMode.OnlySame;
 
 	/// <inheritdoc cref="Analyzer.CurrentCulture"/>
-	public CultureInfo? CurrentCulture { get; set; }
+	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	[DisallowNull]

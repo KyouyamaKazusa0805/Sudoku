@@ -37,13 +37,16 @@ public sealed partial class LastingConstraint : Constraint, ILimitCountConstrain
 		&& (LimitCount, Technique, Operator) == (comparer.LimitCount, comparer.Technique, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("LastingConstraint", culture),
 			Technique.GetName(culture),
 			Operator.GetOperatorString(),
 			LimitCount.ToString()
 		);
+	}
 
 	/// <inheritdoc/>
 	public override LastingConstraint Clone()

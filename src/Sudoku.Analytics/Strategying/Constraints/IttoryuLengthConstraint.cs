@@ -41,8 +41,11 @@ public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOpe
 		=> other is IttoryuLengthConstraint comparer && (Length, Operator) == (comparer.Length, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(ResourceDictionary.Get("IttoryuLengthConstraint", culture), Operator.GetOperatorString(), Length);
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(ResourceDictionary.Get("IttoryuLengthConstraint", culture), Operator.GetOperatorString(), Length);
+	}
 
 	/// <inheritdoc/>
 	public override IttoryuLengthConstraint Clone() => new() { IsNegated = IsNegated, Length = Length, Operator = Operator };

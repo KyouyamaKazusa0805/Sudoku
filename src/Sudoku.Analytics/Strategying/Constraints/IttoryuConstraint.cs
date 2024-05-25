@@ -59,8 +59,11 @@ public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorC
 		&& (Rounds, Operator, LimitedSingle) == (comparer.Rounds, comparer.Operator, comparer.LimitedSingle);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(ResourceDictionary.Get("IttoryuConstraint", culture), Operator.GetOperatorString(), Rounds);
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(ResourceDictionary.Get("IttoryuConstraint", culture), Operator.GetOperatorString(), Rounds);
+	}
 
 	/// <inheritdoc/>
 	public override IttoryuConstraint Clone()

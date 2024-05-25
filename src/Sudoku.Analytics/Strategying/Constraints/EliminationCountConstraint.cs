@@ -36,14 +36,17 @@ public sealed partial class EliminationCountConstraint : Constraint, IComparison
 		=> other is EliminationCountConstraint comparer && (LimitCount, Operator) == (comparer.LimitCount, comparer.Operator);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("EliminationCountConstraint", culture),
 			Operator.GetOperatorString(),
 			LimitCount,
 			LimitCount != 1 ? string.Empty : ResourceDictionary.Get("NounPluralSuffix", culture),
 			Technique.GetName(culture)
 		);
+	}
 
 	/// <inheritdoc/>
 	public override EliminationCountConstraint Clone()

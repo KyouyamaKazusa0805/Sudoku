@@ -34,8 +34,10 @@ public sealed partial class SymmetryConstraint : Constraint
 		=> other is SymmetryConstraint comparer && SymmetricTypes == comparer.SymmetricTypes;
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("SymmetryConstraint", culture),
 			SymmetricTypes switch
 			{
@@ -46,6 +48,7 @@ public sealed partial class SymmetryConstraint : Constraint
 				)
 			}
 		);
+	}
 
 	/// <inheritdoc/>
 	public override SymmetryConstraint Clone() => new() { IsNegated = IsNegated, SymmetricTypes = SymmetricTypes };

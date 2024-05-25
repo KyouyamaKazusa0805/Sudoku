@@ -33,8 +33,10 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 		&& (Minimum, Maximum, BetweenRule) == (comparer.Minimum, comparer.Maximum, comparer.BetweenRule);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("BottleneckStepRatingConstraint", culture),
 			Minimum,
 			Maximum,
@@ -46,6 +48,7 @@ public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetwee
 				BetweenRule.BothClosed => ResourceDictionary.Get("BothClosed", culture)
 			}
 		);
+	}
 
 	/// <inheritdoc/>
 	public override BottleneckStepRatingConstraint Clone()

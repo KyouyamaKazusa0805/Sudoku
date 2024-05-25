@@ -1140,7 +1140,7 @@ public partial struct Grid :
 		=> (formatProvider ?? new SusserGridFormatInfo()) switch
 		{
 			GridFormatInfo f => f.FormatGrid(in this),
-			CultureInfo c => ToString(c),
+			CultureInfo c => ToString(c?.Name.ToLower() switch { ['e', 'n', ..] => "@:", ['z', 'h', ..] => ".", _ => "#" }),
 			_ => throw new FormatException()
 		};
 
@@ -1159,11 +1159,6 @@ public partial struct Grid :
 				_ => GridFormatInfo.Create(format).Unwrap().FormatGrid(in this)
 			}
 		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(CultureInfo? culture)
-		=> ToString(culture?.Name.ToLower() switch { ['e', 'n', ..] => "@:", ['z', 'h', ..] => ".", _ => "#" });
 
 	/// <summary>
 	/// Get the cell state at the specified cell.

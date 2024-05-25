@@ -48,7 +48,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	public bool IgnoreHighAllocationAlgorithms { get; set; }
 
 	/// <inheritdoc/>
-	public CultureInfo? CurrentCulture { get; set; }
+	public IFormatProvider? CurrentCulture { get; set; }
 
 	/// <inheritdoc/>
 	[DisallowNull]
@@ -80,7 +80,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <summary>
 	/// Indicates the final <see cref="CultureInfo"/> instance to be used.
 	/// </summary>
-	private CultureInfo ResultCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
+	private CultureInfo ResultCurrentCulture => CurrentCulture as CultureInfo ?? CultureInfo.CurrentUICulture;
 
 
 	/// <summary>

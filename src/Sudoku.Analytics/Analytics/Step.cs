@@ -254,10 +254,11 @@ public abstract partial class Step(
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
 	/// </summary>
-	/// <param name="culture">The culture information.</param>
+	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToSimpleString(CultureInfo? culture = null) => $"{GetName(culture ?? ResultCurrentCulture)} => {ConclusionText}";
+	public string ToSimpleString(IFormatProvider? formatProvider)
+		=> $"{GetName(formatProvider as CultureInfo ?? ResultCurrentCulture)} => {ConclusionText}";
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

@@ -22,7 +22,7 @@ public interface IAnalyzer<in TSelf, out TResult> where TSelf : IAnalyzer<TSelf,
 	/// <summary>
 	/// Indicates the current culture that is used for displaying running information.
 	/// </summary>
-	public abstract CultureInfo? CurrentCulture { get; set; }
+	public abstract IFormatProvider? CurrentCulture { get; set; }
 
 	/// <summary>
 	/// The internal <see cref="Random"/> instance to be used.

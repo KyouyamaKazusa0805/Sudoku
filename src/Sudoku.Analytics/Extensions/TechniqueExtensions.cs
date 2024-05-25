@@ -109,12 +109,12 @@ public static class TechniqueExtensions
 	/// Try to get the name of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <param name="culture">The culture information.</param>
+	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>The name of the current technique.</returns>
 	/// <exception cref="ResourceNotFoundException">Throws when the target name is not found in resource dictionary.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string GetName(this Technique @this, CultureInfo? culture = null)
-		=> ResourceDictionary.TryGet(@this.ToString(), out var resource, culture ?? CultureInfo.CurrentUICulture)
+	public static string GetName(this Technique @this, IFormatProvider? formatProvider)
+		=> ResourceDictionary.TryGet(@this.ToString(), out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource
 			: ResourceDictionary.Get(@this.ToString(), ResourceDictionary.DefaultCulture);
 
@@ -155,14 +155,14 @@ public static class TechniqueExtensions
 	/// Try to get all aliases of the current <see cref="Technique"/>.
 	/// </summary>
 	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <param name="culture">The culture information.</param>
+	/// <param name="formatProvider">The culture information.</param>
 	/// <returns>
 	/// All possible aliases of the current technique.
 	/// If the technique does not contain any aliases, the return value will be <see langword="null"/>.
 	/// </returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string[]? GetAliasedNames(this Technique @this, CultureInfo? culture = null)
-		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, culture ?? CultureInfo.CurrentUICulture)
+	public static string[]? GetAliasedNames(this Technique @this, IFormatProvider? formatProvider)
+		=> ResourceDictionary.TryGet($"TechniqueAlias_{@this}", out var resource, formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture)
 			? resource.SplitBy(';')
 			: null;
 

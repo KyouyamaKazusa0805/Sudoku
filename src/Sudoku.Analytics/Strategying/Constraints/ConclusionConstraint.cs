@@ -28,12 +28,15 @@ public sealed partial class ConclusionConstraint : Constraint
 		=> other is ConclusionConstraint comparer && (Conclusion, ShouldAppear) == (comparer.Conclusion, comparer.ShouldAppear);
 
 	/// <inheritdoc/>
-	public override string ToString(CultureInfo? culture = null)
-		=> string.Format(
+	public override string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo;
+		return string.Format(
 			ResourceDictionary.Get("ConclusionConstraint", culture),
 			Conclusion.ToString(culture),
 			ShouldAppear ? string.Empty : ResourceDictionary.Get("NoString", culture)
 		);
+	}
 
 	/// <inheritdoc/>
 	public override ConclusionConstraint Clone()
