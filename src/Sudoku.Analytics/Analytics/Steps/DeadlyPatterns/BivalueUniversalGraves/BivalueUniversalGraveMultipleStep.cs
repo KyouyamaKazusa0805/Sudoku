@@ -43,6 +43,9 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 
 	/// <inheritdoce/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string GetName(CultureInfo? culture = null)
-		=> $"{base.GetName(culture ?? ResultCurrentCulture)[..^4]} + {TrueCandidates.Count}";
+	public override string GetName(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
+		return $"{base.GetName(culture)[..^4]} + {TrueCandidates.Count}";
+	}
 }

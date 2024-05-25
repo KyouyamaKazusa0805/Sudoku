@@ -58,7 +58,7 @@ public partial record AnalysisResult
 			foreach (var pair in Span)
 			{
 				var (_, step) = pair;
-				var name = step.GetName();
+				var name = step.GetName(null);
 				if (n(name))
 				{
 					return pair;

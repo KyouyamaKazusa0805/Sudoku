@@ -92,8 +92,11 @@ public abstract partial class FishStep(
 	private protected string InternalNotation => Pattern.ToString(Options.Converter);
 
 
-	/// <inheritdoc cref="Step.ToString(CultureInfo?)"/>
+	/// <inheritdoc cref="Step.ToString(IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public new string ToString(CultureInfo? culture = null)
-		=> Pattern.ToString(culture is null ? CoordinateConverter.InvariantCultureConverter : CoordinateConverter.GetConverter(culture));
+	public new string ToString(IFormatProvider? formatProvider)
+	{
+		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
+		return Pattern.ToString(culture is null ? CoordinateConverter.InvariantCultureConverter : CoordinateConverter.GetConverter(culture));
+	}
 }

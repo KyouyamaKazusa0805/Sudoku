@@ -108,7 +108,7 @@ public sealed class ComplexSingleStep(
 	}
 
 	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture = null)
+	public override string GetName(IFormatProvider? formatProvider)
 	{
 		var (hasLockedCandidates, hasSubset) = (false, false);
 		foreach (var techniqueGroup in IndirectTechniques)
@@ -123,6 +123,7 @@ public sealed class ComplexSingleStep(
 			}
 		}
 
+		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
 		var lockedCandidatesName = ResourceDictionary.Get("Concept_LockedCandidates", culture);
 		var subsetName = ResourceDictionary.Get("Concept_Subset", culture);
 		var basedOnName = BasedOn.GetName(culture);

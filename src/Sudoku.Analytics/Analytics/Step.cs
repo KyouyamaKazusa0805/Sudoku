@@ -222,10 +222,10 @@ public abstract partial class Step(
 	/// <summary>
 	/// Try to fetch the name of this technique step, with the specified culture.
 	/// </summary>
-	/// <param name="culture">The culture information instance.</param>
+	/// <param name="formatProvider">The culture information provider instance.</param>
 	/// <returns>The string representation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public virtual string GetName(CultureInfo? culture = null) => Code.GetName(culture ?? ResultCurrentCulture);
+	public virtual string GetName(IFormatProvider? formatProvider) => Code.GetName(formatProvider as CultureInfo ?? ResultCurrentCulture);
 
 	/// <summary>
 	/// Returns a string that only contains the name and the basic description.
@@ -251,13 +251,6 @@ public abstract partial class Step(
 		};
 	}
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format) => ((IFormattable)this).ToString(format, null);
-
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
-
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
 	/// </summary>
@@ -265,4 +258,7 @@ public abstract partial class Step(
 	/// <returns>The string value.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToSimpleString(CultureInfo? culture = null) => $"{GetName(culture ?? ResultCurrentCulture)} => {ConclusionText}";
+
+	/// <inheritdoc/>
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

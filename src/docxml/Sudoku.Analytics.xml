@@ -6213,11 +6213,11 @@
             <para>In addition, the return value must be -1, 0 or 1; otherwise, an unexpected behavior might be raised.</para>
             </remarks>
         </member>
-        <member name="M:Sudoku.Analytics.Step.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Step.GetName(System.IFormatProvider)">
             <summary>
             Try to fetch the name of this technique step, with the specified culture.
             </summary>
-            <param name="culture">The culture information instance.</param>
+            <param name="formatProvider">The culture information provider instance.</param>
             <returns>The string representation.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Step.ToString">
@@ -6229,18 +6229,15 @@
         <member name="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Step.ToString(System.String)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Step.System#IFormattable#ToString(System.String,System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Analytics.Step.ToSimpleString(System.Globalization.CultureInfo)">
             <summary>
             Gets the string representation for the current step, describing only its technique name and conclusions.
             </summary>
             <param name="culture">The culture information.</param>
             <returns>The string value.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Step.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Analytics.Step.Conclusions">
             <summary>
@@ -12506,7 +12503,7 @@
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Steps.ChainingStep.GetRuleParents(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
@@ -12866,7 +12863,7 @@
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.Sudoku#Traits#ICandidateListTrait#CandidateSize">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.GetName(System.IFormatProvider)">
             <inheritdoce/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.BivalueUniversalGraveMultipleStep.TrueCandidates">
@@ -17163,8 +17160,8 @@
             The internal notation.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.Globalization.CultureInfo)">
-            <inheritdoc cref="!:Step.ToString(CultureInfo?)"/>
+        <member name="M:Sudoku.Analytics.Steps.FishStep.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:Sudoku.Analytics.Step.ToString(System.IFormatProvider)"/>
         </member>
         <member name="P:Sudoku.Analytics.Steps.FishStep.Digit">
             <summary>
@@ -18493,7 +18490,7 @@
         <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.CompareTo(Sudoku.Analytics.Step)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.Globalization.CultureInfo)">
+        <member name="M:Sudoku.Analytics.Steps.ComplexSingleStep.GetName(System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Steps.DirectIntersectionStep">

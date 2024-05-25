@@ -248,9 +248,9 @@ public abstract partial class ChainingStep(
 			: 1;
 
 	/// <inheritdoc/>
-	public override string GetName(CultureInfo? culture = null)
+	public override string GetName(IFormatProvider? formatProvider)
 	{
-		culture ??= ResultCurrentCulture;
+		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
 		return DynamicNestingLevel switch { 0 => prefixWithoutLevel(), var l => $"{prefixWithoutLevel()}{nestedSuffix(l)}" };
 
 
