@@ -153,13 +153,13 @@ public abstract partial class Step(
 	/// var formatArguments = FormatInterpolationParts?.FirstOrDefault(culture).ResourcePlaceholderValues;
 	/// var description = Format.ToString(formatArguments);
 	/// ]]></code>
-	/// See the documentation documents defined in method <see cref="ToString(CultureInfo?)"/> to learn more information.
+	/// See the documentation documents defined in method <see cref="ToString(IFormatProvider?)"/> to learn more information.
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="FormatInterpolationParts"/>
 	/// <seealso cref="ResourceDictionary.Get(string, CultureInfo?, Assembly?)"/>
 	/// <seealso cref="TechniqueFormat"/>
-	/// <seealso cref="ToString(CultureInfo?)"/>
+	/// <seealso cref="ToString(IFormatProvider?)"/>
 	public virtual TechniqueFormat Format => GetType().Name;
 
 	/// <summary>
@@ -234,12 +234,13 @@ public abstract partial class Step(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public sealed override string ToString() => ToString(ResultCurrentCulture);
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(CultureInfo? culture = null)
+	public string ToString(IFormatProvider? formatProvider)
 	{
 		const StringComparison casingOption = StringComparison.CurrentCultureIgnoreCase;
-		var currentCultureName = (culture ?? ResultCurrentCulture).Name;
+		var culture = formatProvider as CultureInfo ?? ResultCurrentCulture;
+		var currentCultureName = culture.Name;
 		var colonToken = ResourceDictionary.Get("Colon", culture ?? ResultCurrentCulture);
 		bool cultureMatcher(FormatInterpolation kvp) => currentCultureName.StartsWith(kvp.LanguageNameOrIdentifier, casingOption);
 		return (Format, FormatInterpolationParts?.FirstOrDefault(cultureMatcher).ResourcePlaceholderValues) switch
@@ -252,49 +253,10 @@ public abstract partial class Step(
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format) => ToString(format, null);
+	public string ToString(string? format) => ((IFormattable)this).ToString(format, null);
 
 	/// <inheritdoc/>
-	/// <remarks>
-	/// <list type="table">
-	/// <listheader>
-	/// <term>Format</term>
-	/// <description>Description</description>
-	/// </listheader>
-	/// <item>
-	/// <term><see langword="null"/> or <c>"F"</c></term>
-	/// <description>The full text.</description>
-	/// </item>
-	/// <item>
-	/// <term>"N"</term>
-	/// <description>The name of the step.</description>
-	/// </item>
-	/// <item>
-	/// <term><c>"C"</c></term>
-	/// <description>The conclusion text of the step.</description>
-	/// </item>
-	/// <item>
-	/// <term><c>"NC"</c> or <c>"CN"</c></term>
-	/// <description>
-	/// No description returned; only contains name and conclusion, equivalent to <see cref="ToSimpleString(CultureInfo?)"/>.
-	/// </description>
-	/// </item>
-	/// </list>
-	/// </remarks>
-	/// <seealso cref="ToSimpleString(CultureInfo?)"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(string? format, IFormatProvider? formatProvider)
-		=> formatProvider switch
-		{
-			CultureInfo cultureInfo => ToString(cultureInfo),
-			_ => format switch
-			{
-				null or "F" => ToString(ResultCurrentCulture),
-				"N" => GetName(ResultCurrentCulture),
-				"C" => Options.Converter.ConclusionConverter(Conclusions),
-				"NC" or "CN" => ToSimpleString(ResultCurrentCulture),
-			}
-		};
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <summary>
 	/// Gets the string representation for the current step, describing only its technique name and conclusions.
