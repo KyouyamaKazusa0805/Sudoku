@@ -62,6 +62,7 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+		<ProjectReference Include="..\Sudoku.Strategying\Sudoku.Strategying.csproj" />
 		<ProjectReference Include="..\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 

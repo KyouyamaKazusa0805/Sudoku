@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides strategying APIs for controlling filtering on puzzles.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Strategying.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+	</ItemGroup>
+
+</Project>
