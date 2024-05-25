@@ -2567,4 +2567,7 @@
   <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
     <value>超出访问次数上限。这个规则是 GitHub 定义的，所以我改变不了。下一次允许使用此功能的时间为 {0}。</value>
   </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
+    <value>允许 ALS-W-Wing 技巧里的 ALS 结构重叠</value>
+  </data>
 </root>

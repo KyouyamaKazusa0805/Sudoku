@@ -97,6 +97,9 @@ public static class SettingItemNames
 	/// <inheritdoc cref="AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
 	public const string AllowCollisionOnAlmostLockedSetXyWing = nameof(AllowCollisionOnAlmostLockedSetXyWing);
 
+	/// <inheritdoc cref="AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
+	public const string AllowCollisionOnAlmostLockedSetWWing = nameof(AllowCollisionOnAlmostLockedSetWWing);
+
 	/// <inheritdoc cref="ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
 	public const string SearchForReverseBugPartiallyUsedTypes = nameof(SearchForReverseBugPartiallyUsedTypes);
 

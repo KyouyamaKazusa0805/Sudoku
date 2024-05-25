@@ -4498,6 +4498,15 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Allow collision on ALS-W-Wing.
+        /// </summary>
+        internal static string SettingsPage_AllowCollisionOnAlmostLockedSetWWing {
+            get {
+                return ResourceManager.GetString("SettingsPage_AllowCollisionOnAlmostLockedSetWWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Allow collision on ALS-XY-Wing.
         /// </summary>
         internal static string SettingsPage_AllowCollisionOnAlmostLockedSetXyWing {

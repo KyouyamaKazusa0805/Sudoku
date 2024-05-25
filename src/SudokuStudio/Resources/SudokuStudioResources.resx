@@ -2576,4 +2576,7 @@ Correct rate: {3:P} ({4}/{5})</value>
   <data name="ExceptionMessage_ExceedRateLimit" xml:space="preserve">
     <value>Rate limit is exceeded. This rule is defined by GitHub. The function will become available to {0}.</value>
   </data>
+  <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
+    <value>Allow collision on ALS-W-Wing</value>
+  </data>
 </root>

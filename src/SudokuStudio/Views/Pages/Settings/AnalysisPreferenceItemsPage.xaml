@@ -270,6 +270,10 @@
 				<ToggleSwitch
 					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=TwoWay}" />
 			</w:SettingsCard>
+			<w:SettingsCard Header="{m:R Key=SettingsPage_AllowCollisionOnAlmostLockedSetWWing}">
+				<ToggleSwitch
+					IsOn="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetWWing,Mode=TwoWay}" />
+			</w:SettingsCard>
 			<w:SettingsCard Header="{m:R Key=SettingsPage_MaxSizeOfRegularWing}">
 				<c:IntegerBox
 					Minimum="3" Maximum="9" LargeChange="2"

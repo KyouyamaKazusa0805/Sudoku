@@ -29,6 +29,7 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetXzRule, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.AllowLoopedPatternsOnAlmostLockedSetXzRule, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing, DefaultValue = true)]
+[AttachedProperty<bool>(SettingItemNames.AllowCollisionOnAlmostLockedSetWWing, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.SearchForReverseBugPartiallyUsedTypes, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.DisableFinnedOrSashimiXWing, DefaultValue = true)]
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseNormalFish)]
@@ -184,6 +185,10 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AllowCollisionOnAlmostLockedSetXyWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<AlmostLockedSetsXyWingStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
+
+	[Callback]
+	private static void AllowCollisionOnAlmostLockedSetWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> A<AlmostLockedSetsWWingStepSearcher>(d, s => s.AllowCollision = (bool)e.NewValue);
 
 	[Callback]
 	private static void MaxSizeOfRegularWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

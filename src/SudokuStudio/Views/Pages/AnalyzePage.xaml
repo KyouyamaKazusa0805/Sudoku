@@ -212,6 +212,7 @@
 							a:AnalyzerProperties.AllowCollisionOnAlmostLockedSetXzRule="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXzRule,Mode=OneWay}"
 							a:AnalyzerProperties.AllowLoopedPatternsOnAlmostLockedSetXzRule="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLoopedPatternsOnAlmostLockedSetXzRule,Mode=OneWay}"
 							a:AnalyzerProperties.AllowCollisionOnAlmostLockedSetXyWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetXyWing,Mode=OneWay}"
+							a:AnalyzerProperties.AllowCollisionOnAlmostLockedSetWWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowCollisionOnAlmostLockedSetWWing,Mode=OneWay}"
 							a:AnalyzerProperties.MaxSizeOfRegularWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfRegularWing,Mode=OneWay}"
 							a:AnalyzerProperties.MaxSizeOfComplexFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.MaxSizeOfComplexFish,Mode=OneWay}"
 							a:AnalyzerProperties.DisableFinnedOrSashimiXWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.DisableFinnedOrSashimiXWing,Mode=OneWay}"

@@ -5055,6 +5055,9 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetXyWing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsXyWingStepSearcher.AllowCollision"/>
         </member>
+        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowCollisionOnAlmostLockedSetWWing">
+            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.AllowCollision"/>
+        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.SearchForReverseBugPartiallyUsedTypes">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.ReverseBivalueUniversalGraveStepSearcher.AllowPartiallyUsedTypes"/>
         </member>
@@ -6855,6 +6858,11 @@
             <list type="bullet">
             <item>Almost Locked Sets W-Wing</item>
             </list>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.AllowCollision">
+            <summary>
+            Indicates whether two ALSes make an collision, which means they share the some same cells. 
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.AlmostLockedSetsWWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">

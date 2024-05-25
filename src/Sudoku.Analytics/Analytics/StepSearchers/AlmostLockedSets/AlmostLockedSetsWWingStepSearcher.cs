@@ -10,6 +10,13 @@ namespace Sudoku.Analytics.StepSearchers;
 [StepSearcher("StepSearcherName_AlmostLockedSetsWWingStepSearcher", Technique.AlmostLockedSetsWWing)]
 public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 {
+	/// <summary>
+	/// Indicates whether two ALSes make an collision, which means they share the some same cells. 
+	/// </summary>
+	[SettingItemName(SettingItemNames.AllowCollisionOnAlmostLockedSetWWing)]
+	public bool AllowCollision { get; set; }
+
+
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
@@ -30,10 +37,11 @@ public sealed partial class AlmostLockedSetsWWingStepSearcher : StepSearcher
 				var als2 = alses[j];
 				var map2 = als2.Cells;
 				var mask2 = als2.DigitsMask;
+				var overlapMap = map1 & map2;
 
 				// Now we have got two ALSes to check.
 				// Firstly, we should check whether two ALSes overlap with each other.
-				if (map1 && map2)
+				if (!AllowCollision && !!overlapMap)
 				{
 					// If overlap (or in a same house), just skip it.
 					continue;
