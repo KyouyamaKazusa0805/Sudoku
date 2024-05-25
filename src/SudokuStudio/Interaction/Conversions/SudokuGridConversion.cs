@@ -76,7 +76,7 @@ internal static class SudokuGridConversion
 		{
 			return string.Format(
 				ResourceDictionary.Get("AnalyzePage_MinimalResult_AtLeastOneHintCanBeRemoved", App.CurrentCulture),
-				GlobalizedConverter.InvariantCultureConverter.CandidateConverter(firstCandidateMakePuzzleNotMinimal)
+				CoordinateConverter.InvariantCultureConverter.CandidateConverter(firstCandidateMakePuzzleNotMinimal)
 			);
 		}
 

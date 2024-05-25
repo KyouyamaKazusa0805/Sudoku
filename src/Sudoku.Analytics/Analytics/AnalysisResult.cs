@@ -432,12 +432,16 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(DefaultOptions, GlobalizedConverter.InvariantCultureConverter);
+	public override string ToString() => ToString(DefaultOptions, CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(formatProvider is CultureInfo culture ? GlobalizedConverter.GetConverter(culture) : GlobalizedConverter.InvariantCultureConverter);
+		=> ToString(
+			formatProvider is CultureInfo culture
+				? CoordinateConverter.GetConverter(culture)
+				: CoordinateConverter.InvariantCultureConverter
+		);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

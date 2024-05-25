@@ -61,4 +61,21 @@ public abstract record CoordinateParser : GenericConceptParser
 	/// </summary>
 	/// <seealso cref="Conjugate"/>
 	public abstract Func<string, Conjugate[]> ConjuagteParser { get; }
+
+
+	/// <summary>
+	/// Indicates the <see cref="CoordinateParser"/> instance for the invariant culture,
+	/// meaning it ignores which culture your device will use.
+	/// </summary>
+	public static CoordinateParser InvariantCultureParser => new RxCyParser();
+
+
+	/// <summary>
+	/// Try to get a <see cref="CoordinateParser"/> instance from the specified culture.
+	/// </summary>
+	/// <param name="culture">The culture.</param>
+	/// <returns>The <see cref="CoordinateParser"/> instance from the specified culture.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CoordinateParser GetParser(CultureInfo culture)
+		=> culture switch { { Name: ['Z' or 'z', 'H' or 'h', ..] } => new K9Parser(), _ => new RxCyParser() };
 }

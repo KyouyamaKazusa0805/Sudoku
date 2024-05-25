@@ -168,7 +168,7 @@ public partial struct EliminationRange :
 	}
 
 	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override readonly string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	public readonly string ToString<T>(T converter) where T : CoordinateConverter
@@ -192,7 +192,7 @@ public partial struct EliminationRange :
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IFormatProvider? formatProvider)
-		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
+		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[UnscopedRef]

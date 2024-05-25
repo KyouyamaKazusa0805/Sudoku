@@ -95,5 +95,5 @@ public abstract partial class FishStep(
 	/// <inheritdoc cref="Step.ToString(CultureInfo?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public new string ToString(CultureInfo? culture = null)
-		=> Pattern.ToString(culture is null ? GlobalizedConverter.InvariantCultureConverter : GlobalizedConverter.GetConverter(culture));
+		=> Pattern.ToString(culture is null ? CoordinateConverter.InvariantCultureConverter : CoordinateConverter.GetConverter(culture));
 }

@@ -97,7 +97,7 @@ public readonly partial struct Fish(
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	public string ToString<T>(T converter) where T : CoordinateConverter

@@ -132,12 +132,12 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
+		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -263,9 +263,9 @@ file sealed class Converter : JsonConverter<Conclusion>
 
 	/// <inheritdoc/>
 	public override Conclusion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Conclusion.Parse(reader.GetString() ?? string.Empty, GlobalizedConverter.InvariantCultureParser);
+		=> Conclusion.Parse(reader.GetString() ?? string.Empty, CoordinateParser.InvariantCultureParser);
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(GlobalizedConverter.InvariantCultureConverter));
+		=> writer.WriteStringValue(value.ToString(CoordinateConverter.InvariantCultureConverter));
 }

@@ -1900,6 +1900,98 @@
         <member name="M:Sudoku.Concepts.Conjugate.op_Inequality(Sudoku.Concepts.Conjugate,Sudoku.Concepts.Conjugate)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
+        <member name="T:Sudoku.Concepts.Coordinates.CoordinateConverter">
+            <summary>
+            Represents an option provider for coordinates.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
+            <remarks>
+            You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
+            They are the derived types of the current type.
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
+            <summary>
+            Represents an option provider for coordinates.
+            </summary>
+            <param name="DefaultSeparator"><inheritdoc/></param>
+            <param name="DigitsSeparator"><inheritdoc/></param>
+            <param name="CurrentCulture"><inheritdoc/></param>
+            <remarks>
+            You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
+            and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
+            They are the derived types of the current type.
+            </remarks>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
+            <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CellConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CandidateConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.HouseConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.ConclusionConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.DigitConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.IntersectionConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.ChuteConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.ConjugateConverter">
+            <summary>
+            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.TargetCurrentCulture">
+            <summary>
+            Indicates the target culture.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.InvariantCultureConverter">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance for the invariant culture,
+            meaning it ignores which culture your device will use.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetConverter(System.Globalization.CultureInfo)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance from the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance from the specified culture.</returns>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateParser">
             <summary>
             Represents for a parser instance that parses a <see cref="T:System.String"/> text,
@@ -1960,6 +2052,19 @@
             The parser method that can creates a <see cref="T:Sudoku.Concepts.Conjugate"/> list via the specified text to be parsed.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Conjugate"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateParser.InvariantCultureParser">
+            <summary>
+            Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance for the invariant culture,
+            meaning it ignores which culture your device will use.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetParser(System.Globalization.CultureInfo)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.
+            </summary>
+            <param name="culture">The culture.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.CoordinateType">
             <summary>
@@ -5834,11 +5939,11 @@
         </member>
         <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetConverter(Sudoku.Concepts.Coordinates.CoordinateType)">
             <summary>
-            Gets the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
+            Gets the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance via the specified <see cref="T:Sudoku.Concepts.Coordinates.CoordinateType"/> instance.
             </summary>
             <param name="this">The current instance.</param>
             <returns>
-            A valid <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
+            A valid <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance. You can use cast operators to get the instance of desired type.
             </returns>
         </member>
         <member name="M:Sudoku.Concepts.CoordinateTypeExtensions.GetParser(Sudoku.Concepts.Coordinates.CoordinateType)">
@@ -5994,85 +6099,6 @@
             <param name="row">The row value.</param>
             <param name="column">The column value.</param>
             <returns>The cells.</returns>
-        </member>
-        <member name="T:Sudoku.Text.Converters.CoordinateConverter">
-            <summary>
-            Represents an option provider for coordinates.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <param name="CurrentCulture"><inheritdoc/></param>
-            <remarks>
-            You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
-            and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
-            They are the derived types of the current type.
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
-        </member>
-        <member name="M:Sudoku.Text.Converters.CoordinateConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
-            <summary>
-            Represents an option provider for coordinates.
-            </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <param name="CurrentCulture"><inheritdoc/></param>
-            <remarks>
-            You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
-            and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
-            They are the derived types of the current type.
-            </remarks>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
-            <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.CellConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.CandidateConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of candidates.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.HouseConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of houses.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ConclusionConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of conclusions.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.DigitConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of digits.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.IntersectionConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified information for an intersection.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ChuteConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified list of chute.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.ConjugateConverter">
-            <summary>
-            The converter method that creates a <see cref="T:System.String"/> via the specified conjugate.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Text.Converters.CoordinateConverter.TargetCurrentCulture">
-            <summary>
-            Indicates the target culture.
-            </summary>
         </member>
         <member name="T:Sudoku.Drawing.ColorColorIdentifier">
             <summary>
@@ -7458,38 +7484,6 @@
         </member>
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="T:Sudoku.Globalization.GlobalizedConverter">
-            <summary>
-            Represents a type that defines some easy-in-use members, making user work with types derived from <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> easier
-            for variant culture.
-            </summary>
-            <seealso cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
-            <seealso cref="T:System.Globalization.CultureInfo"/>
-        </member>
-        <member name="P:Sudoku.Globalization.GlobalizedConverter.InvariantCultureConverter">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance for the invariant culture.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Globalization.GlobalizedConverter.InvariantCultureParser">
-            <summary>
-            Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance for the invariant culture.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Globalization.GlobalizedConverter.GetConverter(System.Globalization.CultureInfo)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.
-            </summary>
-            <param name="culture">The culture.</param>
-            <returns>The <see cref="T:Sudoku.Text.Converters.CoordinateConverter"/> instance from the specified culture.</returns>
-        </member>
-        <member name="M:Sudoku.Globalization.GlobalizedConverter.GetParser(System.Globalization.CultureInfo)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.
-            </summary>
-            <param name="culture">The culture.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance from the specified culture.</returns>
         </member>
         <member name="T:Sudoku.Linq.BitStatusMapGrouping`4">
             <summary>

@@ -432,10 +432,10 @@
         <member name="M:Sudoku.Analytics.AnalysisResult.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,Sudoku.Text.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Analytics.AnalysisResult.ToString(Sudoku.Analytics.AnalysisResultFormattingOptions,Sudoku.Concepts.Coordinates.CoordinateConverter)">
             <summary>
             Returns a string that represents the current object, with the specified formatting options.
             </summary>
@@ -5157,7 +5157,7 @@
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Converter">
-            <inheritdoc cref="T:Sudoku.Text.Converters.CoordinateConverter"/>
+            <inheritdoc cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/>
         </member>
         <member name="P:Sudoku.Analytics.Configuration.StepSearcherOptions.Default">
             <inheritdoc/>
@@ -22417,7 +22417,7 @@ result ^= expression;
         <member name="M:Sudoku.Ittoryu.PathNode.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Ittoryu.PathNode.ToString(Sudoku.Text.Converters.CoordinateConverter)">
+        <member name="M:Sudoku.Ittoryu.PathNode.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Ittoryu.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">

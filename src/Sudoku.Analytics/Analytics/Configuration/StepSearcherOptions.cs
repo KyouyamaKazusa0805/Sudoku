@@ -22,7 +22,7 @@ public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOpti
 	public bool IsDirectMode { get; init; } = false;
 
 	/// <inheritdoc cref="CoordinateConverter"/>
-	public CoordinateConverter Converter { get; init; } = GlobalizedConverter.InvariantCultureConverter;
+	public CoordinateConverter Converter { get; init; } = CoordinateConverter.InvariantCultureConverter;
 
 
 	/// <inheritdoc/>

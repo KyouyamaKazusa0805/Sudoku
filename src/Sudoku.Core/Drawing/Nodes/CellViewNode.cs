@@ -14,7 +14,7 @@ public sealed partial class CellViewNode(ColorIdentifier identifier, [PrimaryCon
 	/// Indicates the cell string.
 	/// </summary>
 	[StringMember(nameof(Cell))]
-	private string CellString => GlobalizedConverter.InvariantCultureConverter.CellConverter(Cell);
+	private string CellString => CoordinateConverter.InvariantCultureConverter.CellConverter(Cell);
 
 
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>

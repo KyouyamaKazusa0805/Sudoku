@@ -36,7 +36,7 @@ public readonly partial struct LockedTarget(
 	/// The digit string value.
 	/// </summary>
 	[StringMember(nameof(Digit))]
-	private string DigitString => GlobalizedConverter.InvariantCultureConverter.DigitConverter((Mask)(1 << Digit));
+	private string DigitString => CoordinateConverter.InvariantCultureConverter.DigitConverter((Mask)(1 << Digit));
 
 
 	/// <inheritdoc/>
@@ -53,12 +53,12 @@ public readonly partial struct LockedTarget(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(GlobalizedConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
+		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

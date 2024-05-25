@@ -1,4 +1,4 @@
-namespace Sudoku.Text.Converters;
+namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
 /// Represents an option provider for coordinates.
@@ -62,4 +62,25 @@ public abstract record CoordinateConverter(string DefaultSeparator = ", ", strin
 	/// Indicates the target culture.
 	/// </summary>
 	private protected CultureInfo TargetCurrentCulture => CurrentCulture ?? CultureInfo.CurrentUICulture;
+
+
+	/// <summary>
+	/// Indicates the <see cref="CoordinateConverter"/> instance for the invariant culture,
+	/// meaning it ignores which culture your device will use.
+	/// </summary>
+	public static CoordinateConverter InvariantCultureConverter => new RxCyConverter();
+
+
+	/// <summary>
+	/// Try to get a <see cref="CoordinateConverter"/> instance from the specified culture.
+	/// </summary>
+	/// <param name="culture">The culture.</param>
+	/// <returns>The <see cref="CoordinateConverter"/> instance from the specified culture.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static CoordinateConverter GetConverter(CultureInfo culture)
+		=> culture switch
+		{
+			{ Name: ['Z' or 'z', 'H' or 'h', ..] } => new K9Converter(true, CurrentCulture: culture),
+			_ => new RxCyConverter(true, true, CurrentCulture: culture)
+		};
 }

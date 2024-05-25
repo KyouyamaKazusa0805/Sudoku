@@ -77,7 +77,12 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get
 		{
-			return this switch { { Count: 0 } => [], [var a] => [GlobalizedConverter.InvariantCultureConverter.CandidateConverter(a)], _ => f(Offsets) };
+			return this switch
+			{
+				{ Count: 0 } => [],
+				[var a] => [CoordinateConverter.InvariantCultureConverter.CandidateConverter(a)],
+				_ => f(Offsets)
+			};
 
 
 			static string[] f(Candidate[] offsets)
@@ -98,7 +103,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 					list.Add(
 						sb
-							.Append(GlobalizedConverter.InvariantCultureConverter.CellConverter(cells))
+							.Append(CoordinateConverter.InvariantCultureConverter.CellConverter(cells))
 							.Append($"({digitGroup.Key + 1})")
 							.ToString()
 					);
@@ -352,7 +357,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override readonly string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <summary>
 	/// Try to get digits that is in the current collection.
@@ -379,8 +384,8 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> formatProvider switch
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
-			CultureInfo c => ToString(GlobalizedConverter.GetConverter(c)),
-			_ => ToString(GlobalizedConverter.GetConverter(CultureInfo.CurrentUICulture))
+			CultureInfo c => ToString(CoordinateConverter.GetConverter(c)),
+			_ => ToString(CoordinateConverter.GetConverter(CultureInfo.CurrentUICulture))
 		};
 
 	/// <inheritdoc/>
@@ -659,7 +664,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> provider switch
 		{
 			CandidateMapFormatInfo i => i.ParseMap(s),
-			CultureInfo c => Parse(s, GlobalizedConverter.GetParser(c)),
+			CultureInfo c => Parse(s, CoordinateParser.GetParser(c)),
 			_ => Parse(s)
 		};
 

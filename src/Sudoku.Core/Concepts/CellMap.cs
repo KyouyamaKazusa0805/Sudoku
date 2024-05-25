@@ -144,7 +144,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[JsonInclude]
-	public readonly string[] StringChunks => this ? ToString(GlobalizedConverter.InvariantCultureConverter).SplitBy(',', ' ') : [];
+	public readonly string[] StringChunks => this ? ToString(CoordinateConverter.InvariantCultureConverter).SplitBy(',', ' ') : [];
 
 	/// <summary>
 	/// Indicates the mask of block that all cells in this collection spanned.
@@ -666,7 +666,7 @@ public partial struct CellMap :
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(GlobalizedConverter.InvariantCultureConverter);
+	public override readonly string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -674,8 +674,8 @@ public partial struct CellMap :
 		=> formatProvider switch
 		{
 			CellMapFormatInfo i => i.FormatMap(in this),
-			CultureInfo c => ToString(GlobalizedConverter.GetConverter(c)),
-			_ => ToString(GlobalizedConverter.GetConverter(CultureInfo.CurrentUICulture))
+			CultureInfo c => ToString(CoordinateConverter.GetConverter(c)),
+			_ => ToString(CoordinateConverter.GetConverter(CultureInfo.CurrentUICulture))
 		};
 
 	/// <inheritdoc/>
@@ -977,7 +977,7 @@ public partial struct CellMap :
 		=> provider switch
 		{
 			CellMapFormatInfo i => i.ParseMap(s),
-			CultureInfo c => Parse(s, GlobalizedConverter.GetParser(c)),
+			CultureInfo c => Parse(s, CoordinateParser.GetParser(c)),
 			_ => Parse(s)
 		};
 
