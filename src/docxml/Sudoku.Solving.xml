@@ -40,13 +40,13 @@
             </summary>
             <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.ISolver">
+        <member name="T:Sudoku.Solving.ISolver">
             <summary>
             Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="T:Sudoku.Concepts.Grid"/> instance,
             and returns its solution grid.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Primitive.ISolver.UriLink">
+        <member name="P:Sudoku.Solving.ISolver.UriLink">
             <summary>
             Indicates the URI link that links to the introduction of the algorithm.
             </summary>
@@ -54,7 +54,7 @@
             This property is reserved as information that is offered to the algorithm learners.
             </remarks>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Solving.ISolver.Solve(Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@)">
             <summary>
             Solve the specified grid, and return the solution via argument <paramref name="result"/>
             with returning a <see cref="T:System.Boolean"/>? value indicating the solved state.
@@ -118,7 +118,7 @@
             <param name="result">
             <para>The result of the grid.</para>
             <para>
-            Different with other methods whose containing type is <see cref="T:Sudoku.Concepts.Primitive.ISolver"/>,
+            Different with other methods whose containing type is <see cref="T:Sudoku.Solving.ISolver"/>,
             this argument can be used no matter what the result value will be.
             </para>
             </param>

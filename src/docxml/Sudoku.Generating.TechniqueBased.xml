@@ -314,7 +314,7 @@
             <seealso cref="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.GenerateJustOneCellPhased(Sudoku.Analytics.Categorization.SingleSubtype,System.Threading.CancellationToken)"/>
             <seealso cref="T:Sudoku.Generating.GeneratingFailedReason"/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#JustOneCell#PhasedJustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.Sudoku#Generating#IGenerator{Sudoku#Generating#JustOneCell#PhasedJustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.SinglePuzzleGenerator`1.BlockPositionOf(System.Int32)">
@@ -457,13 +457,13 @@
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IGenerator{Sudoku#Concepts#Grid}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#FullPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IGenerator{Sudoku#Generating#FullPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Concepts#Primitive#IGenerator{Sudoku#Generating#JustOneCell#JustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.Sudoku#Generating#IGenerator{Sudoku#Generating#JustOneCell#JustOneCellPuzzle}#Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.ShuffleSequence``1(``0[])">

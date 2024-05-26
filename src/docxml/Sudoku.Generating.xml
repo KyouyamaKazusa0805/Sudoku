@@ -201,17 +201,17 @@
         </member>
         <member name="T:Sudoku.Generating.GeneratorProgress">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.GeneratorProgress.#ctor(System.Int32)">
             <summary>
-            Represents a progress used by <see cref="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
+            Represents a progress used by <see cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>.
             </summary>
             <param name="Count">The number of puzzles generated currently.</param>
-            <seealso cref="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <seealso cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="P:Sudoku.Generating.GeneratorProgress.Count">
             <summary>The number of puzzles generated currently.</summary>
@@ -353,7 +353,7 @@
             <param name="seedPattern">Indicates the predefind pattern used.</param>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
-            <inheritdoc cref="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.PatternBasedPuzzleGenerator.GenerateCore(System.Int32[],Sudoku.Concepts.Grid@,Sudoku.Concepts.Grid@,System.Int32,System.Int32@,System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
@@ -420,7 +420,7 @@
         <member name="M:Sudoku.Generating.PuzzleBase.op_Inequality(Sudoku.Generating.PuzzleBase,Sudoku.Generating.PuzzleBase)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.IGenerator`1">
+        <member name="T:Sudoku.Generating.IGenerator`1">
             <summary>
             Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
             encapsulating the details of the result.
@@ -431,7 +431,7 @@
             <seealso cref="T:Sudoku.Concepts.Grid"/>
             <seealso cref="T:Sudoku.Generating.PuzzleBase"/>
         </member>
-        <member name="M:Sudoku.Concepts.Primitive.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
             Generates a puzzle and return an instance of type <typeparamref name="TResult"/> indicating the result.
             </summary>

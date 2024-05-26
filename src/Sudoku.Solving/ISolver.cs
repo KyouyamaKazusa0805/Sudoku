@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Represents a solver that can provide with a basic function to solve a sudoku puzzle given with a <see cref="Grid"/> instance,
