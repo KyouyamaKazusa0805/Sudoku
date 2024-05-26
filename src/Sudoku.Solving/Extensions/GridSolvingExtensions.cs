@@ -62,7 +62,7 @@ public static class GridSolvingExtensions
 	/// Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool GetIsValid(this scoped ref readonly Grid @this) => @this.IsSolved || @this.GetUniqueness() == Uniqueness.Unique;
+	public static bool GetIsValid(this scoped in Grid @this) => @this.IsSolved || @this.GetUniqueness() == Uniqueness.Unique;
 
 	/// <summary>
 	/// Checks the uniqueness of the current sudoku puzzle.
@@ -71,7 +71,7 @@ public static class GridSolvingExtensions
 #if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
 	[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
 #endif
-	public static Uniqueness GetUniqueness(this scoped ref readonly Grid @this)
+	public static Uniqueness GetUniqueness(this scoped in Grid @this)
 	{
 		if (@this.IsSolved)
 		{
@@ -101,7 +101,7 @@ public static class GridSolvingExtensions
 #if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
 	[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
 #endif
-	public static Grid GetSolutionGrid(this scoped ref readonly Grid @this)
+	public static Grid GetSolutionGrid(this scoped in Grid @this)
 	{
 #if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
 		lock (PuzzleSolvingSynchronizer)

@@ -13,7 +13,7 @@ public static class GridMinimalExtensions
 	/// <param name="this">Indicates the current instance.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool GetIsMinimal(this scoped ref readonly Grid @this) => @this.CheckMinimal(out _);
+	public static bool GetIsMinimal(this scoped in Grid @this) => @this.CheckMinimal(out _);
 
 	/// <summary>
 	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
@@ -29,7 +29,7 @@ public static class GridMinimalExtensions
 	/// </param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-	public static bool CheckMinimal(this scoped ref readonly Grid @this, out Candidate firstCandidateMakePuzzleNotMinimal)
+	public static bool CheckMinimal(this scoped in Grid @this, out Candidate firstCandidateMakePuzzleNotMinimal)
 	{
 		if (!@this.GetIsValid())
 		{
