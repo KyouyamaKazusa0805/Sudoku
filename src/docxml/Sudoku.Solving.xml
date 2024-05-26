@@ -10,6 +10,13 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
+        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
+            <summary>
+            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
+            keeping the type being thread-safe.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
+        </member>
         <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
             <summary>
             Indicates the backing solver.

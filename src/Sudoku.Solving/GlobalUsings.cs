@@ -8,6 +8,7 @@ global using System.Numerics;
 global using System.Resources;
 global using System.Runtime.CompilerServices;
 global using System.Text.RegularExpressions;
+global using System.Threading;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Primitive;
 global using Sudoku.Linq;
