@@ -101,7 +101,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var constraints = ((App)Application.Current).Preference.ConstraintPreferences.Constraints;
 		var difficultyLevel = (from c in constraints.OfType<DifficultyLevelConstraint>() select c.DifficultyLevel) is [var dl] ? dl : default;
 		var analyzer = ((App)Application.Current).GetAnalyzerConfigured(BasePage.SudokuPane, difficultyLevel);
-		var ittoryuFinder = new DisorderedIttoryuFinder(TechniqueSets.IttoryuTechniques);
+		var ittoryuFinder = new DisorderedIttoryuFinder(TechniqueIttoryuSets.IttoryuTechniques);
 
 		using var cts = new CancellationTokenSource();
 		BasePage._ctsForAnalyzingRelatedOperations = cts;

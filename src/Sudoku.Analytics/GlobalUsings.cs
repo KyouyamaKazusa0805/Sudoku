@@ -35,7 +35,6 @@ global using Sudoku.Concepts.ObjectModel;
 global using Sudoku.Concepts.Primitive;
 global using Sudoku.Drawing;
 global using Sudoku.Drawing.Nodes;
-global using Sudoku.Ittoryu;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
 global using Sudoku.Measuring.Factors;

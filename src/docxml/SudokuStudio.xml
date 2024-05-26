@@ -1567,7 +1567,7 @@
             <inheritdoc cref="P:Sudoku.Analytics.Collector.DifficultyLevelMode"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.IttoryuSupportedTechniques">
-            <inheritdoc cref="P:Sudoku.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
+            <inheritdoc cref="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques"/>
         </member>
         <member name="T:SudokuStudio.Configuration.BackdropKind">
             <summary>
@@ -5637,11 +5637,11 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> supported by <see cref="T:Sudoku.Ittoryu.DisorderedIttoryuFinder"/> instances
+            Represents a value converter that can convert a <see cref="T:System.Collections.Generic.List`1"/> of <see cref="T:Sudoku.Analytics.Categorization.Technique"/> supported by <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instances
             into a <see cref="T:System.Boolean"/> control determining whether the corresponding control is set as "on" value.
             </summary>
             <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-            <seealso cref="T:Sudoku.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.IttoryuSupportedTechniquesValueConverter.Convert(System.Object,System.Type,System.Object,System.String)">
             <inheritdoc/>

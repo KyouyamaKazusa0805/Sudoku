@@ -1,4 +1,4 @@
-namespace Sudoku.Ittoryu;
+namespace Sudoku.Algorithms.Ittoryu;
 
 /// <summary>
 /// Provides with extension methods on <see cref="Grid"/>.
@@ -60,7 +60,7 @@ public static class Ittoryu
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool IsIttoryu(this scoped in Grid @this, [NotNullWhen(true)] out DisorderedIttoryuDigitPath? path)
-		=> @this.IsIttoryu(TechniqueSets.IttoryuTechniques, out path);
+		=> @this.IsIttoryu(TechniqueIttoryuSets.IttoryuTechniques, out path);
 
 	/// <summary>
 	/// Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,

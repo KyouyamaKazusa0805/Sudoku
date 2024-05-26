@@ -1,4 +1,4 @@
-namespace Sudoku.Ittoryu;
+namespace Sudoku.Algorithms.Ittoryu;
 
 /// <summary>
 /// Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
@@ -12,7 +12,7 @@ public sealed partial class DisorderedIttoryuFinder([PrimaryConstructorParameter
 	/// Initializes a <see cref="DisorderedIttoryuFinder"/> instance.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public DisorderedIttoryuFinder() : this(TechniqueSets.IttoryuTechniques)
+	public DisorderedIttoryuFinder() : this(TechniqueIttoryuSets.IttoryuTechniques)
 	{
 	}
 

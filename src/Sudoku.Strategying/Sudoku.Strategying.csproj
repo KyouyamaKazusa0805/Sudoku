@@ -8,6 +8,7 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Algorithms.Ittoryu\Sudoku.Algorithms.Ittoryu.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.Minimal\Sudoku.Algorithms.Minimal.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 	</ItemGroup>

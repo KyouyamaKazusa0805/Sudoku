@@ -148,6 +148,8 @@ public static class SettingItemNames
 	/// <inheritdoc cref="Collector.MaxStepsGathered"/>
 	public const string StepGathererMaxStepsGathered = nameof(StepGathererMaxStepsGathered);
 
-	/// <inheritdoc cref="DisorderedIttoryuFinder.SupportedTechniques"/>
+	/// <summary>
+	/// Indicates the supported techniques used in ittoryu mode.
+	/// </summary>
 	public const string IttoryuSupportedTechniques = nameof(IttoryuSupportedTechniques);
 }
