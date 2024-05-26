@@ -34,8 +34,7 @@
     <File Path="CONTACTS.md" />
   </Folder>
   <Folder Name="/Solution Items/License/">
-    <File Path="LICENSE-CODE" />
-    <File Path="LICENSE-WIKI" />
+    <File Path="LICENSE" />
   </Folder>
   <Folder Name="/Solution Items/Miscellaneous/">
     <File Path=".editorconfig" />

@@ -49,15 +49,15 @@ This repository is created for the following users:
 
 ### Main Page
 
-![](docs/pic/ui-en.png)
+![](miscellaneous/pic/ui-en.png)
 
 ### Technique Configuration Page
 
-![](docs/pic/config-en.png)
+![](miscellaneous/pic/config-en.png)
 
 ### Technique Gallery Page
 
-![](docs/pic/gallery-en.png)
+![](miscellaneous/pic/gallery-en.png)
 
 ## Technique Supports
 
@@ -161,17 +161,13 @@ In addition, this repo may update **frequently** (At least 1 commit in a day).
 
 ## Open source license
 
-### Codes
-
-The codes in this repository uses **MIT license**, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
-
 ### Special project: `Sudoku.Drawing.Ocr`
 
 This project uses some APIs and source code from repo [EmguCV](https://github.com/emgucv/emgucv). Therefore, the project uses a standalone open-source license. For more information please visit the file `LICENSE` in that project in source code.
 
-### Wiki pages
+### The others
 
-The repository also lists many wiki pages, being stored in the folder `docs`. In addition, files `README.md` and `README-zh-cn.md` (as Chinese translation version) are also included as wiki pages. Those pages uses **CC-BY-4.0 license** to constraint your usage and copyright statements on this repository. You should mention the copyright of the author in this repository and give the state changes after modified the content in the copied one if you want to use the Wiki pages.
+All the other projects use **MIT license**, which means you should mention the copyright of the author of the repository if you want to use code snippet in this repository.
 
 ## Code of Conduct
 
@@ -186,7 +182,7 @@ Here we list some websites about sudoku techniques that I used and referenced. T
 
 QR Code
 
-![](docs/pic/qrcode.png)
+![](miscellaneous/pic/qrcode.png)
 
 ## Author
 

@@ -45,19 +45,19 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ### 主页
 
-![](docs/pic/ui.png)
+![](miscellaneous/pic/ui.png)
 
 ### 题库
 
-![](docs/pic/puzzle-lib.png)
+![](miscellaneous/pic/puzzle-lib.png)
 
 ### 技巧难度配置页
 
-![](docs/pic/config.png)
+![](miscellaneous/pic/config.png)
 
 ### 技巧展览馆
 
-![](docs/pic/gallery.png)
+![](miscellaneous/pic/gallery.png)
 
 ## 支持的技巧
 
@@ -165,19 +165,13 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 ## 开源协议
 
-本项目使用了一个特殊的项目的源代码，所以开源协议将会分为两部分展示。
-
-### 代码部分
-
-所有的代码文件全部使用的是 MIT 开源协议。MIT 开源协议意味着**你需要在你的应用程序里声明本项目的作者信息**。
-
 ### `Sudoku.Drawing.Ocr` 代码项目
 
 该项目比较特殊。该项目的代码使用到了 [EmguCV](https://github.com/emgucv/emgucv) 仓库里的 API 以及部分源代码。根据源仓库的开源协议规则和规范，该项目也需要严格遵守此点。因此它采用的是独立的开源协议。请查看该项目在仓库里的 `LICENSE` 文件。
 
-### Wiki 文档部分
+### 其他项目
 
-本项目里包含了一些 Wiki 文档（即放入 docs 文件夹的所有文件，包含 Markdown 文件以及关联的图片，还有位于仓库根目录下的 README.md 和中文版本 README-zh-cn.md），由于均为自己写的内容，所以它们需要遵守 CC-BY-4.0 协议。如果你需要使用，**请在你的资料文献等内容里说明本文的版权信息，并且附上改动过的条目**。
+本仓库的其他项目都采用 MIT 开源协议。MIT 开源协议意味着**你需要在你的应用程序里声明本项目的作者信息**。
 
 ## 行为准则
 
@@ -192,7 +186,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
 
 二维码
 
-![](docs/pic/qrcode.png)
+![](miscellaneous/pic/qrcode.png)
 
 ## 作者
 
