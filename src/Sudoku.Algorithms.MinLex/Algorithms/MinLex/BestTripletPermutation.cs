@@ -1,4 +1,4 @@
-namespace Sudoku.MinLex;
+namespace Sudoku.Algorithms.MinLex;
 
 /// <summary>
 /// Represents the permutation information for best triplet.

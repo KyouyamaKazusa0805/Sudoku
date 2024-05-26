@@ -1,4 +1,4 @@
-namespace Sudoku.MinLex;
+namespace Sudoku.Algorithms.MinLex;
 
 /// <summary>
 /// Represents a pattern for a sudoku grid.

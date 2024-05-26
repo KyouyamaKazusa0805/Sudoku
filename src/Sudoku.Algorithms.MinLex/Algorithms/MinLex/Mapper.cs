@@ -1,4 +1,4 @@
-namespace Sudoku.MinLex;
+namespace Sudoku.Algorithms.MinLex;
 
 /// <summary>
 /// Indicates a data structure that describes the cell and label handled.
