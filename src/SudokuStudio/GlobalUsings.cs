@@ -75,6 +75,7 @@ global using Sudoku.Runtime.LibraryServices;
 global using Sudoku.Solving;
 global using Sudoku.Strategying;
 global using Sudoku.Strategying.Constraints;
+global using Sudoku.Transforming;
 global using SudokuStudio;
 global using SudokuStudio.BindableSource;
 global using SudokuStudio.Collection;

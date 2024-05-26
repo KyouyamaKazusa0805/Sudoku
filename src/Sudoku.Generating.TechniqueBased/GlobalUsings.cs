@@ -22,5 +22,6 @@ global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Linq;
 global using Sudoku.Randomization;
 global using Sudoku.Solving;
+global using Sudoku.Transforming;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.SolutionFields;

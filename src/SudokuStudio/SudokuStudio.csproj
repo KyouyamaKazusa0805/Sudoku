@@ -67,6 +67,7 @@
 		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\Sudoku.Strategying\Sudoku.Strategying.csproj" />
+		<ProjectReference Include="..\Sudoku.Transforming\Sudoku.Transforming.csproj" />
 		<ProjectReference Include="..\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 

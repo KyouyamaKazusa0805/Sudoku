@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts;
+namespace Sudoku.Transforming;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.
@@ -272,7 +272,6 @@ public static unsafe class GridTransformations
 		{
 			@ref.Swap(ref @this[HousesCells[houseIndex1][i]], ref @this[HousesCells[houseIndex2][i]]);
 		}
-
 		return ref @this;
 
 
