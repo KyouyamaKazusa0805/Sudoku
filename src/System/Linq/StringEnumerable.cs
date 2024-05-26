@@ -24,7 +24,6 @@ public static class StringEnumerable
 		{
 			result[i++] = selector(element);
 		}
-
 		return result;
 	}
 
@@ -49,7 +48,6 @@ public static class StringEnumerable
 				result[i++] = element;
 			}
 		}
-
 		return result;
 	}
 
