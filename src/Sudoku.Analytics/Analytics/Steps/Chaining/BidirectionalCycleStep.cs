@@ -47,7 +47,6 @@ public sealed partial class BidirectionalCycleStep(
 			GetOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate)));
 			GetOnPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Normal, candidate)));
 			view.AddRange(GetLinks(i).AsReadOnlySpan());
-
 			result[i] = view;
 		}
 		for (; i < ViewsCount; i++)
@@ -57,7 +56,6 @@ public sealed partial class BidirectionalCycleStep(
 			GetNestedOffPotentials(i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary1, candidate)));
 			GetPartiallyOffPotentials(in grid, i).ForEach(candidate => view.Add(new CandidateViewNode(ColorIdentifier.Auxiliary2, candidate)));
 			view.AddRange(GetNestedLinks(i).AsReadOnlySpan());
-
 			result[i] = view;
 		}
 

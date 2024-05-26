@@ -444,7 +444,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
-	public int AddRange(params ReadOnlySpan<Candidate> offsets)
+	public int AddRange(scoped ReadOnlySpan<Candidate> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)
@@ -491,7 +491,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	}
 
 	/// <inheritdoc/>
-	public int RemoveRange(params ReadOnlySpan<Candidate> offsets)
+	public int RemoveRange(scoped ReadOnlySpan<Candidate> offsets)
 	{
 		var result = 0;
 		foreach (var offset in offsets)

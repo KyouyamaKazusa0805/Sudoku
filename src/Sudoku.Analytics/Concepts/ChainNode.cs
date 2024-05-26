@@ -116,7 +116,7 @@ public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKind
 					if (done.Add(p))
 					{
 						result.Add(p);
-						next.AddRange(p.Parents);
+						next.AddRangeRef(p.Parents.AsReadOnlySpan());
 					}
 				}
 
