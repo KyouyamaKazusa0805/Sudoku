@@ -1,9 +1,9 @@
-namespace System.Globalization;
+namespace Sudoku.Analytics;
 
 /// <summary>
 /// Indicates the supported languages in resource.
 /// </summary>
-public static class Languages
+internal static class Languages
 {
 	/// <summary>
 	/// Indicates English language identifier.
