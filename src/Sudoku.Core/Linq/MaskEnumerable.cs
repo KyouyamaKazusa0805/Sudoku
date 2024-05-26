@@ -48,7 +48,7 @@ public static class MaskEnumerable
 		{
 			foreach (var cell in collectionSelector(digit))
 			{
-				result.Add(resultSelector(digit, cell));
+				result.AddRef(resultSelector(digit, cell));
 			}
 		}
 		return result.AsReadOnlySpan();

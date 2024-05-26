@@ -18,7 +18,7 @@ public static class ViewEnumerable
 		var result = new List<T>(@this.Count);
 		foreach (var element in @this)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return result.AsReadOnlySpan();
 	}

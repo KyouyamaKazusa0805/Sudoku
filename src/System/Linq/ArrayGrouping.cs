@@ -60,7 +60,7 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 		var result = new List<TResult>(_elements.Length);
 		foreach (var element in _elements)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return [.. result];
 	}
@@ -77,7 +77,7 @@ public sealed partial class ArrayGrouping<TSource, TKey>(
 		{
 			if (predicate(element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 		return [.. result];

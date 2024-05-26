@@ -71,7 +71,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		var result = new List<TResult>(_values.Length);
 		foreach (var element in ArrayOrdered)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return [.. result];
 	}
@@ -84,7 +84,7 @@ public sealed partial class ArrayOrderedEnumerable<T>(
 		{
 			if (predicate(element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 		return [.. result];

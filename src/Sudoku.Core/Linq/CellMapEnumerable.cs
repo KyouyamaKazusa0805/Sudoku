@@ -170,7 +170,7 @@ public static class CellMapEnumerable
 		{
 			foreach (var digit in collectionSelector(cell))
 			{
-				result.Add(resultSelector(cell, digit));
+				result.AddRef(resultSelector(cell, digit));
 			}
 		}
 		return result.AsReadOnlySpan();

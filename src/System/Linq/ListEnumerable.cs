@@ -29,7 +29,7 @@ public static class ListEnumerable
 		{
 			if (condition(element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 
@@ -61,7 +61,7 @@ public static class ListEnumerable
 		{
 			foreach (var collectionElement in collectionSelector(element))
 			{
-				result.Add(resultSelector(element, collectionElement));
+				result.AddRef(resultSelector(element, collectionElement));
 			}
 		}
 

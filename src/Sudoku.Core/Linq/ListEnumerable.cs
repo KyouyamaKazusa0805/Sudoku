@@ -31,7 +31,7 @@ public static class ListEnumerable
 		{
 			foreach (var cell in collectionSelector(element))
 			{
-				result.Add(resultSelector(element, cell));
+				result.AddRef(resultSelector(element, cell));
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -62,7 +62,7 @@ public static class ListEnumerable
 		{
 			foreach (var cell in collectionSelector(element))
 			{
-				result.Add(resultSelector(element, cell));
+				result.AddRef(resultSelector(element, cell));
 			}
 		}
 		return result.AsReadOnlySpan();

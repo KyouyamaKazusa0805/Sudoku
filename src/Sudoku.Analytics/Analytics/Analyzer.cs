@@ -632,7 +632,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 			FinalCheck:
 				if (atLeastOneConclusionIsWorth)
 				{
-					steppingGrids.Add(playground);
+					steppingGrids.AddRef(in playground);
 					playground.Apply(step);
 					steps.Add(step);
 

@@ -152,7 +152,7 @@ public static class CandidateMapEnumerable
 		{
 			foreach (var digit in collectionSelector(candidate))
 			{
-				result.Add(resultSelector(candidate, digit));
+				result.AddRef(resultSelector(candidate, digit));
 			}
 		}
 		return result.AsReadOnlySpan();

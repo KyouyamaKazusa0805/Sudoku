@@ -201,12 +201,12 @@ public sealed partial record RxCyParser : CoordinateParser
 			{
 				case [_, 'R' or 'r', var r and >= '1' and <= '3']:
 				{
-					result.Add(Chutes[r - '1']);
+					result.AddRef(in Chutes[r - '1']);
 					break;
 				}
 				case [_, 'C' or 'c', var c and >= '1' and <= '3']:
 				{
-					result.Add(Chutes[c + 3 - '1']);
+					result.AddRef(in Chutes[c + 3 - '1']);
 					break;
 				}
 			}

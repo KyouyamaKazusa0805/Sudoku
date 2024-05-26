@@ -90,7 +90,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		var result = new List<TResult>(_values.Length);
 		foreach (var element in Span)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return result.AsReadOnlySpan();
 	}
@@ -107,7 +107,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 		{
 			if (condition(element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -152,7 +152,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -162,7 +162,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			unsafe
 			{
 				var tempValues = tempDictionary[key];
-				result.Add(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
+				result.AddRef(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -178,7 +178,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -189,7 +189,7 @@ public readonly ref partial struct SpanOrderedEnumerable<T>(
 			{
 				var tempValues = tempDictionary[key];
 				var valuesConverted = from value in tempValues select elementSelector(value);
-				result.Add(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
+				result.AddRef(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();

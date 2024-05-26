@@ -207,7 +207,7 @@ public partial struct EliminationRange :
 		{
 			if (this[digit] is var mask and not 0)
 			{
-				result.Add(new(digit, mask));
+				result.AddRef(new(digit, mask));
 			}
 		}
 		return [.. result];

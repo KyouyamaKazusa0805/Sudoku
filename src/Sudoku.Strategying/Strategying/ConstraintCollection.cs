@@ -119,7 +119,7 @@ public sealed class ConstraintCollection :
 		var result = new List<TResult>(Count);
 		foreach (var element in this)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return result.AsReadOnlySpan();
 	}

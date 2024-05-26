@@ -73,7 +73,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 		var result = new List<TResult>(Length);
 		foreach (var element in SourceSpan)
 		{
-			result.Add(selector(element));
+			result.AddRef(selector(element));
 		}
 		return result.AsReadOnlySpan();
 	}
@@ -90,7 +90,7 @@ public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 		{
 			if (predicate(element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 		return result.AsReadOnlySpan();

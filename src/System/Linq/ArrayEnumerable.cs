@@ -130,7 +130,7 @@ public static class ArrayEnumerable
 			var element = source[i];
 			foreach (ref readonly var subElement in collectionSelector(element).AsReadOnlySpan())
 			{
-				result.Add(resultSelector(element, subElement));
+				result.AddRef(resultSelector(element, subElement));
 			}
 		}
 		return [.. result];
@@ -150,7 +150,7 @@ public static class ArrayEnumerable
 			var element = source[i];
 			foreach (var subElement in collectionSelector(element))
 			{
-				result.Add(resultSelector(element, subElement));
+				result.AddRef(resultSelector(element, subElement));
 			}
 		}
 		return [.. result];
@@ -323,7 +323,7 @@ public static class ArrayEnumerable
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -349,7 +349,7 @@ public static class ArrayEnumerable
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -406,7 +406,7 @@ public static class ArrayEnumerable
 					continue;
 				}
 
-				result.Add(resultSelector(outerItem, innerItem));
+				result.AddRef(resultSelector(outerItem, innerItem));
 			}
 		}
 		return [.. result];
@@ -456,10 +456,10 @@ public static class ArrayEnumerable
 					continue;
 				}
 
-				satisfiedInnerKvps.Add(innerItem);
+				satisfiedInnerKvps.AddRef(in innerItem);
 			}
 
-			result.Add(resultSelector(outerItem, [.. satisfiedInnerKvps]));
+			result.AddRef(resultSelector(outerItem, [.. satisfiedInnerKvps]));
 		}
 		return [.. result];
 	}

@@ -278,7 +278,7 @@ public static class SpanEnumerable
 		{
 			if (match(in element))
 			{
-				result.Add(element);
+				result.AddRef(in element);
 			}
 		}
 
@@ -322,7 +322,7 @@ public static class SpanEnumerable
 			var element = source[i];
 			foreach (ref readonly var subElement in collectionSelector(element).AsReadOnlySpan())
 			{
-				result.Add(resultSelector(element, subElement));
+				result.AddRef(resultSelector(element, subElement));
 			}
 		}
 
@@ -395,7 +395,7 @@ public static class SpanEnumerable
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -405,7 +405,7 @@ public static class SpanEnumerable
 			unsafe
 			{
 				var tempValues = tempDictionary[key];
-				result.Add(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
+				result.AddRef(new(@ref.ToPointer(in tempValues.AsReadOnlySpan()[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -424,7 +424,7 @@ public static class SpanEnumerable
 			var key = keySelector(element);
 			if (!tempDictionary.TryAdd(key, [element]))
 			{
-				tempDictionary[key].Add(element);
+				tempDictionary[key].AddRef(in element);
 			}
 		}
 
@@ -435,7 +435,7 @@ public static class SpanEnumerable
 			{
 				var tempValues = tempDictionary[key];
 				var valuesConverted = from value in tempValues select elementSelector(value);
-				result.Add(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
+				result.AddRef(new(@ref.ToPointer(in valuesConverted[0]), tempValues.Count, key));
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -484,7 +484,7 @@ public static class SpanEnumerable
 					continue;
 				}
 
-				result.Add(resultSelector(outerItem, innerItem));
+				result.AddRef(resultSelector(outerItem, innerItem));
 			}
 		}
 		return result.AsReadOnlySpan();
@@ -534,10 +534,10 @@ public static class SpanEnumerable
 					continue;
 				}
 
-				satisfiedInnerKvps.Add(innerItem);
+				satisfiedInnerKvps.AddRef(in innerItem);
 			}
 
-			result.Add(resultSelector(outerItem, [.. satisfiedInnerKvps]));
+			result.AddRef(resultSelector(outerItem, [.. satisfiedInnerKvps]));
 		}
 		return result.AsReadOnlySpan();
 	}

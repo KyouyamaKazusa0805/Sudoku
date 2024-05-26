@@ -61,7 +61,7 @@ public static class StepMarshal
 		var result = new List<(Grid, Step)>(interimGrids.Length);
 		for (var i = 0; i < interimGrids.Length; i++)
 		{
-			result.Add((interimGrids[i], interimSteps[i]));
+			result.AddRef((interimGrids[i], interimSteps[i]));
 		}
 		return result.AsReadOnlySpan();
 	}

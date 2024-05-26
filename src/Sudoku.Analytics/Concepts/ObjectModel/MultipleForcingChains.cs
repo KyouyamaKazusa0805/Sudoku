@@ -87,7 +87,7 @@ public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOr
 	{
 		_internalDictionary.Add(cellOrDigit, potential);
 		_keys.Add(cellOrDigit);
-		_values.Add(potential);
+		_values.AddRef(in potential);
 	}
 
 	/// <inheritdoc/>
