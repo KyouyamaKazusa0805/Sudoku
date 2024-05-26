@@ -33,6 +33,7 @@ global using Sudoku.Linq;
 global using Sudoku.Randomization;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.MaskServices;
+global using Sudoku.Tokenization;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;

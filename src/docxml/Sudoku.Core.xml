@@ -5478,25 +5478,6 @@
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.ITokenizable`1">
-            <summary>
-            Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="P:Sudoku.Concepts.Primitive.ITokenizable`1.Token">
-            <summary>
-            Indicates the token of the object.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Primitive.ITokenizable`1.Create(System.String)">
-            <summary>
-            Create an instance of type <typeparamref name="TSelf"/> that is used a token.
-            </summary>
-            <param name="token">The token to be used.</param>
-            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
-            <exception cref="T:System.FormatException">Throws when the token is invalid.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.Primitive.SudokuType">
             <summary>
             Represents a type of sudoku puzzle.
@@ -5659,39 +5640,6 @@
         <member name="F:Sudoku.Concepts.Primitive.TransformType.RotateCounterclockwise">
             <summary>
             Indicates the transform type is to ratate counter-clockwise.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.Uniqueness">
-            <summary>
-            Represents a flag describing the number of solutions to a puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.Uniqueness.None">
-            <summary>
-            The placeholder of this type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.Uniqueness.Bad">
-            <summary>
-            Indicates the puzzle has no valid solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.Uniqueness.Unique">
-            <summary>
-            Indicates the puzzle has a unique solution.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.Uniqueness.Multiple">
-            <summary>
-            Indicates the puzzle has multiple solutions.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Subview">

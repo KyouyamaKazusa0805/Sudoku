@@ -7,3 +7,4 @@ global using System.Text;
 global using Sudoku.Algorithms.MinLex;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Primitive;
+global using Sudoku.Solving;

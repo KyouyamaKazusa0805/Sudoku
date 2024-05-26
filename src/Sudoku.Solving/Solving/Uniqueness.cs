@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.Primitive;
+namespace Sudoku.Solving;
 
 /// <summary>
 /// Represents a flag describing the number of solutions to a puzzle.
