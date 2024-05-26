@@ -1,9 +1,8 @@
 namespace Sudoku.Strategying.Constraints;
 
 /// <summary>
-/// Represents symmetry constraint. This constraint won't be used because <see cref="Generator"/> can controls this.
+/// Represents symmetry constraint.
 /// </summary>
-/// <seealso cref="Generator"/>
 [GetHashCode]
 [ToString]
 public sealed partial class SymmetryConstraint : Constraint

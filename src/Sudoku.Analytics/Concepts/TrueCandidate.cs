@@ -14,7 +14,7 @@ public static class TrueCandidate
 	/// <exception cref="ArgumentException">Throws when the puzzle is invalid.</exception>
 	public static CandidateMap GetAllTrueCandidates(ref readonly Grid grid, CancellationToken cancellationToken = default)
 	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, true);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.GetIsValid(), true);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 
 		// Get the number of multi-value cells.

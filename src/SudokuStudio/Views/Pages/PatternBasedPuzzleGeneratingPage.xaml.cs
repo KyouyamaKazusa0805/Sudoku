@@ -312,11 +312,11 @@ public sealed partial class PatternBasedPuzzleGeneratingPage : Page
 			var cellsMap = fixedCandidates.CellDistribution;
 			foreach (var cell in fixedCandidates.EnumerateCells())
 			{
-				grid.SwapDigit(grid.SolutionGrid.GetDigit(cell), Log2((uint)cellsMap[cell]));
+				grid.SwapDigit(grid.GetSolutionGrid().GetDigit(cell), Log2((uint)cellsMap[cell]));
 			}
 			foreach (var cell in fixedCandidates.EnumerateCells())
 			{
-				if (grid.SolutionGrid.GetDigit(cell) != Log2((uint)cellsMap[cell]))
+				if (grid.GetSolutionGrid().GetDigit(cell) != Log2((uint)cellsMap[cell]))
 				{
 					return false;
 				}

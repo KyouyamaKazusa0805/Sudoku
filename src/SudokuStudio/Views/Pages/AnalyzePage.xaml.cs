@@ -639,7 +639,7 @@ public sealed partial class AnalyzePage : Page
 	/// <summary>
 	/// To update puzzle via solution grid.
 	/// </summary>
-	private void UpdatePuzzleViaSolutionGrid() => SudokuPane.UpdateGrid(SudokuPane.Puzzle.SolutionGrid);
+	private void UpdatePuzzleViaSolutionGrid() => SudokuPane.UpdateGrid(SudokuPane.Puzzle.GetSolutionGrid());
 
 	/// <summary>
 	/// Try to update view unit.
@@ -1029,7 +1029,7 @@ public sealed partial class AnalyzePage : Page
 	private async void AnalyzeButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = SudokuPane.Puzzle;
-		if (puzzle.Uniqueness == Uniqueness.Bad)
+		if (puzzle.GetUniqueness() == Uniqueness.Bad)
 		{
 			return;
 		}
@@ -1290,7 +1290,7 @@ public sealed partial class AnalyzePage : Page
 	private async void SaveToLibraryButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = SudokuPane.Puzzle;
-		if (!puzzle.IsValid)
+		if (!puzzle.GetIsValid())
 		{
 			return;
 		}

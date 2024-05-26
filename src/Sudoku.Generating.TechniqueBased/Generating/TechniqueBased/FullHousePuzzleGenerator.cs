@@ -173,7 +173,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 			}
 
 			// Replace with solution grid.
-			grid = grid.SolutionGrid.UnfixedGrid;
+			grid = grid.GetSolutionGrid().UnfixedGrid;
 
 			// Then randomly removed some digits in some cells, and keeps the grid valid.
 			ShuffleSequence(CellSeed);
@@ -187,7 +187,7 @@ public sealed class FullHousePuzzleGenerator : SinglePuzzleGenerator<FullHouseSt
 
 			// Fix the grid and check validity.
 			grid.Fix();
-			if (grid.IsValid
+			if (grid.GetIsValid()
 				&& Analyzer.Analyze(in grid, cancellationToken: cancellationToken) is { IsSolved: true, InterimSteps: var steps }
 				&& new SortedSet<Technique>(from step in steps select step.Code).Max == Technique.FullHouse)
 			{

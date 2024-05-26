@@ -61,7 +61,7 @@ public static unsafe class SymmetricalPlacing
 		out Mask selfPairedDigitsMask
 	)
 	{
-		if (grid is not { PuzzleType: SudokuType.Standard, Uniqueness: Uniqueness.Unique })
+		if (grid.PuzzleType != SudokuType.Standard || grid.GetUniqueness() != Uniqueness.Unique)
 		{
 			goto FastFail;
 		}

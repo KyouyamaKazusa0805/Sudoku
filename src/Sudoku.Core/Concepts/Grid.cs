@@ -82,6 +82,16 @@ public partial struct Grid :
 	/// </summary>
 	public const Mask GivenMask = (Mask)CellState.Given << CellCandidatesCount;
 
+	/// <summary>
+	/// Indicates the number of cells of a sudoku grid.
+	/// </summary>
+	public const Cell CellsCount = 81;
+
+	/// <summary>
+	/// Indicates the number of candidates appeared in a cell.
+	/// </summary>
+	public const Digit CellCandidatesCount = 9;
+
 #if EMPTY_GRID_STRING_CONSTANT
 	/// <summary>
 	/// Indicates the empty grid string.
@@ -98,16 +108,6 @@ public partial struct Grid :
 	/// Indicates ths header bits describing the sudoku type is a Sukaku.
 	/// </summary>
 	internal const Mask SukakuHeader = (int)SudokuType.Sukaku << HeaderShift;
-
-	/// <summary>
-	/// Indicates the number of cells of a sudoku grid.
-	/// </summary>
-	private const Cell CellsCount = 81;
-
-	/// <summary>
-	/// Indicates the number of candidates appeared in a cell.
-	/// </summary>
-	private const Digit CellCandidatesCount = 9;
 
 
 #if !EMPTY_GRID_STRING_CONSTANT
@@ -133,32 +133,6 @@ public partial struct Grid :
 	/// This value can be used for non-candidate-based sudoku operations, e.g. a sudoku grid canvas.
 	/// </remarks>
 	public static readonly Grid Undefined;
-
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-	/// <summary>
-	/// The internal field that can be used for making threads run in order while using <see cref="Solver"/>,
-	/// keeping the type being thread-safe.
-	/// </summary>
-	/// <seealso cref="Solver"/>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-#if NET9_0_OR_GREATER
-	private static readonly Lock PuzzleSolvingSynchronizer = new();
-#else
-	private static readonly object PuzzleSolvingSynchronizer = new();
-#endif
-#endif
-
-	/// <summary>
-	/// Indicates the backing solver.
-	/// </summary>
-	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
-	[EditorBrowsable(EditorBrowsableState.Never)]
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-	private static readonly ThreadLocal<BitwiseSolver> Solver = new(static () => new());
-#else
-	private static readonly BitwiseSolver Solver = new();
-#endif
 
 	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
 	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
@@ -302,17 +276,6 @@ public partial struct Grid :
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
 		get => this == Empty;
 	}
-
-	/// <summary>
-	/// Indicates whether the puzzle has a unique solution.
-	/// </summary>
-	public readonly bool IsValid => IsSolved || Uniqueness == Uniqueness.Unique;
-
-	/// <summary>
-	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-	/// if arbitrary one given digit will be removed from the grid.
-	/// </summary>
-	public readonly bool IsMinimal => CheckMinimal(out _);
 
 	/// <summary>
 	/// Determines whether the current grid contains any missing candidates.
@@ -483,39 +446,6 @@ public partial struct Grid :
 	public readonly SymmetricType Symmetry => GivenCells.Symmetry;
 
 	/// <summary>
-	/// Checks the uniqueness of the current sudoku puzzle.
-	/// </summary>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-	public readonly Uniqueness Uniqueness
-	{
-#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
-#endif
-		get
-		{
-			if (IsSolved)
-			{
-				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("CannotSolveAPuzzleAlreadySolved"));
-			}
-
-			long count;
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-			lock (PuzzleSolvingSynchronizer)
-#endif
-			{
-				count = Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-				.Value!
-#endif
-					.SolveString(ToString(), out _, 2);
-			}
-
-			return count switch { 0 => Uniqueness.Bad, 1 => Uniqueness.Unique, _ => Uniqueness.Multiple };
-		}
-	}
-
-	/// <summary>
 	/// Indicates the type of the puzzle.
 	/// </summary>
 	/// <remarks>
@@ -671,45 +601,6 @@ public partial struct Grid :
 		}
 	}
 
-	/// <summary>
-	/// Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
-	/// this property will return <see cref="Undefined"/>.
-	/// </summary>
-	/// <seealso cref="Undefined"/>
-	public readonly Grid SolutionGrid
-	{
-#if SYNC_ROOT_VIA_METHODIMPL && !SYNC_ROOT_VIA_OBJECT
-		[MethodImpl(MethodImplOptions.NoInlining | MethodImplOptions.Synchronized)]
-#endif
-		get
-		{
-#if SYNC_ROOT_VIA_OBJECT && !SYNC_ROOT_VIA_METHODIMPL
-			lock (PuzzleSolvingSynchronizer)
-#endif
-			{
-				return Solver
-#if SYNC_ROOT_VIA_THREAD_LOCAL
-					.Value!
-#endif
-					.Solve(in this) is { IsUndefined: false } solution ? unfix(in solution, GivenCells) : Undefined;
-			}
-
-
-			static Grid unfix(ref readonly Grid solution, ref readonly CellMap pattern)
-			{
-				var result = solution;
-				foreach (var cell in ~pattern)
-				{
-					if (result.GetState(cell) == CellState.Given)
-					{
-						result.SetState(cell, CellState.Modifiable);
-					}
-				}
-				return result;
-			}
-		}
-	}
-
 	/// <inheritdoc/>
 	readonly int IReadOnlyCollection<Digit>.Count => CellsCount;
 
@@ -724,18 +615,16 @@ public partial struct Grid :
 	/// Indicates the minimum possible grid value that the current type can reach.
 	/// </summary>
 	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
+	/// This value is found out via backtracking algorithm.
 	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MinValue => Parse("123456789456789123789123456214365897365897214897214365531642978642978531978531642");
 
 	/// <summary>
 	/// Indicates the maximum possible grid value that the current type can reach.
 	/// </summary>
 	/// <remarks>
-	/// This value is found out via backtracking algorithm. For more information, please visit type <see cref="BacktrackingSolver"/>.
+	/// This value is found out via backtracking algorithm.
 	/// </remarks>
-	/// <seealso cref="BacktrackingSolver"/>
 	static Grid IMinMaxValue<Grid>.MaxValue => Parse("987654321654321987321987654896745213745213896213896745579468132468132579132579468");
 
 	/// <inheritdoc/>
@@ -848,24 +737,7 @@ public partial struct Grid :
 	/// <param name="other">The instance to compare.</param>
 	/// <returns>A <see cref="bool"/> result.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(ref readonly Grid other) => Equals(in other, GridComparison.Default);
-
-	/// <summary>
-	/// Determine whether the specified <see cref="Grid"/> instance hold the same values as the current instance,
-	/// by using the specified comparison type.
-	/// </summary>
-	/// <param name="other">The instance to compare.</param>
-	/// <param name="comparisonType">One of the enumeration values that specifies the rules for the comparison.</param>
-	/// <returns>A <see cref="bool"/> result.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly bool Equals(ref readonly Grid other, GridComparison comparisonType)
-		=> comparisonType switch
-		{
-			GridComparison.Default => this[..].SequenceEqual(other[..]),
-			GridComparison.IncludingTransforms => this.GetMinLexGrid() == other.GetMinLexGrid(),
-			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
-		};
+	public readonly bool Equals(ref readonly Grid other) => this[..].SequenceEqual(other[..]);
 
 	/// <summary>
 	/// Determine whether the digit in the target cell may be duplicated with a certain cell in the peers of the current cell,
@@ -884,56 +756,6 @@ public partial struct Grid :
 			}
 		}
 		return false;
-	}
-
-	/// <summary>
-	/// Determines whether the puzzle is a minimal puzzle, which means the puzzle will become multiple solution
-	/// if arbitrary one given digit will be removed from the grid.
-	/// </summary>
-	/// <param name="firstCandidateMakePuzzleNotMinimal">
-	/// <para>
-	/// Indicates the first found candidate that can make the puzzle not minimal, which means
-	/// if we remove the digit in the cell, the puzzle will still keep unique.
-	/// </para>
-	/// <para>If the return value is <see langword="true"/>, this argument will be -1.</para>
-	/// </param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	/// <exception cref="InvalidOperationException">Throws when the puzzle is invalid (i.e. not unique).</exception>
-	public readonly bool CheckMinimal(out Candidate firstCandidateMakePuzzleNotMinimal)
-	{
-		switch (this)
-		{
-			case { IsValid: false }:
-			{
-				throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridMultipleSolutions"));
-			}
-			case { IsSolved: true, GivenCells.Count: CellsCount }:
-			{
-				// Very special case: all cells are givens.
-				// The puzzle is considered not a minimal puzzle, because any digit in the grid can be removed.
-				firstCandidateMakePuzzleNotMinimal = GetDigit(0);
-				return false;
-			}
-			default:
-			{
-				var gridCopied = UnfixedGrid;
-				foreach (var cell in gridCopied.ModifiableCells)
-				{
-					var newGrid = gridCopied;
-					newGrid.SetDigit(cell, -1);
-					newGrid.Fix();
-
-					if (newGrid.IsValid)
-					{
-						firstCandidateMakePuzzleNotMinimal = cell * CellCandidatesCount + GetDigit(cell);
-						return false;
-					}
-				}
-
-				firstCandidateMakePuzzleNotMinimal = -1;
-				return true;
-			}
-		}
 	}
 
 	/// <inheritdoc/>
@@ -1022,25 +844,6 @@ public partial struct Grid :
 	public override readonly int GetHashCode()
 		=> this switch { { IsUndefined: true } => 0, { IsEmpty: true } => 1, _ => ToString("#").GetHashCode() };
 
-	/// <inheritdoc cref="GetHashCode()"/>
-	/// <param name="comparisonType">
-	/// Indicates the comparison type that specifies the target grid to be calculated its hash code.
-	/// </param>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="comparisonType"/> isn't defined.
-	/// </exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int GetHashCode(GridComparison comparisonType)
-	{
-		var grid = comparisonType switch
-		{
-			GridComparison.Default => this,
-			GridComparison.IncludingTransforms => this.GetMinLexGrid(),
-			_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
-		};
-		return grid.GetHashCode();
-	}
-
 	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	/// <exception cref="InvalidOperationException">Throws when the puzzle type is Sukaku.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -1048,28 +851,6 @@ public partial struct Grid :
 		=> PuzzleType != SudokuType.Sukaku && other.PuzzleType != SudokuType.Sukaku
 			? ToString("#").CompareTo(other.ToString("#"))
 			: throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"));
-
-	/// <summary>
-	/// Compares the current instance with another object of the same type and returns an integer
-	/// that indicates whether the current instance precedes, follows or occurs in the same position in the sort order as the other object.
-	/// </summary>
-	/// <param name="other">The other object to be compared.</param>
-	/// <param name="comparisonType">The comparison type to be used.</param>
-	/// <returns>A value that indicates the relative order of the objects being compared.</returns>
-	/// <exception cref="InvalidOperationException">Throws when one of the grids to be compared is a Sukaku puzzle.</exception>
-	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparisonType"/> is not defined.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly int CompareTo(ref readonly Grid other, GridComparison comparisonType)
-		=> (PuzzleType, other.PuzzleType) switch
-		{
-			(not SudokuType.Sukaku, not SudokuType.Sukaku) => comparisonType switch
-			{
-				GridComparison.Default => ToString("#").CompareTo(other.ToString("#")),
-				GridComparison.IncludingTransforms => this.GetMinLexGrid().ToString("#").CompareTo(other.GetMinLexGrid().ToString("#")),
-				_ => throw new ArgumentOutOfRangeException(nameof(comparisonType))
-			},
-			_ => throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("ComparableGridMustBeStandard"))
-		};
 
 	/// <inheritdoc cref="object.ToString"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]

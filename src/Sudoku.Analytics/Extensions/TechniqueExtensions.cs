@@ -306,16 +306,4 @@ public static class TechniqueExtensions
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Type? GetSuitableStepType(this Technique @this)
 		=> TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.StepType;
-
-	/// <summary>
-	/// Creates a <see cref="TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
-	/// </summary>
-	/// <param name="this">The <see cref="Technique"/> instance.</param>
-	/// <returns>A <see cref="TechniqueBasedPuzzleGenerator"/> instance.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueBasedPuzzleGenerator? GetSpecificPuzzleGenerator(this Technique @this)
-	{
-		var type = TypeOfTechnique.GetField(@this.ToString())!.GetCustomAttribute<TechniqueMetadataAttribute>()?.GeneratorType;
-		return type is null ? null : (TechniqueBasedPuzzleGenerator?)Activator.CreateInstance(type);
-	}
 }

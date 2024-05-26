@@ -31,7 +31,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(FullHouseStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(FullHousePuzzleGenerator),
 		Links = ["http://sudopedia.enjoysudoku.com/Full_House.html"])]
 	FullHouse,
 
@@ -59,7 +58,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Indirect,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleBlock,
@@ -75,7 +73,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Indirect,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleRow,
@@ -91,7 +88,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Indirect,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"])]
 	HiddenSingleColumn,
@@ -108,7 +104,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(NakedSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(NakedSinglePuzzleGenerator),
 		Links = ["http://sudopedia.enjoysudoku.com/Naked_Single.html"])]
 	NakedSingle,
 	#endregion
@@ -126,7 +121,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -141,7 +135,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
 		Features = TechniqueFeatures.DirectTechniques)]
@@ -156,7 +149,6 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.Single,
 		StepType = typeof(HiddenSingleStep),
 		StepSearcherType = typeof(SingleStepSearcher),
-		GeneratorType = typeof(HiddenSinglePuzzleGenerator),
 		PencilmarkVisibility = PencilmarkVisibility.Direct,
 		Links = ["http://sudopedia.enjoysudoku.com/Hidden_Single.html"],
 		Features = TechniqueFeatures.DirectTechniques)]

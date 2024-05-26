@@ -95,10 +95,4 @@ public sealed class TechniqueMetadataAttribute : ProgramMetadataAttribute<int, D
 	/// </summary>
 	[DisallowNull]
 	public Type? StepSearcherType { get; init; }
-
-	/// <summary>
-	/// Indicates a type that can produce puzzles that always uses the current technique.
-	/// </summary>
-	[DisallowNull]
-	public Type? GeneratorType { get; init; }
 }

@@ -60,7 +60,7 @@ public abstract class SinglePuzzleGenerator<TStep> : TechniqueBasedPuzzleGenerat
 		Cell targetCell,
 		ref readonly CellMap excludedCells,
 		out CellMap interferingCells
-	) => AppendInterferingDigitsCore(ref puzzle, baseGrid.FixedGrid.SolutionGrid, targetCell, in excludedCells, out interferingCells);
+	) => AppendInterferingDigitsCore(ref puzzle, baseGrid.FixedGrid.GetSolutionGrid(), targetCell, in excludedCells, out interferingCells);
 
 	/// <inheritdoc/>
 	PhasedJustOneCellPuzzle IGenerator<PhasedJustOneCellPuzzle>.Generate(IProgress<GeneratorProgress>? progress, CancellationToken cancellationToken)

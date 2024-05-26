@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Provides strategying APIs for controlling filtering on puzzles.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Strategying.xml</DocumentationFile>
+		<Description>Provides APIs for generating puzzles on techniques.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Generating.TechniqueBased.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Algorithms.Minimal\Sudoku.Algorithms.Minimal.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
+		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />
 	</ItemGroup>
 
 </Project>

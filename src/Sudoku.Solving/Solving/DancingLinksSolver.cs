@@ -143,7 +143,7 @@ public sealed class DancingLinksSolver : ISolver
 	{
 		var idList = (from k in answer orderby k.Id select k.Id).ToList();
 		var grid = Grid.Create(from id in idList select id % 9 + 1, GridCreatingOption.MinusOne);
-		result = grid.IsValid ? grid : throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridNoSolution"));
+		result = grid.GetIsValid() ? grid : throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("GridNoSolution"));
 	}
 
 	/// <summary>

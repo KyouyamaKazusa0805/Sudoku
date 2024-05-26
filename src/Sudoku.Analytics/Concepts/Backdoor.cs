@@ -19,9 +19,11 @@ public static class Backdoor
 		var sstsChecker = Analyzer.SstsOnly;
 		return (grid, sstsChecker.Analyze(in grid)) switch
 		{
-			({ IsValid: false } or { IsSolved: true }, _)
+			_ when !grid.GetIsValid()
 				=> throw new ArgumentException(ResourceDictionary.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
-			({ SolutionGrid: var solution }, { IsSolved: true })
+			({ IsSolved: true }, _)
+				=> throw new ArgumentException(ResourceDictionary.ExceptionMessage("GridIsInvalidOrSolved"), nameof(grid)),
+			(_, { IsSolved: true }) when grid.GetSolutionGrid() is var solution
 				=>
 				from candidate in grid
 				let digit = solution.GetDigit(candidate / 9)
@@ -33,7 +35,7 @@ public static class Backdoor
 
 		ReadOnlySpan<Conclusion> g(ref readonly Grid grid)
 		{
-			var (assignment, elimination, solution) = (new List<Conclusion>(81), new List<Conclusion>(729), grid.SolutionGrid);
+			var (assignment, elimination, solution) = (new List<Conclusion>(81), new List<Conclusion>(729), grid.GetSolutionGrid());
 			foreach (var cell in grid.EmptyCells)
 			{
 				// Case 1: Assignments.

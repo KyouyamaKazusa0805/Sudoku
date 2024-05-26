@@ -179,8 +179,8 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 		}
 
 		var result = new AnalysisResult(in puzzle) { IsSolved = false };
-		var solution = puzzle.SolutionGrid;
-		if (puzzle.Uniqueness != Uniqueness.Bad)
+		var solution = puzzle.GetSolutionGrid();
+		if (puzzle.GetUniqueness() != Uniqueness.Bad)
 		{
 			// We should check whether the puzzle is a GSP firstly.
 			// This method doesn't check for Sukaku puzzles, or ones containing multiple solutions.

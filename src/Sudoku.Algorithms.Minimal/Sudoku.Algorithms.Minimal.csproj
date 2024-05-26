@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides APIs for minimal checking on grids.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Algorithms.Minimal.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	  <ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
+	</ItemGroup>
+
+</Project>

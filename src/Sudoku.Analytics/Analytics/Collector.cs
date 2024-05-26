@@ -88,7 +88,7 @@ public sealed partial class Collector : AnalyzerOrCollector
 			var totalSearchersCount = possibleStepSearchers.Length;
 
 			var playground = puzzle;
-			Initialize(in playground, playground.SolutionGrid);
+			Initialize(in playground, playground.GetSolutionGrid());
 
 			var accumulator = new List<Step>();
 			var context = new AnalysisContext(in playground, in puzzle)

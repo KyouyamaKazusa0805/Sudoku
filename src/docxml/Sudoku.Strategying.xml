@@ -813,9 +813,8 @@
         </member>
         <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
             <summary>
-            Represents symmetry constraint. This constraint won't be used because <see cref="T:Sudoku.Generating.Generator"/> can controls this.
+            Represents symmetry constraint.
             </summary>
-            <seealso cref="T:Sudoku.Generating.Generator"/>
         </member>
         <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.InvalidSymmetricType">
             <summary>

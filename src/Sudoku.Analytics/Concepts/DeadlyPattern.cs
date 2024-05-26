@@ -15,7 +15,7 @@ public static class DeadlyPattern
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
 	public static bool IsDeadlyPattern(ref readonly Grid grid)
 	{
-		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.IsValid, false);
+		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.GetIsValid(), false);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.EmptiesCount, 81);
 		ArgumentOutOfRangeException.ThrowIfNotEqual(grid.PuzzleType == SudokuType.Standard, true);
 

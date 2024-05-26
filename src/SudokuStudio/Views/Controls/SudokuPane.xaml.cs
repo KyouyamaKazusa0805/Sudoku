@@ -302,7 +302,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	/// Indicates the solution of property <see cref="Puzzle"/>.
 	/// </summary>
 	/// <seealso cref="Puzzle"/>
-	internal Grid Solution => _puzzle.SolutionGrid;
+	internal Grid Solution => _puzzle.GetSolutionGrid();
 
 
 	/// <inheritdoc/>

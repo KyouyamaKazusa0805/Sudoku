@@ -58,7 +58,8 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 	{
 		if (i == patternCellsSorted.Length)
 		{
-			if (playground.FixedGrid is { Uniqueness: Uniqueness.Unique } result)
+			var result = playground.FixedGrid;
+			if (result.GetUniqueness() == Uniqueness.Unique)
 			{
 				resultGrid = result;
 				throw new OperationCanceledException("Finished.");
@@ -77,7 +78,7 @@ public readonly ref partial struct PatternBasedPuzzleGenerator(
 		{
 			playground.ReplaceDigit(cell, digits[randomizedIndex]);
 
-			if (playground.FixedGrid.Uniqueness == Uniqueness.Bad)
+			if (playground.FixedGrid.GetUniqueness() == Uniqueness.Bad)
 			{
 				playground.SetDigit(cell, -1);
 				continue;

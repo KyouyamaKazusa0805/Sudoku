@@ -115,7 +115,7 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 	private async void CollectButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var grid = BasePage.SudokuPane.Puzzle;
-		if (!grid.IsValid)
+		if (!grid.GetIsValid())
 		{
 			return;
 		}

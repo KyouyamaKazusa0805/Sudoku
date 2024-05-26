@@ -9,7 +9,7 @@ public abstract partial class FullPuzzle : PuzzleBase
 	/// <summary>
 	/// Indicates the solution to the puzzle.
 	/// </summary>
-	public Grid Solution => Puzzle.SolutionGrid;
+	public Grid Solution => Puzzle.GetSolutionGrid();
 
 
 	/// <inheritdoc/>

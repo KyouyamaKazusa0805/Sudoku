@@ -18,7 +18,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 	private async void BackdoorButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (!puzzle.IsValid)
+		if (!puzzle.GetIsValid())
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = BackdoorButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
@@ -52,7 +52,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 	private async void TrueCandidateButton_ClickAsync(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (!puzzle.IsValid)
+		if (!puzzle.GetIsValid())
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = TrueCandidateButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
@@ -89,7 +89,7 @@ public sealed partial class AttributeCheckingOperation : Page, IOperationProvide
 	private void DisorderedIttoryuButton_Click(object sender, RoutedEventArgs e)
 	{
 		var puzzle = BasePage.SudokuPane.Puzzle;
-		if (!puzzle.IsValid)
+		if (!puzzle.GetIsValid())
 		{
 			ErrorDialog_PuzzleIsInvalid.Target = DisorderedIttoryuButton;
 			ErrorDialog_PuzzleIsInvalid.IsOpen = true;
