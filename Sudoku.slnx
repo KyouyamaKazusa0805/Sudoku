@@ -16,13 +16,16 @@
     <Project Path="src\Sudoku.Core\Sudoku.Core.csproj">
       <Configuration Solution="Build|*" Project="Release|*" />
     </Project>
+    <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
     <Project Path="src\Sudoku.Strategying\Sudoku.Strategying.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
     <Project Path="src\Sudoku.Tokenization\Sudoku.Tokenization.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-    <Project Path="src\Sudoku.Transforming\Sudoku.Transforming.csproj" Type="Classic C#">
+    <Project Path="src\Sudoku.Transforming\Sudoku.Transforming.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
     <Project Path="src\System\SystemExtensions.csproj">
@@ -114,9 +117,6 @@
     </Project>
   </Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
-  <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
   <Project Path="src\SudokuStudio\SudokuStudio.csproj">
