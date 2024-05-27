@@ -149,7 +149,7 @@ public static partial class StringExtensions
 		var result = new string[@this.Length % length == 0 ? @this.Length / length : @this.Length / length + 1];
 		for (var i = 0; i < @this.Length / length; i++)
 		{
-			result[i] = @this.AsSpan().Slice(i * length, i).ToString();
+			result[i] = @this.AsSpan().Slice(i * length, length).ToString();
 		}
 		return result;
 	}
