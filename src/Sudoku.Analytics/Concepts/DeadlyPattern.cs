@@ -107,7 +107,6 @@ public static class DeadlyPattern
 				var r = currentCell / 9;
 				var c = currentCell % 9;
 				var digits = grid.GetCandidates(currentCell);
-
 				foreach (var digit in digits)
 				{
 					grid[currentCell] = (Mask)(Grid.ModifiableMask | (Mask)(1 << digit));
