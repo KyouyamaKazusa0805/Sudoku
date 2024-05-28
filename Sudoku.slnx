@@ -65,7 +65,7 @@
     <Project Path="src\Sudoku.Algorithms.MinLex\Sudoku.Algorithms.MinLex.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-    <Project Path="src\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" Type="Classic C#">
+    <Project Path="src\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
