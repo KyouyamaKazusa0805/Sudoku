@@ -9,7 +9,29 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Folder Name="/API Projects/">
+  <Folder Name="/Global Items/">
+    <File Path="README-zh-cn.md" />
+    <File Path="README.md" />
+  </Folder>
+  <Folder Name="/Global Items/Code of Conduct/">
+    <File Path="CODE_OF_CONDUCT.md" />
+  </Folder>
+  <Folder Name="/Global Items/Contacts/">
+    <File Path="CONTACTS-zh-cn.md" />
+    <File Path="CONTACTS.md" />
+  </Folder>
+  <Folder Name="/Global Items/License/">
+    <File Path="LICENSE" />
+  </Folder>
+  <Folder Name="/Global Items/Miscellaneous/">
+    <File Path=".editorconfig" />
+    <File Path=".filenesting.json" />
+    <File Path="Directory.Build.props" />
+    <File Path="global-doc-comments.xml" />
+    <File Path="misspelling-exclusion.dic" />
+    <File Path="NuGet.config" />
+  </Folder>
+  <Folder Name="/Projects - Basic APIs/">
     <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -32,7 +54,7 @@
       <Configuration Solution="Build|*" Project="Release|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Algorithms/">
+  <Folder Name="/Projects - Basic APIs/Algorithms/">
     <Project Path="src\Sudoku.Algorithms.Ittoryu\Sudoku.Algorithms.Ittoryu.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -43,7 +65,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Drawing/">
+  <Folder Name="/Projects - Basic APIs/Drawing/">
     <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -51,7 +73,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Generating/">
+  <Folder Name="/Projects - Basic APIs/Generating/">
     <Project Path="src\Sudoku.Generating.JustOneCell\Sudoku.Generating.JustOneCell.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -62,12 +84,12 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Solving/">
+  <Folder Name="/Projects - Basic APIs/Solving/">
     <Project Path="src\Sudoku.Solving\Sudoku.Solving.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Interim Projects/">
+  <Folder Name="/Projects - C++ Interim/">
     <File Path="intro-interim-folder.txt" />
     <Project Path="src\Gsf.MinLex\Gsf.MinLex.vcxproj">
       <Configuration Solution="*|ARM" Project="*|x64" />
@@ -80,29 +102,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Solution Items/">
-    <File Path="README-zh-cn.md" />
-    <File Path="README.md" />
-  </Folder>
-  <Folder Name="/Solution Items/Code of Conduct/">
-    <File Path="CODE_OF_CONDUCT.md" />
-  </Folder>
-  <Folder Name="/Solution Items/Contacts/">
-    <File Path="CONTACTS-zh-cn.md" />
-    <File Path="CONTACTS.md" />
-  </Folder>
-  <Folder Name="/Solution Items/License/">
-    <File Path="LICENSE" />
-  </Folder>
-  <Folder Name="/Solution Items/Miscellaneous/">
-    <File Path=".editorconfig" />
-    <File Path=".filenesting.json" />
-    <File Path="Directory.Build.props" />
-    <File Path="global-doc-comments.xml" />
-    <File Path="misspelling-exclusion.dic" />
-    <File Path="NuGet.config" />
-  </Folder>
-  <Folder Name="/Source Generators/">
+  <Folder Name="/Projects - Source Generator/">
     <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
