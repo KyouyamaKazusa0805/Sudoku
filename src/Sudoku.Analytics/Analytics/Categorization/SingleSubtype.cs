@@ -169,6 +169,12 @@ public enum SingleSubtype
 	RowHiddenSingle006 = 629,
 
 	/// <summary>
+	/// Indicates the subtype is Hidden Single in Row, with 7 excluders (7 columns).
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "CHR70", RelatedTechnique = Technique.CrosshatchingRow)]
+	RowHiddenSingle007 = 634,
+
+	/// <summary>
 	/// Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHR02", RelatedTechnique = Technique.CrosshatchingRow)]
@@ -261,6 +267,12 @@ public enum SingleSubtype
 	/// </summary>
 	[TechniqueMetadata(Abbreviation = "CHC60", RelatedTechnique = Technique.CrosshatchingColumn)]
 	ColumnHiddenSingle060 = 630,
+
+	/// <summary>
+	/// Indicates the subtype is Hidden Single in Column, with 7 excluders (7 rows).
+	/// </summary>
+	[TechniqueMetadata(Abbreviation = "CHC70", RelatedTechnique = Technique.CrosshatchingColumn)]
+	ColumnHiddenSingle070 = 635,
 
 	/// <summary>
 	/// Indicates the subtype is Hidden Single in Column, with 5 excluders (1 block + 4 rows).
