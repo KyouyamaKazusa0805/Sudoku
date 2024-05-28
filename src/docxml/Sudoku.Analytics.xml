@@ -1086,6 +1086,11 @@
             Indicates the subtype is Hidden Single in Row, with 6 excluders (6 columns).
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle007">
+            <summary>
+            Indicates the subtype is Hidden Single in Row, with 7 excluders (7 columns).
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.RowHiddenSingle200">
             <summary>
             Indicates the subtype is Hidden Single in Row, with 2 excluders (2 blocks).
@@ -1159,6 +1164,11 @@
         <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle060">
             <summary>
             Indicates the subtype is Hidden Single in Column, with 6 excluders (6 rows).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle070">
+            <summary>
+            Indicates the subtype is Hidden Single in Column, with 7 excluders (7 rows).
             </summary>
         </member>
         <member name="F:Sudoku.Analytics.Categorization.SingleSubtype.ColumnHiddenSingle140">
