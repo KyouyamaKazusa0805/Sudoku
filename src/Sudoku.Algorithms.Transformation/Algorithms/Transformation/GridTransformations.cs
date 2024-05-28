@@ -1,4 +1,4 @@
-namespace Sudoku.Transforming;
+namespace Sudoku.Algorithms.Transformation;
 
 /// <summary>
 /// Provides methods for <see cref="Grid"/> instances on transformations.

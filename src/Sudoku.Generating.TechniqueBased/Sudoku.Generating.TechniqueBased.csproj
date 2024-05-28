@@ -10,7 +10,7 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 		<ProjectReference Include="..\Sudoku.Generating.JustOneCell\Sudoku.Generating.JustOneCell.csproj" />
-		<ProjectReference Include="..\Sudoku.Transforming\Sudoku.Transforming.csproj" />
+		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
 	</ItemGroup>
 
 </Project>

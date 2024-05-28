@@ -5734,7 +5734,7 @@
         </member>
         <member name="T:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter">
             <summary>
-            Represents a value converter that can convert a <see cref="T:Sudoku.Transforming.TransformType"/> to a <see cref="T:System.Boolean"/> value.
+            Represents a value converter that can convert a <see cref="T:Sudoku.Algorithms.Transformation.TransformType"/> to a <see cref="T:System.Boolean"/> value.
             </summary>
         </member>
         <member name="M:SudokuStudio.Interaction.ValueConverters.TransformTypeToBooleanConverter.Convert(System.Object,System.Type,System.Object,System.String)">
@@ -15107,14 +15107,14 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.IO.Library.LibraryInfo,Sudoku.Transforming.TransformType,System.Threading.CancellationToken)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.IO.Library.LibraryInfo,Sudoku.Algorithms.Transformation.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>
             <param name="this">Indicates the current instance.</param>
             <param name="transformTypes">
             Indicates the available transform type that the chosen grid can be transformed.
-            Use <see cref="T:Sudoku.Transforming.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Transforming.TransformType"/>, <see cref="T:Sudoku.Transforming.TransformType"/>)
+            Use <see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>.<see langword="operator"/> |(<see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>, <see cref="T:Sudoku.Algorithms.Transformation.TransformType"/>)
             to combine multiple flags.
             </param>
             <param name="cancellationToken">The cancellation token that can cancel the current asynchronous operation.</param>
