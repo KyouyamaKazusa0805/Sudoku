@@ -32,7 +32,7 @@
       <Configuration Solution="Build|*" Project="Release|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Algorithm Projects/">
+  <Folder Name="/API Projects/Algorithms/">
     <Project Path="src\Sudoku.Algorithms.Ittoryu\Sudoku.Algorithms.Ittoryu.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -43,7 +43,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Drawing Projects/">
+  <Folder Name="/API Projects/Drawing/">
     <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -51,7 +51,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Generating Projects/">
+  <Folder Name="/API Projects/Generating/">
     <Project Path="src\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -59,7 +59,7 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/API Projects/Solving Projects/">
+  <Folder Name="/API Projects/Solving/">
     <Project Path="src\Sudoku.Solving\Sudoku.Solving.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>

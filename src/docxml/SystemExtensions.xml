@@ -1400,6 +1400,23 @@
             <returns>The unwrapped value.</returns>
             <exception cref="T:System.ArgumentNullRefException">Throws when the argument doesn't have a value.</exception>
         </member>
+        <member name="T:System.RandomExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Random"/>.
+            </summary>
+            <seealso cref="T:System.Random"/>
+        </member>
+        <member name="M:System.RandomExtensions.NextGaussian``1(System.Random,``0,``0)">
+            <summary>
+            Generates a random number of type <typeparamref name="T"/>, obeying Gaussian's Normal Distribution,
+            with σ value <paramref name="sigma"/> and μ value <paramref name="mu"/>.
+            </summary>
+            <typeparam name="T">The type of the result.</typeparam>
+            <param name="this">The random number generator instance.</param>
+            <param name="mu">Mu μ value.</param>
+            <param name="sigma">Sigma σ value.</param>
+            <returns>The result value.</returns>
+        </member>
         <member name="T:System.ReadOnlyMemoryExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.ReadOnlyMemory`1"/>.
