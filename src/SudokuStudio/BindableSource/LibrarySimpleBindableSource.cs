@@ -7,7 +7,7 @@ namespace SudokuStudio.BindableSource;
 [method: SetsRequiredMembers]
 public sealed partial class LibrarySimpleBindableSource(
 	[PrimaryConstructorParameter(Accessibility = "public required", SetterExpression = "set", GeneratedMemberName = "Library")]
-	Library lib
+	LibraryInfo lib
 )
 {
 	/// <summary>
@@ -17,10 +17,10 @@ public sealed partial class LibrarySimpleBindableSource(
 
 
 	/// <summary>
-	/// Try to fetch all <see cref="Sudoku.Runtime.LibraryServices.Library"/> instances stored in the local path.
+	/// Try to fetch all <see cref="LibraryInfo"/> instances stored in the local path.
 	/// </summary>
-	/// <returns>All possible <see cref="Sudoku.Runtime.LibraryServices.Library"/> instances.</returns>
-	internal static Library[] GetLibraries()
+	/// <returns>All possible <see cref="LibraryInfo"/> instances.</returns>
+	internal static LibraryInfo[] GetLibraries()
 	{
 		if (!Directory.Exists(CommonPaths.Library))
 		{
@@ -35,10 +35,10 @@ public sealed partial class LibrarySimpleBindableSource(
 			let extension = io::Path.GetExtension(file)
 			where extension == FileExtensions.PuzzleLibrary
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
-			let library = new Library(CommonPaths.Library, fileId)
+			let library = new LibraryInfo(CommonPaths.Library, fileId)
 			where library.IsInitialized
 			let firstContentLine = File.ReadLines(library.ConfigFilePath).FirstOrDefault()
-			where firstContentLine == Library.ConfigFileHeader
+			where firstContentLine == LibraryInfo.ConfigFileHeader
 			select library
 		];
 	}

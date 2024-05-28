@@ -13,7 +13,7 @@ public sealed partial class LibraryPage : Page
 
 	private async void AddOnePuzzleItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { Library: var lib } } } })
 		{
 			return;
 		}
@@ -52,7 +52,7 @@ public sealed partial class LibraryPage : Page
 					{
 						Content: LibraryBindableSource
 						{
-							LibraryInfo: var lib
+							Library: var lib
 						} instance
 					}
 				}
@@ -90,7 +90,7 @@ public sealed partial class LibraryPage : Page
 					{
 						Content: LibraryBindableSource
 						{
-							LibraryInfo: var lib
+							Library: var lib
 						} instance
 					}
 				}
@@ -138,7 +138,7 @@ public sealed partial class LibraryPage : Page
 
 	private void ClearPuzzlesItem_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { Library: var lib } } } })
 		{
 			return;
 		}
@@ -148,7 +148,7 @@ public sealed partial class LibraryPage : Page
 
 	private void DeleteLibraryItem_Click(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { Library: var lib } } } })
 		{
 			return;
 		}
@@ -159,7 +159,7 @@ public sealed partial class LibraryPage : Page
 		for (var i = 0; i < p.Count; i++)
 		{
 			var libraryBindableSource = p[i];
-			if (libraryBindableSource.LibraryInfo == lib)
+			if (libraryBindableSource.Library == lib)
 			{
 				((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).RemoveAt(i);
 				return;
@@ -169,7 +169,7 @@ public sealed partial class LibraryPage : Page
 
 	private async void PropertiesItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { Library: var lib } } } })
 		{
 			return;
 		}
@@ -195,7 +195,7 @@ public sealed partial class LibraryPage : Page
 
 	private async void ModifyPropertiesItem_ClickAsync(object sender, RoutedEventArgs e)
 	{
-		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { LibraryInfo: var lib } } } })
+		if (sender is not MenuFlyoutItem { Tag: MenuFlyout { Target: GridViewItem { Content: LibraryBindableSource { Library: var lib } } } })
 		{
 			return;
 		}
@@ -252,7 +252,7 @@ public sealed partial class LibraryPage : Page
 		for (var i = 0; i < p.Count; i++)
 		{
 			var libraryBindableSource = p[i];
-			if (libraryBindableSource.LibraryInfo == lib)
+			if (libraryBindableSource.Library == lib)
 			{
 				((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource)[i] = newInstance;
 				return;
@@ -284,7 +284,7 @@ public sealed partial class LibraryPage : Page
 			return;
 		}
 
-		var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+		var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
 		libraryCreated.Initialize();
 
 		((ObservableCollection<LibraryBindableSource>)LibrariesDisplayer.ItemsSource).Add(
@@ -330,7 +330,7 @@ public sealed partial class LibraryPage : Page
 		}
 
 		var fileName = io::Path.GetFileNameWithoutExtension(filePath);
-		var lib = new Library(CommonPaths.Library, fileName);
+		var lib = new LibraryInfo(CommonPaths.Library, fileName);
 		lib.Initialize();
 		lib.Name = fileName;
 

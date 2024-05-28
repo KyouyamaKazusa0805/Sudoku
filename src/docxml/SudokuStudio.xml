@@ -249,9 +249,9 @@
             </summary>
             <seealso cref="T:SudokuStudio.BindableSource.LibrarySimpleBindableSource"/>
         </member>
-        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.LibraryInfo">
+        <member name="P:SudokuStudio.BindableSource.LibraryBindableSource.Library">
             <summary>
-            Indicates the corresponding <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instance.
+            Indicates the corresponding <see cref="P:SudokuStudio.BindableSource.LibraryBindableSource.Library"/> instance.
             </summary>
         </member>
         <member name="M:SudokuStudio.BindableSource.LibraryBindableSource.GetLibrariesFromLocal">
@@ -332,7 +332,7 @@
             </summary>
             <param name="lib">Indicates the library.</param>
         </member>
-        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.Runtime.LibraryServices.Library)">
+        <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.#ctor(Sudoku.IO.Library.LibraryInfo)">
             <summary>
             Represents the bindable source for libraries.
             </summary>
@@ -345,9 +345,9 @@
         </member>
         <member name="M:SudokuStudio.BindableSource.LibrarySimpleBindableSource.GetLibraries">
             <summary>
-            Try to fetch all <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instances stored in the local path.
+            Try to fetch all <see cref="T:Sudoku.IO.Library.LibraryInfo"/> instances stored in the local path.
             </summary>
-            <returns>All possible <see cref="T:Sudoku.Runtime.LibraryServices.Library"/> instances.</returns>
+            <returns>All possible <see cref="T:Sudoku.IO.Library.LibraryInfo"/> instances.</returns>
         </member>
         <member name="P:SudokuStudio.BindableSource.LibrarySimpleBindableSource.Library">
             <summary>
@@ -15107,7 +15107,7 @@
 				</summary>
 			</target>
         </member>
-        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.Runtime.LibraryServices.Library,Sudoku.Transforming.TransformType,System.Threading.CancellationToken)">
+        <member name="M:SudokuStudio.Views.Pages.Operation.Extensions.RandomReadOneAsync(Sudoku.IO.Library.LibraryInfo,Sudoku.Transforming.TransformType,System.Threading.CancellationToken)">
             <summary>
             Randomly read one puzzle in the specified file, and return it.
             </summary>

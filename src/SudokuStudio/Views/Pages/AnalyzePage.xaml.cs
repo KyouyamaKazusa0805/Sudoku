@@ -1312,14 +1312,14 @@ public sealed partial class AnalyzePage : Page
 
 		switch ((SaveToLibraryDialogContent)dialog.Content)
 		{
-			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
+			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { Library: var lib } }:
 			{
 				await lib.AppendPuzzleAsync(puzzle);
 				break;
 			}
 			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
 			{
-				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
 				libraryCreated.Initialize();
 				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
 				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;

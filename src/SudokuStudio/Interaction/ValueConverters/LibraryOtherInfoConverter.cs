@@ -11,7 +11,7 @@ public sealed class LibraryOtherInfoConverter : IValueConverter
 	public object Convert(object value, Type targetType, object parameter, string language)
 		=> value switch
 		{
-			Library { Tags: var tags, LastModifiedTime: var time }
+			LibraryInfo { Tags: var tags, LastModifiedTime: var time }
 				=> $"{tags switch
 				{
 					{ Length: not 0 } => string.Join(ResourceDictionary.Get("_Token_Comma", App.CurrentCulture), tags),

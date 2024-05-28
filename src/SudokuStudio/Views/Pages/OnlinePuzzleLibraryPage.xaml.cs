@@ -262,7 +262,7 @@ public sealed partial class OnlinePuzzleLibraryPage : Page
 			var folder = io::Path.GetDirectoryName(cachedFilePath);
 			var fileName = io::Path.GetFileNameWithoutExtension(cachedFilePath);
 			var newFilePath = $@"{folder}\{fileName}{FileExtensions.JsonDocument}";
-			var library = new Library(CommonPaths.Library, fileName);
+			var library = new LibraryInfo(CommonPaths.Library, fileName);
 			library.Initialize();
 			library.Name = libDataChosen.Name;
 			library.Author = libraryInfo.Author;

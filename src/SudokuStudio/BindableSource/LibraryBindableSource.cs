@@ -26,7 +26,7 @@ public sealed partial class LibraryBindableSource : DependencyObject
 	/// <summary>
 	/// Indicates the corresponding <see cref="Library"/> instance.
 	/// </summary>
-	public Library LibraryInfo => new(CommonPaths.Library, FileId);
+	public LibraryInfo Library => new(CommonPaths.Library, FileId);
 
 
 	/// <summary>
@@ -48,10 +48,10 @@ public sealed partial class LibraryBindableSource : DependencyObject
 			let extension = io::Path.GetExtension(file)
 			where extension == FileExtensions.PuzzleLibrary
 			let fileId = io::Path.GetFileNameWithoutExtension(file)
-			let library = new Library(CommonPaths.Library, fileId)
+			let library = new LibraryInfo(CommonPaths.Library, fileId)
 			where library.IsInitialized
 			let firstContentLine = File.ReadLines(library.ConfigFilePath).FirstOrDefault()
-			where firstContentLine == Library.ConfigFileHeader
+			where firstContentLine == LibraryInfo.ConfigFileHeader
 			select new LibraryBindableSource
 			{
 				Name = library.Name ?? NameDefaultValue,

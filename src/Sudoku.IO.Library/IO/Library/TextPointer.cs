@@ -1,12 +1,12 @@
-namespace Sudoku.Runtime.LibraryServices;
+namespace Sudoku.IO.Library;
 
 /// <summary>
-/// Represents a text pointer object that reads the detail of a <see cref="LibraryServices.Library"/>.
+/// Represents a text pointer object that reads the detail of a <see cref="LibraryInfo"/>.
 /// </summary>
 /// <remarks><i>
-/// This type only supports for Windows now because the relied type <see cref="LibraryServices.Library"/> is limited in Windows.
+/// This type only supports for Windows now because the relied type <see cref="LibraryInfo"/> is limited in Windows.
 /// </i></remarks>
-/// <seealso cref="LibraryServices.Library"/>
+/// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
 [Equals]
 [GetHashCode]
@@ -42,7 +42,7 @@ public sealed partial class TextPointer :
 	/// </summary>
 	/// <param name="library">Indicates the libary object.</param>
 	/// <exception cref="ArgumentException">Throws when the library is not initialized.</exception>
-	public TextPointer(Library library)
+	public TextPointer(LibraryInfo library)
 		=> _stream = (Library = library) switch
 		{
 			(var p, _) { IsInitialized: true } => File.OpenRead(p),
@@ -143,8 +143,8 @@ public sealed partial class TextPointer :
 	/// <summary>
 	/// Indicates the number of puzzles stored in the file, regardless of the position of the pointer.
 	/// </summary>
-	/// <remarks><inheritdoc cref="Library.Count" path="/remarks"/></remarks>
-	/// <seealso cref="Library.GetCountAsync(CancellationToken)"/>
+	/// <remarks><inheritdoc cref="LibraryInfo.Count" path="/remarks"/></remarks>
+	/// <seealso cref="LibraryInfo.GetCountAsync(CancellationToken)"/>
 	public int Length => Library.Count;
 
 	/// <summary>
@@ -152,7 +152,7 @@ public sealed partial class TextPointer :
 	/// </summary>
 	[HashCodeMember]
 	[StringMember]
-	public Library Library { get; }
+	public LibraryInfo Library { get; }
 
 	/// <inheritdoc/>
 	object? IEnumerator.Current => Current;

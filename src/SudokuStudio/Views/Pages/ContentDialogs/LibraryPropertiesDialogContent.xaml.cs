@@ -8,7 +8,7 @@ namespace SudokuStudio.Views.Pages.ContentDialogs;
 [DependencyProperty<string>("LibraryAuthor", Accessibility = Accessibility.Internal)]
 [DependencyProperty<string>("LibraryDescription", Accessibility = Accessibility.Internal)]
 [DependencyProperty<DateTime>("LibraryLastModifiedTime", Accessibility = Accessibility.Internal)]
-[DependencyProperty<Library>("LibraryInfo", Accessibility = Accessibility.Internal)]
+[DependencyProperty<LibraryInfo>("LibraryInfo", Accessibility = Accessibility.Internal)]
 public sealed partial class LibraryPropertiesDialogContent : Page
 {
 	/// <summary>

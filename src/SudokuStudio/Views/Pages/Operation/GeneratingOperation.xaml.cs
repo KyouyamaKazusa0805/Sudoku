@@ -74,7 +74,7 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		PuzzleLibraryChoser.SelectedIndex = Array.FindIndex(libs, match) is var index and not -1 ? index : 0;
 
 
-		bool match(Library lib) => lib is { FileId: var f } && f == lastFileId;
+		bool match(LibraryInfo lib) => lib is { FileId: var f } && f == lastFileId;
 	}
 
 	/// <summary>
@@ -358,14 +358,14 @@ public sealed partial class GeneratingOperation : Page, IOperationProviderPage
 		var appendToLibraryTask = static (string _, CancellationToken _ = default) => default(Task)!;
 		switch ((SaveToLibraryDialogContent)dialog.Content)
 		{
-			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { LibraryInfo: var lib } }:
+			case { SelectedMode: 0, SelectedLibrary: LibraryBindableSource { Library: var lib } }:
 			{
 				appendToLibraryTask = lib.AppendPuzzleAsync;
 				break;
 			}
 			case { SelectedMode: 1, IsNameValidAsFileId: true } content:
 			{
-				var libraryCreated = new Library(CommonPaths.Library, content.FileId);
+				var libraryCreated = new LibraryInfo(CommonPaths.Library, content.FileId);
 				libraryCreated.Initialize();
 				libraryCreated.Name = content.LibraryName is var name and not (null or "") ? name : null;
 				libraryCreated.Author = content.LibraryAuthor is var author and not (null or "") ? author : null;
@@ -512,7 +512,7 @@ file static class Extensions
 	/// <exception cref="InvalidOperationException">Throw when the library file is not initialized.</exception>
 	/// <seealso href="http://tinyurl.com/choose-a-random-element">Choose a random element from a sequence of unknown length</seealso>
 	public static async Task<Grid> RandomReadOneAsync(
-		this Library @this,
+		this LibraryInfo @this,
 		TransformType transformTypes = TransformType.None,
 		CancellationToken cancellationToken = default
 	)

@@ -189,7 +189,7 @@ public partial class App : Application
 	{
 		HandleOnProgramOpeningEntryCase();
 		LoadConfigurationFileFromLocal();
-		Library.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
+		LibraryInfo.RegisterConfigFileExtension(FileExtensions.PuzzleLibrary);
 		ActivateMainWindow();
 	}
 

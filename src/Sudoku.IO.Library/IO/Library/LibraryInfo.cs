@@ -1,4 +1,4 @@
-namespace Sudoku.Runtime.LibraryServices;
+namespace Sudoku.IO.Library;
 
 /// <summary>
 /// Represents an entry that plays with a puzzle library file.
@@ -17,13 +17,13 @@ namespace Sudoku.Runtime.LibraryServices;
 [EqualityOperators]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
-public readonly partial struct Library(
+public readonly partial struct LibraryInfo(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "internal"), HashCodeMember, StringMember] string directory,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] string fileId
 ) :
 	IAsyncEnumerable<Grid>,
-	IEqualityOperators<Library, Library, bool>,
-	IEquatable<Library>
+	IEqualityOperators<LibraryInfo, LibraryInfo, bool>,
+	IEquatable<LibraryInfo>
 {
 	/// <summary>
 	/// Indicates the separator character.
@@ -235,9 +235,9 @@ public readonly partial struct Library(
 		=> (libraryPath, configPath) = (LibraryFilePath, ConfigFilePath);
 
 	/// <summary>
-	/// Initializes the library-related files if not found. If initialized, throw <see cref="LibraryInitializedException"/>.
+	/// Initializes the library-related files if not found. If initialized, throw <see cref="LibraryInitializationException"/>.
 	/// </summary>
-	/// <exception cref="LibraryInitializedException">Throws when the library has already been initialized.</exception>
+	/// <exception cref="LibraryInitializationException">Throws when the library has already been initialized.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Initialize()
 	{
@@ -254,7 +254,7 @@ public readonly partial struct Library(
 			return;
 		}
 
-		throw new LibraryInitializedException(this);
+		throw new LibraryInitializationException(this);
 	}
 
 	/// <summary>
@@ -289,7 +289,7 @@ public readonly partial struct Library(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Library other) => LibraryFilePath == other.LibraryFilePath;
+	public bool Equals(LibraryInfo other) => LibraryFilePath == other.LibraryFilePath;
 
 	/// <summary>
 	/// Determines whether the library contains at least one puzzle.

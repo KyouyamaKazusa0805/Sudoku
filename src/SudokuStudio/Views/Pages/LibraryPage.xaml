@@ -29,7 +29,7 @@
 									<StackPanel Spacing="4">
 										<TextBlock Text="{x:Bind Name}" FontSize="18" FontWeight="Bold" />
 										<TextBlock Text="{x:Bind Author}" />
-										<TextBlock Text="{x:Bind LibraryInfo,Converter={StaticResource LibraryConverter}}" />
+										<TextBlock Text="{x:Bind Library,Converter={StaticResource LibraryConverter}}" />
 									</StackPanel>
 								</StackPanel>
 								<TextBlock

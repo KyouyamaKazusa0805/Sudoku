@@ -84,6 +84,11 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
+  <Folder Name="/Projects - Basic APIs/IO/">
+    <Project Path="src\Sudoku.IO.Library\Sudoku.IO.Library.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
   <Folder Name="/Projects - Basic APIs/Solving/">
     <Project Path="src\Sudoku.Solving\Sudoku.Solving.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
