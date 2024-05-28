@@ -1406,12 +1406,11 @@
             </summary>
             <seealso cref="T:System.Random"/>
         </member>
-        <member name="M:System.RandomExtensions.NextGaussian``1(System.Random,``0,``0)">
+        <member name="M:System.RandomExtensions.NextGaussian(System.Random,System.Double,System.Double)">
             <summary>
-            Generates a random number of type <typeparamref name="T"/>, obeying Gaussian's Normal Distribution,
+            Generates a random number obeying Gaussian's Normal Distribution,
             with σ value <paramref name="sigma"/> and μ value <paramref name="mu"/>.
             </summary>
-            <typeparam name="T">The type of the result.</typeparam>
             <param name="this">The random number generator instance.</param>
             <param name="mu">Mu μ value.</param>
             <param name="sigma">Sigma σ value.</param>

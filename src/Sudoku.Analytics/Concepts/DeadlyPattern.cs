@@ -48,26 +48,38 @@ public static class DeadlyPattern
 			return false;
 		}
 
-		foreach (ref var solution in solutions.AsSpan())
+		foreach (ref readonly var solution in solutions.AsReadOnlySpan())
 		{
-			// Step 2: Make complete pattern for each solution.
-			foreach (var cell in cellsUsed)
+			// Step 2: Iterate on all the other solutions,
+			// and find whether each solution contains at least one possible corresponding solution
+			// whose digits used in *all* houses are completely same.
+			var tempSolutions = new List<Grid>();
+			foreach (var tempGrid in solutions.AsReadOnlySpan()[..])
 			{
-				var rowMask = grid[HousesMap[cell.ToHouseIndex(HouseType.Row)] & cellsUsed, true];
-				var columnMask = grid[HousesMap[cell.ToHouseIndex(HouseType.Column)] & cellsUsed, true];
-				var blockMask = grid[HousesMap[cell.ToHouseIndex(HouseType.Block)] & cellsUsed, true];
-				if ((rowMask & columnMask) == 0 || (rowMask & blockMask) == 0 || (columnMask & blockMask) == 0)
+				if (tempGrid == solution)
 				{
-					return false;
+					continue;
 				}
 
-				solution[cell] = (Mask)(Grid.EmptyMask | rowMask & columnMask & blockMask);
+				// Check for all possible houses.
+				var flag = true;
+				foreach (var house in cellsUsed.Houses)
+				{
+					var mask1 = solution[HousesMap[house] & cellsUsed, true];
+					var mask2 = tempGrid[HousesMap[house] & cellsUsed, true];
+					if (mask1 != mask2)
+					{
+						flag = false;
+						break;
+					}
+				}
+				if (flag)
+				{
+					tempSolutions.AddRef(in tempGrid);
+				}
 			}
 
-			// Step 3: Try to get solutions for that pattern, then determine whether any solutions to the current state exists.
-			var tempSolutions = new List<Grid>();
-			var playgroundCopied = solution;
-			dfs(ref playgroundCopied, in cellsUsed, tempSolutions, 0);
+			// Step 3: Check for the validity on this case.
 			if (tempSolutions.Count == 0)
 			{
 				return false;
