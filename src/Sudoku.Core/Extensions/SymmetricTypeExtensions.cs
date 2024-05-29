@@ -30,7 +30,7 @@ public static class SymmetricTypeExtensions
 	/// <description>2</description>
 	/// </item>
 	/// <item>
-	/// <term>Other defined values</term>
+	/// <term>The other defined values</term>
 	/// <description>4</description>
 	/// </item>
 	/// <item>
