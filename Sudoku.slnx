@@ -32,27 +32,7 @@
     <File Path="misspelling-exclusion.dic" />
     <File Path="NuGet.config" />
   </Folder>
-  <Folder Name="/Projects - Basic APIs/">
-    <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Core\Sudoku.Core.csproj">
-      <Configuration Solution="Build|*" Project="Release|*" />
-    </Project>
-    <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Strategying\Sudoku.Strategying.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Tokenization\Sudoku.Tokenization.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\System\SystemExtensions.csproj">
-      <Configuration Solution="Build|*" Project="Release|*" />
-    </Project>
-  </Folder>
-  <Folder Name="/Projects - Basic APIs/Algorithms/">
+  <Folder Name="/Projects - Algorithms APIs/">
     <Project Path="src\Sudoku.Algorithms.Ittoryu\Sudoku.Algorithms.Ittoryu.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -66,32 +46,22 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Projects - Basic APIs/Drawing/">
-    <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
+  <Folder Name="/Projects - Analyzer APIs/">
+    <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-    <Project Path="src\Sudoku.Drawing\Sudoku.Drawing.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-  </Folder>
-  <Folder Name="/Projects - Basic APIs/Generating/">
-    <Project Path="src\Sudoku.Generating.JustOneCell\Sudoku.Generating.JustOneCell.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Generating\Sudoku.Generating.csproj">
+    <Project Path="src\Sudoku.Strategying\Sudoku.Strategying.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Projects - Basic APIs/IO/">
-    <Project Path="src\Sudoku.IO.Library\Sudoku.IO.Library.csproj">
+  <Folder Name="/Projects - Basic APIs/">
+    <Project Path="src\Sudoku.Core\Sudoku.Core.csproj">
+      <Configuration Solution="Build|*" Project="Release|*" />
+    </Project>
+    <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-  </Folder>
-  <Folder Name="/Projects - Basic APIs/Solving/">
-    <Project Path="src\Sudoku.Solving\Sudoku.Solving.csproj">
+    <Project Path="src\Sudoku.Tokenization\Sudoku.Tokenization.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
@@ -108,7 +78,36 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Projects - Source Generator/">
+  <Folder Name="/Projects - Drawing APIs/">
+    <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+    <Project Path="src\Sudoku.Drawing\Sudoku.Drawing.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Projects - Generating APIs/">
+    <Project Path="src\Sudoku.Generating.JustOneCell\Sudoku.Generating.JustOneCell.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+    <Project Path="src\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+    <Project Path="src\Sudoku.Generating\Sudoku.Generating.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Projects - IO APIs/">
+    <Project Path="src\Sudoku.IO.Library\Sudoku.IO.Library.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Projects - Solving APIs/">
+    <Project Path="src\Sudoku.Solving\Sudoku.Solving.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Projects - Source Generators/">
     <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -123,6 +122,11 @@
     </Project>
     <Project Path="src\System.SourceGeneration\SystemExtensions.SourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
+  </Folder>
+  <Folder Name="/Projects - System-Related APIs/">
+    <Project Path="src\System\SystemExtensions.csproj">
+      <Configuration Solution="Build|*" Project="Release|*" />
     </Project>
   </Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
