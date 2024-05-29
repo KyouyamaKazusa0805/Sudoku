@@ -1,0 +1,16 @@
+global using System;
+global using System.Collections.Generic;
+global using System.Diagnostics.CodeAnalysis;
+global using System.Linq;
+global using System.Linq.Providers;
+global using System.Numerics;
+global using System.Runtime.CompilerServices;
+global using System.SourceGeneration;
+global using System.Text.Json;
+global using System.Text.Json.Serialization;
+global using Sudoku.Concepts;
+global using Sudoku.Concepts.Coordinates;
+global using Sudoku.Drawing;
+global using Sudoku.Drawing.Nodes;
+global using Sudoku.Linq;
+global using static Sudoku.SolutionFields;

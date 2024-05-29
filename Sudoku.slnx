@@ -79,6 +79,9 @@
     </Project>
   </Folder>
   <Folder Name="/Projects - Drawing APIs/">
+    <Project Path="src\Sudoku.Drawing.Core\Sudoku.Drawing.Core.csproj" Type="Classic C#">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
     <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
