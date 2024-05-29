@@ -35,7 +35,6 @@ public sealed partial class ColorPalette :
 				return false;
 			}
 		}
-
 		return true;
 	}
 
@@ -47,7 +46,6 @@ public sealed partial class ColorPalette :
 		{
 			result.Add(element);
 		}
-
 		return result.ToHashCode();
 	}
 }
