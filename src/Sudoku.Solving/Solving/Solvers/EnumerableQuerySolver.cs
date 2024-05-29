@@ -1,4 +1,4 @@
-namespace Sudoku.Solving;
+namespace Sudoku.Solving.Solvers;
 
 /// <summary>
 /// Defines a solver that can solve a sudoku puzzle, using LINQ.
@@ -55,7 +55,8 @@ public sealed class EnumerableQuerySolver : ISolver
 			}
 
 			// Return the result value.
-			// Because we generate the target value inside the query expression, we may not consider the value having been deleted by GC.
+			// Because we generate the target value inside the query expression,
+			// we may not consider the value having been deleted by GC.
 			// In C# 11, we can use keyword 'scoped' to describe whether a value or reference can be used local-scoped.
 			// If a local does not contain a 'scoped' keyword, the value can be escaped the whole method lifecycle.
 			return result;

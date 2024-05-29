@@ -1,4 +1,4 @@
-namespace Sudoku.Solving;
+namespace Sudoku.Solving.Solvers;
 
 /// <summary>
 /// Defines a <see cref="Dictionary{TKey, TValue}"/>-based LINQ solver that solves a sudoku grid,

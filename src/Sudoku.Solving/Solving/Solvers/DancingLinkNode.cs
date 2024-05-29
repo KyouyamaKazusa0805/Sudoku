@@ -1,4 +1,4 @@
-namespace Sudoku.Solving;
+namespace Sudoku.Solving.Solvers;
 
 /// <summary>
 /// Represents a dancing link node.

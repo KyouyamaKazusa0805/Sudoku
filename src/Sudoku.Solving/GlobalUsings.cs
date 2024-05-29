@@ -10,7 +10,7 @@ global using System.Runtime.CompilerServices;
 global using System.Text.RegularExpressions;
 global using System.Threading;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Linq;
 global using Sudoku.Solving;
+global using Sudoku.Solving.Solvers;
 global using static Sudoku.SolutionFields;

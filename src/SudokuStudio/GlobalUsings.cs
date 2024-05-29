@@ -74,6 +74,7 @@ global using Sudoku.IO.Library;
 global using Sudoku.Linq;
 global using Sudoku.Measuring;
 global using Sudoku.Solving;
+global using Sudoku.Solving.Solvers;
 global using Sudoku.Strategying;
 global using Sudoku.Strategying.Constraints;
 global using SudokuStudio;

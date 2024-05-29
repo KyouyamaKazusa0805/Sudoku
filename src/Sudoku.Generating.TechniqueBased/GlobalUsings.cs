@@ -18,6 +18,6 @@ global using Sudoku.Generating.JustOneCell;
 global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Linq;
 global using Sudoku.Randomization;
-global using Sudoku.Solving;
+global using Sudoku.Solving.Solvers;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.SolutionFields;
