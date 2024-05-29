@@ -34,8 +34,14 @@ public sealed partial class PrimarySingleConstraint : Constraint
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			ResourceDictionary.Get("PrimarySingleConstraint", culture),
+#if NET9_0_OR_GREATER
+			[
+#endif
 			Primary.GetName(culture),
 			AllowsHiddenSingleInLines ? string.Empty : ResourceDictionary.Get("NoString", culture)
+#if NET9_0_OR_GREATER
+			]
+#endif
 		);
 	}
 

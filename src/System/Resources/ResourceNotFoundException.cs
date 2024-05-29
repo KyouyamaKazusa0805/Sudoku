@@ -22,9 +22,15 @@ public sealed partial class ResourceNotFoundException(
 	public override string Message
 		=> string.Format(
 			ResourceDictionary.Get("Message_ResourceNotFoundException"),
+#if NET9_0_OR_GREATER
+			[
+#endif
 			_resourceKey,
 			_assembly,
 			_culture?.EnglishName ?? CultureNotSpecifiedDefaultText
+#if NET9_0_OR_GREATER
+			]
+#endif
 		);
 
 	/// <inheritdoc/>

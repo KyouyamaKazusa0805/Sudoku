@@ -261,6 +261,9 @@ public sealed record K9Converter(
 				let coverSet = intersection.Base.Block
 				select string.Format(
 					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+					[
+#endif
 					((House)baseSet).ToHouseType() switch
 					{
 						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
@@ -273,6 +276,9 @@ public sealed record K9Converter(
 						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
 						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
+#if NET9_0_OR_GREATER
+					]
+#endif
 				)
 #if !NET9_0_OR_GREATER
 				]
@@ -289,6 +295,9 @@ public sealed record K9Converter(
 				let coverSet = intersection.Base.Block
 				select string.Format(
 					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+					[
+#endif
 					((House)baseSet).ToHouseType() switch
 					{
 						HouseType.Block => string.Format(ResourceDictionary.Get("BlockLabel", TargetCurrentCulture), (baseSet % 9 + 1).ToString()),
@@ -301,6 +310,9 @@ public sealed record K9Converter(
 						HouseType.Row => string.Format(ResourceDictionary.Get("RowLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString()),
 						HouseType.Column => string.Format(ResourceDictionary.Get("ColumnLabel", TargetCurrentCulture), (coverSet % 9 + 1).ToString())
 					}
+#if NET9_0_OR_GREATER
+					]
+#endif
 				)
 #if !NET9_0_OR_GREATER
 				]

@@ -68,7 +68,18 @@ public sealed partial class StepCollecting : Page, IAnalyzerTab
 			let format = ResourceDictionary.Get("AnalyzePage_ConclusionsCountIs", App.CurrentCulture)
 			let pluralSuffix = conclusionsCount == 1 ? string.Empty : ResourceDictionary.Get("_PluralSuffix", App.CurrentCulture)
 			let conclusionTypeString = ResourceDictionary.Get($"AnalyzePage_ConclusionType_{segment}", App.CurrentCulture)
-			let displayKey = string.Format(format, conclusionsCount, pluralSuffix, conclusionTypeString)
+			let displayKey = string.Format(
+				format,
+#if NET9_0_OR_GREATER
+				[
+#endif
+				conclusionsCount,
+				pluralSuffix,
+				conclusionTypeString
+#if NET9_0_OR_GREATER
+				]
+#endif
+			)
 			select rootOrIntermediateItems(displayKey, g(stepsGroupedByConclusion, displayItems))
 		];
 		_nodesSortedByCell = [

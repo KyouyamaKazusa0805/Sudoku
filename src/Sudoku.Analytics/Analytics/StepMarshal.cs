@@ -52,8 +52,14 @@ public static class StepMarshal
 			throw new InvalidOperationException(
 				string.Format(
 					ResourceDictionary.ExceptionMessage("LengthMustBeSame"),
+#if NET9_0_OR_GREATER
+					[
+#endif
 					nameof(interimGrids),
 					nameof(interimSteps)
+#if NET9_0_OR_GREATER
+					]
+#endif
 				)
 			);
 		}

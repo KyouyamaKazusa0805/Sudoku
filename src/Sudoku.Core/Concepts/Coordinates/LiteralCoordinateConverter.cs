@@ -14,7 +14,17 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		=> cells => cells switch
 		{
 			[] => string.Empty,
-			[var p] => string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), (p / 9 + 1).ToString(), (p % 9 + 1).ToString()),
+			[var p] => string.Format(
+				ResourceDictionary.Get("CellLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+				[
+#endif
+				(p / 9 + 1).ToString(),
+				(p % 9 + 1).ToString()
+#if NET9_0_OR_GREATER
+				]
+#endif
+			),
 			_ => string.Format(
 				ResourceDictionary.Get("CellsLabel", TargetCurrentCulture),
 				string.Join(
@@ -24,7 +34,17 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 					..
 #endif
 					from cell in cells
-					select string.Format(ResourceDictionary.Get("CellLabel", TargetCurrentCulture), cell / 9 + 1, cell % 9 + 1)
+					select string.Format(
+						ResourceDictionary.Get("CellLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+						[
+#endif
+						cell / 9 + 1,
+						cell % 9 + 1
+#if NET9_0_OR_GREATER
+						]
+#endif
+					)
 #if !NET9_0_OR_GREATER
 					]
 #endif
@@ -41,7 +61,19 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 			{
 				var cellString = CellConverter(candidate / 9);
 				var digitString = DigitConverter((Mask)(1 << candidate % 9));
-				snippets.Add(string.Format(ResourceDictionary.Get("CandidateLabel", TargetCurrentCulture), cellString, digitString));
+				snippets.Add(
+					string.Format(
+						ResourceDictionary.Get("CandidateLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+						[
+#endif
+						cellString,
+						digitString
+#if NET9_0_OR_GREATER
+						]
+#endif
+					)
+				);
 			}
 
 			return string.Join(DefaultSeparator, snippets);
@@ -194,8 +226,14 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				let coverSet = intersection.Base.Block
 				select string.Format(
 					ResourceDictionary.Get("LockedCandidatesLabel", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+					[
+#endif
 					labelKey(baseSet),
 					labelKey(coverSet)
+#if NET9_0_OR_GREATER
+					]
+#endif
 				)
 #if !NET9_0_OR_GREATER
 				]
@@ -242,7 +280,20 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 				var fromCellString = CellConverter(conjugatePair.From);
 				var toCellString = CellConverter(conjugatePair.To);
 				var digitString = DigitConverter((Mask)(1 << conjugatePair.Digit));
-				snippets.Add(string.Format(ResourceDictionary.Get("ConjugatePairWith", TargetCurrentCulture), fromCellString, toCellString, digitString));
+				snippets.Add(
+					string.Format(
+						ResourceDictionary.Get("ConjugatePairWith", TargetCurrentCulture),
+#if NET9_0_OR_GREATER
+						[
+#endif
+						fromCellString,
+						toCellString,
+						digitString
+#if NET9_0_OR_GREATER
+						]
+#endif
+					)
+				);
 			}
 
 			return string.Join(DefaultSeparator, snippets);

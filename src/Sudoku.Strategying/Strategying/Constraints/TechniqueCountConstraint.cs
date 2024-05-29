@@ -45,9 +45,15 @@ public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOp
 		var culture = formatProvider as CultureInfo;
 		return string.Format(
 			ResourceDictionary.Get("TechniqueCountConstraint", culture),
+#if NET9_0_OR_GREATER
+			[
+#endif
 			Technique.GetName(culture),
 			Operator.GetOperatorString(),
 			LimitCount
+#if NET9_0_OR_GREATER
+			]
+#endif
 		);
 	}
 
