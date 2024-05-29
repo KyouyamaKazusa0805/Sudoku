@@ -48,9 +48,6 @@
     <Project Path="src\Sudoku.Tokenization\Sudoku.Tokenization.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-    <Project Path="src\Sudoku.Transforming\Sudoku.Transforming.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
     <Project Path="src\System\SystemExtensions.csproj">
       <Configuration Solution="Build|*" Project="Release|*" />
     </Project>
