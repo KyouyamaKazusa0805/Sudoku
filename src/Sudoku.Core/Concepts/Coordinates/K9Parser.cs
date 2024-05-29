@@ -14,7 +14,7 @@ public sealed partial record K9Parser : CoordinateParser
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, HouseMask> HouseParser => OnHouseParsing;
+	public override Func<string, HouseMask> HouseParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
 	public override Func<string, ConclusionSet> ConclusionParser => OnConclusionParsing;
@@ -24,14 +24,14 @@ public sealed partial record K9Parser : CoordinateParser
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, Chute[]> ChuteParser => OnChuteParsing;
+	public override Func<string, Chute[]> ChuteParser => throw new NotSupportedException();
 
 	/// <inheritdoc/>
 	public override Func<string, Conjugate[]> ConjuagteParser => OnConjugateParsing;
 
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
-	public override Func<string, Intersection[]> IntersectionParser => OnIntersectionParsing;
+	public override Func<string, Intersection[]> IntersectionParser => throw new NotSupportedException();
 
 
 	private static CellMap OnCellParsing(string str)
@@ -161,15 +161,6 @@ public sealed partial record K9Parser : CoordinateParser
 
 		return [.. result];
 	}
-
-	[DoesNotReturn]
-	private static HouseMask OnHouseParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
-
-	[DoesNotReturn]
-	private static Intersection[] OnIntersectionParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
-
-	[DoesNotReturn]
-	private static Chute[] OnChuteParsing(string _) => throw new NotSupportedException(DeprecatedInfo_NotSupported);
 
 	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitCellGroupPattern();
