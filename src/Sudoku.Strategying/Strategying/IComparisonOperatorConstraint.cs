@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Strategying;
 
 /// <summary>
 /// Represents a type that supports for comparison operator.

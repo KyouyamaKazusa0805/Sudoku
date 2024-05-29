@@ -1,4 +1,4 @@
-namespace Sudoku.Strategying.Constraints;
+namespace Sudoku.Strategying;
 
 /// <summary>
 /// Represents a constraint that contains between rule property.
