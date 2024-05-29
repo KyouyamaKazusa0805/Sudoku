@@ -1,4 +1,4 @@
-namespace Sudoku.Tokenization;
+namespace Sudoku.Text.Tokenization;
 
 /// <summary>
 /// Represents an object that can create a token of type <see cref="string"/> to describe the encrpyted representation.

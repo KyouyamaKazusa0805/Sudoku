@@ -4,18 +4,18 @@
         <name>Sudoku.Text.Tokenization</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Tokenization.ITokenizable`1">
+        <member name="T:Sudoku.Text.Tokenization.ITokenizable`1">
             <summary>
             Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
             </summary>
             <typeparam name="TSelf">The type of itself.</typeparam>
         </member>
-        <member name="P:Sudoku.Tokenization.ITokenizable`1.Token">
+        <member name="P:Sudoku.Text.Tokenization.ITokenizable`1.Token">
             <summary>
             Indicates the token of the object.
             </summary>
         </member>
-        <member name="M:Sudoku.Tokenization.ITokenizable`1.Create(System.String)">
+        <member name="M:Sudoku.Text.Tokenization.ITokenizable`1.Create(System.String)">
             <summary>
             Create an instance of type <typeparamref name="TSelf"/> that is used a token.
             </summary>
