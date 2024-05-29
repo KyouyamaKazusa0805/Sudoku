@@ -1,1 +1,1 @@
-[assembly: SupportedOSPlatform(PlatformNames.Windows)]
+[module: SkipLocalsInit]
