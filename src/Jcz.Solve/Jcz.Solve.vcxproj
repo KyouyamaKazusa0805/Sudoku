@@ -127,8 +127,8 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="program.c" />
-    <ClCompile Include="solver.c" />
+    <ClCompile Include="program.cpp" />
+    <ClCompile Include="solver.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="solver.h" />

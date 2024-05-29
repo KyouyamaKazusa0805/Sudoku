@@ -22,7 +22,7 @@ static int limitSolutions;					// The max number of solution we are looking for
 static int singleApplied;					// Nasty global flag telling if ApplySingleOrEmptyCells found anything
 static char* solution;						// Pointer to where to store the first solution, can be null
 
-#define BIT_SET_27         0777777777		// all pencil marks set - 27 bits per band
+constexpr auto BIT_SET_27 = 0777777777;		// all pencil marks set - 27 bits per band
 
 static const int TblShrinkMask[512] = {
 	0, 1, 1, 1, 1, 1, 1, 1, 2, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3, 2, 3, 3, 3, 3, 3, 3, 3,
@@ -169,8 +169,8 @@ static const unsigned int TblMaskSingle[512] = {	// kill in other blocks locked 
 	07777777777, 07776776776, 07775775775, 07777777777, 07773773773, 07777777777, 07777777777, 07777777777,
 };
 
-#if 0
-#if 1
+#if false
+#if true
 static const unsigned int TblMaskDouble[512] = {	// kill for locked in box / column
 	07777777777, 07777777777, 07777777777, 07774774774, 07777777777, 07772772772, 07771771771, 07777777777,
 	07777777777, 07777777777, 07777777777, 07774774774, 07777777777, 07772772772, 07771771771, 07777777777,
@@ -487,8 +487,8 @@ static const int MultiplyDeBruijnBitPosition32[32] = {
 	0, 1, 28, 2, 29, 14, 24, 3, 30, 22, 20, 15, 25, 17, 4, 8,
 	31, 27, 13, 23, 21, 19, 16, 7, 26, 12, 18, 6, 11, 5, 10, 9
 };
-#define BitPos(map)		MultiplyDeBruijnBitPosition32[((unsigned int)(map*0x077CB531U))>>27]
 
+static constexpr int BitPos(int map) { return MultiplyDeBruijnBitPosition32[((unsigned int)(map * 0x077CB531U)) >> 27]; }
 static int fullUpdate(void);
 static void guess(void);
 
@@ -527,7 +527,7 @@ static int setSolvedMask(int band, unsigned int mask)
 	int subBand = mod3[band];
 	int cell = subBand * 27 + BitPos(mask);
 	g->bands[band] &= TblSelfMask[cell];
-#if 0
+#if false
 	g->bands[TblAnother1[band]] &= TblOtherMask[cell];
 	g->bands[TblAnother2[band]] &= TblOtherMask[cell];
 	mask = ~mask;
@@ -852,7 +852,7 @@ static int applySingleOrEmptyCells(void)
 	singleApplied = 0;
 	for (int subBand = 0; subBand < 3; ++subBand)
 	{
-#if 0
+#if false
 		unsigned int R1 = 0, R2 = 0, R3 = 0;
 		for (int band = subBand; band < 27; band += 3)
 		{
