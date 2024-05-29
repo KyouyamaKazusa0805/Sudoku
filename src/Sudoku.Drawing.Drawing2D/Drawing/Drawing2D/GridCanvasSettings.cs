@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing;
+namespace Sudoku.Drawing.Drawing2D;
 
 /// <summary>
 /// Represents with a preference type that stores the configurations on drawing.

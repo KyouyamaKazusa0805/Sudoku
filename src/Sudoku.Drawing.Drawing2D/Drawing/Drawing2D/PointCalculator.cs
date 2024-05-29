@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing;
+namespace Sudoku.Drawing.Drawing2D;
 
 /// <summary>
 /// Provides a serial of methods for a point calculator that interacts with the UI projects.

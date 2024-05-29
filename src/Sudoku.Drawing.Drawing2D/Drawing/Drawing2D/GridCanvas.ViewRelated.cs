@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing;
+namespace Sudoku.Drawing.Drawing2D;
 
 public partial class GridCanvas
 {

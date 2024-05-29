@@ -1,4 +1,4 @@
-namespace Sudoku.Drawing;
+namespace Sudoku.Drawing.Drawing2D;
 
 /// <summary>
 /// Represents a <see cref="GraphicsPath"/> creator method.
