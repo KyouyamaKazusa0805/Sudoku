@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Tokenization</name>
+        <name>Sudoku.Text.Tokenization</name>
     </assembly>
     <members>
         <member name="T:Sudoku.Tokenization.ITokenizable`1">

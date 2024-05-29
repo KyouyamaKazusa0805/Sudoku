@@ -4,7 +4,7 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides APIs on generating tokens.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Tokenization.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Text.Tokenization.xml</DocumentationFile>
 	</PropertyGroup>
 
 </Project>
