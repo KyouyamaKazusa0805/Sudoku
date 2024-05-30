@@ -10,9 +10,6 @@ namespace Sudoku.Concepts;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
-[LargeStructure]
-[EqualityOperators]
-[ComparisonOperators]
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators,
 	IsLargeStructure = true)]

@@ -3,7 +3,6 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a list of conclusions.
 /// </summary>
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,

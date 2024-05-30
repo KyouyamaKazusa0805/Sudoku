@@ -20878,11 +20878,17 @@
         <member name="M:Sudoku.Concepts.EliminationRange.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+        <member name="M:Sudoku.Concepts.EliminationRange.op_Inequality(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Equality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Fish">
             <summary>
@@ -20970,11 +20976,17 @@
         <member name="M:Sudoku.Concepts.Fish.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="M:Sudoku.Concepts.Fish.op_Equality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+        <member name="M:Sudoku.Concepts.Fish.op_Equality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Fish.op_Inequality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+        <member name="M:Sudoku.Concepts.Fish.op_Inequality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Equality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Inequality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Grouped">
             <summary>

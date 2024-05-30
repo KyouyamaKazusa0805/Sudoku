@@ -8,7 +8,6 @@ namespace Sudoku.Text;
 /// <seealso cref="Step"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[EqualityOperators]
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
 	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,

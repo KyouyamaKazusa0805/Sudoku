@@ -11,9 +11,7 @@ namespace Sudoku.Concepts;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
-[LargeStructure]
-[EqualityOperators]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>

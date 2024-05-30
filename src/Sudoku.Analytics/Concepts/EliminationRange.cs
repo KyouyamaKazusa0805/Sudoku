@@ -9,7 +9,6 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [InlineArray(9)]
 [CollectionBuilder(typeof(EliminationRange), nameof(Create))]
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public partial struct EliminationRange :
 	IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>,

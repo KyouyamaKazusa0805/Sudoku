@@ -8,7 +8,6 @@ namespace Sudoku.Concepts;
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="mask">Indicates the target mask.</param>
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] ConjugateMask mask) :

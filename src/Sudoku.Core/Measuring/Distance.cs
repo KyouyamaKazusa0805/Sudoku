@@ -9,8 +9,6 @@ namespace Sudoku.Measuring;
 /// <remarks>
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
-[EqualityOperators]
-[ComparisonOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly ref partial struct Distance(int p, int q)

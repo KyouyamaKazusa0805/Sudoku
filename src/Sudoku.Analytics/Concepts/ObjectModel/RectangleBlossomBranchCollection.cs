@@ -3,7 +3,6 @@ namespace Sudoku.Concepts.ObjectModel;
 /// <summary>
 /// Represents for a rectangle blossom branch collection.
 /// </summary>
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class RectangleBlossomBranchCollection :
 	DeathBlossomBranchCollection<RectangleBlossomBranchCollection, Candidate>,

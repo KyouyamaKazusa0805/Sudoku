@@ -55,4 +55,16 @@ public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] Type
 	/// The value is <see cref="ToStringBehavior.Intelligent"/> by default.
 	/// </remarks>
 	public ToStringBehavior ToStringBehavior { get; init; } = ToStringBehavior.Intelligent;
+
+	/// <summary>
+	/// Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c>
+	/// and <see langword="operator"/> <c>!=</c> overloading operators.
+	/// </summary>
+	public EqualityOperatorsBehavior EqualityOperatorsBehavior { get; init; } = EqualityOperatorsBehavior.Intelligent;
+
+	/// <summary>
+	/// Indicates an extra option to tell source generators which case of nullability should be preferred.
+	/// By default, not null for value types and including null for reference types.
+	/// </summary>
+	public NullabilityPrefer OperandNullabilityPrefer { get; init; } = NullabilityPrefer.Default;
 }

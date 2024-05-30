@@ -16,7 +16,6 @@ namespace Sudoku.Analytics.Categorization;
 /// <seealso cref="BitArray"/>
 /// <completionlist cref="TechniqueSets"/>
 [JsonConverter(typeof(Converter))]
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class TechniqueSet :
 	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,

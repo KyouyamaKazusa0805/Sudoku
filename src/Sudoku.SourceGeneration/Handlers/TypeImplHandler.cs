@@ -6,13 +6,17 @@ internal static class TypeImplHandler
 
 	private const string OtherModifiersOnEqualsPropertyName = "OtherModifiersOnEquals";
 
+	private const string OtherModifiersOnToStringPropertyName = "OtherModifiersOnToString";
+
 	private const string EqualsBehaviorPropertyName = "EqualsBehavior";
 
 	private const string ToStringBehaviorPropertyName = "ToStringBehavior";
 
 	private const string GetHashCodeBehaviorPropertyName = "GetHashCodeBehavior";
 
-	private const string OtherModifiersOnToStringPropertyName = "OtherModifiersOnToString";
+	private const string EqualityOperatorsBehaviorPropertyName = "EqualityOperatorsBehavior";
+
+	private const string OperandNullabilityPreferPropertyName = "OperandNullabilityPrefer";
 
 
 	public static List<string>? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
@@ -29,6 +33,14 @@ internal static class TypeImplHandler
 		if (Object_ToString(gasc, cancellationToken) is { } source3)
 		{
 			typeSources.Add(source3);
+		}
+		if (EqualityOperators(gasc) is { } source4)
+		{
+			typeSources.Add(source4);
+		}
+		if (ComparisonOperators(gasc) is { } source5)
+		{
+			typeSources.Add(source5);
 		}
 		return typeSources;
 	}
@@ -548,6 +560,416 @@ internal static class TypeImplHandler
 		bool stringMemberAttirbuteMatcher(AttributeData a)
 			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
 	}
+
+	private static string? EqualityOperators(GeneratorAttributeSyntaxContext gasc)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					Name: var typeName,
+					ContainingNamespace: var @namespace,
+					ContainingType: null,
+					IsRecord: var isRecord,
+					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct or TypeKind.Interface),
+					TypeParameters: var typeParameters,
+					IsRefLikeType: var isRefStruct
+				} type,
+				SemanticModel.Compilation: var compilation
+			})
+		{
+			return null;
+		}
+
+		if (!((TypeImplFlag)ctorArg).HasFlag(TypeImplFlag.EqualityOperators))
+		{
+			return null;
+		}
+
+		var hasSelfTypeArgument = kind == TypeKind.Interface
+			? typeParameters is not [{ ConstraintTypes: var constraintTypes }] || !constraintTypes.Contains(type, SymbolEqualityComparer.Default)
+			: default(bool?);
+		if (hasSelfTypeArgument is false)
+		{
+			// If the type is an interface, we should check for whether its first type parameter is a self type parameter,
+			// which means it should implement its containing interface type.
+			return null;
+		}
+
+		var isLargeStructure = attribute.GetNamedArgument<bool>(IsLargeStructurePropertyName);
+		var behavior = attribute.GetNamedArgument<int>(EqualityOperatorsBehaviorPropertyName) switch
+		{
+			0 => (isRecord, kind, isLargeStructure) switch
+			{
+				(true, TypeKind.Class, _) => EqualityOperatorsBehavior.DoNothing,
+				(_, TypeKind.Class, _) => EqualityOperatorsBehavior.Default,
+				(true, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedInButDeprecated,
+				(true, TypeKind.Struct, _) => EqualityOperatorsBehavior.DefaultButDeprecated,
+				(_, TypeKind.Struct, true) => EqualityOperatorsBehavior.WithScopedIn,
+				(_, TypeKind.Struct, _) => EqualityOperatorsBehavior.Default,
+				(_, TypeKind.Interface, _) => EqualityOperatorsBehavior.StaticAbstract,
+				_ => throw new InvalidOperationException("Invalid state.")
+			},
+			1 => EqualityOperatorsBehavior.StaticVirtual,
+			2 => EqualityOperatorsBehavior.StaticAbstract,
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		if (behavior == EqualityOperatorsBehavior.DoNothing)
+		{
+			return null;
+		}
+
+		var typeKindString = (isRecord, kind) switch
+		{
+			(true, TypeKind.Class) => "record",
+			(_, TypeKind.Class) => "class",
+			(true, TypeKind.Struct) => "record struct",
+			(_, TypeKind.Struct) => "struct",
+			(_, TypeKind.Interface) => "interface",
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var typeArgumentsString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+		var typeNameString = $"{typeName}{typeArgumentsString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		const string nullableToken = "?";
+		var nullabilityToken = (attribute.GetNamedArgument<int>(OperandNullabilityPreferPropertyName), kind) switch
+		{
+			(0, TypeKind.Class) or (2, _) => nullableToken,
+			(0, TypeKind.Struct) or (1, _) => string.Empty,
+			(0, TypeKind.Interface) => typeParameters[0] switch
+			{
+				{ HasNotNullConstraint: true } => nullableToken, // Unknown T.
+				{ HasUnmanagedTypeConstraint: true } or { HasValueTypeConstraint: true } => string.Empty,
+				{ HasReferenceTypeConstraint: true } => nullableToken,
+				{ ReferenceTypeConstraintNullableAnnotation: Annotated } => nullableToken, // Reference type inferred.
+				{ ConstraintNullableAnnotations: var annotations } when annotations.Contains(Annotated) => nullableToken, // Reference type inferred.
+				_ => string.Empty
+			},
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		var attributesMarked = behavior switch
+		{
+			EqualityOperatorsBehavior.StaticAbstract => "\r\n\t\t",
+			EqualityOperatorsBehavior.WithScopedInButDeprecated or EqualityOperatorsBehavior.DefaultButDeprecated
+				=> """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.ObsoleteAttribute("This operator is not recommended to be defined in a record struct, because it'll be auto-generated a pair of equality operators by compiler, without any modifiers modified two parameters.", false)]
+				""",
+			_
+				=> """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+				"""
+		};
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
+		var (i1, i2) = nullabilityToken switch
+		{
+			nullableToken => (
+				$$"""(left, right) switch { (null, null) => true, ({ } a, { } b) => a.Equals({{inKeyword}}b), _ => false }""",
+				"!(left == right)"
+			),
+			_ => ($"left.Equals({inKeyword}right)", $"!(left == right)")
+		};
+
+		var explicitImplementation = string.Empty;
+		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IEqualityOperators`3")!
+			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
+		if (behavior is EqualityOperatorsBehavior.WithScopedIn or EqualityOperatorsBehavior.WithScopedInButDeprecated
+			&& type.AllInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default))
+		{
+			explicitImplementation =
+				$$"""
+				/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IEqualityOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator ==({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left == right;
+
+						/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IEqualityOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator !=({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left != right;
+				""";
+		}
+
+		var operatorDeclaration = behavior switch
+		{
+			EqualityOperatorsBehavior.Default or EqualityOperatorsBehavior.DefaultButDeprecated
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator ==({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i1}};
+
+						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator !=({{fullTypeNameString}}{{nullabilityToken}} left, {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i2}};
+				""",
+			EqualityOperatorsBehavior.WithScopedIn or EqualityOperatorsBehavior.WithScopedInButDeprecated
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator ==(in {{fullTypeNameString}}{{nullabilityToken}} left, in {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i1}};
+
+						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator !=(in {{fullTypeNameString}}{{nullabilityToken}} left, in {{fullTypeNameString}}{{nullabilityToken}} right)
+							=> {{i2}};
+
+						{{explicitImplementation}}
+				""",
+			EqualityOperatorsBehavior.StaticVirtual when typeParameters is [{ Name: var selfTypeParameterName }]
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static virtual bool operator ==({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
+							=> {{i1}};
+
+						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static virtual bool operator !=({{selfTypeParameterName}} left, {{selfTypeParameterName}} right)
+							=> {{i2}};
+				""",
+			EqualityOperatorsBehavior.StaticAbstract when typeParameters is [{ Name: var selfTypeParameterName }]
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Equality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static abstract bool operator ==({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right);
+
+						/// <inheritdoc cref="global::System.Numerics.IEqualityOperators{TSelf, TOther, TResult}.op_Inequality(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static virtual bool operator !=({{selfTypeParameterName}}{{nullabilityToken}} left, {{selfTypeParameterName}}{{nullabilityToken}} right) => {{i2}};
+				""",
+			_ => null
+		};
+		if (operatorDeclaration is null)
+		{
+			return null;
+		}
+
+		return $$"""
+			namespace {{namespaceString}}
+			{
+				partial {{typeKindString}} {{typeNameString}}
+				{
+					{{operatorDeclaration}}
+				}
+			}
+			""";
+	}
+
+	private static string? ComparisonOperators(GeneratorAttributeSyntaxContext gasc)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					Name: var typeName,
+					ContainingNamespace: var @namespace,
+					ContainingType: null,
+					IsRecord: var isRecord,
+					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct or TypeKind.Interface),
+					TypeParameters: var typeParameters,
+					IsRefLikeType: var isRefStruct
+				} type,
+				SemanticModel.Compilation: var compilation
+			})
+		{
+			return null;
+		}
+
+		if (!((TypeImplFlag)ctorArg).HasFlag(TypeImplFlag.ComparisonOperators))
+		{
+			return null;
+		}
+
+		var isLargeStructure = attribute.GetNamedArgument<bool>(IsLargeStructurePropertyName);
+		var behavior = (isRecord, kind, isLargeStructure) switch
+		{
+			(true, TypeKind.Class, _) => ComparisonOperatorsBehavior.DoNothing,
+			(_, TypeKind.Class, _) => ComparisonOperatorsBehavior.Default,
+			(true, TypeKind.Struct, true) => ComparisonOperatorsBehavior.WithScopedInButDeprecated,
+			(true, TypeKind.Struct, _) => ComparisonOperatorsBehavior.DefaultButDeprecated,
+			(_, TypeKind.Struct, true) => ComparisonOperatorsBehavior.WithScopedIn,
+			(_, TypeKind.Struct, _) => ComparisonOperatorsBehavior.Default,
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		if (behavior == ComparisonOperatorsBehavior.DoNothing)
+		{
+			return null;
+		}
+
+		var typeKindString = (isRecord, kind) switch
+		{
+			(true, TypeKind.Class) => "record",
+			(_, TypeKind.Class) => "class",
+			(true, TypeKind.Struct) => "record struct",
+			(_, TypeKind.Struct) => "struct",
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var typeArgumentsString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+		var typeNameString = $"{typeName}{typeArgumentsString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		var attributesMarked = behavior switch
+		{
+			ComparisonOperatorsBehavior.WithScopedInButDeprecated or ComparisonOperatorsBehavior.DefaultButDeprecated
+				=> """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.ObsoleteAttribute("This operator is not recommended to be defined in a record struct, because it'll be auto-generated a pair of equality operators by compiler, without any modifiers modified two parameters.", false)]
+				""",
+			_
+				=> """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+				"""
+		};
+		var inKeyword = isLargeStructure ? "in " : string.Empty;
+		var (i1, i2, i3, i4) = (
+			$"left.CompareTo({inKeyword}right) > 0",
+			$"left.CompareTo({inKeyword}right) < 0",
+			$"left.CompareTo({inKeyword}right) >= 0",
+			$"left.CompareTo({inKeyword}right) <= 0"
+		);
+
+		var explicitImplementation = string.Empty;
+		var equalityOperatorsType = compilation.GetTypeByMetadataName("System.Numerics.IComparisonOperators`3")!
+			.Construct(type, type, compilation.GetSpecialType(System_Boolean));
+		if (behavior is ComparisonOperatorsBehavior.WithScopedIn or ComparisonOperatorsBehavior.WithScopedInButDeprecated
+			&& type.AllInterfaces.Contains(equalityOperatorsType, SymbolEqualityComparer.Default))
+		{
+			explicitImplementation =
+				$$"""
+				/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IComparisonOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator >({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left > right;
+
+						/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IComparisonOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator <({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left < right;
+
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IComparisonOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator >=({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left >= right;
+
+						/// <inheritdoc/>
+						[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						static bool global::System.Numerics.IComparisonOperators<{{fullTypeNameString}}, {{fullTypeNameString}}, bool>.operator <=({{fullTypeNameString}} left, {{fullTypeNameString}} right) => left <= right;
+				""";
+		}
+
+		var operatorDeclaration = behavior switch
+		{
+			ComparisonOperatorsBehavior.Default or ComparisonOperatorsBehavior.DefaultButDeprecated
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator >({{fullTypeNameString}} left, {{fullTypeNameString}} right)
+							=> {{i1}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator <({{fullTypeNameString}} left, {{fullTypeNameString}} right)
+							=> {{i2}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator >=({{fullTypeNameString}} left, {{fullTypeNameString}} right)
+							=> {{i3}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator <=({{fullTypeNameString}} left, {{fullTypeNameString}} right)
+							=> {{i4}};
+				""",
+			ComparisonOperatorsBehavior.WithScopedIn or ComparisonOperatorsBehavior.WithScopedInButDeprecated
+				=> $$"""
+				/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThan(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator >(in {{fullTypeNameString}} left, in {{fullTypeNameString}} right)
+							=> {{i1}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator <(in {{fullTypeNameString}} left, in {{fullTypeNameString}} right)
+							=> {{i2}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator >=(in {{fullTypeNameString}} left, in {{fullTypeNameString}} right)
+							=> {{i3}};
+
+						/// <inheritdoc cref="global::System.Numerics.IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
+						{{attributesMarked}}
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						public static bool operator <=(in {{fullTypeNameString}} left, in {{fullTypeNameString}} right)
+							=> {{i4}};
+
+						{{explicitImplementation}}
+				""",
+			_ => null
+		};
+		if (operatorDeclaration is null)
+		{
+			return null;
+		}
+
+		return $$"""
+			namespace {{namespaceString}}
+			{
+				partial {{typeKindString}} {{typeNameString}}
+				{
+					{{operatorDeclaration}}
+				}
+			}
+			""";
+	}
 }
 
 /// <summary>
@@ -604,4 +1026,30 @@ file enum ToStringBehavior
 	Specified,
 	RecordLike,
 	MakeAbstract
+}
+
+/// <summary>
+/// Represents a behavior for generating equality operators.
+/// </summary>
+file enum EqualityOperatorsBehavior
+{
+	DoNothing,
+	Default,
+	DefaultButDeprecated,
+	WithScopedIn,
+	WithScopedInButDeprecated,
+	StaticVirtual,
+	StaticAbstract
+}
+
+/// <summary>
+/// Represents a behavior for generating comparison operators.
+/// </summary>
+file enum ComparisonOperatorsBehavior
+{
+	DoNothing,
+	Default,
+	DefaultButDeprecated,
+	WithScopedIn,
+	WithScopedInButDeprecated,
 }

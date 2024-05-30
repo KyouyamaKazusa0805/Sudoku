@@ -4,7 +4,6 @@ namespace Sudoku.Concepts;
 /// Represents extra options that formats a <see cref="CellMap"/> instance, or parses into a <see cref="CellMap"/> instance.
 /// </summary>
 /// <seealso cref="CellMap"/>
-[EqualityOperators]
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",

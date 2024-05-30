@@ -3,7 +3,6 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
 /// </summary>
-[EqualityOperators]
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",

@@ -5215,34 +5215,6 @@
             Indicates the accessibility is <see langword="public"/>.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.ComparisonOperatorsAttribute">
-            <summary>
-            Represents an attribute type that allows source generators generating for comparison operators if the specified types marked this attribute.
-            </summary>
-        </member>
-        <member name="T:System.SourceGeneration.EqualityOperatorsAttribute">
-            <summary>
-            Represents an attribute type that allows source generators generating for equality operators if the specified types marked this attribute.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-        </member>
-        <member name="M:System.SourceGeneration.EqualityOperatorsAttribute.#ctor(System.SourceGeneration.EqualityOperatorsBehavior)">
-            <summary>
-            Represents an attribute type that allows source generators generating for equality operators if the specified types marked this attribute.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-        </member>
-        <member name="P:System.SourceGeneration.EqualityOperatorsAttribute.NullabilityPrefer">
-            <summary>
-            Indicates an extra option to tell source generators which case of nullability should be preferred.
-            By default, not null for value types and including null for reference types.
-            </summary>
-        </member>
-        <member name="P:System.SourceGeneration.EqualityOperatorsAttribute.Behavior">
-            <summary>
-            The generated property declaration for parameter <c>behavior</c>.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.EqualityOperatorsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c> and <see langword="operator"/> <c>!=</c>
@@ -5343,17 +5315,6 @@
             Indicates whether the generated field automatically appends a <see langword="readonly"/> modifier.
             The value is <see langword="true"/> by default.
             </summary>
-        </member>
-        <member name="T:System.SourceGeneration.LargeStructureAttribute">
-            <summary>
-            Represents an attribute that can tell source generators the type is a large structure,
-            meaning the source generators will always append <see langword="ref readonly"/> onto target-typed parameters
-            if the containing member isn't an operator, or append <see langword="in"/> if the containing member is an operator.
-            </summary>
-            <remarks>
-            Please note that the type can be also consumed by interfaces. Such cases mean the target structure types implemented is a large structure.
-            However, if the interface types having marked this attribute have been implemented by class types, it'll be meaningless.
-            </remarks>
         </member>
         <member name="T:System.SourceGeneration.MemberKinds">
             <summary>
@@ -5761,6 +5722,18 @@
             <remarks>
             The value is <see cref="F:System.SourceGeneration.ToStringBehavior.Intelligent"/> by default.
             </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.EqualityOperatorsBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see langword="operator"/> <c>==</c>
+            and <see langword="operator"/> <c>!=</c> overloading operators.
+            </summary>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.OperandNullabilityPrefer">
+            <summary>
+            Indicates an extra option to tell source generators which case of nullability should be preferred.
+            By default, not null for value types and including null for reference types.
+            </summary>
         </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.Flags">
             <summary>

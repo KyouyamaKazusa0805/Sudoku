@@ -3,7 +3,6 @@ namespace Sudoku.Concepts.ObjectModel;
 /// <summary>
 /// Represents for a n-times ALS blossom branch collection.
 /// </summary>
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class NTimesAlmostLockedSetsBlossomBranchCollection :
 	DeathBlossomBranchCollection<NTimesAlmostLockedSetsBlossomBranchCollection, CandidateMap>,

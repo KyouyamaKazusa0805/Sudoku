@@ -4,8 +4,8 @@ namespace Sudoku.Algorithms.Ittoryu;
 /// Indicates the target digit path.
 /// </summary>
 /// <param name="Digits">The digits path.</param>
-[ComparisonOperators]
 [CollectionBuilder(typeof(DisorderedIttoryuDigitPath), nameof(Create))]
+[TypeImpl(TypeImplFlag.ComparisonOperators)]
 public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
 	IComparable<DisorderedIttoryuDigitPath>,
 	IComparisonOperators<DisorderedIttoryuDigitPath, DisorderedIttoryuDigitPath, bool>,

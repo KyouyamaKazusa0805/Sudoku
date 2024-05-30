@@ -13,7 +13,6 @@ public sealed class Generator : IIncrementalGenerator
 	{
 		PrimaryConstructor(context);
 		TypeImpl(context);
-		Operators(context);
 		ImplicitField(context);
 	}
 
@@ -30,29 +29,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Collect(),
 			PrimaryConstructorMemberHandler.Output
 		);
-
-	private void Operators(IncrementalGeneratorInitializationContext context)
-	{
-		const string equalityOperatorsAttributeName = "System.SourceGeneration.EqualityOperatorsAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(equalityOperatorsAttributeName, IsPartialTypePredicate, EqualityOperatorsHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			EqualityOperatorsHandler.Output
-		);
-
-		const string comparisonOperatorsAttributeName = "System.SourceGeneration.ComparisonOperatorsAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(comparisonOperatorsAttributeName, IsPartialTypePredicate, ComparisonOperatorsHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			ComparisonOperatorsHandler.Output
-		);
-	}
 
 	private void ImplicitField(IncrementalGeneratorInitializationContext context)
 		=> context.RegisterSourceOutput(

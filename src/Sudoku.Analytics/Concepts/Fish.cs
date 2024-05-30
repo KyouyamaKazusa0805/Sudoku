@@ -9,7 +9,6 @@ namespace Sudoku.Concepts;
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
 [StructLayout(LayoutKind.Auto)]
-[EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public readonly partial struct Fish(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,

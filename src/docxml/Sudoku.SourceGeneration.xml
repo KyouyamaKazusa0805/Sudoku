@@ -182,6 +182,16 @@
             </summary>
             <seealso cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.EqualityOperatorsBehavior">
+            <summary>
+            Represents a behavior for generating equality operators.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.ComparisonOperatorsBehavior">
+            <summary>
+            Represents a behavior for generating comparison operators.
+            </summary>
+        </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
             The member kind names.

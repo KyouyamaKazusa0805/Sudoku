@@ -6,8 +6,7 @@ namespace Sudoku.Concepts;
 /// <typeparam name="TSelf">The type of the instance that implements this interface type.</typeparam>
 /// <typeparam name="TElement">The type of each element.</typeparam>
 /// <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
-[LargeStructure]
-[EqualityOperators(EqualityOperatorsBehavior.MakeVirtual)]
+[TypeImpl(TypeImplFlag.EqualityOperators, EqualityOperatorsBehavior = EqualityOperatorsBehavior.MakeVirtual, IsLargeStructure = true)]
 public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditiveIdentity<TSelf, TSelf>,
 	IAdditionOperators<TSelf, TElement, TSelf>,
