@@ -10,7 +10,7 @@ namespace Sudoku.Analytics;
 /// This instance can be used for checking some extra information about a step such as notations to a cell, candidate, etc..
 /// </param>
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators,
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllOperators,
 	OtherModifiersOnEquals = "sealed")]
 public abstract partial class Step(
 	[PrimaryConstructorParameter(SetterExpression = "internal set")] Conclusion[] conclusions,

@@ -18,7 +18,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(StarViewNode), 14)]
 [JsonDerivedType(typeof(HeartViewNode), 15)]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ViewNode(ColorIdentifier identifier) :

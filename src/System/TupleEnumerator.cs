@@ -5,7 +5,7 @@ namespace System.Runtime.CompilerServices;
 /// </summary>
 /// <param name="tuple">A tuple instance.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.AllObjectMethods)]
 public ref partial struct TupleEnumerator([PrimaryConstructorParameter(MemberKinds.Field)] ITuple tuple)
 {
 	/// <summary>

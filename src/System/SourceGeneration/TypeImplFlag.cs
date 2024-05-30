@@ -43,5 +43,19 @@ public enum TypeImplFlag
 	/// <seealso cref="IComparisonOperators{TSelf, TOther, TResult}.op_GreaterThanOrEqual(TSelf, TOther)"/>
 	/// <seealso cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThan(TSelf, TOther)"/>
 	/// <seealso cref="IComparisonOperators{TSelf, TOther, TResult}.op_LessThanOrEqual(TSelf, TOther)"/>
-	ComparisonOperators = 1 << 4
+	ComparisonOperators = 1 << 4,
+
+	/// <summary>
+	/// Indicates all the methods
+	/// <see cref="object.Equals(object?)"/>, <see cref="object.GetHashCode"/> and <see cref="object.ToString"/>
+	/// will be generated.
+	/// </summary>
+	AllObjectMethods = Object_Equals | Object_GetHashCode | Object_ToString,
+
+	/// <summary>
+	/// Indicates all the operators
+	/// <see cref="IEqualityOperators{TSelf, TOther, TResult}"/> and <see cref="IComparisonOperators{TSelf, TOther, TResult}"/>
+	/// will be generated.
+	/// </summary>
+	AllOperators = EqualityOperators | ComparisonOperators
 }

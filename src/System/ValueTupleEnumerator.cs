@@ -4,7 +4,7 @@ namespace System;
 /// Provides with a mechanism to iterate a value tuple instance of a uniform type <typeparamref name="T"/>.
 /// </summary>
 /// <typeparam name="T">The uniform type of a pair of instances.</typeparam>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.AllObjectMethods)]
 public ref partial struct ValueTupleEnumerator<T>
 {
 	/// <summary>

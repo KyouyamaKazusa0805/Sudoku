@@ -5784,6 +5784,20 @@
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
             <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.AllObjectMethods">
+            <summary>
+            Indicates all the methods
+            <see cref="M:System.Object.Equals(System.Object)"/>, <see cref="M:System.Object.GetHashCode"/> and <see cref="M:System.Object.ToString"/>
+            will be generated.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.AllOperators">
+            <summary>
+            Indicates all the operators
+            <see cref="T:System.Numerics.IEqualityOperators`3"/> and <see cref="T:System.Numerics.IComparisonOperators`3"/>
+            will be generated.
+            </summary>
+        </member>
         <member name="T:System.Threading.Tasks.TimeSpanAwaitable">
             <summary>
             Provides with extension methods on <see cref="T:System.TimeSpan"/>.

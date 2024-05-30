@@ -11,7 +11,7 @@ namespace System.Linq;
 /// <param name="key">Indicates the key that can compare each element.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public readonly unsafe partial struct SpanGrouping<TSource, TKey>(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "private unsafe")] TSource* elements,
 	[PrimaryConstructorParameter, HashCodeMember, StringMember] int length,

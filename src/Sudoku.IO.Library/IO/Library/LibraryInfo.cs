@@ -11,7 +11,7 @@ namespace Sudoku.IO.Library;
 /// </i></remarks>
 [StructLayout(LayoutKind.Auto)]
 [SupportedOSPlatform(PlatformNames.Windows)]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 [method: DebuggerStepThrough]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LibraryInfo(

@@ -6,7 +6,7 @@ namespace System;
 /// <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.AllObjectMethods)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
 	where T : notnull

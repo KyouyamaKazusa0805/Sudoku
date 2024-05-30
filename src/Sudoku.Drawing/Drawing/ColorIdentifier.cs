@@ -9,7 +9,7 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(WellKnownColorIdentifier), 1)]
 [JsonDerivedType(typeof(PaletteIdColorIdentifier), 2)]
 [TypeImpl(
-	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators,
+	TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators,
 	GetHashCodeBehavior = GetHashCodeBehavior.MakeAbstract,
 	ToStringBehavior = ToStringBehavior.MakeAbstract)]
 public abstract partial class ColorIdentifier : IEquatable<ColorIdentifier>, IEqualityOperators<ColorIdentifier, ColorIdentifier, bool>
