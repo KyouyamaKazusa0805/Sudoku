@@ -66,7 +66,7 @@ public partial class GridCanvas
 			{
 				var cell = candidate / 9;
 				var digit = candidate % 9;
-				var overlaps = nodes.Any((ref readonly CandidateViewNode node) => node.Cell == cell);
+				var overlaps = conclusions.Any((ref readonly Conclusion conclusion) => conclusion.Cell == cell);
 				var color = GetColor(node.Identifier);
 				using var brush = new SolidBrush(overlaps ? color.QuarterAlpha() : color);
 				_g.FillEllipse(brush, _calculator.GetMouseRectangle(cell, digit));
@@ -83,7 +83,7 @@ public partial class GridCanvas
 		{
 			foreach (var (type, cell, digit) in conclusions)
 			{
-				var overlaps = nodes.Any((ref readonly CandidateViewNode node) => node.Cell == cell);
+				var overlaps = conclusions.Any((ref readonly Conclusion conclusion) => conclusion.Cell == cell);
 				if (type == Elimination)
 				{
 					d(cell, digit, vOffsetCandidate, overlaps ? bCandidateLighter : bCandidate);
