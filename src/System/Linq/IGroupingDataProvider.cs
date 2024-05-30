@@ -3,7 +3,7 @@ namespace System.Linq;
 /// <summary>
 /// Represents a grouping data structure for LINQ grouping methods.
 /// </summary>
-public interface IGroupingDataProvider<TSelf, out TKey, TElement> :
+internal interface IGroupingDataProvider<TSelf, out TKey, TElement> :
 	IEnumerable<TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
