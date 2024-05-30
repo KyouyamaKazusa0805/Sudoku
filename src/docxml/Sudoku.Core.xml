@@ -4261,6 +4261,9 @@
         <member name="M:Sudoku.Concepts.Grid.TryParse(System.ReadOnlySpan{System.Char},System.IFormatProvider,Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Grid.Create(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.Grid.Create(System.String)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Grid.Create(System.String)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using the specified token of length 54.

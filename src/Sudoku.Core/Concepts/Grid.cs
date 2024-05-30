@@ -1334,6 +1334,10 @@ public partial struct Grid :
 		}
 	}
 
+	/// <inheritdoc cref="Create(string)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Grid Create(ReadOnlySpan<char> token) => Create(token.ToString());
+
 	/// <summary>
 	/// Creates a <see cref="Grid"/> instance using the specified token of length 54.
 	/// </summary>
