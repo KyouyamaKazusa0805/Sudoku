@@ -96,6 +96,10 @@ public static class GridTokenExtensions
 	/// <returns>The result digit.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static int GetDigitViaToken(string s)
-		=> (Base32CharSpan.IndexOf(s[0]) << 25) + (Base32CharSpan.IndexOf(s[1]) << 20) + (Base32CharSpan.IndexOf(s[2]) << 15)
-		+ (Base32CharSpan.IndexOf(s[3]) << 10) + (Base32CharSpan.IndexOf(s[4]) << 5) + Base32CharSpan.IndexOf(s[5]);
+		=> (Base32CharSpan.IndexOf(s[0]) << 25)
+		+ (Base32CharSpan.IndexOf(s[1]) << 20)
+		+ (Base32CharSpan.IndexOf(s[2]) << 15)
+		+ (Base32CharSpan.IndexOf(s[3]) << 10)
+		+ (Base32CharSpan.IndexOf(s[4]) << 5)
+		+ Base32CharSpan.IndexOf(s[5]);
 }

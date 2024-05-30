@@ -83,24 +83,5 @@
             <param name="s">The string.</param>
             <returns>The result digit.</returns>
         </member>
-        <member name="T:Sudoku.Text.Tokenization.ITokenizable`1">
-            <summary>
-            Represents an object that can create a token of type <see cref="T:System.String"/> to describe the encrpyted representation.
-            </summary>
-            <typeparam name="TSelf">The type of itself.</typeparam>
-        </member>
-        <member name="P:Sudoku.Text.Tokenization.ITokenizable`1.Token">
-            <summary>
-            Indicates the token of the object.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Text.Tokenization.ITokenizable`1.Create(System.String)">
-            <summary>
-            Create an instance of type <typeparamref name="TSelf"/> that is used a token.
-            </summary>
-            <param name="token">The token to be used.</param>
-            <returns>A <typeparamref name="TSelf"/> instance created.</returns>
-            <exception cref="T:System.FormatException">Throws when the token is invalid.</exception>
-        </member>
     </members>
 </doc>
