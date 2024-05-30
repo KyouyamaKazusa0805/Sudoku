@@ -3,7 +3,6 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents symmetry constraint.
 /// </summary>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class SymmetryConstraint : Constraint
 {

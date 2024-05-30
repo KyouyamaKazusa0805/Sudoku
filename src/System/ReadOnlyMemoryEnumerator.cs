@@ -7,7 +7,6 @@ namespace System;
 /// <seealso cref="ReadOnlyMemory{T}"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct ReadOnlyMemoryEnumerator<T>(ReadOnlyMemory<T> value)

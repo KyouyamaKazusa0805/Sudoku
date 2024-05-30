@@ -10,7 +10,6 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 [StructLayout(LayoutKind.Auto)]
-[ToString]
 [EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]

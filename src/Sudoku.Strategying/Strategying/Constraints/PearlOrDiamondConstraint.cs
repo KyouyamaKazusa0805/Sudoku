@@ -4,7 +4,6 @@ namespace Sudoku.Strategying.Constraints;
 /// Represents a constraint that checks for pearl or diamond property.
 /// </summary>
 /// <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public abstract partial class PearlOrDiamondConstraint([PrimaryConstructorParameter, HashCodeMember, StringMember] bool checkPearl) :
 	Constraint

@@ -7,7 +7,6 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="cell">Indicates the cell used.</param>
 /// <param name="digitsMask">Indicates a mask that hold digits used.</param>
 /// <param name="unknownValueChar">Indicates the character that represents the baba group name.</param>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class BabaGroupViewNode(

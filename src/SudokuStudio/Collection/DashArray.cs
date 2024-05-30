@@ -6,7 +6,6 @@ namespace SudokuStudio.Collection;
 /// </summary>
 /// <seealso cref="Shape.StrokeDashArray"/>
 [JsonConverter(typeof(Converter))]
-[ToString]
 [EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public readonly partial struct DashArray() : IEnumerable<double>, IEquatable<DashArray>, IEqualityOperators<DashArray, DashArray, bool>

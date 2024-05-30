@@ -16,7 +16,6 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a puzzle generator, implemented by HoDoKu.
 /// </summary>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public ref partial struct Generator
 {

@@ -3,7 +3,6 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a constraint that checks for difficulty rating of each step.
 /// </summary>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class BottleneckStepRatingConstraint : Constraint, IBetweenRuleConstraint
 {

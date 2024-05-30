@@ -6,7 +6,6 @@ namespace Sudoku.Strategying.Constraints;
 /// </summary>
 /// <seealso cref="TechniqueCountConstraint"/>
 [ConstraintOptions(AllowsMultiple = true, AllowsNegation = true)]
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class TechniqueConstraint : Constraint
 {

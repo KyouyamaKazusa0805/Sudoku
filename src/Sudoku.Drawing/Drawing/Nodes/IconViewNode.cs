@@ -5,7 +5,6 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc cref="ViewNode(ColorIdentifier)"/></param>
 /// <param name="cell">The cell.</param>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public abstract partial class IconViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] Cell cell) : ViewNode(identifier)
 {

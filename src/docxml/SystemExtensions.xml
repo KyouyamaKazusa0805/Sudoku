@@ -5660,30 +5660,11 @@
             The generated property declaration for parameter <c>displayName</c>.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.ToStringAttribute">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.ToString"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:System.SourceGeneration.ToStringAttribute.#ctor(System.SourceGeneration.ToStringBehavior)">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.ToString"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.ToString"/>
-        </member>
-        <member name="P:System.SourceGeneration.ToStringAttribute.Behavior">
-            <summary>
-            The generated property declaration for parameter <c>behavior</c>.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.ToStringBehavior">
             <summary>
-            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
             </summary>
-            <seealso cref="M:System.Object.GetHashCode"/>
+            <seealso cref="M:System.Object.ToString"/>
         </member>
         <member name="F:System.SourceGeneration.ToStringBehavior.Intelligent">
             <summary>
@@ -5752,6 +5733,11 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.GetHashCode"/> method.
             </summary>
         </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnToString">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.ToString"/> method.
+            </summary>
+        </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -5766,6 +5752,14 @@
             </summary>
             <remarks>
             The value is <see cref="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.ToStringBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.ToString"/> overridden methods.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.SourceGeneration.ToStringBehavior.Intelligent"/> by default.
             </remarks>
         </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.Flags">

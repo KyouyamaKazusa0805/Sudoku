@@ -5,7 +5,6 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="chuteIndex">Indicates the chute index. The value can be between 0 and 5.</param>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class ChuteViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] int chuteIndex) :

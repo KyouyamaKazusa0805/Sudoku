@@ -7,7 +7,6 @@ namespace System;
 /// <param name="sequence">The internal sequence to be iterated.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct ReverseEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)

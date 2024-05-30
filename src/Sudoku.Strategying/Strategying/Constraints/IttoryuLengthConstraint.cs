@@ -3,7 +3,6 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents ittoryu length constraint.
 /// </summary>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class IttoryuLengthConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {

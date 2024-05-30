@@ -13,7 +13,6 @@ public sealed class Generator : IIncrementalGenerator
 	{
 		PrimaryConstructor(context);
 		TypeImpl(context);
-		ObjectOverridden(context);
 		Operators(context);
 		ImplicitField(context);
 	}
@@ -31,19 +30,6 @@ public sealed class Generator : IIncrementalGenerator
 				.Collect(),
 			PrimaryConstructorMemberHandler.Output
 		);
-
-	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)
-	{
-		const string toStringAttributeName = "System.SourceGeneration.ToStringAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(toStringAttributeName, IsPartialTypePredicate, ToStringHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			ToStringHandler.Output
-		);
-	}
 
 	private void Operators(IncrementalGeneratorInitializationContext context)
 	{

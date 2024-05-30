@@ -176,6 +176,12 @@
             </summary>
             <seealso cref="M:System.Object.GetHashCode"/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.ToStringBehavior">
+            <summary>
+            Represents a behavior for generating <see cref="M:System.Object.ToString"/> method.
+            </summary>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
             The member kind names.

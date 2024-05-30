@@ -6,7 +6,6 @@ namespace System;
 /// <typeparam name="T">The type of each element.</typeparam>
 /// <typeparam name="TRest">The type that encapsulate for a list of rest elements.</typeparam>
 /// <param name="tuple">The tuple.</param>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public ref partial struct ComplexValueTupleEnumerator<T, TRest>(ValueTuple<T, T, T, T, T, T, T, TRest> tuple) where TRest : struct
 {

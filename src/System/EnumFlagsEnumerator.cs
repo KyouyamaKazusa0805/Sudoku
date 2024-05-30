@@ -9,7 +9,6 @@ namespace System;
 /// <param name="baseField">Indicates the base field.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct EnumFlagsEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] T baseField)

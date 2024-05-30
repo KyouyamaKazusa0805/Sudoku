@@ -30,7 +30,7 @@ namespace Sudoku.Analytics;
 /// </para>
 /// </param>
 /// <seealso cref="Step"/>
-[ToString(OtherModifiers = "sealed")]
+[TypeImpl(TypeImplFlag.Object_ToString, OtherModifiersOnToString = "sealed")]
 public abstract partial class StepSearcher(
 	[PrimaryConstructorParameter] int priority,
 	[PrimaryConstructorParameter] int level,

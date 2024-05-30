@@ -8,7 +8,11 @@ internal static class TypeImplHandler
 
 	private const string EqualsBehaviorPropertyName = "EqualsBehavior";
 
+	private const string ToStringBehaviorPropertyName = "ToStringBehavior";
+
 	private const string GetHashCodeBehaviorPropertyName = "GetHashCodeBehavior";
+
+	private const string OtherModifiersOnToStringPropertyName = "OtherModifiersOnToString";
 
 
 	public static List<string>? Transform(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
@@ -21,6 +25,10 @@ internal static class TypeImplHandler
 		if (Object_GetHashCode(gasc, cancellationToken) is { } source2)
 		{
 			typeSources.Add(source2);
+		}
+		if (Object_ToString(gasc, cancellationToken) is { } source3)
+		{
+			typeSources.Add(source3);
 		}
 		return typeSources;
 	}
@@ -221,6 +229,7 @@ internal static class TypeImplHandler
 			cancellationToken
 		);
 
+#pragma warning disable format
 		var behavior = (isRefStruct, attribute) switch
 		{
 			(true, _) => GetHashCodeBehavior.Throw,
@@ -228,9 +237,9 @@ internal static class TypeImplHandler
 			{
 				0 => referencedMembers switch
 				{
-				[] => GetHashCodeBehavior.ReturnNegativeOne,
-				[(_, true)] => GetHashCodeBehavior.Direct,
-				[(_, false)] => GetHashCodeBehavior.EnumExplicitCast,
+					[] => GetHashCodeBehavior.ReturnNegativeOne,
+					[(_, true)] => GetHashCodeBehavior.Direct,
+					[(_, false)] => GetHashCodeBehavior.EnumExplicitCast,
 					{ Length: > 8 } => GetHashCodeBehavior.HashCodeAdd,
 					_ => GetHashCodeBehavior.Specified
 				},
@@ -239,6 +248,7 @@ internal static class TypeImplHandler
 				_ => throw new InvalidOperationException("Invalid state.")
 			}
 		};
+#pragma warning restore format
 		var kindString = (isRecord, kind) switch
 		{
 			(true, TypeKind.Class) => "record",
@@ -327,6 +337,217 @@ internal static class TypeImplHandler
 				""";
 		}
 	}
+
+	private static string? Object_ToString(GeneratorAttributeSyntaxContext gasc, CancellationToken cancellationToken)
+	{
+		if (gasc is not
+			{
+				Attributes: [{ ConstructorArguments: [{ Value: int ctorArg }] } attribute],
+				TargetSymbol: INamedTypeSymbol
+				{
+					Name: var typeName,
+					ContainingNamespace: var @namespace,
+					TypeParameters: var typeParameters,
+					TypeKind: var kind and (TypeKind.Class or TypeKind.Struct),
+					IsRecord: var isRecord,
+					IsReadOnly: var isReadOnly,
+					IsRefLikeType: var isRefStruct,
+					ContainingType: null
+				} type,
+				TargetNode: TypeDeclarationSyntax { ParameterList: var parameterList }
+					and (RecordDeclarationSyntax or ClassDeclarationSyntax or StructDeclarationSyntax),
+				SemanticModel: { Compilation: var compilation } semanticModel
+			})
+		{
+			return null;
+		}
+
+		if (!((TypeImplFlag)ctorArg).HasFlag(TypeImplFlag.Object_ToString))
+		{
+			return null;
+		}
+
+		var namespaceString = @namespace.ToDisplayString(SymbolDisplayFormat.FullyQualifiedFormat)["global::".Length..];
+		var typeParametersString = typeParameters is []
+			? string.Empty
+			: $"<{string.Join(", ", from typeParameter in typeParameters select typeParameter.Name)}>";
+		var typeNameString = $"{typeName}{typeParametersString}";
+		var fullTypeNameString = $"global::{namespaceString}.{typeNameString}";
+		const string formattableTypeName = "System.IFormattable";
+		if (compilation.GetTypeByMetadataName(formattableTypeName) is not { } formattableTypeSymbol)
+		{
+			return null;
+		}
+
+		const string dataMemberAttributeTypeName = "System.SourceGeneration.PrimaryConstructorParameterAttribute";
+		var dataMemberAttributeTypeNameSymbol = compilation.GetTypeByMetadataName(dataMemberAttributeTypeName);
+		if (dataMemberAttributeTypeNameSymbol is null)
+		{
+			return null;
+		}
+
+		const string stringMemberAttributeName = "System.SourceGeneration.StringMemberAttribute";
+		var stringMemberAttributeSymbol = compilation.GetTypeByMetadataName(stringMemberAttributeName);
+		if (stringMemberAttributeSymbol is null)
+		{
+			return null;
+		}
+
+		const string formatProviderTypeName = "System.IFormatProvider";
+		var formatProviderSymbol = compilation.GetTypeByMetadataName(formatProviderTypeName);
+		if (formatProviderSymbol is null)
+		{
+			return null;
+		}
+
+		var referencedMembers = PrimaryConstructor.GetCorrespondingMemberNames(
+			type,
+			semanticModel,
+			parameterList,
+			dataMemberAttributeTypeNameSymbol,
+			a => SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol),
+			symbol => (string?)symbol.GetAttributes().First(stringMemberAttirbuteMatcher).ConstructorArguments[0].Value ?? symbol.Name,
+			cancellationToken
+		);
+
+		var behavior = attribute.GetNamedArgument<int>(ToStringBehaviorPropertyName) switch
+		{
+			0 => (isRefStruct, referencedMembers) switch
+			{
+				(true, _) => ToStringBehavior.Throw,
+				_ when hasImpledFormattable(type) is var p and not null => p switch
+				{
+					true => ToStringBehavior.CallOverloadImplicit,
+					_ => ToStringBehavior.CallOverloadExplicit
+				},
+				(_, []) => ToStringBehavior.RecordLike,
+				(_, { Length: 1 }) => ToStringBehavior.Specified,
+				_ => ToStringBehavior.RecordLike
+			},
+			1 => ToStringBehavior.CallOverloadExplicit,
+			2 when referencedMembers.Length == 1 => ToStringBehavior.Specified,
+			3 when referencedMembers.Length != 0 => ToStringBehavior.RecordLike,
+			4 => ToStringBehavior.Throw,
+			5 => ToStringBehavior.MakeAbstract,
+			_ => ToStringBehavior.ReturnTypeName
+		};
+		var kindString = (isRecord, kind) switch
+		{
+			(true, TypeKind.Class) => "record",
+			(true, TypeKind.Struct) => "record struct",
+			(_, TypeKind.Class) => "class",
+			(_, TypeKind.Struct) => "struct",
+			_ => throw new InvalidOperationException("Invalid state.")
+		};
+		var otherModifiers = attribute.GetNamedArgument<string>(OtherModifiersOnToStringPropertyName) switch
+		{
+			{ } str => str.Split([' '], StringSplitOptions.RemoveEmptyEntries),
+			_ => []
+		};
+		var otherModifiersString = otherModifiers.Length == 0 ? string.Empty : $"{string.Join(" ", otherModifiers)} ";
+		if (behavior == ToStringBehavior.MakeAbstract)
+		{
+			return $$"""
+				namespace {{namespaceString}}
+				{
+					partial {{kindString}} {{typeNameString}}
+					{
+						/// <inheritdoc cref="object.ToString"/>
+						public {{otherModifiersString}}abstract override string ToString();
+					}
+				}
+				""";
+		}
+		else
+		{
+			var expression = behavior switch
+			{
+				ToStringBehavior.ReturnTypeName => fullTypeNameString,
+				ToStringBehavior.CallOverloadImplicit => "ToString(default(string), default(global::System.IFormatProvider))",
+				ToStringBehavior.CallOverloadExplicit => "((global::System.IFormattable)this).ToString(null, null)",
+				ToStringBehavior.Specified => referencedMembers[0].Name,
+				ToStringBehavior.Throw => """throw new global::System.NotSupportedException("This method is not supported or disallowed by author.")""",
+				ToStringBehavior.RecordLike
+					=> $$$"""
+					$"{{{typeName}}} {{ {{{string.Join(", ", f(referencedMembers))}}} }}"
+					""",
+				_ => throw new InvalidOperationException("Invalid state.")
+			};
+
+			var attributesMarked = isRefStruct && behavior is ToStringBehavior.Throw or ToStringBehavior.ReturnTypeName
+				? behavior == ToStringBehavior.ReturnTypeName
+					? """
+					[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+					"""
+					: """
+					[global::System.Diagnostics.CodeAnalysis.DoesNotReturnAttribute]
+							[global::System.ObsoleteAttribute("Calling this method is unexpected because author disallow you call this method on purpose.", true)]
+					"""
+				: """
+				[global::System.Runtime.CompilerServices.MethodImplAttribute(global::System.Runtime.CompilerServices.MethodImplOptions.AggressiveInlining)]
+				""";
+			var readOnlyModifier = kind == TypeKind.Struct && !isReadOnly ? "readonly " : string.Empty;
+			var isDeprecated = attributesMarked.Contains("ObsoleteAttribute");
+			var suppress0809 = isDeprecated ? "#pragma warning disable CS0809\r\n\t" : "\t";
+			var enable0809 = isDeprecated ? "#pragma warning restore CS0809\r\n\t" : "\t";
+			return $$"""
+				namespace {{namespaceString}}
+				{
+				{{suppress0809}}partial {{kindString}} {{typeNameString}}
+					{
+						/// <inheritdoc cref="object.ToString"/>
+						{{attributesMarked}}
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
+						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
+						public {{otherModifiersString}}override {{readOnlyModifier}}string ToString()
+							=> {{expression}};
+				{{enable0809}}}
+				}
+				""";
+		}
+
+
+		static IEnumerable<string> f((string Name, string ExtraData)[] referencedMembers)
+			=>
+			from referencedMember in referencedMembers
+			let displayName = referencedMember.ExtraData
+			let name = referencedMember.Name
+			select $$"""{{displayName ?? $$"""{nameof({{name}})}"""}} = {{{name}}}""";
+
+		bool? hasImpledFormattable(INamedTypeSymbol type)
+		{
+			if (type.Interfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default))
+			{
+				// Extra check: check wheteher the method is explicitly-impl'ed. If so, we should return 'false'.
+#pragma warning disable format
+				return type.GetMembers().OfType<IMethodSymbol>().Any(
+					method => method is
+					{
+						Name: "ToString",
+						IsImplicitlyDeclared: false,
+						ExplicitInterfaceImplementations: not [],
+						TypeParameters: [],
+						Parameters: [
+							{
+								Type.SpecialType: System_String,
+								NullableAnnotation: not NotAnnotated
+							},
+							{
+								Type: var formatProviderType
+							}
+						],
+						ReturnType.SpecialType: System_String
+					} && SymbolEqualityComparer.IncludeNullability.Equals(formatProviderType, formatProviderSymbol)
+				);
+#pragma warning restore format
+			}
+
+			return type.AllInterfaces.Contains(formattableTypeSymbol, SymbolEqualityComparer.Default) ? false : null;
+		}
+
+		bool stringMemberAttirbuteMatcher(AttributeData a)
+			=> SymbolEqualityComparer.Default.Equals(a.AttributeClass, stringMemberAttributeSymbol);
+	}
 }
 
 /// <summary>
@@ -367,5 +588,20 @@ file enum GetHashCodeBehavior
 	Specified,
 	Throw,
 	HashCodeAdd,
+	MakeAbstract
+}
+
+/// <summary>
+/// Represents a behavior for generating <see cref="object.ToString"/> method.
+/// </summary>
+/// <seealso cref="object.ToString"/>
+file enum ToStringBehavior
+{
+	Throw,
+	ReturnTypeName,
+	CallOverloadExplicit,
+	CallOverloadImplicit,
+	Specified,
+	RecordLike,
 	MakeAbstract
 }

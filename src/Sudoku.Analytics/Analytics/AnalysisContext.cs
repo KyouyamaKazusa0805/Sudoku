@@ -8,9 +8,7 @@ namespace Sudoku.Analytics;
 /// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[LargeStructure]
-[ToString]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString, IsLargeStructure = true)]
 public ref partial struct AnalysisContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
 	ref readonly Grid grid,

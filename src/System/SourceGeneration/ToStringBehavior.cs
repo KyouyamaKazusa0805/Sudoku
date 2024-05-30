@@ -1,9 +1,9 @@
 namespace System.SourceGeneration;
 
 /// <summary>
-/// Defines a behavior by source generator on generating <see cref="object.GetHashCode"/> overridden methods.
+/// Defines a behavior by source generator on generating <see cref="object.ToString"/> overridden methods.
 /// </summary>
-/// <seealso cref="object.GetHashCode"/>
+/// <seealso cref="object.ToString"/>
 public enum ToStringBehavior
 {
 	/// <summary>

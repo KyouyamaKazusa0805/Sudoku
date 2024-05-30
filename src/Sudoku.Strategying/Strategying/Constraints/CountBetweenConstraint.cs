@@ -3,7 +3,6 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a count between constraint.
 /// </summary>
-[ToString]
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class CountBetweenConstraint : Constraint, IBetweenRuleConstraint
 {

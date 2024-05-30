@@ -11,7 +11,6 @@ namespace Sudoku.IO.Library;
 /// </i></remarks>
 [StructLayout(LayoutKind.Auto)]
 [SupportedOSPlatform(PlatformNames.Windows)]
-[ToString]
 [EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 [method: DebuggerStepThrough]

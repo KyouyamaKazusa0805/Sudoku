@@ -28,6 +28,11 @@ public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] Type
 	public string? OtherModifiersOnGetHashCode { get; init; }
 
 	/// <summary>
+	/// Indicates the extra modifiers can be applied to <see cref="object.ToString"/> method.
+	/// </summary>
+	public string? OtherModifiersOnToString { get; init; }
+
+	/// <summary>
 	/// Defines a behavior by source generator on generating <see cref="object.Equals(object?)"/> overridden methods.
 	/// </summary>
 	/// <remarks>
@@ -42,4 +47,12 @@ public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] Type
 	/// The value is <see cref="GetHashCodeBehavior.Intelligent"/> by default.
 	/// </remarks>
 	public GetHashCodeBehavior GetHashCodeBehavior { get; init; } = GetHashCodeBehavior.Intelligent;
+
+	/// <summary>
+	/// Defines a behavior by source generator on generating <see cref="object.ToString"/> overridden methods.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see cref="ToStringBehavior.Intelligent"/> by default.
+	/// </remarks>
+	public ToStringBehavior ToStringBehavior { get; init; } = ToStringBehavior.Intelligent;
 }
