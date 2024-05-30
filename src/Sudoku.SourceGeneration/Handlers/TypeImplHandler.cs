@@ -318,7 +318,7 @@ internal static class TypeImplHandler
 					{
 						/// <inheritdoc cref="object.GetHashCode"/>
 						{{attributesMarked}}
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(TypeImplHandler).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public {{otherModifiersString}}override {{readOnlyModifier}}int GetHashCode()
 						{{codeBlock}}

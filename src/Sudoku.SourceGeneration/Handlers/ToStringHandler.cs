@@ -157,7 +157,7 @@ internal static class ToStringHandler
 					{
 						/// <inheritdoc cref="object.ToString"/>
 						{{attributesMarked}}
-						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(GetHashCodeHandler).FullName}}", "{{Value}}")]
+						[global::System.CodeDom.Compiler.GeneratedCodeAttribute("{{typeof(ToStringHandler).FullName}}", "{{Value}}")]
 						[global::System.Runtime.CompilerServices.CompilerGeneratedAttribute]
 						public {{otherModifiersString}}override {{readOnlyModifier}}string ToString()
 							=> {{expression}};
