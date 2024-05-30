@@ -27,7 +27,6 @@ global using Sudoku.Concepts.Primitive;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.MaskServices;
-global using Sudoku.Text.Tokenization;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
 global using static Sudoku.SolutionFields;

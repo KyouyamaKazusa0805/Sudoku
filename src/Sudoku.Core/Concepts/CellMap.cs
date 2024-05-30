@@ -18,8 +18,7 @@ namespace Sudoku.Concepts;
 public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,
-	IComparisonOperators<CellMap, CellMap, bool>,
-	ITokenizable<CellMap>
+	IComparisonOperators<CellMap, CellMap, bool>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
 	private const int Shifting = 41;
@@ -103,44 +102,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	public int Count { get; private set; }
-
-	/// <inheritdoc/>
-	public readonly string Token
-	{
-		get
-		{
-			var convertedString = new BitmapCellMapFormatInfo().FormatMap(in this);
-			var bits = convertedString.Chunk(27);
-			var sb = new StringBuilder(18);
-			foreach (var z in (sextuple(getInteger(bits[2])), sextuple(getInteger(bits[1])), sextuple(getInteger(bits[0]))))
-			{
-				foreach (var element in z)
-				{
-					sb.Append(Grid.Base32CharSpan[element]);
-				}
-			}
-			return sb.ToString();
-
-
-			static int getInteger(string bits)
-			{
-				var result = 0;
-				for (var i = 0; i < 27; i++)
-				{
-					if (bits[i] == '1')
-					{
-						result |= 1 << i;
-					}
-				}
-
-				return result;
-			}
-
-			[MethodImpl(MethodImplOptions.AggressiveInlining)]
-			static int[] sextuple(int value)
-				=> [value >> 25 & 3, value >> 20 & 31, value >> 15 & 31, value >> 10 & 31, value >> 5 & 31, value & 31];
-		}
-	}
 
 	/// <inheritdoc/>
 	[JsonInclude]
@@ -881,22 +842,6 @@ public partial struct CellMap :
 			return false;
 		}
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CellMap Create(string token)
-		=> token.Length switch
-		{
-			18 => new BitmapCellMapFormatInfo().ParseMap(
-				string.Concat(
-					from i in Digits[..3]
-					let segment = Grid.GetDigitViaToken(token[(i * 6)..((i + 1) * 6)]).ToString()
-					let binary = Convert.ToString(int.Parse(segment), 2)
-					select binary.PadLeft(27, '0')
-				)
-			),
-			_ => throw new FormatException(string.Format(ResourceDictionary.ExceptionMessage("LengthMustBeMatched"), 18))
-		};
 
 	/// <summary>
 	/// Creates a <see cref="CellMap"/> instance via the specified cells.
