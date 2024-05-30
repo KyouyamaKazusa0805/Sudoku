@@ -587,10 +587,10 @@ internal static class TypeImplHandler
 			return null;
 		}
 
-		var hasSelfTypeArgument = kind == TypeKind.Interface
-			? typeParameters is not [{ ConstraintTypes: var constraintTypes }] || !constraintTypes.Contains(type, SymbolEqualityComparer.Default)
-			: default(bool?);
-		if (hasSelfTypeArgument is false)
+		if (kind == TypeKind.Interface && (
+			typeParameters is not [{ ConstraintTypes: var constraintTypes }, ..]
+			|| !constraintTypes.Contains(type, SymbolEqualityComparer.Default)
+		))
 		{
 			// If the type is an interface, we should check for whether its first type parameter is a self type parameter,
 			// which means it should implement its containing interface type.
