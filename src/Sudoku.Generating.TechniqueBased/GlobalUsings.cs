@@ -13,7 +13,6 @@ global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearcherModules;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Generating.JustOneCell;
 global using Sudoku.Generating.TechniqueBased;
 global using Sudoku.Linq;

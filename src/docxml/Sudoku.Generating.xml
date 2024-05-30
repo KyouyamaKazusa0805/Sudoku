@@ -157,7 +157,7 @@
 			</target>
             </remarks>
         </member>
-        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.Concepts.Primitive.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Try to generate a puzzle.
             </summary>
@@ -169,7 +169,7 @@
             this puzzle will be still treated as valid one.
             </para>
             </param>
-            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/> by default.</param>
+            <param name="symmetricType">The symmetric type to be specified. The value is <see cref="F:Sudoku.SymmetricType.Central"/> by default.</param>
             <param name="cancellationToken">The cancellation token that can cancel the operation.</param>
             <returns>The result grid.</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
@@ -177,12 +177,12 @@
             or the argument <paramref name="cluesCount"/> is invalid.
             </exception>
         </member>
-        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.Concepts.Primitive.SymmetricType,System.Threading.CancellationToken)">
+        <member name="M:Sudoku.Generating.Generator.GenerateInitPos(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)">
             <summary>
             Takes a full sudoku from <see cref="F:Sudoku.Generating.Generator._newFullSudoku"/> and generates a valid puzzle by deleting cells.
             If a deletion produces a grid with more than one solution it is of course undone.
             </summary>
-            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.Concepts.Primitive.SymmetricType,System.Threading.CancellationToken)"/>
+            <inheritdoc cref="M:Sudoku.Generating.Generator.Generate(System.Int32,Sudoku.SymmetricType,System.Threading.CancellationToken)"/>
         </member>
         <member name="M:Sudoku.Generating.Generator.GenerateForFullGrid">
             <summary>

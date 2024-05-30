@@ -23,7 +23,6 @@ global using Sudoku.Analytics;
 global using Sudoku.Concepts;
 global using Sudoku.Concepts.Coordinates;
 global using Sudoku.Concepts.Formatting;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Linq;
 global using Sudoku.Resources;
 global using Sudoku.Runtime.MaskServices;

@@ -7,7 +7,6 @@ global using System.Runtime.InteropServices;
 global using System.SourceGeneration;
 global using System.Threading;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Randomization;
 global using Sudoku.Solving;
 global using Sudoku.Solving.Solvers;

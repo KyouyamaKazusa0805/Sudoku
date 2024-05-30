@@ -1379,7 +1379,7 @@
         <member name="M:Sudoku.Concepts.Conclusion.ToString``1(``0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.Concepts.Primitive.SymmetricType,System.Int32)">
+        <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
             <summary>
             Try to get a new <see cref="T:Sudoku.Concepts.Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
             </summary>
@@ -3753,10 +3753,10 @@
             </summary>
             <remarks>
             Although the property type supports for other values, this property can only return a value
-            either <see cref="F:Sudoku.Concepts.Primitive.SudokuType.Standard"/> or <see cref="F:Sudoku.Concepts.Primitive.SudokuType.Sukaku"/>.
+            either <see cref="F:Sudoku.SudokuType.Standard"/> or <see cref="F:Sudoku.SudokuType.Sukaku"/>.
             </remarks>
-            <seealso cref="F:Sudoku.Concepts.Primitive.SudokuType.Standard"/>
-            <seealso cref="F:Sudoku.Concepts.Primitive.SudokuType.Sukaku"/>
+            <seealso cref="F:Sudoku.SudokuType.Standard"/>
+            <seealso cref="F:Sudoku.SudokuType.Sukaku"/>
         </member>
         <member name="P:Sudoku.Concepts.Grid.GivenCells">
             <summary>
@@ -4164,7 +4164,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBits(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.Primitive.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -4172,7 +4172,7 @@
         </member>
         <member name="M:Sudoku.Concepts.Grid.GetHeaderBitsUnshifted(System.Int32)">
             <summary>
-            Gets the header 4 bits. The value can be <see cref="F:Sudoku.Concepts.Primitive.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
+            Gets the header 4 bits. The value can be <see cref="F:Sudoku.SudokuType.Sukaku"/> if and only if the puzzle is Sukaku,
             and the argument <paramref name="cell"/> is 0.
             </summary>
             <param name="cell">The cell.</param>
@@ -5276,97 +5276,6 @@
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
         </member>
-        <member name="T:Sudoku.Concepts.Primitive.SudokuType">
-            <summary>
-            Represents a type of sudoku puzzle.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SudokuType.None">
-            <summary>
-            The placeholder of the enumeration field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SudokuType.Standard">
-            <summary>
-            Indicates the sudoku puzzle is a standard.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SudokuType.Sukaku">
-            <summary>
-            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SudokuType.JustOneCell">
-            <summary>
-            Indicates the sudoku puzzle is a just-one-cell sudoku.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Primitive.SymmetricType">
-            <summary>
-            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.None">
-            <summary>
-            Indicates none of symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.Central">
-            <summary>
-            Indicates the central symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal">
-            <summary>
-            Indicates the diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal">
-            <summary>
-            Indicates the anti-diagonal symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.XAxis">
-            <summary>
-            Indicates the x-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.YAxis">
-            <summary>
-            Indicates the y-axis symmetry type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.AxisBoth">
-            <summary>
-            Indicates both X-axis and Y-axis symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.DiagonalBoth">
-            <summary>
-            Indicates both diagonal and anti-diagonal symmetry types.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Primitive.SymmetricType.All">
-            <summary>
-            Indicates all symmetry types should be satisfied.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Subview">
             <summary>
             Represents a list of methods that operates on <see cref="T:System.Int32"/>, <see cref="T:System.Int32"/>, <see cref="T:System.Int32"/> instances,
@@ -5483,11 +5392,11 @@
         </member>
         <member name="T:Sudoku.Concepts.SymmetricTypeExtensions">
             <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Primitive.SymmetricType"/>.
+            Provides with extension methods on <see cref="T:Sudoku.SymmetricType"/>.
             </summary>
-            <seealso cref="T:Sudoku.Concepts.Primitive.SymmetricType"/>
+            <seealso cref="T:Sudoku.SymmetricType"/>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.Concepts.Primitive.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetSymmetryCellsCount(Sudoku.SymmetricType)">
             <summary>
             Try to get the number of cells that the current symmetry should be formed a complete symmetric pattern.
             </summary>
@@ -5500,14 +5409,14 @@
             <description>Return value</description>
             </listheader>
             <item>
-            <term><see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/> (0)</term>
+            <term><see cref="F:Sudoku.SymmetricType.None"/> (0)</term>
             <description>1 (Itself)</description>
             </item>
             <item>
             <term>
-            <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Central"/>,
-            <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.AntiDiagonal"/>,
-            <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.XAxis"/>, <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.YAxis"/>
+            <see cref="F:Sudoku.SymmetricType.Central"/>,
+            <see cref="F:Sudoku.SymmetricType.Diagonal"/>, <see cref="F:Sudoku.SymmetricType.AntiDiagonal"/>,
+            <see cref="F:Sudoku.SymmetricType.XAxis"/>, <see cref="F:Sudoku.SymmetricType.YAxis"/>
             </term>
             <description>2</description>
             </item>
@@ -5523,18 +5432,18 @@
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.Concepts.Primitive.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetAxisDimension(Sudoku.SymmetricType)">
             <summary>
             Try to get the number of axes of the specified symmetric type.
             </summary>
             <param name="this">The symmetry.</param>
             <returns>
             The number of axes the current symmetric type contains.
-            If <paramref name="this"/> is <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/>, -1 will be returned.
+            If <paramref name="this"/> is <see cref="F:Sudoku.SymmetricType.None"/>, -1 will be returned.
             </returns>
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="this"/> is not defined.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.Concepts.Primitive.SymmetricType,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetName(Sudoku.SymmetricType,System.IFormatProvider)">
             <summary>
             Gets the name of thr symmetry.
             </summary>
@@ -5543,22 +5452,22 @@
             <returns>The string.</returns>
             <exception cref="T:System.InvalidOperationException">Throws when the argument holds multiple flag values.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.Concepts.Primitive.SymmetricType)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCellsInSymmetryAxis(Sudoku.SymmetricType)">
             <summary>
             Try to get all possible cells in symmetry axis (or point).
             </summary>
             <param name="this">The symmetry.</param>
             <returns>Returns cells in the symmetry axis (or point).</returns>
             <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.Concepts.Primitive.SymmetricType.None"/>.
+            Throws when the argument <paramref name="this"/> is not defined or <see cref="F:Sudoku.SymmetricType.None"/>.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.Primitive.SymmetricType,System.Int32)">
-            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.Primitive.SymmetricType,System.Int32,System.Int32)"/>
-            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.Primitive.SymmetricType,System.Int32,System.Int32)"/></param>
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32)">
+            <inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/>
+            <param name="this"><inheritdoc cref="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)"/></param>
             <param name="cell">Indicates the target cell to be checked.</param>
         </member>
-        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.Concepts.Primitive.SymmetricType,System.Int32,System.Int32)">
+        <member name="M:Sudoku.Concepts.SymmetricTypeExtensions.GetCells(Sudoku.SymmetricType,System.Int32,System.Int32)">
             <summary>
             Get the cells that is used for swapping via the specified symmetric type, and the specified row and column value.
             </summary>
@@ -6888,6 +6797,97 @@
 			</para>
 		</summary>
 	</static-constructor>
+        </member>
+        <member name="T:Sudoku.SudokuType">
+            <summary>
+            Represents a type of sudoku puzzle.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.SudokuType.None">
+            <summary>
+            The placeholder of the enumeration field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.Standard">
+            <summary>
+            Indicates the sudoku puzzle is a standard.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.Sukaku">
+            <summary>
+            Indicates the sudoku puzzle is a sukaku (pencilmark sudoku).
+            </summary>
+        </member>
+        <member name="F:Sudoku.SudokuType.JustOneCell">
+            <summary>
+            Indicates the sudoku puzzle is a just-one-cell sudoku.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SymmetricType">
+            <summary>
+            Represents a symmetric type that can describe which one a pattern or a puzzle uses.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.SymmetricType.None">
+            <summary>
+            Indicates none of symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.Central">
+            <summary>
+            Indicates the central symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.Diagonal">
+            <summary>
+            Indicates the diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.AntiDiagonal">
+            <summary>
+            Indicates the anti-diagonal symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.XAxis">
+            <summary>
+            Indicates the x-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.YAxis">
+            <summary>
+            Indicates the y-axis symmetry type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.AxisBoth">
+            <summary>
+            Indicates both X-axis and Y-axis symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.DiagonalBoth">
+            <summary>
+            Indicates both diagonal and anti-diagonal symmetry types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.SymmetricType.All">
+            <summary>
+            Indicates all symmetry types should be satisfied.
+            </summary>
         </member>
         <member name="T:System.Text.RegularExpressions.Generated.UnitCellGroupPattern_0">
             <summary>Custom <see cref="T:System.Text.RegularExpressions.Regex"/>-derived type for the UnitCellGroupPattern method.</summary>

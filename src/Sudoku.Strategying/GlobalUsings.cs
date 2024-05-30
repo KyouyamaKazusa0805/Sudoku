@@ -19,6 +19,5 @@ global using Sudoku.Analytics.Categorization;
 global using Sudoku.Analytics.Steps;
 global using Sudoku.Analytics.StepSearchers;
 global using Sudoku.Concepts;
-global using Sudoku.Concepts.Primitive;
 global using Sudoku.Strategying.Constraints;
 global using Sudoku.Traits;
