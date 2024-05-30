@@ -8,10 +8,10 @@ namespace Sudoku.IO.Library;
 /// </i></remarks>
 /// <seealso cref="LibraryInfo"/>
 [SupportedOSPlatform(PlatformNames.Windows)]
-[Equals]
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public sealed partial class TextPointer :
 	IAdditionOperators<TextPointer, int, TextPointer>,
 	IAsyncDisposable,

@@ -5266,25 +5266,6 @@
             This option can only be used for interfaces implementing operators.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.EqualsAttribute">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.Equals(System.Object)"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="M:System.SourceGeneration.EqualsAttribute.#ctor(System.SourceGeneration.EqualsBehavior)">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.Equals(System.Object)"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.Equals(System.Object)"/>
-        </member>
-        <member name="P:System.SourceGeneration.EqualsAttribute.Behavior">
-            <summary>
-            The generated property declaration for parameter <c>behavior</c>.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.EqualsBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
@@ -5756,6 +5737,91 @@
             <summary>
             Indicates the method will be made <see langword="abstract"/>.
             </summary>
+        </member>
+        <member name="T:System.SourceGeneration.TypeImplAttribute">
+            <summary>
+            Represents an attribute type that describes source generators can generate extra source code into the target type,
+            with the specified generation mode.
+            </summary>
+            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
+        </member>
+        <member name="M:System.SourceGeneration.TypeImplAttribute.#ctor(System.SourceGeneration.TypeImplFlag)">
+            <summary>
+            Represents an attribute type that describes source generators can generate extra source code into the target type,
+            with the specified generation mode.
+            </summary>
+            <param name="flags">Indicates the flags whose corresponding member will be generated.</param>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.IsLargeStructure">
+            <summary>
+            Indicates whether source generators will generate source code with modifiers <see langword="ref readonly"/>
+            or <see langword="in"/> onto parameters if the parameter type is the current type.
+            </summary>
+            <remarks>
+            The value is <see langword="false"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnEquals">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.EqualsBehavior">
+            <summary>
+            Represents a kind of behavior on generated expression on comparing equality for instances.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.SourceGeneration.EqualsBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.Flags">
+            <summary>
+            The generated property declaration for parameter <c>flags</c>.
+            </summary>
+        </member>
+        <member name="T:System.SourceGeneration.TypeImplFlag">
+            <summary>
+            Represents a flag that supports for auto implementation.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.None">
+            <summary>
+            Indicates no elements will be generated.
+            </summary>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.Object_Equals">
+            <summary>
+            Indicates the method <see cref="M:System.Object.Equals(System.Object)"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.Object_GetHashCode">
+            <summary>
+            Indicates the method <see cref="M:System.Object.GetHashCode"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.Object_ToString">
+            <summary>
+            Indicates the method <see cref="M:System.Object.ToString"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Object.ToString"/>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.EqualityOperators">
+            <summary>
+            Indicates the equality operators defined in <see cref="T:System.Numerics.IEqualityOperators`3"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="F:System.SourceGeneration.TypeImplFlag.ComparisonOperators">
+            <summary>
+            Indicates the comparison operators defined in <see cref="T:System.Numerics.IComparisonOperators`3"/> will be generated.
+            </summary>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+            <seealso cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:System.Threading.Tasks.TimeSpanAwaitable">
             <summary>

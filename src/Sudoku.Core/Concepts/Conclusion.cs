@@ -25,9 +25,9 @@ namespace Sudoku.Concepts;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-[Equals]
 [GetHashCode]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,

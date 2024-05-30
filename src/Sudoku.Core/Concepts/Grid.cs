@@ -13,10 +13,9 @@ namespace Sudoku.Concepts;
 [InlineArray(CellsCount)]
 [CollectionBuilder(typeof(Grid), nameof(Create))]
 [DebuggerStepThrough]
-[LargeStructure]
-[Equals]
 [EqualityOperators]
 [ComparisonOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators, IsLargeStructure = true)]
 public partial struct Grid :
 	IComparable<Grid>,
 	IComparisonOperators<Grid, Grid, bool>,

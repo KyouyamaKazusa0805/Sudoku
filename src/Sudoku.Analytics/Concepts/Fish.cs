@@ -8,11 +8,10 @@ namespace Sudoku.Concepts;
 /// <param name="coverSets">Indicates the cover sets.</param>
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
-[LargeStructure]
-[Equals]
+[StructLayout(LayoutKind.Auto)]
 [GetHashCode]
 [EqualityOperators]
-[StructLayout(LayoutKind.Auto)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public readonly partial struct Fish(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask baseSets,

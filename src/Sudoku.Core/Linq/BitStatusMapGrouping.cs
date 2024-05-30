@@ -11,10 +11,9 @@ namespace Sudoku.Linq;
 /// <param name="values">Indicates the candidates.</param>
 /// <seealso cref="CellMap"/>
 /// <seealso cref="CandidateMap"/>
-[Equals]
 [GetHashCode]
 [EqualityOperators]
-[LargeStructure]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public readonly partial struct BitStatusMapGrouping<TMap, TElement, TEnumerator, TKey>(
 	[PrimaryConstructorParameter] TKey key,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly TMap values

@@ -1,4 +1,4 @@
-﻿namespace System;
+namespace System;
 
 /// <inheritdoc cref="PairEnumerator{T}"/>
 /// <typeparam name="T">The type of each element to be iterated.</typeparam>
@@ -6,9 +6,9 @@
 /// <typeparam name="TSecond">The type of the second element in a pair.</typeparam>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[Equals]
 [GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct PairEnumeratorCasted<T, TFirst, TSecond>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence)
 	where T : notnull

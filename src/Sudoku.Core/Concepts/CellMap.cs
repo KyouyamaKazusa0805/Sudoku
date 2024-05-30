@@ -11,10 +11,12 @@ namespace Sudoku.Concepts;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [LargeStructure]
-[Equals]
 [GetHashCode]
 [EqualityOperators]
 [ComparisonOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators,
+	IsLargeStructure = true)]
 public partial struct CellMap :
 	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
 	IComparable<CellMap>,

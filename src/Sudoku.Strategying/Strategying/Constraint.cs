@@ -21,10 +21,12 @@ namespace Sudoku.Strategying;
 [JsonDerivedType(typeof(TechniqueConstraint), nameof(TechniqueConstraint))]
 [JsonDerivedType(typeof(TechniqueCountConstraint), nameof(TechniqueCountConstraint))]
 [JsonDerivedType(typeof(TechniqueSetConstraint), nameof(TechniqueSetConstraint))]
-[Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators,
+	OtherModifiersOnEquals = "sealed")]
 public abstract partial class Constraint : IEquatable<Constraint>, IEqualityOperators<Constraint, Constraint, bool>, IFormattable
 {
 	/// <summary>

@@ -7,9 +7,9 @@ namespace System;
 /// <param name="sequence">The sequence value.</param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[Equals]
 [GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct PairEnumerator<T>([PrimaryConstructorParameter(MemberKinds.Field)] ReadOnlySpan<T> sequence) where T : notnull
 {

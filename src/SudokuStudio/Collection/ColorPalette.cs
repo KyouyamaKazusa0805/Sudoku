@@ -3,9 +3,9 @@ namespace SudokuStudio.Collection;
 /// <summary>
 /// Represents a color palette that contains a list of <see cref="Color"/> instances that can be used in UI binding.
 /// </summary>
-[Equals]
 [ToString]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public sealed partial class ColorPalette :
 	ObservableCollection<Color>,
 	IEquatable<ColorPalette>,

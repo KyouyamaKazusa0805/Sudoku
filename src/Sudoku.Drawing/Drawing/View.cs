@@ -3,8 +3,8 @@ namespace Sudoku.Drawing;
 /// <summary>
 /// Provides with a data structure that displays a view for basic information.
 /// </summary>
-[Equals]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class View :
 	HashSet<ViewNode>,
 	IEquatable<View>,

@@ -9,11 +9,10 @@ namespace Sudoku.Concepts;
 /// <remarks>
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
-[LargeStructure]
-[Equals]
+[StructLayout(LayoutKind.Auto)]
 [GetHashCode]
 [EqualityOperators]
-[StructLayout(LayoutKind.Auto)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 [method: JsonConstructor]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct LockedTarget(

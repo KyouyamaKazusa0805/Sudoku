@@ -6,9 +6,9 @@ namespace System.Numerics;
 /// <param name="bitCount">The number of bits.</param>
 /// <param name="oneCount">The number of <see langword="true"/> bits.</param>
 [DebuggerStepThrough]
-[Equals]
 [GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public ref partial struct MaskCombinationEnumerator(int bitCount, int oneCount)
 {

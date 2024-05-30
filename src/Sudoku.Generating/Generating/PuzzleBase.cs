@@ -3,9 +3,11 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a base type for puzzle generated, need creating a data structure to store the details for the generated puzzle.
 /// </summary>
-[Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [EqualityOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
+	OtherModifiersOnEquals = "sealed")]
 public abstract partial class PuzzleBase : IEquatable<PuzzleBase>, IEqualityOperators<PuzzleBase, PuzzleBase, bool>
 {
 	/// <summary>

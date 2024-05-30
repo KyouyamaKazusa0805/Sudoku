@@ -159,6 +159,17 @@
             </summary>
             <seealso cref="T:Sudoku.SourceGeneration.Handlers.PrimaryConstructorMemberHandler"/>
         </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.TypeImplFlag">
+            <summary>
+            Indicates the implementation flags.
+            </summary>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.EqualsBehavior">
+            <summary>
+            Represents a behavior for generating <see cref="M:System.Object.Equals(System.Object)"/> method.
+            </summary>
+            <see cref="M:System.Object.Equals(System.Object)"/>
+        </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>
             The member kind names.

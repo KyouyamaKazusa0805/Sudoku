@@ -9,9 +9,9 @@ namespace Sudoku.Analytics;
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
 [LargeStructure]
-[Equals]
 [GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public ref partial struct AnalysisContext(
 	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "public", NamingRule = ">@")]
 	ref readonly Grid grid,

@@ -3,8 +3,8 @@ namespace Sudoku.Concepts.ObjectModel;
 /// <summary>
 /// Represents for a normal blossom branch collection.
 /// </summary>
-[Equals]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class NormalBlossomBranchCollection :
 	DeathBlossomBranchCollection<NormalBlossomBranchCollection, Digit>,
 	IEqualityOperators<NormalBlossomBranchCollection, NormalBlossomBranchCollection, bool>

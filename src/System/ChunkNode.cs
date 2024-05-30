@@ -7,8 +7,10 @@ namespace System;
 /// <seealso cref="ReadOnlyChunk{T}"/>
 [StructLayout(LayoutKind.Explicit)]
 [CollectionBuilder(typeof(ChunkNodeBuilder), nameof(ChunkNodeBuilder.Create))]
-[LargeStructure]
-[Equals(EqualsBehavior.ThrowNotSupportedException)]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode,
+	IsLargeStructure = true,
+	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException)]
 [GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
 public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>

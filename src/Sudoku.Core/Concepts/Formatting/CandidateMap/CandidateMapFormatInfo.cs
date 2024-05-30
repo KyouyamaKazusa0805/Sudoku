@@ -4,9 +4,11 @@ namespace Sudoku.Concepts;
 /// Represents extra options that formats a <see cref="CandidateMap"/> instance, or parses into a <see cref="CandidateMap"/> instance.
 /// </summary>
 /// <seealso cref="CandidateMap"/>
-[Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [EqualityOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
+	OtherModifiersOnEquals = "sealed")]
 public abstract partial class CandidateMapFormatInfo :
 	IEquatable<CandidateMapFormatInfo>,
 	IEqualityOperators<CandidateMapFormatInfo, CandidateMapFormatInfo, bool>,

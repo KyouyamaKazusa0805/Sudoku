@@ -10,10 +10,10 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [DebuggerDisplay($$"""{{{nameof(DebuggerDisplayString)}},nq}""")]
 [StructLayout(LayoutKind.Auto)]
-[Equals]
 [GetHashCode]
 [ToString]
 [EqualityOperators]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct ChainNode([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IEquatable<ChainNode>,

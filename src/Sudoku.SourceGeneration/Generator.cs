@@ -12,6 +12,7 @@ public sealed class Generator : IIncrementalGenerator
 	public void Initialize(IncrementalGeneratorInitializationContext context)
 	{
 		PrimaryConstructor(context);
+		TypeImpl(context);
 		ObjectOverridden(context);
 		Operators(context);
 		ImplicitField(context);
@@ -33,16 +34,6 @@ public sealed class Generator : IIncrementalGenerator
 
 	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)
 	{
-		const string equalsAttributeName = "System.SourceGeneration.EqualsAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(equalsAttributeName, IsPartialTypePredicate, EqualsHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			EqualsHandler.Output
-		);
-
 		const string getHashCodeAttributeName = "System.SourceGeneration.GetHashCodeAttribute";
 		context.RegisterSourceOutput(
 			context.SyntaxProvider
@@ -99,6 +90,20 @@ public sealed class Generator : IIncrementalGenerator
 				.Select(NotNullSelector)
 				.Collect(),
 			ImplicitFieldHandler.Output
+		);
+
+	private void TypeImpl(IncrementalGeneratorInitializationContext context)
+		=> context.RegisterSourceOutput(
+			context.SyntaxProvider
+				.ForAttributeWithMetadataName(
+					"System.SourceGeneration.TypeImplAttribute",
+					IsPartialTypePredicate,
+					TypeImplHandler.Transform
+				)
+				.Where(NotNullPredicate)
+				.Select(NotNullSelector)
+				.Collect(),
+			TypeImplHandler.Output
 		);
 }
 

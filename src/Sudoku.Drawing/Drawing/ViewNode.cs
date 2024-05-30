@@ -17,10 +17,11 @@ namespace Sudoku.Drawing;
 [JsonDerivedType(typeof(DiamondViewNode), 13)]
 [JsonDerivedType(typeof(StarViewNode), 14)]
 [JsonDerivedType(typeof(HeartViewNode), 15)]
-[Equals]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [ToString(ToStringBehavior.MakeAbstract)]
 [EqualityOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public abstract partial class ViewNode(ColorIdentifier identifier) :
 	IEquatable<ViewNode>,
 	IEqualityOperators<ViewNode, ViewNode, bool>,

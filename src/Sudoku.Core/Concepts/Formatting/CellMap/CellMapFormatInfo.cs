@@ -4,9 +4,11 @@ namespace Sudoku.Concepts;
 /// Represents extra options that formats a <see cref="CellMap"/> instance, or parses into a <see cref="CellMap"/> instance.
 /// </summary>
 /// <seealso cref="CellMap"/>
-[Equals(OtherModifiers = "sealed")]
 [GetHashCode(GetHashCodeBehavior.MakeAbstract)]
 [EqualityOperators]
+[TypeImpl(
+	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
+	OtherModifiersOnEquals = "sealed")]
 public abstract partial class CellMapFormatInfo :
 	IEquatable<CellMapFormatInfo>,
 	IEqualityOperators<CellMapFormatInfo, CellMapFormatInfo, bool>,
