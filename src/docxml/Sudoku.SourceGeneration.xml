@@ -168,7 +168,13 @@
             <summary>
             Represents a behavior for generating <see cref="M:System.Object.Equals(System.Object)"/> method.
             </summary>
-            <see cref="M:System.Object.Equals(System.Object)"/>
+            <seealso cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="T:Sudoku.SourceGeneration.Handlers.GetHashCodeBehavior">
+            <summary>
+            Represents a behavior for generating <see cref="M:System.Object.GetHashCode"/> method.
+            </summary>
+            <seealso cref="M:System.Object.GetHashCode"/>
         </member>
         <member name="T:Sudoku.SourceGeneration.LocalMemberKinds">
             <summary>

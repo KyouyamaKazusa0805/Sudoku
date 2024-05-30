@@ -4,8 +4,8 @@ namespace Sudoku.Strategying.Constraints;
 /// Represents a conclusion constraint.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class ConclusionConstraint : Constraint
 {
 	/// <summary>

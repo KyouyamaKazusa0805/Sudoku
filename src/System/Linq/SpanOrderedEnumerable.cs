@@ -12,7 +12,6 @@ namespace System.Linq;
 /// </param>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[GetHashCode]
 [ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]

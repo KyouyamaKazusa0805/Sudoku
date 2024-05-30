@@ -9,7 +9,7 @@ namespace Sudoku.Generating.JustOneCell;
 /// <param name="baseGrid">Indicates the base grid.</param>
 /// <param name="interferingCells"><inheritdoc/></param>
 /// <param name="interferingRatio"><inheritdoc/></param>
-[GetHashCode]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public abstract partial class PhasedJustOneCellPuzzle(
 	Cell cell,
 	Digit digit,

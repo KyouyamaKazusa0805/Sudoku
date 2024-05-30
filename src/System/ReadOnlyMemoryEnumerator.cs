@@ -7,7 +7,6 @@ namespace System;
 /// <seealso cref="ReadOnlyMemory{T}"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[GetHashCode]
 [ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -6,7 +6,6 @@ namespace System.Numerics;
 /// <param name="bitCount">Indicates the number of bits.</param>
 /// <param name="oneCount">Indicates the number of bits set <see langword="true"/>.</param>
 [DebuggerStepThrough]
-[GetHashCode]
 [ToString]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]

@@ -4,8 +4,8 @@ namespace Sudoku.Drawing;
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses palette ID value to distinct with colors.
 /// </summary>
 /// <param name="value">The palette color ID value to be assigned. The color palette requires implementation of target projects.</param>
-[GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class PaletteIdColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] int value) : ColorIdentifier
 {

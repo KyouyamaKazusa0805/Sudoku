@@ -34,16 +34,6 @@ public sealed class Generator : IIncrementalGenerator
 
 	private void ObjectOverridden(IncrementalGeneratorInitializationContext context)
 	{
-		const string getHashCodeAttributeName = "System.SourceGeneration.GetHashCodeAttribute";
-		context.RegisterSourceOutput(
-			context.SyntaxProvider
-				.ForAttributeWithMetadataName(getHashCodeAttributeName, IsPartialTypePredicate, GetHashCodeHandler.Transform)
-				.Where(NotNullPredicate)
-				.Select(NotNullSelector)
-				.Collect(),
-			GetHashCodeHandler.Output
-		);
-
 		const string toStringAttributeName = "System.SourceGeneration.ToStringAttribute";
 		context.RegisterSourceOutput(
 			context.SyntaxProvider

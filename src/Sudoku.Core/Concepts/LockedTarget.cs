@@ -10,7 +10,6 @@ namespace Sudoku.Concepts;
 /// <include file="../../global-doc-comments.xml" path="/g/large-structure"/>
 /// </remarks>
 [StructLayout(LayoutKind.Auto)]
-[GetHashCode]
 [EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 [method: JsonConstructor]

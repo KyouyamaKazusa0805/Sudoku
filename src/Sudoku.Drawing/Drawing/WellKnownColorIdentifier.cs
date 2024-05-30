@@ -4,8 +4,8 @@ namespace Sudoku.Drawing;
 /// Defines a <see cref="ColorIdentifier"/> derived type that uses well-known kinds to distinct with colors.
 /// </summary>
 /// <param name="kind">The well-known identifier kind to be assigned.</param>
-[GetHashCode]
 [ToString(ToStringBehavior.RecordLike)]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class WellKnownColorIdentifier([PrimaryConstructorParameter, HashCodeMember, StringMember] WellKnownColorIdentifierKind kind) :
 	ColorIdentifier

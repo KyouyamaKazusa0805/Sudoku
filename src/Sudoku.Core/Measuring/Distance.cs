@@ -9,7 +9,6 @@ namespace Sudoku.Measuring;
 /// <remarks>
 /// This type is implemented via irrational numbers logic that only takes a square root.
 /// </remarks>
-[GetHashCode]
 [EqualityOperators]
 [ComparisonOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators | TypeImplFlag.ComparisonOperators)]

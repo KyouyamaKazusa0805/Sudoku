@@ -3,7 +3,7 @@ namespace Sudoku.Generating;
 /// <summary>
 /// Represents a full puzzle.
 /// </summary>
-[GetHashCode]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public abstract partial class FullPuzzle : PuzzleBase
 {
 	/// <summary>

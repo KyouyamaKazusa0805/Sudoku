@@ -3,8 +3,8 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents minimal constraint.
 /// </summary>
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class MinimalConstraint : Constraint
 {
 	/// <summary>

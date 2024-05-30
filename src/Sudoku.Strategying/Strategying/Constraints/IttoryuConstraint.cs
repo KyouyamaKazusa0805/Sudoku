@@ -3,8 +3,8 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
 /// </summary>
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class IttoryuConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <summary>

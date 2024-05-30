@@ -3,8 +3,8 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a primary single constraint.
 /// </summary>
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class PrimarySingleConstraint : Constraint
 {
 	/// <summary>

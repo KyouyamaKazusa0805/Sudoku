@@ -5,8 +5,8 @@ namespace Sudoku.Drawing.Nodes;
 /// </summary>
 /// <param name="identifier"><inheritdoc/></param>
 /// <param name="house">Indicates the house highlighted.</param>
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 [method: JsonConstructor]
 public sealed partial class HouseViewNode(ColorIdentifier identifier, [PrimaryConstructorParameter, HashCodeMember, StringMember] House house) :
 	BasicViewNode(identifier)

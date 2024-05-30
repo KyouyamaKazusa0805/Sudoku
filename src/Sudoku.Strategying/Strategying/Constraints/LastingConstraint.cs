@@ -3,8 +3,8 @@ namespace Sudoku.Strategying.Constraints;
 /// <summary>
 /// Represents a lasting constraint.
 /// </summary>
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class LastingConstraint : Constraint, ILimitCountConstraint<int>, IComparisonOperatorConstraint
 {
 	/// <inheritdoc/>

@@ -5292,25 +5292,6 @@
             Indicates the method will be made <see langword="abstract"/>.
             </summary>
         </member>
-        <member name="T:System.SourceGeneration.GetHashCodeAttribute">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.GetHashCode"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:System.SourceGeneration.GetHashCodeAttribute.#ctor(System.SourceGeneration.GetHashCodeBehavior)">
-            <summary>
-            Represents an attribute type that allows source generators controlling behaviors on generating <see cref="M:System.Object.GetHashCode"/> method.
-            </summary>
-            <param name="behavior">Represents a kind of behavior on generated expression on comparing equality for instances.</param>
-            <seealso cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="P:System.SourceGeneration.GetHashCodeAttribute.Behavior">
-            <summary>
-            The generated property declaration for parameter <c>behavior</c>.
-            </summary>
-        </member>
         <member name="T:System.SourceGeneration.GetHashCodeBehavior">
             <summary>
             Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
@@ -5766,12 +5747,25 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
             </summary>
         </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnGetHashCode">
+            <summary>
+            Indicates the extra modifiers can be applied to <see cref="M:System.Object.GetHashCode"/> method.
+            </summary>
+        </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.EqualsBehavior">
             <summary>
-            Represents a kind of behavior on generated expression on comparing equality for instances.
+            Defines a behavior by source generator on generating <see cref="M:System.Object.Equals(System.Object)"/> overridden methods.
             </summary>
             <remarks>
             The value is <see cref="F:System.SourceGeneration.EqualsBehavior.Intelligent"/> by default.
+            </remarks>
+        </member>
+        <member name="P:System.SourceGeneration.TypeImplAttribute.GetHashCodeBehavior">
+            <summary>
+            Defines a behavior by source generator on generating <see cref="M:System.Object.GetHashCode"/> overridden methods.
+            </summary>
+            <remarks>
+            The value is <see cref="F:System.SourceGeneration.GetHashCodeBehavior.Intelligent"/> by default.
             </remarks>
         </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.Flags">

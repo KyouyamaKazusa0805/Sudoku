@@ -10,8 +10,8 @@ namespace System;
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode,
 	IsLargeStructure = true,
-	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException)]
-[GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
+	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
+	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException)]
 [SuppressMessage("Usage", "CA2231:Overload operator equals on overriding value type Equals", Justification = "<Pending>")]
 public readonly unsafe partial struct ChunkNode<T> : IEnumerable<T>
 {

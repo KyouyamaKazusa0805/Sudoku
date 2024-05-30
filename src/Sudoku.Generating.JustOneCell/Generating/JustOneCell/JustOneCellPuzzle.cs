@@ -17,7 +17,7 @@ namespace Sudoku.Generating.JustOneCell;
 /// </param>
 /// <param name="interferingCells">Indicates the interfering digits.</param>
 /// <param name="interferingRatio">Indicates the interfering ratio.</param>
-[GetHashCode]
+[TypeImpl(TypeImplFlag.Object_GetHashCode)]
 public abstract partial class JustOneCellPuzzle(
 	[PrimaryConstructorParameter] Cell cell,
 	[PrimaryConstructorParameter] Digit digit,

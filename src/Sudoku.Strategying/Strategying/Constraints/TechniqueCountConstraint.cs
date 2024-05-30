@@ -5,8 +5,8 @@ namespace Sudoku.Strategying.Constraints;
 /// contains the specified techniques.
 /// </summary>
 [ConstraintOptions(AllowsMultiple = true)]
-[GetHashCode]
 [ToString]
+[TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
 public sealed partial class TechniqueCountConstraint : Constraint, IComparisonOperatorConstraint, ILimitCountConstraint<int>
 {
 	/// <inheritdoc/>

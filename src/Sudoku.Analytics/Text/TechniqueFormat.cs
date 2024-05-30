@@ -8,11 +8,11 @@ namespace Sudoku.Text;
 /// <seealso cref="Step"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
-[GetHashCode(GetHashCodeBehavior.ThrowNotSupportedException)]
 [EqualityOperators]
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
-	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException)]
+	EqualsBehavior = EqualsBehavior.ThrowNotSupportedException,
+	GetHashCodeBehavior = GetHashCodeBehavior.ThrowNotSupportedException)]
 [method: EditorBrowsable(EditorBrowsableState.Never)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public partial struct TechniqueFormat([PrimaryConstructorParameter(MemberKinds.Field)] string techniqueName)

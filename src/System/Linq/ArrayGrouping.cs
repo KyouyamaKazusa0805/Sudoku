@@ -9,7 +9,6 @@ namespace System.Linq;
 /// <param name="elements">Indicates the elements.</param>
 /// <param name="key">Indicates the key that can compare each element.</param>
 [DebuggerStepThrough]
-[GetHashCode]
 [ToString]
 [EqualityOperators]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]

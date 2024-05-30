@@ -23,10 +23,23 @@ public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] Type
 	public string? OtherModifiersOnEquals { get; init; }
 
 	/// <summary>
-	/// Represents a kind of behavior on generated expression on comparing equality for instances.
+	/// Indicates the extra modifiers can be applied to <see cref="object.GetHashCode"/> method.
+	/// </summary>
+	public string? OtherModifiersOnGetHashCode { get; init; }
+
+	/// <summary>
+	/// Defines a behavior by source generator on generating <see cref="object.Equals(object?)"/> overridden methods.
 	/// </summary>
 	/// <remarks>
 	/// The value is <see cref="EqualsBehavior.Intelligent"/> by default.
 	/// </remarks>
 	public EqualsBehavior EqualsBehavior { get; init; } = EqualsBehavior.Intelligent;
+
+	/// <summary>
+	/// Defines a behavior by source generator on generating <see cref="object.GetHashCode"/> overridden methods.
+	/// </summary>
+	/// <remarks>
+	/// The value is <see cref="GetHashCodeBehavior.Intelligent"/> by default.
+	/// </remarks>
+	public GetHashCodeBehavior GetHashCodeBehavior { get; init; } = GetHashCodeBehavior.Intelligent;
 }
