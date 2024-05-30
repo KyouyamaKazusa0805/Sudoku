@@ -76,7 +76,7 @@
     </Project>
   </Folder>
   <Folder Name="/Projects - Drawing APIs/">
-    <Project Path="src\Sudoku.Drawing.Drawing2D\Sudoku.Drawing.Drawing2D.csproj" Type="Classic C#">
+    <Project Path="src\Sudoku.Drawing.Drawing2D\Sudoku.Drawing.Drawing2D.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
     <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
@@ -130,7 +130,7 @@
     </Project>
   </Folder>
   <Folder Name="/Projects - Text APIs/">
-    <Project Path="src\Sudoku.Text.Tokenization\Sudoku.Text.Tokenization.csproj" Type="Classic C#">
+    <Project Path="src\Sudoku.Text.Tokenization\Sudoku.Text.Tokenization.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>

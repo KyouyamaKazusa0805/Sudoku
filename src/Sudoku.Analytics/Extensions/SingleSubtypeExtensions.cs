@@ -12,13 +12,6 @@ public static class SingleSubtypeExtensions
 	internal const string Message_UnnecessaryTechniqueCannotBeReferenced = "This field can only be used in reflection or other unreferenced environment.";
 
 
-	/// <summary>
-	/// Indicates the values of <see cref="SingleSubtype"/> instances.
-	/// </summary>
-	private static readonly SingleSubtype[] Values = Enum.GetValues<SingleSubtype>();
-
-
-
 #pragma warning disable CS0618
 	/// <summary>
 	/// Indicates whether the specified subtype is unnecessary in practice.
@@ -68,7 +61,7 @@ public static class SingleSubtypeExtensions
 	/// <param name="this">Indicates the subtype.</param>
 	/// <returns>The abbreviation.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static string? GetAbbreviation(this SingleSubtype @this) => @this.GetAttribute().Abbreviation;
+	public static string? GetAbbreviation(this SingleSubtype @this) => @this.GetAttribute()?.Abbreviation;
 
 	/// <summary>
 	/// Try to get the related technique of the current subtype.

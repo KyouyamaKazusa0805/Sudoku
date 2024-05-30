@@ -4391,11 +4391,6 @@
             Represents message to be used by reporting deprecated information "Unncessary technique cannot be referenced".
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.Values">
-            <summary>
-            Indicates the values of <see cref="T:Sudoku.Analytics.Categorization.SingleSubtype"/> instances.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.Categorization.SingleSubtypeExtensions.IsUnnecessary(Sudoku.Analytics.Categorization.SingleSubtype)">
             <summary>
             Indicates whether the specified subtype is unnecessary in practice.
