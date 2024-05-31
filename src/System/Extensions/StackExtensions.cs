@@ -18,7 +18,6 @@ public static class StackExtensions
 		{
 			result.Push(element);
 		}
-
 		return result;
 	}
 }

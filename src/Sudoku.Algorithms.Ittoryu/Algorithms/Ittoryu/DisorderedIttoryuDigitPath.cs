@@ -5,6 +5,7 @@ namespace Sudoku.Algorithms.Ittoryu;
 /// </summary>
 /// <param name="Digits">The digits path.</param>
 [CollectionBuilder(typeof(DisorderedIttoryuDigitPath), nameof(Create))]
+[DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.ComparisonOperators)]
 public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits) :
 	IComparable<DisorderedIttoryuDigitPath>,
@@ -73,7 +74,6 @@ public readonly partial record struct DisorderedIttoryuDigitPath(Digit[] Digits)
 	/// <returns>A <see cref="DisorderedIttoryuDigitPath"/> instance.</returns>
 	[EditorBrowsable(EditorBrowsableState.Never)]
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	[DebuggerStepThrough]
 	public static DisorderedIttoryuDigitPath Create(ReadOnlySpan<Digit> digits) => new([.. digits]);
 
 
