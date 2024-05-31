@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Provides with extension methods on <see cref="CellMap"/>.
 /// </summary>
 /// <seealso cref="CellMap"/>
-public static class CellMapTokenExtensions
+public static class CellMapToken
 {
 	/// <summary>
 	/// Indicates the token to the current instance.
@@ -20,7 +20,7 @@ public static class CellMapTokenExtensions
 		{
 			foreach (var element in z)
 			{
-				sb.Append(GridTokenExtensions.Base32CharSpan[element]);
+				sb.Append(GridToken.Base32CharSpan[element]);
 			}
 		}
 		return sb.ToString();
@@ -63,7 +63,7 @@ public static class CellMapTokenExtensions
 			18 => CellMap.Parse(
 				string.Concat(
 					from i in Digits[..3]
-					let segment = GridTokenExtensions.GetDigitViaToken(token[(i * 6)..((i + 1) * 6)]).ToString()
+					let segment = GridToken.GetDigitViaToken(token[(i * 6)..((i + 1) * 6)]).ToString()
 					let binary = Convert.ToString(int.Parse(segment), 2)
 					select binary.PadLeft(27, '0')
 				),

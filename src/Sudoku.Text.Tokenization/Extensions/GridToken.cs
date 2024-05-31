@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Provides with extension methods on <see cref="Grid"/>.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridTokenExtensions
+public static class GridToken
 {
 	/// <inheritdoc/>
 	/// <summary>
