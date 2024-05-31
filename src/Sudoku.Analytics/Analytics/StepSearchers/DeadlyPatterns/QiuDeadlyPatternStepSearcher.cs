@@ -353,13 +353,14 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		if ((grid[in crossline] & cornerDigitsMask) == cornerDigitsMask)
 		{
 			// Check whether the number of empty cross-line cells are same as the number of locked digits.
+			// Counter-example:
+			//   .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:211 711 412 213 713 215 235 251 451 751 452 261 761
 			if (PopCount((uint)cornerDigitsMask) > (crossline & EmptyCells).Count)
 			{
 				return null;
 			}
 
-			// Counter-example:
-			//   .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:211 711 412 213 713 215 235 251 451 751 452 261 761
+			// Now check for subtypes.
 			var mirror = pattern.Mirror;
 			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{
@@ -918,6 +919,16 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Check whether the block where cross-line cells is lying,
+		// contains empty cells if it is not categorized as cross-line or the target cell (where eliminations are raised).
+		// Counter-example:
+		//   +67+13..9..+3.+85..+61.52.+1.6+38.8+6......+1.35+61.72.+1.......6+28.7..+163+71+3.+62....+56.+31+27.:425 426 443 943 245 446 948 956 459 463 963 864 964 265 965 466 866 966 467 476
+		var cellsShouldNotBeEmpty = (HousesMap[Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror) - targetCell;
+		if (cellsShouldNotBeEmpty & EmptyCells)
+		{
+			return null;
+		}
+
 		var elimDigits = (Mask)(grid.GetCandidates(targetCell) & ~externalDigitsMaskToBeChecked);
 		if (elimDigits == 0)
 		{
@@ -1012,10 +1023,17 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			return null;
 		}
 
+		// Check whether the block where cross-line cells is lying,
+		// contains empty cells if it is not categorized as cross-line or the target cell (where eliminations are raised).
+		var cellsShouldNotBeEmpty = HousesMap[Log2((uint)crossline.BlockMask)] & ~crossline & ~mirror & ~truth;
+		if (cellsShouldNotBeEmpty & EmptyCells)
+		{
+			return null;
+		}
+
 		// Check whether other digits cannot be eliminated are locked in the cross-line cells.
 		// Counter-example:
-		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:
-		//       825 826 833 837 839 844 254 854 255 256 864 477 877 779 789 495 496 499 799
+		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:825 826 833 837 839 844 254 854 255 256 864 477 877 779 789 495 496 499 799
 		var allOtherDigitsAreLockedInCrosslineCells = true;
 		var crosslineBlock = HousesMap[Log2((uint)crossline.BlockMask)] & EmptyCells;
 		foreach (var digit in (Mask)(externalDigitsMaskToBeChecked & (Mask)~(1 << elimDigit)))
