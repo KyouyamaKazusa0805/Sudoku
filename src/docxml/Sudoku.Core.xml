@@ -6587,6 +6587,13 @@
             <param name="houses">The houses.</param>
             <returns>A <see cref="T:System.Int32"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Runtime.MaskServices.HouseMaskOperations.SplitMask(System.Int32)">
+            <summary>
+            Try to split mask into three parts.
+            </summary>
+            <param name="this">The mask to be split.</param>
+            <returns>The mask split.</returns>
+        </member>
         <member name="T:Sudoku.Runtime.MaskServices.MaskOperations">
             <summary>
             Provides with a set of methods that operates with mask defined in basic sudoku concepts, as data structures.

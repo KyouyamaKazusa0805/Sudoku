@@ -50,14 +50,10 @@ public readonly partial struct Fish(
 			[MethodImpl(MethodImplOptions.AggressiveInlining)]
 			static FishShapeKind k(HouseMask mask)
 			{
-				var blockMask = mask & Grid.MaxCandidatesMask;
-				var rowMask = mask >> 9 & Grid.MaxCandidatesMask;
-				var columnMask = mask >> 18 & Grid.MaxCandidatesMask;
-				return rowMask * columnMask != 0
+				var (blockMask, rowMask, columnMask) = mask.SplitMask();
+				return rowMask != 0 && columnMask != 0
 					? FishShapeKind.Mutant
-					: (rowMask | columnMask) != 0 && blockMask != 0
-						? FishShapeKind.Franken
-						: FishShapeKind.Basic;
+					: (Mask)(rowMask | columnMask) != 0 && blockMask != 0 ? FishShapeKind.Franken : FishShapeKind.Basic;
 			}
 		}
 	}
