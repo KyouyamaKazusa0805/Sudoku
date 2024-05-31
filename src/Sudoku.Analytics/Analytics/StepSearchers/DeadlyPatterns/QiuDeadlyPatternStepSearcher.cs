@@ -267,11 +267,28 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 		}
 
 		// Check whether cross-line cells contain the base digits.
-		// Counter-example:
-		//     .+5243+19+6..3+67...1519.....2.2.......694.......+5+6....74+93.9......6.+5.1.....8.5..69.:
-		//       825 826 833 837 839 844 254 255 256 779 789 495 496 499 799
 		var cornerDigitsMask = grid[in corner];
 		if ((grid[crossline & ~EmptyCells, true] & cornerDigitsMask) != 0)
+		{
+			return null;
+		}
+
+		// Check whether at least one cross-line has fully covered by value digits.
+		// Counter-example (Wrong):
+		//   .+9.5+17...51.9+4.+7.....38.+59124+5+7+6+1+839.....+9.+5.96...+5.1773..54.......+93.75.+5.2+78...:411 611 413 417 353 853 173 873 883 687
+		var atLeastOneCrosslineIsFullyCoveredByValueDigits = false;
+		foreach (var baseCell in pattern.Corner)
+		{
+			var lineType = TrailingZeroCount((uint)pattern.Lines) < 18 ? HouseType.Row : HouseType.Column;
+			var lineTypeTransposed = lineType == HouseType.Row ? HouseType.Column : HouseType.Row;
+			var coveredCrossline = PeersMap[baseCell] & HousesMap[baseCell.ToHouseIndex(lineTypeTransposed)] & pattern.Crossline;
+			if (!(coveredCrossline & EmptyCells))
+			{
+				atLeastOneCrosslineIsFullyCoveredByValueDigits = true;
+				break;
+			}
+		}
+		if (atLeastOneCrosslineIsFullyCoveredByValueDigits)
 		{
 			return null;
 		}
@@ -342,8 +359,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 			}
 
 			// Counter-example:
-			//     .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:
-			//       211 711 412 213 713 215 235 251 451 751 452 261 761
+			//   .....+8936+95+31+64+7+8+2.+6+8..+9+5+1+46.9.+1+78+2+5...+8.+6+3+9..+8.+9.5+64..+9.68+1+4+5+3+81+6..+3+27+9...+792+1+6+8:211 711 412 213 713 215 235 251 451 751 452 261 761
 			var mirror = pattern.Mirror;
 			if (BaseType_ExternalType1(ref context, in corner, in crossline, in mirror, in grid, l1, l2, cornerDigitsMask) is { } externalType1Step)
 			{

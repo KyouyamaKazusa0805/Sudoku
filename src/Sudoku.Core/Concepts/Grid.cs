@@ -601,7 +601,7 @@ public partial struct Grid :
 			};
 			foreach (var cell in cells)
 			{
-				if (!withValueCells && GetState(cell) != CellState.Empty || withValueCells)
+				if (withValueCells || GetState(cell) == CellState.Empty)
 				{
 					mergingFunctionPtr(ref result, in this, cell);
 				}
