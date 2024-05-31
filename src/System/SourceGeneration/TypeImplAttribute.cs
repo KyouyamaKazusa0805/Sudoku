@@ -22,10 +22,12 @@ public sealed partial class TypeImplAttribute([PrimaryConstructorParameter] Type
 	/// </summary>
 	public string? OtherModifiersOnEquals { get; init; }
 
+#if false
 	/// <summary>
 	/// Indicates the extra modifiers can be applied to <see cref="object.GetHashCode"/> method.
 	/// </summary>
 	public string? OtherModifiersOnGetHashCode { get; init; }
+#endif
 
 	/// <summary>
 	/// Indicates the extra modifiers can be applied to <see cref="object.ToString"/> method.

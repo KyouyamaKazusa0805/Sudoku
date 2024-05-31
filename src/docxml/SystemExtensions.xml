@@ -5689,11 +5689,6 @@
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.Equals(System.Object)"/> method.
             </summary>
         </member>
-        <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnGetHashCode">
-            <summary>
-            Indicates the extra modifiers can be applied to <see cref="M:System.Object.GetHashCode"/> method.
-            </summary>
-        </member>
         <member name="P:System.SourceGeneration.TypeImplAttribute.OtherModifiersOnToString">
             <summary>
             Indicates the extra modifiers can be applied to <see cref="M:System.Object.ToString"/> method.
