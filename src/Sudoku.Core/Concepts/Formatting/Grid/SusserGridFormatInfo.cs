@@ -3,12 +3,12 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a <see cref="GridFormatInfo"/> type that supports Susser formatting.
 /// </summary>
-public partial class SusserGridFormatInfo : GridFormatInfo
+public sealed partial class SusserGridFormatInfo : GridFormatInfo
 {
 	/// <summary>
 	/// Indicates the modifiable prefix character.
 	/// </summary>
-	protected const char ModifiablePrefix = '+';
+	private const char ModifiablePrefix = '+';
 
 	/// <summary>
 	/// Indicates the line separator character used by shortening Susser format.
