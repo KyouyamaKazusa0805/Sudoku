@@ -93,10 +93,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Regular Wing (XY-Wing, XYZ-Wing, etc.)
     * Irregular Wing[^2]
       * W-Wing (Non-grouped, Grouped, Multi-Branch)
-      * M-Wing (Non-grouped, Grouped)
-      * S-Wing (Non-grouped, Grouped)
-      * H-Wing (Non-grouped, Grouped)
-      * L-Wing (Non-grouped, Grouped)
+      * M/S/H/L-Wing (Non-grouped, Grouped)
     * XYZ-Loops (Non-nice, Nice)
   * Uniqueness
     * UR (Unique Rectangle)
@@ -120,7 +117,7 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Death Blossom
       * Cell Blooming
       * House Blooming
-      * Unique/Avoidable Rectangle Blooming
+      * Unique/Avoidable Rectangle Blooming (Missing test examples)
       * $\text{A}^n\text{LS}$ Blooming
   * Rank Logic
     * 0 Ranks
@@ -138,8 +135,6 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Double JE (Double Junior Exocet)
     * WE (Weak Excocet)
     * Complex Exocet
-      * Complex JE (Complex Junior Exocet)
-      * Complex SE (Complex Senior Exocet)
   * Symmetrical Placements
     * GSP (Gurth's Symmetrical Placements, Normal & Anti Type)
   * Permutations

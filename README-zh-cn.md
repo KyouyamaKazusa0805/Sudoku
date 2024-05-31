@@ -93,10 +93,7 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
     * 规则 Wing（XY-Wing、XYZ-Wing 等）
     * 不规则 Wing
       * W-Wing（标准、区块、多分支类型）
-      * M-Wing（标准、区块类型）
-      * S-Wing（标准、区块类型）
-      * H-Wing（标准、区块类型）
-      * L-Wing（标准、区块类型）
+      * M-Wing、S-Wing、H-Wing、L-Wing（标准、区块类型）
     * XYZ 环（半环、全环类型）
   * 唯一性
     * 唯一矩形（UR）
@@ -138,8 +135,6 @@ API 有很多，所以这里给出其中一个[基本解题](https://sunnieshine
     * 双飞鱼
     * 衰弱飞鱼（含标准衰弱和全衰弱类型，WE）
     * 复杂飞鱼
-      * 复杂初级飞鱼
-      * 复杂高级飞鱼
   * 对称性
     * 宇宙（GSP，标准和反演类型）
   * 枚举类技巧
