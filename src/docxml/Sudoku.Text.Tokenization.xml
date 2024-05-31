@@ -4,23 +4,23 @@
         <name>Sudoku.Text.Tokenization</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Concepts.CellMapTokenExtensions">
+        <member name="T:Sudoku.Concepts.CellMapToken">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapTokenExtensions.GetToken(Sudoku.Concepts.CellMap@)">
+        <member name="M:Sudoku.Concepts.CellMapToken.GetToken(Sudoku.Concepts.CellMap@)">
             <summary>
             Indicates the token to the current instance.
             </summary>
             <param name="this">The instance.</param>
             <returns>The string token.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapTokenExtensions.CreateFromToken(System.ReadOnlySpan{System.Char})">
-            <inheritdoc cref="M:Sudoku.Concepts.CellMapTokenExtensions.CreateFromToken(System.String)"/>
+        <member name="M:Sudoku.Concepts.CellMapToken.CreateFromToken(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.CellMapToken.CreateFromToken(System.String)"/>
         </member>
-        <member name="M:Sudoku.Concepts.CellMapTokenExtensions.CreateFromToken(System.String)">
+        <member name="M:Sudoku.Concepts.CellMapToken.CreateFromToken(System.String)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.CellMap"/> instance using the specified token of length 18.
             </summary>
@@ -28,19 +28,19 @@
             <returns>A <see cref="T:Sudoku.Concepts.CellMap"/> result.</returns>
             <exception cref="T:System.FormatException">Throws when the length of the argument mismatched.</exception>
         </member>
-        <member name="T:Sudoku.Concepts.GridTokenExtensions">
+        <member name="T:Sudoku.Concepts.GridToken">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="P:Sudoku.Concepts.GridTokenExtensions.Base32CharSpan">
+        <member name="P:Sudoku.Concepts.GridToken.Base32CharSpan">
             <inheritdoc/>
             <summary>
             The character span that indicates all possible characters appeared in a number with base 32.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.GridTokenExtensions.GetToken(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.GridToken.GetToken(Sudoku.Concepts.Grid@)">
             <summary>
             Indicates the token of the grid at the initial state.
             </summary>
@@ -65,10 +65,10 @@
             </remarks>
             <exception cref="T:System.NotSupportedException">Throws when the puzzle type is Sukaku.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.GridTokenExtensions.CreateFromToken(System.ReadOnlySpan{System.Char})">
-            <inheritdoc cref="M:Sudoku.Concepts.GridTokenExtensions.CreateFromToken(System.String)"/>
+        <member name="M:Sudoku.Concepts.GridToken.CreateFromToken(System.ReadOnlySpan{System.Char})">
+            <inheritdoc cref="M:Sudoku.Concepts.GridToken.CreateFromToken(System.String)"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridTokenExtensions.CreateFromToken(System.String)">
+        <member name="M:Sudoku.Concepts.GridToken.CreateFromToken(System.String)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.Grid"/> instance using the specified token of length 54.
             </summary>
@@ -76,7 +76,7 @@
             <returns>A <see cref="T:Sudoku.Concepts.Grid"/> result.</returns>
             <exception cref="T:System.FormatException">Throws when the length of the argument mismatched.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.GridTokenExtensions.GetDigitViaToken(System.String)">
+        <member name="M:Sudoku.Concepts.GridToken.GetDigitViaToken(System.String)">
             <summary>
             Get digit via token.
             </summary>
