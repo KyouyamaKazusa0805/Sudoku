@@ -7,7 +7,7 @@ public sealed partial class SukakuGridFormatInfo : GridFormatInfo
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(SukakuGridFormatInfo) ? this : null;
+	public override object? GetFormat(Type? formatType) => formatType == typeof(GridFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] GridFormatInfo? other)

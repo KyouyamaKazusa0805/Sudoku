@@ -4,6 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents extra options that formats a <see cref="Grid"/> instance, or parses into a <see cref="Grid"/> instance.
 /// </summary>
 /// <seealso cref="Grid"/>
+/// <seealso cref="NumberFormatInfo"/>
 [TypeImpl(
 	TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators,
 	OtherModifiersOnEquals = "sealed",
@@ -143,6 +144,17 @@ public abstract partial class GridFormatInfo :
 	public string Separator { get; set; } = ", ";
 
 
+	/// <summary>
+	/// Gets a read-only System.Globalization.NumberFormatInfo object that is culture-independent (invariant).
+	/// </summary>
+	public static GridFormatInfo InvariantInfo => GetInstance(CultureInfo.InvariantCulture)!;
+
+	/// <summary>
+	/// Gets a <see cref="GridFormatInfo"/> that formats values based on the current culture.
+	/// </summary>
+	public static GridFormatInfo? CurrentInfo => GetInstance(CultureInfo.CurrentCulture);
+
+
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
 	public abstract object? GetFormat(Type? formatType);
@@ -172,12 +184,33 @@ public abstract partial class GridFormatInfo :
 
 
 	/// <summary>
+	/// Gets the <see cref="GridFormatInfo"/> associated with the specified <see cref="IFormatProvider"/>.
+	/// </summary>
+	/// <param name="formatProvider">The <see cref="IFormatProvider"/> used to get the <see cref="GridFormatInfo"/>.</param>
+	/// <returns>The <see cref="GridFormatInfo"/> associated with the specified <see cref="IFormatProvider"/>.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static GridFormatInfo? GetInstance(IFormatProvider? formatProvider)
+		=> GetInstance(
+			formatProvider switch
+			{
+				CultureInfo c => c.Name.ToLower() switch
+				{
+					['e', 'n', ..] => "@:",
+					['z', 'h', ..] => ".",
+					_ when c.Equals(CultureInfo.InvariantCulture) => "@:",
+					_ => "#"
+				},
+				_ => "#"
+			}
+		);
+
+	/// <summary>
 	/// Creates a <see cref="GridFormatInfo"/> instance that holds the specified format.
 	/// </summary>
 	/// <param name="format">The format.</param>
 	/// <returns>A valid <see cref="GridFormatInfo"/> instance.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static GridFormatInfo? Create(string? format)
+	public static GridFormatInfo? GetInstance(string? format)
 	{
 		var p = Array.FindIndex(ValuesRouter, pair => Array.IndexOf(pair.FormatChecker, format) != -1);
 		return p == -1 ? null : ValuesRouter[p].Creator();

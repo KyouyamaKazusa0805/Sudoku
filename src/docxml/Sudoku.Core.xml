@@ -3033,6 +3033,7 @@
             Represents extra options that formats a <see cref="T:Sudoku.Concepts.Grid"/> instance, or parses into a <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
+            <seealso cref="T:System.Globalization.NumberFormatInfo"/>
         </member>
         <member name="F:Sudoku.Concepts.GridFormatInfo.ValuesRouter">
             <summary>
@@ -3128,6 +3129,16 @@
             Indicaets the separator used. By default it's comma <c>", "</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.GridFormatInfo.InvariantInfo">
+            <summary>
+            Gets a read-only System.Globalization.NumberFormatInfo object that is culture-independent (invariant).
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.GridFormatInfo.CurrentInfo">
+            <summary>
+            Gets a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> that formats values based on the current culture.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.GridFormatInfo.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
@@ -3154,7 +3165,14 @@
             <param name="str">The string value to be parsed.</param>
             <returns>The <see cref="T:Sudoku.Concepts.Grid"/> as the result.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridFormatInfo.Create(System.String)">
+        <member name="M:Sudoku.Concepts.GridFormatInfo.GetInstance(System.IFormatProvider)">
+            <summary>
+            Gets the <see cref="T:Sudoku.Concepts.GridFormatInfo"/> associated with the specified <see cref="T:System.IFormatProvider"/>.
+            </summary>
+            <param name="formatProvider">The <see cref="T:System.IFormatProvider"/> used to get the <see cref="T:Sudoku.Concepts.GridFormatInfo"/>.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.GridFormatInfo"/> associated with the specified <see cref="T:System.IFormatProvider"/>.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridFormatInfo.GetInstance(System.String)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.GridFormatInfo"/> instance that holds the specified format.
             </summary>

@@ -831,10 +831,10 @@ public partial struct Grid :
 	/// <inheritdoc cref="ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly string ToString(IFormatProvider? formatProvider)
-		=> (formatProvider ?? new SusserGridFormatInfo()) switch
+		=> formatProvider switch
 		{
 			GridFormatInfo f => f.FormatGrid(in this),
-			CultureInfo c => ToString(c?.Name.ToLower() switch { ['e', 'n', ..] => "@:", ['z', 'h', ..] => ".", _ => "#" }),
+			CultureInfo c => (GridFormatInfo.GetInstance(c) ?? new SusserGridFormatInfo()).FormatGrid(in this),
 			_ => throw new FormatException()
 		};
 
@@ -850,7 +850,7 @@ public partial struct Grid :
 				GridFormatInfo f => f.FormatGrid(in this),
 				CultureInfo c => ToString(c),
 				not null when formatProvider.GetFormat(typeof(GridFormatInfo)) is GridFormatInfo g => g.FormatGrid(in this),
-				_ => GridFormatInfo.Create(format).Unwrap().FormatGrid(in this)
+				_ => GridFormatInfo.GetInstance(format).Unwrap().FormatGrid(in this)
 			}
 		};
 
