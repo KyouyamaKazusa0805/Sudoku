@@ -10,6 +10,12 @@ namespace Sudoku.Concepts;
 public static class MapCombinatorial
 {
 	/// <summary>
+	/// Indicates the size of combinatorial calculation.
+	/// </summary>
+	private const int MaxLimit = 30;
+
+
+	/// <summary>
 	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
 	/// </summary>
 	/// <param name="this">The instance to check for subsets.</param>
@@ -60,67 +66,43 @@ public static class MapCombinatorial
 
 		var n = @this.Count;
 		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
+		if (n <= MaxLimit && subsetSize <= MaxLimit)
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CellMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
-			enumerateWithLimit(subsetSize, n, subsetSize, @this.Offsets);
+			enumerate(result, subsetSize, n, subsetSize, @this.Offsets, (r, c) => r[totalIndex++] = c.AsCellMap());
 			return result;
-
-
-			void enumerateWithLimit(int size, int last, int index, Cell[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = temp.AsCellMap();
-					}
-				}
-			}
 		}
 		else
 		{
-			if (n > 30 && subsetSize > 30)
+			if (n > MaxLimit && subsetSize > MaxLimit)
 			{
 				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CellMap>();
-			enumerateWithoutLimit(subsetSize, n, subsetSize, @this.Offsets);
+			enumerate(result, subsetSize, n, subsetSize, @this.Offsets, (r, c) => r.AddRef(c.AsCellMap()));
 			return result.AsReadOnlySpan();
+		}
 
 
-			void enumerateWithoutLimit(int size, int last, int index, Cell[] offsets)
+		void enumerate<T>(T result, int size, int last, int index, Cell[] offsets, CollectionAddingHandler<T, Cell> addingAction)
+		{
+			for (var i = last; i >= index; i--)
 			{
-				for (var i = last; i >= index; i--)
+				buffer[index - 1] = i - 1;
+				if (index > 1)
 				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
+					enumerate(result, size, i - 1, index - 1, offsets, addingAction);
+				}
+				else
+				{
+					var temp = new Cell[size];
+					for (var j = 0; j < size; j++)
 					{
-						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
+						temp[j] = offsets[buffer[j]];
 					}
-					else
-					{
-						var temp = new Cell[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.AddRef(temp.AsCellMap());
-					}
+					addingAction(result, temp);
 				}
 			}
 		}
@@ -142,67 +124,43 @@ public static class MapCombinatorial
 
 		var n = @this.Count;
 		var buffer = stackalloc int[subsetSize];
-		if (n <= 30 && subsetSize <= 30)
+		if (n <= MaxLimit && subsetSize <= MaxLimit)
 		{
 			// Optimization: Use table to get the total number of result elements.
 			var totalIndex = 0;
 			var result = new CandidateMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
-			enumerateWithLimit(subsetSize, n, subsetSize, @this.Offsets);
+			enumerate(result, subsetSize, n, subsetSize, @this.Offsets, (r, c) => result[totalIndex++] = c.AsCandidateMap());
 			return result;
-
-
-			void enumerateWithLimit(int size, int last, int index, Candidate[] offsets)
-			{
-				for (var i = last; i >= index; i--)
-				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
-					{
-						enumerateWithLimit(size, i - 1, index - 1, offsets);
-					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result[totalIndex++] = [.. temp];
-					}
-				}
-			}
 		}
 		else
 		{
-			if (n > 30 && subsetSize > 30)
+			if (n > MaxLimit && subsetSize > MaxLimit)
 			{
 				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
 			}
 			var result = new List<CandidateMap>();
-			enumerateWithoutLimit(subsetSize, n, subsetSize, @this.Offsets);
+			enumerate(result, subsetSize, n, subsetSize, @this.Offsets, (r, c) => result.AddRef(c.AsCandidateMap()));
 			return result.AsReadOnlySpan();
+		}
 
 
-			void enumerateWithoutLimit(int size, int last, int index, Candidate[] offsets)
+		void enumerate<T>(T result, int size, int last, int index, Candidate[] offsets, CollectionAddingHandler<T, Candidate> addingAction)
+		{
+			for (var i = last; i >= index; i--)
 			{
-				for (var i = last; i >= index; i--)
+				buffer[index - 1] = i - 1;
+				if (index > 1)
 				{
-					buffer[index - 1] = i - 1;
-					if (index > 1)
+					enumerate(result, size, i - 1, index - 1, offsets, addingAction);
+				}
+				else
+				{
+					var temp = new Candidate[size];
+					for (var j = 0; j < size; j++)
 					{
-						enumerateWithoutLimit(size, i - 1, index - 1, offsets);
+						temp[j] = offsets[buffer[j]];
 					}
-					else
-					{
-						var temp = new Candidate[size];
-						for (var j = 0; j < size; j++)
-						{
-							temp[j] = offsets[buffer[j]];
-						}
-
-						result.AddRef([.. temp]);
-					}
+					addingAction(result, temp);
 				}
 			}
 		}
@@ -276,3 +234,14 @@ public static class MapCombinatorial
 		return result.AsReadOnlySpan();
 	}
 }
+
+/// <summary>
+/// The file-local handler on <see cref="CellMap"/> and <see cref="CandidateMap"/> adding operation, with a new element.
+/// </summary>
+/// <typeparam name="T">The result collection. The collection can be an array or a list.</typeparam>
+/// <typeparam name="TElement">The type of each element.</typeparam>
+/// <param name="result">The result instance.</param>
+/// <param name="cells">The values to be added.</param>
+/// <seealso cref="CellMap"/>
+/// <seealso cref="CandidateMap"/>
+file delegate void CollectionAddingHandler<T, TElement>(T result, TElement[] cells);

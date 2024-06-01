@@ -5225,6 +5225,11 @@
             <seealso cref="T:Sudoku.Concepts.CellMap"/>
             <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
+        <member name="F:Sudoku.Concepts.MapCombinatorial.MaxLimit">
+            <summary>
+            Indicates the size of combinatorial calculation.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsets(Sudoku.Concepts.CellMap@,System.Int32)">
             <summary>
             Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
@@ -5293,6 +5298,17 @@
         </member>
         <member name="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CandidateMap@,System.Int32)">
             <inheritdoc cref="M:Sudoku.Concepts.MapCombinatorial.GetSubsetsBelow(Sudoku.Concepts.CellMap@,System.Int32)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.CollectionAddingHandler`2">
+            <summary>
+            The file-local handler on <see cref="T:Sudoku.Concepts.CellMap"/> and <see cref="T:Sudoku.Concepts.CandidateMap"/> adding operation, with a new element.
+            </summary>
+            <typeparam name="T">The result collection. The collection can be an array or a list.</typeparam>
+            <typeparam name="TElement">The type of each element.</typeparam>
+            <param name="result">The result instance.</param>
+            <param name="cells">The values to be added.</param>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+            <seealso cref="T:Sudoku.Concepts.CandidateMap"/>
         </member>
         <member name="T:Sudoku.Concepts.Subview">
             <summary>
