@@ -39,6 +39,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	where TElement : unmanaged, IBinaryInteger<TElement>
 	where TEnumerator : struct, IEnumerator<TElement>
 {
+	/// <summary>
+	/// Indicates the size of combinatorial calculation.
+	/// </summary>
+	private protected const int MaxLimit = 30;
+
+
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
 	public new abstract int Count { get; }
 

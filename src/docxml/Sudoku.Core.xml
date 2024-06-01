@@ -4531,6 +4531,11 @@
             <typeparam name="TElement">The type of each element.</typeparam>
             <typeparam name="TEnumerator">The type of the enumerator.</typeparam>
         </member>
+        <member name="F:Sudoku.Concepts.IBitStatusMap`3.MaxLimit">
+            <summary>
+            Indicates the size of combinatorial calculation.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.IBitStatusMap`3.Count">
             <inheritdoc cref="P:System.Collections.Generic.IReadOnlyCollection`1.Count"/>
         </member>

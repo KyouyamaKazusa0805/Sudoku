@@ -161,6 +161,16 @@
             <inheritdoc cref="M:Sudoku.Measuring.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
             </remarks>
         </member>
+        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get the maximum empty square area exists in the specified grid.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+            <remarks>
+            <inheritdoc cref="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)" path="/remarks"/>
+            </remarks>
+        </member>
         <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptyArea(Sudoku.Concepts.CellMap@)">
             <summary>
             Try to get the maximum empty area exists in the specified cells.
@@ -170,6 +180,17 @@
             <remarks>
             This algorithm is from the puzzle called
             <see href="https://leetcode.com/problems/maximal-rectangle/"><i>Maximal Rectangle</i></see>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Measuring.EmptyArea.GetMaxEmptySquareArea(Sudoku.Concepts.CellMap@)">
+            <summary>
+            Try to get the maximum empty square area exists in the specified cells.
+            </summary>
+            <param name="this">The cells to be checked.</param>
+            <returns>An <see cref="T:System.Int32"/> value indicating the result.</returns>
+            <remarks>
+            This algorithm is from the puzzle called
+            <see href="https://leetcode.com/problems/maximal-square/"><i>Maximal Square</i></see>.
             </remarks>
         </member>
     </members>
