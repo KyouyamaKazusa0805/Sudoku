@@ -4629,7 +4629,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		Mask baseCellsDigitsMask,
 		ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		ref readonly CellMap targetCells,
 		scoped ref readonly CellMap fullCrossline,
 		int times,
 		out Mask digitsMaskExactlySizeMinusOneTimes,
@@ -4672,7 +4672,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				break;
 			}
 		}
-
 		return !atLeastOneDigitIsNotLockedAndNotSatisfyCrosslineAppearingRule;
 	}
 
@@ -4694,7 +4693,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				break;
 			}
 		}
-
 		return miniline - targetCell;
 	}
 
@@ -4715,7 +4713,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				result |= (Mask)(1 << digit);
 			}
 		}
-
 		return result;
 	}
 
@@ -4747,7 +4744,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				result[i++] = new(house, in map);
 			}
 		}
-
 		return result.AsReadOnlySpan()[..i];
 	}
 
@@ -4761,7 +4757,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances.</returns>
 	private static ReadOnlySpan<LockedMember?> GetLockedMembers(
 		ref readonly CellMap baseCells,
-		scoped ref readonly CellMap targetCells,
+		ref readonly CellMap targetCells,
 		scoped ref Mask lockedDigitsMask
 	)
 	{
