@@ -1,5 +1,0 @@
-This folder stores the projects that are not used in the project, or evenly implemented by other languages such as C/C++.
-
-Thanks for those projects! I won't have any ability to implement such algorithm if I don't learn them.
-
-The naming rule of those projects are "<author-name>.<function-name>", such as "Gsf.MinLex".

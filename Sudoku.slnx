@@ -10,7 +10,6 @@
     <Platform Name="x86" />
   </Configurations>
   <Folder Name="/C++ Projects/">
-    <File Path="intro-interim-folder.txt" />
     <Project Path="src\Gsf.MinLex\Gsf.MinLex.vcxproj">
       <Configuration Solution="*|ARM" Project="*|x64" />
       <Configuration Solution="*|ARM64" Project="*|x64" />
