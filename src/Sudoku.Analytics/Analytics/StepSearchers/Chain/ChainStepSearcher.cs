@@ -19,7 +19,8 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </summary>
 	private static readonly FrozenDictionary<LinkType, ChainingRule> ChainingRuleRouter = new Dictionary<LinkType, ChainingRule>
 	{
-		{ LinkType.SingleDigit, new XChainingRule() }
+		{ LinkType.SingleDigit, new XChainingRule() },
+		{ LinkType.SingleCell, new YChainingRule() }
 	}.ToFrozenDictionary();
 
 

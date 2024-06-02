@@ -4789,6 +4789,18 @@
         <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.YChainingRule">
+            <summary>
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Collector">
             <summary>
             Represents an instance that can collect all possible <see cref="T:Sudoku.Analytics.Step"/>s in a grid for one state.
