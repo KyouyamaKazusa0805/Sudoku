@@ -7,7 +7,7 @@ public sealed class BitmapCellMapFormatInfo : CellMapFormatInfo
 {
 	/// <inheritdoc/>
 	[return: NotNullIfNotNull(nameof(formatType))]
-	public override object? GetFormat(Type? formatType) => formatType == typeof(BitmapCellMapFormatInfo) ? this : null;
+	public override object? GetFormat(Type? formatType) => formatType == typeof(CellMapFormatInfo) ? this : null;
 
 	/// <inheritdoc/>
 	public override bool Equals([NotNullWhen(true)] CellMapFormatInfo? other) => other is BitmapCellMapFormatInfo;

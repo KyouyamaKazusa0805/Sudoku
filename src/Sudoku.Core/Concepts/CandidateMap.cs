@@ -13,7 +13,7 @@ using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
 public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
@@ -323,6 +323,17 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	ReturnFalse:
 		charsWritten = 0;
 		return false;
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public readonly int CompareTo(ref readonly CandidateMap other)
+	{
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+
+
+		[MethodImpl(MethodImplOptions.AggressiveInlining)]
+		static string b(ref readonly CandidateMap f) => f.ToString(new BitmapCandidateMapFormatInfo());
 	}
 
 	/// <inheritdoc/>

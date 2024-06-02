@@ -12,10 +12,12 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IAdditionOperators<TSelf, TElement, TSelf>,
 	IAnyAllMethod<TSelf, TElement>,
 	IBitwiseOperators<TSelf, TSelf, TSelf>,
-	ICountMethod<TSelf, TElement>,
+	IComparable<TSelf>,
+	IComparisonOperators<TSelf, TSelf, bool>,
 	IContainsMethod<TSelf, TElement>,
 	ICoordinateConvertible<TSelf>,
 	ICoordinateParsable<TSelf>,
+	ICountMethod<TSelf, TElement>,
 	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
 	IEquatable<TSelf>,
@@ -49,7 +51,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <summary>
 	/// Gets all chunks of the current collection, meaning a list of <see cref="string"/> values that can describe
-	/// all cell and candidate indices, grouped with same row/column.
+	/// all offset values (cell indices and candidate indices), grouped with same row/column.
 	/// </summary>
 	public abstract string[] StringChunks { get; }
 
@@ -57,13 +59,13 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// Indicates the peer intersection of the current instance.
 	/// </summary>
 	/// <remarks>
-	/// A <b>Peer Intersection</b> is a set of cells that all cells from the base collection can be seen.
+	/// A <b>Peer Intersection</b> is a set of offsets that all offsets from the base collection can be seen.
 	/// For more information please visit <see href="http://sudopedia.enjoysudoku.com/Peer.html">this link</see>.
 	/// </remarks>
 	public abstract TSelf PeerIntersection { get; }
 
 	/// <summary>
-	/// Indicates the cell offsets in this collection.
+	/// Indicates the offsets in this collection.
 	/// </summary>
 	protected internal abstract TElement[] Offsets { get; }
 
@@ -167,6 +169,42 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <param name="offset">The desired offset.</param>
 	/// <returns>The index of the offset.</returns>
 	public abstract int IndexOf(TElement offset);
+
+	/// <summary>
+	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
+	/// </summary>
+	/// <param name="other"><inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/param[@name='other']"/></param>
+	/// <returns>
+	/// <para>The result value only contains 3 possible values: 1, 0 and -1.</para>
+	/// <para>
+	/// The comparison rule is:
+	/// <list type="number">
+	/// <item>
+	/// If <see langword="this"/> holds more offsets than <paramref name="other"/>, then return 1
+	/// indicating <see langword="this"/> is greater.
+	/// </item>
+	/// <item>
+	/// If <see langword="this"/> holds less offsets than <paramref name="other"/>, then return -1
+	/// indicating <paramref name="other"/> is greater.
+	/// </item>
+	/// <item>
+	/// If they two hold same offsets, then checks for indices held:
+	/// <list type="bullet">
+	/// <item>
+	/// If <see langword="this"/> holds a cell whose index is greater than all offsets appeared in <paramref name="other"/>,
+	/// then return 1 indicating <see langword="this"/> is greater.
+	/// </item>
+	/// <item>
+	/// If <paramref name="other"/> holds a cell whose index is greater than all offsets
+	/// appeared in <paramref name="other"/>, then return -1 indicating <paramref name="other"/> is greater.
+	/// </item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// If all rules are compared, but they are still considered equal, then return 0.
+	/// </para>
+	/// </returns>
+	public abstract int CompareTo(ref readonly TSelf other);
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	public abstract bool Equals(scoped ref readonly TSelf other);
@@ -343,6 +381,9 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	int ICountMethod<TSelf, TElement>.Count() => Count;
 
 	/// <inheritdoc/>
+	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(in other);
+
+	/// <inheritdoc/>
 	string IJsonSerializable<TSelf>.ToJsonString() => JsonSerializer.Serialize((TSelf)this, TSelf.DefaultOptions);
 
 	/// <inheritdoc/>
@@ -397,7 +438,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <summary>
 	/// Determines whether the current collection is empty.
 	/// </summary>
-	/// <param name="offsets">The cells to be checked.</param>
+	/// <param name="offsets">The offsets to be checked.</param>
 	/// <returns>A <see cref="bool"/> value indicating that.</returns>
 	/// <remarks>
 	/// The type of the current collection supports using <see cref="bool"/>-like expression to determine whether the collection is not empty,
@@ -423,18 +464,18 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is not empty.
 	/// </summary>
-	/// <param name="cells">The collection.</param>
+	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static abstract bool operator true(in TSelf cells);
+	public static abstract bool operator true(in TSelf map);
 
 	/// <summary>
 	/// Determines whether the specified <typeparamref name="TSelf"/> collection is empty.
 	/// </summary>
-	/// <param name="cells">The collection.</param>
+	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static abstract bool operator false(in TSelf cells);
+	public static abstract bool operator false(in TSelf map);
 
 	/// <summary>
 	/// Adds the specified <paramref name="offset"/> to the <paramref name="collection"/>,

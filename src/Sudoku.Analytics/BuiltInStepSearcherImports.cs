@@ -29,6 +29,7 @@
 [assembly: BuiltInStepSearcher<AntiGurthSymmetricalPlacementStepSearcher>(0)]
 [assembly: BuiltInStepSearcher<XyzRingStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<UniquenessClueCoverStepSearcher>(2)]
+[assembly: BuiltInStepSearcher<ChainStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<NonMultipleChainingStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<AlmostLockedSetsXzStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<AlmostLockedSetsXyWingStepSearcher>(1)]

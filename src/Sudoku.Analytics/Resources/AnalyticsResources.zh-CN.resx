@@ -3387,4 +3387,7 @@
   <data name="_Token_CenterDot" xml:space="preserve">
     <value>・</value>
   </data>
+  <data name="StepSearcherName_ChainStepSearcher" xml:space="preserve">
+    <value>链</value>
+  </data>
 </root>

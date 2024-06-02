@@ -13,10 +13,7 @@ using static IBitStatusMap<CellMap, Cell, CellMap.Enumerator>;
 [CollectionBuilder(typeof(CellMap), nameof(Create))]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public partial struct CellMap :
-	IBitStatusMap<CellMap, Cell, CellMap.Enumerator>,
-	IComparable<CellMap>,
-	IComparisonOperators<CellMap, CellMap, bool>
+public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Shifting"/>
 	private const int Shifting = 41;
@@ -567,39 +564,7 @@ public partial struct CellMap :
 		return false;
 	}
 
-	/// <summary>
-	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/summary"/>
-	/// </summary>
-	/// <param name="other">
-	/// <inheritdoc cref="IComparable{TSelf}.CompareTo(TSelf)" path="/param[@name='other']"/>
-	/// </param>
-	/// <returns>
-	/// The result value only contains 3 possible values: 1, 0 and -1. The comparison rule is:
-	/// <list type="number">
-	/// <item>
-	/// If <see langword="this"/> holds more cells than <paramref name="other"/>, then return 1
-	/// indicating <see langword="this"/> is greater.
-	/// </item>
-	/// <item>
-	/// If <see langword="this"/> holds less cells than <paramref name="other"/>, then return -1
-	/// indicating <paramref name="other"/> is greater.
-	/// </item>
-	/// <item>
-	/// If they two hold same cells, then checks for indices held:
-	/// <list type="bullet">
-	/// <item>
-	/// If <see langword="this"/> holds a cell whose index is greater than all cells appeared in <paramref name="other"/>,
-	/// then return 1 indicating <see langword="this"/> is greater.
-	/// </item>
-	/// <item>
-	/// If <paramref name="other"/> holds a cell whose index is greater than all cells
-	/// appeared in <paramref name="other"/>, then return -1 indicating <paramref name="other"/> is greater.
-	/// </item>
-	/// </list>
-	/// </item>
-	/// </list>
-	/// If all rules are compared, but they are still considered equal, then return 0.
-	/// </returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(ref readonly CellMap other)
 	{
@@ -748,9 +713,6 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	readonly bool IAnyAllMethod<CellMap, Cell>.All(Func<Cell, bool> predicate) => this.All(predicate);
-
-	/// <inheritdoc/>
-	readonly int IComparable<CellMap>.CompareTo(CellMap other) => CompareTo(in other);
 
 	/// <inheritdoc/>
 	readonly string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

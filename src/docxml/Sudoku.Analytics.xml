@@ -7404,6 +7404,19 @@
             Try to create an AIC hint.
             </summary>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.ChainStepSearcher">
+            <summary>
+            Provides with a <b>Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Alternating Inference Chains</item>
+            <item>Continuous Nice Loops</item>
+            </list>
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
             Provides with a <b>Bi-value Universal Grave</b> step searcher.
@@ -21023,6 +21036,115 @@
         <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
             <summary>Indicates the locked block.</summary>
         </member>
+        <member name="T:Sudoku.Concepts.Node">
+            <summary>
+            Represents a chain node.
+            </summary>
+            <param name="map">Indicates the backing map.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap)">
+            <summary>
+            Represents a chain node.
+            </summary>
+            <param name="map">Indicates the backing map.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsGroupedNode">
+            <summary>
+            Indicates whether the node is a grouped node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Type">
+            <summary>
+            Indicates the node type.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Map">
+            <summary>
+            Indicates the map of candidates the node uses.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="F:Sudoku.Concepts.Node._map">
+            <summary>
+            The generated field declaration for parameter <c>map</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_Equality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_Inequality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_LessThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_LessThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.NodeType">
+            <summary>
+            Represents a node type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.SingleCandidate">
+            <summary>
+            Indicates the node type is a single candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.LockedCandidates">
+            <summary>
+            Indicates the node type is a locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.AlmostLockedSet">
+            <summary>
+            Indicates the node type is an almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.AlmostHiddenSet">
+            <summary>
+            Indicates the node type is an almost hidden set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.KrakenNormalFish">
+            <summary>
+            Indicates the node type is a kraken normal fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeType.AlmostUniqueRectangle">
+            <summary>
+            Indicates the node type is an almost unique rectangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
             Represents a chain branch collection.
@@ -26172,6 +26294,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_BruteForceStepSearcher">
             <summary>
               Looks up a localized string similar to Brute Force.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ChainStepSearcher">
+            <summary>
+              Looks up a localized string similar to Chain.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_ChromaticPatternStepSearcher">
