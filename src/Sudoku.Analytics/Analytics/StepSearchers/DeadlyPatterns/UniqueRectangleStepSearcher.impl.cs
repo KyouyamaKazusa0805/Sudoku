@@ -248,7 +248,7 @@ public partial class UniqueRectangleStepSearcher
 			var iterationMap = HousesMap[houseIndex] & EmptyCells & ~otherCellsMap;
 			for (var size = PopCount((uint)otherDigitsMask) - 1; size < iterationMap.Count; size++)
 			{
-				foreach (ref readonly var iteratedCells in iterationMap >> size)
+				foreach (ref readonly var iteratedCells in iterationMap & size)
 				{
 					var tempMask = grid[in iteratedCells];
 					if ((tempMask & comparer) != 0 || PopCount((uint)tempMask) - 1 != size || (tempMask & otherDigitsMask) != otherDigitsMask)
@@ -2149,7 +2149,7 @@ public partial class UniqueRectangleStepSearcher
 						return;
 					}
 
-					foreach (ref readonly var subsetCells in extraCells >> size)
+					foreach (ref readonly var subsetCells in extraCells & size)
 					{
 						// Determine whether the 'size' cells contain 'size + 1' digits.
 						var subsetDigitsMask = grid[in subsetCells];
@@ -2710,7 +2710,7 @@ public partial class UniqueRectangleStepSearcher
 					for (var i = 1; i <= blockMap.Count - 1; i++)
 					{
 						// Iterate on each combination in block.
-						foreach (ref readonly var selectedCellsInBlock in blockMap >> i)
+						foreach (ref readonly var selectedCellsInBlock in blockMap & i)
 						{
 							var flag = false;
 							foreach (var digit in otherDigitsMask)
@@ -3392,7 +3392,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var guardianCells = guardianMap & ~cells & EmptyCells;
-			foreach (ref readonly var guardianCellPair in guardianCells >> 2)
+			foreach (ref readonly var guardianCellPair in guardianCells & 2)
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
@@ -3426,7 +3426,7 @@ public partial class UniqueRectangleStepSearcher
 					var houseCells = HousesMap[house] & ~cells & ~guardianCellPair & EmptyCells;
 					for (var size = 2; size <= houseCells.Count; size++)
 					{
-						foreach (ref readonly var otherCells in houseCells >> size - 1)
+						foreach (ref readonly var otherCells in houseCells & size - 1)
 						{
 							var subsetDigitsMask = (Mask)(grid[in otherCells] | comparer);
 							if (PopCount((uint)subsetDigitsMask) != size)
@@ -3564,7 +3564,7 @@ public partial class UniqueRectangleStepSearcher
 			}
 
 			var guardianCells = guardianMap & ~cells & EmptyCells;
-			foreach (ref readonly var guardianCellPair in guardianCells >> 2)
+			foreach (ref readonly var guardianCellPair in guardianCells & 2)
 			{
 				var c1 = guardianCellPair[0];
 				var c2 = guardianCellPair[1];
@@ -4285,7 +4285,7 @@ public partial class UniqueRectangleStepSearcher
 			House[] houseCombination
 		)
 		{
-			foreach (ref readonly var cellPair in cellsToEnumerate >> 2)
+			foreach (ref readonly var cellPair in cellsToEnumerate & 2)
 			{
 				var (cell1, cell2) = (cellPair[0], cellPair[1]);
 				var (mask1, mask2) = (grid.GetCandidates(cell1), grid.GetCandidates(cell2));
@@ -4726,8 +4726,8 @@ public partial class UniqueRectangleStepSearcher
 		// Same-sided cells cannot contain only one digit of two digits 'd1' and 'd2'.
 		foreach (var (a, b) in ((0, 1), (2, 3), (0, 2), (1, 3)))
 		{
-			var gatheredMask = (Mask)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
-			if ((gatheredMask >> d1 & 1) == 0 || (gatheredMask >> d2 & 1) == 0)
+			var collectedMask = (Mask)(grid.GetCandidates(urCells[a]) | grid.GetCandidates(urCells[b]));
+			if ((collectedMask >> d1 & 1) == 0 || (collectedMask >> d2 & 1) == 0)
 			{
 				return false;
 			}

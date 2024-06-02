@@ -29,7 +29,7 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 
 			// Add all combinations into the collection.
 			list.Clear();
-			list.AddRangeRef(emptyCellsInInterMap.GetSubsetsBelow(emptyCellsInInterMap.Count));
+			list.AddRangeRef(emptyCellsInInterMap | emptyCellsInInterMap.Count);
 
 			// Iterate on each intersection combination.
 			foreach (ref readonly var currentInterMap in list.AsReadOnlySpan())
@@ -48,14 +48,14 @@ public sealed partial class ExtendedSubsetPrincipleStepSearcher : StepSearcher
 				for (var i = 1; i < blockMap.Count; i++)
 				{
 					// Iterate on each combination in block.
-					foreach (ref readonly var currentBlockMap in blockMap >> i)
+					foreach (ref readonly var currentBlockMap in blockMap & i)
 					{
 						// Iterate on the number of the cells that should be selected in line.
 						var blockMask = grid[in currentBlockMap];
 						for (var j = 1; j <= 9 - i - currentInterMap.Count && j <= lineMap.Count; j++)
 						{
 							// Iterate on each combination in line.
-							foreach (ref readonly var currentLineMap in lineMap >> j)
+							foreach (ref readonly var currentLineMap in lineMap & j)
 							{
 								var lineMask = grid[in currentLineMap];
 								var zDigitsMask = (Mask)(blockMask & lineMask);

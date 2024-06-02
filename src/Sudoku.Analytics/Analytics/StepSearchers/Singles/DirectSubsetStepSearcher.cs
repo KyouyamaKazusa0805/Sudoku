@@ -295,7 +295,7 @@ public sealed partial class DirectSubsetStepSearcher : StepSearcher
 			}
 
 			// Iterate on each combination.
-			foreach (ref readonly var cells in currentEmptyMap >> size)
+			foreach (ref readonly var cells in currentEmptyMap & size)
 			{
 				var digitsMask = grid[in cells];
 				if (PopCount((uint)digitsMask) != size)

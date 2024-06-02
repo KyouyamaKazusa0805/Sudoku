@@ -448,7 +448,7 @@ public sealed partial class ExtendedRectangleStepSearcher : StepSearcher
 				for (var size = 1; size < (isCannibalism ? otherCells.Count + 1 : otherCells.Count); size++)
 				{
 					// Iterate on each combination of the pattern.
-					foreach (ref readonly var cells in otherCells >> size)
+					foreach (ref readonly var cells in otherCells & size)
 					{
 						var mask = grid[in cells];
 						if ((mask & extraDigits) != extraDigits || PopCount((uint)mask) != size + 1)

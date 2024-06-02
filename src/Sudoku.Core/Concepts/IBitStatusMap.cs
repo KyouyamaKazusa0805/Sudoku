@@ -30,7 +30,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IReadOnlySet<TElement>,
 	ISelectMethod<TSelf, TElement>,
 	ISet<TElement>,
-	//IShiftOperators<TSelf, int, ReadOnlySpan<TSelf>>,
 	ISpanFormattable,
 	ISpanParsable<TSelf>,
 	ISubtractionOperators<TSelf, TElement, TSelf>,
@@ -379,7 +378,7 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IEnumerable<TElement[]> IGetSubsetMethod<TSelf, TElement>.GetSubsets(int subsetSize)
 	{
 		var result = new List<TElement[]>();
-		foreach (var element in (TSelf)this >> subsetSize)
+		foreach (var element in (TSelf)this & subsetSize)
 		{
 			result.Add(element.ToArray());
 		}
@@ -481,28 +480,67 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	public static abstract TSelf operator ^(in TSelf left, in TSelf right);
 
 	/// <summary>
-	/// Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
-	/// with the specified value as the result number of elements in each subset.
+	/// Gets the subsets of the current collection via the specified size indicating the number of elements of the each subset.
 	/// </summary>
-	/// <param name="map">The map to be checked.</param>
-	/// <param name="subsetSize">The subset size for each result element.</param>
+	/// <param name="map">The instance to check for subsets.</param>
+	/// <param name="subsetSize">The size to get.</param>
 	/// <returns>
-	/// A list of <typeparamref name="TSelf"/> instances
-	/// whose number of elements is equal to <paramref name="subsetSize"/> as its subsets.
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> == Count</c></term>
+	/// <description>
+	/// Will return an array that contains only one element, same as the current instance.
+	/// </description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
 	/// </returns>
-	public static abstract ReadOnlySpan<TSelf> operator >>(in TSelf map, int subsetSize);
+	/// <exception cref="NotSupportedException">
+	/// Throws when both the count of the current instance and <paramref name="subsetSize"/> are greater than 30.
+	/// </exception>
+	/// <remarks>
+	/// For example, if the current instance is <c>r1c1</c>, <c>r1c2</c> and <c>r1c3</c>
+	/// and the argument <paramref name="subsetSize"/> is 2,
+	/// the method will return an array of 3 elements given below: <c>r1c12</c>, <c>r1c13</c> and <c>r1c23</c>.
+	/// </remarks>
+	public static abstract ReadOnlySpan<TSelf> operator &(in TSelf map, int subsetSize);
 
 	/// <summary>
-	/// Calculates all subsets of the current <typeparamref name="TSelf"/> instance,
-	/// with the specified value as the maximum number of elements in each subset.
+	/// Gets all subsets of the current collection via the specified size
+	/// indicating the <b>maximum</b> number of elements of the each subset.
 	/// </summary>
-	/// <param name="map">The map to be checked.</param>
-	/// <param name="subsetSize">The subset size for each result element.</param>
+	/// <param name="map">The instance to check subsets.</param>
+	/// <param name="subsetSize">The size to get.</param>
 	/// <returns>
-	/// A list of <typeparamref name="TSelf"/> instances
-	/// whose number of elements is equal to or less than <paramref name="subsetSize"/> as its subsets.
+	/// All possible subsets. If:
+	/// <list type="table">
+	/// <listheader>
+	/// <term>Condition</term>
+	/// <description>Meaning</description>
+	/// </listheader>
+	/// <item>
+	/// <term><c><paramref name="subsetSize"/> &gt; Count</c></term>
+	/// <description>Will return an empty array</description>
+	/// </item>
+	/// <item>
+	/// <term>Other cases</term>
+	/// <description>The valid combinations.</description>
+	/// </item>
+	/// </list>
 	/// </returns>
-	public static abstract ReadOnlySpan<TSelf> operator >>>(in TSelf map, int subsetSize);
+	public static abstract ReadOnlySpan<TSelf> operator |(in TSelf map, int subsetSize);
 
 	/// <inheritdoc/>
 	static bool ILogicalOperators<TSelf>.operator true(TSelf value) => value ? true : false;

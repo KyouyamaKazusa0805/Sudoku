@@ -601,7 +601,7 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 				continue;
 			}
 
-			foreach (ref readonly var extraCells in emptyCellsInCurrentHouse >> size)
+			foreach (ref readonly var extraCells in emptyCellsInCurrentHouse & size)
 			{
 				var currentDigitsMask = grid[in extraCells];
 				if (currentDigitsMask != extraDigitsMask)

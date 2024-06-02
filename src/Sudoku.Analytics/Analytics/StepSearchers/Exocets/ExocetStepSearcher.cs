@@ -147,7 +147,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 								}
 
 								// Iterate on each miniline, to get all possible cases.
-								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated >> baseSize)
+								foreach (ref readonly var baseCells in baseEmptyCellsToBeIterated & baseSize)
 								{
 									if (housesEmptyCells & baseCells)
 									{
@@ -2483,7 +2483,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 				for (var size = 2; size <= otherCells.Count - 1; size++)
 				{
-					foreach (ref readonly var extraCells in otherCells >> size - 1)
+					foreach (ref readonly var extraCells in otherCells & size - 1)
 					{
 						var ahsCells = extraCells | mirrorEmptyCells;
 						foreach (var digitsMaskGroup in ((Mask)(grid[in ahsCells] & (Mask)~baseCellsDigitsMask)).GetAllSets().GetSubsets(size))
@@ -4804,7 +4804,7 @@ file static class Extensions
 		var (activeCells, inactiveCells) = (CandidatesMap[digit] & cells, ValuesMap[digit] & cells);
 		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
 		{
-			foreach (ref readonly var cellsCombination in activeCells >> i)
+			foreach (ref readonly var cellsCombination in activeCells & i)
 			{
 				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{
@@ -4839,7 +4839,7 @@ file static class Extensions
 
 		for (var i = Math.Min(9, activeCells.Count); i >= 1; i--)
 		{
-			foreach (ref readonly var cellsCombination in activeCells >> i)
+			foreach (ref readonly var cellsCombination in activeCells & i)
 			{
 				if (!cellsCombination.CanSeeEachOther && ((cellsCombination.ExpandedPeers | cellsCombination) & activeCells) == activeCells)
 				{

@@ -1,5 +1,7 @@
 namespace Sudoku.Concepts;
 
+using static IBitStatusMap<CellMap, Cell, CellMap.Enumerator>;
+
 /// <summary>
 /// Encapsulates a binary series of cell state table.
 /// </summary>
@@ -83,7 +85,7 @@ public partial struct CellMap :
 				case 2: { return InOneHouse(out _); }
 				default:
 				{
-					foreach (ref readonly var pair in this >> 2)
+					foreach (ref readonly var pair in this & 2)
 					{
 						if (pair.InOneHouse(out _))
 						{
@@ -1029,11 +1031,84 @@ public partial struct CellMap :
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> operator >>(in CellMap map, int subsetSize) => map.GetSubsets(subsetSize);
+	public static unsafe ReadOnlySpan<CellMap> operator &(in CellMap map, int subsetSize)
+	{
+		if (subsetSize == 0 || subsetSize > map.Count)
+		{
+			return [];
+		}
+
+		if (subsetSize == map.Count)
+		{
+			return (CellMap[])[map];
+		}
+
+		var n = map.Count;
+		var buffer = stackalloc int[subsetSize];
+		if (n <= MaxLimit && subsetSize <= MaxLimit)
+		{
+			// Optimization: Use table to get the total number of result elements.
+			var totalIndex = 0;
+			var result = new CellMap[Combinatorial.PascalTriangle[n - 1][subsetSize - 1]];
+			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r[totalIndex++] = c.AsCellMap());
+			return result;
+		}
+		else
+		{
+			if (n > MaxLimit && subsetSize > MaxLimit)
+			{
+				throw new NotSupportedException(ResourceDictionary.ExceptionMessage("SubsetsExceeded"));
+			}
+			var result = new List<CellMap>();
+			enumerate(result, subsetSize, n, subsetSize, map.Offsets, (r, c) => r.AddRef(c.AsCellMap()));
+			return result.AsReadOnlySpan();
+		}
+
+
+		void enumerate<T>(T result, int size, int last, int index, Cell[] offsets, CollectionAddingHandler<T> addingAction)
+		{
+			for (var i = last; i >= index; i--)
+			{
+				buffer[index - 1] = i - 1;
+				if (index > 1)
+				{
+					enumerate(result, size, i - 1, index - 1, offsets, addingAction);
+				}
+				else
+				{
+					var temp = new Cell[size];
+					for (var j = 0; j < size; j++)
+					{
+						temp[j] = offsets[buffer[j]];
+					}
+					addingAction(result, temp);
+				}
+			}
+		}
+	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ReadOnlySpan<CellMap> operator >>>(in CellMap map, int subsetSize) => map.GetSubsetsBelow(subsetSize);
+	public static ReadOnlySpan<CellMap> operator |(in CellMap map, int subsetSize)
+	{
+		if (subsetSize == 0 || !map)
+		{
+			return [];
+		}
+
+		var (n, desiredSize) = (map.Count, 0);
+		var length = Math.Min(n, subsetSize);
+		for (var i = 1; i <= length; i++)
+		{
+			desiredSize += Combinatorial.PascalTriangle[n - 1][i - 1];
+		}
+
+		var result = new List<CellMap>(desiredSize);
+		for (var i = 1; i <= length; i++)
+		{
+			result.AddRangeRef(map & i);
+		}
+		return result.AsReadOnlySpan();
+	}
 
 
 	/// <summary>
