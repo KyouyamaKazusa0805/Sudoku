@@ -17,7 +17,7 @@ public static class SortedSetExtensions
 	/// </remarks>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static void AddRef<T>(this SortedSet<T> @this, scoped ref readonly T item)
-#if NET9_0_OR_GREATER
+#if NET9_0_OR_GREATER && VIRTUAL_GENERIC_METHOD_UNSAFE_ACCESSOR
 		=> @this.AddIfNotPresent(item);
 #else
 		=> @this.Add(item);

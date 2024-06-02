@@ -71,7 +71,7 @@
 	</PropertyGroup>
 
 	<!--Import 'Sudoku.SourceGeneration' project into the non-source generator projects.-->
-	<ItemGroup Condition="'$(MSBuildProjectFile.Contains(`Sudoku.Test`))'=='false' And ('$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' Or '$(MSBuildProjectFile.Contains(`SudokuStudio.csproj`))'=='true')">
+	<ItemGroup Condition="'$(MSBuildProjectFile.Contains(`.Test`))'=='false' And ('$(MSBuildProjectFile.EndsWith(`SourceGeneration.csproj`))'=='false' Or '$(MSBuildProjectFile.Contains(`SudokuStudio.csproj`))'=='true')">
 		<ProjectReference Include="..\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>
 </Project>
