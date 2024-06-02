@@ -913,23 +913,6 @@
 				</target>
             </remarks>
         </member>
-        <member name="T:System.Collections.Generic.SortedSetExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:System.Collections.Generic.SortedSet`1"/>.
-            </summary>
-            <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
-        </member>
-        <member name="M:System.Collections.Generic.SortedSetExtensions.AddRef``1(System.Collections.Generic.SortedSet{``0},``0@)">
-            <summary>
-            Adds a new instance into the current collection.
-            </summary>
-            <typeparam name="T">The type of the item to be added.</typeparam>
-            <param name="this">The collection.</param>
-            <param name="item">The current item to be added.</param>
-            <remarks>
-            <inheritdoc cref="M:System.Collections.Generic.ListExtensions.AddRef``1(System.Collections.Generic.List{``0},``0@)" path="/remarks"/>
-            </remarks>
-        </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
@@ -2348,7 +2331,7 @@
             Find an index of the binary representation of a value after the specified index whose bit is set <see langword="true"/>.
             </summary>
             <param name="this">The value.</param>
-            <param name="index">The index.</param>
+            <param name="index">The index. The value will be automatically plus 1 in loop. Don't pass the value added 1.</param>
             <returns>The index.</returns>
         </member>
         <member name="M:System.Numerics.BitOperationsExtensions.GetNextSet(System.Int16,System.Int32)">

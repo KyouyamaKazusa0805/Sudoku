@@ -1,4 +1,3 @@
-
 namespace System.Test;
 
 [TestClass]
@@ -14,18 +13,6 @@ public class AddRefs
 		list.AddRef(in newObject);
 
 		Assert.IsTrue(list.Count == 2);
-	}
-
-	[TestMethod("SortedSet_AddRef")]
-	public void TestMethod2()
-	{
-		var set = new SortedSet<LargeStructure>();
-		set.AddRef(new());
-
-		var newObject = new LargeStructure();
-		set.AddRef(in newObject); // Won't be added because it is equal to 'new()'.
-
-		Assert.IsTrue(set.Count == 1);
 	}
 }
 

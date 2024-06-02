@@ -4,9 +4,8 @@ namespace Sudoku.Concepts;
 /// Represents a chain node.
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
-[StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators, IsLargeStructure = true)]
-public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] CandidateMap map) :
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
+public sealed partial class Node([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
 	ICoordinateConvertible<Node>,
@@ -15,30 +14,42 @@ public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Fie
 	IFormattable
 {
 	/// <summary>
-	/// Indicates whether the node is a grouped node.
+	/// Initializes a <see cref="Node"/> instance via the specified candidate.
 	/// </summary>
-	public bool IsGroupedNode => Type != NodeType.SingleCandidate;
+	/// <param name="candidate">A candidate.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node(Candidate candidate) : this(candidate.AsCandidateMap())
+	{
+	}
 
 	/// <summary>
-	/// Indicates the node type.
+	/// Initializes a <see cref="Node"/> instance via the specified <see cref="LockedTarget"/> instance.
 	/// </summary>
-	[HashCodeMember]
-	public NodeType Type { get; }
+	/// <param name="lockedTarget">A <see cref="LockedTarget"/> instance.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node(ref readonly LockedTarget lockedTarget) : this(Subview.ExpandedCellFromDigit(lockedTarget.Cells, lockedTarget.Digit))
+	{
+	}
+
+
+	/// <summary>
+	/// Indicates whether the node is a grouped node.
+	/// </summary>
+	public bool IsGroupedNode => _map.Count >= 2;
 
 	/// <summary>
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
-	[UnscopedRef]
 	public ref readonly CandidateMap Map => ref _map;
 
 
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly Node other) => Type == other.Type && _map == other._map;
+	public bool Equals([NotNullWhen(true)] Node? other) => other is not null && _map == other._map;
 
-	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(ref readonly Node other) => Type > other.Type ? 1 : Type < other.Type ? -1 : _map.CompareTo(in other._map);
+	public int CompareTo(Node? other) => other is null ? 1 : _map.CompareTo(in other._map);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -54,12 +65,6 @@ public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Fie
 				_ => CoordinateConverter.InvariantCultureConverter
 			}
 		);
-
-	/// <inheritdoc/>
-	bool IEquatable<Node>.Equals(Node other) => Equals(in other);
-
-	/// <inheritdoc/>
-	int IComparable<Node>.CompareTo(Node other) => CompareTo(in other);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);

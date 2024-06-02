@@ -1,22 +1,28 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a link that describes a relation between two <see cref="Node"/> instances.
+/// <para>Represents a link that describes a relation between two <see cref="Node"/> instances.</para>
+/// <para><b>
+/// Please note that two <see cref="Link"/> instances will be considered as equal
+/// only if they holds same node values, regardless of what link type two <see cref="Link"/> instances use.
+/// </b></para>
 /// </summary>
 /// <param name="firstNode">Indicates the first node to be used.</param>
 /// <param name="secondNode">Indicates the second node to be used.</param>
+/// <param name="type">Indicates the type of the link.</param>
 /// <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
 /// <seealso cref="Node"/>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
-public readonly partial struct Link(
-	[PrimaryConstructorParameter(MemberKinds.Field)] ref readonly Node firstNode,
-	[PrimaryConstructorParameter(MemberKinds.Field)] ref readonly Node secondNode,
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+public sealed partial class Link(
+	[PrimaryConstructorParameter(MemberKinds.Field)] Node firstNode,
+	[PrimaryConstructorParameter(MemberKinds.Field)] Node secondNode,
+	[PrimaryConstructorParameter] LinkType type,
 	[PrimaryConstructorParameter] Inference inference
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
-	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly Link other) => Equals(in other, LinkComparison.Undirected);
+	public bool Equals([NotNullWhen(true)] Link? other) => other is not null && Equals(other, LinkComparison.Undirected);
 
 	/// <summary>
 	/// Determine whether two <see cref="Link"/> are considered equal on the specified comparison rule.
@@ -26,7 +32,7 @@ public readonly partial struct Link(
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <exception cref="ArgumentOutOfRangeException">Throws when the argument <paramref name="comparison"/> is not defined.</exception>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(ref readonly Link other, LinkComparison comparison)
+	public bool Equals(Link other, LinkComparison comparison)
 		=> Enum.IsDefined(comparison)
 			? Inference == other.Inference && comparison switch
 			{
@@ -57,9 +63,6 @@ public readonly partial struct Link(
 			}
 			: throw new ArgumentOutOfRangeException(nameof(comparison));
 
-	/// <inheritdoc cref="object.ToString"/>
-	public override string ToString() => $"{_firstNode}{Inference.ConnectingNotation()}{_secondNode}";
-
 	/// <inheritdoc/>
-	bool IEquatable<Link>.Equals(Link other) => Equals(in other);
+	public override string ToString() => $"{_firstNode}{Inference.ConnectingNotation()}{_secondNode}";
 }

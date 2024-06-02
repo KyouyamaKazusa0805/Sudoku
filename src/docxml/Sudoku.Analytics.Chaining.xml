@@ -10,61 +10,63 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <summary>
             Collects for strong links appeared in argument <paramref name="grid"/>
-            and insert all found values into argument <paramref name="strongLinksDictionary"/>.
+            and insert all found values into argument <paramref name="linkDictionary"/>.
             </summary>
             <param name="grid">The grid to be checked.</param>
-            <param name="strongLinksDictionary">The collection of strong links, grouped by its node.</param>
+            <param name="linkDictionary">The collection of strong links, grouped by its node.</param>
             <remarks>
             Consider adding values from both entries if a link is found.
-            <see cref="M:Sudoku.Analytics.Chaining.ChainingRule.AddBothEntries(System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}},Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)"/> is helpful.
+            The method call <see cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/> is helpful.
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.Chaining.ChainingRule.AddBothEntries(System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}},Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)"/>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <summary>
             Collects for weak links appeared in argument <paramref name="grid"/>
-            and insert all found values into argument <paramref name="weakLinksDictionary"/>.
+            and insert all found values into argument <paramref name="linkDictionary"/>.
             </summary>
             <param name="grid">The grid to be checked.</param>
-            <param name="weakLinksDictionary">The collection of weak links, grouped by its node.</param>
+            <param name="linkDictionary">The collection of weak links, grouped by its node.</param>
             <remarks>
-            <inheritdoc cref="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}})" path="/remarks"/>
+            <inheritdoc cref="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)" path="/remarks"/>
             </remarks>
-            <seealso cref="M:Sudoku.Analytics.Chaining.ChainingRule.AddBothEntries(System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}},Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.AddBothEntries(System.Collections.Generic.Dictionary{Sudoku.Concepts.Node,System.Collections.Generic.SortedSet{Sudoku.Concepts.Node}},Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
-            <summary>
-            Add <see cref="T:Sudoku.Concepts.Node"/> to both entries.
-            </summary>
-            <param name="linksDictionary">The dictionary used by adding operation.</param>
-            <param name="node1">The first node to be added.</param>
-            <param name="node2">The second node to be added.</param>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/>
         </member>
         <member name="T:Sudoku.Concepts.Link">
             <summary>
-            Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.</para>
+            <para><b>
+            Please note that two <see cref="T:Sudoku.Concepts.Link"/> instances will be considered as equal
+            only if they holds same node values, regardless of what link type two <see cref="T:Sudoku.Concepts.Link"/> instances use.
+            </b></para>
             </summary>
             <param name="firstNode">Indicates the first node to be used.</param>
             <param name="secondNode">Indicates the second node to be used.</param>
+            <param name="type">Indicates the type of the link.</param>
             <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.#ctor(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@,Sudoku.Concepts.Inference)">
+        <member name="M:Sudoku.Concepts.Link.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node,Sudoku.Concepts.LinkType,Sudoku.Concepts.Inference)">
             <summary>
-            Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.</para>
+            <para><b>
+            Please note that two <see cref="T:Sudoku.Concepts.Link"/> instances will be considered as equal
+            only if they holds same node values, regardless of what link type two <see cref="T:Sudoku.Concepts.Link"/> instances use.
+            </b></para>
             </summary>
             <param name="firstNode">Indicates the first node to be used.</param>
             <param name="secondNode">Indicates the second node to be used.</param>
+            <param name="type">Indicates the type of the link.</param>
             <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link@,Sudoku.Concepts.LinkComparison)">
+        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link,Sudoku.Concepts.LinkComparison)">
             <summary>
             Determine whether two <see cref="T:Sudoku.Concepts.Link"/> are considered equal on the specified comparison rule.
             </summary>
@@ -85,9 +87,6 @@
             <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparison"/> is not defined.</exception>
         </member>
         <member name="M:Sudoku.Concepts.Link.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Link.System#IEquatable{Sudoku#Concepts#Link}#Equals(Sudoku.Concepts.Link)">
             <inheritdoc/>
         </member>
         <member name="F:Sudoku.Concepts.Link._firstNode">
@@ -100,6 +99,11 @@
             The generated field declaration for parameter <c>secondNode</c>.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Link.Type">
+            <summary>
+            The generated property declaration for parameter <c>type</c>.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.Link.Inference">
             <summary>
             The generated property declaration for parameter <c>inference</c>.
@@ -108,17 +112,11 @@
         <member name="M:Sudoku.Concepts.Link.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.op_Equality(Sudoku.Concepts.Link@,Sudoku.Concepts.Link@)">
+        <member name="M:Sudoku.Concepts.Link.op_Equality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.op_Inequality(Sudoku.Concepts.Link@,Sudoku.Concepts.Link@)">
+        <member name="M:Sudoku.Concepts.Link.op_Inequality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Link.System#Numerics#IEqualityOperators{Sudoku#Concepts#Link,Sudoku#Concepts#Link,System#Boolean}#op_Equality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Link.System#Numerics#IEqualityOperators{Sudoku#Concepts#Link,Sudoku#Concepts#Link,System#Boolean}#op_Inequality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
-            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.LinkComparison">
             <summary>
@@ -139,26 +137,86 @@
             with considerations on direction; i.e. <c><![CDATA[node1 -> node2]]></c> is not equal to <c><![CDATA[node2 -> node1]]></c>.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.LinkDictionary">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Concepts.Node"/> relations on strong or weak links.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Add a link to the current collection with both entries on nodes of the link used.
+            </summary>
+            <param name="node1">Indicates the first node to be added.</param>
+            <param name="node2">Indicates the second node to be added.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.LinkType">
+            <summary>
+            Represents a link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.SingleDigit">
+            <summary>
+            Indicates the link type is a single digit (X rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.SingleCell">
+            <summary>
+            Indicates the link type is a single cell (Y rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.LockedCandidates">
+            <summary>
+            Indicates the link type is a locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSet">
+            <summary>
+            Indicates the link type is an almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostHiddenSet">
+            <summary>
+            Indicates the link type is an almost hidden set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.KrakenNormalFish">
+            <summary>
+            Indicates the link type is a kraken normal fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle">
+            <summary>
+            Indicates the link type is an almost unique rectangle.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Node">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
         </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
+            </summary>
+            <param name="candidate">A candidate.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.LockedTarget@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified <see cref="T:Sudoku.Concepts.LockedTarget"/> instance.
+            </summary>
+            <param name="lockedTarget">A <see cref="T:Sudoku.Concepts.LockedTarget"/> instance.</param>
+        </member>
         <member name="P:Sudoku.Concepts.Node.IsGroupedNode">
             <summary>
             Indicates whether the node is a grouped node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Node.Type">
-            <summary>
-            Indicates the node type.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Node.Map">
@@ -166,23 +224,17 @@
             Indicates the map of candidates the node uses.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node@)">
-            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)">
+            <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node@)">
-            <inheritdoc cref="M:System.IComparable`1.CompareTo(`0)"/>
+        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Node.ToString``1(``0)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Node.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#IEquatable{Sudoku#Concepts#Node}#Equals(Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#IComparable{Sudoku#Concepts#Node}#CompareTo(Sudoku.Concepts.Node)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Node.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -201,73 +253,23 @@
         <member name="M:Sudoku.Concepts.Node.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.op_Equality(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_Equality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.op_Inequality(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_Inequality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.System#Numerics#IEqualityOperators{Sudoku#Concepts#Node,Sudoku#Concepts#Node,System#Boolean}#op_Equality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#Numerics#IEqualityOperators{Sudoku#Concepts#Node,Sudoku#Concepts#Node,System#Boolean}#op_Inequality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.op_GreaterThan(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.op_LessThan(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_LessThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.op_GreaterThanOrEqual(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.op_LessThanOrEqual(Sudoku.Concepts.Node@,Sudoku.Concepts.Node@)">
+        <member name="M:Sudoku.Concepts.Node.op_LessThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#Numerics#IComparisonOperators{Sudoku#Concepts#Node,Sudoku#Concepts#Node,System#Boolean}#op_GreaterThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#Numerics#IComparisonOperators{Sudoku#Concepts#Node,Sudoku#Concepts#Node,System#Boolean}#op_LessThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.System#Numerics#IComparisonOperators{Sudoku#Concepts#Node,Sudoku#Concepts#Node,System#Boolean}#op_LessThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Concepts.NodeType">
-            <summary>
-            Represents a node type.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.SingleCandidate">
-            <summary>
-            Indicates the node type is a single candidate.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.LockedCandidates">
-            <summary>
-            Indicates the node type is a locked candidates.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.AlmostLockedSet">
-            <summary>
-            Indicates the node type is an almost locked set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.AlmostHiddenSet">
-            <summary>
-            Indicates the node type is an almost hidden set.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.KrakenNormalFish">
-            <summary>
-            Indicates the node type is a kraken normal fish.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.NodeType.AlmostUniqueRectangle">
-            <summary>
-            Indicates the node type is an almost unique rectangle.
-            </summary>
         </member>
     </members>
 </doc>

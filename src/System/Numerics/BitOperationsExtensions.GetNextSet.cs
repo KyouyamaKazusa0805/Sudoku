@@ -6,7 +6,7 @@ public partial class BitOperationsExtensions
 	/// Find an index of the binary representation of a value after the specified index whose bit is set <see langword="true"/>.
 	/// </summary>
 	/// <param name="this">The value.</param>
-	/// <param name="index">The index.</param>
+	/// <param name="index">The index. The value will be automatically plus 1 in loop. Don't pass the value added 1.</param>
 	/// <returns>The index.</returns>
 	public static partial int GetNextSet(this byte @this, int index)
 	{
