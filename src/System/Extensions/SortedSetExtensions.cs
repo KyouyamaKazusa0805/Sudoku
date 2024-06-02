@@ -23,7 +23,7 @@ public static class SortedSetExtensions
 		=> @this.Add(item);
 #endif
 
-#if NET9_0_OR_GREATER
+#if NET9_0_OR_GREATER && VIRTUAL_GENERIC_METHOD_UNSAFE_ACCESSOR
 	[UnsafeAccessor(UnsafeAccessorKind.Method, Name = "AddIfNotPresent")]
 	private static extern bool AddIfNotPresent<T>(this SortedSet<T> @this, T item);
 #endif
