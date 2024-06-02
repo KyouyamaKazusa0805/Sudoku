@@ -4533,7 +4533,7 @@
         </member>
         <member name="T:Sudoku.Concepts.IBitStatusMap`3.CollectionAddingHandler`1">
             <summary>
-            The file-local handler on <typeparamref name="TCollection"/> adding operation, with a new element.
+            Represents a local handler on <typeparamref name="TCollection"/> adding operation, with a new element.
             </summary>
             <typeparam name="TCollection">The type of collection.</typeparam>
             <param name="result">The result instance.</param>
