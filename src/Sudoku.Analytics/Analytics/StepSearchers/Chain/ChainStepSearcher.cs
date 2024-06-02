@@ -12,27 +12,36 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_ChainStepSearcher",
 	Technique.XChain, Technique.YChain, Technique.AlternatingInferenceChain, Technique.ContinuousNiceLoop, Technique.DiscontinuousNiceLoop,
 	Technique.XyXChain, Technique.XyChain, Technique.FishyCycle, Technique.PurpleCow)]
+[SplitStepSearcher(0, nameof(LinkTypes), LinkType.SingleDigit)]
+[SplitStepSearcher(1, nameof(LinkTypes), LinkType.SingleDigit | LinkType.SingleCell)]
 public sealed partial class ChainStepSearcher : StepSearcher
 {
 	/// <summary>
 	/// Indicates the backing chaining rule router instance.
 	/// </summary>
-	private static readonly FrozenDictionary<LinkType, ChainingRule> ChainingRuleRouter = new Dictionary<LinkType, ChainingRule>
+	private static readonly Dictionary<LinkType, ChainingRule> ChainingRuleRouter = new()
 	{
 		{ LinkType.SingleDigit, new XChainingRule() },
 		{ LinkType.SingleCell, new YChainingRule() }
-	}.ToFrozenDictionary();
+	};
+
+
+	/// <summary>
+	/// Indicates the link types supported.
+	/// </summary>
+	public LinkType LinkTypes { get; init; }
 
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		return null;
-		ref readonly var grid = ref context.Grid;
-
 		// Step 1: Collect for all strong and weak links appeared in the grid.
-		var strongLinks = CreateStrong(in grid, LinkType.SingleDigit);
-		var weakLinks = CreateWeak(in grid, LinkType.SingleDigit);
+		ref readonly var grid = ref context.Grid;
+		var (strongLinks, weakLinks) = (CreateStrong(in grid, LinkTypes), CreateWeak(in grid, LinkTypes));
+
+		// Step 2: Iterate on dictionary to get chains.
+		// TODO: Implement (Consider using DFS instead).
+		return null;
 	}
 
 
@@ -42,7 +51,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="linkTypes">The link types to be checked.</param>
 	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateStrong(ref readonly Grid grid, params ReadOnlySpan<LinkType> linkTypes)
+	private static LinkDictionary CreateStrong(ref readonly Grid grid, LinkType linkTypes)
 	{
 		var result = new LinkDictionary();
 		foreach (var linkType in linkTypes)
@@ -58,7 +67,7 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// <param name="grid">The grid.</param>
 	/// <param name="linkTypes">The link types to be checked.</param>
 	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateWeak(ref readonly Grid grid, params ReadOnlySpan<LinkType> linkTypes)
+	private static LinkDictionary CreateWeak(ref readonly Grid grid, LinkType linkTypes)
 	{
 		var result = new LinkDictionary();
 		foreach (var linkType in linkTypes)

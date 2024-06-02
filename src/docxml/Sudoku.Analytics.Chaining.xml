@@ -155,6 +155,11 @@
             Represents a link type.
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.LinkType.None">
+            <summary>
+            Indicates the placeholder of the enumeration.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.LinkType.SingleDigit">
             <summary>
             Indicates the link type is a single digit (X rule).

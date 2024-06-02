@@ -7443,10 +7443,15 @@
             Indicates the backing chaining rule router instance.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ChainStepSearcher.LinkTypes">
+            <summary>
+            Indicates the link types supported.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateStrong(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.LinkType})">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateStrong(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of strong link relations.
             </summary>
@@ -7454,7 +7459,7 @@
             <param name="linkTypes">The link types to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateWeak(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Concepts.LinkType})">
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateWeak(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType)">
             <summary>
             Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of weak link relations.
             </summary>
