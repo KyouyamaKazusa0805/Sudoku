@@ -5551,11 +5551,14 @@
             <remarks>
             <para>
             This property controls the case when you want to customize the accessibility of generated member.
-            For example, the value is <c>"private"</c> or <c>"Private"</c>, the generated member will automatically insert the accessibility modifier
+            For example, the value is <c>"private"</c>, the generated member will automatically insert the accessibility modifier
             into property declaration:
             <code><![CDATA[
             private int Parameter { get; } = parameter;
             ]]></code>
+            </para>
+            <para>
+            Also, you can append not only 1 word. For example, the combination <c>"protected internal readonly unsafe"</c> is also acceptable.
             </para>
             <para>By default, the accessibility is <see langword="private"/> for fields and <see langword="public"/> for properties.</para>
             </remarks>

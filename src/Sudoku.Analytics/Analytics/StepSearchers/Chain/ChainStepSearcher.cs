@@ -18,12 +18,12 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		return null;
-
+#if false
 		ref readonly var grid = ref context.Grid;
 
 		// Step 1: Collect for all strong and weak links appeared in the grid.
-		var strongLinks = new Dictionary<Node, HashSet<Node>>();
-		var weakLinks = new Dictionary<Node, HashSet<Node>>();
-
+		var strongLinks = new Dictionary<Node, List<Node>>();
+		var weakLinks = new Dictionary<Node, List<Node>>();
+#endif
 	}
 }

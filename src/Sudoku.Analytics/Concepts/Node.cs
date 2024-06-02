@@ -4,16 +4,9 @@ namespace Sudoku.Concepts;
 /// Represents a chain node.
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
-[TypeImpl(
-	TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators,
-	OtherModifiersOnEquals = "sealed",
-	OtherModifiersOnGetHashCode = "sealed",
-	OtherModifiersOnToString = "sealed")]
-public abstract partial class Node(
-	[HashCodeMember]
-	[PrimaryConstructorParameter(MemberKinds.Field, Accessibility = "protected readonly")]
-	CandidateMap map
-) :
+[StructLayout(LayoutKind.Auto)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
+public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] CandidateMap map) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
 	ICoordinateConvertible<Node>,
@@ -35,17 +28,17 @@ public abstract partial class Node(
 	/// <summary>
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
+	[UnscopedRef]
 	public ref readonly CandidateMap Map => ref _map;
 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals([NotNullWhen(true)] Node? other) => other is not null && Type == other.Type && _map == other._map;
+	public bool Equals(Node other) => Type == other.Type && _map == other._map;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Node? other)
-		=> other is null ? 1 : Type > other.Type ? 1 : Type < other.Type ? -1 : _map.CompareTo(in other._map);
+	public int CompareTo(Node other) => Type > other.Type ? 1 : Type < other.Type ? -1 : _map.CompareTo(in other._map);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
