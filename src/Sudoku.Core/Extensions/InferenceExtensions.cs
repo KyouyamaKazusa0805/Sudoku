@@ -7,7 +7,7 @@ namespace Sudoku.Concepts;
 public static class InferenceExtensions
 {
 	/// <summary>
-	/// Gets connecting notation of the inference.
+	/// Gets connecting notation of the inference, with two spaces sandwiching the characters.
 	/// </summary>
 	/// <param name="this">The inference instance.</param>
 	/// <returns>The connecting notation of the inference.</returns>

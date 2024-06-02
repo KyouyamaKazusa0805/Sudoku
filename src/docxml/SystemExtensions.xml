@@ -913,6 +913,23 @@
 				</target>
             </remarks>
         </member>
+        <member name="T:System.Collections.Generic.SortedSetExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:System.Collections.Generic.SortedSet`1"/>.
+            </summary>
+            <seealso cref="T:System.Collections.Generic.SortedSet`1"/>
+        </member>
+        <member name="M:System.Collections.Generic.SortedSetExtensions.AddRef``1(System.Collections.Generic.SortedSet{``0},``0@)">
+            <summary>
+            Adds a new instance into the current collection.
+            </summary>
+            <typeparam name="T">The type of the item to be added.</typeparam>
+            <param name="this">The collection.</param>
+            <param name="item">The current item to be added.</param>
+            <remarks>
+            <inheritdoc cref="M:System.Collections.Generic.ListExtensions.AddRef``1(System.Collections.Generic.List{``0},``0@)" path="/remarks"/>
+            </remarks>
+        </member>
         <member name="T:System.Collections.Generic.StackExtensions">
             <summary>
             Provides with extension methods on <see cref="T:System.Collections.Generic.Stack`1"/> instances.
@@ -1970,6 +1987,32 @@
             <summary>
             The generated field declaration for parameter <c>bitsCount</c>.
             </summary>
+        </member>
+        <member name="T:System.HashCodeNativeConstants">
+            <summary>
+            Provides constants that is defined in .NET API <see cref="T:System.HashCode"/> but aren't exposed.
+            </summary>
+            <seealso cref="T:System.HashCode"/>
+        </member>
+        <member name="M:System.HashCodeNativeConstants.Prime3">
+            <summary>
+            Indicates the third prime number defined in type <see cref="T:System.HashCode" />.
+            </summary>
+            <returns>The value.</returns>
+            <remarks>
+            <target name="others">
+					<para>
+						This method is implemented via <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />,
+						which is just like inserting .NET implementation into the current project directly.
+					</para>
+				</target>
+            <feature name="unsafe-accessor">
+				<para>
+					Begin with .NET 9 preview 4, <see cref="T:System.Runtime.CompilerServices.UnsafeAccessorAttribute" />
+					supports with generic-typed references.
+				</para>
+			</feature>
+            </remarks>
         </member>
         <member name="T:System.ILogicalOperators`1">
             <summary>

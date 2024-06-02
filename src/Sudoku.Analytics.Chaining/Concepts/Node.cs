@@ -5,7 +5,7 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators, IsLargeStructure = true)]
 public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] CandidateMap map) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
@@ -32,13 +32,13 @@ public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Fie
 	public ref readonly CandidateMap Map => ref _map;
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public bool Equals(Node other) => Type == other.Type && _map == other._map;
+	public bool Equals(ref readonly Node other) => Type == other.Type && _map == other._map;
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IComparable{T}.CompareTo(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public int CompareTo(Node other) => Type > other.Type ? 1 : Type < other.Type ? -1 : _map.CompareTo(in other._map);
+	public int CompareTo(ref readonly Node other) => Type > other.Type ? 1 : Type < other.Type ? -1 : _map.CompareTo(in other._map);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -54,6 +54,12 @@ public readonly partial struct Node([PrimaryConstructorParameter(MemberKinds.Fie
 				_ => CoordinateConverter.InvariantCultureConverter
 			}
 		);
+
+	/// <inheritdoc/>
+	bool IEquatable<Node>.Equals(Node other) => Equals(in other);
+
+	/// <inheritdoc/>
+	int IComparable<Node>.CompareTo(Node other) => CompareTo(in other);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
