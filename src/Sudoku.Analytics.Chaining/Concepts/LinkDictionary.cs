@@ -4,7 +4,7 @@ namespace Sudoku.Concepts;
 /// Represents a list of <see cref="Node"/> relations on strong or weak links.
 /// </summary>
 /// <seealso cref="Node"/>
-public sealed class LinkDictionary : Dictionary<Node, SortedSet<Node>>
+public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 {
 	/// <summary>
 	/// Add a link to the current collection with both entries on nodes of the link used.
