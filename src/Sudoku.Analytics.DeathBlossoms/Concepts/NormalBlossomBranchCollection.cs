@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.ObjectModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents for a normal blossom branch collection.

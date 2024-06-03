@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.ObjectModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents for a n-times ALS blossom branch collection.

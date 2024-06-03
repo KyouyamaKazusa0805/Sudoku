@@ -1,4 +1,4 @@
-namespace Sudoku.Concepts.ObjectModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
