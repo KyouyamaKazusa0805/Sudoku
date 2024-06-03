@@ -12,6 +12,11 @@ public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, I
 
 
 	/// <summary>
+	/// Indicates whether the chain pattern uses grouped logic.
+	/// </summary>
+	public abstract bool IsGrouped { get; }
+
+	/// <summary>
 	/// Indicates the length of the pattern.
 	/// </summary>
 	public abstract int Length { get; }

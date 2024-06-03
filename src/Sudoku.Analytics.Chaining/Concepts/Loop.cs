@@ -29,6 +29,9 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 
 
 	/// <inheritdoc/>
+	public bool IsGrouped => Array.Exists(_nodes, static node => node.IsGroupedNode);
+
+	/// <inheritdoc/>
 	public int Length => _nodes.Length;
 
 	/// <inheritdoc/>

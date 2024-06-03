@@ -37,6 +37,9 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 
 
 	/// <inheritdoc/>
+	public bool IsGrouped => Span.Any(static (ref readonly Node node) => node.IsGroupedNode);
+
+	/// <inheritdoc/>
 	public int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
 
 	/// <inheritdoc/>

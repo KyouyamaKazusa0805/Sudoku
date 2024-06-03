@@ -112,6 +112,9 @@
             <param name="lastNode">The last node.</param>
             <param name="weakStart">Indicates whether the chain starts with weak link.</param>
         </member>
+        <member name="P:Sudoku.Concepts.Chain.IsGrouped">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Chain.Length">
             <inheritdoc/>
         </member>
@@ -226,6 +229,11 @@
         <member name="F:Sudoku.Concepts.IChainPattern.Inferences">
             <summary>
             Indicates the possible inferences to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.IsGrouped">
+            <summary>
+            Indicates whether the chain pattern uses grouped logic.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.IChainPattern.Length">
@@ -491,6 +499,9 @@
             Initializes a <see cref="T:Sudoku.Concepts.Loop"/> instance via a <see cref="T:Sudoku.Concepts.Node"/> instance belonging to a loop.
             </summary>
             <param name="lastNode">The last node.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.IsGrouped">
+            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Length">
             <inheritdoc/>
