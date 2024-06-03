@@ -1,0 +1,22 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics.BivalueUniversalGraves</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Concepts.TrueCandidate">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.TrueCandidate.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+        </member>
+    </members>
+</doc>
