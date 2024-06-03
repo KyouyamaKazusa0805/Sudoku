@@ -1,11 +1,11 @@
-namespace Sudoku.Analytics.Steps;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// Indicates a shape modifier that is used for a complex fish pattern.
 /// </summary>
 /// <remarks><include file="../../global-doc-comments.xml" path="/g/flags-attribute"/></remarks>
 [Flags]
-internal enum ExocetShapeKind
+public enum ExocetShapeKind
 {
 	/// <summary>
 	/// Indicates the basic exocet. This field is a reserved field.

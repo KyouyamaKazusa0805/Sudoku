@@ -193,7 +193,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 										continue;
 									}
 
-									var groupsOfTargetCells = GroupTargets(in targetCells, housesMask);
+									var groupsOfTargetCells = targetCells.GroupTargets(housesMask);
 
 									// Check whether all groups of target cells don't exceed the maximum limit, 2 cells.
 									var containsAtLeastOneGroupMoreThanTwoCells = false;
@@ -255,7 +255,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #if SEARCH_WEAK_EXOCET || SEARCH_JUNIOR_EXOCET || SEARCH_DOUBLE_EXOCET || SEARCH_COMPLEX_JUNIOR_EXOCET
 									if (groupsOfTargetCells.Length == baseSize)
 									{
-										if (!CheckTargetCellsDigitsValidity(in grid, in targetCells, baseCellsDigitsMask))
+										if (!grid.CheckTargetCellsDigitsValidity(in targetCells, baseCellsDigitsMask))
 										{
 											continue;
 										}
@@ -523,7 +523,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// Check whether cross-line non-empty cells contains digits appeared in base cells.
 		// If so, they will be endo-target cells.
 		// The maximum possible number of appearing times is 2, corresponding to the real target cells count.
-		var endoTargetValueDigitsMask = GetValueDigitsAppearedInCrossline(in grid, crosslineIncludingTarget - targetCell, baseCellsDigitsMask);
+		var endoTargetValueDigitsMask = grid.GetValueDigitsAppearedInCrossline(crosslineIncludingTarget - targetCell, baseCellsDigitsMask);
 		switch (PopCount((uint)endoTargetValueDigitsMask))
 		{
 			case 0:
@@ -620,7 +620,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		if (!CheckTargetCellsDigitsValidity(in grid, in targetCells, baseCellsDigitsMask))
+		if (!grid.CheckTargetCellsDigitsValidity(in targetCells, baseCellsDigitsMask))
 		{
 			// The target cells don't contain enough candidates that can match base cells.
 			return null;
@@ -635,7 +635,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 			// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
 			// except endo-target cells; and cannot be of value appeared in base cells.
-			if (CheckCrossLineIntersectionLeaveEmpty(in grid, in intersectedCellsBase, baseCellsDigitsMask))
+			if (grid.CheckCrossLineIntersectionLeaveEmpty(in intersectedCellsBase, baseCellsDigitsMask))
 			{
 				continue;
 			}
@@ -785,14 +785,14 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					continue;
 				}
 
-				if (!CheckTargetCellsDigitsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
+				if (!grid.CheckTargetCellsDigitsValidity([targetCell, endoTargetCell], baseCellsDigitsMask))
 				{
 					continue;
 				}
 
 				// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
 				// except endo-target cells; and cannot be of value appeared in base cells.
-				if (CheckCrossLineIntersectionLeaveEmpty(in grid, intersectedCellsBase - endoTargetCell, baseCellsDigitsMask))
+				if (grid.CheckCrossLineIntersectionLeaveEmpty(intersectedCellsBase - endoTargetCell, baseCellsDigitsMask))
 				{
 					continue;
 				}
@@ -1566,7 +1566,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 			case (_, { Count: 3 or 4 }, -1):
 			{
-				foreach (var (_, cellsInThisBlock) in GroupTargets(in targetCells, housesMask))
+				foreach (var (_, cellsInThisBlock) in targetCells.GroupTargets(housesMask))
 				{
 					switch (cellsInThisBlock.Count)
 					{
@@ -1702,7 +1702,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			}
 
 			// Endo-target cells must contain at least one of all digits appeared in base cells.
-			if (!CheckTargetCellsDigitsValidity(in grid, [targetCell, endoTargetCell], baseCellsDigitsMask))
+			if (!grid.CheckTargetCellsDigitsValidity([targetCell, endoTargetCell], baseCellsDigitsMask))
 			{
 				continue;
 			}
@@ -1799,7 +1799,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var conclusions = new List<Conclusion>();
 		var conjugatePairs = new List<Conjugate>(2);
-		var cellGroups = GroupTargets(in targetCells, housesMask);
+		var cellGroups = targetCells.GroupTargets(housesMask);
 		if (cellGroups.Length != 2)
 		{
 			return null;
@@ -1919,7 +1919,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 		var conclusions = new List<Conclusion>();
 		var singleMirrors = CellMap.Empty;
-		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in targetCells.GroupTargets(housesMask))
 		{
 			if (cellGroup.Count == 2)
 			{
@@ -2250,7 +2250,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 				conclusions.Add(new(Elimination, cell, digit));
 			}
 		}
-		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in targetCells.GroupTargets(housesMask))
 		{
 			var (_, values) = cellGroup;
 			switch (values.Count)
@@ -2455,7 +2455,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			return null;
 		}
 
-		foreach (ref readonly var cellGroup in GroupTargets(in targetCells, housesMask))
+		foreach (ref readonly var cellGroup in targetCells.GroupTargets(housesMask))
 		{
 			if (cellGroup is not (_, [var targetCell]))
 			{
@@ -4563,55 +4563,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 #endif
 
 	/// <summary>
-	/// Check whether all digits appeared in base cells can be filled in target empty cells.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="targetCellsToBeChecked">The target cells to be checked.</param>
-	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private static bool CheckTargetCellsDigitsValidity(
-		ref readonly Grid grid,
-		ref readonly CellMap targetCellsToBeChecked,
-		Mask baseCellsDigitsMask
-	) => targetCellsToBeChecked switch
-	{
-		// If the selected target contains two valid cells, we should check for its intersected value and union value,
-		// determining whether the union value contains all digits from base cells,
-		// and intersected value contain at least 2 kinds of digits appeared from base cells.
-		// Why is 2? Because the target cells should be filled two different digits appeared from base cells.
-		{ Count: 2 } when (
-			(Mask)(grid[in targetCellsToBeChecked] & baseCellsDigitsMask),
-			(Mask)(grid[in targetCellsToBeChecked, false, '&'] & baseCellsDigitsMask)
-		) is var (u, i) => u == baseCellsDigitsMask && i != 0,
-
-		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
-		// Today we don't check for it.
-		_ => false
-	};
-
-	/// <summary>
-	/// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
-	/// and cannot be of value appeared in base cells.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="crossline">The cross-line cells.</param>
-	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	private static bool CheckCrossLineIntersectionLeaveEmpty(ref readonly Grid grid, ref readonly CellMap crossline, Mask baseCellsDigitsMask)
-	{
-		foreach (var cell in crossline)
-		{
-			if (grid.GetDigit(cell) is not (var valueDigit and not -1) || (baseCellsDigitsMask >> valueDigit & 1) != 0)
-			{
-				return true;
-			}
-		}
-
-		return false;
-	}
-
-	/// <summary>
 	/// Try to fetch locked members in the pattern, and verify validity of the pattern.
 	/// </summary>
 	/// <param name="grid">The grid to be checked.</param>
@@ -4697,26 +4648,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 	}
 
 	/// <summary>
-	/// Try to get all possible digits as value representation in cross-line cells.
-	/// </summary>
-	/// <param name="grid">The grid to be checked.</param>
-	/// <param name="crossline">The cross-line cells to be checked.</param>
-	/// <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
-	/// <returns>A list of digits appeared in cross-line cells as value representation.</returns>
-	private static Mask GetValueDigitsAppearedInCrossline(ref readonly Grid grid, ref readonly CellMap crossline, Mask baseCellsDigitsMask)
-	{
-		var result = (Mask)0;
-		foreach (var cell in crossline)
-		{
-			if (grid.GetDigit(cell) is var digit && (baseCellsDigitsMask >> digit & 1) != 0)
-			{
-				result |= (Mask)(1 << digit);
-			}
-		}
-		return result;
-	}
-
-	/// <summary>
 	/// Try to fetch all possible complex houses.
 	/// </summary>
 	/// <param name="isRow">Indicates whether the cross-line cells are at row direction.</param>
@@ -4727,25 +4658,6 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		=> HouseMaskOperations.AllHousesMask
 			& ~(isRow ? HouseMaskOperations.AllRowsMask : HouseMaskOperations.AllColumnsMask)
 			& ~baseCells.SharedHouses;
-
-	/// <summary>
-	/// Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
-	/// </summary>
-	/// <param name="targetCells">The target cells to be split.</param>
-	/// <param name="houses">The mask value holding a list of houses to be matched.</param>
-	/// <returns>A list of <see cref="CellMap"/> grouped, representing as a <see cref="TargetCellsGroup"/>.</returns>
-	private static ReadOnlySpan<TargetCellsGroup> GroupTargets(ref readonly CellMap targetCells, HouseMask houses)
-	{
-		var (result, i) = (new TargetCellsGroup[PopCount((uint)houses)], 0);
-		foreach (var house in houses)
-		{
-			if ((targetCells & HousesMap[house]) is var map and not [])
-			{
-				result[i++] = new(house, in map);
-			}
-		}
-		return result.AsReadOnlySpan()[..i];
-	}
 
 	/// <summary>
 	/// Try to create a <see cref="ReadOnlySpan{T}"/> of <see cref="CellMap"/> instances

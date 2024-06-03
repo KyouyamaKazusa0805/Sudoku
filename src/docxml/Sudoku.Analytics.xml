@@ -9679,25 +9679,6 @@
             <param name="chuteIndex">The chute index to be used. Valid values are between 0 and 6.</param>
             <returns>A valid <see cref="T:Sudoku.Analytics.Steps.ExocetStep"/> instance calculated and found.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckTargetCellsDigitsValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
-            <summary>
-            Check whether all digits appeared in base cells can be filled in target empty cells.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="targetCellsToBeChecked">The target cells to be checked.</param>
-            <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckCrossLineIntersectionLeaveEmpty(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
-            <summary>
-            Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
-            and cannot be of value appeared in base cells.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="crossline">The cross-line cells.</param>
-            <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.CheckValidityAndLockedMembersExistence(Sudoku.Concepts.Grid@,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32,System.Int16@,System.Int16@,System.ReadOnlySpan{Sudoku.Concepts.LockedMember}@,System.Int16@)">
             <summary>
             Try to fetch locked members in the pattern, and verify validity of the pattern.
@@ -9723,15 +9704,6 @@
             <param name="miniline">The miniline cells the target cell and mirror cells lie in.</param>
             <returns>The mirror cells that may contain non-empty cells.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetValueDigitsAppearedInCrossline(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
-            <summary>
-            Try to get all possible digits as value representation in cross-line cells.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <param name="crossline">The cross-line cells to be checked.</param>
-            <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
-            <returns>A list of digits appeared in cross-line cells as value representation.</returns>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetComplexHouses(System.Boolean,Sudoku.Concepts.CellMap@)">
             <summary>
             Try to fetch all possible complex houses.
@@ -9739,14 +9711,6 @@
             <param name="isRow">Indicates whether the cross-line cells are at row direction.</param>
             <param name="baseCells">The base cells.</param>
             <returns>A mask that holds a list of houses that can be complex houses.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GroupTargets(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
-            </summary>
-            <param name="targetCells">The target cells to be split.</param>
-            <param name="houses">The mask value holding a list of houses to be matched.</param>
-            <returns>A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped, representing as a <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>.</returns>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ExocetStepSearcher.GetLockedMembers(Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int16@)">
             <summary>
@@ -19766,34 +19730,6 @@
             The generated property declaration for parameter <c>isSiamese</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Steps.ExocetShapeKind">
-            <summary>
-            Indicates a shape modifier that is used for a complex fish pattern.
-            </summary>
-            <remarks><flags-attribute>
-		<para>
-			<i>
-				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
-				<see langword="operator" /> | to combine multiple fields.
-			</i>
-		</para>
-	</flags-attribute></remarks>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Basic">
-            <summary>
-            Indicates the basic exocet. This field is a reserved field.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Franken">
-            <summary>
-            Indicates the franken exocet.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.Steps.ExocetShapeKind.Mutant">
-            <summary>
-            Indicates the mutant exocet.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.WrongStepException">
             <summary>
             Indicates an error that throws when a solving step is wrong (may be due to wrong algorithm, bug, etc.).
@@ -20667,21 +20603,6 @@
             <param name="cells">The cell to be checked. The cell is the final hidden single cell or the locked candidate cells.</param>
             <returns>The result pair.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.DeadlyPattern">
-            <summary>
-            Represents a type that checks and infers for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
-            determining whether the pattern is a deadly pattern.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="M:Sudoku.Concepts.DeadlyPattern.IsDeadlyPattern(Sudoku.Concepts.Grid@)">
-            <summary>
-            Determines whether a pattern is a deadly pattern.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
-        </member>
         <member name="T:Sudoku.Concepts.EliminationRange">
             <summary>
             Represents a type that includes a list of houses and a list of digits, indicating the eliminations range.
@@ -20904,26 +20825,6 @@
             <param name="house">The house.</param>
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.LockedMember">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a locked member. This type is only used by searching for exocets.
-            </summary>
-            <param name="LockedCells">Indicates the locked cells.</param>
-            <param name="LockedBlock">Indicates the locked block.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.LockedMember.LockedCells">
-            <summary>Indicates the locked cells.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
-            <summary>Indicates the locked block.</summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ChainBranchCollection">
             <summary>
@@ -21280,7 +21181,7 @@ result ^= expression;
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions">
             <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/>.
+            Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.ObjectModel.IComplexSeniorExocet)">
@@ -21288,7 +21189,7 @@ result ^= expression;
             Try to get shape kind via the houses.
             </summary>
             <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Analytics.Steps.ExocetShapeKind"/> result.</returns>
+            <returns>A <see cref="T:Sudoku.Concepts.ExocetShapeKind"/> result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.MultipleForcingChains">
             <summary>
