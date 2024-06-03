@@ -15,7 +15,6 @@ public static class TechniqueSetEnumerable
 		{
 			result[i++] = selector(technique);
 		}
-
 		return result;
 	}
 
@@ -30,7 +29,6 @@ public static class TechniqueSetEnumerable
 				result.Add(technique);
 			}
 		}
-
 		return [.. result];
 	}
 }
