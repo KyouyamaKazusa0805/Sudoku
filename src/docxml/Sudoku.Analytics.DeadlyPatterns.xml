@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics.DeadlyPatterns</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Concepts.DeadlyPattern">
+            <summary>
+            Represents a type that checks and infers for a pattern (specified as a <see cref="T:Sudoku.Concepts.Grid"/>, but invalid - multiple solutions),
+            determining whether the pattern is a deadly pattern.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DeadlyPattern.IsDeadlyPattern(Sudoku.Concepts.Grid@)">
+            <summary>
+            Determines whether a pattern is a deadly pattern.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="grid"/> is valid.</exception>
+        </member>
+    </members>
+</doc>
