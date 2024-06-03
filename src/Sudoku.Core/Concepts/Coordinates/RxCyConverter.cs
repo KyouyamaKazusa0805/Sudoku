@@ -34,7 +34,7 @@ public sealed record RxCyConverter(
 			return cells switch
 			{
 				[] => string.Empty,
-				[var p] => MakeLettersUpperCase switch { true => $"@ref{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
+				[var p] => MakeLettersUpperCase switch { true => $"R{p / 9 + 1}C{p % 9 + 1}", _ => $"r{p / 9 + 1}c{p % 9 + 1}" },
 				_ => r(in cells) is var a && c(in cells) is var b && a.Length <= b.Length ? a : b
 			};
 

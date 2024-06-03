@@ -3,8 +3,8 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a loop.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, ISliceMethod<Loop, Node>
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
+public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, IEquatable<Loop>, ISliceMethod<Loop, Node>
 {
 	/// <summary>
 	/// Indicates the nodes.
@@ -49,13 +49,134 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 
 
 	/// <inheritdoc/>
-	public string ToString(IFormatProvider? formatProvider)
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public bool Equals([NotNullWhen(true)] Loop? other)
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+
+	/// <summary>
+	/// Determine whether two <see cref="Loop"/> instances are same, by using the specified comparison rule.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="nodeComparison">The comparison rule on nodes.</param>
+	/// <param name="chainComparison">The comparison rule on the whole chain.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="chainComparison"/> is not defined.
+	/// </exception>
+	public bool Equals([NotNullWhen(true)] Loop? other, NodeComparison nodeComparison, ChainPatternComparison chainComparison)
+	{
+		if (other is null)
+		{
+			return false;
+		}
+
+		if (Length != other.Length)
+		{
+			return false;
+		}
+
+		switch (chainComparison)
+		{
+			case ChainPatternComparison.Undirected:
+			{
+				if (_nodes[0].Equals(other._nodes[0], nodeComparison))
+				{
+					for (var i = 0; i < Length; i++)
+					{
+						if (!_nodes[i].Equals(other._nodes[i], nodeComparison))
+						{
+							return false;
+						}
+					}
+					return true;
+				}
+				else
+				{
+					for (var (i, j) = (0, Length - 1); i < Length; i++, j--)
+					{
+						if (!_nodes[i].Equals(other._nodes[j], nodeComparison))
+						{
+							return false;
+						}
+					}
+					return true;
+				}
+			}
+			case ChainPatternComparison.Directed:
+			{
+				for (var i = 0; i < Length; i++)
+				{
+					if (!_nodes[i].Equals(other._nodes[i], nodeComparison))
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(chainComparison));
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+
+	/// <summary>
+	/// Creates a hash code based on the current instance.
+	/// </summary>
+	/// <param name="nodeComparison">The node comparison.</param>
+	/// <param name="patternComparison">The pattern comparison.</param>
+	/// <returns>An <see cref="int"/> as the result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	{
+		var result = new HashCode();
+		switch (patternComparison)
+		{
+			case ChainPatternComparison.Undirected:
+			{
+				for (var i = 0; i < Length; i++)
+				{
+					result.Add(_nodes[i].GetHashCode(nodeComparison));
+				}
+				for (var i = Length - 1; i >= 0; i--)
+				{
+					result.Add(_nodes[i].GetHashCode(nodeComparison));
+				}
+				break;
+			}
+			case ChainPatternComparison.Directed:
+			{
+				foreach (var element in _nodes)
+				{
+					result.Add(element.GetHashCode(nodeComparison));
+				}
+				break;
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(patternComparison));
+			}
+		}
+		return result.ToHashCode();
+	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
+
+	/// <inheritdoc/>
+	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (0, 0); i < _nodes.Length; linkIndex++, i++)
 		{
 			var inference = IChainPattern.Inferences[linkIndex & 1];
-			sb.Append(_nodes[i].ToString(formatProvider));
+			sb.Append(_nodes[i].ToString(format, formatProvider));
 			sb.Append(inference.ConnectingNotation());
 		}
 		sb.Append(_nodes[0].ToString(formatProvider));
@@ -81,9 +202,6 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 		}
 		return result;
 	}
-
-	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 	/// <inheritdoc/>
 	Node IElementAtMethod<Loop, Node>.ElementAt(int index) => this[index];

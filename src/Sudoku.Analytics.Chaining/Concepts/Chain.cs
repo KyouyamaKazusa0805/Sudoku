@@ -3,8 +3,8 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a chain or a loop.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>, ISliceMethod<Chain, Node>
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
+public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>, IEquatable<Chain>, ISliceMethod<Chain, Node>
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.
@@ -43,10 +43,10 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	public int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
-	public Node First => Snapshot[0];
+	public Node First => Span[0];
 
 	/// <inheritdoc/>
-	public Node Last => Snapshot[^1];
+	public Node Last => Span[^1];
 
 	/// <inheritdoc/>
 	Node[] IChainPattern.BackingNodes => _nodes;
@@ -54,20 +54,132 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	/// <summary>
 	/// Create a <see cref="ReadOnlySpan{T}"/> instance that holds valid <see cref="Node"/> instances to be used in a chain.
 	/// </summary>
-	private ReadOnlySpan<Node> Snapshot => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
+	private ReadOnlySpan<Node> Span => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
 
 
 	/// <inheritdoc/>
-	public Node this[int index] => Snapshot[_weakStart ? index - 1 : index];
+	public Node this[int index] => Span[_weakStart ? index - 1 : index];
 
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Node> Slice(int start, int length) => Snapshot[start..(start + length)];
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConclusionSet GetConclusions(ref readonly Grid grid) => [.. IChainPattern.GetConclusions(in grid, First, Last)];
+	public bool Equals([NotNullWhen(true)] Chain? other)
+		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+
+	/// <summary>
+	/// Determine whether two <see cref="Chain"/> instances are same, by using the specified comparison rule.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="nodeComparison">The comparison rule on nodes.</param>
+	/// <param name="chainComparison">The comparison rule on the whole chain.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="chainComparison"/> is not defined.
+	/// </exception>
+	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison chainComparison)
+	{
+		if (other is null)
+		{
+			return false;
+		}
+
+		if (Length != other.Length)
+		{
+			return false;
+		}
+
+		var span1 = Span;
+		var span2 = other.Span;
+		switch (chainComparison)
+		{
+			case ChainPatternComparison.Undirected:
+			{
+				if (span1[0].Equals(span2[0], nodeComparison))
+				{
+					for (var i = 0; i < Length; i++)
+					{
+						if (!span1[i].Equals(span2[i], nodeComparison))
+						{
+							return false;
+						}
+					}
+					return true;
+				}
+				else
+				{
+					for (var (i, j) = (0, Length - 1); i < Length; i++, j--)
+					{
+						if (!span1[i].Equals(span2[j], nodeComparison))
+						{
+							return false;
+						}
+					}
+					return true;
+				}
+			}
+			case ChainPatternComparison.Directed:
+			{
+				for (var i = 0; i < Length; i++)
+				{
+					if (!span1[i].Equals(span2[i], nodeComparison))
+					{
+						return false;
+					}
+				}
+				return true;
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(chainComparison));
+			}
+		}
+	}
+
+	/// <inheritdoc/>
+	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+
+	/// <summary>
+	/// Creates a hash code based on the current instance.
+	/// </summary>
+	/// <param name="nodeComparison">The node comparison.</param>
+	/// <param name="patternComparison">The pattern comparison.</param>
+	/// <returns>An <see cref="int"/> as the result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	{
+		var result = new HashCode();
+		var span = Span;
+		switch (patternComparison)
+		{
+			case ChainPatternComparison.Undirected:
+			{
+				for (var i = 0; i < Length; i++)
+				{
+					result.Add(span[i].GetHashCode(nodeComparison));
+				}
+				for (var i = Length - 1; i >= 0; i--)
+				{
+					result.Add(span[i].GetHashCode(nodeComparison));
+				}
+				break;
+			}
+			case ChainPatternComparison.Directed:
+			{
+				foreach (var element in span)
+				{
+					result.Add(element.GetHashCode(nodeComparison));
+				}
+				break;
+			}
+			default:
+			{
+				throw new ArgumentOutOfRangeException(nameof(patternComparison));
+			}
+		}
+		return result.ToHashCode();
+	}
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -76,19 +188,27 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	/// <inheritdoc/>
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
-		var snapshot = Snapshot;
+		var span = Span;
 		var sb = new StringBuilder();
-		for (var (linkIndex, i) = (0, 0); i < snapshot.Length; linkIndex++, i++)
+		for (var (linkIndex, i) = (0, 0); i < span.Length; linkIndex++, i++)
 		{
 			var inference = IChainPattern.Inferences[linkIndex & 1];
-			sb.Append(snapshot[i].ToString(format, formatProvider));
-			if (i != snapshot.Length - 1)
+			sb.Append(span[i].ToString(format, formatProvider));
+			if (i != span.Length - 1)
 			{
 				sb.Append(inference.ConnectingNotation());
 			}
 		}
 		return sb.ToString();
 	}
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ReadOnlySpan<Node> Slice(int start, int length) => Span[start..(start + length)];
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public ConclusionSet GetConclusions(ref readonly Grid grid) => [.. IChainPattern.GetConclusions(in grid, First, Last)];
 
 	/// <inheritdoc/>
 	Node IElementAtMethod<Chain, Node>.ElementAt(int index) => this[index];
@@ -104,10 +224,10 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 		=> index.GetOffset(Length) is var i && i >= 0 && i < Length ? this[i] : default;
 
 	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => Snapshot.ToArray().GetEnumerator();
+	IEnumerator IEnumerable.GetEnumerator() => Span.ToArray().GetEnumerator();
 
 	/// <inheritdoc/>
-	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)Snapshot.ToArray()).GetEnumerator();
+	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)Span.ToArray()).GetEnumerator();
 
 	/// <inheritdoc/>
 	IEnumerable<Node> ISliceMethod<Chain, Node>.Slice(int start, int count) => Slice(start, count).ToArray();
