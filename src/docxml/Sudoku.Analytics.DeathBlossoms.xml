@@ -4,113 +4,134 @@
         <name>Sudoku.Analytics.DeathBlossoms</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2">
+        <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">
             <summary>
             Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
             </summary>
             <typeparam name="TSelf">The type of itself.</typeparam>
             <typeparam name="TKey">The type of the distinction key.</typeparam>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Equals(`0)">
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(`0)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2.GetHashCode">
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection">
+        <member name="T:Sudoku.Concepts.HouseBlossomBranchCollection">
             <summary>
             Represents for a house blossom branch collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.Equals(Sudoku.Concepts.HouseBlossomBranchCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.GetHashCode">
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.op_Equality(Sudoku.Concepts.HouseBlossomBranchCollection,Sudoku.Concepts.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.HouseBlossomBranchCollection,Sudoku.Concepts.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2">
+        <member name="T:Sudoku.Concepts.IDeathBlossomCollection`2">
             <summary>
             Represents the basic data for a death blossom.
             </summary>
             <typeparam name="TSelf">The type of itself.</typeparam>
             <typeparam name="TKey">The type of the distinction key.</typeparam>
         </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2.Branches">
+        <member name="P:Sudoku.Concepts.IDeathBlossomCollection`2.Branches">
             <summary>
             Indicates the branches used.
             </summary>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection">
+        <member name="T:Sudoku.Concepts.NormalBlossomBranchCollection">
             <summary>
             Represents for a normal blossom branch collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.Equals(Sudoku.Concepts.NormalBlossomBranchCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.GetHashCode">
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.op_Equality(Sudoku.Concepts.NormalBlossomBranchCollection,Sudoku.Concepts.NormalBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.op_Inequality(Sudoku.Concepts.NormalBlossomBranchCollection,Sudoku.Concepts.NormalBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection">
+        <member name="T:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection">
             <summary>
             Represents for a n-times ALS blossom branch collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection">
+        <member name="T:Sudoku.Concepts.RectangleBlossomBranchCollection">
             <summary>
             Represents for a rectangle blossom branch collection.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.Equals(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.Equals(Sudoku.Concepts.RectangleBlossomBranchCollection)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.GetHashCode">
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.Equals(System.Object)">
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.op_Equality(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.op_Equality(Sudoku.Concepts.RectangleBlossomBranchCollection,Sudoku.Concepts.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection)">
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.RectangleBlossomBranchCollection,Sudoku.Concepts.RectangleBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
+            <summary>
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>
+        </member>
+        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.DeathBlossomBranchCollection{``0,``1},System.Func{System.ValueTuple{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="this">The current collection.</param>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
         </member>
     </members>
 </doc>

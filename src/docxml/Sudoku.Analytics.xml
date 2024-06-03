@@ -4777,28 +4777,28 @@
             Zhihu: Which way to calculate LCA in a multiway tree is fastest?
             </seealso>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.XChainingRule">
+        <member name="T:Sudoku.Analytics.Chaining.CachedXChainingRule">
             <summary>
             Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>).
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedXChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedXChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.YChainingRule">
+        <member name="T:Sudoku.Analytics.Chaining.CachedYChainingRule">
             <summary>
             Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedYChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+        <member name="M:Sudoku.Analytics.Chaining.CachedYChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.Collector">
@@ -7438,9 +7438,9 @@
             </list>
             </summary>
         </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.ChainStepSearcher.ChainingRuleRouter">
+        <member name="F:Sudoku.Analytics.StepSearchers.ChainStepSearcher.RuleRouter">
             <summary>
-            Indicates the backing chaining rule router instance.
+            Indicates the rule router.
             </summary>
         </member>
         <member name="P:Sudoku.Analytics.StepSearchers.ChainStepSearcher.LinkTypes">
@@ -7448,24 +7448,38 @@
             Indicates the link types supported.
             </summary>
         </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.ChainStepSearcher.ChainingRules">
+            <summary>
+            Indicates hte chaining rules.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateStrong(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of strong link relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="linkTypes">The link types to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.CreateWeak(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkType)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of weak link relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="linkTypes">The link types to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
+            <inheritdoc />
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid chain can only belong to the following three cases:
+            <list type="number">
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with weak link, alternating strong and weak links and return to itself by weak link
+            (with an odd number of nodes).
+            </item>
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by strong link
+            (with an odd number of nodes).
+            </item>
+            <item>
+            <b>Continuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by weak link
+            (with an even number of nodes).
+            </item>
+            </list>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
@@ -11770,7 +11784,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.ObjectModel.NormalBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.DeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,Sudoku.Concepts.NormalBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom</b> technique.
             </summary>
@@ -11932,7 +11946,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.HouseDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int32,System.Int32,Sudoku.Concepts.HouseBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (House Blooming)</b> technique.
             </summary>
@@ -11994,7 +12008,7 @@
             <param name="branches">Indicates the detail branches.</param>
             <param name="freedomDegree">Indicates the freedom degree of this A^nLS.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.ObjectModel.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
+        <member name="M:Sudoku.Analytics.Steps.NTimesAlmostLockedSetDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,System.Int32)">
             <summary>
             Provides with a step that is a <b>n-Times ALS Death Blossom</b> technique.
             </summary>
@@ -12059,7 +12073,7 @@
             <param name="branches">Indicates the branches.</param>
             <param name="zDigitsMask">Indicates the digits mask as eliminations.</param>
         </member>
-        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.ObjectModel.RectangleBlossomBranchCollection,System.Int16)">
+        <member name="M:Sudoku.Analytics.Steps.RectangleDeathBlossomStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.CellMap@,System.Boolean,Sudoku.Concepts.RectangleBlossomBranchCollection,System.Int16)">
             <summary>
             Provides with a step that is a <b>Death Blossom (Rectangle Blooming)</b> technique.
             </summary>
@@ -21198,27 +21212,6 @@ result ^= expression;
             <typeparam name="T">The type of the step you want to get.</typeparam>
             <param name="this">The instance.</param>
             <returns>An array of <typeparamref name="T"/> instances.</returns>
-        </member>
-        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
-            <summary>
-            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2"/>.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2"/>
-        </member>
-        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection{``0,``1},System.Func{System.ValueTuple{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
-            <summary>
-            Transforms the current collection into another representation, using the specified function to transform.
-            </summary>
-            <typeparam name="TSelf">
-            <inheritdoc cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
-            </typeparam>
-            <typeparam name="TKey">
-            <inheritdoc cref="T:Sudoku.Concepts.ObjectModel.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
-            </typeparam>
-            <typeparam name="TResult">The type of the results.</typeparam>
-            <param name="this">The current collection.</param>
-            <param name="selector">The selector to tranform elements.</param>
-            <returns>The results.</returns>
         </member>
         <member name="T:Sudoku.Linq.TechniqueSetEnumerable">
             <summary>

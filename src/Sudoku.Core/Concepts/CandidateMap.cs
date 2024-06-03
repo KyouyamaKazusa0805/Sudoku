@@ -108,7 +108,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 							.ToString()
 					);
 				}
-
 				return [.. list];
 			}
 		}
@@ -129,7 +128,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 					result |= (Mask)(1 << digit);
 				}
 			}
-
 			return result;
 		}
 	}
@@ -155,7 +153,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			{
 				result &= new CandidateMap(candidate, false);
 			}
-
 			return result;
 		}
 	}
@@ -176,7 +173,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 					dictionary.Add(digit, map);
 				}
 			}
-
 			return dictionary.ToFrozenDictionary();
 		}
 	}
@@ -196,7 +192,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 					dictionary[element / 9] |= (Mask)(1 << element % 9);
 				}
 			}
-
 			return dictionary.ToFrozenDictionary();
 		}
 	}
@@ -222,7 +217,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 					arr[pos++] = i;
 				}
 			}
-
 			return arr;
 		}
 	}

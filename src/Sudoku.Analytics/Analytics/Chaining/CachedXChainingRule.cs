@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Chaining;
 /// Represents a chaining rule on X rule (i.e. <see cref="LinkType.SingleDigit"/>).
 /// </summary>
 /// <seealso cref="LinkType.SingleDigit"/>
-internal sealed class XChainingRule : ChainingRule
+internal sealed class CachedXChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
@@ -18,7 +18,7 @@ internal sealed class XChainingRule : ChainingRule
 					continue;
 				}
 
-				var mask = grid[in cellsInThisHouse];
+				var mask = Subview.ReduceCellByHouse(in cellsInThisHouse, house);
 				if (PopCount((uint)mask) != 2)
 				{
 					continue;
@@ -27,8 +27,8 @@ internal sealed class XChainingRule : ChainingRule
 				var pos1 = TrailingZeroCount(mask);
 				var pos2 = mask.GetNextSet(pos1);
 				linkDictionary.AddEntry(
-					new(HousesCells[house][pos1] * 9 + digit),
-					new(HousesCells[house][pos2] * 9 + digit)
+					new(HousesCells[house][pos1] * 9 + digit, false),
+					new(HousesCells[house][pos2] * 9 + digit, true)
 				);
 			}
 		}
@@ -46,12 +46,12 @@ internal sealed class XChainingRule : ChainingRule
 					continue;
 				}
 
-				var mask = grid[in cellsInThisHouse];
+				var mask = Subview.ReduceCellByHouse(in cellsInThisHouse, house);
 				foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 				{
 					linkDictionary.AddEntry(
-						new(HousesCells[house][combinationPair[0]] * 9 + digit),
-						new(HousesCells[house][combinationPair[1]] * 9 + digit)
+						new(HousesCells[house][combinationPair[0]] * 9 + digit, true),
+						new(HousesCells[house][combinationPair[1]] * 9 + digit, false)
 					);
 				}
 			}

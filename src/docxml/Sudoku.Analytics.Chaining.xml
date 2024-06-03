@@ -4,6 +4,37 @@
         <name>Sudoku.Analytics.Chaining</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingDriver">
+            <summary>
+            Provides a driver module on chaining.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},Sudoku.Concepts.LinkDictionary@,Sudoku.Concepts.LinkDictionary@)">
+            <summary>
+            Collect all <see cref="T:Sudoku.Concepts.IChainPattern"/> instances appears in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chainingRules">Indicates the chaining rules that are used for searching strong or weak inferences.</param>
+            <param name="strongLinksDictionary">Indicates the strong link dictionary.</param>
+            <param name="weakLinksDictionary">Indicates the weak link dictionary.</param>
+            <returns>All possible <see cref="T:Sudoku.Concepts.IChainPattern"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CreateStrong(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of strong link relations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chainingRules">The chaining rules.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CreateWeak(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of weak link relations.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="chainingRules">The chaining rules.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
@@ -34,6 +65,180 @@
             <inheritdoc cref="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)" path="/remarks"/>
             </remarks>
             <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.XChainingRule">
+            <summary>
+            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.YChainingRule">
+            <summary>
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.Chain">
+            <summary>
+            Represents a chain or a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Chain._weakStart">
+            <summary>
+            Indicates whether the chain starts with weak link.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Chain._nodes">
+            <summary>
+            Indicates the nodes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node,System.Boolean)">
+            <summary>
+            Initializes an <see cref="T:Sudoku.Concepts.Chain"/> instance via the specified node belonging to a chain at the last position.
+            </summary>
+            <param name="lastNode">The last node.</param>
+            <param name="weakStart">Indicates whether the chain starts with weak link.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.First">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Last">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Sudoku#Concepts#IChainPattern#BackingNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Snapshot">
+            <summary>
+            Create a <see cref="T:System.ReadOnlySpan`1"/> instance that holds valid <see cref="T:Sudoku.Concepts.Node"/> instances to be used in a chain.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#ISliceMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.IChainPattern">
+            <summary>
+            Represents a type that describes for a chain or a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.IChainPattern.Inferences">
+            <summary>
+            Indicates the possible inferences to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.Length">
+            <summary>
+            Indicates the length of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.Complexity">
+            <summary>
+            Indicates the complexity of the pattern.
+            The value is different with <see cref="P:Sudoku.Concepts.IChainPattern.Length"/> on a chain starting and ending with itself, both are by strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.First">
+            <summary>
+            Indicates the head node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.Last">
+            <summary>
+            Indicates the tail node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.BackingNodes">
+            <summary>
+            Indicates the backing nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IChainPattern.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:Sudoku.Concepts.Node"/> instance at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection with the specified start node and its length.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The number of <see cref="T:Sudoku.Concepts.Node"/> instances to slice.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances returned.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="node1">The first node.</param>
+            <param name="node2">The second node.</param>
+            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="T:Sudoku.Concepts.Link">
             <summary>
@@ -195,29 +400,135 @@
             Indicates the link type is an almost unique rectangle.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.Loop">
+            <summary>
+            Represents a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Loop._nodes">
+            <summary>
+            Indicates the nodes.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.#ctor(Sudoku.Concepts.Node)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Loop"/> instance via a <see cref="T:Sudoku.Concepts.Node"/> instance belonging to a loop.
+            </summary>
+            <param name="lastNode">The last node.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.First">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Last">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Sudoku#Concepts#IChainPattern#BackingNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#ISliceMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Concepts.Node">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32)">
+        <member name="F:Sudoku.Concepts.Node.MapFormatString">
+            <summary>
+            Indicates the map format string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Node.IsOnFormatString">
+            <summary>
+            Indicates the property <see cref="P:Sudoku.Concepts.Node.IsOn"/> format string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
             </summary>
             <param name="candidate">A candidate.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.LockedTarget@)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.LockedTarget@,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified <see cref="T:Sudoku.Concepts.LockedTarget"/> instance.
             </summary>
             <param name="lockedTarget">A <see cref="T:Sudoku.Concepts.LockedTarget"/> instance.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node)">
+            <summary>
+            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>.
+            </summary>
+            <param name="base">The data provider.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
+            and appends its parent node.
+            </summary>
+            <param name="base">The data provider.</param>
+            <param name="parent">The parent node.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,System.Boolean)">
+            <summary>
+            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
+            and appends its parent node, and modify <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="base">The data provider.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
         </member>
         <member name="P:Sudoku.Concepts.Node.IsGroupedNode">
             <summary>
@@ -229,11 +540,60 @@
             Indicates the map of candidates the node uses.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.Node.AncestorsLength">
+            <summary>
+            Indicates the length of ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Parent">
+            <summary>
+            Indicates the parent node. The value doesn't participate in equality comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsOnPropertyValue">
+            <summary>
+            The backing comparing value on <see cref="P:Sudoku.Concepts.Node.IsOn"/> property.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
         <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares with two <see cref="T:Sudoku.Concepts.Node"/> instances, based on the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="comparison">The comparison rule.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.IsAncestorOf(Sudoku.Concepts.Node)">
+            <summary>
+            Determines whether the current node is an ancestor of the specified node. 
+            </summary>
+            <param name="childNode">The node to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.GetHashCode(Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Calculates the hash code on the current instance.
+            </summary>
+            <param name="comparison">The comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
         <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)">
             <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
         </member>
         <member name="M:Sudoku.Concepts.Node.ToString``1(``0)">
             <inheritdoc/>
@@ -241,12 +601,45 @@
         <member name="M:Sudoku.Concepts.Node.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Node.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.Node.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
+            <remarks>
+            Format description:
+            <list type="table">
+            <listheader>
+            <term>Format character</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c>m</c></term>
+            <description>The map text. For example, <c>r1c23(4)</c></description>
+            </item>
+            <item>
+            <term><c>S</c> and <c>s</c></term>
+            <description>
+            The <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value (<see langword="true"/> or <see langword="false"/>).
+            If the character <c>s</c> is upper-cased, the result text will be upper-cased on initial letter.
+            </description>
+            </item>
+            </list>
+            For example, format value <c>"m: S"</c> will be replaced with value <c>"r1c23(4): True"</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_OnesComplement(Sudoku.Concepts.Node)">
+            <summary>
+            Negates the node with <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="value">The current node.</param>
+            <returns>The node negated.</returns>
         </member>
         <member name="F:Sudoku.Concepts.Node._map">
             <summary>
             The generated field declaration for parameter <c>map</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsOn">
+            <summary>
+            The generated property declaration for parameter <c>isOn</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Node.Equals(System.Object)">
@@ -275,6 +668,25 @@
         </member>
         <member name="M:Sudoku.Concepts.Node.op_LessThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.NodeComparison">
+            <summary>
+            Represents a comparison rule on <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeComparison.IncludeIsOn">
+            <summary>
+            Indicates the comparison rule checks on <see cref="P:Sudoku.Concepts.Node.IsOn"/> property.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn">
+            <summary>
+            Indicates the comparison rule ignores for <see cref="P:Sudoku.Concepts.Node.IsOn"/> property, and only checks on <see cref="P:Sudoku.Concepts.Node.Map"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+            <seealso cref="P:Sudoku.Concepts.Node.Map"/>
         </member>
     </members>
 </doc>

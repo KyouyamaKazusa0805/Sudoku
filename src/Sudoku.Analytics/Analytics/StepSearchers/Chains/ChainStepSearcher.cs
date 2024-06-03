@@ -17,12 +17,12 @@ namespace Sudoku.Analytics.StepSearchers;
 public sealed partial class ChainStepSearcher : StepSearcher
 {
 	/// <summary>
-	/// Indicates the backing chaining rule router instance.
+	/// Indicates the rule router.
 	/// </summary>
-	private static readonly Dictionary<LinkType, ChainingRule> ChainingRuleRouter = new()
+	private static readonly Dictionary<LinkType, ChainingRule> RuleRouter = new()
 	{
-		{ LinkType.SingleDigit, new XChainingRule() },
-		{ LinkType.SingleCell, new YChainingRule() }
+		{ LinkType.SingleDigit, new CachedXChainingRule() },
+		{ LinkType.SingleCell, new CachedYChainingRule() }
 	};
 
 
@@ -31,49 +31,37 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </summary>
 	public LinkType LinkTypes { get; init; }
 
+	/// <summary>
+	/// Indicates hte chaining rules.
+	/// </summary>
+	private ReadOnlySpan<ChainingRule> ChainingRules => from type in LinkTypes.GetAllFlags() select RuleRouter[type];
+
 
 	/// <inheritdoc/>
+	/// <remarks>
+	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
+	/// A valid chain can only belong to the following three cases:
+	/// <list type="number">
+	/// <item>
+	/// <b>Discontinuous Nice Loop</b><br/>
+	/// Start with weak link, alternating strong and weak links and return to itself by weak link
+	/// (with an odd number of nodes).
+	/// </item>
+	/// <item>
+	/// <b>Discontinuous Nice Loop</b><br/>
+	/// Start with strong link, alternating strong and weak links and return to itself by strong link
+	/// (with an odd number of nodes).
+	/// </item>
+	/// <item>
+	/// <b>Continuous Nice Loop</b><br/>
+	/// Start with strong link, alternating strong and weak links and return to itself by weak link
+	/// (with an even number of nodes).
+	/// </item>
+	/// </list>
+	/// </remarks>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		// Step 1: Collect for all strong and weak links appeared in the grid.
-		ref readonly var grid = ref context.Grid;
-		var (strongLinks, weakLinks) = (CreateStrong(in grid, LinkTypes), CreateWeak(in grid, LinkTypes));
-
-		// Step 2: Iterate on dictionary to get chains.
-		// TODO: Implement (Consider using DFS instead).
+		//var foundChains = ChainingDriver.CollectChainPatterns(in context.Grid, ChainingRules, out _, out _);
 		return null;
-	}
-
-
-	/// <summary>
-	/// Creates a <see cref="LinkDictionary"/> instance that holds a list of strong link relations.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="linkTypes">The link types to be checked.</param>
-	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateStrong(ref readonly Grid grid, LinkType linkTypes)
-	{
-		var result = new LinkDictionary();
-		foreach (var linkType in linkTypes)
-		{
-			ChainingRuleRouter[linkType].CollectStrongLinks(in grid, result);
-		}
-		return result;
-	}
-
-	/// <summary>
-	/// Creates a <see cref="LinkDictionary"/> instance that holds a list of weak link relations.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="linkTypes">The link types to be checked.</param>
-	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateWeak(ref readonly Grid grid, LinkType linkTypes)
-	{
-		var result = new LinkDictionary();
-		foreach (var linkType in linkTypes)
-		{
-			ChainingRuleRouter[linkType].CollectWeakLinks(in grid, result);
-		}
-		return result;
 	}
 }
