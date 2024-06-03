@@ -58,30 +58,6 @@ public readonly partial struct Fish(
 		}
 	}
 
-	/// <summary>
-	/// Indicates the fin kind.
-	/// </summary>
-	public FishFinKind FinKind
-	{
-		get
-		{
-			var fins = Fins;
-			if (!fins)
-			{
-				return FishFinKind.Normal;
-			}
-
-			foreach (var baseSet in BaseSets)
-			{
-				if ((HousesMap[baseSet] & ~fins & CandidatesMap[Digit]).Count == 1)
-				{
-					return FishFinKind.Sashimi;
-				}
-			}
-			return FishFinKind.Finned;
-		}
-	}
-
 
 	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -134,6 +110,30 @@ public readonly partial struct Fish(
 				return $@"{c.DigitConverter((Mask)(1 << Digit))}{comma}{bs}\{cs}{exofins}{endofins}";
 			}
 		}
+	}
+
+	/// <summary>
+	/// Try to get the fin kind using the specified grid as candidate references.
+	/// </summary>
+	/// <param name="grid">The grid to be used.</param>
+	/// <returns>The fin kind.</returns>
+	public FishFinKind GetFinKind(ref readonly Grid grid)
+	{
+		var fins = Fins;
+		if (!fins)
+		{
+			return FishFinKind.Normal;
+		}
+
+		var candidatesMap = grid.CandidatesMap;
+		foreach (var baseSet in BaseSets)
+		{
+			if ((HousesMap[baseSet] & ~fins & candidatesMap[Digit]).Count == 1)
+			{
+				return FishFinKind.Sashimi;
+			}
+		}
+		return FishFinKind.Finned;
 	}
 
 	/// <inheritdoc/>

@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+	<PropertyGroup>
+		<TargetFramework>net9.0</TargetFramework>
+		<RootNamespace>Sudoku</RootNamespace>
+		<Description>Provides analytical APIs on fishing.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Analytics.Fishing.xml</DocumentationFile>
+	</PropertyGroup>
+
+	<ItemGroup>
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	  <ProjectReference Include="..\System\SystemExtensions.csproj" />
+	</ItemGroup>
+
+</Project>
