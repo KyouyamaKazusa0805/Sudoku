@@ -1,0 +1,177 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Analytics.AlmostLockedSets</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Concepts.AlmostLockedSet">
+            <summary>
+            Defines a data pattern that describes an ALS.
+            </summary>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[])">
+            <summary>
+            Defines a data pattern that describes an ALS.
+            </summary>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.AlmostLockedSet.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unused in the property <see cref="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks"/>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.IsBivalueCell">
+            <summary>
+            Indicates whether the ALS only uses a bi-value cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks">
+            <summary>
+            Indicates all strong links in this ALS.
+            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.CompareTo(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse(System.String,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse``1(System.String,``0,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Collect(Sudoku.Concepts.Grid@)">
+            <summary>
+            Collects all possible <see cref="T:Sudoku.Concepts.AlmostLockedSet"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.PossibleEliminationMap">
+            <summary>
+            The generated property declaration for parameter <c>possibleEliminationMap</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.EliminationMap">
+            <summary>
+            The generated property declaration for parameter <c>eliminationMap</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Equality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Inequality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+    </members>
+</doc>

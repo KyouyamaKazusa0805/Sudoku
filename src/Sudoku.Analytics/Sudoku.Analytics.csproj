@@ -9,8 +9,10 @@
 	</PropertyGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Analytics.AlmostLockedSets\Sudoku.Analytics.AlmostLockedSets.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics.BivalueUniversalGraves\Sudoku.Analytics.BivalueUniversalGraves.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics.Chaining\Sudoku.Analytics.Chaining.csproj" />
+		<ProjectReference Include="..\Sudoku.Analytics.DeathBlossoms\Sudoku.Analytics.DeathBlossoms.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics.Exocets\Sudoku.Analytics.Exocets.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics.Fishing\Sudoku.Analytics.Fishing.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
