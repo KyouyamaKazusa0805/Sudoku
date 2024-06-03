@@ -3,7 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a type that describes for a chain or a loop.
 /// </summary>
-public interface IChainPattern : IEnumerable<Node>, IFormattable
+public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, IFormattable
 {
 	/// <summary>
 	/// Indicates the possible inferences to be used.
@@ -46,6 +46,35 @@ public interface IChainPattern : IEnumerable<Node>, IFormattable
 	/// <exception cref="IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
 	public abstract Node this[int index] { get; }
 
+
+	/// <summary>
+	/// Determine whether two <see cref="Chain"/> or <see cref="Loop"/> instances are same, by using the specified comparison rule.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <param name="nodeComparison">The comparison rule on nodes.</param>
+	/// <param name="patternComparison">The comparison rule on the whole chain.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public abstract bool Equals([NotNullWhen(true)] IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+
+	/// <inheritdoc cref="object.GetHashCode"/>
+	public abstract int GetHashCode();
+
+	/// <summary>
+	/// Computes hash code based on the current instance.
+	/// </summary>
+	/// <param name="nodeComparison">The node comparison.</param>
+	/// <param name="patternComparison">The pattern comparison.</param>
+	/// <returns>An <see cref="int"/> as the result.</returns>
+	/// <exception cref="ArgumentOutOfRangeException">
+	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
+	/// </exception>
+	public abstract int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public abstract string ToString(IFormatProvider? formatProvider);
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.

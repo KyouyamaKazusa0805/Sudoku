@@ -204,6 +204,13 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 	}
 
 	/// <inheritdoc/>
+	bool IEquatable<IChainPattern>.Equals(IChainPattern? other) => other is Loop comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	bool IChainPattern.Equals(IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+		=> other is Loop comparer && Equals(comparer, nodeComparison, patternComparison);
+
+	/// <inheritdoc/>
 	Node IElementAtMethod<Loop, Node>.ElementAt(int index) => this[index];
 
 	/// <inheritdoc/>

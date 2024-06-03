@@ -66,16 +66,7 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	public bool Equals([NotNullWhen(true)] Chain? other)
 		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
 
-	/// <summary>
-	/// Determine whether two <see cref="Chain"/> instances are same, by using the specified comparison rule.
-	/// </summary>
-	/// <param name="other">The other instance to be compared.</param>
-	/// <param name="nodeComparison">The comparison rule on nodes.</param>
-	/// <param name="chainComparison">The comparison rule on the whole chain.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="chainComparison"/> is not defined.
-	/// </exception>
+	/// <inheritdoc cref="IChainPattern.Equals(IChainPattern?, NodeComparison, ChainPatternComparison)"/>
 	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison chainComparison)
 	{
 		if (other is null)
@@ -138,15 +129,7 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	/// <inheritdoc/>
 	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
 
-	/// <summary>
-	/// Creates a hash code based on the current instance.
-	/// </summary>
-	/// <param name="nodeComparison">The node comparison.</param>
-	/// <param name="patternComparison">The pattern comparison.</param>
-	/// <returns>An <see cref="int"/> as the result.</returns>
-	/// <exception cref="ArgumentOutOfRangeException">
-	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
-	/// </exception>
+	/// <inheritdoc/>
 	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
 		var result = new HashCode();
@@ -181,7 +164,7 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 		return result.ToHashCode();
 	}
 
-	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
@@ -209,6 +192,13 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConclusionSet GetConclusions(ref readonly Grid grid) => [.. IChainPattern.GetConclusions(in grid, First, Last)];
+
+	/// <inheritdoc/>
+	bool IEquatable<IChainPattern>.Equals(IChainPattern? other) => other is Chain comparer && Equals(comparer);
+
+	/// <inheritdoc/>
+	bool IChainPattern.Equals(IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+		=> other is Chain comparer && Equals(comparer, nodeComparison, patternComparison);
 
 	/// <inheritdoc/>
 	Node IElementAtMethod<Chain, Node>.ElementAt(int index) => this[index];

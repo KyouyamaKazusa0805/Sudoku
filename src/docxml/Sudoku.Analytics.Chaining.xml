@@ -139,33 +139,16 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> instances are same, by using the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The comparison rule on nodes.</param>
-            <param name="chainComparison">The comparison rule on the whole chain.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="chainComparison"/> is not defined.
-            </exception>
+            <inheritdoc cref="M:Sudoku.Concepts.IChainPattern.Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetHashCode">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <summary>
-            Creates a hash code based on the current instance.
-            </summary>
-            <param name="nodeComparison">The node comparison.</param>
-            <param name="patternComparison">The pattern comparison.</param>
-            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -174,6 +157,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.System#IEquatable{Sudoku#Concepts#IChainPattern}#Equals(Sudoku.Concepts.IChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
@@ -272,6 +261,35 @@
             <param name="index">The desired index.</param>
             <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="patternComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Computes hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.IChainPattern.Slice(System.Int32,System.Int32)">
             <summary>
@@ -531,6 +549,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.System#IEquatable{Sudoku#Concepts#IChainPattern}#Equals(Sudoku.Concepts.IChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
