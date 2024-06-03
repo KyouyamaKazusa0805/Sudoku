@@ -51,7 +51,6 @@ public static class Backdoor
 					{
 						var case2Playground = grid;
 						case2Playground.SetExistence(cell, digit, false);
-
 						if (sstsChecker.Analyze(in case2Playground).IsSolved)
 						{
 							elimination.Add(new(Elimination, cell, digit));
@@ -59,7 +58,6 @@ public static class Backdoor
 					}
 				}
 			}
-
 			return (Conclusion[])[.. assignment, .. elimination];
 		}
 	}
