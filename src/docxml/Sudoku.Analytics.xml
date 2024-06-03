@@ -20866,21 +20866,6 @@
         <member name="M:Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection,Sudoku.Concepts.ObjectModel.HouseBlossomBranchCollection)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.IComplexSeniorExocet">
-            <summary>
-            The base overrides for complex senior exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IComplexSeniorExocet.CrosslineHousesMask">
-            <summary>
-            The mask that holds a list of cross-line houses used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IComplexSeniorExocet.ExtraHousesMask">
-            <summary>
-            The mask that holds a list of extra houses used.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2">
             <summary>
             Represents the basic data for a death blossom.
@@ -20891,31 +20876,6 @@
         <member name="P:Sudoku.Concepts.ObjectModel.IDeathBlossomCollection`2.Branches">
             <summary>
             Indicates the branches used.
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.IDoubleExocet">
-            <summary>
-            The base overrides for double exocet steps.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IDoubleExocet.BaseCells">
-            <summary>
-            A list of cells as the base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IDoubleExocet.TargetCells">
-            <summary>
-            A list of cells as the target cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IDoubleExocet.BaseCellsTheOther">
-            <summary>
-            A list of cells as the other pair of base cells.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.ObjectModel.IDoubleExocet.TargetCellsTheOther">
-            <summary>
-            A list of cells as the other pair of target cells.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.ObjectModel.IrregularWingStrongLinkEntry">
@@ -21171,7 +21131,7 @@ result ^= expression;
             Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.ObjectModel.IComplexSeniorExocet)">
+        <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocet)">
             <summary>
             Try to get shape kind via the houses.
             </summary>

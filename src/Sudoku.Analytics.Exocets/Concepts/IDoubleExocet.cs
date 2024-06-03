@@ -1,9 +1,9 @@
-namespace Sudoku.Concepts.ObjectModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// The base overrides for double exocet steps.
 /// </summary>
-internal interface IDoubleExocet
+public interface IDoubleExocet
 {
 	/// <summary>
 	/// A list of cells as the base cells.

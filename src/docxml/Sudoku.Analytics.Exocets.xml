@@ -32,6 +32,46 @@
             Indicates the mutant exocet.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.IComplexSeniorExocet">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocet.CrosslineHousesMask">
+            <summary>
+            The mask that holds a list of cross-line houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocet.ExtraHousesMask">
+            <summary>
+            The mask that holds a list of extra houses used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.IDoubleExocet">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.BaseCells">
+            <summary>
+            A list of cells as the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.TargetCells">
+            <summary>
+            A list of cells as the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.BaseCellsTheOther">
+            <summary>
+            A list of cells as the other pair of base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.TargetCellsTheOther">
+            <summary>
+            A list of cells as the other pair of target cells.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.LockedMember">
             <summary>
             Represents a locked member. This type is only used by searching for exocets.

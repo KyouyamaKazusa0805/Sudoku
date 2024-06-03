@@ -1,9 +1,9 @@
-namespace Sudoku.Concepts.ObjectModel;
+namespace Sudoku.Concepts;
 
 /// <summary>
 /// The base overrides for complex senior exocet steps.
 /// </summary>
-internal interface IComplexSeniorExocet
+public interface IComplexSeniorExocet
 {
 	/// <summary>
 	/// The mask that holds a list of cross-line houses used.
