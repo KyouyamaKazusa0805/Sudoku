@@ -23,7 +23,7 @@ public static class ChainingDriver
 		}
 		foreach (var chainingRule in rules)
 		{
-			chainingRule.CollectStrongLinks(in grid, weakLinks);
+			chainingRule.CollectWeakLinks(in grid, weakLinks);
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
