@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Chaining;
 public static class ChainingDriver
 {
 	/// <summary>
-	/// Collect all <see cref="IChainPattern"/> instances appears in a grid.
+	/// Collect all <see cref="ChainPattern"/> instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
 	/// <param name="rules">
@@ -15,11 +15,11 @@ public static class ChainingDriver
 	/// <param name="patternComparison">
 	/// Indicates whether the method will automatically sort elements. The default value is <see langword="null"/>.
 	/// </param>
-	/// <returns>All possible <see cref="IChainPattern"/> instances.</returns>
-	public static ReadOnlySpan<IChainPattern> CollectChainPatterns(
+	/// <returns>All possible <see cref="ChainPattern"/> instances.</returns>
+	public static ReadOnlySpan<ChainPattern> CollectChainPatterns(
 		ref readonly Grid grid,
 		ReadOnlySpan<ChainingRule> rules,
-		Comparison<IChainPattern>? patternComparison = null
+		Comparison<ChainPattern>? patternComparison = null
 	)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.
@@ -34,7 +34,7 @@ public static class ChainingDriver
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
-		var patternEqualityComparer = EqualityComparer<IChainPattern>.Create(
+		var patternEqualityComparer = EqualityComparer<ChainPattern>.Create(
 			static (left, right) => (left, right) switch
 			{
 				(null, null) => true,
@@ -50,7 +50,7 @@ public static class ChainingDriver
 				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
 			}
 		);
-		var foundPatterns = new HashSet<IChainPattern>(patternEqualityComparer);
+		var foundPatterns = new HashSet<ChainPattern>(patternEqualityComparer);
 		foreach (var cell in grid.EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
@@ -63,7 +63,7 @@ public static class ChainingDriver
 
 		// Step 3: Check eliminations. If a chain doesn't contain any possible conclusions,
 		// it will be removed from the result collection.
-		var finalCollection = new List<IChainPattern>();
+		var finalCollection = new List<ChainPattern>();
 		foreach (var pattern in foundPatterns)
 		{
 			if (pattern.GetConclusions(in grid))
@@ -80,7 +80,7 @@ public static class ChainingDriver
 		return finalCollection.AsReadOnlySpan();
 
 
-		void bfs(Node startNode, HashSet<IChainPattern> result)
+		void bfs(Node startNode, HashSet<ChainPattern> result)
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
@@ -108,7 +108,7 @@ public static class ChainingDriver
 							}
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(new(node, currentNode), true)); // Discontinuous Nice Loop 2) Strong -> Strong.
+								result.Add(new Chain(new(node, currentNode))); // Discontinuous Nice Loop 2) Strong -> Strong.
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
@@ -130,7 +130,7 @@ public static class ChainingDriver
 							if (node == ~startNode)
 							{
 								var resultNode = new Node(node, currentNode);
-								result.Add(new Chain(resultNode, false)); // Discontinuous Nice Loop 1) Weak -> Weak.
+								result.Add(new Chain(resultNode)); // Discontinuous Nice Loop 1) Weak -> Weak.
 							}
 
 							if (!currentNode.IsAncestorOf(node) && visitedStrong.Add(node))

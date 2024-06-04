@@ -3,67 +3,31 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a loop.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
-public sealed partial class Loop :
-	IChainPattern,
-	IComparable<Loop>,
-	IElementAtMethod<Loop, Node>,
-	IEquatable<Loop>,
-	ISliceMethod<Loop, Node>
+[TypeImpl(TypeImplFlag.Object_ToString)]
+public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 {
-	/// <summary>
-	/// Indicates the nodes.
-	/// </summary>
-	private readonly Node[] _nodes;
+	/// <inheritdoc/>
+	public override bool IsGrouped => Array.Exists(_nodes, static node => node.IsGroupedNode);
 
+	/// <inheritdoc/>
+	public override int Length => _nodes.Length;
 
-	/// <summary>
-	/// Initializes a <see cref="Loop"/> instance via a <see cref="Node"/> instance belonging to a loop.
-	/// </summary>
-	/// <param name="lastNode">The last node.</param>
-	public Loop(Node lastNode)
-	{
-		var nodes = new List<Node> { lastNode };
-		for (var node = lastNode.Parent!; node != lastNode; node = node.Parent!)
-		{
-			nodes.Add(node);
-		}
+	/// <inheritdoc/>
+	public override int Complexity => _nodes.Length;
 
-		_nodes = [.. nodes];
+	/// <inheritdoc/>
+	public override Node First => _nodes[0];
 
-		// Reverse the whole chain if the first node is greater than the last node in logic.
-		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
-		{
-			Reverse();
-		}
-	}
+	/// <inheritdoc/>
+	public override Node Last => _nodes[^1];
 
 
 	/// <inheritdoc/>
-	public bool IsGrouped => Array.Exists(_nodes, static node => node.IsGroupedNode);
-
-	/// <inheritdoc/>
-	public int Length => _nodes.Length;
-
-	/// <inheritdoc/>
-	public int Complexity => _nodes.Length;
-
-	/// <inheritdoc/>
-	public Node First => _nodes[0];
-
-	/// <inheritdoc/>
-	public Node Last => _nodes[^1];
-
-	/// <inheritdoc/>
-	Node[] IChainPattern.BackingNodes => _nodes;
+	public override Node this[int index] => _nodes[index];
 
 
 	/// <inheritdoc/>
-	public Node this[int index] => _nodes[index];
-
-
-	/// <inheritdoc/>
-	public void Reverse()
+	public override void Reverse()
 	{
 		var newNodes = new Node[_nodes.Length];
 		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
@@ -147,7 +111,11 @@ public sealed partial class Loop :
 	}
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+	public override bool Equals(ChainPattern? other) => Equals(other as Loop);
+
+	/// <inheritdoc/>
+	public override bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+		=> Equals(other as Loop, nodeComparison, patternComparison);
 
 	/// <summary>
 	/// Creates a hash code based on the current instance.
@@ -158,7 +126,7 @@ public sealed partial class Loop :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
 		switch (patternComparison)
 		{
@@ -190,32 +158,6 @@ public sealed partial class Loop :
 				throw new ArgumentOutOfRangeException(nameof(patternComparison));
 			}
 		}
-	}
-
-	/// <inheritdoc/>
-	public int FindIndex(Predicate<Node> predicate)
-	{
-		for (var i = 0; i < Length; i++)
-		{
-			if (predicate(this[i]))
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	/// <inheritdoc/>
-	public int FindLastIndex(Predicate<Node> predicate)
-	{
-		for (var i = Length - 1; i >= 0; i--)
-		{
-			if (predicate(this[i]))
-			{
-				return i;
-			}
-		}
-		return -1;
 	}
 
 	/// <summary>
@@ -298,16 +240,15 @@ public sealed partial class Loop :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
+	public override int CompareTo(ChainPattern? other) => CompareTo(other as Loop);
 
 	/// <inheritdoc/>
-	public string ToString(string? format, IFormatProvider? formatProvider)
+	public override string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
 		{
-			var inference = IChainPattern.Inferences[linkIndex & 1];
+			var inference = Inferences[linkIndex & 1];
 			sb.Append(_nodes[i].ToString(format, formatProvider));
 			sb.Append(inference.ConnectingNotation());
 		}
@@ -316,58 +257,21 @@ public sealed partial class Loop :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Node> Slice(int start, int length) => _nodes.AsReadOnlySpan()[start..(start + length)];
+	public override ReadOnlySpan<Node> Slice(int start, int length) => _nodes.AsReadOnlySpan()[start..(start + length)];
 
 	/// <inheritdoc/>
-	public ConclusionSet GetConclusions(ref readonly Grid grid)
+	public override ConclusionSet GetConclusions(ref readonly Grid grid)
 	{
 		var result = new ConclusionSet();
 		for (var i = 0; i < Length; i += 2)
 		{
 			var node1 = _nodes[i];
 			var node2 = _nodes[i == Length ? 0 : i + 1];
-			foreach (var conclusion in IChainPattern.GetConclusions(in grid, node1, node2))
+			foreach (var conclusion in GetConclusions(in grid, node1, node2))
 			{
 				result.Add(conclusion);
 			}
 		}
 		return result;
 	}
-
-#if false
-	/// <inheritdoc/>
-	bool IEquatable<IChainPattern>.Equals(IChainPattern? other) => other is Loop comparer && Equals(comparer);
-#endif
-
-	/// <inheritdoc/>
-	bool IChainPattern.Equals(IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
-		=> other is Loop comparer && Equals(comparer, nodeComparison, patternComparison);
-
-#if false
-	/// <inheritdoc/>
-	int IComparable<IChainPattern>.CompareTo(IChainPattern? other) => CompareTo(other as Loop);
-#endif
-
-	/// <inheritdoc/>
-	Node IElementAtMethod<Loop, Node>.ElementAt(int index) => this[index];
-
-	/// <inheritdoc/>
-	Node IElementAtMethod<Loop, Node>.ElementAt(Index index) => this[index];
-
-	/// <inheritdoc/>
-	Node? IElementAtMethod<Loop, Node>.ElementAtOrDefault(int index) => index < 0 || index >= Length ? default : this[index];
-
-	/// <inheritdoc/>
-	Node? IElementAtMethod<Loop, Node>.ElementAtOrDefault(Index index)
-		=> index.GetOffset(Length) is var i && i >= 0 && i < Length ? this[i] : default;
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerable<Node> ISliceMethod<Loop, Node>.Slice(int start, int count) => Slice(start, count).ToArray();
 }

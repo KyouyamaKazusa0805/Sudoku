@@ -3,67 +3,29 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a chain or a loop.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
-public sealed partial class Chain :
-	IChainPattern,
-	IComparable<Chain>,
-	IElementAtMethod<Chain, Node>,
-	IEquatable<Chain>,
-	ISliceMethod<Chain, Node>
+[TypeImpl(TypeImplFlag.Object_ToString)]
+public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.
 	/// </summary>
-	private readonly bool _weakStart;
-
-	/// <summary>
-	/// Indicates the nodes.
-	/// </summary>
-	private readonly Node[] _nodes;
-
-
-	/// <summary>
-	/// Initializes an <see cref="Chain"/> instance via the specified node belonging to a chain at the last position.
-	/// </summary>
-	/// <param name="lastNode">The last node.</param>
-	/// <param name="weakStart">Indicates whether the chain starts with weak link.</param>
-	public Chain(Node lastNode, bool weakStart)
-	{
-		_weakStart = weakStart;
-		var nodes = new List<Node> { lastNode };
-		for (var node = lastNode.Parent; node is not null; node = node.Parent)
-		{
-			nodes.Add(new Node(node, null));
-		}
-
-		// To cover the nodes.
-		_nodes = [.. nodes];
-
-		// Reverse the whole chain if the first node is greater than the last node in logic.
-		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
-		{
-			Reverse();
-		}
-	}
+	private readonly bool _weakStart = lastNode.IsOn;
 
 
 	/// <inheritdoc/>
-	public bool IsGrouped => Span.Any(static (ref readonly Node node) => node.IsGroupedNode);
+	public override bool IsGrouped => Span.Any(static (ref readonly Node node) => node.IsGroupedNode);
 
 	/// <inheritdoc/>
-	public int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
+	public override int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
 
 	/// <inheritdoc/>
-	public int Complexity => _nodes.Length;
+	public override int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
-	public Node First => Span[0];
+	public override Node First => Span[0];
 
 	/// <inheritdoc/>
-	public Node Last => Span[^1];
-
-	/// <inheritdoc/>
-	Node[] IChainPattern.BackingNodes => _nodes;
+	public override Node Last => Span[^1];
 
 	/// <summary>
 	/// Create a <see cref="ReadOnlySpan{T}"/> instance that holds valid <see cref="Node"/> instances to be used in a chain.
@@ -72,11 +34,11 @@ public sealed partial class Chain :
 
 
 	/// <inheritdoc/>
-	public Node this[int index] => Span[index];
+	public override Node this[int index] => Span[index];
 
 
 	/// <inheritdoc/>
-	public void Reverse()
+	public override void Reverse()
 	{
 		var newNodes = new Node[_nodes.Length];
 		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
@@ -92,8 +54,8 @@ public sealed partial class Chain :
 	public bool Equals([NotNullWhen(true)] Chain? other)
 		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
 
-	/// <inheritdoc cref="IChainPattern.Equals(IChainPattern?, NodeComparison, ChainPatternComparison)"/>
-	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison chainComparison)
+	/// <inheritdoc cref="ChainPattern.Equals(ChainPattern?, NodeComparison, ChainPatternComparison)"/>
+	public bool Equals([NotNullWhen(true)] Chain? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
 		if (other is null)
 		{
@@ -107,7 +69,7 @@ public sealed partial class Chain :
 
 		var span1 = Span;
 		var span2 = other.Span;
-		switch (chainComparison)
+		switch (patternComparison)
 		{
 			case ChainPatternComparison.Undirected:
 			{
@@ -147,16 +109,20 @@ public sealed partial class Chain :
 			}
 			default:
 			{
-				throw new ArgumentOutOfRangeException(nameof(chainComparison));
+				throw new ArgumentOutOfRangeException(nameof(patternComparison));
 			}
 		}
 	}
 
 	/// <inheritdoc/>
-	public override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
+	public override bool Equals(ChainPattern? other) => Equals(other as Chain);
 
 	/// <inheritdoc/>
-	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+	public override bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
+		=> Equals(other as Chain, nodeComparison, patternComparison);
+
+	/// <inheritdoc/>
+	public override int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
 		var span = Span;
 		switch (patternComparison)
@@ -224,6 +190,9 @@ public sealed partial class Chain :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IncludeIsOn);
 
+	/// <inheritdoc/>
+	public override int CompareTo(ChainPattern? other) => CompareTo(other as Chain);
+
 	/// <inheritdoc cref="CompareTo(Chain?)"/>
 	public int CompareTo(Chain? other, NodeComparison nodeComparison)
 	{
@@ -257,43 +226,13 @@ public sealed partial class Chain :
 	}
 
 	/// <inheritdoc/>
-	public int FindIndex(Predicate<Node> predicate)
-	{
-		for (var i = 0; i < Length; i++)
-		{
-			if (predicate(this[i]))
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	/// <inheritdoc/>
-	public int FindLastIndex(Predicate<Node> predicate)
-	{
-		for (var i = Length - 1; i >= 0; i--)
-		{
-			if (predicate(this[i]))
-			{
-				return i;
-			}
-		}
-		return -1;
-	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
-
-	/// <inheritdoc/>
-	public string ToString(string? format, IFormatProvider? formatProvider)
+	public override string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		var span = Span;
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (0, 0); i < span.Length; linkIndex++, i++)
 		{
-			var inference = IChainPattern.Inferences[linkIndex & 1];
+			var inference = Inferences[linkIndex & 1];
 			sb.Append(span[i].ToString(format, formatProvider));
 			if (i != span.Length - 1)
 			{
@@ -304,46 +243,8 @@ public sealed partial class Chain :
 	}
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ReadOnlySpan<Node> Slice(int start, int length) => Span[start..(start + length)];
+	public override ReadOnlySpan<Node> Slice(int start, int length) => Span[start..(start + length)];
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public ConclusionSet GetConclusions(ref readonly Grid grid) => [.. IChainPattern.GetConclusions(in grid, First, Last)];
-
-#if false
-	/// <inheritdoc/>
-	bool IEquatable<IChainPattern>.Equals(IChainPattern? other) => other is Chain comparer && Equals(comparer);
-#endif
-
-	/// <inheritdoc/>
-	bool IChainPattern.Equals(IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
-		=> other is Chain comparer && Equals(comparer, nodeComparison, patternComparison);
-
-#if false
-	/// <inheritdoc/>
-	int IComparable<IChainPattern>.CompareTo(IChainPattern? other) => CompareTo(other as Chain);
-#endif
-
-	/// <inheritdoc/>
-	Node IElementAtMethod<Chain, Node>.ElementAt(int index) => this[index];
-
-	/// <inheritdoc/>
-	Node IElementAtMethod<Chain, Node>.ElementAt(Index index) => this[index];
-
-	/// <inheritdoc/>
-	Node? IElementAtMethod<Chain, Node>.ElementAtOrDefault(int index) => index < 0 || index >= Length ? default : this[index];
-
-	/// <inheritdoc/>
-	Node? IElementAtMethod<Chain, Node>.ElementAtOrDefault(Index index)
-		=> index.GetOffset(Length) is var i && i >= 0 && i < Length ? this[i] : default;
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => Span.ToArray().GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)Span.ToArray()).GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerable<Node> ISliceMethod<Chain, Node>.Slice(int start, int count) => Slice(start, count).ToArray();
+	public override ConclusionSet GetConclusions(ref readonly Grid grid) => [.. GetConclusions(in grid, First, Last)];
 }

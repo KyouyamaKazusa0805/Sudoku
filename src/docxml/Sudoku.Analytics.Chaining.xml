@@ -9,9 +9,9 @@
             Provides a driver module on chaining.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Comparison{Sudoku.Concepts.IChainPattern})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Comparison{Sudoku.Concepts.ChainPattern})">
             <summary>
-            Collect all <see cref="T:Sudoku.Concepts.IChainPattern"/> instances appears in a grid.
+            Collect all <see cref="T:Sudoku.Concepts.ChainPattern"/> instances appears in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="rules">
@@ -20,7 +20,7 @@
             <param name="patternComparison">
             Indicates whether the method will automatically sort elements. The default value is <see langword="null"/>.
             </param>
-            <returns>All possible <see cref="T:Sudoku.Concepts.IChainPattern"/> instances.</returns>
+            <returns>All possible <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
@@ -82,22 +82,15 @@
             Represents a chain or a loop.
             </summary>
         </member>
+        <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node)">
+            <summary>
+            Represents a chain or a loop.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.Chain._weakStart">
             <summary>
             Indicates whether the chain starts with weak link.
             </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Chain._nodes">
-            <summary>
-            Indicates the nodes.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node,System.Boolean)">
-            <summary>
-            Initializes an <see cref="T:Sudoku.Concepts.Chain"/> instance via the specified node belonging to a chain at the last position.
-            </summary>
-            <param name="lastNode">The last node.</param>
-            <param name="weakStart">Indicates whether the chain starts with weak link.</param>
         </member>
         <member name="P:Sudoku.Concepts.Chain.IsGrouped">
             <inheritdoc/>
@@ -112,9 +105,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.Last">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Chain.Sudoku#Concepts#IChainPattern#BackingNodes">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.Span">
@@ -132,9 +122,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc cref="M:Sudoku.Concepts.IChainPattern.Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            <inheritdoc cref="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.GetHashCode">
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
@@ -172,17 +165,11 @@
             </list>
             </remarks>
         </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.FindLastIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.ToString(System.IFormatProvider)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
@@ -193,59 +180,192 @@
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAt(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#Linq#Providers#ISliceMethod{Sudoku#Concepts#Chain,Sudoku#Concepts#Node}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Chain.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_Equality(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="T:Sudoku.Concepts.ChainPattern">
+            <summary>
+            Represents a type that describes for a chain or a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Inferences">
+            <summary>
+            Indicates the possible inferences to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern._nodes">
+            <summary>
+            Indicates the nodes to be initialized.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.#ctor(Sudoku.Concepts.Node,System.Boolean)">
+            <summary>
+            Initializes <see cref="T:Sudoku.Concepts.ChainPattern"/> data.
+            </summary>
+            <param name="lastNode">The last node.</param>
+            <param name="isLoop">Indicates whether is for loop initialization.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.IsGrouped">
+            <summary>
+            Indicates whether the chain pattern uses grouped logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Length">
+            <summary>
+            Indicates the length of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Complexity">
+            <summary>
+            Indicates the complexity of the pattern.
+            The value is different with <see cref="P:Sudoku.Concepts.ChainPattern.Length"/> on a chain starting and ending with itself, both are by strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.First">
+            <summary>
+            Indicates the head node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Last">
+            <summary>
+            Indicates the tail node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IReadOnlyCollection{Sudoku#Concepts#Node}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:Sudoku.Concepts.Node"/> instance at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Reverse">
+            <summary>
+            Try to reverse the pattern, making all nodes negated its direction connected.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="patternComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            This method directly calls <see cref="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            <seealso cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/>
+            <seealso cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Computes hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.FindLastIndex(System.Predicate{Sudoku.Concepts.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.CompareTo(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection with the specified start node and its length.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The number of <see cref="T:Sudoku.Concepts.Node"/> instances to slice.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances returned.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="node1">The first node.</param>
+            <param name="node2">The second node.</param>
+            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_Equality(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_Inequality(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="M:Sudoku.Concepts.ChainPattern.op_Inequality(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_GreaterThan(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="M:Sudoku.Concepts.ChainPattern.op_GreaterThan(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_LessThan(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="M:Sudoku.Concepts.ChainPattern.op_LessThan(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_GreaterThanOrEqual(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="M:Sudoku.Concepts.ChainPattern.op_GreaterThanOrEqual(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.op_LessThanOrEqual(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+        <member name="M:Sudoku.Concepts.ChainPattern.op_LessThanOrEqual(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ChainPatternComparison">
             <summary>
-            Provides with a comparison rule on <see cref="T:Sudoku.Concepts.IChainPattern"/> instances (i.e. <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/>).
+            Provides with a comparison rule on <see cref="T:Sudoku.Concepts.ChainPattern"/> instances (i.e. <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/>).
             </summary>
-            <seealso cref="T:Sudoku.Concepts.IChainPattern"/>
+            <seealso cref="T:Sudoku.Concepts.ChainPattern"/>
             <seealso cref="T:Sudoku.Concepts.Chain"/>
             <seealso cref="T:Sudoku.Concepts.Loop"/>
         </member>
@@ -260,138 +380,6 @@
             Indicates the comparison will also check on direction.
             For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
             </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.IChainPattern">
-            <summary>
-            Represents a type that describes for a chain or a loop.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.IChainPattern.Inferences">
-            <summary>
-            Indicates the possible inferences to be used.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.IsGrouped">
-            <summary>
-            Indicates whether the chain pattern uses grouped logic.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.Length">
-            <summary>
-            Indicates the length of the pattern.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.Complexity">
-            <summary>
-            Indicates the complexity of the pattern.
-            The value is different with <see cref="P:Sudoku.Concepts.IChainPattern.Length"/> on a chain starting and ending with itself, both are by strong links.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.First">
-            <summary>
-            Indicates the head node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.Last">
-            <summary>
-            Indicates the tail node.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.BackingNodes">
-            <summary>
-            Indicates the backing nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.IChainPattern.Item(System.Int32)">
-            <summary>
-            Gets a <see cref="T:Sudoku.Concepts.Node"/> instance at the specified index.
-            </summary>
-            <param name="index">The desired index.</param>
-            <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
-            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.Reverse">
-            <summary>
-            Try to reverse the pattern, making all nodes negated its direction connected.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <summary>
-            Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
-            </summary>
-            <param name="other">The other instance to be compared.</param>
-            <param name="nodeComparison">The comparison rule on nodes.</param>
-            <param name="patternComparison">The comparison rule on the whole chain.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-            <remarks>
-            This method directly calls <see cref="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
-            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>.
-            </remarks>
-            <seealso cref="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
-            <seealso cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/>
-            <seealso cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <summary>
-            Computes hash code based on the current instance.
-            </summary>
-            <param name="nodeComparison">The node comparison.</param>
-            <param name="patternComparison">The pattern comparison.</param>
-            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
-            <exception cref="T:System.ArgumentOutOfRangeException">
-            Throws when the argument <paramref name="patternComparison"/> is not defined.
-            </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <summary>
-            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
-            </summary>
-            <param name="predicate">The condition that a node should satisfy.</param>
-            <returns>The index of the node satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.FindLastIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <summary>
-            Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
-            </summary>
-            <param name="predicate">The condition that a node should satisfy.</param>
-            <returns>The index of the node satisfied the condition.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.ToString(System.IFormatProvider)">
-            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.Slice(System.Int32,System.Int32)">
-            <summary>
-            Slices the collection with the specified start node and its length.
-            </summary>
-            <param name="start">The start index.</param>
-            <param name="length">The number of <see cref="T:Sudoku.Concepts.Node"/> instances to slice.</param>
-            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances returned.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.GetConclusions(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
-            </summary>
-            <param name="grid">The grid to be checked.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
-        </member>
-        <member name="M:Sudoku.Concepts.IChainPattern.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
-            <summary>
-            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="node1">The first node.</param>
-            <param name="node2">The second node.</param>
-            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
-            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
         </member>
         <member name="T:Sudoku.Concepts.Link">
             <summary>
@@ -558,16 +546,10 @@
             Represents a loop.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Loop._nodes">
-            <summary>
-            Indicates the nodes.
-            </summary>
-        </member>
         <member name="M:Sudoku.Concepts.Loop.#ctor(Sudoku.Concepts.Node)">
             <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Loop"/> instance via a <see cref="T:Sudoku.Concepts.Node"/> instance belonging to a loop.
+            Represents a loop.
             </summary>
-            <param name="lastNode">The last node.</param>
         </member>
         <member name="P:Sudoku.Concepts.Loop.IsGrouped">
             <inheritdoc/>
@@ -582,9 +564,6 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Last">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Loop.Sudoku#Concepts#IChainPattern#BackingNodes">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">
@@ -608,7 +587,10 @@
             Throws when the argument <paramref name="chainComparison"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.GetHashCode">
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
@@ -621,12 +603,6 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="patternComparison"/> is not defined.
             </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.FindLastIndex(System.Predicate{Sudoku.Concepts.Node})">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)">
             <summary>
@@ -662,7 +638,7 @@
         <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.ToString(System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.ChainPattern)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.ToString(System.String,System.IFormatProvider)">
@@ -674,41 +650,8 @@
         <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAt(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAt(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#IElementAtMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#ElementAtOrDefault(System.Index)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#Linq#Providers#ISliceMethod{Sudoku#Concepts#Loop,Sudoku#Concepts#Node}#Slice(System.Int32,System.Int32)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.Equals(System.Object)">
-            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
-        </member>
         <member name="M:Sudoku.Concepts.Loop.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.op_Equality(Sudoku.Concepts.Loop,Sudoku.Concepts.Loop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.op_Inequality(Sudoku.Concepts.Loop,Sudoku.Concepts.Loop)">
-            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.Node">
             <summary>

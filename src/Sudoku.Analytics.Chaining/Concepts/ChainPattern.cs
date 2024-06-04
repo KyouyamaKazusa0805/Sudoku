@@ -3,20 +3,47 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a type that describes for a chain or a loop.
 /// </summary>
-public interface IChainPattern :
-#if false
-	IComparable<IChainPattern>,
-#endif
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, OtherModifiersOnEquals = "sealed")]
+public abstract partial class ChainPattern :
+	IComparable<ChainPattern>,
 	IEnumerable<Node>,
-#if false
-	IEquatable<IChainPattern>,
-#endif
-	IFormattable
+	IEquatable<ChainPattern>,
+	IFormattable,
+	IReadOnlyList<Node>,
+	IReadOnlyCollection<Node>
 {
 	/// <summary>
 	/// Indicates the possible inferences to be used.
 	/// </summary>
 	protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
+
+
+	/// <summary>
+	/// Indicates the nodes to be initialized.
+	/// </summary>
+	protected readonly Node[] _nodes;
+
+
+	/// <summary>
+	/// Initializes <see cref="ChainPattern"/> data.
+	/// </summary>
+	/// <param name="lastNode">The last node.</param>
+	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
+	protected ChainPattern(Node lastNode, bool isLoop)
+	{
+		var nodes = new List<Node> { lastNode };
+		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
+		{
+			nodes.Add(new Node(node, null));
+		}
+		_nodes = [.. nodes];
+
+		// Reverse the whole chain if the first node is greater than the last node in logic.
+		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+		{
+			Reverse();
+		}
+	}
 
 
 	/// <summary>
@@ -45,10 +72,8 @@ public interface IChainPattern :
 	/// </summary>
 	public abstract Node Last { get; }
 
-	/// <summary>
-	/// Indicates the backing nodes.
-	/// </summary>
-	protected abstract Node[] BackingNodes { get; }
+	/// <inheritdoc/>
+	int IReadOnlyCollection<Node>.Count => Length;
 
 
 	/// <summary>
@@ -65,6 +90,9 @@ public interface IChainPattern :
 	/// </summary>
 	public abstract void Reverse();
 
+	/// <inheritdoc/>
+	public abstract bool Equals(ChainPattern? other);
+
 	/// <summary>
 	/// Determine whether two <see cref="Chain"/> or <see cref="Loop"/> instances are same, by using the specified comparison rule.
 	/// </summary>
@@ -75,7 +103,7 @@ public interface IChainPattern :
 	/// <exception cref="ArgumentOutOfRangeException">
 	/// Throws when the argument <paramref name="patternComparison"/> is not defined.
 	/// </exception>
-	public abstract bool Equals([NotNullWhen(true)] IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
+	public abstract bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
 	/// <remarks>
@@ -85,7 +113,7 @@ public interface IChainPattern :
 	/// <seealso cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>
 	/// <seealso cref="NodeComparison.IgnoreIsOn"/>
 	/// <seealso cref="ChainPatternComparison.Undirected"/>
-	public abstract int GetHashCode();
+	public sealed override int GetHashCode() => GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);
 
 	/// <summary>
 	/// Computes hash code based on the current instance.
@@ -103,20 +131,46 @@ public interface IChainPattern :
 	/// </summary>
 	/// <param name="predicate">The condition that a node should satisfy.</param>
 	/// <returns>The index of the node satisfied the condition.</returns>
-	public abstract int FindIndex(Predicate<Node> predicate);
+	public int FindIndex(Predicate<Node> predicate)
+	{
+		for (var i = 0; i < Length; i++)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
 
 	/// <summary>
 	/// Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
 	/// </summary>
 	/// <param name="predicate">The condition that a node should satisfy.</param>
 	/// <returns>The index of the node satisfied the condition.</returns>
-	public abstract int FindLastIndex(Predicate<Node> predicate);
+	public int FindLastIndex(Predicate<Node> predicate)
+	{
+		for (var i = Length - 1; i >= 0; i--)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <inheritdoc/>
+	public abstract int CompareTo(ChainPattern? other);
 
 	/// <inheritdoc cref="object.ToString"/>
-	public abstract string ToString();
+	public abstract override string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
-	public abstract string ToString(IFormatProvider? formatProvider);
+	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
+
+	/// <inheritdoc/>
+	public abstract string ToString(string? format, IFormatProvider? formatProvider);
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.
@@ -142,7 +196,7 @@ public interface IChainPattern :
 	/// <param name="node2">The second node.</param>
 	/// <returns>A sequence of <see cref="Conclusion"/> instances.</returns>
 	/// <seealso cref="Conclusion"/>
-	protected static sealed ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
+	protected static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
 	{
 		var candidatesMap = grid.CandidatesMap;
 		if (node1 == ~node2)
@@ -207,4 +261,10 @@ public interface IChainPattern :
 			}
 		}
 	}
+
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
 }
