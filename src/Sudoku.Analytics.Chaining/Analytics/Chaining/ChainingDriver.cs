@@ -73,10 +73,10 @@ public static class ChainingDriver
 				static (left, right) => (left, right) switch
 				{
 					(null, null) => true,
-					(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn),
+					(not null, not null) => left.Equals(right),
 					_ => false
 				},
-				static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn)
+				static obj => obj.GetHashCode()
 			);
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
