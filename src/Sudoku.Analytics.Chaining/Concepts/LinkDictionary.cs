@@ -23,14 +23,14 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 			this[node2].Add(node1);
 		}
 
-		(node1, node2) = (~node1, ~node2);
-		if (!TryAdd(node1, [node2]))
+		var (node3, node4) = (~node1, ~node2);
+		if (!TryAdd(node3, [node4]))
 		{
-			this[node1].Add(node2);
+			this[node3].Add(node4);
 		}
-		if (!TryAdd(node2, [node1]))
+		if (!TryAdd(node4, [node3]))
 		{
-			this[node2].Add(node1);
+			this[node4].Add(node3);
 		}
 	}
 }

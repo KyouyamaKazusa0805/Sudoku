@@ -149,7 +149,7 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 				var hashCode = new HashCode();
 				foreach (var node in nodesSorted)
 				{
-					hashCode.Add(node);
+					hashCode.Add(node.GetHashCode(nodeComparison));
 				}
 				return hashCode.ToHashCode();
 			}

@@ -23,7 +23,13 @@ public sealed class YChainingRule : ChainingRule
 	{
 		foreach (var cell in grid.EmptyCells)
 		{
-			foreach (var combinationPair in grid.GetCandidates(cell).GetAllSets().GetSubsets(2))
+			var mask = grid.GetCandidates(cell);
+			if (PopCount((uint)mask) < 2)
+			{
+				continue;
+			}
+
+			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
 				linkDictionary.AddEntry(new(cell * 9 + combinationPair[0], true), new(cell * 9 + combinationPair[1], false));
 			}

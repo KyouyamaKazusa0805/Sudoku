@@ -1,5 +1,3 @@
-using System.Runtime.InteropServices;
-
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -28,11 +26,10 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	{
 		_weakStart = weakStart;
 		var nodes = new List<Node> { lastNode };
-		for (var node = lastNode.Parent!; !node.Equals(lastNode, NodeComparison.IgnoreIsOn); node = node.Parent!)
+		for (var node = lastNode.Parent; node is not null; node = node.Parent)
 		{
 			nodes.Add(new Node(node, null));
 		}
-		nodes.Add(~lastNode);
 		nodes.Reverse();
 		_nodes = [.. nodes];
 	}
@@ -150,7 +147,7 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 				var hashCode = new HashCode();
 				foreach (var node in nodesSorted)
 				{
-					hashCode.Add(node);
+					hashCode.Add(node.GetHashCode(nodeComparison));
 				}
 				return hashCode.ToHashCode();
 			}
