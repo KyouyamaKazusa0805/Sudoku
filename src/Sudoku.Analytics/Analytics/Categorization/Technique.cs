@@ -5075,94 +5075,76 @@ public enum Technique
 	/// <summary>
 	/// Indicates grouped X-Chain.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXChain,
 
 	/// <summary>
 	/// Indicates grouped fishy cycle (grouped X-Cycle).
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedFishyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-Chain.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyChain,
 
 	/// <summary>
 	/// Indicates grouped XY-Cycle.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyCycle,
 
 	/// <summary>
 	/// Indicates grouped XY-X-Chain.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedXyXChain,
 
 	/// <summary>
 	/// Indicates grouped purple cow.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedPurpleCow,
 
 	/// <summary>
 	/// Indicates grouped discontinuous nice loop.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0710")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedDiscontinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates grouped continuous nice loop.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0709")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedContinuousNiceLoop,
 
 	/// <summary>
 	/// Indicates grouped alternating inference chain.
 	/// </summary>
 	[Hodoku(Rating = 300, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0711")]
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	GroupedAlternatingInferenceChain,
+
+	/// <summary>
+	/// Indicates special case that a chain starts and ends with a same node of a single candidate.
+	/// </summary>
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
+	SelfConstraint,
+
+	/// <summary>
+	/// Indicates grouped self constraint.
+	/// </summary>
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
+	GroupedSelfConstraint,
 
 	/// <summary>
 	/// Indicates special case that a grouped alternating inference chain has a collision between start and end node.
 	/// </summary>
-	[TechniqueMetadata(
-		DifficultyLevel = DifficultyLevel.Fiendish,
-		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		Features = TechniqueFeatures.NotImplemented)]
+	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
 	NodeCollision,
 	#endregion
 

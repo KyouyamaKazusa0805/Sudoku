@@ -12,15 +12,8 @@ public static class ChainingDriver
 	/// <param name="rules">
 	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
 	/// </param>
-	/// <param name="patternComparison">
-	/// Indicates whether the method will automatically sort elements. The default value is <see langword="null"/>.
-	/// </param>
 	/// <returns>All possible <see cref="ChainPattern"/> instances.</returns>
-	public static ReadOnlySpan<ChainPattern> CollectChainPatterns(
-		ref readonly Grid grid,
-		ReadOnlySpan<ChainingRule> rules,
-		Comparison<ChainPattern>? patternComparison = null
-	)
+	public static ReadOnlySpan<ChainPattern> CollectChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.
 		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
@@ -72,11 +65,8 @@ public static class ChainingDriver
 			}
 		}
 
-		// Step 4: Sort found patterns.
-		if (patternComparison is not null)
-		{
-			finalCollection.Sort(patternComparison);
-		}
+		// Step 4: Sort found patterns and return.
+		finalCollection.Sort();
 		return finalCollection.AsReadOnlySpan();
 
 

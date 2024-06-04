@@ -3085,6 +3085,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped Self Constraint.
+        /// </summary>
+        public static string GroupedSelfConstraint {
+            get {
+                return ResourceManager.GetString("GroupedSelfConstraint", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Grouped Skyscraper.
         /// </summary>
         public static string GroupedSkyscraper {
@@ -5064,6 +5073,15 @@ namespace Sudoku.Resources {
         public static string SashimiXWing {
             get {
                 return ResourceManager.GetString("SashimiXWing", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Self Constraint.
+        /// </summary>
+        public static string SelfConstraint {
+            get {
+                return ResourceManager.GetString("SelfConstraint", resourceCulture);
             }
         }
         

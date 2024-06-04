@@ -3303,6 +3303,16 @@
             Indicates grouped alternating inference chain.
             </summary>
         </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.SelfConstraint">
+            <summary>
+            Indicates special case that a chain starts and ends with a same node of a single candidate.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.Technique.GroupedSelfConstraint">
+            <summary>
+            Indicates grouped self constraint.
+            </summary>
+        </member>
         <member name="F:Sudoku.Analytics.Categorization.Technique.NodeCollision">
             <summary>
             Indicates special case that a grouped alternating inference chain has a collision between start and end node.
@@ -4807,6 +4817,11 @@
             </summary>
             <seealso cref="T:Sudoku.Concepts.ChainPattern"/>
         </member>
+        <member name="F:Sudoku.Analytics.Chaining.ChainPatternExtensions.SortKeyDictionary">
+            <summary>
+            Indicates the sort key dictionary.
+            </summary>
+        </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetTechnique(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.Grid@)">
             <summary>
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
@@ -4815,11 +4830,12 @@
             <param name="grid">The grid to check for eliminations.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetSortKey(Sudoku.Concepts.ChainPattern)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetSortKey(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.Grid@)">
             <summary>
             Try to get sort key of the pattern.
             </summary>
-            <param name="this">The pattern key.</param>
+            <param name="this">The pattern.</param>
+            <param name="grid">Indicates the grid to be used.</param>
             <returns>The pattern sort key.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Collector">
@@ -24227,6 +24243,11 @@ result ^= expression;
               Looks up a localized string similar to Grouped Purple Cow.
             </summary>
         </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.GroupedSelfConstraint">
+            <summary>
+              Looks up a localized string similar to Grouped Self Constraint.
+            </summary>
+        </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.GroupedSkyscraper">
             <summary>
               Looks up a localized string similar to Grouped Skyscraper.
@@ -25328,6 +25349,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.SashimiXWing">
             <summary>
               Looks up a localized string similar to Sashimi X-Wing.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.SelfConstraint">
+            <summary>
+              Looks up a localized string similar to Self Constraint.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.SeniorExocet">

@@ -3390,4 +3390,12 @@
   <data name="StepSearcherName_ChainStepSearcher" xml:space="preserve">
     <value>链</value>
   </data>
+  <data name="SelfConstraint" xml:space="preserve">
+    <value>自我约束</value>
+    <comment>Technique Name</comment>
+  </data>
+  <data name="GroupedSelfConstraint" xml:space="preserve">
+    <value>区块自我约束</value>
+    <comment>Technique Name</comment>
+  </data>
 </root>
