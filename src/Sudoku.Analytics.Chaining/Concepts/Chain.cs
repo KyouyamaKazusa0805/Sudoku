@@ -211,8 +211,14 @@ public sealed partial class Chain :
 	/// or -1 when <paramref name="other"/> is longer.
 	/// </item>
 	/// <item>
-	/// Determines the chain nodes used one by one. If a node is greater, the chain will be greater;
+	/// Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+	/// <list type="number">
+	/// <item>If so, it will be treated as "less than" the other one.</item>
+	/// <item>
+	/// Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
 	/// otherwise, they are same, 0 will be returned.
+	/// </item>
+	/// </list>
 	/// </item>
 	/// </list>
 	/// </item>
@@ -232,6 +238,14 @@ public sealed partial class Chain :
 		if (Length.CompareTo(other.Length) is var lengthResult and not 0)
 		{
 			return lengthResult;
+		}
+
+		var thisHasSelfConstraint = First == ~Last;
+		var otherHasSelfConstraint = other.First == ~other.Last;
+		if (thisHasSelfConstraint ^ otherHasSelfConstraint)
+		{
+			// If a chain has a self constraint (false -> true contradiction), it should be treated as "less than" the other.
+			return thisHasSelfConstraint ? -1 : 1;
 		}
 
 		for (var i = 0; i < Length; i++)
