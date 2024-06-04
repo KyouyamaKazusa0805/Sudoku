@@ -146,28 +146,34 @@ public interface IChainPattern :
 			{
 				var (cell1, digit1) = (candidate1 / 9, candidate1 % 9);
 				var (cell2, digit2) = (candidate2 / 9, candidate2 % 9);
-
-				var result = new List<Conclusion>();
-				if (digit1 == digit2)
+				if (cell1 == cell2)
+				{
+					// Same cell.
+					return
+						from digit in (Mask)(grid.GetCandidates(cell1) & (Mask)~(1 << digit1 | 1 << digit2))
+						select new Conclusion(Elimination, cell1, digit);
+				}
+				else if (digit1 == digit2)
 				{
 					// Same digit.
-					foreach (var cell in (cell1.AsCellMap() + cell2).PeerIntersection & candidatesMap[digit1])
+					return
+						from cell in (cell1.AsCellMap() + cell2).PeerIntersection & candidatesMap[digit1]
+						select new Conclusion(Elimination, cell, digit1);
+				}
+				else
+				{
+					// Otherwise (Different cell and digit).
+					var result = new List<Conclusion>(2);
+					if ((grid.GetCandidates(cell1) >> digit2 & 1) != 0)
 					{
-						result.Add(new(Elimination, cell, digit1));
+						result.Add(new(Elimination, cell1, digit2));
+					}
+					if ((grid.GetCandidates(cell2) >> digit1 & 1) != 0)
+					{
+						result.Add(new(Elimination, cell2, digit1));
 					}
 					return result.AsReadOnlySpan();
 				}
-
-				// Not same digit.
-				if ((grid.GetCandidates(cell1) >> digit2 & 1) != 0)
-				{
-					result.Add(new(Elimination, cell1, digit2));
-				}
-				if ((grid.GetCandidates(cell2) >> digit1 & 1) != 0)
-				{
-					result.Add(new(Elimination, cell2, digit1));
-				}
-				return result.AsReadOnlySpan();
 			}
 			case var _ when IsPow2(p) && IsPow2(q) && p == q:
 			{

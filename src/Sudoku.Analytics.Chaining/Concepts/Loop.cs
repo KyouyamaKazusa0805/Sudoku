@@ -296,7 +296,7 @@ public sealed partial class Loop :
 	public string ToString(string? format, IFormatProvider? formatProvider)
 	{
 		var sb = new StringBuilder();
-		for (var (linkIndex, i) = (0, 0); i < _nodes.Length; linkIndex++, i++)
+		for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
 		{
 			var inference = IChainPattern.Inferences[linkIndex & 1];
 			sb.Append(_nodes[i].ToString(format, formatProvider));
