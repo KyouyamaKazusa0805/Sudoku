@@ -78,6 +78,13 @@ public interface IChainPattern :
 	public abstract bool Equals([NotNullWhen(true)] IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
 	/// <inheritdoc cref="object.GetHashCode"/>
+	/// <remarks>
+	/// This method directly calls <see cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>
+	/// with values <see cref="NodeComparison.IgnoreIsOn"/> and <see cref="ChainPatternComparison.Undirected"/>.
+	/// </remarks>
+	/// <seealso cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>
+	/// <seealso cref="NodeComparison.IgnoreIsOn"/>
+	/// <seealso cref="ChainPatternComparison.Undirected"/>
 	public abstract int GetHashCode();
 
 	/// <summary>

@@ -326,6 +326,13 @@
         </member>
         <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            This method directly calls <see cref="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            <seealso cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/>
+            <seealso cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>
         </member>
         <member name="M:Sudoku.Concepts.IChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <summary>
