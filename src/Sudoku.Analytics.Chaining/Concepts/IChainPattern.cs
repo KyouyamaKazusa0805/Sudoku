@@ -166,12 +166,7 @@ public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, I
 			case var _ when IsPow2(p) && IsPow2(q) && p == q:
 			{
 				var digit = Log2((uint)p);
-				var result = new List<Conclusion>();
-				foreach (var cell in (c1 | c2).PeerIntersection & candidatesMap[digit])
-				{
-					result.Add(new(Elimination, cell, digit));
-				}
-				return result.AsReadOnlySpan();
+				return from cell in (c1 | c2).PeerIntersection & candidatesMap[digit] select new Conclusion(Elimination, cell, digit);
 			}
 			default:
 			{
