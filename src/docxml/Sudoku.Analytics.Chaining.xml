@@ -9,13 +9,16 @@
             Provides a driver module on chaining.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},System.Comparison{Sudoku.Concepts.IChainPattern})">
             <summary>
             Collect all <see cref="T:Sudoku.Concepts.IChainPattern"/> instances appears in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="rules">
             Indicates the rule instances that will create strong and weak links by their own represented concept.
+            </param>
+            <param name="patternComparison">
+            Indicates whether the method will automatically sort elements. The default value is <see langword="null"/>.
             </param>
             <returns>All possible <see cref="T:Sudoku.Concepts.IChainPattern"/> instances.</returns>
         </member>
