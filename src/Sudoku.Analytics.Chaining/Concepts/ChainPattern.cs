@@ -15,7 +15,7 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates the possible inferences to be used.
 	/// </summary>
-	protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
+	private protected static readonly Inference[] Inferences = [Inference.Strong, Inference.Weak];
 
 
 	/// <summary>
@@ -187,6 +187,12 @@ public abstract partial class ChainPattern :
 	/// <returns>A <see cref="ConclusionSet"/> instance.</returns>
 	public abstract ConclusionSet GetConclusions(ref readonly Grid grid);
 
+	/// <inheritdoc/>
+	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
+
+	/// <inheritdoc/>
+	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
+
 
 	/// <summary>
 	/// Try to get all possible conclusions via the specified grid and two <see cref="Node"/> instances.
@@ -196,7 +202,7 @@ public abstract partial class ChainPattern :
 	/// <param name="node2">The second node.</param>
 	/// <returns>A sequence of <see cref="Conclusion"/> instances.</returns>
 	/// <seealso cref="Conclusion"/>
-	protected static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
+	private protected static ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
 	{
 		var candidatesMap = grid.CandidatesMap;
 		if (node1 == ~node2)
@@ -261,10 +267,4 @@ public abstract partial class ChainPattern :
 			}
 		}
 	}
-
-	/// <inheritdoc/>
-	IEnumerator IEnumerable.GetEnumerator() => _nodes.GetEnumerator();
-
-	/// <inheritdoc/>
-	IEnumerator<Node> IEnumerable<Node>.GetEnumerator() => ((IEnumerable<Node>)_nodes).GetEnumerator();
 }

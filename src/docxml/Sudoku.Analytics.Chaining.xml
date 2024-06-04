@@ -324,6 +324,12 @@
             <param name="grid">The grid to be checked.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <summary>
             Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
@@ -333,12 +339,6 @@
             <param name="node2">The second node.</param>
             <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#IEnumerable#GetEnumerator">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
