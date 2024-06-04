@@ -28,8 +28,14 @@ public sealed partial class Loop :
 		{
 			nodes.Add(node);
 		}
-		nodes.Reverse();
+
 		_nodes = [.. nodes];
+
+		// Reverse the whole chain if the first node is greater than the last node in logic.
+		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+		{
+			Reverse();
+		}
 	}
 
 
@@ -55,6 +61,18 @@ public sealed partial class Loop :
 	/// <inheritdoc/>
 	public Node this[int index] => _nodes[index];
 
+
+	/// <inheritdoc/>
+	public void Reverse()
+	{
+		var newNodes = new Node[_nodes.Length];
+		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
+		{
+			// Reverse and negate its "IsOn" property to keep the chain starting with same "IsOn" property value.
+			newNodes[i] = ~_nodes[pos];
+		}
+		Array.Copy(newNodes, _nodes, _nodes.Length);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -237,15 +255,37 @@ public sealed partial class Loop :
 		}
 
 		// Find two loops with the same node as the start.
-		var secondNodeStartIndex = other.FindIndex(node => node.Equals(this[0], nodeComparison));
-		for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos + 1) % Length)
+		// If found, we should align them as start nodes to iterate; otherwise, they are not same chain.
+		// Just check elements one by one.
+		switch (other.FindIndex(node => node.Equals(this[0], nodeComparison)))
 		{
-			if (this[i].CompareTo(other[pos], nodeComparison) is var nodeResult and not 0)
+			case -1:
 			{
-				return nodeResult;
+				for (var i = 0; i < Length; i++)
+				{
+					if (this[i].CompareTo(other[i], nodeComparison) is var nodeResult and not 0)
+					{
+						return nodeResult;
+					}
+				}
+				goto default;
+			}
+			case var secondNodeStartIndex:
+			{
+				for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos + 1) % Length)
+				{
+					if (this[i].CompareTo(other[pos], nodeComparison) is var nodeResult and not 0)
+					{
+						return nodeResult;
+					}
+				}
+				goto default;
+			}
+			default:
+			{
+				return 0;
 			}
 		}
-		return 0;
 	}
 
 	/// <inheritdoc/>
@@ -274,7 +314,7 @@ public sealed partial class Loop :
 	public ConclusionSet GetConclusions(ref readonly Grid grid)
 	{
 		var result = new ConclusionSet();
-		for (var i = 0; i <= Length; i++)
+		for (var i = 0; i < Length; i += 2)
 		{
 			var node1 = _nodes[i];
 			var node2 = _nodes[i == Length ? 0 : i + 1];

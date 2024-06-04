@@ -123,9 +123,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Reverse">
-            <summary>
-            Reverse the whole chain.
-            </summary>
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain)">
             <inheritdoc/>
@@ -302,6 +300,11 @@
             <param name="index">The desired index.</param>
             <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
             <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.Reverse">
+            <summary>
+            Try to reverse the pattern, making all nodes negated its direction connected.
+            </summary>
         </member>
         <member name="M:Sudoku.Concepts.IChainPattern.Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <summary>
@@ -555,6 +558,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Reverse">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop)">

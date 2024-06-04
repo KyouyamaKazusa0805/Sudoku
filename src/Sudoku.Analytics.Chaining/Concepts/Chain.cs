@@ -75,10 +75,7 @@ public sealed partial class Chain :
 	public Node this[int index] => Span[index];
 
 
-	/// <summary>
-	/// Reverse the whole chain.
-	/// </summary>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	/// <inheritdoc/>
 	public void Reverse()
 	{
 		var newNodes = new Node[_nodes.Length];

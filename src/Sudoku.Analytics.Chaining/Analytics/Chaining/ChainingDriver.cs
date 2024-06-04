@@ -69,19 +69,10 @@ public static class ChainingDriver
 
 		void bfs(Node startNode, HashSet<IChainPattern> result)
 		{
-			var traversedNodesComparer = EqualityComparer<Node>.Create(
-				static (left, right) => (left, right) switch
-				{
-					(null, null) => true,
-					(not null, not null) => left.Equals(right),
-					_ => false
-				},
-				static obj => obj.GetHashCode()
-			);
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
-			var visitedStrong = new HashSet<Node>(traversedNodesComparer);
-			var visitedWeak = new HashSet<Node>(traversedNodesComparer);
+			var visitedStrong = new HashSet<Node>();
+			var visitedWeak = new HashSet<Node>();
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
@@ -94,6 +85,14 @@ public static class ChainingDriver
 					{
 						foreach (var node in nodes)
 						{
+							if (node == startNode)
+							{
+								var resultNode = new Node(node, currentNode);
+								if (resultNode.AncestorsLength >= 4)
+								{
+									result.Add(new Loop(resultNode)); // Continuous Nice Loop 3) Strong -> Weak.
+								}
+							}
 							if (node == ~startNode)
 							{
 								result.Add(new Chain(new(node, currentNode), true)); // Discontinuous Nice Loop 2) Strong -> Strong.
@@ -115,14 +114,6 @@ public static class ChainingDriver
 					{
 						foreach (var node in nodes)
 						{
-							if (node == startNode)
-							{
-								var resultNode = new Node(node, currentNode);
-								if (resultNode.AncestorsLength >= 4)
-								{
-									result.Add(new Loop(resultNode)); // Continuous Nice Loop 3) Strong -> Weak.
-								}
-							}
 							if (node == ~startNode)
 							{
 								var resultNode = new Node(node, currentNode);

@@ -61,6 +61,11 @@ public interface IChainPattern :
 
 
 	/// <summary>
+	/// Try to reverse the pattern, making all nodes negated its direction connected.
+	/// </summary>
+	public abstract void Reverse();
+
+	/// <summary>
 	/// Determine whether two <see cref="Chain"/> or <see cref="Loop"/> instances are same, by using the specified comparison rule.
 	/// </summary>
 	/// <param name="other">The other instance to be compared.</param>
