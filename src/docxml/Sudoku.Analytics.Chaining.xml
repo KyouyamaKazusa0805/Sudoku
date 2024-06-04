@@ -138,6 +138,11 @@
         <member name="P:Sudoku.Concepts.Chain.Item(System.Int32)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Chain.Reverse">
+            <summary>
+            Reverse the whole chain.
+            </summary>
+        </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain)">
             <inheritdoc/>
         </member>

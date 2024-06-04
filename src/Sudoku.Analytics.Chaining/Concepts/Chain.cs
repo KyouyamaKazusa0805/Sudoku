@@ -63,6 +63,12 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	public Node this[int index] => Span[_weakStart ? index - 1 : index];
 
 
+	/// <summary>
+	/// Reverse the whole chain.
+	/// </summary>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public void Reverse() => Array.Reverse(_nodes);
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Chain? other)
