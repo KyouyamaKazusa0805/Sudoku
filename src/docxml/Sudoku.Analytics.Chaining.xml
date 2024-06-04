@@ -296,6 +296,9 @@
             Throws when the argument <paramref name="patternComparison"/> is not defined.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.IChainPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="M:Sudoku.Concepts.IChainPattern.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>

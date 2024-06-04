@@ -137,35 +137,36 @@ public sealed partial class Loop : IChainPattern, IElementAtMethod<Loop, Node>, 
 	/// </exception>
 	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
-		var result = new HashCode();
 		switch (patternComparison)
 		{
 			case ChainPatternComparison.Undirected:
 			{
-				for (var i = 0; i < Length; i++)
+				// To guarantee the final hash code is same on different direction, we should sort all nodes,
+				// in order to make same nodes are in the same position.
+				var nodesSorted = _nodes[..];
+				Array.Sort(nodesSorted, (left, right) => left.CompareTo(right, nodeComparison));
+
+				var hashCode = new HashCode();
+				foreach (var node in nodesSorted)
 				{
-					result.Add(_nodes[i].GetHashCode(nodeComparison));
+					hashCode.Add(node);
 				}
-				for (var i = Length - 1; i >= 0; i--)
-				{
-					result.Add(_nodes[i].GetHashCode(nodeComparison));
-				}
-				break;
+				return hashCode.ToHashCode();
 			}
 			case ChainPatternComparison.Directed:
 			{
+				var result = new HashCode();
 				foreach (var element in _nodes)
 				{
 					result.Add(element.GetHashCode(nodeComparison));
 				}
-				break;
+				return result.ToHashCode();
 			}
 			default:
 			{
 				throw new ArgumentOutOfRangeException(nameof(patternComparison));
 			}
 		}
-		return result.ToHashCode();
 	}
 
 	/// <inheritdoc/>

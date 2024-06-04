@@ -25,7 +25,24 @@ public static class ChainingDriver
 		(strongLinksDictionary, weakLinksDictionary) = (strongLinks, weakLinks);
 
 		// Step 2: Iterate on dictionary to get chains.
-		var chainsFound = new HashSet<IChainPattern>();
+		var chainsFound = new HashSet<IChainPattern>(
+			EqualityComparer<IChainPattern>.Create(
+				static (left, right) => (left, right) switch
+				{
+					(null, null) => true,
+					(Chain a, Chain b) => a.Equals(b),
+					(Loop a, Loop b) => a.Equals(b),
+					(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
+					_ => false
+				},
+				static obj => obj switch
+				{
+					Chain c => c.GetHashCode(),
+					Loop l => l.GetHashCode(),
+					_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
+				}
+			)
+		);
 		foreach (var cell in grid.EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))

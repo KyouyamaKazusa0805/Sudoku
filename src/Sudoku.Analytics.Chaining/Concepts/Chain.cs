@@ -1,3 +1,5 @@
+using System.Runtime.InteropServices;
+
 namespace Sudoku.Concepts;
 
 /// <summary>
@@ -135,36 +137,37 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	/// <inheritdoc/>
 	public int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
-		var result = new HashCode();
 		var span = Span;
 		switch (patternComparison)
 		{
 			case ChainPatternComparison.Undirected:
 			{
-				for (var i = 0; i < Length; i++)
+				// To guarantee the final hash code is same on different direction, we should sort all nodes,
+				// in order to make same nodes are in the same position.
+				var nodesSorted = span.ToArray();
+				Array.Sort(nodesSorted, (left, right) => left.CompareTo(right, nodeComparison));
+
+				var hashCode = new HashCode();
+				foreach (var node in nodesSorted)
 				{
-					result.Add(span[i].GetHashCode(nodeComparison));
+					hashCode.Add(node);
 				}
-				for (var i = Length - 1; i >= 0; i--)
-				{
-					result.Add(span[i].GetHashCode(nodeComparison));
-				}
-				break;
+				return hashCode.ToHashCode();
 			}
 			case ChainPatternComparison.Directed:
 			{
+				var result = new HashCode();
 				foreach (var element in span)
 				{
 					result.Add(element.GetHashCode(nodeComparison));
 				}
-				break;
+				return result.ToHashCode();
 			}
 			default:
 			{
 				throw new ArgumentOutOfRangeException(nameof(patternComparison));
 			}
 		}
-		return result.ToHashCode();
 	}
 
 	/// <inheritdoc/>

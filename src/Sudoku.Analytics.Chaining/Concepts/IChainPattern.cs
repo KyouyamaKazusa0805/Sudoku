@@ -78,6 +78,9 @@ public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, I
 	/// </exception>
 	public abstract int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
+	/// <inheritdoc cref="object.ToString"/>
+	public abstract string ToString();
+
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	public abstract string ToString(IFormatProvider? formatProvider);
 

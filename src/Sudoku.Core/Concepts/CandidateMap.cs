@@ -323,7 +323,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly int CompareTo(ref readonly CandidateMap other)
 	{
-		return Count > other.Count ? 1 : Count < other.Count ? -1 : Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
+		return Count > other.Count ? 1 : Count < other.Count ? -1 : -Math.Sign($"{b(in this)}".CompareTo($"{b(in other)}"));
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
