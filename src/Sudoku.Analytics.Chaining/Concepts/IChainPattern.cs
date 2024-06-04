@@ -116,16 +116,9 @@ public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, I
 			// Two nodes are same, meaning the node must be true. Check whether it is grouped one.
 			var digit = node1.Map[0] % 9;
 			var map = Subview.ReduceCandidateByDigit(in node1.Map, digit);
-			if (node1.IsGroupedNode)
-			{
-				var result = new List<Conclusion>();
-				foreach (var cell in map.PeerIntersection & candidatesMap[digit])
-				{
-					result.Add(new(Elimination, cell, digit));
-				}
-				return result.AsReadOnlySpan();
-			}
-			return (Conclusion[])[new(Assignment, node1.Map[0])];
+			return node1.IsGroupedNode
+				? from cell in map.PeerIntersection & candidatesMap[digit] select new Conclusion(Elimination, cell, digit)
+				: (Conclusion[])[new(Assignment, node1.Map[0])];
 		}
 
 		// Two nodes aren't same. Check for values.
