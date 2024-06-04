@@ -125,8 +125,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// <example>
 	/// TODO: Add loop logic. Example:
 	/// <code><![CDATA[
-	/// +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:
-	///   435 935 567 175 185 192 193 993 195 495 995
+	/// +39+4+7.6...+2+851..3+7+616+7+3.2...8+7.+6.34..6+4..+7+5+8+31..34.+8.+67...8...23..8..76.....5...8.:435 935 567 175 185 192 193 993 195 495 995
 	/// ]]></code>
 	/// </example>
 	private WWingStep? Collect_WWing(ref AnalysisContext context)
@@ -387,8 +386,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// <example>
 	/// TODO: Add loop logic. Example:
 	/// <code><![CDATA[
-	/// .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:
-	///   417 419 157 883 785 891 893 795
+	/// .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:417 419 157 883 785 891 893 795
 	/// ]]></code>
 	/// </example>
 	private MWingStep? Collect_MWing(ref AnalysisContext context)

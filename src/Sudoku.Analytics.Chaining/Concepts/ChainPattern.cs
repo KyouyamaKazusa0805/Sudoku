@@ -52,6 +52,64 @@ public abstract partial class ChainPattern :
 	public abstract bool IsGrouped { get; }
 
 	/// <summary>
+	/// Indicates whether the pattern only uses same digits.
+	/// </summary>
+	public virtual bool SatisfyXRule
+	{
+		get
+		{
+			var digitsMask = (Mask)0;
+			foreach (var node in _nodes)
+			{
+				digitsMask |= node.Map.Digits;
+			}
+			return IsPow2(digitsMask);
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the pattern only uses cell strong links.
+	/// </summary>
+	public bool SatisfyYRule
+	{
+		get
+		{
+			foreach (var link in Links)
+			{
+				switch (link)
+				{
+					case { Inference: not Inference.Strong }:
+					case { FirstNode.Map.Cells: [var cell1], SecondNode.Map.Cells: [var cell2] } when cell1 != cell2:
+					{
+						return false;
+					}
+				}
+			}
+			return true;
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether at least one node in the whole pattern overlaps with a node.
+	/// </summary>
+	public virtual bool ContainsOverlappedNodes
+	{
+		get
+		{
+			foreach (var nodePair in (from node in _nodes select node.Map).AsReadOnlySpan().GetSubsets(2))
+			{
+				ref readonly var map1 = ref nodePair[0];
+				ref readonly var map2 = ref nodePair[1];
+				if (map1 & map2)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	/// <summary>
 	/// Indicates the length of the pattern.
 	/// </summary>
 	public abstract int Length { get; }
@@ -61,6 +119,11 @@ public abstract partial class ChainPattern :
 	/// The value is different with <see cref="Length"/> on a chain starting and ending with itself, both are by strong links.
 	/// </summary>
 	public abstract int Complexity { get; }
+
+	/// <summary>
+	/// Indicates the links used.
+	/// </summary>
+	public abstract ReadOnlySpan<Link> Links { get; }
 
 	/// <summary>
 	/// Indicates the head node.

@@ -95,10 +95,59 @@
         <member name="P:Sudoku.Concepts.Chain.IsGrouped">
             <inheritdoc/>
         </member>
+        <member name="P:Sudoku.Concepts.Chain.SatisfyXRule">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsWoodsWing">
+            <summary>
+            Indicates whether the chain is formed a W-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsMedusaWing">
+            <summary>
+            Indicates whether the chain is formed a M-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsSplitWing">
+            <summary>
+            Indicates whether the chain is formed a S-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsLocalWing">
+            <summary>
+            Indicates whether the chain is formed a L-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsHybridWing">
+            <summary>
+            Indicates whether the chain is formed a H-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.ContainsOverlappedNodes">
+            <inheritdoc/>
+        </member>
         <member name="P:Sudoku.Concepts.Chain.Length">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Links">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.First">
@@ -106,6 +155,11 @@
         </member>
         <member name="P:Sudoku.Concepts.Chain.Last">
             <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.SplitMask">
+            <summary>
+            Split mask for 6 nodes.
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Chain.Span">
             <summary>
@@ -210,6 +264,21 @@
             Indicates whether the chain pattern uses grouped logic.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.SatisfyXRule">
+            <summary>
+            Indicates whether the pattern only uses same digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.SatisfyYRule">
+            <summary>
+            Indicates whether the pattern only uses cell strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.ContainsOverlappedNodes">
+            <summary>
+            Indicates whether at least one node in the whole pattern overlaps with a node.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ChainPattern.Length">
             <summary>
             Indicates the length of the pattern.
@@ -219,6 +288,11 @@
             <summary>
             Indicates the complexity of the pattern.
             The value is different with <see cref="P:Sudoku.Concepts.ChainPattern.Length"/> on a chain starting and ending with itself, both are by strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Links">
+            <summary>
+            Indicates the links used.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.ChainPattern.First">
@@ -435,14 +509,14 @@
         <member name="M:Sudoku.Concepts.Link.ToString">
             <inheritdoc/>
         </member>
-        <member name="F:Sudoku.Concepts.Link._firstNode">
+        <member name="P:Sudoku.Concepts.Link.FirstNode">
             <summary>
-            The generated field declaration for parameter <c>firstNode</c>.
+            The generated property declaration for parameter <c>firstNode</c>.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Link._secondNode">
+        <member name="P:Sudoku.Concepts.Link.SecondNode">
             <summary>
-            The generated field declaration for parameter <c>secondNode</c>.
+            The generated property declaration for parameter <c>secondNode</c>.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Link.Type">
@@ -501,9 +575,9 @@
             Represents a link type.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.LinkType.None">
+        <member name="F:Sudoku.Concepts.LinkType.Unknown">
             <summary>
-            Indicates the placeholder of the enumeration.
+            Indicates the placeholder of the enumeration. The value can be represented in cases "None" or "Unknown".
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.LinkType.SingleDigit">
@@ -558,6 +632,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Links">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.First">

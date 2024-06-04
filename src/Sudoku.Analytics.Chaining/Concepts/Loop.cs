@@ -16,6 +16,20 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 	public override int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
+	public override ReadOnlySpan<Link> Links
+	{
+		get
+		{
+			var result = new Link[Length];
+			for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
+			{
+				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], LinkType.Unknown, Inferences[linkIndex & 1]);
+			}
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
 	public override Node First => _nodes[0];
 
 	/// <inheritdoc/>
@@ -252,7 +266,7 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 			sb.Append(_nodes[i].ToString(format, formatProvider));
 			sb.Append(inference.ConnectingNotation());
 		}
-		sb.Append(_nodes[0].ToString(formatProvider));
+		sb.Append(_nodes[0].ToString(format, formatProvider));
 		return sb.ToString();
 	}
 

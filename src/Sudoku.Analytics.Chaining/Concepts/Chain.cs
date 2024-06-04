@@ -16,16 +16,138 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	public override bool IsGrouped => Span.Any(static (ref readonly Node node) => node.IsGroupedNode);
 
 	/// <inheritdoc/>
+	public override bool SatisfyXRule
+	{
+		get
+		{
+			var digitsMask = (Mask)0;
+			foreach (var node in Span)
+			{
+				digitsMask |= node.Map.Digits;
+			}
+			return IsPow2(digitsMask);
+		}
+	}
+
+	/// <summary>
+	/// Indicates whether the chain is formed a W-Wing.
+	/// </summary>
+	/// <remarks>
+	/// A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+	/// </remarks>
+	public bool IsWoodsWing
+		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
+		&& m2 == m3 && m2 == m4 && m2 == m5 && m1 == m6 && m1 != m2;
+
+	/// <summary>
+	/// Indicates whether the chain is formed a M-Wing.
+	/// </summary>
+	/// <remarks>
+	/// A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+	/// </remarks>
+	public bool IsMedusaWing
+		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6) && (
+			m1 == m5 && m1 == m6 && m2 == m3 && m2 == m4 && m1 != m2
+			|| m1 == m2 && m1 == m6 && m3 == m4 && m3 == m5 && m2 != m3
+		);
+
+	/// <summary>
+	/// Indicates whether the chain is formed a S-Wing.
+	/// </summary>
+	/// <remarks>
+	/// A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
+	/// </remarks>
+	public bool IsSplitWing
+		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
+		&& m1 == m2 && m1 == m3 && m4 == m5 && m4 == m6 && m1 != m4;
+
+	/// <summary>
+	/// Indicates whether the chain is formed a L-Wing.
+	/// </summary>
+	/// <remarks>
+	/// A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
+	/// </remarks>
+	public bool IsLocalWing
+		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6)
+		&& m1 == m2 && m3 == m4 && m5 == m6 && m1 != m3 && m1 != m5 && m1 != m5;
+
+	/// <summary>
+	/// Indicates whether the chain is formed a H-Wing.
+	/// </summary>
+	/// <remarks>
+	/// A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
+	/// </remarks>
+	public bool IsHybridWing
+		=> SplitMask is (true, var m1, var m2, var m3, var m4, var m5, var m6) && (
+			m2 == m3 && m4 == m5 && m4 == m6 && m1 != m2 && m2 != m4 && m2 != m4
+			|| m1 == m2 && m1 == m3 && m4 == m5 && m1 != m4 && m1 != m6 && m4 != m6
+		);
+
+	/// <inheritdoc/>
+	public override bool ContainsOverlappedNodes
+	{
+		get
+		{
+			foreach (var nodePair in (from node in Span select node.Map).GetSubsets(2))
+			{
+				ref readonly var map1 = ref nodePair[0];
+				ref readonly var map2 = ref nodePair[1];
+				if (map1 & map2)
+				{
+					return true;
+				}
+			}
+			return false;
+		}
+	}
+
+	/// <inheritdoc/>
 	public override int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
 
 	/// <inheritdoc/>
 	public override int Complexity => _nodes.Length;
 
 	/// <inheritdoc/>
+	public override ReadOnlySpan<Link> Links
+	{
+		get
+		{
+			var span = Span;
+			var result = new Link[Length - 1];
+			for (var (linkIndex, i) = (0, 0); i < Length - 1; linkIndex++, i++)
+			{
+				result[i] = new(span[i], span[i + 1], LinkType.Unknown, Inferences[linkIndex & 1]);
+			}
+			return result;
+		}
+	}
+
+	/// <inheritdoc/>
 	public override Node First => Span[0];
 
 	/// <inheritdoc/>
 	public override Node Last => Span[^1];
+
+	/// <summary>
+	/// Split mask for 6 nodes.
+	/// </summary>
+	private (bool, Mask, Mask, Mask, Mask, Mask, Mask)? SplitMask
+#pragma warning disable format
+		=> this switch
+		{
+			[
+				{ Map.Digits: var m1 },
+				{ Map.Digits: var m2 },
+				{ Map.Digits: var m3 },
+				{ Map.Digits: var m4 },
+				{ Map.Digits: var m5 },
+				{ Map.Digits: var m6 }
+			] => IsPow2(m1) && IsPow2(m2) && IsPow2(m3) && IsPow2(m4) && IsPow2(m5) && IsPow2(m6)
+				? (true, m1, m2, m3, m4, m5, m6)
+				: (false, m1, m2, m3, m4, m5, m6),
+			_ => null
+		};
+#pragma warning restore format
 
 	/// <summary>
 	/// Create a <see cref="ReadOnlySpan{T}"/> instance that holds valid <see cref="Node"/> instances to be used in a chain.

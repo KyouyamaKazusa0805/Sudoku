@@ -7,9 +7,9 @@ namespace Sudoku.Concepts;
 public enum LinkType
 {
 	/// <summary>
-	/// Indicates the placeholder of the enumeration.
+	/// Indicates the placeholder of the enumeration. The value can be represented in cases "None" or "Unknown".
 	/// </summary>
-	None = 0,
+	Unknown = 0,
 
 	/// <summary>
 	/// Indicates the link type is a single digit (X rule).

@@ -14,8 +14,8 @@ namespace Sudoku.Concepts;
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class Link(
-	[PrimaryConstructorParameter(MemberKinds.Field)] Node firstNode,
-	[PrimaryConstructorParameter(MemberKinds.Field)] Node secondNode,
+	[PrimaryConstructorParameter] Node firstNode,
+	[PrimaryConstructorParameter] Node secondNode,
 	[PrimaryConstructorParameter] LinkType type,
 	[PrimaryConstructorParameter] Inference inference
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
@@ -37,9 +37,9 @@ public sealed partial class Link(
 			? Inference == other.Inference && comparison switch
 			{
 				LinkComparison.Undirected
-					=> _firstNode == other._firstNode && _secondNode == other._secondNode
-					|| _firstNode == other._secondNode && _secondNode == other._firstNode,
-				_ => _firstNode == other._firstNode && _secondNode == other._secondNode
+					=> FirstNode == other.FirstNode && SecondNode == other.SecondNode
+					|| FirstNode == other.SecondNode && SecondNode == other.FirstNode,
+				_ => FirstNode == other.FirstNode && SecondNode == other.SecondNode
 			}
 			: throw new ArgumentOutOfRangeException(nameof(comparison));
 
@@ -58,11 +58,11 @@ public sealed partial class Link(
 			? comparison switch
 			{
 				LinkComparison.Undirected
-					=> HashCode.Combine(HashCodeNativeConstants.Prime3(), _firstNode.GetHashCode() ^ _secondNode.GetHashCode()),
-				_ => HashCode.Combine(_firstNode, _secondNode)
+					=> HashCode.Combine(HashCodeNativeConstants.Prime3(), FirstNode.GetHashCode() ^ SecondNode.GetHashCode()),
+				_ => HashCode.Combine(FirstNode, SecondNode)
 			}
 			: throw new ArgumentOutOfRangeException(nameof(comparison));
 
 	/// <inheritdoc/>
-	public override string ToString() => $"{_firstNode}{Inference.ConnectingNotation()}{_secondNode}";
+	public override string ToString() => $"{FirstNode}{Inference.ConnectingNotation()}{SecondNode}";
 }
