@@ -244,6 +244,26 @@ public static class SpanEnumerable
 	}
 
 	/// <summary>
+	/// Casts each element to type <typeparamref name="TDerived"/>.
+	/// </summary>
+	/// <typeparam name="T">The type of each element.</typeparam>
+	/// <typeparam name="TDerived">The type of target elements.</typeparam>
+	/// <param name="this">The source elements.</param>
+	/// <returns>A new <see cref="ReadOnlySpan{T}"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
+	public static ReadOnlySpan<TDerived> OfType<T, TDerived>(this scoped ReadOnlySpan<T> @this)
+		where T : notnull
+		where TDerived : notnull, T
+	{
+		var result = new TDerived[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			result[i++] = (TDerived)element;
+		}
+		return result;
+	}
+
+	/// <summary>
 	/// Skips the specified number of elements, make a new <see cref="ReadOnlySpan{T}"/> instance points to it.
 	/// </summary>
 	/// <typeparam name="T">The type of each element.</typeparam>

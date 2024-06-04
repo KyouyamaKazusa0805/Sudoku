@@ -4056,6 +4056,15 @@
             </param>
             <returns>A <see cref="T:System.Boolean" /> result indicating that.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.OfType``2(System.ReadOnlySpan{``0})">
+            <summary>
+            Casts each element to type <typeparamref name="TDerived"/>.
+            </summary>
+            <typeparam name="T">The type of each element.</typeparam>
+            <typeparam name="TDerived">The type of target elements.</typeparam>
+            <param name="this">The source elements.</param>
+            <returns>A new <see cref="T:System.ReadOnlySpan`1"/> instance of elements of type <typeparamref name="TDerived"/>.</returns>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Skip``1(System.ReadOnlySpan{``0},System.Int32)">
             <summary>
             Skips the specified number of elements, make a new <see cref="T:System.ReadOnlySpan`1" /> instance points to it.

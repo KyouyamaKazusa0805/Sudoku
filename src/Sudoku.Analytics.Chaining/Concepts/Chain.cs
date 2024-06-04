@@ -3,8 +3,13 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a chain or a loop.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
-public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>, IEquatable<Chain>, ISliceMethod<Chain, Node>
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators)]
+public sealed partial class Chain :
+	IChainPattern,
+	IComparable<Chain>,
+	IElementAtMethod<Chain, Node>,
+	IEquatable<Chain>,
+	ISliceMethod<Chain, Node>
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.
@@ -60,7 +65,7 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 
 
 	/// <inheritdoc/>
-	public Node this[int index] => Span[_weakStart ? index - 1 : index];
+	public Node this[int index] => Span[index];
 
 
 	/// <summary>
@@ -173,6 +178,57 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 		}
 	}
 
+	/// <summary>
+	/// Determine which <see cref="Chain"/> instance is greater.
+	/// </summary>
+	/// <param name="other">The other instance to be compared.</param>
+	/// <returns>An <see cref="int"/> result.</returns>
+	/// <remarks>
+	/// Order rule:
+	/// <list type="number">
+	/// <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+	/// <item>
+	/// If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+	/// <list type="number">
+	/// <item>
+	/// If length is not same, return 1 when <see langword="this"/> is longer
+	/// or -1 when <paramref name="other"/> is longer.
+	/// </item>
+	/// <item>
+	/// Determines the chain nodes used one by one. If a node is greater, the chain will be greater;
+	/// otherwise, they are same, 0 will be returned.
+	/// </item>
+	/// </list>
+	/// </item>
+	/// </list>
+	/// </remarks>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public int CompareTo(Chain? other) => CompareTo(other, NodeComparison.IncludeIsOn);
+
+	/// <inheritdoc cref="CompareTo(Chain?)"/>
+	public int CompareTo(Chain? other, NodeComparison nodeComparison)
+	{
+		if (other is null)
+		{
+			return 1;
+		}
+
+		if (Length.CompareTo(other.Length) is var lengthResult and not 0)
+		{
+			return lengthResult;
+		}
+
+		for (var i = 0; i < Length; i++)
+		{
+			var (left, right) = (this[i], other[i]);
+			if (left.CompareTo(right, nodeComparison) is var nodeResult and not 0)
+			{
+				return nodeResult;
+			}
+		}
+		return 0;
+	}
+
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
@@ -202,12 +258,19 @@ public sealed partial class Chain : IChainPattern, IElementAtMethod<Chain, Node>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public ConclusionSet GetConclusions(ref readonly Grid grid) => [.. IChainPattern.GetConclusions(in grid, First, Last)];
 
+#if false
 	/// <inheritdoc/>
 	bool IEquatable<IChainPattern>.Equals(IChainPattern? other) => other is Chain comparer && Equals(comparer);
+#endif
 
 	/// <inheritdoc/>
 	bool IChainPattern.Equals(IChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 		=> other is Chain comparer && Equals(comparer, nodeComparison, patternComparison);
+
+#if false
+	/// <inheritdoc/>
+	int IComparable<IChainPattern>.CompareTo(IChainPattern? other) => CompareTo(other as Chain);
+#endif
 
 	/// <inheritdoc/>
 	Node IElementAtMethod<Chain, Node>.ElementAt(int index) => this[index];

@@ -3,7 +3,15 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a type that describes for a chain or a loop.
 /// </summary>
-public interface IChainPattern : IEnumerable<Node>, IEquatable<IChainPattern>, IFormattable
+public interface IChainPattern :
+#if false
+	IComparable<IChainPattern>,
+#endif
+	IEnumerable<Node>,
+#if false
+	IEquatable<IChainPattern>,
+#endif
+	IFormattable
 {
 	/// <summary>
 	/// Indicates the possible inferences to be used.

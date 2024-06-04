@@ -155,6 +155,35 @@
         <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.Chain"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determines the chain nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Chain.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -165,9 +194,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Chain.System#IEquatable{Sudoku#Concepts#IChainPattern}#Equals(Sudoku.Concepts.IChainPattern)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
@@ -205,6 +231,18 @@
         </member>
         <member name="M:Sudoku.Concepts.Chain.op_Inequality(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.op_GreaterThan(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.op_LessThan(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.op_GreaterThanOrEqual(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.op_LessThanOrEqual(Sudoku.Concepts.Chain,Sudoku.Concepts.Chain)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
         </member>
         <member name="T:Sudoku.Concepts.ChainPatternComparison">
             <summary>
@@ -558,6 +596,47 @@
             Throws when the argument <paramref name="patternComparison"/> is not defined.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.Loop.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.Loop"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determines the loop nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            <b>
+            This operation will adjust the checking node index on the other loop <paramref name="other"/>.
+            Two loops with same nodes will be considered as equal no matter what order they will be.
+            For example, <c><![CDATA[A == B -- C == D -- A]]></c> is equal to <c><![CDATA[C == D -- A == B -- C]]></c>.
+            </b>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)"/>
+        </member>
         <member name="M:Sudoku.Concepts.Loop.ToString(System.IFormatProvider)">
             <inheritdoc/>
         </member>
@@ -568,9 +647,6 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Loop.System#IEquatable{Sudoku#Concepts#IChainPattern}#Equals(Sudoku.Concepts.IChainPattern)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.Sudoku#Concepts#IChainPattern#Equals(Sudoku.Concepts.IChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
