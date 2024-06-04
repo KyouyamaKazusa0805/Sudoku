@@ -5,71 +5,71 @@ namespace Sudoku.Analytics.Chaining;
 /// </summary>
 public static class ChainingDriver
 {
-#if DEBUG
 	/// <summary>
 	/// Collect all <see cref="IChainPattern"/> instances appears in a grid.
 	/// </summary>
 	/// <param name="grid">The grid.</param>
-	/// <param name="chainingRules">Indicates the chaining rules that are used for searching strong or weak inferences.</param>
-	/// <param name="strongLinksDictionary">Indicates the strong link dictionary.</param>
-	/// <param name="weakLinksDictionary">Indicates the weak link dictionary.</param>
+	/// <param name="rules">
+	/// Indicates the rule instances that will create strong and weak links by their own represented concept.
+	/// </param>
 	/// <returns>All possible <see cref="IChainPattern"/> instances.</returns>
-#else
-	/// <summary>
-	/// Collect all <see cref="IChainPattern"/> instances appears in a grid.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="chainingRules">Indicates the chaining rules that are used for searching strong or weak inferences.</param>
-	/// <returns>All possible <see cref="IChainPattern"/> instances.</returns>
-#endif
-	public static ReadOnlySpan<IChainPattern> CollectChainPatterns(
-		ref readonly Grid grid,
-		ReadOnlySpan<ChainingRule> chainingRules
-#if DEBUG
-		,
-		out LinkDictionary strongLinksDictionary,
-		out LinkDictionary weakLinksDictionary
-#endif
-	)
+	public static ReadOnlySpan<IChainPattern> CollectChainPatterns(ref readonly Grid grid, ReadOnlySpan<ChainingRule> rules)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.
-		var (strongLinks, weakLinks) = (CreateStrong(in grid, chainingRules), CreateWeak(in grid, chainingRules));
-		(strongLinksDictionary, weakLinksDictionary) = (strongLinks, weakLinks);
+		var (strongLinks, weakLinks) = (new LinkDictionary(), new LinkDictionary());
+		foreach (var chainingRule in rules)
+		{
+			chainingRule.CollectStrongLinks(in grid, strongLinks);
+		}
+		foreach (var chainingRule in rules)
+		{
+			chainingRule.CollectStrongLinks(in grid, weakLinks);
+		}
 
 		// Step 2: Iterate on dictionary to get chains.
-		var chainsFound = new HashSet<IChainPattern>(
-			EqualityComparer<IChainPattern>.Create(
-				static (left, right) => (left, right) switch
-				{
-					(null, null) => true,
-					(Chain a, Chain b) => a.Equals(b),
-					(Loop a, Loop b) => a.Equals(b),
-					(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
-					_ => false
-				},
-				static obj => obj switch
-				{
-					Chain c => c.GetHashCode(),
-					Loop l => l.GetHashCode(),
-					_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
-				}
-			)
+		var patternEqualityComparer = EqualityComparer<IChainPattern>.Create(
+			static (left, right) => (left, right) switch
+			{
+				(null, null) => true,
+				(Chain a, Chain b) => a.Equals(b),
+				(Loop a, Loop b) => a.Equals(b),
+				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
+				_ => false
+			},
+			static obj => obj switch
+			{
+				Chain c => c.GetHashCode(),
+				Loop l => l.GetHashCode(),
+				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
+			}
 		);
+		var foundPatterns = new HashSet<IChainPattern>(patternEqualityComparer);
 		foreach (var cell in grid.EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
 				var node = new Node(cell * 9 + digit, true);
-				bfs(node, chainsFound);
-				bfs(~node, chainsFound);
+				bfs(node, foundPatterns);
+				bfs(~node, foundPatterns);
 			}
 		}
-		return chainsFound.ToArray();
+
+		// Step 3: Check eliminations. If a chain doesn't contain any possible conclusions,
+		// it will be removed from the result collection.
+		var finalCollection = new List<IChainPattern>();
+		foreach (var pattern in foundPatterns)
+		{
+			if (pattern.GetConclusions(in grid))
+			{
+				finalCollection.Add(pattern);
+			}
+		}
+		return finalCollection.AsReadOnlySpan();
 
 
 		void bfs(Node startNode, HashSet<IChainPattern> result)
 		{
-			var comparer = EqualityComparer<Node>.Create(
+			var traversedNodesComparer = EqualityComparer<Node>.Create(
 				static (left, right) => (left, right) switch
 				{
 					(null, null) => true,
@@ -80,8 +80,8 @@ public static class ChainingDriver
 			);
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
-			var visitedStrong = new HashSet<Node>(comparer);
-			var visitedWeak = new HashSet<Node>(comparer);
+			var visitedStrong = new HashSet<Node>(traversedNodesComparer);
+			var visitedWeak = new HashSet<Node>(traversedNodesComparer);
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
@@ -138,37 +138,5 @@ public static class ChainingDriver
 				}
 			}
 		}
-	}
-
-	/// <summary>
-	/// Creates a <see cref="LinkDictionary"/> instance that holds a list of strong link relations.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="chainingRules">The chaining rules.</param>
-	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateStrong(ref readonly Grid grid, ReadOnlySpan<ChainingRule> chainingRules)
-	{
-		var result = new LinkDictionary();
-		foreach (var chainingRule in chainingRules)
-		{
-			chainingRule.CollectStrongLinks(in grid, result);
-		}
-		return result;
-	}
-
-	/// <summary>
-	/// Creates a <see cref="LinkDictionary"/> instance that holds a list of weak link relations.
-	/// </summary>
-	/// <param name="grid">The grid.</param>
-	/// <param name="chainingRules">The chaining rules.</param>
-	/// <returns>A <see cref="LinkDictionary"/> as result.</returns>
-	private static LinkDictionary CreateWeak(ref readonly Grid grid, ReadOnlySpan<ChainingRule> chainingRules)
-	{
-		var result = new LinkDictionary();
-		foreach (var chainingRule in chainingRules)
-		{
-			chainingRule.CollectWeakLinks(in grid, result);
-		}
-		return result;
 	}
 }

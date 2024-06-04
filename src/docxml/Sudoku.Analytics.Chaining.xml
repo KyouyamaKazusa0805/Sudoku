@@ -9,31 +9,15 @@
             Provides a driver module on chaining.
             </summary>
         </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule},Sudoku.Concepts.LinkDictionary@,Sudoku.Concepts.LinkDictionary@)">
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
             <summary>
             Collect all <see cref="T:Sudoku.Concepts.IChainPattern"/> instances appears in a grid.
             </summary>
             <param name="grid">The grid.</param>
-            <param name="chainingRules">Indicates the chaining rules that are used for searching strong or weak inferences.</param>
-            <param name="strongLinksDictionary">Indicates the strong link dictionary.</param>
-            <param name="weakLinksDictionary">Indicates the weak link dictionary.</param>
+            <param name="rules">
+            Indicates the rule instances that will create strong and weak links by their own represented concept.
+            </param>
             <returns>All possible <see cref="T:Sudoku.Concepts.IChainPattern"/> instances.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CreateStrong(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of strong link relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="chainingRules">The chaining rules.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CreateWeak(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
-            <summary>
-            Creates a <see cref="T:Sudoku.Concepts.LinkDictionary"/> instance that holds a list of weak link relations.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="chainingRules">The chaining rules.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.LinkDictionary"/> as result.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
