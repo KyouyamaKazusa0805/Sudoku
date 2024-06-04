@@ -119,7 +119,7 @@ public interface IChainPattern :
 	protected static sealed ReadOnlySpan<Conclusion> GetConclusions(ref readonly Grid grid, Node node1, Node node2)
 	{
 		var candidatesMap = grid.CandidatesMap;
-		if (node1 == node2)
+		if (node1 == ~node2)
 		{
 			// Two nodes are same, meaning the node must be true. Check whether it is grouped one.
 			var digit = node1.Map[0] % 9;

@@ -5,6 +5,7 @@ namespace Sudoku.Analytics.Chaining;
 /// </summary>
 public static class ChainingDriver
 {
+#if DEBUG
 	/// <summary>
 	/// Collect all <see cref="IChainPattern"/> instances appears in a grid.
 	/// </summary>
@@ -13,11 +14,22 @@ public static class ChainingDriver
 	/// <param name="strongLinksDictionary">Indicates the strong link dictionary.</param>
 	/// <param name="weakLinksDictionary">Indicates the weak link dictionary.</param>
 	/// <returns>All possible <see cref="IChainPattern"/> instances.</returns>
+#else
+	/// <summary>
+	/// Collect all <see cref="IChainPattern"/> instances appears in a grid.
+	/// </summary>
+	/// <param name="grid">The grid.</param>
+	/// <param name="chainingRules">Indicates the chaining rules that are used for searching strong or weak inferences.</param>
+	/// <returns>All possible <see cref="IChainPattern"/> instances.</returns>
+#endif
 	public static ReadOnlySpan<IChainPattern> CollectChainPatterns(
 		ref readonly Grid grid,
-		ReadOnlySpan<ChainingRule> chainingRules,
+		ReadOnlySpan<ChainingRule> chainingRules
+#if DEBUG
+		,
 		out LinkDictionary strongLinksDictionary,
 		out LinkDictionary weakLinksDictionary
+#endif
 	)
 	{
 		// Step 1: Collect for all strong and weak links appeared in the grid.

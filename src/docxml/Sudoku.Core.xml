@@ -1576,7 +1576,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ToString(System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ToString``1(``0)">
             <inheritdoc/>

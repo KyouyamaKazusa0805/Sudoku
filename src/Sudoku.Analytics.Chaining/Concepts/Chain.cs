@@ -35,8 +35,15 @@ public sealed partial class Chain :
 		{
 			nodes.Add(new Node(node, null));
 		}
-		nodes.Reverse();
+
+		// To cover the nodes.
 		_nodes = [.. nodes];
+
+		// Reverse the whole chain if the first node is greater than the last node in logic.
+		if (nodes[1].CompareTo(nodes[^2], NodeComparison.IgnoreIsOn) >= 0)
+		{
+			Reverse();
+		}
 	}
 
 
@@ -72,7 +79,16 @@ public sealed partial class Chain :
 	/// Reverse the whole chain.
 	/// </summary>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void Reverse() => Array.Reverse(_nodes);
+	public void Reverse()
+	{
+		var newNodes = new Node[_nodes.Length];
+		for (var (i, pos) = (0, _nodes.Length - 1); i < _nodes.Length; i++, pos--)
+		{
+			// Reverse and negate its "IsOn" property to keep the chain starting with same "IsOn" property value.
+			newNodes[i] = ~_nodes[pos];
+		}
+		Array.Copy(newNodes, _nodes, _nodes.Length);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
