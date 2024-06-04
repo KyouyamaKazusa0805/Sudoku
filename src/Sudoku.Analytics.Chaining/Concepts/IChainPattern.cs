@@ -91,6 +91,20 @@ public interface IChainPattern :
 	/// </exception>
 	public abstract int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
+	/// <summary>
+	/// Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+	/// </summary>
+	/// <param name="predicate">The condition that a node should satisfy.</param>
+	/// <returns>The index of the node satisfied the condition.</returns>
+	public abstract int FindIndex(Predicate<Node> predicate);
+
+	/// <summary>
+	/// Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
+	/// </summary>
+	/// <param name="predicate">The condition that a node should satisfy.</param>
+	/// <returns>The index of the node satisfied the condition.</returns>
+	public abstract int FindLastIndex(Predicate<Node> predicate);
+
 	/// <inheritdoc cref="object.ToString"/>
 	public abstract string ToString();
 

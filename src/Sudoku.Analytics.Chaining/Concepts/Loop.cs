@@ -192,14 +192,23 @@ public sealed partial class Loop :
 		}
 	}
 
-	/// <summary>
-	/// Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
-	/// </summary>
-	/// <param name="predicate">The condition that a node should satisfy.</param>
-	/// <returns>The index of the node satisfied the condition.</returns>
+	/// <inheritdoc/>
 	public int FindIndex(Predicate<Node> predicate)
 	{
 		for (var i = 0; i < Length; i++)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <inheritdoc/>
+	public int FindLastIndex(Predicate<Node> predicate)
+	{
+		for (var i = Length - 1; i >= 0; i--)
 		{
 			if (predicate(this[i]))
 			{

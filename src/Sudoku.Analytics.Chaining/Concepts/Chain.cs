@@ -257,6 +257,32 @@ public sealed partial class Chain :
 	}
 
 	/// <inheritdoc/>
+	public int FindIndex(Predicate<Node> predicate)
+	{
+		for (var i = 0; i < Length; i++)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <inheritdoc/>
+	public int FindLastIndex(Predicate<Node> predicate)
+	{
+		for (var i = Length - 1; i >= 0; i--)
+		{
+			if (predicate(this[i]))
+			{
+				return i;
+			}
+		}
+		return -1;
+	}
+
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
