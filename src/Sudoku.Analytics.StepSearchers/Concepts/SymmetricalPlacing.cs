@@ -87,7 +87,7 @@ public static unsafe class SymmetricalPlacing
 	/// <param name="grid">The grid to be checked.</param>
 	/// <param name="options">The options to set.</param>
 	/// <returns>The found step.</returns>
-	internal static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepSearcherOptions options)
+	public static GurthSymmetricalPlacementStep? GetStep(ref readonly Grid grid, StepSearcherOptions options)
 	{
 		if (CheckDiagonal(in grid, options) is { } diagonalTypeStep)
 		{
@@ -101,7 +101,6 @@ public static unsafe class SymmetricalPlacing
 		{
 			return centralTypeStep;
 		}
-
 		return null;
 	}
 
@@ -122,7 +121,6 @@ public static unsafe class SymmetricalPlacing
 			}
 
 			var currentMappingRelationDigit = mapping[digit];
-
 			colorIndices[digit] = colorIndexCurrent;
 			digitsMaskBucket |= (Mask)(1 << digit);
 			if (currentMappingRelationDigit is { } relatedDigit && relatedDigit != digit)

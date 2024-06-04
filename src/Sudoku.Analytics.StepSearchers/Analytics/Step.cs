@@ -25,6 +25,22 @@ public abstract partial class Step(
 	IFormattable
 {
 	/// <summary>
+	/// Indicates the maximum rating value in theory.
+	/// </summary>
+	public const int MaximumRatingValueTheory = 200;
+
+	/// <summary>
+	/// Indicates the maximum rating value in fact.
+	/// </summary>
+	public const int MaximumRatingValueFact = 120;
+
+	/// <summary>
+	/// Indicates the minimum rating value.
+	/// </summary>
+	public const int MinimumRatingValue = 0;
+
+
+	/// <summary>
 	/// Indicates whether the step is an assignment. The possible result values are:
 	/// <list type="table">
 	/// <listheader>

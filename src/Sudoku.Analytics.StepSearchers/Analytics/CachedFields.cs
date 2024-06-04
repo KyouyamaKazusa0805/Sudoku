@@ -24,7 +24,6 @@ namespace Sudoku.Analytics;
 /// <para>Some <see cref="StepSearcher"/>s may rely on this type.</para>
 /// </summary>
 /// <seealso cref="Initialize(ref readonly Grid, ref readonly Grid)"/>
-/// <seealso cref="Analyzer"/>
 /// <seealso cref="StepSearcher"/>
 /// <seealso cref="Grid"/>
 public static class CachedFields
@@ -87,7 +86,7 @@ public static class CachedFields
 	/// <param name="g">The grid.</param>
 	/// <param name="s">The solution of <paramref name="g"/>.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static void Initialize(ref readonly Grid g, ref readonly Grid s)
+	public static void Initialize(ref readonly Grid g, ref readonly Grid s)
 	{
 		EmptyCells = g.EmptyCells;
 		BivalueCells = g.BivalueCells;

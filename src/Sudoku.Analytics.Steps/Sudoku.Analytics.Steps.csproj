@@ -3,13 +3,13 @@
 	<PropertyGroup>
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
-		<Description>Provides analytical APIs on Death Blossoms.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Analytics.DeathBlossoms.xml</DocumentationFile>
+		<Description>Provides analytical APIs on steps.</Description>
+		<DocumentationFile>..\docxml\Sudoku.Analytics.Steps.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Analytics.AlmostLockedSets\Sudoku.Analytics.AlmostLockedSets.csproj" />
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+		<ProjectReference Include="..\Sudoku.Drawing\Sudoku.Drawing.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 

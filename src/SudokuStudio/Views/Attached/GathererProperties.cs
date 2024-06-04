@@ -5,8 +5,8 @@ namespace SudokuStudio.Views.Attached;
 /// </summary>
 /// <seealso cref="SudokuPane"/>
 /// <seealso cref="Collector"/>
-[AttachedProperty<int>(SettingItemNames.StepGathererMaxStepsGathered, DefaultValue = 1000)]
-[AttachedProperty<int>(SettingItemNames.DifficultyLevelMode, DefaultValue = 0)]
+[AttachedProperty<int>(AnalyzerSettingItemNames.StepGathererMaxStepsGathered, DefaultValue = 1000)]
+[AttachedProperty<int>(AnalyzerSettingItemNames.DifficultyLevelMode, DefaultValue = 0)]
 public static partial class GathererProperties
 {
 	[Callback]

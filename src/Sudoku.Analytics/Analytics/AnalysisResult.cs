@@ -15,21 +15,6 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	IWhereMethod<AnalysisResult, Step>
 {
 	/// <summary>
-	/// Indicates the maximum rating value in theory.
-	/// </summary>
-	public const int MaximumRatingValueTheory = 200;
-
-	/// <summary>
-	/// Indicates the maximum rating value in fact.
-	/// </summary>
-	public const int MaximumRatingValueFact = 120;
-
-	/// <summary>
-	/// Indicates the minimum rating value.
-	/// </summary>
-	public const int MinimumRatingValue = 0;
-
-	/// <summary>
 	/// Indicates the default options.
 	/// </summary>
 	private const AnalysisResultFormattingOptions DefaultOptions = AnalysisResultFormattingOptions.ShowDifficulty
@@ -126,11 +111,11 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// When the puzzle is solved by <see cref="Analyzer"/>,
 	/// the value will be the maximum value among all difficulty ratings in solving steps. If the puzzle has not been solved,
 	/// or else the puzzle is solved by other solvers, this value will be always <c>200</c>,
-	/// equal to <see cref="MaximumRatingValueTheory"/>.
+	/// equal to <see cref="Step.MaximumRatingValueTheory"/>.
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
-	/// <seealso cref="MaximumRatingValueTheory"/>
-	public unsafe int MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.MaxUnsafe, MaximumRatingValueTheory);
+	/// <seealso cref="Step.MaximumRatingValueTheory"/>
+	public unsafe int MaxDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.MaxUnsafe, Step.MaximumRatingValueTheory);
 
 	/// <summary>
 	/// Indicates the total difficulty rating of the puzzle.
@@ -142,7 +127,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 	/// </remarks>
 	/// <seealso cref="Analyzer"/>
 	/// <seealso cref="InterimSteps"/>
-	public unsafe int TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.SumUnsafe, MinimumRatingValue);
+	public unsafe int TotalDifficulty => EvaluateRatingUnsafe(InterimSteps, &ArrayEnumerable.SumUnsafe, Step.MinimumRatingValue);
 
 	/// <summary>
 	/// Indicates the pearl difficulty rating of the puzzle, calculated during only by <see cref="Analyzer"/>.
@@ -582,7 +567,7 @@ public sealed partial record AnalysisResult(ref readonly Grid Puzzle) :
 
 		// Print detail data.
 		sb.Append(ResourceDictionary.Get("AnalysisResultPuzzleRating", culture));
-		sb.AppendLine($"{max}/{pearl ?? MaximumRatingValueTheory}/{diamond ?? MaximumRatingValueTheory}");
+		sb.AppendLine($"{max}/{pearl ?? Step.MaximumRatingValueTheory}/{diamond ?? Step.MaximumRatingValueTheory}");
 
 		// Print the solution (if not null and worth).
 		if (!solution.IsUndefined && options.HasFlag(AnalysisResultFormattingOptions.ShowGridAndSolutionCode))

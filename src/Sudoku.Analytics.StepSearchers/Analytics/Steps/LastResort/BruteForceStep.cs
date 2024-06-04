@@ -10,7 +10,7 @@ public sealed class BruteForceStep(Conclusion[] conclusions, View[]? views, Step
 	LastResortStep(conclusions, views, options)
 {
 	/// <inheritdoc/>
-	public override int BaseDifficulty => AnalysisResult.MaximumRatingValueTheory;
+	public override int BaseDifficulty => MaximumRatingValueTheory;
 
 	/// <inheritdoc/>
 	public override Technique Code => Technique.BruteForce;

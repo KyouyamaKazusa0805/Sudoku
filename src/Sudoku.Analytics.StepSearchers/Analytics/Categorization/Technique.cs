@@ -6181,10 +6181,10 @@ public enum Technique
 	[Hodoku(Rating = 10000, DifficultyLevel = HodokuDifficultyLevel.Extreme)]
 	[SudokuExplainer(
 		Technique = SudokuExplainerTechnique.BruteForce,
-		RatingOriginal = [AnalysisResult.MaximumRatingValueTheory / 10D],
+		RatingOriginal = [Step.MaximumRatingValueTheory / 10D],
 		Aliases = ["Try & Error"])]
 	[TechniqueMetadata(
-		Rating = AnalysisResult.MaximumRatingValueTheory,
+		Rating = Step.MaximumRatingValueTheory,
 		DifficultyLevel = DifficultyLevel.LastResort,
 		ContainingGroup = TechniqueGroup.BruteForce,
 		StepType = typeof(BruteForceStep),

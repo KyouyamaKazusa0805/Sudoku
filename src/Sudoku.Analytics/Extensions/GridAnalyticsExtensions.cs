@@ -1,24 +1,11 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Provides with extension methods on <see cref="Grid"/>.
+/// Provides with extension methods for <see cref="Grid"/> on analyzing.
 /// </summary>
 /// <seealso cref="Grid"/>
-public static class GridExtensions
+public static class GridAnalyticsExtensions
 {
-	/// <summary>
-	/// Applies for all conclusions into the current <see cref="Grid"/> instance.
-	/// </summary>
-	/// <param name="this">A <see cref="Grid"/> instance that receives the conclusions to be applied.</param>
-	/// <param name="step">A conclusion-provider <see cref="Step"/> instance.</param>
-	public static void Apply(this scoped ref Grid @this, Step step)
-	{
-		foreach (var conclusion in step.Conclusions)
-		{
-			@this.Apply(conclusion);
-		}
-	}
-
 	/// <summary>
 	/// Checks whether the puzzle can be solved using only full house.
 	/// </summary>

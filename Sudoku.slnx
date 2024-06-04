@@ -83,6 +83,9 @@
     <Project Path="src\Sudoku.Analytics.Fishing\Sudoku.Analytics.Fishing.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
+    <Project Path="src\Sudoku.Analytics.StepSearchers\Sudoku.Analytics.StepSearchers.csproj">
+      <Configuration Solution="Build|*" Project="Debug|*" />
+    </Project>
     <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
@@ -139,7 +142,7 @@
     <Project Path="src\RootLevelSourceGeneration\RootLevelSourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
-    <Project Path="src\Sudoku.Analytics.SourceGeneration\Sudoku.Analytics.SourceGeneration.csproj">
+    <Project Path="src\Sudoku.Analytics.StepSearchers.SourceGeneration\Sudoku.Analytics.StepSearchers.SourceGeneration.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
     <Project Path="src\Sudoku.SourceGeneration\Sudoku.SourceGeneration.csproj">
