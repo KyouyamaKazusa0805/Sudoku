@@ -996,33 +996,6 @@
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.ChainPattern"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Chaining.ChainPatternExtensions.SortKeyDictionary">
-            <summary>
-            Indicates the sort key dictionary.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetTechnique(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
-            </summary>
-            <param name="this">The pattern to be checked.</param>
-            <param name="grid">The grid to check for eliminations.</param>
-            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetSortKey(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get sort key of the pattern.
-            </summary>
-            <param name="this">The pattern.</param>
-            <param name="grid">Indicates the grid to be used.</param>
-            <returns>The pattern sort key.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.GridAnalyticsExtensions">
             <summary>
             Provides with extension methods for <see cref="T:Sudoku.Concepts.Grid"/> on analyzing.
