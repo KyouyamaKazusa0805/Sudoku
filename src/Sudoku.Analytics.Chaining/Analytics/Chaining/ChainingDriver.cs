@@ -53,7 +53,7 @@ public static class ChainingDriver
 		{
 			foreach (var digit in grid.GetCandidates(cell))
 			{
-				var node = new Node(cell * 9 + digit, true);
+				var node = new Node(cell, digit, true);
 				bfs(node, foundPatterns);
 				bfs(~node, foundPatterns);
 			}

@@ -39,6 +39,17 @@ public sealed partial class Node(
 	}
 
 	/// <summary>
+	/// Initializes a <see cref="Node"/> instance via the specified cell and digit.
+	/// </summary>
+	/// <param name="cell">A cell.</param>
+	/// <param name="digit">A digit.</param>
+	/// <param name="isOn">Indicates whether the node is on.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node(Cell cell, Digit digit, bool isOn) : this(cell * 9 + digit, isOn)
+	{
+	}
+
+	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the specified <see cref="LockedTarget"/> instance.
 	/// </summary>
 	/// <param name="lockedTarget">A <see cref="LockedTarget"/> instance.</param>
@@ -46,15 +57,6 @@ public sealed partial class Node(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public Node(ref readonly LockedTarget lockedTarget, bool isOn) :
 		this(Subview.ExpandedCellFromDigit(lockedTarget.Cells, lockedTarget.Digit), isOn)
-	{
-	}
-
-	/// <summary>
-	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>.
-	/// </summary>
-	/// <param name="base">The data provider.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Node @base) : this(@base, null)
 	{
 	}
 
@@ -249,6 +251,13 @@ public sealed partial class Node(
 		=> (format ?? $"{MapFormatString}: {IsOnFormatString}")
 			.Replace(MapFormatString, _map.ToString(formatProvider))
 			.Replace(IsOnFormatString, IsOn.ToString().ToLower());
+
+	/// <summary>
+	/// Creates a copy of the current instance.
+	/// </summary>
+	/// <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node Clone() => new(in _map, IsOn) { Parent = Parent };
 
 
 	/// <summary>

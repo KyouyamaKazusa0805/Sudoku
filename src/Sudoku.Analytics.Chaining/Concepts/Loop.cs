@@ -93,7 +93,7 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 				var nextNode = other[(secondNodeStartIndex + 1) % Length];
 				if (this[1].Equals(previousNode, nodeComparison))
 				{
-					for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i--, pos = (pos - 1 + Length) % Length)
+					for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos - 1 + Length) % Length)
 					{
 						if (!this[i].Equals(other[pos], nodeComparison))
 						{

@@ -27,8 +27,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 				var pos1 = TrailingZeroCount(mask);
 				var pos2 = mask.GetNextSet(pos1);
 				linkDictionary.AddEntry(
-					new(HousesCells[house][pos1] * 9 + digit, false),
-					new(HousesCells[house][pos2] * 9 + digit, true)
+					new(HousesCells[house][pos1], digit, false),
+					new(HousesCells[house][pos2], digit, true)
 				);
 			}
 		}
@@ -50,8 +50,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 				foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 				{
 					linkDictionary.AddEntry(
-						new(HousesCells[house][combinationPair[0]] * 9 + digit, true),
-						new(HousesCells[house][combinationPair[1]] * 9 + digit, false)
+						new(HousesCells[house][combinationPair[0]], digit, true),
+						new(HousesCells[house][combinationPair[1]], digit, false)
 					);
 				}
 			}

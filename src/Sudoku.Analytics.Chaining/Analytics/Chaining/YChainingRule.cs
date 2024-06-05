@@ -14,7 +14,7 @@ public sealed class YChainingRule : ChainingRule
 			var mask = grid.GetCandidates(cell);
 			var digit1 = TrailingZeroCount(mask);
 			var digit2 = mask.GetNextSet(digit1);
-			linkDictionary.AddEntry(new(cell * 9 + digit1, false), new(cell * 9 + digit2, true));
+			linkDictionary.AddEntry(new(cell, digit1, false), new(cell, digit2, true));
 		}
 	}
 
@@ -31,7 +31,7 @@ public sealed class YChainingRule : ChainingRule
 
 			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
-				linkDictionary.AddEntry(new(cell * 9 + combinationPair[0], true), new(cell * 9 + combinationPair[1], false));
+				linkDictionary.AddEntry(new(cell, combinationPair[0], true), new(cell, combinationPair[1], false));
 			}
 		}
 	}
