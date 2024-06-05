@@ -7,6 +7,7 @@ namespace Sudoku.Analytics.Configuration;
 /// For example, setting notation to the coordinates.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
+/// <seealso cref="Analyzer"/>
 public sealed record StepSearcherOptions : IStepSearcherOptions<StepSearcherOptions>
 {
 	/// <summary>

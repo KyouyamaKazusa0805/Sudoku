@@ -3,7 +3,7 @@ namespace Sudoku.Concepts.ObjectModel;
 /// <summary>
 /// Provides with extension methods around enumeration type <see cref="ExocetShapeKind"/>.
 /// </summary>
-public static class ExocetShapeKindExtensions
+internal static class ExocetShapeKindExtensions
 {
 	/// <summary>
 	/// Try to get shape kind via the houses.

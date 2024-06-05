@@ -1,10 +1,11 @@
 namespace Sudoku.Analytics.Configuration;
 
 /// <summary>
-/// Represents condition options applied to <see cref="StepSearcher"/>s.
+/// Represents condition options on <see cref="Analyzer"/>.
 /// </summary>
 /// <seealso cref="StepSearcher"/>
-public sealed record StepSearcherConditionalOptions : IStepSearcherOptions<StepSearcherConditionalOptions?>
+/// <seealso cref="Analyzer"/>
+internal sealed record StepSearcherConditionalOptions : IStepSearcherOptions<StepSearcherConditionalOptions?>
 {
 #if SINGLE_TECHNIQUE_LIMIT_FLAG
 	/// <summary>
@@ -19,8 +20,11 @@ public sealed record StepSearcherConditionalOptions : IStepSearcherOptions<StepS
 	/// <remarks>
 	/// For example, if the value is <see cref="SingleTechniqueFlag.HiddenSingle"/>,
 	/// the analyzer will automatically ignore naked single steps to analyze the grid.
+	/// If the puzzle cannot be solved, the analyzer will return an <see cref="AnalysisResult"/> with
+	/// <see cref="AnalysisResult.IsSolved"/> a <see langword="false"/> value.
 	/// </remarks>
 	/// <seealso cref="SingleTechniqueFlag"/>
+	/// <seealso cref="AnalysisResult.IsSolved"/>
 	public SingleTechniqueFlag LimitedSingle { get; init; } = 0;
 #endif
 

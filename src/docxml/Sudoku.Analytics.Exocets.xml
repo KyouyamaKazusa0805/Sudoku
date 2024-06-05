@@ -110,18 +110,6 @@
             </returns>
             <seealso cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions">
-            <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocet)">
-            <summary>
-            Try to get shape kind via the houses.
-            </summary>
-            <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ExocetShapeKind"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.GridExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.

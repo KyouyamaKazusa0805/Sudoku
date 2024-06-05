@@ -49,10 +49,10 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(SettingItemNames.SearchExtendedDeathBlossomTypes)]
 [AttachedProperty<bool>(SettingItemNames.CheckValueTypes)]
 [AttachedProperty<bool>(SettingItemNames.CheckAlmostLockedQuadruple)]
-[AttachedProperty<bool>(AnalyzerSettingItemNames.LogicalSolverIsFullApplying)]
-[AttachedProperty<bool>(AnalyzerSettingItemNames.LogicalSolverIgnoresSlowAlgorithms)]
-[AttachedProperty<bool>(AnalyzerSettingItemNames.LogicalSolverIgnoresHighAllocationAlgorithms)]
-[AttachedProperty<List<Technique>>(AnalyzerSettingItemNames.IttoryuSupportedTechniques)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIsFullApplying)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIgnoresSlowAlgorithms)]
+[AttachedProperty<bool>(SettingItemNames.LogicalSolverIgnoresHighAllocationAlgorithms)]
+[AttachedProperty<List<Technique>>(SettingItemNames.IttoryuSupportedTechniques)]
 public static partial class AnalyzerProperties
 {
 	/// <summary>

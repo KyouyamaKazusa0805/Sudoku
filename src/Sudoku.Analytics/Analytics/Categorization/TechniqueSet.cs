@@ -306,7 +306,7 @@ public sealed partial class TechniqueSet :
 	{
 		var culture = formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture;
 		var currentCountryOrRegionName = culture.Parent.Name;
-		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals("en", StringComparison.OrdinalIgnoreCase);
+		var isCurrentCountryOrRegionUseEnglish = currentCountryOrRegionName.Equals(EnglishLanguage, StringComparison.OrdinalIgnoreCase);
 		return string.Join(
 			ResourceDictionary.Get("Comma", culture),
 #if !NET9_0_OR_GREATER

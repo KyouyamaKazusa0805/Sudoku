@@ -5,6 +5,7 @@ namespace Sudoku.Analytics;
 /// </summary>
 /// <param name="grid">Indicates the puzzle to be solved and analyzed.</param>
 /// <param name="initialGrid">Indicates the initial grid.</param>
+/// <seealso cref="Analyzer"/>
 [StructLayout(LayoutKind.Auto)]
 [DebuggerStepThrough]
 [TypeImpl(TypeImplFlag.AllObjectMethods, IsLargeStructure = true)]
@@ -48,6 +49,10 @@ public ref partial struct AnalysisContext(
 	/// Indicates whether a puzzle satisfies a Gurth's Symmetrical Placement (GSP) pattern.
 	/// If satisfying, what kind of symmetry the pattern will be.
 	/// </summary>
+	/// <remarks>
+	/// This value will only be set in <see cref="Analyzer"/> with a not-<see langword="null"/> value.
+	/// </remarks>
+	/// <seealso cref="Analyzer"/>
 	[DisallowNull]
 	public SymmetricType? GspPatternInferred { get; internal set; }
 
@@ -79,7 +84,7 @@ public ref partial struct AnalysisContext(
 	public ReadOnlySpan<Digit?> MappingRelations { get; internal set; }
 
 	/// <summary>
-	/// Indicates the pre-defined options set by user.
+	/// Indicates the pre-defined options set by user in type <see cref="Analyzer"/>.
 	/// The value can be <see langword="null"/> if the target step searcher doesn't use this property.
 	/// </summary>
 	public required StepSearcherOptions Options { get; init; }

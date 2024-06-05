@@ -8,9 +8,9 @@
 	</PropertyGroup>
 
 	<ItemGroup>
-		<ProjectReference Include="..\Sudoku.Analytics.AlmostLockedSets\Sudoku.Analytics.AlmostLockedSets.csproj" />
-		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
-		<ProjectReference Include="..\System\SystemExtensions.csproj" />
+	  <ProjectReference Include="..\Sudoku.Analytics.AlmostLockedSets\Sudoku.Analytics.AlmostLockedSets.csproj" />
+	  <ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
+	  <ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
 </Project>
