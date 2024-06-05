@@ -100,8 +100,8 @@ public static class ChainPatternExtensions
 				(_, true, _) => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
 				_ => instance switch
 				{
-					{ ContainsOverlappedNodes: true, First.Map.Count: 1, Last.Map.Count: 1 }
-						=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
+					{ ContainsOverlappedNodes: true, First.Map: [var candidate1], Last.Map: [var candidate2] }
+						when candidate1 == candidate2 => isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
 					{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
 					{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
 					{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,

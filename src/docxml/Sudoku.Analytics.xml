@@ -19801,9 +19801,6 @@
             The generated property declaration for parameter <c>wrongStep</c>.
             </summary>
         </member>
-<<<<<<< HEAD
-        <member name="T:Sudoku.Concepts.GridAnalyticsExtensions">
-=======
         <member name="T:Sudoku.Analytics.DifficultyLevelExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Analytics.DifficultyLevel"/>.
@@ -19837,7 +19834,6 @@
             </summary>
         </member>
         <member name="M:Sudoku.Compatibility.Hodoku.HodokuCompatibility.GetAliases(Sudoku.Analytics.Categorization.Technique)">
->>>>>>> parent of 1a2a05367 (Extract project.)
             <summary>
             Gets all possible aliased names that are defined by Hodoku.
             </summary>
