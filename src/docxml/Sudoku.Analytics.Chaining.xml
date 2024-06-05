@@ -104,30 +104,6 @@
             </remarks>
             <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node)"/>
         </member>
-        <member name="T:Sudoku.Analytics.Chaining.XChainingRule">
-            <summary>
-            Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.XChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
-            <inheritdoc/>
-        </member>
-        <member name="T:Sudoku.Analytics.Chaining.YChainingRule">
-            <summary>
-            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleCell"/>).
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.LinkType.SingleCell"/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.Chaining.YChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
-            <inheritdoc/>
-        </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
             Represents a chain.
@@ -680,6 +656,11 @@
             Indicates the link type is a single cell (Y rule).
             </summary>
         </member>
+        <member name="F:Sudoku.Concepts.LinkType.NonGrouped">
+            <summary>
+            Indicates non-grouped link types.
+            </summary>
+        </member>
         <member name="F:Sudoku.Concepts.LinkType.LockedCandidates">
             <summary>
             Indicates the link type is a locked candidates.
@@ -703,6 +684,16 @@
         <member name="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle">
             <summary>
             Indicates the link type is an almost unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.Grouped">
+            <summary>
+            Indicates all grouped link types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.All">
+            <summary>
+            Indicates all link types.
             </summary>
         </member>
         <member name="T:Sudoku.Concepts.Loop">

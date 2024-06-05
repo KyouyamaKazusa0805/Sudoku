@@ -776,7 +776,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					isValid = true;
 					break;
 				}
-				case ChainLinkViewNode(_, [var startCandidate] s, [var endCandidate] e, var i):
+				case ChainLinkViewNode(_, [var startCandidate, ..] s, [var endCandidate, ..] e, var i):
 				{
 					inference = i ? Inference.Strong : Inference.Weak;
 					startCell = startCandidate / 9;
@@ -1082,7 +1082,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
 						break;
 					}
-					case ChainLinkViewNode(_, [var startCandidate], [var endCandidate], var isStrong):
+					case ChainLinkViewNode(_, [var startCandidate, ..], [var endCandidate, ..], var isStrong):
 					{
 						var startCell = startCandidate / 9;
 						var startDigit = isStrong ? startCandidate % 9 : 4;
@@ -1094,12 +1094,10 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					}
 				}
 			}
-
 			foreach (var (_, candidate) in Conclusions)
 			{
 				points.Add(Converter.GetPosition(candidate));
 			}
-
 			return points;
 		}
 	}

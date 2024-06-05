@@ -3407,4 +3407,8 @@
   <data name="Factor_ChainGroupedFactor" xml:space="preserve">
     <value>链带区块</value>
   </data>
+  <data name="StepSearcherName_GroupedChainStepSearcher" xml:space="preserve">
+    <value>区块链</value>
+    <comment>Step Searcher Name</comment>
+  </data>
 </root>

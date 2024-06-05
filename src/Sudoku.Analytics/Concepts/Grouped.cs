@@ -9,12 +9,11 @@ public static class Grouped
 	/// Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
 	/// </summary>
 	/// <param name="cells">The cells to be checked.</param>
-	/// <param name="digit">The digit to be checked.</param>
 	/// <param name="house">The house.</param>
 	/// <param name="spannedHousesList">The spanned houses.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool IsGroupedStrongLink(ref readonly CellMap cells, Digit digit, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
+	public static bool IsGroupedStrongLink(ref readonly CellMap cells, House house, out ReadOnlySpan<HouseMask> spannedHousesList)
 	{
 		// The link must be one of the cases in:
 		//

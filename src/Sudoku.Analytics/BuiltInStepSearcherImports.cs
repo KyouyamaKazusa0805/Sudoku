@@ -34,6 +34,7 @@
 [assembly: BuiltInStepSearcher<AlmostLockedSetsXyWingStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<AlignedExclusionStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<AlmostLockedSetsWWingStepSearcher>(1)]
+[assembly: BuiltInStepSearcher<GroupedChainStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<GuardianStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<ComplexFishStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<BivalueOddagonStepSearcher>(1)]

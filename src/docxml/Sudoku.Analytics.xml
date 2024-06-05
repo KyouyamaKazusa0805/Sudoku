@@ -4787,6 +4787,18 @@
             Zhihu: Which way to calculate LCA in a multiway tree is fastest?
             </seealso>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule">
+            <summary>
+            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedXChainingRule">
             <summary>
             Represents a chaining rule on X rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.SingleDigit"/>).
@@ -6537,6 +6549,20 @@
             <param name="grid">The grid to be checked.</param>
             <param name="original">Indicates the original grid.</param>
         </member>
+        <member name="T:Sudoku.Analytics.StepSearcherModules.ChainModule">
+            <summary>
+            Represents a chain module.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearcherModules.ChainModule.CollectCore(Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.LinkType,System.Collections.Generic.Dictionary{Sudoku.Concepts.LinkType,Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            The collect method called by chain step searchers.
+            </summary>
+            <param name="context">The context.</param>
+            <param name="linkTypes">The link types supported in searching.</param>
+            <param name="ruleRouter">The rule router dictionary.</param>
+            <returns>The first found step.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.StepSearcherModules.FishModule">
             <summary>
             Represents a fish module.
@@ -7372,6 +7398,29 @@
             </para>
             </remarks>
             <seealso cref="T:Sudoku.Analytics.Chaining.ChainingDriver" />
+        </member>
+        <member name="T:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher">
+            <summary>
+            Provides with a <b>Grouped Chain</b> step searcher.
+            The step searcher will include the following techniques:
+            <list type="bullet">
+            <item>Grouped Alternating Inference Chains</item>
+            <item>Grouped Continuous Nice Loops</item>
+            </list>
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.RuleRouter">
+            <summary>
+            Indicates the rule router.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.LinkTypes">
+            <summary>
+            Indicates the link types supported.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.GroupedChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>
@@ -12598,7 +12647,7 @@
         </member>
         <member name="T:Sudoku.Analytics.Steps.NormalChainStep">
             <summary>
-            Provides with a step that is a <b>Chain</b> or <b>Loop</b> technique.
+            Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -12607,7 +12656,7 @@
         </member>
         <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainPattern)">
             <summary>
-            Provides with a step that is a <b>Chain</b> or <b>Loop</b> technique.
+            Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
             </summary>
             <param name="conclusions"><inheritdoc/></param>
             <param name="views"><inheritdoc/></param>
@@ -20582,12 +20631,11 @@
             Represents a list of methods that operates with concept "Grouped Node".
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Grouped.IsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.Int32,System.ReadOnlySpan{System.Int32}@)">
+        <member name="M:Sudoku.Concepts.Grouped.IsGroupedStrongLink(Sudoku.Concepts.CellMap@,System.Int32,System.ReadOnlySpan{System.Int32}@)">
             <summary>
             Determine whether the specified cells can be split into two parts, and they form a grouped strong link with each other.
             </summary>
             <param name="cells">The cells to be checked.</param>
-            <param name="digit">The digit to be checked.</param>
             <param name="house">The house.</param>
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
@@ -25676,6 +25724,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_FireworkStepSearcher">
             <summary>
               Looks up a localized string similar to Firework.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GroupedChainStepSearcher">
+            <summary>
+              Looks up a localized string similar to Grouped Chains.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.StepSearcherName_GroupedTwoStrongLinksStepSearcher">

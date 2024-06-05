@@ -22,6 +22,11 @@ public enum LinkType
 	SingleCell = 1 << 1,
 
 	/// <summary>
+	/// Indicates non-grouped link types.
+	/// </summary>
+	NonGrouped = SingleDigit | SingleCell,
+
+	/// <summary>
 	/// Indicates the link type is a locked candidates.
 	/// </summary>
 	LockedCandidates = 1 << 2,
@@ -44,5 +49,15 @@ public enum LinkType
 	/// <summary>
 	/// Indicates the link type is an almost unique rectangle.
 	/// </summary>
-	AlmostUniqueRectangle = 1 << 6
+	AlmostUniqueRectangle = 1 << 6,
+
+	/// <summary>
+	/// Indicates all grouped link types.
+	/// </summary>
+	Grouped = LockedCandidates | AlmostLockedSet | AlmostHiddenSet | KrakenNormalFish | AlmostUniqueRectangle,
+
+	/// <summary>
+	/// Indicates all link types.
+	/// </summary>
+	All = NonGrouped | Grouped
 }

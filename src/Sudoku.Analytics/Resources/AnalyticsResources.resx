@@ -3231,4 +3231,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_ChainGroupedFactor" xml:space="preserve">
     <value>Grouped chaining</value>
   </data>
+  <data name="StepSearcherName_GroupedChainStepSearcher" xml:space="preserve">
+    <value>Grouped Chains</value>
+  </data>
 </root>

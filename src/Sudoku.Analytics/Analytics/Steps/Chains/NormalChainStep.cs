@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Steps;
 
 /// <summary>
-/// Provides with a step that is a <b>Chain</b> or <b>Loop</b> technique.
+/// Provides with a step that is a <b>(Grouped) Chain</b> or <b>(Grouped) Loop</b> technique.
 /// </summary>
 /// <param name="conclusions"><inheritdoc/></param>
 /// <param name="views"><inheritdoc/></param>
@@ -17,7 +17,8 @@ public sealed partial class NormalChainStep(
 	/// <summary>
 	/// Indicates the sort key that can be used as chaining comparison.
 	/// </summary>
-	public int SortKey => (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + Pattern.GetSortKey(Conclusions.AsSet());
+	public int SortKey
+		=> (IsLoop ? 2000 : 0) + (IsCannibalistic ? 1000 : 0) + (IsGrouped ? 500 : 0) + Pattern.GetSortKey(Conclusions.AsSet());
 
 	/// <inheritdoc/>
 	public override bool IsMultiple => false;
@@ -68,7 +69,11 @@ public sealed partial class NormalChainStep(
 
 	/// <inheritdoc/>
 	public override int CompareTo(Step? other)
-		=> other is NormalChainStep comparer ? Pattern.CompareTo(comparer.Pattern) : 1;
+		=> other is NormalChainStep comparer
+			? SortKey.CompareTo(comparer.SortKey) is var result and not 0
+				? result
+				: Pattern.CompareTo(comparer.Pattern)
+			: 1;
 }
 
 /// <include file='../../global-doc-comments.xml' path='g/csharp11/feature[@name="file-local"]/target[@name="class" and @when="extension"]'/>

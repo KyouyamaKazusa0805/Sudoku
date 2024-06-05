@@ -54,40 +54,5 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </remarks>
 	/// <seealso cref="ChainingDriver"/>
 	protected internal override Step? Collect(ref AnalysisContext context)
-	{
-		ref readonly var grid = ref context.Grid;
-		var supportedRules = from type in LinkTypes.GetAllFlags() select RuleRouter[type];
-		var foundChains = ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules);
-		foreach (var foundChain in foundChains)
-		{
-			var conclusions = foundChain.GetConclusions(in grid);
-			var step = new NormalChainStep(
-				[.. conclusions],
-				[
-					[
-						..
-						foundChain[..].Select(
-							static (node, i) => new CandidateViewNode(
-								(i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
-								node.Map[0]
-							)
-						),
-						..
-						from link in foundChain.Links
-						let node1 = link.FirstNode
-						let node2 = link.SecondNode
-						select new ChainLinkViewNode(ColorIdentifier.Normal, in node1.Map, in node2.Map, link.IsStrong)
-					]
-				],
-				context.Options,
-				foundChain
-			);
-			if (context.OnlyFindOne)
-			{
-				return step;
-			}
-			context.Accumulator.Add(step);
-		}
-		return null;
-	}
+		=> ChainModule.CollectCore(ref context, LinkTypes, RuleRouter);
 }
