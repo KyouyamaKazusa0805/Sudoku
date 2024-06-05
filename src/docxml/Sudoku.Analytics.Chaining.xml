@@ -146,9 +146,6 @@
         <member name="P:Sudoku.Concepts.Chain.IsGrouped">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.SatisfyXRule">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Chain.IsWoodsWing">
             <summary>
             Indicates whether the chain is formed a W-Wing.
@@ -189,9 +186,6 @@
             A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
             </remarks>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.ContainsOverlappedNodes">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Chain.Length">
             <inheritdoc/>
         </member>
@@ -201,20 +195,12 @@
         <member name="P:Sudoku.Concepts.Chain.Links">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.First">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Chain.Last">
+        <member name="P:Sudoku.Concepts.Chain.ValidNodes">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Chain.SplitMask">
             <summary>
             Split mask for 6 nodes.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Chain.Span">
-            <summary>
-            Create a <see cref="T:System.ReadOnlySpan`1"/> instance that holds valid <see cref="T:Sudoku.Concepts.Node"/> instances to be used in a chain.
             </summary>
         </member>
         <member name="P:Sudoku.Concepts.Chain.Item(System.Int32)">
@@ -359,6 +345,11 @@
             Indicates the tail node.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.ValidNodes">
+            <summary>
+            Indicates the valid nodes to be used.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IReadOnlyCollection{Sudoku#Concepts#Node}#Count">
             <inheritdoc/>
         </member>
@@ -457,6 +448,9 @@
             <param name="length">The number of <see cref="T:Sudoku.Concepts.Node"/> instances to slice.</param>
             <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances returned.</returns>
         </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
         <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@)">
             <summary>
             Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
@@ -479,6 +473,34 @@
             <param name="node2">The second node.</param>
             <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
             <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ChainPattern.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Node"/> inside the collection.
+            </summary>
+            <param name="nodes">The <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Enumerator.#ctor(Sudoku.Concepts.ChainPattern)">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Node"/> inside the collection.
+            </summary>
+            <param name="nodes">The <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Enumerator._length">
+            <summary>
+            Indicates the number of nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Enumerator._index">
+            <summary>
+            Indicates the current index iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
@@ -696,10 +718,7 @@
         <member name="P:Sudoku.Concepts.Loop.Links">
             <inheritdoc/>
         </member>
-        <member name="P:Sudoku.Concepts.Loop.First">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Concepts.Loop.Last">
+        <member name="P:Sudoku.Concepts.Loop.ValidNodes">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">

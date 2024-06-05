@@ -30,10 +30,7 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 	}
 
 	/// <inheritdoc/>
-	public override Node First => _nodes[0];
-
-	/// <inheritdoc/>
-	public override Node Last => _nodes[^1];
+	protected override ReadOnlySpan<Node> ValidNodes => _nodes;
 
 
 	/// <inheritdoc/>

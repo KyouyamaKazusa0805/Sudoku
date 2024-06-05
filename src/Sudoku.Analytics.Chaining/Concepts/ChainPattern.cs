@@ -55,12 +55,12 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates whether the pattern only uses same digits.
 	/// </summary>
-	public virtual bool SatisfyXRule
+	public bool SatisfyXRule
 	{
 		get
 		{
 			var digitsMask = (Mask)0;
-			foreach (var node in _nodes)
+			foreach (var node in ValidNodes)
 			{
 				digitsMask |= node.Map.Digits;
 			}
@@ -96,11 +96,11 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates whether at least one node in the whole pattern overlaps with a node.
 	/// </summary>
-	public virtual bool ContainsOverlappedNodes
+	public bool ContainsOverlappedNodes
 	{
 		get
 		{
-			foreach (var nodePair in (from node in _nodes select node.Map).AsReadOnlySpan().GetSubsets(2))
+			foreach (var nodePair in (from node in ValidNodes select node.Map).GetSubsets(2))
 			{
 				ref readonly var map1 = ref nodePair[0];
 				ref readonly var map2 = ref nodePair[1];
@@ -132,12 +132,17 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates the head node.
 	/// </summary>
-	public abstract Node First { get; }
+	public Node First => ValidNodes[0];
 
 	/// <summary>
 	/// Indicates the tail node.
 	/// </summary>
-	public abstract Node Last { get; }
+	public Node Last => ValidNodes[^1];
+
+	/// <summary>
+	/// Indicates the valid nodes to be used.
+	/// </summary>
+	protected abstract ReadOnlySpan<Node> ValidNodes { get; }
 
 	/// <inheritdoc/>
 	int IReadOnlyCollection<Node>.Count => Length;
@@ -260,6 +265,10 @@ public abstract partial class ChainPattern :
 	/// <param name="length">The number of <see cref="Node"/> instances to slice.</param>
 	/// <returns>A <see cref="ReadOnlySpan{T}"/> of <see cref="Node"/> instances returned.</returns>
 	public abstract ReadOnlySpan<Node> Slice(int start, int length);
+
+	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Enumerator GetEnumerator() => new(this);
 
 	/// <summary>
 	/// Try to get a <see cref="ConclusionSet"/> instance that contains all conclusions created by using the current chain.

@@ -13,21 +13,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 
 
 	/// <inheritdoc/>
-	public override bool IsGrouped => Span.Any(static (ref readonly Node node) => node.IsGroupedNode);
-
-	/// <inheritdoc/>
-	public override bool SatisfyXRule
-	{
-		get
-		{
-			var digitsMask = (Mask)0;
-			foreach (var node in Span)
-			{
-				digitsMask |= node.Map.Digits;
-			}
-			return IsPow2(digitsMask);
-		}
-	}
+	public override bool IsGrouped => ValidNodes.Any(static (ref readonly Node node) => node.IsGroupedNode);
 
 	/// <summary>
 	/// Indicates whether the chain is formed a W-Wing.
@@ -84,24 +70,6 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 		);
 
 	/// <inheritdoc/>
-	public override bool ContainsOverlappedNodes
-	{
-		get
-		{
-			foreach (var nodePair in (from node in Span select node.Map).GetSubsets(2))
-			{
-				ref readonly var map1 = ref nodePair[0];
-				ref readonly var map2 = ref nodePair[1];
-				if (map1 & map2)
-				{
-					return true;
-				}
-			}
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
 	public override int Length => _weakStart ? _nodes.Length - 2 : _nodes.Length;
 
 	/// <inheritdoc/>
@@ -112,7 +80,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	{
 		get
 		{
-			var span = Span;
+			var span = ValidNodes;
 			var result = new Link[Length - 1];
 			for (var (linkIndex, i) = (0, 0); i < Length - 1; linkIndex++, i++)
 			{
@@ -123,10 +91,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	}
 
 	/// <inheritdoc/>
-	public override Node First => Span[0];
-
-	/// <inheritdoc/>
-	public override Node Last => Span[^1];
+	protected override ReadOnlySpan<Node> ValidNodes => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
 
 	/// <summary>
 	/// Split mask for 6 nodes.
@@ -149,14 +114,9 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 		};
 #pragma warning restore format
 
-	/// <summary>
-	/// Create a <see cref="ReadOnlySpan{T}"/> instance that holds valid <see cref="Node"/> instances to be used in a chain.
-	/// </summary>
-	private ReadOnlySpan<Node> Span => _nodes.AsReadOnlySpan()[_weakStart ? 1..^1 : ..];
-
 
 	/// <inheritdoc/>
-	public override Node this[int index] => Span[index];
+	public override Node this[int index] => ValidNodes[index];
 
 
 	/// <inheritdoc/>
@@ -189,8 +149,8 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 			return false;
 		}
 
-		var span1 = Span;
-		var span2 = other.Span;
+		var span1 = ValidNodes;
+		var span2 = other.ValidNodes;
 		switch (patternComparison)
 		{
 			case ChainPatternComparison.Undirected:
@@ -246,7 +206,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	/// <inheritdoc/>
 	public override int GetHashCode(NodeComparison nodeComparison, ChainPatternComparison patternComparison)
 	{
-		var span = Span;
+		var span = ValidNodes;
 		switch (patternComparison)
 		{
 			case ChainPatternComparison.Undirected:
@@ -358,7 +318,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	/// <inheritdoc/>
 	public override string ToString<T>(string? format, T converter)
 	{
-		var span = Span;
+		var span = ValidNodes;
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (0, 0); i < span.Length; linkIndex++, i++)
 		{
@@ -373,7 +333,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	}
 
 	/// <inheritdoc/>
-	public override ReadOnlySpan<Node> Slice(int start, int length) => Span[start..(start + length)];
+	public override ReadOnlySpan<Node> Slice(int start, int length) => ValidNodes[start..(start + length)];
 
 	/// <inheritdoc/>
 	public override ConclusionSet GetConclusions(ref readonly Grid grid) => [.. GetConclusions(in grid, First, Last)];
