@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a type that describes for a chain or a loop.
+/// Represents a chain or a loop.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, OtherModifiersOnEquals = "sealed")]
 public abstract partial class ChainPattern :

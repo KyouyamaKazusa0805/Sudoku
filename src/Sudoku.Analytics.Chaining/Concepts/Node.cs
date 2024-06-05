@@ -141,12 +141,13 @@ public sealed partial class Node(
 	/// Determines whether the current node is an ancestor of the specified node. 
 	/// </summary>
 	/// <param name="childNode">The node to be checked.</param>
+	/// <param name="nodeComparison">The comparison rule on nodes.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	public bool IsAncestorOf(Node childNode)
+	public bool IsAncestorOf(Node childNode, NodeComparison nodeComparison)
 	{
 		for (var node = childNode; node is not null; node = node.Parent)
 		{
-			if (this == node)
+			if (Equals(node, nodeComparison))
 			{
 				return true;
 			}

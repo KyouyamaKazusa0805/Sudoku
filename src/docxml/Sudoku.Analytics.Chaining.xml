@@ -105,12 +105,12 @@
         </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
-            Represents a chain or a loop.
+            Represents a chain.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node)">
             <summary>
-            Represents a chain or a loop.
+            Represents a chain.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.Chain._weakStart">
@@ -265,7 +265,7 @@
         </member>
         <member name="T:Sudoku.Concepts.ChainPattern">
             <summary>
-            Represents a type that describes for a chain or a loop.
+            Represents a chain or a loop.
             </summary>
         </member>
         <member name="F:Sudoku.Concepts.ChainPattern.Inferences">
@@ -848,11 +848,12 @@
             Throws when the argument <paramref name="comparison"/> is not defined.
             </exception>
         </member>
-        <member name="M:Sudoku.Concepts.Node.IsAncestorOf(Sudoku.Concepts.Node)">
+        <member name="M:Sudoku.Concepts.Node.IsAncestorOf(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
             <summary>
             Determines whether the current node is an ancestor of the specified node. 
             </summary>
             <param name="childNode">The node to be checked.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Node.GetHashCode(Sudoku.Concepts.NodeComparison)">

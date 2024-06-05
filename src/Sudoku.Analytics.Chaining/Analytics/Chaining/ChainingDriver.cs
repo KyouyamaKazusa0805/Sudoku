@@ -62,6 +62,9 @@ public static class ChainingDriver
 
 			var visitedStrong = new HashSet<Node>(LocalComparer.NodeMapComparer);
 			var visitedWeak = new HashSet<Node>(LocalComparer.NodeMapComparer);
+			visitedStrong.Add(startNode);
+			visitedWeak.Add(startNode);
+
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
 				while (pendingStrong.Count != 0)
@@ -72,23 +75,20 @@ public static class ChainingDriver
 					{
 						foreach (var node in nodes)
 						{
-							if (node == startNode)
+							var resultNode = new Node(node, currentNode);
+							if (node == startNode && resultNode.AncestorsLength >= 4)
 							{
-								var resultNode = new Node(node, currentNode);
-								if (resultNode.AncestorsLength >= 4)
-								{
-									result.Add(new Loop(resultNode)); // Continuous Nice Loop 3) Strong -> Weak.
-								}
+								result.Add(new Loop(resultNode)); // Continuous Nice Loop 3) Strong -> Weak.
 							}
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(new(node, currentNode))); // Discontinuous Nice Loop 2) Strong -> Strong.
+								result.Add(new Chain(resultNode)); // Discontinuous Nice Loop 2) Strong -> Strong.
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
-							if (!currentNode.IsAncestorOf(node) && visitedWeak.Add(node))
+							if (!node.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn) && visitedWeak.Add(node))
 							{
-								pendingWeak.AddLast(new Node(node, currentNode));
+								pendingWeak.AddLast(resultNode);
 							}
 						}
 					}
@@ -101,15 +101,15 @@ public static class ChainingDriver
 					{
 						foreach (var node in nodes)
 						{
+							var resultNode = new Node(node, currentNode);
 							if (node == ~startNode)
 							{
-								var resultNode = new Node(node, currentNode);
 								result.Add(new Chain(resultNode)); // Discontinuous Nice Loop 1) Weak -> Weak.
 							}
 
-							if (!currentNode.IsAncestorOf(node) && visitedStrong.Add(node))
+							if (!node.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn) && visitedStrong.Add(node))
 							{
-								pendingStrong.AddLast(new Node(node, currentNode));
+								pendingStrong.AddLast(resultNode);
 							}
 						}
 					}

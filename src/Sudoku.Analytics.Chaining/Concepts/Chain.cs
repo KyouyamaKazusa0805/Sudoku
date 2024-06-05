@@ -1,7 +1,7 @@
 namespace Sudoku.Concepts;
 
 /// <summary>
-/// Represents a chain or a loop.
+/// Represents a chain.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
 public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
