@@ -19,6 +19,7 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped M-Wing</item>
 /// </list>
 /// </item>
+/// <!--
 /// <item>
 /// S-Wing (Split Wing) family:
 /// <list type="bullet">
@@ -40,14 +41,20 @@ namespace Sudoku.Analytics.StepSearchers;
 /// <item>Grouped H-Wing</item>
 /// </list>
 /// </item>
+/// -->
 /// </list>
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_IrregularWingStepSearcher",
-	Technique.WWing, Technique.GroupedWWing, Technique.MultiBranchWWing, Technique.MWing, Technique.GroupedMWing,
-	Technique.SWing, Technique.GroupedSWing, Technique.LWing, Technique.GroupedLWing, Technique.HWing, Technique.GroupedHWing)]
+	Technique.WWing, Technique.GroupedWWing, Technique.MultiBranchWWing, Technique.MWing, Technique.GroupedMWing
+#if false
+	,
+	Technique.SWing, Technique.GroupedSWing, Technique.LWing, Technique.GroupedLWing, Technique.HWing, Technique.GroupedHWing
+#endif
+	)]
 public sealed partial class IrregularWingStepSearcher : StepSearcher
 {
+#if false
 	/// <summary>
 	/// Indicates the iterable house pairs.
 	/// </summary>
@@ -84,23 +91,25 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 	/// </summary>
 	[SettingItemName(SettingItemNames.AllowHWing)]
 	public bool AllowHWing { get; set; }
+#endif
 
 
 	/// <inheritdoc/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		if (AllowWWing && Collect_WWing(ref context) is { } w)
+		if (/*AllowWWing && */Collect_WWing(ref context) is { } w)
 		{
 			return w;
 		}
-		if (AllowWWing && Collect_MultiBranchWWing(ref context) is { } w2)
+		if (/*AllowWWing && */Collect_MultiBranchWWing(ref context) is { } w2)
 		{
 			return w2;
 		}
-		if (AllowMWing && Collect_MWing(ref context) is { } m)
+		if (/*AllowMWing && */Collect_MWing(ref context) is { } m)
 		{
 			return m;
 		}
+#if false
 		if (AllowSWing && Collect_SWing(ref context) is { } s)
 		{
 			return s;
@@ -113,6 +122,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		{
 			return h;
 		}
+#endif
 
 		return null;
 	}
@@ -567,6 +577,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 		}
 	}
 
+#if false
 	/// <inheritdoc cref="Collect(ref AnalysisContext)"/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="g/developer-notes"/>
@@ -1238,6 +1249,7 @@ public sealed partial class IrregularWingStepSearcher : StepSearcher
 			return null;
 		}
 	}
+#endif
 
 
 	/// <summary>

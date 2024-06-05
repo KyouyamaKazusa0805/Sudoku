@@ -1321,36 +1321,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRing"/>
         </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowWWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowWWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowWWing"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowMWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowMWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowMWing"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSWing"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLWing"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWingProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWing"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWing"/>
-        </member>
         <member name="F:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSizeProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSize"/>.
@@ -1520,21 +1490,6 @@
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSiameseXyzRing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowWWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowMWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowSWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowLWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.AllowHWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
         </member>
         <member name="P:SudokuStudio.Configuration.AnalysisPreferenceGroup.DirectNakedSubsetMaxSize">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.DirectSubsetStepSearcher.DirectNakedSubsetMaxSize"/>
@@ -10700,31 +10655,6 @@
             Defines a attached property that binds with setter and getter methods <c>AllowSiameseXyzRing</c>.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowWWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowWWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowMWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowMWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowSWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowLWing</c>.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowHWingProperty">
-            <summary>
-            Defines a attached property that binds with setter and getter methods <c>AllowHWing</c>.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Views.Attached.AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCountProperty">
             <summary>
             Defines a attached property that binds with setter and getter methods <c>ReverseBugMaxSearchingEmptyCellsCount</c>.
@@ -11101,66 +11031,6 @@
             Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty"/> to get or set value.
             </summary>
             <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSiameseXyzRingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowWWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowWWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowWWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowWWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowWWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowWWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowMWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowMWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowMWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowMWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowMWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowMWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowSWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowSWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowSWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowLWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowLWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowLWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetAllowHWing(Microsoft.UI.Xaml.DependencyObject,System.Boolean)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowHWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowHWingProperty" />
-        </member>
-        <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.GetAllowHWing(Microsoft.UI.Xaml.DependencyObject)">
-            <summary>
-            Indicates the interactive setter or getter methods that uses attached property <see cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowHWingProperty"/> to get or set value.
-            </summary>
-            <seealso cref="F:SudokuStudio.Views.Attached.AnalyzerProperties.AllowHWingProperty" />
         </member>
         <member name="M:SudokuStudio.Views.Attached.AnalyzerProperties.SetReverseBugMaxSearchingEmptyCellsCount(Microsoft.UI.Xaml.DependencyObject,System.Int32)">
             <summary>

@@ -64,6 +64,7 @@ public static class SettingItemNames
 	/// <inheritdoc cref="XyzRingStepSearcher.AllowSiamese"/>
 	public const string AllowSiameseXyzRing = nameof(AllowSiameseXyzRing);
 
+#if false
 	/// <inheritdoc cref="IrregularWingStepSearcher.AllowWWing"/>
 	public const string AllowWWing = nameof(AllowWWing);
 
@@ -78,6 +79,7 @@ public static class SettingItemNames
 
 	/// <inheritdoc cref="IrregularWingStepSearcher.AllowHWing"/>
 	public const string AllowHWing = nameof(AllowHWing);
+#endif
 
 	/// <inheritdoc cref="UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
 	public const string AllowIncompleteUniqueRectangles = nameof(AllowIncompleteUniqueRectangles);

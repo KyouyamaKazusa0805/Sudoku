@@ -219,11 +219,6 @@
 							a:AnalyzerProperties.AllowSiameseNormalFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseNormalFish,Mode=OneWay}"
 							a:AnalyzerProperties.AllowSiameseComplexFish="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseComplexFish,Mode=OneWay}"
 							a:AnalyzerProperties.AllowSiameseXyzRing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSiameseXyzRing,Mode=OneWay}"
-							a:AnalyzerProperties.AllowWWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowWWing,Mode=OneWay}"
-							a:AnalyzerProperties.AllowMWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowMWing,Mode=OneWay}"
-							a:AnalyzerProperties.AllowSWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSWing,Mode=OneWay}"
-							a:AnalyzerProperties.AllowLWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLWing,Mode=OneWay}"
-							a:AnalyzerProperties.AllowHWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowHWing,Mode=OneWay}"
 							a:AnalyzerProperties.AlignedExclusionMaxSearchingSize="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AlignedExclusionMaxSearchingSize,Mode=OneWay}"
 							a:AnalyzerProperties.SearchForReverseBugPartiallyUsedTypes="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.SearchForReverseBugPartiallyUsedTypes,Mode=OneWay}"
 							a:AnalyzerProperties.ReverseBugMaxSearchingEmptyCellsCount="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.ReverseBugMaxSearchingEmptyCellsCount,Mode=OneWay}"
@@ -244,6 +239,13 @@
 							CandidatesDisplayingToggled="SudokuPane_CandidatesDisplayingToggled" Caching="SudokuPane_Caching"
 							ActualThemeChanged="SudokuPane_ActualThemeChanged"
 						/>
+						<!--
+						a:AnalyzerProperties.AllowWWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowWWing,Mode=OneWay}"
+						a:AnalyzerProperties.AllowMWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowMWing,Mode=OneWay}"
+						a:AnalyzerProperties.AllowSWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowSWing,Mode=OneWay}"
+						a:AnalyzerProperties.AllowLWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowLWing,Mode=OneWay}"
+						a:AnalyzerProperties.AllowHWing="{x:Bind ((z:App)y:Application.Current).Preference.AnalysisPreferences.AllowHWing,Mode=OneWay}"	
+						-->
 					</Viewbox>
 					<Grid HorizontalAlignment="Center" ColumnDefinitions="Auto,*">
 						<PipsPager

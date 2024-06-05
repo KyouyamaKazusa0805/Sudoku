@@ -35,11 +35,13 @@ namespace SudokuStudio.Views.Attached;
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseNormalFish)]
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseComplexFish)]
 [AttachedProperty<bool>(SettingItemNames.AllowSiameseXyzRing)]
+#if false
 [AttachedProperty<bool>(SettingItemNames.AllowWWing)]
 [AttachedProperty<bool>(SettingItemNames.AllowMWing)]
 [AttachedProperty<bool>(SettingItemNames.AllowSWing)]
 [AttachedProperty<bool>(SettingItemNames.AllowLWing)]
 [AttachedProperty<bool>(SettingItemNames.AllowHWing)]
+#endif
 [AttachedProperty<int>(SettingItemNames.ReverseBugMaxSearchingEmptyCellsCount, DefaultValue = 2)]
 [AttachedProperty<int>(SettingItemNames.AlignedExclusionMaxSearchingSize, DefaultValue = 3)]
 [AttachedProperty<int>(SettingItemNames.MaxSizeOfRegularWing, DefaultValue = 5)]
@@ -230,6 +232,7 @@ public static partial class AnalyzerProperties
 	private static void AllowSiameseXyzRingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<XyzRingStepSearcher>(d, s => s.AllowSiamese = (bool)e.NewValue);
 
+#if false
 	[Callback]
 	private static void AllowWWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<IrregularWingStepSearcher>(d, s => s.AllowWWing = (bool)e.NewValue);
@@ -249,6 +252,7 @@ public static partial class AnalyzerProperties
 	[Callback]
 	private static void AllowHWingPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> A<IrregularWingStepSearcher>(d, s => s.AllowHWing = (bool)e.NewValue);
+#endif
 
 	[Callback]
 	private static void SearchForReverseBugPartiallyUsedTypesPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

@@ -37,11 +37,13 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<bool>(SettingItemNames.AllowSiameseNormalFish, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(NormalFishStepSearcher)}.{nameof(NormalFishStepSearcher.AllowSiamese)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowSiameseComplexFish, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexFishStepSearcher)}.{nameof(NormalFishStepSearcher.AllowSiamese)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowSiameseXyzRing, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(XyzRingStepSearcher)}.{nameof(XyzRingStepSearcher.AllowSiamese)}")]
+#if false
 [DependencyProperty<bool>(SettingItemNames.AllowWWing, DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(IrregularWingStepSearcher)}.{nameof(IrregularWingStepSearcher.AllowWWing)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowMWing, DefaultValue = true, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(IrregularWingStepSearcher)}.{nameof(IrregularWingStepSearcher.AllowMWing)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowSWing, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(IrregularWingStepSearcher)}.{nameof(IrregularWingStepSearcher.AllowSWing)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowLWing, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(IrregularWingStepSearcher)}.{nameof(IrregularWingStepSearcher.AllowLWing)}")]
 [DependencyProperty<bool>(SettingItemNames.AllowHWing, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(IrregularWingStepSearcher)}.{nameof(IrregularWingStepSearcher.AllowHWing)}")]
+#endif
 [DependencyProperty<int>(SettingItemNames.DirectNakedSubsetMaxSize, DefaultValue = 2, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(DirectSubsetStepSearcher)}.{nameof(DirectSubsetStepSearcher.DirectNakedSubsetMaxSize)}")]
 [DependencyProperty<int>(SettingItemNames.DirectHiddenSubsetMaxSize, DefaultValue = 2, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(DirectSubsetStepSearcher)}.{nameof(DirectSubsetStepSearcher.DirectHiddenSubsetMaxSize)}")]
 [DependencyProperty<int>(SettingItemNames.NakedSubsetMaxSizeInComplexSingle, DefaultValue = 4, DocReferencedMemberName = $"global::Sudoku.Analytics.StepSearchers.{nameof(ComplexSingleStepSearcher)}.{nameof(ComplexSingleStepSearcher.NakedSubsetMaxSize)}")]

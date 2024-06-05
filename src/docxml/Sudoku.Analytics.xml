@@ -5086,21 +5086,6 @@
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSiameseXyzRing">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.XyzRingStepSearcher.AllowSiamese"/>
         </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowWWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowMWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowSWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowLWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowHWing">
-            <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing"/>
-        </member>
         <member name="F:Sudoku.Analytics.Configuration.SettingItemNames.AllowIncompleteUniqueRectangles">
             <inheritdoc cref="P:Sudoku.Analytics.StepSearchers.UniqueRectangleStepSearcher.AllowIncompleteUniqueRectangles"/>
         </member>
@@ -11224,6 +11209,7 @@
             <item>Grouped M-Wing</item>
             </list>
             </item>
+            <!--
             <item>
             S-Wing (Split Wing) family:
             <list type="bullet">
@@ -11245,37 +11231,8 @@
             <item>Grouped H-Wing</item>
             </list>
             </item>
+            -->
             </list>
-            </summary>
-        </member>
-        <member name="F:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.IterableHousePairOffsets">
-            <summary>
-            Indicates the iterable house pairs.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowWWing">
-            <summary>
-            Indicates whether the step searcher allows searching for W-Wings.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowMWing">
-            <summary>
-            Indicates whether the step searcher allows searching for M-Wings.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowSWing">
-            <summary>
-            Indicates whether the step searcher allows searching for S-Wings.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowLWing">
-            <summary>
-            Indicates whether the step searcher allows searching for L-Wings.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AllowHWing">
-            <summary>
-            Indicates whether the step searcher allows searching for H-Wings.
             </summary>
         </member>
         <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
@@ -11317,51 +11274,6 @@
             .9.2.+8.5.7..+4...891+85+9.6....4.59+72...+7.+6+4+3..+8..9+182.7....3..7.163......5.1...4.3.:417 419 157 883 785 891 893 795
             ]]></code>
             </example>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_SWing(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
-            if those two cells share a same house.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_LWing(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
-            if those two cells share a same house.
-            </remarks>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect_HWing(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)" />
-            <remarks>
-            <developer-notes>
-		<para>
-			<b>Developer Notes</b>
-		</para>
-	</developer-notes>
-            <para>
-            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
-            Please note that the head and tail of the chain is not of a same digit, meaning it will contain eliminations
-            if those two cells share a same house.
-            </para>
-            <para>
-            We can treat <c><![CDATA[(x=y)-(y=z)]]></c> as an ALS of digits X, Y and Z, in order to reduce redundant searching -
-            this pattern will be reduce to <c><![CDATA[(ALS:x=z)-z=z]]></c>.
-            </para>
-            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.IrregularWingStepSearcher.AlmostLockedSetLinkInfo">
             <summary>
