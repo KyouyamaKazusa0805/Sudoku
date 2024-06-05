@@ -10,8 +10,21 @@ namespace Sudoku.Analytics.StepSearchers;
 /// </summary>
 [StepSearcher(
 	"StepSearcherName_ChainStepSearcher",
-	Technique.XChain, Technique.YChain, Technique.AlternatingInferenceChain, Technique.ContinuousNiceLoop, Technique.DiscontinuousNiceLoop,
-	Technique.XyXChain, Technique.XyChain, Technique.FishyCycle, Technique.PurpleCow)]
+	// 3-Chains
+	Technique.Skyscraper, Technique.TwoStringKite, Technique.TurbotFish,
+
+	// 5-Chains
+	Technique.WWing, Technique.MWing, Technique.SWing, Technique.LWing, Technique.HWing, Technique.PurpleCow,
+
+	// Chains
+	Technique.XChain, Technique.XyChain, Technique.XyXChain,
+	Technique.AlternatingInferenceChain, Technique.DiscontinuousNiceLoop,
+
+	// Overlappings
+	Technique.SelfConstraint, Technique.NodeCollision,
+
+	// Loops
+	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle)]
 [SplitStepSearcher(0, nameof(LinkTypes), LinkType.SingleDigit)]
 [SplitStepSearcher(1, nameof(LinkTypes), LinkType.SingleDigit | LinkType.SingleCell)]
 public sealed partial class ChainStepSearcher : StepSearcher
@@ -30,11 +43,6 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// Indicates the link types supported.
 	/// </summary>
 	public LinkType LinkTypes { get; init; }
-
-	/// <summary>
-	/// Indicates hte chaining rules.
-	/// </summary>
-	private ReadOnlySpan<ChainingRule> ChainingRules => from type in LinkTypes.GetAllFlags() select RuleRouter[type];
 
 
 	/// <inheritdoc/>
@@ -61,7 +69,8 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </remarks>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
-		//var foundChains = ChainingDriver.CollectChainPatterns(in context.Grid, ChainingRules, out _, out _);
+		var supportedRules = from type in LinkTypes.GetAllFlags() select RuleRouter[type];
+		var foundChains = ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules);
 		return null;
 	}
 }

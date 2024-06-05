@@ -7501,11 +7501,6 @@
             Indicates the link types supported.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.StepSearchers.ChainStepSearcher.ChainingRules">
-            <summary>
-            Indicates hte chaining rules.
-            </summary>
-        </member>
         <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
             <inheritdoc />
             <remarks>
