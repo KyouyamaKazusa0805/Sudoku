@@ -258,15 +258,22 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 
 	/// <inheritdoc/>
 	public override string ToString(string? format, IFormatProvider? formatProvider)
+		=> ToString(
+			format,
+			formatProvider is CultureInfo c ? CoordinateConverter.GetConverter(c) : CoordinateConverter.InvariantCultureConverter
+		);
+
+	/// <inheritdoc/>
+	public override string ToString<T>(string? format, T converter)
 	{
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
 		{
 			var inference = Inferences[linkIndex & 1];
-			sb.Append(_nodes[i].ToString(format, formatProvider));
+			sb.Append(_nodes[i].ToString(format, converter));
 			sb.Append(inference.ConnectingNotation());
 		}
-		sb.Append(_nodes[0].ToString(format, formatProvider));
+		sb.Append(_nodes[0].ToString(format, converter));
 		return sb.ToString();
 	}
 

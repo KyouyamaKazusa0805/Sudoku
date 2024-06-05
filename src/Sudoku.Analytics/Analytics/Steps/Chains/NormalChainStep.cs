@@ -37,5 +37,5 @@ public sealed partial class NormalChainStep(
 	/// <inheritdoc/>
 	public override FactorCollection Factors => [new ChainLengthFactor()];
 
-	private string ChainString => Pattern.ToString("m", ResultCurrentCulture);
+	private string ChainString => Pattern.ToString("m", Options.Converter ?? CoordinateConverter.GetConverter(ResultCurrentCulture));
 }

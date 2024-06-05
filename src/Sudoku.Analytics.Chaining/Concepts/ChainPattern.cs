@@ -6,6 +6,7 @@ namespace Sudoku.Concepts;
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, OtherModifiersOnEquals = "sealed")]
 public abstract partial class ChainPattern :
 	IComparable<ChainPattern>,
+	ICoordinateConvertible<ChainPattern>,
 	IEnumerable<Node>,
 	IEquatable<ChainPattern>,
 	IFormattable,
@@ -233,10 +234,24 @@ public abstract partial class ChainPattern :
 	public abstract override string ToString();
 
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider) => ToString(null, formatProvider);
 
 	/// <inheritdoc/>
 	public abstract string ToString(string? format, IFormatProvider? formatProvider);
+
+	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public string ToString<T>(T converter) where T : CoordinateConverter => ToString(null, converter);
+
+	/// <summary>
+	/// Returns a string that represents the current object.
+	/// </summary>
+	/// <typeparam name="T">The type of the converter.</typeparam>
+	/// <param name="format">The format text.</param>
+	/// <param name="converter">The converter instance.</param>
+	/// <returns>A string that represents the current object.</returns>
+	public abstract string ToString<T>(string? format, T converter) where T : CoordinateConverter;
 
 	/// <summary>
 	/// Slices the collection with the specified start node and its length.

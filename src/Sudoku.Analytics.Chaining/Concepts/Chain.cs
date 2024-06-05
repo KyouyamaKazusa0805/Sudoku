@@ -348,14 +348,22 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 	}
 
 	/// <inheritdoc/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public override string ToString(string? format, IFormatProvider? formatProvider)
+		=> ToString(
+			format,
+			formatProvider is CultureInfo c ? CoordinateConverter.GetConverter(c) : CoordinateConverter.InvariantCultureConverter
+		);
+
+	/// <inheritdoc/>
+	public override string ToString<T>(string? format, T converter)
 	{
 		var span = Span;
 		var sb = new StringBuilder();
 		for (var (linkIndex, i) = (0, 0); i < span.Length; linkIndex++, i++)
 		{
 			var inference = Inferences[linkIndex & 1];
-			sb.Append(span[i].ToString(format, formatProvider));
+			sb.Append(span[i].ToString(format, converter));
 			if (i != span.Length - 1)
 			{
 				sb.Append(inference.ConnectingNotation());
