@@ -21,7 +21,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.AlternatingInferenceChain, Technique.DiscontinuousNiceLoop,
 
 	// Overlappings
-	Technique.SelfConstraint, Technique.NodeCollision,
+	Technique.SelfConstraint,
 
 	// Loops
 	Technique.ContinuousNiceLoop, Technique.XyCycle, Technique.FishyCycle)]
