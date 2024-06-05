@@ -27,7 +27,7 @@ public static class ChainingDriver
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
-		var foundPatterns = new HashSet<ChainPattern>(LocalComparer.GetChainPatternComparer);
+		var foundPatterns = new HashSet<ChainPattern>(LocalComparer.ChainPatternComparer);
 		foreach (var cell in grid.EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
@@ -60,8 +60,8 @@ public static class ChainingDriver
 			var pendingWeak = new LinkedList<Node>();
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
-			var visitedStrong = new HashSet<Node>(LocalComparer.GetNodeMapComparer);
-			var visitedWeak = new HashSet<Node>(LocalComparer.GetNodeMapComparer);
+			var visitedStrong = new HashSet<Node>(LocalComparer.NodeMapComparer);
+			var visitedWeak = new HashSet<Node>(LocalComparer.NodeMapComparer);
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
 				while (pendingStrong.Count != 0)
@@ -140,7 +140,7 @@ file static class LocalComparer
 	/// in order to filter duplicate chains.
 	/// </summary>
 	/// <returns>An <see cref="EqualityComparer{T}"/> instance.</returns>
-	public static IEqualityComparer<ChainPattern> GetChainPatternComparer
+	public static IEqualityComparer<ChainPattern> ChainPatternComparer
 		=> _chainPatternComparer ??= EqualityComparer<ChainPattern>.Create(
 			static (left, right) => (left, right) switch
 			{
@@ -163,7 +163,7 @@ file static class LocalComparer
 	/// in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
 	/// </summary>
 	/// <returns>An <see cref="EqualityComparer{T}"/> instance.</returns>
-	public static IEqualityComparer<Node> GetNodeMapComparer
+	public static IEqualityComparer<Node> NodeMapComparer
 		=> _nodeComparer ??= EqualityComparer<Node>.Create(
 			static (left, right) => (left, right) switch
 			{

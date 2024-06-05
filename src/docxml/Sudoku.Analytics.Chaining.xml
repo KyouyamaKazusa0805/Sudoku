@@ -34,14 +34,14 @@
             Indicates the backing field of node map comparer instance.
             </summary>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.GetChainPatternComparer">
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.ChainPatternComparer">
             <summary>
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.ChainPattern"/> on equality comparison
             in order to filter duplicate chains.
             </summary>
             <returns>An <see cref="T:System.Collections.Generic.EqualityComparer`1"/> instance.</returns>
         </member>
-        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.GetNodeMapComparer">
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.NodeMapComparer">
             <summary>
             Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison
             in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
