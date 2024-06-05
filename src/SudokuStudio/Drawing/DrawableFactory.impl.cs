@@ -946,7 +946,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						// Draw the link.
 						correctOffsetOfPoint(ref pt1, ow, oh);
 						correctOffsetOfPoint(ref pt2, ow, oh);
-
 						yield return new()
 						{
 							Stroke = new SolidColorBrush(Pane.LinkColor),
@@ -965,7 +964,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 						};
 					}
-
 					break;
 				}
 			}
@@ -1082,14 +1080,10 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
 						break;
 					}
-					case ChainLinkViewNode(_, [var startCandidate, ..], [var endCandidate, ..], var isStrong):
+					case ChainLinkViewNode(_, [var startCandidate, ..], [var endCandidate, ..], _):
 					{
-						var startCell = startCandidate / 9;
-						var startDigit = isStrong ? startCandidate % 9 : 4;
-						var endCell = endCandidate / 9;
-						var endDigit = isStrong ? endCandidate % 9 : 4;
-						points.Add(Converter.GetPosition(startCell * 9 + startDigit));
-						points.Add(Converter.GetPosition(endCell * 9 + endDigit));
+						points.Add(Converter.GetPosition(startCandidate));
+						points.Add(Converter.GetPosition(endCandidate));
 						break;
 					}
 				}
