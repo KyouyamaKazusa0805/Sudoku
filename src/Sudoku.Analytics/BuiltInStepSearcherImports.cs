@@ -30,7 +30,7 @@
 [assembly: BuiltInStepSearcher<XyzRingStepSearcher>(1)]
 [assembly: BuiltInStepSearcher<UniquenessClueCoverStepSearcher>(2)]
 [assembly: BuiltInStepSearcher<ChainStepSearcher>(2)]
-#if true
+#if false
 [assembly: BuiltInStepSearcher<NonMultipleChainingStepSearcher>(2)]
 #endif
 [assembly: BuiltInStepSearcher<AlmostLockedSetsXzStepSearcher>(1)]

@@ -66,11 +66,47 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// (with an even number of nodes).
 	/// </item>
 	/// </list>
+	/// All implementations are extracted in type <see cref="ChainingDriver"/>.
+	/// Please visit it to learn more information.
 	/// </remarks>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
+		ref readonly var grid = ref context.Grid;
 		var supportedRules = from type in LinkTypes.GetAllFlags() select RuleRouter[type];
 		var foundChains = ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules);
+		foreach (var foundChain in foundChains)
+		{
+			var conclusions = foundChain.GetConclusions(in grid);
+			var step = new NormalChainStep(
+				[.. conclusions],
+				[[.. GetCandidateNodes(foundChain)]],
+				context.Options,
+				foundChain
+			);
+			if (context.OnlyFindOne)
+			{
+				return step;
+			}
+
+			context.Accumulator.Add(step);
+		}
+
 		return null;
+	}
+
+	/// <summary>
+	/// Collects for <see cref="CandidateViewNode"/> instances from the specified <see cref="ChainPattern"/> instance.
+	/// </summary>
+	/// <param name="nodes">A <see cref="ChainPattern"/> instance.</param>
+	/// <returns>The final node.</returns>
+	private ReadOnlySpan<CandidateViewNode> GetCandidateNodes(ChainPattern nodes)
+	{
+		var result = new List<CandidateViewNode>();
+		for (var i = 0; i < nodes.Length; i++)
+		{
+			var node = nodes[i];
+			result.Add(new((i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, node.Map[0]));
+		}
+		return result.AsReadOnlySpan();
 	}
 }

@@ -48,7 +48,9 @@ internal sealed class AdvancedDynamicChainingModule : ChainingModule
 	{
 		stepSearcher._otherStepSearchers ??= [
 			(1, [new LockedCandidatesStepSearcher(), new LockedSubsetStepSearcher(), new NormalFishStepSearcher(), new NormalSubsetStepSearcher()]),
+#if false
 			(2, [new NonMultipleChainingStepSearcher()]),
+#endif
 			(3, [new MultipleChainingStepSearcher { AllowMultiple = true }]),
 			(4, [new MultipleChainingStepSearcher { AllowDynamic = true, AllowMultiple = true }]),
 			(5, [new AdvancedMultipleChainingStepSearcher { DynamicNestingLevel = stepSearcher.DynamicNestingLevel - 3 }])

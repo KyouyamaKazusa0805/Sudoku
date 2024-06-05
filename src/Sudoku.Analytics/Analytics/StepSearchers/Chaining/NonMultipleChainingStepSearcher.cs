@@ -1,3 +1,4 @@
+#if false
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -383,3 +384,4 @@ public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 		return new(result, result.CreateViews(in grid));
 	}
 }
+#endif

@@ -7112,12 +7112,12 @@
             Search for region (house) forcing chains.
             </summary>
             <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            <inheritdoc cref="!:NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
             </param>
             <param name="context">The context.</param>
             <param name="result">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                cref="!:NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, List&lt;ChainingStep&gt;, bool, bool)"
                 path="/param[@name='result']"/>
             </param>
             <param name="baseCell">Indicates the starting cell.</param>
@@ -7297,14 +7297,14 @@
             </para>
             </summary>
             <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            <inheritdoc cref="!:NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
             </param>
             <param name="context">The context.</param>
             <param name="pOn"></param>
             <param name="pOff"></param>
             <param name="result">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                cref="!:NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, List&lt;ChainingStep&gt;, bool, bool)"
                 path="/param[@name='result']"/>
             </param>
             <param name="onToOn">An empty set, filled with potentials that get on if the given potential is on.</param>
@@ -7317,12 +7317,12 @@
             Search for region (house) forcing chains.
             </summary>
             <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
+            <inheritdoc cref="!:NonMultipleChainingStepSearcher.Collect(ref readonly Grid, ref AnalysisContext, bool, bool)" path="/param[@name='grid']"/>
             </param>
             <param name="context">The context.</param>
             <param name="result">
             <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)"
+                cref="!:NonMultipleChainingStepSearcher.DoUnaryChaining(ref readonly Grid, ref AnalysisContext, ChainNode, List&lt;ChainingStep&gt;, bool, bool)"
                 path="/param[@name='result']"/>
             </param>
             <param name="cell"></param>
@@ -7375,112 +7375,6 @@
                 path="/param[@name='runningArea']"/>
             </param>
         </member>
-        <member name="T:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher">
-            <summary>
-            Provides with a <b>Chain</b> step searcher using same algorithm with <b>Chaining</b> used by a program called Sudoku Explainer.
-            The step searcher will include the following techniques:
-            <list type="bullet">
-            <item>Alternating Inference Chains (Cycles)</item>
-            </list>
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Analytics.AnalysisContext@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.IsParent(Sudoku.Concepts.ChainNode,Sudoku.Concepts.ChainNode)">
-            <summary>
-            Checks whether hte specified <paramref name="child"/> is the real child node of <paramref name="parent"/>.
-            </summary>
-            <param name="child">The child node to be checked.</param>
-            <param name="parent">The parent node to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)">
-            <summary>
-            Try to search for all AICs and continuous nice loops.
-            </summary>
-            <param name="grid">The grid.</param>
-            <param name="context">The context.</param>
-            <param name="isX">Indicates whether the chain allows X element (strong links in a house for a single digit).</param>
-            <param name="isY">Indicates whether the chain allows Y element (strong links in a cell).</param>
-            <returns>All possible found <see cref="T:Sudoku.Analytics.Steps.ChainingStep"/>s.</returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoUnaryChaining(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Collections.Generic.List{Sudoku.Analytics.Steps.ChainingStep},System.Boolean,System.Boolean)">
-            <summary>
-            Look for, and add single forcing chains, and bidirectional cycles.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="context">The context.</param>
-            <param name="pOn">The start potential.</param>
-            <param name="result">The result steps found.</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)">
-            <summary>
-            Construct cycles and return them, by recording them into argument <paramref name="cycles"/>.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">The potentials that are assumed to be "on".</param>
-            <param name="toOff">The potentials that are assumed to be "off".</param>
-            <param name="isX"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isX']"/></param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="cycles">
-            <para>All found cycles, represented as their final <see cref="T:Sudoku.Concepts.ChainNode"/> node.</para>
-            <para>By using <see cref="P:Sudoku.Concepts.ChainNode.ChainPotentials"/>, we can get the whole chain.</para>
-            </param>
-            <param name="source">The source node.</param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoForcingChains(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)">
-            <summary>
-            Construct forcing chains (in Sudoku Explainer, AICs will be treated as forcing chains).
-            In other words, this method does find for AICs.
-            </summary>
-            <param name="grid"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/></param>
-            <param name="toOn">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOn']"/>
-            </param>
-            <param name="toOff">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='toOff']"/>
-            </param>
-            <param name="isY"><inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='isY']"/></param>
-            <param name="chains">
-            <para>All found chains, represented as their final <see cref="T:Sudoku.Concepts.ChainNode"/> node.</para>
-            <para>
-            <inheritdoc
-                cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)"
-                path="//param[@name='cycles']/para[2]"/>
-            </para>
-            </param>
-            <param name="source">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='source']"/>
-            </param>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.CreateCycleStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
-            <summary>
-            Try to create a cycle hint. If any conclusion (elimination, assignment) found and is available,
-            the method will return a <see cref="T:Sudoku.Analytics.Steps.BidirectionalCycleStep"/> instance with a non-<see langword="null"/> value.
-            </summary>
-            <param name="grid">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.Collect(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,System.Boolean,System.Boolean)" path="/param[@name='grid']"/>
-            </param>
-            <param name="context">The context.</param>
-            <param name="dstOn">Indicates the destination node that is at the state "on".</param>
-            <param name="isX">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isX']"/>
-            </param>
-            <param name="isY">
-            <inheritdoc cref="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.DoCycles(Sudoku.Concepts.Grid@,Sudoku.Concepts.ObjectModel.NodeSet,Sudoku.Concepts.ObjectModel.NodeSet,System.Boolean,System.Boolean,Sudoku.Concepts.ObjectModel.NodeList,Sudoku.Concepts.ChainNode)" path="/param[@name='isY']"/>
-            </param>
-            <returns>
-            A valid <see cref="T:Sudoku.Analytics.Steps.BidirectionalCycleStep"/> instance, or <see langword="null"/> if no available eliminations found.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.StepSearchers.NonMultipleChainingStepSearcher.CreateAicStep(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisContext@,Sudoku.Concepts.ChainNode,System.Boolean,System.Boolean)">
-            <summary>
-            Try to create an AIC hint.
-            </summary>
-        </member>
         <member name="T:Sudoku.Analytics.StepSearchers.ChainStepSearcher">
             <summary>
             Provides with a <b>Chain</b> step searcher.
@@ -7527,7 +7421,16 @@
             (with an even number of nodes).
             </item>
             </list>
+            All implementations are extracted in type <see cref="T:Sudoku.Analytics.Chaining.ChainingDriver" />.
+            Please visit it to learn more information.
             </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.StepSearchers.ChainStepSearcher.GetCandidateNodes(Sudoku.Concepts.ChainPattern)">
+            <summary>
+            Collects for <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/> instances from the specified <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.
+            </summary>
+            <param name="nodes">A <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+            <returns>The final node.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">
             <summary>

@@ -4915,9 +4915,9 @@ public enum Technique
 	#endregion
 
 	//
-	// Alternating Inference Chain
+	// Chains & Loops
 	//
-	#region Chaining
+	#region Chains & Loops
 	/// <summary>
 	/// Indicates X-Chain.
 	/// </summary>
@@ -5034,7 +5034,6 @@ public enum Technique
 		StepType = typeof(NormalChainStep),
 		StepSearcherType = typeof(ChainStepSearcher),
 		Abbreviation = "DNL",
-		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?t=2859"])]
 	DiscontinuousNiceLoop,
 
@@ -5273,7 +5272,7 @@ public enum Technique
 		ContainingGroup = TechniqueGroup.BlossomLoop,
 		StepType = typeof(BlossomLoopStep),
 		StepSearcherType = typeof(BlossomLoopStepSearcher),
-		Features = TechniqueFeatures.HardToBeGenerated,
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
 	BlossomLoop,
 	#endregion
