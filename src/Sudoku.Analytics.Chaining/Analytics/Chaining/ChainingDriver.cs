@@ -74,10 +74,19 @@ public static class ChainingDriver
 		{
 			var pendingStrong = new LinkedList<Node>();
 			var pendingWeak = new LinkedList<Node>();
-			var visitedStrong = new HashSet<Node>();
-			var visitedWeak = new HashSet<Node>();
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
+			var nodeMapComparer = EqualityComparer<Node>.Create(
+				static (left, right) => (left, right) switch
+				{
+					(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn),
+					(null, null) => true,
+					_ => false
+				},
+				static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn)
+			);
+			var visitedStrong = new HashSet<Node>(nodeMapComparer);
+			var visitedWeak = new HashSet<Node>(nodeMapComparer);
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
 				while (pendingStrong.Count != 0)
