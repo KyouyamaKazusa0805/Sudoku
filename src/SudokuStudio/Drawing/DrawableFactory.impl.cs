@@ -71,7 +71,7 @@ internal partial class DrawableFactory
 			((App)Application.Current).Preference.UIPreferences.DisplayCandidates,
 			new AnimatedResultCollection(),
 			new List<Conclusion>(),
-			new List<LinkViewNode>(),
+			new List<ViewNode>(), // For compatibility.
 			CandidateMap.Empty
 		);
 
@@ -121,6 +121,11 @@ internal partial class DrawableFactory
 					links.Add(l);
 					break;
 				}
+				case ChainLinkViewNode l:
+				{
+					links.Add(l);
+					break;
+				}
 			}
 		}
 
@@ -135,7 +140,7 @@ internal partial class DrawableFactory
 		// Finally, iterate on links.
 		// The links are special to be handled - they will create a list of line controls.
 		// We should handle it at last.
-		ForLinkNodes(pane, links.AsSpan(), conclusions, controlAddingActions);
+		ForLinkNodes(pane, links.AsReadOnlySpan(), conclusions, controlAddingActions);
 
 		foreach (var (animator, adder) in controlAddingActions)
 		{
@@ -688,7 +693,7 @@ internal partial class DrawableFactory
 	/// </remarks>
 	private static partial void ForLinkNodes(
 		SudokuPane sudokuPane,
-		ReadOnlySpan<LinkViewNode> linkNodes,
+		ReadOnlySpan<ViewNode> linkNodes, // Only for compatibility.
 		Conclusion[] conclusions,
 		AnimatedResultCollection animatedResults
 	)
@@ -741,7 +746,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	/// </summary>
 	/// <param name="nodes">The link view nodes.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	public IEnumerable<Path> CreateLinks(LinkViewNode[] nodes)
+	public IEnumerable<Path> CreateLinks(ViewNode[] nodes) // For compatibility.
 	{
 		var points = getPoints(nodes);
 		_ = Converter is var ((ow, oh), _) and var ((cs, _), _, _, _);
@@ -749,7 +754,47 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		foreach (var node in nodes)
 		{
-			if (node is not (_, ([var startCell, ..], var startDigit) start, ([var endCell, ..], var endDigit) end, var inference))
+			bool isValid;
+			Unsafe.SkipInit<Inference>(out var inference);
+			Unsafe.SkipInit<Cell>(out var startCell);
+			Unsafe.SkipInit<Digit>(out var startDigit);
+			Unsafe.SkipInit<Cell>(out var endCell);
+			Unsafe.SkipInit<Digit>(out var endDigit);
+			Unsafe.SkipInit<CandidateMap>(out var start);
+			Unsafe.SkipInit<CandidateMap>(out var end);
+			switch (node)
+			{
+				case LinkViewNode(_, ([var sc, ..], var sd) s, ([var ec, ..], var ed) e, var i):
+				{
+					inference = i;
+					startCell = sc;
+					startDigit = sd;
+					endCell = ec;
+					endDigit = ed;
+					start = Subview.ExpandedCellFromDigit(s.Cells, sd);
+					end = Subview.ExpandedCellFromDigit(e.Cells, ed);
+					isValid = true;
+					break;
+				}
+				case ChainLinkViewNode(_, [var startCandidate] s, [var endCandidate] e, var i):
+				{
+					inference = i ? Inference.Strong : Inference.Weak;
+					startCell = startCandidate / 9;
+					startDigit = startCandidate % 9;
+					endCell = endCandidate / 9;
+					endDigit = endCandidate % 9;
+					start = s;
+					end = e;
+					isValid = true;
+					break;
+				}
+				default:
+				{
+					isValid = false;
+					break;
+				}
+			}
+			if (!isValid)
 			{
 				continue;
 			}
@@ -766,7 +811,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					_ => Pane.OtherLinkDashStyle
 				}
 			).ToDoubleCollection();
-			var tagPrefixes = ViewNodeTagPrefixes[typeof(LinkViewNode)];
+			var tagPrefixes = ViewNodeTagPrefixes[node is LinkViewNode ? typeof(LinkViewNode) : typeof(ChainLinkViewNode)];
 			var tagSuffix = inference switch
 			{
 				Inference.Strong => StrongInferenceSuffix,
@@ -1024,15 +1069,29 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			=> value -= offset;
 
-		HashSet<Point> getPoints(LinkViewNode[] nodes)
+		HashSet<Point> getPoints(ViewNode[] nodes) // For compatibility.
 		{
 			var points = new HashSet<Point>();
 			foreach (var node in nodes)
 			{
-				if (node is (_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var kind))
+				switch (node)
 				{
-					points.Add(Converter.GetPosition(startCell * 9 + (kind == Inference.Default ? 4 : startDigit)));
-					points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
+					case LinkViewNode(_, ([var startCell, ..], var startDigit), ([var endCell, ..], var endDigit), var kind):
+					{
+						points.Add(Converter.GetPosition(startCell * 9 + (kind == Inference.Default ? 4 : startDigit)));
+						points.Add(Converter.GetPosition(endCell * 9 + (kind == Inference.Default ? 4 : endDigit)));
+						break;
+					}
+					case ChainLinkViewNode(_, [var startCandidate], [var endCandidate], var isStrong):
+					{
+						var startCell = startCandidate / 9;
+						var startDigit = isStrong ? startCandidate % 9 : 4;
+						var endCell = endCandidate / 9;
+						var endDigit = isStrong ? endCandidate % 9 : 4;
+						points.Add(Converter.GetPosition(startCell * 9 + startDigit));
+						points.Add(Converter.GetPosition(endCell * 9 + endDigit));
+						break;
+					}
 				}
 			}
 

@@ -23,7 +23,7 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 			var result = new Link[Length];
 			for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
 			{
-				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], LinkType.Unknown, Inferences[linkIndex & 1]);
+				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], Inferences[linkIndex & 1] == Inference.Strong);
 			}
 			return result;
 		}

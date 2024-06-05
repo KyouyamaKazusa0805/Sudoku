@@ -491,11 +491,10 @@
             </summary>
             <param name="firstNode">Indicates the first node to be used.</param>
             <param name="secondNode">Indicates the second node to be used.</param>
-            <param name="type">Indicates the type of the link.</param>
-            <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
+            <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
-        <member name="M:Sudoku.Concepts.Link.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node,Sudoku.Concepts.LinkType,Sudoku.Concepts.Inference)">
+        <member name="M:Sudoku.Concepts.Link.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean)">
             <summary>
             <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.</para>
             <para><b>
@@ -505,8 +504,7 @@
             </summary>
             <param name="firstNode">Indicates the first node to be used.</param>
             <param name="secondNode">Indicates the second node to be used.</param>
-            <param name="type">Indicates the type of the link.</param>
-            <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
+            <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
             <seealso cref="T:Sudoku.Concepts.Node"/>
         </member>
         <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link)">
@@ -545,14 +543,9 @@
             The generated property declaration for parameter <c>secondNode</c>.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Link.Type">
+        <member name="P:Sudoku.Concepts.Link.IsStrong">
             <summary>
-            The generated property declaration for parameter <c>type</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Link.Inference">
-            <summary>
-            The generated property declaration for parameter <c>inference</c>.
+            The generated property declaration for parameter <c>isStrong</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Link.Equals(System.Object)">

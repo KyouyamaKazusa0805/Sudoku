@@ -9,15 +9,13 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="firstNode">Indicates the first node to be used.</param>
 /// <param name="secondNode">Indicates the second node to be used.</param>
-/// <param name="type">Indicates the type of the link.</param>
-/// <param name="inference">Indicates the inference between two nodes <paramref name="firstNode"/> and <paramref name="secondNode"/>.</param>
+/// <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class Link(
 	[PrimaryConstructorParameter] Node firstNode,
 	[PrimaryConstructorParameter] Node secondNode,
-	[PrimaryConstructorParameter] LinkType type,
-	[PrimaryConstructorParameter] Inference inference
+	[PrimaryConstructorParameter] bool isStrong
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
 	/// <inheritdoc/>
@@ -34,7 +32,7 @@ public sealed partial class Link(
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Link other, LinkComparison comparison)
 		=> Enum.IsDefined(comparison)
-			? Inference == other.Inference && comparison switch
+			? IsStrong == other.IsStrong && comparison switch
 			{
 				LinkComparison.Undirected
 					=> FirstNode == other.FirstNode && SecondNode == other.SecondNode
@@ -64,5 +62,6 @@ public sealed partial class Link(
 			: throw new ArgumentOutOfRangeException(nameof(comparison));
 
 	/// <inheritdoc/>
-	public override string ToString() => $"{FirstNode}{Inference.ConnectingNotation()}{SecondNode}";
+	public override string ToString()
+		=> $"{FirstNode}{(IsStrong ? Inference.Strong : Inference.Weak).ConnectingNotation()}{SecondNode}";
 }

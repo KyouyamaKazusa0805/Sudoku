@@ -490,9 +490,6 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 				cellOffsets.Add(new(cellsChosen.Contains(cell) ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, cell));
 			}
 
-			var lockedTargetInner = new LockedTarget(selectedDigit, [conjugatePairCellInnerPattern]);
-			var lockedTargetOuter = new LockedTarget(selectedDigit, [conjugatePairCellOuterPattern]);
-			var anotherLockedTarget = new LockedTarget(selectedDigit, [anotherCell]);
 			var step = new ReverseBivalueUniversalGraveType4Step(
 				[new(Elimination, anotherCell, selectedDigit)],
 				[
@@ -501,8 +498,18 @@ public sealed partial class ReverseBivalueUniversalGraveStepSearcher : StepSearc
 						new CandidateViewNode(ColorIdentifier.Auxiliary1, conjugatePairCellInnerPattern * 9 + selectedDigit),
 						new CandidateViewNode(ColorIdentifier.Auxiliary1, conjugatePairCellOuterPattern * 9 + selectedDigit),
 						new HouseViewNode(ColorIdentifier.Normal, house),
-						new LinkViewNode(ColorIdentifier.Normal, lockedTargetInner, anotherLockedTarget, Inference.Weak),
-						new LinkViewNode(ColorIdentifier.Normal, lockedTargetOuter, anotherLockedTarget, Inference.Weak)
+						new ChainLinkViewNode(
+							ColorIdentifier.Normal,
+							[conjugatePairCellInnerPattern * 9 + selectedDigit],
+							[anotherCell * 9 + selectedDigit],
+							false
+						),
+						new ChainLinkViewNode(
+							ColorIdentifier.Normal,
+							[conjugatePairCellOuterPattern * 9 + selectedDigit],
+							[anotherCell * 9 + selectedDigit],
+							false
+						)
 					]
 				],
 				context.Options,

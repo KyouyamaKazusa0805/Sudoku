@@ -24,6 +24,7 @@ internal static partial class DrawableFactory
 		{ typeof(CandidateViewNode), ["candidate"] },
 		{ typeof(HouseViewNode), ["house"] },
 		{ typeof(LinkViewNode), ["cell link", "curve segment", "arrow cap"] },
+		{ typeof(ChainLinkViewNode), ["cell link", "curve segment", "arrow cap"] },
 		{ typeof(ChuteViewNode), ["chute"] },
 		{ typeof(BabaGroupViewNode), ["baba group"] }
 	};
@@ -116,7 +117,7 @@ internal static partial class DrawableFactory
 
 	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults);
 
-	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<LinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
+	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
 }
 
 /// <summary>

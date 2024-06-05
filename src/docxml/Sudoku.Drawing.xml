@@ -328,6 +328,59 @@
         <member name="M:Sudoku.Drawing.Nodes.CellViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
+        <member name="T:Sudoku.Drawing.Nodes.ChainLinkViewNode">
+            <summary>
+            Defines a view node that highlights for a chain link.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+            <param name="isStrongLink">Indicates whether the link is a strong link.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+            <summary>
+            Defines a view node that highlights for a chain link.
+            </summary>
+            <param name="identifier"><inheritdoc/></param>
+            <param name="start">Indicates the start point.</param>
+            <param name="end">Indicates the end point.</param>
+            <param name="isStrongLink">Indicates whether the link is a strong link.</param>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Equals(Sudoku.Drawing.ViewNode)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.Start">
+            <summary>
+            The generated property declaration for parameter <c>start</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.End">
+            <summary>
+            The generated property declaration for parameter <c>end</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Drawing.Nodes.ChainLinkViewNode.IsStrongLink">
+            <summary>
+            The generated property declaration for parameter <c>isStrongLink</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Drawing.Nodes.ChuteViewNode">
             <summary>
             Defines a view node that highlights for a chute (i.e. 3 houses that is in a three blocks in a line).

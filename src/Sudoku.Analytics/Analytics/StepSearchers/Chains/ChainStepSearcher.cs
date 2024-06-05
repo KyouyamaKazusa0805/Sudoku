@@ -79,7 +79,16 @@ public sealed partial class ChainStepSearcher : StepSearcher
 			var conclusions = foundChain.GetConclusions(in grid);
 			var step = new NormalChainStep(
 				[.. conclusions],
-				[[.. GetCandidateNodes(foundChain)]],
+				[
+					[
+						.. GetCandidateNodes(foundChain),
+						..
+						from link in foundChain.Links
+						let node1 = link.FirstNode
+						let node2 = link.SecondNode
+						select new ChainLinkViewNode(ColorIdentifier.Normal, in node1.Map, in node2.Map, link.IsStrong)
+					]
+				],
 				context.Options,
 				foundChain
 			);
@@ -97,14 +106,14 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// <summary>
 	/// Collects for <see cref="CandidateViewNode"/> instances from the specified <see cref="ChainPattern"/> instance.
 	/// </summary>
-	/// <param name="nodes">A <see cref="ChainPattern"/> instance.</param>
+	/// <param name="pattern">A <see cref="ChainPattern"/> instance.</param>
 	/// <returns>The final node.</returns>
-	private ReadOnlySpan<CandidateViewNode> GetCandidateNodes(ChainPattern nodes)
+	private ReadOnlySpan<CandidateViewNode> GetCandidateNodes(ChainPattern pattern)
 	{
 		var result = new List<CandidateViewNode>();
-		for (var i = 0; i < nodes.Length; i++)
+		for (var i = 0; i < pattern.Length; i++)
 		{
-			var node = nodes[i];
+			var node = pattern[i];
 			result.Add(new((i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, node.Map[0]));
 		}
 		return result.AsReadOnlySpan();

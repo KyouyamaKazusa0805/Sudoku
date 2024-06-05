@@ -7429,7 +7429,7 @@
             <summary>
             Collects for <see cref="T:Sudoku.Drawing.Nodes.CandidateViewNode"/> instances from the specified <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.
             </summary>
-            <param name="nodes">A <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+            <param name="pattern">A <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
             <returns>The final node.</returns>
         </member>
         <member name="T:Sudoku.Analytics.StepSearchers.BivalueUniversalGraveStepSearcher">

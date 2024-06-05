@@ -3268,7 +3268,7 @@
             </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.LinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.ViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
             <summary>
             Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s.
             </summary>
@@ -3473,7 +3473,7 @@
             Indicates the square root of 2.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.Nodes.LinkViewNode[])">
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.ViewNode[])">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>

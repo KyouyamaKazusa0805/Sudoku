@@ -116,7 +116,7 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 			var result = new Link[Length - 1];
 			for (var (linkIndex, i) = (0, 0); i < Length - 1; linkIndex++, i++)
 			{
-				result[i] = new(span[i], span[i + 1], LinkType.Unknown, Inferences[linkIndex & 1]);
+				result[i] = new(span[i], span[i + 1], Inferences[linkIndex & 1] == Inference.Strong);
 			}
 			return result;
 		}

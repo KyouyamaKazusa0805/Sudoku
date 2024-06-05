@@ -78,7 +78,10 @@ public abstract partial class ChainPattern :
 			{
 				switch (link)
 				{
-					case { Inference: not Inference.Strong }:
+					case { IsStrong: false }:
+					{
+						continue;
+					}
 					case { FirstNode.Map.Cells: [var cell1], SecondNode.Map.Cells: [var cell2] } when cell1 != cell2:
 					{
 						return false;

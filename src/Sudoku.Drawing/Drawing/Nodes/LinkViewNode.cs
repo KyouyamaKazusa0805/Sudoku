@@ -8,6 +8,7 @@ namespace Sudoku.Drawing.Nodes;
 /// <param name="end">Indicates the end point.</param>
 /// <param name="inference">Indicates the inference type.</param>
 [TypeImpl(TypeImplFlag.Object_GetHashCode | TypeImplFlag.Object_ToString)]
+[Obsolete]
 [method: JsonConstructor]
 public sealed partial class LinkViewNode(
 	ColorIdentifier identifier,
