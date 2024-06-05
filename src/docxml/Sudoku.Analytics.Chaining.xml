@@ -11,13 +11,38 @@
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
             <summary>
-            Collect all <see cref="T:Sudoku.Concepts.ChainPattern"/> instances appears in a grid.
+            Collect all <see cref="T:Sudoku.Concepts.ChainPattern" /> instances appears in a grid.
             </summary>
             <param name="grid">The grid.</param>
             <param name="rules">
             Indicates the rule instances that will create strong and weak links by their own represented concept.
             </param>
-            <returns>All possible <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.</returns>
+            <returns>All possible <see cref="T:Sudoku.Concepts.ChainPattern" /> instances.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid chain can only belong to the following three cases:
+            <list type="number">
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with weak link, alternating strong and weak links and return to itself by weak link
+            (with an odd number of nodes).
+            </item>
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by strong link
+            (with an odd number of nodes).
+            </item>
+            <item>
+            <b>Continuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by weak link
+            (with an even number of nodes).
+            </item>
+            </list>
+            </remarks>
         </member>
         <member name="T:Sudoku.Analytics.Chaining.LocalComparer">
             <summary>

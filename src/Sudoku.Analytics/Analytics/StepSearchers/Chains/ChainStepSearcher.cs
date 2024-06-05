@@ -48,27 +48,11 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// <inheritdoc/>
 	/// <remarks>
 	/// <include file="../../global-doc-comments.xml" path="/g/developer-notes" />
-	/// A valid chain can only belong to the following three cases:
-	/// <list type="number">
-	/// <item>
-	/// <b>Discontinuous Nice Loop</b><br/>
-	/// Start with weak link, alternating strong and weak links and return to itself by weak link
-	/// (with an odd number of nodes).
-	/// </item>
-	/// <item>
-	/// <b>Discontinuous Nice Loop</b><br/>
-	/// Start with strong link, alternating strong and weak links and return to itself by strong link
-	/// (with an odd number of nodes).
-	/// </item>
-	/// <item>
-	/// <b>Continuous Nice Loop</b><br/>
-	/// Start with strong link, alternating strong and weak links and return to itself by weak link
-	/// (with an even number of nodes).
-	/// </item>
-	/// </list>
-	/// All implementations are extracted in type <see cref="ChainingDriver"/>.
-	/// Please visit it to learn more information.
+	/// <para>
+	/// All implementations are extracted in type <see cref="ChainingDriver"/>. Please visit it to learn more information.
+	/// </para>
 	/// </remarks>
+	/// <seealso cref="ChainingDriver"/>
 	protected internal override Step? Collect(ref AnalysisContext context)
 	{
 		ref readonly var grid = ref context.Grid;
