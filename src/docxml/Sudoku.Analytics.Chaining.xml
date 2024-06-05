@@ -29,17 +29,17 @@
             <item>
             <b>Discontinuous Nice Loop</b><br />
             Start with weak link, alternating strong and weak links and return to itself by weak link
-            (with an odd number of nodes).
+            (with an even number of nodes, odd number of links).
             </item>
             <item>
             <b>Discontinuous Nice Loop</b><br />
             Start with strong link, alternating strong and weak links and return to itself by strong link
-            (with an odd number of nodes).
+            (with an even number of nodes, even number of links).
             </item>
             <item>
             <b>Continuous Nice Loop</b><br />
             Start with strong link, alternating strong and weak links and return to itself by weak link
-            (with an even number of nodes).
+            (with an even number of nodes, even number of links).
             </item>
             </list>
             </remarks>
