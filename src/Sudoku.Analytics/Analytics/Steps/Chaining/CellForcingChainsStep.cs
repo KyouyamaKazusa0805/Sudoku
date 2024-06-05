@@ -10,6 +10,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="chains">Indicates all possible branches in this technique.</param>
 /// <param name="isDynamic"><inheritdoc/></param>
 /// <param name="dynamicNestingLevel"><inheritdoc/></param>
+[Obsolete]
 public sealed partial class CellForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,

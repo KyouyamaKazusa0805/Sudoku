@@ -17,6 +17,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isAbsurd">Indicates whether the forcing chains kind is contradiction.</param>
 /// <param name="isNishio"><inheritdoc/></param>
 /// <param name="dynamicNestingLevel"><inheritdoc/></param>
+[Obsolete]
 public sealed partial class BinaryForcingChainsStep(
 	Conclusion[] conclusions,
 	View[]? views,

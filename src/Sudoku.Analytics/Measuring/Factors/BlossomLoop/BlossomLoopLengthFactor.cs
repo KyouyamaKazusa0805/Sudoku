@@ -4,6 +4,7 @@ namespace Sudoku.Measuring.Factors;
 /// Represents a factor that describes the length property of <see cref="BlossomLoopStep"/>.
 /// </summary>
 /// <seealso cref="BlossomLoopStep"/>
+[Obsolete]
 public sealed class BlossomLoopLengthFactor : Factor
 {
 	/// <inheritdoc/>

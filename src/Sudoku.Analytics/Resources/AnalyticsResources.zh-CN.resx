@@ -3398,4 +3398,10 @@
     <value>区块自我约束</value>
     <comment>Technique Name</comment>
   </data>
+  <data name="TechniqueFormat_NormalChainStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="Factor_ChainLengthFactor" xml:space="preserve">
+    <value>长度</value>
+  </data>
 </root>

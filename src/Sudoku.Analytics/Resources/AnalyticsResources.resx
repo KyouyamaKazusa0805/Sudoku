@@ -3222,4 +3222,10 @@ Error grid: '{0:#}'</value>
   <data name="GroupedSelfConstraint" xml:space="preserve">
     <value>Grouped Self Constraint</value>
   </data>
+  <data name="TechniqueFormat_NormalChainStep" xml:space="preserve">
+    <value>{0}</value>
+  </data>
+  <data name="Factor_ChainLengthFactor" xml:space="preserve">
+    <value>Length</value>
+  </data>
 </root>

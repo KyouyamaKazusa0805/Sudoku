@@ -60,12 +60,20 @@ public static class ChainPatternExtensions
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
 	/// </summary>
 	/// <param name="this">The pattern to be checked.</param>
-	/// <param name="grid">The grid to check for eliminations.</param>
+	/// <param name="grid">The grid to calculate on conclusions for the pattern.</param>
 	/// <returns>The <see cref="Technique"/> field categorized.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static Technique GetTechnique(this ChainPattern @this, scoped ref readonly Grid grid)
-	{
-		var conclusions = @this.GetConclusions(in grid);
-		return @this switch
+		=> @this.GetTechnique(@this.GetConclusions(in grid));
+
+	/// <summary>
+	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
+	/// </summary>
+	/// <param name="this">The pattern to be checked.</param>
+	/// <param name="conclusions">The conclusions.</param>
+	/// <returns>The <see cref="Technique"/> field categorized.</returns>
+	public static Technique GetTechnique(this ChainPattern @this, ConclusionSet conclusions)
+		=> @this switch
 		{
 			Chain
 			{
@@ -130,7 +138,6 @@ public static class ChainPatternExtensions
 				_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
 			}
 		};
-	}
 
 	/// <summary>
 	/// Try to get sort key of the pattern.
@@ -140,5 +147,15 @@ public static class ChainPatternExtensions
 	/// <returns>The pattern sort key.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	internal static byte GetSortKey(this ChainPattern @this, scoped ref readonly Grid grid)
-		=> SortKeyDictionary[@this.GetTechnique(in grid)];
+		=> @this.GetSortKey(@this.GetConclusions(in grid));
+
+	/// <summary>
+	/// Try to get sort key of the pattern.
+	/// </summary>
+	/// <param name="this">The pattern.</param>
+	/// <param name="conclusions">Indicates conclusions to be used.</param>
+	/// <returns>The pattern sort key.</returns>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	internal static byte GetSortKey(this ChainPattern @this, ConclusionSet conclusions)
+		=> SortKeyDictionary[@this.GetTechnique(conclusions)];
 }

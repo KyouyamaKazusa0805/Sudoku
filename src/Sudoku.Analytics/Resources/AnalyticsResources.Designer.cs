@@ -2113,6 +2113,15 @@ namespace Sudoku.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Length.
+        /// </summary>
+        public static string Factor_ChainLengthFactor {
+            get {
+                return ResourceManager.GetString("Factor_ChainLengthFactor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Cannibalism in complex fish.
         /// </summary>
         public static string Factor_ComplexFishCannibalismFactor {
@@ -7782,6 +7791,15 @@ namespace Sudoku.Resources {
         public static string TechniqueFormat_NakedSubsetStep {
             get {
                 return ResourceManager.GetString("TechniqueFormat_NakedSubsetStep", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to {0}.
+        /// </summary>
+        public static string TechniqueFormat_NormalChainStep {
+            get {
+                return ResourceManager.GetString("TechniqueFormat_NormalChainStep", resourceCulture);
             }
         }
         

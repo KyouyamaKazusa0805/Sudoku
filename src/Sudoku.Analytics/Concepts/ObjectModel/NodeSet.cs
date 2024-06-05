@@ -4,6 +4,7 @@ namespace Sudoku.Concepts.ObjectModel;
 /// Defines a <see cref="ChainNode"/> collection using <see cref="HashSet{T}"/> as backing implementation.
 /// </summary>
 /// <seealso cref="ChainNode"/>
+[Obsolete]
 public sealed class NodeSet : HashSet<ChainNode>
 {
 	/// <summary>

@@ -3,6 +3,7 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Defines a multiple forcing chains.
 /// </summary>
+[Obsolete]
 public sealed partial class MultipleForcingChains() : IReadOnlyList<(byte CellOrDigit, ChainNode Potential)>
 {
 	/// <summary>

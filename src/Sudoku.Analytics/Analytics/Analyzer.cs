@@ -149,6 +149,10 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
 	/// </summary>
+	[Obsolete(
+		$"This field will be replaced with other step searchers. " +
+		$"This property may not be deleted but I mark [{nameof(ObsoleteAttribute)}] " +
+		$"just because it will be changed its content.")]
 	public static Analyzer SudokuExplainer
 		=> Default
 			.WithStepSearchers(

@@ -3,6 +3,7 @@ namespace Sudoku.Analytics.StepSearcherModules;
 /// <summary>
 /// Represents the advanced dynamic chaining module.
 /// </summary>
+[Obsolete]
 internal sealed class AdvancedDynamicChainingModule : ChainingModule
 {
 	/// <inheritdoc cref="ChainingModule.OnAdvanced{T}(T, NodeList, NodeList, NodeSet, ref readonly Grid, ref readonly Grid)"/>

@@ -4827,7 +4827,15 @@
             Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
             </summary>
             <param name="this">The pattern to be checked.</param>
-            <param name="grid">The grid to check for eliminations.</param>
+            <param name="grid">The grid to calculate on conclusions for the pattern.</param>
+            <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetTechnique(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to categorize the pattern and return an equivalent <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field representing such patterns.
+            </summary>
+            <param name="this">The pattern to be checked.</param>
+            <param name="conclusions">The conclusions.</param>
             <returns>The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> field categorized.</returns>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetSortKey(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.Grid@)">
@@ -4836,6 +4844,14 @@
             </summary>
             <param name="this">The pattern.</param>
             <param name="grid">Indicates the grid to be used.</param>
+            <returns>The pattern sort key.</returns>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainPatternExtensions.GetSortKey(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Try to get sort key of the pattern.
+            </summary>
+            <param name="this">The pattern.</param>
+            <param name="conclusions">Indicates conclusions to be used.</param>
             <returns>The pattern sort key.</returns>
         </member>
         <member name="T:Sudoku.Analytics.Collector">
@@ -12786,6 +12802,67 @@
         <member name="P:Sudoku.Analytics.Steps.RegionForcingChainsStep.Chains">
             <summary>
             The generated property declaration for parameter <c>chains</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.ChainStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.ChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions)">
+            <summary>
+            Provides with a step that is a <b>Chain</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+        </member>
+        <member name="T:Sudoku.Analytics.Steps.NormalChainStep">
+            <summary>
+            Provides with a step that is a <b>Chain</b> or <b>Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the chain or loop pattern.</param>
+        </member>
+        <member name="M:Sudoku.Analytics.Steps.NormalChainStep.#ctor(Sudoku.Concepts.Conclusion[],Sudoku.Drawing.View[],Sudoku.Analytics.Configuration.StepSearcherOptions,Sudoku.Concepts.ChainPattern)">
+            <summary>
+            Provides with a step that is a <b>Chain</b> or <b>Loop</b> technique.
+            </summary>
+            <param name="conclusions"><inheritdoc/></param>
+            <param name="views"><inheritdoc/></param>
+            <param name="options"><inheritdoc/></param>
+            <param name="pattern">Indicates the chain or loop pattern.</param>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.SortKey">
+            <summary>
+            Indicates the sort key that can be used as chaining comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.BaseDifficulty">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.ChainLength">
+            <summary>
+            Indicates the chain length.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Code">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.FormatInterpolationParts">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Factors">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Analytics.Steps.NormalChainStep.Pattern">
+            <summary>
+            The generated property declaration for parameter <c>pattern</c>.
             </summary>
         </member>
         <member name="T:Sudoku.Analytics.Steps.BivalueUniversalGraveFalseCandidateTypeStep">
@@ -21588,6 +21665,20 @@ result ^= expression;
         <member name="P:Sudoku.Measuring.Factors.BasicChainLengthFactor.Formula">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Measuring.Factors.ChainLengthFactor">
+            <summary>
+            Represents a factor that describes the length of a <see cref="T:Sudoku.Concepts.ChainPattern"/>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.ParameterNames">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.ReflectedStepType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Measuring.Factors.ChainLengthFactor.Formula">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Measuring.Factors.ComplexFishCannibalismFactor">
             <summary>
             Represents a factor that describes whether the <see cref="T:Sudoku.Analytics.Steps.ComplexFishStep"/> is cannibalism.
@@ -23701,6 +23792,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_BowmanBingoLengthFactor">
             <summary>
               Looks up a localized string similar to Length of Bowman&apos;s bingo.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ChainLengthFactor">
+            <summary>
+              Looks up a localized string similar to Length.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.Factor_ComplexFishCannibalismFactor">
@@ -26854,6 +26950,11 @@ result ^= expression;
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NakedSubsetStep">
             <summary>
               Looks up a localized string similar to {0} in {1}.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalChainStep">
+            <summary>
+              Looks up a localized string similar to {0}.
             </summary>
         </member>
         <member name="P:Sudoku.Resources.AnalyticsResources.TechniqueFormat_NormalFishStep">

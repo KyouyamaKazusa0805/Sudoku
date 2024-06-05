@@ -4927,8 +4927,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/X-Chain.html"])]
 	XChain,
 
@@ -4942,8 +4942,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique)]
 	YChain,
 
@@ -4953,11 +4953,11 @@ public enum Technique
 	[Hodoku(Prefix = "0704")]
 	[SudokuExplainer(RatingOriginal = [6.5, 6.6], Aliases = ["Bidirectional X-Cycle"])]
 	[TechniqueMetadata(
-		Rating = 46,
+		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Features = TechniqueFeatures.WillBeReplacedByOtherTechnique,
 		Links = ["http://sudopedia.enjoysudoku.com/Fishy_Cycle.html"])]
 	FishyCycle,
@@ -4970,9 +4970,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
-		Features = TechniqueFeatures.NotImplemented,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Links = ["http://sudopedia.enjoysudoku.com/XY-Chain.html"])]
 	XyChain,
 
@@ -4981,12 +4980,11 @@ public enum Technique
 	/// </summary>
 	[SudokuExplainer(RatingOriginal = [6.6, 7.0])]
 	[TechniqueMetadata(
-		Rating = 46,
+		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
-		Features = TechniqueFeatures.NotImplemented)]
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher))]
 	XyCycle,
 
 	/// <summary>
@@ -4996,9 +4994,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
-		Features = TechniqueFeatures.NotImplemented)]
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher))]
 	XyXChain,
 
 	/// <summary>
@@ -5009,8 +5006,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Features = TechniqueFeatures.NotImplemented)]
 	RemotePair,
 
@@ -5021,9 +5018,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
-		Features = TechniqueFeatures.NotImplemented)]
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher))]
 	PurpleCow,
 
 	/// <summary>
@@ -5035,8 +5031,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Abbreviation = "DNL",
 		Features = TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/viewtopic.php?t=2859"])]
@@ -5048,11 +5044,11 @@ public enum Technique
 	[Hodoku(Rating = 280, DifficultyLevel = HodokuDifficultyLevel.Unfair, Prefix = "0706")]
 	[SudokuExplainer(RatingOriginal = [7.0, 7.3], Aliases = ["Bidirectional Cycle"])]
 	[TechniqueMetadata(
-		Rating = 46,
+		Rating = 45,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Abbreviation = "CNL",
 		Links = ["http://sudopedia.enjoysudoku.com/Nice_Loop.html"])]
 	ContinuousNiceLoop,
@@ -5066,8 +5062,8 @@ public enum Technique
 		Rating = 46,
 		DifficultyLevel = DifficultyLevel.Fiendish,
 		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
-		StepType = typeof(ForcingChainStep),
-		StepSearcherType = typeof(NonMultipleChainingStepSearcher),
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher),
 		Abbreviation = "AIC",
 		Links = ["http://sudopedia.enjoysudoku.com/Alternating_Inference_Chain.html", "http://forum.enjoysudoku.com/viewtopic.php?t=3865"])]
 	AlternatingInferenceChain,
@@ -5132,7 +5128,12 @@ public enum Technique
 	/// <summary>
 	/// Indicates special case that a chain starts and ends with a same node of a single candidate.
 	/// </summary>
-	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueMetadata(
+		Rating = 46,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher))]
 	SelfConstraint,
 
 	/// <summary>
@@ -5144,7 +5145,12 @@ public enum Technique
 	/// <summary>
 	/// Indicates special case that a grouped alternating inference chain has a collision between start and end node.
 	/// </summary>
-	[TechniqueMetadata(DifficultyLevel = DifficultyLevel.Fiendish, ContainingGroup = TechniqueGroup.AlternatingInferenceChain)]
+	[TechniqueMetadata(
+		Rating = 46,
+		DifficultyLevel = DifficultyLevel.Fiendish,
+		ContainingGroup = TechniqueGroup.AlternatingInferenceChain,
+		StepType = typeof(NormalChainStep),
+		StepSearcherType = typeof(ChainStepSearcher))]
 	NodeCollision,
 	#endregion
 

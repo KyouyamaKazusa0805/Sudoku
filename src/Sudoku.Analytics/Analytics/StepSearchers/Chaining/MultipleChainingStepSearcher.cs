@@ -31,6 +31,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [SplitStepSearcher(0, nameof(AllowNishio), true, nameof(AllowDynamic), true)]
 [SplitStepSearcher(1, nameof(AllowMultiple), true)]
 [SplitStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true)]
+[Obsolete]
 public partial class MultipleChainingStepSearcher : StepSearcher
 {
 	/// <summary>

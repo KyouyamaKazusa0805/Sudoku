@@ -9,6 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="houseIndex">Indicates the index of the house represented.</param>
 /// <param name="digit">Indicates the digit of the chain bound with.</param>
 /// <param name="chains">Indicates all possible branches in this loop.</param>
+[Obsolete]
 public sealed partial class BlossomLoopStep(
 	Conclusion[] conclusions,
 	View[]? views,

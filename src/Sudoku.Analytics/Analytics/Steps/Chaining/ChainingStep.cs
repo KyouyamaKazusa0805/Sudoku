@@ -12,6 +12,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="isDynamic">Indicates whether the chain is a dynamic forcing chains.</param>
 /// <param name="isNishio">Indicates whether the chain is a nishio forcing chains.</param>
 /// <param name="dynamicNestingLevel">Indicates the dynamic nesting level.</param>
+[Obsolete]
 public abstract partial class ChainingStep(
 	Conclusion[] conclusions,
 	View[]? views,

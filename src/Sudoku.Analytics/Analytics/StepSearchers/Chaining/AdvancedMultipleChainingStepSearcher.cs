@@ -37,6 +37,7 @@ namespace Sudoku.Analytics.StepSearchers;
 [SplitStepSearcher(2, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 3)]
 [SplitStepSearcher(3, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 4)]
 [SplitStepSearcher(4, nameof(AllowMultiple), true, nameof(AllowDynamic), true, nameof(DynamicNestingLevel), 5)]
+[Obsolete]
 public sealed partial class AdvancedMultipleChainingStepSearcher : MultipleChainingStepSearcher
 {
 	/// <summary>

@@ -27,23 +27,7 @@ public static class ChainingDriver
 		}
 
 		// Step 2: Iterate on dictionary to get chains.
-		var patternEqualityComparer = EqualityComparer<ChainPattern>.Create(
-			static (left, right) => (left, right) switch
-			{
-				(null, null) => true,
-				(Chain a, Chain b) => a.Equals(b),
-				(Loop a, Loop b) => a.Equals(b),
-				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
-				_ => false
-			},
-			static obj => obj switch
-			{
-				Chain c => c.GetHashCode(),
-				Loop l => l.GetHashCode(),
-				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
-			}
-		);
-		var foundPatterns = new HashSet<ChainPattern>(patternEqualityComparer);
+		var foundPatterns = new HashSet<ChainPattern>(LocalComparer.GetChainPatternComparer);
 		foreach (var cell in grid.EmptyCells)
 		{
 			foreach (var digit in grid.GetCandidates(cell))
@@ -76,17 +60,8 @@ public static class ChainingDriver
 			var pendingWeak = new LinkedList<Node>();
 			(startNode.IsOn ? pendingWeak : pendingStrong).AddLast(startNode);
 
-			var nodeMapComparer = EqualityComparer<Node>.Create(
-				static (left, right) => (left, right) switch
-				{
-					(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn),
-					(null, null) => true,
-					_ => false
-				},
-				static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn)
-			);
-			var visitedStrong = new HashSet<Node>(nodeMapComparer);
-			var visitedWeak = new HashSet<Node>(nodeMapComparer);
+			var visitedStrong = new HashSet<Node>(LocalComparer.GetNodeMapComparer);
+			var visitedWeak = new HashSet<Node>(LocalComparer.GetNodeMapComparer);
 			while (pendingStrong.Count != 0 || pendingWeak.Count != 0)
 			{
 				while (pendingStrong.Count != 0)
@@ -142,4 +117,60 @@ public static class ChainingDriver
 			}
 		}
 	}
+}
+
+/// <summary>
+/// The file-local comparer generator, lazily initialized.
+/// </summary>
+file static class LocalComparer
+{
+	/// <summary>
+	/// Indicates the backing field of chain pattern comparer instance.
+	/// </summary>
+	private static IEqualityComparer<ChainPattern>? _chainPatternComparer;
+
+	/// <summary>
+	/// Indicates the backing field of node map comparer instance.
+	/// </summary>
+	private static IEqualityComparer<Node>? _nodeComparer;
+
+
+	/// <summary>
+	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="ChainPattern"/> on equality comparison
+	/// in order to filter duplicate chains.
+	/// </summary>
+	/// <returns>An <see cref="EqualityComparer{T}"/> instance.</returns>
+	public static IEqualityComparer<ChainPattern> GetChainPatternComparer
+		=> _chainPatternComparer ??= EqualityComparer<ChainPattern>.Create(
+			static (left, right) => (left, right) switch
+			{
+				(null, null) => true,
+				(Chain a, Chain b) => a.Equals(b),
+				(Loop a, Loop b) => a.Equals(b),
+				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected),
+				_ => false
+			},
+			static obj => obj switch
+			{
+				Chain c => c.GetHashCode(),
+				Loop l => l.GetHashCode(),
+				_ => obj.GetHashCode(NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected)
+			}
+		);
+
+	/// <summary>
+	/// Creates an instance of type <see cref="EqualityComparer{T}"/> of <see cref="Node"/> on equality comparison
+	/// in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
+	/// </summary>
+	/// <returns>An <see cref="EqualityComparer{T}"/> instance.</returns>
+	public static IEqualityComparer<Node> GetNodeMapComparer
+		=> _nodeComparer ??= EqualityComparer<Node>.Create(
+			static (left, right) => (left, right) switch
+			{
+				(not null, not null) => left.Equals(right, NodeComparison.IgnoreIsOn),
+				(null, null) => true,
+				_ => false
+			},
+			static obj => obj.GetHashCode(NodeComparison.IgnoreIsOn)
+		);
 }

@@ -11,6 +11,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	"StepSearcherName_NonMultipleChainingStepSearcher",
 	Technique.XChain, Technique.YChain, Technique.AlternatingInferenceChain, Technique.ContinuousNiceLoop, Technique.DiscontinuousNiceLoop,
 	Technique.XyXChain, Technique.XyChain, Technique.FishyCycle, Technique.PurpleCow)]
+[Obsolete]
 public sealed partial class NonMultipleChainingStepSearcher : StepSearcher
 {
 	/// <inheritdoc/>

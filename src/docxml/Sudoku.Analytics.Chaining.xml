@@ -19,6 +19,35 @@
             </param>
             <returns>All possible <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.</returns>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.LocalComparer">
+            <summary>
+            The file-local comparer generator, lazily initialized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.LocalComparer._chainPatternComparer">
+            <summary>
+            Indicates the backing field of chain pattern comparer instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.LocalComparer._nodeComparer">
+            <summary>
+            Indicates the backing field of node map comparer instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.GetChainPatternComparer">
+            <summary>
+            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.ChainPattern"/> on equality comparison
+            in order to filter duplicate chains.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.EqualityComparer`1"/> instance.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.GetNodeMapComparer">
+            <summary>
+            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison
+            in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.EqualityComparer`1"/> instance.</returns>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
             <summary>
             Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.

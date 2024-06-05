@@ -4,6 +4,7 @@ namespace Sudoku.Concepts.ObjectModel;
 /// Defines a list of <see cref="ChainNode"/> using doubly linked list as the backing algorithm.
 /// </summary>
 /// <seealso cref="ChainNode"/>
+[Obsolete]
 public sealed class NodeList : LinkedList<ChainNode>
 {
 	/// <summary>

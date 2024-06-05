@@ -9,6 +9,7 @@ namespace Sudoku.Analytics.Steps;
 /// <param name="target">Indicates the target of the chain. This value can be used for constructing a whole chain.</param>
 /// <param name="isX"><inheritdoc/></param>
 /// <param name="isY"><inheritdoc/></param>
+[Obsolete]
 public sealed partial class ForcingChainStep(
 	Conclusion[] conclusions,
 	View[]? views,
