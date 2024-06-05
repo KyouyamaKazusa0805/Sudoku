@@ -683,10 +683,8 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 					visitedEven |= 1 << house;
 				}
 			}
-
 			isOdd = !isOdd;
 		}
-
 		return visitedEven == visitedOdd;
 	}
 
@@ -710,7 +708,6 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 				)
 			);
 		}
-
 		return result;
 	}
 
