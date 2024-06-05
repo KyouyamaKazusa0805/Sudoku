@@ -3404,4 +3404,7 @@
   <data name="Factor_ChainLengthFactor" xml:space="preserve">
     <value>长度</value>
   </data>
+  <data name="Factor_ChainGroupedFactor" xml:space="preserve">
+    <value>链带区块</value>
+  </data>
 </root>

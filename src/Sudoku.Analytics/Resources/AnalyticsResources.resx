@@ -3228,4 +3228,7 @@ Error grid: '{0:#}'</value>
   <data name="Factor_ChainLengthFactor" xml:space="preserve">
     <value>Length</value>
   </data>
+  <data name="Factor_ChainGroupedFactor" xml:space="preserve">
+    <value>Grouped chaining</value>
+  </data>
 </root>

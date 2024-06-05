@@ -4129,6 +4129,9 @@
             <param name="selector">The selector.</param>
             <returns>An array of <typeparamref name="TResult" /> elements.</returns>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,System.Int32,``1})">
+            <inheritdoc cref="M:System.Linq.SpanEnumerable.Select``2(System.ReadOnlySpan{``0},System.Func{``0,``1})"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.SelectMany``3(System.ReadOnlySpan{``0},System.Func{``0,``1[]},System.Func{``0,``1,``2})">
             <inheritdoc cref="M:System.Linq.ArrayEnumerable.SelectMany``3(``0[],System.Func{``0,``1[]},System.Func{``0,``1,``2})"/>
         </member>

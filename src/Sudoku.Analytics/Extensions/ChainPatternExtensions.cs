@@ -7,56 +7,6 @@ namespace Sudoku.Analytics.Chaining;
 public static class ChainPatternExtensions
 {
 	/// <summary>
-	/// Indicates the sort key dictionary.
-	/// </summary>
-	private static readonly Dictionary<Technique, byte> SortKeyDictionary = new()
-	{
-		// 3-chain
-		{ Technique.Skyscraper, 1 },
-		{ Technique.TwoStringKite, 2 },
-		{ Technique.TurbotFish, 3 },
-		{ Technique.GroupedSkyscraper, 4 },
-		{ Technique.GroupedTwoStringKite, 5 },
-		{ Technique.GroupedTurbotFish, 6 },
-
-		// 5-chain
-		{ Technique.WWing, 101 },
-		{ Technique.MWing, 102 },
-		{ Technique.SWing, 103 },
-		{ Technique.LWing, 104 },
-		{ Technique.HWing, 105 },
-		{ Technique.PurpleCow, 106 },
-		{ Technique.GroupedWWing, 107 },
-		{ Technique.GroupedMWing, 108 },
-		{ Technique.GroupedSWing, 109 },
-		{ Technique.GroupedLWing, 110 },
-		{ Technique.GroupedHWing, 111 },
-		{ Technique.GroupedPurpleCow, 112 },
-
-		// Others
-		{ Technique.FishyCycle, 201 },
-		{ Technique.XyCycle, 202 },
-		{ Technique.ContinuousNiceLoop, 203 },
-		{ Technique.XChain, 204 },
-		{ Technique.XyChain, 205 },
-		{ Technique.XyChain, 206 },
-		{ Technique.SelfConstraint, 207 },
-		{ Technique.AlternatingInferenceChain, 209 },
-		{ Technique.DiscontinuousNiceLoop, 210 },
-		{ Technique.GroupedFishyCycle, 211 },
-		{ Technique.GroupedXyCycle, 212 },
-		{ Technique.GroupedContinuousNiceLoop, 213 },
-		{ Technique.GroupedXChain, 214 },
-		{ Technique.GroupedXyChain, 215 },
-		{ Technique.GroupedXyChain, 216 },
-		{ Technique.GroupedSelfConstraint, 217 },
-		{ Technique.NodeCollision, 218 },
-		{ Technique.GroupedAlternatingInferenceChain, 219 },
-		{ Technique.GroupedDiscontinuousNiceLoop, 220 },
-	};
-
-
-	/// <summary>
 	/// Try to categorize the pattern and return an equivalent <see cref="Technique"/> field representing such patterns.
 	/// </summary>
 	/// <param name="this">The pattern to be checked.</param>
@@ -138,24 +88,4 @@ public static class ChainPatternExtensions
 				_ => isGrouped ? Technique.GroupedContinuousNiceLoop : Technique.ContinuousNiceLoop
 			}
 		};
-
-	/// <summary>
-	/// Try to get sort key of the pattern.
-	/// </summary>
-	/// <param name="this">The pattern.</param>
-	/// <param name="grid">Indicates the grid to be used.</param>
-	/// <returns>The pattern sort key.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static byte GetSortKey(this ChainPattern @this, scoped ref readonly Grid grid)
-		=> @this.GetSortKey(@this.GetConclusions(in grid));
-
-	/// <summary>
-	/// Try to get sort key of the pattern.
-	/// </summary>
-	/// <param name="this">The pattern.</param>
-	/// <param name="conclusions">Indicates conclusions to be used.</param>
-	/// <returns>The pattern sort key.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	internal static byte GetSortKey(this ChainPattern @this, ConclusionSet conclusions)
-		=> SortKeyDictionary[@this.GetTechnique(conclusions)];
 }

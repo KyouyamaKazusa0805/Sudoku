@@ -177,6 +177,28 @@ public abstract partial class ChainPattern :
 	/// </exception>
 	public abstract bool Equals([NotNullWhen(true)] ChainPattern? other, NodeComparison nodeComparison, ChainPatternComparison patternComparison);
 
+	/// <summary>
+	/// Determines whether the current pattern (nodes) overlap with a list of conclusions,
+	/// meaning at least one conclusion is used by a node appeared in the pattern.
+	/// If so, the chain or loop will become a cannibalistic one.
+	/// </summary>
+	/// <param name="conclusions">The conclusions to be checked.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool OverlapsWithConclusions(ConclusionSet conclusions)
+	{
+		foreach (var conclusion in conclusions)
+		{
+			foreach (var node in ValidNodes)
+			{
+				if (node.Map.Contains(conclusion.Candidate))
+				{
+					return true;
+				}
+			}
+		}
+		return false;
+	}
+
 	/// <inheritdoc cref="object.GetHashCode"/>
 	/// <remarks>
 	/// This method directly calls <see cref="GetHashCode(NodeComparison, ChainPatternComparison)"/>

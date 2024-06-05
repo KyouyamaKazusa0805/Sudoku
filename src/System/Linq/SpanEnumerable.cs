@@ -328,6 +328,18 @@ public static class SpanEnumerable
 		return result;
 	}
 
+	/// <inheritdoc cref="Select{T, TResult}(ReadOnlySpan{T}, Func{T, TResult})"/>
+	public static ReadOnlySpan<TResult> Select<T, TResult>(this scoped ReadOnlySpan<T> @this, Func<T, int, TResult> selector)
+	{
+		var result = new TResult[@this.Length];
+		var i = 0;
+		foreach (var element in @this)
+		{
+			result[i++] = selector(element, i);
+		}
+		return result;
+	}
+
 	/// <inheritdoc cref="ArrayEnumerable.SelectMany{TSource, TCollection, TResult}(TSource[], Func{TSource, TCollection[]}, Func{TSource, TCollection, TResult})"/>
 	public static ReadOnlySpan<TResult> SelectMany<TSource, TCollection, TResult>(
 		this scoped ReadOnlySpan<TSource> source,

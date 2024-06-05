@@ -65,7 +65,13 @@ public sealed partial class ChainStepSearcher : StepSearcher
 				[.. conclusions],
 				[
 					[
-						.. GetCandidateNodes(foundChain),
+						..
+						foundChain[..].Select(
+							static (node, i) => new CandidateViewNode(
+								(i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal,
+								node.Map[0]
+							)
+						),
 						..
 						from link in foundChain.Links
 						let node1 = link.FirstNode
@@ -80,26 +86,8 @@ public sealed partial class ChainStepSearcher : StepSearcher
 			{
 				return step;
 			}
-
 			context.Accumulator.Add(step);
 		}
-
 		return null;
-	}
-
-	/// <summary>
-	/// Collects for <see cref="CandidateViewNode"/> instances from the specified <see cref="ChainPattern"/> instance.
-	/// </summary>
-	/// <param name="pattern">A <see cref="ChainPattern"/> instance.</param>
-	/// <returns>The final node.</returns>
-	private ReadOnlySpan<CandidateViewNode> GetCandidateNodes(ChainPattern pattern)
-	{
-		var result = new List<CandidateViewNode>();
-		for (var i = 0; i < pattern.Length; i++)
-		{
-			var node = pattern[i];
-			result.Add(new((i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal, node.Map[0]));
-		}
-		return result.AsReadOnlySpan();
 	}
 }

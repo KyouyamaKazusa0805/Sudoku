@@ -381,6 +381,15 @@
             Throws when the argument <paramref name="patternComparison"/> is not defined.
             </exception>
         </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.OverlapsWithConclusions(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Determines whether the current pattern (nodes) overlap with a list of conclusions,
+            meaning at least one conclusion is used by a node appeared in the pattern.
+            If so, the chain or loop will become a cannibalistic one.
+            </summary>
+            <param name="conclusions">The conclusions to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
         <member name="M:Sudoku.Concepts.ChainPattern.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
             <remarks>

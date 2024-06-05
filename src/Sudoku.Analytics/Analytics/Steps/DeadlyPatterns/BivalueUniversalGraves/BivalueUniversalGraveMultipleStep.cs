@@ -17,9 +17,7 @@ public sealed partial class BivalueUniversalGraveMultipleStep(
 	/// <inheritdoc/>
 	public override int Type => 5;
 
-	/// <summary>
-	/// <inheritdoc cref="Step.EnglishName" path="/summary"/>
-	/// </summary>
+	/// <inheritdoc/>
 	public override string EnglishName => $"{base.EnglishName[..^4]} + {TrueCandidates.Count}";
 
 	/// <inheritdoc/>
