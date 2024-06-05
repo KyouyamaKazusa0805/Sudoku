@@ -76,15 +76,37 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 			return false;
 		}
 
+		if (other.FindIndex(node => node.Equals(this[0], nodeComparison)) is not (var secondNodeStartIndex and not -1))
+		{
+			return false;
+		}
+
+		// Find two loops with the same node as the start.
+		// If found, we should align them as start nodes to iterate; otherwise, they are not same chain.
+		// Just check elements one by one.
 		switch (chainComparison)
 		{
 			case ChainPatternComparison.Undirected:
 			{
-				if (_nodes[0].Equals(other._nodes[0], nodeComparison))
+				// Check the second node.
+				var previousNode = other[(secondNodeStartIndex - 1 + Length) % Length];
+				var nextNode = other[(secondNodeStartIndex + 1) % Length];
+				if (this[1].Equals(previousNode, nodeComparison))
 				{
-					for (var i = 0; i < Length; i++)
+					for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i--, pos = (pos - 1 + Length) % Length)
 					{
-						if (!_nodes[i].Equals(other._nodes[i], nodeComparison))
+						if (!this[i].Equals(other[pos], nodeComparison))
+						{
+							return false;
+						}
+					}
+					return true;
+				}
+				else if (this[1].Equals(nextNode, nodeComparison))
+				{
+					for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos + 1) % Length)
+					{
+						if (!this[i].Equals(other[pos], nodeComparison))
 						{
 							return false;
 						}
@@ -93,21 +115,15 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 				}
 				else
 				{
-					for (var (i, j) = (0, Length - 1); i < Length; i++, j--)
-					{
-						if (!_nodes[i].Equals(other._nodes[j], nodeComparison))
-						{
-							return false;
-						}
-					}
-					return true;
+					// Both directions won't encounter the same-value node.
+					return false;
 				}
 			}
 			case ChainPatternComparison.Directed:
 			{
-				for (var i = 0; i < Length; i++)
+				for (var (i, pos) = (0, secondNodeStartIndex); i < Length; i++, pos = (pos + 1) % Length)
 				{
-					if (!_nodes[i].Equals(other._nodes[i], nodeComparison))
+					if (!this[i].Equals(other[pos], nodeComparison))
 					{
 						return false;
 					}
