@@ -111,13 +111,16 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 		{
 			if (element is
 				{
-					IsStrong: false, // The strong links may not contain extra eliminations.
-					GroupedLinkPattern: AlmostLockedSet { House: var alsHouse, Cells: var alsCells, DigitsMask: var digitsMask }
+					IsStrong: true,
+					FirstNode.Map.Digits: var digitsMask1,
+					SecondNode.Map.Digits: var digitsMask2,
+					GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells) { House: var alsHouse }
 				})
 			{
+				var elimDigitsMask = (Mask)(digitsMask & (Mask)~(Mask)(digitsMask1 | digitsMask2));
 				foreach (var cell in HousesMap[alsHouse] & EmptyCells & ~alsCells)
 				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & digitsMask))
+					foreach (var digit in (Mask)(grid.GetCandidates(cell) & elimDigitsMask))
 					{
 						result.Add(new Conclusion(Elimination, cell, digit));
 					}

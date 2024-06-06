@@ -26,7 +26,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 			{
 				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
 				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
-				pool.TryGetValue(new(_nodes[i], _nodes[(i + 1) % _nodes.Length], false), out var pattern);
+				pool.TryGetValue(new(_nodes[i], _nodes[(i + 1) % _nodes.Length], isStrong), out var pattern);
 				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], isStrong, pattern);
 			}
 			return result;
@@ -303,9 +303,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 		var result = new ConclusionSet();
 		for (var i = 0; i < Length; i += 2)
 		{
-			var node1 = _nodes[i];
-			var node2 = _nodes[i == Length ? 0 : i + 1];
-			foreach (var conclusion in GetConclusions(in grid, node1, node2))
+			foreach (var conclusion in GetConclusions(in grid, _nodes[i], _nodes[(i + 1) % Length]))
 			{
 				result.Add(conclusion);
 			}

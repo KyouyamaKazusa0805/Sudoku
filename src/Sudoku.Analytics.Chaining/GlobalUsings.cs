@@ -15,3 +15,4 @@ global using Sudoku.Drawing;
 global using Sudoku.Linq;
 global using static System.Numerics.BitOperations;
 global using static Sudoku.Concepts.ConclusionType;
+global using static Sudoku.SolutionFields;
