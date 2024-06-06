@@ -9,18 +9,6 @@
     <Platform Name="x64" />
     <Platform Name="x86" />
   </Configurations>
-  <Folder Name="/C++ Projects/">
-    <Project Path="src\Gsf.MinLex\Gsf.MinLex.vcxproj">
-      <Configuration Solution="*|ARM" Project="*|x64" />
-      <Configuration Solution="*|ARM64" Project="*|x64" />
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Jcz.Solve\Jcz.Solve.vcxproj">
-      <Configuration Solution="*|ARM" Project="*|x64" />
-      <Configuration Solution="*|ARM64" Project="*|x64" />
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-  </Folder>
   <Folder Name="/Global Items/">
     <File Path="README-zh-cn.md" />
     <File Path="README.md" />
