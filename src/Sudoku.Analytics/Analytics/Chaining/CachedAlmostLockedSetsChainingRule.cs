@@ -9,16 +9,9 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
 	{
-		// Collect ALSes appeared in the current grid.
 		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
 		{
-			if (als is not
-				{
-					IsBivalueCell: false,
-					Cells: var cells,
-					StrongLinks: var strongLinks,
-					House: var house
-				})
+			if (als is not (_, var cells) { IsBivalueCell: false, StrongLinks: var strongLinks, House: var house })
 			{
 				// This ALS is special case - it only uses 2 digits in a cell.
 				// This will be handled as a normal bi-value strong link (Y rule).
@@ -40,8 +33,8 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 
 				var digit1 = TrailingZeroCount(digitsPair);
 				var digit2 = digitsPair.GetNextSet(digit1);
-				var node1Cells = HousesMap[house] & CandidatesMap[digit1];
-				var node2Cells = HousesMap[house] & CandidatesMap[digit2];
+				var node1Cells = HousesMap[house] & cells & CandidatesMap[digit1];
+				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in node1Cells, digit1), false, in node1ExtraMap);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, in node2ExtraMap);
 				linkDictionary.AddEntry(node1, node2, true, als);
@@ -52,7 +45,31 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
 	{
-		// A valid ALS doesn't contain any weak links.
+		foreach (var als in AlmostLockedSetsModule.CollectAlmostLockedSets(in grid))
+		{
+			if (als is not (var digitsMask, var cells) { IsBivalueCell: false, House: var house })
+			{
+				continue;
+			}
+
+			foreach (var digit in digitsMask)
+			{
+				var cells1 = HousesMap[house] & cells;
+				var possibleCells2 = HousesMap[house] & CandidatesMap[digit] & ~cells;
+				if (!possibleCells2)
+				{
+					// Cannot link to the other node.
+					continue;
+				}
+
+				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
+				foreach (var cells2 in possibleCells2 | possibleCells2.Count)
+				{
+					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
+					linkDictionary.AddEntry(node1, node2, false, als);
+				}
+			}
+		}
 	}
 
 	/// <inheritdoc/>
