@@ -92,7 +92,7 @@ public sealed partial class Node(
 	/// <param name="base">The data provider.</param>
 	/// <param name="parent">The parent node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Node @base, Node? parent) : this(in @base._map, @base.IsOn) => Parent = parent;
+	public Node(Node @base, Node? parent) : this(in @base._map, @base.IsOn, in @base._extraMap) => Parent = parent;
 
 	/// <summary>
 	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
@@ -101,7 +101,7 @@ public sealed partial class Node(
 	/// <param name="base">The data provider.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Node(Node @base, bool isOn) : this(in @base._map, isOn) => Parent = @base.Parent;
+	private Node(Node @base, bool isOn) : this(in @base._map, isOn, in @base._extraMap) => Parent = @base.Parent;
 
 
 	/// <summary>

@@ -53,7 +53,7 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 		Array.Copy(newNodes, _nodes, _nodes.Length);
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Loop? other)
 		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);

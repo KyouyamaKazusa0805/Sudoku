@@ -135,7 +135,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 		Array.Copy(newNodes, _nodes, _nodes.Length);
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IEquatable{T}.Equals(T)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals([NotNullWhen(true)] Chain? other)
 		=> Equals(other, NodeComparison.IgnoreIsOn, ChainPatternComparison.Undirected);

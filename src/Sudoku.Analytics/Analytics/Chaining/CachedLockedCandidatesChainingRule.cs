@@ -38,39 +38,28 @@ internal sealed class CachedLockedCandidatesChainingRule : ChainingRule
 		{
 			for (var digit = 0; digit < 9; digit++)
 			{
-				if ((HousesMap[house] & CandidatesMap[digit]) is not
-					{
-						Count: > 2,
-						BlockMask: var blocks,
-						RowMask: var rows,
-						ColumnMask: var columns
-					} cells)
+				if ((HousesMap[house] & CandidatesMap[digit]) is not { Count: > 2 } cells)
 				{
 					continue;
 				}
 
-				_ = house.ToHouseType() switch
+				foreach (var cells1 in cells | cells.Count)
 				{
-					HouseType.Block when PopCount((uint)rows) >= 2 => getNodePair(rows << 9, in cells, digit),
-					HouseType.Block when PopCount((uint)columns) >= 2 => getNodePair(columns << 18, in cells, digit),
-					HouseType.Row or HouseType.Column when PopCount((uint)blocks) >= 2 => getNodePair(blocks, in cells, digit),
-					_ => default
-				};
-			}
-		}
+					var lastCellsMap = cells & ~cells1;
+					foreach (var cells2 in lastCellsMap | lastCellsMap.Count)
+					{
+						if (cells1.Count == 1 && cells2.Count == 1)
+						{
+							// Skip for the case that both nodes only contain 1 cell.
+							continue;
+						}
 
-
-		byte getNodePair(HouseMask houseMask, ref readonly CellMap cells, Digit digit)
-		{
-			foreach (var combination in houseMask.GetAllSets().GetSubsets(2))
-			{
-				var cells1 = cells & HousesMap[combination[0]];
-				var cells2 = cells & HousesMap[combination[1]];
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
-				linkDictionary.AddEntry(node1, node2);
+						var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
+						var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
+						linkDictionary.AddEntry(node1, node2);
+					}
+				}
 			}
-			return default;
 		}
 	}
 }

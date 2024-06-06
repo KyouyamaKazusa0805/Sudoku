@@ -88,9 +88,9 @@
             <param name="linkDictionary">The collection of strong links, grouped by its node.</param>
             <remarks>
             Consider adding values from both entries if a link is found.
-            The method call <see cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Object)"/> is helpful.
+            The method call <see cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/> is helpful.
             </remarks>
-            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Object)"/>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <summary>
@@ -102,7 +102,7 @@
             <remarks>
             <inheritdoc cref="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)" path="/remarks"/>
             </remarks>
-            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Object)"/>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/>
         </member>
         <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
             <summary>
@@ -210,7 +210,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <inheritdoc cref="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
@@ -695,12 +695,13 @@
             Indicates the pool of grouped links and its corresponding pattern.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Object)">
+        <member name="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)">
             <summary>
             Add a link to the current collection with both entries on nodes of the link used.
             </summary>
             <param name="node1">Indicates the first node to be added.</param>
             <param name="node2">Indicates the second node to be added.</param>
+            <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
             <param name="pattern">The advanced pattern to be used.</param>
         </member>
         <member name="T:Sudoku.Concepts.LinkType">
@@ -795,7 +796,7 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
         <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
             <summary>

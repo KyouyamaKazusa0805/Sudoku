@@ -16,7 +16,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				{
 					IsBivalueCell: false,
 					Cells: var cells,
-					StrongLinks: { Length: >= 2 } strongLinks,
+					StrongLinks: var strongLinks,
 					House: var house
 				})
 			{
@@ -44,7 +44,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var node2Cells = HousesMap[house] & CandidatesMap[digit2];
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in node1Cells, digit1), false, in node1ExtraMap);
 				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, in node2ExtraMap);
-				linkDictionary.AddEntry(node1, node2, als);
+				linkDictionary.AddEntry(node1, node2, true, als);
 			}
 		}
 	}

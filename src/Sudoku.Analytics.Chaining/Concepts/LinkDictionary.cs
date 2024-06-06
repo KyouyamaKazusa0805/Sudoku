@@ -33,9 +33,10 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 	/// </summary>
 	/// <param name="node1">Indicates the first node to be added.</param>
 	/// <param name="node2">Indicates the second node to be added.</param>
+	/// <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
 	/// <param name="pattern">The advanced pattern to be used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddEntry(Node node1, Node node2, object? pattern = null)
+	public void AddEntry(Node node1, Node node2, bool isStrong = false, object? pattern = null)
 	{
 		if (!TryAdd(node1, [node2]))
 		{
@@ -49,7 +50,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 		{
 			// Add pattern into pool.
 			// We may not add its reversed version because the pool dictionary is compared under undirected rule.
-			_groupedLinkPool.TryAdd(new(node1, node2, false), pattern);
+			_groupedLinkPool.TryAdd(new(node1, node2, isStrong), pattern);
 		}
 
 		var (node3, node4) = (~node1, ~node2);
@@ -63,7 +64,7 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 		}
 		if (pattern is not null)
 		{
-			_groupedLinkPool.TryAdd(new(node3, node4, false), pattern);
+			_groupedLinkPool.TryAdd(new(node3, node4, isStrong), pattern);
 		}
 	}
 }

@@ -14,9 +14,9 @@ public abstract class ChainingRule
 	/// <param name="linkDictionary">The collection of strong links, grouped by its node.</param>
 	/// <remarks>
 	/// Consider adding values from both entries if a link is found.
-	/// The method call <see cref="LinkDictionary.AddEntry(Node, Node, object?)"/> is helpful.
+	/// The method call <see cref="LinkDictionary.AddEntry(Node, Node, bool, object?)"/> is helpful.
 	/// </remarks>
-	/// <seealso cref="LinkDictionary.AddEntry(Node, Node, object?)"/>
+	/// <seealso cref="LinkDictionary.AddEntry(Node, Node, bool, object?)"/>
 	public abstract void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary);
 
 	/// <summary>
@@ -28,7 +28,7 @@ public abstract class ChainingRule
 	/// <remarks>
 	/// <inheritdoc cref="CollectStrongLinks(ref readonly Grid, LinkDictionary)" path="/remarks"/>
 	/// </remarks>
-	/// <seealso cref="LinkDictionary.AddEntry(Node, Node, object?)"/>
+	/// <seealso cref="LinkDictionary.AddEntry(Node, Node, bool, object?)"/>
 	public abstract void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary);
 
 	/// <summary>
