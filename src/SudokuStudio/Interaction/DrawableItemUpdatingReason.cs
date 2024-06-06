@@ -44,15 +44,15 @@ public enum DrawableItemUpdatingReason
 	HighlightBackgroundOpacity,
 
 	/// <summary>
-	/// Indicates the updating items are <see cref="LinkViewNode"/>s.
+	/// Indicates the updating items are <see cref="ChainLinkViewNode"/>s.
 	/// </summary>
-	/// <seealso cref="LinkViewNode"/>
+	/// <seealso cref="ChainLinkViewNode"/>
 	Link,
 
 	/// <summary>
-	/// Indicates the updating items are <see cref="LinkViewNode"/>s, changing their dash styles.
+	/// Indicates the updating items are <see cref="ChainLinkViewNode"/>s, changing their dash styles.
 	/// </summary>
-	/// <seealso cref="LinkViewNode"/>
+	/// <seealso cref="ChainLinkViewNode"/>
 	StrongLinkDashStyle,
 
 	/// <inheritdoc cref="StrongLinkDashStyle"/>
@@ -65,9 +65,9 @@ public enum DrawableItemUpdatingReason
 	OtherLinkDashStyle,
 
 	/// <summary>
-	/// Indicates the updating items are <see cref="LinkViewNode"/>, changing their stroke thickness.
+	/// Indicates the updating items are <see cref="ChainLinkViewNode"/>, changing their stroke thickness.
 	/// </summary>
-	/// <seealso cref="LinkViewNode"/>
+	/// <seealso cref="ChainLinkViewNode"/>
 	LinkStrokeThickness,
 
 	/// <summary>

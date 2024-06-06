@@ -810,29 +810,30 @@ public sealed partial class AnalyzePage : Page
 				}
 				else
 				{
-					var lt1 = new LockedTarget(candidate1 % 9, [candidate1 / 9]);
-					var lt2 = new LockedTarget(candidate2 % 9, [candidate2 / 9]);
-					view.View.Add(new LinkViewNode(default!, lt1, lt2, LinkKind)); // Link nodes don't use identifier to display colors.
+					view.View.Add(
+						new ChainLinkViewNode(
+							ColorIdentifier.Normal,
+							candidate1.AsCandidateMap(),
+							candidate2.AsCandidateMap(),
+							LinkKind == Inference.Strong
+						)
+					);
 				}
-
 				UpdateViewUnit();
-
 				break;
 
 
 				bool predicate(ViewNode element)
 					=> element switch
 					{
-						LinkViewNode { Start.Cells: [var c1], End.Cells: [var c2], Inference: Inference.Default }
-							=> c1 == cell1 && c2 == cell2 || c2 == cell1 && c1 == cell2,
-						LinkViewNode { Start: { Cells: [var c1], Digit: var d1 }, End: { Cells: [var c2], Digit: var d2 } }
+						ChainLinkViewNode { Start: [var startCandidate], End: [var endCandidate] }
+						when (startCandidate / 9, startCandidate % 9, endCandidate / 9, endCandidate % 9) is var (c1, d1, c2, d2)
 							=> c1 == cell1 && c2 == cell2 && d1 == digit1 && d2 == digit2
 							|| c2 == cell1 && c1 == cell2 && d2 == digit1 && d1 == digit2,
 						_ => false
 					};
 			}
 		}
-
 		return true;
 	}
 

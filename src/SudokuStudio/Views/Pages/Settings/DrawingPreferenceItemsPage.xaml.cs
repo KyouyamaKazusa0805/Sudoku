@@ -38,10 +38,10 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 			new CandidateViewNode(ColorIdentifier.Auxiliary1, 46 * 9 + 5),
 			new CandidateViewNode(ColorIdentifier.Normal, 35 * 9 + 3),
 			new CandidateViewNode(ColorIdentifier.Auxiliary1, 34 * 9 + 3),
-			new LinkViewNode(ColorIdentifier.Normal, new(2, [36]), new(2, [37]), Inference.Strong),
-			new LinkViewNode(ColorIdentifier.Normal, new(6, [44]), new(6, [43]), Inference.Strong),
-			new LinkViewNode(ColorIdentifier.Normal, new(5, [45]), new(5, [46]), Inference.Weak),
-			new LinkViewNode(ColorIdentifier.Normal, new(3, [35]), new(3, [34]), Inference.Weak)
+			new ChainLinkViewNode(ColorIdentifier.Normal, [36 * 9 + 2], [37 * 9 + 2], true),
+			new ChainLinkViewNode(ColorIdentifier.Normal, [44 * 9 + 6], [43 * 9 + 6], true),
+			new ChainLinkViewNode(ColorIdentifier.Normal, [45 * 9 + 5], [46 * 9 + 5], false),
+			new ChainLinkViewNode(ColorIdentifier.Normal, [35 * 9 + 3], [34 * 9 + 3], false)
 		],
 		Conclusions = [new(Assignment, 1, 8), new(Assignment, 79, 0), new(Elimination, 0, 8), new(Elimination, 80, 0)]
 	};

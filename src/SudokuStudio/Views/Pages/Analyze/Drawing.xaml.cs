@@ -58,7 +58,7 @@ public sealed partial class Drawing : Page, IAnalyzerTab
 				DrawingMode.House => node is HouseViewNode,
 				DrawingMode.Chute => node is ChuteViewNode,
 				DrawingMode.BabaGrouping => node is BabaGroupViewNode,
-				DrawingMode.Link => node is LinkViewNode
+				DrawingMode.Link => node is ChainLinkViewNode
 			}
 		);
 

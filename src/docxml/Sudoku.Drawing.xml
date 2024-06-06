@@ -580,59 +580,6 @@
         <member name="M:Sudoku.Drawing.Nodes.IconViewNode.ToString">
             <inheritdoc cref="M:System.Object.ToString"/>
         </member>
-        <member name="T:Sudoku.Drawing.Nodes.LinkViewNode">
-            <summary>
-            Defines a view node that highlights for a link.
-            </summary>
-            <param name="identifier"><inheritdoc/></param>
-            <param name="start">Indicates the start point.</param>
-            <param name="end">Indicates the end point.</param>
-            <param name="inference">Indicates the inference type.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.LockedTarget,Sudoku.Concepts.LockedTarget,Sudoku.Concepts.Inference)">
-            <summary>
-            Defines a view node that highlights for a link.
-            </summary>
-            <param name="identifier"><inheritdoc/></param>
-            <param name="start">Indicates the start point.</param>
-            <param name="end">Indicates the end point.</param>
-            <param name="inference">Indicates the inference type.</param>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.Deconstruct(Sudoku.Drawing.ColorIdentifier@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.LockedTarget@,Sudoku.Concepts.Inference@)">
-            <target name="method">
-				<summary>
-					Deconstruct the current instance into multiple values, which means you can use
-					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
-				</summary>
-			</target>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.Equals(Sudoku.Drawing.ViewNode)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.Clone">
-            <inheritdoc/>
-        </member>
-        <member name="P:Sudoku.Drawing.Nodes.LinkViewNode.Start">
-            <summary>
-            The generated property declaration for parameter <c>start</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.Nodes.LinkViewNode.End">
-            <summary>
-            The generated property declaration for parameter <c>end</c>.
-            </summary>
-        </member>
-        <member name="P:Sudoku.Drawing.Nodes.LinkViewNode.Inference">
-            <summary>
-            The generated property declaration for parameter <c>inference</c>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.GetHashCode">
-            <inheritdoc cref="M:System.Object.GetHashCode"/>
-        </member>
-        <member name="M:Sudoku.Drawing.Nodes.LinkViewNode.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="T:Sudoku.Drawing.Nodes.SquareViewNode">
             <summary>
             Defines a square view node.

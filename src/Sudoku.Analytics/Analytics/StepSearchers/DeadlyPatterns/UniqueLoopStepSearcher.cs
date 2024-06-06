@@ -692,19 +692,19 @@ public sealed partial class UniqueLoopStepSearcher : StepSearcher
 	/// Gets all possible links of the loop.
 	/// </summary>
 	/// <param name="path">The loop, specified as its path.</param>
-	/// <returns>A list of <see cref="LinkViewNode"/> instances.</returns>
-	private static List<LinkViewNode> GetLoopLinks(Cell[] path)
+	/// <returns>A list of <see cref="ChainLinkViewNode"/> instances.</returns>
+	private static List<ChainLinkViewNode> GetLoopLinks(Cell[] path)
 	{
 		const Digit digit = 4;
-		var result = new List<LinkViewNode>();
+		var result = new List<ChainLinkViewNode>();
 		for (var i = 0; i < path.Length; i++)
 		{
 			result.Add(
 				new(
 					ColorIdentifier.Normal,
-					new(digit, [path[i]]),
-					new(digit, [path[i + 1 == path.Length ? 0 : i + 1]]),
-					Inference.ConjugatePair
+					(path[i] * 9 + digit).AsCandidateMap(),
+					(path[i + 1 == path.Length ? 0 : i + 1] * 9 + digit).AsCandidateMap(),
+					true
 				)
 			);
 		}

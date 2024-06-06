@@ -144,7 +144,7 @@ public partial class GridCanvas
 	/// </summary>
 	/// <param name="nodes">The nodes to be drawn.</param>
 	/// <param name="conclusions">The conclusion to be checked.</param>
-	public partial void DrawLinkViewNodes(ReadOnlySpan<LinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
+	public partial void DrawLinkViewNodes(ReadOnlySpan<ChainLinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions)
 	{
 		// Collect all points used.
 		var (cw, ch) = _calculator.CandidateSize;
@@ -162,94 +162,79 @@ public partial class GridCanvas
 		}
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
-		using var linePen = new Pen(chainColor, 2F);
 		using var arrowPen = new Pen(chainColor, 2F) { CustomEndCap = new AdjustableArrowCap(cw / 4F, ch / 3F) };
 		foreach (var node in linkArray)
 		{
-			if (node is not { Start: var start, End: var end, Inference: var inference })
+			if (node is not { Start: var start, End: var end, IsStrongLink: var isStrong })
 			{
 				continue;
 			}
 
-			arrowPen.DashStyle = inference switch
-			{
-				Inference.Strong => DashStyle.Solid,
-				Inference.Weak => DashStyle.Dot,
-				_ => DashStyle.Dash
-			};
+			arrowPen.DashStyle = isStrong ? DashStyle.Solid : DashStyle.Dot;
 
 			_ = (_calculator.GetMouseCenter(in start), _calculator.GetMouseCenter(in end)) is (var pt1 and var (pt1x, pt1y), var pt2 and var (pt2x, pt2y));
 
-			var penToDraw = inference != Inference.Default ? arrowPen : linePen;
-			if (inference == Inference.Default)
+			// If the distance of two points is lower than the one of two adjacent candidates,
+			// the link will be emitted to draw because of too narrow.
+			var distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
+			if (distance <= cw * SqrtOf2 || distance <= ch * SqrtOf2)
 			{
-				// Draw the link.
-				_g.DrawLine(penToDraw, pt1, pt2);
+				continue;
 			}
-			else
+
+			// Check if another candidate lies in the direct line.
+			var deltaX = pt2x - pt1x;
+			var deltaY = pt2y - pt1y;
+			var alpha = Atan2(deltaY, deltaX);
+			var dx1 = deltaX;
+			var dy1 = deltaY;
+			var through = false;
+			adjust(pt1, pt2, out var p1, out _, alpha, cw);
+			foreach (var point in points)
 			{
-				// If the distance of two points is lower than the one of two adjacent candidates,
-				// the link will be emitted to draw because of too narrow.
-				var distance = Sqrt((pt1x - pt2x) * (pt1x - pt2x) + (pt1y - pt2y) * (pt1y - pt2y));
-				if (distance <= cw * SqrtOf2 || distance <= ch * SqrtOf2)
+				if (point == pt1 || point == pt2)
 				{
+					// The point is itself.
 					continue;
 				}
 
-				// Check if another candidate lies in the direct line.
-				var deltaX = pt2x - pt1x;
-				var deltaY = pt2y - pt1y;
-				var alpha = Atan2(deltaY, deltaX);
-				var dx1 = deltaX;
-				var dy1 = deltaY;
-				var through = false;
-				adjust(pt1, pt2, out var p1, out _, alpha, cw);
-				foreach (var point in points)
+				var dx2 = point.X - p1.X;
+				var dy2 = point.Y - p1.Y;
+				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
 				{
-					if (point == pt1 || point == pt2)
-					{
-						// The point is itself.
-						continue;
-					}
-
-					var dx2 = point.X - p1.X;
-					var dy2 = point.Y - p1.Y;
-					if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-						&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-						&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1F)))
-					{
-						through = true;
-						break;
-					}
+					through = true;
+					break;
 				}
+			}
 
-				// Now cut the link.
-				cut(ref pt1, ref pt2, cw, ch, pt1x, pt1y, pt2x, pt2y);
+			// Now cut the link.
+			cut(ref pt1, ref pt2, cw, ch, pt1x, pt1y, pt2x, pt2y);
 
-				if (through)
-				{
-					var bezierLength = 20F;
+			if (through)
+			{
+				var bezierLength = 20F;
 
-					// The end points are rotated 45 degrees
-					// (counterclockwise for the start point, clockwise for the end point).
-					rotate(new(pt1x, pt1y), ref pt1, -RotateAngle);
-					rotate(new(pt2x, pt2y), ref pt2, RotateAngle);
+				// The end points are rotated 45 degrees
+				// (counterclockwise for the start point, clockwise for the end point).
+				rotate(new(pt1x, pt1y), ref pt1, -RotateAngle);
+				rotate(new(pt2x, pt2y), ref pt2, RotateAngle);
 
-					var aAlpha = alpha - RotateAngle;
-					var bx1 = pt1.X + bezierLength * Cos(aAlpha);
-					var by1 = pt1.Y + bezierLength * Sin(aAlpha);
+				var aAlpha = alpha - RotateAngle;
+				var bx1 = pt1.X + bezierLength * Cos(aAlpha);
+				var by1 = pt1.Y + bezierLength * Sin(aAlpha);
 
-					aAlpha = alpha + RotateAngle;
-					var bx2 = pt2.X - bezierLength * Cos(aAlpha);
-					var by2 = pt2.Y - bezierLength * Sin(aAlpha);
+				aAlpha = alpha + RotateAngle;
+				var bx2 = pt2.X - bezierLength * Cos(aAlpha);
+				var by2 = pt2.Y - bezierLength * Sin(aAlpha);
 
-					_g.DrawBezier(penToDraw, pt1.X, pt1.Y, bx1, by1, bx2, by2, pt2.X, pt2.Y);
-				}
-				else
-				{
-					// Draw the link.
-					_g.DrawLine(penToDraw, pt1, pt2);
-				}
+				_g.DrawBezier(arrowPen, pt1.X, pt1.Y, bx1, by1, bx2, by2, pt2.X, pt2.Y);
+			}
+			else
+			{
+				// Draw the link.
+				_g.DrawLine(arrowPen, pt1, pt2);
 			}
 		}
 

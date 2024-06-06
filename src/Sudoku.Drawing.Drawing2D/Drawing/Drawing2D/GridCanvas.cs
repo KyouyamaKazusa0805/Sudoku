@@ -260,7 +260,7 @@ public sealed partial class GridCanvas : IDisposable
 	public partial void DrawCellViewNodes(ReadOnlySpan<CellViewNode> nodes);
 	public partial void DrawCandidateViewNodes(ReadOnlySpan<CandidateViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);
 	public partial void DrawHouseViewNodes(ReadOnlySpan<HouseViewNode> nodes);
-	public partial void DrawLinkViewNodes(ReadOnlySpan<LinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);
+	public partial void DrawLinkViewNodes(ReadOnlySpan<ChainLinkViewNode> nodes, ReadOnlySpan<Conclusion> conclusions);
 	public partial void DrawChuteViewNodes(ReadOnlySpan<ChuteViewNode> nodes);
 	public partial void DrawBabaGroupingViewNodes(ReadOnlySpan<BabaGroupViewNode> nodes);
 	public partial void DrawEliminations(ReadOnlySpan<Conclusion> conclusions, ReadOnlySpan<CandidateViewNode> nodes);

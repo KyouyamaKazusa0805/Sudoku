@@ -5176,8 +5176,7 @@ public enum Technique
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(RegionForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher))]
+		Features = TechniqueFeatures.NotImplemented)]
 	RegionForcingChains,
 
 	/// <summary>
@@ -5189,8 +5188,7 @@ public enum Technique
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(CellForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher))]
+		Features = TechniqueFeatures.NotImplemented)]
 	CellForcingChains,
 
 	/// <summary>
@@ -5202,9 +5200,7 @@ public enum Technique
 		Rating = 85,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(RegionForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher),
-		Features = TechniqueFeatures.HardToBeGenerated)]
+		Features = TechniqueFeatures.NotImplemented)]
 	DynamicRegionForcingChains,
 
 	/// <summary>
@@ -5216,9 +5212,7 @@ public enum Technique
 		Rating = 85,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(CellForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher),
-		Features = TechniqueFeatures.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
 	DynamicCellForcingChains,
 
 	/// <summary>
@@ -5230,9 +5224,7 @@ public enum Technique
 		Rating = 95,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(BinaryForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher),
-		Features = TechniqueFeatures.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
 	DynamicContradictionForcingChains,
 
 	/// <summary>
@@ -5244,9 +5236,7 @@ public enum Technique
 		Rating = 95,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.ForcingChains,
-		StepType = typeof(BinaryForcingChainsStep),
-		StepSearcherType = typeof(MultipleChainingStepSearcher),
-		Features = TechniqueFeatures.HardToBeGenerated)]
+		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented)]
 	DynamicDoubleForcingChains,
 
 	/// <summary>
@@ -5270,8 +5260,6 @@ public enum Technique
 		Rating = 80,
 		DifficultyLevel = DifficultyLevel.Nightmare,
 		ContainingGroup = TechniqueGroup.BlossomLoop,
-		StepType = typeof(BlossomLoopStep),
-		StepSearcherType = typeof(BlossomLoopStepSearcher),
 		Features = TechniqueFeatures.HardToBeGenerated | TechniqueFeatures.NotImplemented,
 		Links = ["http://forum.enjoysudoku.com/blossom-loop-t42270.html"])]
 	BlossomLoop,

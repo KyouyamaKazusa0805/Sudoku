@@ -23,7 +23,6 @@ internal static partial class DrawableFactory
 		{ typeof(CellViewNode), ["cell"] },
 		{ typeof(CandidateViewNode), ["candidate"] },
 		{ typeof(HouseViewNode), ["house"] },
-		{ typeof(LinkViewNode), ["cell link", "curve segment", "arrow cap"] },
 		{ typeof(ChainLinkViewNode), ["cell link", "curve segment", "arrow cap"] },
 		{ typeof(ChuteViewNode), ["chute"] },
 		{ typeof(BabaGroupViewNode), ["baba group"] }
@@ -117,7 +116,7 @@ internal static partial class DrawableFactory
 
 	private static partial void ForBabaGroupNode(SudokuPane sudokuPane, BabaGroupViewNode babaGroupNode, AnimatedResultCollection animatedResults);
 
-	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
+	private static partial void ForLinkNodes(SudokuPane sudokuPane, ReadOnlySpan<ChainLinkViewNode> linkNodes, Conclusion[] conclusions, AnimatedResultCollection animatedResults);
 }
 
 /// <summary>
@@ -177,7 +176,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.Link"/>
 	public static bool Link(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element));
+		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element));
 
 	/// <summary>
 	/// The filter for <see cref="DrawableItemUpdatingReason.BabaGrouping"/>.
@@ -195,7 +194,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.StrongLinkDashStyle"/>
 	public static bool StrongLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(
+		=> TemplateMethod<ChainLinkViewNode>(
 			control,
 			static (s, element) => s.Contains(element) && (s.Contains(StrongInferenceSuffix) || s.Contains(StrongGeneralizedInferenceSuffix))
 		);
@@ -207,7 +206,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.WeakLinkDashStyle"/>
 	public static bool WeakLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(
+		=> TemplateMethod<ChainLinkViewNode>(
 			control,
 			static (s, element) => s.Contains(element) && (s.Contains(WeakInferenceSuffix) || s.Contains(WeakGeneralizedInferenceSuffix))
 		);
@@ -219,7 +218,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>
 	public static bool CycleLikeLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(DefaultInferenceSuffix));
+		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(DefaultInferenceSuffix));
 
 	/// <summary>
 	/// The filter for <see cref="DrawableItemUpdatingReason.OtherLinkDashStyle"/>.
@@ -228,7 +227,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.OtherLinkDashStyle"/>
 	public static bool OtherLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(ConjugateInferenceSuffix));
+		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(ConjugateInferenceSuffix));
 
 	/// <summary>
 	/// The filter for <see cref="DrawableItemUpdatingReason.LinkStrokeThickness"/>.
@@ -237,7 +236,7 @@ file static class Filters
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	/// <seealso cref="DrawableItemUpdatingReason.LinkStrokeThickness"/>
 	public static bool LinkStrokeThickness(FrameworkElement control)
-		=> TemplateMethod<LinkViewNode>(control, static (s, element) => s.Contains(element));
+		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element));
 
 	/// <summary>
 	/// The filter for colorized items (except for <see cref="ColorPalette"/>-based items).

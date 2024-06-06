@@ -149,10 +149,6 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 	/// <summary>
 	/// Indicates an <see cref="Analyzer"/> instance that only supports for techniques used in Sudoku Explainer.
 	/// </summary>
-	[Obsolete(
-		$"This field will be replaced with other step searchers. " +
-		$"This property may not be deleted but I mark [{nameof(ObsoleteAttribute)}] " +
-		$"just because it will be changed its content.")]
 	public static Analyzer SudokuExplainer
 		=> Default
 			.WithStepSearchers(
@@ -167,8 +163,7 @@ public sealed partial class Analyzer : AnalyzerOrCollector, IAnalyzer<Analyzer, 
 				new BivalueUniversalGraveStepSearcher { SearchExtendedTypes = false },
 				new AlignedExclusionStepSearcher { MaxSearchingSize = 3 },
 				new ChainStepSearcher { LinkTypes = LinkType.SingleDigit },
-				new ChainStepSearcher { LinkTypes = LinkType.SingleDigit | LinkType.SingleCell },
-				new MultipleChainingStepSearcher()
+				new ChainStepSearcher { LinkTypes = LinkType.SingleDigit | LinkType.SingleCell }
 			)
 			.WithAlgorithmLimits(false, false)
 			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true });

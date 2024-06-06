@@ -3223,9 +3223,9 @@
             </param>
             <seealso cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.ViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
+        <member name="M:SudokuStudio.Drawing.DrawableFactory.ForLinkNodes(SudokuStudio.Views.Controls.SudokuPane,System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChainLinkViewNode},Sudoku.Concepts.Conclusion[],SudokuStudio.Drawing.AnimatedResultCollection)">
             <summary>
-            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s.
+            Create <see cref="T:Microsoft.UI.Xaml.FrameworkElement"/>s that displays for <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s.
             </summary>
             <param name="sudokuPane">
             <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='sudokuPane']"/>
@@ -3238,7 +3238,7 @@
             <inheritdoc cref="M:SudokuStudio.Drawing.DrawableFactory.ForConclusion(SudokuStudio.Views.Controls.SudokuPane,Sudoku.Concepts.Conclusion,System.Collections.Generic.List{Sudoku.Concepts.Conclusion},SudokuStudio.Drawing.AnimatedResultCollection)" path="/param[@name='animatedResults']"/>
             </param>
             <remarks>
-            This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s together.
+            This method is special: We should handle all <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s together.
             </remarks>
         </member>
         <member name="T:SudokuStudio.Drawing.Filters">
@@ -3428,7 +3428,7 @@
             Indicates the square root of 2.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.ViewNode[])">
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.Nodes.ChainLinkViewNode[])">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>
@@ -4336,15 +4336,15 @@
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.Link">
             <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s.
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s.
             </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle">
             <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>s, changing their dash styles.
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>s, changing their dash styles.
             </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle">
             <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
@@ -4357,9 +4357,9 @@
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness">
             <summary>
-            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>, changing their stroke thickness.
+            Indicates the updating items are <see cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>, changing their stroke thickness.
             </summary>
-            <seealso cref="T:Sudoku.Drawing.Nodes.LinkViewNode"/>
+            <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.BabaGrouping">
             <summary>
