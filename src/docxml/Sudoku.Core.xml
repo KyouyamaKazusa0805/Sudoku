@@ -5068,26 +5068,6 @@
             Indicates the inference is weak inference.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Inference.StrongGeneralized">
-            <summary>
-            Indicates the inference is strong inference that is generalized.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Inference.WeakGeneralized">
-            <summary>
-            Indicates the inference is weak inference that is generalized.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Inference.ConjugatePair">
-            <summary>
-            Indicates the inference is conjugate pair.
-            </summary>
-        </member>
-        <member name="F:Sudoku.Concepts.Inference.Default">
-            <summary>
-            Indicates the inference is the default case that doesn't belong to above.
-            </summary>
-        </member>
         <member name="T:Sudoku.Concepts.Intersection">
             <summary>
             Represents a pair of intersection information.

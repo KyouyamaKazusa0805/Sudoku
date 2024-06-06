@@ -45,11 +45,7 @@ internal static class DrawableItemIdentifiers
 	/// </summary>
 	public const string
 		StrongInferenceSuffix = "|is|",
-		StrongGeneralizedInferenceSuffix = "|isg|",
-		WeakInferenceSuffix = "|iw|",
-		WeakGeneralizedInferenceSuffix = "|iwg|",
-		ConjugateInferenceSuffix = "|ic|",
-		DefaultInferenceSuffix = "|id|";
+		WeakInferenceSuffix = "|iw|";
 
 	/// <summary>
 	/// The colorized suffixes.

@@ -18,22 +18,8 @@ internal static class ChainModule
 		var supportedRules = from type in linkTypes.GetAllFlags() select ruleRouter[type];
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
-			var conclusions = foundChain.GetConclusions(in grid);
-			var step = new NormalChainStep(
-				[.. conclusions],
-				[
-					[
-						.. getCandidateNodes(foundChain),
-						..
-						from link in foundChain.Links
-						let node1 = link.FirstNode
-						let node2 = link.SecondNode
-						select new ChainLinkViewNode(ColorIdentifier.Normal, in node1.Map, in node2.Map, link.IsStrong)
-					]
-				],
-				context.Options,
-				foundChain
-			);
+			var conclusions = collectConclusions(foundChain, in grid);
+			var step = new NormalChainStep([.. conclusions], collectViews(foundChain), context.Options, foundChain);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -43,19 +29,52 @@ internal static class ChainModule
 		return null;
 
 
-		static ReadOnlySpan<CandidateViewNode> getCandidateNodes(ChainPattern foundChain)
+		ConclusionSet collectConclusions(ChainPattern foundChain, ref readonly Grid grid)
 		{
-			var result = new List<CandidateViewNode>();
-			for (var i = 0; i < foundChain.Length; i++)
+			var conclusions = foundChain.GetConclusions(in grid);
+			if (foundChain is Loop loop)
 			{
-				ref readonly var map = ref foundChain[i].Map;
-				var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
-				foreach (var candidate in map)
+				foreach (var r in supportedRules)
 				{
-					result.Add(new(id, candidate));
+					conclusions |= r.CollectLoopConclusions(loop, in grid);
 				}
 			}
-			return result.AsReadOnlySpan();
+			return conclusions;
+		}
+
+		View[] collectViews(ChainPattern foundChain)
+		{
+			var views = (View[])[
+				[
+					.. getCandidateNodes(foundChain),
+					..
+					from link in foundChain.Links
+					let node1 = link.FirstNode
+					let node2 = link.SecondNode
+					select new ChainLinkViewNode(ColorIdentifier.Normal, in node1.Map, in node2.Map, link.IsStrong)
+				]
+			];
+			foreach (var supportedRule in supportedRules)
+			{
+				supportedRule.CollectExtraViewNodes(foundChain, ref views);
+			}
+			return views;
+
+
+			static ReadOnlySpan<CandidateViewNode> getCandidateNodes(ChainPattern foundChain)
+			{
+				var result = new List<CandidateViewNode>();
+				for (var i = 0; i < foundChain.Length; i++)
+				{
+					ref readonly var map = ref foundChain[i].Map;
+					var id = (i & 1) == 0 ? ColorIdentifier.Auxiliary1 : ColorIdentifier.Normal;
+					foreach (var candidate in map)
+					{
+						result.Add(new(id, candidate));
+					}
+				}
+				return result.AsReadOnlySpan();
+			}
 		}
 	}
 }

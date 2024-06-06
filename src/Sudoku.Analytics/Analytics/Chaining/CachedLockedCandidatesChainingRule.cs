@@ -1,7 +1,7 @@
 namespace Sudoku.Analytics.Chaining;
 
 /// <summary>
-/// Represents a chaining rule on Y rule (i.e. <see cref="LinkType.LockedCandidates"/>).
+/// Represents a chaining rule on locked candidates (i.e. <see cref="LinkType.LockedCandidates"/>).
 /// </summary>
 /// <seealso cref="LinkType.LockedCandidates"/>
 internal sealed class CachedLockedCandidatesChainingRule : ChainingRule

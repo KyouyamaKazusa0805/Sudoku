@@ -58,12 +58,6 @@ public enum DrawableItemUpdatingReason
 	/// <inheritdoc cref="StrongLinkDashStyle"/>
 	WeakLinkDashStyle,
 
-	/// <inheritdoc cref="StrongLinkDashStyle"/>
-	CycleLikeLinkDashStyle,
-
-	/// <inheritdoc cref="StrongLinkDashStyle"/>
-	OtherLinkDashStyle,
-
 	/// <summary>
 	/// Indicates the updating items are <see cref="ChainLinkViewNode"/>, changing their stroke thickness.
 	/// </summary>

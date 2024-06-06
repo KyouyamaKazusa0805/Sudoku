@@ -762,117 +762,84 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				inference switch
 				{
 					Inference.Strong => Pane.StrongLinkDashStyle,
-					Inference.Weak => Pane.WeakLinkDashStyle,
-					//Inference.Default => Pane.CycleLikeLinkDashStyle,
-					_ => Pane.OtherLinkDashStyle
+					Inference.Weak => Pane.WeakLinkDashStyle
 				}
 			).ToDoubleCollection();
 			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
-			var tagSuffix = inference switch
-			{
-				Inference.Strong => StrongInferenceSuffix,
-				//Inference.StrongGeneralized => StrongGeneralizedInferenceSuffix,
-				Inference.Weak => WeakInferenceSuffix,
-				//Inference.WeakGeneralized => WeakGeneralizedInferenceSuffix,
-				//Inference.Default => DefaultInferenceSuffix,
-				Inference.ConjugatePair => ConjugateInferenceSuffix,
-				_ => DefaultInferenceSuffix
-			};
+			var tagSuffix = inference switch { Inference.Strong => StrongInferenceSuffix, Inference.Weak => WeakInferenceSuffix };
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
-			switch (inference)
+			// If the distance of two points is lower than the one of two adjacent candidates,
+			// the link will be ignored to be drawn because of too narrow.
+			var distance = pt1.DistanceTo(pt2);
+			if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
 			{
-				case Inference.Default:
-				case Inference.ConjugatePair:
+				continue;
+			}
+
+			var deltaX = pt2.X - pt1.X;
+			var deltaY = pt2.Y - pt1.Y;
+			var alpha = Atan2(deltaY, deltaX);
+			adjust(pt1, pt2, out var p1, out _, alpha, cs);
+
+			// Check if another candidate lies in the direct line.
+			var through = false;
+			var dx1 = deltaX;
+			var dy1 = deltaY;
+			foreach (var point in points)
+			{
+				if (point == pt1 || point == pt2)
 				{
-					correctOffsetOfPoint(ref pt1, ow, oh);
-					correctOffsetOfPoint(ref pt2, ow, oh);
+					// The point is itself.
+					continue;
+				}
 
-					yield return new()
-					{
-						Stroke = new SolidColorBrush(Pane.LinkColor),
-						StrokeThickness = (double)Pane.ChainStrokeThickness,
-						StrokeDashArray = dashArray,
-						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[0]} {start} -> {end}{tagSuffix}{linkSuffix}",
-						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-					};
-
+				var dx2 = point.X - p1.X;
+				var dy2 = point.Y - p1.Y;
+				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
+					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
+					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
+				{
+					through = true;
 					break;
 				}
-				default:
+			}
+
+			// Now cut the link.
+			cut(ref pt1, ref pt2, cs);
+
+			if (through)
+			{
+				var bezierLength = 20.0;
+
+				// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
+				var oldPt1 = new Point(pt1x, pt1y);
+				var oldPt2 = new Point(pt2x, pt2y);
+				rotate(oldPt1, ref pt1, -RotateAngle);
+				rotate(oldPt2, ref pt2, RotateAngle);
+
+				var interim1Alpha = alpha - RotateAngle;
+				var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
+				var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
+				var interim2Alpha = alpha + RotateAngle;
+				var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
+				var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
+
+				correctOffsetOfPoint(ref pt1, ow, oh);
+				correctOffsetOfPoint(ref pt2, ow, oh);
+				correctOffsetOfDouble(ref bx1, ow);
+				correctOffsetOfDouble(ref bx2, oh);
+				correctOffsetOfDouble(ref by1, ow);
+				correctOffsetOfDouble(ref by2, oh);
+
+				yield return new()
 				{
-					// If the distance of two points is lower than the one of two adjacent candidates,
-					// the link will be ignored to be drawn because of too narrow.
-					var distance = pt1.DistanceTo(pt2);
-					if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
+					Stroke = new SolidColorBrush(Pane.LinkColor),
+					StrokeThickness = (double)Pane.ChainStrokeThickness,
+					StrokeDashArray = dashArray,
+					Data = new GeometryGroup
 					{
-						continue;
-					}
-
-					var deltaX = pt2.X - pt1.X;
-					var deltaY = pt2.Y - pt1.Y;
-					var alpha = Atan2(deltaY, deltaX);
-					adjust(pt1, pt2, out var p1, out _, alpha, cs);
-
-					// Check if another candidate lies in the direct line.
-					var through = false;
-					var dx1 = deltaX;
-					var dy1 = deltaY;
-					foreach (var point in points)
-					{
-						if (point == pt1 || point == pt2)
-						{
-							// The point is itself.
-							continue;
-						}
-
-						var dx2 = point.X - p1.X;
-						var dy2 = point.Y - p1.Y;
-						if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
-							&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
-							&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
-						{
-							through = true;
-							break;
-						}
-					}
-
-					// Now cut the link.
-					cut(ref pt1, ref pt2, cs);
-
-					if (through)
-					{
-						var bezierLength = 20.0;
-
-						// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
-						var oldPt1 = new Point(pt1x, pt1y);
-						var oldPt2 = new Point(pt2x, pt2y);
-						rotate(oldPt1, ref pt1, -RotateAngle);
-						rotate(oldPt2, ref pt2, RotateAngle);
-
-						var interim1Alpha = alpha - RotateAngle;
-						var bx1 = pt1.X + bezierLength * Cos(interim1Alpha);
-						var by1 = pt1.Y + bezierLength * Sin(interim1Alpha);
-						var interim2Alpha = alpha + RotateAngle;
-						var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
-						var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
-
-						correctOffsetOfPoint(ref pt1, ow, oh);
-						correctOffsetOfPoint(ref pt2, ow, oh);
-						correctOffsetOfDouble(ref bx1, ow);
-						correctOffsetOfDouble(ref bx2, oh);
-						correctOffsetOfDouble(ref by1, ow);
-						correctOffsetOfDouble(ref by2, oh);
-
-						yield return new()
-						{
-							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = (double)Pane.ChainStrokeThickness,
-							StrokeDashArray = dashArray,
-							Data = new GeometryGroup
-							{
-								Children = [
-									new PathGeometry
+						Children = [
+							new PathGeometry
 									{
 										Figures = [
 											new PathFigure
@@ -884,44 +851,41 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 											}
 										]
 									}
-								]
-							},
-							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
-							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-						};
-						yield return new()
-						{
-							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = (double)Pane.ChainStrokeThickness,
-							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
-						};
-					}
-					else
-					{
-						// Draw the link.
-						correctOffsetOfPoint(ref pt1, ow, oh);
-						correctOffsetOfPoint(ref pt2, ow, oh);
-						yield return new()
-						{
-							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = (double)Pane.ChainStrokeThickness,
-							StrokeDashArray = dashArray,
-							Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
-							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-						};
-						yield return new()
-						{
-							Stroke = new SolidColorBrush(Pane.LinkColor),
-							StrokeThickness = (double)Pane.ChainStrokeThickness,
-							Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-							Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
-							Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-						};
-					}
-					break;
-				}
+						]
+					},
+					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+				};
+				yield return new()
+				{
+					Stroke = new SolidColorBrush(Pane.LinkColor),
+					StrokeThickness = (double)Pane.ChainStrokeThickness,
+					Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
+					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
+				};
+			}
+			else
+			{
+				// Draw the link.
+				correctOffsetOfPoint(ref pt1, ow, oh);
+				correctOffsetOfPoint(ref pt2, ow, oh);
+				yield return new()
+				{
+					Stroke = new SolidColorBrush(Pane.LinkColor),
+					StrokeThickness = (double)Pane.ChainStrokeThickness,
+					StrokeDashArray = dashArray,
+					Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
+					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+				};
+				yield return new()
+				{
+					Stroke = new SolidColorBrush(Pane.LinkColor),
+					StrokeThickness = (double)Pane.ChainStrokeThickness,
+					Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
+					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
+					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+				};
 			}
 		}
 

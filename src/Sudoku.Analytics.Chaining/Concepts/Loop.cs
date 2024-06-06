@@ -4,7 +4,8 @@ namespace Sudoku.Concepts;
 /// Represents a loop.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
+public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
+	ChainPattern(lastNode, true, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <inheritdoc/>
 	public override bool IsGrouped => Array.Exists(_nodes, static node => node.IsGroupedNode);
@@ -21,9 +22,12 @@ public sealed partial class Loop(Node lastNode) : ChainPattern(lastNode, true)
 		get
 		{
 			var result = new Link[Length];
-			for (var (linkIndex, i) = (1, 0); i < _nodes.Length; linkIndex++, i++)
+			for (var (linkIndex, i) = (1, 0); i < Length; linkIndex++, i++)
 			{
-				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], Inferences[linkIndex & 1] == Inference.Strong);
+				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
+				pool.TryGetValue(new(_nodes[i], _nodes[(i + 1) % _nodes.Length], false), out var pattern);
+				result[i] = new(_nodes[i], _nodes[(i + 1) % _nodes.Length], isStrong, pattern);
 			}
 			return result;
 		}

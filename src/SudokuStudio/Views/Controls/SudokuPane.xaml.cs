@@ -51,8 +51,6 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Color>("HouseCompletedFeedbackColor", DocSummary = "Indicates the feedback color when a house is completed.")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocSummary = "Indicates the dash style of the strong links.")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
-[DependencyProperty<DashArray>("CycleLikeLinkDashStyle", DocSummary = "Indicates the dash style of the cycle-like technique links.")]
-[DependencyProperty<DashArray>("OtherLinkDashStyle", DocSummary = "Indicates the dash style of the other links.")]
 [DependencyProperty<Thickness>("CellsInnerPadding", DocSummary = "Indicates the value that describes the padding value displaying cell view nodes.")]
 [DependencyProperty<CornerRadius>("CellsInnerCornerRadius", DocSummary = "Indicates the value that describes corner radiuse for displaying cell view nodes.")]
 [DependencyProperty<FontFamily>("GivenFont", DocSummary = "Indicates the given font.")]
@@ -778,14 +776,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.WeakLinkDashStyle, (DashArray)e.NewValue!);
 
 	[Callback]
-	private static void CycleLikeLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.CycleLikeLinkDashStyle, (DashArray)e.NewValue!);
-
-	[Callback]
-	private static void OtherLinkDashStylePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
-		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.OtherLinkDashStyle, (DashArray)e.NewValue!);
-
-	[Callback]
 	private static void HighlightCandidateCircleScalePropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.HighlightCandidateScale, (decimal)e.NewValue!);
 
@@ -929,7 +919,7 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 						{
 							Action eventHandler = SudokuFileHandler.Read(filePath) switch
 							{
-								[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
+							[var gridInfo] => () => ReceivedDroppedFileSuccessfully?.Invoke(this, new(filePath, gridInfo)),
 								_ => () => ReceivedDroppedFileFailed?.Invoke(this, new(ReceivedDroppedFileFailedReason.FileCannotBeParsed))
 							};
 

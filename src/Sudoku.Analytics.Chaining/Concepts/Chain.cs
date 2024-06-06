@@ -4,7 +4,8 @@ namespace Sudoku.Concepts;
 /// Represents a chain.
 /// </summary>
 [TypeImpl(TypeImplFlag.Object_ToString)]
-public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
+public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary) :
+	ChainPattern(lastNode, false, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <summary>
 	/// Indicates whether the chain starts with weak link.
@@ -84,7 +85,10 @@ public sealed partial class Chain(Node lastNode) : ChainPattern(lastNode, false)
 			var result = new Link[Length - 1];
 			for (var (linkIndex, i) = (0, 0); i < Length - 1; linkIndex++, i++)
 			{
-				result[i] = new(span[i], span[i + 1], Inferences[linkIndex & 1] == Inference.Strong);
+				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
+				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
+				pool.TryGetValue(new(span[i], span[i + 1], false), out var pattern);
+				result[i] = new(span[i], span[i + 1], isStrong, pattern);
 			}
 			return result;
 		}

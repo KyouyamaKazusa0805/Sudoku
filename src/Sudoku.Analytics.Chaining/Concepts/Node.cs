@@ -29,6 +29,12 @@ public sealed partial class Node(
 
 
 	/// <summary>
+	/// Indicates the extra cells map.
+	/// </summary>
+	private readonly CandidateMap _extraMap;
+
+
+	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the specified candidate.
 	/// </summary>
 	/// <param name="candidate">A candidate.</param>
@@ -37,6 +43,25 @@ public sealed partial class Node(
 	public Node(Candidate candidate, bool isOn) : this(candidate.AsCandidateMap(), isOn)
 	{
 	}
+
+	/// <summary>
+	/// Initializes a <see cref="Node"/> instance via the specified candidate, and extra map.
+	/// </summary>
+	/// <param name="candidate">A candidate.</param>
+	/// <param name="isOn">Indicates whether the node is on.</param>
+	/// <param name="extraMap">The extra map.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node(Candidate candidate, bool isOn, ref readonly CandidateMap extraMap) : this(candidate, isOn) => _extraMap = extraMap;
+
+	/// <summary>
+	/// Initializes a <see cref="Node"/> instance via two maps.
+	/// </summary>
+	/// <param name="map">The basic pattern map of candidates used.</param>
+	/// <param name="isOn">Indicates whether the node is on.</param>
+	/// <param name="extraMap">The extra map.</param>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public Node(ref readonly CandidateMap map, bool isOn, ref readonly CandidateMap extraMap) : this(in map, isOn)
+		 => _extraMap = extraMap;
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the specified cell and digit.
@@ -50,15 +75,15 @@ public sealed partial class Node(
 	}
 
 	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via the specified <see cref="LockedTarget"/> instance.
+	/// Initializes a <see cref="Node"/> instance via the specified candidate, and extra map.
 	/// </summary>
-	/// <param name="lockedTarget">A <see cref="LockedTarget"/> instance.</param>
+	/// <param name="cell">A cell.</param>
+	/// <param name="digit">A digit.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
+	/// <param name="extraMap">The extra map.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(ref readonly LockedTarget lockedTarget, bool isOn) :
-		this(Subview.ExpandedCellFromDigit(lockedTarget.Cells, lockedTarget.Digit), isOn)
-	{
-	}
+	public Node(Cell cell, Digit digit, bool isOn, ref readonly CandidateMap extraMap) : this(cell, digit, isOn)
+		=> _extraMap = extraMap;
 
 	/// <summary>
 	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
@@ -88,6 +113,17 @@ public sealed partial class Node(
 	/// Indicates the map of candidates the node uses.
 	/// </summary>
 	public ref readonly CandidateMap Map => ref _map;
+
+	/// <summary>
+	/// Indicates the extra cells map to hold. This is used by representing extra candidates used inside the pattern.
+	/// </summary>
+	/// <remarks>
+	/// Please note that this property won't be used as comparison,
+	/// neither <see cref="Equals(Node?)"/> or <see cref="CompareTo(Node?)"/>.
+	/// </remarks>
+	/// <seealso cref="Equals(Node?)"/>
+	/// <seealso cref="CompareTo(Node?)"/>
+	public ref readonly CandidateMap ExtraMap => ref _extraMap;
 
 	/// <summary>
 	/// Indicates the length of ancestors.

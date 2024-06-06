@@ -272,12 +272,6 @@
 						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle}"
 						DashArrayChanged="WeakLinkDashStyleBox_DashArrayChanged" />
 				</w:SettingsCard>
-				<w:SettingsCard Header="{m:R Key=SettingsPage_CyclingCellLinkDashStyle}">
-					<c:DashArrayTextBox
-						x:Name="CycleLikeCellLinkDashStyleBox" Width="150"
-						DashArray="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle}"
-						DashArrayChanged="CycleLikeCellLinkDashStyleBox_DashArrayChanged" />
-				</w:SettingsCard>
 
 				<!--
 				SettingsPage_Others
@@ -378,7 +372,6 @@
 			ChainStrokeThickness="{x:Bind SliderChainStrokeThickness.Value,Converter={StaticResource Double2DecimalConverter},Mode=OneWay}"
 			StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
 			WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
-			CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
 			Loaded="SampleSudokuGrid_Loaded" ActualThemeChanged="SampleSudokuGrid_ActualThemeChanged"
 		/>
 	</Grid>

@@ -74,7 +74,6 @@
 				SelectedIndex="{x:Bind cvt:DrawingConversion.GetLinkTypeIndex(BasePage.LinkKind),Mode=TwoWay,BindBack=SetLinkType}">
 				<ComboBoxItem Content="{m:R Key=_Inference_Strong}" Tag="Strong" />
 				<ComboBoxItem Content="{m:R Key=_Inference_Weak}" Tag="Weak" />
-				<ComboBoxItem Content="{m:R Key=_Inference_Default}" Tag="ConjugatePair" />
 			</ComboBox>
 		</Grid>
 		<Grid

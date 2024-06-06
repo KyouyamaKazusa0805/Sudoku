@@ -24,14 +24,27 @@ public abstract partial class ChainPattern :
 	/// </summary>
 	protected readonly Node[] _nodes;
 
+	/// <summary>
+	/// Indicates the strong grouped link pool.
+	/// </summary>
+	protected readonly FrozenDictionary<Link, object> _strongGroupedLinkPool;
+
+	/// <summary>
+	/// Indicates the weak grouped link pool.
+	/// </summary>
+	protected readonly FrozenDictionary<Link, object> _weakGroupedLinkPool;
+
 
 	/// <summary>
 	/// Initializes <see cref="ChainPattern"/> data.
 	/// </summary>
 	/// <param name="lastNode">The last node.</param>
 	/// <param name="isLoop">Indicates whether is for loop initialization.</param>
-	protected ChainPattern(Node lastNode, bool isLoop)
+	/// <param name="strongLinkDictionary">Indicates the strong link dictionary.</param>
+	/// <param name="weakLinkDictionary">Indicates the weak link dictionary.</param>
+	protected ChainPattern(Node lastNode, bool isLoop, LinkDictionary strongLinkDictionary, LinkDictionary weakLinkDictionary)
 	{
+		(_strongGroupedLinkPool, _weakGroupedLinkPool) = (strongLinkDictionary.GroupedLinkPool, weakLinkDictionary.GroupedLinkPool);
 		var nodes = new List<Node> { lastNode };
 		for (var node = lastNode.Parent!; isLoop ? node != lastNode : node is not null; node = node.Parent!)
 		{
@@ -194,6 +207,23 @@ public abstract partial class ChainPattern :
 				{
 					return true;
 				}
+			}
+		}
+		return false;
+	}
+
+	/// <summary>
+	/// Determines whether the pattern has already used the specified candidate.
+	/// </summary>
+	/// <param name="candidate">The candidate.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public bool Contains(Candidate candidate)
+	{
+		foreach (var node in this)
+		{
+			if (node.Map.Contains(candidate))
+			{
+				return true;
 			}
 		}
 		return false;

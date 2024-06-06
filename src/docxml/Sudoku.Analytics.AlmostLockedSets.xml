@@ -58,7 +58,7 @@
         <member name="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks">
             <summary>
             Indicates all strong links in this ALS.
-            The result will be represented as a <see cref="T:System.Int16"/> mask of 9 bits indicating which bits used.
+            The result will be represented as a <see cref="T:System.Int16"/> of 9 bits indicating which bits used.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@)">

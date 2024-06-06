@@ -40,8 +40,6 @@ internal static partial class DrawableFactory
 		{ DrawableItemUpdatingReason.Link, Filters.Link },
 		{ DrawableItemUpdatingReason.StrongLinkDashStyle, Filters.StrongLinkDashStyle },
 		{ DrawableItemUpdatingReason.WeakLinkDashStyle, Filters.WeakLinkDashStyle },
-		{ DrawableItemUpdatingReason.CycleLikeLinkDashStyle, Filters.CycleLikeLinkDashStyle },
-		{ DrawableItemUpdatingReason.OtherLinkDashStyle, Filters.OtherLinkDashStyle },
 		{ DrawableItemUpdatingReason.LinkStrokeThickness, Filters.LinkStrokeThickness },
 		{ DrawableItemUpdatingReason.BabaGrouping, Filters.BabaGrouping },
 		{ DrawableItemUpdatingReason.NormalColorized, control => Filters.Colorized(control, ColorIdentifierKind.Normal) },
@@ -196,7 +194,7 @@ file static class Filters
 	public static bool StrongLinkDashStyle(FrameworkElement control)
 		=> TemplateMethod<ChainLinkViewNode>(
 			control,
-			static (s, element) => s.Contains(element) && (s.Contains(StrongInferenceSuffix) || s.Contains(StrongGeneralizedInferenceSuffix))
+			static (s, element) => s.Contains(element) && s.Contains(StrongInferenceSuffix)
 		);
 
 	/// <summary>
@@ -208,26 +206,8 @@ file static class Filters
 	public static bool WeakLinkDashStyle(FrameworkElement control)
 		=> TemplateMethod<ChainLinkViewNode>(
 			control,
-			static (s, element) => s.Contains(element) && (s.Contains(WeakInferenceSuffix) || s.Contains(WeakGeneralizedInferenceSuffix))
+			static (s, element) => s.Contains(element) && s.Contains(WeakInferenceSuffix)
 		);
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>
-	public static bool CycleLikeLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(DefaultInferenceSuffix));
-
-	/// <summary>
-	/// The filter for <see cref="DrawableItemUpdatingReason.OtherLinkDashStyle"/>.
-	/// </summary>
-	/// <param name="control">The control to be checked.</param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	/// <seealso cref="DrawableItemUpdatingReason.OtherLinkDashStyle"/>
-	public static bool OtherLinkDashStyle(FrameworkElement control)
-		=> TemplateMethod<ChainLinkViewNode>(control, static (s, element) => s.Contains(element) && s.Contains(ConjugateInferenceSuffix));
 
 	/// <summary>
 	/// The filter for <see cref="DrawableItemUpdatingReason.LinkStrokeThickness"/>.

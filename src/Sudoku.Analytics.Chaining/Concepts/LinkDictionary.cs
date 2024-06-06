@@ -7,12 +7,35 @@ namespace Sudoku.Concepts;
 public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 {
 	/// <summary>
+	/// The backing pool storing link and patterns.
+	/// </summary>
+	private readonly Dictionary<Link, object> _groupedLinkPool = new(
+		EqualityComparer<Link>.Create(
+			static (left, right) => (left, right) switch
+			{
+				(null, null) => true,
+				(not null, not null) => left.Equals(right, LinkComparison.Undirected),
+				_ => false
+			},
+			static obj => obj.GetHashCode(LinkComparison.Undirected)
+		)
+	);
+
+
+	/// <summary>
+	/// Indicates the pool of grouped links and its corresponding pattern.
+	/// </summary>
+	public FrozenDictionary<Link, object> GroupedLinkPool => _groupedLinkPool.ToFrozenDictionary();
+
+
+	/// <summary>
 	/// Add a link to the current collection with both entries on nodes of the link used.
 	/// </summary>
 	/// <param name="node1">Indicates the first node to be added.</param>
 	/// <param name="node2">Indicates the second node to be added.</param>
+	/// <param name="pattern">The advanced pattern to be used.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public void AddEntry(Node node1, Node node2)
+	public void AddEntry(Node node1, Node node2, object? pattern = null)
 	{
 		if (!TryAdd(node1, [node2]))
 		{
@@ -21,6 +44,12 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 		if (!TryAdd(node2, [node1]))
 		{
 			this[node2].Add(node1);
+		}
+		if (pattern is not null)
+		{
+			// Add pattern into pool.
+			// We may not add its reversed version because the pool dictionary is compared under undirected rule.
+			_groupedLinkPool.TryAdd(new(node1, node2, false), pattern);
 		}
 
 		var (node3, node4) = (~node1, ~node2);
@@ -31,6 +60,10 @@ public sealed class LinkDictionary : Dictionary<Node, HashSet<Node>>
 		if (!TryAdd(node4, [node3]))
 		{
 			this[node4].Add(node3);
+		}
+		if (pattern is not null)
+		{
+			_groupedLinkPool.TryAdd(new(node3, node4, false), pattern);
 		}
 	}
 }

@@ -20,10 +20,6 @@ public static class InferenceExtensions
 		{
 			Inference.Strong => " == ",
 			Inference.Weak => " -- ",
-			Inference.StrongGeneralized => " =~ ",
-			Inference.WeakGeneralized => " -~ ",
-			Inference.ConjugatePair => " == ",
-			Inference.Default => " -- ",
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
 		};
 }

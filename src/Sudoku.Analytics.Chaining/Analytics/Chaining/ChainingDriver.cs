@@ -97,13 +97,21 @@ public static class ChainingDriver
 						foreach (var node in nodes)
 						{
 							var resultNode = new Node(node, currentNode);
+
+							////////////////////////////////////////////
+							// Continuous Nice Loop 3) Strong -> Weak //
+							////////////////////////////////////////////
 							if (node == startNode && resultNode.AncestorsLength >= 4)
 							{
-								result.Add(new Loop(resultNode)); // Continuous Nice Loop 3) Strong -> Weak.
+								result.Add(new Loop(resultNode, strongLinks, weakLinks));
 							}
+
+							/////////////////////////////////////////////////
+							// Discontinuous Nice Loop 2) Strong -> Strong //
+							/////////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode)); // Discontinuous Nice Loop 2) Strong -> Strong.
+								result.Add(new Chain(resultNode, strongLinks, weakLinks));
 							}
 
 							// This step will filter duplicate nodes in order not to make a internal loop on chains.
@@ -123,9 +131,13 @@ public static class ChainingDriver
 						foreach (var node in nodes)
 						{
 							var resultNode = new Node(node, currentNode);
+
+							/////////////////////////////////////////////
+							// Discontinuous Nice Loop 1) Weak -> Weak //
+							/////////////////////////////////////////////
 							if (node == ~startNode)
 							{
-								result.Add(new Chain(resultNode)); // Discontinuous Nice Loop 1) Weak -> Weak.
+								result.Add(new Chain(resultNode, strongLinks, weakLinks));
 							}
 
 							if (!node.IsAncestorOf(currentNode, NodeComparison.IgnoreIsOn) && visitedStrong.Add(node))

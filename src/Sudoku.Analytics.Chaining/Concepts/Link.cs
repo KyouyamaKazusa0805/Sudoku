@@ -10,12 +10,17 @@ namespace Sudoku.Concepts;
 /// <param name="firstNode">Indicates the first node to be used.</param>
 /// <param name="secondNode">Indicates the second node to be used.</param>
 /// <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
+/// <param name="groupedLinkPattern">
+/// Indicates the pattern that the grouped link used. The value can be used as a "tag" recording extra information.
+/// The default value is <see langword="null"/>.
+/// </param>
 /// <seealso cref="Node"/>
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class Link(
 	[PrimaryConstructorParameter] Node firstNode,
 	[PrimaryConstructorParameter] Node secondNode,
-	[PrimaryConstructorParameter] bool isStrong
+	[PrimaryConstructorParameter] bool isStrong,
+	[PrimaryConstructorParameter] object? groupedLinkPattern = null
 ) : IEquatable<Link>, IEqualityOperators<Link, Link, bool>
 {
 	/// <inheritdoc/>
@@ -55,8 +60,7 @@ public sealed partial class Link(
 		=> Enum.IsDefined(comparison)
 			? comparison switch
 			{
-				LinkComparison.Undirected
-					=> HashCode.Combine(HashCodeNativeConstants.Prime3(), FirstNode.GetHashCode() ^ SecondNode.GetHashCode()),
+				LinkComparison.Undirected => HashCode.Combine(FirstNode.GetHashCode() ^ SecondNode.GetHashCode()),
 				_ => HashCode.Combine(FirstNode, SecondNode)
 			}
 			: throw new ArgumentOutOfRangeException(nameof(comparison));

@@ -163,8 +163,6 @@
 							ChainStrokeThickness="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=OneWay}"
 							StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
 							WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
-							CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
-							OtherLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OtherLinkDashStyle,Mode=OneWay}"
 							UseDifferentColorToDisplayDeltaDigits="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DistinctWithDeltaDigits,Mode=OneWay}"
 							DisplayCandidates="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCandidates,Mode=OneWay}"
 							DisplayCursors="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DisplayCursors,Mode=OneWay}"

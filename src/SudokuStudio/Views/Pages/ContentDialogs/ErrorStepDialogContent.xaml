@@ -38,8 +38,6 @@
 			ChainStrokeThickness="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainStrokeThickness,Mode=OneWay}"
 			StrongLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.StrongLinkDashStyle,Mode=OneWay}"
 			WeakLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.WeakLinkDashStyle,Mode=OneWay}"
-			CycleLikeLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle,Mode=OneWay}"
-			OtherLinkDashStyle="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OtherLinkDashStyle,Mode=OneWay}"
 			BorderColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.SudokuPaneBorderColor,Mode=OneWay}"
 			LinkColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ChainColor,Mode=OneWay}"
 			NormalColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.NormalColor,Mode=OneWay}"

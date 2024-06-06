@@ -61,7 +61,7 @@ public sealed partial class AlmostLockedSet(
 
 	/// <summary>
 	/// Indicates all strong links in this ALS.
-	/// The result will be represented as a <see cref="Mask"/> mask of 9 bits indicating which bits used.
+	/// The result will be represented as a <see cref="Mask"/> of 9 bits indicating which bits used.
 	/// </summary>
 	public ReadOnlySpan<Mask> StrongLinks
 	{

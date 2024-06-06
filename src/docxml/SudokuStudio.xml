@@ -2894,10 +2894,10 @@
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
+            <inheritdoc cref="!:global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle">
-            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
+            <inheritdoc cref="!:global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
             <summary>
@@ -3318,22 +3318,6 @@
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
             <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle"/>
         </member>
-        <member name="M:SudokuStudio.Drawing.Filters.CycleLikeLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle"/>
-        </member>
-        <member name="M:SudokuStudio.Drawing.Filters.OtherLinkDashStyle(Microsoft.UI.Xaml.FrameworkElement)">
-            <summary>
-            The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle"/>.
-            </summary>
-            <param name="control">The control to be checked.</param>
-            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-            <seealso cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle"/>
-        </member>
         <member name="M:SudokuStudio.Drawing.Filters.LinkStrokeThickness(Microsoft.UI.Xaml.FrameworkElement)">
             <summary>
             The filter for <see cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness"/>.
@@ -3531,27 +3515,7 @@
             The link suffixes.
             </summary>
         </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.StrongGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
         <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.WeakInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.WeakGeneralizedInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.ConjugateInferenceSuffix">
-            <summary>
-            The link suffixes.
-            </summary>
-        </member>
-        <member name="F:SudokuStudio.Drawing.DrawableItemIdentifiers.DefaultInferenceSuffix">
             <summary>
             The link suffixes.
             </summary>
@@ -4347,12 +4311,6 @@
             <seealso cref="T:Sudoku.Drawing.Nodes.ChainLinkViewNode"/>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.WeakLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.CycleLikeLinkDashStyle">
-            <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.OtherLinkDashStyle">
             <inheritdoc cref="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.StrongLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.LinkStrokeThickness">
@@ -12384,18 +12342,6 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
         </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
-        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPaddingProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding"/>.
@@ -12715,16 +12661,6 @@
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle">
             <summary>
             Indicates the dash style of the weak links.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle">
-            <summary>
-            Indicates the dash style of the cycle-like technique links.
-            </summary>
-        </member>
-        <member name="P:SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle">
-            <summary>
-            Indicates the dash style of the other links.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.CellsInnerPadding">

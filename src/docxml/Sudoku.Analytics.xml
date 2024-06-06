@@ -4787,9 +4787,27 @@
             Zhihu: Which way to calculate LCA in a multiway tree is fastest?
             </seealso>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule">
+            <summary>
+            Represents a chaining rule on ALS rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.AlmostLockedSet"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectExtraViewNodes(Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedAlmostLockedSetsChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule">
             <summary>
-            Represents a chaining rule on Y rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>).
+            Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>).
             </summary>
             <seealso cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>
         </member>
