@@ -840,17 +840,17 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					{
 						Children = [
 							new PathGeometry
+							{
+								Figures = [
+									new PathFigure
 									{
-										Figures = [
-											new PathFigure
-											{
-												StartPoint = pt1,
-												IsClosed = false,
-												IsFilled = false,
-												Segments = [new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }]
-											}
-										]
+										StartPoint = pt1,
+										IsClosed = false,
+										IsFilled = false,
+										Segments = [new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }]
 									}
+								]
+							}
 						]
 					},
 					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
@@ -860,7 +860,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				{
 					Stroke = new SolidColorBrush(Pane.LinkColor),
 					StrokeThickness = (double)Pane.ChainStrokeThickness,
-					Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
+					Data = new GeometryGroup { Children = ArrowCap(new(bx2, by2), pt2) },
 					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
 				};
 			}
