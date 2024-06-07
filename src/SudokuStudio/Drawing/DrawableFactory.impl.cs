@@ -698,7 +698,7 @@ internal partial class DrawableFactory
 			return;
 		}
 
-		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks([.. linkNodes]))
+		foreach (var control in new PathCreator(sudokuPane, new(gridControl), conclusions).CreateLinks(linkNodes))
 		{
 			GridLayout.SetRow(control, 2);
 			GridLayout.SetColumn(control, 2);
@@ -741,12 +741,14 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 	/// </summary>
 	/// <param name="nodes">The link view nodes.</param>
 	/// <returns>A <see cref="Shape"/> instance.</returns>
-	public IEnumerable<Path> CreateLinks(ChainLinkViewNode[] nodes)
+	public ReadOnlySpan<Shape> CreateLinks(ReadOnlySpan<ChainLinkViewNode> nodes)
 	{
-		var points = getPoints(nodes);
-		_ = Converter is var ((ow, oh), _) and var ((cs, _), _, _, _);
-
 		// Iterate on each inference to draw the links and grouped nodes (if so).
+		var ((ow, oh), _) = Converter;
+		var ((cellSize, _), _, _, _) = Converter;
+		var points = getPoints(nodes);
+		var drawnGroupedNodes = new List<CandidateMap>();
+		var result = new List<Shape>();
 		foreach (var (_, start, end, isStrong) in nodes)
 		{
 			var dashArray = (isStrong ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle).ToDoubleCollection();
@@ -755,8 +757,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 
 			// Find two candidates with a minimal distance.
-			var distance = double.MaxValue;
-			var (pt1, pt2) = (default(Point), default(Point));
+			var (distance, pt1, pt2) = (double.MaxValue, default(Point), default(Point));
 			foreach (var s in start)
 			{
 				var tempPoint1 = Converter.GetPosition(s);
@@ -774,15 +775,14 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			// If the distance of two points is lower than the one of two adjacent candidates,
 			// the link will be ignored to be drawn because of too narrow.
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
-			if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
+			if (distance <= cellSize * SqrtOf2 || distance <= cellSize * SqrtOf2)
 			{
 				continue;
 			}
 
-			var deltaX = pt2.X - pt1.X;
-			var deltaY = pt2.Y - pt1.Y;
+			var (deltaX, deltaY) = (pt2.X - pt1.X, pt2.Y - pt1.Y);
 			var alpha = Atan2(deltaY, deltaX);
-			adjust(pt1, pt2, out var p1, out _, alpha, cs);
+			adjust(pt1, pt2, out var p1, out _, alpha, cellSize);
 
 			// Check whether the link will pass through a candidate used in pattern.
 			var linkPassesThroughUsedCandidates = false;
@@ -806,7 +806,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			}
 
 			// Now cut the link.
-			cut(ref pt1, ref pt2, cs);
+			cut(ref pt1, ref pt2, cellSize);
 			if (linkPassesThroughUsedCandidates)
 			{
 				// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
@@ -829,14 +829,15 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				correctOffsetOfDouble(ref by1, ow);
 				correctOffsetOfDouble(ref by2, oh);
 
-				yield return new()
-				{
-					Stroke = new SolidColorBrush(Pane.LinkColor),
-					StrokeThickness = (double)Pane.ChainStrokeThickness,
-					StrokeDashArray = dashArray,
-					Data = new GeometryGroup
+				result.Add(
+					new Path
 					{
-						Children = [
+						Stroke = new SolidColorBrush(Pane.LinkColor),
+						StrokeThickness = (double)Pane.ChainStrokeThickness,
+						StrokeDashArray = dashArray,
+						Data = new GeometryGroup
+						{
+							Children = [
 							new PathGeometry
 							{
 								Figures = [
@@ -850,42 +851,62 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 								]
 							}
 						]
-					},
-					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
-					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-				};
-				yield return new()
-				{
-					Stroke = new SolidColorBrush(Pane.LinkColor),
-					StrokeThickness = (double)Pane.ChainStrokeThickness,
-					Data = new GeometryGroup { Children = ArrowCap(new(bx2, by2), pt2) },
-					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
-				};
+						},
+						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+					}
+				);
+				result.Add(
+					new Path
+					{
+						Stroke = new SolidColorBrush(Pane.LinkColor),
+						StrokeThickness = (double)Pane.ChainStrokeThickness,
+						Data = new GeometryGroup { Children = ArrowCap(new(bx2, by2), pt2) },
+						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}"
+					}
+				);
 			}
 			else
 			{
 				// Draw the link.
 				correctOffsetOfPoint(ref pt1, ow, oh);
 				correctOffsetOfPoint(ref pt2, ow, oh);
-				yield return new()
-				{
-					Stroke = new SolidColorBrush(Pane.LinkColor),
-					StrokeThickness = (double)Pane.ChainStrokeThickness,
-					StrokeDashArray = dashArray,
-					Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
-					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
-					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-				};
-				yield return new()
-				{
-					Stroke = new SolidColorBrush(Pane.LinkColor),
-					StrokeThickness = (double)Pane.ChainStrokeThickness,
-					Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
-					Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
-					Opacity = Pane.EnableAnimationFeedback ? 0 : 1
-				};
+				result.Add(
+					new Path
+					{
+						Stroke = new SolidColorBrush(Pane.LinkColor),
+						StrokeThickness = (double)Pane.ChainStrokeThickness,
+						StrokeDashArray = dashArray,
+						Data = new GeometryGroup { Children = [new LineGeometry { StartPoint = pt1, EndPoint = pt2 }] },
+						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
+						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+					}
+				);
+				result.Add(
+					new Path
+					{
+						Stroke = new SolidColorBrush(Pane.LinkColor),
+						StrokeThickness = (double)Pane.ChainStrokeThickness,
+						Data = new GeometryGroup { Children = ArrowCap(pt1, pt2) },
+						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[2]} {start} -> {end}{linkSuffix}",
+						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
+					}
+				);
+			}
+
+			// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
+			if (start.Count != 1 && !drawnGroupedNodes.Contains(start))
+			{
+				drawnGroupedNodes.AddRef(in start);
+				result.Add(drawRectangle(in start));
+			}
+			if (end.Count != 1 && !drawnGroupedNodes.Contains(end))
+			{
+				drawnGroupedNodes.AddRef(in end);
+				result.Add(drawRectangle(in end));
 			}
 		}
+		return result.AsReadOnlySpan();
 
 
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -985,14 +1006,18 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			// We should correct the offset because canvas storing link view nodes are not aligned as the sudoku pane.
 			=> value -= offset;
 
-		HashSet<Point> getPoints(ChainLinkViewNode[] nodes)
+		HashSet<Point> getPoints(ReadOnlySpan<ChainLinkViewNode> nodes)
 		{
 			var points = new HashSet<Point>();
 			foreach (var node in nodes)
 			{
-				if (node is (_, [var startCandidate, ..], [var endCandidate, ..], _))
+				var (_, start, end, _) = node;
+				foreach (var startCandidate in start)
 				{
 					points.Add(Converter.GetPosition(startCandidate));
+				}
+				foreach (var endCandidate in end)
+				{
 					points.Add(Converter.GetPosition(endCandidate));
 				}
 			}
@@ -1001,6 +1026,29 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				points.Add(Converter.GetPosition(candidate));
 			}
 			return points;
+		}
+
+		Rectangle drawRectangle(ref readonly CandidateMap node)
+		{
+			var topLeft = Converter.GetPosition(node[0], Position.TopLeft);
+			var bottomRight = Converter.GetPosition(node[^1], Position.BottomRight);
+			var fill = new SolidColorBrush(Colors.Yellow with { A = 128 });
+			var stroke = new SolidColorBrush(Colors.Orange);
+			var result = new Rectangle
+			{
+				Width = bottomRight.X - topLeft.X,
+				Height = bottomRight.Y - topLeft.Y,
+				Stroke = stroke,
+				StrokeThickness = 1.5,
+				Fill = fill,
+				RadiusX = 12,
+				RadiusY = 12,
+				HorizontalAlignment = HorizontalAlignment.Left,
+				VerticalAlignment = VerticalAlignment.Top,
+				Margin = new(topLeft.X - ow, topLeft.Y - oh, 0, 0), // A trick to modify position.
+				Tag = $"{nameof(DrawableFactory)}: grouped node {node}"
+			};
+			return result;
 		}
 	}
 

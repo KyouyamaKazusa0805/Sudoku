@@ -3412,7 +3412,7 @@
             Indicates the square root of 2.
             </summary>
         </member>
-        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(Sudoku.Drawing.Nodes.ChainLinkViewNode[])">
+        <member name="M:SudokuStudio.Drawing.PathCreator.CreateLinks(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChainLinkViewNode})">
             <summary>
             Creates a list of <see cref="T:Microsoft.UI.Xaml.Shapes.Shape"/> instances via the specified link view nodes.
             </summary>
