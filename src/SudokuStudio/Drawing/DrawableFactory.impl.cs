@@ -837,19 +837,19 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 						Data = new GeometryGroup
 						{
 							Children = [
-							new PathGeometry
-							{
-								Figures = [
-									new PathFigure
-									{
-										StartPoint = pt1,
-										IsClosed = false,
-										IsFilled = false,
-										Segments = [new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }]
-									}
-								]
-							}
-						]
+								new PathGeometry
+								{
+									Figures = [
+										new PathFigure
+										{
+											StartPoint = pt1,
+											IsClosed = false,
+											IsFilled = false,
+											Segments = [new BezierSegment { Point1 = new(bx1, by1), Point2 = new(bx2, by2), Point3 = pt2 }]
+										}
+									]
+								}
+							]
 						},
 						Tag = $"{nameof(DrawableFactory)}: {tagPrefixes[1]} {start} -> {end}{tagSuffix}{linkSuffix}",
 						Opacity = Pane.EnableAnimationFeedback ? 0 : 1
@@ -920,7 +920,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var (sinAngle, cosAngle, (xAct, yAct)) = (Sin(angle), Cos(angle), pt2);
 			pt2.X = xAct * cosAngle - yAct * sinAngle;
 			pt2.Y = xAct * sinAngle + yAct * cosAngle;
-
 			pt2.X += pt1.X;
 			pt2.Y += pt1.Y;
 		}
@@ -930,7 +929,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		{
 			(p1, p2, var tempDelta) = (pt1, pt2, cs / 2);
 			var (px, py) = (tempDelta * Cos(alpha), tempDelta * Sin(alpha));
-
 			p1.X += px;
 			p1.Y += py;
 			p2.X -= px;
