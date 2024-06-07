@@ -749,25 +749,18 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		// Iterate on each inference to draw the links and grouped nodes (if so).
 		foreach (var node in nodes)
 		{
-			if (node is not (_, [var startCandidate, ..] start, [var endCandidate, ..] end, var i))
+			if (node is not (_, [var startCandidate, ..] start, [var endCandidate, ..] end, var isStrong))
 			{
 				continue;
 			}
 
-			var inference = i ? Inference.Strong : Inference.Weak;
 			_ = Converter.GetPosition(startCandidate) is (var pt1x, var pt1y) pt1;
 			_ = Converter.GetPosition(endCandidate) is (var pt2x, var pt2y) pt2;
-
-			var dashArray = (
-				inference switch
-				{
-					Inference.Strong => Pane.StrongLinkDashStyle,
-					Inference.Weak => Pane.WeakLinkDashStyle
-				}
-			).ToDoubleCollection();
+			var dashArray = (isStrong ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle).ToDoubleCollection();
 			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
-			var tagSuffix = inference switch { Inference.Strong => StrongInferenceSuffix, Inference.Weak => WeakInferenceSuffix };
+			var tagSuffix = isStrong ? StrongInferenceSuffix : WeakInferenceSuffix;
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
+
 			// If the distance of two points is lower than the one of two adjacent candidates,
 			// the link will be ignored to be drawn because of too narrow.
 			var distance = pt1.DistanceTo(pt2);
@@ -782,7 +775,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			adjust(pt1, pt2, out var p1, out _, alpha, cs);
 
 			// Check if another candidate lies in the direct line.
-			var through = false;
+			var linkPassesThroughUsedCandidates = false;
 			var dx1 = deltaX;
 			var dy1 = deltaY;
 			foreach (var point in points)
@@ -799,19 +792,17 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
 				{
-					through = true;
+					linkPassesThroughUsedCandidates = true;
 					break;
 				}
 			}
 
 			// Now cut the link.
 			cut(ref pt1, ref pt2, cs);
-
-			if (through)
+			if (linkPassesThroughUsedCandidates)
 			{
-				var bezierLength = 20.0;
-
 				// The end points are rotated 45 degrees (counterclockwise for the start point, clockwise for the end point).
+				const double bezierLength = 30.0;
 				var oldPt1 = new Point(pt1x, pt1y);
 				var oldPt2 = new Point(pt2x, pt2y);
 				rotate(oldPt1, ref pt1, -RotateAngle);
@@ -823,7 +814,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				var interim2Alpha = alpha + RotateAngle;
 				var bx2 = pt2.X - bezierLength * Cos(interim2Alpha);
 				var by2 = pt2.Y - bezierLength * Sin(interim2Alpha);
-
 				correctOffsetOfPoint(ref pt1, ow, oh);
 				correctOffsetOfPoint(ref pt2, ow, oh);
 				correctOffsetOfDouble(ref bx1, ow);
