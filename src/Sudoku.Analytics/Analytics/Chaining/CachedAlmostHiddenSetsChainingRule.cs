@@ -39,6 +39,12 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 				var possibleCandidates2 = weakLinkCandidates & ~candidates1;
 				foreach (var candidates2 in possibleCandidates2 | possibleCandidates2.Count)
 				{
+					if ((candidates1 | candidates2).Cells.Count == 1)
+					{
+						// The weak link cannot be inside one cell.
+						continue;
+					}
+
 					var node1 = new Node(in candidates1, true, in allCandidates);
 					var node2 = new Node(in candidates2, false, in allCandidates);
 					linkDictionary.AddEntry(node1, node2, false, ahs);
