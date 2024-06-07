@@ -1032,8 +1032,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var (firstCandidate, lastCandidate) = (node[0], node[^1]);
 			var topLeft = Converter.GetPosition(firstCandidate, Position.TopLeft);
 			var bottomRight = Converter.GetPosition(lastCandidate, Position.BottomRight);
-			var fill = new SolidColorBrush(Colors.Yellow with { A = 64 });
-			var stroke = new SolidColorBrush(Colors.Orange);
+			var fill = new SolidColorBrush(Pane.GroupedNodeBackgroundColor);
+			var stroke = new SolidColorBrush(Pane.GroupedNodeStrokeColor);
 			var width = bottomRight.X - topLeft.X;
 			var height = bottomRight.Y - topLeft.Y;
 			var result = new Rectangle

@@ -348,6 +348,50 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 	}
 
 	/// <summary>
+	/// The grouped node stroke color.
+	/// </summary>
+	internal Color GroupedNodeStrokeColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,
+				_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor_Dark
+			};
+			SampleSudokuGrid.GroupedNodeStrokeColor = value;
+		}
+	}
+
+	/// <summary>
+	/// Indicates grouped node background color.
+	/// </summary>
+	internal Color GroupedNodeBackgroundColor
+	{
+		get => App.CurrentTheme switch
+		{
+			ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,
+			_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
+		};
+
+		set
+		{
+			_ = App.CurrentTheme switch
+			{
+				ApplicationTheme.Light => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,
+				_ => ((App)Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor_Dark
+			};
+			SampleSudokuGrid.GroupedNodeBackgroundColor = value;
+		}
+	}
+
+	/// <summary>
 	/// The given color.
 	/// </summary>
 	internal Color GivenFontColor
@@ -543,6 +587,10 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 
 	private void EndofinColorSelector_ColorChanged(object sender, Color e) => EndofinColor = e;
 
+	private void GroupedNodeStrokeColorSelector_ColorChanged(object sender, Color e) => GroupedNodeStrokeColor = e;
+
+	private void GroupedNodeBackgroundColorSelector_ColorChanged(object sender, Color e) => GroupedNodeBackgroundColor = e;
+
 	private void AuxiliaryColor1Selector_ColorChanged(object sender, Color e)
 		=> ChangeColor(App.CurrentTheme switch
 		{
@@ -649,7 +697,4 @@ public sealed partial class DrawingPreferenceItemsPage : Page
 
 	private void WeakLinkDashStyleBox_DashArrayChanged(object sender, DashArray e)
 		=> ((App)Application.Current).Preference.UIPreferences.WeakLinkDashStyle = e;
-
-	private void CycleLikeCellLinkDashStyleBox_DashArrayChanged(object sender, DashArray e)
-		=> ((App)Application.Current).Preference.UIPreferences.CyclingCellLinkDashStyle = e;
 }

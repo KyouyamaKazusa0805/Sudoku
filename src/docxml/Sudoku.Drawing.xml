@@ -337,7 +337,7 @@
             <param name="end">Indicates the end point.</param>
             <param name="isStrongLink">Indicates whether the link is a strong link.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.CandidateMap@,Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Drawing.Nodes.ChainLinkViewNode.#ctor(Sudoku.Drawing.ColorIdentifier,Sudoku.Concepts.CandidateMap,Sudoku.Concepts.CandidateMap,System.Boolean)">
             <summary>
             Defines a view node that highlights for a chain link.
             </summary>

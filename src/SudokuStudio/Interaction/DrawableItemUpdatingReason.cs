@@ -120,6 +120,11 @@ public enum DrawableItemUpdatingReason
 	EndofinColorized,
 
 	/// <summary>
+	/// Indicates the updating items are grouped link view nodes.
+	/// </summary>
+	GroupedNodeColorized,
+
+	/// <summary>
 	/// Indicates the updating items are view nodes that are defined <see cref="ColorIdentifierKind.Auxiliary1"/>,
 	/// <see cref="ColorIdentifierKind.Auxiliary2"/> or <see cref="ColorIdentifierKind.Auxiliary3"/>.
 	/// </summary>

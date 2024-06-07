@@ -11,8 +11,8 @@ namespace Sudoku.Drawing.Nodes;
 [method: JsonConstructor]
 public sealed partial class ChainLinkViewNode(
 	ColorIdentifier identifier,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] ref readonly CandidateMap start,
-	[PrimaryConstructorParameter, HashCodeMember, StringMember] ref readonly CandidateMap end,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] CandidateMap start,
+	[PrimaryConstructorParameter, HashCodeMember, StringMember] CandidateMap end,
 	[PrimaryConstructorParameter, StringMember] bool isStrongLink
 ) : BasicViewNode(identifier)
 {

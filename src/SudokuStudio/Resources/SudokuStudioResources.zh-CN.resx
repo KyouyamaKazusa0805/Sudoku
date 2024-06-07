@@ -2570,4 +2570,10 @@
   <data name="SettingsPage_AllowCollisionOnAlmostLockedSetWWing" xml:space="preserve">
     <value>允许 ALS-W-Wing 技巧里的 ALS 结构重叠</value>
   </data>
+  <data name="SettingsPage_GroupedNodeBackgroundColor" xml:space="preserve">
+    <value>区块节点背景配色</value>
+  </data>
+  <data name="SettingsPage_GroupedNodeStrokeColor" xml:space="preserve">
+    <value>区块节点框线配色</value>
+  </data>
 </root>

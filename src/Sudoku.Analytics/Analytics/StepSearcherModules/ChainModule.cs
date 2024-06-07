@@ -51,7 +51,7 @@ internal static class ChainModule
 					from link in foundChain.Links
 					let node1 = link.FirstNode
 					let node2 = link.SecondNode
-					select new ChainLinkViewNode(ColorIdentifier.Normal, in node1.Map, in node2.Map, link.IsStrong)
+					select new ChainLinkViewNode(ColorIdentifier.Normal, node1.Map, node2.Map, link.IsStrong)
 				]
 			];
 			foreach (var supportedRule in supportedRules)

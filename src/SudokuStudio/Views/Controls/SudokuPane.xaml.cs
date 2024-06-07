@@ -48,6 +48,8 @@ namespace SudokuStudio.Views.Controls;
 [DependencyProperty<Color>("CannibalismColor", DocSummary = "Indicates the cannibalism color.")]
 [DependencyProperty<Color>("ExofinColor", DocSummary = "Indicates the exofin color.")]
 [DependencyProperty<Color>("EndofinColor", DocSummary = "Indicates the endofin color.")]
+[DependencyProperty<Color>("GroupedNodeStrokeColor", DocSummary = "Indicates the grouped node stroke color.")]
+[DependencyProperty<Color>("GroupedNodeBackgroundColor", DocSummary = "Indicates the grouped node background color.")]
 [DependencyProperty<Color>("HouseCompletedFeedbackColor", DocSummary = "Indicates the feedback color when a house is completed.")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocSummary = "Indicates the dash style of the strong links.")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocSummary = "Indicates the dash style of the weak links.")]
@@ -125,6 +127,12 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 
 	[Default]
 	private static readonly Color EndofinColorDefaultValue = Color.FromArgb(255, 216, 178, 255);
+
+	[Default]
+	private static readonly Color GroupedNodeStrokeColorDefaultValue = Colors.Yellow with { A = 64 };
+
+	[Default]
+	private static readonly Color GroupedNodeBackgroundColorDefaultValue = Colors.Orange;
 
 	[Default]
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
@@ -744,6 +752,14 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	[Callback]
 	private static void EndofinColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
 		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.EndofinColorized, (Color)e.NewValue!);
+
+	[Callback]
+	private static void GroupedNodeStrokeColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.GroupedNodeColorized, (Color)e.NewValue!);
+
+	[Callback]
+	private static void GroupedNodeBackgroundColorPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
+		=> UpdateViewUnitControls((SudokuPane)d, DrawableItemUpdatingReason.GroupedNodeColorized, (Color)e.NewValue!);
 
 	[Callback]
 	private static void BabaGroupLabelFontPropertyCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)

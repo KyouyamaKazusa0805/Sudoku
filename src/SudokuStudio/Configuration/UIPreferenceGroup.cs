@@ -86,12 +86,14 @@ namespace SudokuStudio.Configuration;
 [DependencyProperty<Color>("ExofinColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.ExofinColor")]
 [DependencyProperty<Color>("EndofinColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
 [DependencyProperty<Color>("EndofinColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.EndofinColor")]
+[DependencyProperty<Color>("GroupedNodeStrokeColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor")]
+[DependencyProperty<Color>("GroupedNodeStrokeColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor")]
+[DependencyProperty<Color>("GroupedNodeBackgroundColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor")]
+[DependencyProperty<Color>("GroupedNodeBackgroundColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor")]
 [DependencyProperty<Color>("HouseCompletedFeedbackColor", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor")]
 [DependencyProperty<Color>("HouseCompletedFeedbackColor_Dark", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor")]
 [DependencyProperty<DashArray>("StrongLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.StrongLinkDashStyle")]
 [DependencyProperty<DashArray>("WeakLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle")]
-[DependencyProperty<DashArray>("CyclingCellLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle")]
-[DependencyProperty<DashArray>("OtherLinkDashStyle", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle")]
 [DependencyProperty<Grid>("LastGridPuzzle", DocSummary = "Indicates the last opened puzzle to be loaded or saved.")]
 [DependencyProperty<UserDefinedDrawable?>("LastRenderable", DocSummary = "Indicates the drawable items produced by last opened puzzle.")]
 [DependencyProperty<ColorPalette>("AuxiliaryColors", DocReferencedMemberName = "global::SudokuStudio.Views.Controls.SudokuPane.AuxiliaryColors")]
@@ -236,6 +238,18 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 	private static readonly Color EndofinColor_DarkDefaultValue = Color.FromArgb(255, 216, 178, 255);
 
 	[Default]
+	private static readonly Color GroupedNodeStrokeColorDefaultValue = Colors.Orange;
+
+	[Default]
+	private static readonly Color GroupedNodeStrokeColor_DarkDefaultValue = Color.FromArgb(64, 67, 53, 25);
+
+	[Default]
+	private static readonly Color GroupedNodeBackgroundColorDefaultValue = Colors.Yellow with { A = 64 };
+
+	[Default]
+	private static readonly Color GroupedNodeBackgroundColor_DarkDefaultValue = Color.FromArgb(255, 157, 93, 0);
+
+	[Default]
 	private static readonly Color HouseCompletedFeedbackColorDefaultValue = Colors.HotPink;
 
 	[Default]
@@ -246,12 +260,6 @@ public sealed partial class UIPreferenceGroup : PreferenceGroup
 
 	[Default]
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
-
-	[Default]
-	private static readonly DashArray CyclingCellLinkDashStyleDefaultValue = [];
-
-	[Default]
-	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
 
 	[Default]
 	private static readonly Grid LastGridPuzzleDefaultValue = Grid.Empty;

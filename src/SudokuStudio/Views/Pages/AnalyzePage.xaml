@@ -174,6 +174,8 @@
 							DeltaCandidateColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.DeltaPencilmarkColor,Mode=OneWay}"
 							ExofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.ExofinColor,Mode=OneWay}"
 							EndofinColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EndofinColor,Mode=OneWay}"
+							GroupedNodeStrokeColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeStrokeColor,Mode=OneWay}"
+							GroupedNodeBackgroundColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.GroupedNodeBackgroundColor,Mode=OneWay}"
 							AssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.AssignmentColor,Mode=OneWay}"
 							OverlappedAssignmentColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.OverlappedAssignmentColor,Mode=OneWay}"
 							EliminationColor="{x:Bind ((z:App)y:Application.Current).Preference.UIPreferences.EliminationColor,Mode=OneWay}"

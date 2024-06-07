@@ -104,9 +104,9 @@ public partial class App : Application
 	internal void CoverSettingsToSudokuPaneViaApplicationTheme(SudokuPane pane)
 	{
 		var uiPref = ((App)Current).Preference.UIPreferences;
-		Action themeChanger = CurrentTheme switch { ApplicationTheme.Light => setSudokuPaneColors_Light, _ => setSudokuPaneColors_Dark };
-
-		themeChanger();
+		var a = setSudokuPaneColors_Light;
+		var b = setSudokuPaneColors_Dark;
+		(CurrentTheme switch { ApplicationTheme.Light => a, _ => b })();
 
 
 		void setSudokuPaneColors_Light()
@@ -128,6 +128,8 @@ public partial class App : Application
 			pane.CannibalismColor = uiPref.CannibalismColor;
 			pane.ExofinColor = uiPref.ExofinColor;
 			pane.EndofinColor = uiPref.EndofinColor;
+			pane.GroupedNodeStrokeColor = uiPref.GroupedNodeStrokeColor;
+			pane.GroupedNodeBackgroundColor = uiPref.GroupedNodeBackgroundColor;
 			pane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor;
 			pane.AuxiliaryColors = uiPref.AuxiliaryColors;
 			pane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds;
@@ -155,6 +157,8 @@ public partial class App : Application
 			pane.CannibalismColor = uiPref.CannibalismColor_Dark;
 			pane.ExofinColor = uiPref.ExofinColor_Dark;
 			pane.EndofinColor = uiPref.EndofinColor_Dark;
+			pane.GroupedNodeStrokeColor = uiPref.GroupedNodeStrokeColor_Dark;
+			pane.GroupedNodeBackgroundColor = uiPref.GroupedNodeBackgroundColor_Dark;
 			pane.HouseCompletedFeedbackColor = uiPref.HouseCompletedFeedbackColor_Dark;
 			pane.AuxiliaryColors = uiPref.AuxiliaryColors_Dark;
 			pane.DifficultyLevelForegrounds = uiPref.DifficultyLevelForegrounds_Dark;

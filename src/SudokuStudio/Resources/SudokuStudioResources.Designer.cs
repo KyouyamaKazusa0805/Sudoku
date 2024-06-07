@@ -5526,6 +5526,24 @@ namespace SudokuStudio.Resources {
         }
         
         /// <summary>
+        ///   Looks up a localized string similar to Grouped node background color.
+        /// </summary>
+        internal static string SettingsPage_GroupedNodeBackgroundColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_GroupedNodeBackgroundColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized string similar to Grouped node stroke color.
+        /// </summary>
+        internal static string SettingsPage_GroupedNodeStrokeColor {
+            get {
+                return ResourceManager.GetString("SettingsPage_GroupedNodeStrokeColor", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Looks up a localized string similar to Search for Hidden Single in Block first.
         /// </summary>
         internal static string SettingsPage_HiddenSinglesInBlockFirst {

@@ -83,6 +83,12 @@
 				<w:SettingsCard Header="{m:R Key=SettingsPage_EndofinColor}">
 					<c:ColorSelector x:Name="EndofinColorSelector" SelectedColor="{x:Bind EndofinColor}" ColorChanged="EndofinColorSelector_ColorChanged" />
 				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_GroupedNodeStrokeColor}">
+					<c:ColorSelector x:Name="GroupedNodeStrokeColorSelector" SelectedColor="{x:Bind GroupedNodeStrokeColor}" ColorChanged="GroupedNodeStrokeColorSelector_ColorChanged" />
+				</w:SettingsCard>
+				<w:SettingsCard Header="{m:R Key=SettingsPage_GroupedNodeBackgroundColor}">
+					<c:ColorSelector x:Name="GroupedNodeBackgroundColorSelector" SelectedColor="{x:Bind GroupedNodeBackgroundColor}" ColorChanged="GroupedNodeBackgroundColorSelector_ColorChanged" />
+				</w:SettingsCard>
 				<w:SettingsExpander Header="{m:R Key=SettingsPage_AuxiliaryColors}" Description="{m:R Key=SettingsPage_AuxiliaryColorsDescription}">
 					<w:SettingsExpander.Items>
 						<w:SettingsCard ContentAlignment="Left" Padding="0,12">

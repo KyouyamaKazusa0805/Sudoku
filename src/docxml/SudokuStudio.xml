@@ -2417,6 +2417,30 @@
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark"/>
         </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_Dark"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor"/>
+        </member>
+        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_DarkProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_Dark"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_Dark"/>
+        </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor"/>.
@@ -2440,18 +2464,6 @@
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle"/>.
             </summary>
             <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle"/>
-        </member>
-        <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyleProperty">
-            <summary>
-            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>.
-            </summary>
-            <seealso cref="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle"/>
         </member>
         <member name="F:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzleProperty">
             <summary>
@@ -2881,6 +2893,18 @@
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.EndofinColor_Dark">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
         </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeStrokeColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>
+        </member>
+        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.GroupedNodeBackgroundColor_Dark">
+            <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>
+        </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.HouseCompletedFeedbackColor">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>
         </member>
@@ -2892,12 +2916,6 @@
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.WeakLinkDashStyle">
             <inheritdoc cref="P:SudokuStudio.Views.Controls.SudokuPane.WeakLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.CyclingCellLinkDashStyle">
-            <inheritdoc cref="!:global::SudokuStudio.Views.Controls.SudokuPane.CycleLikeLinkDashStyle"/>
-        </member>
-        <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.OtherLinkDashStyle">
-            <inheritdoc cref="!:global::SudokuStudio.Views.Controls.SudokuPane.OtherLinkDashStyle"/>
         </member>
         <member name="P:SudokuStudio.Configuration.UIPreferenceGroup.LastGridPuzzle">
             <summary>
@@ -4373,6 +4391,11 @@
             </summary>
             <seealso cref="F:Sudoku.Drawing.WellKnownColorIdentifierKind.Endofin"/>
             <seealso cref="F:Sudoku.Drawing.ColorIdentifier.Endofin"/>
+        </member>
+        <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.GroupedNodeColorized">
+            <summary>
+            Indicates the updating items are grouped link view nodes.
+            </summary>
         </member>
         <member name="F:SudokuStudio.Interaction.DrawableItemUpdatingReason.AuxiliaryColorized">
             <summary>
@@ -8981,6 +9004,16 @@
               Looks up a localized string similar to Given font.
             </summary>
         </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_GroupedNodeBackgroundColor">
+            <summary>
+              Looks up a localized string similar to Grouped node background color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_GroupedNodeStrokeColor">
+            <summary>
+              Looks up a localized string similar to Grouped node stroke color.
+            </summary>
+        </member>
         <member name="P:SudokuStudio.Resources.SudokuStudioResources.SettingsPage_HiddenSinglesInBlockFirst">
             <summary>
               Looks up a localized string similar to Search for Hidden Single in Block first.
@@ -12324,6 +12357,18 @@
             </summary>
             <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor"/>
         </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor"/>
+        </member>
+        <member name="F:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColorProperty">
+            <summary>
+            Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>.
+            </summary>
+            <seealso cref="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor"/>
+        </member>
         <member name="F:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColorProperty">
             <summary>
             Defines a dependency property that binds with property <see cref="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor"/>.
@@ -12646,6 +12691,16 @@
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.EndofinColor">
             <summary>
             Indicates the endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeStrokeColor">
+            <summary>
+            Indicates the grouped node stroke color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Controls.SudokuPane.GroupedNodeBackgroundColor">
+            <summary>
+            Indicates the grouped node background color.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Controls.SudokuPane.HouseCompletedFeedbackColor">
@@ -15332,6 +15387,16 @@
         <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.EndofinColor">
             <summary>
             The endofin color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GroupedNodeStrokeColor">
+            <summary>
+            The grouped node stroke color.
+            </summary>
+        </member>
+        <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GroupedNodeBackgroundColor">
+            <summary>
+            Indicates grouped node background color.
             </summary>
         </member>
         <member name="P:SudokuStudio.Views.Pages.Settings.DrawingPreferenceItemsPage.GivenFontColor">
