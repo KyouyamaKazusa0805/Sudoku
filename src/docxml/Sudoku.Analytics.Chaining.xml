@@ -128,6 +128,15 @@
             This method should not be overridden if no eliminations exists in the loop pattern.
             </remarks>
         </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Concepts.Chain">
             <summary>
             Represents a chain.

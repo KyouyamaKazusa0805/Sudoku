@@ -4,7 +4,7 @@ namespace Sudoku.Analytics.Chaining;
 /// Represents a chaining rule on ALS rule (i.e. <see cref="LinkType.AlmostLockedSet"/>).
 /// </summary>
 /// <seealso cref="LinkType.AlmostLockedSet"/>
-internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
+internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 {
 	/// <inheritdoc/>
 	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
@@ -63,7 +63,7 @@ internal sealed class CachedAlmostLockedSetsChainingRule : ChainingRule
 				}
 
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
-				foreach (var cells2 in possibleCells2 | possibleCells2.Count)
+				foreach (ref readonly var cells2 in possibleCells2 | possibleCells2.Count)
 				{
 					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
 					linkDictionary.AddEntry(node1, node2, false, als);

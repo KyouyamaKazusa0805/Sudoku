@@ -893,8 +893,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				);
 			}
 
-		// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
 		DrawGroupNodeOutlines:
+			// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
 			if (start.Count != 1 && !drawnGroupedNodes.Contains(start))
 			{
 				drawnGroupedNodes.AddRef(in start);
@@ -1031,29 +1031,43 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 
 		Rectangle drawRectangle(ref readonly CandidateMap node)
 		{
-			if (node is not [var firstCandidate, .., var lastCandidate])
-			{
-				throw null!;
-			}
-
+			var (firstCandidate, lastCandidate) = (node[0], node[^1]);
 			var topLeft = Converter.GetPosition(firstCandidate, Position.TopLeft);
 			var bottomRight = Converter.GetPosition(lastCandidate, Position.BottomRight);
 			var fill = new SolidColorBrush(Colors.Yellow with { A = 128 });
 			var stroke = new SolidColorBrush(Colors.Orange);
+			var width = bottomRight.X - topLeft.X;
+			var height = bottomRight.Y - topLeft.Y;
 			var result = new Rectangle
 			{
-				Width = bottomRight.X - topLeft.X,
-				Height = bottomRight.Y - topLeft.Y,
 				Stroke = stroke,
 				StrokeThickness = 1.5,
 				Fill = fill,
-				RadiusX = 12,
-				RadiusY = 12,
+				RadiusX = 8,
+				RadiusY = 8,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Top,
-				Margin = new(topLeft.X - ow, topLeft.Y - oh, 0, 0), // A trick to modify position.
 				Tag = $"{nameof(DrawableFactory)}: grouped node {node}"
 			};
+
+			// A trick to modify position.
+			if (width > 0)
+			{
+				// Placing:
+				// x .
+				// . x
+				(result.Width, result.Height, result.Margin) = (width, height, new Thickness(topLeft.X - ow, topLeft.Y - oh, 0, 0));
+			}
+			else
+			{
+				// . x
+				// x .
+				var topRight = Converter.GetPosition(firstCandidate, Position.TopRight);
+				var bottomLeft = Converter.GetPosition(lastCandidate, Position.BottomLeft);
+				var newWidth = topRight.X - bottomLeft.X;
+				var newHeight = bottomLeft.Y - topLeft.Y;
+				(result.Width, result.Height, result.Margin) = (newWidth, newHeight, new(bottomLeft.X - ow, topRight.Y - oh, 0, 0));
+			}
 			return result;
 		}
 	}

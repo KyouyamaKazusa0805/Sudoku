@@ -4,6 +4,96 @@
         <name>Sudoku.Analytics.AlmostLockedSets</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Concepts.AlmostHiddenSet">
+            <summary>
+            Defines a data pattern that describes an AHS.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="house">Indicates the house used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="candidatesCanFormWeakLink">Indicates all candidates that can be used as weak links.</param>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.#ctor(Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Defines a data pattern that describes an AHS.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="house">Indicates the house used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="candidatesCanFormWeakLink">Indicates all candidates that can be used as weak links.</param>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.Equals(Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.CompareTo(Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.GetAllCandidates(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible candidates used in the current pattern.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of <see cref="T:System.Int32"/> values.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.CandidatesCanFormWeakLink">
+            <summary>
+            The generated property declaration for parameter <c>candidatesCanFormWeakLink</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_Equality(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_Inequality(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_GreaterThan(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_LessThan(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_GreaterThanOrEqual(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Concepts.AlmostLockedSet">
             <summary>
             Defines a data pattern that describes an ALS.

@@ -21,8 +21,7 @@ internal static class AlmostLockedSetsModule
 			{
 				eliminationMap[digit] = PeersMap[cell] & CandidatesMap[digit];
 			}
-
-			result.Add(new(grid.GetCandidates(cell), [cell], PeersMap[cell] & EmptyCells, eliminationMap));
+			result.Add(new(grid.GetCandidates(cell), in cell.AsCellMap(), PeersMap[cell] & EmptyCells, eliminationMap));
 		}
 
 		// Get all non-bi-value-cell ALSes.
@@ -75,7 +74,6 @@ internal static class AlmostLockedSetsModule
 				}
 			}
 		}
-
 		return result.AsReadOnlySpan();
 	}
 

@@ -29,6 +29,7 @@ namespace Sudoku.Analytics.StepSearchers;
 	Technique.GroupedContinuousNiceLoop, Technique.GroupedXyCycle, Technique.GroupedFishyCycle)]
 [SplitStepSearcher(0, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates)]
 [SplitStepSearcher(1, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet)]
+[SplitStepSearcher(2, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet | LinkType.AlmostHiddenSet)]
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -39,7 +40,8 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 		{ LinkType.SingleDigit, new CachedXChainingRule() },
 		{ LinkType.SingleCell, new CachedYChainingRule() },
 		{ LinkType.LockedCandidates, new CachedLockedCandidatesChainingRule() },
-		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() }
+		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() },
+		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
 	};
 
 
