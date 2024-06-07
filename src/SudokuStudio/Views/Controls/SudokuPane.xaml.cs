@@ -139,12 +139,6 @@ public sealed partial class SudokuPane : UserControl, INotifyPropertyChanged
 	private static readonly DashArray WeakLinkDashStyleDefaultValue = [3, 1.5];
 
 	[Default]
-	private static readonly DashArray CycleLikeLinkDashStyleDefaultValue = [];
-
-	[Default]
-	private static readonly DashArray OtherLinkDashStyleDefaultValue = [3, 3];
-
-	[Default]
 	private static readonly Thickness CellsInnerPaddingDefaultValue = new(6);
 
 	[Default]

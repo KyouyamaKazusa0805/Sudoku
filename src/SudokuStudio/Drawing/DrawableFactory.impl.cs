@@ -777,7 +777,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 			if (distance <= cellSize * SqrtOf2 || distance <= cellSize * SqrtOf2)
 			{
-				continue;
+				goto DrawGroupNodeOutlines;
 			}
 
 			var (deltaX, deltaY) = (pt2.X - pt1.X, pt2.Y - pt1.Y);
@@ -828,7 +828,6 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				correctOffsetOfDouble(ref bx2, oh);
 				correctOffsetOfDouble(ref by1, ow);
 				correctOffsetOfDouble(ref by2, oh);
-
 				result.Add(
 					new Path
 					{
@@ -894,7 +893,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				);
 			}
 
-			// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
+		// If the start node or end node is a grouped node, we should append a rectangle to highlight it.
+		DrawGroupNodeOutlines:
 			if (start.Count != 1 && !drawnGroupedNodes.Contains(start))
 			{
 				drawnGroupedNodes.AddRef(in start);
@@ -1014,24 +1014,32 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				var (_, start, end, _) = node;
 				foreach (var startCandidate in start)
 				{
-					points.Add(Converter.GetPosition(startCandidate));
+					var point = Converter.GetPosition(startCandidate);
+					points.Add(point);
 				}
 				foreach (var endCandidate in end)
 				{
-					points.Add(Converter.GetPosition(endCandidate));
+					var point = Converter.GetPosition(endCandidate);
+					points.Add(point);
 				}
 			}
 			foreach (var (_, candidate) in Conclusions)
 			{
-				points.Add(Converter.GetPosition(candidate));
+				var point = Converter.GetPosition(candidate);
+				points.Add(point);
 			}
 			return points;
 		}
 
 		Rectangle drawRectangle(ref readonly CandidateMap node)
 		{
-			var topLeft = Converter.GetPosition(node[0], Position.TopLeft);
-			var bottomRight = Converter.GetPosition(node[^1], Position.BottomRight);
+			if (node is not [var firstCandidate, .., var lastCandidate])
+			{
+				throw null!;
+			}
+
+			var topLeft = Converter.GetPosition(firstCandidate, Position.TopLeft);
+			var bottomRight = Converter.GetPosition(lastCandidate, Position.BottomRight);
 			var fill = new SolidColorBrush(Colors.Yellow with { A = 128 });
 			var stroke = new SolidColorBrush(Colors.Orange);
 			var result = new Rectangle
