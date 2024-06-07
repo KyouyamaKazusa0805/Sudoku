@@ -36,10 +36,13 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 			var allCandidates = ahs.GetAllCandidates(in grid);
 			foreach (ref readonly var candidates1 in weakLinkCandidates | weakLinkCandidates.Count - 1)
 			{
-				var candidates2 = weakLinkCandidates & ~candidates1;
-				var node1 = new Node(in candidates1, true, in allCandidates);
-				var node2 = new Node(in candidates2, false, in allCandidates);
-				linkDictionary.AddEntry(node1, node2, false, ahs);
+				var possibleCandidates2 = weakLinkCandidates & ~candidates1;
+				foreach (var candidates2 in possibleCandidates2 | possibleCandidates2.Count)
+				{
+					var node1 = new Node(in candidates1, true, in allCandidates);
+					var node2 = new Node(in candidates2, false, in allCandidates);
+					linkDictionary.AddEntry(node1, node2, false, ahs);
+				}
 			}
 		}
 	}

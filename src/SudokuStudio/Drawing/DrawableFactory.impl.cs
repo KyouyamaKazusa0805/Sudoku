@@ -1,7 +1,5 @@
 namespace SudokuStudio.Drawing;
 
-using static DrawableItemIdentifiers;
-
 internal partial class DrawableFactory
 {
 	/// <summary>
@@ -753,7 +751,7 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		{
 			var dashArray = (isStrong ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle).ToDoubleCollection();
 			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
-			var tagSuffix = isStrong ? StrongInferenceSuffix : WeakInferenceSuffix;
+			var tagSuffix = isStrong ? DrawableItemIdentifiers.StrongInferenceSuffix : DrawableItemIdentifiers.WeakInferenceSuffix;
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 
 			// Find two candidates with a minimal distance.
@@ -1110,20 +1108,20 @@ file static class Extensions
 	public static string GetIdentifierSuffix(this ColorIdentifier @this)
 		=> @this switch
 		{
-			ColorColorIdentifier(var a, var r, var g, var b) => $"{ColorColorIdentifierSeparator}{a:X2}{r:X2}{g:X2}{b:X2}|",
-			PaletteIdColorIdentifier(var id) => $"{IdColorIdentifierSeparator}{id}|",
+			ColorColorIdentifier(var a, var r, var g, var b) => $"{DrawableItemIdentifiers.ColorColorIdentifierSeparator}{a:X2}{r:X2}{g:X2}{b:X2}|",
+			PaletteIdColorIdentifier(var id) => $"{DrawableItemIdentifiers.IdColorIdentifierSeparator}{id}|",
 			WellKnownColorIdentifier(var kind) => kind switch
 			{
-				ColorIdentifierKind.Normal => NormalColorizedSuffix,
-				>= ColorIdentifierKind.Auxiliary1 and <= ColorIdentifierKind.Auxiliary3 => AuxiliaryColorizedSuffix,
-				ColorIdentifierKind.Assignment => AssignmentColorizedSuffix,
-				ColorIdentifierKind.OverlappedAssignment => OverlappedAssignmentColorizedSuffix,
-				ColorIdentifierKind.Elimination => EliminationColorizedSuffix,
-				ColorIdentifierKind.Exofin => ExofinColorizedSuffix,
-				ColorIdentifierKind.Endofin => EndofinColorizedSuffix,
-				ColorIdentifierKind.Cannibalism => CannibalismColorizedSuffix,
-				ColorIdentifierKind.Link => LinkColorizedSuffix,
-				>= ColorIdentifierKind.AlmostLockedSet1 and <= ColorIdentifierKind.AlmostLockedSet5 => AlmostLockedSetColorizedSuffix,
+				ColorIdentifierKind.Normal => DrawableItemIdentifiers.NormalColorizedSuffix,
+				>= ColorIdentifierKind.Auxiliary1 and <= ColorIdentifierKind.Auxiliary3 => DrawableItemIdentifiers.AuxiliaryColorizedSuffix,
+				ColorIdentifierKind.Assignment => DrawableItemIdentifiers.AssignmentColorizedSuffix,
+				ColorIdentifierKind.OverlappedAssignment => DrawableItemIdentifiers.OverlappedAssignmentColorizedSuffix,
+				ColorIdentifierKind.Elimination => DrawableItemIdentifiers.EliminationColorizedSuffix,
+				ColorIdentifierKind.Exofin => DrawableItemIdentifiers.ExofinColorizedSuffix,
+				ColorIdentifierKind.Endofin => DrawableItemIdentifiers.EndofinColorizedSuffix,
+				ColorIdentifierKind.Cannibalism => DrawableItemIdentifiers.CannibalismColorizedSuffix,
+				ColorIdentifierKind.Link => DrawableItemIdentifiers.LinkColorizedSuffix,
+				>= ColorIdentifierKind.AlmostLockedSet1 and <= ColorIdentifierKind.AlmostLockedSet5 => DrawableItemIdentifiers.AlmostLockedSetColorizedSuffix,
 				_ => throw new ArgumentOutOfRangeException(nameof(@this))
 			},
 			_ => throw new ArgumentOutOfRangeException(nameof(@this))
