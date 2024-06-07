@@ -104,10 +104,13 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 	/// <seealso cref="Position"/>
 	public Point GetPosition(Candidate candidate, Position position = Position.Center)
 	{
+		const double offset = 1;
 		var (cw, ch) = CandidateSize;
 		var (cell, digit) = (candidate / 9, candidate % 9);
 		var @base = GridPoints[cell % 9 * 3 + digit % 3, cell / 9 * 3 + digit / 3];
-		return position switch
+		var extraWidth = candidate / 9 % 9 / 3 * offset;
+		var extraHeight = candidate / 9 / 9 / 3 * offset;
+		var result = position switch
 		{
 			Position.TopLeft => @base,
 			Position.TopRight => @base with { X = @base.X + cw },
@@ -116,5 +119,10 @@ internal readonly partial record struct SudokuPanePositionConverter([property: H
 			Position.Center => new(@base.X + cw / 2, @base.Y + ch / 2),
 			_ => throw new ArgumentOutOfRangeException(nameof(position))
 		};
+
+		// Fix the extra border stroke thickness.
+		result.X += extraWidth;
+		result.Y += extraHeight;
+		return result;
 	}
 }

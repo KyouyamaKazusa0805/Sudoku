@@ -1043,8 +1043,8 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				Stroke = stroke,
 				StrokeThickness = 1.5,
 				Fill = fill,
-				RadiusX = 8,
-				RadiusY = 8,
+				RadiusX = 10,
+				RadiusY = 10,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Top,
 				Tag = $"{nameof(DrawableFactory)}: grouped node {node}"
