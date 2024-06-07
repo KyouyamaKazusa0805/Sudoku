@@ -19454,30 +19454,6 @@
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.IrregularWingStrongLinkEntry">
-            <summary>
-            Represents an aliased type for <see cref="T:System.Collections.Generic.Dictionary`2"/> on irregular wing checking.
-            </summary>
-            <param name="capacity">Indicates the capacity to be initialized.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.IrregularWingStrongLinkEntry.#ctor(System.Int32)">
-            <summary>
-            Represents an aliased type for <see cref="T:System.Collections.Generic.Dictionary`2"/> on irregular wing checking.
-            </summary>
-            <param name="capacity">Indicates the capacity to be initialized.</param>
-        </member>
-        <member name="T:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions">
-            <summary>
-            Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocet)">
-            <summary>
-            Try to get shape kind via the houses.
-            </summary>
-            <param name="this">The houses provider.</param>
-            <returns>A <see cref="T:Sudoku.Concepts.ExocetShapeKind"/> result.</returns>
-        </member>
         <member name="T:Sudoku.Concepts.StrongLinkInfo">
             <summary>
             Represents a data that describes for a strong link used by patterns using link logic.
@@ -19630,6 +19606,18 @@
             <param name="grid">The grid.</param>
             <param name="options">The options to set.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions">
+            <summary>
+            Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions.GetShapeKind(Sudoku.Concepts.IComplexSeniorExocet)">
+            <summary>
+            Try to get shape kind via the houses.
+            </summary>
+            <param name="this">The houses provider.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ExocetShapeKind"/> result.</returns>
         </member>
         <member name="T:Sudoku.Concepts.GridExtensions">
             <summary>
