@@ -747,23 +747,33 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 		_ = Converter is var ((ow, oh), _) and var ((cs, _), _, _, _);
 
 		// Iterate on each inference to draw the links and grouped nodes (if so).
-		foreach (var node in nodes)
+		foreach (var (_, start, end, isStrong) in nodes)
 		{
-			if (node is not (_, [var startCandidate, ..] start, [var endCandidate, ..] end, var isStrong))
-			{
-				continue;
-			}
-
-			_ = Converter.GetPosition(startCandidate) is (var pt1x, var pt1y) pt1;
-			_ = Converter.GetPosition(endCandidate) is (var pt2x, var pt2y) pt2;
 			var dashArray = (isStrong ? Pane.StrongLinkDashStyle : Pane.WeakLinkDashStyle).ToDoubleCollection();
 			var tagPrefixes = ViewNodeTagPrefixes[typeof(ChainLinkViewNode)];
 			var tagSuffix = isStrong ? StrongInferenceSuffix : WeakInferenceSuffix;
 			var linkSuffix = ((ColorIdentifier)ColorIdentifierKind.Link).GetIdentifierSuffix();
 
+			// Find two candidates with a minimal distance.
+			var distance = double.MaxValue;
+			var (pt1, pt2) = (default(Point), default(Point));
+			foreach (var s in start)
+			{
+				var tempPoint1 = Converter.GetPosition(s);
+				foreach (var e in end)
+				{
+					var tempPoint2 = Converter.GetPosition(e);
+					var d = tempPoint1.DistanceTo(tempPoint2);
+					if (d <= distance)
+					{
+						(distance, pt1, pt2) = (d, tempPoint1, tempPoint2);
+					}
+				}
+			}
+
 			// If the distance of two points is lower than the one of two adjacent candidates,
 			// the link will be ignored to be drawn because of too narrow.
-			var distance = pt1.DistanceTo(pt2);
+			var ((pt1x, pt1y), (pt2x, pt2y)) = (pt1, pt2);
 			if (distance <= cs * SqrtOf2 || distance <= cs * SqrtOf2)
 			{
 				continue;
@@ -774,20 +784,18 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			var alpha = Atan2(deltaY, deltaX);
 			adjust(pt1, pt2, out var p1, out _, alpha, cs);
 
-			// Check if another candidate lies in the direct line.
+			// Check whether the link will pass through a candidate used in pattern.
 			var linkPassesThroughUsedCandidates = false;
-			var dx1 = deltaX;
-			var dy1 = deltaY;
+			var (dx1, dy1) = (deltaX, deltaY);
 			foreach (var point in points)
 			{
 				if (point == pt1 || point == pt2)
 				{
-					// The point is itself.
+					// Skip itself.
 					continue;
 				}
 
-				var dx2 = point.X - p1.X;
-				var dy2 = point.Y - p1.Y;
+				var (dx2, dy2) = (point.X - p1.X, point.Y - p1.Y);
 				if (Sign(dx1) == Sign(dx2) && Sign(dy1) == Sign(dy2)
 					&& Abs(dx2) <= Abs(dx1) && Abs(dy2) <= Abs(dy1)
 					&& (dx1 == 0 || dy1 == 0 || (dx1 / dy1).NearlyEquals(dx2 / dy2, epsilon: 1E-1)))
