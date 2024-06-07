@@ -1,3 +1,7 @@
+#define LOCKED_CANDIDATES
+#define ALMOST_LOCKED_SET
+#undef ALMOST_HIDDEN_SET // Can only enable in big memory :(
+
 namespace Sudoku.Analytics.StepSearchers;
 
 /// <summary>
@@ -27,9 +31,15 @@ namespace Sudoku.Analytics.StepSearchers;
 
 	// Loops
 	Technique.GroupedContinuousNiceLoop, Technique.GroupedXyCycle, Technique.GroupedFishyCycle)]
+#if LOCKED_CANDIDATES
 [SplitStepSearcher(0, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates)]
+#endif
+#if ALMOST_LOCKED_SET
 [SplitStepSearcher(1, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet)]
+#endif
+#if ALMOST_HIDDEN_SET
 [SplitStepSearcher(2, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet | LinkType.AlmostHiddenSet)]
+#endif
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -39,9 +49,15 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 	{
 		{ LinkType.SingleDigit, new CachedXChainingRule() },
 		{ LinkType.SingleCell, new CachedYChainingRule() },
+#if LOCKED_CANDIDATES
 		{ LinkType.LockedCandidates, new CachedLockedCandidatesChainingRule() },
+#endif
+#if ALMOST_LOCKED_SET
 		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() },
+#endif
+#if ALMOST_HIDDEN_SET
 		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
+#endif
 	};
 
 

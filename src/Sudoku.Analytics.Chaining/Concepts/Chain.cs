@@ -13,9 +13,6 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 	private readonly bool _weakStart = lastNode.IsOn;
 
 
-	/// <inheritdoc/>
-	public override bool IsGrouped => ValidNodes.Any(static (ref readonly Node node) => node.IsGroupedNode);
-
 	/// <summary>
 	/// Indicates whether the chain is formed a W-Wing.
 	/// </summary>

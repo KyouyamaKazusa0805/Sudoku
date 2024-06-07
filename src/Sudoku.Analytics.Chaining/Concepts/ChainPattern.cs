@@ -63,7 +63,8 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates whether the chain pattern uses grouped logic.
 	/// </summary>
-	public abstract bool IsGrouped { get; }
+	public bool IsGrouped
+		=> ValidNodes.Any(static (ref readonly Node node) => node is { IsGroupedNode: true } or { ExtraMap: not [] });
 
 	/// <summary>
 	/// Indicates whether the pattern only uses same digits.

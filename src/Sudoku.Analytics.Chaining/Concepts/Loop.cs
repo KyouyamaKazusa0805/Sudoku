@@ -8,9 +8,6 @@ public sealed partial class Loop(Node lastNode, LinkDictionary strongLinkDiction
 	ChainPattern(lastNode, true, strongLinkDictionary, weakLinkDictionary)
 {
 	/// <inheritdoc/>
-	public override bool IsGrouped => Array.Exists(_nodes, static node => node.IsGroupedNode);
-
-	/// <inheritdoc/>
 	public override int Length => _nodes.Length;
 
 	/// <inheritdoc/>

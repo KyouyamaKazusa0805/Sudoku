@@ -60,16 +60,16 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 			}
 
 			var id = (ColorIdentifier)(ahsIndex + WellKnownColorIdentifierKind.AlmostLockedSet1);
-			foreach (var alsCandidate in extraMap)
+			foreach (var ahsCandidate in extraMap)
 			{
-				if (!pattern.Contains(alsCandidate))
+				if (!pattern.Contains(ahsCandidate))
 				{
-					view.Add(new CandidateViewNode(id, alsCandidate));
+					view.Add(new CandidateViewNode(id, ahsCandidate));
 				}
 			}
-			foreach (var alsCell in extraMapCells)
+			foreach (var ahsCell in extraMapCells)
 			{
-				view.Add(new CellViewNode(id, alsCell));
+				view.Add(new CellViewNode(id, ahsCell));
 			}
 
 			// Advance AHS color ID pointer.

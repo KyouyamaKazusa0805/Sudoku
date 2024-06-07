@@ -152,9 +152,6 @@
             Indicates whether the chain starts with weak link.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Chain.IsGrouped">
-            <inheritdoc/>
-        </member>
         <member name="P:Sudoku.Concepts.Chain.IsWoodsWing">
             <summary>
             Indicates whether the chain is formed a W-Wing.
@@ -782,9 +779,6 @@
             <summary>
             Represents a loop.
             </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Loop.IsGrouped">
-            <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Loop.Length">
             <inheritdoc/>
