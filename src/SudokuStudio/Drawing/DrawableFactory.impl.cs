@@ -1027,15 +1027,13 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 			return points;
 		}
 
-		Rectangle drawRectangle(ref readonly CandidateMap node)
+		Rectangle drawRectangle(ref readonly CandidateMap nodeCandidates)
 		{
-			var (firstCandidate, lastCandidate) = (node[0], node[^1]);
+			var (firstCandidate, lastCandidate) = (nodeCandidates[0], nodeCandidates[^1]);
 			var topLeft = Converter.GetPosition(firstCandidate, Position.TopLeft);
 			var bottomRight = Converter.GetPosition(lastCandidate, Position.BottomRight);
 			var fill = new SolidColorBrush(Pane.GroupedNodeBackgroundColor);
 			var stroke = new SolidColorBrush(Pane.GroupedNodeStrokeColor);
-			var width = bottomRight.X - topLeft.X;
-			var height = bottomRight.Y - topLeft.Y;
 			var result = new Rectangle
 			{
 				Stroke = stroke,
@@ -1045,27 +1043,51 @@ file sealed record PathCreator(SudokuPane Pane, SudokuPanePositionConverter Conv
 				RadiusY = 10,
 				HorizontalAlignment = HorizontalAlignment.Left,
 				VerticalAlignment = VerticalAlignment.Top,
-				Tag = $"{nameof(DrawableFactory)}: grouped node {node}"
+				Tag = $"{nameof(DrawableFactory)}: grouped node {nodeCandidates}",
+				Opacity = Pane.EnableAnimationFeedback ? 0 : 1
 			};
 
-			// A trick to modify position.
-			if (width > 0)
+			// Try to arrange rectangle position.
+			// A simple way is to record all rows and columns spanned for the candidate list,
+			// in order to find four data:
+			//   1) The minimal row
+			//   2) The maximal row
+			//   3) The minimal column
+			//   4) The maximal column
+			// and then find a minimal rectangle that can cover all of those candidates by those four data.
+			const int logicalMaxValue = 100;
+			var (minRow, minColumn, maxRow, maxColumn) = (Candidate.MaxValue, Candidate.MaxValue, Candidate.MinValue, Candidate.MinValue);
+			var (minRowValue, minColumnValue, maxRowValue, maxColumnValue) = (logicalMaxValue, logicalMaxValue, -1, -1);
+			foreach (var candidate in nodeCandidates)
 			{
-				// Placing:
-				// x .
-				// . x
-				(result.Width, result.Height, result.Margin) = (width, height, new Thickness(topLeft.X - ow, topLeft.Y - oh, 0, 0));
+				var cell = candidate / 9;
+				var digit = candidate % 9;
+				var rowValue = cell / 9 * 3 + digit / 3;
+				var columnValue = cell % 9 * 3 + digit % 3;
+				if (rowValue <= minRowValue)
+				{
+					(minRowValue, minRow) = (rowValue, candidate);
+				}
+				if (rowValue >= maxRowValue)
+				{
+					(maxRowValue, maxRow) = (rowValue, candidate);
+				}
+				if (columnValue <= minColumnValue)
+				{
+					(minColumnValue, minColumn) = (columnValue, candidate);
+				}
+				if (columnValue >= maxColumnValue)
+				{
+					(maxColumnValue, maxColumn) = (columnValue, candidate);
+				}
 			}
-			else
-			{
-				// . x
-				// x .
-				var topRight = Converter.GetPosition(firstCandidate, Position.TopRight);
-				var bottomLeft = Converter.GetPosition(lastCandidate, Position.BottomLeft);
-				var newWidth = topRight.X - bottomLeft.X;
-				var newHeight = bottomLeft.Y - topLeft.Y;
-				(result.Width, result.Height, result.Margin) = (newWidth, newHeight, new(bottomLeft.X - ow, topRight.Y - oh, 0, 0));
-			}
+
+			var topLeftY = Converter.GetPosition(minRow, Position.TopLeft).Y;
+			var topLeftX = Converter.GetPosition(minColumn, Position.TopLeft).X;
+			var bottomRightY = Converter.GetPosition(maxRow, Position.BottomRight).Y;
+			var bottomRightX = Converter.GetPosition(maxColumn, Position.BottomRight).X;
+			var rectanglePositionTopLeft = new Thickness(topLeftX - ow, topLeftY - ow, 0, 0);
+			(result.Width, result.Height, result.Margin) = (bottomRightX - topLeftX, bottomRightY - topLeftY, rectanglePositionTopLeft);
 			return result;
 		}
 	}
