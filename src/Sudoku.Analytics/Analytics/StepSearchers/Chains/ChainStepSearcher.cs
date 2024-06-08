@@ -53,6 +53,5 @@ public sealed partial class ChainStepSearcher : StepSearcher
 	/// </para>
 	/// </remarks>
 	/// <seealso cref="ChainingDriver"/>
-	protected internal override Step? Collect(ref AnalysisContext context)
-		=> ChainModule.CollectCore(ref context, LinkTypes, RuleRouter);
+	protected internal override Step? Collect(ref AnalysisContext context) => ChainModule.CollectCore(ref context, LinkTypes, RuleRouter);
 }
