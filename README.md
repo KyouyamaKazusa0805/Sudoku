@@ -106,10 +106,13 @@ This solution supports many kinds of human-friendly techniques. Here I will list
     * Reverse BUG (Reverse Bivalue Universal Grave)
     * Uniqueness Clue Cover (2-Digit)
   * Chains
-    * Forcing Chains / Bidirectional Cycles
-    * Multiple Forcing Chains
-    * Dynamic Forcing Chains
-    * Blossom Loop
+    * Non-grouped Chains
+      * Alternating Inference Chains
+      * Continuous Nice Loops
+    * Grouped Chains
+      * Grouped Alternating Inference Chains
+      * Grouped Continuous Nice Loops
+      * Node Collision
   * Almost Locked Sets
     * Chaining ALSes (Including ALS-XZ, ALS-XY-Wing, ALS-W-Wing)
     * Extended Subset Principle
