@@ -63,8 +63,28 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 				}
 
 				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
-				foreach (ref readonly var cells2 in possibleCells2 | possibleCells2.Count)
+				foreach (ref readonly var cells2 in
+					possibleCells2
+#if LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
+						| 3
+#else
+						| possibleCells2.Count
+#endif
+				)
 				{
+#if LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
+					if (!cells2.IsInIntersection)
+					{
+						continue;
+					}
+#endif
+#if LIMIT_WEAK_LINK_NODE_PEER_INTERSECTION_MUST_CONTAIN_CELL
+					if (!cells2.PeerIntersection)
+					{
+						continue;
+					}
+#endif
+
 					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
 					linkDictionary.AddEntry(node1, node2, false, als);
 				}
@@ -73,7 +93,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectExtraViewNodes(ChainPattern pattern, ref View[] views)
+	public override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
 		var alsIndex = 0;
 		var view = views[0];

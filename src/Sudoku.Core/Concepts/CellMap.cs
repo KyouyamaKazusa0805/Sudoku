@@ -66,7 +66,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 	public readonly bool IsInIntersection
 	{
 		[MethodImpl(MethodImplOptions.AggressiveInlining)]
-		get => Count <= 3 && PopCount((uint)SharedHouses) == 2;
+		get => Count == 1 || Count <= 3 && PopCount((uint)SharedHouses) == 2;
 	}
 
 	/// <summary>

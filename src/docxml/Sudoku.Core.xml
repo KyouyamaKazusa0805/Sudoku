@@ -6250,6 +6250,20 @@
             </summary>
             <param name="nodes">A list of <see cref="T:Sudoku.Drawing.ViewNode"/> instance.</param>
         </member>
+        <member name="M:Sudoku.Drawing.View.FindCell(System.Int32)">
+            <summary>
+            Try to find the candidate whose cell is specified one.
+            </summary>
+            <param name="cell">The cell to be found.</param>
+            <returns>The found node; or <see langword="null"/> if none found.</returns>
+        </member>
+        <member name="M:Sudoku.Drawing.View.FindCandidate(System.Int32)">
+            <summary>
+            Try to find the candidate whose candidate is specified one.
+            </summary>
+            <param name="candidate">The candidate to be found.</param>
+            <returns>The found node; or <see langword="null"/> if none found.</returns>
+        </member>
         <member name="M:Sudoku.Drawing.View.UnknownOverlaps(System.Int32)">
             <summary>
             Determines whether the specified <see cref="T:Sudoku.Drawing.View"/> stores several <see cref="T:Sudoku.Drawing.Nodes.BabaGroupViewNode"/>s,

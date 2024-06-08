@@ -19,7 +19,7 @@ internal static class ChainModule
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
 			var conclusions = collectConclusions(foundChain, in grid);
-			var step = new NormalChainStep([.. conclusions], collectViews(foundChain), context.Options, foundChain);
+			var step = new NormalChainStep([.. conclusions], collectViews(in grid, foundChain), context.Options, foundChain);
 			if (context.OnlyFindOne)
 			{
 				return step;
@@ -42,7 +42,7 @@ internal static class ChainModule
 			return conclusions;
 		}
 
-		View[] collectViews(ChainPattern foundChain)
+		View[] collectViews(ref readonly Grid grid, ChainPattern foundChain)
 		{
 			var views = (View[])[
 				[
@@ -56,7 +56,7 @@ internal static class ChainModule
 			];
 			foreach (var supportedRule in supportedRules)
 			{
-				supportedRule.CollectExtraViewNodes(foundChain, ref views);
+				supportedRule.CollectExtraViewNodes(in grid, foundChain, ref views);
 			}
 			return views;
 

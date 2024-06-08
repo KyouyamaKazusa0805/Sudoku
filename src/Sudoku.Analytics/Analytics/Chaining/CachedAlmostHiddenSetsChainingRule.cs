@@ -37,13 +37,34 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 			foreach (ref readonly var candidates1 in weakLinkCandidates | weakLinkCandidates.Count - 1)
 			{
 				var possibleCandidates2 = weakLinkCandidates & ~candidates1;
-				foreach (var candidates2 in possibleCandidates2 | possibleCandidates2.Count)
+				foreach (var candidates2 in
+					possibleCandidates2
+#if LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
+						| 3
+#else
+						| possibleCandidates2.Count
+#endif
+				)
 				{
+#if LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
+					if (!possibleCandidates2.Cells.IsInIntersection)
+					{
+						continue;
+					}
+#endif
+
 					if ((candidates1 | candidates2).Cells.Count == 1)
 					{
 						// The weak link cannot be inside one cell.
 						continue;
 					}
+
+#if LIMIT_WEAK_LINK_NODE_PEER_INTERSECTION_MUST_CONTAIN_CELL
+					if (!candidates2.PeerIntersection)
+					{
+						continue;
+					}
+#endif
 
 					var node1 = new Node(in candidates1, true, in allCandidates);
 					var node2 = new Node(in candidates2, false, in allCandidates);
@@ -54,7 +75,7 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 	}
 
 	/// <inheritdoc/>
-	public override void CollectExtraViewNodes(ChainPattern pattern, ref View[] views)
+	public override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
 		var ahsIndex = 0;
 		var view = views[0];

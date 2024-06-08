@@ -26,6 +26,40 @@ public sealed partial class View :
 	}
 
 	/// <summary>
+	/// Try to find the candidate whose cell is specified one.
+	/// </summary>
+	/// <param name="cell">The cell to be found.</param>
+	/// <returns>The found node; or <see langword="null"/> if none found.</returns>
+	public CellViewNode? FindCell(Cell cell)
+	{
+		foreach (var node in this.OfType<CellViewNode>())
+		{
+			if (node.Cell == cell)
+			{
+				return node;
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
+	/// Try to find the candidate whose candidate is specified one.
+	/// </summary>
+	/// <param name="candidate">The candidate to be found.</param>
+	/// <returns>The found node; or <see langword="null"/> if none found.</returns>
+	public CandidateViewNode? FindCandidate(Candidate candidate)
+	{
+		foreach (var node in this.OfType<CandidateViewNode>())
+		{
+			if (node.Candidate == candidate)
+			{
+				return node;
+			}
+		}
+		return null;
+	}
+
+	/// <summary>
 	/// Determines whether the specified <see cref="View"/> stores several <see cref="BabaGroupViewNode"/>s,
 	/// and at least one of it overlaps the specified cell.
 	/// </summary>

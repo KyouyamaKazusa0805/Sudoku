@@ -32,9 +32,20 @@ public static class ChainPatternExtensions
 				IsGrouped: var isGrouped,
 				Links: var links,
 				Links.Length: var length
-			} instance => (isX, isY, length) switch
+			} instance => instance switch
 			{
-				(true, _, 3) => links switch
+				{ SatisfyXRule: true } => isGrouped ? Technique.GroupedXChain : Technique.XChain,
+				{ SatisfyYRule: true } => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
+				{ ContainsOverlappedNodes: true, First.Map: var map1, Last.Map: var map2 } when map1 == map2
+					=> isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
+				{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
+				{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
+				{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
+				{ IsSplitWing: true } => isGrouped ? Technique.GroupedSWing : Technique.SWing,
+				{ IsLocalWing: true } => isGrouped ? Technique.GroupedLWing : Technique.LWing,
+				{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
+				{ Links.Length: 5 } => isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
+				{ Links.Length: 3 } when isX => links switch
 				{
 #pragma warning disable format
 					[
@@ -54,29 +65,15 @@ public static class ChainPatternExtensions
 					}
 #pragma warning restore format
 				},
-				(true, _, _) => isGrouped ? Technique.GroupedXChain : Technique.XChain,
-				(_, true, _) => isGrouped ? Technique.GroupedXyChain : Technique.XyChain,
-				_ => instance switch
+				{ First: var first, Last: var last } => (first, last) switch
 				{
-					{ ContainsOverlappedNodes: true, First.Map: [var candidate1], Last.Map: [var candidate2] }
-						when candidate1 == candidate2 => isGrouped ? Technique.GroupedSelfConstraint : Technique.SelfConstraint,
-					{ ContainsOverlappedNodes: true } => Technique.NodeCollision,
-					{ IsWoodsWing: true } => isGrouped ? Technique.GroupedWWing : Technique.WWing,
-					{ IsMedusaWing: true } => isGrouped ? Technique.GroupedMWing : Technique.MWing,
-					{ IsSplitWing: true } => isGrouped ? Technique.GroupedSWing : Technique.SWing,
-					{ IsLocalWing: true } => isGrouped ? Technique.GroupedLWing : Technique.LWing,
-					{ IsHybridWing: true } => isGrouped ? Technique.GroupedHWing : Technique.HWing,
-					{ Links.Length: 5 } => isGrouped ? Technique.GroupedPurpleCow : Technique.PurpleCow,
-					{ First: var first, Last: var last } => (first, last) switch
+					({ Map.Digits: var digits1 }, { Map.Digits: var digits2 }) => (digits1 == digits2) switch
 					{
-						({ Map.Digits: var digits1 }, { Map.Digits: var digits2 }) => (digits1 == digits2) switch
+						true => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain,
+						_ => conclusions.Count switch
 						{
-							true => isGrouped ? Technique.GroupedAlternatingInferenceChain : Technique.AlternatingInferenceChain,
-							_ => conclusions.Count switch
-							{
-								1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
-								_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
-							}
+							1 => isGrouped ? Technique.GroupedDiscontinuousNiceLoop : Technique.DiscontinuousNiceLoop,
+							_ => isGrouped ? Technique.GroupedXyXChain : Technique.XyXChain
 						}
 					}
 				}

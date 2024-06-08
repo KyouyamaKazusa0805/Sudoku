@@ -1,6 +1,7 @@
 #define LOCKED_CANDIDATES
-#define ALMOST_LOCKED_SET
-#undef ALMOST_HIDDEN_SET // Can only enable in big memory :(
+#define LOCKED_SET
+#undef HIDDEN_SET // Requires large memory
+#define UNIQUE_RECTANGLE
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -34,11 +35,46 @@ namespace Sudoku.Analytics.StepSearchers;
 #if LOCKED_CANDIDATES
 [SplitStepSearcher(0, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates)]
 #endif
-#if ALMOST_LOCKED_SET
-[SplitStepSearcher(1, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet)]
+#if LOCKED_SET
+[SplitStepSearcher(
+	1,
+	nameof(LinkTypes),
+	LinkType.NonGrouped
+#if LOCKED_CANDIDATES
+	| LinkType.LockedCandidates
 #endif
-#if ALMOST_HIDDEN_SET
-[SplitStepSearcher(2, nameof(LinkTypes), LinkType.NonGrouped | LinkType.LockedCandidates | LinkType.AlmostLockedSet | LinkType.AlmostHiddenSet)]
+	| LinkType.AlmostLockedSet
+	)]
+#endif
+#if HIDDEN_SET
+[SplitStepSearcher(
+	2,
+	nameof(LinkTypes),
+	LinkType.NonGrouped
+#if LOCKED_CANDIDATES
+	| LinkType.LockedCandidates
+#endif
+#if LOCKED_SET
+	| LinkType.AlmostLockedSet
+#endif
+	| LinkType.AlmostHiddenSet)]
+#endif
+#if UNIQUE_RECTANGLE
+[SplitStepSearcher(
+	3,
+	nameof(LinkTypes),
+	LinkType.NonGrouped
+#if LOCKED_CANDIDATES
+	| LinkType.LockedCandidates
+#endif
+#if LOCKED_SET
+	| LinkType.AlmostLockedSet
+#endif
+#if HIDDEN_SET
+	| LinkType.AlmostHiddenSet
+#endif
+	| LinkType.AlmostUniqueRectangle
+	)]
 #endif
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
@@ -52,11 +88,14 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 #if LOCKED_CANDIDATES
 		{ LinkType.LockedCandidates, new CachedLockedCandidatesChainingRule() },
 #endif
-#if ALMOST_LOCKED_SET
+#if LOCKED_SET
 		{ LinkType.AlmostLockedSet, new CachedAlmostLockedSetsChainingRule() },
 #endif
-#if ALMOST_HIDDEN_SET
+#if HIDDEN_SET
 		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
+#endif
+#if UNIQUE_RECTANGLE
+		{ LinkType.AlmostUniqueRectangle, new CachedAlmostUniqueRectangleChainingRule() }
 #endif
 	};
 
