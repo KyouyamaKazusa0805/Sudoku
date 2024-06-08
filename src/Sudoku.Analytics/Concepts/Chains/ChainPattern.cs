@@ -63,8 +63,7 @@ public abstract partial class ChainPattern :
 	/// <summary>
 	/// Indicates whether the chain pattern uses grouped logic.
 	/// </summary>
-	public bool IsGrouped
-		=> ValidNodes.Any(static (ref readonly Node node) => node is { IsGroupedNode: true } or { ExtraMap: not [] });
+	public bool IsGrouped => ValidNodes.Any(static (ref readonly Node node) => node is { IsGroupedNode: true } or { ExtraMap: not [] });
 
 	/// <summary>
 	/// Indicates whether the pattern only uses same digits.
@@ -89,21 +88,18 @@ public abstract partial class ChainPattern :
 	{
 		get
 		{
-			foreach (var link in Links)
+			foreach (var link in StrongLinks)
 			{
-				switch (link)
+				if (link is { FirstNode.Map.Digits: var digits1, SecondNode.Map.Digits: var digits2 }
+					&& digits1 == digits2)
 				{
-					case { IsStrong: false }:
-					{
-						continue;
-					}
-					case { FirstNode.Map.Cells: [var cell1], SecondNode.Map.Cells: [var cell2] } when cell1 != cell2:
-					{
-						return false;
-					}
+					// All strong links must hold different kinds of digits.
+					return false;
 				}
 			}
-			return true;
+
+			// The first node and the last node must use same digits.
+			return First.Map.Digits == Last.Map.Digits;
 		}
 	}
 
@@ -142,6 +138,44 @@ public abstract partial class ChainPattern :
 	/// Indicates the links used.
 	/// </summary>
 	public abstract ReadOnlySpan<Link> Links { get; }
+
+	/// <summary>
+	/// Indicates the strong links.
+	/// </summary>
+	public ReadOnlySpan<Link> StrongLinks
+	{
+		get
+		{
+			var result = new List<Link>(ValidNodes.Length >> 1);
+			foreach (var link in Links)
+			{
+				if (link.IsStrong)
+				{
+					result.Add(link);
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
+
+	/// <summary>
+	/// Indicates the weak links.
+	/// </summary>
+	public ReadOnlySpan<Link> WeakLinks
+	{
+		get
+		{
+			var result = new List<Link>(Links.Length >> 1);
+			foreach (var link in Links)
+			{
+				if (!link.IsStrong)
+				{
+					result.Add(link);
+				}
+			}
+			return result.AsReadOnlySpan();
+		}
+	}
 
 	/// <summary>
 	/// Indicates the head node.

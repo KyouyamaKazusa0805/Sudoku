@@ -19824,6 +19824,16 @@
             Indicates the links used.
             </summary>
         </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.StrongLinks">
+            <summary>
+            Indicates the strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.WeakLinks">
+            <summary>
+            Indicates the weak links.
+            </summary>
+        </member>
         <member name="P:Sudoku.Concepts.ChainPattern.First">
             <summary>
             Indicates the head node.
