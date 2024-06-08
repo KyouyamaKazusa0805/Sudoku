@@ -65,7 +65,6 @@
 		<ProjectReference Include="..\Sudoku.Algorithms.MinLex\Sudoku.Algorithms.MinLex.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
-		<ProjectReference Include="..\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj" />
 		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />
 		<ProjectReference Include="..\Sudoku.IO.Library\Sudoku.IO.Library.csproj" />
 		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />

@@ -14,4 +14,8 @@
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <Folder Include="Generating\" />
+	</ItemGroup>
+
 </Project>

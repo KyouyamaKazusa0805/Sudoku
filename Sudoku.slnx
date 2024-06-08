@@ -80,12 +80,6 @@
     </Project>
   </Folder>
   <Folder Name="/Projects - Generating APIs/">
-    <Project Path="src\Sudoku.Generating.JustOneCell\Sudoku.Generating.JustOneCell.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
     <Project Path="src\Sudoku.Generating\Sudoku.Generating.csproj">
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>

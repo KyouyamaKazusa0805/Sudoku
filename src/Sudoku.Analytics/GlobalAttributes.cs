@@ -1,2 +1,2 @@
-[assembly: InternalsVisibleTo("Sudoku.Generating.TechniqueBased")]
+[assembly: InternalsVisibleTo("Sudoku.Generating")]
 [module: SkipLocalsInit]
