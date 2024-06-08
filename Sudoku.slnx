@@ -150,17 +150,6 @@
       <Configuration Solution="Build|*" Project="Debug|*" />
     </Project>
   </Folder>
-  <Folder Name="/Test Projects/">
-    <Project Path="src\test\Sudoku.Test.Core\Sudoku.Test.Core.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\test\Sudoku.Test.Measuring\Sudoku.Test.Measuring.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-    <Project Path="src\test\System.Test\SystemExtensions.Test.csproj">
-      <Configuration Solution="Build|*" Project="Debug|*" />
-    </Project>
-  </Folder>
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
