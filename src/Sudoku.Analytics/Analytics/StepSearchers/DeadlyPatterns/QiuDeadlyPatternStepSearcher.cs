@@ -563,6 +563,12 @@ public sealed partial class QiuDeadlyPatternStepSearcher : StepSearcher
 	/// <param name="cornerContainingExtraDigit">Indicates the cells which are corner cells and contain extra digit.</param>
 	/// <param name="extraDigitsMask">Indicates a mask value that holds extra digits.</param>
 	/// <returns><inheritdoc cref="StepSearcher.Collect(ref AnalysisContext)" path="/returns"/></returns>
+	/// <example>
+	/// Test examples:
+	/// <code><![CDATA[
+	/// 1.2..+6348.4....5+76.6....+9122.6..4....3.6......1..5.+6......+61..9.+2.93.76.6....2..5:324 824 825 925 348 368
+	/// ]]></code>
+	/// </example>
 	private QiuDeadlyPatternType3Step? BaseType_Type3(
 		ref AnalysisContext context,
 		ref readonly CellMap corner,
