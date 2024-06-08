@@ -4,14 +4,13 @@
 		<TargetFramework>net9.0</TargetFramework>
 		<RootNamespace>Sudoku</RootNamespace>
 		<Description>Provides APIs for generating puzzles.</Description>
-		<DocumentationFile>..\docxml\Sudoku.Generating.xml</DocumentationFile>
+		<DocumentationFile>..\docxml\Sudoku.Algorithms.Generating.xml</DocumentationFile>
 	</PropertyGroup>
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
-		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\System\SystemExtensions.csproj" />
 	</ItemGroup>
 

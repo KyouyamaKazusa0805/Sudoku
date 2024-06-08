@@ -62,11 +62,11 @@
 
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Algorithms.Backdoors\Sudoku.Algorithms.Backdoors.csproj" />
+		<ProjectReference Include="..\Sudoku.Algorithms.Generating\Sudoku.Algorithms.Generating.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.MinLex\Sudoku.Algorithms.MinLex.csproj" />
+		<ProjectReference Include="..\Sudoku.Algorithms.Solving\Sudoku.Algorithms.Solving.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
-		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />
-		<ProjectReference Include="..\Sudoku.Solving\Sudoku.Solving.csproj" />
 		<ProjectReference Include="..\Sudoku.Strategying\Sudoku.Strategying.csproj" />
 		<ProjectReference Include="..\SudokuStudio.SourceGeneration\SudokuStudio.SourceGeneration.csproj" OutputItemType="Analyzer" ReferenceOutputAssembly="false" />
 	</ItemGroup>

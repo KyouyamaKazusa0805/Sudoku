@@ -1,45 +1,9 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Solving</name>
+        <name>Sudoku.Algorithms.Solving</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Concepts.GridSolvingExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
-            </summary>
-            <seealso cref="T:Sudoku.Concepts.Grid"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
-            <summary>
-            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
-            keeping the type being thread-safe.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
-        </member>
-        <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
-            <summary>
-            Indicates the backing solver.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
-            </summary>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
-            <summary>
-            Checks the uniqueness of the current sudoku puzzle.
-            </summary>
-            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
-        </member>
-        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
-            <summary>
-            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
-            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
-            </summary>
-            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
-        </member>
         <member name="T:Sudoku.Solving.BacktrackingSolver">
             <summary>
             Defines a solver that can solve a sudoku puzzle, using backtracking algorithm.
@@ -754,6 +718,42 @@
             <summary>
             Indicates the puzzle has multiple solutions.
             </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.GridSolvingExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/> for solving.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridSolvingExtensions.PuzzleSolvingSynchronizer">
+            <summary>
+            The internal field that can be used for making threads run in order while using <see cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>,
+            keeping the type being thread-safe.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.GridSolvingExtensions.Solver"/>
+        </member>
+        <member name="F:Sudoku.Concepts.GridSolvingExtensions.Solver">
+            <summary>
+            Indicates the backing solver.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetIsValid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates whether the puzzle is valid (solved or a normal puzzle with a unique solution).
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetUniqueness(Sudoku.Concepts.Grid@)">
+            <summary>
+            Checks the uniqueness of the current sudoku puzzle.
+            </summary>
+            <exception cref="T:System.InvalidOperationException">Throws when the puzzle has already been solved.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.GridSolvingExtensions.GetSolutionGrid(Sudoku.Concepts.Grid@)">
+            <summary>
+            Indicates the solution of the current grid. If the puzzle has no solution or multiple solutions,
+            this property will return <see cref="F:Sudoku.Concepts.Grid.Undefined"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.Grid.Undefined"/>
         </member>
     </members>
 </doc>

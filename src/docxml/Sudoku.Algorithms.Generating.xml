@@ -1,27 +1,9 @@
 <?xml version="1.0"?>
 <doc>
     <assembly>
-        <name>Sudoku.Generating</name>
+        <name>Sudoku.Algorithms.Generating</name>
     </assembly>
     <members>
-        <member name="T:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions">
-            <summary>
-            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/> on generator module.
-            </summary>
-            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
-        </member>
-        <member name="F:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GeneratorTypes">
-            <summary>
-            Indicates the generator types.
-            </summary>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GetSpecificPuzzleGenerator(Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Creates a <see cref="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
-            </summary>
-            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
-            <returns>A <see cref="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator"/> instance.</returns>
-        </member>
         <member name="T:Sudoku.Generating.FilteredGeneratorProgress">
             <summary>
             Represents a progress data type that is nearly same as <see cref="T:Sudoku.Generating.GeneratorProgress"/>, but with filtered data.
@@ -916,6 +898,24 @@
             <param name="ratio">The ratio. Pass <see cref="P:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator.InterferingPercentage"/> to this parameter.</param>
             <param name="interferingDigitsCount">The final number of interfering digits.</param>
             <returns>The result numnber of given cells.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Analytics.Categorization.Technique"/> on generator module.
+            </summary>
+            <seealso cref="T:Sudoku.Analytics.Categorization.Technique"/>
+        </member>
+        <member name="F:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GeneratorTypes">
+            <summary>
+            Indicates the generator types.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueGeneratorExtensions.GetSpecificPuzzleGenerator(Sudoku.Analytics.Categorization.Technique)">
+            <summary>
+            Creates a <see cref="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator"/> instance that creates puzzles that uses the specified technique.
+            </summary>
+            <param name="this">The <see cref="T:Sudoku.Analytics.Categorization.Technique"/> instance.</param>
+            <returns>A <see cref="T:Sudoku.Generating.TechniqueBased.TechniqueBasedPuzzleGenerator"/> instance.</returns>
         </member>
     </members>
 </doc>
