@@ -85,9 +85,6 @@
   <Project Path="src\Sudoku.Drawing.Ocr\Sudoku.Drawing.Ocr.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
-  <Project Path="src\Sudoku.Drawing\Sudoku.Drawing.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
   <Project Path="src\Sudoku.Logging\Sudoku.Logging.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
