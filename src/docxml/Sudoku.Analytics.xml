@@ -4,6 +4,255 @@
         <name>Sudoku.Analytics</name>
     </assembly>
     <members>
+        <member name="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.#ctor(System.Int32[])">
+            <summary>
+            Indicates the target digit path.
+            </summary>
+            <param name="Digits">The digits path.</param>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Digits">
+            <summary>The digits path.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.IsComplete">
+            <summary>
+            Indicates whethe the pattern is complete.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.DigitsString">
+            <summary>
+            Indicates hte digits string.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.CompareTo(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Equals(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString(System.String)">
+            <inheritdoc cref="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.ToString"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.System#Collections#Generic#IEnumerable{System#Int32}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.Create(System.ReadOnlySpan{System.Int32})">
+            <summary>
+            Creates a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/> instance via collection expression.
+            </summary>
+            <param name="digits">A list of digits to be initialized.</param>
+            <returns>A <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_Implicit(System.Int32[])~Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath">
+            <summary>
+            Implicit cast from a <see cref="T:System.Int32"/> sequence into a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath"/>.
+            </summary>
+            <param name="digitSequence">A digit sequence. Please note that the value can be <see langword="null"/>.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThan(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_LessThan(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_GreaterThanOrEqual(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath.op_LessThanOrEqual(Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor(Sudoku.Analytics.Categorization.TechniqueSet)">
+            <summary>
+            Represents a disordered ittoryu path finder. This finder will find a digit sequence order that makes the puzzle be an ittoryu.
+            This finder only uses single techniques (Hidden Singles and Naked Singles) to solve a puzzle;
+            complex singles won't be supported for now.
+            </summary>
+            <param name="supportedTechniques">Indicates the supported techniques. By default, all singles are included.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.#ctor(System.Collections.Generic.IEnumerable{Sudoku.Analytics.Categorization.Technique})">
+            <summary>
+            Initialzes a <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/> instance via the specified list of techniques.
+            </summary>
+            <param name="techniques">A list of techniques.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.FindPath(Sudoku.Concepts.Grid@)">
+            <summary>
+            Find a suitable ittoryu path.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>
+            The target digit path. If none found, a longest path will be returned.
+            </returns>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder.SupportedTechniques">
+            <summary>
+            The generated property declaration for parameter <c>supportedTechniques</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Algorithms.Ittoryu.AlreadyFinishedException">
+            <summary>
+            The internal exception type that reports "Already finished" information, breaking the recursion.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Algorithms.Ittoryu.PathNode">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.#ctor(Sudoku.Concepts.Grid@,System.Int32,System.Int32)">
+            <summary>
+            Represents for a path node in a whole solving path via ittoryu solving logic.
+            </summary>
+            <param name="Grid">Indicates the currently-used grid.</param>
+            <param name="House">Indicates the house. The value can be -1 when the represented node is for a naked single.</param>
+            <param name="Candidate">Indicates the target candidate.</param>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Grid">
+            <summary>Indicates the currently-used grid.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.House">
+            <summary>Indicates the house. The value can be -1 when the represented node is for a naked single.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Candidate">
+            <summary>Indicates the target candidate.</summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Digit">
+            <summary>
+            Indicates the target digit.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.PathNode.Cell">
+            <summary>
+            Indicates the target cell.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.Deconstruct(Sudoku.Concepts.Grid@,System.Int32@,System.Int32@,System.Int32@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.ToString(Sudoku.Concepts.Coordinates.CoordinateConverter)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.PathNode.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Algorithms.Ittoryu.Ittoryu">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.MakeIttoryu(Sudoku.Concepts.Grid@,Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath)">
+            <summary>
+            Try to reproduce ittoryu ordering for the specified grid whose path can be found by <see cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>.
+            </summary>
+            <param name="this">The grid to be adjusted.</param>
+            <param name="ittoryuPath">
+            The path to be used. The argument isn't required to be a complete path. It's considered to be OK if a path contains at least 2 digits.
+            </param>
+            <exception cref="T:System.ArgumentException">Throws when the ittoryu path contains a digit series of length 0 or 1.</exception>
+            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,System.Nullable{Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Algorithms.Ittoryu.Ittoryu.IsIttoryu(Sudoku.Concepts.Grid@,Sudoku.Analytics.Categorization.TechniqueSet,System.Nullable{Sudoku.Algorithms.Ittoryu.DisorderedIttoryuDigitPath}@)">
+            <summary>
+            Determine whether the specified grid is an ittoryu puzzle, meaning the puzzle can be finished via digits one by one,
+            with checking using the specified techniques.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="techniques">
+            <para>The techniques supported.</para>
+            <para>
+            The value is a <see cref="T:Sudoku.Analytics.Categorization.TechniqueSet"/> instance. You can only chose one or more fields in the following list:
+            <list type="bullet">
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> (Full House)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/> (Hidden Single in Block)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleRow"/> (Hidden Single in Row)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleColumn"/> (Hidden Single in Column)</item>
+            <item><see cref="F:Sudoku.Analytics.Categorization.Technique.NakedSingle"/> (Naked Single)</item>
+            </list>
+            </para>
+            <para>For example, <c>[Technique.FullHouse, Technique.NakedSingle]</c> is valid argument, but <c>[Technique.NakedPair]</c> is not.</para>
+            </param>
+            <param name="path">The first found ittoryu path.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets">
+            <summary>
+            Represents ittoryu-related technique sets instances.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuTechniques">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuNakedSingleNotIncluded">
+            <summary>
+            Indicates the techniques that ittoryu path finder will use, and naked singles are not included.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+        </member>
+        <member name="P:Sudoku.Algorithms.Ittoryu.TechniqueIttoryuSets.IttoryuBlockHiddenSingle">
+            <summary>
+            Indicates the techniques that ittroyu path finder will use,
+            only containing <see cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/> and <see cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Algorithms.Ittoryu.DisorderedIttoryuFinder"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.FullHouse"/>
+            <seealso cref="F:Sudoku.Analytics.Categorization.Technique.HiddenSingleBlock"/>
+        </member>
         <member name="T:Sudoku.Analytics.AnalysisContext">
             <summary>
             Defines a context that is used by step searchers to check the details of the solving and analysis information.
@@ -28057,6 +28306,950 @@
         <member name="P:Sudoku.Resources.AnalyticsResources.YChain">
             <summary>
               Looks up a localized string similar to Y-Chain.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.BetweenRule">
+            <summary>
+            Represents a between rule.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.BothOpen">
+            <summary>
+            Indicates both left and right are open (not included).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.LeftOpen">
+            <summary>
+            Indicates only the left is open, and the right is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.RightOpen">
+            <summary>
+            Indicates only the right is open, and the left is closed.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.BetweenRule.BothClosed">
+            <summary>
+            Indicates both left and right are closed (included).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ComparisonOperator">
+            <summary>
+            Represent an operator to be used in comparison.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.Equality">
+            <summary>
+            Indicates the comparison rule is to compare equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.Inequality">
+            <summary>
+            Indicates the comparison rule is to compare inequality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThan">
+            <summary>
+            Indicates the comparison rule is to compare greater-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.GreaterThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare greater-than or equality.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThan">
+            <summary>
+            Indicates the comparison rule is to compare less-than.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.ComparisonOperator.LessThanOrEqual">
+            <summary>
+            Indicates the comparison rule is to compare less-than or equality.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ComparisonOperatorExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Strategying.ComparisonOperator"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Strategying.ComparisonOperator"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperatorString(Sudoku.Strategying.ComparisonOperator)">
+            <summary>
+            Gets the string representation of the operator.
+            </summary>
+            <param name="this">The value.</param>
+            <returns>The string representation.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ComparisonOperatorExtensions.GetOperator``1(Sudoku.Strategying.ComparisonOperator)">
+            <summary>
+            Creates a delegate method that executes the specified rule of comparison.
+            </summary>
+            <typeparam name="T">The type of the target.</typeparam>
+            <param name="this">The comparison.</param>
+            <returns>A delegate function.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument is out of range (not defined).</exception>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraint">
+            <summary>
+            Represents a rule that checks whether a grid or its relied analysis information is passed the constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraint.IsNegated">
+            <summary>
+            Indicates whether the constraint should be negated.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)">
+            <summary>
+            Determine whether the specified grid is passed the constraint.
+            </summary>
+            <param name="context">Indicates the context used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Clone">
+            <summary>
+            Creates a new instance that contains same data with the current instance.
+            </summary>
+            <returns>A new instance that contains same data with the current instance.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.CreateCheckingQueryExpression">
+            <summary>
+            Indicates the checking <see cref="T:System.Linq.Expressions.Expression`1"/> instance of the constraint.
+            </summary>
+            <remarks>
+            <para>
+            This property will be reserved, in order to combine multiple constraint checking rules by using custom boolean logic.
+            For example, a user may want either one of two constraints satisfy rather than checking for both two constraints.
+            By using this property, use <see cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/> to achieve the goal.
+            </para>
+            <para>
+            Due to implement this property and limitation of <see cref="T:System.Linq.Expressions.Expression`1"/>, we cannot apply the type
+            <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/> as a <see langword="ref struct"/> because <see cref="T:System.Linq.Expressions.Expression`1"/>
+            doesn't support for <see langword="ref struct"/> types.
+            </para>
+            </remarks>
+            <seealso cref="T:System.Linq.Expressions.Expression`1"/>
+            <seealso cref="M:System.Linq.Expressions.Expression.OrElse(System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)"/>
+            <seealso cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.GetMetadata">
+            <summary>
+            Returns a <see cref="T:Sudoku.Strategying.ConstraintOptionsAttribute"/> instance that represents the metadata of the constraint configured.
+            </summary>
+            <returns>A <see cref="T:Sudoku.Strategying.ConstraintOptionsAttribute"/> instance or <see langword="null"/> if not configured.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.op_Equality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraint.op_Inequality(Sudoku.Strategying.Constraint,Sudoku.Strategying.Constraint)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintCheckingContext">
+            <summary>
+            Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
+            </summary>
+            <param name="Grid">Indicates the reference to the grid to be checked.</param>
+            <param name="AnalyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCheckingContext.#ctor(Sudoku.Concepts.Grid@,Sudoku.Analytics.AnalysisResult)">
+            <summary>
+            Represents context that will be called by method <see cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>.
+            </summary>
+            <param name="Grid">Indicates the reference to the grid to be checked.</param>
+            <param name="AnalyzerResult">Indicates the analyzer result.</param>
+            <seealso cref="M:Sudoku.Strategying.Constraint.Check(Sudoku.Strategying.ConstraintCheckingContext)"/>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintCheckingContext.Grid">
+            <summary>Indicates the reference to the grid to be checked.</summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintCheckingContext.AnalyzerResult">
+            <summary>Indicates the analyzer result.</summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintCollection">
+            <summary>
+            Represents a constraint collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(System.Int32)">
+            <inheritdoc cref="M:System.Collections.Generic.List`1.#ctor(System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.#ctor(Sudoku.Strategying.ConstraintCollection)">
+            <summary>
+            Create a new instance and copy elements.
+            </summary>
+            <param name="other">The other collection.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Has``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.IsValidFor(Sudoku.Strategying.ConstraintCheckingContext)">
+            <summary>
+            For a given <see cref="T:Sudoku.Strategying.ConstraintCheckingContext"/>,
+            determine whether the specified grid and its related analysis result satisfy the current limited constraint rules.
+            </summary>
+            <param name="context">The context to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc cref="M:System.Linq.Enumerable.FirstOrDefault``1(System.Collections.Generic.IEnumerable{``0})"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.OfType``1">
+            <inheritdoc cref="M:System.Linq.Providers.IOfTypeMethod`2.OfType``1"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <summary>
+            Filters the collection, only reserving constraints satisfying the specified condition.
+            </summary>
+            <param name="predicate">The condition to be satisfied.</param>
+            <returns>A new collection that only contains constraints satisfying the specified condition.</returns>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
+            <inheritdoc cref="M:System.Linq.Providers.ISelectMethod`2.Select``1(System.Func{`1,``0})"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.Slice(System.Int32,System.Int32)">
+            <inheritdoc cref="M:System.Linq.Providers.ISliceMethod`2.Slice(System.Int32,System.Int32)"/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAt(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IElementAtMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#ElementAtOrDefault(System.Index)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#First(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IFirstLastMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#FirstOrDefault(System.Func{Sudoku.Strategying.Constraint,System.Boolean},Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IWhereMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Where(System.Func{Sudoku.Strategying.Constraint,System.Boolean})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISliceMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#ISelectMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#Select``1(System.Func{Sudoku.Strategying.Constraint,``0})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.System#Linq#Providers#IOfTypeMethod{Sudoku#Strategying#ConstraintCollection,Sudoku#Strategying#Constraint}#OfType``1">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Addition(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.ConstraintCollection.op_Subtraction(Sudoku.Strategying.ConstraintCollection,Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Strategying.ConstraintOptionsAttribute">
+            <summary>
+            Represents an attribute type that describes a constraint usage.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsMultiple">
+            <summary>
+            Indicates whether the constraint can support multiple items defined.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ConstraintOptionsAttribute.AllowsNegation">
+            <summary>
+            Indicates whether the constraint can be negated by user.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint">
+            <summary>
+            Represents a constraint that checks for difficulty rating of each step.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Minimum">
+            <summary>
+            Indicates the minimal value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Maximum">
+            <summary>
+            Indicates the maximum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.BetweenRule">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckStepRatingConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint">
+            <summary>
+            Represents a constraint that determines whether bottleneck step represents the specified technique.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques selected.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.BottleneckTechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.ConclusionConstraint">
+            <summary>
+            Represents a conclusion constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.ShouldAppear">
+            <summary>
+            Indicates whether the conclusion should be appeared.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.ConclusionConstraint.Conclusion">
+            <summary>
+            Indicates the conclusion.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.ConclusionConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.CountBetweenConstraint">
+            <summary>
+            Represents a count between constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.Range">
+            <summary>
+            Indicates the range of the numbers set.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.CellState">
+            <summary>
+            Indicates the cell state to be checked. The desired values should be
+            <see cref="F:Sudoku.Concepts.CellState.Given"/> or <see cref="F:Sudoku.Concepts.CellState.Empty"/>.
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.CellState.Given"/>
+            <seealso cref="F:Sudoku.Concepts.CellState.Empty"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.CountBetweenConstraint.BetweenRule">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.CountBetweenConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.DiamondConstraint">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for diamond property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DiamondConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.DifficultyLevelConstraint">
+            <summary>
+            Represents difficulty level constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.AllValidDifficultyLevelFlags">
+            <summary>
+            Indicates all valid difficulty level flags.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.DifficultyLevel">
+            <summary>
+            Indicates the difficulty level.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ValidDifficultyLevels">
+            <summary>
+            Indicates all possible <see cref="T:Sudoku.Analytics.DifficultyLevel"/> values. 
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.DifficultyLevelConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.EliminationCountConstraint">
+            <summary>
+            Represents an elimination count constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.EliminationCountConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.EliminationCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.IttoryuConstraint">
+            <summary>
+            Represents a constraint that checks whether a puzzle can be finished by ittoryu rules.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.IttoryuConstraint.LocalAnalyzer">
+            <summary>
+            Indicates the step searcher used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Rounds">
+            <summary>
+            Indicates the rounds used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.LimitedSingle">
+            <summary>
+            Indicates the single technique that can be used in the checking.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuConstraint.Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.IttoryuLengthConstraint">
+            <summary>
+            Represents ittoryu length constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Finder">
+            <summary>
+            Indicates the disordered ittoryu finder.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Length">
+            <summary>
+            Indicates the length.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.IttoryuLengthConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.LastingConstraint">
+            <summary>
+            Represents a lasting constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.LastingConstraint.Sudoku#Strategying#ILimitCountConstraint{System#Int32}#Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.LastingConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.MinimalConstraint">
+            <summary>
+            Represents minimal constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.MinimalConstraint.ShouldBeMinimal">
+            <summary>
+            Indicates whether the puzzle shsould be minimal.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.MinimalConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.PearlConstraint">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.#ctor">
+            <summary>
+            Represents a constraint that checks for pearl property.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.#ctor(System.Boolean)">
+            <summary>
+            Represents a constraint that checks for pearl or diamond property.
+            </summary>
+            <param name="checkPearl">Indicates whether the constraint checks for pearl.</param>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ShouldBePearlOrDiamond">
+            <summary>
+            Indicates whether the puzzle should be pearl or diamond.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdocs/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.CheckPearl">
+            <summary>
+            The generated property declaration for parameter <c>checkPearl</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PearlOrDiamondConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.PrimarySingleConstraint">
+            <summary>
+            Represents a primary single constraint.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.AllowsHiddenSingleInLines">
+            <summary>
+            Indicates whether the constraint allows hidden singles on rows or columns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Primary">
+            <summary>
+            Indicates which technique a user likes to finish a grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.PrimarySingleConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.SymmetryConstraint">
+            <summary>
+            Represents symmetry constraint.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.InvalidSymmetricType">
+            <summary>
+            Indicates an invalid value.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Strategying.Constraints.SymmetryConstraint.AllSymmetricTypes">
+            <summary>
+            Indicates all possible symmetric types are included.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.SymmetryConstraint.SymmetricTypes">
+            <summary>
+            Indicates the supported symmetry types to be used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.SymmetryConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueConstraint">
+            <summary>
+            Represents a technique constraint. Different with <see cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>,
+            this constraint only controls the appearing techniques, rather than the number of times appeared.
+            </summary>
+            <seealso cref="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint"/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueConstraint.Techniques">
+            <summary>
+            Indicates the techniques must appear.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueCountConstraint">
+            <summary>
+            Represents a rule that checks whether the specified analyzer result after analyzed by a grid
+            contains the specified techniques.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.LimitCount">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Operator">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Technique">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Minimum">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Maximum">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueCountConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.Constraints.TechniqueSetConstraint">
+            <summary>
+            Represents a constraint that limits a puzzle that can only use such techniques to be finished.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Techniques">
+            <summary>
+            Indicates the technique used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Clone">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.Equals(Sudoku.Strategying.Constraint)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.CheckCore(Sudoku.Strategying.ConstraintCheckingContext)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Strategying.Constraints.TechniqueSetConstraint.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Strategying.IBetweenRuleConstraint">
+            <summary>
+            Represents a constraint that contains between rule property.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.IBetweenRuleConstraint.BetweenRule">
+            <summary>
+            Indicates the between rule.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.IComparisonOperatorConstraint">
+            <summary>
+            Represents a type that supports for comparison operator.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.IComparisonOperatorConstraint.Operator">
+            <summary>
+            Indicates the comparison operator used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Strategying.ILimitCountConstraint`1">
+            <summary>
+            Represents a type that supports limit number.
+            </summary>
+            <typeparam name="TNumber">The type of the number.</typeparam>
+        </member>
+        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.LimitCount">
+            <summary>
+            Indicates the limit number.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.Minimum">
+            <summary>
+            Indicates the minimum value.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Strategying.ILimitCountConstraint`1.Maximum">
+            <summary>
+            Indicates the maximum value.
             </summary>
         </member>
         <member name="T:Sudoku.Text.FormatInterpolation">
