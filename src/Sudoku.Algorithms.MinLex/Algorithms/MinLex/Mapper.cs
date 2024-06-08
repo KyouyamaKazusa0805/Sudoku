@@ -3,9 +3,6 @@ namespace Sudoku.Algorithms.MinLex;
 /// <summary>
 /// Indicates a data structure that describes the cell and label handled.
 /// </summary>
-/// <remarks>
-/// <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-/// </remarks>
 public unsafe struct Mapper
 {
 	/// <summary>

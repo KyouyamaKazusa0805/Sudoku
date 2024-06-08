@@ -11,7 +11,6 @@ namespace Sudoku.Solving.Solvers;
 /// <para><b>
 /// This type is thread-unsafe. If you want to use this type in multi-threading, please use <see langword="lock"/> statement.
 /// </b></para>
-/// <para>This type is translated from project <c>Jcz.Solve</c> in solution folder "Interim Projects".</para>
 /// </remarks>
 public sealed unsafe class BitwiseSolver : ISolver
 {

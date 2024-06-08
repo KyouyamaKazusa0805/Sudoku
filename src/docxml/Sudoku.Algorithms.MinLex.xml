@@ -11,9 +11,6 @@
             <param name="bestResult">Indicates the best result.</param>
             <param name="resultMask">Indicates the result mask.</param>
             <param name="resultNumberOfBits">Indicates the result number of bits.</param>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Algorithms.MinLex.BestTripletPermutation.#ctor(System.Int32,System.Int32,System.Int32)">
             <summary>
@@ -22,9 +19,6 @@
             <param name="bestResult">Indicates the best result.</param>
             <param name="resultMask">Indicates the result mask.</param>
             <param name="resultNumberOfBits">Indicates the result number of bits.</param>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="F:Sudoku.Algorithms.MinLex.BestTripletPermutation.Perm">
             <summary>
@@ -55,9 +49,6 @@
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>, by checking min-lex-related properties.
             </summary>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="M:Sudoku.Algorithms.MinLex.GridMinLexExtensions.IsMinLexGrid(Sudoku.Concepts.Grid@)">
             <summary>
@@ -83,9 +74,6 @@
             <summary>
             Represents a pattern for a sudoku grid.
             </summary>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="F:Sudoku.Algorithms.MinLex.GridPattern.MinCanNineBits">
             <summary>
@@ -124,9 +112,6 @@
             <summary>
             Indicates a data structure that describes the cell and label handled.
             </summary>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="F:Sudoku.Algorithms.MinLex.Mapper.Cell">
             <summary>
@@ -142,9 +127,6 @@
             <summary>
             Indicates a node representing the min-lexicographical candidate.
             </summary>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="F:Sudoku.Algorithms.MinLex.MinLexCandidate.IsTransposed">
             <summary>
@@ -204,9 +186,6 @@
             <summary>
             Represents a finder type.
             </summary>
-            <remarks>
-            <para>This type is translated from project <c>Gsf.MinLex</c> in solution folder "Interim Projects".</para>
-            </remarks>
         </member>
         <member name="F:Sudoku.Algorithms.MinLex.MinLexFinder.CandidateListTotal">
             <summary>
