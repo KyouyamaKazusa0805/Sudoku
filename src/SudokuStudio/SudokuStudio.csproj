@@ -61,10 +61,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+		<ProjectReference Include="..\Sudoku.Algorithms.Backdoors\Sudoku.Algorithms.Backdoors.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.MinLex\Sudoku.Algorithms.MinLex.csproj" />
 		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
-		<ProjectReference Include="..\Sudoku.Analytics.Backdoors\Sudoku.Analytics.Backdoors.csproj" />
-		<ProjectReference Include="..\Sudoku.Analytics.BivalueUniversalGraves\Sudoku.Analytics.BivalueUniversalGraves.csproj" />
 		<ProjectReference Include="..\Sudoku.Analytics\Sudoku.Analytics.csproj" />
 		<ProjectReference Include="..\Sudoku.Generating.TechniqueBased\Sudoku.Generating.TechniqueBased.csproj" />
 		<ProjectReference Include="..\Sudoku.Generating\Sudoku.Generating.csproj" />

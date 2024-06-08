@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Sudoku.Algorithms.Backdoors</name>
+    </assembly>
+    <members>
+        <member name="T:Sudoku.Concepts.Backdoor">
+            <summary>
+            Defines a backdoor searcher.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Backdoor.GetBackdoors(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible backdoors.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of backdoors.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the grid is not unique, or the puzzle is too easy.</exception>
+        </member>
+    </members>
+</doc>

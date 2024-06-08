@@ -7,59 +7,78 @@ namespace Sudoku.Concepts;
 public static class GridExtensions
 {
 	/// <summary>
-	/// Applies for all conclusions into the current <see cref="Grid"/> instance.
+	/// Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
+	/// and cannot be of value appeared in base cells.
 	/// </summary>
-	/// <param name="this">A <see cref="Grid"/> instance that receives the conclusions to be applied.</param>
-	/// <param name="step">A conclusion-provider <see cref="Step"/> instance.</param>
-	public static void Apply(this scoped ref Grid @this, Step step)
+	/// <param name="this">The grid to be checked.</param>
+	/// <param name="crossline">The cross-line cells.</param>
+	/// <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
+	/// <returns>A <see cref="bool"/> result indicating that.</returns>
+	public static bool CheckCrossLineIntersectionLeaveEmpty(
+		this scoped in Grid @this,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask
+	)
 	{
-		foreach (var conclusion in step.Conclusions)
+		foreach (var cell in crossline)
 		{
-			@this.Apply(conclusion);
+			if (@this.GetDigit(cell) is not (var valueDigit and not -1) || (baseCellsDigitsMask >> valueDigit & 1) != 0)
+			{
+				return true;
+			}
 		}
+		return false;
 	}
 
 	/// <summary>
-	/// Checks whether the puzzle can be solved using only full house.
+	/// Check whether all digits appeared in base cells can be filled in target empty cells.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
+	/// <param name="targetCellsToBeChecked">The target cells to be checked.</param>
+	/// <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryFullHouse(this scoped in Grid @this)
-		=> Analyzer.Default
-			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.FullHouse })
-			.Analyze(in @this)
-			.IsSolved;
+	public static bool CheckTargetCellsDigitsValidity(
+		this scoped in Grid @this,
+		scoped ref readonly CellMap targetCellsToBeChecked,
+		Mask baseCellsDigitsMask
+	) => targetCellsToBeChecked switch
+	{
+		// If the selected target contains two valid cells, we should check for its intersected value and union value,
+		// determining whether the union value contains all digits from base cells,
+		// and intersected value contain at least 2 kinds of digits appeared from base cells.
+		// Why is 2? Because the target cells should be filled two different digits appeared from base cells.
+		{ Count: 2 } when (
+			(Mask)(@this[in targetCellsToBeChecked] & baseCellsDigitsMask),
+			(Mask)(@this[in targetCellsToBeChecked, false, '&'] & baseCellsDigitsMask)
+		) is var (u, i) => u == baseCellsDigitsMask && i != 0,
+
+		// A conjugate pair or AHS may be formed in such target cells. The will be used in a senior exocet.
+		// Today we don't check for it.
+		_ => false
+	};
 
 	/// <summary>
-	/// Checks whether the puzzle can be solved using only full house and hidden single.
+	/// Try to get all possible digits as value representation in cross-line cells.
 	/// </summary>
 	/// <param name="this">The grid to be checked.</param>
-	/// <param name="allowHiddenSingleInLine">
-	/// A <see cref="bool"/> value indicating whether hidden single includes line types.
-	/// </param>
-	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryHiddenSingle(this scoped in Grid @this, bool allowHiddenSingleInLine)
-		=> Analyzer.Default
-			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true, EnableLastDigit = true })
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.HiddenSingle, AllowsHiddenSingleInLines = allowHiddenSingleInLine })
-			.Analyze(in @this)
-			.IsSolved;
-
-	/// <summary>
-	/// Checks whether the puzzle can be solved using only naked single.
-	/// </summary>
-	/// <param name="this">The grid to be checked.</param>
-	/// <returns>A <see cref="bool"/> value indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool CanPrimaryNakedSingle(this scoped in Grid @this)
-		=> Analyzer.Default
-			.WithStepSearchers(new SingleStepSearcher { EnableFullHouse = true })
-			.WithUserDefinedOptions(new() { DistinctDirectMode = true, IsDirectMode = true })
-			.WithConditionalOptions(new() { LimitedSingle = SingleTechniqueFlag.NakedSingle })
-			.Analyze(in @this)
-			.IsSolved;
+	/// <param name="crossline">The cross-line cells to be checked.</param>
+	/// <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
+	/// <returns>A list of digits appeared in cross-line cells as value representation.</returns>
+	public static Mask GetValueDigitsAppearedInCrossline(
+		this scoped in Grid @this,
+		scoped ref readonly CellMap crossline,
+		Mask baseCellsDigitsMask
+	)
+	{
+		var result = (Mask)0;
+		foreach (var cell in crossline)
+		{
+			if (@this.GetDigit(cell) is var digit && (baseCellsDigitsMask >> digit & 1) != 0)
+			{
+				result |= (Mask)(1 << digit);
+			}
+		}
+		return result;
+	}
 }

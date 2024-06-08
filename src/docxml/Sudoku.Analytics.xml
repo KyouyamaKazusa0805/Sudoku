@@ -4859,6 +4859,139 @@
         <member name="M:Sudoku.Analytics.Chaining.CachedYChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingDriver">
+            <summary>
+            Provides a driver module on chaining.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingDriver.CollectChainPatterns(Sudoku.Concepts.Grid@,System.ReadOnlySpan{Sudoku.Analytics.Chaining.ChainingRule})">
+            <summary>
+            Collect all <see cref="T:Sudoku.Concepts.ChainPattern" /> instances appears in a grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="rules">
+            Indicates the rule instances that will create strong and weak links by their own represented concept.
+            </param>
+            <returns>All possible <see cref="T:Sudoku.Concepts.ChainPattern" /> instances.</returns>
+            <remarks>
+            <developer-notes>
+		<para>
+			<b>Developer Notes</b>
+		</para>
+	</developer-notes>
+            A valid chain can only belong to the following three cases:
+            <list type="number">
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with weak link, alternating strong and weak links and return to itself by weak link
+            (with an even number of nodes, odd number of links).
+            </item>
+            <item>
+            <b>Discontinuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by strong link
+            (with an even number of nodes, even number of links).
+            </item>
+            <item>
+            <b>Continuous Nice Loop</b><br />
+            Start with strong link, alternating strong and weak links and return to itself by weak link
+            (with an even number of nodes, even number of links).
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.LocalComparer">
+            <summary>
+            The file-local comparer generator, lazily initialized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.LocalComparer._chainPatternComparer">
+            <summary>
+            Indicates the backing field of chain pattern comparer instance.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Analytics.Chaining.LocalComparer._nodeComparer">
+            <summary>
+            Indicates the backing field of node map comparer instance.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.ChainPatternComparer">
+            <summary>
+            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.ChainPattern"/> on equality comparison
+            in order to filter duplicate chains.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.EqualityComparer`1"/> instance.</returns>
+        </member>
+        <member name="P:Sudoku.Analytics.Chaining.LocalComparer.NodeMapComparer">
+            <summary>
+            Creates an instance of type <see cref="T:System.Collections.Generic.EqualityComparer`1"/> of <see cref="T:Sudoku.Concepts.Node"/> on equality comparison
+            in order to filter duplicate nodes on its containing map, guaranteeing same nodes won't be traversed multiple times.
+            </summary>
+            <returns>An <see cref="T:System.Collections.Generic.EqualityComparer`1"/> instance.</returns>
+        </member>
+        <member name="T:Sudoku.Analytics.Chaining.ChainingRule">
+            <summary>
+            Represents a rule that make inferences (strong or weak) between two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Collects for strong links appeared in argument <paramref name="grid"/>
+            and insert all found values into argument <paramref name="linkDictionary"/>.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="linkDictionary">The collection of strong links, grouped by its node.</param>
+            <remarks>
+            Consider adding values from both entries if a link is found.
+            The method call <see cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/> is helpful.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Collects for weak links appeared in argument <paramref name="grid"/>
+            and insert all found values into argument <paramref name="linkDictionary"/>.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <param name="linkDictionary">The collection of weak links, grouped by its node.</param>
+            <remarks>
+            <inheritdoc cref="M:Sudoku.Analytics.Chaining.ChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)" path="/remarks"/>
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectExtraViewNodes(Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
+            <summary>
+            Collects for extra view nodes for the pattern.
+            This method will be useful in advanced chaining rules such as ALS, AHS and AUR extra maps checking.
+            </summary>
+            <param name="pattern">The pattern to collect view nodes.</param>
+            <param name="views">The views.</param>
+            <returns>A list of <see cref="T:Sudoku.Drawing.ViewNode"/> instances.</returns>
+            <remarks>
+            The method by default will do nothing.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to find extra eliminations that can only be created inside a Grouped Continuous Nice Loop.
+            This method will be useful in advanced chaining rules such as ALS, AHS and AUR eliminations checking.
+            </summary>
+            <param name="loop">Indicates the base loop to be used.</param>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A list of found conclusions.</returns>
+            <remarks>
+            This method should not be overridden if no eliminations exists in the loop pattern.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.ChainingRule.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.ChainPatternExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.ChainPattern"/> instances.
@@ -19196,6 +19329,1402 @@
             Represents brute force.
             </summary>
         </member>
+        <member name="T:Sudoku.Concepts.AlmostHiddenSet">
+            <summary>
+            Defines a data pattern that describes an AHS.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="house">Indicates the house used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="candidatesCanFormWeakLink">Indicates all candidates that can be used as weak links.</param>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.#ctor(Sudoku.Concepts.CellMap@,System.Int32,System.Int16,System.Int16,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Defines a data pattern that describes an AHS.
+            </summary>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="house">Indicates the house used.</param>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="subsetDigitsMask">Indicates the mask of subset digits used.</param>
+            <param name="candidatesCanFormWeakLink">Indicates all candidates that can be used as weak links.</param>
+            <remarks>
+            An <b>Almost Hidden Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> digits are only appeared inside <c>(n + 1)</c> cells in a house.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.Equals(Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.CompareTo(Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.GetAllCandidates(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get all possible candidates used in the current pattern.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>A list of <see cref="T:System.Int32"/> values.</returns>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.House">
+            <summary>
+            The generated property declaration for parameter <c>house</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.SubsetDigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>subsetDigitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostHiddenSet.CandidatesCanFormWeakLink">
+            <summary>
+            The generated property declaration for parameter <c>candidatesCanFormWeakLink</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_Equality(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_Inequality(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_GreaterThan(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_LessThan(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_GreaterThanOrEqual(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostHiddenSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostHiddenSet,Sudoku.Concepts.AlmostHiddenSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.AlmostLockedSet">
+            <summary>
+            Defines a data pattern that describes an ALS.
+            </summary>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.#ctor(System.Int16,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[])">
+            <summary>
+            Defines a data pattern that describes an ALS.
+            </summary>
+            <param name="digitsMask">Indicates the mask of digits used.</param>
+            <param name="cells">Indicates the cells used.</param>
+            <param name="possibleEliminationMap">Gets the possible cells that can store eliminations for the ALS.</param>
+            <param name="eliminationMap">
+            The cells that can be eliminated, grouped by digit. The former 9 elements of the array is the cells
+            that can be eliminated for the corresponding digit, and the last element is the merged cells.
+            </param>
+            <remarks>
+            An <b>Almost Locked Set</b> is a sudoku concept, which describes a case that
+            <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
+            The special case is a bi-value cell.
+            </remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.AlmostLockedSet.StrongRelationsCount">
+            <summary>
+            Indicates an array of the total number of the strong relations in an ALS of the different size.
+            The field is only unused in the property <see cref="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks"/>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.House">
+            <summary>
+            Indicates the house used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.IsBivalueCell">
+            <summary>
+            Indicates whether the ALS only uses a bi-value cell.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.StrongLinks">
+            <summary>
+            Indicates all strong links in this ALS.
+            The result will be represented as a <see cref="T:System.Int16"/> of 9 bits indicating which bits used.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Deconstruct(System.Int16@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap[]@)">
+            <target name="method">
+				<summary>
+					Deconstruct the current instance into multiple values, which means you can use
+					the value-tuple syntax like <c>(a, b, c)</c> to define your own deconstruction logic.
+				</summary>
+			</target>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.CompareTo(Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc/>
+            <exception cref="T:System.ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse(System.String,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse``1(System.String,``0,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Collect(Sudoku.Concepts.Grid@)">
+            <summary>
+            Collects all possible <see cref="T:Sudoku.Concepts.AlmostLockedSet"/>s in the specified grid.
+            </summary>
+            <param name="grid">The grid.</param>
+            <returns>All possible found <see cref="T:Sudoku.Concepts.AlmostLockedSet"/> instances.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse(System.String)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.AlmostLockedSet@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#Parse(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.DigitsMask">
+            <summary>
+            The generated property declaration for parameter <c>digitsMask</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.Cells">
+            <summary>
+            The generated property declaration for parameter <c>cells</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.PossibleEliminationMap">
+            <summary>
+            The generated property declaration for parameter <c>possibleEliminationMap</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.AlmostLockedSet.EliminationMap">
+            <summary>
+            The generated property declaration for parameter <c>eliminationMap</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Equality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Inequality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThan(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_GreaterThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.op_LessThanOrEqual(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.TrueCandidate">
+            <summary>
+            Defines a searcher that searches for the true candidates of the current sudoku grid.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.TrueCandidate.GetAllTrueCandidates(Sudoku.Concepts.Grid@,System.Threading.CancellationToken)">
+            <summary>
+            Get all true candidates when the number of empty cells is below than the argument.
+            </summary>
+            <param name="grid">Indicates the puzzle.</param>
+            <param name="cancellationToken">The cancellation token to cancel the operation.</param>
+            <returns>All true candidates.</returns>
+            <exception cref="T:System.ArgumentException">Throws when the puzzle is invalid.</exception>
+        </member>
+        <member name="T:Sudoku.Concepts.Chain">
+            <summary>
+            Represents a chain.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Represents a chain.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Chain._weakStart">
+            <summary>
+            Indicates whether the chain starts with weak link.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsWoodsWing">
+            <summary>
+            Indicates whether the chain is formed a W-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of W-Wing is <c><![CDATA[(x=y)-y=y-(y=x)]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsMedusaWing">
+            <summary>
+            Indicates whether the chain is formed a M-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of M-Wing is <c><![CDATA[(x=y)-y=(y-x)=x]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsSplitWing">
+            <summary>
+            Indicates whether the chain is formed a S-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of S-Wing is <c><![CDATA[x=x-(x=y)-y=y]]></c>, symmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsLocalWing">
+            <summary>
+            Indicates whether the chain is formed a L-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of L-Wing is <c><![CDATA[x=(x-y)=(y-z)=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.IsHybridWing">
+            <summary>
+            Indicates whether the chain is formed a H-Wing.
+            </summary>
+            <remarks>
+            A valid pattern of H-Wing is <c><![CDATA[(x=y)-(y=z)-z=z]]></c>, asymmetric.
+            </remarks>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Links">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.SplitMask">
+            <summary>
+            Split mask for 6 nodes.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Chain.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.Chain"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determine whether one of two has "self constraint" (i.e. false -> true confliction).
+            <list type="number">
+            <item>If so, it will be treated as "less than" the other one.</item>
+            <item>
+            Otherwise, determine the chain nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            </item>
+            </list>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Chain.CompareTo(Sudoku.Concepts.Chain)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Chain.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ChainPattern">
+            <summary>
+            Represents a chain or a loop.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Inferences">
+            <summary>
+            Indicates the possible inferences to be used.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern._nodes">
+            <summary>
+            Indicates the nodes to be initialized.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern._strongGroupedLinkPool">
+            <summary>
+            Indicates the strong grouped link pool.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern._weakGroupedLinkPool">
+            <summary>
+            Indicates the weak grouped link pool.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.#ctor(Sudoku.Concepts.Node,System.Boolean,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Initializes <see cref="T:Sudoku.Concepts.ChainPattern"/> data.
+            </summary>
+            <param name="lastNode">The last node.</param>
+            <param name="isLoop">Indicates whether is for loop initialization.</param>
+            <param name="strongLinkDictionary">Indicates the strong link dictionary.</param>
+            <param name="weakLinkDictionary">Indicates the weak link dictionary.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.IsGrouped">
+            <summary>
+            Indicates whether the chain pattern uses grouped logic.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.SatisfyXRule">
+            <summary>
+            Indicates whether the pattern only uses same digits.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.SatisfyYRule">
+            <summary>
+            Indicates whether the pattern only uses cell strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.ContainsOverlappedNodes">
+            <summary>
+            Indicates whether at least one node in the whole pattern overlaps with a node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Length">
+            <summary>
+            Indicates the length of the pattern.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Complexity">
+            <summary>
+            Indicates the complexity of the pattern.
+            The value is different with <see cref="P:Sudoku.Concepts.ChainPattern.Length"/> on a chain starting and ending with itself, both are by strong links.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Links">
+            <summary>
+            Indicates the links used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.First">
+            <summary>
+            Indicates the head node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Last">
+            <summary>
+            Indicates the tail node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.ValidNodes">
+            <summary>
+            Indicates the valid nodes to be used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IReadOnlyCollection{Sudoku#Concepts#Node}#Count">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Item(System.Int32)">
+            <summary>
+            Gets a <see cref="T:Sudoku.Concepts.Node"/> instance at the specified index.
+            </summary>
+            <param name="index">The desired index.</param>
+            <returns>The <see cref="T:Sudoku.Concepts.Node"/> instance.</returns>
+            <exception cref="T:System.IndexOutOfRangeException">Throws when the argument <paramref name="index"/> is out of range.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Reverse">
+            <summary>
+            Try to reverse the pattern, making all nodes negated its direction connected.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="patternComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.OverlapsWithConclusions(Sudoku.Concepts.ConclusionSet)">
+            <summary>
+            Determines whether the current pattern (nodes) overlap with a list of conclusions,
+            meaning at least one conclusion is used by a node appeared in the pattern.
+            If so, the chain or loop will become a cannibalistic one.
+            </summary>
+            <param name="conclusions">The conclusions to be checked.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Contains(System.Int32)">
+            <summary>
+            Determines whether the pattern has already used the specified candidate.
+            </summary>
+            <param name="candidate">The candidate.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+            <remarks>
+            This method directly calls <see cref="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            with values <see cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/> and <see cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)"/>
+            <seealso cref="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn"/>
+            <seealso cref="F:Sudoku.Concepts.ChainPatternComparison.Undirected"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Computes hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.FindIndex(System.Predicate{Sudoku.Concepts.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.FindLastIndex(System.Predicate{Sudoku.Concepts.Node})">
+            <summary>
+            Try to find a node satisfying the specified condition from end, and return its index. If none found, -1 will be returned.
+            </summary>
+            <param name="predicate">The condition that a node should satisfy.</param>
+            <returns>The index of the node satisfied the condition.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.CompareTo(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString``1(System.String,``0)">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <typeparam name="T">The type of the converter.</typeparam>
+            <param name="format">The format text.</param>
+            <param name="converter">The converter instance.</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Slice(System.Int32,System.Int32)">
+            <summary>
+            Slices the collection with the specified start node and its length.
+            </summary>
+            <param name="start">The start index.</param>
+            <param name="length">The number of <see cref="T:Sudoku.Concepts.Node"/> instances to slice.</param>
+            <returns>A <see cref="T:System.ReadOnlySpan`1"/> of <see cref="T:Sudoku.Concepts.Node"/> instances returned.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetEnumerator">
+            <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get a <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance that contains all conclusions created by using the current chain.
+            </summary>
+            <param name="grid">The grid to be checked.</param>
+            <returns>A <see cref="T:Sudoku.Concepts.ConclusionSet"/> instance.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#IEnumerable#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.System#Collections#Generic#IEnumerable{Sudoku#Concepts#Node}#GetEnumerator">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.GetConclusions(Sudoku.Concepts.Grid@,Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Try to get all possible conclusions via the specified grid and two <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <param name="grid">The grid.</param>
+            <param name="node1">The first node.</param>
+            <param name="node2">The second node.</param>
+            <returns>A sequence of <see cref="T:Sudoku.Concepts.Conclusion"/> instances.</returns>
+            <seealso cref="T:Sudoku.Concepts.Conclusion"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ChainPattern.Enumerator">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Node"/> inside the collection.
+            </summary>
+            <param name="nodes">The <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Enumerator.#ctor(Sudoku.Concepts.ChainPattern)">
+            <summary>
+            Represents an enumerator type that can iterate on each <see cref="T:Sudoku.Concepts.Node"/> inside the collection.
+            </summary>
+            <param name="nodes">The <see cref="T:Sudoku.Concepts.ChainPattern"/> instance.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Enumerator._length">
+            <summary>
+            Indicates the number of nodes.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPattern.Enumerator._index">
+            <summary>
+            Indicates the current index iterated.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.ChainPattern.Enumerator.Current">
+            <inheritdoc cref="P:System.Collections.IEnumerator.Current"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Enumerator.MoveNext">
+            <inheritdoc cref="M:System.Collections.IEnumerator.MoveNext"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_Equality(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_Inequality(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_GreaterThan(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_LessThan(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_GreaterThanOrEqual(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.op_LessThanOrEqual(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.ChainPatternComparison">
+            <summary>
+            Provides with a comparison rule on <see cref="T:Sudoku.Concepts.ChainPattern"/> instances (i.e. <see cref="T:Sudoku.Concepts.Chain"/> or <see cref="T:Sudoku.Concepts.Loop"/>).
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.ChainPattern"/>
+            <seealso cref="T:Sudoku.Concepts.Chain"/>
+            <seealso cref="T:Sudoku.Concepts.Loop"/>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPatternComparison.Undirected">
+            <summary>
+            Indicates the comparison will ignore direction on chains.
+            For example, <c>A == B -- C == D</c> is equal to <c>D == C -- B == A</c>.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ChainPatternComparison.Directed">
+            <summary>
+            Indicates the comparison will also check on direction.
+            For example, <c>A == B -- C == D</c> is not equal to <c>D == C -- B == A</c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Link">
+            <summary>
+            <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.</para>
+            <para><b>
+            Please note that two <see cref="T:Sudoku.Concepts.Link"/> instances will be considered as equal
+            only if they holds same node values, regardless of what link type two <see cref="T:Sudoku.Concepts.Link"/> instances use.
+            </b></para>
+            </summary>
+            <param name="firstNode">Indicates the first node to be used.</param>
+            <param name="secondNode">Indicates the second node to be used.</param>
+            <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
+            <param name="groupedLinkPattern">
+            Indicates the pattern that the grouped link used. The value can be used as a "tag" recording extra information.
+            The default value is <see langword="null"/>.
+            </param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)">
+            <summary>
+            <para>Represents a link that describes a relation between two <see cref="T:Sudoku.Concepts.Node"/> instances.</para>
+            <para><b>
+            Please note that two <see cref="T:Sudoku.Concepts.Link"/> instances will be considered as equal
+            only if they holds same node values, regardless of what link type two <see cref="T:Sudoku.Concepts.Link"/> instances use.
+            </b></para>
+            </summary>
+            <param name="firstNode">Indicates the first node to be used.</param>
+            <param name="secondNode">Indicates the second node to be used.</param>
+            <param name="isStrong">Indicates whether the link type is a strong link or not.</param>
+            <param name="groupedLinkPattern">
+            Indicates the pattern that the grouped link used. The value can be used as a "tag" recording extra information.
+            The default value is <see langword="null"/>.
+            </param>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.Equals(Sudoku.Concepts.Link,Sudoku.Concepts.LinkComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Link"/> are considered equal on the specified comparison rule.
+            </summary>
+            <param name="other">The other object to be compared.</param>
+            <param name="comparison">The comparison rule to be used.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparison"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.GetHashCode(Sudoku.Concepts.LinkComparison)">
+            <summary>
+            Serves as hash code functions, with consideration on the specified comparison rule.
+            </summary>
+            <param name="comparison">The comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> indicating the hash code.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">Throws when the argument <paramref name="comparison"/> is not defined.</exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.ToString">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Link.FirstNode">
+            <summary>
+            The generated property declaration for parameter <c>firstNode</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Link.SecondNode">
+            <summary>
+            The generated property declaration for parameter <c>secondNode</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Link.IsStrong">
+            <summary>
+            The generated property declaration for parameter <c>isStrong</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Link.GroupedLinkPattern">
+            <summary>
+            The generated property declaration for parameter <c>groupedLinkPattern</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.op_Equality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Link.op_Inequality(Sudoku.Concepts.Link,Sudoku.Concepts.Link)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.LinkComparison">
+            <summary>
+            Represents a comparison rule to be used on comparing with two <see cref="T:Sudoku.Concepts.Link"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Link"/>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkComparison.Undirected">
+            <summary>
+            Indicates the comparing rule is undirected, which means two <see cref="T:Sudoku.Concepts.Link"/> instances will be compared,
+            without any direction checking; i.e. <c><![CDATA[node1 -> node2]]></c> is equal to <c><![CDATA[node2 -> node1]]></c>.
+            This is the default option on comparing.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkComparison.Directed">
+            <summary>
+            Indicates the comparing rule is directed, which means two <see cref="T:Sudoku.Concepts.Link"/> instances will be compared,
+            with considerations on direction; i.e. <c><![CDATA[node1 -> node2]]></c> is not equal to <c><![CDATA[node2 -> node1]]></c>.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.LinkDictionary">
+            <summary>
+            Represents a list of <see cref="T:Sudoku.Concepts.Node"/> relations on strong or weak links.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkDictionary._groupedLinkPool">
+            <summary>
+            The backing pool storing link and patterns.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.LinkDictionary.GroupedLinkPool">
+            <summary>
+            Indicates the pool of grouped links and its corresponding pattern.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.LinkDictionary.AddEntry(Sudoku.Concepts.Node,Sudoku.Concepts.Node,System.Boolean,System.Object)">
+            <summary>
+            Add a link to the current collection with both entries on nodes of the link used.
+            </summary>
+            <param name="node1">Indicates the first node to be added.</param>
+            <param name="node2">Indicates the second node to be added.</param>
+            <param name="isStrong">Indicates the grouped link pattern is a strong link.</param>
+            <param name="pattern">The advanced pattern to be used.</param>
+        </member>
+        <member name="T:Sudoku.Concepts.LinkType">
+            <summary>
+            Represents a link type.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.Unknown">
+            <summary>
+            Indicates the placeholder of the enumeration. The value can be represented in cases "None" or "Unknown".
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.SingleDigit">
+            <summary>
+            Indicates the link type is a single digit (X rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.SingleCell">
+            <summary>
+            Indicates the link type is a single cell (Y rule).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.NonGrouped">
+            <summary>
+            Indicates non-grouped link types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.LockedCandidates">
+            <summary>
+            Indicates the link type is a locked candidates.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostLockedSet">
+            <summary>
+            Indicates the link type is an almost locked set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostHiddenSet">
+            <summary>
+            Indicates the link type is an almost hidden set.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.KrakenNormalFish">
+            <summary>
+            Indicates the link type is a kraken normal fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.AlmostUniqueRectangle">
+            <summary>
+            Indicates the link type is an almost unique rectangle.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.Grouped">
+            <summary>
+            Indicates all grouped link types.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.LinkType.All">
+            <summary>
+            Indicates all link types.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Loop">
+            <summary>
+            Represents a loop.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.LinkDictionary,Sudoku.Concepts.LinkDictionary)">
+            <summary>
+            Represents a loop.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Complexity">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Links">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.ValidNodes">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Loop.Item(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Reverse">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Determine whether two <see cref="T:Sudoku.Concepts.Loop"/> instances are same, by using the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <param name="chainComparison">The comparison rule on the whole chain.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="chainComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Equals(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.GetHashCode(Sudoku.Concepts.NodeComparison,Sudoku.Concepts.ChainPatternComparison)">
+            <summary>
+            Creates a hash code based on the current instance.
+            </summary>
+            <param name="nodeComparison">The node comparison.</param>
+            <param name="patternComparison">The pattern comparison.</param>
+            <returns>An <see cref="T:System.Int32"/> as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="patternComparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)">
+            <summary>
+            Determine which <see cref="T:Sudoku.Concepts.Loop"/> instance is greater.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <returns>An <see cref="T:System.Int32"/> result.</returns>
+            <remarks>
+            Order rule:
+            <list type="number">
+            <item>If <paramref name="other"/> is <see langword="null"/>, <see langword="this"/> is greater, return 1.</item>
+            <item>
+            If <paramref name="other"/> is not <see langword="null"/>, checks on length:
+            <list type="number">
+            <item>
+            If length is not same, return 1 when <see langword="this"/> is longer
+            or -1 when <paramref name="other"/> is longer.
+            </item>
+            <item>
+            Determines the loop nodes used one by one. If a node is greater, the chain will be greater;
+            otherwise, they are same, 0 will be returned.
+            <b>
+            This operation will adjust the checking node index on the other loop <paramref name="other"/>.
+            Two loops with same nodes will be considered as equal no matter what order they will be.
+            For example, <c><![CDATA[A == B -- C == D -- A]]></c> is equal to <c><![CDATA[C == D -- A == B -- C]]></c>.
+            </b>
+            </item>
+            </list>
+            </item>
+            </list>
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.Loop)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.CompareTo(Sudoku.Concepts.ChainPattern)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.ToString``1(System.String,``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.Slice(System.Int32,System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.GetConclusions(Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Loop.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="T:Sudoku.Concepts.Node">
+            <summary>
+            Represents a chain node.
+            </summary>
+            <param name="map">Indicates the backing map.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+            <summary>
+            Represents a chain node.
+            </summary>
+            <param name="map">Indicates the backing map.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="F:Sudoku.Concepts.Node.MapFormatString">
+            <summary>
+            Indicates the map format string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Node.IsOnFormatString">
+            <summary>
+            Indicates the property <see cref="P:Sudoku.Concepts.Node.IsOn"/> format string.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.Node._extraMap">
+            <summary>
+            Indicates the extra cells map.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
+            </summary>
+            <param name="candidate">A candidate.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate, and extra map.
+            </summary>
+            <param name="candidate">A candidate.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+            <param name="extraMap">The extra map.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via two maps.
+            </summary>
+            <param name="map">The basic pattern map of candidates used.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+            <param name="extraMap">The extra map.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified cell and digit.
+            </summary>
+            <param name="cell">A cell.</param>
+            <param name="digit">A digit.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Concepts.CandidateMap@)">
+            <summary>
+            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate, and extra map.
+            </summary>
+            <param name="cell">A cell.</param>
+            <param name="digit">A digit.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+            <param name="extraMap">The extra map.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <summary>
+            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
+            and appends its parent node.
+            </summary>
+            <param name="base">The data provider.</param>
+            <param name="parent">The parent node.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,System.Boolean)">
+            <summary>
+            Copies and creates a <see cref="T:Sudoku.Concepts.Node"/> instance from argument <paramref name="base"/>,
+            and appends its parent node, and modify <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="base">The data provider.</param>
+            <param name="isOn">Indicates whether the node is on.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsGroupedNode">
+            <summary>
+            Indicates whether the node is a grouped node.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Map">
+            <summary>
+            Indicates the map of candidates the node uses.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.ExtraMap">
+            <summary>
+            Indicates the extra cells map to hold. This is used by representing extra candidates used inside the pattern.
+            </summary>
+            <remarks>
+            Please note that this property won't be used as comparison,
+            neither <see cref="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)"/> or <see cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>.
+            </remarks>
+            <seealso cref="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)"/>
+            <seealso cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.AncestorsLength">
+            <summary>
+            Indicates the length of ancestors.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.Parent">
+            <summary>
+            Indicates the parent node. The value doesn't participate in equality comparison.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsOnPropertyValue">
+            <summary>
+            The backing comparing value on <see cref="P:Sudoku.Concepts.Node.IsOn"/> property.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Compares with two <see cref="T:Sudoku.Concepts.Node"/> instances, based on the specified comparison rule.
+            </summary>
+            <param name="other">The other instance to be compared.</param>
+            <param name="comparison">The comparison rule.</param>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.IsAncestorOf(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Determines whether the current node is an ancestor of the specified node. 
+            </summary>
+            <param name="childNode">The node to be checked.</param>
+            <param name="nodeComparison">The comparison rule on nodes.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.GetHashCode(Sudoku.Concepts.NodeComparison)">
+            <summary>
+            Calculates the hash code on the current instance.
+            </summary>
+            <param name="comparison">The comparison rule.</param>
+            <returns>An <see cref="T:System.Int32"/> value as the result.</returns>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node,Sudoku.Concepts.NodeComparison)">
+            <inheritdoc cref="M:Sudoku.Concepts.Node.CompareTo(Sudoku.Concepts.Node)"/>
+            <exception cref="T:System.ArgumentOutOfRangeException">
+            Throws when the argument <paramref name="comparison"/> is not defined.
+            </exception>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString``1(System.String,``0)">
+            <summary>
+            Returns a string that represents the current object.
+            </summary>
+            <typeparam name="T">The type of the converter.</typeparam>
+            <param name="format">The format.</param>
+            <param name="converter">The converter.s</param>
+            <returns>A string that represents the current object.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+            <remarks>
+            Format description:
+            <list type="table">
+            <listheader>
+            <term>Format character</term>
+            <description>Description</description>
+            </listheader>
+            <item>
+            <term><c>m</c></term>
+            <description>The map text. For example, <c>r1c23(4)</c></description>
+            </item>
+            <item>
+            <term><c>S</c> and <c>s</c></term>
+            <description>
+            The <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value (<see langword="true"/> or <see langword="false"/>).
+            If the character <c>s</c> is upper-cased, the result text will be upper-cased on initial letter.
+            </description>
+            </item>
+            </list>
+            For example, format value <c>"m: S"</c> will be replaced with value <c>"r1c23(4): True"</c>.
+            </remarks>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Clone">
+            <summary>
+            Creates a copy of the current instance.
+            </summary>
+            <returns>A cloned instance whose internal values are same as the current instance, independent.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_OnesComplement(Sudoku.Concepts.Node)">
+            <summary>
+            Negates the node with <see cref="P:Sudoku.Concepts.Node.IsOn"/> property value.
+            </summary>
+            <param name="value">The current node.</param>
+            <returns>The node negated.</returns>
+        </member>
+        <member name="F:Sudoku.Concepts.Node._map">
+            <summary>
+            The generated field declaration for parameter <c>map</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsOn">
+            <summary>
+            The generated property declaration for parameter <c>isOn</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_Equality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_Inequality(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_LessThan(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThan(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_GreaterThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_GreaterThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Node.op_LessThanOrEqual(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
+            <inheritdoc cref="M:System.Numerics.IComparisonOperators`3.op_LessThanOrEqual(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.NodeComparison">
+            <summary>
+            Represents a comparison rule on <see cref="T:Sudoku.Concepts.Node"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Node"/>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeComparison.IncludeIsOn">
+            <summary>
+            Indicates the comparison rule checks on <see cref="P:Sudoku.Concepts.Node.IsOn"/> property.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+        </member>
+        <member name="F:Sudoku.Concepts.NodeComparison.IgnoreIsOn">
+            <summary>
+            Indicates the comparison rule ignores for <see cref="P:Sudoku.Concepts.Node.IsOn"/> property, and only checks on <see cref="P:Sudoku.Concepts.Node.Map"/>.
+            </summary>
+            <seealso cref="P:Sudoku.Concepts.Node.IsOn"/>
+            <seealso cref="P:Sudoku.Concepts.Node.Map"/>
+        </member>
+        <member name="T:Sudoku.Concepts.DeathBlossomBranchCollection`2">
+            <summary>
+            Represents a collection that stores a list of branches, grouped by its key specified as type parameter <typeparamref name="TKey"/>.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(`0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.DeathBlossomBranchCollection`2.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="T:Sudoku.Concepts.HouseBlossomBranchCollection">
+            <summary>
+            Represents for a house blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.Equals(Sudoku.Concepts.HouseBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.op_Equality(Sudoku.Concepts.HouseBlossomBranchCollection,Sudoku.Concepts.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.HouseBlossomBranchCollection.op_Inequality(Sudoku.Concepts.HouseBlossomBranchCollection,Sudoku.Concepts.HouseBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.IDeathBlossomCollection`2">
+            <summary>
+            Represents the basic data for a death blossom.
+            </summary>
+            <typeparam name="TSelf">The type of itself.</typeparam>
+            <typeparam name="TKey">The type of the distinction key.</typeparam>
+        </member>
+        <member name="P:Sudoku.Concepts.IDeathBlossomCollection`2.Branches">
+            <summary>
+            Indicates the branches used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.NormalBlossomBranchCollection">
+            <summary>
+            Represents for a normal blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.Equals(Sudoku.Concepts.NormalBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.op_Equality(Sudoku.Concepts.NormalBlossomBranchCollection,Sudoku.Concepts.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.NormalBlossomBranchCollection.op_Inequality(Sudoku.Concepts.NormalBlossomBranchCollection,Sudoku.Concepts.NormalBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection">
+            <summary>
+            Represents for a n-times ALS blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.op_Equality(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection.op_Inequality(Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection,Sudoku.Concepts.NTimesAlmostLockedSetsBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="T:Sudoku.Concepts.RectangleBlossomBranchCollection">
+            <summary>
+            Represents for a rectangle blossom branch collection.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.Equals(Sudoku.Concepts.RectangleBlossomBranchCollection)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.GetHashCode">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.op_Equality(Sudoku.Concepts.RectangleBlossomBranchCollection,Sudoku.Concepts.RectangleBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.RectangleBlossomBranchCollection.op_Inequality(Sudoku.Concepts.RectangleBlossomBranchCollection,Sudoku.Concepts.RectangleBlossomBranchCollection)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
         <member name="T:Sudoku.Concepts.Crosshatching">
             <summary>
             Defines the target crosshatching information.
@@ -19440,6 +20969,257 @@
         <member name="M:Sudoku.Concepts.EliminationRange.System#Numerics#IEqualityOperators{Sudoku#Concepts#EliminationRange,Sudoku#Concepts#EliminationRange,System#Boolean}#op_Inequality(Sudoku.Concepts.EliminationRange,Sudoku.Concepts.EliminationRange)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Concepts.ExocetShapeKind">
+            <summary>
+            Indicates a shape modifier that is used for a complex fish pattern.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.ExocetShapeKind.Basic">
+            <summary>
+            Indicates the basic exocet. This field is a reserved field.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ExocetShapeKind.Franken">
+            <summary>
+            Indicates the franken exocet.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.ExocetShapeKind.Mutant">
+            <summary>
+            Indicates the mutant exocet.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.IComplexSeniorExocet">
+            <summary>
+            The base overrides for complex senior exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocet.CrosslineHousesMask">
+            <summary>
+            The mask that holds a list of cross-line houses used.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IComplexSeniorExocet.ExtraHousesMask">
+            <summary>
+            The mask that holds a list of extra houses used.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.IDoubleExocet">
+            <summary>
+            The base overrides for double exocet steps.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.BaseCells">
+            <summary>
+            A list of cells as the base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.TargetCells">
+            <summary>
+            A list of cells as the target cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.BaseCellsTheOther">
+            <summary>
+            A list of cells as the other pair of base cells.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.IDoubleExocet.TargetCellsTheOther">
+            <summary>
+            A list of cells as the other pair of target cells.
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.LockedMember">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.LockedMember.#ctor(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Represents a locked member. This type is only used by searching for exocets.
+            </summary>
+            <param name="LockedCells">Indicates the locked cells.</param>
+            <param name="LockedBlock">Indicates the locked block.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.LockedMember.LockedCells">
+            <summary>Indicates the locked cells.</summary>
+        </member>
+        <member name="P:Sudoku.Concepts.LockedMember.LockedBlock">
+            <summary>Indicates the locked block.</summary>
+        </member>
+        <member name="T:Sudoku.Concepts.Fish">
+            <summary>
+            Represents a fish pattern.
+            </summary>
+            <param name="digit">Indicates the digit to be used.</param>
+            <param name="baseSets">Indicates the base sets.</param>
+            <param name="coverSets">Indicates the cover sets.</param>
+            <param name="exofins">Indicates the exo-fins.</param>
+            <param name="endofins">Indicates the endo-fins.</param>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.#ctor(System.Int32,System.Int32,System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@)">
+            <summary>
+            Represents a fish pattern.
+            </summary>
+            <param name="digit">Indicates the digit to be used.</param>
+            <param name="baseSets">Indicates the base sets.</param>
+            <param name="coverSets">Indicates the cover sets.</param>
+            <param name="exofins">Indicates the exo-fins.</param>
+            <param name="endofins">Indicates the endo-fins.</param>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.IsComplex">
+            <summary>
+            Indicates whether the pattern is complex fish.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Fins">
+            <summary>
+            Indicates all fins.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.ShapeKind">
+            <summary>
+            Indicates the shape kind of the current fish.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.Equals(Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.ToString``1(``0)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.GetFinKind(Sudoku.Concepts.Grid@)">
+            <summary>
+            Try to get the fin kind using the specified grid as candidate references.
+            </summary>
+            <param name="grid">The grid to be used.</param>
+            <returns>The fin kind.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#IEquatable{Sudoku#Concepts#Fish}#Equals(Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#IFormattable#ToString(System.String,System.IFormatProvider)">
+            <inheritdoc/>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Digit">
+            <summary>
+            The generated property declaration for parameter <c>digit</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.BaseSets">
+            <summary>
+            The generated property declaration for parameter <c>baseSets</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.CoverSets">
+            <summary>
+            The generated property declaration for parameter <c>coverSets</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Exofins">
+            <summary>
+            The generated property declaration for parameter <c>exofins</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Fish.Endofins">
+            <summary>
+            The generated property declaration for parameter <c>endofins</c>.
+            </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.Equals(System.Object)">
+            <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.GetHashCode">
+            <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.op_Equality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.op_Inequality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
+            <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Inequality(`0,`1)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Equality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.System#Numerics#IEqualityOperators{Sudoku#Concepts#Fish,Sudoku#Concepts#Fish,System#Boolean}#op_Inequality(Sudoku.Concepts.Fish,Sudoku.Concepts.Fish)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Sudoku.Concepts.FishFinKind">
+            <summary>
+            Indicates a fin modifier that is used for a complex fish pattern.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.FishFinKind.Normal">
+            <summary>
+            Indicates the normal fish (i.e. no fins).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.FishFinKind.Finned">
+            <summary>
+            Indicates the finned fish
+            (i.e. contains fins, but the fish may be regular when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.FishFinKind.Sashimi">
+            <summary>
+            Indicates the sashimi fish
+            (i.e. contains fins, and the fish may be degenerated to hidden singles when the fins are removed).
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.FishFinKind.Siamese">
+            <summary>
+            Indicates the Siamese fish (i.e. two fish share same base sets, with different cover sets).
+            </summary>
+        </member>
+        <member name="T:Sudoku.Concepts.FishShapeKind">
+            <summary>
+            Indicates a shape modifier that is used for a complex fish pattern.
+            </summary>
+            <remarks><flags-attribute>
+		<para>
+			<i>
+				This type is marked <see cref="T:System.FlagsAttribute" />, which means you can use
+				<see langword="operator" /> | to combine multiple fields.
+			</i>
+		</para>
+	</flags-attribute></remarks>
+        </member>
+        <member name="F:Sudoku.Concepts.FishShapeKind.Basic">
+            <summary>
+            Indicates the basic fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.FishShapeKind.Franken">
+            <summary>
+            Indicates the franken fish.
+            </summary>
+        </member>
+        <member name="F:Sudoku.Concepts.FishShapeKind.Mutant">
+            <summary>
+            Indicates the mutant fish.
+            </summary>
+        </member>
         <member name="T:Sudoku.Concepts.Grouped">
             <summary>
             Represents a list of methods that operates with concept "Grouped Node".
@@ -19453,36 +21233,6 @@
             <param name="house">The house.</param>
             <param name="spannedHousesList">The spanned houses.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
-        </member>
-        <member name="T:Sudoku.Concepts.StrongLinkInfo">
-            <summary>
-            Represents a data that describes for a strong link used by patterns using link logic.
-            </summary>
-            <param name="House">The house.</param>
-            <param name="Start">The start node.</param>
-            <param name="End">The end node.</param>
-            <param name="SpannedHouses">The spanned houses.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.StrongLinkInfo.#ctor(System.Int32,Sudoku.Concepts.CellMap@,Sudoku.Concepts.CellMap@,System.Int32)">
-            <summary>
-            Represents a data that describes for a strong link used by patterns using link logic.
-            </summary>
-            <param name="House">The house.</param>
-            <param name="Start">The start node.</param>
-            <param name="End">The end node.</param>
-            <param name="SpannedHouses">The spanned houses.</param>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongLinkInfo.House">
-            <summary>The house.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongLinkInfo.Start">
-            <summary>The start node.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongLinkInfo.End">
-            <summary>The end node.</summary>
-        </member>
-        <member name="P:Sudoku.Concepts.StrongLinkInfo.SpannedHouses">
-            <summary>The spanned houses.</summary>
         </member>
         <member name="T:Sudoku.Concepts.SymmetricalPlacing">
             <summary>
@@ -19607,6 +21357,24 @@
             <param name="options">The options to set.</param>
             <returns>A correct step if found; otherwise, <see langword="null"/>.</returns>
         </member>
+        <member name="T:Sudoku.Concepts.CellMapExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.CellMap"/> instances.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.CellMap"/>
+        </member>
+        <member name="M:Sudoku.Concepts.CellMapExtensions.GroupTargets(Sudoku.Concepts.CellMap@,System.Int32)">
+            <summary>
+            Try to group up with target cells, separating into multiple parts, grouped by its containing row or column.
+            </summary>
+            <param name="this">The target cells to be split.</param>
+            <param name="houses">The mask value holding a list of houses to be matched.</param>
+            <returns>
+            A list of <see cref="T:Sudoku.Concepts.CellMap"/> grouped,
+            representing as a <see cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>.
+            </returns>
+            <seealso cref="T:Sudoku.Linq.BitStatusMapGrouping`4"/>
+        </member>
         <member name="T:Sudoku.Concepts.ObjectModel.ExocetShapeKindExtensions">
             <summary>
             Provides with extension methods around enumeration type <see cref="T:Sudoku.Concepts.ExocetShapeKind"/>.
@@ -19619,27 +21387,27 @@
             <param name="this">The houses provider.</param>
             <returns>A <see cref="T:Sudoku.Concepts.ExocetShapeKind"/> result.</returns>
         </member>
-        <member name="T:Sudoku.Concepts.GridExtensions">
+        <member name="T:Sudoku.Concepts.GridAnalysisExtensions">
             <summary>
             Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
             </summary>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
+        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.Apply(Sudoku.Concepts.Grid@,Sudoku.Analytics.Step)">
             <summary>
             Applies for all conclusions into the current <see cref="T:Sudoku.Concepts.Grid"/> instance.
             </summary>
             <param name="this">A <see cref="T:Sudoku.Concepts.Grid"/> instance that receives the conclusions to be applied.</param>
             <param name="step">A conclusion-provider <see cref="T:Sudoku.Analytics.Step"/> instance.</param>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryFullHouse(Sudoku.Concepts.Grid@)">
             <summary>
             Checks whether the puzzle can be solved using only full house.
             </summary>
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
+        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryHiddenSingle(Sudoku.Concepts.Grid@,System.Boolean)">
             <summary>
             Checks whether the puzzle can be solved using only full house and hidden single.
             </summary>
@@ -19649,12 +21417,67 @@
             </param>
             <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
         </member>
-        <member name="M:Sudoku.Concepts.GridExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
+        <member name="M:Sudoku.Concepts.GridAnalysisExtensions.CanPrimaryNakedSingle(Sudoku.Concepts.Grid@)">
             <summary>
             Checks whether the puzzle can be solved using only naked single.
             </summary>
             <param name="this">The grid to be checked.</param>
             <returns>A <see cref="T:System.Boolean"/> value indicating that.</returns>
+        </member>
+        <member name="T:Sudoku.Concepts.GridExtensions">
+            <summary>
+            Provides with extension methods on <see cref="T:Sudoku.Concepts.Grid"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.Grid"/>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.CheckCrossLineIntersectionLeaveEmpty(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Check whether all intersected cells by original cross-line cells and extra house cells are non-empty,
+            and cannot be of value appeared in base cells.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="crossline">The cross-line cells.</param>
+            <param name="baseCellsDigitsMask">The mask that holds a list of digits appeared in base cells.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.CheckTargetCellsDigitsValidity(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Check whether all digits appeared in base cells can be filled in target empty cells.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="targetCellsToBeChecked">The target cells to be checked.</param>
+            <param name="baseCellsDigitsMask">A mask that holds a list of digits appeared in base cells.</param>
+            <returns>A <see cref="T:System.Boolean"/> result indicating that.</returns>
+        </member>
+        <member name="M:Sudoku.Concepts.GridExtensions.GetValueDigitsAppearedInCrossline(Sudoku.Concepts.Grid@,Sudoku.Concepts.CellMap@,System.Int16)">
+            <summary>
+            Try to get all possible digits as value representation in cross-line cells.
+            </summary>
+            <param name="this">The grid to be checked.</param>
+            <param name="crossline">The cross-line cells to be checked.</param>
+            <param name="baseCellsDigitsMask">The digits appeared in base cells.</param>
+            <returns>A list of digits appeared in cross-line cells as value representation.</returns>
+        </member>
+        <member name="T:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable">
+            <summary>
+            Represents a list of methods that is used as LINQ methods on type <see cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>.
+            </summary>
+            <seealso cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2"/>
+        </member>
+        <member name="M:Sudoku.Linq.DeathBlossomBranchCollectionEnumerable.Select``3(Sudoku.Concepts.DeathBlossomBranchCollection{``0,``1},System.Func{System.ValueTuple{``1,Sudoku.Concepts.AlmostLockedSet},``2})">
+            <summary>
+            Transforms the current collection into another representation, using the specified function to transform.
+            </summary>
+            <typeparam name="TSelf">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TSelf']"/>
+            </typeparam>
+            <typeparam name="TKey">
+            <inheritdoc cref="T:Sudoku.Concepts.DeathBlossomBranchCollection`2" path="/typeparam[@name='TKey']"/>
+            </typeparam>
+            <typeparam name="TResult">The type of the results.</typeparam>
+            <param name="this">The current collection.</param>
+            <param name="selector">The selector to tranform elements.</param>
+            <returns>The results.</returns>
         </member>
         <member name="T:Sudoku.Linq.AnalysisResultEnumerable">
             <summary>
