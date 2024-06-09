@@ -18,7 +18,7 @@ internal static class ChainModule
 		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
 		var supportedRules =
 			from type in linkTypes.GetAllFlags()
-			where isSukaku && type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
+			where !isSukaku || type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
 			select ruleRouter[type];
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
