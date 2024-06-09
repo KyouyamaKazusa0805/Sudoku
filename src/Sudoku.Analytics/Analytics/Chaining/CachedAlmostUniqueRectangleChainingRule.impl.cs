@@ -173,5 +173,30 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 			}
 		}
 	}
+
+	partial void Type5Weak(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	{
+		var urDigitsMask = ur.DigitsMask;
+		var urCellsContainingOtherDigits = CellMap.Empty;
+		foreach (var cell in urCells)
+		{
+			if ((Mask)(grid.GetCandidates(cell) & (Mask)~urDigitsMask) != 0)
+			{
+				urCellsContainingOtherDigits.Add(cell);
+			}
+		}
+		if (!urCellsContainingOtherDigits.IsInIntersection)
+		{
+			return;
+		}
+
+		var digit1 = TrailingZeroCount(urDigitsMask);
+		var digit2 = urDigitsMask.GetNextSet(digit1);
+		var cells1 = urCellsContainingOtherDigits & CandidatesMap[digit1];
+		var cells2 = urCellsContainingOtherDigits & CandidatesMap[digit2];
+		var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), true, true);
+		var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), false, true);
+		linkDictionary.AddEntry(node1, node2, false, ur);
+	}
 }
 #endif
