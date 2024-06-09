@@ -6,7 +6,7 @@ namespace Sudoku.Analytics.Chaining;
 
 internal partial class CachedAlmostUniqueRectangleChainingRule
 {
-	partial void Type1Strong(short otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
 	{
 		// Split the digit into two parts.
 		var otherOnlyDigit = Log2((uint)otherDigitsMask);
@@ -17,9 +17,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var row2 = rowsSpanned.GetNextSet(row1);
 		var cells1 = cellsContainingThisDigit & HousesMap[row1];
 		var cells2 = cellsContainingThisDigit & HousesMap[row2];
-#if LIMIT_STRONG_LINK_NODE_IN_INTERSECTION
 		if (cells1.IsInIntersection && cells2.IsInIntersection)
-#endif
 		{
 			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), false, true);
 			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), true, true);
@@ -30,9 +28,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		var column2 = columnsSpanned.GetNextSet(column1);
 		var cells3 = cellsContainingThisDigit & HousesMap[column1];
 		var cells4 = cellsContainingThisDigit & HousesMap[column2];
-#if LIMIT_STRONG_LINK_NODE_IN_INTERSECTION
 		if (cells3.IsInIntersection && cells4.IsInIntersection)
-#endif
 		{
 			var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherOnlyDigit), false, true);
 			var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherOnlyDigit), true, true);
@@ -40,15 +36,13 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type2Strong(short otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
 	{
 		var theOtherDigit1 = TrailingZeroCount(otherDigitsMask);
 		var theOtherDigit2 = otherDigitsMask.GetNextSet(theOtherDigit1);
 		var cells1 = CandidatesMap[theOtherDigit1] & urCells;
 		var cells2 = CandidatesMap[theOtherDigit2] & urCells;
-#if LIMIT_STRONG_LINK_NODE_IN_INTERSECTION
 		if (cells1.IsInIntersection && cells2.IsInIntersection)
-#endif
 		{
 			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, theOtherDigit1), false, true);
 			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, theOtherDigit2), true, true);
@@ -56,7 +50,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type4Strong(short otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
 	{
 		foreach (var otherDigit in otherDigitsMask)
 		{
@@ -117,7 +111,40 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type1Weak(short otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	{
+		var urCellsContainingOtherDigits = CellMap.Empty;
+		foreach (var cell in urCells)
+		{
+			if ((grid.GetCandidates(cell) & otherDigitsMask) != 0)
+			{
+				urCellsContainingOtherDigits.Add(cell);
+			}
+		}
+		if (!urCellsContainingOtherDigits.IsInIntersection)
+		{
+			return;
+		}
+
+		var urDigitsMask = ur.DigitsMask;
+		var digit1 = TrailingZeroCount(urDigitsMask);
+		var digit2 = urDigitsMask.GetNextSet(digit1);
+		foreach (var lockedHouse in urCellsContainingOtherDigits.SharedHouses)
+		{
+			var cells1 = HousesMap[lockedHouse] & CandidatesMap[digit1] & ~urCells;
+			var cells2 = HousesMap[lockedHouse] & CandidatesMap[digit2] & ~urCells;
+			if (!cells1.IsInIntersection || !cells2.IsInIntersection)
+			{
+				continue;
+			}
+
+			var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, true);
+			var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, true);
+			linkDictionary.AddEntry(node1, node2, true, ur);
+		}
+	}
+
+	partial void Type1Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
 	{
 		// Split the digit into two parts.
 		var otherOnlyDigit = Log2((uint)otherDigitsMask);
@@ -137,7 +164,7 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		}
 	}
 
-	partial void Type2Weak(short otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
+	partial void Type2Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary)
 	{
 		var otherDigit1 = TrailingZeroCount(otherDigitsMask);
 		var cells1 = urCells & CandidatesMap[otherDigit1];

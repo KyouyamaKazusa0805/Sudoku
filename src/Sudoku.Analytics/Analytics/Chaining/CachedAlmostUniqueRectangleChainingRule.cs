@@ -76,6 +76,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 					default:
 					{
 						Type4Strong(otherDigitsMask, in grid, in urCells, ur, linkDictionary);
+						Type5Strong(otherDigitsMask, in grid, in urCells, ur, linkDictionary);
 						break;
 					}
 				}
@@ -182,6 +183,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	partial void Type1Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
+	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type1Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type2Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type5Weak(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
