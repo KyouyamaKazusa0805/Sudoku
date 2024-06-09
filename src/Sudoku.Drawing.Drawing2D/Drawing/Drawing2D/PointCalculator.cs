@@ -180,35 +180,6 @@ public sealed class PointCalculator
 	}
 
 	/// <summary>
-	/// Gets the center mouse point of the specified locked target.
-	/// </summary>
-	/// <param name="lockedTarget">The locked target.</param>
-	/// <returns>The center mouse point.</returns>
-	/// <exception cref="ArgumentException">Throws when the argument is invalid.</exception>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public PointF GetMouseCenter(ref readonly LockedTarget lockedTarget)
-	{
-		switch (lockedTarget)
-		{
-			case { Cells: [var a, .., var b], Digit: var digit }:
-			{
-				var (min, max) = (a * 9 + digit, b * 9 + digit);
-				var ((x1, y1), (x2, y2)) = (GetMousePointInCenter(min / 9, min % 9), GetMousePointInCenter(max / 9, max % 9));
-				return new((x1 + x2) / 2, (y1 + y2) / 2);
-			}
-			case { Cells: [var s], Digit: var digit }:
-			{
-				var c = s * 9 + digit;
-				return GetMousePointInCenter(c / 9, c % 9);
-			}
-			default:
-			{
-				throw new ArgumentException("The value contains no elements.", nameof(lockedTarget));
-			}
-		}
-	}
-
-	/// <summary>
 	/// Get the rectangle from all candidates.
 	/// </summary>
 	/// <param name="map">The candidates.</param>
