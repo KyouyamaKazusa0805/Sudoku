@@ -5,6 +5,12 @@ namespace Sudoku.Analytics.Chaining;
 /// <summary>
 /// Represents a chaining rule on AUR rule (i.e. <see cref="LinkType.AlmostUniqueRectangle"/>).
 /// </summary>
+/// <example>
+/// Test example:
+/// <code><![CDATA[
+/// 4...+892...9..+2..8+4+8.+2+46..+91.8.3...+25.2..7.4....6+25..1.+2.78.59+4.....4...2.....2.5.:714 337 183 386 687
+/// ]]></code>
+/// </example>
 /// <seealso cref="LinkType.AlmostUniqueRectangle"/>
 internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 {
