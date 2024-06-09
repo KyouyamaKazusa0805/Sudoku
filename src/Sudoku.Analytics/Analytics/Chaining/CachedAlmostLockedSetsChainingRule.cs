@@ -110,6 +110,9 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override ConclusionSet CollectLoopConclusions(Loop loop, ref readonly Grid grid)
 	{
+		// An example with 19 eliminations:
+		// .2.1...7...5..31..6.+1..7..8+2....59..5.3.1...2+1.93.+2.5..1...6...9..2.......2.4...7:821 448 648 848 449 649 388
+
 		// A valid ALS can be eliminated as a real naked subset.
 		var result = ConclusionSet.Empty;
 		foreach (var element in loop.Links)
@@ -123,6 +126,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 				})
 			{
 				var elimDigitsMask = (Mask)(digitsMask & (Mask)~(Mask)(digitsMask1 | digitsMask2));
+#if false
 				foreach (var cell in HousesMap[alsHouse] & EmptyCells & ~alsCells)
 				{
 					foreach (var digit in (Mask)(grid.GetCandidates(cell) & elimDigitsMask))
@@ -130,6 +134,15 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 						result.Add(new Conclusion(Elimination, cell, digit));
 					}
 				}
+#else
+				foreach (var digit in elimDigitsMask)
+				{
+					foreach (var cell in alsCells % CandidatesMap[digit])
+					{
+						result.Add(new Conclusion(Elimination, cell, digit));
+					}
+				}
+#endif
 			}
 		}
 		return result;
