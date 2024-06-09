@@ -52,18 +52,6 @@
   <Project Path="src\ConsoleTest\MyPrivateWorks.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>
-  <Project Path="src\Sudoku.Algorithms.Backdoors\Sudoku.Algorithms.Backdoors.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
-  <Project Path="src\Sudoku.Algorithms.DeadlyPatterns\Sudoku.Algorithms.DeadlyPatterns.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
-  <Project Path="src\Sudoku.Algorithms.Generating\Sudoku.Algorithms.Generating.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
-  <Project Path="src\Sudoku.Algorithms.Minimal\Sudoku.Algorithms.Minimal.csproj">
-    <Configuration Solution="Build|*" Project="Debug|*" />
-  </Project>
   <Project Path="src\Sudoku.Analytics\Sudoku.Analytics.csproj">
     <Configuration Solution="Build|*" Project="Debug|*" />
   </Project>

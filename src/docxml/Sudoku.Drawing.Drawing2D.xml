@@ -209,7 +209,7 @@
             </summary>
             <param name="nodes">The nodes to be drawn.</param>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.LinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
+        <member name="M:Sudoku.Drawing.Drawing2D.GridCanvas.DrawLinkViewNodes(System.ReadOnlySpan{Sudoku.Drawing.Nodes.ChainLinkViewNode},System.ReadOnlySpan{Sudoku.Concepts.Conclusion})">
             <summary>
             Draw link view nodes onto the canvas, with confliction check on conclusions.
             If any conclusions is lying on the line of the link drawn, the link will be automatically adjusted to a curve.
