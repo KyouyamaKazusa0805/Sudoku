@@ -3042,14 +3042,8 @@
         <member name="M:Sudoku.Concepts.ConclusionSet.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.ToString``1(``0)">
-            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.ToArray">
             <inheritdoc/>
@@ -3142,21 +3136,15 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.TryParse(System.String,Sudoku.Concepts.ConclusionSet@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.TryParse``1(System.String,``0,Sudoku.Concepts.ConclusionSet@)">
+        <member name="M:Sudoku.Concepts.ConclusionSet.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.ConclusionSet@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Parse(System.String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.Parse``1(System.String,``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.System#IParsable{Sudoku#Concepts#ConclusionSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.ConclusionSet@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ConclusionSet.System#IParsable{Sudoku#Concepts#ConclusionSet}#Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.ConclusionSet.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_LogicalNot(Sudoku.Concepts.ConclusionSet)">
@@ -3207,6 +3195,9 @@
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ConclusionSet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.ConclusionSet.op_Equality(Sudoku.Concepts.ConclusionSet,Sudoku.Concepts.ConclusionSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

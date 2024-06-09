@@ -3,18 +3,18 @@ namespace Sudoku.Concepts;
 /// <summary>
 /// Represents a list of conclusions.
 /// </summary>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators)]
 public sealed partial class ConclusionSet :
 	IAnyAllMethod<ConclusionSet, Conclusion>,
 	IBitwiseOperators<ConclusionSet, ConclusionSet, ConclusionSet>,
 	ICollection<Conclusion>,
 	IContainsMethod<ConclusionSet, Conclusion>,
-	ICoordinateConvertible<ConclusionSet>,
-	ICoordinateParsable<ConclusionSet>,
 	IEnumerable<Conclusion>,
 	IEquatable<ConclusionSet>,
 	IEqualityOperators<ConclusionSet, ConclusionSet, bool>,
+	IFormattable,
 	ILogicalOperators<ConclusionSet>,
+	IParsable<ConclusionSet>,
 	IReadOnlyCollection<Conclusion>,
 	IReadOnlySet<Conclusion>,
 	ISet<Conclusion>,
@@ -293,18 +293,18 @@ public sealed partial class ConclusionSet :
 		return result.ToHashCode();
 	}
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConclusionConverter([.. _conclusionsEntry]);
+	{
+		var converter = formatProvider switch
+		{
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			CoordinateConverter c => c,
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
+		return converter.ConclusionConverter([.. _conclusionsEntry]);
+	}
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -461,12 +461,21 @@ public sealed partial class ConclusionSet :
 	IEnumerable<Conclusion> ISliceMethod<ConclusionSet, Conclusion>.Slice(int start, int count) => Slice(start, count);
 
 
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionSet? result) => TryParse(str, null, out result);
+
 	/// <inheritdoc/>
-	public static bool TryParse(string str, [NotNullWhen(true)] out ConclusionSet? result)
+	public static bool TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out ConclusionSet? result)
 	{
 		try
 		{
-			result = Parse(str);
+			if (s is null)
+			{
+				throw new FormatException();
+			}
+
+			result = Parse(s, null);
 			return true;
 		}
 		catch (FormatException)
@@ -476,43 +485,21 @@ public sealed partial class ConclusionSet :
 		}
 	}
 
-	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, [NotNullWhen(true)] out ConclusionSet? result) where T : CoordinateParser
-	{
-		try
-		{
-			result = parser.ConclusionParser(str);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = null;
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionSet Parse(string str) => [.. new RxCyParser().ConclusionParser(str)];
+	public static ConclusionSet Parse(string str) => Parse(str, null);
 
 	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static ConclusionSet Parse<T>(string str, T parser) where T : CoordinateParser => [.. parser.ConclusionParser(str)];
-
-	/// <inheritdoc/>
-	static bool IParsable<ConclusionSet>.TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out ConclusionSet? result)
+	public static ConclusionSet Parse(string s, IFormatProvider? provider)
 	{
-		if (s is null)
+		var parser = provider switch
 		{
-			result = null;
-			return false;
-		}
-
-		return TryParse(s, out result);
+			CultureInfo c => CoordinateParser.GetParser(c),
+			CoordinateParser c => c,
+			_ => CoordinateParser.InvariantCultureParser
+		};
+		return parser.ConclusionParser(s);
 	}
-
-	/// <inheritdoc/>
-	static ConclusionSet IParsable<ConclusionSet>.Parse(string s, IFormatProvider? provider) => Parse(s);
 
 
 	/// <inheritdoc/>
