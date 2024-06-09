@@ -25,24 +25,20 @@ namespace Sudoku.Concepts;
 /// if those two hold same conclusion type, but one of those two holds the global index of the candidate position is greater, it is greater.
 /// </remarks>
 [JsonConverter(typeof(Converter))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 [method: MethodImpl(MethodImplOptions.AggressiveInlining)]
 public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] Mask mask) :
 	IComparable<Conclusion>,
-	ICoordinateConvertible<Conclusion>,
-	ICoordinateParsable<Conclusion>,
 	IEqualityOperators<Conclusion, Conclusion, bool>,
 	IEquatable<Conclusion>,
 	IFormattable,
-	IJsonSerializable<Conclusion>
+	IParsable<Conclusion>
 {
 	/// <summary>
 	/// The internal parsers.
 	/// </summary>
+	[DebuggerBrowsable(DebuggerBrowsableState.Never)]
 	private static readonly CoordinateParser[] Parsers = [new RxCyParser(), new K9Parser()];
-
-	/// <inheritdoc cref="IJsonSerializable{TSelf}.DefaultOptions"/>
-	private static readonly JsonSerializerOptions DefaultOptions = new() { Converters = { new Converter() } };
 
 
 	/// <summary>
@@ -106,10 +102,6 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	}
 
 
-	/// <inheritdoc/>
-	static JsonSerializerOptions IJsonSerializable<Conclusion>.DefaultOptions => DefaultOptions;
-
-
 	/// <include file="../../global-doc-comments.xml" path="g/csharp7/feature[@name='deconstruction-method']/target[@name='method']"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public void Deconstruct(out ConclusionType conclusionType, out Candidate candidate)
@@ -128,18 +120,17 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public int CompareTo(Conclusion other) => _mask.CompareTo(_mask);
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConclusionConverter(this);
+		=> (
+			formatProvider switch
+			{
+				CoordinateConverter c => c,
+				CultureInfo c => CoordinateConverter.GetConverter(c),
+				_ => CoordinateConverter.InvariantCultureConverter
+			}
+		).ConclusionConverter(this);
 
 	/// <summary>
 	/// Try to get a new <see cref="Conclusion"/> instance which is symmetric with the current instance, with the specified symmetric type.
@@ -164,79 +155,53 @@ public readonly partial struct Conclusion([PrimaryConstructorParameter(MemberKin
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
-	/// <inheritdoc/>
-	string IJsonSerializable<Conclusion>.ToJsonString() => JsonSerializer.Serialize(this, DefaultOptions);
 
-
-	/// <inheritdoc/>
-	public static bool TryParse(string str, out Conclusion result)
-	{
-		try
-		{
-			result = Parse(str);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = default;
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, out Conclusion result) where T : CoordinateParser
-	{
-		try
-		{
-			result = parser.ConclusionParser(str)[0];
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = default;
-			return false;
-		}
-	}
-
-	/// <inheritdoc/>
-	public static Conclusion Parse(string str)
-	{
-		foreach (var parser in Parsers)
-		{
-			if (parser.ConclusionParser(str) is [var result])
-			{
-				return result;
-			}
-		}
-
-		throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
-	}
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conclusion Parse<T>(string str, T parser) where T : CoordinateParser
-		=> parser.ConclusionParser(str) is [var result]
-			? result
-			: throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+	public static bool TryParse(string str, out Conclusion result) => TryParse(str, null, out result);
 
 	/// <inheritdoc/>
-	static Conclusion IJsonSerializable<Conclusion>.FromJsonString(string jsonString)
-		=> JsonSerializer.Deserialize<Conclusion>(jsonString, DefaultOptions);
-
-	/// <inheritdoc/>
-	static bool IParsable<Conclusion>.TryParse(string? s, IFormatProvider? provider, out Conclusion result)
+	public static bool TryParse(string? s, IFormatProvider? provider, out Conclusion result)
 	{
 		if (s is null)
 		{
 			result = default;
 			return false;
 		}
-
 		return TryParse(s, out result);
 	}
 
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static Conclusion Parse(string str) => Parse(str, null);
+
 	/// <inheritdoc/>
-	static Conclusion IParsable<Conclusion>.Parse(string s, IFormatProvider? provider) => Parse(s);
+	public static Conclusion Parse(string s, IFormatProvider? provider)
+	{
+		switch (provider)
+		{
+			default:
+			case null:
+			{
+				foreach (var parser in Parsers)
+				{
+					if (parser.ConclusionParser(s) is [var result])
+					{
+						return result;
+					}
+				}
+				throw new FormatException(ResourceDictionary.ExceptionMessage("StringValueInvalidToBeParsed"));
+			}
+			case CultureInfo c:
+			{
+				return CoordinateParser.GetParser(c).ConclusionParser(s)[0];
+			}
+			case CoordinateParser c:
+			{
+				return c.ConclusionParser(s)[0];
+			}
+		}
+	}
 
 
 	/// <summary>
@@ -261,9 +226,9 @@ file sealed class Converter : JsonConverter<Conclusion>
 
 	/// <inheritdoc/>
 	public override Conclusion Read(ref Utf8JsonReader reader, Type typeToConvert, JsonSerializerOptions options)
-		=> Conclusion.Parse(reader.GetString() ?? string.Empty, CoordinateParser.InvariantCultureParser);
+		=> Conclusion.Parse(reader.GetString() ?? string.Empty);
 
 	/// <inheritdoc/>
 	public override void Write(Utf8JsonWriter writer, Conclusion value, JsonSerializerOptions options)
-		=> writer.WriteStringValue(value.ToString(CoordinateConverter.InvariantCultureConverter));
+		=> writer.WriteStringValue(value.ToString());
 }

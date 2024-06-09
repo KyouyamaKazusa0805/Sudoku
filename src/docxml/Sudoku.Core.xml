@@ -252,11 +252,8 @@
             Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
             encapsulating the details of the result.
             </summary>
-            <typeparam name="TResult">
-            The type of the result. This type must be either <see cref="T:Sudoku.Concepts.Grid"/> or <see cref="!:PuzzleBase"/>.
-            </typeparam>
+            <typeparam name="TResult">The type of the result. This type is generally <see cref="T:Sudoku.Concepts.Grid"/>.</typeparam>
             <seealso cref="T:Sudoku.Concepts.Grid"/>
-            <seealso cref="!:PuzzleBase"/>
         </member>
         <member name="M:Sudoku.Generating.IGenerator`1.Generate(System.IProgress{Sudoku.Generating.GeneratorProgress},System.Threading.CancellationToken)">
             <summary>
@@ -2788,9 +2785,6 @@
             The internal parsers.
             </summary>
         </member>
-        <member name="F:Sudoku.Concepts.Conclusion.DefaultOptions">
-            <inheritdoc cref="P:System.Text.Json.IJsonSerializable`1.DefaultOptions"/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.#ctor(Sudoku.Concepts.ConclusionType,System.Int32)">
             <summary>
             Initializes an instance with a conclusion type and a candidate offset.
@@ -2828,9 +2822,6 @@
             otherwise, a candidate will be removed.
             </summary>
         </member>
-        <member name="P:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#DefaultOptions">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.Deconstruct(Sudoku.Concepts.ConclusionType@,System.Int32@)">
             <target name="method">
 				<summary>
@@ -2853,14 +2844,8 @@
         <member name="M:Sudoku.Concepts.Conclusion.CompareTo(Sudoku.Concepts.Conclusion)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.ToString``1(``0)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.GetSymmetricConclusion(Sudoku.SymmetricType,System.Int32)">
             <summary>
@@ -2877,28 +2862,16 @@
         <member name="M:Sudoku.Concepts.Conclusion.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#ToJsonString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Conclusion.TryParse(System.String,Sudoku.Concepts.Conclusion@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.TryParse(System.String,System.IFormatProvider,`0@)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.TryParse``1(System.String,``0,Sudoku.Concepts.Conclusion@)">
+        <member name="M:Sudoku.Concepts.Conclusion.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Conclusion@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.Parse(System.String)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Conclusion.Parse``1(System.String,``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.System#Text#Json#IJsonSerializable{Sudoku#Concepts#Conclusion}#FromJsonString(System.String)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.System#IParsable{Sudoku#Concepts#Conclusion}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.Conclusion@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Conclusion.System#IParsable{Sudoku#Concepts#Conclusion}#Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.Conclusion.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_OnesComplement(Sudoku.Concepts.Conclusion)">
@@ -2919,6 +2892,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Conclusion.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Conclusion.op_Equality(Sudoku.Concepts.Conclusion,Sudoku.Concepts.Conclusion)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

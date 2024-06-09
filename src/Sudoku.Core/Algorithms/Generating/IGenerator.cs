@@ -4,11 +4,8 @@ namespace Sudoku.Generating;
 /// Represents a generator type that produces a complex data type <typeparamref name="TResult"/>,
 /// encapsulating the details of the result.
 /// </summary>
-/// <typeparam name="TResult">
-/// The type of the result. This type must be either <see cref="Grid"/> or <see cref="PuzzleBase"/>.
-/// </typeparam>
+/// <typeparam name="TResult">The type of the result. This type is generally <see cref="Grid"/>.</typeparam>
 /// <seealso cref="Grid"/>
-/// <seealso cref="PuzzleBase"/>
 public interface IGenerator<out TResult>
 {
 	/// <summary>
