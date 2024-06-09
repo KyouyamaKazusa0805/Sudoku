@@ -478,9 +478,6 @@
         <member name="M:Sudoku.Concepts.Chain.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Chain.ToString``1(System.String,``0)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Chain.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -670,26 +667,11 @@
         <member name="M:Sudoku.Concepts.ChainPattern.CompareTo(Sudoku.Concepts.ChainPattern)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.ChainPattern.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
         <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ChainPattern.ToString``1(``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.ChainPattern.ToString``1(System.String,``0)">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
-            <param name="format">The format text.</param>
-            <param name="converter">The converter instance.</param>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.Slice(System.Int32,System.Int32)">
             <summary>
@@ -755,6 +737,9 @@
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.ChainPattern.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.ChainPattern.op_Equality(Sudoku.Concepts.ChainPattern,Sudoku.Concepts.ChainPattern)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -1092,9 +1077,6 @@
         <member name="M:Sudoku.Concepts.Loop.ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.Loop.ToString``1(System.String,``0)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.Loop.Slice(System.Int32,System.Int32)">
             <inheritdoc/>
         </member>
@@ -1248,18 +1230,6 @@
             <exception cref="T:System.ArgumentOutOfRangeException">
             Throws when the argument <paramref name="comparison"/> is not defined.
             </exception>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.ToString``1(``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.ToString``1(System.String,``0)">
-            <summary>
-            Returns a string that represents the current object.
-            </summary>
-            <typeparam name="T">The type of the converter.</typeparam>
-            <param name="format">The format.</param>
-            <param name="converter">The converter.s</param>
-            <returns>A string that represents the current object.</returns>
         </member>
         <member name="M:Sudoku.Concepts.Node.ToString(System.IFormatProvider)">
             <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>

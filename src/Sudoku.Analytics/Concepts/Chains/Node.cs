@@ -16,7 +16,6 @@ public sealed partial class Node(
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
-	ICoordinateConvertible<Node>,
 	IEquatable<Node>,
 	IEqualityOperators<Node, Node, bool>,
 	IFormattable
@@ -209,33 +208,18 @@ public sealed partial class Node(
 				_ => throw new ArgumentOutOfRangeException(nameof(comparison))
 			};
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => $"{converter.CandidateConverter(_map)}: {IsOn}";
-
-	/// <summary>
-	/// Returns a string that represents the current object.
-	/// </summary>
-	/// <typeparam name="T">The type of the converter.</typeparam>
-	/// <param name="format">The format.</param>
-	/// <param name="converter">The converter.s</param>
-	/// <returns>A string that represents the current object.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(string? format, T converter) where T : CoordinateConverter
-		=> (format ?? $"{MapFormatString}: {IsOnFormatString}")
-			.Replace(MapFormatString, _map.ToString(converter))
-			.Replace(IsOnFormatString, IsOn.ToString().ToLower());
-
 	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(
-			formatProvider switch
-			{
-				CultureInfo c => CoordinateConverter.GetConverter(c),
-				_ => CoordinateConverter.InvariantCultureConverter
-			}
-		);
+	{
+		var converter = formatProvider switch
+		{
+			CoordinateConverter c => c,
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
+		return $"{converter.CandidateConverter(_map)}: {IsOn}";
+	}
 
 	/// <inheritdoc/>
 	/// <remarks>

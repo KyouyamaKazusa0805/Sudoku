@@ -390,6 +390,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
 			CultureInfo c => ToString(CoordinateConverter.GetConverter(c)),
+			CoordinateConverter c => ToString(c),
 			_ => ToString(CoordinateConverter.GetConverter(CultureInfo.CurrentUICulture))
 		};
 

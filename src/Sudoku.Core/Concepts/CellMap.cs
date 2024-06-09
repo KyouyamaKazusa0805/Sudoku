@@ -598,6 +598,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		=> formatProvider switch
 		{
 			CellMapFormatInfo i => i.FormatMap(in this),
+			CoordinateConverter c => ToString(c),
 			CultureInfo c => ToString(CoordinateConverter.GetConverter(c)),
 			_ => ToString(CoordinateConverter.GetConverter(CultureInfo.CurrentUICulture))
 		};
@@ -882,6 +883,7 @@ public partial struct CellMap : IBitStatusMap<CellMap, Cell, CellMap.Enumerator>
 		=> provider switch
 		{
 			CellMapFormatInfo i => i.ParseMap(s),
+			CoordinateParser c => Parse(s, c),
 			CultureInfo c => Parse(s, CoordinateParser.GetParser(c)),
 			_ => Parse(s)
 		};
