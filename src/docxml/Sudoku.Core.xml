@@ -3381,9 +3381,18 @@
             <summary>
             Represents an option provider for coordinates.
             </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <param name="CurrentCulture"><inheritdoc/></param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+            <param name="CurrentCulture">
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
+            </param>
             <remarks>
             You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
@@ -3398,9 +3407,18 @@
             <summary>
             Represents an option provider for coordinates.
             </summary>
-            <param name="DefaultSeparator"><inheritdoc/></param>
-            <param name="DigitsSeparator"><inheritdoc/></param>
-            <param name="CurrentCulture"><inheritdoc/></param>
+            <param name="DefaultSeparator">
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </param>
+            <param name="DigitsSeparator">
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </param>
+            <param name="CurrentCulture">
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
+            </param>
             <remarks>
             You can use types <see cref="T:Sudoku.Concepts.Coordinates.RxCyConverter"/>, <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>, <see cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
             and <see cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>.
@@ -3410,6 +3428,24 @@
             <seealso cref="T:Sudoku.Concepts.Coordinates.K9Converter"/>
             <seealso cref="T:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter"/>
             <seealso cref="T:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter"/>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.DefaultSeparator">
+            <summary>
+            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
+            <para>The value is <c>", "</c> by default.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.DigitsSeparator">
+            <summary>
+            <para>Indicates the digits separator.</para>
+            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CurrentCulture">
+            <summary>
+            <para>Indicates the current culture.</para>
+            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
+            </summary>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.CoordinateConverter.CellConverter">
             <summary>
@@ -3461,6 +3497,9 @@
             Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateConverter"/> instance for the invariant culture,
             meaning it ignores which culture your device will use.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateConverter.GetConverter(System.Globalization.CultureInfo)">
             <summary>
@@ -3535,6 +3574,9 @@
             Indicates the <see cref="T:Sudoku.Concepts.Coordinates.CoordinateParser"/> instance for the invariant culture,
             meaning it ignores which culture your device will use.
             </summary>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.CoordinateParser.GetParser(System.Globalization.CultureInfo)">
             <summary>
@@ -3622,62 +3664,8 @@
         <member name="P:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
-        <member name="T:Sudoku.Concepts.Coordinates.GenericConceptConverter">
-            <summary>
-            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
-            </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
-            <param name="CurrentCulture">
-            <para>Indicates the current culture.</para>
-            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
-            </param>
-        </member>
-        <member name="M:Sudoku.Concepts.Coordinates.GenericConceptConverter.#ctor(System.String,System.String,System.Globalization.CultureInfo)">
-            <summary>
-            Represents a converter that only converts from variant concept objects into corresponding equivalent <see cref="T:System.String"/> values.
-            </summary>
-            <param name="DefaultSeparator">
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </param>
-            <param name="DigitsSeparator">
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </param>
-            <param name="CurrentCulture">
-            <para>Indicates the current culture.</para>
-            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
-            </param>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.GenericConceptConverter.DefaultSeparator">
-            <summary>
-            <para>Indicates the default separator. The value will be inserted into two non-digit-kind instances.</para>
-            <para>The value is <c>", "</c> by default.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.GenericConceptConverter.DigitsSeparator">
-            <summary>
-            <para>Indicates the digits separator.</para>
-            <para>The value is <see langword="null"/> by default, meaning no separators will be inserted between 2 digits.</para>
-            </summary>
-        </member>
-        <member name="P:Sudoku.Concepts.Coordinates.GenericConceptConverter.CurrentCulture">
-            <summary>
-            <para>Indicates the current culture.</para>
-            <para>The value is <see langword="null"/> by default, meaning the converter uses invariant culture to output some string text.</para>
-            </summary>
-        </member>
-        <member name="T:Sudoku.Concepts.Coordinates.GenericConceptParser">
-            <summary>
-            Represents a converter that parses into variant concept objects from correspoding specified <see cref="T:System.String"/> values.
-            </summary>
+        <member name="M:Sudoku.Concepts.Coordinates.ExcelCoordinateConverter.GetFormat(System.Type)">
+            <inheritdoc/>
         </member>
         <member name="T:Sudoku.Concepts.Coordinates.ICoordinateConvertible`1">
             <summary>
@@ -3838,6 +3826,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.K9Converter.ConjugateConverter">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Coordinates.K9Converter.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.K9Parser">
             <summary>
             Represents a parser type that uses <b>K9</b> notation rule to parse text,
@@ -3866,6 +3857,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.K9Parser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.K9Parser.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.K9Parser.UnitCellGroupPattern">
@@ -3991,6 +3985,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Coordinates.LiteralCoordinateConverter.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Concepts.Coordinates.RxCyConverter">
             <summary>
             Represents a coordinate converter using RxCy notation.
@@ -4073,6 +4070,9 @@
         <member name="P:Sudoku.Concepts.Coordinates.RxCyConverter.ConjugateConverter">
             <inheritdoc/>
         </member>
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.GetFormat(System.Type)">
+            <inheritdoc/>
+        </member>
         <member name="M:Sudoku.Concepts.Coordinates.RxCyConverter.GetLabel(System.Byte)">
             <summary>
             Get the label of each house.
@@ -4108,6 +4108,9 @@
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.Coordinates.RxCyParser.IntersectionParser">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.GetFormat(System.Type)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.Coordinates.RxCyParser.UnitCellGroupPattern">

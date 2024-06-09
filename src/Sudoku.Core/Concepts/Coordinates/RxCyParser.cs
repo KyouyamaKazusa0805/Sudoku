@@ -31,6 +31,11 @@ public sealed partial record RxCyParser : CoordinateParser
 	public override Func<string, Intersection[]> IntersectionParser => OnIntersectionParsing;
 
 
+	/// <inheritdoc/>
+	[return: NotNullIfNotNull(nameof(formatType))]
+	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateParser) ? this : null;
+
+
 	private static CellMap OnCellParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
@@ -215,6 +220,7 @@ public sealed partial record RxCyParser : CoordinateParser
 		return [.. result];
 	}
 
+
 	private Conjugate[] OnConjugateParsing(string str)
 	{
 		if (string.IsNullOrWhiteSpace(str))
@@ -241,6 +247,7 @@ public sealed partial record RxCyParser : CoordinateParser
 
 		return [.. result];
 	}
+
 
 	private static Intersection[] OnIntersectionParsing(string str)
 	{

@@ -137,8 +137,8 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 		{
 			return conclusions switch
 			{
-				[] => string.Empty,
-				[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
+			[] => string.Empty,
+			[(var t, var c, var d)] => $"{CellConverter(c)}{t.GetNotation()}{DigitConverter((Mask)(1 << d))}",
 				_ => toString(conclusions)
 			};
 
@@ -298,4 +298,9 @@ public sealed record LiteralCoordinateConverter(string DefaultSeparator = ", ", 
 
 			return string.Join(DefaultSeparator, snippets);
 		};
+
+
+	/// <inheritdoc/>
+	[return: NotNullIfNotNull(nameof(formatType))]
+	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateConverter) ? this : null;
 }

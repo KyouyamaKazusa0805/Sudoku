@@ -1,3 +1,4 @@
+
 namespace Sudoku.Concepts.Coordinates;
 
 /// <summary>
@@ -32,6 +33,12 @@ public sealed partial record K9Parser : CoordinateParser
 	/// <inheritdoc/>
 	[Obsolete(DeprecatedInfo_NotSupported, true)]
 	public override Func<string, Intersection[]> IntersectionParser => throw new NotSupportedException();
+
+
+
+	/// <inheritdoc/>
+	[return: NotNullIfNotNull(nameof(formatType))]
+	public override object? GetFormat(Type? formatType) => formatType == typeof(CoordinateParser) ? this : null;
 
 
 	private static CellMap OnCellParsing(string str)
@@ -161,6 +168,7 @@ public sealed partial record K9Parser : CoordinateParser
 
 		return [.. result];
 	}
+
 
 	[GeneratedRegex("""[a-k]+[1-9]+""", RegexOptions.Compiled | RegexOptions.IgnoreCase)]
 	private static partial Regex UnitCellGroupPattern();

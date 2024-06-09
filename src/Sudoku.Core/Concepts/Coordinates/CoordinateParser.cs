@@ -4,7 +4,7 @@ namespace Sudoku.Concepts.Coordinates;
 /// Represents for a parser instance that parses a <see cref="string"/> text,
 /// converting into a valid instance that can be represented as a sudoku concept.
 /// </summary>
-public abstract record CoordinateParser : GenericConceptParser
+public abstract record CoordinateParser : IFormatProvider
 {
 	/// <summary>
 	/// The not supported information for property implemented.
@@ -68,6 +68,11 @@ public abstract record CoordinateParser : GenericConceptParser
 	/// meaning it ignores which culture your device will use.
 	/// </summary>
 	public static CoordinateParser InvariantCultureParser => new RxCyParser();
+
+
+	/// <inheritdoc/>
+	[return: NotNullIfNotNull(nameof(formatType))]
+	public abstract object? GetFormat(Type? formatType);
 
 
 	/// <summary>
