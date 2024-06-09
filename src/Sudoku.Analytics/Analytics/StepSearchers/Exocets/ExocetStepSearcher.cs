@@ -126,9 +126,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 						var (_, chuteCells, _, chuteHouses) = Chutes[i];
 
 						// Now iterate by size of base cells. The minimum value is 1, e.g.:
-						//
 						//   ..64.....1....39.7.5.............3..2....1.89....59....4......83....2....126...7.
-						//
 						// For digits 4 & 5 in houses r258, with base cell r9c7 and target cell r2c8 => r2c8 must be 4 or 5.
 #if !BASE_SIZE_ONLY_TWO
 						for (var baseSize = 1; baseSize <= 2; baseSize++)
@@ -218,11 +216,9 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 
 									// Collect exocets by types.
 									// We separate exocets with 3 parts:
-									//
 									//   * Junior Exocet, Double Exocet, Weak Exocet, (Advanced) Complex Junior Exocet
 									//   * Senior Exocet
 									//   * (Advanced) Complex Senior Exocet
-									//
 									// because the pre-condition are not same with each other.
 
 #if SEARCH_SENIOR_EXOCET || SEARCH_COMPLEX_SENIOR_EXOCET
@@ -356,9 +352,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		// However, sometimes, we may encounter a case that digits appeared in base cells indeed appears
 		// in cross-line cells as values, but they are non-locked members.
 		// Here is an example:
-		//
 		//   98.7.....6.....97...7.....54...3..2...86..4.......4..1..68..5......1...4.....2.3.
-		//
 		// We should treat the digit as a non-locked member.
 
 		if (!CheckValidityAndLockedMembersExistence(
@@ -802,7 +796,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 					in grid,
 					baseCellsDigitsMask,
 					in baseCells,
-					[targetCell],
+					in targetCell.AsCellMap(),
 					expandedCrosslineIncludingTarget - targetCell - endoTargetCell,
 					size,
 					out var digitsMaskExactlySizeMinusOneTimes,
@@ -1044,7 +1038,7 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 		ref readonly Grid grid,
 		ref readonly CellMap baseCells,
 		ref readonly CellMap targetCells,
-		scoped ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
+		ReadOnlySpan<TargetCellsGroup> groupsOfTargetCells,
 		ref readonly CellMap crossline,
 		Mask baseCellsDigitsMask,
 		HouseMask housesMask,
@@ -3789,24 +3783,45 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			goto AssignBaseMaskByDefault;
 		}
 
+		// Check whether complex senior exocet patterns contain one cell
+		// which is the intersection of the houses chosen in cross-line.
+		// If not, the number of the locked member digit cannot determine the maximal times is less than the target times,
+		// therefore, the conclusion cannot be raised.
+		// This will fix issue #660:
+		//   * https://github.com/SunnieShine/Sudoku/issues/660
+		// Counter-example:
+		//   6..2...9...5.6.3...9.1.5..7.5...46.......2.7....91...5..1.2.9...6......13..4..2..
+		// Technique reference link:
+		//   https://github.com/SunnieShine/Sudoku/discussions/497#discussioncomment-7369213
+		var cellsInExtraHouse = CellMap.Empty;
+		var cellsInCrossline = CellMap.Empty;
+		foreach (var house in extraHousesMask)
+		{
+			cellsInExtraHouse |= HousesMap[house] & crossline;
+		}
+		foreach (var house in housesMask)
+		{
+			cellsInCrossline |= HousesMap[house] & crossline;
+		}
+		var intersectionCells = cellsInExtraHouse & cellsInCrossline;
+		if (intersectionCells.Count == 0)
+		{
+			goto AssignBaseMaskByDefault;
+		}
+
 		var (cellOffsets, candidateOffsets, houseOffsets) = (new List<CellViewNode>(4), new List<CandidateViewNode>(), new List<HouseViewNode>(2));
 		(lockedDigitsMask, inferredLastTargetDigitsMask, var conclusions) = (0, 0, new List<Conclusion>());
 
 		// Collect eliminations via mirror cells.
 		// For each locked member, we should check for its mirror cells,
-		// determining whether the mirror cells can make this target cell and the other target cell any conclusions.
-		// Rule:
-		//
-		//   1)
-		//   If all mirror cells of a target cell are non-empty, check its containing values and determine
-		//   whether one of the digits is concluded as a locked member.
-		//   If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
-		//   all digits non-fixed can be removed.
-		//
-		//   2)
-		//   If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
-		//   If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
-		//   they are possible candidates in the other side of target cell. Other digits can be removed.
+		// determining whether the mirror cells can make this target cell and the other target cell any conclusions. Rule:
+		//   1) If all mirror cells of a target cell are non-empty, check its containing values and determine
+		//      whether one of the digits is concluded as a locked member.
+		//      If so, the other side of the target cell can be fixed with that digit (Mirror Synchronization) -
+		//      all digits non-fixed can be removed.
+		//   2) If one of two mirror cells is non-empty, check it, determining whether it is a locked member digit.
+		//      If so, record all digits appeared in the other empty mirror cells, and this locked member digit,
+		//      they are possible candidates in the other side of target cell. Other digits can be removed.
 		foreach (var lockedDigit in baseCellsDigitsMask)
 		{
 			if (lockedMembers[lockedDigit] is not var (lockedMemberMap, lockedBlock) || !HousesMap[lockedBlock].Contains(targetCell))
@@ -3817,17 +3832,12 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			// Check whether the target cell is lying in two cross-line cells houses, and lying in the block for the locked member.
 			// If so, we should treat this as an invalid case.
 			// This is because the intersection cell (this target cell) will be counted twice instead of once.
-			// This will fixes issue #603 and #605:
-			//
+			// This will fix issue #603 and #605:
 			//   * https://github.com/SunnieShine/Sudoku/issues/603
 			//   * https://github.com/SunnieShine/Sudoku/issues/605
-			//
-			// This rule is just like an endo-fin. 
-			//
-			// Example:
-			//
-			//   +71..+8...4..27..83.+3+85..6+19+7+1.8.+625+7+35+2.13+7.+8..37+85..1..+7.5.836.2+5.6..+7+48+86..7....:
-			//     214 425 426 175 975
+			// This rule is just like an endo-fin.
+			// Counter-example:
+			//   +71..+8...4..27..83.+3+85..6+19+7+1.8.+625+7+35+2.13+7.+8..37+85..1..+7.5.836.2+5.6..+7+48+86..7....:214 425 426 175 975
 			var endofinTargetCounter = 0;
 			foreach (var house in housesMask | extraHousesMask)
 			{
@@ -3905,8 +3915,8 @@ public sealed partial class ExocetStepSearcher : StepSearcher
 			context.Options,
 			baseCellsDigitsMask,
 			in baseCells,
-			[targetCell],
-			[endoTargetCell],
+			in targetCell.AsCellMap(),
+			in endoTargetCell.AsCellMap(),
 			in crossline,
 			housesMask,
 			extraHousesMask
