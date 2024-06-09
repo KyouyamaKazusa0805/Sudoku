@@ -95,29 +95,29 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
-		var alsIndex = 0;
-		var view = views[0];
-		foreach (var node in pattern)
+		var (alsIndex, view) = (0, views[0]);
+		foreach (var link in pattern.Links)
 		{
-			if (node.ExtraMap is not { Count: not 0, Cells: var extraMapCells } extraMap)
+			if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells, DigitsMask: var digitsMask })
 			{
 				continue;
 			}
 
+			var linkMap = link.FirstNode.Map | link.SecondNode.Map;
 			var id = (ColorIdentifier)(alsIndex + WellKnownColorIdentifierKind.AlmostLockedSet1);
-			foreach (var alsCandidate in extraMap)
+			foreach (var cell in cells)
 			{
-				if (!pattern.Contains(alsCandidate))
+				view.Add(new CellViewNode(id, cell));
+				foreach (var digit in grid.GetCandidates(cell))
 				{
-					view.Add(new CandidateViewNode(id, alsCandidate));
+					var candidate = cell * 9 + digit;
+					if (!linkMap.Contains(candidate))
+					{
+						view.Add(new CandidateViewNode(id, cell * 9 + digit));
+					}
 				}
 			}
-			foreach (var alsCell in extraMapCells)
-			{
-				view.Add(new CellViewNode(id, alsCell));
-			}
 
-			// Advance ALS color ID pointer.
 			alsIndex = (alsIndex + 1) % 5;
 		}
 	}

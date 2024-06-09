@@ -84,7 +84,7 @@ public sealed partial class Chain(Node lastNode, LinkDictionary strongLinkDictio
 			{
 				var isStrong = Inferences[linkIndex & 1] == Inference.Strong;
 				var pool = isStrong ? _strongGroupedLinkPool : _weakGroupedLinkPool;
-				pool.TryGetValue(new(span[i], span[i + 1], false), out var pattern);
+				pool.TryGetValue(new(span[i], span[i + 1], isStrong), out var pattern);
 				result[i] = new(span[i], span[i + 1], isStrong, pattern);
 			}
 			return result;

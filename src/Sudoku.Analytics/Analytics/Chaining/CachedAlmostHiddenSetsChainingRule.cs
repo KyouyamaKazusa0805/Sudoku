@@ -77,29 +77,24 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectExtraViewNodes(ref readonly Grid grid, ChainPattern pattern, ref View[] views)
 	{
-		var ahsIndex = 0;
-		var view = views[0];
-		foreach (var node in pattern)
+		var (ahsIndex, view) = (0, views[0]);
+		foreach (var link in pattern.Links)
 		{
-			if (node.ExtraMap is not { Count: not 0, Cells: var extraMapCells } extraMap)
+			if (link.GroupedLinkPattern is not AlmostHiddenSet { Cells: var cells, SubsetDigitsMask: var subsetDigitsMask })
 			{
 				continue;
 			}
 
-			var id = (ColorIdentifier)(ahsIndex + WellKnownColorIdentifierKind.AlmostLockedSet1);
-			foreach (var ahsCandidate in extraMap)
+			var id = (ColorIdentifier)(WellKnownColorIdentifierKind.AlmostLockedSet1 + ahsIndex);
+			foreach (var cell in cells)
 			{
-				if (!pattern.Contains(ahsCandidate))
+				view.Add(new CellViewNode(id, cell));
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & subsetDigitsMask))
 				{
-					view.Add(new CandidateViewNode(id, ahsCandidate));
+					view.Add(new CandidateViewNode(id, cell * 9 + digit));
 				}
 			}
-			foreach (var ahsCell in extraMapCells)
-			{
-				view.Add(new CellViewNode(id, ahsCell));
-			}
 
-			// Advance AHS color ID pointer.
 			ahsIndex = (ahsIndex + 1) % 5;
 		}
 	}
