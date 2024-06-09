@@ -1,7 +1,3 @@
-#define LIMIT_STRONG_LINK_NODE_IN_INTERSECTION
-#define LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
-
-#if LIMIT_STRONG_LINK_NODE_IN_INTERSECTION && LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
 namespace Sudoku.Analytics.Chaining;
 
 internal partial class CachedAlmostUniqueRectangleChainingRule
@@ -226,4 +222,3 @@ internal partial class CachedAlmostUniqueRectangleChainingRule
 		linkDictionary.AddEntry(node1, node2, false, ur);
 	}
 }
-#endif
