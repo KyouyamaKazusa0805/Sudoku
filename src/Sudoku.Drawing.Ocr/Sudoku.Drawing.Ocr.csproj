@@ -15,7 +15,6 @@
 	<ItemGroup>
 		<ProjectReference Include="..\Sudoku.Core\Sudoku.Core.csproj" />
 		<ProjectReference Include="..\Sudoku.Drawing.Drawing2D\Sudoku.Drawing.Drawing2D.csproj" />
-		<ProjectReference Include="..\Sudoku.Algorithms.Transformation\Sudoku.Algorithms.Transformation.csproj" />
 	</ItemGroup>
 
 	<ItemGroup>
