@@ -2,6 +2,7 @@
 #define LOCKED_SET
 #undef HIDDEN_SET // Requires large memory
 #define UNIQUE_RECTANGLE
+#define AVOIDABLE_RECTANGLE
 
 namespace Sudoku.Analytics.StepSearchers;
 
@@ -76,6 +77,26 @@ namespace Sudoku.Analytics.StepSearchers;
 	| LinkType.AlmostUniqueRectangle
 	)]
 #endif
+#if AVOIDABLE_RECTANGLE
+[SplitStepSearcher(
+	4,
+	nameof(LinkTypes),
+	LinkType.NonGrouped
+#if LOCKED_CANDIDATES
+	| LinkType.LockedCandidates
+#endif
+#if LOCKED_SET
+	| LinkType.AlmostLockedSet
+#endif
+#if HIDDEN_SET
+	| LinkType.AlmostHiddenSet
+#endif
+#if UNIQUE_RECTANGLE
+	| LinkType.AlmostUniqueRectangle
+#endif
+	| LinkType.AlmostAvoidableRectangle
+	)]
+#endif
 public sealed partial class GroupedChainStepSearcher : StepSearcher
 {
 	/// <summary>
@@ -95,7 +116,10 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
 #endif
 #if UNIQUE_RECTANGLE
-		{ LinkType.AlmostUniqueRectangle, new CachedAlmostUniqueRectangleChainingRule() }
+		{ LinkType.AlmostUniqueRectangle, new CachedAlmostUniqueRectangleChainingRule() },
+#endif
+#if AVOIDABLE_RECTANGLE
+		{ LinkType.AlmostAvoidableRectangle, new CachedAlmostAvoidableRectangleChainingRule() },
 #endif
 	};
 

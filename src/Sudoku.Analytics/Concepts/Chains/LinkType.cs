@@ -52,9 +52,14 @@ public enum LinkType
 	AlmostUniqueRectangle = 1 << 6,
 
 	/// <summary>
+	/// Indicates the link type is an almost avoidable rectangle.
+	/// </summary>
+	AlmostAvoidableRectangle = 1 << 7,
+
+	/// <summary>
 	/// Indicates all grouped link types.
 	/// </summary>
-	Grouped = LockedCandidates | AlmostLockedSet | AlmostHiddenSet | KrakenNormalFish | AlmostUniqueRectangle,
+	Grouped = LockedCandidates | AlmostLockedSet | AlmostHiddenSet | KrakenNormalFish | AlmostUniqueRectangle | AlmostAvoidableRectangle,
 
 	/// <summary>
 	/// Indicates all link types.
