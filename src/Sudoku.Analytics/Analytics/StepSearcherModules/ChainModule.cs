@@ -15,7 +15,11 @@ internal static class ChainModule
 	public static Step? CollectCore(ref AnalysisContext context, LinkType linkTypes, Dictionary<LinkType, ChainingRule> ruleRouter)
 	{
 		ref readonly var grid = ref context.Grid;
-		var supportedRules = from type in linkTypes.GetAllFlags() select ruleRouter[type];
+		var isSukaku = grid.PuzzleType == SudokuType.Sukaku;
+		var supportedRules =
+			from type in linkTypes.GetAllFlags()
+			where isSukaku && type is not (LinkType.AlmostUniqueRectangle or LinkType.AlmostAvoidableRectangle)
+			select ruleRouter[type];
 		foreach (var foundChain in ChainingDriver.CollectChainPatterns(in context.Grid, supportedRules))
 		{
 			var conclusions = collectConclusions(foundChain, in grid);
