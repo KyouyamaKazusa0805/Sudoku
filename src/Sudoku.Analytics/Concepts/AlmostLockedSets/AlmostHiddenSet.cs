@@ -42,23 +42,4 @@ public sealed partial class AlmostHiddenSet(
 				: DigitsMask.CompareTo(other.DigitsMask) is var r2 and not 0
 					? r2
 					: SubsetDigitsMask.CompareTo(other.SubsetDigitsMask) is var r3 and not 0 ? r3 : 0;
-
-	/// <summary>
-	/// Try to get all possible candidates used in the current pattern.
-	/// </summary>
-	/// <param name="grid">The grid to be used.</param>
-	/// <returns>A list of <see cref="Candidate"/> values.</returns>
-	public CandidateMap GetAllCandidates(ref readonly Grid grid)
-	{
-		var result = CandidateMap.Empty;
-		var candidatesMap = grid.CandidatesMap;
-		foreach (var digit in SubsetDigitsMask)
-		{
-			foreach (var cell in candidatesMap[digit] & Cells)
-			{
-				result.Add(cell * 9 + digit);
-			}
-		}
-		return result | CandidatesCanFormWeakLink;
-	}
 }

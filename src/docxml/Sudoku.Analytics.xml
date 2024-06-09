@@ -19625,13 +19625,6 @@
         <member name="M:Sudoku.Concepts.AlmostHiddenSet.CompareTo(Sudoku.Concepts.AlmostHiddenSet)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostHiddenSet.GetAllCandidates(Sudoku.Concepts.Grid@)">
-            <summary>
-            Try to get all possible candidates used in the current pattern.
-            </summary>
-            <param name="grid">The grid to be used.</param>
-            <returns>A list of <see cref="T:System.Int32"/> values.</returns>
-        </member>
         <member name="P:Sudoku.Concepts.AlmostHiddenSet.Cells">
             <summary>
             The generated property declaration for parameter <c>cells</c>.
@@ -20625,13 +20618,19 @@
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
+            <param name="isAdvanced">
+            Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+            </param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,System.Boolean)">
             <summary>
             Represents a chain node.
             </summary>
             <param name="map">Indicates the backing map.</param>
             <param name="isOn">Indicates whether the node is on.</param>
+            <param name="isAdvanced">
+            Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+            </param>
         </member>
         <member name="F:Sudoku.Concepts.Node.MapFormatString">
             <summary>
@@ -20648,45 +20647,22 @@
             Indicates the extra cells map.
             </summary>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate.
             </summary>
             <param name="candidate">A candidate.</param>
             <param name="isOn">Indicates whether the node is on.</param>
+            <param name="isAdvanced">Indicates whether the node is advanced.</param>
         </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Boolean,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate, and extra map.
-            </summary>
-            <param name="candidate">A candidate.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
-            <param name="extraMap">The extra map.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.CandidateMap@,System.Boolean,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via two maps.
-            </summary>
-            <param name="map">The basic pattern map of candidates used.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
-            <param name="extraMap">The extra map.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean)">
+        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean,System.Boolean)">
             <summary>
             Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified cell and digit.
             </summary>
             <param name="cell">A cell.</param>
             <param name="digit">A digit.</param>
             <param name="isOn">Indicates whether the node is on.</param>
-        </member>
-        <member name="M:Sudoku.Concepts.Node.#ctor(System.Int32,System.Int32,System.Boolean,Sudoku.Concepts.CandidateMap@)">
-            <summary>
-            Initializes a <see cref="T:Sudoku.Concepts.Node"/> instance via the specified candidate, and extra map.
-            </summary>
-            <param name="cell">A cell.</param>
-            <param name="digit">A digit.</param>
-            <param name="isOn">Indicates whether the node is on.</param>
-            <param name="extraMap">The extra map.</param>
+            <param name="isAdvanced">Indicates whether the node is advanced.</param>
         </member>
         <member name="M:Sudoku.Concepts.Node.#ctor(Sudoku.Concepts.Node,Sudoku.Concepts.Node)">
             <summary>
@@ -20841,6 +20817,11 @@
         <member name="P:Sudoku.Concepts.Node.IsOn">
             <summary>
             The generated property declaration for parameter <c>isOn</c>.
+            </summary>
+        </member>
+        <member name="P:Sudoku.Concepts.Node.IsAdvanced">
+            <summary>
+            The generated property declaration for parameter <c>isAdvanced</c>.
             </summary>
         </member>
         <member name="M:Sudoku.Concepts.Node.Equals(System.Object)">

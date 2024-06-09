@@ -26,8 +26,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 
 				var pos1 = TrailingZeroCount(mask);
 				var pos2 = mask.GetNextSet(pos1);
-				var node1 = new Node(HousesCells[house][pos1], digit, false);
-				var node2 = new Node(HousesCells[house][pos2], digit, true);
+				var node1 = new Node(HousesCells[house][pos1], digit, false, false);
+				var node2 = new Node(HousesCells[house][pos2], digit, true, false);
 				linkDictionary.AddEntry(node1, node2);
 			}
 		}
@@ -48,8 +48,8 @@ internal sealed class CachedXChainingRule : ChainingRule
 				var mask = Subview.ReduceCellByHouse(in cellsInThisHouse, house);
 				foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 				{
-					var node1 = new Node(HousesCells[house][combinationPair[0]], digit, true);
-					var node2 = new Node(HousesCells[house][combinationPair[1]], digit, false);
+					var node1 = new Node(HousesCells[house][combinationPair[0]], digit, true, false);
+					var node2 = new Node(HousesCells[house][combinationPair[1]], digit, false, false);
 					linkDictionary.AddEntry(node1, node2);
 				}
 			}

@@ -80,8 +80,8 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 						if (cells1.IsInIntersection && cells2.IsInIntersection)
 #endif
 						{
-							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), false, in urCandidatesMap);
-							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), true, in urCandidatesMap);
+							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), false, true);
+							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), true, true);
 							linkDictionary.AddEntry(node1, node2, true, ur);
 						}
 						var columnsSpanned = cellsContainingThisDigit.ColumnMask << 18;
@@ -93,8 +93,8 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 						if (cells3.IsInIntersection && cells4.IsInIntersection)
 #endif
 						{
-							var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherOnlyDigit), false, in urCandidatesMap);
-							var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherOnlyDigit), true, in urCandidatesMap);
+							var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherOnlyDigit), false, true);
+							var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherOnlyDigit), true, true);
 							linkDictionary.AddEntry(node3, node4, false, ur);
 						}
 						break;
@@ -109,8 +109,8 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 						if (cells1.IsInIntersection && cells2.IsInIntersection)
 #endif
 						{
-							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, theOtherDigit1), false, in urCandidatesMap);
-							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, theOtherDigit2), true, in urCandidatesMap);
+							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, theOtherDigit1), false, true);
+							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, theOtherDigit2), true, true);
 							linkDictionary.AddEntry(node1, node2, true, ur);
 						}
 						break;
@@ -192,8 +192,8 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 							}
 
 							var cells1 = cellsContainingThisDigit & cells2.PeerIntersection;
-							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), true, in urCandidatesMap);
-							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), false, in urCandidatesMap);
+							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherOnlyDigit), true, true);
+							var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherOnlyDigit), false, true);
 							linkDictionary.AddEntry(node1, node2, false, ur);
 						}
 						break;
@@ -204,7 +204,7 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 						var cells1 = urCells & CandidatesMap[otherDigit1];
 						if (cells1.IsInIntersection)
 						{
-							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherDigit1), true, in urCandidatesMap);
+							var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, otherDigit1), true, true);
 							foreach (var cells2 in cells1.PeerIntersection & CandidatesMap[otherDigit1] | 3)
 							{
 								if (!cells2.IsInIntersection)
@@ -212,7 +212,7 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 									continue;
 								}
 
-								var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherDigit1), false, in urCandidatesMap);
+								var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, otherDigit1), false, true);
 								linkDictionary.AddEntry(node1, node2, false, ur);
 							}
 						}
@@ -221,7 +221,7 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 						var cells3 = urCells & CandidatesMap[otherDigit2];
 						if (cells3.IsInIntersection)
 						{
-							var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherDigit2), true, in urCandidatesMap);
+							var node3 = new Node(Subview.ExpandedCellFromDigit(in cells3, otherDigit2), true, true);
 							foreach (var cells4 in cells3.PeerIntersection & CandidatesMap[otherDigit1] | 3)
 							{
 								if (!cells4.IsInIntersection)
@@ -229,7 +229,7 @@ internal sealed class CachedAlmostUniqueRectangleChainingRule : ChainingRule
 									continue;
 								}
 
-								var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherDigit2), false, in urCandidatesMap);
+								var node4 = new Node(Subview.ExpandedCellFromDigit(in cells4, otherDigit2), false, true);
 								linkDictionary.AddEntry(node3, node4, false, ur);
 							}
 						}

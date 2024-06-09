@@ -35,8 +35,8 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 				var digit2 = digitsPair.GetNextSet(digit1);
 				var node1Cells = HousesMap[house] & cells & CandidatesMap[digit1];
 				var node2Cells = HousesMap[house] & cells & CandidatesMap[digit2];
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in node1Cells, digit1), false, in node1ExtraMap);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, in node2ExtraMap);
+				var node1 = new Node(Subview.ExpandedCellFromDigit(in node1Cells, digit1), false, true);
+				var node2 = new Node(Subview.ExpandedCellFromDigit(in node2Cells, digit2), true, true);
 				linkDictionary.AddEntry(node1, node2, true, als);
 			}
 		}
@@ -62,7 +62,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 					continue;
 				}
 
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true);
+				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit), true, true);
 				foreach (ref readonly var cells2 in
 					possibleCells2
 #if LIMIT_WEAK_LINK_NODE_IN_INTERSECTION
@@ -85,7 +85,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 					}
 #endif
 
-					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false);
+					var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit), false, true);
 					linkDictionary.AddEntry(node1, node2, false, als);
 				}
 			}
@@ -98,7 +98,7 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 		var (alsIndex, view) = (0, views[0]);
 		foreach (var link in pattern.Links)
 		{
-			if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells, DigitsMask: var digitsMask })
+			if (link.GroupedLinkPattern is not AlmostLockedSet { Cells: var cells })
 			{
 				continue;
 			}

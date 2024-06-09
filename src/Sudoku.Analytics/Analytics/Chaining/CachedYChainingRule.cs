@@ -14,7 +14,9 @@ internal sealed class CachedYChainingRule : ChainingRule
 			var mask = grid.GetCandidates(cell);
 			var digit1 = TrailingZeroCount(mask);
 			var digit2 = mask.GetNextSet(digit1);
-			linkDictionary.AddEntry(new(cell, digit1, false), new(cell, digit2, true));
+			var node1 = new Node(cell, digit1, false, false);
+			var node2 = new Node(cell, digit2, true, false);
+			linkDictionary.AddEntry(node1, node2);
 		}
 	}
 
@@ -31,7 +33,9 @@ internal sealed class CachedYChainingRule : ChainingRule
 
 			foreach (var combinationPair in mask.GetAllSets().GetSubsets(2))
 			{
-				linkDictionary.AddEntry(new(cell, combinationPair[0], true), new(cell, combinationPair[1], false));
+				var node1 = new Node(cell, combinationPair[0], true, false);
+				var node2 = new Node(cell, combinationPair[1], false, false);
+				linkDictionary.AddEntry(node1, node2);
 			}
 		}
 	}

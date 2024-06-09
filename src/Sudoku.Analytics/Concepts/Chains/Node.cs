@@ -5,10 +5,14 @@ namespace Sudoku.Concepts;
 /// </summary>
 /// <param name="map">Indicates the backing map.</param>
 /// <param name="isOn">Indicates whether the node is on.</param>
+/// <param name="isAdvanced">
+/// Indicates whether the node is advanced one. Please note that the property won't participate comparison rules.
+/// </param>
 [TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
 public sealed partial class Node(
 	[PrimaryConstructorParameter(MemberKinds.Field), HashCodeMember] ref readonly CandidateMap map,
-	[PrimaryConstructorParameter, HashCodeMember] bool isOn
+	[PrimaryConstructorParameter, HashCodeMember] bool isOn,
+	[PrimaryConstructorParameter] bool isAdvanced = false
 ) :
 	IComparable<Node>,
 	IComparisonOperators<Node, Node, bool>,
@@ -39,29 +43,11 @@ public sealed partial class Node(
 	/// </summary>
 	/// <param name="candidate">A candidate.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
+	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Candidate candidate, bool isOn) : this(candidate.AsCandidateMap(), isOn)
+	public Node(Candidate candidate, bool isOn, bool isAdvanced = false) : this(candidate.AsCandidateMap(), isOn, isAdvanced)
 	{
 	}
-
-	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via the specified candidate, and extra map.
-	/// </summary>
-	/// <param name="candidate">A candidate.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	/// <param name="extraMap">The extra map.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Candidate candidate, bool isOn, ref readonly CandidateMap extraMap) : this(candidate, isOn) => _extraMap = extraMap;
-
-	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via two maps.
-	/// </summary>
-	/// <param name="map">The basic pattern map of candidates used.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	/// <param name="extraMap">The extra map.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(ref readonly CandidateMap map, bool isOn, ref readonly CandidateMap extraMap) : this(in map, isOn)
-		 => _extraMap = extraMap;
 
 	/// <summary>
 	/// Initializes a <see cref="Node"/> instance via the specified cell and digit.
@@ -69,21 +55,11 @@ public sealed partial class Node(
 	/// <param name="cell">A cell.</param>
 	/// <param name="digit">A digit.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
+	/// <param name="isAdvanced">Indicates whether the node is advanced.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Cell cell, Digit digit, bool isOn) : this(cell * 9 + digit, isOn)
+	public Node(Cell cell, Digit digit, bool isOn, bool isAdvanced = false) : this(cell * 9 + digit, isOn, isAdvanced)
 	{
 	}
-
-	/// <summary>
-	/// Initializes a <see cref="Node"/> instance via the specified candidate, and extra map.
-	/// </summary>
-	/// <param name="cell">A cell.</param>
-	/// <param name="digit">A digit.</param>
-	/// <param name="isOn">Indicates whether the node is on.</param>
-	/// <param name="extraMap">The extra map.</param>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Cell cell, Digit digit, bool isOn, ref readonly CandidateMap extraMap) : this(cell, digit, isOn)
-		=> _extraMap = extraMap;
 
 	/// <summary>
 	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
@@ -92,7 +68,7 @@ public sealed partial class Node(
 	/// <param name="base">The data provider.</param>
 	/// <param name="parent">The parent node.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public Node(Node @base, Node? parent) : this(in @base._map, @base.IsOn, in @base._extraMap) => Parent = parent;
+	public Node(Node @base, Node? parent) : this(in @base._map, @base.IsOn, @base.IsAdvanced) => Parent = parent;
 
 	/// <summary>
 	/// Copies and creates a <see cref="Node"/> instance from argument <paramref name="base"/>,
@@ -101,7 +77,7 @@ public sealed partial class Node(
 	/// <param name="base">The data provider.</param>
 	/// <param name="isOn">Indicates whether the node is on.</param>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	private Node(Node @base, bool isOn) : this(in @base._map, isOn, in @base._extraMap) => Parent = @base.Parent;
+	private Node(Node @base, bool isOn) : this(in @base._map, isOn, @base.IsAdvanced) => Parent = @base.Parent;
 
 
 	/// <summary>

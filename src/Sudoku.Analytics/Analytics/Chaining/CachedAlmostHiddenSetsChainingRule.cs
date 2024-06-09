@@ -13,15 +13,14 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 		{
 			var cells = ahs.Cells;
 			var subsetDigitsMask = ahs.SubsetDigitsMask;
-			var allCandidates = ahs.GetAllCandidates(in grid);
 			foreach (var digitPair in subsetDigitsMask.GetAllSets().GetSubsets(2))
 			{
 				var digit1 = digitPair[0];
 				var digit2 = digitPair[1];
 				var cells1 = cells & CandidatesMap[digit1];
 				var cells2 = cells & CandidatesMap[digit2];
-				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, in allCandidates);
-				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, in allCandidates);
+				var node1 = new Node(Subview.ExpandedCellFromDigit(in cells1, digit1), false, true);
+				var node2 = new Node(Subview.ExpandedCellFromDigit(in cells2, digit2), true, true);
 				linkDictionary.AddEntry(node1, node2, true, ahs);
 			}
 		}
@@ -33,7 +32,6 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 		foreach (var ahs in AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid))
 		{
 			var weakLinkCandidates = ahs.CandidatesCanFormWeakLink;
-			var allCandidates = ahs.GetAllCandidates(in grid);
 			foreach (ref readonly var candidates1 in weakLinkCandidates | weakLinkCandidates.Count - 1)
 			{
 				var possibleCandidates2 = weakLinkCandidates & ~candidates1;
@@ -66,8 +64,8 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 					}
 #endif
 
-					var node1 = new Node(in candidates1, true, in allCandidates);
-					var node2 = new Node(in candidates2, false, in allCandidates);
+					var node1 = new Node(in candidates1, true, true);
+					var node2 = new Node(in candidates2, false, true);
 					linkDictionary.AddEntry(node1, node2, false, ahs);
 				}
 			}
@@ -106,17 +104,26 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 		var result = ConclusionSet.Empty;
 		foreach (var element in loop.Links)
 		{
-			if (element is { IsStrong: false, GroupedLinkPattern: AlmostHiddenSet { Cells: var cells } ahs })
-			{
-				var allCandidates = ahs.GetAllCandidates(in grid);
-				foreach (var cell in cells)
+			if (element is not
 				{
-					foreach (var digit in grid.GetCandidates(cell))
+					IsStrong: false,
+					FirstNode.Map: var firstNodeMap,
+					SecondNode.Map: var secondNodeMap,
+					GroupedLinkPattern: AlmostHiddenSet { Cells: var cells, SubsetDigitsMask: var subsetDigitsMask }
+				})
+			{
+				continue;
+			}
+
+			var nodesMap = firstNodeMap | secondNodeMap;
+			foreach (var cell in cells)
+			{
+				foreach (var digit in (Mask)(grid.GetCandidates(cell) & (Mask)~subsetDigitsMask))
+				{
+					var candidate = cell * 9 + digit;
+					if (!nodesMap.Contains(candidate))
 					{
-						if (!allCandidates.Contains(cell * 9 + digit))
-						{
-							result.Add(new Conclusion(Elimination, cell, digit));
-						}
+						result.Add(new Conclusion(Elimination, candidate));
 					}
 				}
 			}
