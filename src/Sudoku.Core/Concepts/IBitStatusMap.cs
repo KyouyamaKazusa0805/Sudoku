@@ -15,8 +15,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	IComparable<TSelf>,
 	IComparisonOperators<TSelf, TSelf, bool>,
 	IContainsMethod<TSelf, TElement>,
-	ICoordinateConvertible<TSelf>,
-	ICoordinateParsable<TSelf>,
 	ICountMethod<TSelf, TElement>,
 	IElementAtMethod<TSelf, TElement>,
 	IEqualityOperators<TSelf, TSelf, bool>,
@@ -27,7 +25,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	ILogicalOperators<TSelf>,
 	IMinMaxValue<TSelf>,
 	IModulusOperators<TSelf, TSelf, TSelf>,
-	IJsonSerializable<TSelf>,
 	IReadOnlyList<TElement>,
 	IReadOnlySet<TElement>,
 	ISelectMethod<TSelf, TElement>,
@@ -106,9 +103,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 
 	/// <inheritdoc/>
 	static TSelf IMinMaxValue<TSelf>.MaxValue => TSelf.Empty;
-
-	/// <inheritdoc/>
-	static JsonSerializerOptions IJsonSerializable<TSelf>.DefaultOptions => new() { Converters = { TSelf.JsonConverterInstance } };
 
 
 	/// <inheritdoc cref="IReadOnlyCollection{T}.Count"/>
@@ -384,9 +378,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	int IComparable<TSelf>.CompareTo(TSelf other) => CompareTo(in other);
 
 	/// <inheritdoc/>
-	string IJsonSerializable<TSelf>.ToJsonString() => JsonSerializer.Serialize((TSelf)this, TSelf.DefaultOptions);
-
-	/// <inheritdoc/>
 	TElement IElementAtMethod<TSelf, TElement>.ElementAt(int index) => this[index];
 
 	/// <inheritdoc/>
@@ -425,14 +416,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 		}
 		return result;
 	}
-
-
-	/// <inheritdoc/>
-	static TSelf IParsable<TSelf>.Parse(string s, IFormatProvider? provider) => TSelf.Parse(s);
-
-	/// <inheritdoc/>
-	static TSelf IJsonSerializable<TSelf>.FromJsonString(string jsonString)
-		=> JsonSerializer.Deserialize<TSelf>(jsonString, TSelf.DefaultOptions);
 
 
 	/// <summary>

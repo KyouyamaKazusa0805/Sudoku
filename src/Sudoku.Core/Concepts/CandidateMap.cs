@@ -13,7 +13,7 @@ using static IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>;
 [StructLayout(LayoutKind.Auto)]
 [CollectionBuilder(typeof(CandidateMap), nameof(Create))]
 [DebuggerStepThrough]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.AllOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.AllOperators, IsLargeStructure = true)]
 public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, CandidateMap.Enumerator>
 {
 	/// <inheritdoc cref="IBitStatusMap{TSelf, TElement, TEnumerator}.Empty"/>
@@ -360,10 +360,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public readonly Candidate[] ToArray() => Offsets;
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override readonly string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
 	/// <summary>
 	/// Try to get digits that is in the current collection.
 	/// </summary>
@@ -379,7 +375,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 				result |= (Mask)(1 << digit);
 			}
 		}
-
 		return result;
 	}
 
@@ -389,14 +384,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> formatProvider switch
 		{
 			CandidateMapFormatInfo i => i.FormatMap(in this),
-			CultureInfo c => ToString(CoordinateConverter.GetConverter(c)),
-			CoordinateConverter c => ToString(c),
-			_ => ToString(CoordinateConverter.GetConverter(CultureInfo.CurrentUICulture))
+			CultureInfo c => CoordinateConverter.GetConverter(c).CandidateConverter(this),
+			CoordinateConverter c => c.CandidateConverter(this),
+			_ => CoordinateConverter.InvariantCultureConverter.CandidateConverter(this)
 		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString<T>(T converter) where T : CoordinateConverter => converter.CandidateConverter(this);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
@@ -425,7 +416,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		{
 			result.Add(offsets[i]);
 		}
-
 		return result;
 	}
 
@@ -445,7 +435,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 			Count++;
 			return true;
 		}
-
 		return false;
 	}
 
@@ -555,7 +544,7 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> this.Select(selector).ToArray();
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.TryParse(string?, IFormatProvider?, out TSelf)"/>
 	public static bool TryParse(string str, out CandidateMap result)
 	{
 		try
@@ -610,21 +599,6 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		}
 	}
 
-	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, out CandidateMap result) where T : CoordinateParser
-	{
-		try
-		{
-			result = parser.CandidateParser(str);
-			return true;
-		}
-		catch (FormatException)
-		{
-			result = default;
-			return false;
-		}
-	}
-
 	/// <summary>
 	/// Creates a <see cref="CandidateMap"/> instance via the specified candidates.
 	/// </summary>
@@ -670,13 +644,10 @@ public partial struct CandidateMap : IBitStatusMap<CandidateMap, Candidate, Cand
 		=> provider switch
 		{
 			CandidateMapFormatInfo i => i.ParseMap(s),
+			CoordinateParser c => c.CandidateParser(s),
 			CultureInfo c => Parse(s, CoordinateParser.GetParser(c)),
 			_ => Parse(s)
 		};
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static CandidateMap Parse<T>(string str, T parser) where T : CoordinateParser => parser.CandidateParser(str);
 
 	/// <inheritdoc cref="Parse(ReadOnlySpan{char}, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
