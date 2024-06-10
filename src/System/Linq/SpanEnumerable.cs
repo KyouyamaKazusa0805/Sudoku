@@ -611,7 +611,6 @@ public static class SpanEnumerable
 				return element;
 			}
 		}
-
 		throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoSuchElementSatisfyingCondition"));
 	}
 
@@ -628,6 +627,31 @@ public static class SpanEnumerable
 		return default;
 	}
 
+	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, int)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<TSource> Take<TSource>(this scoped ReadOnlySpan<TSource> @this, int count)
+	{
+		var result = new List<TSource>(count);
+		result.AddRangeRef(@this[..Math.Min(count, @this.Length)]);
+		return result.AsReadOnlySpan();
+	}
+
+	/// <inheritdoc cref="Enumerable.Take{TSource}(IEnumerable{TSource}, Range)"/>
+	[MethodImpl(MethodImplOptions.AggressiveInlining)]
+	public static ReadOnlySpan<TSource> Take<TSource>(this scoped ReadOnlySpan<TSource> @this, Range range)
+	{
+		var minIndex = range.Start.GetOffset(@this.Length);
+		var maxIndex = range.End.GetOffset(@this.Length);
+		if (maxIndex <= minIndex)
+		{
+			throw new InvalidOperationException(ResourceDictionary.ExceptionMessage("NoElementsFoundInCollection"));
+		}
+
+		var result = new List<TSource>(maxIndex - minIndex);
+		result.AddRangeRef(@this[Math.Min(minIndex, @this.Length)..Math.Min(maxIndex, @this.Length)]);
+		return result.AsReadOnlySpan();
+	}
+
 	/// <inheritdoc cref="Enumerable.Aggregate{TSource}(IEnumerable{TSource}, Func{TSource, TSource, TSource})"/>
 	public static TSource Aggregate<TSource>(this scoped ReadOnlySpan<TSource> @this, Func<TSource, TSource, TSource> func)
 	{
@@ -636,7 +660,6 @@ public static class SpanEnumerable
 		{
 			result = func(result, element);
 		}
-
 		return result;
 	}
 

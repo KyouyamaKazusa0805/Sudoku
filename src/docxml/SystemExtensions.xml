@@ -4167,6 +4167,12 @@
         <member name="M:System.Linq.SpanEnumerable.LastOrDefault``1(System.ReadOnlySpan{``0},System.Func{``0,System.Boolean})">
             <inheritdoc cref="M:System.Linq.Enumerable.LastOrDefault``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,System.Boolean})"/>
         </member>
+        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Int32)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Take``1(System.Collections.Generic.IEnumerable{``0},System.Int32)"/>
+        </member>
+        <member name="M:System.Linq.SpanEnumerable.Take``1(System.ReadOnlySpan{``0},System.Range)">
+            <inheritdoc cref="M:System.Linq.Enumerable.Take``1(System.Collections.Generic.IEnumerable{``0},System.Range)"/>
+        </member>
         <member name="M:System.Linq.SpanEnumerable.Aggregate``1(System.ReadOnlySpan{``0},System.Func{``0,``0,``0})">
             <inheritdoc cref="M:System.Linq.Enumerable.Aggregate``1(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``0,``0})"/>
         </member>
