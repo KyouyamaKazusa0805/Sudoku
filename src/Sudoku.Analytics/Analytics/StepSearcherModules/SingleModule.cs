@@ -73,7 +73,7 @@ internal static class SingleModule
 		out CellMap chosenCells
 	)
 	{
-		if (Crosshatching.TryCreate(in grid, digit, house, [cell]) is var (cc, covered, excluded))
+		if (Crosshatching.TryCreate(in grid, digit, house, in cell.AsCellMap()) is var (cc, covered, excluded))
 		{
 			chosenCells = cc;
 			return (IconViewNode[])[
