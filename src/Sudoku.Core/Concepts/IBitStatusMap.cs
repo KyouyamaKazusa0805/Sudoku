@@ -449,7 +449,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static abstract bool operator true(in TSelf map);
 
 	/// <summary>
@@ -457,7 +456,6 @@ public partial interface IBitStatusMap<TSelf, TElement, TEnumerator> :
 	/// </summary>
 	/// <param name="map">The collection.</param>
 	/// <returns>A <see cref="bool"/> result indicating that.</returns>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static abstract bool operator false(in TSelf map);
 
 	/// <summary>
