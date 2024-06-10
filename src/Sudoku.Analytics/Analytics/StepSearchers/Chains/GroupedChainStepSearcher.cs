@@ -1,5 +1,5 @@
 #define LOCKED_SET
-#undef HIDDEN_SET // Requires large memory
+#define HIDDEN_SET // Requires large memory
 #define UNIQUE_RECTANGLE
 #define AVOIDABLE_RECTANGLE
 

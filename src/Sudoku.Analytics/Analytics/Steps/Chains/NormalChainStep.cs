@@ -112,7 +112,8 @@ file static class Extensions
 		{ Technique.ContinuousNiceLoop, 203 },
 		{ Technique.XChain, 204 },
 		{ Technique.XyChain, 205 },
-		{ Technique.SelfConstraint, 206 },
+		{ Technique.XyXChain, 206 },
+		{ Technique.SelfConstraint, 207 },
 		{ Technique.AlternatingInferenceChain, 208 },
 		{ Technique.DiscontinuousNiceLoop, 209 },
 		{ Technique.GroupedFishyCycle, 211 },
@@ -120,10 +121,11 @@ file static class Extensions
 		{ Technique.GroupedContinuousNiceLoop, 213 },
 		{ Technique.GroupedXChain, 214 },
 		{ Technique.GroupedXyChain, 215 },
-		{ Technique.GroupedSelfConstraint, 216 },
-		{ Technique.NodeCollision, 217 },
-		{ Technique.GroupedAlternatingInferenceChain, 218 },
-		{ Technique.GroupedDiscontinuousNiceLoop, 219 },
+		{ Technique.GroupedXyXChain, 216 },
+		{ Technique.GroupedSelfConstraint, 217 },
+		{ Technique.NodeCollision, 218 },
+		{ Technique.GroupedAlternatingInferenceChain, 219 },
+		{ Technique.GroupedDiscontinuousNiceLoop, 220 },
 	};
 
 

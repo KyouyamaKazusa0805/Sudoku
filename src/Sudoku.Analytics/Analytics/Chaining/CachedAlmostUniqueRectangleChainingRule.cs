@@ -90,63 +90,7 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	/// <inheritdoc/>
 	public override void CollectWeakLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
 	{
-		foreach (CellMap urCells in UniqueRectangleModule.PossiblePatterns)
-		{
-			if ((EmptyCells & urCells) != urCells)
-			{
-				// Four cells must be empty.
-				continue;
-			}
-
-			// Collect valid digits.
-			var validDigitsMask = (Mask)0;
-			var allDigitsMask = grid[in urCells];
-			foreach (var digit in allDigitsMask)
-			{
-				var cellsToFillDigit = CandidatesMap[digit] & urCells;
-				if (PopCount((uint)cellsToFillDigit.RowMask) == 2 && PopCount((uint)cellsToFillDigit.ColumnMask) == 2)
-				{
-					validDigitsMask |= (Mask)(1 << digit);
-				}
-			}
-			if (PopCount((uint)validDigitsMask) < 2)
-			{
-				// No enough digits to form a UR.
-				continue;
-			}
-
-			foreach (var digitPair in validDigitsMask.GetAllSets().GetSubsets(2))
-			{
-				var (digit1, digit2) = (digitPair[0], digitPair[1]);
-				var urDigitsMask = (Mask)(1 << digit1 | 1 << digit2);
-				var otherDigitsMask = (Mask)(allDigitsMask & (Mask)~urDigitsMask);
-				if (PopCount((uint)otherDigitsMask) < 2)
-				{
-					continue;
-				}
-
-				var ur = new UniqueRectangle(in urCells, urDigitsMask, otherDigitsMask);
-				switch (PopCount((uint)otherDigitsMask))
-				{
-					case 1:
-					{
-						Type1Weak(otherDigitsMask, in urCells, ur, linkDictionary);
-						break;
-					}
-					case 2:
-					{
-						Type2Weak(otherDigitsMask, in urCells, ur, linkDictionary);
-						goto default;
-					}
-					default:
-					{
-						break;
-					}
-				}
-
-				Type5Weak(otherDigitsMask, in grid, in urCells, ur, linkDictionary);
-			}
-		}
+		// AURs may not be necessary to collect for weak links.
 	}
 
 	/// <inheritdoc/>
@@ -187,7 +131,4 @@ internal sealed partial class CachedAlmostUniqueRectangleChainingRule : Chaining
 	partial void Type2Strong(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type4Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 	partial void Type5Strong(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type1Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type2Weak(Mask otherDigitsMask, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
-	partial void Type5Weak(Mask otherDigitsMask, ref readonly Grid grid, ref readonly CellMap urCells, UniqueRectangle ur, LinkDictionary linkDictionary);
 }

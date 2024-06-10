@@ -9,7 +9,7 @@ internal sealed class CachedAlmostAvoidableRectangleChainingRule : ChainingRule
 	/// <inheritdoc/>
 	public override void CollectStrongLinks(ref readonly Grid grid, LinkDictionary linkDictionary)
 	{
-		// AAR doesn't use strong links.
+		// AARs may not be necessary to collect strong links.
 	}
 
 	/// <inheritdoc/>

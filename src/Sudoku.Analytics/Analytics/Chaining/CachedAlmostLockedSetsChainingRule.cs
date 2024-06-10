@@ -150,19 +150,10 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 					IsStrong: true,
 					FirstNode.Map.Digits: var digitsMask1,
 					SecondNode.Map.Digits: var digitsMask2,
-					GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells) { House: var alsHouse }
+					GroupedLinkPattern: AlmostLockedSet(var digitsMask, var alsCells)
 				})
 			{
 				var elimDigitsMask = (Mask)(digitsMask & (Mask)~(Mask)(digitsMask1 | digitsMask2));
-#if false
-				foreach (var cell in HousesMap[alsHouse] & EmptyCells & ~alsCells)
-				{
-					foreach (var digit in (Mask)(grid.GetCandidates(cell) & elimDigitsMask))
-					{
-						result.Add(new Conclusion(Elimination, cell, digit));
-					}
-				}
-#else
 				foreach (var digit in elimDigitsMask)
 				{
 					foreach (var cell in alsCells % CandidatesMap[digit])
@@ -170,7 +161,6 @@ internal class CachedAlmostLockedSetsChainingRule : ChainingRule
 						result.Add(new Conclusion(Elimination, cell, digit));
 					}
 				}
-#endif
 			}
 		}
 		return result;

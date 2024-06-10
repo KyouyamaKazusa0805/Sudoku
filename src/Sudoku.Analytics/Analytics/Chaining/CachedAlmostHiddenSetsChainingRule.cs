@@ -32,12 +32,16 @@ internal sealed class CachedAlmostHiddenSetsChainingRule : ChainingRule
 		foreach (var ahs in AlmostHiddenSetsModule.CollectAlmostHiddenSets(in grid))
 		{
 			var weakLinkCandidates = ahs.CandidatesCanFormWeakLink;
-			foreach (ref readonly var candidates1 in weakLinkCandidates | weakLinkCandidates.Count - 1)
+			foreach (ref readonly var candidates1 in weakLinkCandidates | 3)
 			{
-				var possibleCandidates2 = weakLinkCandidates & ~candidates1;
-				foreach (var candidates2 in possibleCandidates2 | 3)
+				if (!candidates1.Cells.IsInIntersection)
 				{
-					if (!possibleCandidates2.Cells.IsInIntersection)
+					continue;
+				}
+
+				foreach (var candidates2 in weakLinkCandidates & ~candidates1 | 3)
+				{
+					if (!candidates2.Cells.IsInIntersection)
 					{
 						continue;
 					}
