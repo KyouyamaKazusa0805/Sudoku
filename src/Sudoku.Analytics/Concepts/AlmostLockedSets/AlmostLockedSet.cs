@@ -15,7 +15,7 @@ namespace Sudoku.Concepts;
 /// <c>n</c> cells contains <c>(n + 1)</c> kinds of different digits.
 /// The special case is a bi-value cell.
 /// </remarks>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.AllOperators)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.AllOperators)]
 public sealed partial class AlmostLockedSet(
 	[PrimaryConstructorParameter, HashCodeMember] Mask digitsMask,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap cells,
@@ -24,10 +24,10 @@ public sealed partial class AlmostLockedSet(
 ) :
 	IComparable<AlmostLockedSet>,
 	IComparisonOperators<AlmostLockedSet, AlmostLockedSet, bool>,
-	ICoordinateConvertible<AlmostLockedSet>,
-	ICoordinateParsable<AlmostLockedSet>,
 	IEquatable<AlmostLockedSet>,
-	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>
+	IEqualityOperators<AlmostLockedSet, AlmostLockedSet, bool>,
+	IFormattable,
+	IParsable<AlmostLockedSet>
 {
 	/// <summary>
 	/// Indicates an array of the total number of the strong relations in an ALS of the different size.
@@ -108,19 +108,16 @@ public sealed partial class AlmostLockedSet(
 			? throw new ArgumentNullException(nameof(other))
 			: Cells.Count.CompareTo(other.Cells.Count) is var p and not 0 ? p : Cells.CompareTo(other.Cells);
 
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter
 	{
+		var converter = formatProvider switch
+		{
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			CoordinateConverter c => c,
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
 		var digitsStr = converter.DigitConverter(DigitsMask);
 		var houseStr = converter.HouseConverter(1 << House);
 		var cellsStr = converter.CellConverter(Cells);
@@ -133,17 +130,21 @@ public sealed partial class AlmostLockedSet(
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, [NotNullWhen(true)] out AlmostLockedSet? result)
-		=> TryParse(str, new RxCyParser(), out result);
+	public static bool TryParse(string s, [NotNullWhen(true)] out AlmostLockedSet? result) => TryParse(s, null, out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, [NotNullWhen(true)] out AlmostLockedSet? result) where T : CoordinateParser
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, [NotNullWhen(true)] out AlmostLockedSet? result)
 	{
 		try
 		{
-			result = Parse(str, parser);
+			if (s is null)
+			{
+				throw new FormatException();
+			}
+
+			result = Parse(s, provider);
 			return true;
 		}
 		catch (FormatException)
@@ -228,28 +229,21 @@ public sealed partial class AlmostLockedSet(
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static AlmostLockedSet Parse(string str) => Parse(str, new RxCyParser());
+	public static AlmostLockedSet Parse(string str) => Parse(str, null);
 
 	/// <inheritdoc/>
-	public static AlmostLockedSet Parse<T>(string str, T parser) where T : CoordinateParser
-		=> str.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
+	public static AlmostLockedSet Parse(string s, IFormatProvider? provider)
+	{
+		var parser = provider switch
+		{
+			CultureInfo c => CoordinateParser.GetParser(c),
+			CoordinateParser c => c,
+			_ => CoordinateParser.InvariantCultureParser
+		};
+		return s.SplitBy('/') is [var digitsStr, var cellsStrAndHouseStr]
 			? cellsStrAndHouseStr.SplitBy(' ') is [var cellsStr, _, _]
 				? new(parser.DigitParser(digitsStr), parser.CellParser(cellsStr), [], [])
 				: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingCellsInTargetHouse"))
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("AlsMissingSlash"));
-
-	/// <inheritdoc/>
-	static bool IParsable<AlmostLockedSet>.TryParse(string? s, IFormatProvider? provider, [NotNullWhen(true)] out AlmostLockedSet? result)
-	{
-		if (s is null)
-		{
-			result = null;
-			return false;
-		}
-
-		return TryParse(s, out result);
 	}
-
-	/// <inheritdoc/>
-	static AlmostLockedSet IParsable<AlmostLockedSet>.Parse(string s, IFormatProvider? provider) => Parse(s);
 }

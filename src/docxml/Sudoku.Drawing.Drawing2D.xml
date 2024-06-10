@@ -539,14 +539,6 @@
             <returns>The center mouse point.</returns>
             <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
         </member>
-        <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseCenter(Sudoku.Concepts.LockedTarget@)">
-            <summary>
-            Gets the center mouse point of the specified locked target.
-            </summary>
-            <param name="lockedTarget">The locked target.</param>
-            <returns>The center mouse point.</returns>
-            <exception cref="T:System.ArgumentException">Throws when the argument is invalid.</exception>
-        </member>
         <member name="M:Sudoku.Drawing.Drawing2D.PointCalculator.GetMouseRectangle(Sudoku.Concepts.CandidateMap@)">
             <summary>
             Get the rectangle from all candidates.

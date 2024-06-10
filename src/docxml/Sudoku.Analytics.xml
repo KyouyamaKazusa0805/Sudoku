@@ -203,22 +203,16 @@
             <inheritdoc/>
             <exception cref="T:System.ArgumentNullException">Throws when the argument <paramref name="other"/> is <see langword="null"/>.</exception>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString(System.IFormatProvider)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString``1(``0)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IFormattable#ToString(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse(System.String,Sudoku.Concepts.AlmostLockedSet@)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IParsable`1.Parse(System.String,System.IFormatProvider)"/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse``1(System.String,``0,Sudoku.Concepts.AlmostLockedSet@)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.AlmostLockedSet@)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Collect(Sudoku.Concepts.Grid@)">
@@ -231,13 +225,7 @@
         <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse(System.String)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse``1(System.String,``0)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#TryParse(System.String,System.IFormatProvider,Sudoku.Concepts.AlmostLockedSet@)">
-            <inheritdoc/>
-        </member>
-        <member name="M:Sudoku.Concepts.AlmostLockedSet.System#IParsable{Sudoku#Concepts#AlmostLockedSet}#Parse(System.String,System.IFormatProvider)">
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.Parse(System.String,System.IFormatProvider)">
             <inheritdoc/>
         </member>
         <member name="P:Sudoku.Concepts.AlmostLockedSet.DigitsMask">
@@ -265,6 +253,9 @@
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.AlmostLockedSet.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.AlmostLockedSet.op_Equality(Sudoku.Concepts.AlmostLockedSet,Sudoku.Concepts.AlmostLockedSet)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -1536,14 +1527,8 @@
         <member name="M:Sudoku.Concepts.EliminationRange.GetHashCode">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.EliminationRange.ToString``1(``0)">
-            <inheritdoc/>
-        </member>
         <member name="M:Sudoku.Concepts.EliminationRange.ToString(System.IFormatProvider)">
-            <inheritdoc/>
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.GetEnumerator">
             <inheritdoc cref="M:System.Collections.Generic.IEnumerable`1.GetEnumerator"/>
@@ -1671,6 +1656,9 @@
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.Equals(System.Object)">
             <inheritdoc cref="M:System.Object.Equals(System.Object)"/>
+        </member>
+        <member name="M:Sudoku.Concepts.EliminationRange.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.EliminationRange.op_Equality(Sudoku.Concepts.EliminationRange@,Sudoku.Concepts.EliminationRange@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>
@@ -1810,11 +1798,8 @@
         <member name="M:Sudoku.Concepts.Fish.Equals(Sudoku.Concepts.Fish@)">
             <inheritdoc cref="M:System.IEquatable`1.Equals(`0)"/>
         </member>
-        <member name="M:Sudoku.Concepts.Fish.ToString">
-            <inheritdoc cref="M:System.Object.ToString"/>
-        </member>
-        <member name="M:Sudoku.Concepts.Fish.ToString``1(``0)">
-            <inheritdoc/>
+        <member name="M:Sudoku.Concepts.Fish.ToString(System.IFormatProvider)">
+            <inheritdoc cref="M:System.IFormattable.ToString(System.String,System.IFormatProvider)"/>
         </member>
         <member name="M:Sudoku.Concepts.Fish.GetFinKind(Sudoku.Concepts.Grid@)">
             <summary>
@@ -1859,6 +1844,9 @@
         </member>
         <member name="M:Sudoku.Concepts.Fish.GetHashCode">
             <inheritdoc cref="M:System.Object.GetHashCode"/>
+        </member>
+        <member name="M:Sudoku.Concepts.Fish.ToString">
+            <inheritdoc cref="M:System.Object.ToString"/>
         </member>
         <member name="M:Sudoku.Concepts.Fish.op_Equality(Sudoku.Concepts.Fish@,Sudoku.Concepts.Fish@)">
             <inheritdoc cref="M:System.Numerics.IEqualityOperators`3.op_Equality(`0,`1)"/>

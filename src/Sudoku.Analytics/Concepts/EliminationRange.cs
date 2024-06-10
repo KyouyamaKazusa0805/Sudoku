@@ -9,14 +9,14 @@ namespace Sudoku.Concepts;
 /// </remarks>
 [InlineArray(9)]
 [CollectionBuilder(typeof(EliminationRange), nameof(Create))]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_ToString | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public partial struct EliminationRange :
 	IBitwiseOperators<EliminationRange, EliminationRange, EliminationRange>,
 	IEnumerable<KeyValuePair<Digit, HouseMask>>,
 	IEquatable<EliminationRange>,
 	IEqualityOperators<EliminationRange, EliminationRange, bool>,
+	IFormattable,
 	ILogicalOperators<EliminationRange>,
-	ICoordinateConvertible<EliminationRange>,
 	IReadOnlyCollection<KeyValuePair<Digit, HouseMask>>,
 	IToArrayMethod<EliminationRange, KeyValuePair<Digit, HouseMask>>
 {
@@ -165,12 +165,15 @@ public partial struct EliminationRange :
 		return result;
 	}
 
-	/// <inheritdoc cref="object.ToString"/>
-	public override readonly string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
-	/// <inheritdoc/>
-	public readonly string ToString<T>(T converter) where T : CoordinateConverter
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
+	public readonly string ToString(IFormatProvider? formatProvider)
 	{
+		var converter = formatProvider switch
+		{
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			CoordinateConverter c => c,
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
 		var result = new List<string>();
 		for (var digit = 0; digit < 9; digit++)
 		{
@@ -186,11 +189,6 @@ public partial struct EliminationRange :
 		}
 		return string.Join(", ", result);
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public readonly string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
 
 	/// <inheritdoc cref="IEnumerable{T}.GetEnumerator"/>
 	[UnscopedRef]

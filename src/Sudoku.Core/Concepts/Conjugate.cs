@@ -8,13 +8,12 @@ namespace Sudoku.Concepts;
 /// two position can fill this candidate.
 /// </remarks>
 /// <param name="mask">Indicates the target mask.</param>
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators)]
-[method: MethodImpl(MethodImplOptions.AggressiveInlining)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators)]
 public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKinds.Field)] ConjugateMask mask) :
-	ICoordinateConvertible<Conjugate>,
-	ICoordinateParsable<Conjugate>,
 	IEquatable<Conjugate>,
-	IEqualityOperators<Conjugate, Conjugate, bool>
+	IEqualityOperators<Conjugate, Conjugate, bool>,
+	IFormattable,
+	IParsable<Conjugate>
 {
 	/// <summary>
 	/// Initializes a <see cref="Conjugate"/> instance with from and to cell offset and a digit.
@@ -80,33 +79,37 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public bool Equals(Conjugate other) => Map == other.Map && Digit == other.Digit;
 
-	/// <inheritdoc cref="object.ToString"/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => $"{From.AsCellMap()} == {To.AsCellMap()}({Digit + 1})";
-
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ConjugateConverter(this);
+		=> (
+			formatProvider switch
+			{
+				CultureInfo c => CoordinateConverter.GetConverter(c),
+				CoordinateConverter c => c,
+				_ => CoordinateConverter.InvariantCultureConverter
+			}
+		).ConjugateConverter(this);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, out Conjugate result) => TryParse(str, new RxCyParser(), out result);
+	public static bool TryParse(string s, out Conjugate result) => TryParse(s, new RxCyParser(), out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, out Conjugate result) where T : CoordinateParser
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Conjugate result)
 	{
 		try
 		{
-			result = parser.ConjuagteParser(str)[0];
+			if (s is null)
+			{
+				throw new FormatException();
+			}
+
+			result = Parse(s, provider);
 			return true;
 		}
 		catch (FormatException)
@@ -116,29 +119,22 @@ public readonly partial struct Conjugate([PrimaryConstructorParameter(MemberKind
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conjugate Parse(string str) => Parse(str, new RxCyParser());
+	public static Conjugate Parse(string s) => Parse(s, null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Conjugate Parse<T>(string str, T parser) where T : CoordinateParser
-		=> parser.ConjuagteParser(str) is [var result]
+	public static Conjugate Parse(string s, IFormatProvider? provider)
+	{
+		var parser = provider switch
+		{
+			CultureInfo c => CoordinateParser.GetParser(c),
+			CoordinateParser c => c,
+			_ => CoordinateParser.InvariantCultureParser
+		};
+		return parser.ConjuagteParser(s) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleConjugatePairValuesFound"));
-
-	/// <inheritdoc/>
-	static bool IParsable<Conjugate>.TryParse(string? s, IFormatProvider? provider, out Conjugate result)
-	{
-		if (s is null)
-		{
-			result = default;
-			return false;
-		}
-
-		return TryParse(s, out result);
 	}
-
-	/// <inheritdoc/>
-	static Conjugate IParsable<Conjugate>.Parse(string s, IFormatProvider? provider) => Parse(s);
 }

@@ -9,14 +9,14 @@ namespace Sudoku.Concepts;
 /// <param name="exofins">Indicates the exo-fins.</param>
 /// <param name="endofins">Indicates the endo-fins.</param>
 [StructLayout(LayoutKind.Auto)]
-[TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.Object_GetHashCode | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
+[TypeImpl(TypeImplFlag.AllObjectMethods | TypeImplFlag.EqualityOperators, IsLargeStructure = true)]
 public readonly partial struct Fish(
 	[PrimaryConstructorParameter, HashCodeMember] Digit digit,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask baseSets,
 	[PrimaryConstructorParameter, HashCodeMember] HouseMask coverSets,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap exofins,
 	[PrimaryConstructorParameter, HashCodeMember] ref readonly CellMap endofins
-) : ICoordinateConvertible<Fish>, IEquatable<Fish>, IEqualityOperators<Fish, Fish, bool>
+) : IEquatable<Fish>, IEqualityOperators<Fish, Fish, bool>, IFormattable
 {
 	/// <summary>
 	/// Indicates whether the pattern is complex fish.
@@ -64,13 +64,16 @@ public readonly partial struct Fish(
 	public bool Equals(ref readonly Fish other)
 		=> (Digit, BaseSets, CoverSets, Exofins, Endofins) == (other.Digit, other.BaseSets, other.CoverSets, other.Exofins, other.Endofins);
 
-	/// <inheritdoc cref="object.ToString"/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public override string ToString() => ToString(CoordinateConverter.InvariantCultureConverter);
-
-	/// <inheritdoc/>
-	public string ToString<T>(T converter) where T : CoordinateConverter
+	public string ToString(IFormatProvider? formatProvider)
 	{
+		var converter = formatProvider switch
+		{
+			CultureInfo c => CoordinateConverter.GetConverter(c),
+			CoordinateConverter c => c,
+			_ => CoordinateConverter.InvariantCultureConverter
+		};
 		switch (converter)
 		{
 			case RxCyConverter c:
@@ -140,5 +143,5 @@ public readonly partial struct Fish(
 	bool IEquatable<Fish>.Equals(Fish other) => Equals(in other);
 
 	/// <inheritdoc/>
-	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString();
+	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
 }

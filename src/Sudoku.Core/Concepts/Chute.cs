@@ -8,17 +8,20 @@ namespace Sudoku.Concepts;
 /// <param name="IsRow">Indicates whether the chute is in a mega-row.</param>
 /// <param name="HousesMask">Indicates the houses used.</param>
 public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool IsRow, HouseMask HousesMask) :
-	ICoordinateConvertible<Chute>,
-	ICoordinateParsable<Chute>
+	IFormattable,
+	IParsable<Chute>
 {
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IFormattable.ToString(string?, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public string ToString(IFormatProvider? formatProvider)
-		=> ToString(CoordinateConverter.GetConverter(formatProvider as CultureInfo ?? CultureInfo.CurrentUICulture));
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public string ToString<T>(T converter) where T : CoordinateConverter => converter.ChuteConverter(this);
+		=> (
+			formatProvider switch
+			{
+				CultureInfo c => CoordinateConverter.GetConverter(c),
+				CoordinateConverter c => c,
+				_ => CoordinateConverter.InvariantCultureConverter
+			}
+		).ChuteConverter(this);
 
 	/// <inheritdoc/>
 	string IFormattable.ToString(string? format, IFormatProvider? formatProvider) => ToString(formatProvider);
@@ -26,14 +29,19 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static bool TryParse(string str, out Chute result) => TryParse(str, new RxCyParser(), out result);
+	public static bool TryParse(string str, out Chute result) => TryParse(str, null, out result);
 
 	/// <inheritdoc/>
-	public static bool TryParse<T>(string str, T parser, out Chute result) where T : CoordinateParser
+	public static bool TryParse([NotNullWhen(true)] string? s, IFormatProvider? provider, out Chute result)
 	{
 		try
 		{
-			result = parser.ChuteParser(str)[0];
+			if (s is null)
+			{
+				throw new FormatException();
+			}
+
+			result = Parse(s, provider);
 			return true;
 		}
 		catch (FormatException)
@@ -43,29 +51,22 @@ public readonly record struct Chute(int Index, ref readonly CellMap Cells, bool 
 		}
 	}
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IParsable{TSelf}.Parse(string, IFormatProvider?)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Chute Parse(string str) => Parse(str, new RxCyParser());
+	public static Chute Parse(string s) => Parse(s, null);
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static Chute Parse<T>(string str, T parser) where T : CoordinateParser
-		=> parser.ChuteParser(str) is [var result]
+	public static Chute Parse(string s, IFormatProvider? provider)
+	{
+		var parser = provider switch
+		{
+			CultureInfo c => CoordinateParser.GetParser(c),
+			CoordinateParser c => c,
+			_ => CoordinateParser.InvariantCultureParser
+		};
+		return parser.ChuteParser(s) is [var result]
 			? result
 			: throw new FormatException(ResourceDictionary.ExceptionMessage("MultipleChuteValuesFound"));
-
-	/// <inheritdoc/>
-	static bool IParsable<Chute>.TryParse(string? s, IFormatProvider? provider, out Chute result)
-	{
-		if (s is null)
-		{
-			result = default;
-			return false;
-		}
-
-		return TryParse(s, out result);
 	}
-
-	/// <inheritdoc/>
-	static Chute IParsable<Chute>.Parse(string s, IFormatProvider? provider) => Parse(s);
 }
