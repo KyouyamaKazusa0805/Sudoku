@@ -18,7 +18,7 @@ namespace Sudoku.Analytics.Categorization;
 [JsonConverter(typeof(Converter))]
 [TypeImpl(TypeImplFlag.Object_Equals | TypeImplFlag.EqualityOperators)]
 public sealed partial class TechniqueSet :
-	IAdditionOperators<TechniqueSet, TechniqueGroup, TechniqueSet>,
+	IAdditionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IAnyAllMethod<TechniqueSet, Technique>,
 	IBitwiseOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
 	ICollection<Technique>,
@@ -33,7 +33,7 @@ public sealed partial class TechniqueSet :
 	ISelectMethod<TechniqueSet, Technique>,
 	ISet<Technique>,
 	ISliceMethod<TechniqueSet, Technique>,
-	ISubtractionOperators<TechniqueSet, TechniqueSet, TechniqueSet>,
+	ISubtractionOperators<TechniqueSet, Technique, TechniqueSet>,
 	IToArrayMethod<TechniqueSet, Technique>,
 	IWhereMethod<TechniqueSet, Technique>
 {
@@ -380,7 +380,7 @@ public sealed partial class TechniqueSet :
 		var otherSet = (TechniqueSet)([.. other]);
 
 		Clear();
-		foreach (var technique in (this - otherSet) | (otherSet - this))
+		foreach (var technique in (this & ~otherSet) | (otherSet & ~this))
 		{
 			Add(technique);
 		}
@@ -509,31 +509,15 @@ public sealed partial class TechniqueSet :
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static bool operator false(TechniqueSet techniques) => techniques.Count == 0;
 
-	/// <summary>
-	/// Adds a new technique into the specified collection.
-	/// </summary>
-	/// <param name="left">The technique set.</param>
-	/// <param name="right">The technique to be added.</param>
-	/// <returns>
-	/// A new collection that contains the values from the collection <paramref name="left"/>,
-	/// with a new value <paramref name="right"/> added.
-	/// </returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator +(TechniqueSet left, Technique right) => [.. left, right];
 
-	/// <inheritdoc/>
+	/// <inheritdoc cref="IAdditionOperators{TSelf, TOther, TResult}.op_Addition(TSelf, TOther)"/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator +(TechniqueSet left, TechniqueGroup right) => [.. left, .. TechniqueRelationGroups[right]];
 
-	/// <summary>
-	/// Removes a technique from the specified collection.
-	/// </summary>
-	/// <param name="left">The technique set.</param>
-	/// <param name="right">A technique to be removed.</param>
-	/// <returns>
-	/// A new collection that contains the values from the collection <paramref name="left"/>,
-	/// with a technique <paramref name="right"/> removed.
-	/// </returns>
+	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
 	public static TechniqueSet operator -(TechniqueSet left, Technique right)
 	{
@@ -541,10 +525,6 @@ public sealed partial class TechniqueSet :
 		result.Remove(right);
 		return result;
 	}
-
-	/// <inheritdoc/>
-	[MethodImpl(MethodImplOptions.AggressiveInlining)]
-	public static TechniqueSet operator -(TechniqueSet left, TechniqueSet right) => left & ~right;
 
 	/// <inheritdoc/>
 	[MethodImpl(MethodImplOptions.AggressiveInlining)]
