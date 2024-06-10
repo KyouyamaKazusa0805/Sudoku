@@ -82,7 +82,7 @@ public sealed partial class NormalFishStepSearcher : StepSearcher
 				continue;
 			}
 
-			// Gather.
+			// Collect.
 			for (var house = 9; house < 27; house++)
 			{
 				if (HousesMap[house] & CandidatesMap[digit])

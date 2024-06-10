@@ -1,5 +1,6 @@
 #define LOCKED_SET
 #undef HIDDEN_SET // Requires large memory
+#define FISH
 #define UNIQUE_RECTANGLE
 #define AVOIDABLE_RECTANGLE
 
@@ -48,6 +49,9 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 #if HIDDEN_SET
 		{ LinkType.AlmostHiddenSet, new CachedAlmostHiddenSetsChainingRule() },
 #endif
+#if FISH
+		{ LinkType.KrakenNormalFish, new CachedKrakenNormalFishChainingRule() },
+#endif
 #if UNIQUE_RECTANGLE
 		{ LinkType.AlmostUniqueRectangle, new CachedAlmostUniqueRectangleChainingRule() },
 #endif
@@ -88,6 +92,9 @@ public sealed partial class GroupedChainStepSearcher : StepSearcher
 #endif
 #if HIDDEN_SET
 			yield return LinkType.AlmostHiddenSet;
+#endif
+#if FISH
+			yield return LinkType.KrakenNormalFish;
 #endif
 #if UNIQUE_RECTANGLE
 			yield return LinkType.AlmostUniqueRectangle;

@@ -144,7 +144,7 @@ public sealed partial class ConclusionSet :
 	/// Add a list of conclusions into the collection.
 	/// </summary>
 	/// <param name="conclusions">The conclusions to be added.</param>
-	public void AddRange(ReadOnlySpan<Conclusion> conclusions)
+	public void AddRange(scoped ReadOnlySpan<Conclusion> conclusions)
 	{
 		foreach (var conclusion in conclusions)
 		{

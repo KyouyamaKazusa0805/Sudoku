@@ -24,6 +24,7 @@ public sealed class ChainGroupedNodeFactor : Factor
 					AlmostLockedSet => 2,
 					AlmostHiddenSet => 3,
 					UniqueRectangle => 4,
+					Fish => 6,
 					null when link.FirstNode.IsGroupedNode || link.SecondNode.IsGroupedNode => 1,
 					_ => 0
 				};

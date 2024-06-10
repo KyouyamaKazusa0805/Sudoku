@@ -7879,6 +7879,24 @@
         <member name="M:Sudoku.Analytics.Chaining.CachedAlmostUniqueRectangleChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
             <inheritdoc/>
         </member>
+        <member name="T:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule">
+            <summary>
+            Represents a chaining rule on normal fish rule (i.e. <see cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>).
+            </summary>
+            <seealso cref="F:Sudoku.Concepts.LinkType.KrakenNormalFish"/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectStrongLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectWeakLinks(Sudoku.Concepts.Grid@,Sudoku.Concepts.LinkDictionary)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectExtraViewNodes(Sudoku.Concepts.Grid@,Sudoku.Concepts.ChainPattern,Sudoku.Drawing.View[]@)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Sudoku.Analytics.Chaining.CachedKrakenNormalFishChainingRule.CollectLoopConclusions(Sudoku.Concepts.Loop,Sudoku.Concepts.Grid@)">
+            <inheritdoc/>
+        </member>
         <member name="T:Sudoku.Analytics.Chaining.CachedLockedCandidatesChainingRule">
             <summary>
             Represents a chaining rule on locked candidates (i.e. <see cref="F:Sudoku.Concepts.LinkType.LockedCandidates"/>).
