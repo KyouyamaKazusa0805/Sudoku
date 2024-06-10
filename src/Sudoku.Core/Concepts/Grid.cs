@@ -290,7 +290,6 @@ public partial struct Grid :
 					count += PopCount((uint)GetCandidates(i));
 				}
 			}
-
 			return count;
 		}
 	}
