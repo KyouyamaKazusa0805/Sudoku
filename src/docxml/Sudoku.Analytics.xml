@@ -7283,31 +7283,12 @@
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Adds a new technique into the specified collection.
-            </summary>
-            <param name="left">The technique set.</param>
-            <param name="right">The technique to be added.</param>
-            <returns>
-            A new collection that contains the values from the collection <paramref name="left"/>,
-            with a new value <paramref name="right"/> added.
-            </returns>
-        </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueGroup)">
             <inheritdoc/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
-            <summary>
-            Removes a technique from the specified collection.
-            </summary>
-            <param name="left">The technique set.</param>
-            <param name="right">A technique to be removed.</param>
-            <returns>
-            A new collection that contains the values from the collection <paramref name="left"/>,
-            with a technique <paramref name="right"/> removed.
-            </returns>
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Addition(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueGroup)">
+            <inheritdoc cref="M:System.Numerics.IAdditionOperators`3.op_Addition(`0,`1)"/>
         </member>
-        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.TechniqueSet)">
+        <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_Subtraction(Sudoku.Analytics.Categorization.TechniqueSet,Sudoku.Analytics.Categorization.Technique)">
             <inheritdoc/>
         </member>
         <member name="M:Sudoku.Analytics.Categorization.TechniqueSet.op_OnesComplement(Sudoku.Analytics.Categorization.TechniqueSet)">
